@@ -13,17 +13,36 @@ A Route contains a list of [Waypoint](#waypoint) the driver will visit.
 |---------------------------|------------------------------|----------|------------
 | startTime                 | DateTime                     | true     | The estimated start time of the route.
 | name                      | String                       | false    | The name of the route.
+| warehouse                 | [Warehouse](#warehouse)      | true     | The warehouse of the route. This field will be the beginning and end point of the route.
 | waypoints                 | List<[Waypoint](#waypoint)>  | true     | The list of waypoint objects. This list must not be empty.
 
 ```java
 List<Waypoint> waypoints = ...
+Warehouse warehouse = ...
 Route route = Route.builder()
                    .setName("Route A")
                    .setStartTime(new DateTime(1467053939000, DateTimeZone.UTC))
+                   .setWarehouse(warehouse)
                    .setWaypoints(waypoints)
                    .build();
 ```
 
+## Warehouse
+A Warehouse is the beginning and end point of a route
+
+| Field                     | Type                             | Required | Description
+|---------------------------|----------------------------------|----------|------------
+| name                      | String                           | false    | The name of the warehouse.
+| address                   | String                           | false    | The address at the warehouse.
+| location                  | [Location](#location)            | true     | The geocode coordinate at this warehouse.
+
+```java
+Warehouse warehouse = Warehouse.builder()
+                               .setLocation(Location.create(1.0, 2.0))
+                               .setAddress("123 Fake St")
+                               .setName("The warehouse")
+                               .build();
+```
 
 ## Waypoint
 A Waypoint contains the customer information, their location, and a list of [Delivery](#delivery) items at the location.

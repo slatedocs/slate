@@ -30,7 +30,7 @@ Logging in is an asynchronous process requiring a [LoginCallback](https://foxtro
 Here is a sample `Activity` that implements the login process.
 
 ```java
-public class SampleLoginActivity extends AppCompatActivity {
+public class SampleLoginActivity extends Activity {
 
   private final Handler handler = new Handler(getMainLooper());
 
@@ -104,7 +104,7 @@ public class YourErrorStateListener extends ErrorStateListener {
 
   public static ErrorStateListener create(Handler handler) {
     return new YourErrorStateListener(handler);
-  }
+  
 
   @Nonnull 
   @Override 
@@ -172,9 +172,16 @@ Waypoint waypoint = Waypoint.builder()
 // There may be more
 List<Waypoint> routeWaypoints = Collections.singletonList(waypoint);
 
+Warehouse warehouse = Warehouse.builder()
+                               .setLocation(Location.create(1.0, 2.0))
+                               .setAddress("123 Fake St")
+                               .setName("The warehouse")
+                               .build();
+
 Route route = Route.builder()
                       .setName("Sample Route")
-                      .setStartTime(new DateTime(1467053939000L, DateTimeZone.UTC))
+                      .setStartTime(routeStartTime)
+                      .setWarehouse(warehouse)
                       .setWaypoints(routeWaypoints)
                       .build();
 
@@ -187,46 +194,49 @@ Now that we’ve created a Route, it can be imported like this:
 FoxtrotSDK.getInstance().addRoute(route);
 ```
 
-Now let’s register a [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) so we know when the route changes! This uses the same pattern as the LoginStateListener. Here’s how to implement one:
+Now let's get the [OptimizedRoute](#optimizedroute). You will need to register a [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) to get latest route changes. Once registered, an `OptimizedRoute` will be immediately given to you via the `onRouteChanged()` callback. Here is a sample `Activity` that uses the `RouteStateListener`.
 
 ```java
-public class YourRouteStateListener extends RouteStateListener {
-  private final Handler handler;
+public class SampleRouteActivity extends Activity {
 
-  private YourRouteStateListener(Handler handler) {
-    this.handler = handler;
+  private final Handler handler = new Handler(getMainLooper());
+
+  private final RouteStateListener routeStateListener = new RouteStateListener() {
+    @Nonnull
+    @Override
+    public Handler getHandler() {
+      return handler;
+    }
+
+    @Override
+    public void onAllRoutesFinished() {
+      super.onAllRoutesFinished();
+      // no more routes remaining
+    }
+
+    @Override
+    public void onRouteChanged(@Nonnull OptimizedRoute route) {
+      super.onRouteChanged(route);
+      // update view with new route
+    }
+
+  };
+
+  @Override
+  protected void onStart() {
+    super.onStart();
+    FoxtrotSDK.getInstance().registerRouteStateListener(routeStateListener);
   }
 
-  public static RouteStateListener create(Handler handler) {
-    return new YourRouteStateListener(handler);
+  @Override
+  protected void onStop() {
+    super.onStop();
+    // Make sure you unregister your listener when the activity is stopped
+    FoxtrotSDK.getInstance().unregisterRouteStateListener(routeStateListener);
   }
 
-  public <T extends OptimizedRoute> void onRouteChanged(@Nonnull T route) {
-    // whenever the state of the route changes this method is called 
-  }  
-
-  public void onAllRoutesFinished() { 
-    //when all the routes have been finished this method is triggered, letting you know the day is over
-  }
-
-  @Nonnull 
-  @Override 
-  public Handler getHandler() { 
-    return handler; 
-  }
 }
 ```
-
-Now we take our RouteStateListener and register it to Foxtrot:
-
-```java
-Handler anotherHandler = new Handler(Looper.getMainLooper);
-RouteStateListener myRouteStateListener = YourRouteStateListener.create(anotherHandler);
-FoxtrotSDK.getInstance().registerRouteStateListener(myRouteStateListener);
-```
-
-
-At this point, our RouteStateListener should get an onRouteChanged event with the route we just imported. Anytime the state of the route changes we’ll also call this method.
 
 Great, we’ve got a route! What’s next?
 
@@ -273,4 +283,4 @@ If your users run multiple routes throughout the day, it's possible to import mo
 In order to begin the second Route, you'll need to finish the first one by making the call to finishRoute. The first route will then be marked as 'finished', and you will begin receiving events for the second route.
 </aside>
 
-When all the routes that Foxtrot has have been finished, our [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) will call onAllRoutesFinished() and you'll have the opportunity to respond to that event.
+When all the routes that Foxtrot has have been finished, our [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) will call `onAllRoutesFinished()` and you'll have the opportunity to respond to that event.
