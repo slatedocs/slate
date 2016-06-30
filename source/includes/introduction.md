@@ -12,6 +12,9 @@ The Foxtrot SDK is hosted on [Bintray](https://bintray.com). You will need a Bin
 
 ## Installation
 ### 1. Setup Bintray configuration
+Add the Foxtrot Maven repository to the `repositories` section of your build.gradle file. To obtain your Bintray API key, edit your Bintray profile and select the API Key section.
+
+
 ```groovy
 repositories {
 	...
@@ -24,8 +27,6 @@ repositories {
     }
 }
 ```
-Add the Foxtrot Maven repository to the `repositories` section of your build.gradle file. To obtain your Bintray API key, edit your Bintray profile and select the API Key section.
-
 
 ### 2. Add the Foxtrot Android SDK as a dependency in your build.gradle
 
