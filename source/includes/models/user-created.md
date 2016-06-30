@@ -1,9 +1,13 @@
 # User Created Models
 
-These models must be imported into Foxtrot before they can be optimized.
+These models must be created and imported into Foxtrot before they can be optimized. You should never be manually creating any of the [Optimized](#optimized-models) models.
+
+<aside class="notice">
+The Foxtrot SDK will not return these objects that you import, but rather their Optimized equivalents.
+</aside>
 
 ## Route
-A Route contains a list of [Waypoint](#waypoint) the driver will drive on.
+A Route contains a list of [Waypoint](#waypoint) the driver will visit.
 
 | Field                     | Type                         | Required | Description
 |---------------------------|------------------------------|----------|------------
@@ -22,7 +26,7 @@ Route route = Route.builder()
 
 
 ## Waypoint
-A Waypoint contains both the customer information, their location, and a list of [Delivery](#delivery) items at the location.
+A Waypoint contains the customer information, their location, and a list of [Delivery](#delivery) items at the location.
 
 | Field                     | Type                             | Required | Description
 |---------------------------|----------------------------------|----------|------------
@@ -49,7 +53,7 @@ Waypoint waypoint = Waypoint.builder()
 ```
 
 ## Location
-A Location object describes the latitude and longitude coordinate position
+A Location object describes a latitude and longitude coordinate position
 
 | Field                     | Type                             | Required | Description
 |---------------------------|----------------------------------|----------|------------
@@ -57,7 +61,7 @@ A Location object describes the latitude and longitude coordinate position
 | longitude                 | Double                           | true     | The longitude position. -180 <= longitude <= 180
 
 ```java
-Location location = Location.create(1.0, 2.0);
+Location location = Location.create(37.780177, -122.397055);
 ```
 
 ## TimeWindow
@@ -77,7 +81,7 @@ TimeWindow timeWindow = TimeWindow.builder()
 ```
 
 ## Delivery
-A Delivery describes the item to be delivered.
+A Delivery describes an item and quantity to be delivered. e.g. SKU
 
 | Field                     | Type                             | Required | Description
 |---------------------------|----------------------------------|----------|------------
@@ -92,7 +96,7 @@ Delivery delivery = Delivery.builder()
 ```
 
 ## DeliveryAttempt
-A DeliveryAttempt contains status information on a delivery.
+A DeliveryAttempt contains status information on a visit a [Driver](#driver) made at a [Waypoint](#waypoint).
 
 | Field                     | Type                             | Required | Description
 |---------------------------|----------------------------------|----------|------------
