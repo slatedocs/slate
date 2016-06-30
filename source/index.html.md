@@ -680,22 +680,22 @@ The result of the secure search is an object of class `SearchResponse`. One can 
 
 It is also possible to do boolean search queries using the following keywords.
 The keyword `AND` means that two terms have to be in the results. For instance,
-the query `cat AND dog` will only return documents containing both the word cat
-and the word dog. 
+the query `cat AND dog` will only return documents containing both the word
+`cat` and the word `dog`. 
 
 The keyword `OR` (which can also be replaced by a space) means that at least one
 of the two terms have to be in the results. For instance, the query `cat OR dog`
-will return documents containing only the word cat, documents containing only
-the word dog, and documents containing both documents. 
+will return documents containing only the word `cat`, documents containing only
+the word `dog`, and documents containing both words. 
 
-Finally, the keyword `NOT` indicates keywords that should not appear in the
+Finally, the keyword `NOT` indicates words that should not appear in the
 results. For instance, the query `cat AND NOT dog` will return documents that
-contain the word cat but not the word dog. 
+contain the word `cat` but not the word `dog`. 
 
 ```java
 int page = 0; // the first result to return
 int numResults = 100; // the maximal number of results to return
 SearchResponse response = sfs.search("lizard OR ( cat AND NOT dog )", page, numResults);
 ```
-This example will all documents containing the word lizard and the documents
-containing the word cat but not the word dog. 
+This example will all documents containing the word `lizard` and the documents
+containing the word `cat` but not the word `dog`. 
