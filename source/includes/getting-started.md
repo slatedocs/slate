@@ -90,9 +90,52 @@ public class SampleLoginActivity extends AppCompatActivity {
 }
 ```
 
+## Registering an error listener
+
+Now that you’ve set foxtrot up, you’ll want to register an object that conforms to our [ErrorStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/ErrorStateListener.html) interface so you know if anything goes wrong. Here’s how to create a simple listener:
+
+```java
+public class YourErrorStateListener extends ErrorStateListener {
+  private final Handler handler;
+
+  private YourErrorStateListener(Handler handler) {
+    this.handler = handler;
+  }
+
+  public static ErrorStateListener create(Handler handler) {
+    return new YourErrorStateListener(handler);
+  }
+
+  @Nonnull 
+  @Override 
+  public Handler getHandler() { 
+    return handler; 
+  }
+
+  @Override
+  public void onErrors(EnumSet<ErrorState> errors) {
+    // respond to any errors that may appear 
+  } 
+  @Override 
+  public void onWarnings(EnumSet<WarningState> warnings) {
+    // respond to any warnings that may appear 
+  }
+}
+```
+
+And once you’ve implemented your class, here’s how you register it to Foxtrot:
+
+```java
+Handler handler = new Handler(Looper.getMainLooper());
+ErrorStateListener myErrorStateListener = YourErrorStateListener.create(handler);
+FoxtrotSDK.getInstance().registerErrorStateListener(myErrorStateListener);
+```
+
+You can register as many error state listeners as you’d like and they’ll all receive the current state of the SDK whenever they’re registered. This makes it incredibly easy to simply and powerfully handle any issues that may arise while developing, or while your users are using your app.
+
 ## Importing a route
 
-You’re almost there! Assuming you’ve had no problems so far, now you can import multiple [Route](#route) objects into Foxtrot. Foxtrot will cache these objects for you so you don't need to import them again after the app restarts.
+Assuming you’ve had no problems so far, now you can import multiple [Route](#route) objects into Foxtrot. Foxtrot will cache these objects for you so you don't need to import them again after the app restarts
 
 Here is sample code to add a route:
 
@@ -142,7 +185,7 @@ Here’s how:
 FoxtrotSDK.getInstance().addRoute(theRoute);
 ```
 
-But first, let’s register a [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) so we know when the route changes! This uses the same pattern as the LoginStateListener. Here’s how to implement one:
+Now let’s register a [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) so we know when the route changes! This uses the same pattern as the LoginStateListener. Here’s how to implement one:
 
 ```java
 public class YourRouteStateListener extends RouteStateListener {
@@ -184,50 +227,6 @@ FoxtrotSDK.getInstance().registerRouteStateListener(myRouteStateListener);
 At this point, our RouteStateListener should get an onRouteChanged event with the route we just imported. Anytime the state of the route changes we’ll also call this method.
 
 Great, we’ve got a route! What’s next?
-
-## Registering an error listener
-
-Now that you’ve set foxtrot up, you’ll want to register an object that conforms to our [ErrorStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/ErrorStateListener.html) interface so you know if anything goes wrong. Here’s how to create a simple listener:
-
-```java
-public class YourErrorStateListener extends ErrorStateListener {
-  private final Handler handler;
-
-  private YourErrorStateListener(Handler handler) {
-    this.handler = handler;
-  }
-
-  public static ErrorStateListener create(Handler handler) {
-    return new YourErrorStateListener(handler);
-  }
-
-  @Nonnull 
-  @Override 
-  public Handler getHandler() { 
-    return handler; 
-  }
-
-  @Override
-  public void onErrors(EnumSet<ErrorState> errors) {
-    // respond to any errors that may appear 
-  } 
-  @Override 
-  public void onWarnings(EnumSet<WarningState> warnings) {
-    // respond to any warnings that may appear 
-  }
-}
-```
-
-And once you’ve implemented your class, here’s how you register it to Foxtrot:
-
-```java
-Handler handler = new Handler(Looper.getMainLooper());
-ErrorStateListener myErrorStateListener = YourErrorStateListener.create(handler);
-FoxtrotSDK.getInstance().registerErrorStateListener(myErrorStateListener);
-```
-
-You can register as many error state listeners as you’d like and they’ll all receive the current state of the SDK whenever they’re registered. This makes it incredibly easy to simply and powerfully handle any issues that may arise while developing, or while your users are using your app.
-
 
 ## Making a Delivery attempt
 
