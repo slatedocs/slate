@@ -3,12 +3,12 @@
 ## Setting up the SDK
 
 Once you’ve brought the Foxtrot Android SDK into your project, the first thing you’ll want to do is set it up.
-You’ll need two things: a context (any context should be fine), and an API key that lets Foxtrot identify your organization.
+You’ll need two things: an Android `context` (any context should be fine), and an API key that lets Foxtrot identify your organization.
 
 ```java
-Context mContext = activity.getApplicationContext();
-String mApiKey = "YOUR_API_KEY";
-FoxtrotSDK.setup(mContext, mApiKey);
+Context context = activity.getApplicationContext();
+String apiKey = "YOUR_API_KEY";
+FoxtrotSDK.setup(context, apiKey);
 ```
 
 Great job, now you’ve set up the Foxtrot SDK singleton… give yourself a high five!
@@ -18,6 +18,173 @@ From now on, when you call the FoxtrotSDK you’ll need to access the singleton 
 FoxtrotSDK.getInstance().SOME_METHOD()
 ```
 
+## Logging in
+
+At this point your driver has logged into your app, and Foxtrot needs some of that information. Here’s how to get it to us!
+
+Logging is an asynchronous process requiring a [LoginCallback](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/controllers/auth/LoginCallback.html) to be registered to the `FoxtrotSDK` object in order for you can respond to any issues that may arise. 
+
+Here is an example `Activity` that implements the login process.
+
+```java
+public class SampleLoginActivity extends AppCompatActivity {
+
+  private final Handler handler = new Handler(getMainLooper());
+
+  private final LoginCallback loginCallback = new LoginCallback() {
+    @Nonnull
+    @Override
+    public Handler getHandler() {
+      // Handler object to post the callback
+      return handler;
+    }
+
+    @Override
+    public void onSuccess() {
+      super.onSuccess();
+      // Make sure to unregister after you finish
+      FoxtrotSDK.getInstance().unregisterLoginCallback(this);
+      // Proceed to next activity
+    }
+
+    @Override
+    public void onError(LoginError loginError) {
+      super.onError(loginError);
+      switch (loginError) {
+        case NETWORK_ERROR:
+          // try again later
+          break;
+        case INVALID_API_KEY:
+          // contact your administrator for a valid api key
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    FoxtrotSDK foxtrotSDK = FoxtrotSDK.getInstance();
+    // Make sure to register your callback before logging in
+    foxtrotSDK.registerLoginCallback(loginCallback);
+    // Create a Driver object
+    Driver driver = Driver.builder()
+                          .setId("id")
+                          .setName("name")
+                          .build();
+    foxtrotSDK.login(driver);
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    // Make sure to unregister your callback
+    FoxtrotSDK.getInstance().unregisterLoginCallback(loginCallback);
+  }
+
+}
+```
+
+## Importing a route
+
+You’re almost there! Assuming you’ve had no problems so far, now you can import multiple [Route](#route) objects into Foxtrot. Foxtrot will cache these objects for you so you don't need to import them again after the app restarts
+
+Here is sample code to add a route:
+
+```java
+Delivery delivery = Delivery.builder()
+                            .setProduct("Kittens")
+                            .setQuantity(1.0)
+                            .build();
+List<Delivery> deliveries = Collections.singletonList(delivery);
+
+DateTime routeStartTime = new DateTime(0L, DateTimeZone.UTC);
+// Construct time constraint to delivery 1 kitty between 1 and 2 UTC
+TimeWindow timeWindow = TimeWindow.builder()
+                                  .setStart(routeStartTime.plusHours(1))
+                                  .setEnd(routeStartTime.plusHours(2))
+                                  .build();
+// There may be more
+List<TimeWindow> timeWindows = Collections.singletonList(timeWindow);
+
+Location location = Location.create(37.7749, -122.4194);
+Waypoint waypoint = Waypoint.builder()
+                            .setLocation(location)
+                            .setAddress("123 Fake St")
+                            .setName("Whole Foods")
+                            .setCustomerId("UNIQUE_CUSTOMER_ID")
+                            .setDeliveries(deliveries)
+                            .setTimeWindows(timeWindows)
+                            .setServiceTimeInSeconds(600L) // 10 minutes
+                            .build();
+// There may be more
+List<Waypoint> routeWaypoints = Collections.singletonList(waypoint);
+
+Route route = Route.builder()
+                      .setName("Sample Route")
+                      .setStartTime(new DateTime(1467053939000L, DateTimeZone.UTC))
+                      .setWaypoints(routeWaypoints)
+                      .build();
+
+// You can add multiple routes
+FoxtrotSDK.getInstance().addRoute(route);
+```
+
+Now that we’ve created a Route object and registered a RouteStateListener we are ready to import!
+Here’s how:
+
+```java
+FoxtrotSDK.getInstance().addRoute(theRoute);
+```
+
+```java
+List<Route
+```
+
+But first, let’s register a [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) so we know when the route changes! This uses the same pattern as the LoginStateListener. Here’s how to implement one:
+
+```java
+public class YourRouteStateListener extends RouteStateListener {
+  private final Handler handler;
+
+  private YourRouteStateListener(Handler handler) {
+    this.handler = handler;
+  }
+
+  public static RouteStateListener create(Handler handler) {
+    return new YourRouteStateListener(handler);
+  }
+
+  public <T extends OptimizedRoute> void onRouteChanged(@Nonnull T route) {
+    // whenever the state of the route changes this method is called 
+  }  
+
+  public void onAllRoutesFinished() { 
+    //when all the routes have been finished this method is triggered, letting you know the day is over
+  }
+
+  @Nonnull 
+  @Override 
+  public Handler getHandler() { 
+    return handler; 
+  }
+}
+```
+
+Now we take our RouteStateListener and register it to Foxtrot:
+
+```java
+Handler anotherHandler = new Handler(Looper.getMainLooper);
+RouteStateListener myRouteStateListener = YourRouteStateListener.create(anotherHandler);
+FoxtrotSDK.getInstance().registerRouteStateListener(myRouteStateListener);
+```
+
+
+At this point, our RouteStateListener should get an onRouteChanged event with the route we just imported. Anytime the state of the route changes we’ll also call this method.
+
+Great, we’ve got a route! What’s next?
 
 ## Registering an error listener
 
@@ -62,149 +229,6 @@ FoxtrotSDK.getInstance().registerErrorStateListener(myErrorStateListener);
 
 You can register as many error state listeners as you’d like and they’ll all receive the current state of the SDK whenever they’re registered. This makes it incredibly easy to simply and powerfully handle any issues that may arise while developing, or while your users are using your app.
 
-## Logging in
-
-At this point your driver has logged into your app, and Foxtrot needs some of that information. Here’s how to get it to us!
-
-Logging in is a very important process, so it uses it's own [LoginCallback](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/controllers/auth/LoginCallback.html) so you can respond to any issues that may arise. It looks a lot like the ErrorStateListener we just implemented, but instead of reporting the state of the app it reports any events as they happen when going through login. Here’s how to create a simple one:
-
-```java
-public class YourLoginCallback extends LoginCallback {
-  private final Handler handler;
-
-  private YourLoginCallback(Handler handler) {
-    this.handler = handler;
-  }
-
-  public static LoginCallback create(Handler handler) {
-    return new YourLoginCallback(handler);
-  }
-
-  public void onSuccess() {
-    // driver has successfully logged in, do whatever you need to! 
-  }  
-
-  public void onError(LoginError loginError) {
-    // there was an error, please respond to it accordingly 
-  }
-
-  @Nonnull 
-  @Override 
-  public Handler getHandler() { 
-    return handler; 
-  }
-}
-```
-
-Next you’ll need to create a driver using the information you have on hand, it should look something like this:
-
-```java
-String mDriverId = "A_DRIVER_ID";
-String mDriverName = "Hulk Hogan"; // this argument is optional
-Driver myDriver = Driver.builder().setId(mDriverId).setName(mDriverName).build();
-```
-
-Finally, we’re going to register that loginCallback and log the driver in:
-
-```java
-Handler someHandler = new Handler(Looper.getMainLooper());
-LoginCallback loginCallback = YourLoginCallback.create(someHandler);
-FoxtrotSDK.getInstance().registerLoginCallback(loginCallback);
-FoxtrotSDK.getInstance().login(myDriver);
-```
-
-...then once your loginCallback has onSuccess() called you’re ready to import a route!
-
-## Importing a route
-
-You’re almost there! Assuming you’ve had no problems so far, now you’ll need to construct a route and import it into the SDK.
-
-But first, let’s register a [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) so we know when the route changes! This uses the same pattern as the ErrorStateListener. Here’s how to implement one:
-
-```java
-public class YourRouteStateListener extends RouteStateListener {
-  private final Handler handler;
-
-  private YourRouteStateListener(Handler handler) {
-    this.handler = handler;
-  }
-
-  public static RouteStateListener create(Handler handler) {
-    return new YourRouteStateListener(handler);
-  }
-
-  public <T extends OptimizedRoute> void onRouteChanged(@Nonnull T route) {
-    // whenever the state of the route changes this method is called 
-  }  
-
-  public void onAllRoutesFinished() { 
-    //when all the routes have been finished this method is triggered, letting you know the day is over
-  }
-
-  @Nonnull 
-  @Override 
-  public Handler getHandler() { 
-    return handler; 
-  }
-}
-```
-
-Now we take our RouteStateListener and register it to Foxtrot:
-
-```java
-Handler anotherHandler = new Handler(Looper.getMainLooper);
-RouteStateListener myRouteStateListener = YourRouteStateListener.create(anotherHandler);
-FoxtrotSDK.getInstance().registerRouteStateListener(myRouteStateListener);
-```
-
-Great, we’re ready to create a route for importing! Here’s how they work:
-
-A [Route](#route) needs a start time and a set of waypoints.
-    - It also may optionally have a name.
-A [Waypoint](#waypoint) needs an ID, a Location, and a list of Deliveries.
-    - It may also optionally contain a name, an address, an estimate of how long it takes to service this waypoint in seconds, and a list of TimeWindow objects.
-A [Delivery](#delivery) needs a product;
-    - It may also optionally contain the amount of the product being delivered.
-A [Location](#location) needs a latitude and a longitude.
-A [TimeWindow](#timewindow) needs a start and an end. The start of a TimeWindow cannot be before the startTime of the route, and the end cannot be before the start.
-
-Here’s a very simple Route:
-
-```java
-Delivery aDelivery = Delivery.builder()
-        .setProduct("Kittens")
-        .build();
-Location aWaypointLocation = Location.create(37.7749, -122.4194);
-
-List<Delivery> deliveries = ImmutableList.of(aDelivery); 
-List<TimeWindow> timeWindows = Collections.emptyList(); 
-Waypoint someWaypoint = Waypoint.builder() 
-        .setLocation(aWaypointLocation) 
-        .setAddress("123 Fake St") 
-        .setName("Whole Foods") 
-        .setCustomerId("UNIQUE_CUSTOMER_ID") 
-        .setDeliveries(deliveries) 
-        .setTimeWindows(timeWindows) 
-        .setServiceTimeInSeconds(600L) // 10 minutes 
-        .build();
-List<Waypoint> routeWaypoints = ImmutableList.of(someWaypoint);
-Route theRoute = Route.builder()
-        .setName("Sample Route")
-        .setStartTime(new DateTime(1467053939000, DateTimeZone.UTC))
-        .setWaypoints(routeWaypoints)
-        .build();
-```
-
-Now that we’ve created a Route object and registered a RouteStateListener we are ready to import!
-Here’s how:
-
-```java
-FoxtrotSDK.getInstance().addRoute(theRoute);
-```
-
-At this point, our RouteStateListener should get an onRouteChanged event with the route we just imported. Anytime the state of the route changes we’ll also call this method.
-
-Great, we’ve got a route! What’s next?
 
 ## Making a Delivery attempt
 
@@ -223,3 +247,27 @@ DeliveryAttempt successfulAttempt = DeliveryAttempt.builder()
         .build();
 FoxtrotSDK.getInstance().addDeliveryAttempt("SOME_DELIVERY_ID", successfulAttempt);
 ```
+
+##Undoing a Delivery Attempt
+
+If the driver makes a mistake, you might want to provide the ability to undo a [DeliveryAttempt](#deliveryattempt). If that's the case, here's how:
+
+```java
+FoxtrotSDK.getInstance().undoDeliveryAttempt("A_DELIVERY_ID");
+```
+
+This will automatically find the most recent [DeliveryAttempt](#deliveryattempt) on that [Delivery](#delivery) and undo it. 
+
+##Finishing a Route
+
+Once your driver has finished making attempts on all their [Waypoints](#waypoint), you may want to allow them to finish their route.
+Here's how:
+
+```java
+FoxtrotSDK.getInstance().finishRoute("YOURE_ROUTE_ID");
+```
+
+
+If your drivers run multiple routes throughout the day, it's possible to import more than one [Route](#route) into the Foxtrot SDK. We'll sort them based on the start time of each [Route](#route), treating whichever route starts earlier as the first one.
+
+In order to begin the second [Route](#route), you'll need to finish the first one. When your driver is ready, you can make this call to the SDK in order to finish a route:
