@@ -572,9 +572,30 @@ try {
 }
 ```
 
-To share a directory or a file that you own with the members in a sharing group, use the shareElement method of SearchableFileSystem
+To share a directory or a file that you own with the members in a sharing group, use the shareElement method of SearchableFileSystem.
 
-A `PathNotFoundException` if the frontend path of the element to share does not exist. If the element is already shared with this share name and this sharing group, an `ElementAlreadySharedException` is thrown. If the caller does not own the file system element, a `PathNotOwnedByUserException` is thrown.
+A `PathNotFoundException` is thrown if the frontend path of the element to share does not exist. If the element is already shared with this share name and this sharing group, an `ElementAlreadySharedException` is thrown. If the caller does not own the file system element, a `PathNotOwnedByUserException` is thrown.
+
+
+## Add User to Sharing Group
+> Adding a user to a sharing group
+
+```java
+// SearchableFileSystem sfs
+String groupName = "shareGroup";
+String userName = "userName";
+try{
+	sfs.addUser(groupName, userName);
+} catch(ExistingMemberException e){
+	System.out.println("The user is already in the sharing group.");
+}
+```
+To add a user to an existing sharing group, use the addUser method of
+SearchableFileSystem. 
+
+A `NonExistingGroupException` is thrown if the provided group name does not
+exist. A `ExistingMemberException` is thrown if the given user name is already a
+member of the group. 
 
 ## Secure Search
 > Secure search
