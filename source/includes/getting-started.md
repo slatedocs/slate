@@ -247,3 +247,27 @@ DeliveryAttempt successfulAttempt = DeliveryAttempt.builder()
         .build();
 FoxtrotSDK.getInstance().addDeliveryAttempt("SOME_DELIVERY_ID", successfulAttempt);
 ```
+
+##Undoing a Delivery Attempt
+
+If the driver makes a mistake, you might want to provide the ability to undo a [DeliveryAttempt](#deliveryattempt). If that's the case, here's how:
+
+```java
+FoxtrotSDK.getInstance().undoDeliveryAttempt("A_DELIVERY_ID");
+```
+
+This will automatically find the most recent [DeliveryAttempt](#deliveryattempt) on that [Delivery](#delivery) and undo it. 
+
+##Finishing a Route
+
+Once your driver has finished making attempts on all their [Waypoints](#waypoint), you may want to allow them to finish their route.
+Here's how:
+
+```java
+FoxtrotSDK.getInstance().finishRoute("YOURE_ROUTE_ID");
+```
+
+
+If your drivers run multiple routes throughout the day, it's possible to import more than one [Route](#route) into the Foxtrot SDK. We'll sort them based on the start time of each [Route](#route), treating whichever route starts earlier as the first one.
+
+In order to begin the second [Route](#route), you'll need to finish the first one. When your driver is ready, you can make this call to the SDK in order to finish a route:
