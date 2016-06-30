@@ -1,7 +1,7 @@
 # Optimized models
 
 Once the [User Created Models](#user-created-models) have been imported into Foxtrot, an optimized version of
-each will be returned. You will never need to create these Optimized models. The FoxtrotSDK will create them for you.
+each will be returned. You will never need to create these Optimized models. The Foxtrot SDK will create them for you.
 In addition to the original fields the models are based on, new fields are added to make the models easier to work with.
 
 ## OptimizedRoute
