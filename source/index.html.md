@@ -193,6 +193,12 @@ on read and write to prevent corrupted data.
 docker run -td --name zookeeper -p 2181:2181 jplock/zookeeper
 ```
 
+> Modify the config.properties:
+
+```shell
+hdfs.zookeeperUri=localhost:2181
+```
+
 ## Search Engine
 > Download and run the Elasticsearch Docker container
 
