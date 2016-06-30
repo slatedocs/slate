@@ -511,7 +511,7 @@ If the parent of the directory you are trying to create does not exist, a `Paren
 // File sourceFile;
 // FrontendPath pathToUpload;
 try {
-    sfs.upload(sourceFile, pathToUpload, null);
+    sfs.upload(sourceFile, pathToUpload);
 } catch(ParentNotFoundException e) {
     System.out.println("The parent directory of the specified destination path does not exist");
 }
@@ -522,6 +522,32 @@ Content is preprocessed, indexed, encrypted and securely uploaded via a single m
 If the parent of the destination path you want to upload does not exist, a `ParentNotFoundException` is thrown.
 
 Content is downloaded in a similar way. If the source frontend path does not exist, `PathNotFoundException` is thrown. If one is trying to download a directory, `PathIsDirectoryException` is thrown.
+
+> Upload multiple files at once
+
+It is also possible to upload multiple files at once in the same directory.
+
+```java
+// SearchableFileSystem sfs
+// File sourceFile1;
+// FrontendPath pathToUploadFile1;
+// File sourceFile2;
+// FrontendPath pathToUploadFile2;
+// File sourceFile3;
+// FrontendPath pathToUploadFile3;
+Map<File, FrontendPath> sourcesToDest = new HashMap<>();
+sourcesToDest.put(sourceFile1, pathToUploadFile1);
+sourcesToDest.put(sourceFile2, pathToUploadFile2);
+sourcesToDest.put(sourceFile3, pathToUploadFile3);
+try {
+    sfs.upload(sourcesToDest);
+} catch(ParentNotFoundException e) {
+    System.out.println("The parent directory of the specified destination path does not exist");
+} catch (IllegalArgumentException e) {
+	System.out.println("The destinations are not all in the same directory.");
+}
+```
+
 
 > Content download
 
@@ -596,7 +622,7 @@ try {
 To unshare a directory or a file that you own, use the `unshareElement` method of `SearchableFileSystem`.
 
 A `PathNotFoundException` is thrown if the provided share does not exist. 
-If the caller does not own the share, i.e., if he does not own the frontend path corresponding to the share, a `PathNotOwnedByUserException` is thrown.
+If the caller does not own the file system element, a `PathNotOwnedByUserException` is thrown.
 
 ## Add User to Sharing Group
 > Adding a user to a sharing group
