@@ -31,30 +31,71 @@ This method lets you create the invoice.
 
 Field Name|Type| Description
 ---------|-----|------
+number | string | Invoice Number
+date | string | Invoice Date.
 logo | string | Invoice logo link.
-to | string | Email where invoice will be send
-custnum | string | Customer number
-customer | string | Encoded data of customer
-invoiceNum | string | Invoice Number
-invoiceDate | string | Date invoice created
-invoiceDue | string | Due date of Invoice
-merchant[id] |array| Merchant ID
-merchant[name] |array| Merchant Name
-merchant[city] |array| Merchant City
-merchant[street] |array| Merchant Street
-merchant[CityStateZip] |array| Merchant (city,state,zip)
-merchant[contact] | array | Merchant's contact
-merchant[email] | array | Merchant's email
-lineitem#sku |string | Product item sku
-lineitem#productName |string | Product item name
-lineitem#unitCost |string | Item cost
-lineitem#unitQuantity |string | Item quantity
-lineitem#unitPrice | string| Total amount resulting from the cost & quantity
-subtotal | string | Resulting total of all the items
-credit | string | Customer credit	
-total | string | Invoice total amount
+mail_to | string | Email where invoice will be send
+mail_body| string | Email body. Can be html.
+customer | string | Json data of customer
+line_items | array | Array of objects.
+credit | string | Customer credit
 
-<aside class="notice"># = denotes a number in line items.</aside>
+> Sample JSON structure like this:
+```json
+{
+  "number": "INV-0001",
+  "date": "29 June, 2016",
+  "logo": "https:\/\/invoice_logos.s3.amazonaws.com\/bleh.png",
+  "mail_body": "<span style=\"color: #000000;\">This email is a reminder that the balance on your account is <strong style=\"font-weight: bold\">$210.00<\/strong>. We accept MasterCard, VISA, Discover and American Express. If your payment is already on its way, we thank you and ask that you please disregard this notice. If not, we would appreciate receipt of your payment as soon as possible. If you would like to further discuss the details of your account, please do not hesitate to call billing at <strong style=\"font-weight: bold\"><\/strong>.<\/span>",
+  "credit": "$0.00",
+  "mail_to": "jamesj@zylun.com",
+  "section": "content",
+  "key": "9ypnPRT9v2ChPCQv",
+  "customer": {
+    "custid": "9ypnPRT9v2ChPCQv_2266",
+    "first_name": "Customer  ",
+    "last_name": "Portal",
+    "email": "evelynlopz@outlook.com",
+    "phone": "",
+    "company": "",
+    "street1": "",
+    "street2": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "country": ""
+  },
+  "line_items": [
+    {
+      "id": 1002,
+      "sku": "1233476",
+      "name": "My ProductName 11",
+      "quantity": "1",
+      "total_cost": "$200.00",
+      "parent": 0,
+      "due_date": "2016-06-29"
+    },
+    {
+      "id": 1003,
+      "sku": "1233476",
+      "name": "Sub Product 11",
+      "quantity": "1",
+      "total_cost": "$10.00",
+      "parent": 1002,
+      "due_date": "2016-06-29"
+    },
+    {
+      "id": 1004,
+      "sku": "09324174593",
+      "name": "Ice Blast",
+      "quantity": "6",
+      "total_cost": "$10.08",
+      "parent": 1002,
+      "due_date": "2016-06-29"
+    }
+  ]
+}
+```
 
 
 ## View
