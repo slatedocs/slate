@@ -5,9 +5,8 @@
 Once you’ve brought the Foxtrot Android SDK into your project, the first thing you’ll want to do is set it up.
 You’ll need two things:
 
-1) an Android `context` (any context should be fine)
-
-2) your Foxtrot API key
+1. an Android `context` (any context should be fine)
+2. your Foxtrot API key
 
 ```java
 Context context = activity.getApplicationContext();
@@ -16,7 +15,7 @@ FoxtrotSDK.setup(context, apiKey);
 ```
 
 Great job, now you’ve set up the Foxtrot SDK singleton… give yourself a high five!
-From now on, when you call the FoxtrotSDK you’ll need to access the singleton by calling
+From now on, when you call the FoxtrotSDK you’ll need to access the singleton by calling:
 
 ```java
 FoxtrotSDK.getInstance().SOME_METHOD()
@@ -24,11 +23,11 @@ FoxtrotSDK.getInstance().SOME_METHOD()
 
 ## Logging in
 
-At this point your driver has logged into your app, and Foxtrot needs some of that information. Here’s how to get it to us!
+Once your driver has logged into your app using your existing login flow, you'll need to log them into Foxtrot as a [Driver](#driver).
 
-Logging is an asynchronous process requiring a [LoginCallback](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/controllers/auth/LoginCallback.html) to be registered to the `FoxtrotSDK` object in order for you can respond to any issues that may arise.
+Logging in is an asynchronous process requiring a [LoginCallback](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/controllers/auth/LoginCallback.html) to be registered to the `FoxtrotSDK` object in order for you can respond to any issues that may arise.
 
-Here is an example `Activity` that implements the login process.
+Here is a sample `Activity` that implements the login process.
 
 ```java
 public class SampleLoginActivity extends AppCompatActivity {
@@ -93,7 +92,7 @@ public class SampleLoginActivity extends AppCompatActivity {
 
 ## Importing a route
 
-You’re almost there! Assuming you’ve had no problems so far, now you can import multiple [Route](#route) objects into Foxtrot. Foxtrot will cache these objects for you so you don't need to import them again after the app restarts
+You’re almost there! Assuming you’ve had no problems so far, now you can import multiple [Route](#route) objects into Foxtrot. Foxtrot will cache these objects for you so you don't need to import them again after the app restarts.
 
 Here is sample code to add a route:
 
@@ -141,10 +140,6 @@ Here’s how:
 
 ```java
 FoxtrotSDK.getInstance().addRoute(theRoute);
-```
-
-```java
-List<Route
 ```
 
 But first, let’s register a [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) so we know when the route changes! This uses the same pattern as the LoginStateListener. Here’s how to implement one:
