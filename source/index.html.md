@@ -576,6 +576,27 @@ To share a directory or a file that you own with the members in a sharing group,
 
 A `PathNotFoundException` is thrown if the frontend path of the element to share does not exist. If the element is already shared with this share name and this sharing group, an `ElementAlreadySharedException` is thrown. If the caller does not own the file system element, a `PathNotOwnedByUserException` is thrown.
 
+## Unshare Element
+> Unsharing a file or a directory
+
+```java
+// SearchableFileSystem sfs
+String groupName = "shareGroup";
+String shareName = "sharedFromUser";
+
+try {
+    sfs.unshareElement(groupName, shareName);
+} catch(PathNotFoundException e) {
+    System.out.println("The share does not exist");
+} catch(PathNotOwnedByUserException e) {
+    System.out.println("The share is not owned by the calling user.");
+}
+```
+
+To unshare a directory or a file that you own, use the `unshareElement` method of `SearchableFileSystem`.
+
+A `PathNotFoundException` is thrown if the provided share does not exist. 
+If the caller does not own the share, i.e., if he does not own the frontend path corresponding to the share, a `PathNotOwnedByUserException` is thrown.
 
 ## Add User to Sharing Group
 > Adding a user to a sharing group
