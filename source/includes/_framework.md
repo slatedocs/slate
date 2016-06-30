@@ -224,12 +224,12 @@ class CustomStorage implements FSAccessLayer {
 ```
 ### Provide the custom implementation to the Inpher SDK
 
-Once the custom implementation of the `SearchAccessLayer` is completed, you need
-to provide by calling `AccessLayersProvider.addSearchProvider()`. It is
+Once the custom implementation of the `StorageAcccessLayer` is completed, you need
+to provide by calling `AccessLayersProvider.addFSProvider()`. It is
 important to call it before creating the InpherClient object.
 ```java
-// SearchAccessLayer customSearch;
-AccessLayersProvider.addSearchProvider(customSearch);
+// FSAccessLayer customStorage;
+AccessLayersProvider.addSearchProvider(customStorage);
 
 // ...
 
