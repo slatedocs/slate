@@ -18,7 +18,7 @@ In addition to the original fields the models are based on, new fields are added
 
 | Field                     | Type                             | Required | Description
 |---------------------------|----------------------------------|----------|------------
-| id                        | Long  	                       | true     | The id of the warehouse.
+| id                        | String  	                       | true     | The id of the warehouse.
 | name                      | String                           | false    | The name of the warehouse.
 | address                   | String                           | false    | The address at the warehouse.
 | location                  | [Location](#location)            | true     | The geocode coordinate at this warehouse.
