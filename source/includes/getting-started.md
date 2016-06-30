@@ -21,7 +21,7 @@ FoxtrotSDK.getInstance().SOME_METHOD()
 
 ## Registering an error listener
 
-Now that you’ve set foxtrot up, you’ll want to register an object that conforms to our ErrorStateListener interface so you know if anything goes wrong. Here’s how to create a simple listener:
+Now that you’ve set foxtrot up, you’ll want to register an object that conforms to our [ErrorStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/ErrorStateListener.html) interface so you know if anything goes wrong. Here’s how to create a simple listener:
 
 ```java
 public class YourErrorStateListener extends ErrorStateListener {
@@ -66,7 +66,7 @@ You can register as many error state listeners as you’d like and they’ll all
 
 At this point your driver has logged into your app, and Foxtrot needs some of that information. Here’s how to get it to us!
 
-Logging in is a very important process, so it has it’s own callback so you can respond to any issues that may arise. It looks a lot like the ErrorStateListener we just implemented, but instead of reporting the state of the app it reports any events as they happen when going through login. Here’s how to create a simple one:
+Logging in is a very important process, so it uses it's own [LoginCallback](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/controllers/auth/LoginCallback.html) so you can respond to any issues that may arise. It looks a lot like the ErrorStateListener we just implemented, but instead of reporting the state of the app it reports any events as they happen when going through login. Here’s how to create a simple one:
 
 ```java
 public class YourLoginCallback extends LoginCallback {
@@ -119,7 +119,7 @@ FoxtrotSDK.getInstance().login(myDriver);
 
 You’re almost there! Assuming you’ve had no problems so far, now you’ll need to construct a route and import it into the SDK.
 
-But first, let’s register a listener so we know when the route changes! This uses the same pattern as the ErrorStateListener. Here’s how to implement one:
+But first, let’s register a [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) so we know when the route changes! This uses the same pattern as the ErrorStateListener. Here’s how to implement one:
 
 ```java
 public class YourRouteStateListener extends RouteStateListener {
@@ -159,14 +159,14 @@ FoxtrotSDK.getInstance().registerRouteStateListener(myRouteStateListener);
 
 Great, we’re ready to create a route for importing! Here’s how they work:
 
-A Route needs a start time and a set of waypoints. 
+A [Route](#route) needs a start time and a set of waypoints.
     - It also may optionally have a name.
-A Waypoint needs an ID, a Location, and a list of Deliveries. 
+A [Waypoint](#waypoint) needs an ID, a Location, and a list of Deliveries.
     - It may also optionally contain a name, an address, an estimate of how long it takes to service this waypoint in seconds, and a list of TimeWindow objects.
-A Delivery needs a product;
+A [Delivery](#delivery) needs a product;
     - It may also optionally contain the amount of the product being delivered.
-A Location needs a latitude and a longitude.
-A TimeWindow needs a start and an end. The start of a TimeWindow cannot be before the startTime of the route, and the end cannot be before the start.
+A [Location](#location) needs a latitude and a longitude.
+A [TimeWindow](#timewindow) needs a start and an end. The start of a TimeWindow cannot be before the startTime of the route, and the end cannot be before the start.
 
 Here’s a very simple Route:
 
@@ -195,7 +195,7 @@ Route theRoute = Route.builder()
         .build();
 ```
 
-Now that we’ve created a Route object and registered a RouteEventListener we are ready to import!
+Now that we’ve created a Route object and registered a RouteStateListener we are ready to import!
 Here’s how:
 
 ```java
@@ -210,8 +210,8 @@ Great, we’ve got a route! What’s next?
 
 As a driver works on their route, they'll be attempting to make deliveries. 
 In order to finish the route, we need to make DeliveryAttempts. 
-A DeliveryAttempt belongs to a Delivery. 
-A DeliveryAttempt needs a DeliveryStatus, where the possible values are Success, Failure, and Reattempt.
+A [DeliveryAttempt](#deliveryattempt) belongs to a Delivery.
+A DeliveryAttempt needs a [DeliveryStatus](#deliverystatus), where the possible values are Success, Failure, and Reattempt.
     - it may also optionally contain notes if you’d like to include additional information.
 
 Here’s how to create and add one, using the Route we created previously:
