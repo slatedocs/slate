@@ -3,7 +3,11 @@
 ## Setting up the SDK
 
 Once you’ve brought the Foxtrot Android SDK into your project, the first thing you’ll want to do is set it up.
-You’ll need two things: an Android `context` (any context should be fine), and an API key that lets Foxtrot identify your organization.
+You’ll need two things:
+
+1) an Android `context` (any context should be fine)
+
+2) your Foxtrot API key
 
 ```java
 Context context = activity.getApplicationContext();
@@ -12,7 +16,7 @@ FoxtrotSDK.setup(context, apiKey);
 ```
 
 Great job, now you’ve set up the Foxtrot SDK singleton… give yourself a high five!
-From now on, when you call the FoxtrotSDK you’ll need to access the singleton by calling 
+From now on, when you call the FoxtrotSDK you’ll need to access the singleton by calling
 
 ```java
 FoxtrotSDK.getInstance().SOME_METHOD()
@@ -22,7 +26,7 @@ FoxtrotSDK.getInstance().SOME_METHOD()
 
 At this point your driver has logged into your app, and Foxtrot needs some of that information. Here’s how to get it to us!
 
-Logging is an asynchronous process requiring a [LoginCallback](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/controllers/auth/LoginCallback.html) to be registered to the `FoxtrotSDK` object in order for you can respond to any issues that may arise. 
+Logging is an asynchronous process requiring a [LoginCallback](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/controllers/auth/LoginCallback.html) to be registered to the `FoxtrotSDK` object in order for you can respond to any issues that may arise.
 
 Here is an example `Activity` that implements the login process.
 
@@ -232,8 +236,8 @@ You can register as many error state listeners as you’d like and they’ll all
 
 ## Making a Delivery attempt
 
-As a driver works on their route, they'll be attempting to make deliveries. 
-In order to finish the route, we need to make DeliveryAttempts. 
+As a driver works on their route, they'll be attempting to make deliveries.
+In order to finish the route, we need to make DeliveryAttempts.
 A [DeliveryAttempt](#deliveryattempt) belongs to a Delivery.
 A DeliveryAttempt needs a [DeliveryStatus](#deliverystatus), where the possible values are Success, Failure, and Reattempt.
     - it may also optionally contain notes if you’d like to include additional information.
@@ -256,7 +260,7 @@ If the driver makes a mistake, you might want to provide the ability to undo a [
 FoxtrotSDK.getInstance().undoDeliveryAttempt("A_DELIVERY_ID");
 ```
 
-This will automatically find the most recent [DeliveryAttempt](#deliveryattempt) on that [Delivery](#delivery) and undo it. 
+This will automatically find the most recent [DeliveryAttempt](#deliveryattempt) on that [Delivery](#delivery) and undo it.
 
 ##Finishing a Route
 
