@@ -8,6 +8,7 @@ includes:
   - introduction
   - getting-started
   - models/user-created
+  - models/optimized
 
 search: true
 ---
