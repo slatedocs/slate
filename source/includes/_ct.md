@@ -372,9 +372,6 @@ location-id |
             "possible": [
 
             ],
-            "old":  [
-
-            ],
             "activeDomains":  {
                 "facebook.com": true,
                 "twitter.com": true,
@@ -391,9 +388,30 @@ location-id |
             "possibleDomains": {
 
             },
-            "oldDomains": {
-
-            },
+            "topDirectories":  [
+                {
+                    "citation_id": 182555,
+                    "customer_id": "35",
+                    "report_id": "2457",
+                    "citation-status": "active",
+                    "source": "carricktoday.co.uk",
+                    "url": "http://www.carricktoday.co.uk/findit?action=showMap&placeid=68739",
+                    "citation-notes": null,
+                    "status": "Got it",
+                    "date-identified-sorting": "2012-09-07T00:00:00+00:00",
+                    "date-identified": "07 Sep 12",
+                    "domain-authority": "38.75",
+                    "citation-value": "Unknown",
+                    "moz-rank": "Unknown",
+                    "site-type": "Local Directory",
+                    "listing-type": "Free Listing",
+                    "seomoz-lookup-complete": "Yes",
+                    "business-name": "John's business",
+                    "address": "Lungomare Zara, 1234 Giulianova",
+                    "postcode": "1234",
+                    "telephone": "03 12345678"
+                }
+            ],
             "flags": {
                 "customer":  {
                     "new":  [],
