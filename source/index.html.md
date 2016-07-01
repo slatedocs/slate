@@ -352,6 +352,10 @@ If successful, Scale will immediately return the generated task object, of which
 
 The parameters `attachment_type`, `attachment`, `fields`, and `row_fields` will be stored in the `params` object of the constructed `task` object.
 
+<aside class="notice">
+We limit the number of rows you may transcribe per API request to 10 rows. If you need more rows, send multiple API requests.
+</aside>
+
 ### HTTP Request
 
 `POST https://api.scaleapi.com/v1/task/transcription`
