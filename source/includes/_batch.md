@@ -26,6 +26,12 @@ if ($result['success']) {
 }
 ```
 
+```shell
+curl -X POST \
+    -F 'api-key=[INSERT_API_KEY]' \
+    https://tools.brightlocal.com/seo-tools/api/v4/batch
+```
+
 > Success - status code 201 Created
 
 ```json
@@ -94,6 +100,13 @@ if ($batchApi->commit($batchId)) {
 }
 ```
 
+```shell
+curl -X PUT \
+    -d 'api-key=[INSERT_API_KEY]' \
+    -d 'batch-id=[INSERT_BATCH_ID]' \
+    https://tools.brightlocal.com/seo-tools/api/v4/batch
+```
+
 > Success - status code 200 OK
 
 ```json
@@ -148,6 +161,10 @@ $batchId = 1;
 $api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
 $batchApi = new BatchApi($api);
 print_r($batchApi->get_results($batchId));
+```
+
+```shell
+curl 'https://tools.brightlocal.com/seo-tools/api/v4/batch?api-key=[INSERT_API_KEY]&batch-id=[INSERT_BATCH_ID]'
 ```
 
 > Success - status code 200 OK
@@ -235,6 +252,10 @@ if ($batchApi->delete($batchId)) {
 }
 ```
 
+```shell
+curl -X DELETE 'https://tools.brightlocal.com/seo-tools/api/v4/batch?api-key=[INSERT_API_KEY]&batch-id=[INSERT_BATCH_ID]'
+```
+
 > Success - status code 200 Ok
 
 ```json
@@ -282,6 +303,13 @@ $batchApi = new BatchApi($api);
 if ($batchApi->stop($batchId)) {
     echo 'Successfully stopped batch.' . PHP_EOL;
 }
+```
+
+```shell
+curl -X PUT -d \
+    'api-key=[INSERT_API_KEY]' \
+    -d 'batch-id=[INSERT_BATCH_ID]' \
+    https://tools.brightlocal.com/seo-tools/api/v4/batch/stop
 ```
 
 > Success - status code 200 Ok

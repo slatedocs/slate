@@ -17,24 +17,24 @@ $searches = array(
         'country'         => 'USA',
         'google-location' => 'New York, NY',
         'search-term'     => 'restaurant new york',
-        'urls'            => '["le-bernardin.com"]',
-        'business-names'  => 'Le Bernardin'
+        'urls'            => json_encode(array('le-bernardin.com')),
+        'business-names'  => json_encode(array('Le Bernardin'))
     ),
     array(
         'search-engine'   => 'google',
         'country'         => 'USA',
         'google-location' => 'New York, NY',
         'search-term'     => 'restaurant manhattan',
-        'urls'            => '["le-bernardin.com"]',
-        'business-names'  => 'Le Bernardin'
+        'urls'            => json_encode(array('le-bernardin.com')),
+        'business-names'  => json_encode(array('Le Bernardin'))
     ),
     array(
         'search-engine'   => 'google',
         'country'         => 'USA',
         'google-location' => 'New York, NY',
         'search-term'     => 'restaurant 10019',
-        'urls'            => '["le-bernardin.com"]',
-        'business-names'  => 'Le Bernardin'
+        'urls'            => json_encode(array('le-bernardin.com')),
+        'business-names'  => json_encode(array('Le Bernardin'))
     )
 );
 $api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
@@ -65,6 +65,19 @@ if ($batchId) {
         print_r($results);
     }
 }
+```
+
+```shell
+curl -X POST \
+    -F 'api-key=[INSERT_API_KEY]' \
+    -F 'batch-id=[INSERT_BATCH_ID]' \
+    -F 'search-engine=google' \
+    -F 'country=USA' \
+    -F 'google-location=new+york,ny' \
+    -F 'search-term=restaurant' \
+    -F 'urls=["jean-georgesrestaurant.com"]' \
+    -F 'business-names=["Jean-Georges Restaurant"]' \
+    https://tools.brightlocal.com/seo-tools/api/v4/rankings/search
 ```
 
 > Success (201 Created)
@@ -148,22 +161,20 @@ $batchApi = new BatchApi($api);
 $batchId = $batchApi->create();
 if ($batchId) {
     printf('Created batch ID %d%s', $batchId, PHP_EOL);
-    foreach ($searches as $search) {
-        $result = $api->call(
-            '/v4/rankings/bulk-search',
-            array(
-                'batch-id' => $batchId,
-                'search-engine'   => 'google',
-                'country'         => 'USA',
-                'google-location' => 'New York, NY',
-                'search-term'     => $search,
-                'urls'            => '["le-bernardin.com"]',
-                'business-names'  => 'Le Bernardin'
-            )
-        );
-        if ($result['success']) {
-            printf('Added job with ID %d%s', $result['job-id'], PHP_EOL);
-        }
+    $result = $api->call(
+        '/v4/rankings/bulk-search',
+        array(
+            'batch-id' => $batchId,
+            'search-engine'   => 'google',
+            'country'         => 'USA',
+            'google-location' => 'New York, NY',
+            'search-terms'    => json_encode($searches),
+            'urls'            => json_encode(array('le-bernardin.com')),
+            'business-names'  => json_encode(array('Le Bernardin'))
+        )
+    );
+    if ($result['success']) {
+        printf('Added job with ID %d%s', $result['job-id'], PHP_EOL);
     }
     if ($batchApi->commit($batchId)) {
         echo 'Committed batch successfully.'.PHP_EOL;
@@ -177,6 +188,19 @@ if ($batchId) {
         print_r($results);
     }
 }
+```
+
+```shell
+curl -X POST \
+    -F 'api-key=[INSERT_API_KEY]' \
+    -F 'batch-id=[INSERT_BATCH_ID]' \
+    -F 'search-engine=google' \
+    -F 'country=USA' \
+    -F 'google-location=new+york,ny' \
+    -F 'search-terms=["restaurant","restaurant+new+york","restaurant+manhattan"]' \
+    -F 'urls=["jean-georgesrestaurant.com"]' \
+    -F 'business-names=["Jean-Georges Restaurant"]' \
+    https://tools.brightlocal.com/seo-tools/api/v4/rankings/bulk-search
 ```
 
 > Success (201 Created)
