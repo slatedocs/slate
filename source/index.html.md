@@ -78,6 +78,10 @@ Scale expects for the API key to be included in all API requests to the server v
 You must replace <code>YOUR_API_KEY</code> with your personal API key.
 </aside>
 
+### Callback Authentication
+
+If you'd like to authenticate our callbacks, we set a `scale-callback-auth` HTTP header on each of our callbacks. The value will be equal to your `Live Callback Auth Key` shown on your dashboard. If this header is not set, or it is set incorrectly, the callback is not from Scale.
+
 # Task Object
 
 The task object represents a single task that you create with Scale and is completed by a worker.
@@ -688,6 +692,10 @@ On your tasks, you will be required to supply a `callback_url`, a fully qualifie
 You should respond to the POST request with a 200 status code. If we do not receive a 200 status code, we will retry one more time.
 
 If you're just starting out and want the easiest way to set up your own callback URL, we recommend using [ngrok](https://ngrok.com/) to expose a local server to the internet. Feel free to [contact us](mailto:alex@scaleapig.com) if you have any trouble.
+
+### Authentication
+
+If you'd like to authenticate our callbacks, we set a `scale-callback-auth` HTTP header on each of our callbacks. The value will be equal to your `Live Callback Auth Key` shown on your dashboard. If this header is not set, or it is set incorrectly, the callback is not from Scale.
 
 ### POST Data
 
