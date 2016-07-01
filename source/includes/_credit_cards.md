@@ -214,21 +214,21 @@ na cobrança de homologação, e o motivo pode ser verificado no atributo
 
 **Parâmetros**
 
-| Campo             | Tipo    | Comentário                                                                                                                                                              |
-|-------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| number            | string  | **(requerido)** número do cartão                                                                                                                                        |
-| expiration        | string  | **(requerido)** expiração do cartão, no formato "mm/aa"                                                                                                                 |
-| holder_name       | string  | **(requerido)** nome do dono do cartão                                                                                                                                  |
-| brand             | string  | **(requerido)** bandeira do cartão (visa, mastercard, amex, elo, diners, discover, jcb, aura)                                                                           |
-| charge_config_id  | integer | **(requerido)** identificador da ChargeConfig à qual este cartão pertence                                                                                               |
-| payer_id          | integer | **(requerido, se não enviar payer_attributes )** identificador do pagador (caso seja fornecido, o parâmetro payer_attributes será ignorado)                             |
-| payer_attributes* | object  | **(requerido, se não enviar payer_id )** atributos para a criação de um novo pagador ou atualização de um pagador existente com o mesmo documento (national_identifier) |
-| avs_address       | string  | (opcional) endereço de cobrança do cartão                                                                                                                               |
-| avs_number        | string  | (opcional) número do endereço de cobrança do cartão                                                                                                                     |
-| avs_complement    | string  | (opcional) complemento endereço de cobrança do cartão                                                                                                                   |
-| avs_district      | string  | (opcional) bairro do endereço de cobrança do cartão                                                                                                                     |
-| avs_zipcode       | string  | (opcional) cep do endereço de cobrança do cartão                                                                                                                        |
-| soft_descriptor   | string  | (opcional) descritor que irá aparecer na fatura do cartão referente à cobrança de homologação (no máximo 13 caracteres)                                                 |
+| Campo             | Tipo    | Comentário                                                                                                                                                               |
+|-------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| number            | string  | **(requerido)** número do cartão                                                                                                                                         |
+| expiration        | string  | **(requerido)** expiração do cartão, no formato "mm/aa"                                                                                                                  |
+| holder_name       | string  | **(requerido)** nome do dono do cartão                                                                                                                                   |
+| brand             | string  | **(requerido)** bandeira do cartão (visa, mastercard, amex, elo, diners, discover, jcb, aura)                                                                            |
+| charge_config_id  | integer | **(requerido)** identificador da ChargeConfig à qual este cartão pertence                                                                                                |
+| payer_id          | integer | **(requerido, se não enviar payer_attributes )** identificador do pagador ao qual este cartão pertence (caso seja fornecido, o parâmetro payer_attributes será ignorado) |
+| payer_attributes* | object  | **(requerido, se não enviar payer_id )** atributos para a criação de um novo pagador ou atualização de um pagador existente com o mesmo documento (national_identifier)  |
+| avs_address       | string  | (opcional) endereço de cobrança do cartão                                                                                                                                |
+| avs_number        | string  | (opcional) número do endereço de cobrança do cartão                                                                                                                      |
+| avs_complement    | string  | (opcional) complemento endereço de cobrança do cartão                                                                                                                    |
+| avs_district      | string  | (opcional) bairro do endereço de cobrança do cartão                                                                                                                      |
+| avs_zipcode       | string  | (opcional) cep do endereço de cobrança do cartão                                                                                                                         |
+| soft_descriptor   | string  | (opcional) descritor que irá aparecer na fatura do cartão referente à cobrança de homologação (no máximo 13 caracteres)                                                  |
 
 **payer_attributes**
 
