@@ -205,7 +205,7 @@ request.post('https://api.scaleapi.com/v1/task/categorize', {
 }
 ```
 
-This endpoint creates a `categorization` task. In this task, one of our workers will view the attachment and choose a category for it according to the instruction. Example use cases are spam detection, copyright detection, product categorization, etc. 
+This endpoint creates a `categorization` task. In this task, one of our workers will view the attachment and choose a category for it according to the instruction. You may allow multiple categories to be chosen by setting `allow_multiple` to `true`. Example use cases are spam detection, copyright detection, product categorization, etc.
 
 This task involves a plaintext `instruction` about how to make the categorization, an `attachment` of what you'd like to categorize, an `attachment_type`, and finally a list of categories.
 
@@ -226,6 +226,7 @@ Parameter | Type | Description
 `attachment_type` | string | One of `text`, `image`, `video`, `audio`, `website`, or `pdf`. Describes what type of file the attachment is.
 `attachment` | string | The attachment to be categorized. If `attachment_type` is `text`, then it should be plaintext. Otherwise, it should be a URL pointing to the attachment.
 `categories` | [string] | An array of strings for the categories which you'd like the object to be sorted between.
+`allow_multiple` (optional) | boolean | Default is `false`. Determines whether you allow multiple categories to be chosen for the attachment
 
 ### Response on Callback
 
@@ -233,10 +234,12 @@ The `response` object will be of the form:
 
 `
 {
-  "category": "some_category"
+  "category": ...
 }`
 
-`category` will be one of the original categories.
+If `allow_multiple` is `false`, then the value will be a string equal to one of the original categories. 
+
+If `allow_multiple` is `true`, the value will be an array of categories, each one being one of the original categories.
 
 # Create Transcription Task
 
