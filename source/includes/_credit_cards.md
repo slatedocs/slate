@@ -216,20 +216,40 @@ pode ser verificado no atributo `reusability_error_message`.
 
 **Parâmetros**
 
-| Campo            | Tipo    | Comentário                                                                                                              |
-|------------------|---------|-------------------------------------------------------------------------------------------------------------------------|
-| payer_id         | integer | **(requerido)** identificador do Payer ao qual este cartão pertence                                                     |
-| charge_config_id | integer | **(requerido)** identificador da ChargeConfig à qual este cartão pertence                                               |
-| number           | string  | **(requerido)** número do cartão                                                                                        |
-| expiration       | string  | **(requerido)** expiração do cartão, no formato "mm/aa"                                                                 |
-| holder_name      | string  | **(requerido)** nome do dono do cartão                                                                                  |
-| brand            | string  | **(requerido)** bandeira do cartão (visa, mastercard, amex, elo, diners, discover, jcb, aura)                           |
-| avs_address      | string  | (opcional) endereço de cobrança do cartão                                                                               |
-| avs_number       | string  | (opcional) número do endereço de cobrança do cartão                                                                     |
-| avs_complement   | string  | (opcional) complemento endereço de cobrança do cartão                                                                   |
-| avs_district     | string  | (opcional) bairro do endereço de cobrança do cartão                                                                     |
-| avs_zipcode      | string  | (opcional) cep do endereço de cobrança do cartão                                                                        |
-| soft_descriptor  | string  | (opcional) descritor que irá aparecer na fatura do cartão referente à cobrança de homologação (no máximo 13 caracteres) |
+| Campo             | Tipo    | Comentário                                                                                                                                                               |
+|-------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| number            | string  | **(requerido)** número do cartão                                                                                                                                         |
+| expiration        | string  | **(requerido)** expiração do cartão, no formato "mm/aa"                                                                                                                  |
+| holder_name       | string  | **(requerido)** nome do dono do cartão                                                                                                                                   |
+| brand             | string  | **(requerido)** bandeira do cartão (visa, mastercard, amex, elo, diners, discover, jcb, aura)                                                                            |
+| charge_config_id  | integer | **(requerido)** identificador da ChargeConfig à qual este cartão pertence                                                                                                |
+| payer_id          | integer | **(requerido, se não enviar payer_attributes )** identificador do pagador ao qual este cartão pertence (caso seja fornecido, o parâmetro payer_attributes será ignorado) |
+| payer_attributes* | object  | **(requerido, se não enviar payer_id )** atributos para a criação de um novo pagador ou atualização de um pagador existente com o mesmo documento (national_identifier)  |
+| avs_address       | string  | (opcional) endereço de cobrança do cartão                                                                                                                                |
+| avs_number        | string  | (opcional) número do endereço de cobrança do cartão                                                                                                                      |
+| avs_complement    | string  | (opcional) complemento endereço de cobrança do cartão                                                                                                                    |
+| avs_district      | string  | (opcional) bairro do endereço de cobrança do cartão                                                                                                                      |
+| avs_zipcode       | string  | (opcional) cep do endereço de cobrança do cartão                                                                                                                         |
+| soft_descriptor   | string  | (opcional) descritor que irá aparecer na fatura do cartão referente à cobrança de homologação (no máximo 13 caracteres)                                                  |
+
+**payer_attributes**
+
+<aside class="notice">
+Caso exista um Pagador (Payer) com o mesmo <code>national_identifier</code>, não será criado um novo, mas sim atualizado o existente.
+</aside>
+
+| Campo                    | Tipo   | Comentário                                                           |
+|--------------------------|--------|----------------------------------------------------------------------|
+| national_identifier_type | string | **(requerido)** tipo do documento do pagador (cpf ou cnpj)           |
+| national_identifier      | string | **(requerido)** documento do pagador                                 |
+| name                     | string | **(requerido)** nome do pagador                                      |
+| number                   | string | (opcional) número do endereço do pagador                             |
+| complement               | string | (opcional) complemento do endereço do pagador                        |
+| street                   | string | (opcional) rua do endereço do pagador                                |
+| neighbourhood            | string | (opcional) bairro do endereço do pagador                             |
+| zipcode                  | string | (opcional) cep do endereço do pagador                                |
+| city                     | string | (opcional) cidade do endereço do pagador                             |
+| state                    | string | (opcional) sigla do estado do endereço do pagador ("RJ" por exemplo) |
 
 
 ## Lista de Todas as cobranças feitas com o cartão de crédito
