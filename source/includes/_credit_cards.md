@@ -148,11 +148,6 @@ Retorna uma lista em JSON contendo os Cartões de Crédito pertencentes à sua C
 
 É possível filtrar a lista através dos parâmetros: `payer_id`, `charge_config_id`, `number`, `holder_name`, `brand`, `reusability_status`
 
-A lista é paginada e pode-se utilizar os parâmetros `page` (valor padrão 1) e
-`per_page` (valor padrão 25) para controlar, respectivamente, a página e a
-quantidade de itens por página.
-
-
 ## Criação de Cartão de Crédito
 
 ```shell
@@ -244,7 +239,7 @@ Listar as Cobranças realizadas com o Cartão de Crédito
 
 DEFINIÇÃO
 
-  GET https://app.cobrato.com/api/v1/credit_cards/:id/charges?page=:page&per_page=:per_page
+  GET https://app.cobrato.com/api/v1/credit_cards/:id/charges
 
 EXEMPLO DE REQUISIÇÃO
 
@@ -252,7 +247,7 @@ EXEMPLO DE REQUISIÇÃO
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X GET https://app.cobrato.com/api/v1/credit_cards/12/chrages?page=1&per_page=25
+    -X GET https://app.cobrato.com/api/v1/credit_cards/12/charges
 
 EXEMPLO DE ESTADO DA RESPOSTA
 
