@@ -155,10 +155,11 @@ EXEMPLO DE PAYLOAD
 
 ```
 
-Este payload é enviado **apenas para cobranças do tipo boleto** e é disparado
-quando o recebimento da Cobrança é desfeito manualmente pelo usuário. Ele
-indica apenas que no Cobrato o recebimento da Cobrança foi desfeito, mas não tem
-qualquer relação com o estado do boleto no banco.
+Este payload é disparado quando o recebimento da Cobrança é desfeito. No caso da
+cobrança do tipo **boleto**, ele indica apenas que no Cobrato o recebimento da
+Cobrança foi desfeito, mas não tem qualquer relação com o estado do boleto no
+banco. Já no caso da cobrança do tipo **gateway de pagamento**, está cobrança
+foi cancelada.
 
 ## Cobrança Cancelada
 
