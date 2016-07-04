@@ -276,10 +276,6 @@ EXEMPLO DE CORPO DA RESPOSTA
 ```
 
 Retorna uma lista paginada em JSON contendo todos as Cobranças realizadas com o
-Cartão de Crédito.  
+Cartão de Crédito.
 
-É possível filtrar a lista através dos parâmetros: `total_amount`, `received`, `payment_gateway_status`
-
-A lista é paginada e pode-se utilizar os parâmetros `page` (valor padrão 1) e
-`per_page` (valor padrão 25) para controlar, respectivamente, a página e a
-quantidade de itens por página.
+É possível filtrar a lista através dos parâmetros: `total_amount`, `received`, `payment_gateway_status`.
