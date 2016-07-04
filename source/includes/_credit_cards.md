@@ -16,7 +16,6 @@ EXEMPLO
     "avs_complement": "Apto 103",
     "avs_district": "Centro",
     "avs_zipcode": "99000-750",
-    "reusable": false,
     "reusability_status": "error",
     "reusability_error_message": "Código de segurança inválido",
     "payer_id": 1,
@@ -42,12 +41,23 @@ Os Cartões de Crédito pertencem ao Pagador utilizado no momento de sua criaç�
 | avs_complement            | string          | complemento endereço de cobrança do cartão                                                                                               |
 | avs_district              | string          | bairro do endereço de cobrança do cartão                                                                                                 |
 | avs_zipcode               | string          | cep do endereço de cobrança do cartão                                                                                                    |
-| reusable                  | boolean         | indica se o cartão é pode ser reutilizado em novas cobranças                                                                             |
 | reusability_status        | string          | status da configuração para possibilitar o reuso o cartão em futuras cobranças (pending, ok, error)                                      |
 | reusability_error_message | string          | informa o motivo do erro na configuração de reuso, apenas quando o atributo reusability_status tem o valor "error"                       |
 | payer_id                  | integer         | identificador do Payer ao qual este cartão pertence                                                                                      |
 | charge_config_id          | integer         | identificador da ChargeConfig à qual este cartão pertence                                                                                |
 | _links                    | array of object | links do beneficiário                                                                                                                    |
+
+**reusability_status**
+
+O atributo `reusability_status` pode ter os seguintes valores:
+
+| Valor        | Descrição                                                                                                                  |
+|--------------|----------------------------------------------------------------------------------------------------------------------------|
+| pending      | assim que é criado e ainda não foi feita verificação do cartão através de uma cobrança                                     |
+| error        | quando ocorre um erro na utilização do cartão (o erro ficará descrito no atributo `reusability_error_message`)             |
+| reusable     | quando já foi feita uma cobrança com sucesso utilizando o cartão e ele foi salvo para ser reutilizado em futuras cobranças |
+| not_reusable | quando o cartão não foi salvo para ser reutilizado                                                                         |
+
 
 ## Informações do Cartão de Crédito
 
@@ -83,7 +93,6 @@ EXEMPLO DE CORPO DA RESPOSTA
     "avs_complement": "Apto 103",
     "avs_district": "Centro",
     "avs_zipcode": "99000-750",
-    "reusable": false,
     "reusability_status": "error",
     "reusability_error_message": "Código de segurança inválido",
     "payer_id": 1,
@@ -137,12 +146,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 Retorna uma lista em JSON contendo os Cartões de Crédito pertencentes à sua Conta de Serviço.
 
-É possível filtrar a lista através dos parâmetros: `payer_id`, `charge_config_id`, `number`, `holder_name`, `brand`, `reusable`, `reusability_status`
-
-A lista é paginada e pode-se utilizar os parâmetros `page` (valor padrão 1) e
-`per_page` (valor padrão 25) para controlar, respectivamente, a página e a
-quantidade de itens por página.
-
+É possível filtrar a lista através dos parâmetros: `payer_id`, `charge_config_id`, `number`, `holder_name`, `brand`, `reusability_status`
 
 ## Criação de Cartão de Crédito
 
@@ -170,7 +174,6 @@ EXEMPLO DE REQUISIÇÃO
         "avs_complement": "Apto 103",
         "avs_district": "Centro",
         "avs_zipcode": "99000-750",
-        "reusable": false,
         "payer_id": 1,
         "charge_config_id": 12.
         "soft_descriptor": "CompanyName"
@@ -207,10 +210,9 @@ ainda não estará apto para re-utilização em novas cobranças. Isto só ocorr
 quando a cobrança de homologação for concluída com sucesso. Esta informação pode
 ser obtida através do atributo `reusability_status`. Caso ele tenha o valor
 "pending", quer dizer que a cobrança ainda não foi feita. Caso tenha o valor
-"ok", o valor do atributo `reusable` será `true`, o que quer dizer que o cartão
-pode ser reutilizado. Caso tenha o valor "error", significa que ocorreu um erro
-na cobrança de homologação, e o motivo pode ser verificado no atributo
-`reusability_error_message`.
+"reusable" quer dizer que o cartão pode ser reutilizado. Caso tenha o valor
+"error",  significa que ocorreu um erro na cobrança de homologação, e o motivo
+pode ser verificado no atributo `reusability_error_message`.
 
 **Parâmetros**
 
@@ -237,7 +239,7 @@ Listar as Cobranças realizadas com o Cartão de Crédito
 
 DEFINIÇÃO
 
-  GET https://app.cobrato.com/api/v1/credit_cards/:id/charges?page=:page&per_page=:per_page
+  GET https://app.cobrato.com/api/v1/credit_cards/:id/charges
 
 EXEMPLO DE REQUISIÇÃO
 
@@ -245,7 +247,7 @@ EXEMPLO DE REQUISIÇÃO
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X GET https://app.cobrato.com/api/v1/credit_cards/12/chrages?page=1&per_page=25
+    -X GET https://app.cobrato.com/api/v1/credit_cards/12/charges
 
 EXEMPLO DE ESTADO DA RESPOSTA
 
@@ -269,10 +271,6 @@ EXEMPLO DE CORPO DA RESPOSTA
 ```
 
 Retorna uma lista paginada em JSON contendo todos as Cobranças realizadas com o
-Cartão de Crédito.  
+Cartão de Crédito.
 
-É possível filtrar a lista através dos parâmetros: `total_amount`, `received`, `payment_gateway_status`
-
-A lista é paginada e pode-se utilizar os parâmetros `page` (valor padrão 1) e
-`per_page` (valor padrão 25) para controlar, respectivamente, a página e a
-quantidade de itens por página.
+É possível filtrar a lista através dos parâmetros: `total_amount`, `received`, `payment_gateway_status`.

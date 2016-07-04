@@ -51,3 +51,32 @@ Você deve sempre fornecer os seus valores de data e hora no mesmo formato ISO 8
 ## Formato numérico
 
 <aside class="notice">Todos os números são fornecidos tanto com números inteiros, como ponto flutuante nativos para JSON.</aside>
+
+## Paginação
+
+Todas as listagens são páginadas. Pode-se utilizar os parâmetros `page` (valor padrão 1) e
+`per_page` (valor padrão 25) para controlar, respectivamente, a página e a quantidade de
+itens por página.
+
+  ```shell
+    Formato JSON
+
+    EXEMPLO DE REQUISIÇÃO
+
+      $ curl -i -u $YOUR_API_TOKEN:X \
+        -H 'User-Agent: My App 1.0' \
+        -H 'Accept: application/json' \
+        -H 'Content-type: application/json' \
+        -X GET https://app.cobrato.com/api/v1/lista?page=2&per_page=5
+
+    EXEMPLO DE RESPOSTA
+
+    {
+      "chave1": "valor 1",
+      "chave2": "valor 2",
+      "chave3": "valor 3",
+      "chave4": "valor 4",
+      "chave5": "valor 5"
+    }
+
+  ```
