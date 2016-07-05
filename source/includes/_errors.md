@@ -132,7 +132,6 @@ short_sell | -4 | must buy at least .00000001 in value
 short_sell | 10 | insufficient balance
 slashRep | 0 | Not a valid claim
 slashRep | -2 | Reporter doesn't exist
-submitReportHash | 0 | not caught up on rep redistributions
 submitReportHash | -1 | invalid event
 submitReportHash | -2 | not in first half of period (commit phase)
 submitReport | 0 | reporter doesn't exist or has <1 rep
