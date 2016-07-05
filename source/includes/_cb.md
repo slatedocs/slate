@@ -208,6 +208,7 @@ campaign_id	| <span class="label label-required">Required</span>
 package_id | <span class="label label-required">Required</span> CB package id with number of ordered credits.
 autoselect | String. Possible values 'N' or 'Y'. Default 'N'.
 citations | <span class="label label-required">Required</span> JSON Array. If autoselect is 'Y' parameter becomes non-required. List of sites you require listings for.
+notes | Provide instructions to our submissions team with specifics about how you'd like your campaign handled.
 
 ## Get Campaigns
 
