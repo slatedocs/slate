@@ -8,7 +8,8 @@ toc_footers:
   - <a href='http://www.powerlinks.com'>Powerlinks Home</a>
 
 includes:
-  - openrtbspecs
+  - sellsidespecs
+  - buysidespecs
   - creativespecs
   - adserver
   - reportingapi
