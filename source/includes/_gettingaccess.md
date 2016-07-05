@@ -1,30 +1,30 @@
 # Getting Access
 <a name="getting-access"></a>
-Out-of-the-box you can connect any platform-based shop (like eBay, shopify or bigcommerce) using the wizard in [our solution portal](http://connect.itembase.com/#/ib/connect/platforms). For standalone shops like Magento you can download and install the necessary itembase connector plugin. The solution portal will ask your permission to access your shop's data and then tell our connectors to collect and forward the data to our API. In order to access the data, you will need to implement an API client that implements the "activation flow" (see above) and register it with us for production usage.<aside class="success">This flow was designed with solution providers in mind. If you would like us to implement a feature that gives you instant access as soon as you connect your shop without connecting a specific solution, please contact us.</aside>
+The data offered by us are owned by users. To get access to it, you need to be authorised by them. This is handled by an OAuth 2.0 based authorisation process. Using our connect API you can then ask the user to grant you access to certain shops (called *connections*).
 
-Data from your shop is made available via our API using our *connectors* which use a private, internal API for writing data. Our public API /v1 is read-only. Our public API /v2 supports a new _snippets_ endpoint with read-write access. See the "reading and writing data" section for more information.
+## Authorization and authentication
 
-## Authorization, authentication, activation
+Our auth server at `accounts.itembase.com` combines an OAuth server that follows the standardized behaviour described in [the OAuth 2.0 RFC specification](https://tools.ietf.org/html/rfc6749) and a login server for user authentication.
 
-We use OAuth 2.0 for authorization. Our auth server at `accounts.itembase.com` combines an OAuth server that follows the standardized behaviour described in [the OAuth 2.0 RFC specification](https://tools.ietf.org/html/rfc6749) and a login server for user authentication.
+As OAuth 2.0 is a widely used standard, we recommend to use one of the many libraries that implement the flow. Some examples:
 
-The following steps are necessary when a user authorizes your client to request data for his account from the itembase API. It is assumed that you follow the `authorization_code` grant type / flow. Other flows work according to [the OAuth 2.0 RFC specification](https://tools.ietf.org/html/rfc6749).
+* [thephpleague/oauth2-client for PHP](https://github.com/thephpleague/oauth2-client)
+* [requests/requests-oauthlib for Python](https://github.com/requests/requests-oauthlib)
+* [golang/oauth2 for Go](https://github.com/golang/oauth2)
+* [Apache Oltu for Java](https://cwiki.apache.org/confluence/display/OLTU/OAuth+2.0+Client+Quickstart)
 
-## Activation or Authorization?
-While the authorization is always necessary for a basic connection to our API, the activation steps might be optional for you, if you do not need any data besides basic user information. Please refer to this overview:
+You have to follow the `authorization_code` grant type / flow.
 
-|Use case|Implement authorization (OAuth)|Implement activation|
+The relevant URLs for our auth servers are:
+
+|Type|Production|Sandbox|
 |---|---|---|
-|Use itembase as login/registration system|yes|no|
-|Request basic user information|yes|no|
-|Get access to itembase APIs|yes|yes|
+|OAuth2 auth URL|https://accounts.itembase.com/oauth/v2/auth|http://sandbox.accounts.itembase.io/oauth/v2/auth|
+|OAuth2 whisper auth URL|https://accounts.itembase.com/w/oauth/v2/auth|http://sandbox.accounts.itembase.io/w/oauth/v2/auth|
+|OAuth2 token URL|https://accounts.itembase.com/oauth/v2/token|http://sandbox.accounts.itembase.io/oauth/v2/token|
+|User info URL|https://users.itembase.com/v1/me|http://sandbox.users.itembase.io/v1/me|
 
-It doesn't matter if the process is initiated from the third party (e.g. with a **connect with itembase** button on your side) or from itembase side (from the Solution Portal): It always works the same and requires no dedicated handling on the third party side.
-
-![itembase authentication and activation](https://itembase.github.io/api-guides/images/auth_activation.png)
-
-
-## About Scopes
+### Scopes
 
 A scope describes what resources you are able to access and in which way (read, create, edit). During the autorization process they are shown to the user in a readable form. Currently itembase supports the following scopes:
 
@@ -46,93 +46,9 @@ user.minimal connection.transaction
 
 This would give your client access to APIs that return basic user information and transaction data for user defined shop connections.
 
-## Initiating the process
+### Getting basic user information
 
-You need to integrate a button in the frontend of your system that the user can click to connect his itembase account with your client. If he clicks it, you need to redirect to the authentication URL of our accounts server with your *client id*:
-
-```
-https://accounts.itembase.com/oauth/v2/auth?response_type=code&client_id=your_client_id&scope=user.minimal&redirect_uri=http://your.service/connect/itembase&grant_type=authorization_code
-```
-
-Replace the placeholders with your actual data: `your_client_id` becomes the client id you got from itembase, `http://your.service/connect/itembase` the redirect URI you registered for your client. Also set the scope you need as value of the `scope` parameter.
-
-## The authorization and authentication step
-
-After the redirect to the authentication URL of the itembase accounts server, the itembase user will be authenticated. Depending on his login status, he may need to enter his username and password or even create a new account if he has none yet. This happens completely on our side.
-
-When the user was authenticated successfully, he will see a website that asks him to accept or decline that your client wants to have access to his data on itembase. The dialogue lists all scopes you requested initially.
-
-In case of an error (e.g. if the user does not accept), the itembase accounts server redirects to your `redirect_uri` with an error response:
-
-```
-http://your.service/connect/itembase?error=access_denied
-```
-
-If the user accepted your client, the itembase accounts server redirects to your `redirect_uri` including an authorization code (parameter `code`):
-
-```
-http://your.service/connect/itembase?code=1234someauthcode
-```
-
-This code is only valid for some seconds and can only be used once. You need it to obtain a refresh token and an access token.
-
-## Obtaining your first tokens
-
-With the authorization code you can request an access token and a refresh token the first time. This request goes to the accounts server's token endpoint and **has to be sent server side** since it includes your client secret in this flow:
-
-```
-https://accounts.itembase.com/oauth/v2/token?client_id=your_client_id&client_secret=your_client_secret&grant_type=authorization_code&code=1234someauthcode&redirect_uri=http://your.service/connect/
-```
-
-The `redirect_uri` will be ignored in *authorization_code* flow, but still has to be given. Please use an allowed redirect_uri (e.g. the one from the *auth* call) for this. You will receice a JSON response that returns your tokens:
-
-```json
-{
-    "access_token": "MjU5MGM0YjJkZmIyZDZmZmE3NGQwZGZkMzYxNTBhYjA2M2Vj",
-    "expires_in": 2592000,
-    "token_type": "bearer",
-    "scope": "user.minimal",
-    "refresh_token": "ODk3YjA5MjM3YzNjMzQ1NjY5NDZiZGZjMDI2ODQ1NazZ2Vj"
-}
-```
-
-The access token is valid for the one particular user you obtained it for. You need to store this data to be able to request our APIs.
-
-## Expiration of refresh and access tokens
-All tokens will expire in "expires_in" seconds as recommended by [RFC 6749 for OAuth 2.0](https://tools.ietf.org/html/rfc6749#section-4.2.2). We defined the following expiration periods:
-
-|Token type|Expires in|
-|---|---|
-|Access token|1 hour|
-|Refresh token|~34 days|
-
-If you try to access data by a user with an expired access token, the API will return a **HTTP 401 - Unauthorized** response.
-
-## Obtaining a new access token using a refresh token
-
-If an access token has expired, you can use a refresh token you obtained during the activation step above to get a new access token. Just issue a GET call to the token endpoint of the accounts server like so:
-
-```
-https://accounts.itembase.com/oauth/v2/token?client_id=your_client_id&client_secret=your_client_secret&grant_type=refresh_token&refresh_token=your_refresh_token#
-```
-
-This call returns a JSON with a new set of tokens that replaces the old pair.
-
-```json
-{
-    "access_token": "MjU5MGM0YjJkZmIyZDZmZmE3NGQwZGZkMzYxNTBhYjA2M2Vj",
-    "expires_in": 2592000,
-    "token_type": "bearer",
-    "scope": "user.minimal",
-    "refresh_token": "ODk3YjA5MjM3YzNjMzQ1NjY5NDZiZGZjMDI2ODQ1NazZ2Vj"
-}
-```
-
-You should obtain a new access token latest before your refresh token expires. If the refresh token expires as well, you will need to repeat the authorization/authentication process with the user involved to obtain a new pair of tokens.
-
-## Getting basic user information
-
-For almost all API calls at itembase you need a user id. To obtain the one that your AccessToken is valid for, there is an user info call that you can use if `user.minimal` is part of your scope:
+For almost all API calls at itembase you need a user id. Most OAuth libraries get the basic user information that include this for you automatically as soon as you fetched your first access token. In case yours doesn't do that, here's how you can do it and how the user response looks like. 
 
 ```shell
 curl -X GET --header "Authorization: Bearer your_access_token" "https://users.itembase.com/v1/me"
@@ -154,4 +70,153 @@ This responds with basic user information, one of them is the `uuid` of the item
 }
 ```
 
-We recommend you to store your access token and refresh token securely on your server along with the `uuid` they are valid for. You can also create a user on your side or match the one that was currently logged in with the data you receive from this call.
+Access tokens and refresh tokens should be securely stored on your server along with the `uuid` they are valid for. You can also create a user on your side or match the one that was currently logged in with the data you receive from this call.
+
+## Getting access to connection data
+
+The connect API works with three entities:
+
+* *Connectors*, which describe a platform available through our APIs (e.g. eBay)
+* *Connections*, which describe single instances of *Connectors* that are owned by a user (e.g. the eBay store of a single user)
+* *Links*, which describe a data flow between two *Connections* (e.g. the eBay store of a single user is *linked* to your solution, so you receive data from it) 
+
+Each connector at itembase is described with a so-called component ID. The following core connectors are currently supported:
+
+|Connector|Component id production|Component id sandbox|
+|---|---|---|
+|eBay|6|-|
+|Shopify|7|-|
+|SEO shop|20|-|
+|Big Commerce|12|-|
+|Magento|11|30|
+|Prestashop|14|-|
+|Gambio|34|-|
+|WooCommerce|22|-|
+|Virtuemart|23|-|
+
+### Swagger documentation
+
+The swagger documentation is available [on Swaggerhub](https://swaggerhub.com/api/thommy/connect_api/2.0).
+
+### Possible use cases
+
+By combining the connect API and the authorisation (see above) in the right way, the following flows are possible:
+
+1. Authenticating a user (sign up or login) for your client ("Login with itembase")
+1. Authorising a user (sign up or login) for your client with a certain Connector (e.g. "Login with eBay")
+1. Getting all available Connections owned by an already authorised user
+1. Asking an already authorised user to link an existing or a new Connection to your Solution
+
+Lets take a look at some examples.
+
+### Example 1: Signing up a new user with eBay
+
+Prerequisites:
+
+* You have a client id to use the dataconnect API
+
+```shell
+curl -X POST -H "Content-Type: application/json" -H "X-IB-CLIENTID: YOUR_CLIENT_ID" -d '{
+    "connections": [
+        {
+            "connector_id": 6
+        }
+    ]
+}' "https://api.dataconnect.io/connect/v2/links"
+```
+This will:
+
+* Authenticate a user
+* Add a new eBay (connector id 6) store to their account
+* Activate your client for the new eBay store
+
+As your own client also has a connector id, this will be automatically added:
+
+```json
+{
+  "id": "cc51d6f69ac4c5d00fa0af05aaa977201c432248",
+  "connections": [
+    {
+      "id": null,
+      "connector_id": 6,
+      "status": "connection.pending"
+    },
+    {
+      "id": null,
+      "connector_id": 1467287667226799671,
+      "status": "connection.pending"
+    }
+  ],
+  "expires_in": 1200,
+  "_links": [
+    {
+      "rel": "self",
+      "href": "/connect/v2/links/cc51d6f69ac4c5d00fa0af05aaa977201c432248"
+    },
+    {
+      "rel": "process",
+      "href": "/connect/v2/process/links/cc51d6f69ac4c5d00fa0af05aaa977201c432248"
+    }
+  ]
+}
+```
+
+<aside class="warning">The link is only valid for a limited amount of time, given in <i>expires_in</i>.</aside>
+
+To continue, you have to redirect the user to the URL given in the `links` section as `process`. You should also provide a `redirect_uri` as GET parameter when redirecting there. If given, this is where the user will be lead when the process finished. The token will be added as the GET parameter `iblink`. **After that you want to trigger the OAuth flow immediately as this didn't happen yet.**
+
+### Example 2: Add an ebay store to an authorised user
+
+Prerequisites:
+
+* You already obtained an access token for an authorised user via the OAuth flow
+* You obtained the existing connections and/or links of a user (see [swagger documentation](https://swaggerhub.com/api/thommy/connect_api/2.0)) and know their `connection IDs`. 
+
+```shell
+curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer YOUR_TOKEN" -d '{
+    "connections": [
+        {
+            "id": "SOME-UUID",
+            "connector_id": 6
+        }
+    ]
+}' "https://api.dataconnect.io/connect/v2/users/SOME-USER-ID/links"
+```
+This will:
+
+* Activate your client for the existing eBay store with connection ID `SOME-UUID` by user `SOME-USER-ID`
+
+As your own client also has a connector id, this will be automatically added:
+
+```json
+{
+  "id": "cc51d6f69ac4c5d00fa0af05aaa977201c432248",
+  "connections": [
+    {
+      "id": "SOME-UUID",
+      "connector_id": 6,
+      "status": "connection.valid"
+    },
+    {
+      "id": null,
+      "connector_id": 1467287667226799671,
+      "status": "connection.pending"
+    }
+  ],
+  "expires_in": 1200,
+  "_links": [
+    {
+      "rel": "self",
+      "href": "/connect/v2/links/cc51d6f69ac4c5d00fa0af05aaa977201c432248"
+    },
+    {
+      "rel": "process",
+      "href": "/connect/v2/process/links/cc51d6f69ac4c5d00fa0af05aaa977201c432248"
+    }
+  ]
+}
+```
+
+To continue, you have to redirect the user to the URL given in the `links` section as `process`. You should also provide a `redirect_uri` as GET parameter when redirecting there. If given, this is where the user will be lead when the process finished. The token will be added as the GET parameter `iblink`.
+
+<aside class="warning">The token is only valid for a limited amount of time, given in <i>expires_in</i>.</aside>
