@@ -90,7 +90,9 @@ createMarket | -6 | duplicate events
 createMarket | -7 | event already expired
 createMarket | -8 | market already exists
 createMarket | -9 | would expire during non-reporting fork period
-penalizationCatchup | -2 | can only be called during the first half of the reporting period
+penalizationCatchup | -1 | not in first half of reporting period
+penalizationCatchup | -2 | doesn't need to be penalized/caught up
+penalizationCatchup | -3 | user isn't behind or reported in the last period (and should thus use the penalization functions in consensus.se)
 penalizeOnForkedEvent | -2 | already past first half of new period and needed to penalize before then
 penalizeOnForkedEvent | -4 | fork event isn't resolved yet
 penalizeOnForkedEvent | -5 | already done for all events in this period
