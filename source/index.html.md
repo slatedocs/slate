@@ -12,9 +12,10 @@ toc_footers:
 includes:
   - metadata_endpoints
   - aggregate_endpoints
-  - raw_data_enpoints
+  - raw_data_endpoints
   - shape_data_endpoints
   - response_format
+  - advanced_filtering
   - errors
 
 search: true
@@ -35,4 +36,3 @@ A few things to know:
 * All methods are accessed via: `http://plenar.io/v1/api/SOME-ENDPOINT`
 
 <aside class=warning>Most responses are truncated with <b>ellipses</b> (...) due to extreme length.</aside>
-
