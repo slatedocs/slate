@@ -12,9 +12,10 @@ toc_footers:
 includes:
   - metadata_endpoints
   - aggregate_endpoints
-  - raw_data_enpoints
+  - raw_data_endpoints
   - shape_data_endpoints
   - response_format
+  - advanced_filtering
   - errors
 
 search: true
