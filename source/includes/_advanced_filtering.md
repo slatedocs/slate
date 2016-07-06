@@ -14,7 +14,7 @@ There are three additional query parameters for advanced filtering. They are `"o
 "op":"<operator>"
 ```
 
-`"op"` is followed by a colon and the preferred operator, also in quotation marks, as seen on the right. These operators do not use underscores, as they do when querying a raw data endpoint. 
+`"op"` is followed by a colon and the preferred operator, also in quotation marks, as seen on the right. These operators do not use underscores, as they do when querying a raw data endpoint.
 
 The currently available operators are `"eq"`, `"gt"`, `"ge"`, `"lt"`, `"le"`, `"ne"`, `"like"`, `"ilike"`, and `"in"`.
 
@@ -34,15 +34,6 @@ The currently available operators are `"eq"`, `"gt"`, `"ge"`, `"lt"`, `"le"`, `"
 `"val":"<numerical value>"`
 ```
 
+## Tree Filtering
 
-
-
-
-
-{"op": "and/or", "val": [
-  {"op": "stuff" ...},
-  {"op": "more stuff" ...},
-  {"op": "or", "val": [
-    {}
-  ]}
-]}
+The filtering system also lends itself to `and`/`or` functionality; the syntax can be seen on the right.
