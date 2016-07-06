@@ -16,7 +16,6 @@ includes:
   - shape_data_endpoints
   - response_format
   - advanced_filtering
-  - errors
 
 search: true
 ---
