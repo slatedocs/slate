@@ -26,7 +26,7 @@ https://api.scaleapi.com/v1/
 
 Welcome to the Scale API! You can use our API to access Scale API endpoints, which can create, access, and cancel human tasks.
 
-Currently our API is in Beta, so please [contact us](http://www.scaleapi.com) to get started using Scale. We're working to handle as many customers as possible.
+Anyone can use our API! [Sign up here](https://api.scaleapi.com/signup) to get started using Scale. You can also [contact us](mailto:hello@scaleapi.com) for volume pricing or any inquiries.
 
 <!-- We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
  -->
@@ -661,7 +661,7 @@ If your original call provided `fields`, `fields` will have keys corresponding t
 
 # Callbacks
 
-> The `callback_url` will be POSTed with `x-www-form-urlencoded` data of the following object form:
+> The `callback_url` will be POSTed with `application/json` data of the following object form:
 
 ```json
 {
@@ -694,11 +694,11 @@ If your original call provided `fields`, `fields` will have keys corresponding t
 }
 ```
 
-On your tasks, you will be required to supply a `callback_url`, a fully qualified URL that we will POST with the results of the task when completed. The data will be `x-www-form-urlencoded`.
+On your tasks, you will be required to supply a `callback_url`, a fully qualified URL that we will POST with the results of the task when completed. The data will be served as a JSON body (`application/json`).
 
 You should respond to the POST request with a 200 status code. If we do not receive a 200 status code, we will retry one more time.
 
-If you're just starting out and want the easiest way to set up your own callback URL, we recommend using [ngrok](https://ngrok.com/) to expose a local server to the internet. Feel free to [contact us](mailto:alex@scaleapig.com) if you have any trouble.
+If you're just starting out and want the easiest way to set up your own callback URL, we recommend using [ngrok](https://ngrok.com/) to expose a local server to the internet. Feel free to [contact us](mailto:hello@scaleapi.com) if you have any trouble.
 
 ### Authentication
 
