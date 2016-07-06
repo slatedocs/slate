@@ -44,7 +44,7 @@ Specify `location_geom_within` to only view metadata about shape datasets in a p
 
 | Parameter Name       | Parameter Default | Parameter Description                                                           |
 |----------------------|-------------------|---------------------------------------------------------------------------------|
-| location_geom_within | none              | A URL encoded [GeoJSON](geojson.org) polygon representing the area of interest. |
+| **location_geom_within** | none              | A URL encoded [GeoJSON](geojson.org) polygon representing the area of interest. |
 
 ### Responses
 
@@ -52,12 +52,12 @@ One record shape per dataset.
 
 | Attribute Name | Attribute Description                                         |
 |----------------|---------------------------------------------------------------|
-| description    | Verbose, official description of the dataset.                 |
-| source_url     | If available, the URL where the data was originally sourced.  |
-| update_freq    | Update frequency                                              |
-| dataset_name   | the name by which you can query the shape dataset             |
-| human_name     | a nicer name to refer to the shape dataset in user interfaces |
-| date_added     | the date the shape dataset was added to Plenario              |
+| **description**    | Verbose, official description of the dataset.                 |
+| **source_url**     | If available, the URL where the data was originally sourced.  |
+| **update_freq**    | Update frequency                                              |
+| **dataset_name**   | the name by which you can query the shape dataset             |
+| **human_name**     | a nicer name to refer to the shape dataset in user interfaces |
+| **date_added**     | the date the shape dataset was added to Plenario              |
 
 ## `GET /v1/api/shapes/<dataset_name>`
 
