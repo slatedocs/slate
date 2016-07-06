@@ -1077,7 +1077,7 @@ Given a point dataset and a polygon dataset, return a document of all of the pol
 
 A document of polygons from the given dataset and the count of the points that intersect them.
 
-#Response format
+#Response Format
 
 All JSON API calls return their data in the `objects` block. Additional information is returned in the `meta` block:
 
@@ -1086,3 +1086,21 @@ All JSON API calls return their data in the `objects` block. Additional informat
 | **status**  | *ok* if the query is successful, *error* if not.                  |
 | **query**   | Original query parameters passed in.                              |
 | **message** | If `status` is *error*, a detailed message as to what went wrong. |
+
+# Advanced Filtering
+
+Users are able to add additional filters (including and/or functions) using the following syntax
+
+op col val
+
+
+
+
+
+{"op": "and/or", "val": [
+  {"op": "stuff" ...},
+  {"op": "more stuff" ...},
+  {"op": "or", "val": [
+    {}
+  ]}
+]}
