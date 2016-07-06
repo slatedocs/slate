@@ -953,6 +953,39 @@ HTTP/1.1 400 Bad Request
 }
 ```
 
+## Retrieve Group Advisors
+
+### Retrieve Group Advisors
+
+GET /api/groups/{group_id}/advisors
+
+Retrieve Homeroom Advisors.
+
+> Group Homeroom Advisors with basic information
+
+```
+GET /api/groups/{group_id}/advisors
+```
+
+``` json
+{
+  "advisors": [
+    {
+      "id": 47363745,
+      "first_name": "Risa",
+      "last_name": "Aoki",
+      "email": "risa@managebac.com"
+    },
+    {
+      "id": 55344455,
+      "first_name": "Angelica",
+      "last_name": "Garcia",
+      "email": "angelica.+@managebac.com"
+    }
+  ]
+}
+```
+
 ## Class Model
 
 ### Retrieve Classes
