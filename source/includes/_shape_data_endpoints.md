@@ -25,7 +25,7 @@ http://plenar.io/v1/api/shapes/
             "view_url": "",
             "num_shapes": 16065,
             "source_url": "https://data.cityofchicago.org/download/ueqs-5wr6/application/zip",
-            "bbox": "{\"type\":\"Polygon\",\"coordinates\":[[[-87.9320823353882,41.6445840278876],[-87.9320823353882,42.0230311371132],[-87.5244576278484,42.0230311371132],[-87.5244576278484,41.6445840278876],[-87.9320823353882,41.6445840278876]]]}",
+            "bbox": "{\"type\":\"Polygon\",\"coordinates\":[...]}",
             "date_added": "2016-04-20",
             "human_name": "Major Streets",
             "dataset_name": "major_streets",
@@ -61,14 +61,22 @@ One record shape per dataset.
 
 ## `GET /v1/api/shapes/<dataset_name>`
 
-> ### Example Query
+> ### Example Queries
 
 ```
-http://plenar.io/v1/api/shapes/chicago_pedestrian_streets
-?data_type=json
+http://plenar.io/v1/api/shapes/pedestrian_streets?data_type=json
 ```
 
 > Get a GeoJSON document with Chicago's streets that are reserved for pedestrian traffic.
+
+```
+http://plenar.io/v1/api/shapes/pedestrian_streets?data_type=json
+&pedestrian_streets__filter={"op": "eq", "col": "name", "val": "PEDESTRIAN
+STREET RETAIL"}
+```
+
+> Limit that document to only streets marked as "PEDESTRIAN STREET RETAIL".
+
 
 > ### Example Response
 
@@ -82,6 +90,7 @@ Download this shape dataset in the format of your choosing. Optionally, provide 
 |----------------------|-------------------|---------------------------------------------------------------------------------|
 | **data_type**            | `json`            | `json` for GeoJSON, `shapefile` for ESRI Shapefile, or `kml` for KML            |
 | **location_geom_within** | noone             | A URL encoded [GeoJSON](geojson.org) polygon representing the area of interest. |
+| **[dataset]__filter** | none | See [advanced filtering](#advanced-filtering) for more info. |
 
 ### Response
 
@@ -92,28 +101,51 @@ A document with a shape dataset.
 > ### Example Query
 
 ```
-http://plenar.io/v1/api/shapes/boundaries_neighborhoods/
-individual_landmarks/?obs_date__ge=1900-09-22&
-obs_date__le=2015-10-1
+http://plenar.io/v1/api/shapes/boundaries_neighborhoods/individual_landmarks/
+?obs_date__ge=1900-09-22&obs_date__le=2015-10-1&boundaries_neighborhoods__filter=
+{"op": "eq", "col": "sec_neigh", "val": "BRONZEVILLE"}
 ```
 
-> Count the number of historical landmarks in each Chicago neighborhood.
+> Count the number of historical landmarks in Chicago neighborhood Bronzeville.
 
 > ### Example Response
 
-*Experimental endpoint. Could change without warning.*
+```json
+{
+    "type": "FeatureCollection", 
+    "features": [
+        {
+            "geometry": {
+                "type": "MultiPolygon", 
+                "coordinates": [...]
+            }, 
+            "type": "Feature", 
+            "properties": {
+                "shape_area": 48492503.1554, 
+                "pri_neigh": "Grand Boulevard", 
+                "sec_neigh": "BRONZEVILLE", 
+                "shape_len": 28196.837157, 
+                "count": 9
+            }
+        }, ...
+    ]
+}
+```
 
-Given a point dataset and a polygon dataset, return a document of all of the polygons in the polygon dataset together with the counts of the points that intersect them.
+Given a point dataset and a polygon dataset, return a document of all of the 
+polygons in the polygon dataset together with the counts of the points that 
+intersect them.
 
 ### Query Parameters
 
 | Parameter Name        | Parameter Default | Parameter Description                                                                                                                                                                                                                                                               |
 |-----------------------|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [dataset_field]*      | none              | Any available dataset field. Discoverable via the `/v1/api/fields//` endpoint. Any number of these query parameters can be chained together and are linked together with a SQL `AND` under the hood. Use the provided [query operators](#query-operators-for-raw-data) if desired. |
-| obs_date__ge          | 90 days ago       | Obversations greater than or equal to a given date.  Dates must be formatted as **YYYY-MM-DD**                                                                                                                                                                                      |
-| obs_date__le          | today's date      | Obversations less than or equal to a given date.  Dates must be formatted as **YYYY-MM-DD**                                                                                                                                                                                         |
-| location_geom__within | none              | A URL encoded [GeoJSON](geojson.org) polygon representing the area of interest.                                                                                                                                                                                                     |
-| data_type             | json              | Response data format. Current options are `json`, `geojson` and `csv`.                                                                                                                                                                                                              |
+| **[dataset_field]***      | none              | Any available dataset field. Discoverable via the `/v1/api/fields//` endpoint. Any number of these query parameters can be chained together and are linked together with a SQL `AND` under the hood. Use the provided [query operators](#query-operators-for-raw-data) if desired. |
+| **obs_date__ge**          | 90 days ago       | Obversations greater than or equal to a given date.  Dates must be formatted as **YYYY-MM-DD**                                                                                                                                                                                      |
+| **obs_date__le**          | today's date      | Obversations less than or equal to a given date.  Dates must be formatted as **YYYY-MM-DD**                                                                                                                                                                                         |
+| **location_geom__within** | none              | A URL encoded [GeoJSON](geojson.org) polygon representing the area of interest.                                                                                                                                                                                                     |
+| **data_type**             | json              | Response data format. Current options are `json`, `geojson` and `csv`.                                                                                                                                                                                                              |
+| **[dataset]__filter** | none | See [advanced filtering](#advanced-filtering) for more info. |
 
 ### Responses
 
