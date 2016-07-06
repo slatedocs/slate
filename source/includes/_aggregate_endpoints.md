@@ -7,11 +7,11 @@
 ```
 http://plenar.io/v1/api/timeseries/?obs_date__ge=2007-11-12&
 obs_date__le=2008-11-12&dataset_name__in=crimes_2001_to_present,
-cdph_environmental_complaints&agg=day
+cdph_environmental_complaints&agg=year
 ```
 
 > Count of crime and environmental complaints that were observed after 
-> November 12, 2007 but before November 12, 2008, aggregated by day.
+November 12, 2007 but before November 12, 2008, aggregated by day.
 
 > ### Example Response
 
@@ -23,7 +23,7 @@ cdph_environmental_complaints&agg=day
             "obs_date__ge": "2007-11-12",
             "data_type": "json",
             "obs_date__le": "2008-11-12",
-            "agg": "day",
+            "agg": "year",
             "dataset": null,
             "dataset_name__in": [
                 "crimes_2001_to_present",
@@ -98,15 +98,25 @@ All query parameters are optional.
 | **dataset_name**         | none              | Machine version of the dataset name as you get it from the `/v1/api/datasets` endpoint. If not provided, returns all available datasets. More than one dataset can be requested by using `dataset_name__in` and listing multiple comma separated dataset names. |
 | **location_geom_within** | none              | A URL encoded [GeoJSON](http://geojson.org/) polygon representing the area of interest                                                                                                                                                                         |
 | **data_type**            | json              | Response data format. Current options are `json`, `geojson`, and `csv`.    
+| **[dataset]__filter** | none  | See `advanced filtering` for more info.
 
 ### Response
 
-The API responds with a list of datasets with a dense matrix of counts grouped by temporal aggregation.
+The API responds with a list of datasets with a dense matrix of counts grouped 
+by temporal aggregation.
 
-| **Attribute Name** | **Attribute Description**             |
-|--------------------|-------------------------------------- |
-| **dataset_name**     | Machine version  of that dataset name |
-| **items**            | Returns as either `count` and `datetime`|
+| **Attribute Name** | **Attribute Description**                              |
+| ------------------ | ------------------------------------------------------ |
+| **_meta_**         |                                                        |
+| **status**         | Indicates query success, can be `ok` or `error`.       |
+| **query**          | Shows values used in the query.                        |
+| **message**        | Reports errors or warnings (if any).                   |
+| **_objects_**      |                                                        |
+| **bbox**           | Spacial bounds that contain all the records.           |
+| **count**          | Total number of records found within obs_date bounds.  |
+| **dataset_name**   | Machine version of a specific dataset name.            |
+| **items**          | Counts of aggregated records and delimiting datetimes. |
+| **update_freq**    | Frequency with records are refreshed and updated.      |
 
 <aside class=notice>The ellipses in place of <i>coordinates</i> values replace 
 GeoJSON longitude and latitude; those in place of <i>items</i> replace 
@@ -180,15 +190,21 @@ All query parameters are optional except for `dataset_name`.
 | **obs_date__le**         | 90 days ago       | Obversations less than or equal to a given date.  Dates must be formatted as YYYY-MM-DD                                                                                                                            |
 | **location_geom_within** | none              | A URL encoded [GeoJSON](http://geojson.org/) polygon representing the area of interest                                                                                                                             |
 | **data_type**            | json              | Response data format. Current options are `json` and `csv`.                                                                                                                                                        |
+| **[dataset]__filter** | none  | See `advanced filtering` for more info.
 
 ### Response
 
 The API responds with a list of counts grouped by temporal aggregation and dataset name.
 
-| Attribute Name | Attribute Description      |
-|----------------|----------------------------|
-| count          | Record count               |
-| datetime       | Temporal aggregation group |
+| **Attribute Name** | **Attribute Description**                              |
+| ------------------ | ------------------------------------------------------ |
+| **_meta_**         |                                                        |
+| **status**         | Indicates query success, can be `ok` or `error`.       |
+| **query**          | Shows values used in the query.                        |
+| **message**        | Reports errors or warnings (if any).                   |
+| **_objects_**      |                                                        |
+| **count**          | Total number of records found within obs_date bounds.  |
+| **datetime**       | Temporal delimiter.                                    |
 
 ## `GET v1/api/grid`
 
@@ -256,14 +272,19 @@ All query parameters are optional except for `dataset_name`.
 
 | Parameter Name       | Parameter Default | Parameter Description                                                                                                                                                                                              |
 |----------------------|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| dataset_name         | none              | *Required*. Machine version of the dataset name as you get it from the `/v1/api/` endpoint.                                                                                                                        |
-| [dataset_field]*     | none              | Any available dataset field. Discoverable via the `/v1/api/fields/<dataset_name>/` endpoint. Any number of these query parameters can be chained together and are linked together with a SQL `AND` under the hood. |
-| resolution           | 500               | Square grid size (in meters).                                                                                                                                                                                      |
-| obs_date__ge         | 90 days ago       | Obversations greater than or equal to a given date.  Dates must be formatted as YYYY-MM-DD                                                                                                                         |
-| obs_date__le         | 90 days ago       | Obversations less than or equal to a given date.  Dates must be formatted as YYYY-MM-DD                                                                                                                            |
-| location_geom_within | none              | A URL encoded [GeoJSON](http://geojson.org/) polygon representing the area of interest                                                                                                                             |
-| buffer               | 100               | If `location_geom__within` is a [GeoJSON LineString](http://geojson.org/geojson-spec.html#linestring), the size of the buffer around that line to query (in meters).                                               |
+| **dataset_name**         | none              | *Required*. Machine version of the dataset name as you get it from the `/v1/api/` endpoint.                                                                                                                        |
+| **[dataset_field]***     | none              | Any available dataset field. Discoverable via the `/v1/api/fields/<dataset_name>/` endpoint. Any number of these query parameters can be chained together and are linked together with a SQL `AND` under the hood. |
+| **resolution**         | 500               | Square grid size (in meters).                                                                                                                                                                                      |
+| **obs_date__ge**         | 90 days ago       | Obversations greater than or equal to a given date.  Dates must be formatted as YYYY-MM-DD                                                                                                                         |
+| **obs_date__le**         | 90 days ago       | Obversations less than or equal to a given date.  Dates must be formatted as YYYY-MM-DD                                                                                                                            |
+| **location_geom_within** | none              | A URL encoded [GeoJSON](http://geojson.org/) polygon representing the area of interest                                                                                                                             |
+| **buffer**               | 100               | If `location_geom__within` is a [GeoJSON LineString](http://geojson.org/geojson-spec.html#linestring), the size of the buffer around that line to query (in meters).                                               |
+| **[dataset]__filter** | none  | See `advanced filtering` for more info.
 
 ### Response
 
-**See right**; Plenario will output a GeoJSON with a feature for each grid square containing a `count` property of observations within that square.
+**See right**
+
+Plenario will output a GeoJSON with a feature for each grid square containing 
+a `count` property of the number of observations within that square.
+
