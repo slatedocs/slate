@@ -3,15 +3,190 @@
 ## Setting up the SDK
 
 Once you’ve brought the Foxtrot Android SDK into your project, the first thing you’ll want to do is set it up.
-You’ll need two things:
+You’ll need three things:
 
 1. an Android `context` (any context should be fine)
 2. your Foxtrot API key
+3. enable permissions
+
+The Foxtrot Android SDK require these permissions: `ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`, `INTERNET`, and `ACCESS_NETWORK_STATE`.
+
+Add these lines to your `AndroidManifest.xml` file
+
+```xml
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+```
+
+<aside class="notice">
+If your app is targeting Android Marshmallow or above, you will also need to request from the user permission to ACCESS_COARSE_LOCATION and ACCESS_FINE_LOCATION.
+</aside>
+
+Sample code to ask user to grant permissions:
 
 ```java
-Context context = activity.getApplicationContext();
-String apiKey = "YOUR_API_KEY";
-FoxtrotSDK.setup(context, apiKey);
+public class SetupFoxtrotSDKActivity extends AppCompatActivity {
+
+  private static final int REQUEST_CODE_ASK_PERMISSIONS = 1;
+  private static final int REQUEST_CODE_SET_PERMISSIONS_APP_SETTINGS = 2;
+  private static final List<String> REQUIRED_PERMISSIONS = Arrays.asList(permission.ACCESS_FINE_LOCATION, permission.ACCESS_COARSE_LOCATION);
+
+  @Override
+  protected void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    askUserForPermissionAndSetupFoxtrotSDK();
+  }
+
+  private void askUserForPermissionAndSetupFoxtrotSDK() {
+    if (VERSION.SDK_INT >= VERSION_CODES.M) {
+      askUserForPermissionAndSetupFoxtrotSDKAfterMarshmallow();
+    } else {
+      askUserForPermissionAndSetupFoxtrotSDKBeforeMarshmallow();
+    }
+  }
+
+  @Override
+  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    switch (requestCode) {
+      case REQUEST_CODE_ASK_PERMISSIONS:
+        if (isAllPermissionsGranted(grantResults)) {
+          setupFoxtrotSDKAndStartApp();
+        } else {
+          final List<String> missingPermissions = Arrays.asList(permissions);
+          if (shouldShowRequestPermissionRationale(missingPermissions)) {
+            // Handle case when user select "Cancel". We will pop up a dialog explaining why we need the permission
+            showUserRationaleAndRequestPermission(missingPermissions);
+          } else {
+            // User selected "Never ask again" so we can't request for permission anymore. User will need to go to the
+            // app settings menu to grant permission. In order for the Foxtrot SDK to work optimally, we will need these permissions.
+            showUserRationaleAndRedirectToAppSettings(missingPermissions);
+          }
+        }
+        break;
+      case REQUEST_CODE_SET_PERMISSIONS_APP_SETTINGS:
+        askUserForPermissionAndSetupFoxtrotSDK();
+        break;
+      default:
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+  }
+
+  private void showUserRationaleAndRequestPermission(final List<String> missingPermissions) {
+    String prompt = createPermissionPromptMessage(missingPermissions);
+    showMessageOKCancel(prompt,
+                        new DialogInterface.OnClickListener() {
+                          @TargetApi(VERSION_CODES.M)
+                          @Override
+                          public void onClick(DialogInterface dialog, int which) {
+                            requestPermissions(missingPermissions.toArray(new String[missingPermissions.size()]), REQUEST_CODE_ASK_PERMISSIONS);
+                          }
+                        },
+                        new DialogInterface.OnClickListener() {
+                          @Override
+                          public void onClick(DialogInterface dialog, int which) {
+                            // Keep asking
+                            askUserForPermissionAndSetupFoxtrotSDK();
+                          }
+                        });
+  }
+
+  private void showUserRationaleAndRedirectToAppSettings(final List<String> missingPermissions) {
+    String prompt = createPermissionPromptMessage(missingPermissions);
+    showMessageOKCancel(prompt,
+                        new DialogInterface.OnClickListener() {
+                          @TargetApi(VERSION_CODES.M)
+                          @Override
+                          public void onClick(DialogInterface dialog, int which) {
+                            // Redirect user to app settings to manually grant the permission
+                            Intent appSettingsIntent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + getPackageName()));
+                            appSettingsIntent.addCategory(Intent.CATEGORY_DEFAULT);
+                            appSettingsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivityForResult(appSettingsIntent, REQUEST_CODE_SET_PERMISSIONS_APP_SETTINGS);
+                          }
+                        },
+                        new DialogInterface.OnClickListener() {
+                          @Override
+                          public void onClick(DialogInterface dialog, int which) {
+                            // Keep asking
+                            askUserForPermissionAndSetupFoxtrotSDK();
+                          }
+                        });
+  }
+
+  private void askUserForPermissionAndSetupFoxtrotSDKBeforeMarshmallow() {
+    // Android versions before Marshmallow grant permissions during app install time so we don't need to grant permission again
+    setupFoxtrotSDKAndStartApp();
+  }
+
+  @TargetApi(VERSION_CODES.M)
+  private void askUserForPermissionAndSetupFoxtrotSDKAfterMarshmallow() {
+    // Marshmallow requires certain permissions to be granted at run-time
+    final List<String> missingPermissions = getMissingPermissions(REQUIRED_PERMISSIONS);
+    if (!missingPermissions.isEmpty()) {
+      requestPermissions(missingPermissions.toArray(new String[missingPermissions.size()]), REQUEST_CODE_ASK_PERMISSIONS);
+    } else {
+      setupFoxtrotSDKAndStartApp();
+    }
+  }
+
+  private boolean isAllPermissionsGranted(int[] grantResults) {
+    for (int grantResult: grantResults) {
+      if (grantResult != PackageManager.PERMISSION_GRANTED) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  private void setupFoxtrotSDKAndStartApp() throws SecurityException {
+    Context context = getApplicationContext();
+    String apiKey = "YOUR_API_KEY";
+    FoxtrotSDK.setup(context, apiKey);
+  }
+
+  private List<String> getMissingPermissions(List<String> permissionsRequired) {
+    List<String> missingPermissions = new LinkedList<String>();
+    for (String permission: permissionsRequired) {
+      if (ActivityCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+        missingPermissions.add(permission);
+      }
+    }
+    return missingPermissions;
+  }
+
+  private boolean shouldShowRequestPermissionRationale(List<String> missingPermissions) {
+    for (String permission: missingPermissions) {
+      if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private String createPermissionPromptMessage(List<String> missingPermissions) {
+    StringBuilder builder = new StringBuilder();
+    if (!missingPermissions.isEmpty()) {
+      // Having a more user-friendly message is encouraged :)
+      builder.append(String.format("You need to grant access to %s", missingPermissions.get(0)));
+      for (int i = 1; i < missingPermissions.size(); ++i) {
+        builder.append(String.format(", %s", missingPermissions.get(i)));
+      }
+    }
+    return builder.toString();
+  }
+
+  private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {
+    new AlertDialog.Builder(SetupFoxtrotSDKActivity.this)
+        .setMessage(message)
+        .setPositiveButton("OK", okListener)
+        .setNegativeButton("Cancel", cancelListener)
+        .create()
+        .show();
+  }
+
+}
 ```
 
 Great job, now you’ve set up the Foxtrot SDK singleton… give yourself a high five!
