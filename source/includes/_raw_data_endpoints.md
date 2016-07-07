@@ -86,20 +86,23 @@ All query parameters are optional except for `dataset_name`.
 
 | Parameter Name       | Parameter Default | Parameter Description                                                                                                                                                                                              |
 |----------------------|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **dataset_name**         | none              | *Required*. Machine version of the dataset name as you get it from the `/v1/api/datasets` endpoint. If not provided, returns all available datasets. More than one dataset can be requested by using `dataset_name__in` and listing multiple comma separated dataset names.                                                                                                                       |
-| **[dataset_field]***     | none              | Any available dataset field. Discoverable via the `/v1/api/fields/<dataset_name>/` endpoint. Any number of these query parameters can be chained together and are linked together with a SQL `AND` under the hood. |
-| **obs_date__ge**         | 90 days ago       | Obversations greater than or equal to a given date.  Dates must be formatted as **YYYY-MM-DD**                                                                                                                         |
-| **obs_date__le**         | 90 days ago       | Obversations less than or equal to a given date.  Dates must be formatted as **YYYY-MM-DD**                                                                                                                            |
-| **location_geom_within** | none              | A URL encoded [GeoJSON](http://geojson.org/) polygon representing the area of interest                                                                                                                             |
-| **data_type**            | json              | Response data format. Current options are `json` and `csv`                                                                                                                                                         |
-| **geom**                 | none              | Join to a shape dataset; columns in the shape dataset can also be used as filters with the `[dataset_field]*` parameter                                                                                            |
-| **offset**               | none              | Used to paginate through results of more than 1000.  Example: `offset=1000` will fetch the second page of results.                                                                                  |
-| **[dataset]__filter** | none  | See [advanced filtering](#advanced-filtering) for more info. |
-
 
 ### Responses
 
-**See right**; the API responds with a list of raw records for the particular dataset. The fields returned will vary per dataset. Response is limited to 1000 results, which can be paginated by using the `offset` parameter.
+**See right**
+
+The API responds with a list of raw records for the particular dataset. The
+fields returned will vary per dataset. Response is limited to 1000 results,
+which can be paginated by using the `offset` parameter.
+
+| **Attribute Name** | **Attribute Description**                              |
+| ------------------ | ------------------------------------------------------ |
+| **_meta_**         |                                                        |
+| **status**         | Indicates query success, can be `ok` or `error`.       |
+| **query**          | Shows values used in the query.                        |
+| **message**        | Reports errors or warnings (if any).                   |
+| **total**          | Total number of records found.                         |
+| **_objects_**      | Contains row values of raw dataset information.        |
 
 | **Attribute Name** | **Attribute Description**                              |
 | ------------------ | ------------------------------------------------------ |
@@ -391,7 +394,6 @@ All query parameters are optional.
 | **relative_humidity**       | Expressed as a percentage (0 to 100), the ratio of the partial pressure of water vapor to the saturated vapor pressure at the current temperature                                                                                                                                                                                                                                                                                                                                                                                  |
 | **wind_speed**              | Observed wind speed (averaged?) (in miles per hour)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | **wind_direction**          | Observed wind direction (averaged?) in degrees (0 to 360)                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| **wind_direction_cardinal** | Observed wind direction (averaged?) as a human-readable direction, e.g. N, NE, NNE, NNW                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | **station_pressure**        | Average pressure in inches of Mercury                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | **sealevel_pressure**       | Average sea-level pressure in inches of Mercury                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | **report_type**             | Standard reports are denoted 'AA' and special reports (e.g. for tornadoes) are 'SP'. * AA: METAR (AVIATION ROUTINE WEATHER REPORT) - HOURLY * SP: METAR SPECIAL REPORT * CRN05: Climate Reference Network                                                                                                                                                                                                                                                                                                                          |
