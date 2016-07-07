@@ -499,7 +499,7 @@ try {
 }
 ```
 
-An `AuthenticationExcepption` is thrown if the password is wrong or the user has not been registered.
+An `AuthenticationException` is thrown if the password is wrong or the user has not been registered.
 Once the user is logged in, you can perform file system operations such as create directories, upload/download files.
 
 ## Create a New Directory
