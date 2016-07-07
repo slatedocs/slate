@@ -203,7 +203,7 @@ location-id |
                 "schedule": "Weekly",
                 "day_of_week": "Thursday",
                 "day_of_month": "0",
-                "location_id": "0",
+                "location_id": "0"
             },
             {
                 "campaign_id": "50",
@@ -211,7 +211,7 @@ location-id |
                 "schedule": "Weekly",
                 "day_of_week": "Wednesday",
                 "day_of_month": null,
-                "location_id": "0",
+                "location_id": "0"
             },
             {
                 "campaign_id": "52",
@@ -219,7 +219,7 @@ location-id |
                 "schedule": "Weekly",
                 "day_of_week": "Wednesday",
                 "day_of_month": null,
-                "location_id": "0",
+                "location_id": "0"
             }
         ]    
     }
