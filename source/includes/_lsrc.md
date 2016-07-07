@@ -149,7 +149,7 @@ campaign-id | <span class="label label-required">Required</span>
                 "schedule": "Weekly",
                 "day_of_week": "Thursday",
                 "day_of_month": "0",
-                "location_id": "0",
+                "location_id": "0"
             },
             {
                 "campaign_id": "50",
@@ -157,7 +157,7 @@ campaign-id | <span class="label label-required">Required</span>
                 "schedule": "Weekly",
                 "day_of_week": "Wednesday",
                 "day_of_month": null,
-                "location_id": "0",
+                "location_id": "0"
             },
             {
                 "campaign_id": "52",
@@ -165,7 +165,7 @@ campaign-id | <span class="label label-required">Required</span>
                 "schedule": "Weekly",
                 "day_of_week": "Wednesday",
                 "day_of_month": null,
-                "location_id": "0",
+                "location_id": "0"
             }
         ]    
     }
