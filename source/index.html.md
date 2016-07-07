@@ -15,7 +15,7 @@ search: true
 Welcome to the Inpher API documentation! The Inpher SDK enables applications to encrypt, index, search and share large unstructured data sets without revealing any plaintext to an untrusted host or attacker. Our client-side libraries and backend compatibility empower developers to quickly create secure applications without being crypto experts or changing their search and storage infrastructure.
 
 ![alt text][open]
-[open]: images/open_small.png "\_open"
+[open]: images/open.png "\_open"
 
 Our free, open SDK for developers to sandbox and build applications on top of existing search platforms and backend storage.  Includes:
 
@@ -29,7 +29,7 @@ Our free, open SDK for developers to sandbox and build applications on top of ex
 * Lightweight, deployable on IoT devices
 
 ![alt text][ultra]
-[ultra]: images/ultra2_small.png "\_ultra"
+[ultra]: images/ultra.png "\_ultra"
 
 Our enterprise-grade SDK for encrypting, indexing and searching terabytes of data across thousands of distributed users. Get all of the components in the \_open toolkit plus everything your team needs to scale:
 
