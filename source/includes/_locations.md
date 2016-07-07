@@ -165,10 +165,10 @@ location-id | <span class="label label-required">Required</span>
             "extra-business_categories":[
             	"marketing"
             ],
-            "working-hours":[
+            "working-hours":{
             	"mon_start":"9 a.m.",
-            	"mon_end":"7 p.m.",
-            ],
+            	"mon_end":"7 p.m."
+            },
             "payment-methods-accepted":[
                 "visa",
                 "paypal"
