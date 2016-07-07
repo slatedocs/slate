@@ -5,9 +5,10 @@ language_tabs:
   - html: Examples
 
 toc_footers:
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
-  - <a href='http://www.urbanccd.org/#urbanccd'>Made by UrbanCCD and</a>
+  - <a href='https://github.com/tripit/slate'>Slate</a>
+  - <a href='http://www.urbanccd.org/#urbanccd'>UrbanCCD</a>
   - <a href='http://www.uchicago.edu/'>University of Chicago</a>
+  - <a href='http://plenar.io/'>Plenario</a>
 
 includes:
   - metadata_endpoints
