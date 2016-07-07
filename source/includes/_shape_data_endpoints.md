@@ -89,7 +89,7 @@ Download this shape dataset in the format of your choosing. Optionally, provide 
 | Parameter Name       | Parameter Default | Parameter Description                                                           |
 |----------------------|-------------------|---------------------------------------------------------------------------------|
 | **data_type**            | `json`            | `json` for GeoJSON, `shapefile` for ESRI Shapefile, or `kml` for KML            |
-| **location_geom_within** | noone             | A URL encoded [GeoJSON](geojson.org) polygon representing the area of interest. |
+| **location_geom_within** | none             | A URL encoded [GeoJSON](geojson.org) polygon representing the area of interest. |
 | **[dataset]__filter** | none | See [advanced filtering](#advanced-filtering) for more info. |
 
 ### Response
@@ -112,37 +112,38 @@ http://plenar.io/v1/api/shapes/boundaries_neighborhoods/individual_landmarks/
 
 ```json
 {
-    "type": "FeatureCollection", 
+    "type": "FeatureCollection",
     "features": [
         {
             "geometry": {
-                "type": "MultiPolygon", 
+                "type": "MultiPolygon",
                 "coordinates": [...]
-            }, 
-            "type": "Feature", 
+            },
+            "type": "Feature",
             "properties": {
-                "shape_area": 48492503.1554, 
-                "pri_neigh": "Grand Boulevard", 
-                "sec_neigh": "BRONZEVILLE", 
-                "shape_len": 28196.837157, 
+                "shape_area": 48492503.1554,
+                "pri_neigh": "Grand Boulevard",
+                "sec_neigh": "BRONZEVILLE",
+                "shape_len": 28196.837157,
                 "count": 9
             }
-        }, ...
+            ...
+        },
     ]
 }
 ```
 
-Given a point dataset and a polygon dataset, return a document of all of the 
-polygons in the polygon dataset together with the counts of the points that 
+Given a point dataset and a polygon dataset, return a document of all of the
+polygons in the polygon dataset together with the counts of the points that
 intersect them.
 
 ### Query Parameters
 
 | Parameter Name        | Parameter Default | Parameter Description                                                                                                                                                                                                                                                               |
 |-----------------------|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **[dataset_field]***      | none              | Any available dataset field. Discoverable via the `/v1/api/fields//` endpoint. Any number of these query parameters can be chained together and are linked together with a SQL `AND` under the hood. Use the provided [query operators](#query-operators-for-raw-data) if desired. |
-| **obs_date__ge**          | 90 days ago       | Obversations greater than or equal to a given date.  Dates must be formatted as **YYYY-MM-DD**                                                                                                                                                                                      |
-| **obs_date__le**          | today's date      | Obversations less than or equal to a given date.  Dates must be formatted as **YYYY-MM-DD**                                                                                                                                                                                         |
+| **[dataset_field]***      | none              | Any available dataset field. Discoverable via the `/v1/api/fields/<dataset_name>/` endpoint. Any number of these query parameters can be chained together and are linked together with a SQL `AND` under the hood. Use the provided [query operators](#query-operators-for-raw-data) if desired. |
+| **obs_date__ge**          | 90 days ago       | Observations greater than or equal to a given date.  Dates must be formatted as **YYYY-MM-DD**                                                                                                                                                                                      |
+| **obs_date__le**          | today's date      | Observations less than or equal to a given date.  Dates must be formatted as **YYYY-MM-DD**                                                                                                                                                                                         |
 | **location_geom__within** | none              | A URL encoded [GeoJSON](geojson.org) polygon representing the area of interest.                                                                                                                                                                                                     |
 | **data_type**             | json              | Response data format. Current options are `json`, `geojson` and `csv`.                                                                                                                                                                                                              |
 | **[dataset]__filter** | none | See [advanced filtering](#advanced-filtering) for more info. |
@@ -150,4 +151,3 @@ intersect them.
 ### Responses
 
 A document of polygons from the given dataset and the count of the points that intersect them.
-

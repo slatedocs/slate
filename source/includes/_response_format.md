@@ -4,6 +4,6 @@ All JSON API calls return their data in the `objects` block. Additional informat
 
 | Parameter   | Description                                                       |
 |-------------|-------------------------------------------------------------------|
-| **status**  | *ok* if the query is successful, *error* if not.                  |
+| **status**  | **ok** if the query is successful, **error** if not.                  |
 | **query**   | Original query parameters passed in.                              |
-| **message** | If `status` is *error*, a detailed message as to what went wrong. |
+| **message** | If `status` is **error**, a detailed message as to what went wrong. |

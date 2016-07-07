@@ -36,18 +36,6 @@ http://plenar.io/v1/api/datasets/
                     "field_type": "DATE",
                     "field_name": "date_occ"
                 },
-                {
-                    "field_type": "VARCHAR",
-                    "field_name": "location_1"
-                },
-                {
-                    "field_type": "INTEGER",
-                    "field_name": "crm_cd"
-                },
-                {
-                    "field_type": "DOUBLE PRECISION",
-                    "field_name": "area"
-                },
                 ...
             ],
             "last_update": "2015-04-17T19:30:44.922015",
@@ -59,10 +47,6 @@ http://plenar.io/v1/api/datasets/
                         [
                             -117.7071,
                             33.706
-                        ],
-                        [
-                            -117.7071,
-                            34.7907
                         ],
                         ...
                     ]
