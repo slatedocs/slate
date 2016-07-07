@@ -1,7 +1,6 @@
 # Invoice
 
-
-Lets you create invoicing and manage details.
+Lets you create invoice with line items. It will send the email with the attached Invoice PDF.
 
 
 ## Create
@@ -14,7 +13,7 @@ Lets you create invoicing and manage details.
     "status": true,
     "message": "Invoice sent successfully.",
     "id": 1234,
-    "hash": "gbe4O9XBZvPU0n9PALEozFYt4fsbYnoYayswAECR0jdkRwlQW0"
+    "pdf": "https://s3.amazonaws.com/email-invoices/CZIWUxRlk0AvSkKQx1xKE22rrz2JPzCN0pAY1V48atvfdPVI0X.pdf"
   }
 }
 ```
@@ -32,25 +31,49 @@ This method lets you create the invoice.
 Field Name|Type| Description
 ---------|-----|------
 number | string | Invoice Number
-date | string | Invoice Date.
+date | string | Invoice Date (Y-m-d).
 logo | string | Invoice logo link.
 mail_to | string | Email where invoice will be send
 mail_body| string | Email body. Can be html.
-customer | string | Json data of customer
-line_items | array | Array of objects.
 credit | string | Customer credit
+customer | json | Json data of customer
+-- custid | string | Customer ID
+-- first_name | string | Customer's firstname
+-- last_name | string | Customer's lastname
+-- email | string | Customer's email
+-- phone | string | Customer's contact number
+-- company | string | Company
+-- street1 | string | Street 1
+-- street2 | string | Street 2
+-- city | string | City
+-- state | string | State
+-- zip | string | ZIP
+line_items | array | Array of objects
+-- id | integer | ID
+-- sku | integer | Item identification code
+-- name | integer | Item name
+-- quantity | integer | Number of items
+-- total_cost | float | Total cost of the item
+-- due_date | string | Date due (Y-m-d)
+-- child | array | Items as a child
+- -id | integer  |  Item id
+- -sku | string |  	Item identification code
+- -name | string |  Item name
+- -quantity | integer | Number of items
+- -total_cost | float | Total cost of the item
+
 
 > Sample JSON structure like this:
 
 ```json
 {
-  "number": "INV-0001",
-  "date": "29 June, 2016",
+  "number": "INV-0003",
+  "date": "",
   "logo": "https:\/\/invoice_logos.s3.amazonaws.com\/bleh.png",
-  "mail_body": "<span style=\"color: #000000;\">This email is a reminder that the balance on your account is <strong style=\"font-weight: bold\">$210.00<\/strong>. We accept MasterCard, VISA, Discover and American Express. If your payment is already on its way, we thank you and ask that you please disregard this notice. If not, we would appreciate receipt of your payment as soon as possible. If you would like to further discuss the details of your account, please do not hesitate to call billing at <strong style=\"font-weight: bold\"><\/strong>.<\/span>",
-  "credit": "$0.00",
-  "mail_to": "jamesj@zylun.com",
-  "section": "content",
+  "mail_body": "",
+  "credit": "$12.00",
+  "mail_to": "evelynl@zylun.com",
+  "include_pdf": 1,
   "key": "9ypnPRT9v2ChPCQv",
   "customer": {
     "custid": "9ypnPRT9v2ChPCQv_2266",
@@ -68,31 +91,44 @@ credit | string | Customer credit
   },
   "line_items": [
     {
-      "id": 1002,
-      "sku": "1233476",
-      "name": "My ProductName 11",
+      "id": 123,
+      "sku": "PN01",
+      "name": "Peanut",
       "quantity": "1",
-      "total_cost": "$200.00",
-      "parent": 0,
-      "due_date": "2016-06-29"
+      "total_cost": "200.00",
+      "due_date": "2016-07-07",
+      "child" : [
+          {
+            "id": 124,
+            "sku": "PNB01",
+            "name": "PButter",
+            "quantity": "1",
+            "total_cost": "10.00"
+          },
+          {
+            "id": 125,
+            "sku": "PNM01",
+            "name": "PMayo",
+            "quantity": "1",
+            "total_cost": "-3.00"
+          },
+          {
+            "id": 125,
+            "sku": "PNM01",
+            "name": "PMayo",
+            "quantity": "1",
+            "total_cost": "-3.00"
+          }
+      ]
     },
     {
-      "id": 1003,
-      "sku": "1233476",
-      "name": "Sub Product 11",
+      "id": 130,
+      "sku": "STBJ",
+      "name": "Strawberry Jam",
       "quantity": "1",
-      "total_cost": "$10.00",
-      "parent": 1002,
-      "due_date": "2016-06-29"
-    },
-    {
-      "id": 1004,
-      "sku": "09324174593",
-      "name": "Ice Blast",
-      "quantity": "6",
-      "total_cost": "$10.08",
-      "parent": 1002,
-      "due_date": "2016-06-29"
+      "total_cost": "115.50",
+      "due_date": "2016-07-07",
+      "child":[]
     }
   ]
 }
@@ -107,40 +143,83 @@ credit | string | Customer credit
 ```json
 {
   "data": {
-    "customer_id": "9ypnPRT9v2ChPCQv_8080",
-    "customer_num": "7654321",
+    "customer_id": "9ypnPRT9v2ChPCQv_2266",
+    "customer_num": "4831234",
     "customer_name": "Jan Doe",
-    "customer_email": "me@email.com",
-    "customer_street": "123 Tupas St.",
+    "customer_email": "jandoe@email.com",
+    "customer_street": "",
     "customer_street2": "",
-    "customer_city": "Cebu",
-    "customer_country": "Ph",
-    "customer_state": "Cebu",
+    "customer_city": "",
+    "customer_country": "",
+    "customer_state": "",
     "customer_zip": "",
-    "invoice_number": "000001",
-    "invoice_date": "28 April, 2016",
-    "invoice_subtotal": "123.00",
-    "invoice_credit": "0.00",
-    "invoice_total": "123.00",
-    "summary": [
+    "invoice_number": "INV-0003",
+    "invoice_date": "02 July, 2016",
+    "invoice_credit": "12.00",
+    "invoice_total": "315.50",
+    "status": "sent",
+    "line_items": [
       {
-        "sku": "sk-123",
-        "productname": "Bread",
-        "unitcost": "123.00",
-        "unitquantity": "1",
-        "unitprice": "$123.00"
+        "id": 5,
+        "product_id": 123,
+        "invoice_id": 11,
+        "parent": 0,
+        "sku": "PN01",
+        "product_name": "Peanut",
+        "product_cost": 200,
+        "quantity": 1,
+        "total_cost": 200,
+        "due_date": "2016-07-02",
+        "created_at": "2016-07-02 06:28:31",
+        "updated_at": "2016-07-02 06:28:31",
+        "status": "unpaid"
       },
       {
-        "sku": "sk-124",
-        "productname": "Wine",
-        "unitcost": "123.00",
-        "unitquantity": "1",
-        "unitprice": "$123.00"
+        "id": 6,
+        "product_id": 124,
+        "invoice_id": 11,
+        "parent": 123,
+        "sku": "PNB01",
+        "product_name": "PButter",
+        "product_cost": 10,
+        "quantity": 1,
+        "total_cost": 10,
+        "due_date": "2016-07-02",
+        "created_at": "2016-07-02 06:28:31",
+        "updated_at": "2016-07-02 06:28:31",
+        "status": "unpaid"
+      },
+      {
+        "id": 7,
+        "product_id": 125,
+        "invoice_id": 11,
+        "parent": 123,
+        "sku": "PNM01",
+        "product_name": "PMayo",
+        "product_cost": -3,
+        "quantity": 1,
+        "total_cost": -3,
+        "due_date": "2016-07-02",
+        "created_at": "2016-07-02 06:28:31",
+        "updated_at": "2016-07-02 06:28:31",
+        "status": "unpaid"
+      },
+      {
+        "id": 8,
+        "product_id": 130,
+        "invoice_id": 11,
+        "parent": 0,
+        "sku": "STBJ",
+        "product_name": "Strawberry Jam",
+        "product_cost": 115.5,
+        "quantity": 1,
+        "total_cost": 115.5,
+        "due_date": "2016-07-03",
+        "created_at": "2016-07-02 06:28:31",
+        "updated_at": "2016-07-02 06:28:31",
+        "status": "unpaid"
       }
-    ],
-    "date_due": "28 April, 2016",
-    "date_paid": "0000-00-00 00:00:00",
-    "status": "sent"
+    ]
   }
 }
 ```
@@ -148,13 +227,13 @@ This method lets you view a specific invoice.
 
 ### HTTP Request
 
-`GET invoice/<HASH>`
+`GET invoice/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-HASH| The hash of the invoice.
+ID | The id of the invoice.
 
 
 
@@ -201,13 +280,13 @@ This method lets you set the Invoice as 'Cancelled'.
 
 ### HTTP Request
 
-`POST invoice/<HASH>/cancel`
+`POST invoice/<ID>/cancel`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-HASH| The hash of the invoice.
+ID | The hash of the invoice.
 
 
 
@@ -227,10 +306,10 @@ This method lets you set the invoice as 'Paid'.
 
 ### HTTP Request
 
-`POST invoice/<HASH>/paid`
+`POST invoice/<ID>/paid`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-HASH| The hash of the invoice.
+ID | The hash of the invoice.
