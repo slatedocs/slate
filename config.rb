@@ -42,3 +42,9 @@ end
 # Deploy Configuration
 # If you want Middleman to listen on a different port, you can set that below
 set :port, 4567
+
+activate :deploy do |deploy|
+  deploy.deploy_method = :rsync
+  deploy.host          = 'dev.inpher.io'
+  deploy.path          = '/home/docs/docs'
+end

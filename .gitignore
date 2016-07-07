@@ -22,3 +22,5 @@ build/
 _yardoc
 doc/
 .idea/
+
+.*.swp
