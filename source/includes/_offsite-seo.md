@@ -11,7 +11,7 @@
 use BrightLocal\Api;
 use BrightLocal\Batches\V4 as BatchApi;
 
-$api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
+$api = new Api('<API_KEY>', '<API_SECRET>', '<API_ENDPOINT>');
 $batchApi = new BatchApi($api);
 $batchId = $batchApi->create();
 if ($batchId) {
@@ -96,7 +96,7 @@ website-url | <span class="label label-required">Required</span> URL of the busi
 use BrightLocal\Api;
 use BrightLocal\Batches\V4 as BatchApi;
 
-$api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
+$api = new Api('<API_KEY>', '<API_SECRET>', '<API_ENDPOINT>');
 $batchApi = new BatchApi($api);
 $batchId = $batchApi->create();
 if ($batchId) {

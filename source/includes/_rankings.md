@@ -37,7 +37,7 @@ $searches = array(
         'business-names'  => json_encode(array('Le Bernardin'))
     )
 );
-$api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
+$api = new Api('<API_KEY>', '<API_SECRET>', '<API_ENDPOINT>');
 $batchApi = new BatchApi($api);
 $batchId = $batchApi->create();
 if ($batchId) {
@@ -69,8 +69,8 @@ if ($batchId) {
 
 ```shell
 curl -X POST \
-    -F 'api-key=[INSERT_API_KEY]' \
-    -F 'batch-id=[INSERT_BATCH_ID]' \
+    -F 'api-key=<INSERT_API_KEY>' \
+    -F 'batch-id=<INSERT_BATCH_ID>' \
     -F 'search-engine=google' \
     -F 'country=USA' \
     -F 'google-location=new+york,ny' \
@@ -156,7 +156,7 @@ $searches = array(
     'restaurant manhattan',
     'restaurant 10019'
 );
-$api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
+$api = new Api('<API_KEY>', '<API_SECRET>', '<API_ENDPOINT>');
 $batchApi = new BatchApi($api);
 $batchId = $batchApi->create();
 if ($batchId) {
@@ -192,8 +192,8 @@ if ($batchId) {
 
 ```shell
 curl -X POST \
-    -F 'api-key=[INSERT_API_KEY]' \
-    -F 'batch-id=[INSERT_BATCH_ID]' \
+    -F 'api-key=<INSERT_API_KEY>' \
+    -F 'batch-id=<INSERT_BATCH_ID>' \
     -F 'search-engine=google' \
     -F 'country=USA' \
     -F 'google-location=new+york,ny' \
