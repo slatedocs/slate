@@ -70,9 +70,8 @@ http://plenar.io/v1/api/shapes/pedestrian_streets?data_type=json
 > Get a GeoJSON document with Chicago's streets that are reserved for pedestrian traffic.
 
 ```
-http://plenar.io/v1/api/shapes/pedestrian_streets?data_type=json
-&pedestrian_streets__filter={"op": "eq", "col": "name", "val": "PEDESTRIAN
-STREET RETAIL"}
+http://plenar.io/v1/api/shapes/pedestrian_streets?data_type=json&pedestrian_streets__filter={
+"op": "eq", "col": "name", "val": "PEDESTRIAN STREET RETAIL"}
 ```
 
 > Limit that document to only streets marked as "PEDESTRIAN STREET RETAIL".
@@ -101,9 +100,7 @@ A document with a shape dataset.
 > ### Example Query
 
 ```
-http://plenar.io/v1/api/shapes/boundaries_neighborhoods/individual_landmarks/
-?obs_date__ge=1900-09-22&obs_date__le=2015-10-1&boundaries_neighborhoods__filter=
-{"op": "eq", "col": "sec_neigh", "val": "BRONZEVILLE"}
+http://plenar.io/v1/api/shapes/boundaries_neighborhoods/individual_landmarks?obs_date__ge=1900-09-22&obs_date__le=2015-10-1&boundaries_neighborhoods__filter={"op": "eq", "col": "sec_neigh", "val": "BRONZEVILLE"}
 ```
 
 > Count the number of historical landmarks in Chicago neighborhood Bronzeville.

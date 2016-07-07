@@ -1,39 +1,72 @@
 # Advanced Filtering
 
-> `v1/api/<endpoint>/<dataset_name>__filter={"op":"<operator>", "col":"<data_column>"", "val":"<numerical value>"}`
+Users have an alternative way to create dataset specific filters. Utilizing the
+syntax shown on the right, a user can make queries with AND and OR conditions.
 
-Users are now able to add additional filters (including and/or functions) to their API calls. `filter` essentially acts as another [query operator](#query-operators-for-raw-data); its basic syntax is **shown on the right**.
+<aside class="notice">
+    This filter syntax has the added benefit of being able to be nested, allowing 
+    one to up the complexity and specificity of their query.
+</aside>
 
-There are three additional query parameters for advanced filtering. They are `"op"`, `"col"` and `"val"`.
+> Dataset Filter Format
+
+```json
+{"op":"<operator>", "col":"<data_column>", "val":"<numerical value>"}
+```
+
+```json
+{"op": "and", "val": [
+    {"op": "ge", "col": "point_date", "val": "2016-01-01"},
+    {"op":"or", "val": [
+        {"op":"eq","col":"iucr","val":"0110"},
+        {"op":"eq","col":"description","val":"CREDIT CARD FRAUD"}
+        ]
+    }
+    ]
+}
+```
+
+> Translates to:
+
+> ... WHERE point_date >= "2016-01-01" AND (iucr = 0110 OR description = "CREDIT CARD FRAUD")
+
+<aside class="warning">
+    You cannot specify both dataset columns and a dataset filter. If you do,
+    Plenario will ignore the query arguments pertaining to dataset columns and
+    only use the filter argument. It will then issue a warning message in the
+    returned response letting you know the arguments it ignored.
+</aside>
 
 ## `"op"`
 
-`"op"` is short for '*operator*', and is used at the beginning of an advanced filtering call to define which [query operator](#query-operators-for-raw-data) is being used.
+`"op"` short for **operator**, is used at the beginning of a filter to define 
+which query operator is being used.
 
 ```
-"op":"<operator>"
+"op": "<operator>"
 ```
 
-`"op"` is followed by a colon and the preferred operator, also in quotation marks, as seen on the right. These operators do not use underscores, as they do when querying a raw data endpoint.
+`"op"` is followed by a colon and the chosen operator. These operators are not
+preceded by underscores, as they normally are when specifying columns as query 
+arguments.
 
-The currently available operators are `"eq"`, `"gt"`, `"ge"`, `"lt"`, `"le"`, `"ne"`, `"like"`, `"ilike"`, and `"in"`.
+The currently available operators are `"eq"`, `"gt"`, `"ge"`, `"lt"`, `"le"`, 
+`"ne"`, `"like"`, `"ilike"`, and `"in"`.
 
 ## `"col"`
 
-`"col"` and its value signify which dataset **column** the filter will pull from.
+`"col"` and its value signify which dataset **column** the filter builds a
+condition for.
 
 ```
-`"col":"<column_name>"`
+`"col": "<column_name>"`
 ```
 
 ## `"val"`
 
-`"val"` sets a **value** which the operator takes and implements.
+`"val"` sets the target **value** which is used, in combination with op and
+col, to construct a SQL WHERE condition.
 
 ```
-`"val":"<numerical value>"`
+`"val": "<target_value>"`
 ```
-
-## Tree Filtering
-
-The filtering system also lends itself to `and`/`or` functionality; the syntax can be seen on the right.
