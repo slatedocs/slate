@@ -96,19 +96,6 @@ All query parameters are optional except for `dataset_name`.
 | **offset**               | none              | Used to paginate through results of more than 1000.  Example: `offset=1000` will fetch the second page of results.                                                                                  |
 | **[dataset]__filter** | none  | See [advanced filtering](#advanced-filtering) for more info. |
 
-=======
-| **dataset_name**         | none              | *Required*. Machine version of the dataset name as you get it from the `/v1/api/` endpoint.                                                                                                                        |
-| **[dataset_field]***     | none              | Any available dataset field. Discoverable via the `/v1/api/fields/<dataset_name>/` endpoint. Any number of these query parameters can be chained together and are linked together with a SQL `AND` under the hood. |
-| **obs_date__ge**         | 90 days ago       | Observations greater than or equal to a given date.  Dates must be formatted as YYYY-MM-DD                                                                                                                         |
-| **obs_date__le**         | 90 days ago       | Observations less than or equal to a given date.  Dates must be formatted as YYYY-MM-DD                                                                                                                            |
-| **date__time_of_day_ge** | 00 | Observations made at an hour greater than or equal to the given hour. |
-| **date__time_of_day_le** | 23 | Observations made at an hour less than or equal to the given hour. |
-| **location_geom_within** | none              | A URL encoded [GeoJSON](http://geojson.org/) polygon representing the area of interest                                                                                                                             |
-| **data_type**            | json              | Response data format. Current options are `json` and `csv`                                                                                                                                                         |
-| **shape**                 | none              | Join to a shape dataset.
-| **offset**               | none              | Used to paginate through results of more than 1000.  Example: `offset=1000` will fetch the second page of results.                                                                                                 |
-| **[dataset]__filter** | none | See [advanced filtering](#advanced-filtering) for more info.
-
 ### Responses
 
 **See right**
