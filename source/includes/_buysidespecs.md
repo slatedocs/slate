@@ -2,6 +2,14 @@
 
 Powerlinks Media is fully compliant with the Open RTB 2.3 specifications and its Native subprotocol. Below you'll find information regarding Powerlinks's bid request/response specifications and expectations for buy-side partners.
 
+## Example Bid Request
+
+Include an example bid request from a seller. Then include a table that shows what's required in the bid request, and then also what they should expect (and what's seller-specific). Always, expected + enhancements, SSP Specific (columns for table)
+
+enhancements - device data from browsecap, ias data from manuel
+extensions 
+mappings
+
 ## Supported Objects
 
 Object Name | Supported | Required | Expected
@@ -9,7 +17,6 @@ Object Name | Supported | Required | Expected
 Bid Response | Yes | id | seatbid, bidid, cur, customdata, nbr, ext
 SeatBid | Yes | bid | seat, group, ext
 Bid  | Yes | id, impid, price | adid, nurl, adm, adomain, bundle, iurl, cid, crid, cat, attr, dealid, h, w, ext
-
 
 
 ### BidResponse
@@ -63,7 +70,7 @@ Field Name | Scope | Type | Default | Description
 -----------| ----- | ---- | ------- | -----------
 native | required | object | - | Top level Native object
 
-### Native Object
+### Native
 
 Field Name | Scope | Type | Default | Description
 -----------| ----- | ---- | ------- | -----------
@@ -74,7 +81,7 @@ imptrackers[] | optional|  array of strings | - | Array of impression tracking U
 jstracker | optional | string | - | Optional JavaScript impression tracker. This is a valid HTML, Javascript is already wrapped in \<script> tags. It should be executed at impression time where it can be supported.
 ext | optional | object | - | This object is a placeholder that may contain custom JSON agreed to by the parties to support flexibility beyond the standard defined in this specification
 
-### Asset Object
+### Asset
 
 Field Name | Scope | Type | Default | Description
 -----------| ----- | ---- | ------- | -----------
@@ -87,14 +94,14 @@ data | optional | object | - | Data object for ratings, prices etc.
 link | optional | object | - | Link object for call to actions. The link object applies if the asset item is activated (clicked). If there is no link object on the asset, the parent link object on the bid response applies.
 ext | optional | object | - | This object is a placeholder that may contain custom JSON agreed to by the parties to support flexibility beyond the standard defined in this specification.
 
-### Title Object
+### Title
 
 Field Name | Scope | Type | Default | Description
 -----------| ----- | ---- | ------- | -----------
 text | required | string | - | The text associated with the text element.
 ext | optional | object | - | This object is a placeholder that may contain custom JSON agreed to by the parties to support flexibility beyond the standard defined in this specification.
 
-### Image Object
+### Image
 
 Field Name | Scope | Type | Default | Description
 -----------| ----- | ---- | ------- | -----------
@@ -103,7 +110,7 @@ w | recommended | integer | - | Width of the image in pixels.
 h | recommended | integer | - | Height of the image in pixels.
 ext | optional | object | - | This object is a placeholder that may contain custom JSON agreed to by the parties to support flexibility beyond the standard defined in this specification.
 
-### Data Object
+### Data
 
 Field Name | Scope | Type | Default | Description
 -----------| ----- | ---- | ------- | -----------
@@ -111,13 +118,13 @@ label | optional | string | - | The optional formatted string name of the data t
 value | required | string | - | The formatted string of data to be displayed. Can contain a formatted value such as “5 stars” or “$10” or “3.4 stars out of 5”
 ext | optional | object | - | This object is a placeholder that may contain custom JSON agreed to by the parties to support flexibility beyond the standard defined in this specification.
 
-### Video Object
+### Video
 
 Field Name | Scope | Type | Default | Description
 -----------| ----- | ---- | ------- | -----------
 vasttag | required | string | - | VAST xml.
 
-### Link Object
+### Link
 
 Field Name | Scope | Type | Default | Description
 -----------| ----- | ---- | ------- | -----------

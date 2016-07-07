@@ -11,7 +11,7 @@ includes:
   - sellsidespecs
   - buysidespecs
   - creativespecs
-  - adserver
+  - infeedapi
   - reportingapi
 
 search: true
