@@ -158,7 +158,7 @@ use BrightLocal\Api;
 use BrightLocal\Batches\V4 as BatchApi;
 
 $batchId = 1;
-$api = new Api('<API_KEY>', '<API_SECRET>', '<API_ENDPOINT>');
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $batchApi = new BatchApi($api);
 print_r($batchApi->get_results($batchId));
 ```
@@ -245,7 +245,7 @@ use BrightLocal\Api;
 use BrightLocal\Batches\V4 as BatchApi;
 
 $batchId = 1;
-$api = new Api('<API_KEY>', '<API_SECRET>', '<API_ENDPOINT>');
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $batchApi = new BatchApi($api);
 if ($batchApi->delete($batchId)) {
     echo 'Successfully deleted batch.' . PHP_EOL;
@@ -298,7 +298,7 @@ use BrightLocal\Api;
 use BrightLocal\Batches\V4 as BatchApi;
 
 $batchId = 1;
-$api = new Api('<API_KEY>', '<API_SECRET>', '<API_ENDPOINT>');
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $batchApi = new BatchApi($api);
 if ($batchApi->stop($batchId)) {
     echo 'Successfully stopped batch.' . PHP_EOL;

@@ -4,8 +4,8 @@
 
 ```php
 <?php
-define('<API_KEY>', '<API_KEY>');
-define('<API_SECRET>', '<API_SECRET>');
+define('API_KEY', '<INSERT_API_KEY>');
+define('API_SECRET', '<INSERT_API_SECRET>');
 
 $expires = (int) gmdate('U') + 1800; // not more than 1800 seconds
 $sig = base64_encode(hash_hmac('sha1', API_KEY.$expires, API_SECRET, true));

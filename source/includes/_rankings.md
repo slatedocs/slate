@@ -37,7 +37,7 @@ $searches = array(
         'business-names'  => json_encode(array('Le Bernardin'))
     )
 );
-$api = new Api('<API_KEY>', '<API_SECRET>', '<API_ENDPOINT>');
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $batchApi = new BatchApi($api);
 $batchId = $batchApi->create();
 if ($batchId) {
@@ -156,7 +156,7 @@ $searches = array(
     'restaurant manhattan',
     'restaurant 10019'
 );
-$api = new Api('<API_KEY>', '<API_SECRET>', '<API_ENDPOINT>');
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $batchApi = new BatchApi($api);
 $batchId = $batchApi->create();
 if ($batchId) {
