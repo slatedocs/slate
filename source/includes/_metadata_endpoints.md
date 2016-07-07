@@ -153,6 +153,5 @@ This API endpoint has no query parameters.
 
 | Attribute Name | Attribute Description                                                                                                              |
 |----------------|------------------------------------------------------------------------------------------------------------------------------------|
-| field_type     | [Postgres data type](https://www.postgresql.org/docs/9.3/static/datatype.html) for given field.                                                                                                |
-| field_name     | Name of database field. Useful for performing additional queries using the `/v1/api/detail-aggregate/` and `/v1/api/detail/` endpoints. |
-
+| **field_type**     | [Postgres data type](https://www.postgresql.org/docs/9.3/static/datatype.html) for given field.                                                                                                |
+| **field_name**     | Name of database field. Useful for performing additional queries using the `/v1/api/detail-aggregate/` and `/v1/api/detail/` endpoints. |
