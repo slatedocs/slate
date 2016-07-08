@@ -94,8 +94,8 @@ logo | string | Invoice logo link.
 mail_to | string | Email where invoice will be send
 mail_body| string | Email body. Can be html.
 credit | string | Customer credit
-customer | json | Json data of customer. Refer to [Customer Object](../#customer-object)
-line_items | array | Array of objects. Refer to [Line Item Object](../#line-item-object)
+customer | json | Json data of customer. Refer to [Customer Object](#customer-object)
+line_items | array | Array of objects. Refer to [Line Item Object](#line-item-object)
 
 
 ### Customer Object
@@ -125,7 +125,7 @@ quantity | integer | Number of items
 total_cost | float | Total cost of the item
 due_date | string | Date due (Y-m-d)
 order | numeric | Item ordering
-child | array | Items as a child. Refer to [Line Item Child Object](../#line-item-child-object)
+child | array | Items as a child. Refer to [Line Item Child Object](#line-item-child-object)
 
 
 ### Line Item Child Object
