@@ -21,7 +21,7 @@ Add these lines to your `AndroidManifest.xml` file
 ```
 
 <aside class="notice">
-If your app is targeting Android Marshmallow or above, you will also need to request from the user permission to ACCESS_COARSE_LOCATION and ACCESS_FINE_LOCATION.
+If your app is targeting Android Marshmallow or above, you will also need to request permission from the user to ACCESS_COARSE_LOCATION and ACCESS_FINE_LOCATION.
 </aside>
 
 Sample code to ask user to grant permissions:
@@ -131,7 +131,7 @@ public class SetupFoxtrotSDKActivity extends AppCompatActivity {
     }
   }
 
-  private boolean isAllPermissionsGranted(int[] grantResults) {
+  private boolean areAllPermissionsGranted(int[] grantResults) {
     for (int grantResult: grantResults) {
       if (grantResult != PackageManager.PERMISSION_GRANTED) {
         return false;
