@@ -490,6 +490,10 @@ If successful, Scale will immediately return the generated task object, of which
 
 The parameters `phone_number`, `entity_name`, `script`, `attachment_type`, `attachment`, and `fields` will be stored in the `params` object of the constructed `task` object.
 
+<aside class="notice">
+For low volume, we currently only support calling US numbers. For higher volume international calls, please <a href="mailto:hello@scaleapi.com">contact us</a>!
+</aside>
+
 ### HTTP Request
 
 `POST https://api.scaleapi.com/v1/task/phonecall`
