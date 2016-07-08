@@ -25,7 +25,15 @@ search: true
 
 # Introduction
 
-Welcome ...
+Welcome to Quipu API.
+
+Quipu is an invoice and taxes software as a service for freelances and companies.
+
+Feel free to use our API and develop amazing things. To use our API you need to sign up in our software [here](https://getquipu.com/en).
+
+You will have 15 days to try it for free. If you need more time just contact our support team and we will extend the days.
+
+You can get more information about our API, libraries and other applications here: [https://getquipu.com/en/integrations](https://getquipu.com/en/integrations).
 
 ## REST API Conventions
 
