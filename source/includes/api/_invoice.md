@@ -12,9 +12,68 @@ Lets you create invoice with line items. It will send the email with the attache
   "data": {
     "status": true,
     "message": "Invoice sent successfully.",
-    "id": 1234,
+    "id": 123,
     "pdf": "https://s3.amazonaws.com/email-invoices/CZIWUxRlk0AvSkKQx1xKE22rrz2JPzCN0pAY1V48atvfdPVI0X.pdf"
   }
+}
+```
+
+
+> Request JSON structure like this:
+
+```json
+{
+    "number": "INV-0003",
+    "date": "",
+    "logo": "https:\/\/invoice_logos.s3.amazonaws.com\/bleh.png",
+    "mail_body": "",
+    "credit": "$12.00",
+    "mail_to": "customer@email.com",
+    "include_pdf": 1,
+    "key": "9ypnPRT9v2ChPCQv",
+    "customer": {
+        "custid": "9ypnPRT9v2ChPCQv_2266",
+        "first_name": "Customer  ",
+        "last_name": "Portal",
+        "email": "customer@email.com",
+        "phone": "",
+        "company": "",
+        "street1": "",
+        "street2": "",
+        "city": "",
+        "state": "",
+        "zip": "",
+        "country": ""
+    },
+    "line_items": [
+        {
+            "id": 123,
+            "sku": "ming-123",
+            "name": "Peanut",
+            "quantity": "1",
+            "total_cost": "200.00",
+            "due_date": "2016-07-07",
+            "order": 1,
+            "child": [{
+                "id": 124,
+                "sku": "ming-456",
+                "name": "Butter",
+                "quantity": "1",
+                "total_cost": "10.00",
+                "order": 2
+            }]
+        },
+        {
+            "id": 130,
+            "sku": "STBJ",
+            "name": "Strawberry Jam",
+            "quantity": "1",
+            "total_cost": "115.50",
+            "due_date": "2016-07-07",
+            "order": 2,
+            "child": []
+        }
+    ]
 }
 ```
 
@@ -24,9 +83,8 @@ This method lets you create the invoice.
 
 `POST invoice/create`
 
+
 ### Data Object
-
-
 
 Field Name|Type| Description
 ---------|-----|------
@@ -36,103 +94,53 @@ logo | string | Invoice logo link.
 mail_to | string | Email where invoice will be send
 mail_body| string | Email body. Can be html.
 credit | string | Customer credit
-customer | json | Json data of customer
--- custid | string | Customer ID
--- first_name | string | Customer's firstname
--- last_name | string | Customer's lastname
--- email | string | Customer's email
--- phone | string | Customer's contact number
--- company | string | Company
--- street1 | string | Street 1
--- street2 | string | Street 2
--- city | string | City
--- state | string | State
--- zip | string | ZIP
-line_items | array | Array of objects
--- id | integer | ID
--- sku | integer | Item identification code
--- name | integer | Item name
--- quantity | integer | Number of items
--- total_cost | float | Total cost of the item
--- due_date | string | Date due (Y-m-d)
--- child | array | Items as a child
-- -id | integer  |  Item id
-- -sku | string |  	Item identification code
-- -name | string |  Item name
-- -quantity | integer | Number of items
-- -total_cost | float | Total cost of the item
+customer | json | Json data of customer. Refer to [Customer Object](../#customer-object)
+line_items | array | Array of objects. Refer to [Line Item Object](../#line-item-object)
 
 
-> Sample JSON structure like this:
+### Customer Object
 
-```json
-{
-  "number": "INV-0003",
-  "date": "",
-  "logo": "https:\/\/invoice_logos.s3.amazonaws.com\/bleh.png",
-  "mail_body": "",
-  "credit": "$12.00",
-  "mail_to": "evelynl@zylun.com",
-  "include_pdf": 1,
-  "key": "9ypnPRT9v2ChPCQv",
-  "customer": {
-    "custid": "9ypnPRT9v2ChPCQv_2266",
-    "first_name": "Customer  ",
-    "last_name": "Portal",
-    "email": "evelynlopz@outlook.com",
-    "phone": "",
-    "company": "",
-    "street1": "",
-    "street2": "",
-    "city": "",
-    "state": "",
-    "zip": "",
-    "country": ""
-  },
-  "line_items": [
-    {
-      "id": 123,
-      "sku": "PN01",
-      "name": "Peanut",
-      "quantity": "1",
-      "total_cost": "200.00",
-      "due_date": "2016-07-07",
-      "child" : [
-          {
-            "id": 124,
-            "sku": "PNB01",
-            "name": "PButter",
-            "quantity": "1",
-            "total_cost": "10.00"
-          },
-          {
-            "id": 125,
-            "sku": "PNM01",
-            "name": "PMayo",
-            "quantity": "1",
-            "total_cost": "-3.00"
-          },
-          {
-            "id": 125,
-            "sku": "PNM01",
-            "name": "PMayo",
-            "quantity": "1",
-            "total_cost": "-3.00"
-          }
-      ]
-    },
-    {
-      "id": 130,
-      "sku": "STBJ",
-      "name": "Strawberry Jam",
-      "quantity": "1",
-      "total_cost": "115.50",
-      "due_date": "2016-07-07",
-      "child":[]
-    }
-  ]
-}
-```
+Field Name|Type| Description
+---------|-----|------
+custid | string | Customer ID
+first_name | string | Customer's firstname
+last_name | string | Customer's lastname
+email | string | Customer's email
+phone | string | Customer's contact number
+company | string | Company
+street1 | string | Street 1
+street2 | string | Street 2
+city | string | City
+state | string | State
+zip | string | ZIP
+
+### Line Item Object
+
+Field Name|Type| Description
+---------|-----|------
+id | integer | ID
+sku | integer | Item identification code
+name | integer | Item name
+quantity | integer | Number of items
+total_cost | float | Total cost of the item
+due_date | string | Date due (Y-m-d)
+order | numeric | Item ordering
+child | array | Items as a child. Refer to [Line Item Child Object](../#line-item-child-object)
+
+
+### Line Item Child Object
+
+Field Name|Type| Description
+---------|-----|------
+id | integer  |  Item id
+sku | string |  	Item identification code
+name | string |  Item name
+quantity | integer | Number of items
+total_cost | float | Total cost of the item
+order | numeric | Item ordering
+
+
+
 
 
 ## View
