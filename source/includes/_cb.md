@@ -210,6 +210,10 @@ campaign_id	| <span class="label label-required">Required</span>
 package_id | <span class="label label-required">Required</span> CB package id corresponding to the number of ordered credits: 'cb10' for 10 citations, 'cb15' for 15, then 25, 30, 50, 75, 100 
 autoselect | String. Possible values 'N' or 'Y'. Default 'N'.
 citations | <span class="label label-required">Required</span> JSON Array. If autoselect is 'Y' parameter becomes non-required. List of sites you require listings for.
+aggregators | <span class="label label-required">Required</span> JSON Array. If buy-aggregators is 'N' parameter becomes non-required. List of aggregators you require listings for.
+buy-citations' | String. Possible values 'N' or 'Y'. Default 'Y'.
+remove-duplicates' | String. Possible values 'N' or 'Y'. Default 'N'. Find and Remove Duplicate Listings
+buy-aggregators' | String. Possible values 'N' or 'Y'. Default 'N'.
 
 ## Get Campaigns
 
