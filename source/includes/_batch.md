@@ -18,12 +18,18 @@ A batch acts like a container for API requests. It allows you to group requests 
 use BrightLocal\Api;
 use BrightLocal\Batches\V4 as BatchApi;
 
-$api = new Api('[INSERT_API_KEY]', '[INSERT_API_SECRET]');
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $batchApi = new BatchApi($api);
 $result = $batchApi->create();
 if ($result['success']) {
     $batchId = $result['batch-id'];
 }
+```
+
+```shell
+curl -X POST \
+    -F 'api-key=<INSERT_API_KEY>' \
+    https://tools.brightlocal.com/seo-tools/api/v4/batch
 ```
 
 > Success - status code 201 Created
@@ -87,11 +93,18 @@ use BrightLocal\Api;
 use BrightLocal\Batches\V4 as BatchApi;
 
 $batchId = 1;
-$api = new Api('[INSERT_API_KEY]', '[INSERT_API_SECRET]');
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $batchApi = new BatchApi($api);
 if ($batchApi->commit($batchId)) {
     echo 'Committed batch successfully.' . PHP_EOL;
 }
+```
+
+```shell
+curl -X PUT \
+    -d 'api-key=<INSERT_API_KEY>' \
+    -d 'batch-id=<INSERT_BATCH_ID>' \
+    https://tools.brightlocal.com/seo-tools/api/v4/batch
 ```
 
 > Success - status code 200 OK
@@ -145,9 +158,13 @@ use BrightLocal\Api;
 use BrightLocal\Batches\V4 as BatchApi;
 
 $batchId = 1;
-$api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $batchApi = new BatchApi($api);
 print_r($batchApi->get_results($batchId));
+```
+
+```shell
+curl 'https://tools.brightlocal.com/seo-tools/api/v4/batch?api-key=<INSERT_API_KEY>&batch-id=<INSERT_BATCH_ID>'
 ```
 
 > Success - status code 200 OK
@@ -228,11 +245,15 @@ use BrightLocal\Api;
 use BrightLocal\Batches\V4 as BatchApi;
 
 $batchId = 1;
-$api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $batchApi = new BatchApi($api);
 if ($batchApi->delete($batchId)) {
     echo 'Successfully deleted batch.' . PHP_EOL;
 }
+```
+
+```shell
+curl -X DELETE 'https://tools.brightlocal.com/seo-tools/api/v4/batch?api-key=<INSERT_API_KEY>&batch-id=<INSERT_BATCH_ID>'
 ```
 
 > Success - status code 200 Ok
@@ -277,11 +298,18 @@ use BrightLocal\Api;
 use BrightLocal\Batches\V4 as BatchApi;
 
 $batchId = 1;
-$api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $batchApi = new BatchApi($api);
 if ($batchApi->stop($batchId)) {
     echo 'Successfully stopped batch.' . PHP_EOL;
 }
+```
+
+```shell
+curl -X PUT -d \
+    'api-key=<INSERT_API_KEY>' \
+    -d 'batch-id=<INSERT_BATCH_ID>' \
+    https://tools.brightlocal.com/seo-tools/api/v4/batch/stop
 ```
 
 > Success - status code 200 Ok

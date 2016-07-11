@@ -211,6 +211,7 @@ package_id | <span class="label label-required">Required</span> CB package id co
 autoselect | String. Possible values 'N' or 'Y'. Default 'N'.
 citations | <span class="label label-required">Required</span> JSON Array. If autoselect is 'Y' parameter becomes non-required. List of sites you require listings for.
 aggregators | <span class="label label-required">Required</span> JSON Array. If buy-aggregators is 'N' parameter becomes non-required. List of aggregators you require listings for.
+notes | Provide instructions to our submissions team with specifics about how you'd like your campaign handled.
 buy-citations' | String. Possible values 'N' or 'Y'. Default 'Y'.
 remove-duplicates' | String. Possible values 'N' or 'Y'. Default 'N'. Find and Remove Duplicate Listings
 buy-aggregators' | String. Possible values 'N' or 'Y'. Default 'N'.

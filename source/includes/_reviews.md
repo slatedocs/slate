@@ -16,7 +16,7 @@ $profileUrls = array(
     'https://plus.google.com/117313296997732479889/about?hl=en',
     'https://plus.google.com/111550668382222753542/about?hl=en'
 );
-$api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $batchApi = new BatchApi($api);
 $batchId = $batchApi->create();
 if ($batchId) {
@@ -108,7 +108,7 @@ date-from | Date Format: Y-m-d or Y-m-d H:i:s. By default not specified.
 use BrightLocal\Api;
 use BrightLocal\Batches\V4 as BatchApi;
 
-$api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $batchApi = new BatchApi($api);
 $batchId = $batchApi->create();
 if ($batchId) {
