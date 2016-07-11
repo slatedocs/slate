@@ -248,7 +248,13 @@ notes | Provide instructions to our submissions team with specifics about how yo
                         "domain_authority": "< 10/100",
                         "citation_value": "High"
                     }
-                ]
+                ],
+                "aggregators":  {
+                    "factual": "Factual",
+                    "infogroup": "Infogroup",
+                    "neustar": "Neustar",
+                    "axciom": "Axciom"                    
+                }                              
             }
         ]
     }
@@ -313,6 +319,12 @@ location-id |
                 "notes": ""
                 }
             ],
+            "aggregators":  {
+            	"factual": "Factual",
+                "infogroup": "Infogroup",
+                "neustar": "Neustar",
+                "axciom": "Axciom"                    
+            },              
             "location_id": 1,
             "urls": {
                 "interactive_url": "https:\/\/tools.brightlocal.com\/seo-tools\/admin\/cb\/campaign\/view\/5",
