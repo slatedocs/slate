@@ -7,8 +7,8 @@ language_tabs:
   - javascript
 
 toc_footers:
-  - <a href='http://www.scaleapi.com/'>Request Access to the Scale Beta</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='https://api.scaleapi.com/signup'>Signup for Scale</a>
+  - <a href="https://scalesupport.herokuapp.com/">Join the Scale Support Slack channel!</a>
 
 includes:
   - errors
@@ -27,6 +27,8 @@ https://api.scaleapi.com/v1/
 Welcome to the Scale API! You can use our API to access Scale API endpoints, which can create, access, and cancel human tasks.
 
 Anyone can use our API! [Sign up here](https://api.scaleapi.com/signup) to get started using Scale. You can also [contact us](mailto:hello@scaleapi.com) for volume pricing or any inquiries.
+
+You can also join our [Slack channel here](https://scalesupport.herokuapp.com/)!
 
 <!-- We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
  -->
