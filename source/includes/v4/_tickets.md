@@ -305,6 +305,37 @@ For a single ticket the capacities are calculated for you, see the capacities of
 
 For example, if two tickets reside in the same quota which has a capacity of 10 for a specific time, if 2 of one ticket is selected only 8 are available for the other.
 
+### Distinguishing unavailable and sold out tickets.
+
+An array of total capacities is returned that reflect the total configured capacity for a timeslot ignoring any sales. This information can be used to determine whether a ticket was available but is sold out or whether a ticket did not have any capacity in the first place.
+
+```json
+{
+    "data": {
+        "19": {
+            "tickets": [
+                247,
+                248
+            ],
+            "capacities": {
+                "2016-07-06T16:15:00+02:00": 0,
+                "2016-07-06T16:20:00+02:00": 0,
+                "2016-07-06T16:25:00+02:00": 0,
+                "2016-07-06T16:30:00+02:00": 0
+            },
+            "total_capacities": {
+                "2016-07-06T16:15:00+02:00": 30,
+                "2016-07-06T16:20:00+02:00": 30,
+                "2016-07-06T16:25:00+02:00": 30,
+                "2016-07-06T16:30:00+02:00": 30
+            }            
+        },
+    }
+}
+```
+
+In general tickets that do not have a defined total capacity can be excluded from display.
+
 ### Necessary parameters:
 
 - ticket_ids (Array of ticket ids)
@@ -315,4 +346,4 @@ For example, if two tickets reside in the same quota which has a capacity of 10 
 
 ### Response
 
-The response is a data block, which contains a hash with quota ids as keys, a list of ticket ids affected by the quota (as a subset of the query) and a list of capacities.
+The response is a data block, which contains a hash with quota ids as keys, a list of ticket ids affected by the quota (as a subset of the query) and a list of (still available) capacities as well as the total capacities.
