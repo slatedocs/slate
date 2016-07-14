@@ -85,16 +85,14 @@ Each connector at itembase is described with a so-called component ID. The follo
 |Connector|Component id production|Component id sandbox|
 |---|---|---|
 |eBay|6|6|
-|Shopify|7|-|
-|SEO shop|20|-|
-|Big Commerce|12|-|
+|Shopify|7|n/a|
+|SEO shop|20|n/a|
+|Big Commerce|12|n/a|
 |Magento|11|30|
 |Prestashop|14|14|
-|Gambio|34|-|
-|WooCommerce|22|-|
-|Virtuemart|23|-|
-
-For details please check available endpoints
+|Gambio|34|n/a|
+|WooCommerce|22|n/a|
+|Virtuemart|23|n/a|
 
 ### Possible use cases
 
@@ -164,9 +162,11 @@ If given, this is where the user will be lead when the process finished. The tok
 
 Sometimes there might some error happened in between, so you may also receive error message via GET parameter `error`.
 
-<aside class="warning">The token is only valid for a limited amount of time, given in <i>expires_in</i>.</aside>
+**The token is only valid for a limited amount of time, given in <i>expires_in</i>.**
 
-### Example 2: Signing up a new user with eBay ()
+### Example 2: Signing up a new user with eBay
+
+<aside class="warning">The feature is currently in BETA and might not be stable</aside>
 
 Prerequisites: you have a client id to use the dataconnect API. If not - just [create one](https://api.itembase.com/google-login) 
 
