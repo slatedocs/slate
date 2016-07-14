@@ -803,6 +803,86 @@ Parameter | Description
 
 Returns a task if a valid identifier was provided, and returns a 404 error otherwise.
 
+## Cancel a task
+
+```shell
+curl -X POST "https://api.scaleapi.com/v1/task/{task_id}/cancel" \
+  -u YOUR_API_KEY:
+```
+
+```python
+import requests
+import json
+
+task_id = 'YOUR_TASK_ID'
+
+response = requests.post('https://api.scaleapi.com/v1/task/%s/cancel/' % task_id, auth=('YOUR_API_KEY', ''))
+
+# Return dictionary can be accessible in this way
+response_dict = json.loads(response.content)
+```
+
+```javascript
+var request = require("request");
+var SCALE_API_KEY = 'YOUR_API_KEY';
+
+var task_id = 'YOUR_TASK_ID';
+
+request.post('https://api.scaleapi.com/v1/task/' + task_id + '/cancel/', {
+  'auth': {
+    'user': SCALE_API_KEY,
+    'pass': '',
+    'sendImmediately': true
+  }
+}, function(error, response, body) {
+  if (!error && response.statusCode == 200) {
+    console.log(body);
+  } else {
+    console.log(error);
+    console.log(response.statusCode);
+  }
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "task_id": "576ba74eec471ff9b01557cc",
+  "created_at": "2016-06-23T09:09:34.752Z",
+  "callback_url": "http://www.example.com/test_callback",
+  "type": "categorization",
+  "status": "canceled",
+  "instruction": "Would you say this item is big or small?",
+  "params": {
+    "attachment_type": "text",
+    "attachment": "car",
+    "categories": [
+      "big",
+      "small"
+    ]
+  }
+}
+```
+
+This endpoint cancels a task so that it will not be completed.
+
+You may only cancel pending tasks, and the endpoint will return a 500 error code if you attempt to cancel a completed task.
+
+### HTTP Request
+
+`POST https://api.scaleapi.com/v1/task/{TASK_ID}/cancel`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`task_id` | The task_id of the task to cancel
+
+### Returns
+
+Returns the canceled task if a valid identifier for a pending task was provided, and returns a 404 error or 500 error otherwise.
+
 ## List All Tasks
 
 ```shell
