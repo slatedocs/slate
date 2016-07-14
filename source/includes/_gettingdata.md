@@ -12,15 +12,18 @@ In this section we will provide some examples. Some will contain a pregenerated 
 
 This is an overview of the available endpoints to get data. Please also check out [our swagger-based API reference for all GET calls](https://api.itembase.com/api/docs/#!). The POST /snippet functionality will be explained below.
 
-| Entity | Supported Methods | URL | Notes |
-|--------|--------|--------|-------|
-| Transactions | GET | https://sandbox.api.itembase.io/v1/users/$user_id/transactions  |   |
-| Products | GET | https://sandbox.api.itembase.io/v1/users/$user_id/products  |  |
-| Buyers | GET | https://sandbox.api.itembase.io/v1/users/$user_id/buyers  |  |
-| Profiles | GET | https://sandbox.api.itembase.io/v1/users/$user_id/profiles  |  |
-| Snippets | GET, POST, PUT | https://sandbox.api.itembase.io/v2/users/$user_id/connections/$connection_id/snippets | Be aware that the base path is */v2*. To POST a snippet, you need to specify a single connection. |
+| Entity | Supported Methods | URL |
+|--------|--------|--------|
+| Transactions | GET | https://sandbox.api.itembase.io/v1/users/$user_id/transactions  |
+| Products | GET | https://sandbox.api.itembase.io/v1/users/$user_id/products  |
+| Buyers | GET | https://sandbox.api.itembase.io/v1/users/$user_id/buyers  |
+| Profiles | GET | https://sandbox.api.itembase.io/v1/users/$user_id/profiles  |
+| Snippets | GET, POST, PUT | https://sandbox.api.itembase.io/v2/users/$user_id/connections/$connection_id/snippets |
 
-Where```user_id``` is the uuid of the user that has granted you access, and ```connection_id``` the specific connection id that points to the user's shop connection. In the examples for our sandbox, we have already set up a connection for you.
+Be aware that the base path is */v2* for POST a snippet and you just need to specify connection id.
+
+Where `user_id` is the uuid of the user that has granted you access, and `connection_id` the specific connection id that 
+points to the user's shop connection. In the examples for our sandbox, we have already set up a connection for you.
 
 ## Getting All New and Updated Products
 
@@ -31,22 +34,35 @@ Assuming that you already obtained a valid access token and activated your solut
 * ```base_url```: http://sandbox.api.itembase.io/v1/users
 * ```resource```: the resource you want to access, like "products"
 
-All resources expose inserted_at_from/-to, created_at_from/-to and updated_at_from/to query parameter that can easily be used to get all new and updated entities. Just make sure to set a "to" parameter so that you can reuse it in your next scheduled GET call. See our api reference (above) for more details.
-<aside class="notice">Inserted_at refers to our server time, created_at and updated_at to the connected remote platform's time.</aside>
+All resources expose inserted_at_from/-to, created_at_from/-to and updated_at_from/to query parameter that can easily be 
+used to get all new and updated entities. Just make sure to set a "to" parameter so that you can reuse it in your next 
+scheduled GET call. See our api reference (above) for more details.
+
+<aside class="notice">inserted_at refers to our server time, created_at and updated_at to the connected remote platform's time.</aside>
 
 ```shell
 #!/bin/bash
 
-access_token = < generate this using your oauth2.0 clients refresh token for the given user >
-current_datetime = < generate the current datetime in ISO 8601 format >
-last_check_datetime = < this is the last time the script was run, as date time in ISO 8601 format >
-user_id = < the id of the user that has granted you access >
-resource = < the name of the resource you want to get >
+# generate this using your oauth2.0 clients refresh token for the given user
+access_token =
+
+# generate the current datetime in ISO 8601 format
+current_datetime =
+
+# this is the last time the script was run, as date time in ISO 8601 format
+last_check_datetime = 
+
+# the id of the user that has granted you access
+user_id =
+
+# the name of the resource you want to get
+resource =
 
 auth_header="Authorization: Bearer $access_token"
+
 url="<base_url>/<user_id>/$resource?inserted_at_from=$last_check_datetime&inserted_at_to=$current_datetime"
 
-curl --compressed --verbose -X GET --header "Accept: application/json" --header $auth_header $url | jq .
+curl --compressed --verbose -X GET --header "Accept: application/json" --header $auth_header $url
 ```
 
 Alternatively, you can try out the request below with a pregenerated access token for the test user.
