@@ -25,5 +25,6 @@ endpoint | request | task
 /api/quote | GET | [Quoting](#getting-quotes)
 /api/orders | POST | [Booking Orders](#creating-orders)
 /api/orders/{id} | GET | [View Order {id}](#view-an-order)
-/api/{label_url} | GET | [View a label](#getting-labels)
+/api/{label_url} | GET | [View a Label](#getting-labels)
+/api/tracking/{ref} | GET | [Track a Parcel](#track-a-parcel)
 /api/orders/{id} | DELETE | [Cancel an order](#cancelling-orders)
