@@ -686,15 +686,15 @@ If your original call provided `fields`, `fields` will have keys corresponding t
       "attachment_type": "text",
       "attachment": "tomato",
       "categories": [
-        "big",
-        "small"
+        "red",
+        "blue"
       ]
     },
     "task_id": "576c41bf13e36b0600b02b34"
   },
   "response": {
     "status_code": "200",
-    "category": "big"
+    "category": "red"
   },
   "task_id": "576c41bf13e36b0600b02b34"
 }
