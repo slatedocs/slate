@@ -8,6 +8,12 @@ prefix | READ ONLY
 name | READ ONLY
 kind | READ ONLY. `income`, `expenses` or `assets`
 
+<aside class="notice">
+  Please note that the accounting categories' ID is not the same as the accounting number. At Quipu we use several accounting books,
+  so two different categories can have the same accounting number if they belong to different accounting books.
+  In order to identify an accounting category, like when you are about to create an invoice, please always use its ID.
+</aside>
+
 ## Listing accounting categories
 
 > Example request
