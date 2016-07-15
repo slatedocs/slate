@@ -72,7 +72,7 @@ This method lets you create the invoice.
 ### Data Object
 
 Field Name | Required | Type | Description
----------|-----|------
+---------|-----|------|------
 number | yes | string | Invoice Number
 date | yes | string | Invoice Date (Y-m-d).
 logo | | string | Invoice logo link.
@@ -86,7 +86,7 @@ line_items | | array | Array of objects. Refer to [Line Item Object](#line-item-
 ### Customer Object
 
 Field Name|Required|Type| Description
----------|-----|------
+---------|-----|------|------
 custid | yes | string | Customer ID
 first_name | | string | Customer's firstname
 last_name | | string | Customer's lastname
@@ -102,7 +102,7 @@ zip | | string | ZIP
 ### Line Item Object
 
 Field Name|Required|Type|Description
----------|-----|------
+---------|-----|------|------
 id | yes | integer | ID
 sku | yes | integer | Item identification code
 name | yes | integer | Item name
@@ -116,7 +116,7 @@ child | | array | Items as a child. Refer to [Line Item Child Object](#line-item
 ### Line Item Child Object
 
 Field Name|Type| Description
----------|-----|------
+---------|-----|------|------
 id | integer  |  Item id
 sku | string |  	Item identification code
 name | string |  Item name
@@ -302,7 +302,7 @@ This method lets you update the invoice.
 ### Data Object
 
 Field Name | Required | Type | Description
----------|-----|------
+---------|-----|------|------
 number | yes | string | Invoice Number
 date | yes | string | Invoice Date (Y-m-d).
 logo | | string | Invoice logo link.
