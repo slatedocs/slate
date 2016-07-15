@@ -14,34 +14,34 @@
     "tracking_events":
       [
         {
-          "event_type":"pickup",
+          "event_type":"Pickup",
           "scan_time":"2015-11-17T20:31:00Z",
           "description":"Parcel picked up"
         },
         {
-          "event_type":"information",
+          "event_type":"Info",
           "scan_time":"2015-11-18T01:04:00Z",
           "description":"In transit between locations"
         },
         {
-          "event_type":"transit",
+          "event_type":"In Transit",
           "scan_time":"2015-11-18T01:14:00Z",
           "description":"In transit",
           "origin_location":"Sydney",
           "destination_location":"Brisbane"
         },
         {
-          "event_type":"information",
+          "event_type":"Info",
           "scan_time":"2015-11-18T19:46:00Z",
           "description":"Arrived at the depot for processing"
         },
         {
-          "event_type":"information",
+          "event_type":"Info",
           "scan_time":"2015-11-18T23:00:00Z",
           "description":"Parcel is loaded for delivery"
         },
         {
-          "event_type":"delivery",
+          "event_type":"Delivered",
           "scan_time":"2015-11-18T23:46:00Z",
           "description":"Parcel delivered"
         }
@@ -49,26 +49,24 @@
     }
 ```
 
-Viewing order tracking will give you all the public details associated with a Sendle Booking's tracking scans from pickup to delivery based on the order's **Sendle Reference**. Important details in tracking include:
+Order tracking gives the public details associated with a Sendle order based on the order's **Sendle Reference** as a search key _(as `ref` above)._ The API response returns tracking scans from pickup to delivery. Order tracking does not contain personal location information. Important details in tracking include:
 
 | Field | Description |
 |------:|:------------|
-**event_type** | Type of scan event. Options usually are `pickup`, `information`, or `delivery`, though there are many tracking event types explained below. |
-**scan_time** | Timestamp marker for a tracking event scan. |
+**event_type** | Type of scan event. Options usually are `Pickup`, `Info`, or `Delivered`, though there are many tracking event types explained on the table below. |
+**scan_time** | Timestamp marker for a tracking event scan. Scans are set in the <strong>UTC</strong> time zone. |
 **description** | A short description for the tracking event. |
-**origin_location** | Reserved for transit events, this marks the departure of a parcel to a courier hub within an order's transit, usually marking hubs within the courier network. |
-**destination_location** | This marks the arrival of a parcel to a courier hub within an order's transit, usually marking hubs within the courier network. |
+**origin_location** | Marks the departure location of a parcel from a physical hub within an order's transit. |
+**destination_location** | Marks the arrival of a parcel to a physical hub in the courier network. |
 
 
 | Event Type | Description |
 |-----------:|:------------|
-**pickup** | Event marking successful parcel pickup. |
-**info** | Updating order with parcel or courier information. |
-**transit** | Event marks transit between courier hub locations. |
-**delivery** | Successful parcel delivery. |
-**attempted** | Event marks attempted delivery. |
-**card-left** | Event for attempted delivery with card left. |
-**left-with-agent** | Event marks when courier leaves parcel with agent.|
-**failed** | Marks order as failed. |
-
-<aside class='info'>API parcel tracking response is cached for <strong>1 hour.</strong></aside>
+**Pickup** | Parcel successfully picked up. |
+**Info** | Information received from courier. |
+**In Transit** | Parcel in transit between courier hub locations. |
+**Delivered** | Parcel successfully delivered. |
+**Delivery Attempted** | Parcel delivery attempted, but unsuccessful. |
+**Card Left** | Parcel delivery attempted, card left for receiver to arrange collection or re-delivery where available. |
+**Left with Agent** | Parcel left with agent, this will be a parcel connect location, POPStation, or similar.|
+**Delivery Failed** | Delivery failed. |
