@@ -23,57 +23,42 @@ Lets you create invoice with line items. It will send the email with the attache
 
 ```json
 {
-    "number": "INV-0003",
-    "date": "",
-    "logo": "https:\/\/invoice_logos.s3.amazonaws.com\/bleh.png",
-    "mail_body": "",
-    "credit": "$12.00",
-    "mail_to": "customer@email.com",
-    "include_pdf": 1,
-    "key": "9ypnPRT9v2ChPCQv",
-    "customer": {
-        "custid": "9ypnPRT9v2ChPCQv_2266",
-        "first_name": "Customer  ",
-        "last_name": "Portal",
-        "email": "customer@email.com",
-        "phone": "",
-        "company": "",
-        "street1": "",
-        "street2": "",
-        "city": "",
-        "state": "",
-        "zip": "",
-        "country": ""
-    },
-    "line_items": [
-        {
-            "id": 123,
-            "sku": "ming-123",
-            "name": "Peanut",
-            "quantity": "1",
-            "total_cost": "200.00",
-            "due_date": "2016-07-07",
-            "order": 1,
-            "child": [{
-                "id": 124,
-                "sku": "ming-456",
-                "name": "Butter",
-                "quantity": "1",
-                "total_cost": "10.00",
-                "order": 2
-            }]
-        },
-        {
-            "id": 130,
-            "sku": "STBJ",
-            "name": "Strawberry Jam",
-            "quantity": "1",
-            "total_cost": "115.50",
-            "due_date": "2016-07-07",
-            "order": 2,
-            "child": []
-        }
-    ]
+  "number": "INV-1234",
+  "date": "2016-07-14",
+  "logo": "https:\/\/invoice_logos.s3.amazonaws.com\/cms_logo.png",
+  "mail_body": "This email is a reminder that the balance on your account is {tag:invoice_total}. We accept MasterCard, VISA, Discover and American Express. If your payment is already on its way, we thank you and ask that you please disregard this notice. If not, we would appreciate receipt of your payment as soon as possible. If you would like to further discuss the details of your account, please do not hesitate to call billing at {tag:invoice_merchant_contact}.",
+  "credit": "0.00",
+  "mail_to": "youremail@email.com",
+  "include_pdf": "1",
+  "include_login": "1",
+  "login_url": "http:\/\/slycegateway.local\/\/login",
+  "key": "9ypnPRT9v2ChPCQx",
+  "webhook_url": "http:\/\/slycegateway.local\/",
+  "customer": {
+    "custid": "9ypnPRT9v2ChPCQv_2266",
+    "first_name": "Customer  ",
+    "last_name": "Portal",
+    "email": "youremail@email.com",
+    "phone": "",
+    "company": "",
+    "street1": "",
+    "street2": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "country": ""
+  },
+  "line_items": [
+    {
+      "id": "233",
+      "sku": "1233476",
+      "name": "My ProductName 11",
+      "quantity": "1",
+      "total_cost": 200,
+      "due_date": "2016-07-14",
+      "order": 1
+    }
+  ]
 }
 ```
 
@@ -86,46 +71,46 @@ This method lets you create the invoice.
 
 ### Data Object
 
-Field Name|Type| Description
+Field Name | Required | Type | Description
 ---------|-----|------
-number | string | Invoice Number
-date | string | Invoice Date (Y-m-d).
-logo | string | Invoice logo link.
-mail_to | string | Email where invoice will be send
-mail_body| string | Email body. Can be html.
-credit | string | Customer credit
-customer | json | Json data of customer. Refer to [Customer Object](#customer-object)
-line_items | array | Array of objects. Refer to [Line Item Object](#line-item-object)
+number | yes | string | Invoice Number
+date | yes | string | Invoice Date (Y-m-d).
+logo | | string | Invoice logo link.
+mail_to | yes | string | Email where invoice will be send
+mail_body | | string | Email body. Can be html.
+credit | | string | Customer credit
+customer | | json | Json data of customer. Refer to [Customer Object](#customer-object)
+line_items | | array | Array of objects. Refer to [Line Item Object](#line-item-object)
 
 
 ### Customer Object
 
-Field Name|Type| Description
+Field Name|Required|Type| Description
 ---------|-----|------
-custid | string | Customer ID
-first_name | string | Customer's firstname
-last_name | string | Customer's lastname
-email | string | Customer's email
-phone | string | Customer's contact number
-company | string | Company
-street1 | string | Street 1
-street2 | string | Street 2
-city | string | City
-state | string | State
-zip | string | ZIP
+custid | yes | string | Customer ID
+first_name | | string | Customer's firstname
+last_name | | string | Customer's lastname
+email | yes | string | Customer's email
+phone | | string | Customer's contact number
+company | | string | Company
+street1 | | string | Street 1
+street2 | | string | Street 2
+city | | string | City
+state | | string | State
+zip | | string | ZIP
 
 ### Line Item Object
 
-Field Name|Type| Description
+Field Name|Required|Type|Description
 ---------|-----|------
-id | integer | ID
-sku | integer | Item identification code
-name | integer | Item name
-quantity | integer | Number of items
-total_cost | float | Total cost of the item
-due_date | string | Date due (Y-m-d)
-order | numeric | Item ordering
-child | array | Items as a child. Refer to [Line Item Child Object](#line-item-child-object)
+id | yes | integer | ID
+sku | yes | integer | Item identification code
+name | yes | integer | Item name
+quantity | yes | integer | Number of items
+total_cost | yes | float | Total cost of the item
+due_date |yes | string | Date due (Y-m-d)
+order | | numeric | Item ordering
+child | | array | Items as a child. Refer to [Line Item Child Object](#line-item-child-object)
 
 
 ### Line Item Child Object
@@ -245,7 +230,7 @@ ID | The id of the invoice.
 
 
 
-##Update Logo
+##Update
 
 > Returns JSON structured like this:
 
@@ -258,66 +243,71 @@ ID | The id of the invoice.
 }
 ```
 
-This method lets you update the merchant logo.
-
-### HTTP Request
-
-`POST invoice/merchant/logo`
-
-### POST Data
-
-Field | Description
---------- | -----------
-logo| Field name from input form data
-
-
-##Cancel Invoice
-
-> Returns JSON structured like this:
+> Request JSON structure like this:
 
 ```json
 {
-  "data": {
-    "id": 1234,
-    "status": true
-  }
+  "number": "INV-1234",
+  "date": "2016-07-06",
+  "logo": "https:\/\/invoice_logos.s3.amazonaws.com\/bleh.png",
+  "mail_body": "",
+  "credit": "12.00",
+  "mail_to": "youremail@email.com",
+  "include_pdf": "1",
+  "include_login":"0",
+  "login_url":"http://test@test.com/test",
+  "webhook_url":"http://test@test.com/test",
+  "key": "9ypnPRT9v2ChPCQx",
+  "status":"sent",
+  "line_items": [
+    {
+      "id": 123,
+      "sku": "PN01",
+      "name": "Peanut",
+      "quantity": "1",
+      "total_cost": "200.00",
+      "due_date": "2016-07-07",
+      "order":2,
+      "child" : [
+          {
+            "id": 125,
+            "sku": "PNM01",
+            "name": "PMayo",
+            "quantity": "1",
+            "total_cost": "-3.00",
+            "order":1
+          }
+      ]
+    },
+    {
+      "id": 130,
+      "sku": "STBJ",
+      "name": "Strawberry Jam",
+      "quantity": "1",
+      "total_cost": "115.50",
+      "due_date": "2016-07-07",
+      "order":1,
+      "child":[]
+    }
+  ]
 }
 ```
 
-This method lets you set the Invoice as 'Cancelled'.
+This method lets you update the invoice.
 
 ### HTTP Request
 
-`POST invoice/<ID>/cancel`
+`POST invoice/update/{id}`
 
-### URL Parameters
+### Data Object
 
-Parameter | Description
---------- | -----------
-ID | The hash of the invoice.
-
-
-
-##Paid Invoice
-> Returns JSON structured like this:
-
-```json
-{
-  "data": {
-    "id": 1234,
-    "status": true
-  }
-}
-```
-
-This method lets you set the invoice as 'Paid'.
-
-### HTTP Request
-
-`POST invoice/<ID>/paid`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The hash of the invoice.
+Field Name | Required | Type | Description
+---------|-----|------
+number | yes | string | Invoice Number
+date | yes | string | Invoice Date (Y-m-d).
+logo | | string | Invoice logo link.
+mail_to | yes | string | Email where invoice will be send
+mail_body | | string | Email body. Can be html.
+credit | | string | Customer credit
+customer | | json | Json data of customer. Refer to [Customer Object](#customer-object)
+line_items | | array | Array of objects. Refer to [Line Item Object](#line-item-object)
