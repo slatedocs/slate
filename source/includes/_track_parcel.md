@@ -57,7 +57,7 @@ Order tracking gives the public details associated with a Sendle order based on 
 **scan_time** | Timestamp marker for a tracking event scan. Scans are set in the <strong>UTC</strong> time zone. |
 **description** | A short description for the tracking event. |
 **origin_location** | Marks the departure location of a parcel from a physical hub within an order's transit. |
-**destination_location** | Marks the arrival of a parcel to a physical hub in the courier network. |
+**destination_location** | Marks the arrival location of a parcel to a physical hub in the courier network. |
 
 
 | Event Type | Description |
