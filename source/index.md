@@ -14,6 +14,7 @@ includes:
   - create_orders
   - view_order
   - getting_labels
+  - track_parcel
   - cancelling_orders
   - statuses
   - errors
@@ -21,5 +22,3 @@ includes:
 
 search: true
 ---
-
-
