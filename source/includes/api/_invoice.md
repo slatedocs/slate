@@ -115,14 +115,14 @@ child | | array | Items as a child. Refer to [Line Item Child Object](#line-item
 
 ### Line Item Child Object
 
-Field Name|Type| Description
+Field Name | Required |Type| Description
 ---------|-----|------|------
-id | integer  |  Item id
-sku | string |  	Item identification code
-name | string |  Item name
-quantity | integer | Number of items
-total_cost | float | Total cost of the item
-order | numeric | Item ordering
+id | yes | numeric |  Item id
+sku | yes | string |  	Item identification code
+name | yes | string |  Item name
+quantity | yes | integer | Number of items
+total_cost | yes | float | Total cost of the item
+order | | numeric | Item ordering
 
 
 
@@ -297,7 +297,7 @@ This method lets you update the invoice.
 
 ### HTTP Request
 
-`POST invoice/update/{id}`
+`PUT invoice/update/{id}`
 
 ### Data Object
 
