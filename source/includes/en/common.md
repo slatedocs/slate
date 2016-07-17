@@ -246,3 +246,26 @@ Credit note          | 04
 Debit note           | 05
 Waybill        | 06
 Withholding | 07
+
+## Payment forms
+
+Payment form            | Code
+------------------------ | ------
+Does not utilize the financial system | 1
+Own check | 2
+Certified check | 3
+Cashiers check | 4
+International check | 5
+Debit account | 6
+Transfer from own bank | 7
+Transfer from other domestic bank | 8
+Transfer from bank overseas | 9
+Domestic credit card | 10
+Overseas credit card| 11
+Wire transfer | 12
+Deposit (Checking / Savings) | 13
+Investment endorsement | 14
+Debt compensation | 15
+Debit card | 16
+Ecuador E-Money | 17
+Prepaid card | 18

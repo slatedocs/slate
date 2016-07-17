@@ -87,6 +87,14 @@ curl -v https://link.datil.co/invoices/issue \
       },
       "descuento": 0.0
     }
+  ],
+  "pagos": [
+    {
+      "codigo": "1",
+      "total": 4882.68,
+      "plazo": 0,
+      "unidad_tiempo": "dias"
+    }
   ]
 }'
 ```
@@ -165,6 +173,14 @@ factura = {
         "Peso":"5000.0000"
       },
       "descuento": 0.0
+    }
+  ],
+  "pagos": [
+    {
+      "codigo": "1",
+      "total": 4882.68,
+      "plazo": 0,
+      "unidad_tiempo": "dias"
     }
   ]
 }
@@ -272,7 +288,15 @@ namespace DatilClient {
             },
             ""descuento"": 0.0
           }
-        ]
+        ],
+      ""pagos"": [
+        {
+          ""codigo"": ""1"",
+          ""total"": 4882.68,
+          ""plazo"": 0,
+          ""unidad_tiempo"": ""dias""
+        }
+      ]
       }");
       request.AddParameter("application/json", body, ParameterType.RequestBody);
       IRestResponse response = client.Execute(request);
@@ -302,6 +326,7 @@ version | string | Version of the country e-billing format. Defaults to the late
 clave_acceso | string | The access code represents a unique identified for the document. Datil will generate an access code if you don't provide it.<br>¿How to [generate](#access-code) an access code?
 informacion_adicional | object | Additional information about the invoice in dictionary form. Example:<br>` {"plan": "pro", "months": "1"}`
 retenciones | list of [invoice-withholding](#invoice-withholdings) objects | Withholdings to be included in the invoice. Specific case for traders or distributors of petroleum derivates and for presumptive VAT Retention for publishers, distributors and newsvendors involved in the marketing of newspapers and / or magazines.
+payments | List of [payments](#payments) objects | List of forms of payment applicable to the invoice. __Required__
 
 
 #### Invoice totals
@@ -314,6 +339,15 @@ descuento           | float | Sum of each line item discount and the additiona d
 propina             | float | Tip or gratuity. __Required__
 importe_total       | float | Total including taxes. __Required__
 impuestos           | list of [total-tax](#total-tax) objects | List of aggregated taxes. __Required__
+
+#### Payments
+
+Parameter           | Type                    | Description
+------------------- | ----------------------- | ----------
+codigo              | string                  | [payment form](#payment-forms) code. __Required__
+total               | float                   | Total applicable to the payment form. __Required__
+plazo               | integer                 | Term applicable to the payment form.
+unidad_tiempo       | string                  | time unit in which the term is expressed.
 
 ### Response
 
@@ -393,6 +427,14 @@ impuestos           | list of [total-tax](#total-tax) objects | List of aggregat
         "Peso": "5000.0000"
       },
       "descuento": 0.0
+    }
+  ],
+  "pagos": [
+    {
+      "codigo": "1",
+      "total": 4882.68,
+      "plazo": 0,
+      "unidad_tiempo": "dias"
     }
   ]
 }
@@ -541,6 +583,14 @@ Replace `<invoice-ID>` with the `id` of the invoice you to query.
             ]
         }
     ],
+    "pagos": [
+      {
+        "codigo": "1",
+        "total": 4882.68,
+        "plazo": 0,
+        "unidad_tiempo": "dias"
+      }
+    ]
     "autorizacion": {
         "estado": "AUTORIZADO",
         "mensajes": [
@@ -572,6 +622,7 @@ totales | list of [invoice-total](#invoice-totals) object | List of totals.
 comprador | [recipient](#recipient) object | Information about the recipient.
 tipo*emision | integer | Issuance mode. Normal: `1`.<br>Contingency: `2`<br>__Required__
 items | list of [line-item](#line-item) objects | Line items.
+pagos | list of [payments](#payments) objects | Payment forms applicable to the invoice.
 version | string | Version of the country e-billing format. Valid values: `1.0.0`, `1.1.0`
 
 ## Re-issuing an invoice
