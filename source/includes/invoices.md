@@ -87,6 +87,14 @@ curl -v https://link.datil.co/invoices/issue \
       },
       "descuento": 0.0
     }
+  ],
+  "pagos": [
+    {
+      "codigo": "1",
+      "total": 4882.68,
+      "plazo": 0,
+      "unidad_tiempo": "dias"
+    }
   ]
 }'
 ```
@@ -166,6 +174,14 @@ factura = {
       },
       "descuento": 0.0
     }
+  ],
+  "pagos": [
+    {
+      "codigo": "1",
+      "total": 4882.68,
+      "plazo": 0,
+      "unidad_tiempo": "dias"
+    }
   ]
 }
 cabeceras = {
@@ -189,7 +205,7 @@ namespace DatilClient {
   class InvoicingServiceClient {
     static void Main(string[] args) {
 
-      // Este ejemplo utiliza RestSharp 
+      // Este ejemplo utiliza RestSharp
       // Para instalar anda al menú: tools > Library Package Manager > Package Manager Console
       // copia y pega y presiona enter: Install-Package RestSharp
 
@@ -272,7 +288,15 @@ namespace DatilClient {
             },
             ""descuento"": 0.0
           }
-        ]
+      ],
+      ""pagos"": [
+      {
+        ""codigo"": ""1"",
+        ""total"": 4882.68,
+        ""plazo"": 0,
+        ""unidad_tiempo"": "dias"
+      }
+  ]
       }");
       request.AddParameter("application/json", body, ParameterType.RequestBody);
       IRestResponse response = client.Execute(request);
@@ -303,9 +327,10 @@ version | string | Versión del formato de comprobantes electrónicos de SRI. Si
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 informacion_adicional | objeto | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"plan": "Inicial", "vigencia": "1 mes"}`
 retenciones | Listado de objetos de tipo [retencion](#retencion-de-factura) | Retenciones incluídas en la factura. Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que participan en la comercialización de periódicos y/o revistas.
+pagos | Listado de objetos tipo [pagos](#pagos) | Listado de formas de pago aplicables a la factura. __Requerido__
 
 
-<h4 id="totales-factura">Totales</h4>
+#### Totales
 
 Parámetro           | Tipo                    | Descripción
 ------------------- | ----------------------- |-----------
@@ -316,9 +341,15 @@ propina             | float | Propina total, llamado también servicio. __Requer
 importe_total       | float | Total incluyendo impuestos. __Requerido__
 impuestos           | listado de objetos [total impuesto](#total-impuesto) | Listado de impuesto totalizados. __Requerido__
 
-<!--aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside-->
+#### Pagos
+
+Parámetro           | Tipo                    | Descripción
+------------------- | ----------------------- | ----------
+codigo              | string                  | Código del [tipo de forma de pago](#tipos-de-forma-de-pago). __Requerido__
+total               | float                   | Total aplicable a la forma de pago especificada. __Requerido__
+plazo               | integer                 | Plazo de pago.
+unidad_tiempo       | string                  | Unidad de tiempo en la cual se expresa el plazo de pago.
+
 
 ### Respuesta
 
@@ -399,6 +430,14 @@ Remember — a happy kitten is an authenticated kitten!
       },
       "descuento": 0.0
     }
+  ],
+  "pagos": [
+    {
+      "codigo": "1",
+      "total": 4882.68,
+      "plazo": 0,
+      "unidad_tiempo": "dias"
+    }
   ]
 }
 ```
@@ -411,10 +450,10 @@ también se incluirá como parte de la respuesta.
 
 Consulta una factura para obtener toda la información del comprobante, incluyendo
 el estado del mismo.
-El parámetro `estado` de la respuesta obtenida al invocar esta operación, indica 
+El parámetro `estado` de la respuesta obtenida al invocar esta operación, indica
 el estado actual del comprobante.
 
-Si es necesario conocer en detalle, en que estado del [proceso de emisión](#proceso-de-emisión), 
+Si es necesario conocer en detalle, en que estado del [proceso de emisión](#proceso-de-emisión),
 se debe examinar los parámetros `envio_sri` y `autorizacion_sri` de la respuesta.
 
 ### Operación
@@ -553,6 +592,14 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
             ]
         }
     ],
+    "pagos": [
+    {
+      "codigo": "1",
+      "total": 168.00,
+      "plazo": 0,
+      "unidad_tiempo": "dias"
+    }
+  ]
     "autorizacion": {
         "estado": "AUTORIZADO",
         "mensajes": [
@@ -577,13 +624,14 @@ fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria,
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 envio_sri | objeto tipo [envio sri](#envío-sri) | Información luego de enviar el comprobante.
 autorizacion | objeto tipo [autorizacion sri](#autorización-sri) | Información de la autorización.org/html/rfc3339#section-5.6).
-emisor | objeto tipo [emisor](#emisor) | Información completa del emisor. 
-moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. 
+emisor | objeto tipo [emisor](#emisor) | Información completa del emisor.
+moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda.
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>
-totales | objeto tipo [totales](#totales) | Listado de totales. 
+totales | objeto tipo [totales](#totales) | Listado de totales.
 comprador | objeto [persona](#persona) | Información del comprador.
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>
-items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la factura. 
+items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la factura.
+pagos | listado de objetos tipo [pagos](#pagos) | Listado de formas de pago aplicables a la factura.
 version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`
 
 ## Re-emisión de una factura
@@ -597,10 +645,10 @@ version | string | Versión de la especificación, opciones válidas: `1.0.0`, `
 Esta operación debe ser utilizada para corregir comprobantes NO AUTORIZADOS o
 DEVUELTOS por el Servicio de Rentas Internas.
 
-En la URL de esta opción se debe incluir el `id` de la factura recibida al 
+En la URL de esta opción se debe incluir el `id` de la factura recibida al
 momento de emitirla.
 
-El cuerpo del requerimiento es un objeto [factura](#requerimiento) con los 
+El cuerpo del requerimiento es un objeto [factura](#requerimiento) con los
 datos corregidos para que pueda ser procesado y autorizado.
 
 ### Respuesta

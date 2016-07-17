@@ -261,3 +261,26 @@ Nota de Crédito          | 04
 Nota de Débito           | 05
 Guía de Remisión         | 06
 Comprobante de Retención | 07
+
+## Tipos de forma de pago
+
+Forma de pago            | Código
+------------------------ | ------
+Sin utilización del sistema financiero | 1
+Cheque propio | 2
+Cheque certificado | 3
+Cheque de gerencia | 4
+Cheque del exterior | 5
+Débito de cuenta | 6
+Transferencia propio banco | 7
+Traansferencia otro banco nacional | 8
+Transferencia banco exterior | 9
+Tarjeta de crédito nacional | 10
+Tarjeta de crédito internacional | 11
+Giro | 12
+Depósito en cuenta (Corriente / Ahorros) | 13
+Endoso de inversión | 14
+Compensación de deudas | 15
+Tarjeta de débito | 16
+Dinero electrónico | 17
+Tarjeta prepago | 18
