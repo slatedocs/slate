@@ -90,10 +90,10 @@ curl -v https://link.datil.co/invoices/issue \
   ],
   "pagos": [
     {
-      "codigo": "1",
+      "medio": "efectivo",
       "total": 4882.68,
-      "plazo": 0,
-      "unidad_tiempo": "dias"
+      "propiedades: {"plazo": 0,
+                     "unidad_tiempo": "dias"}
     }
   ]
 }'
@@ -177,10 +177,10 @@ factura = {
   ],
   "pagos": [
     {
-      "codigo": "1",
+      "medio": "efectivo",
       "total": 4882.68,
-      "plazo": 0,
-      "unidad_tiempo": "dias"
+      "propiedades": {"plazo": 0,
+                      "unidad_tiempo": "dias"}
     }
   ]
 }
@@ -291,10 +291,10 @@ namespace DatilClient {
       ],
       ""pagos"": [
         {
-          ""codigo"": ""1"",
+          ""medio"": ""efectivo"",
           ""total"": 4882.68,
-          ""plazo"": 0,
-          ""unidad_tiempo"": "dias"
+          ""propiedades"": {""plazo"": 0,
+                            ""unidad_tiempo"": ""dias""}
         }
       ]
       }");
@@ -345,10 +345,9 @@ impuestos           | listado de objetos [total impuesto](#total-impuesto) | Lis
 
 Parámetro           | Tipo                    | Descripción
 ------------------- | ----------------------- | ----------
-codigo              | string                  | Código del [tipo de forma de pago](#tipos-de-forma-de-pago). __Requerido__
+medio              | string                  | Código del [tipo de forma de pago](#tipos-de-forma-de-pago). __Requerido__
 total               | float                   | Total aplicable a la forma de pago especificada. __Requerido__
-plazo               | integer                 | Plazo de pago.
-unidad_tiempo       | string                  | Unidad de tiempo en la cual se expresa el plazo de pago.
+propiedades               | objeto                 | Información adicional adjunta al pago en forma de diccionario. Ejemplo:<br>` {"plazo": "30", "unidad_tiempo": "dias"}`
 
 
 ### Respuesta
@@ -433,10 +432,11 @@ unidad_tiempo       | string                  | Unidad de tiempo en la cual se e
   ],
   "pagos": [
     {
-      "codigo": "1",
+      "medio": "efectivo",
       "total": 4882.68,
-      "plazo": 0,
-      "unidad_tiempo": "dias"
+      "propiedades": {"plazo": 0,
+                      "unidad_tiempo": "dias"}
+      }
     }
   ]
 }
@@ -594,10 +594,10 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
     ],
     "pagos": [
       {
-        "codigo": "1",
+        "medio": "efectivo",
         "total": 168.00,
-        "plazo": 0,
-        "unidad_tiempo": "dias"
+        "propiedades": {"plazo": 0,
+                        "unidad_tiempo": "dias"}
       }
     ],
     "autorizacion": {

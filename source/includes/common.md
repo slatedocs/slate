@@ -274,7 +274,7 @@ Cheque de gerencia | cheque_gerencia
 Cheque del exterior | cheque_exterior
 Débito de cuenta bancaria | debito_cuenta_bancaria
 Transferencia en el mismo banco | transferencia_mismo_banco
-Traansferencia otro banco nacional | transferencia_otro_banco
+Transferencia otro banco nacional | transferencia_otro_banco
 Transferencia banco exterior | transferencia_banco_exterior
 Tarjeta de crédito nacional | tarjeta_credito_nacional
 Tarjeta de crédito internacional | tarjeta_credito_internacional
@@ -282,6 +282,6 @@ Giro | giro
 Depósito en cuenta (Corriente / Ahorros) | deposito_cuenta_bancaria
 Endoso de inversión | endoso_inversion
 Compensación de deudas | compensacion_deudas
-Tarjeta de débito | tarjetas_debito
-Dinero electrónico | dinero_electronico_ec
+Tarjeta de débito | tarjeta_debito
+Dinero electrónico Ecuador | dinero_electronico_ec
 Tarjeta prepago | tarjeta_prepago

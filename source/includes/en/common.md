@@ -251,21 +251,22 @@ Withholding | 07
 
 Payment form            | Code
 ------------------------ | ------
-Does not utilize the financial system | 1
-Own check | 2
-Certified check | 3
-Cashiers check | 4
-International check | 5
-Debit account | 6
-Transfer from own bank | 7
-Transfer from other domestic bank | 8
-Transfer from bank overseas | 9
-Domestic credit card | 10
-Overseas credit card| 11
-Wire transfer | 12
-Deposit (Checking / Savings) | 13
-Investment endorsement | 14
-Debt compensation | 15
-Debit card | 16
-Ecuador E-Money | 17
-Prepaid card | 18
+Cash | efectivo
+Direct credit | credito_directo
+Check | cheque
+Certified check | cheque_certificado
+Cashiers check | cheque_gerencia
+International check | cheque_exterior
+Debit account | debito_cuenta_bancaria
+Transfer to the same bank | transferencia_mismo_banco
+Transfer to other domestic bank | transferencia_otro_banco
+Transfer from bank overseas | transferencia_banco_exterior
+Domestic credit card | tarjeta_credito_nacional
+Overseas credit card| tarjeta_credito_internacional
+Wire transfer | giro
+Deposit (Checking / Savings) | deposito_cuenta_bancaria
+Investment endorsement | endoso_inversion
+Debt compensation | compensacion_deudas
+Debit card | tarjeta_debito
+Ecuador E-Money | dinero_electronico_ec
+Prepaid card | tarjeta_prepago
