@@ -1,189 +1,194 @@
 ---
-title: API Reference
+title: Versatile Credit
 
 language_tabs:
-  - shell
-  - ruby
-  - python
-  - javascript
+ - javascript: JavaScript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
-
+  
 search: true
 ---
 
-# Introduction
+# VERSATILE CREDIT
+ 
+##Background
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Versatile Credit is a kiosk based system used by stores to offer financing to their customers via a cascade approach.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# Scope
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+###-API
 
-# Authentication
+Existing plugin application makes post and patch requests to the application resource, in addition to a separate call to the pre-approval endpoint, and separate calls to receive and update verification codes
 
-> To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+<aside class="warning">
+This is too much complexity for a direct integration to be expected to manage.
+</aside>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+V2 api needs to be updated to support pre-approval.
 </aside>
 
-# Kittens
+###-DB
 
-## Get All Kittens
+###-Implementation
 
-```ruby
-require 'kittn'
+->Verify phone
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+->Enter verification code
+
+->Patch in application data
+
+->Apply for preapproval
+
+###-Steps
+
+->Get an application
+
+->Build an application
+
+->Commit an application
+
+
+
+# Pre-Approval
+
+###Partners that would like the Zibby preapproval functionality, but are unable to integrate via our zibby.js plugin, can interact directly with the Zibby API. 
+
+There are three steps involved in the Zibby preapproval process:
+
+
+->Create the application
+
+->Build the application
+
+->Commit the application for approval
+
+##Create the Application
+
+>Submit Phone Number for Verification
+
+>DEFINITION:
+
+```script
+POST https://sandbox.zibby.com/api/ng/application/create
 ```
 
-```python
-import kittn
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+To begin an application, Zibby requires that the consumer verify their phone number. This is done by sending an SMS message to the input number.
+
+###Submit Phone Number for Verification->
+
+To begin a Zibby application, we require verification of the the consumer’s phone number. This is done by sending a code via SMS to their input phone. 
+
+>Example Request:
+
+```script
+-d {‘phone’: ‘2127338439’}
 ```
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+>Example Response:
+
+```script
+{‘id’: 4832}
 ```
 
-```javascript
-const kittn = require('kittn');
+###Verify Phone number->
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+<aside class="notice">
+The SMS code sent to the customer will be verified in this step.
 </aside>
 
-## Get a Specific Kitten
+>Verifiy Phone Number
 
-```ruby
-require 'kittn'
+>DEFINITION:
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
+```script
+POST https://sandbox.zibby.com/api/ng/application/verify_verification_code
+```
+>Example Request:
+
+```script
+-d {‘code’: ‘3GS37W’}
 ```
 
-```python
-import kittn
+>Example Response:
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
+```script
+{‘success’: true}
 ```
 
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+##Build the Application
+
+>Customer Application Data:
+
+```script
+{‘billing’: {
+  ‘first_name’: ‘Jane’,
+  ‘last_name’: ‘Doe’,
+  ‘phone’: ‘2144324537’,
+  ‘address’: ‘119 saint marks place’,
+  ‘address2’: ‘Apt 5b’,
+  ‘city’: ‘New York’,
+  ‘state’: ‘NY’,
+  ‘zip’: ‘10009’,
+  ‘email’: ‘jqdoe@anonmail.com’},
+‘personal’: {
+  ‘ssn’: ‘1782378757’,
+  ‘income’: ‘50000’,
+  ‘ip_address’: ‘483.28.289’,
+  ‘dob_year’: ‘1981’,
+  ‘dob_month’: ‘11’,
+  ‘dob_day’: ‘15’,
+  ‘driver_license_number’: ‘E82923892’,
+  ‘driver_license_state’: ‘NY’,
+  ‘driver_license_expiration_year’: ‘2018’,
+  ‘driver_license_expiration_month’: ‘09’,
+  ‘driver_license_expiration_day’: ‘12’,
+  ‘employment_type’: ‘full-time’,
+  ‘reference_name’: ‘Jamie Smith’,
+  ‘reference_phone_number’: ‘2172849548’,
+  ‘employment_name’: ‘Streamlake Insurance’,
+  ‘employment_number’: ‘3672734875’}}
 ```
 
-```javascript
-const kittn = require('kittn');
+To build the Zibby application for a consumer, the customer’s application data as shown in the Application JSON to the right should be sent either in a POST or PATCH request to Zibby. 
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+<aside class="notice">
+The zibby application supports the following employment types
+</aside>
+
+<b>`Employment Types`</b>
+
+Public Display | API Mapping
+-------------- | --------------
+Full time | full-time
+Part time | part-time
+Self employed | self-employed
+Unemployed | unemployed
+Social Security/Disability | social-security-disability
+Pension/Retirement | pension-retirement
+Military | military
+
+
+##Commit the Application for Approval
+
+
+>DEFINITION:
+
+```script
+POST https://sandbox.zibby.com/api/ng/application/preapprove
 ```
+###Once the application has been built successfully, the final step in the Zibby approval process is to commit it for preapproval.
 
-> The above command returns JSON structured like this:
 
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
 
-This endpoint retrieves a specific kitten.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
-### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
 
