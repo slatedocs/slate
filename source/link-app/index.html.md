@@ -478,6 +478,7 @@ Obtiene la información de los pagos aplicables a la factura.
 
 ```sql
 payments  = SELECT
+  id_pago,
   medio_pago,
   total_pago
   FROM
@@ -520,3 +521,8 @@ Campo | Tipo | Descripción
 --------- | ------- | -----------
 `_nombre_` | string | Nombre de la propiedad del pago
 `_valor_` | string | Valor de la propiedad del pago
+
+
+Para el Servicio de Rentas Internas de Ecuador (SRI), las únicas propiedades que se tomarán en cuenta son `plazo` (especifica el plazo del tipo de pago) y `unidad_tiempo` (especifica la unidad de tiempo en la cual se expresa el plazo).
+
+Las demás propiedades que se especifiquen se registrarán en Dátil como parte del pago, pero no se reportarán al SRI.
