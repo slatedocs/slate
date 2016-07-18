@@ -290,13 +290,13 @@ namespace DatilClient {
           }
       ],
       ""pagos"": [
-      {
-        ""codigo"": ""1"",
-        ""total"": 4882.68,
-        ""plazo"": 0,
-        ""unidad_tiempo"": "dias"
-      }
-  ]
+        {
+          ""codigo"": ""1"",
+          ""total"": 4882.68,
+          ""plazo"": 0,
+          ""unidad_tiempo"": "dias"
+        }
+      ]
       }");
       request.AddParameter("application/json", body, ParameterType.RequestBody);
       IRestResponse response = client.Execute(request);
@@ -593,13 +593,13 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
         }
     ],
     "pagos": [
-    {
-      "codigo": "1",
-      "total": 168.00,
-      "plazo": 0,
-      "unidad_tiempo": "dias"
-    }
-  ]
+      {
+        "codigo": "1",
+        "total": 168.00,
+        "plazo": 0,
+        "unidad_tiempo": "dias"
+      }
+    ],
     "autorizacion": {
         "estado": "AUTORIZADO",
         "mensajes": [
