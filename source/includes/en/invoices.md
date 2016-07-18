@@ -350,7 +350,7 @@ impuestos           | list of [total-tax](#total-tax) objects | List of aggregat
 
 Parameter           | Type                    | Description
 ------------------- | ----------------------- | ----------
-codigo              | string                  | [payment form](#payment-forms) code. __Required__
+medio              | string                  | [payment form](#payment-forms) code. __Required__
 total               | float                   | Total applicable to the payment form. __Required__
 propiedades         | object                  | Additional information related to the payment in dictionary form. Example: <br>` {"plazo": "30", "unidad_tiempo": "dias"}`
 
