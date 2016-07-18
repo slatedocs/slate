@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: Versatile Credit
 
 language_tabs:
  - javascript: JavaScript
@@ -13,398 +13,182 @@ includes:
 search: true
 ---
 
-# API Reference
+# VERSATILE CREDIT
+ 
+##Background
 
-##The Zibby.js plugin is designed for retailers on custom-built ecommerce sites or retailers on ecommerce platforms with a high degree of configurability. Below are the steps you would follow to integrate Zibby into your website.
+Versatile Credit is a kiosk based system used by stores to offer financing to their customers via a cascade approach.
 
-1. Add the Zibby.js snippet to your site
-2. Initialize the Zibby preapproval button and position it
-3. Initialize the Zibby checkout button and position it
-4. Create a checkout with the Zibby.js API
+# Scope
 
-# Setting Up
+###-API
 
-## Authentication
-
-> Sample Curl:
-
-```javascript
-curl -X GET https://sandbox.zibby.com/api/v2/application/2398798  
-
--H "Authorization: Bearer 01234567-89ab-cdef-0123-456789abcdef"
-```
-
-Zibby uses Oauth 2.0 to authenticate all requests to the API.
-
-During onboarding with Zibby, you will be provided an access token that can be used to access protected resources, as well as a separate token to be used publicly, to initialize customers checking out with the Zibby payment button.
-
-Once you receive your tokens you’re all set to make requests to the Zibby API. 
-
+Existing plugin application makes post and patch requests to the application resource, in addition to a separate call to the pre-approval endpoint, and separate calls to receive and update verification codes
 
 
 <aside class="warning">
-All API requests must be made over HTTPS. Calls made over plain HTTP will fail. You must authenticate for all requests.
+This is too much complexity for a direct integration to be expected to manage.
 </aside>
 
-### Versioning
+<aside class="notice">
+V2 api needs to be updated to support pre-approval.
+</aside>
 
-The Zibby API is versioned for major backwards incompatible changes to the system.
-The API is currently on version 2.0.
+###-DB
 
-### Environment
+###-Implementation
 
-To make the Zibby Integration as easy as possible, we support sandbox and live environments. The two environments have distinct Oauth keys and can be active simultaneously. Data is never shared across environments.
+->Verify phone
 
-### Test Endpoint
+->Enter verification code
 
-`https://sandbox.zibby.com/api/v2`
+->Patch in application data
 
-###Live Endpoint
+->Apply for preapproval
 
-`https://www.zibby.com/api/v2`
+###-Steps
 
-## shipping_object
+->Get an application
 
-The shipping_object is a JSON object containing information related to the shipment of an order or items within an order.
+->Build an application
 
+->Commit an application
 
-```json
-{
-  "items": [
-    {
-      "sku": "145867", 
-      "leasable": true, 
-      "display_name": "TV", 
-      "item_tax": 0.00, 
-      "unit_price": 1000.00, 
-      "quantity": 1
-    } 
-  ],
-      "shipping_confirmation": "198CAHJ23",
-      "shipping_carrier": "UPS" 
-}
-```
 
 
 # Pre-Approval
 
-##Step 1
+###Partners that would like the Zibby preapproval functionality, but are unable to integrate via our zibby.js plugin, can interact directly with the Zibby API. 
 
-```javascript
-<script>
-var _zibby_config = { 
-api_key: "#############",
-  environment: "<zibby.js url>" 
-};
-!function(e,t){e.zibby=e.zibby||{};var n,i,r;i=! 
-1,n=document.createElement("script"),n.type="text/javascript", 
-n.async=0,n.src=t.environment+"/plugin/js/zibby.js", 
-n.onload=n.onreadystatechange=function(){i||this.readyState 
-&&"complete"!=this.readyState||(i=0,e.zibby.setConfig(t.api_key))}, 
-r=document.getElementsByTagName("script")[0],r.parentNode.insertBefore(n,r); 
-var s=document.createElement("link"); s.setAttribute("rel","stylesheet"), 
-s.setAttribute("type","text/css"), 
-s.setAttribute("href",t.environment+"/plugin/css/zibby.css"); 
-var a=document.querySelector("head"); 
-a.insertBefore(s,a.firstChild)}(window,_zibby_config); 
-</script>
+There are three steps involved in the Zibby preapproval process:
+
+
+->Create the application
+
+->Build the application
+
+->Commit the application for approval
+
+##Create the Application
+
+>Submit Phone Number for Verification
+
+>DEFINITION:
+
+```script
+POST https://sandbox.zibby.com/api/ng/application/create
 ```
 
-Place the following script tag on the bottom of your page. This snippet uses an asynchronous loading method that allows you to immediately use the zibby.js plugin without a significant impact on the load time of your page.
 
+To begin an application, Zibby requires that the consumer verify their phone number. This is done by sending an SMS message to the input number.
 
+###Submit Phone Number for Verification->
 
-## Step 2
+To begin a Zibby application, we require verification of the the consumer’s phone number. This is done by sending a code via SMS to their input phone. 
 
-Place a button with class `btn-zibby-preapprove` on the pages where you want the Zibby pre-approval functionality to be available. Clicking this button will load the Zibby pre-approval form.
+>Example Request:
 
-`<a href="#" class="btn-zibby-preapprove"></a>`
-
-
-
-```javascript
-<script>
-$(‘.custom-class’).on(‘click keyup’, function() { 
-zibby.preapprove();
-});
-</script>
+```script
+-d {‘phone’: ‘2127338439’}
 ```
+
+>Example Response:
+
+```script
+{‘id’: 4832}
+```
+
+###Verify Phone number->
+
 <aside class="notice">
-Note:
-The zibby.js plugin automatically attempts to bind to the class btn-zibby-preapprove. If you wish to use a class other than btn-zibby-preapprove you should bind the class to the zibby.js plugin as shown to the right.
+The SMS code sent to the customer will be verified in this step.
 </aside>
 
-#Checkout
+>Verifiy Phone Number
 
-##Step 1
+>DEFINITION:
 
-```javascript
-<a href="#" class="btn-zibby-checkout">
-<img src="https://www.zibby.com/static/img/btn-zibby-checkout.png"
- alt="Checkout with Zibby">
-</a>
+```script
+POST https://sandbox.zibby.com/api/ng/application/verify_verification_code
 ```
+>Example Request:
 
-Place or name the Zibby checkout button within the payment options page of your site.
-
-## Step 2
-
-```javascript
-<script>
-  // setup and configure cart 
-  zibby.checkout.set({
-    customer: { 
-      billing: {
-        first_name: "jane", 
-        last_name: "doe",
-        address: "123 main street", 
-        address2: "apt 5b",
-        city: "New York",
-        state: "NY",
-        country: "United States", 
-        zip: "10009",
-        phone: "5554324537",
-        email: "jqdoe@anonmail.com" 
-      },
-      shipping: {
-        first_name: "jane",
-        last_name: "doe",
-        address: "123 main street", 
-        address2: "apt 5b",
-        city: "New York",
-        state: "NY",
-        country: "United States",
-        zip: "10009",
-        phone: "5554324537",
-        email: "jqdoe@anonmail.com"
-      } 
-    },
-
-    items: [{
-      display_name: "4K LG TV", 
-      sku: "LG-4k2352", 
-      unit_price: 1399.99, 
-      quantity:1
-    }],
-
-    checkout: {
-      customer_id: "10004323", 
-      discounts: {
-        discount_name_one: 10.00,
-        discount_name_two: 50.00 
-      },
-      shipping_amount: 20.00 
-    },
-    
-    urls: {
-      return: "https://yoursite.com/return", 
-      cancel:"https://yoursite.com/cancel"
-    }
-
-  });
-  
-  // load zibby checkout modal 
-  zibby.checkout.load();
-
-</script>
+```script
+-d {‘code’: ‘3GS37W’}
 ```
-
-To check out with zibby, you must first initialize the cart object with the following information
-
-1. Customer information - This is the billing and shipping information that the customer has already entered on your site
-
-2. Item data - The contents of the customers’ shopping cart
-
-3. Checkout data - Meta data on the transaction, such as the order id and any applicable discounts
-
-4. URLS - These are the routes we will send the customer to at the end of the transaction
-
-  a. The return URL is where we will redirect to after the customer completes their checkout. We will also POST to that URL the customer_id provided and the zibby_id associated with the order.
-  
-  b. The cancel URL is where we will redirect if a customer cancels a checkout with Zibby.
-
-Once initialized, the Zibby checkout modal can then be triggered.
-
-# Zibby API Functionality
-
-1. View an application
-2. Cancel an application
-3. Update Shipping Confirmation
-
-## View an Application
-
->Sample Response:
-
-```json
-{
-  "created_at": "2014-10-27T11:24:43.896099", 
-  "customer": {
-    "billing": {
-      "first_name": "jane", 
-      "last_name": "doe",
-      "address": "123 main street", 
-      "address2": "apt 5b",
-      "city": "New York",
-      "state": "NY",
-      "country": "United States", 
-      "zip": "10009",
-      “phone”: “5554324527”, 
-      “email”: “jqdoe@anonmail.com”
-    }, 
-    "shipping": {
-      "first_name": "jane", 
-      "last_name": "doe", 
-      "address": "123 main street", 
-      "address2": "apt 5b",
-      "city": "New York", 
-      "state": "NY",
-      "country": "United States", 
-      "zip": "10009",
-      “phone”: “5554324527”,
-      “email”: “jqdoe@anonmail.com”
-    }
-  },
-  "email": "jqdoe@anonmail.com", 
-  "id": "777663298",
-  "items": [
-    {
-      "display_name": "TV",
-      "funded": true,
-      "funded_date": “2014-06-14T05:13:21Z”, 
-      "item_tax": 0.00,
-      "leasable": true,
-      "shipped": false,
-      "sku": "145867",
-      "status": "active",
-      "unit_price": 1000.00
-    },
-    {
-      "display_name": "BATTERY",
-      "funded": true,
-      "funded_date": “2014-06-14T05:13:21Z”, 
-      "item_tax": 0.00,
-      "leasable": false, 
-      "shipped": false, 
-      "sku": "285868", 
-      "status": "active", 
-      "unit_price": 4.00
-    }
-   ],
-    "order_id": "10004323",
-    "phone": "2144324537",
-    "redirect": "https://sandbox.zibby.com/application/apply?uid=2fdabc7d76c346b79c255d93fa2476eb", 
-    "released_for_shipping": true,
-    "status": "current" 
-  }
-```
-The Zibby API can be queried to determine the status of any transaction that initiated a checkout with Zibby. Zibby will return 4 different statuses that the Retailer should use to update orders on their end.
-
-### Status Options
-
-pending: The default status of an order once it’s placed on Zibby
-
-cancelled: The order was not successfully completed on Zibby
-
-current: The order has completed processing on Zibby and can be shipped out to the customer
-
-return: The order was returned by customer
-
-###Definition
-`GET https://sandbox.zibby.com/api/v2/application/777663298`
-
-###Example Request
-`curl https://sandbox.zibby.com/api/v2/application/777663298 \  -H "Authorization: Bearer 9138985e464a2eb7ed5ff0390292830a48fd34ed"`
-
-## Cancel an Order
 
 >Example Response:
 
-```javascript
-{"status": "success"}
+```script
+{‘success’: true}
 ```
 
-Orders can be cancelled at anytime after creation by submitting a GET request to the Zibby API. The Zibby API is designed to support full cancellations. In the event of a cancellation, Zibby refunds the customer directly and completes reconciliation with the retailer.
+##Build the Application
 
-###Definition
-`GET https://sandbox.zibby.com/api/v2/application/777663298/cancel`
+>Customer Application Data:
 
-###Example Request
-`curl https://sandbox.zibby.com/api/v2/application/777663298/cancel \ -H "Authorization: Bearer 9138985e464a2eb7ed5ff0390292830a48fd34ed" \`
-
-
-#Updated Shipping Confirmation
-
->Example Response:
-
-```json
-{
-  "application": "777663298",
-  "created": "2014-10-27T12:28:51.359010", 
-  "id": 1,
-  "items": [
-    {
-      "display_name": "DVD PLAYER", 
-      "item_tax": 0.00,
-      "leasable": true,
-      "quantity": 1,
-      "sku": "919123",
-      "unit_price": 200.00
-    } 
-  ],
-  "shipping_carrier": "UPS", 
-  "shipping_confirmation": "198CAHJ23", 
-  "type": "shipment"
-}
+```script
+{‘billing’: {
+  ‘first_name’: ‘Jane’,
+  ‘last_name’: ‘Doe’,
+  ‘phone’: ‘2144324537’,
+  ‘address’: ‘119 saint marks place’,
+  ‘address2’: ‘Apt 5b’,
+  ‘city’: ‘New York’,
+  ‘state’: ‘NY’,
+  ‘zip’: ‘10009’,
+  ‘email’: ‘jqdoe@anonmail.com’},
+‘personal’: {
+  ‘ssn’: ‘1782378757’,
+  ‘income’: ‘50000’,
+  ‘ip_address’: ‘483.28.289’,
+  ‘dob_year’: ‘1981’,
+  ‘dob_month’: ‘11’,
+  ‘dob_day’: ‘15’,
+  ‘driver_license_number’: ‘E82923892’,
+  ‘driver_license_state’: ‘NY’,
+  ‘driver_license_expiration_year’: ‘2018’,
+  ‘driver_license_expiration_month’: ‘09’,
+  ‘driver_license_expiration_day’: ‘12’,
+  ‘employment_type’: ‘full-time’,
+  ‘reference_name’: ‘Jamie Smith’,
+  ‘reference_phone_number’: ‘2172849548’,
+  ‘employment_name’: ‘Streamlake Insurance’,
+  ‘employment_number’: ‘3672734875’}}
 ```
 
-Orders must be updated once a shipment has been created for them by the Retailer. The Zibby API is designed to support full and partial shipments. Supplying shipping confirmation helps reduce customer disputes of orders.
+To build the Zibby application for a consumer, the customer’s application data as shown in the Application JSON to the right should be sent either in a POST or PATCH request to Zibby. 
 
-###Definition
-`POST https://sandbox.zibby.com/api/v2/application/777663298/shipment`
+<aside class="notice">
+The zibby application supports the following employment types
+</aside>
 
-###Example Request
-`curl https://sandbox.zibby.com/api/v2/application/777663298/shipment \
--X POST \
--H "Authorization: Bearer 9138985e464a2eb7ed5ff0390292830a48fd34ed" \
--H "Content-Type: application/json"\
--d '{"shipping_object": <shipping_object>}'`
+<b>`Employment Types`</b>
 
-##(Optional) Receiving payment for the transaction
+Public Display | API Mapping
+-------------- | --------------
+Full time | full-time
+Part time | part-time
+Self employed | self-employed
+Unemployed | unemployed
+Social Security/Disability | social-security-disability
+Pension/Retirement | pension-retirement
+Military | military
 
->Example Response
 
-```json
-{
-  ‘payment_method’: <aes encrypted json>
-}
+##Commit the Application for Approval
+
+
+>DEFINITION:
+
+```script
+POST https://sandbox.zibby.com/api/ng/application/preapprove
 ```
+###Once the application has been built successfully, the final step in the Zibby approval process is to commit it for preapproval.
 
->...Where the contents of aes encrypted json is a json string with contents in the format below:
 
-```json
-{
-  "authorized_amount": "1210.55", 
-  “billing_name”: “Cognical Inc.”, 
-  "billing_address": "P.O Box 1112", 
-  "billing_city": "New York", 
-  "billing_state": "NY",
-  "billing_zip": "10010",
-  "card_cvv": "586",
-  "card_expiration": "09/18", 
-  "card_number": "4111111111111111", 
-  “card_type”: “mastercard”
-}
-```
 
-Zibby provides an API interface to allow select retailers to receive payments on approved transactions via a virtual card.
 
-Authorized requests to this endpoint will return a JSON object with values encrypted via the AES algorithm. To decrypt the values in this JSON, a separate decryption_key will be provided by Zibby.
 
-Upon decryption, the JSON parameters can be used to initiate a charge based on the authorized amount.
 
-###Definition
-`GET https://sandbox.zibby.com/api/v2/application/777663298/capture_charge`
-
-###Example Request
-`curl https://sandbox.zibby.com/api/v2/application/777663298/capture_charge \ -H "Authorization: Bearer 9138985e464a2eb7ed5ff0390292830a48fd34ed" \`
 
