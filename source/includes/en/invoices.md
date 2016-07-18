@@ -590,7 +590,7 @@ Replace `<invoice-ID>` with the `id` of the invoice you to query.
         "plazo": 0,
         "unidad_tiempo": "dias"
       }
-    ]
+    ],
     "autorizacion": {
         "estado": "AUTORIZADO",
         "mensajes": [
