@@ -18,10 +18,9 @@ search: true
 
 Integra tu sistema contable o ERP con Facturación Electrónica. La aplicación **Link** de Dátil
 te permite emitir todos los tipos de comprobantes electrónicos: facturas, retenciones,
-notas de crédito, notas de débito y guías de remisión. 
+notas de crédito, notas de débito y guías de remisión.
 
-La aplicación **Link** de Dátil funciona en Windows y en Linux(próximamente) como un servicio
-del sistema operativo activando la emisión de comprobantes automáticamente si tu servidor es reiniciado.
+La aplicación Link de Dátil funciona en Windows y en Linux (próximamente) como un servicio del sistema operativo. De esta manera, Link se podrá mantener en ejecución permanente y emitiendo comprobantes.
 
 **Link** se conecta a la base de datos de tu ERP o sistema contable para obtener la información
 de los comprobantes mientras sigues usando tu sistema como siempre lo has hecho.
@@ -32,7 +31,7 @@ de los comprobantes mientras sigues usando tu sistema como siempre lo has hecho.
 
 Link es compatible con los siguientes sistemas operativos:
 
-**Windows** 
+**Windows**
 
 _Disponible para 32 y 64 bits_
 
@@ -44,8 +43,8 @@ _Disponible para 32 y 64 bits_
 
 **Linux** (próximamente)
 
-* Centos 
-* Ubuntu 
+* Centos
+* Ubuntu
 
 ## Motor de Base de Datos
 
@@ -55,7 +54,7 @@ Link puede conectarse a los siguientes motores de bases de datos relacionales:
 * SQL Server 2008
 * SQL Server 2012
 
-O extraer información de los siguientes archivos de base de datos: 
+O extraer información de los siguientes archivos de base de datos:
 
 * DBF (Visual Fox Pro)
 
@@ -108,7 +107,7 @@ Con doble click sobre él un ícono de Dátil aparecerá en la barra de tareas.
 
 __Tablas o Vistas__
 
-Para que la aplicación **Link** se conecte a su ERP o sistema contable se deben configurar 
+Para que la aplicación **Link** se conecte a su ERP o sistema contable se deben configurar
 los *queries* para extraer información directamente de las tablas  de su base de datos.
 
 Si no desea que **Link** consulte directamente sus tablas puede crear vistas con la información
@@ -116,7 +115,7 @@ de los comprobantes a emitir.
 
 __Formato__
 
-Los queries se guardan siguiendo el formato de archivos `.ini`. en el directorio 
+Los queries se guardan siguiendo el formato de archivos `.ini`. en el directorio
 *C:/Archivos de Programa/Datil/Link/config/*.
 
 En cada archivo `.ini` cada _query_ está asignado a una variable.
@@ -127,14 +126,14 @@ Si aún no ha instalado __Link__, puede crear un archivo `.ini` de respaldo con 
 
 __Nombres de tablas y columnas__
 
-Sea directamente o por medio de vistas, dependiendo de su sistema, deberá cambiar los nombres de las tablas  al configurar los _queries_. 
+Sea directamente o por medio de vistas, dependiendo de su sistema, deberá cambiar los nombres de las tablas  al configurar los _queries_.
 
-Los nombres de las columnas en las tablas 
+Los nombres de las columnas en las tablas
 de su sistema pueden ser distintos pero el resultado de cada _query_ debe tener los nombres establecidos en esta documentación.
 
 __Queries opcionales__
 
-Algunos queries son opcionales porque la información que extraen no es obligatoria para el SRI, en este caso la variable que se configura en el archivo `.ini` debe tener asignada el valor de `None`. 
+Algunos queries son opcionales porque la información que extraen no es obligatoria para el SRI, en este caso la variable que se configura en el archivo `.ini` debe tener asignada el valor de `None`.
 
 Ejemplo:
 
@@ -145,7 +144,7 @@ Ejemplo:
 
 ## Factura
 
-Los queries para la emisión electrónica de __facturas__ se guardan en el archivo de configuración `invoice.ini`. 
+Los queries para la emisión electrónica de __facturas__ se guardan en el archivo de configuración `invoice.ini`.
 
 [Ejemplo de archivo invoice.ini](/link-app#invoice-ini)
 
@@ -157,7 +156,7 @@ Obtiene las facturas de su ERP o sistema contable a partir de una fecha determin
 
 ```sql
 
-all_stored_locally = SELECT 
+all_stored_locally = SELECT
   id_local
   FROM
   DocElectronicoFactura.cabecera
@@ -168,8 +167,8 @@ all_stored_locally = SELECT
 
 Campo |  Descripción | Valor de ejemplo
 --------- | -----------| ---------
-id_local | string | Identifica de manera única la factura. __Requerido__  
-fecha_emision | string  | Parámetro de búsqueda, es la fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__  
+id_local | string | Identifica de manera única la factura. __Requerido__
+fecha_emision | string  | Parámetro de búsqueda, es la fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
 
 ### Facturas no controladas
 
@@ -177,13 +176,13 @@ Obtiene las nuevas facturas generadas por su ERP o sistema contable a partir de 
 Se deben configurar dos queries.
 
 ```sql
-not_controlled = SELECT 
+not_controlled = SELECT
   id_local,
   numero,
   fecha_emision
   FROM
   DocElectronicoFactura.cabecera
-  where 
+  where
   id_local in (:sequence) AND
   fecha_emision >= ?
 
@@ -194,7 +193,7 @@ not_controlled_first_time = SELECT TOP :limit
   fecha_emision
   FROM
   DocElectronicoFactura.cabecera
-  where 
+  where
   fecha_emision >= ?
 ```
 
@@ -202,12 +201,12 @@ not_controlled_first_time = SELECT TOP :limit
 
 Campo |  Descripción | Valor de ejemplo
 --------- | -----------| ---------
-id_local | string | Identifica de manera única la factura. __Requerido__  
-numero | string | El número completo de la factura. Ejemplo: '001-002-000000034' __Requerido__  
-fecha_emision | string  | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__  
+id_local | string | Identifica de manera única la factura. __Requerido__
+numero | string | El número completo de la factura. Ejemplo: '001-002-000000034' __Requerido__
+fecha_emision | string  | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
 
 
-### Cabecera 
+### Cabecera
 
 Obtiene información de la cabecera de la factura
 
@@ -230,13 +229,13 @@ headers = SELECT
 
 Campo |  Descripción | Valor de ejemplo
 --------- | -----------| ---------
-id_local | string | Identifica de manera única la factura. __Requerido__  
-secuencial | string  | Número de secuencia de la factura. __Requerido__  
-fecha_emision | string  | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__  
-guia_remision | string | Número de guía de remisión asociada a esta factura en formato 001-002-000000003 ([0-9]{3}-[0-9]{3}-[0-9]{9}) 
-moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. __Requerido__ 
-clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso? 
-tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__ 
+id_local | string | Identifica de manera única la factura. __Requerido__
+secuencial | string  | Número de secuencia de la factura. __Requerido__
+fecha_emision | string  | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
+guia_remision | string | Número de guía de remisión asociada a esta factura en formato 001-002-000000003 ([0-9]{3}-[0-9]{3}-[0-9]{9})
+moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. __Requerido__
+clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
+tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
 
 
 ### Vendedor
@@ -414,14 +413,14 @@ Obtiene los detalles adicionales de un ítem. Este query es opcional.
 Los detalles adicionales de un ítem se manejan de la forma 'Clave':'Valor'. Ejemplo: 'Peso':'Kg'
 
 Se asume que en la tabla consultada
-una columna tiene los nombres y otra los valores. 
+una columna tiene los nombres y otra los valores.
 
 Ejemplo de columnas con detalles adicionales del ítem:
 
 columna_de_nombres  |  columna_de_valores
 -------------------- | --------------
-Peso        |   KG  
-Color           |   Rojo  
+Peso        |   KG
+Color           |   Rojo
 Caducidad                 |   10 días
 
 ```sql
@@ -441,21 +440,21 @@ Campo | Tipo | Descripción
 nombre | string | Nombre del detalle adicional del ítem
 valor | string | Valor del detalle adicional del ítem
 
-### Información adicional 
+### Información adicional
 
-Obtiene la información adicional de la factura. 
+Obtiene la información adicional de la factura.
 
 La información adicional de la factura se maneja de la forma 'Clave':'Valor'. Ejemplo: 'Tipo de pago':'Cheque'
 
 Se asume que en la tabla consultada
-una columna tiene los nombres y otra los valores. 
+una columna tiene los nombres y otra los valores.
 
 Ejemplo de columnas con información adicional de la factura:
 
 columna_de_nombres  |  columna_de_valores
 -------------------- | --------------
-Tipo de servicio        |   Avanzado  
-Forma de pago           |   Cheque  
+Tipo de servicio        |   Avanzado
+Forma de pago           |   Cheque
 Periodo                 |   3 meses
 
 ```sql
@@ -473,9 +472,51 @@ Campo | Tipo | Descripción
 `_nombre_` | string | Nombre de la información adicional de la factura
 `_valor_` | string | Valor de la información adicional de la factura
 
+### Pagos
 
+Obtiene la información de los pagos aplicables a la factura.
 
+```sql
+payments  = SELECT
+  medio_pago,
+  total_pago
+  FROM
+  DocElectronicoFactura.pagos
+  WHERE
+  id_factura = ?
+```
 
+Parámetro           | Tipo                    | Descripción
+------------------- | ----------------------- | ----------
+medio              | string                  | Código del [tipo de forma de pago](#tipos-de-forma-de-pago). __Requerido__
+total               | float                   | Total aplicable a la forma de pago especificada. __Requerido__
 
+### Propiedades de Pagos
 
+Obtiene la propiedades de los pagos de determinada factura.
 
+Las propiedades de los pagos se manejan de la forma 'Clave':'Valor'. Ejemplo: 'Plazo':'5'
+
+Se asume que en la tabla consultada una columna tiene los nombres y otra los valores.
+
+Ejemplo de columnas con propiedades de los pagos:
+
+columna_de_nombres  |  columna_de_valores
+-------------------- | --------------
+plazo        |   9
+unidad_tiempo           |   dias
+
+```sql
+payment_properties = SELECT
+  columna_de_nombres    _nombre_,
+  columna_de_valores     _valor_
+  FROM
+  DocElectronicoFactura.propiedades_pagos
+  WHERE
+  id_pago = ?
+```
+
+Campo | Tipo | Descripción
+--------- | ------- | -----------
+`_nombre_` | string | Nombre de la propiedad del pago
+`_valor_` | string | Valor de la propiedad del pago
