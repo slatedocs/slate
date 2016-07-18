@@ -92,8 +92,10 @@ curl -v https://link.datil.co/invoices/issue \
     {
       "medio": "efectivo",
       "total": 4882.68,
-      "propiedades: {"plazo": 0,
-                     "unidad_tiempo": "dias"}
+      "propiedades: {
+        "plazo": 0,
+        "unidad_tiempo": "dias"
+      }
     }
   ]
 }'
@@ -179,8 +181,10 @@ factura = {
     {
       "medio": "efectivo",
       "total": 4882.68,
-      "propiedades": {"plazo": 0,
-                      "unidad_tiempo": "dias"}
+      "propiedades": {
+        "plazo": 0,
+        "unidad_tiempo": "dias"
+      }
     }
   ]
 }
@@ -293,8 +297,10 @@ namespace DatilClient {
         {
           ""medio"": ""efectivo"",
           ""total"": 4882.68,
-          ""propiedades"": {""plazo"": 0,
-                            ""unidad_tiempo"": ""dias""}
+          ""propiedades"": {
+            ""plazo"": 0,
+            ""unidad_tiempo"": ""dias""
+          }
         }
       ]
       }");
@@ -434,8 +440,10 @@ propiedades               | objeto                 | Información adicional adju
     {
       "medio": "efectivo",
       "total": 4882.68,
-      "propiedades": {"plazo": 0,
-                      "unidad_tiempo": "dias"}
+      "propiedades": {
+        "plazo": 0,
+        "unidad_tiempo": "dias"
+      }
     }
   ]
 }
@@ -595,8 +603,10 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
       {
         "medio": "efectivo",
         "total": 168.00,
-        "propiedades": {"plazo": 0,
-                        "unidad_tiempo": "dias"}
+        "propiedades": {
+          "plazo": 0,
+          "unidad_tiempo": "dias"
+        }
       }
     ],
     "autorizacion": {
