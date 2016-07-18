@@ -434,7 +434,6 @@ propiedades         | object                  | Additional information related t
       "total": 4882.68,
       "propiedades": {"plazo": 0,
                       "unidad_tiempo": "dias"}
-      }
     }
   ]
 }
