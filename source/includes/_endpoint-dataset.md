@@ -300,6 +300,7 @@ start_date | date | ISO-8601 formatted date with day resolution.
 end_date | date | ISO-8601 formatted date with day resolution.
 is_published | boolean | If false, only project editors will have access to this dataset.
 weight_variables | array | Contains aliases of weight variables to start this dataset with. Variables must be numeric type.
+geodata | object | Metadata definition for any geodata associations.  The keys are the variable alias's and the values are tuples with the form: {'location': '<url of the existing geodata in our repository>', 'category_field': 'field within the geodata to use to match the category id', 'poly_field': 'currently unused, this is intended to allow rendering clients variablity of geodata rendering', 'rendering_type': 'defaults to polyfill (or filled polygon) no known clients currently utilize this'}
 table | object | Metadata definition for the variables in the dataset.
 
 
@@ -413,24 +414,24 @@ weight | URL | null | Points to the current weight variable applied for the give
 
 ##### Dataset catalogs
 
-A dataset contains a number of catalog resources that contain collections of
+A dataset contains a number of catalog resources that contain collections of 
 related objects. They are available under the `catalogs` attribute of the
 dataset Shoji entity.
 
 ```json
 {
-  "batches": "http://beta.crunch.io/api/datasets/c5d751/batches/",
-  "joins": "http://beta.crunch.io/api/datasets/c5d751/joins/",
-  "parent": "http://beta.crunch.io/api/datasets/",
-  "variables": "http://beta.crunch.io/api/datasets/c5d751/variables/",
-  "actions": "http://beta.crunch.io/api/datasets/c5d751/actions/",
-  "savepoints": "http://beta.crunch.io/api/datasets/c5d751/savepoints/",
-  "weight_variables": "http://beta.crunch.io/api/datasets/c5d751/weight_variables/",
-  "filters": "http://beta.crunch.io/api/datasets/c5d751/filters/",
-  "multitables": "http://beta.crunch.io/api/datasets/c5d751/multitables/",
-  "comparisons": "http://beta.crunch.io/api/datasets/c5d751/comparisons/",
-  "forks": "http://beta.crunch.io/api/datasets/c5d751/forks/",
-  "decks": "http://beta.crunch.io/api/datasets/c5d751/decks/",
+  "batches": "http://beta.crunch.io/api/datasets/c5d751/batches/", 
+  "joins": "http://beta.crunch.io/api/datasets/c5d751/joins/", 
+  "parent": "http://beta.crunch.io/api/datasets/", 
+  "variables": "http://beta.crunch.io/api/datasets/c5d751/variables/", 
+  "actions": "http://beta.crunch.io/api/datasets/c5d751/actions/", 
+  "savepoints": "http://beta.crunch.io/api/datasets/c5d751/savepoints/", 
+  "weight_variables": "http://beta.crunch.io/api/datasets/c5d751/weight_variables/", 
+  "filters": "http://beta.crunch.io/api/datasets/c5d751/filters/", 
+  "multitables": "http://beta.crunch.io/api/datasets/c5d751/multitables/", 
+  "comparisons": "http://beta.crunch.io/api/datasets/c5d751/comparisons/", 
+  "forks": "http://beta.crunch.io/api/datasets/c5d751/forks/", 
+  "decks": "http://beta.crunch.io/api/datasets/c5d751/decks/", 
   "permissions": "http://beta.crunch.io/api/datasets/c5d751/permissions/"
 }
 ```
@@ -531,7 +532,7 @@ Attribute | Description | Example
 --------- | ----------- | ------------------------------------
 filter | A Crunch filter expression defining a filter for the given export | `{"function": "==", "args": [{"variable": "000000"}, {"value": 1}]}`
 where  | A Crunch expression defining which variables to export | `{"function": "identify", "args": [{"id": ["000000"]}]}`
-options | An object of extra settings, which may be format-specific. See below. | `{"use_category_ids": true}`
+use_category_ids | Instead of including category names in the results, just use the ids (only available for csv)| 0 or 1
 
 See ["Expressions"](#expressions) for more on Crunch expressions.
 
@@ -543,7 +544,7 @@ The following rules apply for all formats:
 * Variables (columns) will be ordered in a flattened version of the dataset's hierarchical order.
 * Derived variables will be exported with their values, without their functional links.
 
-Some format-specific properties and options:
+Some format-specific properties:
 
 ###### SPSS
 
@@ -551,7 +552,8 @@ Categorical-array and multiple-response variables will be exported as "mrsets", 
 
 ###### CSV
 
-Categorical variable values will be exported as the category name by default. To use the category ids as data values, include `"use_category_ids": true` in the `"options"` attribute of the POST body.
+Categorical variable values will be exported with as the category name, not the category id.
+
 
 ##### Summary
 
