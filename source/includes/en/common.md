@@ -252,7 +252,7 @@ Withholding | 07
 Payment form            | Code
 ------------------------ | ------
 Cash | efectivo
-Direct credit | credito_directo
+Other payment methods | other
 Check | cheque
 Certified check | cheque_certificado
 Cashiers check | cheque_gerencia

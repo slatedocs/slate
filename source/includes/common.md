@@ -267,7 +267,7 @@ Comprobante de Retención | 07
 Forma de pago            | Código
 ------------------------ | ------
 Efectivo | efectivo
-Crédito directo | credito_directo
+Otros medios de pago | otros
 Cheque | cheque
 Cheque certificado | cheque_certificado
 Cheque de gerencia | cheque_gerencia
