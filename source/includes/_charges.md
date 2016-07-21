@@ -22,7 +22,7 @@ EXEMPLO
     "mulct_value": "10.12",
     "instructions":"Pagável em qualquer agência até data do vencimento.",
     "demonstrative":"Não receber após o vencimento.",
-    "payer_emails":["myemail@gmail.com"],
+    "notification_emails":["myemail@gmail.com"],
     "received":true,
     "received_amount":"10.07",
     "received_at":"2015-01-30",
@@ -79,7 +79,7 @@ Cada uma das cobranças criadas após a homologação serão do mesmo tipo da co
 | mulct_value                    | decimal          | valor da multa que deve ser aplicada em caso de atraso, com base em seu tipo                                                                        |
 | instructions                   | string           | instruções de pagamento do boleto, por padrão "Pagável em qualquer agência até data do vencimento."                                                 |
 | demonstrative                  | string           | demonstrativo do Boleto, por padrão "Não receber após o vencimento."                                                                                |
-| payer_emails                   | array of strings | emails de quem irá pagar o boleto                                                                                                                   |
+| notification_emails            | array of strings | emails de notificação para quem irá pagar o boleto                                                                                                                   |
 | received                       | boolean          | indica se a cobrança foi recebida                                                                                                                   |
 | received_amount                | decimal          | valor recebido                                                                                                                                      |
 | received_at                    | date             | dia em que a cobrança foi recebida                                                                                                                  |
@@ -112,7 +112,7 @@ As Cobranças tem o comportamento assíncrono em relação à comunicação com 
 | type                           | string           | indica o tipo da cobrança. Nesse caso, "payment_gateway"                                                                                      |
 | charge_config_id               | integer          | identificador da configuração de cobrança a qual esta cobrança pertece                                                                        |
 | total_amount                   | decimal          | valor total do boleto                                                                                                                         |
-| payer_emails                   | array of strings | emails de quem irá pagar o boleto                                                                                                             |
+| notification_emails            | array of strings | emails de notificação para quem irá pagar o boleto                                                                                                             |
 | payer_id                       | integer          | identificador do pagador                                                                                                                      |
 | payer_national_identifier_type | string           | tipo do documento do pagador (cpf ou cnpj)                                                                                                    |
 | payer_national_identifier      | string           | documento do pagador                                                                                                                          |
@@ -174,7 +174,7 @@ EXEMPLO DE CORPO DA RESPOSTA (BOLETO)
     "mulct_value": "10.12",
     "instructions":"Pagável em qualquer agência até data do vencimento.",
     "demonstrative":"Não receber após o vencimento.",
-    "payer_emails":["myemail@gmail.com"],
+    "notification_emails":["myemail@gmail.com"],
     "received":true,
     "received_amount":"10.07",
     "received_at":"2015-01-30",
@@ -288,7 +288,7 @@ EXEMPLO DE REQUISIÇÃO
           "document_kind":"DV",
           "our_number":"12345678",
           "total_amount":"10.07",
-          "payer_emails":["myemail@gmail.com"]
+          "notification_emails":["myemail@gmail.com"]
         }'
 
 EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
@@ -327,7 +327,7 @@ Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e
 | document_kind                  | string           | **(requerido)** espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                           |
 | total_amount                   | decimal          | **(requerido)** valor total do boleto                                                                                                                                   |
 | document_number                | string           | **(requerido)** número do documento, também chamado de "seu número", é o número utilizado e controlado pelo beneficiário para identificar o título de cobrança          |
-| payer_emails                   | array of strings | (opcional) emails de quem irá pagar o boleto                                                                                                                            |
+| notification_emails            | array of strings | (opcional) emails de notificação para quem irá pagar o boleto                                                                                                                            |
 | document_date                  | date             | (opcional) data de emissão do documento                                                                                                                                 |
 | our_number                     | string           | (opcional) nosso número. Caso não informado, é atribuído automaticamente pelo sistema                                                                                   |
 | our_number_digit               | integer          | (opcional) digito do verificador do nosso número                                                                                                                        |
@@ -440,7 +440,7 @@ EXEMPLO DE REQUISIÇÃO
     -d '{
           "document_date":"2015-02-02",
           "document_number":"123456789",
-          "payer_emails":["myemail@gmail.com"]
+          "notification_emails":["myemail@gmail.com"]
         }'
 
 EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
@@ -484,7 +484,7 @@ Para cobranças do tipo <strong>Boleto</strong> os campos 'received', 'received_
 | document_kind                  | string           | **(requerido)** espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                           |
 | total_amount                   | decimal          | **(requerido)** valor total da cobrança                                                                                                                                 |
 | document_number                | string           | **(requerido)** número do documento, também chamado de "seu número", é o número utilizado e controlado pelo beneficiário para identificar o título de cobrança          |
-| payer_emails                   | array of strings | (opcional) emails de quem irá pagar o boleto                                                                                                                            |
+| notification_emails            | array of strings | (opcional) emails de notificação para quem irá pagar o boleto                                                                                                                            |
 | document_date                  | date             | (opcional) data de emissão do documento                                                                                                                                 |
 | our_number                     | string           | (opcional) nosso número. Caso não informado, é atribuído automaticamente pelo sistema                                                                                   |
 | our_number_digit               | integer          | (opcional) digito do verificador do nosso número                                                                                                                        |
@@ -531,7 +531,7 @@ Uma cobrança com o status de erro no gateway de pagamento pode ser editada com 
 | soft_descriptor                | string           | (opcional) descritor que irá aparecer na fatura do cartão (no máximo 13 caracteres)                                                                                     |
 | installments                   | integer          | (opcional) número de parcelas (1 por padrão)                                                                                                                            |
 | generate_token                 | boolean          | (opcional) indica se deve ser gerado token para utilização do cartão de crédito no pagamento recorrente (false por padrão)                                              |
-| payer_emails                   | array of strings | (opcional) emails de quem irá a notificação de cobrança                                                                                                                 |
+| notification_emails            | array of strings | (opcional) emails de notificação para quem irá pagar o boleto                                                                                                                 |
 | payer_id                       | integer          | **(requerido, se não enviar payer_attributes )** identificador do pagador (caso seja fornecido, o parâmetro payer_attributes será ignorado)                             |
 | payer_attributes*              | object           | **(requerido, se não enviar payer_id )** atributos para a criação de um novo pagador ou atualização de um pagador existente com o mesmo documento (national_identifier) |
 | credit_card_id                 | integer          | **(requerido, se não enviar credit_card_attributes )** identificador do cartão de crédito utilizado na cobrança                                                         |
