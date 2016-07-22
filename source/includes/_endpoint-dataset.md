@@ -166,8 +166,6 @@ offset    | integer     | offset into the search index to start gathering result
 group_variables_limit | integer | number of non-matching variable results inside matching group names to return (default 10)
 
   
-And here is what a typical search result might look like:
-
 ```json
 {
    "element": "shoji:view",
@@ -243,7 +241,7 @@ And here is what a typical search result might look like:
                         "labels": [],
                         "name": "simple_alltypes",
                         "description": ""
-                    },
+                    }
                 },
                 "variables": {
                     "https://beta.crunch.io/api/datasets/4473ab4ee84b40b2a7cd5cab4548d584/variables/000000/": {
@@ -273,7 +271,8 @@ And here is what a typical search result might look like:
                         "subvar_names": [],
                         "dataset_name": "export test 94",
                         "description": "Numeric variable with value labels"
-                    },
+                    }
+                },
                 "variable_count": 14,
                 "totals": {
                     "variables": 4,
@@ -283,6 +282,7 @@ And here is what a typical search result might look like:
         ]
     }
 }
+```
 
 The variables grouping displays metadata for all of the variables that matched.
 The Datasets grouping displays metadata for all of the datasets where a variable or the dataset it self matched.  The "groups"
@@ -291,8 +291,6 @@ within the group.  Use the `group_variables_limit` parameter to define how many 
 variable_count is the total number of variables that matched the crunch's search index, which is usefull for pagination purposes.
 Totals group defines the number of variables and datasets that matched post-index-filtering.
 
-
-```
 
 #### Drafts
 
