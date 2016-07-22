@@ -58,7 +58,6 @@ With the relative flag enabled, the variable catalog looks something like this:
     },
     "views": {
         "weights": "https://beta.crunch.io/api/datasets/5ee0a0/variables/weights/",
-        "search": "https://beta.crunch.io/api/datasets/5ee0a0/variables/search/?q={token}"
     },
     "specification": "https://beta.crunch.io/api/specifications/variables/",
     "description": "List of Variables of this dataset",
@@ -155,7 +154,6 @@ line 24.
     },
     "views": {
         "weights": "https://beta.crunch.io/api/datasets/5ee0a0/variables/weights/",
-        "search": "https://beta.crunch.io/api/datasets/5ee0a0/variables/search/?q={token}"
     },
     "specification": "https://beta.crunch.io/api/specifications/variables/",
     "description": "List of Variables of this dataset",
@@ -319,35 +317,6 @@ weight variables with the incoming ones. Use this to delete weight variables.
 It is only possible to submit variables that belong to the main dataset. That
 is, variables from joined datasets cannot be set as weight.
 </aside>
-
-### Search
-
-`/datasets/{id}/variables/search/{?q}`
-
-On GET will return a Crunch Order with the variables matching the `q` token in
-the URL. The results will be under the "Search Results" group containing the
-urls for the matching variables.
-
-```json
-{
-    "element": "shoji:view",
-    "self": "https://beta.crunch.io/api/datasets/4e9a00/variables/search/?q=something",
-    "description": "Returns a view with a group containing all the variables that match the given query",
-    "value": {
-        "groups": [
-            {
-                "entities": [
-                    "https://beta.crunch.io/api/datasets/4e9a00/variables/b66668/",
-                    "https://beta.crunch.io/api/datasets/4e9a00/variables/8f68ca/",
-                    "https://beta.crunch.io/api/datasets/4e9a00/variables/f6ae03/",
-                    "https://beta.crunch.io/api/datasets/4e9a00/variables/b4bd6a/",
-                ],
-                "group": "Search Results"
-            }
-        ]
-    }
-}
-```
 
 ### Entity
 

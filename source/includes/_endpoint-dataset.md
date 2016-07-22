@@ -38,9 +38,17 @@ crGET("https://beta.crunch.io/api/datasets/")
 {
     "element": "shoji:catalog",
     "self": "https://beta.crunch.io/api/datasets/",
-    "orders": {
-        "order": "https://beta.crunch.io/api/datasets/order/"
+    "catalogs"{
+        "by_name": "https://beta.crunch.io/api/datasets/by_name/{name}/"
     },
+    "views": {
+        "search": "https://beta.crunch.io/api/datasets/search/"
+    },
+    orders: {
+        order: "https://beta.crunch.io/api/datasets/order/"
+    },
+    "specification: "https://beta.crunch.io/api/specifications/datasets/",
+    "description": "Catalog of Datasets that belong to this user. POST a Dataset representation (serialized JSON) here to create a new one; a 201 response indicates success and returns the location of the new object. GET that URL to retrieve the object.",
     "index": {
         "https://beta.crunch.io/api/datasets/cc9161/": {
             "owner_name": "James T. Kirk",
@@ -94,7 +102,8 @@ crGET("https://beta.crunch.io/api/datasets/")
             "current_editor": null,
             "current_editor_name": null
         }
-    }
+    },
+    "template": "{"name": "Awesome Dataset", "description": "(optional) This dataset is awesome because I made it, and you can do it too."}"
 }
 ```
 
@@ -129,6 +138,161 @@ is_published | boolean | true | Indicates if the dataset is published to viewers
     multiple teams or by direct sharing, the final permissions they have on the
     dataset will be the maximum of all the permissions granted.
 </aside>
+
+#### Search
+
+You can perform a cross-dataset search of dataset metadata (including variables) via the search endpoint.
+This search will return associated variables, groups, and dataset metadata.  A query string, along with filtering
+properties can be provided to the search endpoint in order to refine the results.  The query string provided is only
+used in plain-text format, any non-text or numeric characters are ignored at this time.
+
+<aside class="notice">
+
+Results are limited only to those
+datasets the user has access to.  Offset and limit parameters are also provided in order to provide performance-chunking
+options.  Variable metadata is returned with these limits based on crunch's internal index, but are filtered to include
+only variable results that match the given search term.  This means that there may be less variable search results
+provided than the limit provided by the user.
+</aside>  
+
+Here are the parameters that can be passed to the search endpoint.
+
+Paremeter | Type        | Description
+----------|-------------|------------------------------------------------
+q         | string      | query string (text and numeric only) 
+f         | json Object | used to limit the output of the search (currently {'dataset_id': '<desired dataset_id>'} supported
+limit     | integer     | limit the number of results returned by the api to less than this amount
+offset    | integer     | offset into the search index to start gathering results from pre-filter 
+group_variables_limit | integer | number of non-matching variable results inside matching group names to return (default 10)
+
+  
+And here is what a typical search result might look like:
+
+```json
+{
+   "element": "shoji:view",
+    "self": "https://beta.crunch.io/api/datasets/search/?q=blue",
+    "description": "Returns a view with relevant search information",
+    "value": {
+        "groups": [
+            {
+                "group": "Search Results",
+                "datasets": {
+                    "https://beta.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/": {
+                        "labels": [],
+                        "name": "econ_few_columns_0",
+                        "groups": {
+                            "blue": {
+                                "https://beta.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/variables/000004/": {
+                                    "dataset_labels": [],
+                                    "users": [
+                                        "00004",
+                                        "00002"
+                                    ],
+                                    "alias": "Gender",
+                                    "dataset_end_date": null,
+                                    "category_names": [
+                                        "Male",
+                                        "Female",
+                                        "Skipped",
+                                        "Not Asked",
+                                        "No Data"
+                                    ],
+                                    "dataset_start_date": null,
+                                    "name": "Gender",
+                                    "dataset_description": "",
+                                    "dataset_archived": false,
+                                    "group_names": [
+                                        "blue"
+                                    ],
+                                    "dataset": "https://beta.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/",
+                                    "dataset_id": "173b4eec13f542588b9b0a9cbcd764c9",
+                                    "dataset_created_time": null,
+                                    "subvar_names": [],
+                                    "dataset_name": "econ_few_columns_0",
+                                    "description": "Are you male or female?"
+                                },
+                                "https://beta.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/variables/000003/": {
+                                    "dataset_labels": [],
+                                    "users": [
+                                        "00004",
+                                        "00002"
+                                    ],
+                                    "alias": "BirthYear",
+                                    "dataset_end_date": null,
+                                    "category_names": [],
+                                    "dataset_start_date": null,
+                                    "name": "BirthYear",
+                                    "dataset_description": "",
+                                    "dataset_archived": false,
+                                    "group_names": [
+                                        "blue"
+                                    ],
+                                    "dataset": "https://beta.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/",
+                                    "dataset_id": "173b4eec13f542588b9b0a9cbcd764c9",
+                                    "dataset_created_time": null,
+                                    "subvar_names": [],
+                                    "dataset_name": "econ_few_columns_0",
+                                    "description": "In what year were you born?"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "https://beta.crunch.io/api/datasets/4473ab4ee84b40b2a7cd5cab4548d584/": {
+                        "labels": [],
+                        "name": "simple_alltypes",
+                        "description": ""
+                    },
+                },
+                "variables": {
+                    "https://beta.crunch.io/api/datasets/4473ab4ee84b40b2a7cd5cab4548d584/variables/000000/": {
+                        "dataset_labels": [],
+                        "users": [
+                            "00002"
+                        ],
+                        "alias": "x",
+                        "dataset_end_date": null,
+                        "category_names": [
+                            "red",
+                            "green",
+                            "blue",
+                            "4",
+                            "8",
+                            "9",
+                            "No Data"
+                        ],
+                        "dataset_start_date": null,
+                        "name": "x",
+                        "dataset_description": "",
+                        "dataset_archived": false,
+                        "group_names": null,
+                        "dataset": "https://beta.crunch.io/api/datasets/4473ab4ee84b40b2a7cd5cab4548d584/",
+                        "dataset_id": "bb987b45a5b04caba10dec4dad7b37a8",
+                        "dataset_created_time": null,
+                        "subvar_names": [],
+                        "dataset_name": "export test 94",
+                        "description": "Numeric variable with value labels"
+                    },
+                "variable_count": 14,
+                "totals": {
+                    "variables": 4,
+                    "datasets": 2
+                }
+            }
+        ]
+    }
+}
+
+The variables grouping displays metadata for all of the variables that matched.
+The Datasets grouping displays metadata for all of the datasets where a variable or the dataset it self matched.  The "groups"
+parameter of the dataset indicates any groups that matched, along with variables that did not match the search but are contained
+within the group.  Use the `group_variables_limit` parameter to define how many group variables to expose in this parameter. 
+variable_count is the total number of variables that matched the crunch's search index, which is usefull for pagination purposes.
+Totals group defines the number of variables and datasets that matched post-index-filtering.
+
+
+```
 
 #### Drafts
 
