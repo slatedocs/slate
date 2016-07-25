@@ -409,6 +409,7 @@ location-id |
                     "business-name": "John's business",
                     "address": "Lungomare Zara, 1234 Giulianova",
                     "postcode": "1234",
+                    "website-url": ""http://www.johns-s-business.co.uk/",
                     "telephone": "03 12345678"
                 }
             ],
