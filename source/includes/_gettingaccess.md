@@ -90,12 +90,12 @@ We strongly recommend to use a standard OAuth 2.0 client library in your applica
 Give this authorisation link to the user (he has to open this in his browser, so you could redirect him there):
 
 ```
-https://accounts.itembase.com/oauth/v2/auth?response_type=code&client_id=CLIENT_ID&scope=user.minimal+connection.transaction&redirect_uri=CALLBACK_URI
+https://sandbox.accounts.itembase.io/oauth/v2/auth?response_type=code&client_id=CLIENT_ID&scope=user.minimal+connection.transaction&redirect_uri=CALLBACK_URI
 ```
 
 Here is an explanation of the components of this link:
 
-* **https://accounts.itembase.com/oauth/v2/auth**: the OAuth 2.0 authorisation endpoint
+* **https://sandbox.accounts.itembase.io/oauth/v2/auth**: the OAuth 2.0 authorisation endpoint
 * **response_type=code**: specifies that we are using *authorization_code* grant type
 * **client_id=CLIENT_ID**: your application's client id
 * **scope=user.minimal+connection.transaction**: the url encoded scope (access level) you are requesting
@@ -118,12 +118,12 @@ https://someservice.com/connect?code=AUTHORIZATION_CODE
 After the application received the authorization code (step 3), it does a *server side* request to exchange the code with the first Access Token:
 
 ```
-https://accounts.itembase.com/oauth/v2/token?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=authorization_code&code=AUTHORIZATION_CODE&redirect_uri=CALLBACK_URI
+https://sandbox.accounts.itembase.io/oauth/v2/token?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=authorization_code&code=AUTHORIZATION_CODE&redirect_uri=CALLBACK_URI
 ```
 
 This request **must be done on server side** because you need your client secret. Here is an explanation of the components of this URL:
 
-* **https://accounts.itembase.com/oauth/v2/token**: the OAuth 2.0 token endpoint
+* **https://sandbox.accounts.itembase.io/oauth/v2/token**: the OAuth 2.0 token endpoint
 * **client_id=CLIENT_ID**: your application's client id
 * **client_secret=CLIENT_SECRET**: your application's client secret
 * **grant_type=authorisation_code**: specifies that we are using an authorization code to get an Access Token
@@ -151,10 +151,10 @@ The token is valid for a given user and will expire after a certain time. With t
 When receiving an AccessToken (step 5), it also includes a Refresh Token. Those tokens are valid for much longer than access tokens and can be used to receive new Access Tokens without the user. This requires the following call (*server side*):
 
 ```
-https://accounts.itembase.com/oauth/v2/token?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=refresh_token&refresh_token=REFRESH_TOKEN
+https://sandbox.accounts.itembase.io/oauth/v2/token?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=refresh_token&refresh_token=REFRESH_TOKEN
 ```
 
-* **https://accounts.itembase.com/oauth/v2/token**: the OAuth 2.0 token endpoint
+* **https://sandbox.accounts.itembase.io/oauth/v2/token**: the OAuth 2.0 token endpoint
 * **client_id=CLIENT_ID**: your application's client id
 * **client_secret=CLIENT_SECRET**: your application's client secret
 * **grant_type=refresh_token**: specifies that we are using a refresh token to get an Access Token
