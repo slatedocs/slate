@@ -1,13 +1,18 @@
 # Getting Access
 <a name="getting-access"></a>
-The data offered by us are owned by users. To get access to it, you need to be authorised by them. This is handled by an 
-OAuth 2.0 based authorisation process. Using our connect API you can then ask the user to grant you access to certain 
-shops (called *connections*).
+Since the data offered by our APIs is owned by users, you need to be authorised by them to access it. This can be achieved by implementing two steps:
 
-## Authorization and authentication
+* An OAuth 2.0 *authorisation code* flow where the user authorises your client 
+* The connect API to ask the user to grant you access to certain shops (called *connections*)
 
-Our auth server at `accounts.itembase.com` combines an OAuth server that follows the standardized behaviour described 
-in [the OAuth 2.0 RFC specification](https://tools.ietf.org/html/rfc6749) and a login server for user authentication.
+In most cases those steps are interchangeable:
+
+![First OAuth, then Connect API](images/connect_api_flow_a.png "Version a of getting access")
+![First Connect API, then OAuth](images/connect_api_flow_b.png "Version b of getting access")
+
+## Authorization and authentication with OAuth 2.0
+
+Our auth server at `accounts.itembase.com` combines an OAuth server that follows the standard behaviour described in [the OAuth 2.0 RFC specification](https://tools.ietf.org/html/rfc6749) and a login server for user authentication.
 
 As OAuth 2.0 is a widely used standard, we recommend to use one of the many libraries that implement the flow. Some examples:
 
@@ -16,12 +21,19 @@ As OAuth 2.0 is a widely used standard, we recommend to use one of the many libr
 * [golang/oauth2 for Go](https://github.com/golang/oauth2)
 * [Apache Oltu for Java](https://cwiki.apache.org/confluence/display/OLTU/OAuth+2.0+Client+Quickstart)
 
-You have to follow the `authorization_code` grant type / flow.
+You have to follow the `authorization_code` grant type / flow and use the following URLs:
 
-### Scopes
+|Type|Production|Sandbox|
+|---|---|---|
+|Auth URL|https://accounts.itembase.com/oauth/v2/auth|https://sandbox.accounts.itembase.io/oauth/v2/auth|
+|Token URL|https://accounts.itembase.com/oauth/v2/token|https://sandbox.accounts.itembase.io/oauth/v2/token|
+|User info URL|https://users.itembase.com/v1/me|https://sandbox.users.itembase.io/v1/me|
 
-A scope describes what resources you are able to access and in which way (read, create, edit). During the autorization 
-process they are shown to the user in a readable form. Currently itembase supports the following scopes:
+Continue reading for more information on scopes and user info.
+
+### OAuth 2.0 Scopes
+
+A scope describes what resources you are able to access and in which way (read, create, edit). During the autorization process they are shown to the user in a readable form. Currently itembase supports the following scopes:
 
 |Scope item|Readable form|Description|
 |---|---|---|
@@ -39,8 +51,7 @@ The scope is a space seperated list of the scope items listed above. A valid exa
 user.minimal connection.transaction
 ```
 
-This would give your client access to APIs that return basic user information and transaction data for user defined shop 
-connections.
+This would give your client access to APIs that return basic user information and transaction data for user defined shop connections.
 
 ### Getting basic user information
 
@@ -69,6 +80,87 @@ This responds with basic user information, one of them is the `uuid` of the item
 
 Access tokens and refresh tokens should be securely stored on your server along with the `uuid` they are valid for. You 
 can also create a user on your side or match the one that was currently logged in with the data you receive from this call.
+
+### Example: OAuth 2.0 implementation
+
+We strongly recommend to use a standard OAuth 2.0 client library in your application. However, we provide a quick example here in case you still need to follow the actual steps of the OAuth 2.0 flow.
+
+#### Step 1: Authorisation code link
+
+Give this authorisation link to the user (he has to open this in his browser, so you could redirect him there):
+
+```
+https://accounts.itembase.com/oauth/v2/auth?response_type=code&client_id=CLIENT_ID&scope=user.minimal+connection.transaction&redirect_uri=CALLBACK_URI
+```
+
+Here is an explanation of the components of this link:
+
+* **https://accounts.itembase.com/oauth/v2/auth**: the OAuth 2.0 authorisation endpoint
+* **response_type=code**: specifies that we are using *authorization_code* grant type
+* **client_id=CLIENT_ID**: your application's client id
+* **scope=user.minimal+connection.transaction**: the url encoded scope (access level) you are requesting
+* **redirect_uri=CALLBACK_URI**: the url encoded callback uri where the service will redirect after the code was granted 
+
+#### Step 2: User authorises the application
+
+When a user was redirected to the authorisation URL (step 1), they first log in or register (unless this already happened). After that they will be asked to authorise your application.
+
+#### Step 3: Application receives authorization code
+
+After the user granted access to your application (step 2), the service redirects to the application callback uri that was given in the first step along with an *authorization code*. Assuming that your callback uri is `https://someservice.com/connect` it would look something like this:
+
+```
+https://someservice.com/connect?code=AUTHORIZATION_CODE
+```
+
+#### Step 4: Application requests Access Token
+
+After the application received the authorization code (step 3), it does a *server side* request to exchange the code with the first Access Token:
+
+```
+https://accounts.itembase.com/oauth/v2/token?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=authorization_code&code=AUTHORIZATION_CODE&redirect_uri=CALLBACK_URI
+```
+
+This request **must be done on server side** because you need your client secret. Here is an explanation of the components of this URL:
+
+* **https://accounts.itembase.com/oauth/v2/token**: the OAuth 2.0 token endpoint
+* **client_id=CLIENT_ID**: your application's client id
+* **client_secret=CLIENT_SECRET**: your application's client secret
+* **grant_type=authorisation_code**: specifies that we are using an authorization code to get an Access Token
+* **code=AUTHORIZATION_CODE**: the authorization code you received
+* **redirect_uri=CALLBACK_URI**: the url encoded callback uri (this is just needed for additional security)
+
+#### Step 5: Application receives the Access Token
+
+If the code authorization code was valid, the application receives the first Access Token as a response:
+
+```json
+{
+  "access_token": "MjU5MGM0YjJkZmIyZDZmZmE3NGQwZGZkMzYxNTBhYjA2M2Vj",
+  "expires_in": 2592000,
+  "token_type": "bearer",
+  "scope": "user.minimal",
+  "refresh_token": "ODk3YjA5MjM3YzNjMzQ1NjY5NDZiZGZjMDI2ODQ1NazZ2Vj"
+}
+```
+
+The token is valid for a given user and will expire after a certain time. With this token you can access our APIs. As most of them require a *user id*, you can also use it to get basic user information (see above).
+
+#### Step 6: Receiving new Access Tokens with Refresh Tokens
+
+When receiving an AccessToken (step 5), it also includes a Refresh Token. Those tokens are valid for much longer than access tokens and can be used to receive new Access Tokens without the user. This requires the following call (*server side*):
+
+```
+https://accounts.itembase.com/oauth/v2/token?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=refresh_token&refresh_token=REFRESH_TOKEN
+```
+
+* **https://accounts.itembase.com/oauth/v2/token**: the OAuth 2.0 token endpoint
+* **client_id=CLIENT_ID**: your application's client id
+* **client_secret=CLIENT_SECRET**: your application's client secret
+* **grant_type=refresh_token**: specifies that we are using a refresh token to get an Access Token
+* **refresh_token=REFRESH_TOKEN**: the refresh token you received
+
+This will respond with a new pair of Access Token and Refresh Token (see step 5). Please note that the new refresh token **replaces** the old one!
 
 ## Getting access to connection data
 
