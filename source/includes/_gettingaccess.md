@@ -72,7 +72,7 @@ can also create a user on your side or match the one that was currently logged i
 
 ## Getting access to connection data
 
-To get access to connection data you need to use [Connect API](https://swaggerhub.com/api/siib/sandbox-connect-api/2.0). 
+To get access to connection data you need to use [Connect API](https://swaggerhub.com/api/thommy/connect_api/2.0). 
 
 The Connect API works with three entities:
 
