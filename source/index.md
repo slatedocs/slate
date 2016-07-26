@@ -488,6 +488,108 @@ echo $response->getBody();
 }
 ```
 
+> Get the top trending YouTube content published in United States or United Kingdom that talk about Rihanna since a week ago
+
+``` shell
+curl -H "Content-Type: application/json" -X POST -d '{
+    "filters": ["(country_code:us OR country_code:gb) and headline:rihanna"],
+    "language": "en",
+    "video_only":false,
+    "sort_by": "nw_max_score",
+    "find_related": false,
+    "size": 1,
+    "content_type": "youtube"
+}' "https://api.newswhip.com/v1/articles?key=YOUR_API_KEY"
+```
+
+```php
+<?php
+require 'vendor/autoload.php';
+use GuzzleHttp\Client;
+
+$client = new Client();
+$response = $client->post('https://api.newswhip.com/v1/articles?key=YOUR_API_KEY', [
+	'headers' => ['Content-Type' => 'application/json'],
+	'body' => '{
+		"filters": [
+			"(country_code:us OR country_code:gb) and headline:rihanna"
+		],
+    	"language": "en",
+    	"video_only":false,
+    	"sort_by": "nw_max_score",
+    	"find_related": false,
+    	"size": 1,
+    	"content_type": "youtube"
+	}']);
+echo $response->getBody();
+?>
+```
+
+```json
+{
+  "articles": [
+    {
+      "link": "https://www.youtube.com/watch?v=oOC4pgpdQwU",
+      "headline": "Rihanna to play Marion Crane in ‘Bates Motel’",
+      "excerpt": "Rihanna is joining the cast of 'Bates Motel' as Marion Crane - the role played by Janet Leigh in the original film version of \"Psycho.\" (July 23) Subscribe f...",
+      "keywords": "play, finance, business, a48f4f7047f441d4bfba2ded6013ca2a, arts and entertainment, ap, motel’, marion, reports, news, politics, headlines, crane, associated ...",
+      "source": {
+        "publisher": "youtube.com",
+        "link": "https://youtube.com",
+        "country": "United States",
+        "country_code": "us"
+      },
+      "nw_score": 0.9735510200574524,
+      "max_nw_score": 20.960377601453384,
+      "fb_data": {
+        "comment_count": 17,
+        "like_count": 250,
+        "share_count": 15,
+        "total_count_delta": 31,
+        "delta_period": 543,
+        "delta_period_unit": "m"
+      },
+      "youtube_post": {
+        "ytLikes": 36,
+        "ytViews": 3225,
+        "ytComments": 45,
+        "ytDislikes": 37,
+        "author": "Associated Press",
+        "thumbnail": "https://yt3.ggpht.com/-w68FQ_fAEwk/AAAAAAAAAAI/AAAAAAAAAAA/0O-NUcXQDOA/s240-c-k-no-rj-c0xffffff/photo.jpg",
+        "channel": "https://www.youtube.com/channel/UC52X5wxOL_s5yw0dQk7NtgA"
+      },
+      "tw_data": {
+        "tw_count": 20,
+        "total_count_delta": 0,
+        "delta_period": 543,
+        "delta_period_unit": "m"
+      },
+      "li_data": {
+        "li_count": 0,
+        "total_count_delta": 0,
+        "delta_period": 543,
+        "delta_period_unit": "m"
+      },
+      "tw_creator": null,
+      "delta_time": 543,
+      "recent_fb_counts": 31,
+      "recent_tw_counts": 0,
+      "uuid": "ca578cd0-50ca-11e6-a769-8b1fd34d6bab",
+      "publication_timestamp": 1469273723000,
+      "image_link": "https://i.ytimg.com/vi/oOC4pgpdQwU/maxresdefault.jpg",
+      "relatedStories": [],
+      "topics": [
+        {
+          "id": 2,
+          "name": "News"
+        }
+      ],
+      "has_video": true
+    }
+  ]
+}
+```
+
 `POST /v1/articles`
 
 This endpoint retrieves all articles matching the filters provided.
@@ -509,7 +611,7 @@ video_only | false |   |
 default_field | Relevant fields | String | Field to be used when filtering by keywords (like `"Barack Obama"`) and no fields are used in the Query String.
 size |   | Integer | Max number of articles to be returned (includes relatedStories.)
 find_related | true | Boolean | Related stories will be collapsed when set.
-content_type | stories | String | Filters by one of the following types: `stories`, `fb_posts`.
+content_type | stories | String | Filters by one of the following types: `stories`, `fb_posts`, `youtube`.
 
 ### Available fields for filtering
 
