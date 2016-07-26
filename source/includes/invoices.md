@@ -90,11 +90,11 @@ curl -v https://link.datil.co/invoices/issue \
   ],
   "pagos": [
     {
-      "medio": "efectivo",
+      "medio": "cheque",
       "total": 4882.68,
       "propiedades: {
-        "plazo": 0,
-        "unidad_tiempo": "dias"
+        "numero": "1234567890",
+        "banco": "Banco Pacífico"
       }
     }
   ]
@@ -179,11 +179,11 @@ factura = {
   ],
   "pagos": [
     {
-      "medio": "efectivo",
+      "medio": "cheque",
       "total": 4882.68,
-      "propiedades": {
-        "plazo": 0,
-        "unidad_tiempo": "dias"
+      "propiedades: {
+        "numero": "1234567890",
+        "banco": "Banco Pacífico"
       }
     }
   ]
@@ -295,11 +295,11 @@ namespace DatilClient {
       ],
       ""pagos"": [
         {
-          ""medio"": ""efectivo"",
+          ""medio"": ""cheque"",
           ""total"": 4882.68,
           ""propiedades"": {
-            ""plazo"": 0,
-            ""unidad_tiempo"": ""dias""
+            ""numero"": ""1234567890"",
+            ""banco"": "Banco Pacífico""
           }
         }
       ]
@@ -334,6 +334,7 @@ clave_acceso | string | La clave de acceso representa un identificador único de
 informacion_adicional | objeto | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"plan": "Inicial", "vigencia": "1 mes"}`
 retenciones | Listado de objetos de tipo [retencion](#retencion-de-factura) | Retenciones incluídas en la factura. Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que participan en la comercialización de periódicos y/o revistas.
 pagos | Listado de objetos tipo [pagos](#pagos) | Listado de formas de pago aplicables a la factura. __Requerido__
+credito | Objeto de tipo [credito](#cr-dito) | Información del crédito directo otorgado al cliente.
 
 
 #### Totales
@@ -355,6 +356,11 @@ medio              | string                  | Código del [tipo de forma de pag
 total               | float                   | Total aplicable a la forma de pago especificada. __Requerido__
 propiedades               | objeto                 | Información adicional adjunta al pago en forma de diccionario. Ejemplo:<br>` {"plazo": "30", "unidad_tiempo": "dias"}`
 
+#### Crédito
+
+Parámetro           | Tipo    | Descripción
+------------------- | ------- | ----------
+fecha_vencimiento   | string  | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf. __Requerido__
 
 ### Respuesta
 
@@ -438,11 +444,11 @@ propiedades               | objeto                 | Información adicional adju
   ],
   "pagos": [
     {
-      "medio": "efectivo",
+      "medio": "cheque",
       "total": 4882.68,
-      "propiedades": {
-        "plazo": 0,
-        "unidad_tiempo": "dias"
+      "propiedades: {
+        "numero": "1234567890",
+        "banco": "Banco Pacífico"
       }
     }
   ]
@@ -601,11 +607,11 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
     ],
     "pagos": [
       {
-        "medio": "efectivo",
-        "total": 168.00,
-        "propiedades": {
-          "plazo": 0,
-          "unidad_tiempo": "dias"
+        "medio": "cheque",
+        "total": 4882.68,
+        "propiedades: {
+          "numero": "1234567890",
+          "banco": "Banco Pacífico"
         }
       }
     ],
