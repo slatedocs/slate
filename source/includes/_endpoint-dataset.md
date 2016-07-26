@@ -175,8 +175,6 @@ project    | strint           | id of the project to limit results (user must ha
 
 ```http
 GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_variables_list={group_variables_list}  HTTP/1.1
-Host: beta.crunch.io
-
 ```
   
 ```json

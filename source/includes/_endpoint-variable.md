@@ -57,7 +57,7 @@ With the relative flag enabled, the variable catalog looks something like this:
         "personal": "https://beta.crunch.io/api/datasets/5330a0/variables/personal/"
     },
     "views": {
-        "weights": "https://beta.crunch.io/api/datasets/5ee0a0/variables/weights/",
+        "weights": "https://beta.crunch.io/api/datasets/5ee0a0/variables/weights/"
     },
     "specification": "https://beta.crunch.io/api/specifications/variables/",
     "description": "List of Variables of this dataset",
@@ -93,7 +93,7 @@ With the relative flag enabled, the variable catalog looks something like this:
             "type": "categorical_array",
             "id": "aad4ad",
             "description": ""
-        },
+        }
     }
 }
 ```
@@ -153,7 +153,7 @@ line 24.
         "hier": "https://beta.crunch.io/api/datasets/5330a0/variables/hier/"
     },
     "views": {
-        "weights": "https://beta.crunch.io/api/datasets/5ee0a0/variables/weights/",
+        "weights": "https://beta.crunch.io/api/datasets/5ee0a0/variables/weights/"
     },
     "specification": "https://beta.crunch.io/api/specifications/variables/",
     "description": "List of Variables of this dataset",
@@ -189,7 +189,7 @@ line 24.
             "type": "categorical_array",
             "id": "aad4ad",
             "description": ""
-        },
+        }
     }
 }
 ```
@@ -559,7 +559,7 @@ Example:
 [
   {
     "Invalid": {"value": 0},
-    "Sarai doesn't know how to use a calculator :(": {"range": [1000, null], "inclusive": [true, false]},
+    "Sarai doesn't know how to use a calculator :(": {"range": [1000, null], "inclusive": [true, false]}
   }
 ]
 ```

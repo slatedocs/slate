@@ -25,15 +25,15 @@ GET /projects/ HTTP/1.1
     "http://beta.crunch.io/api/projects/4643/": {
       "name": "Project 1",
       "id": "4643",
-      "icon": ""
-      "permissions": {"view":true, "edit:"true"}
+      "icon": "",
+      "permissions": {"view":true, "edit": "true"}
     },
     "http://beta.crunch.io/api/projects/6c01/": {
       "name": "Project 2",
       "id": "6c01",
       "icon": "",
-      "description": "Description of project 2"
-      "permissions": {"view":true, "edit:"true"}
+      "description": "Description of project 2",
+      "permissions": {"view":true, "edit": "true"}
     }
   }
 }

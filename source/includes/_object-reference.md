@@ -515,7 +515,7 @@ Catalogs collect or contain entities. They act as an index to a collection, and 
     "description": "A list of all the users.",
     "specification": "https://.../api/specifications/users/",
     "orders": {
-        "default": "default_order/",
+        "default": "default_order/"
     },
     "index": {
         "2/": {"active": true},
@@ -587,7 +587,7 @@ Tables collect columns of data and (optionally) their metadata into two-dimensio
     "metadata": {
         "1ef0455": {"name": "Education", "type": "categorical", "categories": [...], ...},
         "588392a": {"name": "Favorite color", "type": "text", ...}
-    }
+    },
     "data": {
         "1ef0455": [6, 4, 7, 7, 3, 2, 1],
         "588392a": ["green", "red", "blue", "Red", "RED", "pink", " red"]
@@ -667,7 +667,7 @@ Cubes collect columns of measure data in an arbitrary number of dimensions. Mult
     "margins": {
         "data": [210],
         "0": {"data": [30, 70, 110]},
-        "1": {"data": [90, 120]},
+        "1": {"data": [90, 120]}
     }
 }
 ```
@@ -701,6 +701,7 @@ The number of rows that are missing for this measure. Because different measures
 The "margins" member is optional. When present, it is a tree of nested margins with one level of depth for each dimension. At the top, we always include the "grand total" for all dimensions. Then, we include a branch for each axis we "unroll". So, for example, for a 3-dimensional cube of X, Y, and Z, the margins member might contain:
 
 ```json
+{ 
 "margins": {
     "data": [4526],
     "0": {
