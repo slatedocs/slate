@@ -38,16 +38,16 @@ crGET("https://beta.crunch.io/api/datasets/")
 {
     "element": "shoji:catalog",
     "self": "https://beta.crunch.io/api/datasets/",
-    "catalogs"{
+    "catalogs": {
         "by_name": "https://beta.crunch.io/api/datasets/by_name/{name}/"
     },
     "views": {
         "search": "https://beta.crunch.io/api/datasets/search/"
     },
-    orders: {
-        order: "https://beta.crunch.io/api/datasets/order/"
+    "orders": {
+        "order": "https://beta.crunch.io/api/datasets/order/"
     },
-    "specification: "https://beta.crunch.io/api/specifications/datasets/",
+    "specification": "https://beta.crunch.io/api/specifications/datasets/",
     "description": "Catalog of Datasets that belong to this user. POST a Dataset representation (serialized JSON) here to create a new one; a 201 response indicates success and returns the location of the new object. GET that URL to retrieve the object.",
     "index": {
         "https://beta.crunch.io/api/datasets/cc9161/": {
@@ -157,14 +157,27 @@ provided than the limit provided by the user.
 
 Here are the parameters that can be passed to the search endpoint.
 
-Paremeter | Type        | Description
-----------|-------------|------------------------------------------------
-q         | string      | query string (text and numeric only) 
-f         | json Object | used to limit the output of the search (currently {'dataset_id': '<desired dataset_id>'} supported
-limit     | integer     | limit the number of results returned by the api to less than this amount
-offset    | integer     | offset into the search index to start gathering results from pre-filter 
-group_variables_limit | integer | number of non-matching variable results inside matching group names to return (default 10)
+Paremeter             | Type        | Description
+----------------------|-------------|------------------------------------------------
+q                     | string      | query string (text and numeric only) 
+f                     | json Object | used to filter the output of the search
+limit                 | integer     | limit the number of results returned by the api to less than this amount
+offset                | integer     | offset into the search index to start gathering results from pre-filter 
+group_variables_limit | integer     | number of non-matching variable results inside matching group names to return (default 10)
 
+Allowable filter parameters:
+
+Parameter  | Type             | Description
+-----------|------------------|-------------------------------------------------
+dataset_id | array of strings | limit results to particular dataset_ids (user must have read access to that dataset)
+team       | string           | id of the team to limit results (user must have read access to the team)
+project    | strint           | id of the project to limit results (user must have access to the team)
+
+```http
+GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_variables_list={group_variables_list}  HTTP/1.1
+Host: beta.crunch.io
+
+```
   
 ```json
 {
