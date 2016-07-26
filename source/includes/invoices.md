@@ -360,7 +360,7 @@ propiedades               | objeto                 | Información adicional adju
 
 Parámetro           | Tipo    | Descripción
 ------------------- | ------- | ----------
-fecha_vencimiento   | string  | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf. __Requerido__
+fecha_vencimiento   | string  | Fecha de emisión en formato AAAA-MM-DD, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
 
 ### Respuesta
 
@@ -635,7 +635,7 @@ Parámetro | Tipo | Descripción
 --------- | ------- | -----------
 secuencial | string | Número de secuencia de la factura.
 estado | string | Posibles valores: `AUTORIZADO`, `NO AUTORIZADO`, `ENVIADO`, `DEVUELTO`, `RECIBIDO`
-fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.
+fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf).
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 envio_sri | objeto tipo [envio sri](#envío-sri) | Información luego de enviar el comprobante.
 autorizacion | objeto tipo [autorizacion sri](#autorización-sri) | Información de la autorización.org/html/rfc3339#section-5.6).
