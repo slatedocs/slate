@@ -92,7 +92,7 @@ curl -v https://link.datil.co/invoices/issue \
     {
       "medio": "cheque",
       "total": 4882.68,
-      "propiedades: {
+      "propiedades": {
         "numero": "1234567890",
         "banco": "Banco Pacífico"
       }
@@ -647,6 +647,7 @@ comprador | objeto [persona](#persona) | Información del comprador.
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>
 items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la factura.
 pagos | listado de objetos tipo [pagos](#pagos) | Listado de formas de pago aplicables a la factura.
+credito | Objeto de tipo [credito](#cr-dito) | Información del crédito directo otorgado al cliente.
 version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`
 
 ## Re-emisión de una factura
