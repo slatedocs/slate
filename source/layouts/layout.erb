@@ -43,7 +43,7 @@ under the License.
     </a>
     <div class="tocify-wrapper">
       <%= image_tag "logo.png" %>
-      <% if language_tabs %>
+      <% if language_tabs.any? %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
             <% if lang.is_a? Hash %>
