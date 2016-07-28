@@ -459,7 +459,6 @@ Reemplaza en la ruta `<receipt-id>` por el `id` de la guía de remisión que nec
         }
     ],
     "guia_remision": "",
-    "moneda": "USD",
     "informacion_adicional": [],
     "ambiente": "1",
     "totales": {

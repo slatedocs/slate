@@ -452,7 +452,6 @@ Replace `<receipt-id>` with the `id` of the waybill you to query.
         }
     ],
     "guia_remision": "",
-    "moneda": "USD",
     "informacion_adicional": [],
     "ambiente": "1",
     "totales": {
