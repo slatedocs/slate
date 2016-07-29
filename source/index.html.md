@@ -9,14 +9,56 @@ toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
+  - parameter_types
+  - alerts
+  - alert_types
+  - alert_type_anomaly_type_linker
+  - alert_type_product_type_linker
+  - anomalies
+  - anomaly_types
+  - anomaly_type_product_type_linker
+  - connections
+  - customers
+  - customer_entity_linker
+  - customer_product_histories
+  - enable_histories
+  - entities
+  - hubs
+  - latest_softwares
+  - parameter_types
+  - parts
+  - part_product_linker
+  - part_types
+  - part_type_product_type_linker
+  - part_type_replacement_linker
+  - products
+  - product_entity_linker
+  - product_notes
+  - product_software_linker
+  - product_types
+  - product_type_software_version_type_linker
+  - repairs
+  - repair_symptom_type_linker
+  - sms_histories
+  - shops
+  - software_version_types
+  - states
+  - state_types
+  - symptom_types
+  - symptom_type_product_type_linker
+  - tamper_enable_histories
+  - users
+  - test_table
+  - meta_data
   - errors
+  - query_format
 
 search: true
 ---
 
 # Introduction
 
-Welcome to the BBOXX SMART Solar API. 
+Welcome to the BBOXX SMART Solar API.
 
 We have language bindings in Python and JavaScript. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs at the top.
 
@@ -151,4 +193,3 @@ This endpoint retrieves a specific product, identified by its IMEI.
 Parameter | Description
 --------- | -----------
 imei | The IMEI of the product to retrieve
-
