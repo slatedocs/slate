@@ -1,189 +1,99 @@
 ---
-title: API Reference
+title: API Guides
 
 language_tabs:
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://api.itembase.com/api/clients'>Register Your Application</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
+  - gettingaccess
+  - gettingdata
+  - entities
 
 search: true
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Our RESTful API connects eCommerce services and platforms to each other. We do this by standardizing and normalizing data 
+like transactions and products using [JSON schemas](#entities). For authorization and authentication we are using OAuth2. 
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have built multiple **connectors** to platforms like eBay, Prestashop and even Gmail. Imagine you want to get all the 
+orders stored inside a Prestashop installation, all you have to do is to initiate an **activation flow** via our platform, 
+activating our **Prestashop connector** for the shop owner on the one hand, and activating your service on the other. 
+You can repeat this process for as many connectors as you like without having to deal with platform specifics like formats, 
+authentication, api limitations etc. Our connectors and transformers aim to provide a consistent and user-friendly 
+interface to ALL and ANY eCommerce data.
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+To move on you will need to [create a user account](https://api.itembase.com/google-login). After that you will 
+[register your application](https://api.itembase.com/api/clients) to get OAuth2 credentials.
 
-# Authentication
+**For a quickstart** you can just copy and paste the code samples we provide below. They are using a predefined user 
+with activated connection and never-expire token.
 
-> To authorize, use this code:
+## Summary
 
-```ruby
-require 'kittn'
+1. To use any API provided by itembase, you have to [register your client](https://api.itembase.com/google-login)
+2. To get authorized API access via OAuth 2.0, or to use the itembase API as a sign-on service, you need to authorize 
+with the following information:
+ * A **client id** which identifies your client with the server (one for sandbox, one for production)
+ * A **client secret** which you use to perform certain operations during auth process **keep it in a safe place and never expose it!**
+ * One or more **redirect uris** (on your side) that can be used to send an auth code to you – there is a restricted set 
+ of URLs per client
+We are following the Oauth2 standard. Check out [this excellent video tutorial by KnpUniversity](https://www.youtube.com/watch?v=io_r-0e3Qcw) 
+which explains OAuth2 very well.
+ * You can use the sandbox user "klaus" with password "itembase" for fooling around in the sandbox.
+3. By default, only the basic user information is available to you even if you have gained the user's authorization. 
+Therefore you may want to activate the data flow from the data connector to the API. To complete this process, you need:
+ * An additional **redirect uri** that is known on our side and where the activation endpoint will redirect after the process finished.
+ * Each entity (e.g. /users/{user_id}/transaction) is a valid endpoint. Please refer to the [entities section](#entities) 
+ for a list of entities and their json schema definitions.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+**Entities that originate from the same data connection have the same <i>source_id</i> attribute!**
 
-```python
-import kittn
+## Reporting Issues
 
-api = kittn.authorize('meowmeowmeow')
-```
+Naturally we aim to deliver a reliable, well-behaving and well-documented service. Please tell us if you stumble across 
+an issue you believe we need to address. We have open sourced our documentation as well so that you can raise issues 
+there as well. Please report issues or raise pull requests here:
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+|Component|Link|Notes
+|---|---|---|
+|The **API** itself|[github.com/itembase/data-connect-api](https://github.com/itembase/data-connect-api)|Any issues related with our public APIs.|
+|This **Guides** section|[github.com/itembase/api-guides/issues](https://github.com/itembase/api-guides/issues)||
+|**API Documentation** section|[github.com/itembase/api-swagger/issues](https://github.com/itembase/api-guides/issues)|This is the swagger API explorer. Issues with the swagger-ui can be posted [here](https://github.com/swagger-api/swagger-ui).|
 
-```javascript
-const kittn = require('kittn');
+## Sandbox vs Production
 
-let api = kittn.authorize('meowmeowmeow');
-```
+* On sandbox, there is  **test user** is called `klaus`.
+ * His password is `itembase`. You can use his credentials to log in during OAuth flows.
+ * His user id is `13ac2c74-7de3-4436-9a6d-2c94dd2b1fd3`. You can use this for getting data.
+ * His Magento shop connection id is `860b3402-6041-4194-bc71-986bf697f23c`.
+ * His Magento shop is located at [http://sandbox.magento.dataconnect.io:13001](http://sandbox.magento.dataconnect.io:13001)
+ * We have installed this shop for klaus and activated the connection. You can use this connection to try out the POST 
+ and PUT /snippets endpoint.
+* The examples in this documentation use an access token for an activated, mock service we set up for this purpose. 
+You should be able to just copy and paste and run them.
+* If you write a client for your application, the application needs to be activated for klaus' connection before you can 
+get access to the data via the API. Alternatively, just try out our code examples.
+* On the sandbox the activation process needs to be initiated by the API client, not via any GUI. Please refer to the 
+"activation" section below.
 
-> Make sure to replace `meowmeowmeow` with your API key.
+<aside class="warning">We're working on providing the GUI to initiate the activation process with your registered service, 
+replacing the one available on production. We will keep you updated via the developers notes.</aside>
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+We have separate versions of our services running on our Sandbox and Production systems, see the relevant URLs:
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+|Type|Production|Sandbox|
+|---|---|---|
+|OAuth2 auth URL|https://accounts.itembase.com/oauth/v2/auth|https://sandbox.accounts.itembase.io/oauth/v2/auth|
+|OAuth2 token URL|https://accounts.itembase.com/oauth/v2/token|https://sandbox.accounts.itembase.io/oauth/v2/token|
+|User info URL|https://users.itembase.com/v1/me|https://sandbox.users.itembase.io/v1/me|
+|Activation endpoint|https://solutionservice.itembase.com|https://sandbox.solutionservice.itembase.io|
+|Connect API endpoint|https://api.dataconnect.io/connect/v2|https://sandbox.dataconnect.io/connect/v2|
+|API endpoint|https://api.itembase.io|https://sandbox.api.itembase.io|
 
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
+Transport in the production system is only via HTTPS.
