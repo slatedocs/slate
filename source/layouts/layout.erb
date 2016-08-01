@@ -21,7 +21,7 @@ under the License.
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><%= current_page.data.title || "API Guides" %></title>
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,500' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100italic,100,300' rel='stylesheet' type='text/css'>
     <style>
       <%= Rouge::Themes::Base16::Monokai.render(:scope => '.highlight') %>
     </style>
@@ -36,47 +36,65 @@ under the License.
     <%= javascript_include_tag  "scripts" %>
   </head>
 
-  <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
+  <body class="<%= page_classes %> innerpage" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
     <a href="#" id="nav-button">
       <span>
         NAV
         <%= image_tag('navbar.png') %>
       </span>
     </a>
-    <div class="head" id="header">
-        	<div class="container">
-            	<div class="logo pull-left">
-            	     <a title="" href="https://api.itembase.com"><img class="white-logo" src="images/logo.png" alt="itembase"></a>
-            	</div>
-                <div class="pull-right">
-                    <div class="navbar navbar-static-top bs-docs-nav" role="banner">
+    <div id="header" class="outer-header" style="background-image:url(images/inner-banner-bg.jpg)">
+        <div class="header">
+            <nav class="navbar navbar-default">
+                <div class="container">
                     <div class="navbar-header">
-                        <button id="nav-toggle" class="navbar-toggle collapsed" type="button">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
+                        <button type="button" id="nav-toggle" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
                         </button>
+                        <a class="navbar-brand" href="#"><img src="images/logo.png" alt="Logo"></a>
                     </div>
-                    <nav id="bs-navbar">
+                    <div class="navbar-collapse" id="bs-navbar">
                         <ul class="nav navbar-nav">
-                            <li><a href="https://api.itembase.com/products">Product</a></li>
-                            <li class="dropdown active"><a href="https://api.itembase.com/api">API</a>
-                            	<ul class="container">
-                                    <li class="active"><a href="http://itembase.github.io/api-guides/">Guides</a></li>
-                                    <li><a href="https://api.itembase.com/api/docs/">API Reference</a></li>
-                                    <li><a href="https://api.itembase.com/api/clients">API Client Management</a></li>
-                                    <li><a href="https://itembase.github.io/api-notes/">Developer Notes</a></li>
-                                    <li><a href="https://github.com/itembase/data-connect-api">Report An Issue</a></li>
-                                    <li><a href="http://status.api.itembase.com/">API Status</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="https://api.itembase.com/api/docs/">API Reference</a></li>
-                            <li class="login"><a href="https://api.itembase.com/google-login">Login with itembase</a></li>
+                            <li><a href="why-data-connects.html">Why DataConnect</a></li>
+                            <li class="active"><a href="api-feedback.html">API</a>
+                            	<ul class="menu nav navbar-nav dropdown-menu">
+                                	<li class="container">
+                                    	<ul class="nav nav-pills">
+                                           <li class="active"><a href="http://itembase.github.io/api-guides/">Guides</a></li>
+                                            <li><a href="https://api.itembase.com/api/docs/">API Reference</a></li>
+                                            <li><a href="https://api.itembase.com/api/clients">API Client Management</a></li>
+                                            <li><a href="https://itembase.github.io/api-notes/">Developer Notes</a></li>
+                                            <li><a href="https://github.com/itembase/data-connect-api">Report An Issue</a></li>
+                                            <li><a href="http://status.api.itembase.com/">API Status</a></li>
+                                        </ul>
+                                    </li>
+                                </ul></li>
+                            <li><a href="#">Use Cases</a></li>
+                            <li><a href="#">Support</a></li>
+                            <li><a href="#">REGISTER</a></li>
                         </ul>
-                    </nav>
-                 </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="banner">
+            <div class="container">
+                <div class="caption">
+                	<div class="table">
+                    	<div class="vertical-middle">
+                        	<div class="row">
+                        <div class="col-md-5">
+                            <h1>RestFULL API and SDK's</h1>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
-        </div>
+        </div> 
+    </div>
     <div class="main-content">
     <div class="container">
 
@@ -136,9 +154,77 @@ under the License.
     </div>
     </div>
     </div>
-    <div class="footer text-center">
-    	<div class="container">
-        	<p>(c) 2016 itembase GmbH </p>
+    <div class="footer">
+    	<div class="container">        	
+        	<div class="barnd">
+            	<small>Dataconnect is a product from</small>
+            	<a href="#"><img src="images/itembase.jpg" alt="ItemBase"></a>
+            </div>
+            <div class="row">
+            	<div class="col-sm-3">
+                	<div class="footer-nav">
+                        <h4>Get in touch</h4>
+                        <ul class="nav nav-stacked">
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Contact Sales</a></li>
+                        </ul>
+                    </div>
+                    <div id="block-socialmedia" class="footer-nav socail-link">
+                        <h2>Social Media</h2>
+                        <ul class="">
+                            <li><a href="#" class="twitter" title="Twitter"></a></li>
+                            <li><a href="#" class="dribble" title="dribble"></a></li>
+                            <li><a href="#" class="gplus" title="Google Plus"></a></li>
+                            <li><a href="#" class="facebook" title="Facebook"></a></li>
+                            <li><a href="#" class="rss" title="RSS"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                	<div class="row">                    
+                    	<div class="col-xs-4">
+                        <h2>Learn More</h2>
+                        <ul class="nav nav-stacked">
+                            <li><a href="#">Tour</a></li>
+                            <li><a href="#">Customers</a></li>
+                            <li><a href="#">Pricing and Plans</a></li>
+                            <li><a href="#">New Features</a></li>
+                            <li><a href="#">Education</a></li>
+                        </ul>
+                    </div>
+                    	<div class="col-xs-4">
+                        <h2>about</h2>
+                        <ul class="nav nav-stacked">
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Media Kit</a></li>
+                            <li><a href="#">Jobs</a></li>
+                            <li><a href="#">Blog </a></li>
+                        </ul>
+                    </div>
+                    	<div class="col-xs-4">
+                        <h2>support</h2>
+                        <ul class="nav nav-stacked">
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Schedule a Demo</a></li>
+                            <li><a href="#">Terms of Services</a></li>
+                            <li><a href="#">Security</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+            	<div class="col-sm-4">
+                	<h2>uses</h2>
+                    <ul class="nav nav-stacked">
+                    	<li><a href="#">Prototyping for Websites and Web Apps</a></li>
+                    	<li><a href="#">Prototyping for Mobiles - iOS and Android</a></li>
+                    	<li><a href="#">Prototyping for Android Phone and Tablets</a></li>
+                    	<li><a href="#">Prototyping for Wearables - Apple Watch and Android Wear</a></li>
+                    	<li><a href="#">Sketch Prototyping</a></li>
+                        <li><a href="#">Photoshop Prototyping</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
   </body>
