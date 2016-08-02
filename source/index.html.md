@@ -209,11 +209,18 @@ request.post('https://api.scaleapi.com/v1/task/categorize', {
 
 This endpoint creates a `categorization` task. In this task, one of our workers will view the attachment and choose a category for it according to the instruction. You may allow multiple categories to be chosen by setting `allow_multiple` to `true`. Example use cases are spam detection, copyright detection, product categorization, etc.
 
-This task involves a plaintext `instruction` about how to make the categorization, an `attachment` of what you'd like to categorize, an `attachment_type`, and finally a list of categories.
+This task involves a plaintext `instruction` about how to make the categorization, an `attachment` of what you'd like to categorize, an `attachment_type`, and finally a list of `categories`. 
+
+There is an optional `category_ids` parameter, which you can use to impose an id system over the categories. The format of this parameter should be a dictionary, where the keys are the ids (as strings), and then the values are the category values provided in `categories`. An example is:
+
+```"category_ids": {
+  "123": "Blue Cross",
+  "124": "Red Cross"
+}```
 
 If successful, Scale will immediately return the generated task object, of which you should at least store the `task_id`.
 
-The parameters `attachment_type`, `attachment`, and `categories` will be stored in the `params` object of the constructed `task` object.
+The parameters `attachment_type`, `attachment`, `categories`, and `category_ids` (optional) will be stored in the `params` object of the constructed `task` object.
 
 ### HTTP Request
 
@@ -228,6 +235,7 @@ Parameter | Type | Description
 `attachment_type` | string | One of `text`, `image`, `video`, `audio`, `website`, or `pdf`. Describes what type of file the attachment is.
 `attachment` | string | The attachment to be categorized. If `attachment_type` is `text`, then it should be plaintext. Otherwise, it should be a URL pointing to the attachment.
 `categories` | [string] | An array of strings for the categories which you'd like the object to be sorted between.
+`category_ids` (optional) | dictionary | An optional dictionary where the keys are the optional ids, and the values are the category values provided in `categories`.
 `allow_multiple` (optional) | boolean | Default is `false`. Determines whether you allow multiple categories to be chosen for the attachment
 
 ### Response on Callback
@@ -242,6 +250,12 @@ The `response` object will be of the form:
 If `allow_multiple` is `false`, then the value will be a string equal to one of the original categories. 
 
 If `allow_multiple` is `true`, the value will be an array of categories, each one being one of the original categories.
+
+If `category_ids` was provided, there will be another field `category_id` corresponding to the given id of the chosen category/categories. For example, it could look like:
+
+```{
+  "category": "Blue Cross", "category_id": "123"
+}```
 
 # Create Transcription Task
 
@@ -540,7 +554,7 @@ curl "https://api.scaleapi.com/v1/task/comparison" \
   -d attachments="http://i.ebayimg.com/00/$T2eC16dHJGwFFZKjy5ZjBRfNyMC4Ig~~_32.JPG" \
   -d attachments="http://images.wisegeek.com/checkered-tablecloth.jpg" \
   -d choices="yes" \
-  -d choices="no" \
+  -d choices="no"
 ```
 ```python
 import requests
