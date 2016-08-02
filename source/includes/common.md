@@ -284,6 +284,9 @@ Compensación de deudas | compensacion_deudas
 Tarjeta de débito | tarjeta_debito
 Dinero electrónico Ecuador | dinero_electronico_ec
 Tarjeta prepago | tarjeta_prepago
+Tarjeta de crédito | tarjeta_credito
+Otros | otros
+Endoso de títulos | endoso_titulos
 
 ## Equivalencia entre formas de pago Dátil y formas de pago del SRI
 
@@ -307,7 +310,9 @@ Compensación de deudas | compensacion_deudas | Compensación de deudas | 15
 Tarjeta de débito | tarjeta_debito | Tarjeta de débito | 16
 Dinero electrónico Ecuador | dinero_electronico_ec | Dinero electrónico | 17
 Tarjeta prepago | tarjeta_prepago | Tarjeta prepago | 18
+Tarjeta de crédito | tarjeta_credito | Tarjeta de crédito | 19
+Otros | otros | Otros con utilización del sistema financiero | 20
+Endoso de títulos | endoso_titulos | Endoso de títulos | 21
 
-Debido a que el Servicio de Rentas Internas exige incluir información del pago, 
+Debido a que el Servicio de Rentas Internas exige incluir información del pago,
 las facturas a crédito se enviarán al SRI con forma de pago "Fuera del sistema financiero".
-
