@@ -744,7 +744,7 @@ The Deck order allows to the user to customize the order in which they will be
 displayed by an API client.
 
 The deck order will always contain all existing decks that are visible to the
-authenticated user.
+authenticated user, private and public decks.
 
 
 ####### GET
