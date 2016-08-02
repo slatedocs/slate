@@ -361,6 +361,7 @@ propiedades               | objeto                 | Información adicional adju
 Parámetro           | Tipo    | Descripción
 ------------------- | ------- | ----------
 fecha_vencimiento   | string  | Fecha de emisión en formato AAAA-MM-DD, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
+monto               | float   | Monto otorgado de crédito. __Requerido__
 
 ### Respuesta
 
