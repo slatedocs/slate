@@ -14,7 +14,7 @@ augur.connect({http: "https://eth3.augur.net", ws: "wss://ws.augur.net"});
 augur.connect({
     http: "http://127.0.0.1:8545",
     ws: "ws://127.0.0.1:8546",
-    ipc: "/home/augur/.ethereum/geth.ipc"
+    ipc: process.env.HOME + "/.ethereum/geth.ipc"
 });
 
 ```
@@ -33,14 +33,14 @@ To use the Augur API, augur.js can connect to an Ethereum node, which can be eit
 Market making
 -------------
 ```javascript
-var marketID = "0xa290cd9d0c81f2af150a36725c986a3387dc6cef178c183e7237eeac4ea81ddc";
+var marketID = "0x34e104a15ab3eb2a0c26f1138c278416424ef7f8425799a76127e9b427fac74d";
 var params = {
-    market: marketID,
-    liquidity: 100,
-    initialFairPrices: ["0.4", "0.5"],
-    startingQuantity: 5,
-    bestStartingQuantity: 10,
-    priceWidth: "0.4"
+  market: marketID,
+  liquidity: 9012,
+  startingQuantity: 501,
+  bestStartingQuantity: 500,
+  priceWidth: "0.08697536855694898",
+  initialFairPrices: [ "0.661837082683109", "0.5132635487227519" ]
 };
 augur.generateOrderBook(params, {
   onBuyCompleteSets: function (res) { /* ... */ },
@@ -56,10 +56,41 @@ augur.generateOrderBook(params, {
 })
 // example:
 simulation = {
-  shares: '20',
-  numBuyOrders: 2,
-  numSellOrders: 3,
-  numTransactions: 6
+  shares: "4007",
+  numBuyOrders: [ 10, 7 ],
+  numSellOrders: [ 4, 7 ],
+  buyPrices: 
+   [ [ "0.61834939840463451",
+       "0.55853753243153362626",
+       "0.49872566645843274252",
+       "0.43891380048533185878",
+       "0.37910193451223097504",
+       "0.3192900685391300913",
+       "0.25947820256602920756",
+       "0.19966633659292832382",
+       "0.13985447061982744008",
+       "0.08004260464672655634" ],
+     [ "0.46977586444427741",
+       "0.40996399847117652626",
+       "0.35015213249807564252",
+       "0.29034026652497475878",
+       "0.23052840055187387504",
+       "0.1707165345787729913",
+       "0.11090466860567210756" ] ],
+  sellPrices: 
+   [ [ "0.70532476696158349",
+       "0.76513663293468437374",
+       "0.82494849890778525748",
+       "0.88476036488088614122" ],
+     [ "0.55675123300122639",
+       "0.61656309897432727374",
+       "0.67637496494742815748",
+       "0.73618683092052904122",
+       "0.79599869689362992496",
+       "0.8558105628667308087",
+       "0.91562242883983169244" ] ],
+  numTransactions: 34,
+  priceDepth: "0.05981186597310088374"
 }
 ```
 `augur.generateOrderBook` is a convenience method for generating an initial order book for a newly created market.  `generateOrderBook` calculates the number of orders to create, as well as the spacing between orders, using the `augur.calculatePriceDepth` method.
@@ -1290,6 +1321,15 @@ Buy `amount` shares of `outcome` in `market`.
 Sell `amount` shares of `outcome` in `market`.
 
 ```javascript
+// check the maximum number of orders per trade
+var blockNumber = augur.rpc.blockNumber();
+var gasLimit = parseInt(augur.rpc.getBlock(blockNumber).gasLimit, 16);
+var maxOrdersPerTrade = augur.maxOrdersPerTrade("buy", gasLimit);
+
+// verify that a trade combination does not exceed the gas limit
+var proposedTrades = ["buy", "buy", "sell", "buy", "sell"];
+assert(augur.isUnderGasLimit(proposedTrades, gasLimit));
+
 // trade contract
 augur.trade({
   max_value: 1,
@@ -1327,7 +1367,15 @@ successResponse = {
 ### [trade contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/trade.se)
 #### trade(max_value, max_amount, trade_ids[, onSent, onSuccess, onFailed])
 
-Matches an order or orders (specified using an array parameter `trade_ids`) already on the books. `max_value` is the maximum amount to spend to buy (including fees).  `max_amount` is the maximum number of shares to sell.
+Matches orders (specified with the array parameter `trade_ids`) already on the books. `max_value` is the maximum amount to spend buying shares (including fees).  `max_amount` is the maximum number of shares to sell.  The maximum number of trade IDs that can be included in a trade depends on the current gas limit as well as whether the trades are bid or ask orders.
+
+#### maxOrdersPerTrade(type, gasLimit)
+
+Calculates the maximum number of orders (`trade_ids`) of `type` (`"buy"` or `"sell"`) that can be included in a single `augur.trade` without exceeding the block `gasLimit`: `max_num_tradeids = 1 + (gas_limit - first_tradeid_gas_cost) \ next_tradeid_gas_cost`, where `\` is integer division.  These costs are determined empirically: for asks, `first_tradeid_gas_cost = 756374`, `next_tradeid_gas_cost = 615817`, and for bids, `first_tradeid_gas_cost = 787421`, `next_tradeid_gas_cost = 661894`.
+
+#### isUnderGasLimit(proposedTrades[, gasLimit, callback])
+
+Verifies that the sequence of trades in the array `proposedTrades` does not exceed the gas limit.  If `gasLimit` is not specified, this function will get the gas limit of the most recent block.  (If `gasLimit` is not specified, `isUnderGasLimit` should be run asynchronously.)  Returns `true` if the proposed trades are under the gas limit, `false` otherwise.
 
 ```javascript
 // completeSets contract
