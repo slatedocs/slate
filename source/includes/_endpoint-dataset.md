@@ -523,9 +523,10 @@ GET returns a Shoji View of available dataset export formats.
 ```
 
 A GET request on any of the export URLs will return 200 status with a `shoji:view`, containing an attribute
-`url` pointing to the location of the exported file to be downloaded; GET that URL to download the file. If the dataset does not have any columns of data, the GET on the export view URL will return a 409 response.
+`url` pointing to the location of the exported file to be downloaded; GET that URL to download the file. 
 
-To export a subset of the dataset, instead perform a POST request and include a JSON body with an optional "filter" expression for the rows and a "where" attribute to specify variables to include.
+To export a subset of the dataset, instead perform a POST request and include a JSON body with an optional
+ "filter" expression for the rows and a "where" attribute to specify variables to include.
 
 Attribute | Description | Example
 --------- | ----------- | ------------------------------------
@@ -544,6 +545,14 @@ The following rules apply for all formats:
 * Derived variables will be exported with their values, without their functional links.
 
 Some format-specific properties and options:
+
+The result of the POST response is either:
+
+* A 200 response with a JSON object in the body indicating a progress resource that can be monitored for the export's completion.  
+* A 302 response redirecting directly to the download if the export has finished.
+
+For both types of responses, the "location" header is set to the location for the download, whether completed or not.  Besides
+ looking for a 100 percent completion with progress requests, the user may also look for a non-404 response on this location.
 
 ###### SPSS
 
