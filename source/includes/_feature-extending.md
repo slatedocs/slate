@@ -24,6 +24,6 @@ Content-Type: application/json
 }
 
 -----
-HTTP/1.1 200 OK
+HTTP/1.1 201 Created
 
 ```
