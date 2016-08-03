@@ -41,6 +41,9 @@
     "kilogram_weight":"1.0",
     "cubic_metre_volume":"0.01",
     "customer_reference":"SupBdayPressie",
+    "metadata": {
+      "your_data": "XYZ123"
+    },
     "sender":{
       "contact":{
         "name":"Lex Luthor",
