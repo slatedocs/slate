@@ -12,9 +12,10 @@ Content-Type: application/json
             "variable": "/datasets/{other_id}/variables/{right_key_id}/"
         }, {
             "variable": "/datasets/{dataset_id}/variables/{left_key_id}/"
-        }, {
+        }
+        // If present, will only join the indicated variables
+        , {
             'variables': [
-                // If present, will only join the indicated variables
                 "/datasets/{other_id}/variables/{variable1_id}/",
                 "/datasets/{other_id}/variables/{variable2_id}/",
                 "/datasets/{other_id}/variables/{variable3_id}/"
