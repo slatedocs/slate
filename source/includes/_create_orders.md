@@ -244,7 +244,7 @@ Each collection within the example booking JSON is described in detail in the se
     }
   }
 ```
-A successful response will be a full version of an **Order** object. Many of the fields sent in a booking response are confirmation of the details sent in a booking request and are covered in detail in the [View and Order section](#view-an-order). In addition to the booking details, information about the current State of the order, URLs for order details, and scheduling information is included.
+A successful response will be a full version of an **Order** object. Many of the fields sent in a booking response are confirmation of the details sent in a booking request and are covered in detail in the [View an Order section](#view-an-order). In addition to the booking details, information about the current State of the order, URLs for order details, and scheduling information is included.
 
 | Field | Description |
 |------:|:-----------|
