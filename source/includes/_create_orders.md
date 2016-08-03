@@ -20,6 +20,9 @@ To create an order, submit order data via POST command. The order will be reject
     "kilogram_weight": 1,
     "cubic_metre_volume": 0.01,
     "customer_reference": "SupBdayPressie",
+    "metadata": {
+      "your_data": "XYZ123"
+    },
     "sender": {
       "contact": {
         "name": "Lex Luthor",
@@ -75,7 +78,10 @@ Each collection within the example booking JSON is described in detail in the se
     "description": "Kryptonite",
     "kilogram_weight": 1,
     "cubic_metre_volume": 0.01,
-    "customer_reference": "SupBdayPressie"
+    "customer_reference": "SupBdayPressie",
+    "metadata": {
+      "your_data": "XYZ123"
+    }
   }
 ```
 
@@ -86,6 +92,7 @@ Each collection within the example booking JSON is described in detail in the se
 **kilogram_weight** | Must be a decimal value over zero and less than the category/max weight allowed (25kg max).
 **cubic_metre_volume** | Must be a decimal value above zero and less than one.  To get value, multiply *length* x *width* x *depth* of parcel in metres.
 **customer_reference** <div class="optional">optional</div> | Reference will appear on the label for parcel identification.  It must be under 255 characters in length.
+**metadata** <div class="optional">optional</div> | Up to 1MB of JSON key/value pairs which will be stored for this order. These are included when <a href="#view-an-order">Viewing an Order</a> and in some bulk reports available from the system.
 
 ## Sender Details
 ```json
@@ -200,6 +207,9 @@ Each collection within the example booking JSON is described in detail in the se
     "kilogram_weight":"1.0",
     "cubic_metre_volume":"0.01",
     "customer_reference":"SupBdayPressie",
+    "metadata": {
+      "your_data": "XYZ123"
+    },
     "sender":{
       "contact":{
         "name":"Lex Luthor",
