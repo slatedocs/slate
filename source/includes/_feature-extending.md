@@ -6,34 +6,23 @@ Content-Type: application/json
 
 {
     "function": "adapt",
-    "args": [
-        {
-            "dataset": "/datasets/{other_id}/",
-            "filter": {},
-            "select": {
-                "function": "identify",
-                "args": [
-                    {
-                        "ids": [...]
-                    }
-                ]
-            }
-        },
-        {
+        "args": [{
+            "dataset": "/datasets/{other_id}/"
+        }, {
             "variable": "/datasets/{other_id}/variables/{right_key_id}/"
-        },
-        {
+        }, {
             "variable": "/datasets/{dataset_id}/variables/{left_key_id}/"
-        },
-        ... // Other future args
-    ]
+        }, {
+            'variables': [
+                // If present, will only join the indicated variables
+                "/datasets/{other_id}/variables/{variable1_id}/",
+                "/datasets/{other_id}/variables/{variable2_id}/",
+                "/datasets/{other_id}/variables/{variable3_id}/"
+            ]
+        }]
 }
 
 -----
-202 Continue
+HTTP/1.1 200 OK
 
-{
-    "element": "shoji:view",
-    "value": "/progress/{progress_id}/"
-}
 ```
