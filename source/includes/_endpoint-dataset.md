@@ -629,7 +629,8 @@ only need a name.
 ###### GET
 
 A GET request on the catalog endpoint will return all the decks available for
-this dataset for the authenticated user.
+this dataset for the authenticated user, this includes decks created by
+the user and public decks shared for this dataset.
 
 ```json
 {
@@ -639,10 +640,18 @@ this dataset for the authenticated user.
         "https://beta.crunch.io/api/datasets/cc9161/decks/4fa25/": {
           "name": "my new deck",
           "creation_time": "1986-11-26T12:05:00",
+          "id": "4fa25",
+          "is_public": false,
+          "owner_id": "https://beta.crunch.io/api/users/abcd3/",
+          "owner_name": "Real Person"
         },
         "https://beta.crunch.io/api/datasets/cc9161/decks/2b53e/": {
           "name": "Default deck",
           "creation_time": "1987-10-15T11:45:00",
+          "id": "2b53e",
+          "is_public": true,
+          "owner_id": "https://beta.crunch.io/api/users/4cba5/",
+          "owner_name": "Other Person"
         },
     },
     "order": "https://beta.crunch.io/api/datasets/223fd4/decks/order/"
@@ -687,14 +696,19 @@ You can GET on the deck entity to see all its attributes:
         "name": "Presentation deck",
         "id": "223fd4",
         "creation_time": "1987-10-15T11:45:00",
-        "description": "Explanation about the deck"
+        "description": "Explanation about the deck",
+        "id": "223fd4",
+        "is_public": false,
+        "owner_id": "https://beta.crunch.io/api/users/abcd3/",
+        "owner_name": "Real Person"
     }
 }
 ```
 
 ####### PATCH
 
-In order to change the name or description of a deck you can PATCH a shoji:entity to it. The server will return a 204 response.
+In order to change the name or description of a deck you can PATCH a
+shoji:entity to it. The server will return a 204 response.
 
 ```json
 {
@@ -712,6 +726,15 @@ In order to change the name or description of a deck you can PATCH a shoji:entit
 HTTP/1.1 204 No Content
 ```
 
+Only the following attributes are editable:
+
+ * name
+ * description
+ * is_public
+
+The `is_public` attribute is only editable if the authenticated user is the
+owner of the deck.
+
 
 ###### Decks order
 
@@ -720,7 +743,9 @@ HTTP/1.1 204 No Content
 The Deck order allows to the user to customize the order in which they will be
 displayed by an API client.
 
-The deck order will always contain all existing decks.
+The deck order will always contain all existing decks that are visible to the
+authenticated user, private and public decks.
+
 
 ####### GET
 
