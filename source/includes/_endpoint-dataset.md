@@ -544,7 +544,7 @@ Content-Length: 176
 Access-Control-Allow-Methods: OPTIONS, AUTH, POST, GET, HEAD, PUT, PATCH, DELETE
 Access-Control-Expose-Headers: Allow, Location, Expires
 Content-Encoding: gzip
-Location: https://crunch-io.s3.amazonaws.com/exports/dataset_exports/f2364cc66e604d63a3be3e8811fc902f/dataset_My_Dataset_f2364cc66e604d63a3be3e8811fc902f.sav?Signature=nGvKAoqH%2FQXsT63GqwuBWPgSxrg%3D&Expires=1470265052&AWSAccessKeyId=AKIAJLFV2QSYI75UPAQA
+Location: https://crunch-io.s3.amazonaws.com/exports/dataset_exports/f2364cc66e604d63a3be3e8811fc902f/My_Dataset.sav?Signature=sOmeSigNaTurE%3D&Expires=1470265052&AWSAccessKeyId=SOMEKEY
 ```
 
 To export a subset of the dataset, instead perform a POST request and include a JSON body with an optional
