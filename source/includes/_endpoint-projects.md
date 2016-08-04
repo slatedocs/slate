@@ -160,7 +160,8 @@ Only project editors can make these changes.
 #### DELETE
 
 Deleting a project will *NOT* delete its datasets. It will change their 
-ownership to the authenticated user. Only project editors can delete a project.
+ownership to the authenticated user. Only the project current owner can delete 
+a project.
 
 ```http
 DELETE /projects/6c01/ HTTP/1.1
