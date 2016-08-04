@@ -38,13 +38,13 @@ Content-Type: application/json
     'function': 'select',
     'args': [{
         'map': {
-            "/datasets/{other_id}/variables/{right_var1_id}/": {
+            "{right_var1_id}/": {
                 "/datasets/{other_id}/variables/{right_var1_id}/"
             }, {
-            "/datasets/{other_id}/variables/{right_var2_id}/": {
+            "{right_var2_id}/": {
                 "/datasets/{other_id}/variables/{right_var2_id}/"
             }, {
-            "/datasets/{other_id}/variables/{right_var3_id}/": {
+            "{right_var3_id}/": {
                 "/datasets/{other_id}/variables/{right_var3_id}/"
             },
         }
