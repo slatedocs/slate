@@ -3,7 +3,12 @@
 
 > [ GET /api/quote ]
 
-The quoting API does not require you to include your Sendle ID and API Key, but be sure to include all the relevant fields.
+The quoting API operates in two modes:
+
+1. Requesting a quote without providing your Sendle ID and API key will return all quotes for all publicly available plans.
+2. Requesting a quote with your Sendle ID and API key will only return the quote for the relevant account's plan.
+
+Either way, be sure to include all the relevant fields when you make a request.
 
 <aside class="notice">With cURL, the add-on <code>-H 'Content-Type: application/json'</code> adds <code>JSON</code> formatting for the request. If you use a method besides <strong>cURL</strong>, be sure to include <strong>json</strong> formatting in the request header.</aside>
 
@@ -106,12 +111,44 @@ The `?` after the quote endpoint initiates the query. Be sure to separate terms 
 **delivery_postcode** | Four-digit post code for the delivery address.
 **kilogram_weight** | Must be a decimal-value above zero and below weight limits.  Max weight is 25 kilograms.
 **cubic_metre_volume** | Must be decimal-value above zero and less than one.  To determine this measurement multiply *length* x *width* x *depth* of the parcel **in metres**.
-**plan_name** | If specified, the API will respond with a quote for the given plan. Otherwise, the API will give quotes for all plans available.  Current available plans are **Easy**, **Premium**, and **Pro**.
+**plan_name** | Without authenticating, the API will give quotes for all publicly available plans by default. If **plan_name** is specified, the API will respond with a quote for just the given plan. Current available plans are **Easy**, **Premium**, and **Pro**. For authenticated requests, the API always returns the quote for the account's current plan and ignores **plan_name**.
 
 > Request with `plan_name`
 
 ```shell
   curl 'https://www.sendle.com/api/quote?pickup_suburb=Wonglepong&pickup_postcode=4275&delivery_suburb=Foul%20Bay&delivery_postcode=5577&kilogram_weight=2.0&cubic_metre_volume=0.01&plan_name=Premium'
+  -H 'Content-Type: application/json'
+```
+
+> 200 Response
+
+```json
+  [
+    {
+      "quote":{
+        "gross":{
+          "amount":13.75,
+          "currency":"AUD"
+        },
+        "net":{
+          "amount":12.5,
+          "currency":"AUD"
+        },
+        "tax":{
+          "amount":1.25,
+          "currency":"AUD"
+        }
+      },
+      "plan_name":"Premium"
+    }
+  ]
+```
+
+> Request with authentication
+
+```shell
+  curl 'https://www.sendle.com/api/quote?pickup_suburb=Wonglepong&pickup_postcode=4275&delivery_suburb=Foul%20Bay&delivery_postcode=5577&kilogram_weight=2.0&cubic_metre_volume=0.01'
+  -u "sendleID:APIKey"
   -H 'Content-Type: application/json'
 ```
 
