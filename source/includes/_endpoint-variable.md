@@ -28,6 +28,7 @@ name | string | Human-friendly string identifier
 alias | string | More machine-friendly, traditional name for a variable
 description | string | Optional longer string
 id | string | Immutable internal identifier
+notes | string | Optional internal notes for a variables. Same for all users.
 discarded | boolean | Whether the variable should be hidden from most views; default: false
 derived | boolean | Whether the variable is a function of another; default: false
 type | string | The string type name, one of "numeric", "text", "categorical", "datetime", "categorical_array", or "multiple_response"
@@ -70,6 +71,7 @@ With the relative flag enabled, the variable catalog looks something like this:
             "alias": "birthyear",
             "type": "numeric",
             "id": "a77d9f",
+            "notes": "",
             "description": "In what year were you born?"
         },
         "9e4c84/": {
@@ -79,6 +81,7 @@ With the relative flag enabled, the variable catalog looks something like this:
             "alias": "qccomments",
             "type": "text",
             "id": "9e4c84",
+            "notes": "Global notes about this variable.",
             "description": "Do you have any comments on your experience of taking this survey (optional)?"
         },
         "aad4ad/": {
@@ -91,6 +94,7 @@ With the relative flag enabled, the variable catalog looks something like this:
                 "439dcf/",
                 "1c99ea/"
             ],
+            "notes": "All variable types can have notes",
             "type": "categorical_array",
             "id": "aad4ad",
             "description": ""
@@ -167,6 +171,7 @@ line 24.
             "alias": "birthyear",
             "type": "numeric",
             "id": "a77d9f",
+            "notes": "",
             "description": "In what year were you born?"
         },
         "9e4c84/": {
@@ -176,6 +181,7 @@ line 24.
             "alias": "qccomments",
             "type": "text",
             "id": "9e4c84",
+            "notes": "Global notes about this variable.",
             "description": "Do you have any comments on your experience of taking this survey (optional)?"
         },
         "aad4ad/": {
@@ -188,6 +194,7 @@ line 24.
                 "439dcf/",
                 "1c99ea/"
             ],
+            "notes": "All variable types can have notes",
             "type": "categorical_array",
             "id": "aad4ad",
             "description": ""
@@ -217,7 +224,7 @@ omitted, one will be generated from the required "name".
 You may also include "values", which will create the column of data
 corresponding to this variable definition. See [Importing Data: Column-by-column](#column-by-column) for details and examples.
 
-You may instead also include an "expr" to derive a variable as a function of
+You may instead also include an "derivation" to derive a variable as a function of
 other variables. In this case, "type" is not required because it depends on the
 output of the specified derivation function. For details and examples, see
 [Deriving Variables](#deriving-variables).
@@ -365,6 +372,7 @@ name | string | Human-friendly string identifier
 alias | string | More machine-friendly, traditional name for a variable
 description | string | Optional longer string
 id | string | Immutable internal identifier
+notes | string | Optional annotations for the variables.
 discarded | boolean | Whether the variable should be hidden from most views; default: false
 private | boolean | If true, the Variable is only visible to the owner and is only included in the private variables catalog, not the common catalog.
 owner | url | If the variable is private it will point to the url of its owner. Null for non private variables.
