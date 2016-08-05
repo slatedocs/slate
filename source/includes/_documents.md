@@ -2,7 +2,7 @@
 
 ## Create a Document
 
-> Send only **original_hash** if you dont want us to have the document.
+> Send only **original_hash** and **name** if you dont want us to have the document.
 
 ```ruby
 require 'mifiel'
@@ -24,11 +24,13 @@ document = Mifiel::Document.create(
   callback_url: 'https://www.example.com/webhook/url'
 )
 
-# OR
+# if you dont want us to have the PDF, you can send us 
+# the original_hash and the name of the document. Both are required
 file_contents = File.read('path/to/my-file.pdf')
 original_hash = Digest::SHA256.hexdigest(file_contents)
 document = Mifiel::Document.create(
   original_hash: original_hash,
+  name: 'my-file.pdf'
   signatories: [ ... ]
 )
 ```
@@ -48,22 +50,28 @@ require 'vendor/autoload.php';
 use Mifiel\Document;
 
 $document = new Document([
-  'file' => 'path/to/my-file.pdf',
-  // OR
-  'original_hash' => hash('sha256', file_get_contents('path/to/my-file.pdf')),
+  'file_path' => 'path/to/my-file.pdf',
   'signatories' => [
-    { 
+    [ 
       'name' => 'Signer 1', 
       'email' => 'signer1@email.com', 
       'tax_id' =>  'AAA010101AAA' 
-    },
-    { 
+    ],
+    [ 
       'name' => 'Signer 2', 
       'email' => 'signer2@email.com', 
       'tax_id' =>  'AAA010102AAA'
-     }
+    ]
   ]
-])
+]);
+// if you dont want us to have the PDF, you can just send us 
+// the original_hash and the name of the document. Both are required
+$document = new Document([
+  'original_hash' => hash('sha256', file_get_contents('path/to/my-file.pdf')),
+  'name' => 'my-file.pdf',
+  'signatories' => ...
+]);
+
 $document->save();
 ?>
 ```
@@ -85,25 +93,18 @@ signatories = [
     'tax_id': 'AAA010102AAA'
   }
 ]
-# Providde the SHA256 hash of the file you want to sign.
-document = Document.create(
-  client=client, 
-  signatories=signatories, 
-  dhash='some-sha256-hash'
-)
-# Or just send the file and we'll take care of everything.
-# We will store the file for you. 
 document = Document.create(
   client=client, 
   signatories=signatories, 
   file='test/fixtures/example.pdf'
 )
-
-document.id # -> '7500e528-ac6f-4ad3-9afd-74487c11576a'
-document.original_hash
-document.file
-document.file_signed
-# ...
+# if you dont want us to have the PDF, you can just send us 
+# the original_hash and the name of the document. Both are required
+document = Document.create(
+  client=client, 
+  signatories=signatories, 
+  dhash='some-sha256-hash'
+)
 ```
 
 Create a document to be signed by passing either a PDF file or the Hash of the file.
