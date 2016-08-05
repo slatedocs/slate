@@ -183,6 +183,12 @@
                     "alias": "weight",
                     "discarded": true
                 },
+                "stringid": {
+                    "name": "Person ID",
+                    "alias": "stringid",
+                    "description": "String identifier for each row",
+                    "type": "text",
+                },
                 "country": {
                     "name": "Country",
                     "description": "",
@@ -268,7 +274,8 @@
                         "wave"
                     ]
                 },
-                "weight"
+                "weight",
+                "stringid"
             ]
         }
     }
