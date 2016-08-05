@@ -28,16 +28,16 @@ name | string | Human-friendly string identifier
 alias | string | More machine-friendly, traditional name for a variable
 description | string | Optional longer string
 id | string | Immutable internal identifier
-notes | string | Optional internal notes for a variables. Same for all users.
+notes | string | Optional internal notes for a variable
 discarded | boolean | Whether the variable should be hidden from most views; default: false
 derived | boolean | Whether the variable is a function of another; default: false
 type | string | The string type name, one of "numeric", "text", "categorical", "datetime", "categorical_array", or "multiple_response"
 subvariables | array of URLs | For arrays, array of (ordered) references to subvariables
 subvariables_catalog | URL | For arrays, link to a Shoji Catalog of subvariables
-resolution | string | Present in datetime variables. Current resolution of data
-rollup_resolution | string | Present in datetime variables. Resolution used for rolled up summaries
-geodata | URL | Present only in variables that have geodata associated. Points to the catalog of geodata related to this variable.
-uniform_basis | boolean | Whether each subvariable should be considered the same length as the total array. Only on `multiple_response`.
+resolution | string | Present in datetime variables; current resolution of data
+rollup_resolution | string | Present in datetime variables; resolution used for rolled up summaries
+geodata | URL | Present only in variables that have geodata associated; points to the catalog of geodata related to this variable
+uniform_basis | boolean | Whether each subvariable should be considered the same length as the total array. Only on `multiple_response`
 
 
 
@@ -209,7 +209,7 @@ A POST to this resource must be a Shoji Entity with the following "body" attribu
 
  * **name**
  * **type**
- * (If "type" is "categorical", "multiple_response", or "categorical_array"): **categories**: an array of category definitions
+ * If "type" is "categorical", "multiple_response", or "categorical_array": **categories**: an array of category definitions
  * If "type" is "multiple_response" or "categorical_array": **subvariables**: an array of either URLs of variables to be "bound" together to form the array variable, or partial variable definitions, which will be created as categorical variables and then bound to form the array. If including partial variable definitions, the array definition must include "categories", which are shared among the subvariables
  * If type is "multiple_response", the definition may include **selected_categories**: an array of category names present in the subvariables. This will mark the specified category or categories as the "selected" response in the multiple response variable. If no "selected_categories" array is provided, the new variable will use any categories already flagged as "selected": true. If no such category exists, the response will return a 400 status.
  * If "type" is "datetime": **resolution**: a string, such as "Y", "M", "D", "h", "m", "s", "ms", that indicates the unit size of the datetime data.
@@ -372,19 +372,19 @@ name | string | Human-friendly string identifier
 alias | string | More machine-friendly, traditional name for a variable
 description | string | Optional longer string
 id | string | Immutable internal identifier
-notes | string | Optional annotations for the variables.
+notes | string | Optional annotations for the variable
 discarded | boolean | Whether the variable should be hidden from most views; default: false
-private | boolean | If true, the Variable is only visible to the owner and is only included in the private variables catalog, not the common catalog.
-owner | url | If the variable is private it will point to the url of its owner. Null for non private variables.
+private | boolean | If true, the variable is only visible to the owner and is only included in the private variables catalog, not the common catalog
+owner | url | If the variable is private it will point to the url of its owner; null for non private variables
 derived | boolean | Whether the variable is a function of another; default: false
 type | string | The string type name
-categories | array | If "type" is "categorical", "multiple_response", or "categorical_array", an array of category definitions (see below). Other types have an empty array.
+categories | array | If "type" is "categorical", "multiple_response", or "categorical_array", an array of category definitions (see below). Other types have an empty array
 subvariables | array of URLs | For arrays, array of (ordered) references to subvariables
-derivation | object | For derived variables, a Crunch expression which was used to derive this variable; or null.
+derivation | object | For derived variables, a Crunch expression which was used to derive this variable; or null
 format | object | An object with various members to control the display of Variable data (see below)
 view | object | An object with various members to control the display of Variable data
-dataset_id | string | The id of the Dataset to which this Variable belongs.
-missing_reasons | object | An object whose keys are reason phrases and whose values are missing codes. Missing entries in Variable data are represented by a {"?": code} missing marker; clients may look up the corresponding reason phrase for each code in this one-to-one map.
+dataset_id | string | The id of the Dataset to which this Variable belongs
+missing_reasons | object | An object whose keys are reason phrases and whose values are missing codes; missing entries in Variable data are represented by a {"?": code} missing marker; clients may look up the corresponding reason phrase for each code in this one-to-one map
 
 Category objects have the following members:
 
@@ -405,17 +405,17 @@ Format objects may contain:
 
 Name | Type | Description
 ---- | ---- | -----------
-data | object | An object with an integer "digits" member, stating how many digits to display after the decimal point when showing data values.
-summary | object | An object with an integer "digits" member, stating how many digits to display after the decimal point when showing aggregates values.
+data | object | An object with an integer "digits" member, stating how many digits to display after the decimal point when showing data values
+summary | object | An object with an integer "digits" member, stating how many digits to display after the decimal point when showing aggregates values
 
 View objects may contain:
 
 Name | Type | Description
 ---- | ---- | -----------
-show_codes | boolean | For categorical types only. If true, numeric values are shown.
-show_counts | boolean | If true, show counts; if false, show percents.
-include_missing | boolean | For categorical types only. If true, include missing categories.
-include_noneoftheabove | boolean | For multiple response types only. If true, display a "none of the above" category in the requested summary or analysis.
+show_codes | boolean | For categorical types only; if true, numeric values are shown
+show_counts | boolean | If true, show counts; if false, show percents
+include_missing | boolean | For categorical types only; if true, include missing categories
+include_noneoftheabove | boolean | For multiple response types only; if true, display a "none of the above" category in the requested summary or analysis
 
 #### PATCH
 
