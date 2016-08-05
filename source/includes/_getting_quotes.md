@@ -5,8 +5,8 @@
 
 The quoting API operates in two modes:
 
-1. Requesting a quote without providing your Sendle ID and API key will return all quotes for all publicly available plans.
-2. Requesting a quote with your Sendle ID and API key will only return the quote for the relevant account's plan.
+1. (Recommended) Requesting a quote with your Sendle ID and API key will return the quote for the relevant account's plan only.
+2. Requesting a quote without providing your Sendle ID and API key will return all quotes for all publicly available plans.
 
 Either way, be sure to include all the relevant fields when you make a request.
 
