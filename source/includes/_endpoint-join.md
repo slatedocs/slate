@@ -1,5 +1,9 @@
 ## Joins
 
+<aside class="warning">
+Joins are an experimental feature. Beware when using it, and expect significant future changes. To instead add a snapshot of columns to a dataset, see the "Extend" feature guide. This feature is more stable than the dynamic join described here.
+</aside>
+
 ### Catalog
 
 `/datasets/{id}/joins/`
@@ -9,11 +13,12 @@ A GET on this resource returns a Shoji Catalog enumerating the joins present in 
 ```json
 {
     "element": "shoji:catalog",
-    "self": "...datasets/837498a/joins/",
+    "self": "https://beta.crunch.io/api/datasets/837498a/joins/",
     "index": {
-        "...datasets/837498a/joins/demo/": {
-            "left_key": "...datasets/837498a/variables/1ef71d/",
-            "right_key": "...datasets/de3095/variables/19471d/"
+        "https://beta.crunch.io/api/datasets/837498a/joins/demo/": {
+            "left_key": "https://beta.crunch.io/api/datasets/837498a/variables/1ef71d/",
+            "right_key": "https://beta.crunch.io/api/datasets/de3095/variables/19471d/"
+        }
     }
 }
 ```
@@ -36,4 +41,4 @@ A GET on this resource returns a Shoji Entity describing the join, and a link to
 
 `/datasets/{id}/joins/{id}/variables/`
 
-A variables catalog which describes variables in the subordinate dataset. See Variables for more details.
+A variables catalog which describes variables in the subordinate dataset. See [Variables](#variables) for more details.
