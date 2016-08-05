@@ -28,7 +28,7 @@ name | string | Human-friendly string identifier
 alias | string | More machine-friendly, traditional name for a variable
 description | string | Optional longer string
 id | string | Immutable internal identifier
-notes | string | Optional internal notes for a variable
+notes | string | Optional annotations for a variable
 discarded | boolean | Whether the variable should be hidden from most views; default: false
 derived | boolean | Whether the variable is a function of another; default: false
 type | string | The string type name, one of "numeric", "text", "categorical", "datetime", "categorical_array", or "multiple_response"
