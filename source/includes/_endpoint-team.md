@@ -192,7 +192,7 @@ Tuple values include:
 Name | Type | Description
 ---- | ---- | -----------
 name | string | Display name of the user
-permissions | object | Attributes governing the user's authorization on the team.
+permissions | object | Attributes governing the user's authorization on the team
 
 Supported `permissions`, all boolean, include:
 

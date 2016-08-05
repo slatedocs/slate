@@ -38,7 +38,7 @@ Name | Type | Description
 name | string | Display name of the user
 email | string | Email address of the user
 is_owner | boolean | Whether this user is the dataset's "owner"
-dataset_permissions | object | Attributes governing the user's authorization. See below.
+dataset_permissions | object | Attributes governing the user's authorization; see below
 
 Supported `dataset_permissions`, all boolean, are:
 
