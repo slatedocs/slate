@@ -47,6 +47,32 @@ You'll see "CODE" buttons next to method calls that are >= 500 ms. If you've ena
 
 If you don't enable the Github integration, you'll see a backtrace.
 
+## Memory Bloat Detection
+
+If a user triggers a request to your Rails application that results in a large number of object allocations (example: loading a large number of ActiveRecord objects), your app may require additional memory. The additional memory required to load the objects in memory is released back very slowly. Therefore, a single memory-hungry request will have a long-term impact on your Rails app’s memory usage.
+
+There are 3 specific features of Scout to aid in fixing memory bloat.
+
+### Memory Bloat Insights
+
+The Insights area of the dashboard identifies controller-actions and background jobs that have triggered significant memory increases. An overview of the object allocation breakdown by tier (ActiveRecord, ActionView, etc) is displayed on the dashboard.
+
+![memory insights](memory_insights.png)
+
+### Memory Traces
+
+When inspecting a [transaction trace](#transaction-traces), you'll see a "Memory Allocation Breakdown" section:
+
+![memory trace](memory_trace.png)
+
+For perspective, we display how this trace's allocations compare to the norm.
+
+### Sorting
+
+You can sort by memory allocations throughout the UI: from the list of endpoints, to our pulldowns, to transaction traces.
+
+![memory sort](memory_sort.png)
+
 ## Git Integration
 
 If your code is hosted at Github, you can see the [relevant slow line-of-code within the Scout user interface](#code-backtraces) when viewing a transaction trace. Additionally, you'll also see the:
@@ -84,6 +110,20 @@ The endpoints area within Scout provides a sortable view of your app's overall p
 You can easily compare the performance of your application between different time periods via the time selection on the top right corner of the UI.
 
 ![time compare](time_compare_annotated.png)
+
+## DevTrace
+
+DevTrace is our development profiler: it's included with the `scout_apm` gem and can be used for free without signup. Enabling DevTrace adds a speed badge when navigating your Rails app in development. Clicking the speed badge reveals a shareable transaction trace of the request.
+
+DevTrace is a BETA feature.
+
+![devtrace](devtrace.png)
+
+To enable DevTrace:
+
+1. Ensure you are on the latest version of `scout_apm`. See our [upgrade instructions](#updating-to-the-newest-version).
+2. Add `dev_trace: true` to the `development` section of your `scout_apm.yml` config file or start your local Rails server with:
+`SCOUT_DEV_TRACE=true rails server`.
 
 ## Data Retention
 

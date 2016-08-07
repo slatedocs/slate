@@ -55,6 +55,8 @@ bundle install
 
 ## Updating to the Newest Version
 
+The latest version of `scout_apm` is <code><span id="latest-gem-version">SEE CHANGELOG</span></code>.
+
 <table class="help install">
   <tbody>
     <tr>
@@ -62,12 +64,12 @@ bundle install
         <span class="step">1</span>
       </td>
       <td>
-        <p>Update your Gemfile: <code>gem 'scout_apm', '~><span id="latest-gem-version">SEE CHANGELOG</span>'</code> </p>
+        <p>Ensure your Gemfile entry for Scout is: <code>gem 'scout_apm'</code> </p>
       </td>
     </tr>
     <tr>
       <td><span class="step">2</span></td>
-      <td><p>run <code> bundle install</code></p></td>
+      <td><p>Run <code> bundle update scout_apm</code></p></td>
     </tr>
       <tr>
       <td><span class="step">3</span></td>
@@ -249,6 +251,17 @@ The following configuration settings are available:
           No
         </td>
       </tr>
+      <tr>
+        <th>dev_trace</th>
+        <td>
+          Indicates if DevTrace, the Scout development profiler, should be enabled. Note this setting only applies
+          to the development environment.
+        </td>
+        <td>
+          <code>false</code>
+        </td>
+        <td>No</td>
+      </tr>
     </tbody>
   </table>
 
@@ -359,6 +372,10 @@ heroku config:set SCOUT_NAME='My Heroku App'
 ```
 
 See the configuration section for more information on the available config settings and environment variable functionality.
+
+### Using the Scout Heroku Add-on
+
+Scout is also available as a [Heroku Add-on](https://elements.heroku.com/addons/scout). The add-on automates setting the proper Heroku config variables during the provisioning process.
 
 ## Cloud Foundry <img src="images/cf_logo.png" style="float:right;width: 150px" />
 
