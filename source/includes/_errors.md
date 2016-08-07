@@ -19,6 +19,7 @@ API Errors
 
 Error Code | Meaning
 ---------- | -------
+40 | Gas Limit Exceeded: trade exceeds the current block gas limit
 41 | Wrong Number of Outcomes: the number of initial fair prices does not match this market's number of outcomes
 42 | Insufficient Liquidity: insufficient liquidity to generate order book
 43 | Initial Price Out-of-Bounds: one or more initial fair prices are out-of-bounds
