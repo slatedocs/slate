@@ -526,3 +526,108 @@ Campo | Tipo | Descripción
 Para el Servicio de Rentas Internas de Ecuador (SRI), las únicas propiedades que se tomarán en cuenta son `plazo` (especifica el plazo del tipo de pago) y `unidad_tiempo` (especifica la unidad de tiempo en la cual se expresa el plazo).
 
 Las demás propiedades que se especifiquen se registrarán en Dátil como parte del pago, pero no se reportarán al SRI.
+
+### Tablas recomendadas
+
+Estructura recomendada para las tablas o vistas con información de la factura. 
+
+Ejemplo en SQL Server:
+
+```sql
+-- FACTURA: CABECERA
+CREATE TABLE [DocElectronicoFactura].[cabecera](
+    [id_factura] [varchar](17) NOT NULL,
+
+    [ambiente] [int] NOT NULL,
+    [tipo_emision] [int] NOT NULL,
+    [secuencial] [varchar](9) NOT NULL,
+    [fecha_emision] [datetime] NULL,    
+    [moneda] [varchar](15) NOT NULL,
+    [guia_remision] [varchar](17),
+    [clave_acceso] [varchar](49),
+    -- EMISOR
+    [ruc_emisor] [varchar](13) NULL,
+    [obligado_contabilidad] [varchar](2) NULL,
+    [contribuyente_especial] [int] NULL,
+    [nombre_comercial] [varchar](300) NULL,
+    [razon_social] [varchar](300) NULL,
+    [direccion_matriz] [varchar](300) NULL,
+    [codigo_establecimiento] [varchar](3) NULL,
+    [punto_emision] [varchar](3) NULL,
+    [direccion_establecimiento] [varchar](300) NULL,
+    -- COMPRADOR
+    [email_comprador] [varchar](100) NULL,
+    [identificacion_comprador] [varchar](200) NULL,
+    [tipo_identificacion_comprador] [varchar](2) NULL,
+    [razon_social_comprador] [varchar](200) NULL,
+    [direccion_comprador] [varchar](200) NULL,
+    [telefono_comprador] [varchar](200) NULL,
+    -- TOTALES
+    [total_sin_impuestos] [decimal](14,2) NULL,
+    [importe_total] [decimal](14,2) NULL,
+    [propina] [decimal](14,2) NULL,
+    [descuento] [decimal](14,2) NULL
+ CONSTRAINT [PK_factura] PRIMARY KEY CLUSTERED 
+    ( [id_factura] ASC ) )
+
+-- FACTURA: ITEMS
+CREATE TABLE [DocElectronicoFactura].[items](
+    [id_factura] [varchar](17) NOT NULL,
+    [detalle] [int] NOT NULL,
+
+    [cantidad] [decimal](14,2)  NOT NULL,
+    [codigo_principal] [varchar](50)  NULL,
+    [codigo_auxiliar] [varchar](50)  NULL,
+    [precio_unitario] [decimal](14,2)  NOT NULL,
+    [descripcion] [varchar](300)  NOT NULL,
+    [precio_total_sin_impuestos] [decimal](14,2)  NOT NULL,
+    [descuento] [decimal](14,2)  NULL
+    CONSTRAINT pk_items PRIMARY KEY (id_factura,detalle)
+    )
+
+-- FACTURA: IMPUESTOS DE ITEMS 
+CREATE TABLE [DocElectronicoFactura].[items_impuestos](
+    [id_factura] [varchar](17) NOT NULL,
+    [detalle] [int] NOT NULL,
+    [codigo] [varchar](2) NOT NULL,
+
+    [base_imponible] [decimal](14,2) NOT NULL,
+    [valor] [decimal](14,2) NOT NULL,
+    [tarifa] [decimal](14,2) NOT NULL, -- porcentaje
+    [codigo_porcentaje] [varchar](2) NOT NULL
+    CONSTRAINT pk_items_impuestos PRIMARY KEY (id_factura,detalle, codigo)
+    )
+    
+-- FACTURA: DETALLES ADICIONALES DE ITEMS
+CREATE TABLE [DocElectronicoFactura].[items_detalles_adicionales](
+    [id_factura] [varchar](17) NOT NULL,
+    [detalle] [int] NOT NULL,
+    [nombre] [varchar](100) NOT NULL,
+
+    [valor] [varchar](100) NOT NULL
+    CONSTRAINT pk_items_detalles_adicionales PRIMARY KEY (id_factura,detalle, nombre)
+    )
+
+-- FACTURA: IMPUESTOS DE TOTALES 
+CREATE TABLE [DocElectronicoFactura].[totales_impuestos](
+    [id_factura] [varchar](17) NOT NULL,
+    [orden] [int] NOT NULL,
+
+    [base_imponible] [decimal](14,2) NOT NULL,
+    [valor] [decimal](14,2) NOT NULL,
+    [codigo] [varchar](2) NOT NULL,
+    [codigo_porcentaje] [varchar](2) NOT NULL
+    CONSTRAINT pk_totales_impuestos PRIMARY KEY (id_factura, orden)
+    )
+    
+-- FACTURA: INFORMACION ADICIONAL DE LA FACTURA
+CREATE TABLE [DocElectronicoFactura].[informacion_adicional](
+    [id_factura] [varchar](17) NOT NULL,
+    [nombre] [varchar](100) NOT NULL,
+
+    [valor] [varchar](100) NOT NULL
+    CONSTRAINT pk_informacion_adicional PRIMARY KEY (id_factura, nombre)
+    )   
+
+
+```
