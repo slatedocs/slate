@@ -40,13 +40,13 @@ Content-Type: application/json
         "map": {
             "{right_var1_id}/": {
                 "variable": "/datasets/{other_id}/variables/{right_var1_id}/"
-            }, {
+            },
             "{right_var2_id}/": {
                 "variable": "/datasets/{other_id}/variables/{right_var2_id}/"
-            }, {
+            },
             "{right_var3_id}/": {
                 "variable": "/datasets/{other_id}/variables/{right_var3_id}/"
-            },
+            }
         }
     }],
     "frame": {
