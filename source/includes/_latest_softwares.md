@@ -1,16 +1,16 @@
-# Latest Software
+## <u>Latest Software</u>
 This description has not been written yet. It should be filled in!
 
 
-## The latest_software object
+### <u>The latest_software object</u>
 
 Field | Description
 ------:|:------------
-__latest_software_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A description for this column hasn't been written yet it should be filled in!
-__product_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | A description for this column hasn't been written yet it should be filled in!
-__software_version_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | A description for this column hasn't been written yet it should be filled in!
-__date_added__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | A description for this column hasn't been written yet it should be filled in!
-__date_removed__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
+__latest_software_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each latest_software.
+__<a href="/#product#">product_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#product#">software_version_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__date_added__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
+__date_removed__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -19,16 +19,19 @@ __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the
 Relationship | Description
 -------------:|:------------
 
+ There are no relatioships for this table.
 
-## HTTP Requests
+### <u>HTTP Requests</u>
 > An example POST request. Note that latest_software_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/latest_softwares"
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"product_type_id": 1,
+		"software_version_type_id": 1,
+		"date_added": "2000-01-01 00:00:00",
+		"date_removed": "2000-01-01 00:00:00",
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -39,9 +42,15 @@ Relationship | Description
     r.json()
 
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"latest_software_id": 1
+		"product_type_id": 1,
+		"software_version_type_id": 1,
+		"date_added": "2000-01-01 00:00:00",
+		"date_removed": "2000-01-01 00:00:00",
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > We can retrieve the `latest_software` created by specifying its `latest_software_id` in the request url:
@@ -57,9 +66,15 @@ Relationship | Description
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"latest_software_id": 1
+		"product_type_id": 1,
+		"software_version_type_id": 1,
+		"date_added": "2000-01-01 00:00:00",
+		"date_removed": "2000-01-01 00:00:00",
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > and we can retrieve all latest_softwares by omitted the latest_software_id:
@@ -75,8 +90,16 @@ Relationship | Description
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
+        u'total_pages': 1,
+        u'objects': [
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+        ],
+        u'num_results': 10,
+        u'page': 1
     }
 ```
 
@@ -85,9 +108,11 @@ Relationship | Description
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/latest_softwares'
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"product_type_id": 2,
+		"software_version_type_id": 2,
+		"date_added": "2016-07-01 12:34:45",
+		"date_removed": "2016-07-01 12:34:45",
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -97,9 +122,15 @@ Relationship | Description
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"latest_software_id": 1
+		"product_type_id": 2,
+		"software_version_type_id": 2,
+		"date_added": "2016-07-01 12:34:45",
+		"date_removed": "2016-07-01 12:34:45",
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": 2016-07-07 12:34:45
+	}
 ```
 > Note that the `modified_at` field has been updated accordingly.
 

@@ -1,28 +1,28 @@
-# Product
+## <u>Product</u>
 This description is not yet complete it should be filled in!
 
 
-## The product object
+### <u>The product object</u>
 
 Field | Description
 ------:|:------------
-__product_imei__ <br><font color="DarkGray">_string_</font> <font color="Crimson">__(primary key)__</font> | A description for this column hasn't been written yet it should be filled in!
-__analysis_timestamp__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
-__capacity_limit__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | A description for this column hasn't been written yet it should be filled in!
-__current_enable_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | A description for this column hasn't been written yet it should be filled in!
-__desired_enable_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | A description for this column hasn't been written yet it should be filled in!
-__current_tamper_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | A description for this column hasn't been written yet it should be filled in!
-__desired_tamper_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | A description for this column hasn't been written yet it should be filled in!
-__device_key__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson">(unique)</font> | A description for this column hasn't been written yet it should be filled in!
-__hub_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | A description for this column hasn't been written yet it should be filled in!
-__imsi__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | A description for this column hasn't been written yet it should be filled in!
-__latest_connection_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
-__latest_connection_location_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
-__latest_state_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
-__product_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | A description for this column hasn't been written yet it should be filled in!
-__serial_number__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | A description for this column hasn't been written yet it should be filled in!
-__shop_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | A description for this column hasn't been written yet it should be filled in!
-__software_lock__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | A description for this column hasn't been written yet it should be filled in!
+__product_imei__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">__(primary key)__</font> | 
+__analysis_timestamp__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
+__capacity_limit__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
+__current_enable_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
+__desired_enable_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
+__current_tamper_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
+__desired_tamper_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
+__device_key__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson">(unique)</font> | 
+__<a href="/#product#">hub_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__imsi__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,unique)</font> | 
+__latest_connection_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__latest_connection_location_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__latest_state_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__<a href="/#product#">product_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__serial_number__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
+__<a href="/#product#">shop_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__<a href="/#product#">software_lock</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -45,15 +45,29 @@ __states__ | The associated states
 __tamper_enable_history__ | The associated tamper_enable_history
 
 
-## HTTP Requests
+### <u>HTTP Requests</u>
 > An example POST request. Note that product_imei, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/products"
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"analysis_timestamp": "2000-01-01 00:00:00",
+		"capacity_limit": "test",
+		"current_enable_flag": True,
+		"desired_enable_flag": True,
+		"current_tamper_flag": True,
+		"desired_tamper_flag": True,
+		"device_key": Unknown column type,
+		"hub_id": 1,
+		"imsi": "000000000000000",
+		"latest_connection_id": 1,
+		"latest_connection_location_id": 1,
+		"latest_state_id": 1,
+		"product_type_id": 1,
+		"serial_number": "test",
+		"shop_id": 1,
+		"software_lock": 1,
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -64,9 +78,27 @@ __tamper_enable_history__ | The associated tamper_enable_history
     r.json()
 
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"product_imei": 1
+		"analysis_timestamp": "2000-01-01 00:00:00",
+		"capacity_limit": "test",
+		"current_enable_flag": True,
+		"desired_enable_flag": True,
+		"current_tamper_flag": True,
+		"desired_tamper_flag": True,
+		"device_key": Unknown column type,
+		"hub_id": 1,
+		"imsi": "000000000000000",
+		"latest_connection_id": 1,
+		"latest_connection_location_id": 1,
+		"latest_state_id": 1,
+		"product_type_id": 1,
+		"serial_number": "test",
+		"shop_id": 1,
+		"software_lock": 1,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > We can retrieve the `product` created by specifying its `product_imei` in the request url:
@@ -82,9 +114,27 @@ __tamper_enable_history__ | The associated tamper_enable_history
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"product_imei": 1
+		"analysis_timestamp": "2000-01-01 00:00:00",
+		"capacity_limit": "test",
+		"current_enable_flag": True,
+		"desired_enable_flag": True,
+		"current_tamper_flag": True,
+		"desired_tamper_flag": True,
+		"device_key": Unknown column type,
+		"hub_id": 1,
+		"imsi": "000000000000000",
+		"latest_connection_id": 1,
+		"latest_connection_location_id": 1,
+		"latest_state_id": 1,
+		"product_type_id": 1,
+		"serial_number": "test",
+		"shop_id": 1,
+		"software_lock": 1,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > and we can retrieve all products by omitted the product_imei:
@@ -100,8 +150,16 @@ __tamper_enable_history__ | The associated tamper_enable_history
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
+        u'total_pages': 1,
+        u'objects': [
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+        ],
+        u'num_results': 10,
+        u'page': 1
     }
 ```
 
@@ -110,9 +168,23 @@ __tamper_enable_history__ | The associated tamper_enable_history
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/products'
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"analysis_timestamp": "2016-07-01 12:34:45",
+		"capacity_limit": "changed",
+		"current_enable_flag": False,
+		"desired_enable_flag": False,
+		"current_tamper_flag": False,
+		"desired_tamper_flag": False,
+		"device_key": Unknown column type,
+		"hub_id": 2,
+		"imsi": "999999999999999",
+		"latest_connection_id": 2,
+		"latest_connection_location_id": 2,
+		"latest_state_id": 2,
+		"product_type_id": 2,
+		"serial_number": "changed",
+		"shop_id": 2,
+		"software_lock": 2,
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -122,9 +194,27 @@ __tamper_enable_history__ | The associated tamper_enable_history
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"product_imei": 1
+		"analysis_timestamp": "2016-07-01 12:34:45",
+		"capacity_limit": "changed",
+		"current_enable_flag": False,
+		"desired_enable_flag": False,
+		"current_tamper_flag": False,
+		"desired_tamper_flag": False,
+		"device_key": Unknown column type,
+		"hub_id": 2,
+		"imsi": "999999999999999",
+		"latest_connection_id": 2,
+		"latest_connection_location_id": 2,
+		"latest_state_id": 2,
+		"product_type_id": 2,
+		"serial_number": "changed",
+		"shop_id": 2,
+		"software_lock": 2,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": 2016-07-07 12:34:45
+	}
 ```
 > Note that the `modified_at` field has been updated accordingly.
 

@@ -1,14 +1,14 @@
-# State Type
+## <u>State Type</u>
 This description is not yet complete it should be filled in!
 
 
-## The state_type object
+### <u>The state_type object</u>
 
 Field | Description
 ------:|:------------
-__state_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A description for this column hasn't been written yet it should be filled in!
-__name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | A description for this column hasn't been written yet it should be filled in!
-__description__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
+__state_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each state_type.
+__name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
+__description__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -19,15 +19,15 @@ Relationship | Description
 __states__ | The associated states
 
 
-## HTTP Requests
+### <u>HTTP Requests</u>
 > An example POST request. Note that state_type_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/state_types"
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"name": "test",
+		"description": "test",
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -38,9 +38,13 @@ __states__ | The associated states
     r.json()
 
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"state_type_id": 1
+		"name": "test",
+		"description": "test",
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > We can retrieve the `state_type` created by specifying its `state_type_id` in the request url:
@@ -56,9 +60,13 @@ __states__ | The associated states
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"state_type_id": 1
+		"name": "test",
+		"description": "test",
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > and we can retrieve all state_types by omitted the state_type_id:
@@ -74,8 +82,16 @@ __states__ | The associated states
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
+        u'total_pages': 1,
+        u'objects': [
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+        ],
+        u'num_results': 10,
+        u'page': 1
     }
 ```
 
@@ -84,9 +100,9 @@ __states__ | The associated states
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/state_types'
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"name": "changed",
+		"description": "changed",
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -96,9 +112,13 @@ __states__ | The associated states
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"state_type_id": 1
+		"name": "changed",
+		"description": "changed",
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": 2016-07-07 12:34:45
+	}
 ```
 > Note that the `modified_at` field has been updated accordingly.
 

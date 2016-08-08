@@ -1,19 +1,19 @@
-# User
+## <u>User</u>
 This description is not yet complete it should be filled in!
 
 
-## The user object
+### <u>The user object</u>
 
 Field | Description
 ------:|:------------
-__username__ <br><font color="DarkGray">_string_</font> <font color="Crimson">__(primary key)__</font> | A description for this column hasn't been written yet it should be filled in!
-__entity_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | A description for this column hasn't been written yet it should be filled in!
-__hub_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
-__shop_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
-__user_product_visibility__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
-__user_permissions__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
-__token__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
-__token_expiry__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
+__username__ <br><font color="DarkGray">_string_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each user.
+__<a href="/#product#">entity_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__hub_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__shop_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__user_product_visibility__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__user_permissions__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__token__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__token_expiry__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -22,16 +22,22 @@ __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the
 Relationship | Description
 -------------:|:------------
 
+ There are no relatioships for this table.
 
-## HTTP Requests
+### <u>HTTP Requests</u>
 > An example POST request. Note that username, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/users"
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"entity_id": 1,
+		"hub_id": 1,
+		"shop_id": 1,
+		"user_product_visibility": "test",
+		"user_permissions": "test",
+		"token": "test",
+		"token_expiry": "2000-01-01 00:00:00",
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -42,9 +48,18 @@ Relationship | Description
     r.json()
 
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"username": "000000000000000"
+		"entity_id": 1,
+		"hub_id": 1,
+		"shop_id": 1,
+		"user_product_visibility": "test",
+		"user_permissions": "test",
+		"token": "test",
+		"token_expiry": "2000-01-01 00:00:00",
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > We can retrieve the `user` created by specifying its `username` in the request url:
@@ -60,9 +75,18 @@ Relationship | Description
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"username": "000000000000000"
+		"entity_id": 1,
+		"hub_id": 1,
+		"shop_id": 1,
+		"user_product_visibility": "test",
+		"user_permissions": "test",
+		"token": "test",
+		"token_expiry": "2000-01-01 00:00:00",
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > and we can retrieve all users by omitted the username:
@@ -78,8 +102,16 @@ Relationship | Description
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
+        u'total_pages': 1,
+        u'objects': [
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+        ],
+        u'num_results': 10,
+        u'page': 1
     }
 ```
 
@@ -88,9 +120,14 @@ Relationship | Description
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/users'
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"entity_id": 2,
+		"hub_id": 2,
+		"shop_id": 2,
+		"user_product_visibility": "changed",
+		"user_permissions": "changed",
+		"token": "changed",
+		"token_expiry": "2016-07-01 12:34:45",
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -100,9 +137,18 @@ Relationship | Description
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"username": "000000000000000"
+		"entity_id": 2,
+		"hub_id": 2,
+		"shop_id": 2,
+		"user_product_visibility": "changed",
+		"user_permissions": "changed",
+		"token": "changed",
+		"token_expiry": "2016-07-01 12:34:45",
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": 2016-07-07 12:34:45
+	}
 ```
 > Note that the `modified_at` field has been updated accordingly.
 

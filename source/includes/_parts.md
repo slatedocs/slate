@@ -1,14 +1,14 @@
-# Part
+## <u>Part</u>
 This description is not yet complete it should be filled in!
 
 
-## The part object
+### <u>The part object</u>
 
 Field | Description
 ------:|:------------
-__part_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A description for this column hasn't been written yet it should be filled in!
-__serial_number__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | A description for this column hasn't been written yet it should be filled in!
-__part_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | A description for this column hasn't been written yet it should be filled in!
+__part_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each part.
+__serial_number__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
+__<a href="/#product#">part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -19,15 +19,15 @@ Relationship | Description
 __part_product_linker__ | The associated part_product_linker
 
 
-## HTTP Requests
+### <u>HTTP Requests</u>
 > An example POST request. Note that part_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/parts"
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"serial_number": "test",
+		"part_type_id": 1,
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -38,9 +38,13 @@ __part_product_linker__ | The associated part_product_linker
     r.json()
 
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"part_id": 1
+		"serial_number": "test",
+		"part_type_id": 1,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > We can retrieve the `part` created by specifying its `part_id` in the request url:
@@ -56,9 +60,13 @@ __part_product_linker__ | The associated part_product_linker
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"part_id": 1
+		"serial_number": "test",
+		"part_type_id": 1,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > and we can retrieve all parts by omitted the part_id:
@@ -74,8 +82,16 @@ __part_product_linker__ | The associated part_product_linker
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
+        u'total_pages': 1,
+        u'objects': [
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+        ],
+        u'num_results': 10,
+        u'page': 1
     }
 ```
 
@@ -84,9 +100,9 @@ __part_product_linker__ | The associated part_product_linker
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/parts'
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"serial_number": "changed",
+		"part_type_id": 2,
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -96,9 +112,13 @@ __part_product_linker__ | The associated part_product_linker
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"part_id": 1
+		"serial_number": "changed",
+		"part_type_id": 2,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": 2016-07-07 12:34:45
+	}
 ```
 > Note that the `modified_at` field has been updated accordingly.
 

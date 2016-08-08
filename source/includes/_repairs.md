@@ -1,20 +1,20 @@
-# Repair
+## <u>Repair</u>
 This description is not yet complete it should be filled in!
 
 
-## The repair object
+### <u>The repair object</u>
 
 Field | Description
 ------:|:------------
-__repair_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A description for this column hasn't been written yet it should be filled in!
-__product_imei__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,foreign-key)</font> | A description for this column hasn't been written yet it should be filled in!
-__customer_id__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
-__purchase_date__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
-__arrival_date__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson">(not-null)</font> | A description for this column hasn't been written yet it should be filled in!
-__refurbishment_date__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
-__package__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
-__process__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
-__measured_battery_capacity__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
+__repair_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each repair.
+__<a href="/#product_i#">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__customer_id__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__purchase_date__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | 
+__arrival_date__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson">(not-null)</font> | 
+__refurbishment_date__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | 
+__package__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__process__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__measured_battery_capacity__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -26,15 +26,21 @@ __alerts__ | The associated alerts
 __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 
 
-## HTTP Requests
+### <u>HTTP Requests</u>
 > An example POST request. Note that repair_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/repairs"
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"product_imei": "000000000000000",
+		"customer_id": "test",
+		"purchase_date": Unknown column type,
+		"arrival_date": Unknown column type,
+		"refurbishment_date": Unknown column type,
+		"package": "test",
+		"process": "test",
+		"measured_battery_capacity": Unknown column type,
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -45,9 +51,19 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
     r.json()
 
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"repair_id": 1
+		"product_imei": "000000000000000",
+		"customer_id": "test",
+		"purchase_date": Unknown column type,
+		"arrival_date": Unknown column type,
+		"refurbishment_date": Unknown column type,
+		"package": "test",
+		"process": "test",
+		"measured_battery_capacity": Unknown column type,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > We can retrieve the `repair` created by specifying its `repair_id` in the request url:
@@ -63,9 +79,19 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"repair_id": 1
+		"product_imei": "000000000000000",
+		"customer_id": "test",
+		"purchase_date": Unknown column type,
+		"arrival_date": Unknown column type,
+		"refurbishment_date": Unknown column type,
+		"package": "test",
+		"process": "test",
+		"measured_battery_capacity": Unknown column type,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > and we can retrieve all repairs by omitted the repair_id:
@@ -81,8 +107,16 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
+        u'total_pages': 1,
+        u'objects': [
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+        ],
+        u'num_results': 10,
+        u'page': 1
     }
 ```
 
@@ -91,9 +125,15 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/repairs'
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"product_imei": "999999999999999",
+		"customer_id": "changed",
+		"purchase_date": Unknown column type,
+		"arrival_date": Unknown column type,
+		"refurbishment_date": Unknown column type,
+		"package": "changed",
+		"process": "changed",
+		"measured_battery_capacity": Unknown column type,
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -103,9 +143,19 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"repair_id": 1
+		"product_imei": "999999999999999",
+		"customer_id": "changed",
+		"purchase_date": Unknown column type,
+		"arrival_date": Unknown column type,
+		"refurbishment_date": Unknown column type,
+		"package": "changed",
+		"process": "changed",
+		"measured_battery_capacity": Unknown column type,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": 2016-07-07 12:34:45
+	}
 ```
 > Note that the `modified_at` field has been updated accordingly.
 

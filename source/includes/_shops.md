@@ -1,17 +1,17 @@
-# Shop
+## <u>Shop</u>
 This description is not yet complete it should be filled in!
 
 
-## The shop object
+### <u>The shop object</u>
 
 Field | Description
 ------:|:------------
-__shop_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A description for this column hasn't been written yet it should be filled in!
-__name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | A description for this column hasn't been written yet it should be filled in!
-__guid__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(unique)</font> | A description for this column hasn't been written yet it should be filled in!
-__hub_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | A description for this column hasn't been written yet it should be filled in!
-__latitude__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
-__longitude__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
+__shop_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each shop.
+__name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
+__guid__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(unique)</font> | 
+__<a href="/#product#">hub_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__latitude__ <br><font color="DarkGray">_varchar(12)_</font> <font color="Crimson"></font> | 
+__longitude__ <br><font color="DarkGray">_varchar(12)_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -22,15 +22,18 @@ Relationship | Description
 __products__ | The associated products
 
 
-## HTTP Requests
+### <u>HTTP Requests</u>
 > An example POST request. Note that shop_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/shops"
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"name": "test",
+		"guid": "test",
+		"hub_id": 1,
+		"latitude": -1.111111111,
+		"longitude": -1.111111111,
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -41,9 +44,16 @@ __products__ | The associated products
     r.json()
 
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"shop_id": 1
+		"name": "test",
+		"guid": "test",
+		"hub_id": 1,
+		"latitude": -1.111111111,
+		"longitude": -1.111111111,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > We can retrieve the `shop` created by specifying its `shop_id` in the request url:
@@ -59,9 +69,16 @@ __products__ | The associated products
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"shop_id": 1
+		"name": "test",
+		"guid": "test",
+		"hub_id": 1,
+		"latitude": -1.111111111,
+		"longitude": -1.111111111,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > and we can retrieve all shops by omitted the shop_id:
@@ -77,8 +94,16 @@ __products__ | The associated products
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
+        u'total_pages': 1,
+        u'objects': [
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+        ],
+        u'num_results': 10,
+        u'page': 1
     }
 ```
 
@@ -87,9 +112,12 @@ __products__ | The associated products
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/shops'
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"name": "changed",
+		"guid": "changed",
+		"hub_id": 2,
+		"latitude": -9.999999999,
+		"longitude": -9.999999999,
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -99,9 +127,16 @@ __products__ | The associated products
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"shop_id": 1
+		"name": "changed",
+		"guid": "changed",
+		"hub_id": 2,
+		"latitude": -9.999999999,
+		"longitude": -9.999999999,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": 2016-07-07 12:34:45
+	}
 ```
 > Note that the `modified_at` field has been updated accordingly.
 

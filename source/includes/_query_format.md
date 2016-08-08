@@ -1,4 +1,4 @@
-# Query Format and Filtering
+## Query Format and Filtering
 
 <aside class="notice">The SMARTSolar API uses Flask-Restless filtering syntax. A brief overview is show here. For full details see: <a href='https://flask-restless.readthedocs.io/en/stable/searchformat.html'>Flask Restless Query Format </a> </aside>
 
@@ -60,7 +60,7 @@ The query parameter q must be a JSON string. It can have the following mappings,
 - single
 
 
-## Filters
+### Filters
 Filters are a list of objects of one of the following forms:
 
 `{"name": <fieldname>, "op": <operatorname>, "val": <argument>}`
@@ -141,7 +141,7 @@ Filter objects can also be arbitrary Boolean formulas. For example:
 
 If a filter is poorly formatted (for example, op is set to '==' but val is not set), the server responds with 400 Bad Request.
 
-## Limit
+### Limit
 ```python
 params = {
     "q": json.dumps({
@@ -154,7 +154,7 @@ A positive integer which specifies the maximum number of objects to return.
 
 
 
-## Offset
+### Offset
 ```python
 params = {
     "q": json.dumps({
@@ -166,7 +166,7 @@ A positive integer which specifies the offset into the result set of the returne
 
 
 
-## Order By
+### Order By
 ```python
 params = {
     "q": json.dumps({
@@ -184,7 +184,7 @@ Where `<fieldname>` is a string corresponding to the name of a field of the requ
 
 
 
-## Group By
+### Group By
 ```python
 params = {
     "q": json.dumps({
@@ -205,7 +205,7 @@ Where `<fieldname>` is a string corresponding to the name of a field of the requ
 
 
 
-## Single
+### Single
 ```python
 params = {
     "q": json.dumps({

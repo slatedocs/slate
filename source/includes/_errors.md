@@ -1,4 +1,4 @@
-# Errors
+## Errors
 
 The SMARTSolar API uses the following response codes:
 

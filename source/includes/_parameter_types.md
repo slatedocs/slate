@@ -1,7 +1,7 @@
-# Parameter Types
+## <u>Parameter Types</u>
 Parameter Types descibe the different kinds of parameter than can be set on a BBOXX Unit
 
-## The Parameter Types object
+### <u>The Parameter Types object</u>
 
 Field | Description
 ------:|:------------
@@ -16,7 +16,7 @@ Relationship | Description
 -------------:|:------------
 __parameters__ | The parameters with the given parameter_type_id
 
-## HTTP Requests
+### <u>HTTP Requests</u>
 > An example POST request. Note that parameter_type_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more  information.
 
 ```python

@@ -1,16 +1,16 @@
-# Entity
+## <u>Entity</u>
 This description is not yet complete it should be filled in!
 
 
-## The entity object
+### <u>The entity object</u>
 
 Field | Description
 ------:|:------------
-__entity_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A description for this column hasn't been written yet it should be filled in!
-__name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | A description for this column hasn't been written yet it should be filled in!
-__bboxx_company_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | A description for this column hasn't been written yet it should be filled in!
-__tariff__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
-__financier__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
+__entity_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each entity.
+__name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
+__bboxx_company_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
+__tariff__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__financier__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -23,15 +23,17 @@ __customer_entity_linker__ | The associated customer_entity_linker
 __product_entity_linker__ | The associated product_entity_linker
 
 
-## HTTP Requests
+### <u>HTTP Requests</u>
 > An example POST request. Note that entity_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/entities"
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"name": "test",
+		"bboxx_company_flag": True,
+		"tariff": "test",
+		"financier": True,
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -42,9 +44,15 @@ __product_entity_linker__ | The associated product_entity_linker
     r.json()
 
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"entity_id": 1
+		"name": "test",
+		"bboxx_company_flag": True,
+		"tariff": "test",
+		"financier": True,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > We can retrieve the `entity` created by specifying its `entity_id` in the request url:
@@ -60,9 +68,15 @@ __product_entity_linker__ | The associated product_entity_linker
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"entity_id": 1
+		"name": "test",
+		"bboxx_company_flag": True,
+		"tariff": "test",
+		"financier": True,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > and we can retrieve all entities by omitted the entity_id:
@@ -78,8 +92,16 @@ __product_entity_linker__ | The associated product_entity_linker
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
+        u'total_pages': 1,
+        u'objects': [
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+        ],
+        u'num_results': 10,
+        u'page': 1
     }
 ```
 
@@ -88,9 +110,11 @@ __product_entity_linker__ | The associated product_entity_linker
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/entities'
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"name": "changed",
+		"bboxx_company_flag": False,
+		"tariff": "changed",
+		"financier": False,
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -100,9 +124,15 @@ __product_entity_linker__ | The associated product_entity_linker
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"entity_id": 1
+		"name": "changed",
+		"bboxx_company_flag": False,
+		"tariff": "changed",
+		"financier": False,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": 2016-07-07 12:34:45
+	}
 ```
 > Note that the `modified_at` field has been updated accordingly.
 

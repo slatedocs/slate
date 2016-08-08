@@ -1,17 +1,17 @@
-# Tamper Enable History
+## <u>Tamper Enable History</u>
 This description is not yet complete it should be filled in!
 
 
-## The tamper_enable_history object
+### <u>The tamper_enable_history object</u>
 
 Field | Description
 ------:|:------------
-__tamper_enable_history_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A description for this column hasn't been written yet it should be filled in!
-__product_imei__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,foreign-key)</font> | A description for this column hasn't been written yet it should be filled in!
-__prev_tamper_enable_state__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | A description for this column hasn't been written yet it should be filled in!<br><font color="DodgerBlue">options: [pending_enabled, pending_disabled, init, enabled, disabled]</font>
-__current_tamper_enable_state__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | A description for this column hasn't been written yet it should be filled in!<br><font color="DodgerBlue">options: [pending_enabled, pending_disabled, init, enabled, disabled]</font>
-__user__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | A description for this column hasn't been written yet it should be filled in!
-__date__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | A description for this column hasn't been written yet it should be filled in!
+__tamper_enable_history_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each tamper_enable_history.
+__<a href="/#product_i#">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__prev_tamper_enable_state__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: [pending_enabled, pending_disabled, init, enabled, disabled]</font>
+__current_tamper_enable_state__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: [pending_enabled, pending_disabled, init, enabled, disabled]</font>
+__user__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
+__date__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -20,16 +20,20 @@ __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the
 Relationship | Description
 -------------:|:------------
 
+ There are no relatioships for this table.
 
-## HTTP Requests
+### <u>HTTP Requests</u>
 > An example POST request. Note that tamper_enable_history_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/tamper_enable_histories"
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"product_imei": "000000000000000",
+		"prev_tamper_enable_state": "test",
+		"current_tamper_enable_state": "test",
+		"user": "test",
+		"date": "2000-01-01 00:00:00",
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -40,9 +44,16 @@ Relationship | Description
     r.json()
 
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"tamper_enable_history_id": 1
+		"product_imei": "000000000000000",
+		"prev_tamper_enable_state": "test",
+		"current_tamper_enable_state": "test",
+		"user": "test",
+		"date": "2000-01-01 00:00:00",
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > We can retrieve the `tamper_enable_history` created by specifying its `tamper_enable_history_id` in the request url:
@@ -58,9 +69,16 @@ Relationship | Description
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"tamper_enable_history_id": 1
+		"product_imei": "000000000000000",
+		"prev_tamper_enable_state": "test",
+		"current_tamper_enable_state": "test",
+		"user": "test",
+		"date": "2000-01-01 00:00:00",
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > and we can retrieve all tamper_enable_histories by omitted the tamper_enable_history_id:
@@ -76,8 +94,16 @@ Relationship | Description
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
+        u'total_pages': 1,
+        u'objects': [
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+        ],
+        u'num_results': 10,
+        u'page': 1
     }
 ```
 
@@ -86,9 +112,12 @@ Relationship | Description
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/tamper_enable_histories'
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"product_imei": "999999999999999",
+		"prev_tamper_enable_state": "changed",
+		"current_tamper_enable_state": "changed",
+		"user": "changed",
+		"date": "2016-07-01 12:34:45",
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -98,9 +127,16 @@ Relationship | Description
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"tamper_enable_history_id": 1
+		"product_imei": "999999999999999",
+		"prev_tamper_enable_state": "changed",
+		"current_tamper_enable_state": "changed",
+		"user": "changed",
+		"date": "2016-07-01 12:34:45",
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": 2016-07-07 12:34:45
+	}
 ```
 > Note that the `modified_at` field has been updated accordingly.
 

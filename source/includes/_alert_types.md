@@ -1,19 +1,19 @@
-# Alert Type
+## <u>Alert Type</u>
 This description is not yet complete it should be filled in!
 
 
-## The alert_type object
+### <u>The alert_type object</u>
 
 Field | Description
 ------:|:------------
-__alert_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A description for this column hasn't been written yet it should be filled in!
-__name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | A description for this column hasn't been written yet it should be filled in!
-__version__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null)</font> | A description for this column hasn't been written yet it should be filled in!
-__category__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
-__purpose__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
-__message__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
-__status__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | A description for this column hasn't been written yet it should be filled in!
-__severity__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
+__alert_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each alert_type.
+__name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
+__version__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null)</font> | 
+__category__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__purpose__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__message__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__status__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
+__severity__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -26,15 +26,20 @@ __alert_type_anomaly_type_linker__ | The associated alert_type_anomaly_type_link
 __alert_type_product_type_linker__ | The associated alert_type_product_type_linker
 
 
-## HTTP Requests
+### <u>HTTP Requests</u>
 > An example POST request. Note that alert_type_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/alert_types"
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"name": "test",
+		"version": 1,
+		"category": "test",
+		"purpose": "test",
+		"message": "test",
+		"status": "test",
+		"severity": "test",
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -45,9 +50,18 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
     r.json()
 
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"alert_type_id": 1
+		"name": "test",
+		"version": 1,
+		"category": "test",
+		"purpose": "test",
+		"message": "test",
+		"status": "test",
+		"severity": "test",
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > We can retrieve the `alert_type` created by specifying its `alert_type_id` in the request url:
@@ -63,9 +77,18 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"alert_type_id": 1
+		"name": "test",
+		"version": 1,
+		"category": "test",
+		"purpose": "test",
+		"message": "test",
+		"status": "test",
+		"severity": "test",
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > and we can retrieve all alert_types by omitted the alert_type_id:
@@ -81,8 +104,16 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
+        u'total_pages': 1,
+        u'objects': [
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+        ],
+        u'num_results': 10,
+        u'page': 1
     }
 ```
 
@@ -91,9 +122,14 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/alert_types'
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"name": "changed",
+		"version": 2,
+		"category": "changed",
+		"purpose": "changed",
+		"message": "changed",
+		"status": "changed",
+		"severity": "changed",
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -103,9 +139,18 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"alert_type_id": 1
+		"name": "changed",
+		"version": 2,
+		"category": "changed",
+		"purpose": "changed",
+		"message": "changed",
+		"status": "changed",
+		"severity": "changed",
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": 2016-07-07 12:34:45
+	}
 ```
 > Note that the `modified_at` field has been updated accordingly.
 

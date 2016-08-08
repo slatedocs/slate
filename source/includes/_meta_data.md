@@ -1,4 +1,4 @@
-# Meta Data
+## Meta Data
 
 All records in the SMARTSolar Database have "meta-data" associated with them.
 This data includes:

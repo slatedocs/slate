@@ -1,14 +1,14 @@
-# Product Type
+## <u>Product Type</u>
 This description is not yet complete it should be filled in!
 
 
-## The product_type object
+### <u>The product_type object</u>
 
 Field | Description
 ------:|:------------
-__product_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A description for this column hasn't been written yet it should be filled in!
-__name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | A description for this column hasn't been written yet it should be filled in!
-__erp_code__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | A description for this column hasn't been written yet it should be filled in!
+__product_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each product_type.
+__name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
+__erp_code__ <br><font color="DarkGray">_varchar(6)_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -25,15 +25,15 @@ __symptom_type_product_type_linker__ | The associated symptom_type_product_type_
 __latest_software__ | The associated latest_software
 
 
-## HTTP Requests
+### <u>HTTP Requests</u>
 > An example POST request. Note that product_type_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/product_types"
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"name": "test",
+		"erp_code": "XX0001",
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -44,9 +44,13 @@ __latest_software__ | The associated latest_software
     r.json()
 
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"product_type_id": 1
+		"name": "test",
+		"erp_code": "XX0001",
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > We can retrieve the `product_type` created by specifying its `product_type_id` in the request url:
@@ -62,9 +66,13 @@ __latest_software__ | The associated latest_software
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"product_type_id": 1
+		"name": "test",
+		"erp_code": "XX0001",
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
 > and we can retrieve all product_types by omitted the product_type_id:
@@ -80,8 +88,16 @@ __latest_software__ | The associated latest_software
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
+        u'total_pages': 1,
+        u'objects': [
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+        ],
+        u'num_results': 10,
+        u'page': 1
     }
 ```
 
@@ -90,9 +106,9 @@ __latest_software__ | The associated latest_software
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/product_types'
     data = json.dumps({
-        "k1": "v1",
-        "k2": "v2"
-    })
+		"name": "changed",
+		"erp_code": YY9999,
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -102,9 +118,13 @@ __latest_software__ | The associated latest_software
 
     r.json()
     >>> {
-        "k1": "v1",
-        "k2": "v2"
-    }
+		"product_type_id": 1
+		"name": "changed",
+		"erp_code": YY9999,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": 2016-07-07 12:34:45
+	}
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
