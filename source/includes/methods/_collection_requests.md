@@ -1,4 +1,4 @@
-# Collection Requests
+# Collection Requests (Billing)
 
 ## Introduction
 
@@ -18,7 +18,7 @@ Field | Type | Description
 id | long integer | Unique object identifier
 organization | long integer | The ID of the organization that owns this collection request (This is usually your organization ID)
 amount | decimal | The collection request amount
-currency | string | The 3 letter ISO currency code for the collection request
+currency | string | The 3 letter ISO currency code for the collection request. **Note:**: BXC is the Beyonic Test Currency code. See the "Testing" section for more information. Supported currency codes are BXC (Testing), UGX (Uganda), KES (Kenya)
 phonenumber | string | The phone number that the collection request is intended for, in international format, starting with a +
 reason | string or null | Internal description or reason for this collection request
 metadata | hash | Any custom metadata that was added to the collection request when it was created
@@ -38,8 +38,8 @@ send_instructions | boolean | Whether or not Beyonic will attempt to send instru
 
 ```shell
 curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
--d phonenumber=+256778122118 \
--d currency=UGX \
+-d phonenumber=+401000000001 \
+-d currency=BXC \
 -d amount=3000 \
 -d metadata.my_id='123ASDAsd123'
 ```
@@ -49,9 +49,9 @@ require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 collection = Beyonic::CollectionRequest.create(
-    phonenumber: "+256778122118",
+    phonenumber: "+401000000001",
     amount: "100.2",
-    currency: "UGX",
+    currency: "BXC",
     'metadata.my_id': "123ASDAsd123"
 )
 ```
@@ -62,9 +62,9 @@ require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 Beyonic_Collection_Request::create(array(
-  "phonenumber" => "+256778122118",
+  "phonenumber" => "+401000000001",
   "amount" => "100.2",
-  "currency" => "UGX",
+  "currency" => "BXC",
   "metadata.my_id" => "123ASDAsd123"
 ));
 ?>
@@ -76,9 +76,9 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 kwargs = {'metadata.my_id': '123ASDAsd123'}
 
-beyonic.CollectionRequest.create(phonenumber='+256778122118',
+beyonic.CollectionRequest.create(phonenumber='+401000000001',
                        amount='1200',
-                       currency='UGX',
+                       currency='BXC',
                        description='Per diem',
                        callback_url='https://my.website/payments/callback',
                        **kwargs
@@ -100,8 +100,8 @@ public class CreateCollectionRequestExample {
     private static final String API_ENDPOINT = "https://app.beyonic.com/api/collectionrequests";
     private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
     private static final String CHARSET = "UTF-8";
-    private static final String PHONE_NUMBER = "+256778122118";
-    private static final String CURRENCY = "UGX";
+    private static final String PHONE_NUMBER = "+401000000001";
+    private static final String CURRENCY = "BXC";
     private static final String DESCRIPTION = "Per Diem";
     private static final String AMOUNT = "1200";
     private static final String CALLBACK_URL = "https://my.website/payments/callback";;
@@ -168,8 +168,8 @@ public class CreateCollectionRequestExample {
     "id": 3620,
     "organization": 1,
     "amount": "30",
-    "currency": "UGX",
-    "phone_number": "+256778122118",
+    "currency": "BXC",
+    "phone_number": "+401000000001",
     "created": "2014-11-22T20:57:04.017Z",
     "author": 15,
     "modified": "2014-11-22T20:57:04.018Z",
@@ -181,11 +181,11 @@ To create a new collection request, make a POST to the endpoint above, with the 
 
 Parameter | Required | Type | Example | Notes
 --------- | -------- | ---- | ------- | -----
-phonenumber | Yes | String | +256778122118 | Must be in international format
+phonenumber | Yes | String | +401000000001 | Must be in international format
 first_name | No | String | Luke | Optional subscriber first name - if omitted, the first name will be set to 'Anonymous'
 last_name | No | String | Woods | Optional subscriber last name - if omitted, the last name will be set to 'Contact'
 amount | Yes | String, Integer or Decimal | 3000 | Do not include thousands separators
-currency | Yes | String | UGX | 3 letter ISO currency code. No currency conversion is done, so the currency must be valid for the selected phonenumber. You must have funded Beyonic an account in this currency. If your account for this currency has zero balance, your payment will fail.
+currency | Yes | String | BXC | 3 letter ISO currency code. No currency conversion is done, so the currency must be valid for the selected phonenumber. You must have funded Beyonic an account in this currency. If your account for this currency has zero balance, your payment will fail. **Note:**: BXC is the Beyonic Test Currency code. See the "Testing" section for more information. Supported currency codes are BXC (Testing), UGX (Uganda), KES (Kenya)
 reason | No | String | Transaction Fees | Internal description or reason for this collection request
 metadata | No | JSON String | "{'my_id': '123ASDAsd123'}" | Custom attributes to store with this object. See the Metadata section for more information.
 success_message | No | String (Max 140 characters) | "Thank you for your payment!" | *New in V2.* This message will be sent via SMS to the subscriber when they make a payment for this collection request. '-Powered by Beyonic' shall be appended to this message. If you leave this message out, a default message shall be sent by Beyonic. You can include {amount} and {customer} placeholders - these will be replaced with the amount and customer name or number details before the message is sent.
@@ -281,8 +281,8 @@ public class SingleCollectionRequestExample {
     "id": 230,
     "organization": 1,
     "amount": "30",
-    "currency": "UGX",
-    "phone_number": "+256778122118",
+    "currency": "BXC",
+    "phone_number": "+401000000001",
     "created": "2014-11-22T20:57:04.017Z",
     "author": 15,
     "modified": "2014-11-22T20:57:04.018Z",
@@ -389,8 +389,8 @@ public class ListAllCollectionRequestsExample {
             "id": 99,
             "organization": "Beyonic",
             "amount": "3000.0000",
-            "currency": "UGX",
-            "phonenumber": "+256778122118",
+            "currency": "BXC",
+            "phonenumber": "+401000000001",
             "metadata": null,
             "created": "2015-08-10T16:10:01Z",
             "author": 42,
@@ -401,8 +401,8 @@ public class ListAllCollectionRequestsExample {
             "id": 100,
             "organization": "Beyonic",
             "amount": "3000.0000",
-            "currency": "UGX",
-            "phonenumber": "+256778122118",
+            "currency": "BXC",
+            "phonenumber": "+401000000001",
             "metadata": null,
             "created": "2015-08-10T16:10:01Z",
             "author": 42,
@@ -413,8 +413,8 @@ public class ListAllCollectionRequestsExample {
             "id": 101,
             "organization": "Beyonic",
             "amount": "3000.0000",
-            "currency": "UGX",
-            "phonenumber": "+256778122118",
+            "currency": "BXC",
+            "phonenumber": "+401000000001",
             "metadata": null,
             "created": "2015-08-10T16:10:01Z",
             "author": 42,

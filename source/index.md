@@ -21,6 +21,7 @@ includes:
   - ordering
   - filtering
   - metadata
+  - testing
   - changelog
   - methods
   - methods/accounts

@@ -1,4 +1,4 @@
-# Payments
+# Payments (Outgoing)
 
 ## Introduction
 
@@ -14,7 +14,7 @@ Field | Type | Description
 id | long integer | Unique object identifier
 organization | long integer | The ID of the organization that the payment belongs to. (This is usually your organization ID)
 amount | decimal | The payment amount
-currency | string | The 3 letter ISO currency code for the payment
+currency | string | The 3 letter ISO currency code for the payment. **Note:**: BXC is the Beyonic Test Currency code. See the "Testing" section for more information. Supported currency codes are BXC (Testing), UGX (Uganda), KES (Kenya)
 account | long integer | The ID of the account from which the payment is made
 description | string | The payment description
 phone_nos | list | A list of phone numbers that this payment was sent to
@@ -39,10 +39,10 @@ updated_by | string | The ID of the user who last updated the payment
 
 ```shell
 curl https://app.beyonic.com/api/payments -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
--d phonenumber=+256778122118 \
+-d phonenumber=+401000000001 \
 -d first_name=Kennedy\
 -d last_name=Amani\
--d currency=UGX \
+-d currency=BXC \
 -d account=1 \
 -d amount=30 \
 -d description="Per diem payment" \
@@ -55,11 +55,11 @@ require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 payment = Beyonic::Payment.create(
-    phonenumber: "+256778122118",
+    phonenumber: "+401000000001",
     first_name: "Kennedy",
     last_name: "Amani",
     amount: "100.2",
-    currency: "UGX",
+    currency: "BXC",
     account: "1",
     description: "Per diem payment",
     payment_type: "money",
@@ -75,11 +75,11 @@ require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 Beyonic_Payment::create(array(
-  "phonenumber" => "+256778122118",
+  "phonenumber" => "+401000000001",
   "first_name" => "Kennedy",
   "last_name" => "Kennedy",
   "amount" => "100.2",
-  "currency" => "UGX",
+  "currency" => "BXC",
   "account" => "1",
   "description" => "Per diem payment",
   "payment_type" => "money",
@@ -96,11 +96,11 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 kwargs = {'metadata.id': 1234, 'metadata.name': 'Lucy'}
 
-beyonic.Payment.create(phonenumber='+256778122118',
+beyonic.Payment.create(phonenumber='+401000000001',
                        first_name='Kennedy',
                        last_name='Amani',
                        amount='1200',
-                       currency='UGX',
+                       currency='BXC',
                        account='1',
                        description='Per diem',
                        callback_url='https://my.website/payments/callback',
@@ -122,8 +122,8 @@ public class CreatePayment {
     private static final String API_ENDPOINT = "https://app.beyonic.com/api/payments";
     private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
     private static final String CHARSET = "UTF-8";
-    private static final String PHONE_NUMBER = "+256778122118";
-    private static final String CURRENCY = "UGX";
+    private static final String PHONE_NUMBER = "+401000000001";
+    private static final String CURRENCY = "BXC";
     private static final String DESCRIPTION = "Per Diem";
     private static final String AMOUNT = "1200";
     private static final String CALLBACK_URL = "https://my.website/payments/callback";
@@ -189,12 +189,12 @@ public class CreatePayment {
     "id": 3620,
     "organization": 1,
     "amount": "30",
-    "currency": "UGX",
+    "currency": "BXC",
     "account": "1",
     "payment_type": "money",
     "metadata": {"id": 1234, "name": "Lucy"},
     "description": "Per diem payment",
-    "phone_nos": ["+256778122118"],
+    "phone_nos": ["+401000000001"],
     "state": "new",
     "last_error": null,
     "rejected_reason": null,
@@ -222,27 +222,16 @@ To create a new payment, make a POST to the end point above, with the attributes
 
 Parameter | Required | Type | Example | Notes
 --------- | -------- | ---- | ------- | -----
-phonenumber | Yes | String | +256778122118 | Must be in international format
+phonenumber | Yes | String | +401000000001 | Must be in international format
 amount | Yes | String, Integer or Decimal | 3000 | Do not include thousands separators
-currency | No | String | UGX | 3 letter ISO currency code. No currency conversion is done, so the currency must be valid for the selected phonenumber. You must have a funded Beyonic account in this currency. If your account for this currency has zero balance, your payment will fail. If you also provide an account parameter then the account's currency must match the currency parameter.
+currency | No | String | BXC | 3 letter ISO currency code. No currency conversion is done, so the currency must be valid for the selected phonenumber. You must have a funded Beyonic account in this currency. If your account for this currency has zero balance, your payment will fail. If you also provide an account parameter then the account's currency must match the currency parameter. **Note:**: BXC is the Beyonic Test Currency code. See the "Testing" section for more information. Supported currency codes are BXC (Testing), UGX (Uganda), KES (Kenya)
 account | No | Integer | 1 | The ID of the account from which you are making the payment. The account must be active and funded. If the account has zero balance, your payment will fail. This parameter is optional if a currency is provided. If you have more than one account with the same currency, and you leave this parameter out, the earliest created account (oldest account) that is still active will be used.
 description | Yes | String | Per diem payment | This description will be sent to the recipient along with the payment, so it should be limited to about 140 characters.
 payment_type | No | String | money | Options: money (default), airtime - use "airtime" to send an airtime payment instead of a mobile money payment
-callback_url | No | String | https://my.website/payments/callback | See "Callback URLs" below for more info.
+callback_url | No | String | https://my.website/payments/callback | Callback URLs are used to send notifications of changes in payment status. Not all payments will be completed immediately, especially if it is a payment to a new number that hasn’t been verified, or if your account has approval rules that require other users to approve payments before they are processed. Note that the URL you submit isn’t specific to a specific payment you have created. Once submitted, it will receive notifications for all future payments made via your organization, whether they are made via the API or via the web-interface. Therefore, you are encouraged to use the same URL for all payments. Since URLs are stored at a per-organization level, using different URLs may result in duplicate notifications being sent to the different URLs. See "Webhooks" below for more info. 
 metadata | No | JSON-formatted string or dictionary | "{'id':'1234','name':'Lucy'}" | Metadata allows you to add custom attributes to your payments. E.g. You can include a unique ID to identify each payment. Attributes must be key-value pairs. Both the keys and values must be strings. You can add up to 10 attributes. This data will be returned when you retrieve a payment.
 first_name | No | String | John | If this payment is to a new contact, you can include their first name. This name will only be used if the phone number is new.
 last_name | No | String | Doe | If this payment is to a new contact, you can include their last name. This name will only be used if the phone number is new.
-
-**Callback URLs**
-
-Callback URLs are used to send notifications of changes in payment status. Not all payments will be completed immediately, especially if it is a payment to a new number that hasn’t been verified, or if your account has approval rules that require other users to approve payments before they are processed.
-
-* Non-HTTPS URLs will be rejected.
-* Data will be posted to the URL, and a 200 response is expected.
-* In version 1, a non 200 response may result in deletion of the URL, and no further notifications will be sent.
-* In version 1, the URL you submit isn’t specific to the payment you have created. Once submitted, it will receive notifications for all future payments made via your organization, whether they are made via the API or via the web-interface.
-* Therefore, you are encouraged to use the same URL for all payments. Since URLs are stored at a per-organization level, using different URLs may result in duplicate notifications being sent to the different URLs.
-* In version 1, previously submitted urls can be deleted via the web browser, or the Webhooks API methods described elsewhere in this reference.
 
 **Responses**
 
@@ -345,12 +334,12 @@ public class SinglePaymentExample {
     "id": 22744,
     "organization": 4,
     "amount": "1200.0000",
-    "currency": "UGX",
+    "currency": "BXC",
     "account": "1",
     "payment_type": "money",
     "metadata": {"id": 1234, "name": "Lucy"},
     "description": "Per diem payment",
-    "phone_nos": ["+256778122118"],
+    "phone_nos": ["+401000000001"],
     "state": "new",
     "last_error": null,
     "rejected_reason": null,
@@ -467,13 +456,13 @@ public class ListAllPaymentsExample {
             "id": 1,
             "organization": "Beyonic",
             "amount": "0.0000",
-            "currency": "UGX",
+            "currency": "BXC",
             "account": "1",
             "payment_type": "money",
             "metadata": null,
             "description": "Test",
             "phone_nos": [
-                "+256778122118"
+                "+401000000001"
             ],
             "state": "approved",
             "last_error": null,
@@ -493,13 +482,13 @@ public class ListAllPaymentsExample {
             "id": 2,
             "organization": "Beyonic",
             "amount": "200.0000",
-            "currency": "UGX",
+            "currency": "BXC",
             "account": "2",
             "payment_type": "money",
             "metadata": null,
             "description": "Test2",
             "phone_nos": [
-                "+256778122118"
+                "+401000000001"
             ],
             "state": "scheduled",
             "last_error": null,

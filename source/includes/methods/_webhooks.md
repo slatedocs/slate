@@ -8,6 +8,15 @@ The webhooks api endpoint is:
 
     <aside class="notice">https://app.beyonic.com/api/webhooks</aside>
 
+**Note:**
+
+* Non-HTTPS URLs will be rejected. For testing with a self signed certificate, see the "Testing webhooks" section below.
+* Data will be posted to the URL, and a 200 response is expected.
+* A non 200 response may result in deletion of the URL, and no further notifications will be sent.
+* The URL you submit isn’t specific to a specific object. Once submitted, it will receive notifications for all future events of the specific type made in your organization, whether they are made via the API or via the web-interface.
+* Therefore, you are encouraged to use the one URL for each event type. Since URLs are stored at a per-organization level, using different URLs may result in duplicate notifications being sent to the different URLs.
+* Previously submitted urls can be deleted via the web browser, or the Webhooks API methods described elsewhere in this reference.
+
 ## Supported events
 
 The following events are supported
@@ -69,11 +78,11 @@ target | string | The URL that triggered events will be sent to
 				"id": 2314,
 			    "organization": 1,
 			    "amount": "30",
-			    "currency": "UGX",
+			    "currency": "BXC",
 			    "payment_type": "money",
 			    "metadata": {"id": 1234, "name": "Lucy"},
 			    "description": "Per diem payment",
-			    "phone_nos": ["+256778122118"],
+			    "phone_nos": ["+401000000001"],
 			    "state": "completed",
 			    "last_error": null,
 			    "rejected_reason": null,
@@ -97,47 +106,6 @@ Parameter | Description
 --------- | --------
 hook | A JSON representation of a webhook object. See the see webhook section below.
 data | A JSON representation of the object that triggered the event. This is different for each event. See the 'Supported events' section above.
-
-## Tips for testing callbacks
-
-**1. Https with invalid certificates**
-
-Beyonic only supports notification urls that start with "https://", even when testing. So, you should set up URL to a dedicated page on your server with a server-side https certificate.
-
-Beyonic will usually validate the https certificate, and if validation fails, the notification will not be sent to your URL. To skip validation while testing, add ?skip-cert-verify to your URL, for example:
-    <aside class="notice">https://my.callback.url.com?skip-cert-verify.</aside>
-
-Note that skip-cert-verify only prevents certificate verification. It doesn't eliminate the "https://" requirement
-
-While you can use skip-cert-verify on your production URLs, we advise you to use valid server side certificates to maximize security on your production systems
-
-**2. Setting up a temporary callback URL and verifying the format of the notifications**
-
-If you are not able to set up a dedicated "https://" url while testing, we recommend using a service like [RequestBin](https://requestb.in/).
-
-RequestBin gives you a URL that will collect requests made to it and let you inspect them in a human-friendly way. Use RequestBin to inspect and debug the webhook notifications.
-
-Once you get a RequestBin URL, it uses http by default. Since Beyonic only supports https, remember to use "https://" and "skip-cert-verify"
-
-For example, if your RequestBin URL is
-
-    <aside class="notice">http://requestb.in/xzdqe313</aside>
-
-Then use this for your callback URLs:
-
-    <aside class="notice">https://requestb.in/xzdqe313?skip-cert-verify</aside>
-
-**3. Logging all callback requests and responses**
-
-RequestBin will only show you the request format, but will not send the request to your final callback URL, and will not show you the response that Beyonic is receiving from your callback URL.
-
-A number of third party services can be used to provide request proxying and logging. For example, [Runscope](https://www.runscope.com/) provides full traffic inspection and debugging via its Gateway URLs service. This service will provide a custom URL for you, that will proxy the callbacks to your real callback URL, and log both the requests and responses. Runscope provides free plans as well as paid plans.
-
-Once you have your gateway URL from Runscope, use that as your callback URL in Beyonic.
-
-[See this article for more information.](https://www.runscope.com/docs/debugging)
-
-
 
 ## Creating a new webhook
 
