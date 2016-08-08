@@ -85,7 +85,7 @@ Cada uma das cobranças criadas após a homologação serão do mesmo tipo da co
 | received_amount                | decimal          | valor recebido                                                                                                                                      |
 | received_at                    | date             | dia em que a cobrança foi recebida                                                                                                                  |
 | processing_date                | date             | data de geração do boleto                                                                                                                           |
-| for_homologation               | boolean          | indica se é uma cobrança gerada automaticamente pelo sistema para ser utilizada na homologação da Configuração de cobrança                          |
+| for_homologation               | boolean          | indica se é uma cobrança para ser utilizada na homologação da Configuração de cobrança                          |
 | registrable                    | boolean          | indica se a cobrança é registrável (do tipo que deve ser registrada no banco). Por padrão é o que está definido na Configuração de Cobrança         |
 | payer_id                       | integer          | identificador do pagador                                                                                                                            |
 | payer_national_identifier_type | string           | tipo do documento do pagador (cpf ou cnpj)                                                                                                          |
@@ -340,6 +340,7 @@ Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e
 | mulct_value                    | decimal          | (opcional) valor da multa que deve ser aplicada em caso de atraso, com base em seu tipo                                                                                 |
 | instructions                   | string           | (opcional) instruções de pagamento do boleto, por padrão "Pagável em qualquer agência até data do vencimento." (pode ser linhas separadas por "\n")                     |
 | demonstrative                  | string           | (opcional) demonstrativo do Boleto, por padrão "Não receber após o vencimento." (pode ser linhas separadas por "\n")                                                    |
+| for_homologation               | boolean          | **(requerido, se a configuração de cobrança não estiver homologada )** indica se é uma cobrança para ser utilizada na homologação da Configuração de cobrança                             |
 | registrable                    | boolean          | (opcional) indica se a cobrança é registrável (do tipo que deve ser registrada no banco). Por padrão é o que está definido na Configuração de Cobrança                  |
 | payer_id                       | integer          | **(requerido, se não enviar payer_attributes )** identificador do pagador (caso seja fornecido, o parâmetro payer_attributes será ignorado)                             |
 | payer_attributes*              | object           | **(requerido, se não enviar payer_id )** atributos para a criação de um novo pagador ou atualização de um pagador existente com o mesmo documento (national_identifier) |

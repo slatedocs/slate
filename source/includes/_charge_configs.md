@@ -47,7 +47,7 @@ As Configurações de Cobrança podem ser de tipos diferentes. Sendo assim, os p
 As Configurações de Cobrança do tipo **Boleto** (billet), pertencem as suas contas bancárias, sendo assim é necessário que sempre haja ao menos uma conta bancária para criação desse tipo configuração de cobrança, que também tem suas validações de acordo com o banco de sua conta bancária.
 
 <aside class="info">
-  Quando uma Configuração de Cobrança do tipo Boleto é criada, é também criada, automaticamente, uma cobrança de homologação. Para a Configuração de Cobrança ser homologada, a Cobrança de homologação deve passar por todo o fluxo de cobrança do tipo boleto, ou seja, ser registrada no banco via arquivo de remessa (caso necessário), paga, o valor entrar na conta bancária e o arquivo de retorno ser enviado ao Cobrato.
+  Quando uma Configuração de Cobrança do tipo Boleto é criada, é também criada, automaticamente, uma cobrança de homologação. Para a Configuração de Cobrança ser homologada, a Cobrança de homologação deve passar por todo o fluxo de cobrança do tipo boleto, ou seja, ser registrada no banco via arquivo de remessa (caso necessário), paga, o valor entrar na conta bancária e o arquivo de retorno ser enviado ao Cobrato. Até que a configuração de cobrança seja homologada, todas as cobranças criadas para esta configuração deverão ser de homologação.
 </aside>
 
 **Parâmetros**
