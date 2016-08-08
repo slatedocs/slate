@@ -110,7 +110,7 @@ name | string |  | Required. The name of the dataset
 description | string | "" | A longer description of the dataset
 id | string |  | The dataset's id
 archived | bool | false | Whether the dataset is "archived" or active
-permissions | object | `{"edit": false}` | Authorizations on this dataset. See [Permissions](#permissions).
+permissions | object | `{"edit": false}` | Authorizations on this dataset; see [Permissions](#permissions)
 owner_id | URL |  | URL of the user entity of the dataset's owner
 owner_name | string | "" | That user's name, for display
 size | object | `{"rows": null, "columns": null}` | Dimensions of the dataset
@@ -291,16 +291,16 @@ as discussed in the [Feature Guide](#metadata-document-csv). The full set of pos
 
 Name | Type | Description
 ---- | ---- | -----------
-name | string | Human-friendly string identifier.
-description | string | Optional longer string.
-archived | boolean | Whether the variable should be hidden from most views; default: false.
-owner | URL | Provide a team URL to set the owner to that team. If omitted, the authenticated user will be the owner.   
-notes | sting | Blank if omitted. Optional notes for the dataset.
-start_date | date | ISO-8601 formatted date with day resolution.
-end_date | date | ISO-8601 formatted date with day resolution.
-is_published | boolean | If false, only project editors will have access to this dataset.
-weight_variables | array | Contains aliases of weight variables to start this dataset with. Variables must be numeric type.
-table | object | Metadata definition for the variables in the dataset.
+name | string | Human-friendly string identifier
+description | string | Optional longer string
+archived | boolean | Whether the variable should be hidden from most views; default: false
+owner | URL | Provide a team URL to set the owner to that team; if omitted, the authenticated user will be the owner   
+notes | string | Blank if omitted. Optional notes for the dataset
+start_date | date | ISO-8601 formatted date with day resolution
+end_date | date | ISO-8601 formatted date with day resolution
+is_published | boolean | If false, only project editors will have access to this dataset
+weight_variables | array | Contains aliases of weight variables to start this dataset with; variables must be numeric type
+table | object | Metadata definition for the variables in the dataset
 
 
 
@@ -400,7 +400,7 @@ description | string | "" | A longer description of the dataset
 notes | string | "" | Additional information you want to associate with this dataset
 id | string |  | The dataset's id
 archived | bool | false | Whether the dataset is "archived" or active
-permissions | object | `{"edit": false}` | Authorizations on this dataset. See [Permissions](#permissions).
+permissions | object | `{"edit": false}` | Authorizations on this dataset; see [Permissions](#permissions)
 owner_id | URL |  | URL of the user entity of the dataset's owner
 owner_name | string | "" | That user's name, for display
 size | object | `{"rows": null, "columns": null}` | Dimensions of the dataset
