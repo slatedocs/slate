@@ -164,11 +164,11 @@ group_variables_limit | integer     | number of non-matching variable results in
 
 Allowable filter parameters:
 
-Parameter  | Type             | Description
------------|------------------|-------------------------------------------------
-dataset_id | array of strings | limit results to particular dataset_ids (user must have read access to that dataset)
-team       | string           | id of the team to limit results (user must have read access to the team)
-project    | strint           | id of the project to limit results (user must have access to the project)
+Parameter   | Type             | Description
+------------|------------------|-------------------------------------------------
+dataset_ids | array of strings | limit results to particular dataset_ids or urls (user must have read access to that dataset)
+team        | string           | url or id  of the team to limit results (user must have read access to the team)
+project     | strint           | url or id of the project to limit results (user must have access to the project)
 
 <aside class="notice">
 The query string can only be alpha-numeric characters (including underscores) logical operators are not allowed at this time.
