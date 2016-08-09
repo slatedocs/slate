@@ -507,7 +507,10 @@ See [Multidimensional Analysis](#multidimensional-analysis).
 
 ##### Export
 
-`/datasets/{id}/export/`
+```http
+GET `/datasets/{id}/export/` HTTP/1.1
+Host: beta.crunch.io
+```
 
 GET returns a Shoji View of available dataset export formats.
 
@@ -522,10 +525,30 @@ GET returns a Shoji View of available dataset export formats.
 }
 ```
 
-A GET request on any of the export URLs will return 200 status with a `shoji:view`, containing an attribute
-`url` pointing to the location of the exported file to be downloaded; GET that URL to download the file. If the dataset does not have any columns of data, the GET on the export view URL will return a 409 response.
+A POST request on any of the export views will return 202 status with a `shoji:view`, containing an attribute
+`url` pointing to the location of the exported file to be downloaded; GET that URL to download the file. 
 
-To export a subset of the dataset, instead perform a POST request and include a JSON body with an optional "filter" expression for the rows and a "where" attribute to specify variables to include.
+
+```http
+POST `/api/datasets/f2364cc66e604d63a3be3e8811fc902f/export/spss/` HTTP/1.1
+```
+```json
+{"where":{"function": "identify",
+          "args":[{"id":["https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000000/",
+                         "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000001/",
+                         "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000002/"]}]}}
+```
+```http
+HTTP/1.1 202 Accepted
+Content-Length: 176
+Access-Control-Allow-Methods: OPTIONS, AUTH, POST, GET, HEAD, PUT, PATCH, DELETE
+Access-Control-Expose-Headers: Allow, Location, Expires
+Content-Encoding: gzip
+Location: https://crunch-io.s3.amazonaws.com/exports/dataset_exports/f2364cc66e604d63a3be3e8811fc902f/My_Dataset.sav?Signature=sOmeSigNaTurE%3D&Expires=1470265052&AWSAccessKeyId=SOMEKEY
+```
+
+To export a subset of the dataset, instead perform a POST request and include a JSON body with an optional
+ "filter" expression for the rows and a "where" attribute to specify variables to include.
 
 Attribute | Description | Example
 --------- | ----------- | ------------------------------------
@@ -544,6 +567,13 @@ The following rules apply for all formats:
 * Derived variables will be exported with their values, without their functional links.
 
 Some format-specific properties and options:
+
+Format    | Attribute        | Description                                                      | Example
+--------- | ---------------- | ---------------------------------------------------------------- | --------------------------
+csv       | use_category_ids | instead of category names export the fields as their numeric ids | {"use_category_ids": true}
+
+For both types of responses, the "location" header is set to the location for the download, whether completed or not.  Besides
+ looking for a 100 percent completion with progress requests, the user may also look for a non-404 response on this location.
 
 ###### SPSS
 
