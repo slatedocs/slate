@@ -1,15 +1,15 @@
-## <u>Enable History</u>
+## <u>Tamper Enable History</u>
 This description is not yet complete it should be filled in!
 
 
-### <u>The enable_history object</u>
+### <u>The tamper_enable_history object</u>
 
 Field | Description
 ------:|:------------
-__enable_history_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each enable_history.
-__<a href="/#product_i#">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__prev_enable_state__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: [pending_enabled, pending_disabled, init, enabled, disabled]</font>
-__current_enable_state__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: [pending_enabled, pending_disabled, init, enabled, disabled]</font>
+__tamper_enable_history_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each tamper_enable_history.
+__<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__prev_tamper_enable_state__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: [pending_enabled, pending_disabled, init, enabled, disabled]</font>
+__current_tamper_enable_state__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: [pending_enabled, pending_disabled, init, enabled, disabled]</font>
 __user__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
 __date__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
@@ -19,18 +19,18 @@ __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the
 
 Relationship | Description
 -------------:|:------------
-__sms_history__ | The associated sms_history
 
+ There are no relatioships for this table.
 
 ### <u>HTTP Requests</u>
-> An example POST request. Note that enable_history_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that tamper_enable_history_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/enable_histories"
+    url = "http://smartapi.bboxx.co.uk/v1/tamper_enable_history"
     data = json.dumps({
 		"product_imei": "000000000000000",
-		"prev_enable_state": "test",
-		"current_enable_state": "test",
+		"prev_tamper_enable_state": "test",
+		"current_tamper_enable_state": "test",
 		"user": "test",
 		"date": "2000-01-01 00:00:00",
 		})
@@ -44,10 +44,10 @@ __sms_history__ | The associated sms_history
     r.json()
 
     >>> {
-		"enable_history_id": 1
+		"tamper_enable_history_id": 1
 		"product_imei": "000000000000000",
-		"prev_enable_state": "test",
-		"current_enable_state": "test",
+		"prev_tamper_enable_state": "test",
+		"current_tamper_enable_state": "test",
 		"user": "test",
 		"date": "2000-01-01 00:00:00",
 		"created_at": "2000-01-01 00:00:00"
@@ -56,10 +56,10 @@ __sms_history__ | The associated sms_history
 	}
 ```
 
-> We can retrieve the `enable_history` created by specifying its `enable_history_id` in the request url:
+> We can retrieve the `tamper_enable_history` created by specifying its `tamper_enable_history_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/enable_histories/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/tamper_enable_history/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.get(url=url, headers=headers)
@@ -69,10 +69,10 @@ __sms_history__ | The associated sms_history
 
     r.json()
     >>> {
-		"enable_history_id": 1
+		"tamper_enable_history_id": 1
 		"product_imei": "000000000000000",
-		"prev_enable_state": "test",
-		"current_enable_state": "test",
+		"prev_tamper_enable_state": "test",
+		"current_tamper_enable_state": "test",
 		"user": "test",
 		"date": "2000-01-01 00:00:00",
 		"created_at": "2000-01-01 00:00:00"
@@ -81,10 +81,10 @@ __sms_history__ | The associated sms_history
 	}
 ```
 
-> and we can retrieve all enable_histories by omitted the enable_history_id:
+> and we can retrieve all tamper_enable_history by omitted the tamper_enable_history_id:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/enable_histories'
+    url = 'http://smartapi.bboxx.co.uk/v1/tamper_enable_history'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.get(url=url, headers=headers)
@@ -107,14 +107,14 @@ __sms_history__ | The associated sms_history
     }
 ```
 
-> We can edit the newly created enable_history with a `PUT` request:
+> We can edit the newly created tamper_enable_history with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/enable_histories'
+    url = 'http://smartapi.bboxx.co.uk/v1/tamper_enable_history'
     data = json.dumps({
 		"product_imei": "999999999999999",
-		"prev_enable_state": "changed",
-		"current_enable_state": "changed",
+		"prev_tamper_enable_state": "changed",
+		"current_tamper_enable_state": "changed",
 		"user": "changed",
 		"date": "2016-07-01 12:34:45",
 		})
@@ -127,10 +127,10 @@ __sms_history__ | The associated sms_history
 
     r.json()
     >>> {
-		"enable_history_id": 1
+		"tamper_enable_history_id": 1
 		"product_imei": "999999999999999",
-		"prev_enable_state": "changed",
-		"current_enable_state": "changed",
+		"prev_tamper_enable_state": "changed",
+		"current_tamper_enable_state": "changed",
 		"user": "changed",
 		"date": "2016-07-01 12:34:45",
 		"created_at": "2000-01-01 00:00:00"
@@ -140,10 +140,10 @@ __sms_history__ | The associated sms_history
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the enable_history
+> If a user has `SYSTEM` permissions they can delete the tamper_enable_history
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/enable_histories/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/tamper_enable_history/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.delete(url=url, headers=headers)
@@ -160,20 +160,20 @@ __sms_history__ | The associated sms_history
 ### POST
      | value
  ----:|:---
-endpoint | `/v1/enable_histories`
+endpoint | `/v1/tamper_enable_history`
 method | `POST`
 url_params | <font color="DarkGray">N/A</font>
 query params | <font color="DarkGray">N/A</font>
-body | JSON-formatted dictionary with the details of the `enable_history` that you wish to create
+body | JSON-formatted dictionary with the details of the `tamper_enable_history` that you wish to create
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `201`
 
 ### GET
      | value
  ----:|:---
-endpoint | `/v1/enable_histories` or `/v1/enable_histories/<enable_history_id>`
+endpoint | `/v1/tamper_enable_history` or `/v1/tamper_enable_history/<tamper_enable_history_id>`
 method | `GET`
-url_params | `enable_history_id` (int)
+url_params | `tamper_enable_history_id` (int)
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>
@@ -182,9 +182,9 @@ response | `200`
 ### PUT
      | value
  ----:|:---
-endpoint | `/v1/enable_histories/<enable_history_id>`
+endpoint | `/v1/tamper_enable_history/<tamper_enable_history_id>`
 method | `PUT`
-url_params | `enable_history_id` of the enable_history you wish to edit
+url_params | `tamper_enable_history_id` of the tamper_enable_history you wish to edit
 query params | <font color="DarkGray">N/A</font>
 body | JSON-formatted dictionary of the columns that you wish to alter
 permissions | <font color="Crimson">__`SYSTEM`__</font>
@@ -193,9 +193,9 @@ response | `200`
 ### DELETE
      | value
  ----:|:---
-endpoint | `/v1/enable_histories/<enable_history_id>`
+endpoint | `/v1/tamper_enable_history/<tamper_enable_history_id>`
 method | `DELETE`
-url_params | enable_history_id <font color="DarkGray">(pk_type)</font>
+url_params | tamper_enable_history_id <font color="DarkGray">(pk_type)</font>
 query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>

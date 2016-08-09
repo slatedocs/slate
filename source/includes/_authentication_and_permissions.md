@@ -21,7 +21,7 @@ The token is a random 64-char string.
     print token
     >>> "sRtBFThPFIpgKY2sYkaSHFbo1hosg2NvCP4PmBIxfGQ62VS6zrjFT6dr1qDLQGz"
 ```
-To generate a valid token a user should send a `POST` reqest to `/auth/login` with their username and password.
+To generate a valid token a user should send a `POST` reqest to <a href=/#auth-login>`/auth/login`</a> with their username and password.
 
 A valid token will be sent in response if the username and passworod are correct.
 
@@ -54,12 +54,12 @@ A valid token will be sent in response if the username and passworod are correct
         }
     }
 ```
-A succcesful call to `/auth/login` will return general information about the user as well as the token including amongst
+A succcesful call to <a href=/#auth-login>`/auth/login`</a> will return general information about the user as well as the token including amongst
 other things expiry of the token and the permissions and scope that the user has.
 
 You can view `r.json()` to see the full response object.
 
-## Expiry
+## Token Expiry
 
 The token will expire after 3 hours.
 
@@ -86,7 +86,7 @@ If the token expires the user should simply login again as above to generate a n
 ```
 A basic authentication routine would therefore do the following:
 
-* `POST` request to `/auth/login`
+* `POST` request to <a href=/#auth-login>`/auth/login`</a>
 * extract the  token from the response
 * insert the token into a `headers` variable
 * include the headers in the request
@@ -171,7 +171,7 @@ This strategy is much preferable.
 
 Code snippets demonstrating this routine are shown to the right.
 
-There are of course a number of other possible strategies for avoiding repeated calls to `/auth/login` this is simply
+There are of course a number of other possible strategies for avoiding repeated calls to <a href=/#auth-login>`/auth/login`</a> this is simply
 a suggestion.
 
 ## Permissions and Scope

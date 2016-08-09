@@ -40,6 +40,7 @@ $aside-success-bg: #6ac174;
 $search-notice-bg: #c97a7e;
 
 
+
 // TEXT COLORS
 ////////////////////
 $main-text: #333; // main content text color
@@ -69,7 +70,7 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 ////////////////////
 %default-font {
   font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 %header-font {

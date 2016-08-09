@@ -10,6 +10,7 @@ toc_footers:
 
 includes:
   - introduction
+
   - schema
   - alerts
   - alert_types
@@ -49,9 +50,7 @@ includes:
   - symptom_type_product_type_linker
   - tamper_enable_histories
   - users
-  - custom_endpoints
-  - auth_login
-  - dashboard2
+
   - product_actions
   - enable
   - disable
@@ -59,6 +58,19 @@ includes:
   - lock_software
   - expire_software_updates
   - assign_entity
+  - change_entity
+  - remove_entity
+  - enable_tamper_switch
+  - disable_tamper_switch
+  - send_wakeup
+  - product_parts
+
+
+  - custom_endpoints
+  - home
+  - auth_login
+  - dashboard2
+
   - using_the_api
   - authentication_and_permissions
   - unit_connections

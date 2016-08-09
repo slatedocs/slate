@@ -7,8 +7,8 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __anomaly_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each anomaly.
-__<a href="/#product#">anomaly_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__<a href="/#product_i#">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#anomaly_type">anomaly_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __start_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __end_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at

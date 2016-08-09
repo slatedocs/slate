@@ -3,7 +3,7 @@
 > A `PUT` request to this endpoint enables the unit.
 
 ```python
-    url = http://smartapi.bboxx.co.uk/v1/products/000000000000/enable
+    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/enable"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     r = requests.put(url=url, headers=headers)
@@ -16,7 +16,7 @@
     }
 ```
 
-This endpoint is used to enable (switch-on) a unit. The imei of the unit to be enbaled is specified in the url.
+This endpoint is used to enable (switch-on) a unit. The imei of the unit to be enabled is specified in the url.
 
     | value 
 ---:|:------

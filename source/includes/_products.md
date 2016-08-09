@@ -14,15 +14,15 @@ __desired_enable_flag__ <br><font color="DarkGray">_boolean_</font> <font color=
 __current_tamper_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
 __desired_tamper_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
 __device_key__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson">(unique)</font> | 
-__<a href="/#product#">hub_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__<a href="/#hub">hub_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __imsi__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,unique)</font> | 
 __latest_connection_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __latest_connection_location_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __latest_state_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
-__<a href="/#product#">product_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#product_type">product_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __serial_number__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
-__<a href="/#product#">shop_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
-__<a href="/#product#">software_lock</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__<a href="/#shop">shop_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__<a href="/#software_l">software_lock</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified

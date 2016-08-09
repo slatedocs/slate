@@ -1,32 +1,37 @@
-## `/products/<imei>/assign_entity`
+## `/products/<imei>/change_entity`
 
-> A `PUT` request to this endpoint assigns an entity to the specified entity.
+Since a <a href="#/product">`Product`</a> can be assigned to multiple entities a specific endpoint is required to change the entity that a product belongs to. 
+
+> A `PUT` request to this endpoint changes the specified entity to an another entity.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/assign_entity"
-    data = json.dumps({"entity_id": 5})
+    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/change_entity"
+    data = json.dumps({
+        "old_entity_id": 5,
+        "new_entity_id": 6
+    })
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     r = requests.put(url=url, data=data headers=headers)
 
     print r.json()
-    >>> {
-        "status": "success", 
-        "message": "Product #866771029508370 assigned to entity: 5", 
+    >>>{
+        "status": "success"
+        "message": "Product #000000000000000 assigned to entity: 4",
         "data": {
-            "866771029508370": ["Test Entity"]
-        }
+            "000000000000000": ["BBOXX Capital Kenya"]
+        },
     }
 ```
 
-This endpoint is used to assign an entity to a unit. A succesful request will generate a 200 response and return a list of all entites that this unit is assigned to. 
+This endpoint is used to change the entity to which a unit is. A succesful request will generate a 200 response and return a list of all entites that this unit is assigned to. 
 
     | value 
 ---:|:------
-__endpoint__ | `/products/<imei>/assign_entity`
+__endpoint__ | `/products/<imei>/change_entity`
 __method__ | `PUT`
 __url_params__ | `product_imei` _(int)_
-__payload__ | `{"entity_id": <id>}`
+__payload__ | `{"old_entity_id": <id>, "new_entity_id": <id>}`
 __response__ | 200
 
 ### Entity Id

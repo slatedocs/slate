@@ -7,7 +7,7 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __username__ <br><font color="DarkGray">_string_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each user.
-__<a href="/#product#">entity_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__<a href="/#entity">entity_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __hub_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __shop_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __user_product_visibility__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 

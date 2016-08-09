@@ -1,4 +1,4 @@
-# `/auth/login`
+## `/auth/login`
 > A simple `POST` request with correct details yields the following response:   
 
 ```python
@@ -29,7 +29,7 @@
         }
     }
 ```
-This is the endpoint used to generate a token.  For a full explanation see "Permissions and Authentication".
+This is the endpoint used to generate a token.  For a full explanation see <a href=/#authentication-and-permissions>Authentication and Permissions.</a>
 
   | value
 --:|:------

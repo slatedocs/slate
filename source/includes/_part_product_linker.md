@@ -7,13 +7,13 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __part_product_linker_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each part_product_linker.
-__<a href="/#product#">part_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__<a href="/#product_i#">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#part">part_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __date_added__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __date_removed__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
-__<a href="/#product#">added_repair_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
-__<a href="/#product#">removed_repair_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
-__<a href="/#product#">replaced_part_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__<a href="/#added_repair">added_repair_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__<a href="/#removed_repair">removed_repair_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__<a href="/#replaced_part">replaced_part_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified

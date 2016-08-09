@@ -7,7 +7,7 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __repair_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each repair.
-__<a href="/#product_i#">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __customer_id__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __purchase_date__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | 
 __arrival_date__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson">(not-null)</font> | 

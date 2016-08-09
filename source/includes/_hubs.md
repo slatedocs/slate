@@ -9,7 +9,7 @@ Field | Description
 __hub_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each hub.
 __name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
 __guid__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(unique)</font> | 
-__<a href="/#product#">entity_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#entity">entity_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __latitude__ <br><font color="DarkGray">_varchar(12)_</font> <font color="Crimson"></font> | 
 __longitude__ <br><font color="DarkGray">_varchar(12)_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at

@@ -3,7 +3,7 @@
 > A `PUT` request to this endpoint expires all pending software updates.
 
 ```python
-    url = http://smartapi.bboxx.co.uk/v1/products/000000000000/expire_software_updates
+    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/expire_software_updates"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     r = requests.put(url=url, headers=headers)

@@ -1,21 +1,21 @@
-## <u>Alert</u>
+## <u>Sms History</u>
 This description is not yet complete it should be filled in!
 
 
-### <u>The alert object</u>
+### <u>The sms_history object</u>
 
 Field | Description
 ------:|:------------
-__alert_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each alert.
+__sms_history_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each sms_history.
+__attempted_retries__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null)</font> | 
+__<a href="/#enable_history">enable_history_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__message_reference__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__message__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__<a href="/#alert_type">alert_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__start_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
-__dismissed_at__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
-__dismissed_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
-__dismissal_reason__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
-__<a href="/#repair">repair_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
-__extra_info__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
-__customer_called_date__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
+__sent_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
+__sms_timeout__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
+__status__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__trigger__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -27,20 +27,20 @@ Relationship | Description
  There are no relatioships for this table.
 
 ### <u>HTTP Requests</u>
-> An example POST request. Note that alert_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that sms_history_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/alerts"
+    url = "http://smartapi.bboxx.co.uk/v1/sms_history"
     data = json.dumps({
+		"attempted_retries": 1,
+		"enable_history_id": 1,
+		"message_reference": "test",
+		"message": "test",
 		"product_imei": "000000000000000",
-		"alert_type_id": 1,
-		"start_time": "2000-01-01 00:00:00",
-		"dismissed_at": "2000-01-01 00:00:00",
-		"dismissed_by": "test",
-		"dismissal_reason": "test",
-		"repair_id": 1,
-		"extra_info": "test",
-		"customer_called_date": "2000-01-01 00:00:00",
+		"sent_time": "2000-01-01 00:00:00",
+		"sms_timeout": "2000-01-01 00:00:00",
+		"status": "test",
+		"trigger": "test",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
@@ -52,26 +52,26 @@ Relationship | Description
     r.json()
 
     >>> {
-		"alert_id": 1
+		"sms_history_id": 1
+		"attempted_retries": 1,
+		"enable_history_id": 1,
+		"message_reference": "test",
+		"message": "test",
 		"product_imei": "000000000000000",
-		"alert_type_id": 1,
-		"start_time": "2000-01-01 00:00:00",
-		"dismissed_at": "2000-01-01 00:00:00",
-		"dismissed_by": "test",
-		"dismissal_reason": "test",
-		"repair_id": 1,
-		"extra_info": "test",
-		"customer_called_date": "2000-01-01 00:00:00",
+		"sent_time": "2000-01-01 00:00:00",
+		"sms_timeout": "2000-01-01 00:00:00",
+		"status": "test",
+		"trigger": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
 ```
 
-> We can retrieve the `alert` created by specifying its `alert_id` in the request url:
+> We can retrieve the `sms_history` created by specifying its `sms_history_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/alerts/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/sms_history/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.get(url=url, headers=headers)
@@ -81,26 +81,26 @@ Relationship | Description
 
     r.json()
     >>> {
-		"alert_id": 1
+		"sms_history_id": 1
+		"attempted_retries": 1,
+		"enable_history_id": 1,
+		"message_reference": "test",
+		"message": "test",
 		"product_imei": "000000000000000",
-		"alert_type_id": 1,
-		"start_time": "2000-01-01 00:00:00",
-		"dismissed_at": "2000-01-01 00:00:00",
-		"dismissed_by": "test",
-		"dismissal_reason": "test",
-		"repair_id": 1,
-		"extra_info": "test",
-		"customer_called_date": "2000-01-01 00:00:00",
+		"sent_time": "2000-01-01 00:00:00",
+		"sms_timeout": "2000-01-01 00:00:00",
+		"status": "test",
+		"trigger": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
 ```
 
-> and we can retrieve all alerts by omitted the alert_id:
+> and we can retrieve all sms_history by omitted the sms_history_id:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/alerts'
+    url = 'http://smartapi.bboxx.co.uk/v1/sms_history'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.get(url=url, headers=headers)
@@ -123,20 +123,20 @@ Relationship | Description
     }
 ```
 
-> We can edit the newly created alert with a `PUT` request:
+> We can edit the newly created sms_history with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/alerts'
+    url = 'http://smartapi.bboxx.co.uk/v1/sms_history'
     data = json.dumps({
+		"attempted_retries": 2,
+		"enable_history_id": 2,
+		"message_reference": "changed",
+		"message": "changed",
 		"product_imei": "999999999999999",
-		"alert_type_id": 2,
-		"start_time": "2016-07-01 12:34:45",
-		"dismissed_at": "2016-07-01 12:34:45",
-		"dismissed_by": "changed",
-		"dismissal_reason": "changed",
-		"repair_id": 2,
-		"extra_info": "changed",
-		"customer_called_date": "2016-07-01 12:34:45",
+		"sent_time": "2016-07-01 12:34:45",
+		"sms_timeout": "2016-07-01 12:34:45",
+		"status": "changed",
+		"trigger": "changed",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
@@ -147,16 +147,16 @@ Relationship | Description
 
     r.json()
     >>> {
-		"alert_id": 1
+		"sms_history_id": 1
+		"attempted_retries": 2,
+		"enable_history_id": 2,
+		"message_reference": "changed",
+		"message": "changed",
 		"product_imei": "999999999999999",
-		"alert_type_id": 2,
-		"start_time": "2016-07-01 12:34:45",
-		"dismissed_at": "2016-07-01 12:34:45",
-		"dismissed_by": "changed",
-		"dismissal_reason": "changed",
-		"repair_id": 2,
-		"extra_info": "changed",
-		"customer_called_date": "2016-07-01 12:34:45",
+		"sent_time": "2016-07-01 12:34:45",
+		"sms_timeout": "2016-07-01 12:34:45",
+		"status": "changed",
+		"trigger": "changed",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45
@@ -164,10 +164,10 @@ Relationship | Description
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the alert
+> If a user has `SYSTEM` permissions they can delete the sms_history
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/alerts/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/sms_history/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.delete(url=url, headers=headers)
@@ -184,20 +184,20 @@ Relationship | Description
 ### POST
      | value
  ----:|:---
-endpoint | `/v1/alerts`
+endpoint | `/v1/sms_history`
 method | `POST`
 url_params | <font color="DarkGray">N/A</font>
 query params | <font color="DarkGray">N/A</font>
-body | JSON-formatted dictionary with the details of the `alert` that you wish to create
+body | JSON-formatted dictionary with the details of the `sms_history` that you wish to create
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `201`
 
 ### GET
      | value
  ----:|:---
-endpoint | `/v1/alerts` or `/v1/alerts/<alert_id>`
+endpoint | `/v1/sms_history` or `/v1/sms_history/<sms_history_id>`
 method | `GET`
-url_params | `alert_id` (int)
+url_params | `sms_history_id` (int)
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>
@@ -206,9 +206,9 @@ response | `200`
 ### PUT
      | value
  ----:|:---
-endpoint | `/v1/alerts/<alert_id>`
+endpoint | `/v1/sms_history/<sms_history_id>`
 method | `PUT`
-url_params | `alert_id` of the alert you wish to edit
+url_params | `sms_history_id` of the sms_history you wish to edit
 query params | <font color="DarkGray">N/A</font>
 body | JSON-formatted dictionary of the columns that you wish to alter
 permissions | <font color="Crimson">__`SYSTEM`__</font>
@@ -217,9 +217,9 @@ response | `200`
 ### DELETE
      | value
  ----:|:---
-endpoint | `/v1/alerts/<alert_id>`
+endpoint | `/v1/sms_history/<sms_history_id>`
 method | `DELETE`
-url_params | alert_id <font color="DarkGray">(pk_type)</font>
+url_params | sms_history_id <font color="DarkGray">(pk_type)</font>
 query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>

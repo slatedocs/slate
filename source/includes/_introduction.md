@@ -1,12 +1,12 @@
-# Introduction
+# Introduction - V1
 
 Welcome to the BBOXX SMART Solar API.
 
-We have language bindings in Python and JavaScript. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs at the top.
+This document aims to provide a complete listing of the tables and data available in the SMARTSolar system along with the various actions that a user can take
 
 The different sections of the Documentation are as follows:
 
 * <a href="/#schema">Schema</a> - A detailed listing of the resources available and how to access them.
-* <a href="/#product_actions"></a>Product Actions - A listing of the actions available for a specific product.
-* <a href="/#product_actions"></a>Product Actions - A listing of the actions available for a specific product.
-* <a href="/#using_the_api"></a>Using the API - Information about the general use of the API including authentication, filtering and data format.
+* <a href="/#product-actions">Product Actions</a> - A listing of the actions available for a specific product.
+* <a href="/#custom-endpoints">Custom Endpoints</a> - A listing of other endpoints available to a user not specifically relating to an individual product.
+* <a href="/#using-the-api">Using the API</a> - Information about the general use of the API including authentication, filtering and data format.

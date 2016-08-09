@@ -7,7 +7,7 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __connection_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each connection.
-__<a href="/#product_i#">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(foreign-key)</font> | 
+__<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(foreign-key)</font> | 
 __location_failed_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
 __date__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
 __mcc__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
