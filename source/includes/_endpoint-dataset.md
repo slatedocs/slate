@@ -619,12 +619,15 @@ PATCH the "expression" attribute to modify. An empty "expression" object, like
 
 `/datasets/{id}/decks/`
 
-Decks allow you to store [saved analyses](#saving-analyses) as slides on them
+Decks allow you to store [analyses](#saving-analyses) as slides on them
 for exporting or future reference.
 
 Decks are personal per dataset and each dataset gets one by default but it is
 possible to create more as necessary by POSTing to the decks catalog. They
 only need a name.
+
+Each deck will contain a list of slides, and each slide contains an analysis
+on it. Currently each slide can only have one analysis.
 
 ###### GET
 
@@ -652,24 +655,41 @@ the user and public decks shared for this dataset.
           "is_public": true,
           "owner_id": "https://beta.crunch.io/api/users/4cba5/",
           "owner_name": "Other Person"
-        },
-    },
+        }
+    }
     "order": "https://beta.crunch.io/api/datasets/223fd4/decks/order/"
 }
 
 ```
 
+The decks catalog tuples contain the following keys:
+
+
+Name | Type | Description
+---- | ---- | -----------
+name | string | Human-friendly string identifier
+creation_time | timestamp | Time when this deck was created
+id | string | Global unique identifier for this deck
+is_public | boolean | Indicates whether this is a public deck or not
+owner_id | url | Points to the owner of this deck
+owner_name | string | Name of the owner of the deck (referred by `owner_id`)
+
+To determine if a deck belongs to the authenticated user, the client must
+match by the `owner_id` attribute to be the same as the authenticated user's.
+
 ###### POST
 
 POST will create a new decks for this dataset. It only needs to have
-identifiable name.
+identifiable name, other attributes are optional.
 
 ```json
 {
     "element": "shoji:entity",
     "self": "https://beta.crunch.io/api/datasets/223fd4/decks/",
     "body": {
-        "name": "my new deck"
+        "name": "my new deck",
+        "description": "This deck will contain analyses for a variable",
+        "is_public": false
     }
 }
 ```
@@ -679,6 +699,15 @@ HTTP/1.1 201 Created
 Location: https://beta.crunch.io/api/datasets/223fd4/decks/2b3c5e/
 
 ```
+
+The `shoji:entity` POSTed accepts the following keys
+
+Name | Type | required | Description
+---- | ---- | -----------
+name | string | Yes | Human-friendly string identifier
+description | string | No | Optional longer string with additional notes
+is_public | boolean | No | If true, all users with view access to this dataset will be able to read and export this deck and its analyses; if false, remains private for authenticated user only; when not present defaults to false
+
 
 ###### Deck entity
 
@@ -697,7 +726,6 @@ You can GET on the deck entity to see all its attributes:
         "id": "223fd4",
         "creation_time": "1987-10-15T11:45:00",
         "description": "Explanation about the deck",
-        "id": "223fd4",
         "is_public": false,
         "owner_id": "https://beta.crunch.io/api/users/abcd3/",
         "owner_name": "Real Person"
@@ -705,10 +733,21 @@ You can GET on the deck entity to see all its attributes:
 }
 ```
 
+Name | Type | Description
+---- | ---- | -----------
+name | string | Human-friendly string identifier
+id | string | Global unique identifier for this deck
+creation_time | timestamp | Time when this deck was created
+description | string | Longer annotations for this deck
+is_public | boolean | Indicates whether this is a public deck or not
+owner_id | url | Points to the owner of this deck
+owner_name | string | Name of the owner of the deck (referred by `owner_id`)
+
 ####### PATCH
 
-In order to change the name or description of a deck you can PATCH a
-shoji:entity to it. The server will return a 204 response.
+In order to make changes to a deck you have to PATCH a
+shoji:entity to it. The server will return a 204 response on success or 400
+in case of a problem.
 
 ```json
 {
@@ -733,7 +772,7 @@ Only the following attributes are editable:
  * is_public
 
 The `is_public` attribute is only editable if the authenticated user is the
-owner of the deck.
+owner of the deck, else a 400 response will be returned.
 
 
 ###### Decks order
@@ -744,7 +783,7 @@ The Deck order allows to the user to customize the order in which they will be
 displayed by an API client.
 
 The deck order will always contain all existing decks that are visible to the
-authenticated user, private and public decks.
+authenticated user, private and public.
 
 
 ####### GET
@@ -766,9 +805,12 @@ Will return a (Shoji Order)[#shoji-order] payload.
 
 ####### PATCH
 
-It is necessary to do a PATCH request to change the order of the decks. On success the server will return a 204 response.
+It is necessary to do a PATCH request to change the order of the decks. On
+success the server will return a 204 response.
 
-If the payload contains only a subset of the existing decks. The unmentioned decks will be always appended at the bottom of the top level graph in arbitrary order.
+If the payload contains only a subset of the existing decks. The unmentioned
+decks will be always appended at the bottom of the top level graph in arbitrary
+order.
 
 ```json
 {
@@ -781,13 +823,18 @@ If the payload contains only a subset of the existing decks. The unmentioned dec
 }
 ```
 
-Including invalid URLs or URLs to decks that are not present in the catalog will return a 400 response from the server.
+Including invalid URLs or URLs to decks that are not present in the catalog will
+ return a 400 response from the server.
+
+The deck order should always be a flat list of URLs. Nesting/grouping is not
+allowed.
 
 ###### Slides
 
 `/datasets/223fd4/decks/slides/`
 
-Each deck will contain a list of slides for each of its saved analyses.
+Each deck will contain a list of slides for each of its saved analyses. They
+are available through the slides catalog.
 
 
 ####### GET
@@ -827,11 +874,35 @@ Returns a `shoji:catalog` with the slides for this deck.
 
 ```
 
+Each tuple on the slides catalog will have the following keys:
+
+Name | Type | Description
+---- | ---- | -----------
+analysis_url | url | Points to the analysis contained on this slide
+subtitle | string | Autogenerated; contains the secondary variable (if any) of the saved analysis
+title | string | Autogenerated; contains the name of the main variable in the analysis
+display | object | Stores settings used used when saved, they are used to load the analysis
+
 ####### POST
 
 To create a new slide an analysis has to be posted to the catalog. The payload
-is described in the [saved analyses](#saving-analyses) section.
+is described in the [saved analyses](#saving-analyses) section, should be
+wrapped as a shoji:entity.
 
+After successful creation, the server will return a 201 response.
+
+Only a `query` field is required to create a new slide. It should contain
+the analysis query, still it is possible to include other fields up on slide
+creation.
+
+
+Name | Type | Description
+---- | ---- | -----------
+query | object | Contains a valid analysis query, required
+title | string | Optional title for the slide
+subtitle | string | Optional subtitle for the slide
+display_settings | object | Contains a set of attribtues to be interpreted by the client to render and export the analysis
+query_environment | object | Contains the `weight` and `filter` applied during the analysis, they will be applied up on future evaluation/render/export
 
 ###### Slide Entity
 
@@ -913,6 +984,25 @@ in arbitrary order.
     ]
 }
 ```
+
+This is a flat order, grouping or nesting is not allowed.
+
+###### Analysis Entity
+
+Each slide contains always only one analysis. It is represented as a
+shoji:entity and exposes she shape described under [Saving analyses](#saving-analyses)
+
+Name | Description
+-----|-------------
+query | Includes the query body for this analysis
+query_environment | An object with a `weight` and `filters` to be used for rendering/evaluating this analysis
+display_settings | An object containing client specific instructions on how to recreate the analysis
+
+
+Analyses cannot be edited. To make changes on it, you can load the analysis,
+make modifications to it and POST again to the deck's slides catalog to create
+a new slide with the updated analysis and delete the current if necessary.
+
 
 ##### Preferences
 
