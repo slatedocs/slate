@@ -146,22 +146,19 @@ This search will return associated variables, groups, and dataset metadata.  A q
 properties can be provided to the search endpoint in order to refine the results.  The query string provided is only
 used in plain-text format, any non-text or numeric characters are ignored at this time.
 
-<aside class="notice">
-
 Results are limited only to those
 datasets the user has access to.  Offset and limit parameters are also provided in order to provide performance-chunking
-options.  Variable metadata is returned with these limits based on crunch's internal index, but are filtered to include
-only variable results that match the given search term.  This means that there may be less variable search results
-provided than the limit provided by the user.
-</aside>  
+options.  Variable metadata is returned with these limits based on crunch's internal index (pre-filter), but are filtered to include
+only variable results that match the given search term (post-index-filter).
+This means that there may be less variable search results provided than the limit provided by the user.
 
 Here are the parameters that can be passed to the search endpoint.
 
-Paremeter             | Type        | Description
+Parameter             | Type        | Description
 ----------------------|-------------|------------------------------------------------
-q                     | string      | query string (text and numeric only) 
-f                     | json Object | used to filter the output of the search
-limit                 | integer     | limit the number of results returned by the api to less than this amount
+q                     | string      | query string 
+f                     | json Object | used to filter the output of the search (see below)
+limit                 | integer     | limit the number of results returned by the api to less than this amount (default 1000)
 offset                | integer     | offset into the search index to start gathering results from pre-filter 
 group_variables_limit | integer     | number of non-matching variable results inside matching group names to return (default 10)
 
@@ -171,7 +168,41 @@ Parameter  | Type             | Description
 -----------|------------------|-------------------------------------------------
 dataset_id | array of strings | limit results to particular dataset_ids (user must have read access to that dataset)
 team       | string           | id of the team to limit results (user must have read access to the team)
-project    | strint           | id of the project to limit results (user must have access to the team)
+project    | strint           | id of the project to limit results (user must have access to the project)
+
+<aside class="notice">
+The query string can only be alpha-numeric characters (including underscores) logical operators are not allowed at this time.
+</aside>
+
+
+##### Fields Searched
+ 
+Here is a list of the fields that are searched by the Crunch search endpoint
+
+Field             | Type            | Description                                             | Post-Filter?
+------------------|-----------------|-------------------------------------------------------- | ----------
+category_names    | List of Strings | Category names (associated with categorical variables)  | yes
+dataset_id        | String          | ID of the dataset                                       | no
+description       | String          | description of the variable                             | yes
+id                | String          | ID of the variable                                      | no
+name              | String          | name of the variable                                    | yes
+owner             | String          | owner's ID of the variable                              | no
+subvar_names      | List of Strings | Names of the subvariables associated with the variable  | yes
+users             | List of Strings | User IDs having read-access to the variable             | no
+group_names       | List of Strings | group names (from the variable ordering) associated with the variable | yes
+dataset_labels    | List of Objects | dataset_labels associated with the user associated with the variable | no
+dataset_name      | String          | dataset_name associated with this variable              | no
+dataset_owner     | String          | ID of the owner of the dataset associated with the variable | no
+dataset_users     | List of Strings | User IDs having read-access to the dataset associated with the variable | no
+dataset_teams     | List of Strings | Team IDs having read-access to the dataset associated with the variable | no
+dataset_projects  | List of Strings | Project IDs having read-access to the dataset associated with the variable | no
+                            
+<aside class="notice">
+Post-filter indicates whether post-index results are filtered by the field noted.  If the given query string does not
+match at least one of the Post-filter fields, then it will be eliminated from the results, which limits the results to a
+reasonable number when the dataset attributes match but no variable attributes match.
+</aside>
+
 
 ```http
 GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_variables_list={group_variables_list}  HTTP/1.1
@@ -297,11 +328,15 @@ GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_v
 
 The variables grouping displays metadata for all of the variables that matched.
 The Datasets grouping displays metadata for all of the datasets where a variable or the dataset it self matched.  The "groups"
-parameter of the dataset indicates any groups that matched, along with variables that did not match the search but are contained
-within the group.  Use the `group_variables_limit` parameter to define how many group variables to expose in this parameter. 
-variable_count is the total number of variables that matched the crunch's search index, which is usefull for pagination purposes.
-Totals group defines the number of variables and datasets that matched post-index-filtering.
+parameter of the dataset indicates any variable groups that matched, along with variables that did not match the search but are contained
+within the variable grouping.  The group names that are indexed come from the variable ordering endpoint. 
 
+Use the `group_variables_limit` parameter to define how many group variables to expose in this parameter. 
+variable_count is the total number of variables that matched the crunch's search index.  This number can be used when considering
+limit and offset parameters.  (limit + offset higher than variable_count will always return no results)
+Totals group defines the number of variables and datasets that matched post-index-filtering.  This parameter is useful in order to limit
+the amount of output of group names, since some groups may have thousands of variables, who's information is less relevent
+since those variables do not match in this context.
 
 #### Drafts
 
