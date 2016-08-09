@@ -68,3 +68,5 @@ The version's "description" may be modified by PATCHing its entity. A successful
 `POST /datasets/{dataset_id}/savepoints/{version_id}/revert/`
 
 To roll back to a saved version, POST an empty body to the version's "revert" URL, found both inside the catalog tuple and in the "views" attribute of the entity. A successful request will return 204 status.
+
+Reverting a dataset will not change its current ownership.
