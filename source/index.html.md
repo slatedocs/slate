@@ -118,7 +118,7 @@ The task object represents a single task that you create with Scale and is compl
 Attribute | Type | Description
 --------- | ------- | -----------
 `task_id` | string | The `task_id` is the unique identifier for the task.
-`type` | string | The type of the task. Currently, we support `categorization`.
+`type` | string | The type of the task. Currently, we support `categorization`, `transcription`, `phonecall`, and `comparison`.
 `instruction` | string | A plaintext string explaining the instructions for the task.
 `params` | object | An object with the parameters of the task based on the type. For `categorization`, for example, this will include `attachment_type`, `attachment`, and `categories`.
 `urgency` | string | A string describing the urgency of the response. One of `immediate`, `day`, or `week`, where `immediate` is a 15-minute response time.
