@@ -267,7 +267,7 @@ If `category_ids` was provided, there will be another field `category_id` corres
 curl "https://api.scaleapi.com/v1/task/transcription" \
   -u YOUR_API_KEY: \
   -d callback_url="http://www.example.com/callback" \
-  -d instruction="Write down the normal fields. Then for each news item on the page, write down the information for the row." \
+  -d instruction="Transcribe the given fields. Then for each news item on the page, transcribe the information for the row." \
   -d attachment_type=website \
   -d attachment="http://www.reddit.com/" \
   -d fields[title]="Title of Webpage" \
@@ -282,7 +282,7 @@ import json
 
 payload = {
   'callback_url': 'http://www.example.com/callback',
-  'instruction': 'Write down the normal fields. Then for each news item on the page, write down the information for the row.',
+  'instruction': 'Transcribe the given fields. Then for each news item on the page, transcribe the information for the row.',
   'attachment_type': 'website',
   'attachment': 'http://www.google.com/',
   'fields': {
@@ -310,7 +310,7 @@ var SCALE_API_KEY = 'YOUR_API_KEY';
 
 var payload = {
   'callback_url': 'http://www.example.com/callback',
-  'instruction': 'Write down the normal fields. Then for each news item on the page, write down the information for the row.',
+  'instruction': 'Transcribe the given fields. Then for each news item on the page, transcribe the information for the row.',
   'attachment_type': 'website',
   'attachment': 'http://www.google.com/',
   'fields': {
@@ -348,7 +348,7 @@ request.post('https://api.scaleapi.com/v1/task/transcription', {
   "callback_url": "http://www.example.com/test_callback",
   "type": "transcription",
   "status": "pending",
-  "instruction": "Write down the normal fields. Then for each news item on the page, write down the information for the row.",
+  "instruction": "Transcribe the given fields. Then for each news item on the page, transcribe the information for the row.",
   "urgency": "day",
   "params": {
     "row_fields": {
@@ -368,9 +368,9 @@ request.post('https://api.scaleapi.com/v1/task/transcription', {
 
 This endpoint creates a `transcription` task. In this task, one of our workers will read an attachment and arbitrarily transcribe any information you'd like. Example use cases could be transcribing information from PDFs, manually scraping a web page for information, etc.
 
-This task involves a plaintext `instruction` about how to transcribe the attachment, an `attachment` of what you'd like to transcribe, an `attachment_type`, a dictionary `fields` which describes all the things you'd like transcribed, and an optional dictionary `row_fields` for items which need to be transcribed per row in the attachment.
+This task involves a plaintext `instruction` about how to transcribe the attachment, an `attachment` of what you'd like to transcribe, an `attachment_type`, and at least one of `fields` and `row_fields`. `fields` is a dictionary which describes items you'd like transcribed once per attachment, and `row_fields` is a dictionary which describes items which need to be transcribed per row in the attachment.
 
-Both `field` and `row_fields` are dictionaries where the keys are the keys you'd like the results to be returned under, and values are the descriptions you'd like to show the human worker.
+At least one of `fields` or `row_fields` is required. Both `fields` and `row_fields` are dictionaries where the keys are the keys you'd like the results to be returned under, and values are the descriptions you'd like to show the human worker.
 
 If successful, Scale will immediately return the generated task object, of which you should at least store the `task_id`.
 
@@ -392,9 +392,9 @@ Parameter | Type | Description
 `instruction` | string | The plaintext instruction of how to transcribe the attachment.
 `attachment_type` | string | One of `text`, `image`, `video`, `audio`, `website`, or `pdf`. Describes what type of file the attachment is.
 `attachment` | string | The attachment to be transcribed. If `attachment_type` is `text`, then it should be plaintext. Otherwise, it should be a URL pointing to the attachment.
-`fields` | dictionary | A dictionary corresponding to the fields to be transcribed. Keys are the keys you'd like the fields to be returned under, and values are descriptions to be shown to human workers.
+`fields` (optional if using `row_fields`) | dictionary | A dictionary corresponding to the fields to be transcribed. Keys are the keys you'd like the fields to be returned under, and values are descriptions to be shown to human workers.
+`row_fields` (optional if using `fields`) | dictionary | If your transcription requires a transcription of a variable number of row items, then this dictionary describes the fields for these rows. The format is the same as `fields`.
 `urgency` (optional, default `day`) | string | A string describing the urgency of the response. One of `immediate`, `day`, or `week`, where `immediate` is a 15-minute response time.
-`row_fields` (optional) | dictionary | If your transcription requires a transcription of a variable number of row items, then this dictionary describes the fields for these rows. The format is the same as `fields`, 
 
 ### Response on Callback
 
