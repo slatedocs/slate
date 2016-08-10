@@ -14,12 +14,16 @@ __created_by__  <br><font color="DarkGray">_text_</font>| username of the user w
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
 
 
+<br>
+
 Relationship | Description
 -------------:|:------------
 __states__ | The associated states
 
 
-### <u>HTTP Requests</u>
+<hr>
+<br>
+
 > An example POST request. Note that state_type_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
@@ -155,7 +159,7 @@ response | `201`
  ----:|:---
 endpoint | `/v1/state_types` or `/v1/state_types/<state_type_id>`
 method | `GET`
-url_params | `state_type_id` (int)
+url_params | `state_type_id` <font color="DarkGray">_(int)_</font>
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>
@@ -177,7 +181,7 @@ response | `200`
  ----:|:---
 endpoint | `/v1/state_types/<state_type_id>`
 method | `DELETE`
-url_params | state_type_id <font color="DarkGray">(pk_type)</font>
+url_params | `state_type_id` <font color="DarkGray">_(int)_</font>
 query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>

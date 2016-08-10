@@ -17,6 +17,8 @@ __created_by__  <br><font color="DarkGray">_text_</font>| username of the user w
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
 
 
+<br>
+
 Relationship | Description
 -------------:|:------------
 __product_type_software_version_type_linker__ | The associated product_type_software_version_type_linker
@@ -24,7 +26,9 @@ __product_software_linker__ | The associated product_software_linker
 __latest_software__ | The associated latest_software
 
 
-### <u>HTTP Requests</u>
+<hr>
+<br>
+
 > An example POST request. Note that software_version_type_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
@@ -175,7 +179,7 @@ response | `201`
  ----:|:---
 endpoint | `/v1/software_version_types` or `/v1/software_version_types/<software_version_type_id>`
 method | `GET`
-url_params | `software_version_type_id` (int)
+url_params | `software_version_type_id` <font color="DarkGray">_(int)_</font>
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>
@@ -197,7 +201,7 @@ response | `200`
  ----:|:---
 endpoint | `/v1/software_version_types/<software_version_type_id>`
 method | `DELETE`
-url_params | software_version_type_id <font color="DarkGray">(pk_type)</font>
+url_params | `software_version_type_id` <font color="DarkGray">_(int)_</font>
 query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>

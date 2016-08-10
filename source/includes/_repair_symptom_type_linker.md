@@ -14,12 +14,15 @@ __created_by__  <br><font color="DarkGray">_text_</font>| username of the user w
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
 
 
+<br>
+
 Relationship | Description
 -------------:|:------------
+<font color="DarkGray">N/A</font> | <font color="DarkGray">_There are no relatioships for this table._</font>
 
- There are no relatioships for this table.
+<hr>
+<br>
 
-### <u>HTTP Requests</u>
 > An example POST request. Note that repair_symptom_type_linker_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
@@ -155,7 +158,7 @@ response | `201`
  ----:|:---
 endpoint | `/v1/repair_symptom_type_linker` or `/v1/repair_symptom_type_linker/<repair_symptom_type_linker_id>`
 method | `GET`
-url_params | `repair_symptom_type_linker_id` (int)
+url_params | `repair_symptom_type_linker_id` <font color="DarkGray">_(int)_</font>
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>
@@ -177,7 +180,7 @@ response | `200`
  ----:|:---
 endpoint | `/v1/repair_symptom_type_linker/<repair_symptom_type_linker_id>`
 method | `DELETE`
-url_params | repair_symptom_type_linker_id <font color="DarkGray">(pk_type)</font>
+url_params | `repair_symptom_type_linker_id` <font color="DarkGray">_(int)_</font>
 query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>

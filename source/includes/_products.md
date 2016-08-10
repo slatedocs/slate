@@ -28,6 +28,8 @@ __created_by__  <br><font color="DarkGray">_text_</font>| username of the user w
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
 
 
+<br>
+
 Relationship | Description
 -------------:|:------------
 __alerts__ | The associated alerts
@@ -45,7 +47,9 @@ __states__ | The associated states
 __tamper_enable_history__ | The associated tamper_enable_history
 
 
-### <u>HTTP Requests</u>
+<hr>
+<br>
+
 > An example POST request. Note that product_imei, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
@@ -251,7 +255,7 @@ response | `201`
  ----:|:---
 endpoint | `/v1/products` or `/v1/products/<product_imei>`
 method | `GET`
-url_params | `product_imei` (int)
+url_params | `product_imei` <font color="DarkGray">_(varchar(15))_</font>
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>
@@ -273,7 +277,7 @@ response | `200`
  ----:|:---
 endpoint | `/v1/products/<product_imei>`
 method | `DELETE`
-url_params | product_imei <font color="DarkGray">(pk_type)</font>
+url_params | `product_imei` <font color="DarkGray">_(varchar(15))_</font>
 query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>

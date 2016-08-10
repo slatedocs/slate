@@ -88,8 +88,6 @@ template {
 
 a {
     background-color: transparent;
-    text-decoration: none;
-    color: #2E9AFE;
 }
 
 /**
@@ -233,7 +231,7 @@ code,
 kbd,
 pre,
 samp {
-    font-family: monospace, monospace;
+    font-family: Menlo, monospace, monospace;
     font-size: 1em;
 }
 
