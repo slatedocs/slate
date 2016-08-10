@@ -9,6 +9,7 @@ toc_footers:
 
 includes:
   - submission
+  - boletoparcelado
   - examples
   - button
   - magento
