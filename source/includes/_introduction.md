@@ -1,4 +1,4 @@
-# Introduction -  -AHAHAHAHAHAHAHAHA
+# Introduction -  -AHAHAHAHAHAHAHAHA - power    
 
 Welcome to the BBOXX SMART Solar API.
 
