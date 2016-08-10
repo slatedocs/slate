@@ -10,6 +10,7 @@ toc_footers:
 includes:
   - submission
   - boletoparcelado
+  - split
   - examples
   - button
   - magento
@@ -38,4 +39,4 @@ Olá seja bem-vindo!
 
 Este documento explica como integrar sua Loja (E-Commerce) com o Gateway de Pagamentos iPag.
 
-Nós estamos melhorando constantemente este documento e agradecemos qualquer sugestão enviada. Você pode mandar uma mensagem para suporte@ipag.com.br com suas perguntas e sugestões de como melhora-lo.
+Nós estamos melhorando constantemente este documento e agradecemos qualquer sugestão enviada. Você pode mandar uma mensagem para suporte@ipag.com.br com suas perguntas e sugestões de como melhorá-lo.

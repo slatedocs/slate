@@ -12,46 +12,47 @@ $url = 'https://www.librepag.com.br/pagamento';
 //os dados abaixo são apenas de exemplo
 //preencha com os dados necessários para relizar os testes
 $fields = array(
-			'identificacao' => urlencode('identificacao'),
-			'pedido' => urlencode('111111'),
-			'operacao' => urlencode('Pagamento'),//manter
-			'url_retorno' => urlencode('XML'), //informar URL de call back caso haja uma
-			'valor' => urlencode('1.00'),
-			'nome' => urlencode('Jose da Silva'),
-			'email' => urlencode('jose@teste.com.br'),
-			'fone' => urlencode('11111111111'),
-			'endereco' => urlencode('Rua 1'),
-			'numero_endereco' => urlencode('1111'),
-			'complemento' => urlencode('Complemento'),
-			'bairro' => urlencode('Bairro 1'),
-			'cidade' => urlencode('São paulo'),
-			'estado' => urlencode('SP'),
-			'pais' => urlencode('Brasil'),
-			'cep'=> urlencode('07500000'),
-			'metodo'=> urlencode('mastercard'),
-			'parcelas'=> urlencode('1'),
-			'nome_cartao'=> urlencode('jose da silva'),
-			'num_cartao'=> urlencode('3333333333333333'),
-			'cvv_cartao'=> urlencode('444'),
-			'mes_cartao'=> urlencode('07'),
-			'ano_cartao'=> urlencode('20'),
-				);
+    'identificacao' => urlencode('identificacao'),
+    'pedido' => urlencode('111111'),
+    'operacao' => urlencode('Pagamento'),//manter
+    'url_retorno' => urlencode('XML'), //informar URL de call back caso haja uma
+    'valor' => urlencode('1.00'),
+    'nome' => urlencode('Jose da Silva'),
+    'doc' => urlencode('12312312300'),
+    'email' => urlencode('jose@teste.com.br'),
+    'fone' => urlencode('11111111111'),
+    'endereco' => urlencode('Rua 1'),
+    'numero_endereco' => urlencode('1111'),
+    'complemento' => urlencode('Complemento'),
+    'bairro' => urlencode('Bairro 1'),
+    'cidade' => urlencode('São paulo'),
+    'estado' => urlencode('SP'),
+    'pais' => urlencode('Brasil'),
+    'cep'=> urlencode('07500000'),
+    'metodo'=> urlencode('mastercard'),
+    'parcelas'=> urlencode('1'),
+    'nome_cartao'=> urlencode('jose da silva'),
+    'num_cartao'=> urlencode('3333333333333333'),
+    'cvv_cartao'=> urlencode('444'),
+    'mes_cartao'=> urlencode('07'),
+    'ano_cartao'=> urlencode('20'),
+);
 //url-ify the data for the POST
 $fields_string ='';
 foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
 rtrim($fields_string, '&');
 
-$ch = curl_init();		
+$ch = curl_init();        
 curl_setopt( $ch, CURLOPT_URL, $url );
 curl_setopt( $ch, CURLOPT_POST, true );
-curl_setopt( $ch, CURLOPT_POSTFIELDS, $fields_string );		
+curl_setopt( $ch, CURLOPT_POSTFIELDS, $fields_string );        
 curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
 curl_setopt($ch, CURLOPT_HEADER, true);
 curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 curl_setopt( $ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)' );
 curl_setopt( $ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1 );
 
-$result = curl_exec( $ch );		
+$result = curl_exec( $ch );        
 
 echo $result;
 
@@ -61,32 +62,32 @@ curl_close( $ch );
 
 Parâmetro | size | type | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
-identificacao | 60 | string | obrigatório | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
-metodo | 15 | string | obrigatório | Forma de Pagamento * veja os valores possíveis na seção Métodos deste documento
-operacao | 10 | string | obrigatório | Operação * veja os valores possíveis na seção Operações deste documento
-pedido| 20 | string | obrigatório | Número do pedido (única restrição é que não pode ser igual a outro já enviado ao iPag, aconselhamos numeral sequencial)
-valor | 12 | decimal | obrigatório | Valor total da compra. Deve-se usar pontos como separador de casas decimais, ex: 100.00
-parcelas | 3 | number | opcional | Número de Parcelas
-nome_cartao | 30 | string | opcional | Nome do titular do cartão de crédito (se aplicável).
-num_cartao | 16 | number | opcional | Número do cartão de crédito (se aplicável).
-cvv_cartao | 3 | number | opcional | Código de verificação do cartão de crédito (se aplicável)
-mes_cartao | 2 | number | opcional | Mês de validade do cartão de crédito
-ano_cartao | 2 | number | opcional | Ano de validade do cartão de crédito
-nome | 30 | string | obrigatório | Nome do cliente
-tipo_pessoa | 1 | char | opcional | “j” para pessoas jurídicas e “f” para pessoas físicas
-documento | 18 | string | opcional | CPF ou CNPJ do sacado
-email | 30 | string | obrigatório| E-mail do cliente
-fone | 10 | string | obrigatório | Telefone do cliente
-endereco | 30 | string | obrigatório | Endereço completo do cliente
-numero_endereco | 5 | number | obrigatório | Número do Endereço
-complemento | 100 | string | opcional | Complemento do Endereço
-bairro | 15 | string | obrigatório | Bairro do cliente
-cidade | 20 | string | obrigatório | Cidade do cliente
-estado | 2 | string | obrigatório | Estado do cliente
-pais | 15 | string | obrigatório | País do cliente
-cep | 8 | string | obrigatório | Cep do cliente
-vencto | 10 | date | Opcional | Data de vencimento (DD/MM/YYYY). Usado apenas em boletos. Se não for informado, o vencimento será a data de hoje + o prazo informado nas configurações do iPag.
-url_retorno | 50 | string | obrigatório | URL de retorno à Loja Virtual ou Site. Caso seja informado o valor XML, então o IPag retornará um XML, ao invés de enviar o retorno por POST à URL de retorno.
+identificacao | 60 | string | sim | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
+metodo | 15 | string | sim | Forma de Pagamento * veja os valores possíveis na seção Métodos deste documento
+operacao | 10 | string | sim | Operação * veja os valores possíveis na seção Operações deste documento
+pedido| 20 | string | sim | Número do pedido (única restrição é que não pode ser igual a outro já enviado ao iPag, aconselhamos numeral sequencial)
+valor | 12 | decimal | sim | Valor total da compra. Deve-se usar pontos como separador de casas decimais, ex: 100.00
+parcelas | 3 | number | não | Número de Parcelas
+nome_cartao | 30 | string | não | Nome do titular do cartão de crédito (se aplicável).
+num_cartao | 16 | number | não | Número do cartão de crédito (se aplicável).
+cvv_cartao | 3 | number | não | Código de verificação do cartão de crédito (se aplicável)
+mes_cartao | 2 | number | não | Mês de validade do cartão de crédito
+ano_cartao | 2 | number | não | Ano de validade do cartão de crédito
+nome | 30 | string | sim | Nome do cliente
+tipo_pessoa | 1 | char | não | “j” para pessoas jurídicas e “f” para pessoas físicas
+documento | 18 | string | não | CPF ou CNPJ do sacado
+email | 30 | string | sim| E-mail do cliente
+fone | 10 | string | sim | Telefone do cliente
+endereco | 30 | string | sim | Endereço completo do cliente
+numero_endereco | 5 | number | sim | Número do Endereço
+complemento | 100 | string | não | Complemento do Endereço
+bairro | 15 | string | sim | Bairro do cliente
+cidade | 20 | string | sim | Cidade do cliente
+estado | 2 | string | sim | Estado do cliente
+pais | 15 | string | sim | País do cliente
+cep | 8 | string | sim | Cep do cliente
+vencto | 10 | date | não | Data de vencimento (DD/MM/YYYY). Usado apenas em boletos. Se não for informado, o vencimento será a data de hoje + o prazo informado nas configurações do iPag.
+url_retorno | 50 | string | sim | URL de retorno à Loja Virtual ou Site. Caso seja informado o valor XML, então o IPag retornará um XML, ao invés de enviar o retorno por POST à URL de retorno.
 
 ## Campos adicionais para 1-click buy
 
@@ -100,7 +101,7 @@ token_cartao | 37 | string | Obrigatório na utilização do token | Quando o
 > "intervalo"
 
 ```php
-'day' | 'week' | 'year'
+'day' | 'week' | 'month' | 'year'
 ```
 
 > "inicio"
@@ -113,10 +114,10 @@ $inicio = '01/03/2016';
 
 Parâmetro | size | type | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
-frequencia | 2 | number | obrigatório | Utilizado na criação de uma transação recorrente. Este campo deverá definir a frequência dos intervalos em que a cobrança será realizada.
-intervalo | 5 | string | obrigatório | Utilizado na criação de uma transação recorrente. Define a unidade de intervalo que será utilizada.
-inicio | 10 | date | obrigatório | Utilizado na criação de uma transação recorrente. A primeira cobrança ocorre no dia da criação da recorrência. As próximas cobranças ocorrerão no dia especificado no inicio + (frequencia*intervalo).
-ciclos | 1 | number | opcional | Define o número de ciclos de transações recorrentes que serão realizadas.
+frequencia | 2 | number | sim | Utilizado na criação de uma transação recorrente. Este campo deverá definir a frequência dos intervalos em que a cobrança será realizada.
+intervalo | 5 | string | sim | Utilizado na criação de uma transação recorrente. Define a unidade de intervalo que será utilizada.
+inicio | 10 | date | sim | Utilizado na criação de uma transação recorrente. A primeira cobrança ocorre no dia da criação da recorrência. As próximas cobranças ocorrerão no dia especificado no inicio + (frequencia*intervalo).
+ciclos | 1 | number | não | Define o número de ciclos de transações recorrentes que serão realizadas.
 
 ### Observações
 A primeira cobrança ocorre no ato da criação da recorrência.
