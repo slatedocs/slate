@@ -38,9 +38,17 @@ crGET("https://beta.crunch.io/api/datasets/")
 {
     "element": "shoji:catalog",
     "self": "https://beta.crunch.io/api/datasets/",
+    "catalogs": {
+        "by_name": "https://beta.crunch.io/api/datasets/by_name/{name}/"
+    },
+    "views": {
+        "search": "https://beta.crunch.io/api/datasets/search/"
+    },
     "orders": {
         "order": "https://beta.crunch.io/api/datasets/order/"
     },
+    "specification": "https://beta.crunch.io/api/specifications/datasets/",
+    "description": "Catalog of Datasets that belong to this user. POST a Dataset representation (serialized JSON) here to create a new one; a 201 response indicates success and returns the location of the new object. GET that URL to retrieve the object.",
     "index": {
         "https://beta.crunch.io/api/datasets/cc9161/": {
             "owner_name": "James T. Kirk",
@@ -94,7 +102,8 @@ crGET("https://beta.crunch.io/api/datasets/")
             "current_editor": null,
             "current_editor_name": null
         }
-    }
+    },
+    "template": "{"name": "Awesome Dataset", "description": "(optional) This dataset is awesome because I made it, and you can do it too."}"
 }
 ```
 
@@ -129,6 +138,205 @@ is_published | boolean | true | Indicates if the dataset is published to viewers
     multiple teams or by direct sharing, the final permissions they have on the
     dataset will be the maximum of all the permissions granted.
 </aside>
+
+#### Search
+
+You can perform a cross-dataset search of dataset metadata (including variables) via the search endpoint.
+This search will return associated variables, groups, and dataset metadata.  A query string, along with filtering
+properties can be provided to the search endpoint in order to refine the results.  The query string provided is only
+used in plain-text format, any non-text or numeric characters are ignored at this time.
+
+Results are limited only to those
+datasets the user has access to.  Offset and limit parameters are also provided in order to provide performance-chunking
+options.  Variable metadata is returned with these limits based on crunch's internal index (pre-filter), but are filtered to include
+only variable results that match the given search term (post-index-filter).
+This means that there may be less variable search results provided than the limit provided by the user.
+
+Here are the parameters that can be passed to the search endpoint.
+
+Parameter             | Type        | Description
+----------------------|-------------|------------------------------------------------
+q                     | string      | query string 
+f                     | json Object | used to filter the output of the search (see below)
+limit                 | integer     | limit the number of results returned by the api to less than this amount (default 1000)
+offset                | integer     | offset into the search index to start gathering results from pre-filter 
+group_variables_limit | integer     | number of non-matching variable results inside matching group names to return (default 10)
+
+Allowable filter parameters:
+
+Parameter   | Type             | Description
+------------|------------------|-------------------------------------------------
+dataset_ids | array of strings | limit results to particular dataset_ids or urls (user must have read access to that dataset)
+team        | string           | url or id  of the team to limit results (user must have read access to the team)
+project     | strint           | url or id of the project to limit results (user must have access to the project)
+
+<aside class="notice">
+The query string can only be alpha-numeric characters (including underscores) logical operators are not allowed at this time.
+</aside>
+
+
+##### Fields Searched
+ 
+Here is a list of the fields that are searched by the Crunch search endpoint
+
+Field             | Type            | Description                                             | Post-Filter?
+------------------|-----------------|-------------------------------------------------------- | ----------
+category_names    | List of Strings | Category names (associated with categorical variables)  | yes
+dataset_id        | String          | ID of the dataset                                       | no
+description       | String          | description of the variable                             | yes
+id                | String          | ID of the variable                                      | no
+name              | String          | name of the variable                                    | yes
+owner             | String          | owner's ID of the variable                              | no
+subvar_names      | List of Strings | Names of the subvariables associated with the variable  | yes
+users             | List of Strings | User IDs having read-access to the variable             | no
+group_names       | List of Strings | group names (from the variable ordering) associated with the variable | yes
+dataset_labels    | List of Objects | dataset_labels associated with the user associated with the variable | no
+dataset_name      | String          | dataset_name associated with this variable              | no
+dataset_owner     | String          | ID of the owner of the dataset associated with the variable | no
+dataset_users     | List of Strings | User IDs having read-access to the dataset associated with the variable | no
+dataset_teams     | List of Strings | Team IDs having read-access to the dataset associated with the variable | no
+dataset_projects  | List of Strings | Project IDs having read-access to the dataset associated with the variable | no
+                            
+<aside class="notice">
+Post-filter indicates whether post-index results are filtered by the field noted.  If the given query string does not
+match at least one of the Post-filter fields, then it will be eliminated from the results, which limits the results to a
+reasonable number when the dataset attributes match but no variable attributes match.
+</aside>
+
+
+```http
+GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_variables_list={group_variables_list}  HTTP/1.1
+```
+  
+```json
+{
+   "element": "shoji:view",
+    "self": "https://beta.crunch.io/api/datasets/search/?q=blue",
+    "description": "Returns a view with relevant search information",
+    "value": {
+        "groups": [
+            {
+                "group": "Search Results",
+                "datasets": {
+                    "https://beta.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/": {
+                        "labels": [],
+                        "name": "econ_few_columns_0",
+                        "groups": {
+                            "blue": {
+                                "https://beta.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/variables/000004/": {
+                                    "dataset_labels": [],
+                                    "users": [
+                                        "00004",
+                                        "00002"
+                                    ],
+                                    "alias": "Gender",
+                                    "dataset_end_date": null,
+                                    "category_names": [
+                                        "Male",
+                                        "Female",
+                                        "Skipped",
+                                        "Not Asked",
+                                        "No Data"
+                                    ],
+                                    "dataset_start_date": null,
+                                    "name": "Gender",
+                                    "dataset_description": "",
+                                    "dataset_archived": false,
+                                    "group_names": [
+                                        "blue"
+                                    ],
+                                    "dataset": "https://beta.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/",
+                                    "dataset_id": "173b4eec13f542588b9b0a9cbcd764c9",
+                                    "dataset_created_time": null,
+                                    "subvar_names": [],
+                                    "dataset_name": "econ_few_columns_0",
+                                    "description": "Are you male or female?"
+                                },
+                                "https://beta.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/variables/000003/": {
+                                    "dataset_labels": [],
+                                    "users": [
+                                        "00004",
+                                        "00002"
+                                    ],
+                                    "alias": "BirthYear",
+                                    "dataset_end_date": null,
+                                    "category_names": [],
+                                    "dataset_start_date": null,
+                                    "name": "BirthYear",
+                                    "dataset_description": "",
+                                    "dataset_archived": false,
+                                    "group_names": [
+                                        "blue"
+                                    ],
+                                    "dataset": "https://beta.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/",
+                                    "dataset_id": "173b4eec13f542588b9b0a9cbcd764c9",
+                                    "dataset_created_time": null,
+                                    "subvar_names": [],
+                                    "dataset_name": "econ_few_columns_0",
+                                    "description": "In what year were you born?"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "https://beta.crunch.io/api/datasets/4473ab4ee84b40b2a7cd5cab4548d584/": {
+                        "labels": [],
+                        "name": "simple_alltypes",
+                        "description": ""
+                    }
+                },
+                "variables": {
+                    "https://beta.crunch.io/api/datasets/4473ab4ee84b40b2a7cd5cab4548d584/variables/000000/": {
+                        "dataset_labels": [],
+                        "users": [
+                            "00002"
+                        ],
+                        "alias": "x",
+                        "dataset_end_date": null,
+                        "category_names": [
+                            "red",
+                            "green",
+                            "blue",
+                            "4",
+                            "8",
+                            "9",
+                            "No Data"
+                        ],
+                        "dataset_start_date": null,
+                        "name": "x",
+                        "dataset_description": "",
+                        "dataset_archived": false,
+                        "group_names": null,
+                        "dataset": "https://beta.crunch.io/api/datasets/4473ab4ee84b40b2a7cd5cab4548d584/",
+                        "dataset_id": "bb987b45a5b04caba10dec4dad7b37a8",
+                        "dataset_created_time": null,
+                        "subvar_names": [],
+                        "dataset_name": "export test 94",
+                        "description": "Numeric variable with value labels"
+                    }
+                },
+                "variable_count": 14,
+                "totals": {
+                    "variables": 4,
+                    "datasets": 2
+                }
+            }
+        ]
+    }
+}
+```
+
+The variables grouping displays metadata for all of the variables that matched.
+The Datasets grouping displays metadata for all of the datasets where a variable or the dataset it self matched.  The "groups"
+parameter of the dataset indicates any variable groups that matched, along with variables that did not match the search but are contained
+within the variable grouping.  The group names that are indexed come from the variable ordering endpoint. 
+
+Use the `group_variables_limit` parameter to define how many group variables to expose in this parameter. 
+variable_count is the total number of variables that matched the crunch's search index.  This number can be used when considering
+limit and offset parameters.  (limit + offset higher than variable_count will always return no results)
+Totals group defines the number of variables and datasets that matched post-index-filtering.  This parameter is useful in order to limit
+the amount of output of group names, since some groups may have thousands of variables, who's information is less relevent
+since those variables do not match in this context.
 
 #### Drafts
 

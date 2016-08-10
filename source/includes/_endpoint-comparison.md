@@ -63,7 +63,7 @@ The catalog looks something like this:
                 "dimensions": [{"variable": "../variables/bf31fc/"}],
                 "measures": {"count": {"function": "cube_count", "args": []}}
             }],
-            "cube": "9942ce/cube/",
+            "cube": "9942ce/cube/"
         }
     }
 }

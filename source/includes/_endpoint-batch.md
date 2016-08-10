@@ -133,7 +133,6 @@ A GET on this resource returns a Shoji Entity describing the batch, and a link t
     "conflicts": {},
     "source_children": {},
     "target_children": {},
-
     "source_columns": 3500,
     "source_rows": 235490,
     "target_columns": 3499,
@@ -155,14 +154,14 @@ Each batch has a "conflicts" member describing any unresolvable differences foun
         "name": "<string>",
         "alias": "<string>",
         "type": "<string>",
-        "categories": [{}],
+        "categories": [{}]
     },
     "source_id": "<id of the matching variable in the source frame",
     "source_metadata": {
         "name, etc": "as above"
     },
     "conflicts": [{
-        "message": "<string>",
+        "message": "<string>"
     }]
 }
 ```
