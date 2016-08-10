@@ -52,6 +52,7 @@ Error Code | Meaning
 650 | Loopback Not Found: loopback interface required for synchronous local commands
 651 | Ethereum Not Found: no active Ethereum node(s) found
 710 | Check Order Book Failed: could not check order book using current prices
+711 | Trade Failed: instead of success value (1), received [actual value received]
 
 Contract Errors
 ---------------
