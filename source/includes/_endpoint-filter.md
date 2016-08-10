@@ -14,7 +14,7 @@ This index contains two kinds of filters: public and private, denoted by the `is
     "name": "My filter",
     "is_public": true,
     "id": "1442ea",
-    "owner_id": "https://beta.crunch.io/api/users/4152de/",
+    "owner_id": "https://beta.crunch.io/api/users/4152de/"
 }
 ```
 
