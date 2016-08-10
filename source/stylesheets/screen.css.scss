@@ -269,7 +269,7 @@ html, body {
     position: fixed;
     z-index: 50;
     padding: 1em $main-padding;
-    background-color: $code-annotation-bg;
+    background-color: $lang-select-bg;
   }
 }
 
@@ -613,7 +613,7 @@ html, body {
 
 .highlight, .highlight .w {
   // background-color: $code-bg;
-  background-color: #244048;
+  background-color: #20252d;
 }
 
 .faux-toc-link {
