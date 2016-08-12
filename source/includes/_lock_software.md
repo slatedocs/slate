@@ -46,7 +46,7 @@ A lock is removed by making a `PUT` request to this endpoint with a blank payloa
 ---:|:------
 __endpoint__ | `/products/<imei>/lock_software`
 __method__ | `PUT`
-__url_params__ | `product_imei` _(int)_
+__url_params__ | `product_imei` _(str)_
 __payload__ | {"software": <id> or <name>}
 __response__ | 200
 __permissions__ | <font color="Crimson">__`SYSTEM`__</font>

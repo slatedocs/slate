@@ -25,7 +25,7 @@ This endpoint is used to assign an entity to a unit. A succesful request will ge
 ---:|:------
 __endpoint__ | `/products/<imei>/assign_entity`
 __method__ | `PUT`
-__url_params__ | `product_imei` _(int)_
+__url_params__ | `product_imei` _(str)_
 __payload__ | `{"entity_id": <id>}`
 __response__ | 200
 

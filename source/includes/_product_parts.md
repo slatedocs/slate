@@ -123,6 +123,19 @@ This endpoint is designed to for use during repairs of the Unit. A `GET` request
 
 
 ### Endpoint
+
+    | value 
+---:|:------
+__endpoint__ | `/products/<imei>/parts`
+__method__ | `GET`
+__url_params__ | `product_imei` _(str)_
+__payload__ | None
+__response__ | 200
+__permissions | `OVERVIEW`
+
+
+### Response
+
 The format of the data returned by this endpoint is a dictionary where the keys are part_ids and the value is another dictionary of the data associated with the part. 
 
 <code>part_id: {part_data}</code>

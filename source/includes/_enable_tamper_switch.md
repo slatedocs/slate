@@ -28,7 +28,7 @@ This endpoint is used to enable the tamper switch on a unit. The imei of the uni
 ---:|:------
 __endpoint__ | `/products/<imei>/enable_tamper_switch`
 __method__ | `PUT`
-__url_params__ | `product_imei` _(int)_
+__url_params__ | `product_imei` _(str)_
 __payload__ | None
 __response__ | 200
 

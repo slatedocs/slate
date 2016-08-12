@@ -29,7 +29,7 @@ This endpoint is used to change the entity to which a unit is. A succesful reque
 ---:|:------
 __endpoint__ | `/products/<imei>/remove`
 __method__ | `PUT`
-__url_params__ | `product_imei` _(int)_
+__url_params__ | `product_imei` _(str)_
 __payload__ | `{"entity_id": <id>}`
 __response__ | 200
 

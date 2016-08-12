@@ -22,7 +22,7 @@ This endpoint is used to disable (switch-off) a unit. The imei of the unit to be
 ---:|:------
 __endpoint__ | `/products/<imei>/disable`
 __method__ | `PUT`
-__url_params__ | `product_imei` _(int)_
+__url_params__ | `product_imei` _(str)_
 __payload__ | None
 __response__ | 200
 

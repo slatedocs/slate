@@ -32,7 +32,7 @@ This endpoint is used to remove a pending software update.
 ---:|:------
 __endpoint__ | `/products/<imei>/expire_software_updates`
 __method__ | `PUT`
-__url_params__ | `product_imei` _(int)_
+__url_params__ | `product_imei` _(str)_
 __payload__ | None
 __response__ | 200
 __permissions__ | <font color="Crimson">__`SYSTEM`__</font>

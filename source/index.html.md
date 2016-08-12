@@ -22,8 +22,8 @@ includes:
   - connections
   - customers
   - customer_entity_linker
-  - customer_product_histories
-  - enable_histories
+  - customer_product_history
+  - enable_history
   - entities
   - hubs
   - latest_softwares
@@ -41,14 +41,14 @@ includes:
   - product_type_software_version_type_linker
   - repairs
   - repair_symptom_type_linker
-  - sms_histories
+  - sms_history
   - shops
   - software_version_types
   - states
   - state_types
   - symptom_types
   - symptom_type_product_type_linker
-  - tamper_enable_histories
+  - tamper_enable_history
   - users
 
   - product_actions
@@ -64,6 +64,7 @@ includes:
   - disable_tamper_switch
   - send_wakeup
   - product_parts
+  - change_customer
 
 
   - custom_endpoints

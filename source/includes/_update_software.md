@@ -23,7 +23,7 @@ This endpoint is used to update the software a unit. The imei of the unit to be 
 ---:|:------
 __endpoint__ | `/products/<imei>/update_software`
 __method__ | `PUT`
-__url_params__ | `product_imei` _(int)_
+__url_params__ | `product_imei` _(str)_
 __payload__ | {"software": <id> or <name>}
 __response__ | 200
 __permissions__ | <font color="Crimson">__`SYSTEM`__</font>

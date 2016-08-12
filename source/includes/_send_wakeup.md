@@ -2,7 +2,7 @@
 
 ### Description
 It is possible to force the unit to connect, download new status information and upload its telemetry data to the system.
-This is done by sending a `WAKEUP` sms. For more information about unit connectivity and why this might be desirable please see <a href="#/units-connecting-to-the-system">this section of the docs</a>
+This is done by sending a `WAKEUP` sms. For more information about unit connectivity and why this might be desirable please see <a href="/#units-connecting-to-the-system">this section of the docs</a>
 
 ### Endpoint
 > A `POST` request to this endpoint will send a wakeup-sms to the unit and force it to connect to the system. The response will include the sms_history record that us created as a result of the request. 
@@ -41,10 +41,10 @@ This endpoint is used to send a wakeup-sms to a unit and force it to connect to 
 ---:|:------
 __endpoint__ | `/products/<imei>/send_wakeup`
 __method__ | `PUT`
-__url_params__ | `product_imei` _(int)_
+__url_params__ | `product_imei` _(str)_
 __payload__ | None
 __response__ | 200
-__permissions | `ADMIN`
+__permissions__ | `ADMIN`
 
 <aside class="notice">Repeated calls to this endpoint will cause multiple wakeups to be sent.</aside>
 
