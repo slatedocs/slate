@@ -53,6 +53,7 @@ Error Code | Meaning
 651 | Ethereum Not Found: no active Ethereum node(s) found
 710 | Check Order Book Failed: could not check order book using current prices
 711 | Trade Failed: instead of success value (1), received [actual value received]
+712 | Trade Not Found
 
 Contract Errors
 ---------------
@@ -129,11 +130,13 @@ sellCompleteSets | -3 | not enough shares
 sendReputation | 0 | Not enough Reputation
 sendReputation | -1 | Your Reputation account was just created! Earn some Reputation before you can send to others.
 sendReputation | -2 | Receiving address doesn't exist
-short_sell | -1 | oracle only branch
-short_sell | -2 | bad trade hash
-short_sell | -3 | trader doesn't exist / own shares in this market
-short_sell | -4 | must buy at least .00000001 in value
-short_sell | 10 | insufficient balance
+short_sell | -1 | trade doesn't exist
+short_sell | -2 | invalid trade hash/commitment
+short_sell | -3 | must be a bid, not an ask
+short_sell | -4 | market is already resolved
+short_sell | -5 | can't pickup your own trade
+short_sell | -6 | can't trade on oracle only branch
+short_sell | -7 | not a large enough trade
 slashRep | 0 | Not a valid claim
 slashRep | -2 | Reporter doesn't exist
 submitReportHash | -1 | invalid event
@@ -152,6 +155,8 @@ trade | -1 | oracle only branch
 trade | -2 | bad trade hash
 trade | -3 | trader doesn't exist / own shares in this market
 trade | -4 | must buy at least .00000001 in value
+trade | -5 | can't pick up your own trade
 trade | 10 | insufficient balance
+trade | 22 | trade in same block prohibited
 updateTradingFee | -1 | invalid trading fee: either fee is below the minimum trading fee or you are trying to raise the trading fee (trading fees can be lowered, but not raised)
 updateTradingFee | -4 | sender's address does not match the market creator's address
