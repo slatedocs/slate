@@ -154,7 +154,7 @@ submitReport | -9 | need to pay not reporting bond
 trade | -1 | oracle only branch
 trade | -2 | bad trade hash
 trade | -3 | trader doesn't exist / own shares in this market
-trade | -4 | must buy at least .00000001 in value
+trade | -4 | must trade at least 0.00000001 in value
 trade | -5 | can't pick up your own trade
 trade | 10 | insufficient balance
 trade | 22 | trade in same block prohibited
