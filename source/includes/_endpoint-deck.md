@@ -143,6 +143,12 @@ HTTP/1.1 204 No Content
 
 For decks that the current user owns, "name", "description", and "is_public" are editable. Users with edit permissions on the dataset may edit "name" and "description" of public decks, but they cannot edit "is_public" unless they own the deck. Other deck attributes are not editable.
 
+#### DELETE
+
+It is possible to delete any of the decks in your catalog. To do so
+send a DELETE request to the deck's entity URL. The server will return 
+a 204 response.
+
 ### Order
 
 `/datasets/{id}/decks/order/`
