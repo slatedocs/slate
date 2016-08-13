@@ -42,26 +42,80 @@ color     | String  | 37BC9B  | __Optional__ Custom color in hexadecimal (e.g. 5
 width     | String  | 100%    | __Optional__ Width of the widget __[px or %]__
 height    | String  | 1100    | __Optional__ Height of the widget __[px]__
 
-### Event: Document signed successfully
+## Events
 
-> Listen for the Success event:
+> Listen for Mifiel events:
 
 ```html
 <script type="text/javascript">
 window.addEventListener('message', function (e) {
   console.log(e);
-  if (e.isTrusted && e.origin === 'https://www.mifiel.com'){
+  // accept messages from known hosts only
+  // change to https://stageex.mifiel.com if necessary
+  if (e.origin !== 'https://www.mifiel.com') {
+    return;
+  }
+  // We will always send an object
+  if (typeof e.data !== 'object') {
+    return;
+  }
+  // document signed succesfully
+  if (e.data.eventType === 'mifiel.widget.success') {
     var data = e.data,
-        document = data.document,
+        doc = data.document,
         signature = data.signature;
-    // document.original_hash;
-    // document.file_signed;
+    // doc.original_hash;
+    // doc.file_signed;
+  }
+  // Event errors
+  if (e.data.eventType === 'mifiel.widget.error') {
+    var error = e.data.error;
+    // error.code => 1001
+    // error.message => 'Invalid PDF, the pdf param has no data'
   }
 }, false);
 </script>
 ```
 
-After the user succesfully signs the document we will send back a [postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage).
+We will send a [postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) to your page to notify any of the events listed below.
+
+In order to secure the events sent by the widget you **must** verify that the event is coming from our servers. 
+
+You can identify the events by *e.data.eventType*. The success event will have **"mifiel.widget.success"** and the error events will have **"mifiel.widget.error"**.
+
+### Success event 
+
+We will send the document json object and the signature of the user.
+
+### Error events
+
+Error events have the property *eventType* set as **"mifiel.widget.error"** and a error object *(e.data.error)* with *code* and *message* properties:
+
+#### Widget setup error events
+
+Event               | Code | Message
+------------------- | ---- | -------
+Empty PDF           | 1001 | Invalid PDF, the pdf param has no data
+Hashes do not match | 1002 | Invalid PDF, the provided pdf param is not the same as the uploaded one
+
+_Note: We send this errors only when you did not send us the PDF when the document was created._
+
+#### User error events
+
+Event               | Code | Message
+------------------- | ---- | -------
+Invalid Certificate | 2001 | Certificate is not valid
+Invalid Private Key | 2002 | Invalid Private Key
+Invalid Pasword     | 2003 | Invalid password
+Files do not match  | 2004 | .key file does not belong to the .cer file
+
+#### Server error events
+
+Event               | Code | Message
+------------------- | ---- | -------
+Signature failure   | 3002 | Fail to sign document
+
+<!-- Fail to request sigatures | 3001 | Fail to request signatures -->
 
 ## Embedded Signing Flow
 
