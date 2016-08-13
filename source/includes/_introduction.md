@@ -6,11 +6,11 @@ Through Mifiel's API, you can easily manage documents and certificates within yo
 
 ### Getting started
 
-To start using the API you will first need an _APP_ID_ and a _APP_SECRET_ which will be provided upon request (please contact us at [hola@mifiel.com](mailto:hola@mifiel.com)).
+To start using the API you will first need an _APP_ID_ and a _APP_SECRET_ which you can generate in [mifiel.com/access_tokens](https://www.mifiel.com/access_tokens).
 
 You will first need to create an account at [mifiel.com](https://www.mifiel.com) since the _APP_ID_ and _APP_SECRET_ will be linked to your account. 
 
-We have language bindings in Shell and Ruby! You can view code examples on the right (switch between different programming languages using the tabs on top).
+We have language bindings in **Shell**, **PHP**, **Ruby** and **Python**! You can view code examples on the right (switch between different programming languages using the tabs on top).
 
 ### API Versions
 
