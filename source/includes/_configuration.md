@@ -254,6 +254,20 @@ The following configuration settings are available:
         </td>
       </tr>
       <tr>
+        <th>
+          ignore
+        </th>
+        <td>
+          An Array of web endpoints that Scout should not instrument. Routes that match the prefixed path (ex: <code>['/health', '/status']</code>) will be ignored by the agent.
+        </td>
+        <td>
+          <code>[]</code>
+        </td>
+        <td>
+          No
+        </td>
+      </tr>
+      <tr>
         <th>dev_trace</th>
         <td>
           Indicates if DevTrace, the Scout development profiler, should be enabled. Note this setting only applies
@@ -261,6 +275,16 @@ The following configuration settings are available:
         </td>
         <td>
           <code>false</code>
+        </td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <th>profile</th>
+        <td>
+          Indicates if ScoutProf, the Scout code profiler, should be enabled.
+        </td>
+        <td>
+          <code>true</code>
         </td>
         <td>No</td>
       </tr>

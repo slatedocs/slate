@@ -47,6 +47,23 @@ You'll see "CODE" buttons next to method calls that are >= 500 ms. If you've ena
 
 If you don't enable the Github integration, you'll see a backtrace.
 
+## ScoutProf
+
+__ScoutProf is an invite-only BETA feature. Contact us at [support@scoutapp.com](support@scoutapp.com) to join our waiting list.__
+
+Each millisecond, ScoutProf captures a backtrace of what each thread in your application is currently running.  Over many backtraces, when you combine them, it tells a story of what code paths are taking up the most time in your application.
+
+Compared with our more traditional instrumentation of libraries like ActiveRecord, Net::HTTP and similar, ScoutProf works with your custom code.  Now, when your application spends time processing your data in custom application code, or in libraries that Scout doesn't yet instrument, instead of only being able to assign that to a large bucket of "Controller Time", the time can be broken down to exactly what is taking up the most time.
+
+Notice how the time in ActionController is broken down:
+
+![scoutprof](scoutprof.png)
+
+We still employ our traditional instrumentation, because it can give us deeper insights into common libraries, capturing the SQL being run, or the URL being fetched.
+
+A [detailed ScoutProf FAQ](#scoutprof-faq) is available in our reference area.
+
+
 ## Memory Bloat Detection
 
 If a user triggers a request to your Rails application that results in a large number of object allocations (example: loading a large number of ActiveRecord objects), your app may require additional memory. The additional memory required to load the objects in memory is released back very slowly. Therefore, a single memory-hungry request will have a long-term impact on your Rails app’s memory usage.

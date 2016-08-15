@@ -62,6 +62,42 @@ With a few extra steps, you can grant Scout read-only access. Here's how:
 * Create a new Github user and make them a member of that team.
 * Authenticate with this user.
 
+## ScoutProf FAQ
+
+### Does ScoutProf work with Stackprof?
+
+[ScoutProf](#scoutprof) and StackProf are not guaranteed to operate at the same time.  If you wish to use Stackprof, temporarily disable profiling in your config file (`profile: false`) or via environment variables (`SCOUT_PROFILE=false`). See the agent's [configuration options](#configuration-options).
+
+### How is ScoutProf different than Stackprof?
+
+Stackprof was the inspiration for ScoutProf.  Although little original Stackprof code remains, we started with Stackprof's core approach, and integrated it with our APM agent gem, changed it heavily to work with threaded applications, and implemented an easy to understand UI on our trace view.
+
+### What do sample counts mean ?
+
+ScoutProf attempts to sample your application every millisecond, capturing a snapshot backtrace of what is running in each thread.  For each successful backtrace captured, that is a sample.  Later, when we process the raw backtraces, identical traces get combined and the sample count is how many of each unique backtrace were seen.
+
+### Why do sample counts vary?
+
+Samples will be paused automatically for a few different reasons:
+
+* If Ruby is in the middle of a GC run, samples won't be taken.
+* If the previous sampling hasn't been run, a new sampling request won't be added.
+
+The specifics of exactly how often these scenarios happen depend on how and in what order your ruby code runs. Different sample counts can be expected, even for the same endpoint.
+
+### Which Ruby versions and app servers does ScoutProf support?
+
+The `scout_apm` gem will continue to work for Ruby 1.8.7+. ScoutProf requires Ruby 2.1+. 
+
+### What's supported during BETA?
+
+During our invite-only BETA period, ScoutProf has a few limitations:
+
+* ScoutProf only runs on Linux. Support for additional distros will be added.
+* ScoutProf only breaks down time spent in ActionController, not ActionView and not Sidekiq. Support for other areas will be added.
+
+The ScoutProf-enabled version of the `scout_apm` can be safely installed on all environments our agent supports: the limitations above only prevent ScoutProf from running.
+
 ## Billing
 
 ### Free Trial
