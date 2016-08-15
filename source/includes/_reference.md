@@ -91,7 +91,7 @@ The `scout_apm` gem will continue to work for Ruby 1.8.7+. ScoutProf requires Ru
 
 ### What's supported during BETA?
 
-During our invite-only BETA period, ScoutProf has a few limitations:
+During our BETA period, ScoutProf has a few limitations:
 
 * ScoutProf only runs on Linux. Support for additional distros will be added.
 * ScoutProf only breaks down time spent in ActionController, not ActionView and not Sidekiq. Support for other areas will be added.

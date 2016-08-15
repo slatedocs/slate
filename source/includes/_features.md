@@ -49,17 +49,23 @@ If you don't enable the Github integration, you'll see a backtrace.
 
 ## ScoutProf
 
-__ScoutProf is an invite-only BETA feature. Contact us at [support@scoutapp.com](support@scoutapp.com) to join our waiting list.__
-
-Each millisecond, ScoutProf captures a backtrace of what each thread in your application is currently running.  Over many backtraces, when you combine them, it tells a story of what code paths are taking up the most time in your application.
+Every millisecond, ScoutProf captures a backtrace of what each thread in your application is currently running.  Over many backtraces, when you combine them, it tells a story of what code paths are taking up the most time in your application.
 
 Compared with our more traditional instrumentation of libraries like `ActiveRecord`, `Net::HTTP` and similar, ScoutProf works with your custom code.  Now, when your application spends time processing your data in custom application code, or in libraries that Scout doesn't yet instrument, instead of only being able to assign that to a large bucket of `ActionController` time, the time can be broken down to exactly what is taking up the most time.
 
 Notice how the time in `ActionController` is broken down:
 
-![scoutprof](scoutprof.png)
+<a href="/images/scoutprof.png" target="_blank">![scoutprof](scoutprof.png)</a>
 
 We still employ our traditional instrumentation, because it can give us deeper insights into common libraries, capturing the SQL being run, or the URL being fetched.
+
+### Enabling ScoutProf
+
+ScoutProf is a BETA feature. To enable:
+
+1. Modify your `Gemfile` entry for `scout_apm`, changing it to: `gem 'scout_apm', '~> 2.2.x'`
+2. `bundle update scout_apm`
+3. Deploy
 
 A [detailed ScoutProf FAQ](#scoutprof-faq) is available in our reference area.
 
@@ -132,11 +138,11 @@ You can easily compare the performance of your application between different tim
 
 DevTrace is our development profiler: it's included with the `scout_apm` gem and can be used for free without signup. Enabling DevTrace adds a speed badge when navigating your Rails app in development. Clicking the speed badge reveals a shareable transaction trace of the request.
 
-DevTrace is a BETA feature.
-
 ![devtrace](devtrace.png)
 
-To enable DevTrace:
+### Enabling DevTrace
+
+DevTrace is a BETA feature. To enable:
 
 1. Ensure you are on the latest version of `scout_apm`. See our [upgrade instructions](#updating-to-the-newest-version).
 2. Add `dev_trace: true` to the `development` section of your `scout_apm.yml` config file or start your local Rails server with:
