@@ -137,6 +137,8 @@ short_sell | -4 | market is already resolved
 short_sell | -5 | can't pickup your own trade
 short_sell | -6 | can't trade on oracle only branch
 short_sell | -7 | not a large enough trade
+short_sell | 10 | insufficient balance
+short_sell | 22 | trade in same block prohibited
 slashRep | 0 | Not a valid claim
 slashRep | -2 | Reporter doesn't exist
 submitReportHash | -1 | invalid event
