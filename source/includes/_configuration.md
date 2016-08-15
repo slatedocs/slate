@@ -14,7 +14,7 @@ Scout currently supports Ruby on Rails 2.2+ and Ruby 1.8.7+ and the following ap
 * WEBrick
 * Sidekiq
 
-[Memory Bloat detection](#memory-bloat-detection) requires Ruby 2.1+.
+[Memory Bloat detection](#memory-bloat-detection) and [ScoutProf](#scoutprof) require Ruby 2.1+.
 
 ### Git Integration - Optional
 
