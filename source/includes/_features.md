@@ -53,9 +53,9 @@ __ScoutProf is an invite-only BETA feature. Contact us at [support@scoutapp.com]
 
 Each millisecond, ScoutProf captures a backtrace of what each thread in your application is currently running.  Over many backtraces, when you combine them, it tells a story of what code paths are taking up the most time in your application.
 
-Compared with our more traditional instrumentation of libraries like ActiveRecord, Net::HTTP and similar, ScoutProf works with your custom code.  Now, when your application spends time processing your data in custom application code, or in libraries that Scout doesn't yet instrument, instead of only being able to assign that to a large bucket of "Controller Time", the time can be broken down to exactly what is taking up the most time.
+Compared with our more traditional instrumentation of libraries like `ActiveRecord`, `Net::HTTP` and similar, ScoutProf works with your custom code.  Now, when your application spends time processing your data in custom application code, or in libraries that Scout doesn't yet instrument, instead of only being able to assign that to a large bucket of `ActionController` time, the time can be broken down to exactly what is taking up the most time.
 
-Notice how the time in ActionController is broken down:
+Notice how the time in `ActionController` is broken down:
 
 ![scoutprof](scoutprof.png)
 
