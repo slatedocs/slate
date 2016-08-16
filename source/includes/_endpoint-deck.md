@@ -223,7 +223,7 @@ Including invalid URLs or URLs to decks that are not present in the catalog will
  return a 400 response from the server.
 
 The deck order should always be a flat list of URLs. Nesting or grouping is not
-supported by the web application.
+supported by the web application. Server will return a 400 response.
 
 ## Slides
 
@@ -404,7 +404,7 @@ in arbitrary order.
 }
 ```
 
-This is a flat order: grouping or nesting is not allowed.
+This is a flat order: grouping or nesting is not allowed. Server will return a 400 response.
 
 ## Analysis
 
@@ -469,6 +469,24 @@ query | Includes the query body for this analysis
 query_environment | An object with a `weight` and `filters` to be used for rendering/evaluating this analysis
 display_settings | An object containing client specific instructions on how to recreate the analysis
 
-Analyses cannot be edited. To make changes, you can load the analysis,
-make modifications to it and POST again to the deck's slides catalog to create
-a new slide with the updated analysis and DELETE the old one, if desired.
+
+### PATCH
+
+To edit an analysis, send a PATCH request to its endpoint containing
+a shoji:entity.
+
+The editable attributes are:
+ * query
+ * query_environment
+ * display_settings
+ 
+Invalid values for those attributes or extra attributes won't be accepted
+and rejected with a 400 response from the server.
+
+### DELETE
+
+It is possible to delete analyses from a slide as long as there is always
+one analysis left.
+
+Attempting to delete the last analysis of a slide will cause a 409 response
+from the server indicating the problem.
