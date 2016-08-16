@@ -317,7 +317,7 @@ server to return a 400 error response.
 
 `/datasets/223fd4/decks/slides/a126ce/`
 
-Each slide in the Slide Catalog contains reference to its analysis.
+Each slide in the Slide Catalog contains reference to its first created analysis.
 
 #### GET
 
@@ -408,7 +408,7 @@ This is a flat order: grouping or nesting is not allowed. Server will return a 4
 
 ## Analysis
 
-Each slide contains one analysis. An analysis -- a table or graph with some specific combination of variables
+Each slide can contain many analyses. An analysis -- a table or graph with some specific combination of variables
 defining measures, rows, columns, and tabs; settings such as percentage
 direction and decimal places -- can be saved to a _deck_, which can then be
 exported, or the analysis can be reloaded in whole in the application or even
