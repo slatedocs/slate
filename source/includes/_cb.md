@@ -248,7 +248,25 @@ notes | Provide instructions to our submissions team with specifics about how yo
                         "domain_authority": "< 10/100",
                         "citation_value": "High"
                     }
-                ]
+                ],
+                "aggregators":  [
+				    {
+					    "name": "infogroup",
+					    "status": "Live",
+					    "site_type": "Aggregator",
+					    "citation_url": "infogroup.com",
+					    "domain_authority": "NA",
+					    "citation_value": "NA"
+				    },
+				    {
+					    "name": "factual",
+					    "status": "Updated",
+					    "site_type": "Aggregator",
+					    "citation_url": "factual.com",
+					    "domain_authority": "NA",
+					    "citation_value": "NA"
+				    }
+			    ]                
             }
         ]
     }
@@ -297,22 +315,40 @@ location-id |
             ],
             "citations":  [
                 {
-                "site": "ezlocal.com",
-                "type": "General Directory",
-                "domain_authority": "< 10/100",
-                "status": "To Do",
-                "link": "",
-                "notes": "Site issues a temporary password for accessing account - check email account post submission."
+                    "site": "ezlocal.com",
+                    "type": "General Directory",
+                    "domain_authority": "< 10/100",
+                    "status": "To Do",
+                    "link": "",
+                    "notes": "Site issues a temporary password for accessing account - check email account post submission."
                 },
                 {
-                "site": "insiderpages.com",
-                "type": "General Directory",
-                "domain_authority": "< 10/100",
-                "status": "To Do",
-                "link": "",
-                "notes": ""
+                    "site": "insiderpages.com",
+                    "type": "General Directory",
+                    "domain_authority": "< 10/100",
+                    "status": "To Do",
+                    "link": "",
+                    "notes": ""
                 }
             ],
+            "aggregators":  [
+				{
+					"site": "infogroup",
+					"type": "Aggregator",
+					"domain_authority": "NA",
+					"status": "To Do",
+					"link": "www.dropbox.com/short-url",
+					"notes": "Site issues a temporary password for accessing account - check email account post submission."
+				},
+				{
+					"site": "factual",
+					"type": "Aggregator",
+					"domain_authority": "NA",
+					"status": "To Do",
+					"link": "",
+					"notes": ""
+				}
+			],            
             "location_id": 1,
             "urls": {
                 "interactive_url": "https:\/\/tools.brightlocal.com\/seo-tools\/admin\/cb\/campaign\/view\/5",
