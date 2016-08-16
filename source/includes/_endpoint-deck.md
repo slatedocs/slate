@@ -37,7 +37,6 @@ the user, as well as public decks shared with all users of the dataset.
     },
     "order": "https://beta.crunch.io/api/datasets/223fd4/decks/order/"
 }
-
 ```
 
 The decks catalog tuples contain the following keys:
@@ -84,6 +83,35 @@ name | string | Yes | Human-friendly string identifier
 description | string | No | Optional longer string with additional notes
 is_public | boolean | No | If `true`, all users with view access to this dataset will be able to read and export this deck and its analyses; if `false`, the default value, the deck remains private for the current user only.
 
+
+#### PATCH
+
+It is possible to bulk-edit many decks at once by PATCHing a shoji:catalog to 
+the decks' catalog.
+
+```json
+{
+    "element": "shoji:catalog",
+    "index": {
+        "https://beta.crunch.io/api/datasets/cc9161/decks/4fa25/": {
+          "name": "Renamed deck",
+          "is_public": true,
+        }
+    },
+    "order": "https://beta.crunch.io/api/datasets/223fd4/decks/order/"
+}
+```
+
+The following attributes are editable on this endpoint:
+
+ * name
+ * description
+ * is_public
+ 
+The other attributes are read-only and will 400 if the payload tries to change
+them.
+
+On success, the server will reply with a 204 response.
 
 ### Entity
 
@@ -302,6 +330,18 @@ Each slide in the Slide Catalog contains reference to its analysis.
 #### DELETE
 
 Perform a DELETE request on the Slide entity resource to delete the slide and its analyses.
+
+#### PATCH
+
+It is possible to edit a slide byt PATCHing a shoji:entity to its url.
+
+The editable attributes are:
+
+ * title
+ * subtitle
+ 
+The other attributes are considered read-only.
+
 
 ### Order
 
