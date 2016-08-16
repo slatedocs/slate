@@ -164,8 +164,8 @@ http://tools.brightlocal.com/seo-tools/api/v2/cb/upload/5533/logo
     },
     "aggregators": [
         {
-        	"citation" : "factual",
- 			"domain_authority": "N/A",
+            "citation" : "factual",
+            "domain_authority": "N/A",
             "type": "Aggregators",
             "phone_verification": "N/A",
             "client_verification": "N/A",
