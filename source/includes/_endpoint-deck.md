@@ -298,6 +298,21 @@ subtitle | string | Optional subtitle for the slide
 display_settings | object | Contains a set of attribtues to be interpreted by the client to render and export the analysis
 query_environment | object | Contains the `weight` and `filter` applied during the analysis, they will be applied up on future evaluation/render/export
 
+#### PATCH
+
+It is possible to bulk-edit several slides at once by PATCHing a shoji:catalog
+to this endpoint.
+
+The only editable attributes with this method are:
+
+ * title
+ * subtitle
+ 
+Other attributes should be considered read-only. 
+
+Submitting invalid attributes or references to other slides, will cause the
+server to return a 400 error response.
+
 ### Entity
 
 `/datasets/223fd4/decks/slides/a126ce/`
