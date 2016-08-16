@@ -156,8 +156,6 @@ http://tools.brightlocal.com/seo-tools/api/v2/cb/upload/5533/logo
             "no_photos": "Y",
             "part_of_yext_network": "Y",
             "quick_listing": "N",
-            "data_accuracy": "N",
-            "url": "bing.com",
             "secondary_campaign_id": "b",
             "status": "To Do"
         }
@@ -174,8 +172,6 @@ http://tools.brightlocal.com/seo-tools/api/v2/cb/upload/5533/logo
             "no_photos": "N/A",
             "part_of_yext_network": "N/A",
             "quick_listing": "N/A",
-            "data_accuracy": "N/A",
-            "url": "factual.com",
             "secondary_campaign_id": "b",
             "status": "To Do"
         }
