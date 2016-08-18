@@ -63,9 +63,26 @@ We still employ our traditional instrumentation, because it can give us deeper i
 
 ScoutProf is a BETA feature. To enable:
 
-1. Modify your `Gemfile` entry for `scout_apm`, changing it to: `gem 'scout_apm', '~> 2.2.x'`
-2. `bundle update scout_apm`
-3. Deploy
+<table class="help install">
+  <tbody>
+    <tr>
+      <td>
+        <span class="step">1</span>
+      </td>
+      <td>
+        <p>Modify your <code>Gemfile</code> entry for <code>scout_apm</code>, changing it to: <code>gem 'scout_apm', '~> 2.2.x'</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="step">2</span></td>
+      <td><p><code>bundle update scout_apm</code></p></td>
+    </tr>
+      <tr>
+      <td><span class="step">3</span></td>
+      <td><p>Deploy</p></td>
+    </tr>
+  </tbody>
+</table>
 
 A [detailed ScoutProf FAQ](#scoutprof-faq) is available in our reference area.
 
@@ -147,6 +164,26 @@ DevTrace is a BETA feature. To enable:
 1. Ensure you are on the latest version of `scout_apm`. See our [upgrade instructions](#updating-to-the-newest-version).
 2. Add `dev_trace: true` to the `development` section of your `scout_apm.yml` config file or start your local Rails server with:
 `SCOUT_DEV_TRACE=true rails server`.
+
+<table class="help install">
+  <tbody>
+    <tr>
+      <td>
+        <span class="step">1</span>
+      </td>
+      <td>
+        <p>Ensure you are on the latest version of <code>scout_apm</code>.
+          See our <a href="#updating-to-the-newest-version">upgrade instructions</a>.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="step">2</span></td>
+      <td><p style="line-height: 170%">Add <code>dev_trace: true</code> to the <code>development</code> section of your <code>scout_apm.yml</code> config file or start your local Rails server with:
+<code>SCOUT_DEV_TRACE=true rails server</code>.</p></td>
+    </tr>
+  </tbody>
+</table>
 
 ## Data Retention
 
