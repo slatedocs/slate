@@ -1152,6 +1152,32 @@ in arbitrary order.
 }
 ```
 
+##### Settings
+
+`/datasets/{id}/settings/`
+
+The dataset settings allow editors to store dataset wide permissions and 
+configurations for it.
+
+Will always return all the available settings with default values a dataset
+can have.
+
+
+```json
+{
+    "element": "shoji:entity",
+    "self": "https://beta.crunch.io/api/datasets/223fd4/settings/",
+    "body": {
+        "viewers_can_export": false
+    }
+}
+```
+
+To make changes, clients should PATCH the settings they wish to change with new
+values. Additional settings are not allowed, the server will return a 400 
+response.
+
+
 ##### Preferences
 
 `/datasets/{id}/preferences/`
