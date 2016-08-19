@@ -41,6 +41,8 @@ _Disponible para 32 y 64 bits_
 * Windows 7
 * Windows 8
 
+Para saber si la versión de su equipo es de 32 o 64 bits en Windows, siga los pasos del [siguiente enlace](https://support.microsoft.com/es-es/kb/827218).
+
 **Linux** (próximamente)
 
 * Centos
@@ -50,13 +52,22 @@ _Disponible para 32 y 64 bits_
 
 Link puede conectarse a los siguientes motores de bases de datos relacionales:
 
+**SQL Server** 
+
 * SQL Server 2005
 * SQL Server 2008
 * SQL Server 2012
 
-O extraer información de los siguientes archivos de base de datos:
+Para conocer la versión de SQL Server puede ejecutar el siguiente comando
 
-* DBF (Visual Fox Pro)
+`SELECT @@version`
+
+
+Link también puede  extraer información de los siguientes archivos de base de datos:
+
+**DBF (Visual Fox Pro)**
+
+
 
 
 # Descargas
@@ -65,7 +76,7 @@ Instaladores del programa Link de Dátil:
 
 __Windows__
 
-Windows 32 bits: [linkapp-windows-32bits]
+Windows 32 bits: [linkapp-windows-32bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+Link+App_3.0.6_32bit_generic.exe)
 
 Windows 64 bits: [linkapp-windows-64bits]
 
