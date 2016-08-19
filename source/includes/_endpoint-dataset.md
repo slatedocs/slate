@@ -57,9 +57,9 @@ crGET("https://beta.crunch.io/api/datasets/")
             "archived": false,
             "permissions": {
                 "edit": false,
-                "change_permissions":,
-                "add_users":,
-                "change_weight":,
+                "change_permissions": false,
+                "add_users": false,
+                "change_weight": false,
                 "view": true
             },
             "size": {
@@ -83,9 +83,9 @@ crGET("https://beta.crunch.io/api/datasets/")
             "archived": false,
             "permissions": {
                 "edit": true,
-                "change_permissions":,
-                "add_users":,
-                "change_weight":,
+                "change_permissions": true,
+                "add_users": true,
+                "change_weight":true,
                 "view": true
             },
             "size": {
@@ -103,7 +103,7 @@ crGET("https://beta.crunch.io/api/datasets/")
             "current_editor_name": null
         }
     },
-    "template": "{"name": "Awesome Dataset", "description": "(optional) This dataset is awesome because I made it, and you can do it too."}"
+    "template": "{\"name\": \"Awesome Dataset\", \"description\": \"(optional) This dataset is awesome because I made it, and you can do it too.\"}"
 }
 ```
 
@@ -156,10 +156,10 @@ Here are the parameters that can be passed to the search endpoint.
 
 Parameter             | Type        | Description
 ----------------------|-------------|------------------------------------------------
-q                     | string      | query string 
+q                     | string      | query string
 f                     | json Object | used to filter the output of the search (see below)
 limit                 | integer     | limit the number of results returned by the api to less than this amount (default 1000)
-offset                | integer     | offset into the search index to start gathering results from pre-filter 
+offset                | integer     | offset into the search index to start gathering results from pre-filter
 group_variables_limit | integer     | number of non-matching variable results inside matching group names to return (default 10)
 
 Allowable filter parameters:
@@ -176,7 +176,7 @@ The query string can only be alpha-numeric characters (including underscores) lo
 
 
 ##### Fields Searched
- 
+
 Here is a list of the fields that are searched by the Crunch search endpoint
 
 Field             | Type            | Description                                             | Post-Filter?
@@ -196,7 +196,7 @@ dataset_owner     | String          | ID of the owner of the dataset associated 
 dataset_users     | List of Strings | User IDs having read-access to the dataset associated with the variable | no
 dataset_teams     | List of Strings | Team IDs having read-access to the dataset associated with the variable | no
 dataset_projects  | List of Strings | Project IDs having read-access to the dataset associated with the variable | no
-                            
+
 <aside class="notice">
 Post-filter indicates whether post-index results are filtered by the field noted.  If the given query string does not
 match at least one of the Post-filter fields, then it will be eliminated from the results, which limits the results to a
@@ -207,7 +207,7 @@ reasonable number when the dataset attributes match but no variable attributes m
 ```http
 GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_variables_list={group_variables_list}  HTTP/1.1
 ```
-  
+
 ```json
 {
    "element": "shoji:view",
@@ -329,9 +329,9 @@ GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_v
 The variables grouping displays metadata for all of the variables that matched.
 The Datasets grouping displays metadata for all of the datasets where a variable or the dataset it self matched.  The "groups"
 parameter of the dataset indicates any variable groups that matched, along with variables that did not match the search but are contained
-within the variable grouping.  The group names that are indexed come from the variable ordering endpoint. 
+within the variable grouping.  The group names that are indexed come from the variable ordering endpoint.
 
-Use the `group_variables_limit` parameter to define how many group variables to expose in this parameter. 
+Use the `group_variables_limit` parameter to define how many group variables to expose in this parameter.
 variable_count is the total number of variables that matched the crunch's search index.  This number can be used when considering
 limit and offset parameters.  (limit + offset higher than variable_count will always return no results)
 Totals group defines the number of variables and datasets that matched post-index-filtering.  This parameter is useful in order to limit
@@ -502,7 +502,7 @@ Name | Type | Description
 name | string | Human-friendly string identifier
 description | string | Optional longer string
 archived | boolean | Whether the variable should be hidden from most views; default: false
-owner | URL | Provide a team URL to set the owner to that team; if omitted, the authenticated user will be the owner   
+owner | URL | Provide a team URL to set the owner to that team; if omitted, the authenticated user will be the owner
 notes | string | Blank if omitted. Optional notes for the dataset
 start_date | date | ISO-8601 formatted date with day resolution
 end_date | date | ISO-8601 formatted date with day resolution
@@ -565,7 +565,7 @@ bottom of the root list in arbitrary order.
      "graph": [
         "dataset_url",
         {"group": [
-            "dataset_url"        
+            "dataset_url"
         ]}
      ]
 }
@@ -617,7 +617,6 @@ start_date | ISO-8601 string |  | Date/time for which the data in the dataset co
 end_date | ISO-8601 string |  | End date/time of the dataset's data, defining a start_date:end_date range
 current_editor | URL or null | | URL of the user entity that is currently editing the dataset, or `null` if there is no current editor
 current_editor_name | string or null | | That user's name, for display
-weight | URL | null | Points to the current weight variable applied for the given user
 
 ##### Dataset catalogs
 
@@ -666,7 +665,7 @@ permissions | Returns the list of all users and teams with access to this datase
 See above about PATCHing the dataset catalog for all attributes duplicated on
 the entity and the catalog. You may PATCH those attributes on the entity, but you
 are encouraged to PATCH the catalog instead. The two attributes appearing on the
-entity and not the catalog, "notes" and "weight", are modifiable by PATCH here.
+entity and not the catalog, "notes" is modifiable by PATCH here.
 
 A successful PATCH request returns a 204 response. The attributes changed will be seen
 by all users with access to this dataset; i.e., names, descriptions, and archived
@@ -734,7 +733,7 @@ GET returns a Shoji View of available dataset export formats.
 ```
 
 A POST request on any of the export views will return 202 status with a `shoji:view`, containing an attribute
-`url` pointing to the location of the exported file to be downloaded; GET that URL to download the file. 
+`url` pointing to the location of the exported file to be downloaded; GET that URL to download the file.
 
 
 ```http
@@ -890,7 +889,7 @@ the user and public decks shared for this dataset.
           "is_public": true,
           "owner_id": "https://beta.crunch.io/api/users/4cba5/",
           "owner_name": "Other Person"
-        },
+        }
     },
     "order": "https://beta.crunch.io/api/datasets/223fd4/decks/order/"
 }
@@ -1156,7 +1155,7 @@ in arbitrary order.
 
 `/datasets/{id}/settings/`
 
-The dataset settings allow editors to store dataset wide permissions and 
+The dataset settings allow editors to store dataset wide permissions and
 configurations for it.
 
 Will always return all the available settings with default values a dataset
@@ -1168,14 +1167,23 @@ can have.
     "element": "shoji:entity",
     "self": "https://beta.crunch.io/api/datasets/223fd4/settings/",
     "body": {
-        "viewers_can_export": false
+        "viewers_can_export": false,
+        "viewers_can_change_weight": false,
+        "weight": "https://beta.crunch.io/api/datasets/223fd4/variables/123456/"
     }
 }
 ```
 
 To make changes, clients should PATCH the settings they wish to change with new
-values. Additional settings are not allowed, the server will return a 400 
+values. Additional settings are not allowed, the server will return a 400
 response.
+
+
+Setting | Description
+--------|------------
+viewers_can_export | When false, only editor can export; else, all users with view access can export the data
+viewers_can_change_weight | When true, all users with access can set their own personal weight; else, the editor configured weight will be applied to all without option to change
+weight | When  `viewers_can_change_weight`, this variable will be the always and only applied weight for all users of the dataset; it will also work as default initial weight for all new users on this dataset
 
 
 ##### Preferences
@@ -1200,6 +1208,13 @@ To delete keys from the preferences the value needs to be patched with `null`.
 
 There is no order associated with the saved preferences. Clients should assume
 they are in arbitrary order.
+
+##### Weight
+
+If the dataset has `viewers_can_change_weight` setting set to false, then
+all users' preferences `weight` will be set to the dataset wide configured
+weight without option to change it. Attempts to modify it will return a 403
+response.
 
 
 ##### Primary key
@@ -1275,7 +1290,7 @@ When POSTing, set the body to a JSON object containing the key "pk" to modify
 the primary key. The "pk" key should be a list containing zero or more variable URLs.
 The variables referenced must be either text or numeric type
 and must have no duplicate or missing values.  Setting pk to ``[]`` is
-equivalent to deleting the primary key for a dataset.  
+equivalent to deleting the primary key for a dataset.
 
 <aside class="notice">
     We currently support only a single primary key variable, so the POST payload
