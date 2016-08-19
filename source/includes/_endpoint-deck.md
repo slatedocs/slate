@@ -1,6 +1,6 @@
 ## Decks
 
-Decks allow you to store [analyses](#saving-analyses) for future reference or for export.
+Decks allow you to store [analyses](#analysis) for future reference or for export.
 Decks correspond to a single dataset, and they are personal to each user unless they have been set as "public". Each deck contains a list of slides, and each slide contains analyses.
 
 ### Catalog
@@ -86,7 +86,7 @@ is_public | boolean | No | If `true`, all users with view access to this dataset
 
 #### PATCH
 
-It is possible to bulk-edit many decks at once by PATCHing a shoji:catalog to 
+It is possible to bulk-edit many decks at once by PATCHing a shoji:catalog to
 the decks' catalog.
 
 ```json
@@ -102,13 +102,13 @@ the decks' catalog.
 }
 ```
 
-The following attributes are editable on this endpoint:
+The following attributes are editable via PATCHing this resource:
 
  * name
  * description
  * is_public
- 
-The other attributes are read-only and will 400 if the payload tries to change
+
+The other attributes are read-only and will 400 if the request tries to change
 them.
 
 On success, the server will reply with a 204 response.
@@ -119,7 +119,7 @@ On success, the server will reply with a 204 response.
 
 #### GET
 
-GET a deck entity returns a shoji:entity with all of its attributes:
+GET a deck entity resource to return a shoji:entity with all of its attributes:
 
 ```json
 {
@@ -151,7 +151,7 @@ owner_name | string | Name of the owner of the deck (referred by `owner_id`)
 
 To edit a deck, PATCH it with a
 shoji:entity. The server will return a 204 response on success or 400
-in case of a problem.
+if the request is invalid.
 
 ```json
 {
@@ -173,19 +173,20 @@ For decks that the current user owns, "name", "description", and "is_public" are
 
 #### DELETE
 
-It is possible to delete any of the decks in your catalog. To do so
-send a DELETE request to the deck's entity URL. The server will return 
+To delete a deck, DELETE the deck's entity URL. On success, the server returns
 a 204 response.
 
 ### Order
 
 `/datasets/{id}/decks/order/`
 
-The deck order resource allows the user to arrange how API clients, such as the web application, will present the deck catalog. The deck order contains all decks that are visible to the current user, both personal and public.
+The deck order resource allows the user to arrange how API clients, such as the web application, will present the deck catalog. The deck order contains all decks that are visible to the current user, both personal and public. Unlike many other
+`shoji:order` resources, this order does not allow grouping or nesting: it
+will always be a flat list of slide URLs.
 
 #### GET
 
-Returns a (Shoji Order)[#shoji-order] payload.
+Returns a [Shoji Order](#shoji-order) response.
 
 ```json
 {
@@ -219,16 +220,15 @@ order.
 }
 ```
 
-Including invalid URLs or URLs to decks that are not present in the catalog will
+Including invalid URLs, such as URLs of decks that are not present in the catalog, will
  return a 400 response from the server.
 
 The deck order should always be a flat list of URLs. Nesting or grouping is not
-supported by the web application. Server will return a 400 response.
+supported by the web application. Server will return a 400 response if the order supplied in the PATCH request has nesting.
 
 ## Slides
 
-Each deck contains a list of slides, in which analyses are saved. They
-are available through the slides catalog.
+Each deck contains a catalog of slides into which analyses are saved.
 
 ### Catalog
 
@@ -242,31 +242,30 @@ Returns a `shoji:catalog` with the slides for this deck.
 
 {
     "element": "shoji:catalog",
-    "self": "/api/datasets/123/decks/123/slides/",
+    "self": "https://beta.crunch.io/api/datasets/123/decks/123/slides/",
     "orders": {
-        "flat": "/api/datasets/123/decks/123/slides/flat/"
+        "flat": "https://beta.crunch.io/api/datasets/123/decks/123/slides/flat/"
     },
     "specification": "https://beta.crunch.io/api/specifications/slides/",
     "description": "A catalog of the Slides in this Deck",
     "index": {
-        "/api/datasets/123/decks/123/slides/123/": {
-            "analysis_url": "/api/datasets/123/decks/123/slides/123/analyses/123/",
+        "https://beta.crunch.io/api/datasets/123/decks/123/slides/123/": {
+            "analysis_url": "https://beta.crunch.io/api/datasets/123/decks/123/slides/123/analyses/123/",
             "subtitle": "z",
             "display": {
                 "value": "table"
             },
             "title": "slide 1"
         },
-        "/api/datasets/123/decks/123/slides/456/": {
-            "analysis_url": "/api/datasets/123/decks/123/slides/456/",
+        "https://beta.crunch.io/api/datasets/123/decks/123/slides/456/": {
+            "analysis_url": "https://beta.crunch.io/api/datasets/123/decks/123/slides/456/",
             "subtitle": "",
             "display": {
                 "value": "table"
             },
             "title": "slide 2"
         }
-    },
-    "template": "{\"query\": {\"measures\": \"Object with keyed measures functions\", \"dimensions\": \"Array of variable references\", \"weight\": \"Optional weight variable URL\"}, \"display_settings\": {}, \"query_environment\": {\"filter\": \"Array of filter urls\"}}"
+    }
 }
 
 ```
@@ -282,10 +281,9 @@ display | object | Stores settings used to load the analysis
 
 #### POST
 
-To create a new slide an analysis has to be posted to the catalog. The payload, described in the [below](#analyses) section, should be
-wrapped as a shoji:entity.
+To create a new slide, POST an analysis to the slides catalog. The payload, described in the [below](#analyses) section, should be wrapped as a shoji:entity.
 
-After successful creation, the server will return a 201 response with a Location header containing the URL of the newly created slide entity.
+On success, the server returns a 201 response with a Location header containing the URL of the newly created slide entity.
 
 Only a `query` field is required to create a new slide; other attributes are optional.
 
@@ -307,11 +305,10 @@ The only editable attributes with this method are:
 
  * title
  * subtitle
- 
-Other attributes should be considered read-only. 
 
-Submitting invalid attributes or references to other slides, will cause the
-server to return a 400 error response.
+Other attributes should be considered read-only.
+
+Submitting invalid attributes or references to other slides results in a 400 error response.
 
 ### Entity
 
@@ -348,13 +345,13 @@ Perform a DELETE request on the Slide entity resource to delete the slide and it
 
 #### PATCH
 
-It is possible to edit a slide byt PATCHing a shoji:entity to its url.
+It is possible to edit a slide entity by PATCHing with a shoji:entity.
 
 The editable attributes are:
 
  * title
  * subtitle
- 
+
 The other attributes are considered read-only.
 
 
@@ -362,9 +359,7 @@ The other attributes are considered read-only.
 
 `/datasets/223fd4/decks/slides/flat/`
 
-The owner of the deck can pick the order of the slides on it. Unlike other
-`shoji:order` resources, this order does not allow grouping or nesting so it
-will always be a flat list of slide URLs.
+The owner of the deck can specify the order of its slides. As with deck order, the slide order must be a flat list of slide URLs.
 
 
 #### GET
@@ -404,11 +399,11 @@ in arbitrary order.
 }
 ```
 
-This is a flat order: grouping or nesting is not allowed. Server will return a 400 response.
+This is a flat order: grouping or nesting is not allowed. PATCHing with a nested order will generate a 400 response.
 
 ## Analysis
 
-Each slide can contain many analyses. An analysis -- a table or graph with some specific combination of variables
+Each slide contains one or more analyses. An analysis -- a table or graph with some specific combination of variables
 defining measures, rows, columns, and tabs; settings such as percentage
 direction and decimal places -- can be saved to a _deck_, which can then be
 exported, or the analysis can be reloaded in whole in the application or even
@@ -472,16 +467,15 @@ display_settings | An object containing client specific instructions on how to r
 
 ### PATCH
 
-To edit an analysis, send a PATCH request to its endpoint containing
-a shoji:entity.
+To edit an analysis, PATCH its URL with a shoji:entity.
 
 The editable attributes are:
+
  * query
  * query_environment
  * display_settings
- 
-Invalid values for those attributes or extra attributes won't be accepted
-and rejected with a 400 response from the server.
+
+Providing invalid values for those attributes or extra attributes will be rejected with a 400 response from the server.
 
 ### DELETE
 
