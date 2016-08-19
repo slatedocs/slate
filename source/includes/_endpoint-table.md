@@ -36,19 +36,6 @@ GET /datasets/:id/table/ HTTP/1.1
   },
   "description": "A Crunch Table of data for this dataset.",
   "metadata": {
-    "000007": {
-      "alias": "ca_subvar_1",
-      "type": "categorical",
-      "name": "ca_subvar_1",
-      "categories": [
-        { "numeric_value": null, "id": 1, "name": "a", "missing": false },
-        { "numeric_value": null, "id": 2, "name": "b", "missing": false },
-        { "numeric_value": null, "id": 3, "name": "c", "missing": false },
-        { "numeric_value": null, "id": 4, "name": "d", "missing": false },
-        { "numeric_value": null, "id": -1, "name": "No Data", "missing": true }
-      ],
-      "description": ""
-    },
     "000004": {
       "alias": "bool1",
       "type": "categorical",
@@ -101,36 +88,16 @@ GET /datasets/:id/table/ HTTP/1.1
       "resolution": "s",
       "description": "Date variable"
     },
-    "000008": {
-      "alias": "ca_subvar_2",
-      "type": "categorical",
-      "name": "ca_subvar_2",
-      "categories": [
-        { "numeric_value": null, "id": 1, "name": "a", "missing": false },
-        { "numeric_value": null, "id": 2, "name": "b", "missing": false },
-        { "numeric_value": null, "id": 3, "name": "c", "missing": false },
-        { "numeric_value": null, "id": 4, "name": "d", "missing": false },
-        { "numeric_value": null, "id": -1, "name": "No Data", "missing": true }
-      ],
-      "description": ""
-    },
-    "000009": {
-      "alias": "ca_subvar_3",
-      "type": "categorical",
-      "name": "ca_subvar_3",
-      "categories": [
-        { "numeric_value": null, "id": 1, "name": "a", "missing": false },
-        { "numeric_value": null, "id": 2, "name": "b", "missing": false },
-        { "numeric_value": null, "id": 3, "name": "c", "missing": false },
-        { "numeric_value": null, "id": 4, "name": "d", "missing": false },
-        { "numeric_value": null, "id": -1, "name": "No Data", "missing": true }
-      ],
-      "description": ""
-    },
     "00000c": {
       "alias": "categorical_array",
       "type": "categorical_array",
       "name": "categorical_array",
+      "subvariables": ["000007", "000008", "000009"],
+      "subreferences": [
+        {"alias": "ca_subvar_1", "name": "ca_subvar_1", "description": ""},
+        {"alias": "ca_subvar_2", "name": "ca_subvar_2", "description": ""},
+        {"alias": "ca_subvar_3", "name": "ca_subvar_3", "description": ""}
+      ]
       "categories": [
         { "numeric_value": null, "selected": false, "id": 1, "missing": false, "name": "a" },
         { "numeric_value": null, "selected": false, "id": 2, "missing": false, "name": "b" },

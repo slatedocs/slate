@@ -12,8 +12,7 @@ When authenticated and authorized to view the given dataset, GET returns 200
 status with a Shoji Catalog of variables in the dataset. If authorization is
 lacking, response will instead be 404.
 
-Array subvariables are not included in the index of this catalog, although
-entities may be present at `variables/{id}/`. Their metadata are instead
+Array subvariables are not included in the index of this catalog. Their metadata are instead
 accessible in each array variable's "subvariables_catalog".
 
 Private variables are not included in the index of this catalog, although
@@ -208,7 +207,8 @@ A POST to this resource must be a Shoji Entity with the following "body" attribu
  * **name**
  * **type**
  * If "type" is "categorical", "multiple_response", or "categorical_array": **categories**: an array of category definitions
- * If "type" is "multiple_response" or "categorical_array": **subvariables**: an array of either URLs of variables to be "bound" together to form the array variable, or partial variable definitions, which will be created as categorical variables and then bound to form the array. If including partial variable definitions, the array definition must include "categories", which are shared among the subvariables
+ * If "type" is "multiple_response" or "categorical_array": **subvariables**: an array of URLs of variables to be "bound" together to form the array variable
+ * If "type" is "multiple_response" or "categorical_array": **subreferences**: an array of partial variable definitions, which will be created as categorical subvariables of the array. If included, the array definition must include "categories", which are shared among the subvariables.
  * If type is "multiple_response", the definition may include **selected_categories**: an array of category names present in the subvariables. This will mark the specified category or categories as the "selected" response in the multiple response variable. If no "selected_categories" array is provided, the new variable will use any categories already flagged as "selected": true. If no such category exists, the response will return a 400 status.
  * If "type" is "datetime": **resolution**: a string, such as "Y", "M", "D", "h", "m", "s", "ms", that indicates the unit size of the datetime data.
 
@@ -348,7 +348,8 @@ owner | url | If the variable is private it will point to the url of its owner; 
 derived | boolean | Whether the variable is a function of another; default: false
 type | string | The string type name
 categories | array | If "type" is "categorical", "multiple_response", or "categorical_array", an array of category definitions (see below). Other types have an empty array
-subvariables | array of URLs | For arrays, array of (ordered) references to subvariables
+subvariables | array of URLs | For array variables, an ordered array of subvariable ids
+subreferences | array of objects | For array variables, an ordered array of {"name": ..., "alias": ..., ...} objects, one per subvariable
 derivation | object | For derived variables, a Crunch expression which was used to derive this variable; or null
 format | object | An object with various members to control the display of Variable data (see below)
 view | object | An object with various members to control the display of Variable data
@@ -397,7 +398,7 @@ variable entities:
 
 * Editing category attributes and adding categories. Include all categories.
 * Remove categories by sending all categories except for the ones you wish to remove. You can only remove categories that don't have any corresponding data values. Attempting to remove categories that have data associated will fail with a 400 response status.
-* Reordering subvariables in an array. Unlike categories, subvariables cannot be added or removed via PATCH here.
+* Reordering or removing subvariables in an array. Unlike categories, subvariables cannot be added via PATCH here.
 * Editing derivation expressions
 * Editing format and view settings
 
@@ -405,21 +406,22 @@ Actions that are best or only achieved elsewhere include:
 
 * changing variable names, aliases, and descriptions, which is best accomplished by PATCHing the variable catalog, as described above;
 * changing a variable's type, which can only be done by POSTing to the variable's "cast" resource (see [Convert type](#convert-type) below);
-* editing names, aliases, and descriptions of subvariables in an array, which is done by PATCHing the variable's subvariable catalog;
+* editing names, aliases, and descriptions of subvariables in an array, which is done by PATCHing the array's subvariable catalog;
 * altering missing rules.
 
 Variable "id" and "dataset_id" are immutable.
 
+#### POST
+
+Calling POST on an array resource will "unbind" the variable. On success, `POST`
+returns 200 status with a Shoji View, containing the URLs of the
+(formerly sub-)variables, which are promoted to regular variables.
+
 #### DELETE
 
 Calling DELETE on this resource will delete the variable. On success, `DELETE`
-returns 200 status with a Shoji View. When deleting array variables, this
-response value will contain the URLs of the (formerly sub-)variables, which are
-promoted to regular variables on `DELETE` of the array. That is, deleting an
-array "unbinds" the subvariables, and to delete the array fully, one must then
-make a `DELETE` request on each of the returned URLs.
-
-For non-array variables, this View will be an empty array.
+returns 200 status with an empty Shoji View. Deleting an array deletes all its
+subvariable data as well.
 
 ### Summary
 

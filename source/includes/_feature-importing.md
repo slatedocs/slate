@@ -132,7 +132,7 @@ you must supply an order object rather than relying on any order of the
 All variables mentioned in the metadata must contain a valid variable definition
 with a matching alias.
 
-Array variables definitions should contain valid subvariable members.
+Array variables definitions should contain valid subvariable or subreferences members.
 
 Any attribute that contains a `null` value will be ignored and get the attribute's
 default value instead.
