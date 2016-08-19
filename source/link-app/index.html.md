@@ -101,17 +101,82 @@ el flujo de ventanas que aparecerán en su pantalla.
 <img src='/images/linkapp/install-step-4.png'></img>
 <img src='/images/linkapp/install-step-5.png'></img>
 
+# Creación de las tablas de Control y Mensaje
 
-# Configuración de credenciales
+Control y Mensaje son tablas que el programa Link necesita para llevar control de los comprobantes emitidos.
 
-Luego de la instalación un acceso directo al programa Link aparecerá en el  Escritorio
-de su computador.
+Para crear la tabla de control  y mensaje ejecutar:
 
-<img style='width:100px;display:block;margin-right: auto;margin-left:auto;' src='/images/linkapp/desktop-shortcut.png'></img>
+<pre>
+CREATE TABLE
+    Control(
+    id_control bigint IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    tipo_comprobante int NOT NULL,
+    id_local varchar(100) NOT NULL,
+    numero_comprobante varchar(20) NOT NULL,
+    estado varchar(13),
+    numero_autorizacion varchar(100),
+    fecha_autorizacion datetime,
+    fecha_emision datetime,
+    fecha_ingreso datetime,
+    fecha_ultimo_envio datetime,
+    clave_acceso varchar(50),
+    id_externo varchar(40),
+    company_name varchar(40),
+    CONSTRAINT ix_tipo_idlocal UNIQUE (tipo_comprobante, id_local, numero_comprobante, company_name)
+    )
 
-Con doble click sobre él un ícono de Dátil aparecerá en la barra de tareas.
+</pre>
 
-<img style='width:80%;display:block;margin-right: auto;margin-left:auto;' src='/images/linkapp/task-bar-icon.png'></img>
+<pre>
+CREATE TABLE
+    Mensaje(
+    id_control bigint,
+    identificador varchar(2) NOT NULL,
+    mensaje TEXT NOT NULL,
+    tipo varchar(50) NOT NULL,
+    fecha_creacion datetime NOT NULL,
+    CONSTRAINT pk_comprobante_identificador PRIMARY KEY (id_control, identificador),
+    CONSTRAINT fk_control_id FOREIGN KEY (id_control) REFERENCES Control(id_control)
+    )
+</pre>
+
+# Configuración de la base de datos - Tabla control
+
+
+
+Abrir el Bloc de Notas con permisos de administrador, dando click derecho y escogiendo
+**Ejecutar como administrador**. Escoger `Archivo` -> `Abrir` -> `C:\Archivos de Programa\Datil\Link\config`, en la opción `Tipo` de la ventana seleccionar _Todos los archivos_ y seleccionar `environment.ini`
+
+## Configuración para SQL Server
+
+En la sección `[DatabaseSource]` editar los parámetros:
+
+* `driver` con una de las siguientes opciones: `SQL Server`.
+* `server` con la url o ip o nombre del servidor de base de datos. Ejemplo: localhost, 192.168.100.102, ADMIN\SQLEXPRESS.
+* `name` con el nombre de la base de datos.
+* `user` con el usuario que tiene acceso a la base de datos.
+* `password` con la clave de acceso a la base de datos.
+* `version` con la versión de SQL Server.
+* `api` con el valor `odbc`.
+
+`datasource`  y `provider` con el valor `None`, no aplican para la conexión con 
+SQL Server
+
+
+## Configuración para DBF (Visual Fox Pro)
+
+* `driver` con una de las siguientes opciones: `SQL Server`.
+* `server` con la url o ip o nombre del servidor de base de datos. Ejemplo: localhost, 192.168.100.102, ADMIN\SQLEXPRESS.
+* `name` con el nombre de la base de datos.
+* `user` con el usuario que tiene acceso a la base de datos.
+* `password` con la clave de acceso a la base de datos.
+* `version` con la versión de SQL Server.
+* `api` con el valor `odbc`.
+
+* `datasource` con la ruta hacia la carpeta donde están contenidos los archivos .dfb. Ejemplo: C:\Program Files\Contabilidad\Facturacion`
+* 
+SQL Server
 
 # Configuración de queries
 
