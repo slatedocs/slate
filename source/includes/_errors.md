@@ -71,6 +71,7 @@ buyCompleteSets | -3 | not enough cash
 cashFaucet | -1 | Hey, you're not broke!
 claimProceeds | 0 | reporting not done
 claimProceeds | -1 | trader doesn't exist
+claimProceeds | -8 | invalid branch
 closeMarket | 0 | fail/trading not over yet/event not expired or closed already
 closeMarket | -1 | Market has no cash anyway / already closed
 closeMarket | -2 | 0 outcome / not reported on yet
