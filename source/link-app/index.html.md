@@ -97,7 +97,6 @@ Luego de descargar el instalador, empiece la instalación con doble click, sigui
 el flujo de ventanas que aparecerán en su pantalla.
 
 <img src='/images/linkapp/install-step-1.png'></img>
-<img src='/images/linkapp/install-step-2.png'></img>
 <img src='/images/linkapp/install-step-3.png'></img>
 <img src='/images/linkapp/install-step-4.png'></img>
 <img src='/images/linkapp/install-step-5.png'></img>
