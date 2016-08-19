@@ -76,7 +76,7 @@ Instaladores del programa Link de Dátil:
 
 __Windows__
 
-Windows 32 bits: [linkapp-windows-32bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+Link+App_3.0.6_32bit_generic.exe)
+Windows 32 bits: [linkapp-windows-32bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+Link+App_3.0.7_32bit_generic.exe)
 
 Windows 64 bits: [linkapp-windows-64bits]
 
@@ -101,9 +101,11 @@ el flujo de ventanas que aparecerán en su pantalla.
 <img src='/images/linkapp/install-step-4.png'></img>
 <img src='/images/linkapp/install-step-5.png'></img>
 
-# Creación de las tablas de Control y Mensaje
+# Configuración
 
-Control y Mensaje son tablas que el programa Link necesita para llevar control de los comprobantes emitidos.
+## Tablas de Control y Mensaje
+
+Control y Mensaje son tablas que el programa Link necesita para llevar control de los comprobantes emitidos. Pueden estar creados en la misma base de datos o en una distinta a la que almacena la información de los comprobantes.
 
 Para crear la tabla de control  y mensaje ejecutar:
 
@@ -125,7 +127,6 @@ CREATE TABLE
     company_name varchar(40),
     CONSTRAINT ix_tipo_idlocal UNIQUE (tipo_comprobante, id_local, numero_comprobante, company_name)
     )
-
 </pre>
 
 <pre>
@@ -141,44 +142,109 @@ CREATE TABLE
     )
 </pre>
 
-# Configuración de la base de datos - Tabla control
-
-
+## Configuración general
 
 Abrir el Bloc de Notas con permisos de administrador, dando click derecho y escogiendo
 **Ejecutar como administrador**. Escoger `Archivo` -> `Abrir` -> `C:\Archivos de Programa\Datil\Link\config`, en la opción `Tipo` de la ventana seleccionar _Todos los archivos_ y seleccionar `environment.ini`
 
-## Configuración para SQL Server
+### DatabaseSource
+
+Es la configuración de la base de datos que contiene las tablas de  control y mensaje.
+
+#### SQL Server
 
 En la sección `[DatabaseSource]` editar los parámetros:
 
-* `driver` con una de las siguientes opciones: `SQL Server`.
-* `server` con la url o ip o nombre del servidor de base de datos. Ejemplo: localhost, 192.168.100.102, ADMIN\SQLEXPRESS.
+* `driver` con el valor  `SQL Server`.
+* `server` con la url o ip o nombre del servidor de base de datos donde se crearon las tablas de Control y Mensaje. Ejemplo: localhost, 192.168.100.102, ADMIN\SQLEXPRESS.
 * `name` con el nombre de la base de datos.
 * `user` con el usuario que tiene acceso a la base de datos.
 * `password` con la clave de acceso a la base de datos.
 * `version` con la versión de SQL Server.
 * `api` con el valor `odbc`.
 
-`datasource`  y `provider` con el valor `None`, no aplican para la conexión con 
+Dejar `datasource`  y `provider` con el valor `None` porque no aplican para la conexión con 
 SQL Server
 
+### Constraints
 
-## Configuración para DBF (Visual Fox Pro)
+En la sección `[Constraints]` editar el parámetro `first_receipt_date` con la fecha desde la cual se desea emitir el primer comprobante. La fecha debe tener el formato `yyyy-MM-dd hh:MM:SS` Ejemplo: `2016-09-12 13:40:00` para el 12 de septiembre del año 2016 a las trece horas con cuarenta minutos y cero segundos. El tiempo debe estar en formato de 24 horas.
 
-* `driver` con una de las siguientes opciones: `SQL Server`.
-* `server` con la url o ip o nombre del servidor de base de datos. Ejemplo: localhost, 192.168.100.102, ADMIN\SQLEXPRESS.
-* `name` con el nombre de la base de datos.
-* `user` con el usuario que tiene acceso a la base de datos.
-* `password` con la clave de acceso a la base de datos.
+### Notification
+
+En la sección `[Notification]`:
+
+Editar el parámetro `email_api_key` con el API key de Sendgrid para el envío de emails.
+
+Si desea recibir notificaciones cuando ocurra algún error al emitir un comprobante agregue una o varias direcciones de correo electrónico al parámetro `dest_email`.
+
+
+Guardar el archivo con la configuración editada.
+
+
+## Configuración de la compañía
+
+
+
+Abrir el Bloc de Notas con permisos de administrador, dando click derecho y escogiendo
+**Ejecutar como administrador**. Escoger `Archivo` -> `Abrir` -> `C:\Archivos de Programa\Datil\Link\config\companies`, en la opción `Tipo` de la ventana seleccionar _Todos los archivos_ y seleccionar `my_company.ini`
+
+
+### General
+
+En la sección `[General]` configurar el parámetro `ruc`.
+
+### Api
+En la sección `[Api]` configurar el parámetro `xkey` con el _API key_ de Dátil y 
+`xpassword` con la clave del certificado de firma electrónica, `environment` con el valor `1` para emisión en modo de pruebas o `2` para emitir en producción.
+
+### DatabaseSource
+
+Es la configuración de la base de datos de comprobantes
+
+
+#### SQL Server
+
+En la sección `[DatabaseSource]` editar los parámetros:
+
+* `driver` con el valor `SQL Server`.
+* `server` con la url o ip o nombre del servidor de base de datos que contiene la información de los comprobantes. Ejemplo: localhost, 192.168.100.102, ADMIN\SQLEXPRESS.
+* `name` con el nombre de la base de datos de los comprobantes.
+* `user` con el usuario que tiene acceso a la base de datos de los comprobantes.
+* `password` con la clave de acceso a la base de datos de los comprobantes.
 * `version` con la versión de SQL Server.
 * `api` con el valor `odbc`.
 
+Dejar `datasource`  y `provider` con el valor `None` porque no aplican para la conexión con 
+SQL Server
+
+#### DBF (Visual Fox Pro)
+
+* `api` con el valor `adodb`.
 * `datasource` con la ruta hacia la carpeta donde están contenidos los archivos .dfb. Ejemplo: C:\Program Files\Contabilidad\Facturacion`
-* 
-SQL Server
+* `provider` con el valor `VFPOLEDB.1`
 
-# Configuración de queries
+`driver`, `server`, `name`, `user`, `password` y `version`, no aplican para la conexión con archivos DBF
+
+
+Al terminar la edición del archivo se puede cambiar el nombre del mismo por el de la compañía, el nombre no debe llevar espacios, solo letras, números y subguiones. Ejemplo: 
+`seguros_secomsap`
+
+# Ejecutar el servicio
+
+En el menú `Inicio` buscar el `Simbolo del Sistema` , darle click derecho y escoger la opción `Ejecutar como administrador`.
+
+Luego para iniciar el servicio ejecutar el comando:
+
+`net start datilink`
+
+Enter.
+
+Si desea detener el servicio, ejecutar:
+
+`net stop datilink`
+
+# Queries
 
 __Tablas o Vistas__
 
