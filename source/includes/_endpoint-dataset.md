@@ -1193,14 +1193,16 @@ weight | When  `viewers_can_change_weight`, this variable will be the always and
 The dataset preferences provide API clients with a key/value store for settings
 or customizations each would need for each user.
 
-By default all dataset preferences start out as an empty object where clients can
-PATCH the keys each deems necessary.
+By default all datasets' preferences start out with only a `weight` key
+ set to None unless changed. Clients can PATCH attributes each deems necessary.
 
 ```json
 {
     "element": "shoji:entity",
     "self": "https://beta.crunch.io/api/datasets/223fd4/preferences/",
-    "body": {}
+    "body": {
+      "weight": null
+    }
 }
 ```
 
