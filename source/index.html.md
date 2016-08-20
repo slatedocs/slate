@@ -27,17 +27,20 @@ Feel free to log Issues or submit Pull Requests with improvements.
 To authenticate API requests, event organizers (customers of EventHero) need to create an access key for an event and communicate the access key to developers accessing API.
 Access keys are event specific, and perform dual function: authentication of the caller of API, and authorization of the caller to access a particular event.
 
-Access key needs to be passed in HTTP Authorization header using Bearer scheme: `Authorization: Bearer <your access key>`
+Access key needs to be passed in HTTP Authorization header using Bearer scheme: `Authorization: Bearer <ACCESS_KEY>`
 
 > Example API call with authorization header:
 
 ```shell
 curl "https://app.eventhero.io/api/registrations" \
-  -H "Authorization: Bearer <your access key>" \
+  -H "Authorization: Bearer <ACCESS_KEY>" \
   ...
 ```
+<aside class="notice">
+Remember — to replace &lt;ACCESS_KEY&gt; with your event access key!
+</aside>
 
-# Media Types and Versioning
+# Versioning and Media Types
 
 EventHero API uses different content types for versioning.
 Currently the v1 version of the API accepts only `application/vnd.eventhero.registrations.v1+json` media type.
@@ -54,9 +57,9 @@ curl "https://app.eventhero.io/api/registrations" \
 
 Please note that incompatible media types (e.g. `application/json`) will be rejected with HTTP 415 error code.
 
-# Requests
+# Registration Confirmed Activity
 
-## Registration Confirmed
+## Request Structure
 
 > Given the following JSON body in `reg_confirmed.json` file
 
@@ -110,14 +113,51 @@ cat reg_confirmed.json > curl -i -X POST -d @- \
 
 ```json
 {
-  "status": 200,
+  "status": 200
 }
 ```
-<aside class="success">
-Remember — to replace &lt;ACCESS_KEY&gt; with your event access key!
-</aside>
 
-This endpoint retrieves all kittens.
+Key | Example | Description
+--- | ------- | -----------
+type      | "registration.confirmed" | Name of the activity
+data |  | Object that contains information on the activity
+data.ref | None | Registration reference. Should be unique across all registrations for this event. You may use identifiers in your system as the ref value.
+data.type | Object | Object representing [Registration Type](#registration-type)
+data.event | Object | Object representing [Event](#event)
+data.registrant | Object | Object representing [Registrant](#registrant)
+
+### Registration Type
+
+Key | Example | Description
+--- | ------- | -----------
+ref | "123" | ID representing registration type
+name | "General Admission" | Name for the registration type
+
+### Event
+
+Key | Example | Description
+--- | ------- | -----------
+url | "http://example.com/my-event" | URL for the source event
+name | "My Event" | Name for the event
+
+### Registrant
+
+Key | Example | Description
+--- | ------- | -----------
+first_name | "Lindsey" | |
+last_name | "Tessmer" |  |
+job_title | "QA" | |
+company | "Redargyle" | |
+phone | "(585) 412-2153" | |
+email | "lindsey@redargyle.com" | |
+address | Object | Object representing address of the registrant |
+address.street_address | "2220 Sylvania Avenue" | |
+address.extended_address | "#33" | |
+address.locality | "Knoxville" | |
+address.region | "TN" | |
+address.postal_code | "37920" | |
+address.country | "USA" | |
+
 
 ### HTTP Request
 
