@@ -15,7 +15,8 @@ $fields = array(
     'identificacao' => urlencode('identificacao'),
     'pedido' => urlencode('111111'),
     'operacao' => urlencode('Pagamento'),//manter
-    'url_retorno' => urlencode('XML'), //informar URL de call back caso haja uma
+    'url_retorno' => urlencode('http://minhaloja.com/retorno'),
+    'retorno_tipo' => urlencode('xml'),
     'valor' => urlencode('1.00'),
     'nome' => urlencode('Jose da Silva'),
     'doc' => urlencode('12312312300'),
@@ -87,7 +88,8 @@ estado | 2 | string | sim | Estado do cliente
 pais | 15 | string | sim | País do cliente
 cep | 8 | string | sim | Cep do cliente
 vencto | 10 | date | não | Data de vencimento (DD/MM/YYYY). Usado apenas em boletos. Se não for informado, o vencimento será a data de hoje + o prazo informado nas configurações do iPag.
-url_retorno | 50 | string | sim | URL de retorno à Loja Virtual ou Site. Caso seja informado o valor XML, então o IPag retornará um XML, ao invés de enviar o retorno por POST à URL de retorno.
+url_retorno | 50 | string | sim | URL de retorno à Loja Virtual ou Site.
+retorno_tipo | 5 | string | não | Informar 'xml' para ter retorno em XML, caso não seja informado será retornado em HTML.
 
 ## Campos adicionais para 1-click buy
 
@@ -135,11 +137,20 @@ Será criada uma cobrança recorrente trimestral, que terá início em 01/01
 
 ### Importante
 
-Ao criar uma transação recorrente, certifique-se de informar o profile_id na URL de retorno. (profile_id é um número único que deve ser gerado pela loja e será a referência da recorrência para a loja e iPag). A URL de retorno para este caso deve ter a seguinte estrutura:
+Ao criar uma transação recorrente, **certifique-se** de informar o profile_id na URL de retorno. (profile_id é um número único que deve ser gerado pela loja e será a referência da recorrência para a loja e iPag). A URL de retorno para este caso deve ter a seguinte estrutura:
 
-HTTP://www.loja.com.br/<controladorloja>/profile_id/<profile_id>
+**HTTP://www.loja.com.br/controller/profile_id/<profile_id>**
 
-Exemplo: http://sualoja.com.br/retornoipag/profile_id/123456
+**Exemplo: http://sualoja.com.br/retornoipag/profile_id/123456**
+
+<aside class="info">
+O <b>profile_id</b> é um id único que deve ser gerado e controlado pelo integrador, ele irá referênciar a transação recorrente.
+Quando houver uma atualização de pagamento o iPag irá tentar enviar um POST com o status atualizado do Pagamento. Caso o iPag não consiga enviar a resposta (HTTP 200), ele irá tentar novamente após algum tempo.
+</aside>
+
+<aside class="warning">
+<b>Se não houver um endpoint (url_retorno) com profile_id informado o iPag não será capaz de enviar o status atualizado dos pagamentos referentes a recorrência.</b>
+</aside>
 
 ## Retorno
 
