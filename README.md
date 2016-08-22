@@ -66,9 +66,13 @@ Companies Using Slate
 ---------------------------------
 
 * [NASA](https://api.nasa.gov)
-* [IBM Cloudant](https://docs.cloudant.com/api.html)
-* [Travis-CI](https://docs.travis-ci.com/api/)
+* [IBM](https://docs.cloudant.com/api.html)
+* [Sony](http://developers.cimediacloud.com)
 * [Mozilla](http://mozilla.github.io/localForage/)
+* [Best Buy](https://bestbuyapis.github.io/api-documentation/)
+* [Travis-CI](https://docs.travis-ci.com/api/)
+* [Greenhouse](https://developers.greenhouse.io/harvest.html)
+* [Woocommerce](http://woothemes.github.io/woocommerce-rest-api-docs/)
 * [Appium](http://appium.io/slate/en/master)
 * [Dwolla](https://docs.dwolla.com/)
 * [Clearbit](https://clearbit.com/docs)
