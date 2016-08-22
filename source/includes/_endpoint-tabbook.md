@@ -46,7 +46,7 @@ Location: https://s3-url/filename.xlsx
 
 #### Endpoint Parameters
 
-The tabbook endpoint can also take filtering and variable limiting parameters.
+At the top level, the tab book endpoint can take filtering and variable limiting parameters.
 
 Name | Type | Default | Description | Example
 ------ | ---- | ------- | ----------- | ------------- 
@@ -57,6 +57,8 @@ options| object | {}| further options defining the tabbook output.
 
 
 ##### Options
+Options for generating tab books
+
 Name | Type | Default | Description | Example
 ------ | ---- | ------- | ----------- | ------------- 
 display_settings | object | {} | a set of settings to define how the output should be displayed | See Below.
@@ -64,6 +66,9 @@ weight | url | None| ""http://beta.crunch.io/api/datasets/45fc0d5ca0a945dab7d054
 
 
 ###### Display Settings
+
+Further tab book viewing options.
+
 Name | Type | Default | Description | Example
 ------ | ---- | ------- | ----------- | ------------- 
 decimalPlaces| object | 0 | number of decimal places to diaplay| {"value": 0}
