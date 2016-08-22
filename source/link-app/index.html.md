@@ -168,7 +168,7 @@ SQL Server
 
 ### Constraints
 
-En la sección `[Constraints]` editar el parámetro `first_receipt_date` con la fecha desde la cual se desea emitir el primer comprobante. La fecha debe tener el formato `yyyy-MM-dd hh:MM:SS` Ejemplo: `2016-09-12 13:40:00` para el 12 de septiembre del año 2016 a las trece horas con cuarenta minutos y cero segundos. El tiempo debe estar en formato de 24 horas.
+En la sección `[Constraints]` editar el parámetro `first_receipt_date` con la fecha desde la cual se desea emitir el primer comprobante. La fecha debe tener el formato `YYYY-mm-dd hh:MM:SS` Ejemplo: `2016-09-12 13:40:00` para el 12 de septiembre del año 2016 a las trece horas con cuarenta minutos y cero segundos. El tiempo debe estar en formato de 24 horas.
 
 ### Notification
 
