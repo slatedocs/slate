@@ -229,11 +229,11 @@ The following configuration settings are available:
           uri_reporting
         </th>
         <td>
-          By default Scout reports the URL and query parameters with transaction traces. To exclude query params, use
+          By default Scout reports the URL and filtered query parameters with transaction traces. Sensitive parameters in the URL will be redacted. To exclude query params entirely, use
           <code>path</code>.
         </td>
         <td>
-          <code>full_path</code>
+          <code>filtered_params</code>
         </td>
         <td>
           No
