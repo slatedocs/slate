@@ -176,7 +176,7 @@ En la sección `[Notification]`:
 
 Editar el parámetro `email_api_key` con el API key de Sendgrid para el envío de emails.
 
-Si desea recibir notificaciones cuando ocurra algún error al emitir un comprobante agregue una o varias direcciones de correo electrónico al parámetro `dest_email`.
+Editar el parámetro `dest_email` si desea recibir notificaciones cuando ocurra algún error al emitir un comprobante. Agregue una o varias direcciones de correo electrónico al separadas por coma (,).
 
 
 Guardar el archivo con la configuración editada.
