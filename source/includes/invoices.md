@@ -350,18 +350,24 @@ impuestos           | listado de objetos [total impuesto](#total-impuesto) | Lis
 
 #### Pagos
 
-Parámetro           | Tipo                    | Descripción
-------------------- | ----------------------- | ----------
-medio              | string                  | Código del [tipo de forma de pago](#tipos-de-forma-de-pago). __Requerido__
-total               | float                   | Total aplicable a la forma de pago especificada. __Requerido__
-propiedades               | objeto                 | Información adicional adjunta al pago en forma de diccionario. Ejemplo:<br>` {"plazo": "30", "unidad_tiempo": "dias"}`
+Parámetro   | Tipo         | Descripción
+----------- | ------------ | ----------
+fecha       | string       | Fecha de recepción del pago en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). Si no es especificado se utiliza la fecha y hora actual.
+medio       | string       | Código del [tipo de forma de pago](#tipos-de-forma-de-pago). __Requerido__
+total       | float        | Total aplicable a la forma de pago especificada. __Requerido__
+propiedades | objeto       | Información adicional adjunta al pago en forma de diccionario. Ejemplo:<br>` {"plazo": "30", "unidad_tiempo": "dias"}`
 
 #### Crédito
 
 Parámetro           | Tipo    | Descripción
 ------------------- | ------- | ----------
-fecha_vencimiento   | string  | Fecha de emisión en formato AAAA-MM-DD, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
+fecha_vencimiento   | string  | Fecha de vencimiento en formato AAAA-MM-DD, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
 monto               | float   | Monto otorgado de crédito. __Requerido__
+
+<aside class="notice">
+La información de crédito será enviada como forma de pago al Servicio de 
+Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero.
+</aside>
 
 ### Respuesta
 

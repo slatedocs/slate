@@ -332,7 +332,8 @@ version | string | Version of the country e-billing format. Defaults to the late
 clave_acceso | string | The access code represents a unique identified for the document. Datil will generate an access code if you don't provide it.<br>¿How to [generate](#access-code) an access code?
 informacion_adicional | object | Additional information about the invoice in dictionary form. Example:<br>` {"plan": "pro", "months": "1"}`
 retenciones | list of [invoice-withholding](#invoice-withholdings) objects | Withholdings to be included in the invoice. Specific case for traders or distributors of petroleum derivates and for presumptive VAT Retention for publishers, distributors and newsvendors involved in the marketing of newspapers and / or magazines.
-payments | List of [payments](#payments) objects | List of forms of payment applicable to the invoice. __Required__
+pagos | List of [payments](#payments) objects | List of forms of payment applicable to the invoice. __Required__
+credito | Object of type [credito](#cr-dito) | Información about the credit granted to the customer.
 
 
 #### Invoice totals
@@ -348,11 +349,23 @@ impuestos           | list of [total-tax](#total-tax) objects | List of aggregat
 
 #### Payments
 
-Parameter           | Type                    | Description
-------------------- | ----------------------- | ----------
-medio              | string                  | [payment form](#payment-forms) code. __Required__
-total               | float                   | Total applicable to the payment form. __Required__
-propiedades         | object                  | Additional information related to the payment in dictionary form. Example: <br>` {"plazo": "30", "unidad_tiempo": "dias"}`
+Parameter   | Type         | Description
+----------- | ------------ | ----------
+fecha       | string       | Payment date AAAA-MM-DDHoraZonaHoraria, in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6) format. The present date time is used when this parameter is not specified.
+medio       | string       | [payment form](#payment-forms) code. __Required__
+total       | float        | Total applicable to the payment form. __Required__
+propiedades | object       | Additional information related to the payment in dictionary form. Example: <br>` {"plazo": "30", "unidad_tiempo": "dias"}`
+
+#### Crédito
+
+Parameter           | Type    | Description
+------------------- | ------- | ------------
+fecha_vencimiento   | string  | Due date in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6) date format (AAAA-MM-DD). __Requerido__
+monto               | float   | Credit amount. __Requerido__
+
+<aside class="notice">
+This information is sent to the Internal Revenue Service (SRI) 
+</aside>
 
 ### Response
 
