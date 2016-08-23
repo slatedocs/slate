@@ -618,10 +618,10 @@ Campo | Tipo | Descripción
 Obtiene la información de los pagos aplicables a la factura.
 
 ```sql
-payments  = SELECT
+payment_methods  = SELECT
   id_pago,
-  medio_pago,
-  total_pago
+  medio_pago medio,
+  total_pago total
   FROM
   DocElectronicoFactura.pagos
   WHERE
@@ -649,7 +649,7 @@ plazo        |   9
 unidad_tiempo           |   dias
 
 ```sql
-payment_properties = SELECT
+payment_method_properties = SELECT
   columna_de_nombres    _nombre_,
   columna_de_valores     _valor_
   FROM
