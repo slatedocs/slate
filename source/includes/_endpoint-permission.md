@@ -38,7 +38,7 @@ Name | Type | Description
 name | string | Display name of the user
 email | string | Email address of the user
 is_owner | boolean | Whether this user is the dataset's "owner"
-dataset_permissions | object | Attributes governing the user's authorization. See below.
+dataset_permissions | object | Attributes governing the user's authorization; see below
 
 Supported `dataset_permissions`, all boolean, are:
 
@@ -60,7 +60,7 @@ To change the permissions a user has, PATCH new dataset_permissions, like:
     "https://beta.crunch.io/api/users/42/": {
         "dataset_permissions": {
             "edit": false,
-            "view": true,
+            "view": true
         }
     },
     "send_notification": true,
@@ -87,14 +87,14 @@ To add a user (i.e. share with them), there are two cases. First, if the user to
     "/users/id/": {
         "dataset_permissions": {
             "edit": false,
-            "view": true,
+            "view": true
         },
         "profile": {
             "weight": null, 
             "applied_filters": []
 
         }
-    },
+    }
 }
 ```
 This payload may include a "profile" member, which are initial values with which to populate the sharee's user-dataset-profile. 
@@ -112,7 +112,7 @@ To revoke users' access to this dataset (aka "unshare" with them), PATCH a null 
 
 ```json
 {
-    "/users/id/": null,
+    "/users/id/": null
 }
 ```
 
@@ -139,7 +139,7 @@ It is possible to share a dataset with people that are not users of Crunch yet. 
         },
         "profile": {
             "weight":, 
-            "applied_filters": [],
+            "applied_filters": []
         }
     },
     "send_notifications": true,

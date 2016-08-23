@@ -16,7 +16,7 @@ user_display_name | string | "" | The name of the user who saved this version
 description | string | | An informative note about the version, as in a commit message
 version | string |  | An internal identifier for the saved version
 last_update | datetime | | Timestamp for when the version was created
-revert | url | | URL to POST to in order to roll back to this version. See below.
+revert | url | | URL to POST to in order to roll back to this version; see below
 
 Query parameters:
 
@@ -68,3 +68,5 @@ The version's "description" may be modified by PATCHing its entity. A successful
 `POST /datasets/{dataset_id}/savepoints/{version_id}/revert/`
 
 To roll back to a saved version, POST an empty body to the version's "revert" URL, found both inside the catalog tuple and in the "views" attribute of the entity. A successful request will return 204 status.
+
+Reverting a dataset will not change its current ownership.
