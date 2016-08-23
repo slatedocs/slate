@@ -8,7 +8,7 @@ Field | Description
 ------:|:------------
 __sms_history_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each sms_history.
 __attempted_retries__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null)</font> | 
-__<a href="/#enable_history">enable_history_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__<a href="/#enable-history">enable_history_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __message_reference__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __message__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
@@ -30,7 +30,7 @@ Relationship | Description
 <hr>
 <br>
 
-> An example POST request. Note that sms_history_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `sms_history_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/sms_history"
@@ -100,7 +100,7 @@ Relationship | Description
 	}
 ```
 
-> and we can retrieve all sms_history by omitted the sms_history_id:
+> We can retrieve all `sms_history` by omitting the `sms_history_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/sms_history'
@@ -126,7 +126,7 @@ Relationship | Description
     }
 ```
 
-> We can edit the newly created sms_history with a `PUT` request:
+> We can edit the newly created `sms_history` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/sms_history'
@@ -167,7 +167,7 @@ Relationship | Description
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the sms_history
+> If a user has `SYSTEM` permissions they can delete the `sms_history`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/sms_history/1'

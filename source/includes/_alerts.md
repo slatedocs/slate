@@ -8,7 +8,7 @@ Field | Description
 ------:|:------------
 __alert_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each alert.
 __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__<a href="/#alert_type">alert_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#alert-type">alert_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __start_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __dismissed_at__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __dismissed_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
@@ -30,7 +30,7 @@ Relationship | Description
 <hr>
 <br>
 
-> An example POST request. Note that alert_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `alert_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/alerts"
@@ -100,7 +100,7 @@ Relationship | Description
 	}
 ```
 
-> and we can retrieve all alerts by omitted the alert_id:
+> We can retrieve all `alerts` by omitting the `alert_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/alerts'
@@ -126,7 +126,7 @@ Relationship | Description
     }
 ```
 
-> We can edit the newly created alert with a `PUT` request:
+> We can edit the newly created `alert` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/alerts'
@@ -167,7 +167,7 @@ Relationship | Description
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the alert
+> If a user has `SYSTEM` permissions they can delete the `alert`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/alerts/1'

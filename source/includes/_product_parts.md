@@ -2,7 +2,7 @@
 
 ### Description
 
-> A `GET` request to this endpoint will return a complete list of parts and related data currently associated with that unit. 
+> A `GET` request to this endpoint will return a complete list of parts and related data currently associated with that unit.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/parts"
@@ -124,7 +124,7 @@ This endpoint is designed to for use during repairs of the Unit. A `GET` request
 
 ### Endpoint
 
-    | value 
+    | value
 ---:|:------
 __endpoint__ | `/products/<imei>/parts`
 __method__ | `GET`
@@ -136,27 +136,20 @@ __permissions | `OVERVIEW`
 
 ### Response
 
-The format of the data returned by this endpoint is a dictionary where the keys are part_ids and the value is another dictionary of the data associated with the part. 
+The format of the data returned by this endpoint is a dictionary where the keys are part_ids and the value is another dictionary of the data associated with the part.
 
 <code>part_id: {part_data}</code>
 
 
 Where `{part_data}` is a dictionary as follows:
 
-<code>{  
-      "part_id": 10737,  
-      "part_type_id": 1,  
-      "serial_number": "204043256110756"  
-      "part_product_linker": {linker dict}  
-      "part_type": {part_type_dict}  
-      "replacement_part_types": [ list-of-replacement-part_type-objects ]  
-      "created_at": "2015-07-02T11:50:23",  
-      "created_by": "d.mclean@bboxx.co.uk",  
-      "modified_at": null,  
-}</code>
+<code>{         "part_id": { id },         "part_type_id": {type_id },         "serial_number": { serial },
+"part_product_linker": { linker dict }         "part_type": { part_type_dict }         "replacement_part_types": [ list-
+of-replacement-part_type-objects ]         "created_at": { timestamp },         "created_by": { user },
+"modified_at": { timestamp },   }</code>
 
-You can see an example of the full object in the code snippet to the right. 
+You can see an example of the full object in the code snippet to the right.
 
-The intended use for this endpoint is for implementing repairs to BBOXX Units. 
+The intended use for this endpoint is for implementing repairs to BBOXX Units.
 
 

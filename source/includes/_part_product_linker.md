@@ -11,9 +11,9 @@ __<a href="/#part">part_id</a>__ <br><font color="DarkGray">_int_</font> <font c
 __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __date_added__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __date_removed__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
-__<a href="/#added_repair">added_repair_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
-__<a href="/#removed_repair">removed_repair_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
-__<a href="/#replaced_part">replaced_part_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__<a href="/#added-repair">added_repair_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__<a href="/#removed-repair">removed_repair_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__<a href="/#replaced-part">replaced_part_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -28,7 +28,7 @@ Relationship | Description
 <hr>
 <br>
 
-> An example POST request. Note that part_product_linker_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `part_product_linker_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/part_product_linker"
@@ -92,7 +92,7 @@ Relationship | Description
 	}
 ```
 
-> and we can retrieve all part_product_linker by omitted the part_product_linker_id:
+> We can retrieve all `part_product_linker` by omitting the `part_product_linker_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/part_product_linker'
@@ -118,7 +118,7 @@ Relationship | Description
     }
 ```
 
-> We can edit the newly created part_product_linker with a `PUT` request:
+> We can edit the newly created `part_product_linker` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/part_product_linker'
@@ -155,7 +155,7 @@ Relationship | Description
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the part_product_linker
+> If a user has `SYSTEM` permissions they can delete the `part_product_linker`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/part_product_linker/1'

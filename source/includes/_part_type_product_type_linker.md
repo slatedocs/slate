@@ -7,8 +7,8 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __part_type_product_type_linker_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each part_type_product_type_linker.
-__<a href="/#product_type">product_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__<a href="/#part_type">part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#product-type">product_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#part-type">part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -23,7 +23,7 @@ Relationship | Description
 <hr>
 <br>
 
-> An example POST request. Note that part_type_product_type_linker_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `part_type_product_type_linker_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/part_type_product_type_linker"
@@ -72,7 +72,7 @@ Relationship | Description
 	}
 ```
 
-> and we can retrieve all part_type_product_type_linker by omitted the part_type_product_type_linker_id:
+> We can retrieve all `part_type_product_type_linker` by omitting the `part_type_product_type_linker_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/part_type_product_type_linker'
@@ -98,7 +98,7 @@ Relationship | Description
     }
 ```
 
-> We can edit the newly created part_type_product_type_linker with a `PUT` request:
+> We can edit the newly created `part_type_product_type_linker` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/part_type_product_type_linker'
@@ -125,7 +125,7 @@ Relationship | Description
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the part_type_product_type_linker
+> If a user has `SYSTEM` permissions they can delete the `part_type_product_type_linker`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/part_type_product_type_linker/1'

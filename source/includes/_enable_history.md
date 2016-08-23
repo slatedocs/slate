@@ -27,7 +27,7 @@ __sms_history__ | The associated sms_history
 <hr>
 <br>
 
-> An example POST request. Note that enable_history_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `enable_history_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/enable_history"
@@ -85,7 +85,7 @@ __sms_history__ | The associated sms_history
 	}
 ```
 
-> and we can retrieve all enable_history by omitted the enable_history_id:
+> We can retrieve all `enable_history` by omitting the `enable_history_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/enable_history'
@@ -111,7 +111,7 @@ __sms_history__ | The associated sms_history
     }
 ```
 
-> We can edit the newly created enable_history with a `PUT` request:
+> We can edit the newly created `enable_history` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/enable_history'
@@ -144,7 +144,7 @@ __sms_history__ | The associated sms_history
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the enable_history
+> If a user has `SYSTEM` permissions they can delete the `enable_history`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/enable_history/1'

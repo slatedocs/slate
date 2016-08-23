@@ -7,7 +7,7 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __anomaly_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each anomaly.
-__<a href="/#anomaly_type">anomaly_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#anomaly-type">anomaly_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __start_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __end_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
@@ -25,7 +25,7 @@ Relationship | Description
 <hr>
 <br>
 
-> An example POST request. Note that anomaly_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `anomaly_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/anomalies"
@@ -80,7 +80,7 @@ Relationship | Description
 	}
 ```
 
-> and we can retrieve all anomalies by omitted the anomaly_id:
+> We can retrieve all `anomalies` by omitting the `anomaly_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/anomalies'
@@ -106,7 +106,7 @@ Relationship | Description
     }
 ```
 
-> We can edit the newly created anomaly with a `PUT` request:
+> We can edit the newly created `anomaly` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/anomalies'
@@ -137,7 +137,7 @@ Relationship | Description
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the anomaly
+> If a user has `SYSTEM` permissions they can delete the `anomaly`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/anomalies/1'

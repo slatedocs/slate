@@ -24,7 +24,7 @@ __states__ | The associated states
 <hr>
 <br>
 
-> An example POST request. Note that state_type_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `state_type_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/state_types"
@@ -73,7 +73,7 @@ __states__ | The associated states
 	}
 ```
 
-> and we can retrieve all state_types by omitted the state_type_id:
+> We can retrieve all `state_types` by omitting the `state_type_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/state_types'
@@ -99,7 +99,7 @@ __states__ | The associated states
     }
 ```
 
-> We can edit the newly created state_type with a `PUT` request:
+> We can edit the newly created `state_type` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/state_types'
@@ -126,7 +126,7 @@ __states__ | The associated states
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the state_type
+> If a user has `SYSTEM` permissions they can delete the `state_type`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/state_types/1'

@@ -26,7 +26,7 @@ __customer_entity_linker__ | The associated customer_entity_linker
 <hr>
 <br>
 
-> An example POST request. Note that customer_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `customer_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/customers"
@@ -78,7 +78,7 @@ __customer_entity_linker__ | The associated customer_entity_linker
 	}
 ```
 
-> and we can retrieve all customers by omitted the customer_id:
+> We can retrieve all `customers` by omitting the `customer_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/customers'
@@ -104,7 +104,7 @@ __customer_entity_linker__ | The associated customer_entity_linker
     }
 ```
 
-> We can edit the newly created customer with a `PUT` request:
+> We can edit the newly created `customer` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/customers'
@@ -133,7 +133,7 @@ __customer_entity_linker__ | The associated customer_entity_linker
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the customer
+> If a user has `SYSTEM` permissions they can delete the `customer`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/customers/1'

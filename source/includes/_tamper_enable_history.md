@@ -26,7 +26,7 @@ Relationship | Description
 <hr>
 <br>
 
-> An example POST request. Note that tamper_enable_history_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `tamper_enable_history_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/tamper_enable_history"
@@ -84,7 +84,7 @@ Relationship | Description
 	}
 ```
 
-> and we can retrieve all tamper_enable_history by omitted the tamper_enable_history_id:
+> We can retrieve all `tamper_enable_history` by omitting the `tamper_enable_history_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/tamper_enable_history'
@@ -110,7 +110,7 @@ Relationship | Description
     }
 ```
 
-> We can edit the newly created tamper_enable_history with a `PUT` request:
+> We can edit the newly created `tamper_enable_history` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/tamper_enable_history'
@@ -143,7 +143,7 @@ Relationship | Description
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the tamper_enable_history
+> If a user has `SYSTEM` permissions they can delete the `tamper_enable_history`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/tamper_enable_history/1'

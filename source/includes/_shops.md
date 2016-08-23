@@ -27,7 +27,7 @@ __products__ | The associated products
 <hr>
 <br>
 
-> An example POST request. Note that shop_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `shop_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/shops"
@@ -85,7 +85,7 @@ __products__ | The associated products
 	}
 ```
 
-> and we can retrieve all shops by omitted the shop_id:
+> We can retrieve all `shops` by omitting the `shop_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/shops'
@@ -111,7 +111,7 @@ __products__ | The associated products
     }
 ```
 
-> We can edit the newly created shop with a `PUT` request:
+> We can edit the newly created `shop` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/shops'
@@ -144,7 +144,7 @@ __products__ | The associated products
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the shop
+> If a user has `SYSTEM` permissions they can delete the `shop`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/shops/1'

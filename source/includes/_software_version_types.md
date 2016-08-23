@@ -29,7 +29,7 @@ __latest_software__ | The associated latest_software
 <hr>
 <br>
 
-> An example POST request. Note that software_version_type_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `software_version_type_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/software_version_types"
@@ -87,7 +87,7 @@ __latest_software__ | The associated latest_software
 	}
 ```
 
-> and we can retrieve all software_version_types by omitted the software_version_type_id:
+> We can retrieve all `software_version_types` by omitting the `software_version_type_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/software_version_types'
@@ -113,7 +113,7 @@ __latest_software__ | The associated latest_software
     }
 ```
 
-> We can edit the newly created software_version_type with a `PUT` request:
+> We can edit the newly created `software_version_type` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/software_version_types'
@@ -146,7 +146,7 @@ __latest_software__ | The associated latest_software
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the software_version_type
+> If a user has `SYSTEM` permissions they can delete the `software_version_type`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/software_version_types/1'

@@ -28,7 +28,7 @@ __shops__ | The associated shops
 <hr>
 <br>
 
-> An example POST request. Note that hub_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `hub_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/hubs"
@@ -86,7 +86,7 @@ __shops__ | The associated shops
 	}
 ```
 
-> and we can retrieve all hubs by omitted the hub_id:
+> We can retrieve all `hubs` by omitting the `hub_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/hubs'
@@ -112,7 +112,7 @@ __shops__ | The associated shops
     }
 ```
 
-> We can edit the newly created hub with a `PUT` request:
+> We can edit the newly created `hub` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/hubs'
@@ -145,7 +145,7 @@ __shops__ | The associated shops
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the hub
+> If a user has `SYSTEM` permissions they can delete the `hub`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/hubs/1'

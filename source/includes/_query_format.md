@@ -27,8 +27,8 @@ r = requests.get(url, params, headers)
 
 ```python
 filters = [
-    {"fieldname": "product_imei", "op": "eq", "val": "013777894687"},
-    {"fieldname": "product_type_id", "op": "lt", "val": 3}
+    {"name": "product_imei", "op": "eq", "val": "013777894687"},
+    {"name": "product_type_id", "op": "lt", "val": 3}
 ]
 
 limit = 100

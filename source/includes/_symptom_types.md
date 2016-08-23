@@ -25,7 +25,7 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 <hr>
 <br>
 
-> An example POST request. Note that symptom_type_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `symptom_type_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/symptom_types"
@@ -74,7 +74,7 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 	}
 ```
 
-> and we can retrieve all symptom_types by omitted the symptom_type_id:
+> We can retrieve all `symptom_types` by omitting the `symptom_type_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/symptom_types'
@@ -100,7 +100,7 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
     }
 ```
 
-> We can edit the newly created symptom_type with a `PUT` request:
+> We can edit the newly created `symptom_type` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/symptom_types'
@@ -127,7 +127,7 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the symptom_type
+> If a user has `SYSTEM` permissions they can delete the `symptom_type`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/symptom_types/1'

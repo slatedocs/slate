@@ -8,7 +8,7 @@ Field | Description
 ------:|:------------
 __product_software_linker_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each product_software_linker.
 __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__<a href="/#software_version_type">software_version_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#software-version-type">software_version_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __date_added__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __date_removed__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __update_attempts__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
@@ -26,7 +26,7 @@ Relationship | Description
 <hr>
 <br>
 
-> An example POST request. Note that product_software_linker_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `product_software_linker_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/product_software_linker"
@@ -84,7 +84,7 @@ Relationship | Description
 	}
 ```
 
-> and we can retrieve all product_software_linker by omitted the product_software_linker_id:
+> We can retrieve all `product_software_linker` by omitting the `product_software_linker_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/product_software_linker'
@@ -110,7 +110,7 @@ Relationship | Description
     }
 ```
 
-> We can edit the newly created product_software_linker with a `PUT` request:
+> We can edit the newly created `product_software_linker` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/product_software_linker'
@@ -143,7 +143,7 @@ Relationship | Description
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the product_software_linker
+> If a user has `SYSTEM` permissions they can delete the `product_software_linker`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/product_software_linker/1'

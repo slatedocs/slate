@@ -26,7 +26,7 @@ Relationship | Description
 <hr>
 <br>
 
-> An example POST request. Note that customer_product_history_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `customer_product_history_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/customer_product_history"
@@ -84,7 +84,7 @@ Relationship | Description
 	}
 ```
 
-> and we can retrieve all customer_product_history by omitted the customer_product_history_id:
+> We can retrieve all `customer_product_history` by omitting the `customer_product_history_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/customer_product_history'
@@ -110,7 +110,7 @@ Relationship | Description
     }
 ```
 
-> We can edit the newly created customer_product_history with a `PUT` request:
+> We can edit the newly created `customer_product_history` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/customer_product_history'
@@ -143,7 +143,7 @@ Relationship | Description
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the customer_product_history
+> If a user has `SYSTEM` permissions they can delete the `customer_product_history`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/customer_product_history/1'

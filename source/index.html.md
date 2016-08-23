@@ -65,12 +65,14 @@ includes:
   - send_wakeup
   - product_parts
   - change_customer
+  - expire_customer
 
 
   - custom_endpoints
   - home
   - auth_login
   - dashboard2
+  - create_customer
 
   - using_the_api
   - authentication_and_permissions

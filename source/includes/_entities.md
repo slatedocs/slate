@@ -28,7 +28,7 @@ __product_entity_linker__ | The associated product_entity_linker
 <hr>
 <br>
 
-> An example POST request. Note that entity_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `entity_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/entities"
@@ -83,7 +83,7 @@ __product_entity_linker__ | The associated product_entity_linker
 	}
 ```
 
-> and we can retrieve all entities by omitted the entity_id:
+> We can retrieve all `entities` by omitting the `entity_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/entities'
@@ -109,7 +109,7 @@ __product_entity_linker__ | The associated product_entity_linker
     }
 ```
 
-> We can edit the newly created entity with a `PUT` request:
+> We can edit the newly created `entity` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/entities'
@@ -140,7 +140,7 @@ __product_entity_linker__ | The associated product_entity_linker
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the entity
+> If a user has `SYSTEM` permissions they can delete the `entity`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/entities/1'

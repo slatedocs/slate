@@ -8,8 +8,8 @@ Field | Description
 ------:|:------------
 __state_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each state.
 __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__<a href="/#prev_state_t">prev_state_type</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__<a href="/#current_state_t">current_state_type</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#prev-state-t">prev_state_type</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#current-state-t">current_state_type</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -24,7 +24,7 @@ Relationship | Description
 <hr>
 <br>
 
-> An example POST request. Note that state_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `state_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/states"
@@ -76,7 +76,7 @@ Relationship | Description
 	}
 ```
 
-> and we can retrieve all states by omitted the state_id:
+> We can retrieve all `states` by omitting the `state_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/states'
@@ -102,7 +102,7 @@ Relationship | Description
     }
 ```
 
-> We can edit the newly created state with a `PUT` request:
+> We can edit the newly created `state` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/states'
@@ -131,7 +131,7 @@ Relationship | Description
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the state
+> If a user has `SYSTEM` permissions they can delete the `state`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/states/1'

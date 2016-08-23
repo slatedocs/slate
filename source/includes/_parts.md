@@ -8,7 +8,7 @@ Field | Description
 ------:|:------------
 __part_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each part.
 __serial_number__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
-__<a href="/#part_type">part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#part-type">part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -24,7 +24,7 @@ __part_product_linker__ | The associated part_product_linker
 <hr>
 <br>
 
-> An example POST request. Note that part_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `part_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/parts"
@@ -73,7 +73,7 @@ __part_product_linker__ | The associated part_product_linker
 	}
 ```
 
-> and we can retrieve all parts by omitted the part_id:
+> We can retrieve all `parts` by omitting the `part_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/parts'
@@ -99,7 +99,7 @@ __part_product_linker__ | The associated part_product_linker
     }
 ```
 
-> We can edit the newly created part with a `PUT` request:
+> We can edit the newly created `part` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/parts'
@@ -126,7 +126,7 @@ __part_product_linker__ | The associated part_product_linker
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the part
+> If a user has `SYSTEM` permissions they can delete the `part`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/parts/1'

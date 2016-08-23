@@ -27,7 +27,7 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 <hr>
 <br>
 
-> An example POST request. Note that part_type_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `part_type_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/part_types"
@@ -82,7 +82,7 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 	}
 ```
 
-> and we can retrieve all part_types by omitted the part_type_id:
+> We can retrieve all `part_types` by omitting the `part_type_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/part_types'
@@ -108,7 +108,7 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
     }
 ```
 
-> We can edit the newly created part_type with a `PUT` request:
+> We can edit the newly created `part_type` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/part_types'
@@ -139,7 +139,7 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the part_type
+> If a user has `SYSTEM` permissions they can delete the `part_type`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/part_types/1'

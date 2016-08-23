@@ -34,7 +34,7 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 <hr>
 <br>
 
-> An example POST request. Note that anomaly_type_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `anomaly_type_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/anomaly_types"
@@ -107,7 +107,7 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 	}
 ```
 
-> and we can retrieve all anomaly_types by omitted the anomaly_type_id:
+> We can retrieve all `anomaly_types` by omitting the `anomaly_type_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types'
@@ -133,7 +133,7 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
     }
 ```
 
-> We can edit the newly created anomaly_type with a `PUT` request:
+> We can edit the newly created `anomaly_type` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types'
@@ -176,7 +176,7 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the anomaly_type
+> If a user has `SYSTEM` permissions they can delete the `anomaly_type`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types/1'

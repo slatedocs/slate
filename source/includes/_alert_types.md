@@ -31,7 +31,7 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 <hr>
 <br>
 
-> An example POST request. Note that alert_type_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `alert_type_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/alert_types"
@@ -95,7 +95,7 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 	}
 ```
 
-> and we can retrieve all alert_types by omitted the alert_type_id:
+> We can retrieve all `alert_types` by omitting the `alert_type_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/alert_types'
@@ -121,7 +121,7 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
     }
 ```
 
-> We can edit the newly created alert_type with a `PUT` request:
+> We can edit the newly created `alert_type` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/alert_types'
@@ -158,7 +158,7 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the alert_type
+> If a user has `SYSTEM` permissions they can delete the `alert_type`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/alert_types/1'

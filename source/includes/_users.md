@@ -28,7 +28,7 @@ Relationship | Description
 <hr>
 <br>
 
-> An example POST request. Note that username, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `username`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/users"
@@ -92,7 +92,7 @@ Relationship | Description
 	}
 ```
 
-> and we can retrieve all users by omitted the username:
+> We can retrieve all `users` by omitting the `username`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/users'
@@ -118,7 +118,7 @@ Relationship | Description
     }
 ```
 
-> We can edit the newly created user with a `PUT` request:
+> We can edit the newly created `user` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/users'
@@ -155,7 +155,7 @@ Relationship | Description
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the user
+> If a user has `SYSTEM` permissions they can delete the `user`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/users/1'

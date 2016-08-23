@@ -19,10 +19,10 @@ __imsi__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(
 __latest_connection_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __latest_connection_location_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __latest_state_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
-__<a href="/#product_type">product_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#product-type">product_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __serial_number__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
 __<a href="/#shop">shop_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
-__<a href="/#software_l">software_lock</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__<a href="/#software-l">software_lock</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -50,7 +50,7 @@ __tamper_enable_history__ | The associated tamper_enable_history
 <hr>
 <br>
 
-> An example POST request. Note that product_imei, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `product_imei`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/products"
@@ -141,7 +141,7 @@ __tamper_enable_history__ | The associated tamper_enable_history
 	}
 ```
 
-> and we can retrieve all products by omitted the product_imei:
+> We can retrieve all `products` by omitting the `product_imei`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/products'
@@ -167,7 +167,7 @@ __tamper_enable_history__ | The associated tamper_enable_history
     }
 ```
 
-> We can edit the newly created product with a `PUT` request:
+> We can edit the newly created `product` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/products'
@@ -222,7 +222,7 @@ __tamper_enable_history__ | The associated tamper_enable_history
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the product
+> If a user has `SYSTEM` permissions they can delete the `product`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/products/1'

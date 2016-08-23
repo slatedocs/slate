@@ -7,8 +7,8 @@ This description has not been written yet. It should be filled in!
 Field | Description
 ------:|:------------
 __latest_software_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each latest_software.
-__<a href="/#product_type">product_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__<a href="/#software_version_type">software_version_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#product-type">product_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#software-version-type">software_version_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __date_added__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
 __date_removed__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
@@ -25,7 +25,7 @@ Relationship | Description
 <hr>
 <br>
 
-> An example POST request. Note that latest_software_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `latest_software_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/latest_softwares"
@@ -80,7 +80,7 @@ Relationship | Description
 	}
 ```
 
-> and we can retrieve all latest_softwares by omitted the latest_software_id:
+> We can retrieve all `latest_softwares` by omitting the `latest_software_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/latest_softwares'
@@ -106,7 +106,7 @@ Relationship | Description
     }
 ```
 
-> We can edit the newly created latest_software with a `PUT` request:
+> We can edit the newly created `latest_software` with a `PUT` request:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/latest_softwares'
@@ -137,7 +137,7 @@ Relationship | Description
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the latest_software
+> If a user has `SYSTEM` permissions they can delete the `latest_software`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/latest_softwares/1'
