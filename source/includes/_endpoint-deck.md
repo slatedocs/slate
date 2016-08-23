@@ -108,8 +108,7 @@ The following attributes are editable via PATCHing this resource:
  * description
  * is_public
 
-The other attributes are read-only and will 400 if the request tries to change
-them.
+For decks that the current user owns, "name", "description", and "is_public" are editable. Users with edit permissions on the dataset may edit "name" and "description" of public decks, but they cannot edit "is_public" unless they own the deck. Other deck attributes are not editable and will respond with 400 status if the request tries to change them.
 
 On success, the server will reply with a 204 response.
 
@@ -169,7 +168,7 @@ if the request is invalid.
 HTTP/1.1 204 No Content
 ```
 
-For decks that the current user owns, "name", "description", and "is_public" are editable. Users with edit permissions on the dataset may edit "name" and "description" of public decks, but they cannot edit "is_public" unless they own the deck. Other deck attributes are not editable.
+As with the catalog, for decks that the current user owns, "name", "description", and "is_public" are editable. Users with edit permissions on the dataset may edit "name" and "description" of public decks, but they cannot edit "is_public" unless they own the deck. Other deck attributes are not editable.
 
 #### DELETE
 
@@ -274,7 +273,7 @@ Each tuple on the slides catalog contains the following keys:
 
 Name | Type | Description
 ---- | ---- | -----------
-analysis_url | url | Points to the analysis contained on this slide
+analysis_url | url | Points to the first (and typically only) analysis contained on this slide
 title | string | Optional title for the slide
 subtitle | string | Optional subtitle for the slide
 display | object | Stores settings used to load the analysis
@@ -314,7 +313,7 @@ Submitting invalid attributes or references to other slides results in a 400 err
 
 `/datasets/223fd4/decks/slides/a126ce/`
 
-Each slide in the Slide Catalog contains reference to its first created analysis.
+Each slide in the Slide Catalog contains reference to its first analysis.
 
 #### GET
 
