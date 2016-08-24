@@ -85,9 +85,10 @@ Samples will be paused automatically for a few different reasons:
 
 The specifics of exactly how often these scenarios happen depend on how and in what order your ruby code runs. Different sample counts can be expected, even for the same endpoint.
 
-### Which Ruby versions and app servers does ScoutProf support?
+### What are the ScoutProf requirements?
 
-The `scout_apm` gem will continue to work for Ruby 1.8.7+. ScoutProf requires Ruby 2.1+. 
+* A Linux-based operating system
+* Ruby 2.1+
 
 ### What's supported during BETA?
 
@@ -96,7 +97,7 @@ During our BETA period, ScoutProf has a few limitations:
 * ScoutProf only runs on Linux. Support for additional distros will be added.
 * ScoutProf only breaks down time spent in ActionController, not ActionView and not Sidekiq. Support for other areas will be added.
 
-The ScoutProf-enabled version of the `scout_apm` can be safely installed on all environments our agent supports: the limitations above only prevent ScoutProf from running.
+The ScoutProf-enabled version of `scout_apm` can be safely installed on all environments our agent supports: the limitations above only prevent ScoutProf from running.
 
 ## Billing
 
