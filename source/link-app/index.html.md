@@ -57,6 +57,7 @@ Link puede conectarse a los siguientes motores de bases de datos relacionales:
 * SQL Server 2005
 * SQL Server 2008
 * SQL Server 2012
+* SQL Server 2014
 
 Para conocer la versión de SQL Server puede ejecutar el siguiente comando
 
