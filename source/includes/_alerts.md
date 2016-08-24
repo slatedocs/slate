@@ -7,6 +7,7 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __alert_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each alert.
+__modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __<a href="/#alert-type">alert_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __start_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
@@ -35,6 +36,7 @@ Relationship | Description
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/alerts"
     data = json.dumps({
+		"modified_by": "test",
 		"product_imei": "000000000000000",
 		"alert_type_id": 1,
 		"start_time": "2000-01-01 00:00:00",
@@ -56,6 +58,7 @@ Relationship | Description
 
     >>> {
 		"alert_id": 1
+		"modified_by": "test",
 		"product_imei": "000000000000000",
 		"alert_type_id": 1,
 		"start_time": "2000-01-01 00:00:00",
@@ -69,9 +72,9 @@ Relationship | Description
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
-```
+    ```
 
-> We can retrieve the `alert` created by specifying its `alert_id` in the request url:
+    > We can retrieve the `alert` created by specifying its `alert_id` in the request url:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/alerts/1'
@@ -85,6 +88,7 @@ Relationship | Description
     r.json()
     >>> {
 		"alert_id": 1
+		"modified_by": "test",
 		"product_imei": "000000000000000",
 		"alert_type_id": 1,
 		"start_time": "2000-01-01 00:00:00",
@@ -131,6 +135,7 @@ Relationship | Description
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/alerts'
     data = json.dumps({
+		"modified_by": "changed",
 		"product_imei": "999999999999999",
 		"alert_type_id": 2,
 		"start_time": "2016-07-01 12:34:45",
@@ -151,6 +156,7 @@ Relationship | Description
     r.json()
     >>> {
 		"alert_id": 1
+		"modified_by": "changed",
 		"product_imei": "999999999999999",
 		"alert_type_id": 2,
 		"start_time": "2016-07-01 12:34:45",
@@ -184,23 +190,24 @@ Relationship | Description
 > Note that the response from a 204 request is empty. This means that `r.json()` cannot be called and will throw a JSONDecodeError. In fact the response is `u''` - an empty unicode string.
 
 
+
 ### POST
      | value
  ----:|:---
-endpoint | `/v1/alerts`
+endpoint | `/v1/['table_name_plural']`
 method | `POST`
 url_params | <font color="DarkGray">N/A</font>
 query params | <font color="DarkGray">N/A</font>
-body | JSON-formatted dictionary with the details of the `alert` that you wish to create
+body | JSON-formatted dictionary with the details of the `['table_name_singular']` that you wish to create
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `201`
 
 ### GET
      | value
  ----:|:---
-endpoint | `/v1/alerts` or `/v1/alerts/<alert_id>`
+endpoint | `/v1/['table_name_plural']` or `/v1/['table_name_plural']/<['pk_name']>`
 method | `GET`
-url_params | `alert_id` <font color="DarkGray">_(int)_</font>
+url_params | `['pk_name']` <font color="DarkGray">_(['pk_type'])_</font>
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>
@@ -227,4 +234,5 @@ query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `204`
+
     

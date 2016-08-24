@@ -7,6 +7,7 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __alert_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each alert_type.
+__modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
 __version__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null)</font> | 
 __category__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
@@ -36,6 +37,7 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/alert_types"
     data = json.dumps({
+		"modified_by": "test",
 		"name": "test",
 		"version": 1,
 		"category": "test",
@@ -55,6 +57,7 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 
     >>> {
 		"alert_type_id": 1
+		"modified_by": "test",
 		"name": "test",
 		"version": 1,
 		"category": "test",
@@ -66,9 +69,9 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
-```
+    ```
 
-> We can retrieve the `alert_type` created by specifying its `alert_type_id` in the request url:
+    > We can retrieve the `alert_type` created by specifying its `alert_type_id` in the request url:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/alert_types/1'
@@ -82,6 +85,7 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
     r.json()
     >>> {
 		"alert_type_id": 1
+		"modified_by": "test",
 		"name": "test",
 		"version": 1,
 		"category": "test",
@@ -126,6 +130,7 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/alert_types'
     data = json.dumps({
+		"modified_by": "changed",
 		"name": "changed",
 		"version": 2,
 		"category": "changed",
@@ -144,6 +149,7 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
     r.json()
     >>> {
 		"alert_type_id": 1
+		"modified_by": "changed",
 		"name": "changed",
 		"version": 2,
 		"category": "changed",
@@ -175,23 +181,24 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 > Note that the response from a 204 request is empty. This means that `r.json()` cannot be called and will throw a JSONDecodeError. In fact the response is `u''` - an empty unicode string.
 
 
+
 ### POST
      | value
  ----:|:---
-endpoint | `/v1/alert_types`
+endpoint | `/v1/['table_name_plural']`
 method | `POST`
 url_params | <font color="DarkGray">N/A</font>
 query params | <font color="DarkGray">N/A</font>
-body | JSON-formatted dictionary with the details of the `alert_type` that you wish to create
+body | JSON-formatted dictionary with the details of the `['table_name_singular']` that you wish to create
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `201`
 
 ### GET
      | value
  ----:|:---
-endpoint | `/v1/alert_types` or `/v1/alert_types/<alert_type_id>`
+endpoint | `/v1/['table_name_plural']` or `/v1/['table_name_plural']/<['pk_name']>`
 method | `GET`
-url_params | `alert_type_id` <font color="DarkGray">_(int)_</font>
+url_params | `['pk_name']` <font color="DarkGray">_(['pk_type'])_</font>
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>
@@ -218,4 +225,5 @@ query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `204`
+
     

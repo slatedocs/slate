@@ -7,11 +7,13 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __software_version_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each software_version_type.
+__modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
 __description__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __link__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __checksum__ <br><font color="DarkGray">_varchar(8)_</font> <font color="Crimson"></font> | 
 __release_date__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
+__parameter_types__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -34,11 +36,13 @@ __latest_software__ | The associated latest_software
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/software_version_types"
     data = json.dumps({
+		"modified_by": "test",
 		"name": "test",
 		"description": "test",
 		"link": "test",
 		"checksum": Unknown column type,
 		"release_date": "2000-01-01 00:00:00",
+		"parameter_types": Unknown column type,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
@@ -51,18 +55,20 @@ __latest_software__ | The associated latest_software
 
     >>> {
 		"software_version_type_id": 1
+		"modified_by": "test",
 		"name": "test",
 		"description": "test",
 		"link": "test",
 		"checksum": Unknown column type,
 		"release_date": "2000-01-01 00:00:00",
+		"parameter_types": Unknown column type,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
-```
+    ```
 
-> We can retrieve the `software_version_type` created by specifying its `software_version_type_id` in the request url:
+    > We can retrieve the `software_version_type` created by specifying its `software_version_type_id` in the request url:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/software_version_types/1'
@@ -76,11 +82,13 @@ __latest_software__ | The associated latest_software
     r.json()
     >>> {
 		"software_version_type_id": 1
+		"modified_by": "test",
 		"name": "test",
 		"description": "test",
 		"link": "test",
 		"checksum": Unknown column type,
 		"release_date": "2000-01-01 00:00:00",
+		"parameter_types": Unknown column type,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -118,11 +126,13 @@ __latest_software__ | The associated latest_software
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/software_version_types'
     data = json.dumps({
+		"modified_by": "changed",
 		"name": "changed",
 		"description": "changed",
 		"link": "changed",
 		"checksum": Unknown column type,
 		"release_date": "2016-07-01 12:34:45",
+		"parameter_types": Unknown column type,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
@@ -134,11 +144,13 @@ __latest_software__ | The associated latest_software
     r.json()
     >>> {
 		"software_version_type_id": 1
+		"modified_by": "changed",
 		"name": "changed",
 		"description": "changed",
 		"link": "changed",
 		"checksum": Unknown column type,
 		"release_date": "2016-07-01 12:34:45",
+		"parameter_types": Unknown column type,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45
@@ -163,23 +175,24 @@ __latest_software__ | The associated latest_software
 > Note that the response from a 204 request is empty. This means that `r.json()` cannot be called and will throw a JSONDecodeError. In fact the response is `u''` - an empty unicode string.
 
 
+
 ### POST
      | value
  ----:|:---
-endpoint | `/v1/software_version_types`
+endpoint | `/v1/['table_name_plural']`
 method | `POST`
 url_params | <font color="DarkGray">N/A</font>
 query params | <font color="DarkGray">N/A</font>
-body | JSON-formatted dictionary with the details of the `software_version_type` that you wish to create
+body | JSON-formatted dictionary with the details of the `['table_name_singular']` that you wish to create
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `201`
 
 ### GET
      | value
  ----:|:---
-endpoint | `/v1/software_version_types` or `/v1/software_version_types/<software_version_type_id>`
+endpoint | `/v1/['table_name_plural']` or `/v1/['table_name_plural']/<['pk_name']>`
 method | `GET`
-url_params | `software_version_type_id` <font color="DarkGray">_(int)_</font>
+url_params | `['pk_name']` <font color="DarkGray">_(['pk_type'])_</font>
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>
@@ -206,4 +219,5 @@ query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `204`
+
     

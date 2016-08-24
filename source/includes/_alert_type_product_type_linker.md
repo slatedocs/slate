@@ -7,6 +7,7 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __alert_type_product_type_linker_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each alert_type_product_type_linker.
+__modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __<a href="/#alert-type">alert_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __<a href="/#product-type">product_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
@@ -28,6 +29,7 @@ Relationship | Description
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/alert_type_product_type_linker"
     data = json.dumps({
+		"modified_by": "test",
 		"alert_type_id": 1,
 		"product_type_id": 1,
 		})
@@ -42,15 +44,16 @@ Relationship | Description
 
     >>> {
 		"alert_type_product_type_linker_id": 1
+		"modified_by": "test",
 		"alert_type_id": 1,
 		"product_type_id": 1,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
-```
+    ```
 
-> We can retrieve the `alert_type_product_type_linker` created by specifying its `alert_type_product_type_linker_id` in the request url:
+    > We can retrieve the `alert_type_product_type_linker` created by specifying its `alert_type_product_type_linker_id` in the request url:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/alert_type_product_type_linker/1'
@@ -64,6 +67,7 @@ Relationship | Description
     r.json()
     >>> {
 		"alert_type_product_type_linker_id": 1
+		"modified_by": "test",
 		"alert_type_id": 1,
 		"product_type_id": 1,
 		"created_at": "2000-01-01 00:00:00"
@@ -103,6 +107,7 @@ Relationship | Description
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/alert_type_product_type_linker'
     data = json.dumps({
+		"modified_by": "changed",
 		"alert_type_id": 2,
 		"product_type_id": 2,
 		})
@@ -116,6 +121,7 @@ Relationship | Description
     r.json()
     >>> {
 		"alert_type_product_type_linker_id": 1
+		"modified_by": "changed",
 		"alert_type_id": 2,
 		"product_type_id": 2,
 		"created_at": "2000-01-01 00:00:00"
@@ -142,23 +148,24 @@ Relationship | Description
 > Note that the response from a 204 request is empty. This means that `r.json()` cannot be called and will throw a JSONDecodeError. In fact the response is `u''` - an empty unicode string.
 
 
+
 ### POST
      | value
  ----:|:---
-endpoint | `/v1/alert_type_product_type_linker`
+endpoint | `/v1/['table_name_plural']`
 method | `POST`
 url_params | <font color="DarkGray">N/A</font>
 query params | <font color="DarkGray">N/A</font>
-body | JSON-formatted dictionary with the details of the `alert_type_product_type_linker` that you wish to create
+body | JSON-formatted dictionary with the details of the `['table_name_singular']` that you wish to create
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `201`
 
 ### GET
      | value
  ----:|:---
-endpoint | `/v1/alert_type_product_type_linker` or `/v1/alert_type_product_type_linker/<alert_type_product_type_linker_id>`
+endpoint | `/v1/['table_name_plural']` or `/v1/['table_name_plural']/<['pk_name']>`
 method | `GET`
-url_params | `alert_type_product_type_linker_id` <font color="DarkGray">_(int)_</font>
+url_params | `['pk_name']` <font color="DarkGray">_(['pk_type'])_</font>
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>
@@ -185,4 +192,5 @@ query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `204`
+
     

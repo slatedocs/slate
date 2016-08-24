@@ -7,6 +7,7 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __part_type_replacement_linker_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each part_type_replacement_linker.
+__modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __<a href="/#product-type">product_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __<a href="/#existing-part-type">existing_part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __<a href="/#replacement-part-type">replacement_part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
@@ -29,6 +30,7 @@ Relationship | Description
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/part_type_replacement_linker"
     data = json.dumps({
+		"modified_by": "test",
 		"product_type_id": 1,
 		"existing_part_type_id": 1,
 		"replacement_part_type_id": 1,
@@ -44,6 +46,7 @@ Relationship | Description
 
     >>> {
 		"part_type_replacement_linker_id": 1
+		"modified_by": "test",
 		"product_type_id": 1,
 		"existing_part_type_id": 1,
 		"replacement_part_type_id": 1,
@@ -51,9 +54,9 @@ Relationship | Description
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
-```
+    ```
 
-> We can retrieve the `part_type_replacement_linker` created by specifying its `part_type_replacement_linker_id` in the request url:
+    > We can retrieve the `part_type_replacement_linker` created by specifying its `part_type_replacement_linker_id` in the request url:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/part_type_replacement_linker/1'
@@ -67,6 +70,7 @@ Relationship | Description
     r.json()
     >>> {
 		"part_type_replacement_linker_id": 1
+		"modified_by": "test",
 		"product_type_id": 1,
 		"existing_part_type_id": 1,
 		"replacement_part_type_id": 1,
@@ -107,6 +111,7 @@ Relationship | Description
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/part_type_replacement_linker'
     data = json.dumps({
+		"modified_by": "changed",
 		"product_type_id": 2,
 		"existing_part_type_id": 2,
 		"replacement_part_type_id": 2,
@@ -121,6 +126,7 @@ Relationship | Description
     r.json()
     >>> {
 		"part_type_replacement_linker_id": 1
+		"modified_by": "changed",
 		"product_type_id": 2,
 		"existing_part_type_id": 2,
 		"replacement_part_type_id": 2,
@@ -148,23 +154,24 @@ Relationship | Description
 > Note that the response from a 204 request is empty. This means that `r.json()` cannot be called and will throw a JSONDecodeError. In fact the response is `u''` - an empty unicode string.
 
 
+
 ### POST
      | value
  ----:|:---
-endpoint | `/v1/part_type_replacement_linker`
+endpoint | `/v1/['table_name_plural']`
 method | `POST`
 url_params | <font color="DarkGray">N/A</font>
 query params | <font color="DarkGray">N/A</font>
-body | JSON-formatted dictionary with the details of the `part_type_replacement_linker` that you wish to create
+body | JSON-formatted dictionary with the details of the `['table_name_singular']` that you wish to create
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `201`
 
 ### GET
      | value
  ----:|:---
-endpoint | `/v1/part_type_replacement_linker` or `/v1/part_type_replacement_linker/<part_type_replacement_linker_id>`
+endpoint | `/v1/['table_name_plural']` or `/v1/['table_name_plural']/<['pk_name']>`
 method | `GET`
-url_params | `part_type_replacement_linker_id` <font color="DarkGray">_(int)_</font>
+url_params | `['pk_name']` <font color="DarkGray">_(['pk_type'])_</font>
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>
@@ -191,4 +198,5 @@ query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `204`
+
     

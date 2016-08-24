@@ -1,23 +1,19 @@
-## <u>Anomaly Type</u>
-This description is not yet complete it should be filled in!
+## <u>Parameter</u>
+A table containing the values of all parameters set on all unit. Each parameter is of a particular parameter type
 
 
-### <u>The anomaly_type object</u>
+### <u>The parameter object</u>
 
 Field | Description
 ------:|:------------
-__anomaly_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each anomaly_type.
+__parameter_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each parameter.
 __modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
-__name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
-__version__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null)</font> | 
-__description__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
-__metrics__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
-__version_comment__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
-__min_gap_length__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
-__min_duration__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
-__min_data_points__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
-__gap_anomaly__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
-__status__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | Describes whether the anomaly type is currently fully used, in a test mode or temporarily suspended.<br><font color="DodgerBlue">options: ["test", "live", "suspended"]</font>
+__<a href="/#parameter-type">parameter_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__value__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
+__date_added__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
+__date_removed__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
+__status__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["active", "removed", "expired", "pending"]</font>
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -27,29 +23,22 @@ __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the
 
 Relationship | Description
 -------------:|:------------
-__anomalies__ | The associated anomalies
-__alert_type_anomaly_type_linker__ | The associated alert_type_anomaly_type_linker
-__anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_linker
-
+<font color="DarkGray">N/A</font> | <font color="DarkGray">_There are no relatioships for this table._</font>
 
 <hr>
 <br>
 
-> An example POST request. Note that `anomaly_type_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `parameter_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/anomaly_types"
+    url = "http://smartapi.bboxx.co.uk/v1/parameters"
     data = json.dumps({
 		"modified_by": "test",
-		"name": "test",
-		"version": 1,
-		"description": "test",
-		"metrics": "test",
-		"version_comment": "test",
-		"min_gap_length": 1,
-		"min_duration": 1,
-		"min_data_points": 1,
-		"gap_anomaly": True,
+		"parameter_type_id": 1,
+		"product_imei": "000000000000000",
+		"value": "test",
+		"date_added": "2000-01-01 00:00:00",
+		"date_removed": "2000-01-01 00:00:00",
 		"status": "test",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
@@ -62,17 +51,13 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
     r.json()
 
     >>> {
-		"anomaly_type_id": 1
+		"parameter_id": 1
 		"modified_by": "test",
-		"name": "test",
-		"version": 1,
-		"description": "test",
-		"metrics": "test",
-		"version_comment": "test",
-		"min_gap_length": 1,
-		"min_duration": 1,
-		"min_data_points": 1,
-		"gap_anomaly": True,
+		"parameter_type_id": 1,
+		"product_imei": "000000000000000",
+		"value": "test",
+		"date_added": "2000-01-01 00:00:00",
+		"date_removed": "2000-01-01 00:00:00",
 		"status": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
@@ -80,10 +65,10 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 	}
     ```
 
-    > We can retrieve the `anomaly_type` created by specifying its `anomaly_type_id` in the request url:
+    > We can retrieve the `parameter` created by specifying its `parameter_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/parameters/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.get(url=url, headers=headers)
@@ -93,17 +78,13 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 
     r.json()
     >>> {
-		"anomaly_type_id": 1
+		"parameter_id": 1
 		"modified_by": "test",
-		"name": "test",
-		"version": 1,
-		"description": "test",
-		"metrics": "test",
-		"version_comment": "test",
-		"min_gap_length": 1,
-		"min_duration": 1,
-		"min_data_points": 1,
-		"gap_anomaly": True,
+		"parameter_type_id": 1,
+		"product_imei": "000000000000000",
+		"value": "test",
+		"date_added": "2000-01-01 00:00:00",
+		"date_removed": "2000-01-01 00:00:00",
 		"status": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
@@ -111,10 +92,10 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 	}
 ```
 
-> We can retrieve all `anomaly_types` by omitting the `anomaly_type_id`:
+> We can retrieve all `parameters` by omitting the `parameter_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types'
+    url = 'http://smartapi.bboxx.co.uk/v1/parameters'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.get(url=url, headers=headers)
@@ -137,21 +118,17 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
     }
 ```
 
-> We can edit the newly created `anomaly_type` with a `PUT` request:
+> We can edit the newly created `parameter` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types'
+    url = 'http://smartapi.bboxx.co.uk/v1/parameters'
     data = json.dumps({
 		"modified_by": "changed",
-		"name": "changed",
-		"version": 2,
-		"description": "changed",
-		"metrics": "changed",
-		"version_comment": "changed",
-		"min_gap_length": 2,
-		"min_duration": 2,
-		"min_data_points": 2,
-		"gap_anomaly": False,
+		"parameter_type_id": 2,
+		"product_imei": "999999999999999",
+		"value": "changed",
+		"date_added": "2016-07-01 12:34:45",
+		"date_removed": "2016-07-01 12:34:45",
 		"status": "changed",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
@@ -163,17 +140,13 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 
     r.json()
     >>> {
-		"anomaly_type_id": 1
+		"parameter_id": 1
 		"modified_by": "changed",
-		"name": "changed",
-		"version": 2,
-		"description": "changed",
-		"metrics": "changed",
-		"version_comment": "changed",
-		"min_gap_length": 2,
-		"min_duration": 2,
-		"min_data_points": 2,
-		"gap_anomaly": False,
+		"parameter_type_id": 2,
+		"product_imei": "999999999999999",
+		"value": "changed",
+		"date_added": "2016-07-01 12:34:45",
+		"date_removed": "2016-07-01 12:34:45",
 		"status": "changed",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
@@ -182,10 +155,10 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the `anomaly_type`
+> If a user has `SYSTEM` permissions they can delete the `parameter`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/parameters/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.delete(url=url, headers=headers)
@@ -225,9 +198,9 @@ response | `200`
 ### PUT
      | value
  ----:|:---
-endpoint | `/v1/anomaly_types/<anomaly_type_id>`
+endpoint | `/v1/parameters/<parameter_id>`
 method | `PUT`
-url_params | `anomaly_type_id` of the anomaly_type you wish to edit
+url_params | `parameter_id` of the parameter you wish to edit
 query params | <font color="DarkGray">N/A</font>
 body | JSON-formatted dictionary of the columns that you wish to alter
 permissions | <font color="Crimson">__`SYSTEM`__</font>
@@ -236,9 +209,9 @@ response | `200`
 ### DELETE
      | value
  ----:|:---
-endpoint | `/v1/anomaly_types/<anomaly_type_id>`
+endpoint | `/v1/parameters/<parameter_id>`
 method | `DELETE`
-url_params | `anomaly_type_id` <font color="DarkGray">_(int)_</font>
+url_params | `parameter_id` <font color="DarkGray">_(int)_</font>
 query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>

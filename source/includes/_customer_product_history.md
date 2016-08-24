@@ -7,6 +7,7 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __customer_product_history_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each customer_product_history.
+__modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __<a href="/#customer">customer_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __date_added__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
@@ -26,38 +27,7 @@ Relationship | Description
 <hr>
 <br>
 
-> An example POST request. Note that `customer_product_history_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
-
-```python
-    url = "http://smartapi.bboxx.co.uk/v1/customer_product_history"
-    data = json.dumps({
-		"customer_id": 1,
-		"product_imei": "000000000000000",
-		"date_added": "2000-01-01 00:00:00",
-		"date_removed": "2000-01-01 00:00:00",
-		"removal_reason": "test",
-		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
-
-    r = requests.post(url=url, data=data, headers=headers)
-
-    r
-    >>> <Response 201>
-
-    r.json()
-
-    >>> {
-		"customer_product_history_id": 1
-		"customer_id": 1,
-		"product_imei": "000000000000000",
-		"date_added": "2000-01-01 00:00:00",
-		"date_removed": "2000-01-01 00:00:00",
-		"removal_reason": "test",
-		"created_at": "2000-01-01 00:00:00"
-		"created_by": "test.user@bboxx.co.uk"
-		"modified_at": None
-	}
-```
+> `POST` requests are not allowed at this endpoint
 
 > We can retrieve the `customer_product_history` created by specifying its `customer_product_history_id` in the request url:
 
@@ -73,6 +43,7 @@ Relationship | Description
     r.json()
     >>> {
 		"customer_product_history_id": 1
+		"modified_by": "test",
 		"customer_id": 1,
 		"product_imei": "000000000000000",
 		"date_added": "2000-01-01 00:00:00",
@@ -110,38 +81,7 @@ Relationship | Description
     }
 ```
 
-> We can edit the newly created `customer_product_history` with a `PUT` request:
-
-```python
-    url = 'http://smartapi.bboxx.co.uk/v1/customer_product_history'
-    data = json.dumps({
-		"customer_id": 2,
-		"product_imei": "999999999999999",
-		"date_added": "2016-07-01 12:34:45",
-		"date_removed": "2016-07-01 12:34:45",
-		"removal_reason": "changed",
-		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
-
-    r = requests.post(url=url, data=data, headers=headers)
-
-    r
-    >>> <Response 200>
-
-    r.json()
-    >>> {
-		"customer_product_history_id": 1
-		"customer_id": 2,
-		"product_imei": "999999999999999",
-		"date_added": "2016-07-01 12:34:45",
-		"date_removed": "2016-07-01 12:34:45",
-		"removal_reason": "changed",
-		"created_at": "2000-01-01 00:00:00"
-		"created_by": "test.user@bboxx.co.uk"
-		"modified_at": 2016-07-07 12:34:45
-	}
-```
-> Note that the `modified_at` field has been updated accordingly.
+>`PUT` requests are not allowed at this endpoint
 
 > If a user has `SYSTEM` permissions they can delete the `customer_product_history`
 
@@ -160,38 +100,23 @@ Relationship | Description
 > Note that the response from a 204 request is empty. This means that `r.json()` cannot be called and will throw a JSONDecodeError. In fact the response is `u''` - an empty unicode string.
 
 
+
 ### POST
-     | value
- ----:|:---
-endpoint | `/v1/customer_product_history`
-method | `POST`
-url_params | <font color="DarkGray">N/A</font>
-query params | <font color="DarkGray">N/A</font>
-body | JSON-formatted dictionary with the details of the `customer_product_history` that you wish to create
-permissions | <font color="Crimson">__`SYSTEM`__</font>
-response | `201`
+`POST` requests are not allowed at this endpoint
 
 ### GET
      | value
  ----:|:---
-endpoint | `/v1/customer_product_history` or `/v1/customer_product_history/<customer_product_history_id>`
+endpoint | `/v1/['table_name_plural']` or `/v1/['table_name_plural']/<['pk_name']>`
 method | `GET`
-url_params | `customer_product_history_id` <font color="DarkGray">_(int)_</font>
+url_params | `['pk_name']` <font color="DarkGray">_(['pk_type'])_</font>
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>
 response | `200`
 
 ### PUT
-     | value
- ----:|:---
-endpoint | `/v1/customer_product_history/<customer_product_history_id>`
-method | `PUT`
-url_params | `customer_product_history_id` of the customer_product_history you wish to edit
-query params | <font color="DarkGray">N/A</font>
-body | JSON-formatted dictionary of the columns that you wish to alter
-permissions | <font color="Crimson">__`SYSTEM`__</font>
-response | `200`
+`PUT` requests are not allowed at this endpoint
 
 ### DELETE
      | value
@@ -203,4 +128,5 @@ query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `204`
+
     

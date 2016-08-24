@@ -7,6 +7,7 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __product_imei__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">__(primary key)__</font> | 
+__modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __analysis_timestamp__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __capacity_limit__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
 __current_enable_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
@@ -16,9 +17,9 @@ __desired_tamper_flag__ <br><font color="DarkGray">_boolean_</font> <font color=
 __device_key__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson">(unique)</font> | 
 __<a href="/#hub">hub_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __imsi__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,unique)</font> | 
-__latest_connection_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
-__latest_connection_location_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
-__latest_state_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__<a href="/#latest-connection">latest_connection_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__<a href="/#latest-connection-location">latest_connection_location_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__<a href="/#latest-state">latest_state_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __<a href="/#product-type">product_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __serial_number__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
 __<a href="/#shop">shop_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
@@ -50,60 +51,7 @@ __tamper_enable_history__ | The associated tamper_enable_history
 <hr>
 <br>
 
-> An example POST request. Note that `product_imei`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
-
-```python
-    url = "http://smartapi.bboxx.co.uk/v1/products"
-    data = json.dumps({
-		"analysis_timestamp": "2000-01-01 00:00:00",
-		"capacity_limit": "test",
-		"current_enable_flag": True,
-		"desired_enable_flag": True,
-		"current_tamper_flag": True,
-		"desired_tamper_flag": True,
-		"device_key": Unknown column type,
-		"hub_id": 1,
-		"imsi": "000000000000000",
-		"latest_connection_id": 1,
-		"latest_connection_location_id": 1,
-		"latest_state_id": 1,
-		"product_type_id": 1,
-		"serial_number": "test",
-		"shop_id": 1,
-		"software_lock": 1,
-		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
-
-    r = requests.post(url=url, data=data, headers=headers)
-
-    r
-    >>> <Response 201>
-
-    r.json()
-
-    >>> {
-		"product_imei": 1
-		"analysis_timestamp": "2000-01-01 00:00:00",
-		"capacity_limit": "test",
-		"current_enable_flag": True,
-		"desired_enable_flag": True,
-		"current_tamper_flag": True,
-		"desired_tamper_flag": True,
-		"device_key": Unknown column type,
-		"hub_id": 1,
-		"imsi": "000000000000000",
-		"latest_connection_id": 1,
-		"latest_connection_location_id": 1,
-		"latest_state_id": 1,
-		"product_type_id": 1,
-		"serial_number": "test",
-		"shop_id": 1,
-		"software_lock": 1,
-		"created_at": "2000-01-01 00:00:00"
-		"created_by": "test.user@bboxx.co.uk"
-		"modified_at": None
-	}
-```
+> `POST` requests are not allowed at this endpoint
 
 > We can retrieve the `product` created by specifying its `product_imei` in the request url:
 
@@ -119,6 +67,7 @@ __tamper_enable_history__ | The associated tamper_enable_history
     r.json()
     >>> {
 		"product_imei": 1
+		"modified_by": "test",
 		"analysis_timestamp": "2000-01-01 00:00:00",
 		"capacity_limit": "test",
 		"current_enable_flag": True,
@@ -172,6 +121,7 @@ __tamper_enable_history__ | The associated tamper_enable_history
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/products'
     data = json.dumps({
+		"modified_by": "changed",
 		"analysis_timestamp": "2016-07-01 12:34:45",
 		"capacity_limit": "changed",
 		"current_enable_flag": False,
@@ -199,6 +149,7 @@ __tamper_enable_history__ | The associated tamper_enable_history
     r.json()
     >>> {
 		"product_imei": 1
+		"modified_by": "changed",
 		"analysis_timestamp": "2016-07-01 12:34:45",
 		"capacity_limit": "changed",
 		"current_enable_flag": False,
@@ -239,23 +190,16 @@ __tamper_enable_history__ | The associated tamper_enable_history
 > Note that the response from a 204 request is empty. This means that `r.json()` cannot be called and will throw a JSONDecodeError. In fact the response is `u''` - an empty unicode string.
 
 
+
 ### POST
-     | value
- ----:|:---
-endpoint | `/v1/products`
-method | `POST`
-url_params | <font color="DarkGray">N/A</font>
-query params | <font color="DarkGray">N/A</font>
-body | JSON-formatted dictionary with the details of the `product` that you wish to create
-permissions | <font color="Crimson">__`SYSTEM`__</font>
-response | `201`
+`POST` requests are not allowed at this endpoint
 
 ### GET
      | value
  ----:|:---
-endpoint | `/v1/products` or `/v1/products/<product_imei>`
+endpoint | `/v1/['table_name_plural']` or `/v1/['table_name_plural']/<['pk_name']>`
 method | `GET`
-url_params | `product_imei` <font color="DarkGray">_(varchar(15))_</font>
+url_params | `['pk_name']` <font color="DarkGray">_(['pk_type'])_</font>
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>
@@ -282,4 +226,5 @@ query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `204`
+
     

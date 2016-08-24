@@ -1,23 +1,14 @@
-## <u>Anomaly Type</u>
-This description is not yet complete it should be filled in!
+## <u>Network</u>
+A table holding the availble networks that a unit might connect on.
 
 
-### <u>The anomaly_type object</u>
+### <u>The network object</u>
 
 Field | Description
 ------:|:------------
-__anomaly_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each anomaly_type.
+__mccmnc__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each network.
 __modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
-__version__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null)</font> | 
-__description__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
-__metrics__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
-__version_comment__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
-__min_gap_length__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
-__min_duration__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
-__min_data_points__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
-__gap_anomaly__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
-__status__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | Describes whether the anomaly type is currently fully used, in a test mode or temporarily suspended.<br><font color="DodgerBlue">options: ["test", "live", "suspended"]</font>
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -27,30 +18,18 @@ __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the
 
 Relationship | Description
 -------------:|:------------
-__anomalies__ | The associated anomalies
-__alert_type_anomaly_type_linker__ | The associated alert_type_anomaly_type_linker
-__anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_linker
-
+<font color="DarkGray">N/A</font> | <font color="DarkGray">_There are no relatioships for this table._</font>
 
 <hr>
 <br>
 
-> An example POST request. Note that `anomaly_type_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `mccmnc`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/anomaly_types"
+    url = "http://smartapi.bboxx.co.uk/v1/networks"
     data = json.dumps({
 		"modified_by": "test",
 		"name": "test",
-		"version": 1,
-		"description": "test",
-		"metrics": "test",
-		"version_comment": "test",
-		"min_gap_length": 1,
-		"min_duration": 1,
-		"min_data_points": 1,
-		"gap_anomaly": True,
-		"status": "test",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
@@ -62,28 +41,19 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
     r.json()
 
     >>> {
-		"anomaly_type_id": 1
+		"mccmnc": 1
 		"modified_by": "test",
 		"name": "test",
-		"version": 1,
-		"description": "test",
-		"metrics": "test",
-		"version_comment": "test",
-		"min_gap_length": 1,
-		"min_duration": 1,
-		"min_data_points": 1,
-		"gap_anomaly": True,
-		"status": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
     ```
 
-    > We can retrieve the `anomaly_type` created by specifying its `anomaly_type_id` in the request url:
+    > We can retrieve the `network` created by specifying its `mccmnc` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/networks/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.get(url=url, headers=headers)
@@ -93,28 +63,19 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 
     r.json()
     >>> {
-		"anomaly_type_id": 1
+		"mccmnc": 1
 		"modified_by": "test",
 		"name": "test",
-		"version": 1,
-		"description": "test",
-		"metrics": "test",
-		"version_comment": "test",
-		"min_gap_length": 1,
-		"min_duration": 1,
-		"min_data_points": 1,
-		"gap_anomaly": True,
-		"status": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
 ```
 
-> We can retrieve all `anomaly_types` by omitting the `anomaly_type_id`:
+> We can retrieve all `networks` by omitting the `mccmnc`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types'
+    url = 'http://smartapi.bboxx.co.uk/v1/networks'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.get(url=url, headers=headers)
@@ -137,22 +98,13 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
     }
 ```
 
-> We can edit the newly created `anomaly_type` with a `PUT` request:
+> We can edit the newly created `network` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types'
+    url = 'http://smartapi.bboxx.co.uk/v1/networks'
     data = json.dumps({
 		"modified_by": "changed",
 		"name": "changed",
-		"version": 2,
-		"description": "changed",
-		"metrics": "changed",
-		"version_comment": "changed",
-		"min_gap_length": 2,
-		"min_duration": 2,
-		"min_data_points": 2,
-		"gap_anomaly": False,
-		"status": "changed",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
@@ -163,18 +115,9 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 
     r.json()
     >>> {
-		"anomaly_type_id": 1
+		"mccmnc": 1
 		"modified_by": "changed",
 		"name": "changed",
-		"version": 2,
-		"description": "changed",
-		"metrics": "changed",
-		"version_comment": "changed",
-		"min_gap_length": 2,
-		"min_duration": 2,
-		"min_data_points": 2,
-		"gap_anomaly": False,
-		"status": "changed",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45
@@ -182,10 +125,10 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the `anomaly_type`
+> If a user has `SYSTEM` permissions they can delete the `network`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/networks/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.delete(url=url, headers=headers)
@@ -225,9 +168,9 @@ response | `200`
 ### PUT
      | value
  ----:|:---
-endpoint | `/v1/anomaly_types/<anomaly_type_id>`
+endpoint | `/v1/networks/<mccmnc>`
 method | `PUT`
-url_params | `anomaly_type_id` of the anomaly_type you wish to edit
+url_params | `mccmnc` of the network you wish to edit
 query params | <font color="DarkGray">N/A</font>
 body | JSON-formatted dictionary of the columns that you wish to alter
 permissions | <font color="Crimson">__`SYSTEM`__</font>
@@ -236,9 +179,9 @@ response | `200`
 ### DELETE
      | value
  ----:|:---
-endpoint | `/v1/anomaly_types/<anomaly_type_id>`
+endpoint | `/v1/networks/<mccmnc>`
 method | `DELETE`
-url_params | `anomaly_type_id` <font color="DarkGray">_(int)_</font>
+url_params | `mccmnc` <font color="DarkGray">_(int)_</font>
 query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>

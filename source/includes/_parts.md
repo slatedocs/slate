@@ -7,6 +7,7 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __part_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each part.
+__modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __serial_number__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
 __<a href="/#part-type">part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
@@ -29,6 +30,7 @@ __part_product_linker__ | The associated part_product_linker
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/parts"
     data = json.dumps({
+		"modified_by": "test",
 		"serial_number": "test",
 		"part_type_id": 1,
 		})
@@ -43,15 +45,16 @@ __part_product_linker__ | The associated part_product_linker
 
     >>> {
 		"part_id": 1
+		"modified_by": "test",
 		"serial_number": "test",
 		"part_type_id": 1,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
-```
+    ```
 
-> We can retrieve the `part` created by specifying its `part_id` in the request url:
+    > We can retrieve the `part` created by specifying its `part_id` in the request url:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/parts/1'
@@ -65,6 +68,7 @@ __part_product_linker__ | The associated part_product_linker
     r.json()
     >>> {
 		"part_id": 1
+		"modified_by": "test",
 		"serial_number": "test",
 		"part_type_id": 1,
 		"created_at": "2000-01-01 00:00:00"
@@ -104,6 +108,7 @@ __part_product_linker__ | The associated part_product_linker
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/parts'
     data = json.dumps({
+		"modified_by": "changed",
 		"serial_number": "changed",
 		"part_type_id": 2,
 		})
@@ -117,6 +122,7 @@ __part_product_linker__ | The associated part_product_linker
     r.json()
     >>> {
 		"part_id": 1
+		"modified_by": "changed",
 		"serial_number": "changed",
 		"part_type_id": 2,
 		"created_at": "2000-01-01 00:00:00"
@@ -143,23 +149,24 @@ __part_product_linker__ | The associated part_product_linker
 > Note that the response from a 204 request is empty. This means that `r.json()` cannot be called and will throw a JSONDecodeError. In fact the response is `u''` - an empty unicode string.
 
 
+
 ### POST
      | value
  ----:|:---
-endpoint | `/v1/parts`
+endpoint | `/v1/['table_name_plural']`
 method | `POST`
 url_params | <font color="DarkGray">N/A</font>
 query params | <font color="DarkGray">N/A</font>
-body | JSON-formatted dictionary with the details of the `part` that you wish to create
+body | JSON-formatted dictionary with the details of the `['table_name_singular']` that you wish to create
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `201`
 
 ### GET
      | value
  ----:|:---
-endpoint | `/v1/parts` or `/v1/parts/<part_id>`
+endpoint | `/v1/['table_name_plural']` or `/v1/['table_name_plural']/<['pk_name']>`
 method | `GET`
-url_params | `part_id` <font color="DarkGray">_(int)_</font>
+url_params | `['pk_name']` <font color="DarkGray">_(['pk_type'])_</font>
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>
@@ -186,4 +193,5 @@ query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `204`
+
     
