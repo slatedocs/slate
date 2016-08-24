@@ -341,7 +341,7 @@ credito | Object of type [credito](#cr-dito) | Información about the credit gra
 Parameter           | Type                    | Description
 ------------------- | ----------------------- |-----------
 total_sin_impuestos | float | Total before taxes. __Required__
-descuento_adicional | float | Additional discount, applied to the invoice subtotal.
+descuento_adicional | float | Additional discount applied to the invoice subtotal, expressed in monetary value.
 descuento           | float | Sum of each line item discount and the additiona discount. __Required__
 propina             | float | Tip or gratuity. __Required__
 importe_total       | float | Total including taxes. __Required__
@@ -364,7 +364,7 @@ fecha_vencimiento   | string  | Due date in [ISO8601](http://tools.ietf.org/html
 monto               | float   | Credit amount. __Requerido__
 
 <aside class="notice">
-This information is sent to the Internal Revenue Service (SRI) 
+This information is sent to the Internal Revenue Service (SRI)
 </aside>
 
 ### Response

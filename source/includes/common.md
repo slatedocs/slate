@@ -144,7 +144,7 @@ codigo_principal | string | Código alfanumérico de uso del comercio. Máximo 2
 codigo_auxiliar | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
 cantidad | float | Cantidad de items. __Requerido__
 precio_unitario | float | Precio unitario. __Requerido__
-descuento | float | El descuento es aplicado por cada producto. __Requerido__
+descuento | float | El descuento es aplicado por cada producto, expresado en valor monetario. __Requerido__
 precio_total_sin_impuestos | float | Precio antes de los impuestos. Se obtiene multiplicando la `cantidad` por el `precio_unitario`
 impuestos | listado de objetos tipo [impuesto item](#impuesto-item) | Impuestos grabados sobre el producto. __Requerido__
 detalles_adicionales | object | Diccionario de datos de carácter adicional. Ejemplo:<br><code>{"marca": "Ferrari", "chasis": "UANEI832-NAU101"}</code>

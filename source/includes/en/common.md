@@ -135,7 +135,7 @@ codigo_principal | string | Stock keeping unit. Máximo 25 characters.
 codigo_auxiliar | string | Additional stock keeping unit. Máximo 25 characters.
 cantidad | float | Quantity. __Required__
 precio_unitario | float | Unit price. __Required__
-descuento | float | Unit discount.  __Required__
+descuento | float | Unit discount, expressed in monetary value.  __Required__
 precio_total_sin_impuestos | float | Price before taxes. It is the product of `cantidad` and `precio_unitario`.
 impuestos | listado list of [tax line item](#tax-line-item) objects | Taxes for the item. __Required__
 detalles_adicionales | object | Additional product information the dictionary format. Example:<br><code>{"brand": "Ferrari", "chasis": "UANEI832-NAU101"}</code>. Limited to 3 key and value pairs.
