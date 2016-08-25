@@ -8,7 +8,7 @@ The token is a random 64-char string.
 
 ## Generating a Valid Token (Logging in)
 ```python
-    url = 'http://smartapi.bboxx.co.uk/auth/login'
+    url = 'http://smartapi.bboxx.co.uk/v1/auth/login'
     fields = {
         "username": <username>,
         "password": <password>
@@ -28,7 +28,7 @@ A valid token will be sent in response if the username and passworod are correct
 ## The Full `/auth/login` Response
 ```python
 
-    url = 'http://smartapi.bboxx.co.uk/auth/login'
+    url = 'http://smartapi.bboxx.co.uk/v1/auth/login'
     fields = {
         "username": <username>,
         "password": <password>

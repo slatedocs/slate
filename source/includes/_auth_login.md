@@ -1,8 +1,8 @@
 ## `/auth/login`
-> A simple `POST` request with correct details yields the following response:   
+> A simple `POST` request with correct details yields the following response:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/auth/login'
+    url = 'http://smartapi.bboxx.co.uk/v1/auth/login'
     fields = {
         "username": <username>,
         "password": <password>
