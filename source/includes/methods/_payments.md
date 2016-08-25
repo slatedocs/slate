@@ -64,8 +64,7 @@ payment = Beyonic::Payment.create(
     description: "Per diem payment",
     payment_type: "money",
     callback_url: "https://my.website/payments/callback",
-    'metadata.id'=> 1234,
-    'metadata.name'=> 'Lucy'
+    metadata: {"id": "1234", "name": "Lucy"}
 )
 ```
 
@@ -84,8 +83,7 @@ Beyonic_Payment::create(array(
   "description" => "Per diem payment",
   "payment_type" => "money",
   "callback_url" => "https://my.website/payments/callback",
-  "metadata.id" => "1234",
-  "name.name" => "Lucy"
+  "metadata" => array("id"=>"1234", "name"=>"Lucy")
 ));
 ?>
 ```
@@ -93,8 +91,6 @@ Beyonic_Payment::create(array(
 ```python
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
-
-kwargs = {'metadata.id': 1234, 'metadata.name': 'Lucy'}
 
 beyonic.Payment.create(phonenumber='+401000000001',
                        first_name='Kennedy',
@@ -104,7 +100,7 @@ beyonic.Payment.create(phonenumber='+401000000001',
                        account='1',
                        description='Per diem',
                        callback_url='https://my.website/payments/callback',
-                       **kwargs
+                       metadata={'id': '1234', 'name': 'Lucy'}
                        )
 ```
 
@@ -228,7 +224,7 @@ currency | No | String | BXC | 3 letter ISO currency code. No currency conversio
 account | No | Integer | 1 | The ID of the account from which you are making the payment. The account must be active and funded. If the account has zero balance, your payment will fail. This parameter is optional if a currency is provided. If you have more than one account with the same currency, and you leave this parameter out, the earliest created account (oldest account) that is still active will be used.
 description | Yes | String | Per diem payment | This description will be sent to the recipient along with the payment, so it should be limited to about 140 characters.
 payment_type | No | String | money | Options: money (default), airtime - use "airtime" to send an airtime payment instead of a mobile money payment
-callback_url | No | String | https://my.website/payments/callback | Callback URLs are used to send notifications of changes in payment status. Not all payments will be completed immediately, especially if it is a payment to a new number that hasn’t been verified, or if your account has approval rules that require other users to approve payments before they are processed. Note that the URL you submit isn’t specific to a specific payment you have created. Once submitted, it will receive notifications for all future payments made via your organization, whether they are made via the API or via the web-interface. Therefore, you are encouraged to use the same URL for all payments. Since URLs are stored at a per-organization level, using different URLs may result in duplicate notifications being sent to the different URLs. See "Webhooks" below for more info. 
+callback_url | No | String | https://my.website/payments/callback | Callback URLs are used to send notifications of changes in payment status. Not all payments will be completed immediately, especially if it is a payment to a new number that hasn’t been verified, or if your account has approval rules that require other users to approve payments before they are processed. Note that the URL you submit isn’t specific to a specific payment you have created. Once submitted, it will receive notifications for all future payments made via your organization, whether they are made via the API or via the web-interface. Therefore, you are encouraged to use the same URL for all payments. Since URLs are stored at a per-organization level, using different URLs may result in duplicate notifications being sent to the different URLs. See "Webhooks" below for more info.
 metadata | No | JSON-formatted string or dictionary | "{'id':'1234','name':'Lucy'}" | Metadata allows you to add custom attributes to your payments. E.g. You can include a unique ID to identify each payment. Attributes must be key-value pairs. Both the keys and values must be strings. You can add up to 10 attributes. This data will be returned when you retrieve a payment.
 first_name | No | String | John | If this payment is to a new contact, you can include their first name. This name will only be used if the phone number is new.
 last_name | No | String | Doe | If this payment is to a new contact, you can include their last name. This name will only be used if the phone number is new.
