@@ -567,8 +567,8 @@ Caducidad                 |   10 días
 
 ```sql
 item_details = SELECT
-  columna_de_nombres    nombre,
-  columna_de_valores   valor
+  columna_de_nombres    _nombre_,
+  columna_de_valores   _valor_
   FROM
   DocElectronicoFactura.items_detalles_adicionales
   WHERE
