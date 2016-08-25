@@ -25,8 +25,7 @@ payment = Beyonic::Payment.create(
     description: "Per diem payment",
     payment_type: "money",
     callback_url: "https://my.website/payments/callback",
-    'metadata.id'=> 1234,
-    'metadata.name'=> 'Lucy'
+    metadata: {"id": "1234", "name": "Lucy"}
 )
 ```
 
@@ -42,8 +41,7 @@ Beyonic_Payment::create(array(
   "description" => "Per diem payment",
   "payment_type" => "money",
   "callback_url" => "https://my.website/payments/callback",
-  "metadata.id" => "1234",
-  "metadata.name" => "Lucy"
+  "metadata" => array("id"=>"1234", "name"=>"Lucy")
 ));
 ?>
 ```
@@ -52,14 +50,12 @@ Beyonic_Payment::create(array(
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-kwargs = {'metadata.id': 1234, 'metadata.name': 'Lucy'}
-
 beyonic.Payment.create(phonenumber='+256778122118',
                        amount='1200',
                        currency='UGX',
                        description='Per diem',
                        callback_url='https://my.website/payments/callback',
-                       **kwargs
+                       metadata={'id': '1234', 'name': 'Lucy'}
                        )
 ```
 
