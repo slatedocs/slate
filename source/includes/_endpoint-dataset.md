@@ -156,10 +156,10 @@ Here are the parameters that can be passed to the search endpoint.
 
 Parameter             | Type        | Description
 ----------------------|-------------|------------------------------------------------
-q                     | string      | query string 
+q                     | string      | query string
 f                     | json Object | used to filter the output of the search (see below)
 limit                 | integer     | limit the number of results returned by the api to less than this amount (default 1000)
-offset                | integer     | offset into the search index to start gathering results from pre-filter 
+offset                | integer     | offset into the search index to start gathering results from pre-filter
 group_variables_limit | integer     | number of non-matching variable results inside matching group names to return (default 10)
 
 Allowable filter parameters:
@@ -176,7 +176,7 @@ The query string can only be alpha-numeric characters (including underscores) lo
 
 
 ##### Fields Searched
- 
+
 Here is a list of the fields that are searched by the Crunch search endpoint
 
 Field             | Type            | Description                                             | Post-Filter?
@@ -196,7 +196,7 @@ dataset_owner     | String          | ID of the owner of the dataset associated 
 dataset_users     | List of Strings | User IDs having read-access to the dataset associated with the variable | no
 dataset_teams     | List of Strings | Team IDs having read-access to the dataset associated with the variable | no
 dataset_projects  | List of Strings | Project IDs having read-access to the dataset associated with the variable | no
-                            
+
 <aside class="notice">
 Post-filter indicates whether post-index results are filtered by the field noted.  If the given query string does not
 match at least one of the Post-filter fields, then it will be eliminated from the results, which limits the results to a
@@ -207,7 +207,7 @@ reasonable number when the dataset attributes match but no variable attributes m
 ```http
 GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_variables_list={group_variables_list}  HTTP/1.1
 ```
-  
+
 ```json
 {
    "element": "shoji:view",
@@ -329,9 +329,9 @@ GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_v
 The variables grouping displays metadata for all of the variables that matched.
 The Datasets grouping displays metadata for all of the datasets where a variable or the dataset it self matched.  The "groups"
 parameter of the dataset indicates any variable groups that matched, along with variables that did not match the search but are contained
-within the variable grouping.  The group names that are indexed come from the variable ordering endpoint. 
+within the variable grouping.  The group names that are indexed come from the variable ordering endpoint.
 
-Use the `group_variables_limit` parameter to define how many group variables to expose in this parameter. 
+Use the `group_variables_limit` parameter to define how many group variables to expose in this parameter.
 variable_count is the total number of variables that matched the crunch's search index.  This number can be used when considering
 limit and offset parameters.  (limit + offset higher than variable_count will always return no results)
 Totals group defines the number of variables and datasets that matched post-index-filtering.  This parameter is useful in order to limit
@@ -502,7 +502,7 @@ Name | Type | Description
 name | string | Human-friendly string identifier
 description | string | Optional longer string
 archived | boolean | Whether the variable should be hidden from most views; default: false
-owner | URL | Provide a team URL to set the owner to that team; if omitted, the authenticated user will be the owner   
+owner | URL | Provide a team URL to set the owner to that team; if omitted, the authenticated user will be the owner
 notes | string | Blank if omitted. Optional notes for the dataset
 start_date | date | ISO-8601 formatted date with day resolution
 end_date | date | ISO-8601 formatted date with day resolution
@@ -565,7 +565,7 @@ bottom of the root list in arbitrary order.
      "graph": [
         "dataset_url",
         {"group": [
-            "dataset_url"        
+            "dataset_url"
         ]}
      ]
 }
@@ -645,19 +645,19 @@ dataset Shoji entity.
 
 Catalog name | Resource
 ------------ | --------
-batches | Returns all the batches (successful and failed) used for this dataset
-joins | Contains the list of all the joins available
+batches | Returns all the batches (successful and failed) used for this dataset. See [Batches](#batches).
+joins | Contains the list of all datasets joined to the current dataset. See [Joins](#joins).
 parent | Indicates the catalog where this dataset is found (project or main dataset catalog)
-variables | Catalog of all public variables of this dataset
-actions | All actions executed for this dataset
-savepoints | Lists the created versions for this dataset
+variables | Catalog of all public variables of this dataset. See [Variables](#variables).
+actions | All actions executed on this dataset
+savepoints | Lists the saved versions for this dataset. See [Versions](#versions).
 weight_variables | Includes the available variables to be used as weight
-filters | Makes available the public and user-created filters
+filters | Makes available the public and user-created filters. See [Filters](#filters).
 multitables | Similar to filters, displays all available multitables
-comparisons | Contains all user's created comparisons
-forks | Returns all the forks created from the dataset in question
+comparisons | Contains all available comparisons. See [Comparisons](#comparisons).
+forks | Returns all the forks created from this dataset
 decks | The list of all decks on this dataset for the authenticated user
-permissions | Returns the list of all users and teams with access to this dataset
+permissions | Returns the list of all users and teams with access to this dataset. See [Permissions](#permissions).
 
 #### PATCH
 
@@ -734,7 +734,7 @@ GET returns a Shoji View of available dataset export formats.
 ```
 
 A POST request on any of the export views will return 202 status with a `shoji:view`, containing an attribute
-`url` pointing to the location of the exported file to be downloaded; GET that URL to download the file. 
+`url` pointing to the location of the exported file to be downloaded; GET that URL to download the file.
 
 
 ```http
@@ -1156,7 +1156,7 @@ in arbitrary order.
 
 `/datasets/{id}/settings/`
 
-The dataset settings allow editors to store dataset wide permissions and 
+The dataset settings allow editors to store dataset wide permissions and
 configurations for it.
 
 Will always return all the available settings with default values a dataset
@@ -1174,7 +1174,7 @@ can have.
 ```
 
 To make changes, clients should PATCH the settings they wish to change with new
-values. Additional settings are not allowed, the server will return a 400 
+values. Additional settings are not allowed, the server will return a 400
 response.
 
 
@@ -1275,7 +1275,7 @@ When POSTing, set the body to a JSON object containing the key "pk" to modify
 the primary key. The "pk" key should be a list containing zero or more variable URLs.
 The variables referenced must be either text or numeric type
 and must have no duplicate or missing values.  Setting pk to ``[]`` is
-equivalent to deleting the primary key for a dataset.  
+equivalent to deleting the primary key for a dataset.
 
 <aside class="notice">
     We currently support only a single primary key variable, so the POST payload
