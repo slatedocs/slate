@@ -77,8 +77,7 @@ Instaladores del programa Link de Dátil:
 
 __Windows__
 
-Windows 32 bits: [linkapp-windows-32bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+Link+App_3.0.7_32bit_generic.exe)
-
+Windows 32 bits: [linkapp-windows-32bits]
 Windows 64 bits: [linkapp-windows-64bits]
 
 __Linux__
