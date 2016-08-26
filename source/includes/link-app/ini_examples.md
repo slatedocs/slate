@@ -5,44 +5,7 @@
 Guarda la configuración y queries para la extracción y emisisón electrónica de facturas.
 <pre>
 
-[Api]
-issue = /credit-notes/issue
-reissue = /credit-notes/:id/reissue
-info = /credit-notes/:id
-
-[Constraints]
-issue_limit = 1
-issue_order = asc
-get_info_limit = 1
-get_info_order = asc
-
 [Query]
-all_stored_locally = SELECT 
-  id_local
-  FROM
-  DocElectronicoFactura.cabecera
-  WHERE
-  fecha_emision >= ?
-
-not_controlled = SELECT 
-  id_local,
-  numero,
-  fecha_emision
-  FROM
-  DocElectronicoFactura.cabecera
-  where 
-  id_local in (:sequence) AND
-  fecha_emision >= ?
-
-not_controlled_first_time = SELECT TOP :limit
-  id_local,
-  numero,
-  fecha_emision
-  FROM
-  DocElectronicoFactura.cabecera
-  where 
-  fecha_emision >= ?
-
 headers = SELECT
   id_factura            id_local,
   secuencial,
@@ -95,7 +58,7 @@ invoice_totals  = SELECT
   WHERE
   id_factura = ?
 
-invoice_totals  = SELECT
+invoice_totals_taxes  = SELECT
   codigo,
   codigo_porcentaje,
   base_imponible,
@@ -128,7 +91,7 @@ item_taxes  = SELECT
   FROM
   DocElectronicoFactura.items_impuestos
   WHERE
-  cast(id_factura as varchar) + cast(detalle as varchar) = ?
+  id_detalle = ?
 
 item_details = SELECT
   nombre    nombre,
@@ -136,7 +99,7 @@ item_details = SELECT
   FROM
   DocElectronicoFactura.items_detalles_adicionales
   WHERE
-  cast(id_factura as varchar) + cast(detalle as varchar) = ?
+  id_detalle = ?
 
 invoice_additional_information = SELECT
   columna_de_nombres    _nombre_,
@@ -144,5 +107,117 @@ invoice_additional_information = SELECT
   FROM
   DocElectronicoFactura.informacion_adicional
   WHERE
-  id_factura = ?
+  id_detalle = ?
+</pre>
+
+## credit_note.ini
+
+Guarda la configuración y queries para la extracción y emisisón electrónica de notas de crédito.
+<pre>
+
+[Query]
+headers = SELECT
+  id_nota_credito            id_local,
+  secuencial,
+  fecha_emision,
+  guia_remision,
+  moneda,
+  clave_acceso,
+  tipo_emision,
+  fecha_emision_documento_modificado,
+  numero_documento_modificado,
+  tipo_documento_modificado,
+  motivo
+  FROM
+  DocElectronicoNotaCredito.cabecera
+  WHERE
+  info.id_nota_credito in (:sequence)
+  ORDER BY id_nota_credito :order
+
+credit_note_seller  = SELECT
+  ruc,
+  obligado_contabilidad,
+  contribuyente_especial,
+  nombre_comercial,
+  razon_social,
+  direccion_establecimiento,
+  direccion_emisor,
+  codigo,
+  punto_emision
+  FROM
+  DocElectronicoNotaCredito.cabecera
+  WHERE
+  id_nota_credito = ?
+
+credit_note_buyer  = SELECT
+  identificacion,
+  tipo_identificacion,
+  razon_social,
+  direccion,
+  email,
+  telefono
+  FROM
+  FROM
+  DocElectronicoNotaCredito.cabecera
+  WHERE
+  id_nota_credito = ?
+
+credit_note_totals  = SELECT
+  total_sin_impuestos,
+  importe_total
+  FROM
+  DocElectronicoNotaCredito.cabecera
+  WHERE
+  id_nota_credito = ?
+
+credit_note_totals_taxes  = SELECT
+  codigo,
+  codigo_porcentaje,
+  base_imponible,
+  valor
+  FROM
+  DocElectronicoNotaCredito.totales_impuestos
+  WHERE
+  id_nota_credito = ?
+
+items  = SELECT
+  id_detalle,
+  codigo_principal,
+  codigo_auxiliar,
+  descripcion,
+  cantidad,
+  precio_unitario,
+  descuento,
+  precio_total_sin_impuestos
+  FROM
+  DocElectronicoNotaCredito.items
+  WHERE
+  id_nota_credito = ?
+
+item_taxes  = SELECT
+  base_imponible,
+  valor,
+  tarifa,
+  codigo,
+  codigo_porcentaje
+  FROM
+  DocElectronicoNotaCredito.items_impuestos
+  WHERE
+  id_detalle = ?
+
+item_details = SELECT
+  nombre    nombre,
+  valor   valor
+  FROM
+  DocElectronicoNotaCredito.items_detalles_adicionales
+  WHERE
+  id_detalle = ?
+
+credit_note_additional_information = SELECT
+  columna_de_nombres    _nombre_,
+  columna_de_valores     _valor_
+  FROM
+  DocElectronicoNotaCredito.informacion_adicional
+  WHERE
+  id_detalle = ?
 </pre>

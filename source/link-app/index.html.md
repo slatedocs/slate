@@ -289,64 +289,6 @@ Los queries para la emisión electrónica de __facturas__ se guardan en el archi
 
 [Ejemplo de archivo invoice.ini](/link-app#invoice-ini)
 
-
-
-### Todas las facturas
-
-Obtiene las facturas de su ERP o sistema contable a partir de una fecha determinada
-
-```sql
-
-all_stored_locally = SELECT
-  id_local
-  FROM
-  DocElectronicoFactura.cabecera
-  WHERE
-  fecha_emision >= ?
-
-```
-
-Campo |  Descripción | Valor de ejemplo
---------- | -----------| ---------
-id_local | string | Identifica de manera única la factura. __Requerido__
-fecha_emision | string  | Parámetro de búsqueda, es la fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
-
-### Facturas no controladas
-
-Obtiene las nuevas facturas generadas por su ERP o sistema contable a partir de una fecha determinada.
-Se deben configurar dos queries.
-
-```sql
-not_controlled = SELECT
-  id_local,
-  numero,
-  fecha_emision
-  FROM
-  DocElectronicoFactura.cabecera
-  where
-  id_local in (:sequence) AND
-  fecha_emision >= ?
-
-
-not_controlled_first_time = SELECT TOP :limit
-  id_local,
-  numero,
-  fecha_emision
-  FROM
-  DocElectronicoFactura.cabecera
-  where
-  fecha_emision >= ?
-```
-
-> `:sequence` y `:limit` son variables que maneja __Link__, no deben editarse o reemplazarse.
-
-Campo |  Descripción | Valor de ejemplo
---------- | -----------| ---------
-id_local | string | Identifica de manera única la factura. __Requerido__
-numero | string | El número completo de la factura. Ejemplo: '001-002-000000034' __Requerido__
-fecha_emision | string  | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
-
-
 ### Cabecera
 
 Obtiene información de la cabecera de la factura
@@ -534,10 +476,8 @@ item_taxes  = SELECT
   FROM
   DocElectronicoFactura.items_impuestos
   WHERE
-  cast(id_factura as varchar) + cast(detalle as varchar) = ?
+  id_detalle = ?
 ```
-
-> `cast(id_factura as varchar) + cast(detalle as varchar)` es un ejemplo para identificar de manera única el ítem en la factura
 
 Campo | Tipo | Descripción
 --------- | ------- | -----------
@@ -571,10 +511,8 @@ item_details = SELECT
   FROM
   DocElectronicoFactura.items_detalles_adicionales
   WHERE
-  cast(id_factura as varchar) + cast(detalle as varchar) = ?
+  id_detalle = ?
 ```
-
-> `cast(id_factura as varchar) + cast(detalle as varchar)` es un ejemplo para identificar de manera única el ítem en la factura
 
 Campo | Tipo | Descripción
 --------- | ------- | -----------
@@ -772,3 +710,283 @@ CREATE TABLE [DocElectronicoFactura].[informacion_adicional](
 
 
 ```
+
+
+
+## Notas de crédito
+
+Los queries para la emisión electrónica de __notas de crédito__ se guardan en el archivo de configuración `credit_note.ini`.
+
+[Ejemplo de archivo credit_note.ini](/link-app#credit_note-ini)
+
+### Cabecera
+
+Obtiene información de la cabecera de la nota de crédito
+
+```sql
+headers = SELECT
+  id_nota_credito             id_local,
+  secuencial,
+  fecha_emision,
+  moneda,
+  clave_acceso,
+  tipo_emision,
+  fecha_emision_documento_modificado,
+  numero_documento_modificado,
+  tipo_documento_modificado,
+  motivo
+  FROM
+  DocElectronicoNotaCredito.cabecera
+  WHERE
+  info.id_nota_credito in (:sequence)
+  ORDER BY id_nota_credito :order
+```
+
+Campo |  Descripción | Valor de ejemplo
+--------- | -----------| ---------
+id_local | string | Identifica de manera única la nota de crédito. __Requerido__
+secuencial | string  | Número de secuencia de la nota de crédito. __Requerido__
+fecha_emision | string  | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
+moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. __Requerido__
+clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
+tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
+fecha_emision_documento_modificado | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
+numero_documento_modificado | string | Número completo del documento que se está afectando. Normalmente facturas. Ejm: 001-002-010023098 __Requerido__
+tipo_documento_modificado | string | Códigos de [tipos de documentos](#tipos-de-documentos). __Requerido__
+motivo | string | Motivo de la operación. Ejm: Devolución de producto. __Requerido__
+
+
+### Vendedor
+
+Obtiene información del vendedor en la nota de crédito
+
+```sql
+credit_note_seller  = SELECT
+  ruc,
+  obligado_contabilidad,
+  contribuyente_especial,
+  nombre_comercial,
+  razon_social,
+  direccion_establecimiento,
+  direccion_emisor,
+  codigo,
+  punto_emision
+  FROM
+  DocElectronicoNotaCredito.cabecera
+  WHERE
+  id_nota_credito = ?
+```
+
+Campo | Tipo | Descripción
+--------- | ------- | -----------
+ruc | string | Número de RUC de 13 caracteres. __Requerido__
+obligado_contabilidad | string | `'SI'` si está obligado a llevar contabilidad. `'NO'` si no lo está.
+contribuyente_especial | string | Número de resolución. En blanco `''` si no es contribuyente especial.
+nombre_comercial | string| Nombre comercial. Máximo 300 caracteres __Requerido__
+razon_social | string | Razón social. Máximo 300 caracteres __Requerido__
+direccion_establecimiento | string | Dirección registrada en el SRI. Máximo 300 caracteres. __Requerido__
+direccion_emisor | string | Dirección del punto de emisión. Máximo 300 caracteres. __Requerido__
+codigo | string | Código numérico de 3 caracteres que representa al establecimiento. Ejemplo: `001` __Requerido__
+punto_emision | string | Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: `001`. __Requerido__
+
+
+### Comprador
+
+Obtiene información del comprador en la nota de crédito
+
+```sql
+credit_note_buyer  = SELECT
+  identificacion,
+  tipo_identificacion,
+  razon_social,
+  direccion,
+  email,
+  telefono
+  FROM
+  FROM
+  DocElectronicoNotaCredito.cabecera
+  WHERE
+  id_nota_credito = ?
+```
+
+Campo | Tipo | Descripción
+--------- | ------- | -----------
+razon_social | string | Razón social. Máximo 300 caracteres. __Requerido__
+identificacion | string | De 5 a 20 caracteres. __Requerido__
+tipo_identificacion | string | Ver [tabla](#tipo-de-identificaci-n) de tipos de identificación __Requerido__
+email | string | Correo electrónico. Máximo 300 caracteres. __Requerido__
+telefono | string | Teléfono
+direccion | string | Dirección
+
+
+### Totales
+
+Obtiene información de los valores totales de la nota de crédito
+
+```sql
+credit_note_totals  = SELECT
+  total_sin_impuestos,
+  importe_total
+  FROM
+  DocElectronicoNotaCredito.cabecera
+  WHERE
+  id_nota_credito = ?
+```
+
+Campo | Tipo | Descripción
+--------- | ------- | -----------
+total_sin_impuestos | float | Total antes de los impuestos. __Requerido__
+importe_total       | float | Total incluyendo impuestos. __Requerido__
+
+### Impuestos de totales
+
+Obtiene información de los impuestos de los totales de la nota de crédito
+
+```sql
+credit_note_totals_taxes  = SELECT
+  codigo,
+  codigo_porcentaje,
+  base_imponible,
+  valor
+  FROM
+  DocElectronicoNotaCredito.totales_impuestos
+  WHERE
+  id_nota_credito = ?
+```
+
+Campo | Tipo | Descripción
+--------- | ------- | -----------
+codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto) __Requerido__
+codigo_porcentaje | string | Código del [porcentaje](#c-digo-de-porcentaje-de-iva). __Requerido__
+base_imponible | float | Base imponible. __Requerido__
+valor | float | Valor del total. __Requerido__
+
+
+### Items
+
+Obtiene todos los items de una nota de crédito
+
+```sql
+items  = SELECT
+  id_detalle,
+  codigo_principal,
+  codigo_auxiliar,
+  descripcion,
+  cantidad,
+  precio_unitario,
+  descuento,
+  precio_total_sin_impuestos
+  FROM
+  DocElectronicoNotaCredito.items
+  WHERE
+  id_nota_credito = ?
+```
+
+Campo | Tipo | Descripción
+--------- | ------- | -----------
+id_detalle | string | Identifica de manera única el ítem o detalle de la nota de crédito. Si no hay un solo campo que lo identifique de manera única se debe usar la concatenación de varios.__Requerido__
+codigo_principal | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres. __Requerido__
+codigo_auxiliar | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
+descripcion | string | Descripción del ítem. __Requerido__
+cantidad | float | Cantidad de items. __Requerido__
+precio_unitario | float | Precio unitario. __Requerido__
+descuento | float | El descuento es aplicado por cada producto. __Requerido__
+precio_total_sin_impuestos | float | Precio antes de los impuestos. Se obtiene multiplicando la `cantidad` por el `precio_unitario` __Requerido__
+
+### Impuestos de items
+
+Obtiene los impuestos de un item
+
+```sql
+item_taxes  = SELECT
+  base_imponible,
+  valor,
+  tarifa,
+  codigo,
+  codigo_porcentaje
+  FROM
+  DocElectronicoNotaCredito.items_impuestos
+  WHERE
+  id_detalle = ?
+```
+
+
+Campo | Tipo | Descripción
+--------- | ------- | -----------
+base_imponible | float | Base imponible. __Requerido__
+valor | float | Valor del total. __Requerido__
+tarifa | float | Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0 __Requerido__
+codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto) __Requerido__
+codigo_porcentaje | string | Código del [porcentaje](#c-digo-de-porcentaje-de-iva). __Requerido__
+
+### Detalles adicionales de items
+
+Obtiene los detalles adicionales de un ítem. Este query es opcional.
+
+Los detalles adicionales de un ítem se manejan de la forma 'Clave':'Valor'. Ejemplo: 'Peso':'Kg'
+
+Se asume que en la tabla consultada
+una columna tiene los nombres y otra los valores.
+
+Ejemplo de columnas con detalles adicionales del ítem:
+
+columna_de_nombres  |  columna_de_valores
+-------------------- | --------------
+Peso        |   KG
+Color           |   Rojo
+Caducidad                 |   10 días
+
+```sql
+item_details = SELECT
+  columna_de_nombres    _nombre_,
+  columna_de_valores   _valor_
+  FROM
+  DocElectronicoNotaCredito.items_detalles_adicionales
+  WHERE
+  id_detalle = ?
+```
+
+Campo | Tipo | Descripción
+--------- | ------- | -----------
+nombre | string | Nombre del detalle adicional del ítem
+valor | string | Valor del detalle adicional del ítem
+
+### Información adicional
+
+Obtiene la información adicional de la nota de crédito.
+
+La información adicional de la nota de crédito se maneja de la forma 'Clave':'Valor'. Ejemplo: 'Tipo de pago':'Cheque'
+
+Se asume que en la tabla consultada
+una columna tiene los nombres y otra los valores.
+
+Ejemplo de columnas con información adicional de la nota de crédito:
+
+columna_de_nombres  |  columna_de_valores
+-------------------- | --------------
+Tipo de servicio        |   Avanzado
+Forma de pago           |   Cheque
+Periodo                 |   3 meses
+
+```sql
+credit_note_additional_information = SELECT
+  columna_de_nombres    _nombre_,
+  columna_de_valores     _valor_
+  FROM
+  DocElectronicoNotaCredito.informacion_adicional
+  WHERE
+  id_nota_credito = ?
+```
+
+Campo | Tipo | Descripción
+--------- | ------- | -----------
+`_nombre_` | string | Nombre de la información adicional de la nota de crédito
+`_valor_` | string | Valor de la información adicional de la nota de crédito
+
+### Tablas recomendadas
+
+Estructura recomendada para las tablas o vistas con información de la nota de crédito. 
+
+Ejemplo en SQL Server:
+
+Pendiente
