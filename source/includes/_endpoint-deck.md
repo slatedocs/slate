@@ -477,6 +477,12 @@ from a slide. For that it is necessary to delete the slide itself.
 
 A 204 response will be returned on success.
 
+### Order
+
+As analyses get added to a slide, they will be stored on a
+`shoji:order` resource.
+
+This is a flat order and does not allow nesting.
 
 ### Entity
 
