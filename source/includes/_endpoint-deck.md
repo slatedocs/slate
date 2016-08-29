@@ -414,6 +414,72 @@ direction and decimal places -- can be saved to a _deck_, which can then be
 exported, or the analysis can be reloaded in whole in the application or even
 exported as a standalone embeddable result.
 
+### Catalog
+
+```
+/api/datasets/123/decks/123/slides/123/analyses/
+```
+
+#### POST
+
+To create multiple analyses on a slide, clients should POST analyses
+to the slide's analyses catalog.
+
+```json
+{
+    "query": {
+        "dimensions" : [],
+        "measures": {}
+    },
+    "query_environment": {
+        "filter": [
+            {"filter": "<url>"},
+            {"function": "expression", "args": [], "name": "(Optional)"}
+        ],
+        "weight": "url"
+    },
+    "display_settings": {
+        "decimalPlaces": {
+            "value": 0
+        },
+        "percentageDirection": {
+            "value": "colPct"
+        },
+        "vizType": {
+            "value": "table"
+        },
+        "countsOrPercents": {
+            "value": "percent"
+        },
+        "uiView": {
+            "value": "expanded"
+        }
+    }
+}
+```
+
+The server will return a 201 response with the new slide created.
+In case of invalid analysis attributes, a 400 response will be returned
+indicating the problems.
+
+#### PATCH
+
+It is possible to delete many analyses at once from the catalog sending
+`null` as their tuple. It is not possible to delete all the analysis
+from a slide. For that it is necessary to delete the slide itself.
+
+```json
+{
+    "/api/datasets/123/decks/123/slides/123/analyses/1/": null,
+    "/api/datasets/123/decks/123/slides/123/analyses/2/": {}
+}
+```
+
+A 204 response will be returned on success.
+
+
+### Entity
+
 An analysis is defined by a _query_, _query environment_, and _display settings_.
 To save an analysis, `POST` these to a deck as a new slide.
 
@@ -470,7 +536,7 @@ query_environment | An object with a `weight` and `filters` to be used for rende
 display_settings | An object containing client specific instructions on how to recreate the analysis
 
 
-### PATCH
+#### PATCH
 
 To edit an analysis, PATCH its URL with a shoji:entity.
 
@@ -482,7 +548,7 @@ The editable attributes are:
 
 Providing invalid values for those attributes or extra attributes will be rejected with a 400 response from the server.
 
-### DELETE
+#### DELETE
 
 It is possible to delete analyses from a slide as long as there is always
 one analysis left.
