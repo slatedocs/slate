@@ -7,11 +7,11 @@ toc_footers:
 
 includes:
   - authentication
-  - version
   - public_api
   - reseller_api
   - cash_point_api
   - changelog
+  - version
   
 search: true
 ---
