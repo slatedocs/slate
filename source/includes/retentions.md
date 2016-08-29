@@ -197,7 +197,7 @@ Parámetro | Tipo | Descripción
 secuencial | string | Número de secuencia de la nota de crédito. __Requerido__
 emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
 fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
-periodo_fiscal | string | Mes y año en el siguiente formato MM/AAAA. Ejm: 12/2015
+periodo_fiscal | string | Mes y año en el siguiente formato MM/AAAA. Ejm: 12/2015 __Requerido__
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
 impuestos | vector de objetos tipo [impuesto](#impuesto-retenido) | Listado de impuestos retenidos. __Requerido__
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
@@ -210,8 +210,8 @@ informacion_adicional | objeto | Información adicional adjunta al comprobante e
 Parámetro                        | Tipo   | Descripción
 -------------------------------- | ------ |------------
 base_imponible                   | float  | Base imponible, máximo 2 cifras decimales. __Requerido__
-codigo                           | string | Código de [tipo de impuesto](#tipos-de-impuesto-para-la-retención). __Requerido__
-codigo_porcentaje                | string | [Código del porcentaje](#retención-iva) a aplicar dentro del tipo de impuesto __Requerido__
+codigo                           | string | Código de [tipo de impuesto](#tipos-de-impuesto-para-la-retenci-n). __Requerido__
+codigo_porcentaje                | string | [Código del porcentaje](#retenci-n-de-iva) a aplicar dentro del tipo de impuesto __Requerido__
 porcentaje                       | float  | Porcentaje establecido para el impuesto
 valor_retenido                   | float  | Valor retenido, multiplicación de la base imponible por el porcentaje de retención, máximo 2 cifras decimales. __Requerido__
 fecha_emision_documento_sustento | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__

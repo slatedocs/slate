@@ -283,7 +283,7 @@ Ejemplo:
 `item_details = None`
 
 
-## Factura
+## Facturas
 
 Los queries para la emisión electrónica de __facturas__ se guardan en el archivo de configuración `invoice.ini`.
 
@@ -738,7 +738,7 @@ headers = SELECT
   FROM
   DocElectronicoNotaCredito.cabecera
   WHERE
-  info.id_nota_credito in (:sequence)
+  id_nota_credito in (:sequence)
   ORDER BY id_nota_credito :order
 ```
 
@@ -750,7 +750,7 @@ fecha_emision | string  | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria
 moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. __Requerido__
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
-fecha_emision_documento_modificado | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
+fecha_emision_documento_modificado | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria del documento modificado, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
 numero_documento_modificado | string | Número completo del documento que se está afectando. Normalmente facturas. Ejm: 001-002-010023098 __Requerido__
 tipo_documento_modificado | string | Códigos de [tipos de documentos](#tipos-de-documentos). __Requerido__
 motivo | string | Motivo de la operación. Ejm: Devolución de producto. __Requerido__
@@ -802,7 +802,6 @@ credit_note_buyer  = SELECT
   direccion,
   email,
   telefono
-  FROM
   FROM
   DocElectronicoNotaCredito.cabecera
   WHERE
@@ -986,6 +985,177 @@ Campo | Tipo | Descripción
 ### Tablas recomendadas
 
 Estructura recomendada para las tablas o vistas con información de la nota de crédito. 
+
+Ejemplo en SQL Server:
+
+Pendiente
+
+
+
+
+## Comprobantes de Retención
+
+Los queries para la emisión electrónica de __retención__ se guardan en el archivo de configuración `retention.ini`.
+
+[Ejemplo de archivo retention.ini](/link-app#retention-ini)
+
+### Cabecera
+
+Obtiene información de la cabecera de la retención
+
+```sql
+headers = SELECT
+  id_nota_credito             id_local,
+  secuencial,
+  fecha_emision,
+  clave_acceso,
+  tipo_emision,
+  periodo_fiscal
+  FROM
+  DocElectronicoRetencion.cabecera
+  WHERE
+  id_retencion in (:sequence)
+  ORDER BY id_retencion :order
+```
+
+Campo |  Descripción | Valor de ejemplo
+--------- | -----------| ---------
+id_local | string | Identifica de manera única la retención. __Requerido__
+secuencial | string  | Número de secuencia de la retención. __Requerido__
+fecha_emision | string  | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
+clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
+tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
+periodo_fiscal | string | Mes y año en el siguiente formato MM/AAAA. Ejm: 12/2015 __Requerido__
+
+
+### Vendedor
+
+Obtiene información del vendedor en la retención
+
+```sql
+retention_seller  = SELECT
+  ruc,
+  obligado_contabilidad,
+  contribuyente_especial,
+  nombre_comercial,
+  razon_social,
+  direccion_establecimiento,
+  direccion_emisor,
+  codigo,
+  punto_emision
+  FROM
+  DocElectronicoRetencion.cabecera
+  WHERE
+  id_retencion = ?
+```
+
+Campo | Tipo | Descripción
+--------- | ------- | -----------
+ruc | string | Número de RUC de 13 caracteres. __Requerido__
+obligado_contabilidad | string | `'SI'` si está obligado a llevar contabilidad. `'NO'` si no lo está.
+contribuyente_especial | string | Número de resolución. En blanco `''` si no es contribuyente especial.
+nombre_comercial | string| Nombre comercial. Máximo 300 caracteres __Requerido__
+razon_social | string | Razón social. Máximo 300 caracteres __Requerido__
+direccion_establecimiento | string | Dirección registrada en el SRI. Máximo 300 caracteres. __Requerido__
+direccion_emisor | string | Dirección del punto de emisión. Máximo 300 caracteres. __Requerido__
+codigo | string | Código numérico de 3 caracteres que representa al establecimiento. Ejemplo: `001` __Requerido__
+punto_emision | string | Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: `001`. __Requerido__
+
+
+### Sujeto retenido
+
+Obtiene información del sujeto retenido en la retención
+
+```sql
+retention_recipient  = SELECT
+  identificacion,
+  tipo_identificacion,
+  razon_social,
+  direccion,
+  email,
+  telefono
+  FROM
+  DocElectronicoRetencion.cabecera
+  WHERE
+  id_retencion = ?
+```
+
+Campo | Tipo | Descripción
+--------- | ------- | -----------
+identificacion | string | De 5 a 20 caracteres. __Requerido__
+tipo_identificacion | string | Ver [tabla](#tipo-de-identificaci-n) de tipos de identificación __Requerido__
+razon_social | string | Razón social. Máximo 300 caracteres. __Requerido__
+direccion | string | Dirección
+email | string | Correo electrónico. Máximo 300 caracteres. __Requerido__
+telefono | string | Teléfono
+
+
+### Impuestos de la retención
+
+Obtiene información de los impuestos de la retención
+
+```sql
+retention_taxes  = SELECT
+    codigo,
+    codigo_porcentaje,
+    porcentaje,
+    base_imponible,
+    valor_retenido,
+    tipo_documento_sustento,
+    numero_documento_sustento,
+    fecha_emision_documento_sustento
+    FROM 
+    DocElectronicoRetencion.impuesto
+    WHERE
+    id_retencion = ?
+```
+
+Campo | Tipo | Descripción
+--------- | ------- | -----------
+codigo                           | string | Código de [tipo de impuesto](#tipos-de-impuesto-para-la-retenci-n). __Requerido__
+codigo_porcentaje                | string | [Código del porcentaje](#retenci-n-de-iva) a aplicar dentro del tipo de impuesto __Requerido__
+porcentaje | string | Porcentaje a retener __Requerido__
+base_imponible | float | Base imponible. __Requerido__
+valor_retenido | float | Valor retenido. __Requerido__
+tipo_documento_sustento | string | Códigos de [tipos de documentos](#tipos-de-documentos). __Requerido__
+numero_documento_sustento | string | Número completo del documento que se está afectando. Normalmente facturas. Ejm: 001-002-010023098 __Requerido__
+fecha_emision_documento_sustento | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria del documento sustento de la retención, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
+
+### Información adicional
+
+Obtiene la información adicional de la retención.
+
+La información adicional de la retención se maneja de la forma 'Clave':'Valor'. Ejemplo: 'Tipo de pago':'Cheque'
+
+Se asume que en la tabla consultada
+una columna tiene los nombres y otra los valores.
+
+Ejemplo de columnas con información adicional de la retención:
+
+columna_de_nombres  |  columna_de_valores
+-------------------- | --------------
+Tipo de servicio        |   Avanzado
+Forma de pago           |   Cheque
+Periodo                 |   3 meses
+
+```sql
+retention_additional_information = SELECT
+  columna_de_nombres    _nombre_,
+  columna_de_valores     _valor_
+  FROM
+  DocElectronicoRetencion.informacion_adicional
+  WHERE
+  id_retencion = ?
+```
+
+Campo | Tipo | Descripción
+--------- | ------- | -----------
+`_nombre_` | string | Nombre de la información adicional de la rentención
+`_valor_` | string | Valor de la información adicional de la retención
+
+### Tablas recomendadas
+
+Estructura recomendada para las tablas o vistas con información de la retención. 
 
 Ejemplo en SQL Server:
 

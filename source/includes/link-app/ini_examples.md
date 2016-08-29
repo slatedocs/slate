@@ -157,7 +157,6 @@ credit_note_buyer  = SELECT
   email,
   telefono
   FROM
-  FROM
   DocElectronicoNotaCredito.cabecera
   WHERE
   id_nota_credito = ?
@@ -220,4 +219,74 @@ credit_note_additional_information = SELECT
   DocElectronicoNotaCredito.informacion_adicional
   WHERE
   id_detalle = ?
+</pre>
+
+
+## retention.ini
+
+Guarda la configuración y queries para la extracción y emisisón electrónica de retenciones.
+<pre>
+
+[Query]
+headers = SELECT
+  id_nota_credito             id_local,
+  secuencial,
+  fecha_emision,
+  clave_acceso,
+  tipo_emision,
+  periodo_fiscal
+  FROM
+  DocElectronicoRetencion.cabecera
+  WHERE
+  id_retencion in (:sequence)
+  ORDER BY id_retencion :order
+
+retention_seller  = SELECT
+  ruc,
+  obligado_contabilidad,
+  contribuyente_especial,
+  nombre_comercial,
+  razon_social,
+  direccion_establecimiento,
+  direccion_emisor,
+  codigo,
+  punto_emision
+  FROM
+  DocElectronicoRetencion.cabecera
+  WHERE
+  id_retencion = ?
+
+retention_recipient  = SELECT
+  identificacion,
+  tipo_identificacion,
+  razon_social,
+  direccion,
+  email,
+  telefono
+  FROM
+  DocElectronicoRetencion.cabecera
+  WHERE
+  id_retencion = ?
+
+retention_taxes  = SELECT
+    codigo,
+    codigo_porcentaje,
+    porcentaje,
+    base_imponible,
+    valor_retenido,
+    tipo_documento_sustento,
+    numero_documento_sustento,
+    fecha_emision_documento_sustento
+    FROM 
+    DocElectronicoRetencion.impuesto
+    WHERE
+    id_retencion = ?
+
+retention_additional_information = SELECT
+  columna_de_nombres    _nombre_,
+  columna_de_valores     _valor_
+  FROM
+  DocElectronicoRetencion.informacion_adicional
+  WHERE
+  id_retencion = ?
 </pre>
