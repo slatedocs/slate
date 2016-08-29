@@ -142,10 +142,6 @@ The json response contains a list of existing bookings as an array and a meta bl
 - status (string)
 - count_participants (string)
 
-
-
-
-
 ### Details of a tour booking
 
 Provides details for a single tour booking.
@@ -225,10 +221,6 @@ Note that the cash point has only access to customer booking prices.
 
 `POST https://demo.gomus.de/api/v4/tours/bookings/:booking_id/prices`
 
-```shell
-curl "https://demo.gomus.de/api/v4/tours/bookings/1/prices"
-```
-
 > Write definition of order into /tmp/prices.json before executing shell command.
 
 ```shell
@@ -259,17 +251,13 @@ curl "https://demo.gomus.de/api/v4/tours/bookings/1/prices"
  }
 ```
 
-The response will an http ok or an error.
+The response will contain a http ok or an error.
 
 ### Updating prices
 
 Custom prices can be updated like this:
 
 `PUT https://demo.gomus.de/api/v4/tours/bookings/:booking_id/prices/:id`
-
-```shell
-curl "https://demo.gomus.de/api/v4/tours/bookings/1/prices/9998"
-```
 
 > Write definition of order into /tmp/price_update.json before executing shell command.
 
@@ -294,3 +282,20 @@ curl "https://demo.gomus.de/api/v4/tours/bookings/1/prices/9998"
 }
 ```
 The response will contain the updated price object or an error.
+
+### Deleting prices
+
+A custom price can be updated like this:
+
+`DELETE https://demo.gomus.de/api/v4/tours/bookings/:booking_id/prices/:id`
+
+
+```shell
+curl "https://demo.gomus.de/api/v4/tours/bookings/1/prices/9998"
+    -XDELETE
+    -H "Content-Type: application/json"
+    -H "Authorization: Bearer meowmeowmeow"
+```
+
+
+The response will contain a http ok or an error.
