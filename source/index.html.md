@@ -8,6 +8,9 @@ toc_footers:
 includes:
   - authentication
   - version
+  - public_api
+  - reseller_api
+  
 search: true
 ---
 
@@ -18,17 +21,11 @@ Welcome to the go~mus API documentation! You can use our API to access go~mus AP
 
 We have examples using curl! You can view code examples in the dark area to the right.
 
-# Public API
 
-The Public API provides public accessible information about museums, exhibitions, tours, events and tickets.
 
-See [detailed documentation on Public API](/public_api.html).
 
-# Reseller API
 
-The Reseller API allows you to directly sell products (events, tours and tickets) to customers using the go~mus API.
 
-See [detailed documentation on Reseller API](/reseller_api.html).
 
 
 
