@@ -89,6 +89,7 @@ curl "https://demo.gomus.de/api/v4/tours"
 - by_museum_ids (Array of museum ids), filter by museums, see museums section
 - by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section
 - by_categories (Array of category names), filter by categories, see categories section
+- by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)
 
 ### Available parameters:
 
