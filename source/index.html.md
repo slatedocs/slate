@@ -11,6 +11,7 @@ includes:
   - public_api
   - reseller_api
   - cash_point_api
+  - changelog
   
 search: true
 ---
