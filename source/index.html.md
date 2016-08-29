@@ -5,6 +5,8 @@ toc_footers:
   - <a href='https://gomus.de'>go~mus</a>
   - <a href='https://github.com/tripit/slate'>Documentation powered by Slate</a>
 
+includes:
+  - version
 search: true
 ---
 
