@@ -95,7 +95,7 @@ the decks' catalog.
     "index": {
         "https://beta.crunch.io/api/datasets/cc9161/decks/4fa25/": {
           "name": "Renamed deck",
-          "is_public": true,
+          "is_public": true
         }
     },
     "order": "https://beta.crunch.io/api/datasets/223fd4/decks/order/"
@@ -280,9 +280,11 @@ display | object | Stores settings used to load the analysis
 
 #### POST
 
-To create a new slide, POST an analysis to the slides catalog. The payload, described in the [below](#analyses) section, should be wrapped as a shoji:entity.
+To create a new slide, POST an analysis to the slides catalog. The payload,
+described in the [below](#analyses) section, should be wrapped as a shoji:entity.
 
-On success, the server returns a 201 response with a Location header containing the URL of the newly created slide entity.
+On success, the server returns a 201 response with a Location header containing
+the URL of the newly created slide entity with its first analysis.
 
 Only a `query` field is required to create a new slide; other attributes are optional.
 
@@ -307,7 +309,11 @@ The only editable attributes with this method are:
 
 Other attributes should be considered read-only.
 
-Submitting invalid attributes or references to other slides results in a 400 error response.
+Submitting invalid attributes or references to other slides results in a 400
+error response.
+
+To edit the first or any of the slide's analyses query attributes it is necessary
+to PATCH the individual analysis entity.
 
 ### Entity
 
@@ -409,7 +415,7 @@ exported, or the analysis can be reloaded in whole in the application or even
 exported as a standalone embeddable result.
 
 An analysis is defined by a _query_, _query environment_, and _display settings_.
-To save an analysis, `POST` these to a deck.
+To save an analysis, `POST` these to a deck as a new slide.
 
 <aside class="notice">
 Analysis queries are described in detail in the
@@ -451,8 +457,8 @@ Display settings should be objects with a `value` member.
             "value": "percent"
         },
         "uiView": {
-        	"value": "expanded"
-	    }
+            "value": "expanded"
+        }
     }
 }
 ```
