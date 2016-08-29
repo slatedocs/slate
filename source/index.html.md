@@ -18,7 +18,8 @@ search: true
 
 # Introduction
 
-Welcome to the go~mus API documentation! You can use our API to access go~mus API endpoints, which can get information on various entities in our database.
+Welcome to the go~mus API documentation! You can use our API to access go~mus API endpoints, which can get 
+information on various entities in our database.
 
 We have examples using curl! You can view code examples in the dark area to the right.
 
