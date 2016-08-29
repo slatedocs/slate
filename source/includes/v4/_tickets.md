@@ -54,6 +54,7 @@ curl "https://demo.gomus.de/api/v4/tickets"
 - locales are available with the `locale` parameter, see more in the locale section
 - by_museum_ids (Array of museum ids), filter by museums, see museums section
 - by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section
+- by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)
 
 ### Available parameters:
 
@@ -133,7 +134,7 @@ curl "https://demo.gomus.de/api/v4/tickets/1"
 
 ### Response
 
-The json response contains a ticket block with information for that  The information is the same as that of the tickets list response, but with the addition of a couple of keys.
+The json response contains a ticket block with information for that the information is the same as that of the tickets list response, but with the addition of a couple of keys.
 
 - after_sale_information (string), information to be shown after the sale of a ticket. Can contain html elements.
 - location, contains information about the location of the museum that the ticket belongs to.
@@ -169,7 +170,9 @@ curl "https://demo.gomus.de/api/v4/tickets/1/capacity"
 
 ```
 
-Using the json response on the right as an example, between 11.00 and 11.30 on the 6th July 2016, the maximum bookable quantity is 15. If only one available time slot is returned, as is the case for day tickets, the time range is up untill the end of the day.
+Using the json response on the right as an example, between 11.00 and 11.30 on the 6th July 2016, 
+the maximum bookable quantity is 15. If only one available time slot is returned, as is the case for day 
+tickets, the time range is up untill the end of the day. 
 
 ### Available parameters:
 
@@ -259,7 +262,8 @@ The maximum time frame is 31 days.
 
 ## Capacities for a set of tickets
 
-A ticket has one or more capacities. Each capacity is the maximum bookable quantity of the ticket for a specific range of time.
+A ticket has one or more capacities. Each capacity is the maximum bookable quantity of the ticket for a specific 
+range of time.
 
 `GET https://demo.gomus.de/api/v4/tickets/capacities`
 
@@ -299,11 +303,20 @@ curl "https://demo.gomus.de/api/v4/tickets/capacities"
     }
 }
 ```
-Tickets are assigned to (one or multiple) quotas and reduce each others capacity when ordered. As a result, capacity calculation becomes a little more complicated.
+Tickets are assigned to (one or multiple) quotas and reduce each others capacity when ordered. As a result, 
+capacity calculation becomes a little more complicated.
 
-For a single ticket the capacities are calculated for you, see the capacities of a ticket section above. For multiple tickets however, to avoid requesting new capacities for each quantity update, we provide the quota ids so that the new ticket capacities can be calculated in the browser.
+For a single ticket the capacities are calculated for you, see the capacities of a ticket section above. 
+For multiple tickets however, to avoid requesting new capacities for each quantity update, we provide the 
+quota ids so that the new ticket capacities can be calculated in the browser.
 
-For example, if two tickets reside in the same quota which has a capacity of 10 for a specific time, if 2 of one ticket is selected only 8 are available for the other.
+For example, if two tickets reside in the same quota which has a capacity of 10 for a specific time, 
+if 2 of one ticket is selected only 8 are available for the other.
+
+Note that for a set of tickets with each different entry durations the greatest common divisor of all entry
+durations is used as step size for the capacity time slots. If this is the case, you need to ensure you set
+the time for the ticket to a valid value (first_entry + n * entry_duration). For day tickets you need to set
+first_entry as time of booking. 
 
 ### Distinguishing unavailable and sold out tickets.
 

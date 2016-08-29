@@ -22,26 +22,6 @@ Remember — a happy api user is an authenticated api user!
 
 See [detailed documentation on Public API](/public_api.html) for information on how to request the basic data for events, tours and tickets.
 
-# Authentication
-
-> To authorize, use this code:
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: Bearer meowmeowmeow"
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-go~mus expects the API key to be included in all reseller API requests to the server in a header that looks like the following:
-
-`Authorization: Bearer meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
 
 # Orders
 
@@ -551,6 +531,7 @@ However, if the tour has scale pricing, then the quantities key is used instead:
 
 Surcharge configuration must be provided if tour is configured with surcharges (see tour section in the public api). The surcharge configuration is validated on server side.
 
+Note: the quantity or sum of quantities represents the number of participants (people in group)
 
 
 
