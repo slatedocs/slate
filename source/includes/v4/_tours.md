@@ -85,7 +85,7 @@ curl "https://demo.gomus.de/api/v4/tours"
 
 - a simple search is available with the `q` parameter, e.g. `?q=Modern`, see more in the search section
 - locales are available with the `locale` parameter, see more in the locale section
-- by_featured (Boolean, true|false), filter by featured flag
+- by_featured (Boolean, true|false, default: all), filter by featured flag
 - by_museum_ids (Array of museum ids), filter by museums, see museums section
 - by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section
 - by_categories (Array of category names), filter by categories, see categories section
