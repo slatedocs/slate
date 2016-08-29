@@ -551,6 +551,7 @@ However, if the tour has scale pricing, then the quantities key is used instead:
 
 Surcharge configuration must be provided if tour is configured with surcharges (see tour section in the public api). The surcharge configuration is validated on server side.
 
+Note: the quantity or sum of quantities represents the number of participants (people in group)
 
 
 
