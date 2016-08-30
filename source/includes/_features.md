@@ -70,7 +70,7 @@ ScoutProf is a BETA feature. To enable:
         <span class="step">1</span>
       </td>
       <td>
-        <p>Modify your <code>Gemfile</code> entry for <code>scout_apm</code>, changing it to: <code>gem 'scout_apm', '~> 2.2.x'</code></p>
+        <p>Modify your <code>Gemfile</code> entry for <code>scout_apm</code>, changing it to: <code>gem 'scout_apm', '~> 3.0.x'</code></p>
       </td>
     </tr>
     <tr>
