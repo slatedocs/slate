@@ -17,6 +17,7 @@ includes:
   - api/availableNumbers
   - api/bridges
   - api/calls
+  - api/conferences
 
 search: true
 ---

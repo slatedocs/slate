@@ -267,8 +267,8 @@ Gets information about an active or completed call. No query parameters are supp
 ```shell
 curl -v -X GET https://api.catapult.inetwork.com/v1/users/{userId}/calls/{callId} \
 	-u {token}:{secret} \
-	-H "Content-type: application/json" \
-	```
+	-H "Content-type: application/json"
+```
 
 ```js
 client.Call.get("{callId}")
@@ -730,7 +730,7 @@ client.Call.getGather("{callId}", "{gatherId}")
 Update the gather.
 <aside class="notice">
 The only update allowed is state:completed to stop the gather.
-<aside>
+</aside>
 
 ### Example: Stop the gather DTMF
 
