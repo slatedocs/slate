@@ -65,10 +65,9 @@ curl "https://demo.gomus.de/api/v4/events/123/dates/456/bookings"
             "id": 1221,
             "comment": null,
             "customer": {
-              ...
-            },
-            "institution": {
-              ...
+              "name": "Herr Bruce Wayne",
+              "category": "Superhero",
+              "insitution": "Wayne Industries"
             },
             "status": 20,
             "seats": 2,
@@ -77,7 +76,7 @@ curl "https://demo.gomus.de/api/v4/events/123/dates/456/bookings"
             "prices": [
                 {
                     "title": "Preis",
-                    "amount": 2,
+                    "quantity": 2,
                     "price_cents": 4,
                     "total_price_cents": 8
                 }
@@ -86,8 +85,11 @@ curl "https://demo.gomus.de/api/v4/events/123/dates/456/bookings"
         {
             "id": 1222,
             "comment": "Hinweis für die Kasse",
-            "customer": {},
-            "institution": {},
+            "customer": {
+              "name": "Herr Bruce Wayne",
+              "category": "Superhero",
+              "insitution": "Wayne Industries"
+            },
             "status": 20,
             "seats": 4,
             "created_at": "2016-08-30T13:07:31+02:00",
@@ -95,13 +97,13 @@ curl "https://demo.gomus.de/api/v4/events/123/dates/456/bookings"
             "prices": [
                 {
                     "title": "regulär",
-                    "amount": 2,
+                    "quantity": 2,
                     "price_cents": 4,
                     "total_price_cents": 8
                 },
                 {
                     "title": "ermäßigt",
-                    "amount": 2,
+                    "quantity": 2,
                     "price_cents": 3,
                     "total_price_cents": 6
                 }
@@ -111,10 +113,9 @@ curl "https://demo.gomus.de/api/v4/events/123/dates/456/bookings"
             "id": 1223,
             "comment": "Stornierung mit voller Gebühr",
             "customer": {
-              ...
-            },
-            "institution": {
-              ...
+              "name": "Herr Bruce Wayne",
+              "category": "Superhero",
+              "insitution": "Wayne Industries"
             },
             "status": 60,
             "seats": 2,
@@ -123,7 +124,7 @@ curl "https://demo.gomus.de/api/v4/events/123/dates/456/bookings"
             "prices": [
                 {
                     "title": "Storno-Preis",
-                    "amount": 1,
+                    "quantity": 1,
                     "price_cents": 28,
                     "total_price_cents": 28
                 }
@@ -138,8 +139,17 @@ curl "https://demo.gomus.de/api/v4/events/123/dates/456/bookings"
 }
 ```
 
-The result contains an array of bookings and a meta object.
+### Response
 
+The json response contains a list of existing bookings as an array and a meta block.
+
+- id (integer), the unique database id of the booking
+- customer (object), contains name, category and institution reference
+- comment (string) contains comment for cash point
+- status (integer, any of BOOKED=20, CANCELED=60)
+- seats (integer) number of booked seats
+- prices (array)
+    
 ## Tour bookings
 
 The cash point can access all individual tour bookings via the tours bookings endpoint.
@@ -169,14 +179,13 @@ curl "https://demo.gomus.de/api/v4/tours/bookings"
                 "tour_id": 100177,
                 "title": "Gruppenanmeldung"
             },
-            "comment_cash_point": "",
+            "comment": "",
             "status": 20,
-            "count_participants": 15,
+            "participants": 15,
             "customer": {
-              ...
-            },
-            "institution": {
-              ...
+                "name": "Herr Bruce Wayne",
+                "category": "Superhero",
+                "insitution": "Wayne Industries"
             },
             "created_at": "2016-04-28T13:03:30+02:00",
             "updated_at": "2016-04-28T13:07:02+02:00",
@@ -190,14 +199,13 @@ curl "https://demo.gomus.de/api/v4/tours/bookings"
                 "tour_id": 100178,
                 "title": "Gruppenführung"
             },
-            "comment_cash_point": "",
+            "comment": "",
             "status": 50,
-            "count_participants": 15,
+            "participants": 15,
             "customer": {
-              ...
-            },
-            "institution": {
-              ...
+                "name": "Herr Bruce Wayne",
+                "category": "Superhero",
+                "insitution": "Wayne Industries"
             },
             "created_at": "2016-04-28T13:05:40+02:00",
             "updated_at": "2016-08-19T12:07:04+02:00",
@@ -230,14 +238,10 @@ The json response contains a list of existing bookings as an array and a meta bl
 - start_time (iso8601), the booking's timestamp
 - duration (integer), duration in minutes
 - tour (object), contains information about the bookings tour
-
-- customer (object)
-- institution (object)
-
-- comment_cash_point (string)
-
-- status (string)
-- count_participants (string)
+- customer (object), contains name, category and institution reference
+- comment (string) contains comment for cash point
+- status (integer, any of BOOKED=20, CANCELED=50, FINISHED=25)
+- participants (integer)
 
 ### Details of a tour booking
 
@@ -260,14 +264,13 @@ curl "https://demo.gomus.de/api/v4/tours/bookings/1"
             "tour_id": 100177,
             "title": "Gruppenanmeldung"
         },
-        "comment_cash_point": "",
+        "comment": "",
         "status": 20,
-        "count_participants": 15,
+        "participants": 15,
         "customer": {
-          ...
-        },
-        "institution": {
-          ...
+            "name": "Herr Bruce Wayne",
+            "category": "Superhero",
+            "insitution": "Wayne Industries"
         },
         "created_at": "2016-04-28T13:03:30+02:00",
         "updated_at": "2016-04-28T13:07:02+02:00",
@@ -278,7 +281,7 @@ curl "https://demo.gomus.de/api/v4/tours/bookings/1"
                 "booking_id": 12345,
                 "title": "Entgelt",
                 "description": "Gruppenpreis",
-                "amount": 1,
+                "quantity": 1,
                 "price_cents": 0,
                 "total_price_cents": 0,
                 "type": "fee",
@@ -289,7 +292,7 @@ curl "https://demo.gomus.de/api/v4/tours/bookings/1"
                 "booking_id": 12345,
                 "title": "Zusätzlicher Pauschalpreis",
                 "description": "ein zusätzlicher Pauschalpreis",
-                "amount": 1,
+                "quantity": 1,
                 "price_cents": 9000,
                 "total_price_cents": 9000,
                 "type": "custom",
@@ -339,13 +342,13 @@ curl "https://demo.gomus.de/api/v4/tours/bookings/1/prices"
          {
              "title": "Zusätzlicher Pauschalpreis",
              "description": "ein zusätzlicher Pauschalpreis",
-             "amount": 1,
+             "quantity": 1,
              "price_cents": 9000
          },
          {
              "title": "Zusätzliche Audioguides",
              "description": "zusätzliche Audioguides",
-             "amount": 3,
+             "quantity": 3,
              "price_cents": 500
          }
      ]
@@ -377,7 +380,7 @@ curl "https://demo.gomus.de/api/v4/tours/bookings/1/prices/9998"
         {
             "title": "Pauschalpreis Update",
             "description": "hab mich vertippt",
-            "amount": 1,
+            "quantity": 1,
             "price_cents": 8000
        }
 }
