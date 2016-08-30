@@ -185,7 +185,7 @@ html, body {
     background-color: $nav-subitem-bg;
     font-weight: 500;
     .tocify-item>a {
-      padding-left: $nav-padding + $nav-indent;
+      padding-left: $nav-padding + $nav-indent * 2;
       font-size: 12px;
     }
 

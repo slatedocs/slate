@@ -202,6 +202,7 @@ client.Bridge.get('brg-65dhmbasiei',
 ```
 
 > The above command returns JSON structured like this:
+
 ```
 {
   "id": "{bridgeId}",
@@ -226,3 +227,175 @@ Change calls in a bridge and bridge/unbridge the audio.
 ### Example: Bridging the audio again
 
 ### Example: Removing all calls from bridge.
+
+## POST bridges/{bridgeId}/audio
+
+Play an audio file or speak a sentence in a bridge.
+
+### Supported Parameters
+
+| Parameter | Description                                                                                                                                                                                                                                                                                                                                                                                     | Mandatory |
+|:----------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------|
+| fileUrl   | The location of an audio file to play (WAV and MP3 supported).                                                                                                                                                                                                                                                                                                                                  | No        |
+| sentence  | The sentence to speak.                                                                                                                                                                                                                                                                                                                                                                          | No        |
+| gender    | The gender of the voice used to synthesize the sentence. It will be considered only if sentence is not null. The female gender will be used by default.                                                                                                                                                                                                                                         | No        |
+| locale    | The locale used to get the accent of the voice used to synthesize the sentence. Currently audio supports: <br> - en\_US or en\_UK (English) <br> - es or es\_MX (Spanish) <br> - fr or fr\_FR (French) <br> - de or de\_DE (German) <br> - t or it\_IT (Italian) It will be considered only if sentence is not null/empty. The en\_US will be used by default.                                  | No        |
+| voice     | The voice to speak the sentence. Audio currently supports the following voices: <br> - English US: Kate, Susan, Julie, Dave, Paul <br> - English UK: Bridget <br> - Spanish: Esperanza, Violeta, Jorge <br> - French: Jolie, Bernard <br> - German: Katrin, Stefan <br> - Italian: Paola, Luca It will be considered only if sentence is not null/empty. Susan’s voice will be used by default. | No        |
+
+### Example: Play an Audio file
+
+```shell
+curl -v -X POST https://api.catapult.inetwork.com/v1/users/{userId}/bridges/{bridgeId}/audio \
+	-u {token}:{secret} \
+	-H "Content-type: application/json" \
+	-d '{"fileUrl": "http://example.com/audio.mp3"}'
+```
+
+```js
+//Play Audio file on bridge
+
+//Promise
+client.Bridge.playAudioFile("bridgeID", "http://myurl.com/file.mp3").then(function (res) {});
+
+//Callback
+client.Bridge.playAudioFile("bridgeID", "http://myurl.com/file.wav", function (err, res) {});
+```
+
+### Example: Stop an Audio File Playing
+```shell
+curl -v -X POST https://api.catapult.inetwork.com/v1/users/{userId}/bridges/{bridgeId}/audio \
+	-u {token}:{secret} \
+	-H "Content-type: application/json" \
+	-d '{"fileUrl": ""}'
+```
+
+```js
+// coming soon in the mean time:
+//Stop Audio file on bridge
+
+//Promise
+client.Bridge.playAudioFile("bridgeID", "").then(function (res) {});
+
+//Callback
+client.Bridge.playAudioFile("bridgeID", "", function (err, res) {});
+```
+
+
+### Example: Speak a Sentence
+```shell
+curl -v -X POST https://api.catapult.inetwork.com/v1/users/{userId}/bridges/{bridgeId}/audio \
+	-u {token}:{secret} \
+	-H "Content-type: application/json" \
+	-d \
+	'
+	{
+		"gender": "female",
+		"sentence": "Hello, thank you for calling.",
+		"locale": "en_US",
+		"voice": "julie"
+	}'
+```
+
+```js
+//Speak sentence with options
+var options = {
+	sentence : "hola de Bandwidth",
+	gender   : "male",
+	locale   : "es",
+	voice    : "Jorge"
+}
+//Promise
+client.Bridge.playAudioAdvanced("bridgeId", options).then(function (res) {});
+
+//Callback
+client.Bridge.playAudioAdvanced("bridgeId", options, function (err,res) {});
+
+//Speak sentence in a bridge
+
+//Promise
+client.Bridge.speakSentence("bridgeID", "Hello From Bandwidth").then(function (res) {});
+
+//Callback
+client.Bridge.speakSentence("bridgeID", "Hello From Bandwidth", function (err, res) {});
+```
+
+### Example: Stop a Sentence
+```shell
+curl -v -X POST https://api.catapult.inetwork.com/v1/users/{userId}/bridges/{bridgeId}/audio \
+	-u {token}:{secret} \
+	-H "Content-type: application/json" \
+	-d '{"sentence": ""}'
+```
+
+```js
+// coming soon
+//Speak sentence in a bridge
+
+//Promise
+client.Bridge.speakSentence("bridgeID", "").then(function (res) {});
+
+//Callback
+client.Bridge.speakSentence("bridgeID", "", function (err, res) {});
+```
+
+## GET bridges/{bridgeId}/calls
+
+Get the list of calls that are on the bridge.
+
+```shell
+curl -v -X GET https://api.catapult.inetwork.com/v1/users/{userId}/bridges/{bridgeId}/calls \
+	-u {token}:{secret} \
+	-H "Content-type: application/json" \
+```
+
+```js
+//Promise
+client.Bridge.getCalls('brg-65dhjbiei')
+.then(function (response) {
+	console.log(response);
+});
+
+//Callback
+client.Bridge.getCalls('brg-65dhjrmbasiei',
+	function (err, response) {
+		if(err) {
+			console.log(err);
+		}
+		else {
+			console.log(response);
+		}
+	});
+  ```
+
+  > The above command returns JSON structured like this:
+
+```
+[
+    {
+        "activeTime": "2013-05-22T19:49:39Z",
+        "direction": "out",
+        "from": "{fromNumber}",
+        "id": "{callId1}",
+        "bridgeId": "{bridgeId}",
+        "startTime": "2013-05-22T19:49:35Z",
+        "state": "active",
+        "to": "{toNumber1}",
+        "recordingEnabled": false,
+        "events": "https://api.catapult.inetwork.com/v1/users/{userId}/calls/{callId1}/events",
+        "bridge": "https://api.catapult.inetwork.com/v1/users/{userId}/bridges/{bridgeId}"
+    },
+    {
+        "activeTime": "2013-05-22T19:50:16Z",
+        "direction": "out",
+        "from": "{fromNumber}",
+        "id": "{callId2}",
+        "bridgeId": "{bridgeId}",
+        "startTime": "2013-05-22T19:50:16Z",
+        "state": "active",
+        "to": "{toNumber2}",
+        "recordingEnabled": false,
+        "events": "https://api.catapult.inetwork.com/v1/users/{userId}/calls/{callId2}/events",
+        "bridge": "https://api.catapult.inetwork.com/v1/users/{userId}/bridges/{bridgeId}"
+    }
+]
+```

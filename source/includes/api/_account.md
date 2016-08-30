@@ -89,7 +89,7 @@ client.Account.get(function(err, info){});
 | size      | Used for pagination to indicate the size of each page requested for querying a list of transactions. If no value is specified the default value is 25 (maximum value 1000). | No        |
 | number    | Return only transactions that are from the specified number. (coming soon)                                                                                                  | No        |
 
-## Example: Get transactions
+### Example: Get transactions
 
 ```shell
 curl -v -X GET  https://api.catapult.inetwork.com/v1/users/{user-id}/account/transations \
@@ -139,7 +139,7 @@ client.Account.getTransactions()
 ]
 ```
 
-## Example: Get transactions by date
+### Example: Get transactions by date
 ```shell
 curl -v -X GET  https://api.catapult.inetwork.com/v1/users/{user-id}/account/transations?fromDate=2013-02-21T13:38:00 \
   -u {token}:{secret} \
@@ -183,7 +183,7 @@ client.Account.getTransactions(params)
 ]
 ```
 
-## Example: Get transactions filtering by date
+### Example: Get transactions filtering by date
 
 ```shell
 curl -v -X GET  https://api.catapult.inetwork.com/v1/users/{user-id}/account/transations?toDate=2013-02-21T13:40:00&fromDate=2013-02-21T13:38:00 \
@@ -230,7 +230,7 @@ client.Account.getTransactions(params)
 ```
 
 
-## Example: Get transactions limiting result
+### Example: Get transactions limiting result
 
 ```shell
 curl -v -X GET  https://api.catapult.inetwork.com/v1/users/{user-id}/account/transations?maxItems=1 \
@@ -275,7 +275,7 @@ client.Account.getTransactions(params)
 ]
 ```
 
-## Example: Get transactions of payment type
+### Example: Get transactions of payment type
 
 ```shell
 curl -v -X GET  https://api.catapult.inetwork.com/v1/users/{user-id}/account/transations?type=Payment \
