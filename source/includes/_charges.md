@@ -40,6 +40,7 @@ EXEMPLO
     "payer_city": "Rio de Janeiro",
     "payer_state": "RJ",
     "registration_status": "without_remittance",
+    "canceled_at": "2015-01-31T17:46:01.253Z",
     "_links":
       [
         {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/charges/1"},
@@ -48,7 +49,8 @@ EXEMPLO
         {"rel":"receive","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/receive"},
         {"rel":"deliver","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/deliver_billet"},
         {"rel":"charge_config","method":"GET","href":"https://app.cobrato.com/api/v1/charge_configs/1"},
-        {"rel":"billet","method":"GET","href":"https://app.cobrato.com/api/v1/charges/1/billet"}
+        {"rel":"billet","method":"GET","href":"https://app.cobrato.com/api/v1/charges/1/billet"},
+        {"rel":"cancel","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/cancel"}
       ]
   }
 ```
@@ -98,7 +100,8 @@ Cada uma das cobranças criadas após a homologação serão do mesmo tipo da co
 | payer_zipcode                  | string           | cep do endereço do pagador                                                                                                                          |
 | payer_city                     | string           | cidade do endereço do pagador                                                                                                                       |
 | payer_state                    | string           | sigla do estado do endereço do pagador ("RJ" por exemplo)                                                                                           |
-| registration_status            | string           | status de registro em que a cobrança se encontra (without_remittance, remitted, registered, registered_with_error)                                  |
+| registration_status            | string           | status de registro em que a cobrança se encontra (without_remittance, remitted, registered, registered_with_error, cancelation_started, canceled)   |
+| canceled_at                    | datetime         | data e horário em que a cobrança foi cancelada, se for o caso                                                                                       |
 | _links                         | array of object  | links relacionados à cobrança                                                                                                                       |
 
 ### Gateway de Pagamento
@@ -134,6 +137,7 @@ As Cobranças tem o comportamento assíncrono em relação à comunicação com 
 | for_homologation               | boolean          | indica se é uma cobrança que foi criada com o objetivo de homologar uma Configuração de cobrança ou um Cartão de Crédito                      |
 | payment_gateway_status         | string           | status da cobrança em relação ao gateway de pagamento (pending, authorized, captured, canceled, authorize_error, capture_error, cancel_error) |
 | payment_gateway_message        | string           | mensagem do gateway de pagamento relacionada ao seu status                                                                                    |
+| canceled_at                    | datetime         | data e horário em que a cobrança foi cancelada, se for o caso                                                                                 |
 | _links                         | array of object  | links relacionados à cobrança                                                                                                                 |
 
 ## Informações da Cobrança
@@ -194,6 +198,7 @@ EXEMPLO DE CORPO DA RESPOSTA (BOLETO)
     "payer_city": "Rio de Janeiro",
     "payer_state": "RJ",
     "registration_status": "without_remittance",
+    "canceled_at": "2015-01-31T17:46:01.253Z",
     "_links":
       [
         {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/charges/1"},
@@ -202,7 +207,8 @@ EXEMPLO DE CORPO DA RESPOSTA (BOLETO)
         {"rel":"receive","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/receive"},
         {"rel":"deliver","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/deliver_billet"},
         {"rel":"charge_config","method":"GET","href":"https://app.cobrato.com/api/v1/charge_configs/1"},
-        {"rel":"billet","method":"GET","href":"https://app.cobrato.com/api/v1/charges/1/billet"}
+        {"rel":"billet","method":"GET","href":"https://app.cobrato.com/api/v1/charges/1/billet"},
+        {"rel":"cancel","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/cancel"}
       ]
   }
 ```
@@ -832,7 +838,7 @@ Envia o boleto da cobrança por email, gerando o mesmo caso necessário. É envi
 | to    | array of string | **(requerido)** emails que receberão o boleto ao invés dos emails cadastrados na cobrança |
 
 
-## Cancelar cobrança (Gateway de pagamento)
+## Cancelar cobrança
 
 ```shell
 Cancela Cobrança
