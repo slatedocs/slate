@@ -41,11 +41,108 @@ for events, tours and tickets against the orders end point.
 
 # Bookings
 
-The cash point is able to access the global booking lists to e.g. display a by day list on the screen.
+The cash point is able to access the global booking lists to e.g. display a by day list or the booking
+list for events.
+
+## Event bookings
+
+The bookings for event dates can be accessed via the date bookings endpoint:
+
+
+`GET https://demo.gomus.de/api/v4/events/:event_id/dates/:date_id/bookings`
+
+```shell
+curl "https://demo.gomus.de/api/v4/events/123/dates/456/bookings"
+```
+
+> The above command returns JSON structured like this:
+
+
+```json
+{
+    "bookings": [
+        {
+            "id": 1221,
+            "comment": null,
+            "customer": {
+              ...
+            },
+            "institution": {
+              ...
+            },
+            "status": 20,
+            "seats": 2,
+            "created_at": "2016-08-18T20:51:19+02:00",
+            "canceled_at": null,
+            "prices": [
+                {
+                    "title": "Preis",
+                    "amount": 2,
+                    "price_cents": 4,
+                    "total_price_cents": 8
+                }
+            ]
+        },
+        {
+            "id": 1222,
+            "comment": "Hinweis für die Kasse",
+            "customer": {},
+            "institution": {},
+            "status": 20,
+            "seats": 4,
+            "created_at": "2016-08-30T13:07:31+02:00",
+            "canceled_at": null,
+            "prices": [
+                {
+                    "title": "regulär",
+                    "amount": 2,
+                    "price_cents": 4,
+                    "total_price_cents": 8
+                },
+                {
+                    "title": "ermäßigt",
+                    "amount": 2,
+                    "price_cents": 3,
+                    "total_price_cents": 6
+                }
+            ]
+        },
+        {
+            "id": 1223,
+            "comment": "Stornierung mit voller Gebühr",
+            "customer": {
+              ...
+            },
+            "institution": {
+              ...
+            },
+            "status": 60,
+            "seats": 2,
+            "created_at": "2016-08-21T19:53:00+02:00",
+            "canceled_at": "2016-08-30T13:21:58+02:00",
+            "prices": [
+                {
+                    "title": "Storno-Preis",
+                    "amount": 1,
+                    "price_cents": 28,
+                    "total_price_cents": 28
+                }
+            ]
+        }
+    ],
+    "meta": {
+        "total_count": 3,
+        "page": 1,
+        "per_page": 25
+    }
+}
+```
+
+The result contains an array of bookings and a meta object.
 
 ## Tour bookings
 
-The cash point can access all individual tour bookings via the bookings endpoint.
+The cash point can access all individual tour bookings via the tours bookings endpoint.
 
 ### List of tour bookings
 
