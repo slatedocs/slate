@@ -299,3 +299,71 @@ curl "https://demo.gomus.de/api/v4/tours/bookings/1/prices/9998"
 
 
 The response will contain a http ok or an error.
+
+## Giving feedback
+
+The cash point is able to set a feedback for a tour booking, e.g. if it took place, how many participants took part
+and a generic comment.
+
+### Setting feedback
+
+`PUT https://demo.gomus.de/api/v4/tours/bookings/:id/feedback`
+
+> Write definition of order into /tmp/feedback.json before executing shell command.
+
+```shell
+curl "https://demo.gomus.de/api/v4/tours/bookings/1/feedback"
+    -XPUT --data "@/tmp/feedback.json"
+    -H "Content-Type: application/json"
+    -H "Authorization: Bearer meowmeowmeow"
+```
+
+> The above command assumes the prices.json JSON is structured like this:
+
+```json
+{
+	"feedback":
+		{
+			"comment": "eine tolle Führung, der Kunde war sehr zufrieden!",
+			"participants": "25",
+			"took_place": "true"
+		}
+}
+```
+
+The response will contain the feedback or an error.
+
+### Getting feedback
+
+Custom prices can be updated like this:
+
+`GET https://demo.gomus.de/api/v4/tours/bookings/:id/feedback`
+
+```json
+{
+    "feedback": {
+        "took_place": true,
+        "comment": "eine tolle Führung, der Kunde war sehr zufrieden!",
+        "participants": 25,
+        "updated_at": "2016-08-30T09:35:17+02:00"
+    }
+}
+```
+The response will contain the current feedback.
+
+### Clearing feedback
+
+The feedback can be cleared like this:
+
+`DELETE https://demo.gomus.de/api/v4/tours/bookings/:id/feedback`
+
+
+```shell
+curl "https://demo.gomus.de/api/v4/tours/bookings/:id/feedback"
+    -XDELETE
+    -H "Content-Type: application/json"
+    -H "Authorization: Bearer meowmeowmeow"
+```
+
+
+The response will contain a http ok or an error.
