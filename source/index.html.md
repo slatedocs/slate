@@ -15,6 +15,7 @@ includes:
   - api/account
   - api/applications
   - api/availableNumbers
+  - api/bridges
 
 search: true
 ---
