@@ -18,6 +18,15 @@ includes:
   - api/bridges
   - api/calls
   - api/conferences
+  - api/domains
+  - api/endpoints
+  - api/errors
+  - api/media
+  - api/messages
+  - api/numberInfo
+  - api/phoneNumbers
+  - api/recordings
+  - api/transcriptions
 
 search: true
 ---
