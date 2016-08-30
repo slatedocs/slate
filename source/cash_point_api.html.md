@@ -184,6 +184,7 @@ curl "https://demo.gomus.de/api/v4/tours/bookings/1"
                 "amount": 1,
                 "price_cents": 0,
                 "total_price_cents": 0,
+                "type": "fee",
                 "created_at": "2016-04-28T13:04:17+02:00"
             },
             {
@@ -194,6 +195,7 @@ curl "https://demo.gomus.de/api/v4/tours/bookings/1"
                 "amount": 1,
                 "price_cents": 9000,
                 "total_price_cents": 9000,
+                "type": "custom",
                 "created_at": "2016-04-28T13:04:17+02:00"
             }
         ]
@@ -215,9 +217,11 @@ The json response contains details for a booking like in the list view, but with
 It is possible to add and update custom booking prices unless the booking has been payed already. It is not possible 
 to change the default prices but e.g. give a discount and add additional custom items.
 
-Note that the cash point has only access to customer booking prices.
+Note that the cash point has only access to customer booking prices and can change only custom type prices.
 
 ### Adding prices
+
+Custom customer prices can be added like this:
 
 `POST https://demo.gomus.de/api/v4/tours/bookings/:booking_id/prices`
 
