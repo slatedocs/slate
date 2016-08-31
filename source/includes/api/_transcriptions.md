@@ -82,7 +82,7 @@ client.Recording.getTranscription(recordingId, transcriptionId, function(err, tr
 }
 ```
 
-## recordings/{recording-id}/transcriptions
+## GET recordings/{recording-id}/transcriptions
 Get all the transcriptions that were made for the given recodingId
 
 ### Example: Get all the transcriptions for a recording resource id
