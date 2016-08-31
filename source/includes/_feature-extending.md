@@ -35,8 +35,10 @@ HTTP/1.1 202 Accepted
 
 ```
 
+### Merging a subset of variables
+
 It is also possible to indicate which variables are desired to copy over instead
-of copying the full right dataset. To do so it is necessary to use a `select` 
+of copying the full right dataset. To do so it is necessary to use a `select`
 function expression over the right dataset. Will have this shape:
 
 ```http
@@ -83,3 +85,80 @@ HTTP/1.1 202 Accepted
 ```
 
 Personal variables will be ignored and not copied.
+
+### Merging a filtered dataset
+
+If a filter is necessary on the right dataset, it is possible to indicate it
+on the `adapt` expression so that only the selected rows will be brought over
+during the join. This can work in conjunction with selecting a subset of
+variables as well.
+
+To do so, it is necessary to add a `filter` attribute on the payload that can
+contain either a filter expression, wrapped under `{"expression": <expr>}` of
+an existing filter URL wrapped as `{"filter": <url>}` - Note that the filter
+must exist on the right dataset for its expression to match.
+
+Filtering with an expression:
+
+```http
+POST /datasets/{dataset_id}/variables/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "function": "adapt",
+    "args": [{
+        "dataset": "/datasets/{other_id}/"
+    }, {
+        "variable": "/datasets/{other_id}/variables/{right_key_id}/"
+    }, {
+        "variable": "/datasets/{dataset_id}/variables/{left_key_id}/"
+    }]
+    "filter": {
+        "expression": {
+            "function": "==",
+            "args": [
+                {"variable": {right_dataset_variable}},
+                {"value": <value>}
+            ]
+        }
+    }
+}
+```
+
+Filtering with a filter URL and selecting variables:
+
+```http
+POST /datasets/{dataset_id}/variables/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "function": "select",
+    "args": [{
+        "map": {
+            "{right_var1_id}/": {
+                "variable": "/datasets/{other_id}/variables/{right_var1_id}/"
+            },
+            "{right_var2_id}/": {
+                "variable": "/datasets/{other_id}/variables/{right_var2_id}/"
+            },
+            "{right_var3_id}/": {
+                "variable": "/datasets/{other_id}/variables/{right_var3_id}/"
+            }
+        }
+    }],
+    "frame": {
+        "function": "adapt",
+        "args": [{
+            "dataset": "/datasets/{other_id}/"
+        }, {
+            "variable": "/datasets/{other_id}/variables/{right_key_id}/"
+        }, {
+            "variable": "/datasets/{dataset_id}/variables/{left_key_id}/"
+        }]
+    },
+    "filter": {
+        "filter": "/datasets/{other_id}/filters/{filter_id}/"
+    }
+}
+```
+
