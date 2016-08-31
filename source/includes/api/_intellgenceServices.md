@@ -1,5 +1,10 @@
-# Intelligence Services
-Use number intelligence to block traffic from spammers and fraudsters. This feature is in beta. Early access will begin in Q3. Email signup@bandwidth.com to obtain early access.
+# Intelligence Services BETA
+Use number intelligence to block traffic from spammers and fraudsters. This feature is in beta.
+
+<aside class="success">
+Early access will begin in Q3. Email signup@bandwidth.com to obtain early access.
+</aside>
+
 
 ## Number Intelligence Properties
 
