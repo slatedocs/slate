@@ -290,3 +290,102 @@ retention_additional_information = SELECT
   WHERE
   id_retencion = ?
 </pre>
+
+
+
+## waybill.ini
+
+Guarda la configuración y queries para la extracción y emisisón electrónica de guías de remisión.
+<pre>
+
+[Query]
+headers = SELECT
+  id_guia_remision             id_local,
+  secuencial,
+  fecha_inicio_transporte,
+  fecha_fin_transporte,
+  direccion_partida,
+  clave_acceso,
+  tipo_emision
+  FROM
+  DocElectronicoGuiaRemision.cabecera
+  WHERE
+  id_guia_remision in (:sequence)
+  ORDER BY id_guia_remision :order
+
+waybill_seller  = SELECT
+  ruc,
+  obligado_contabilidad,
+  contribuyente_especial,
+  nombre_comercial,
+  razon_social,
+  direccion_establecimiento,
+  direccion_emisor,
+  codigo,
+  punto_emision
+  FROM
+  DocElectronicoGuiaRemision.cabecera
+  WHERE
+  id_guia_remision = ?
+
+waybill_shipper  = SELECT
+  identificacion,
+  tipo_identificacion,
+  razon_social,
+  direccion,
+  email,
+  telefono
+  FROM
+  DocElectronicoGuiaRemision.cabecera
+  WHERE
+  id_guia_remision = ?
+
+waybill_receivers  = SELECT
+    id_destinatario     receiver_id,
+    razon_social,
+    identificacion,
+    tipo_identificacion,
+    email,
+    telefono,
+    direccion,
+    ruta,
+    documento_aduanero_unico,
+    codigo_establecimiento_destino,
+    fecha_emision_documento_sustento,
+    numero_documento_sustento,
+    tipo_documento_sustento,
+    motivo_traslado,
+    numero_autorizacion_documento_sustento
+    FROM
+    DocElectronicoGuiaRemision.destinatario
+    WHERE
+    id_guia_remision = ?
+
+waybill_receiver_items = SELECT
+    id_detalle,
+    descripcion,
+    codigo_principal,
+    codigo_auxiliar,
+    cantidad
+    FROM
+    DocElectronicoGuiaRemision.detalle
+    WHERE
+    id_destinatario = ?
+
+item_details = SELECT
+  columna_de_nombres    _nombre_,
+  columna_de_valores   _valor_
+  FROM
+  DocElectronicoGuiaRemision.items_detalles_adicionales
+  WHERE
+  id_detalle = ?
+
+waybill_additional_information = SELECT
+  columna_de_nombres    _nombre_,
+  columna_de_valores     _valor_
+  FROM
+  DocElectronicoRetencion.informacion_adicional
+  WHERE
+  id_retencion = ?
+  
+</pre>

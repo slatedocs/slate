@@ -813,7 +813,7 @@ Campo | Tipo | Descripción
 razon_social | string | Razón social. Máximo 300 caracteres. __Requerido__
 identificacion | string | De 5 a 20 caracteres. __Requerido__
 tipo_identificacion | string | Ver [tabla](#tipo-de-identificaci-n) de tipos de identificación __Requerido__
-email | string | Correo electrónico. Máximo 300 caracteres. __Requerido__
+email | string | Correo electrónico. Máximo 300 caracteres. 
 telefono | string | Teléfono
 direccion | string | Dirección
 
@@ -1086,7 +1086,7 @@ identificacion | string | De 5 a 20 caracteres. __Requerido__
 tipo_identificacion | string | Ver [tabla](#tipo-de-identificaci-n) de tipos de identificación __Requerido__
 razon_social | string | Razón social. Máximo 300 caracteres. __Requerido__
 direccion | string | Dirección
-email | string | Correo electrónico. Máximo 300 caracteres. __Requerido__
+email | string | Correo electrónico. Máximo 300 caracteres.
 telefono | string | Teléfono
 
 
@@ -1156,6 +1156,255 @@ Campo | Tipo | Descripción
 ### Tablas recomendadas
 
 Estructura recomendada para las tablas o vistas con información de la retención. 
+
+Ejemplo en SQL Server:
+
+Pendiente
+
+
+
+
+## Guías de Remisión
+
+Los queries para la emisión electrónica de __guías de remisión__ se guardan en el archivo de configuración `waybill.ini`.
+
+[Ejemplo de archivo waybill.ini](/link-app#waybill-ini)
+
+### Cabecera
+
+Obtiene información de la cabecera de la guía de remisión
+
+```sql
+headers = SELECT
+  id_guia_remision             id_local,
+  secuencial,
+  fecha_inicio_transporte,
+  fecha_fin_transporte,
+  direccion_partida,
+  clave_acceso,
+  tipo_emision
+  FROM
+  DocElectronicoGuiaRemision.cabecera
+  WHERE
+  id_guia_remision in (:sequence)
+  ORDER BY id_guia_remision :order
+```
+
+Campo |  Descripción | Valor de ejemplo
+--------- | -----------| ---------
+id_local | string | Identifica de manera única la guía de remisión. __Requerido__
+secuencial | string  | Número de secuencia de la retención. __Requerido__
+fecha_inicio_transporte | string  | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
+fecha_fin_transporte | string  | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
+direccion_partida | string | Dirección de partida
+clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
+tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
+
+### Vendedor
+
+Obtiene información del vendedor en la guía de remisión
+
+```sql
+waybill_seller  = SELECT
+  ruc,
+  obligado_contabilidad,
+  contribuyente_especial,
+  nombre_comercial,
+  razon_social,
+  direccion_establecimiento,
+  direccion_emisor,
+  codigo,
+  punto_emision
+  FROM
+  DocElectronicoGuiaRemision.cabecera
+  WHERE
+  id_guia_remision = ?
+```
+
+Campo | Tipo | Descripción
+--------- | ------- | -----------
+ruc | string | Número de RUC de 13 caracteres. __Requerido__
+obligado_contabilidad | string | `'SI'` si está obligado a llevar contabilidad. `'NO'` si no lo está.
+contribuyente_especial | string | Número de resolución. En blanco `''` si no es contribuyente especial.
+nombre_comercial | string| Nombre comercial. Máximo 300 caracteres __Requerido__
+razon_social | string | Razón social. Máximo 300 caracteres __Requerido__
+direccion_establecimiento | string | Dirección registrada en el SRI. Máximo 300 caracteres. __Requerido__
+direccion_emisor | string | Dirección del punto de emisión. Máximo 300 caracteres. __Requerido__
+codigo | string | Código numérico de 3 caracteres que representa al establecimiento. Ejemplo: `001` __Requerido__
+punto_emision | string | Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: `001`. __Requerido__
+
+
+### Transportista
+
+Obtiene información del transportista en la guía de remisión
+
+```sql
+waybill_shipper  = SELECT
+  identificacion,
+  tipo_identificacion,
+  razon_social,
+  direccion,
+  email,
+  telefono
+  FROM
+  DocElectronicoGuiaRemision.cabecera
+  WHERE
+  id_guia_remision = ?
+```
+
+Campo | Tipo | Descripción
+--------- | ------- | -----------
+identificacion | string | De 5 a 20 caracteres. __Requerido__
+tipo_identificacion | string | Ver [tabla](#tipo-de-identificaci-n) de tipos de identificación __Requerido__
+razon_social | string | Razón social. Máximo 300 caracteres. __Requerido__
+direccion | string | Dirección
+email | string | Correo electrónico. Máximo 300 caracteres.
+telefono | string | Teléfono
+
+
+### Destinatarios
+
+Obtiene información de los destinatarios en la guía de remisión
+
+```sql
+waybill_receivers  = SELECT
+    id_destinatario     receiver_id,
+    razon_social,
+    identificacion,
+    tipo_identificacion,
+    email,
+    telefono,
+    direccion,
+    ruta,
+    documento_aduanero_unico,
+    codigo_establecimiento_destino,
+    fecha_emision_documento_sustento,
+    numero_documento_sustento,
+    tipo_documento_sustento,
+    motivo_traslado,
+    numero_autorizacion_documento_sustento
+    FROM
+    DocElectronicoGuiaRemision.destinatario
+    WHERE
+    id_guia_remision = ?
+```
+
+Campo | Tipo | Descripción
+--------- | ------- | -----------
+receiver_id | string | Identifica de manera única al destinatario en la guía de remisión. __Requerido__
+razon_social | string | Razón social del destinatario. Máximo 300 caracteres __Requerido__
+identificacion | string | De 5 a 20 caracteres. __Requerido__
+tipo_identificacion | string | Ver [tabla](#tipo-de-identificaci-n) de tipos de identificación __Requerido__
+email | string | Correo electrónico del destinatario. Máximo 300 caracteres.
+telefono | string | Teléfono del destinatario
+direccion | string | Dirección del destinatario
+ruta | string | Ruta de transporte. Máximo 300 caracteres.
+documento_aduanero_unico | string |  Máximo 20 caracteres.
+fecha_emision_documento_sustento | string  | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
+numero_documento_sustento | string | Número completo del documento que detalla la mercadería a transportar. Normalmente facturas. Ejm: 001-002-010023098
+codigo_establecimiento_destino | string | Número establecimiento que recibe la entrega.  __Requerido__
+fecha_emision_documento_sustento | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
+numero_documento_sustento | string | Número completo del documento que detalla la mercadería a transportar. Normalmente facturas. Ejm: 001-002-010023098 __Requerido__
+tipo_documento_sustento | string | tipo_documento_sustento | string | Códigos de [tipos de documentos](#tipos-de-documentos). __Requerido__
+motivo_traslado | string | Motivo del traslado. Ejm: Entrega de mercadería. __Requerido__
+numero_autorizacion_documento_sustento | string | Autorización del documento de sustento.
+
+### Items del destinatario
+
+Obtiene la información de los items que recibirá el destinatario
+
+```sql
+waybill_receiver_items = SELECT
+    id_detalle,
+    descripcion,
+    codigo_principal,
+    codigo_auxiliar,
+    cantidad
+    FROM
+    DocElectronicoGuiaRemision.detalle
+    WHERE
+    id_destinatario = ?
+
+```
+
+
+Campo | Tipo | Descripción
+--------- | ------- | -----------
+id_detalle | string | Identifica de manera única el ítem o detalle de la factura. Si no hay un solo campo que lo identifique de manera única se debe usar la concatenación de varios.__Requerido__
+descripcion | string | Descripción del ítem. __Requerido__
+codigo_principal | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres. __Requerido__
+codigo_auxiliar | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
+cantidad | float | Cantidad de items. __Requerido__
+
+
+### Detalles adicionales de items
+
+Obtiene los detalles adicionales de un ítem. Este query es opcional.
+
+Los detalles adicionales de un ítem se manejan de la forma 'Clave':'Valor'. Ejemplo: 'Peso':'Kg'
+
+Se asume que en la tabla consultada
+una columna tiene los nombres y otra los valores.
+
+Ejemplo de columnas con detalles adicionales del ítem:
+
+columna_de_nombres  |  columna_de_valores
+-------------------- | --------------
+Peso        |   KG
+Color           |   Rojo
+Caducidad                 |   10 días
+
+```sql
+item_details = SELECT
+  columna_de_nombres    _nombre_,
+  columna_de_valores   _valor_
+  FROM
+  DocElectronicoGuiaRemision.items_detalles_adicionales
+  WHERE
+  id_detalle = ?
+```
+
+Campo | Tipo | Descripción
+--------- | ------- | -----------
+nombre | string | Nombre del detalle adicional del ítem
+valor | string | Valor del detalle adicional del ítem
+
+
+### Información adicional
+
+Obtiene la información adicional de la guía de remisión.
+
+La información adicional de la guía de remisión se maneja de la forma 'Clave':'Valor'. Ejemplo: 'Tipo de pago':'Cheque'
+
+Se asume que en la tabla consultada
+una columna tiene los nombres y otra los valores.
+
+Ejemplo de columnas con información adicional de la guía de remisión:
+
+columna_de_nombres  |  columna_de_valores
+-------------------- | --------------
+Tipo de servicio        |   Avanzado
+Forma de pago           |   Cheque
+Periodo                 |   3 meses
+
+```sql
+waybill_additional_information = SELECT
+  columna_de_nombres    _nombre_,
+  columna_de_valores     _valor_
+  FROM
+  DocElectronicoRetencion.informacion_adicional
+  WHERE
+  id_retencion = ?
+```
+
+Campo | Tipo | Descripción
+--------- | ------- | -----------
+`_nombre_` | string | Nombre de la información adicional de la rentención
+`_valor_` | string | Valor de la información adicional de la retención
+
+### Tablas recomendadas
+
+Estructura recomendada para las tablas o vistas con información de la guía de remisión. 
 
 Ejemplo en SQL Server:
 
