@@ -154,11 +154,28 @@ http://tools.brightlocal.com/seo-tools/api/v2/cb/upload/5533/logo
             "notes": "Bingplaces will send you verification PIN at your registered postal address.",
             "no_update": "Y",
             "no_photos": "Y",
+            "part_of_yext_network": "Y",
             "quick_listing": "N",
             "secondary_campaign_id": "b",
             "status": "To Do"
         }
-    }
+    },
+    "aggregators": [
+        {
+            "citation" : "factual",
+            "domain_authority": "N/A",
+            "type": "Aggregators",
+            "phone_verification": "N/A",
+            "client_verification": "N/A",
+            "notes": "Factual will only contact the business if key data doesn’t align",
+            "no_update": "N/A",
+            "no_photos": "N/A",
+            "part_of_yext_network": "N/A",
+            "quick_listing": "N/A",
+            "secondary_campaign_id": "b",
+            "status": "To Do"
+        }
+    ]
 }
 ```
 
@@ -207,9 +224,11 @@ api-key	| <span class="label label-required">Required</span>
 sig	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 campaign_id	| <span class="label label-required">Required</span>	
-package_id | <span class="label label-required">Required</span> CB package id corresponding to the number of ordered credits: 'cb10' for 10 citations, 'cb15' for 15, then 25, 30, 50, 75, 100 
+package_id | <span class="label label-required">Required</span> CB package id corresponding to the number of ordered credits: 'cb10' for 10 citations, 'cb15' for 15, then 25, 30, 50, 75, 100. To use only aggregators and ignore citations or package_id, please use 'cb0' package only. 
 autoselect | String. Possible values 'N' or 'Y'. Default 'N'.
-citations | <span class="label label-required">Required</span> JSON Array. If autoselect is 'Y' parameter becomes non-required. List of sites you require listings for.
+citations | JSON Array. List of sites you require listings for. You can leave citations empty for auto selecting citations.
+remove-duplicates | String. Possible values 'N' or 'Y'. Default 'N'. Find and Remove Duplicate Listings
+aggregators | JSON Array. List of aggregators you require listings for. Possible values are 'factual', 'infogroup', 'neustar', 'axciom' for USA. The only possible value for all non USA countries is 'factual'.
 notes | Provide instructions to our submissions team with specifics about how you'd like your campaign handled.
 
 ## Get Campaigns
@@ -249,7 +268,24 @@ notes | Provide instructions to our submissions team with specifics about how yo
                         "citation_value": "High"
                     }
                 ],
-                "aggregators":  ["factual", "infogroup", "neustar", "axciom"]                              
+                "aggregators":  [
+				    {
+					    "name": "infogroup",
+					    "status": "Live",
+					    "site_type": "Aggregator",
+					    "citation_url": "infogroup.com",
+					    "domain_authority": "NA",
+					    "citation_value": "NA"
+				    },
+				    {
+					    "name": "factual",
+					    "status": "Updated",
+					    "site_type": "Aggregator",
+					    "citation_url": "factual.com",
+					    "domain_authority": "NA",
+					    "citation_value": "NA"
+				    }
+			    ]                
             }
         ]
     }
@@ -298,23 +334,40 @@ location-id |
             ],
             "citations":  [
                 {
-                "site": "ezlocal.com",
-                "type": "General Directory",
-                "domain_authority": "< 10/100",
-                "status": "To Do",
-                "link": "",
-                "notes": "Site issues a temporary password for accessing account - check email account post submission."
+                    "site": "ezlocal.com",
+                    "type": "General Directory",
+                    "domain_authority": "< 10/100",
+                    "status": "To Do",
+                    "link": "",
+                    "notes": "Site issues a temporary password for accessing account - check email account post submission."
                 },
                 {
-                "site": "insiderpages.com",
-                "type": "General Directory",
-                "domain_authority": "< 10/100",
-                "status": "To Do",
-                "link": "",
-                "notes": ""
+                    "site": "insiderpages.com",
+                    "type": "General Directory",
+                    "domain_authority": "< 10/100",
+                    "status": "To Do",
+                    "link": "",
+                    "notes": ""
                 }
             ],
-            "aggregators":  ["factual", "infogroup", "neustar", "axciom"],              
+            "aggregators":  [
+				{
+					"site": "infogroup",
+					"type": "Aggregator",
+					"domain_authority": "NA",
+					"status": "To Do",
+					"link": "www.dropbox.com/short-url",
+					"notes": "Site issues a temporary password for accessing account - check email account post submission."
+				},
+				{
+					"site": "factual",
+					"type": "Aggregator",
+					"domain_authority": "NA",
+					"status": "To Do",
+					"link": "",
+					"notes": ""
+				}
+			],            
             "location_id": 1,
             "urls": {
                 "interactive_url": "https:\/\/tools.brightlocal.com\/seo-tools\/admin\/cb\/campaign\/view\/5",
