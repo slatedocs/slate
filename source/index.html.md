@@ -4,7 +4,6 @@ title: Bandwidth API Docs
 language_tabs:
   - shell: curl
   - javascript: NodeJS
-  - csharp
 
 toc_footers:
   - <a href='http://bandwidth.com/products/application-platform/?utm_medium=social&utm_source=docs&utm_campaign=dtolb&utm_content=_'>Sign up for Bandwidth</a>
