@@ -106,7 +106,7 @@ client.Recording.getTranscriptions(recordingId, function(err, transcriptions){})
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
     {
         "chargeableDuration": 60,

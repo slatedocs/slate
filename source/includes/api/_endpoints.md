@@ -73,7 +73,7 @@ client.Endpoint.list("domainId" {size: 1000}, function (err, res) {});
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
 {
 	"name" : "jsmith-mobile",

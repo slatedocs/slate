@@ -77,7 +77,7 @@ client.Call.list()
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
 	{
 		"id": "{callId1}",
@@ -131,7 +131,7 @@ client.Call.list({
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
 	{
 		"id": "{callId1}",
@@ -494,7 +494,7 @@ client.Call.getEvents(callId, function (err, events) {});
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
 	{
 		"id": "{callEventId1}",
@@ -510,13 +510,13 @@ client.Call.getEvents(callId, function (err, events) {});
 		"id": "{callEventId3}",
 		"time": "2012-09-19T13:55:45.583Z",
 		"name": "CHANNEL_EXECUTE",
-		"data": "{"applicationName":"park"}"
+		"data": "{\"applicationName\":\"park\"}"
 	},
 	{
 		"id": "{callEventId4}",
 		"time": "2012-09-19T13:55:51.283Z",
 		"name": "CHANNEL_EXECUTE",
-		"data": "{"applicationName":"playback","applicationData":"test.mp3"}"
+		"data": "{\"applicationName\":\"playback\",\"applicationData\":\"test.mp3\"}"
 	},
 	{
 		"id": "{callEventId5}",
@@ -534,7 +534,7 @@ client.Call.getEvents(callId, function (err, events) {});
 		"id": "{callEventId7}",
 		"time": "2012-09-19T13:55:55.503Z",
 		"name": "CHANNEL_EXECUTE_COMPLETE",
-		"data": "{"applicationName":"playback","applicationData":"test.mp3"}"
+		"data": "{\"applicationName\":\"playback\",\"applicationData\":\"test.mp3\"}"
 	},
 	{
 		"id": "{callEventId8}",
@@ -546,7 +546,7 @@ client.Call.getEvents(callId, function (err, events) {});
 		"id": "{callEventId9}",
 		"time": "2012-09-19T13:55:58.343Z",
 		"name": "CHANNEL_EXECUTE_COMPLETE",
-		"data": "{"applicationName":"playback","applicationData":"test.mp3"}"
+		"data": "{\"applicationName\":\"playback\",\"applicationData\":\"test.mp3\"}"
 	}
 ]
 ```
@@ -599,10 +599,7 @@ client.Call.getRecordings(callId, function (err, list) {});
 
 > The above command returns JSON structured like this:
 
-```
-GET /v1/{userId}/calls/{callId}/recordings
-HTTP/1.1 200 OK
-
+```json
 [
 	{
 		"endTime": "2013-02-08T12:06:55.007Z",

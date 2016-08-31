@@ -116,7 +116,7 @@ client.Account.getTransactions()
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
   {
     "id": "{transactionId1}",
@@ -169,7 +169,7 @@ client.Account.getTransactions(params)
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
   {
     "id": "{transactionId}",
@@ -215,7 +215,7 @@ client.Account.getTransactions(params)
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
   {
     "id": "{transactionId}",
@@ -261,7 +261,7 @@ client.Account.getTransactions(params)
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
   {
     "id": "{transactionId}",
@@ -306,7 +306,7 @@ client.Account.getTransactions(params)
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
   {
     "id": "{transactionId1}",

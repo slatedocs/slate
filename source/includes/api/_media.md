@@ -26,7 +26,7 @@ then(function (media) {
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
   {
     "contentLength": 561276,

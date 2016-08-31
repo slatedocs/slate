@@ -49,7 +49,7 @@ client.PhoneNumber.list({size: 1000}, function(err, numbersResponse){});
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
 {
    "id": "{numberId1}",

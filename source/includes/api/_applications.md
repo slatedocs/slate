@@ -51,7 +51,7 @@ client.Application.list()
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
   {
     "id": "{applicationId}",

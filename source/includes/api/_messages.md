@@ -104,6 +104,9 @@ curl -v -X GET https://api.catapult.inetwork.com/v1/users/{userId}/messages \
 
 ```
 HEADER: <https://api.catapult.inetwork.com/v1/users/u-dkjf9094802375s/messages?sortKeyLT=1458576004287000989&size=1>; rel="next"
+```
+
+```json
 
 [
 	{
@@ -169,7 +172,7 @@ curl -v -X GET https://api.catapult.inetwork.com/v1/users/{userId}/messages?from
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
 	{
 		"id": "{messageId1}",
@@ -210,7 +213,7 @@ curl -v -X GET https://api.catapult.inetwork.com/v1/users/{userId}/messages?from
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
 	{
 		"id": "{messageId1}",

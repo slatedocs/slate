@@ -53,7 +53,7 @@ client.Recording.list({}, function (err, recordings) {
 ```
 > The above command returns JSON structured like this:
 
-```
+```json
 [
 {
     "endTime": "2013-02-08T13:17:12.181Z",

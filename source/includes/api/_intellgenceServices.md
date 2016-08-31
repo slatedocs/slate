@@ -39,7 +39,7 @@ curl -v -X GET  https://api.catapult.inetwork.com/v1/users/{user-id}/intelligenc
 
 > The above command returns JSON structured like this:
 
- ```
+ ```json
 [
 	{
 		"number":"5554446666",
