@@ -13,8 +13,8 @@ The Crunch API consists of just a few primitive objects, arranged differently fo
 ### Shoji entity
 
 A Shoji entity is identified by the `element` key having value `shoji:entity`.
-Its principal attribute is the `body` key wich is an object containing the
-attributes that describe such entity.
+Its principal attribute is the `body` key, which is an object containing the
+attributes that describe the entity.
 
 ### Shoji Catalog
 
