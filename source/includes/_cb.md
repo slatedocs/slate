@@ -154,11 +154,28 @@ http://tools.brightlocal.com/seo-tools/api/v2/cb/upload/5533/logo
             "notes": "Bingplaces will send you verification PIN at your registered postal address.",
             "no_update": "Y",
             "no_photos": "Y",
+            "part_of_yext_network": "Y",
             "quick_listing": "N",
             "secondary_campaign_id": "b",
             "status": "To Do"
         }
-    }
+    },
+    "aggregators": [
+        {
+            "citation" : "factual",
+            "domain_authority": "N/A",
+            "type": "Aggregators",
+            "phone_verification": "N/A",
+            "client_verification": "N/A",
+            "notes": "Factual will only contact the business if key data doesn’t align",
+            "no_update": "N/A",
+            "no_photos": "N/A",
+            "part_of_yext_network": "N/A",
+            "quick_listing": "N/A",
+            "secondary_campaign_id": "b",
+            "status": "To Do"
+        }
+    ]
 }
 ```
 
