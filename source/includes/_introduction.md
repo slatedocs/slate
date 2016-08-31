@@ -4,12 +4,6 @@ Welcome to the Mifiel API! We at Mifiel provide a simple and robust RESTful API 
 
 Through Mifiel's API, you can easily manage documents and certificates within your Mifiel account.
 
-### Getting started
-
-To start using the API you will first need an _APP_ID_ and a _APP_SECRET_ which you can generate in [mifiel.com/access_tokens](https://www.mifiel.com/access_tokens).
-
-You will first need to create an account at [mifiel.com](https://www.mifiel.com) since the _APP_ID_ and _APP_SECRET_ will be linked to your account. 
-
 We have language bindings in **Shell**, **PHP**, **Ruby** and **Python**! You can view code examples on the right (switch between different programming languages using the tabs on top).
 
 ### API Versions
@@ -18,13 +12,23 @@ All API calls are versioned, and the current Mifiel API is v1.0. We will never i
 
 ### Sandbox enviroment
 
-Mifiel provides a sandbox environment where you can tests. Documents created in the sandbox mode are free of charge.
+For your convenience Mifiel offers a Sandbox environment where you can confidently test your code.
 
-For sandbox tests, just change the www.mifiel.com for sandbox.mifiel.com in every endpoint that you use.
+To start using the API in the **Sandbox** environment you need to first create an account at [sandbox.mifiel.com](https://sandbox.mifiel.com).
+
+Once you have an account you will need an _APP_ID_ and an _APP_SECRET_ which you can generate in [sandbox.mifiel.com/access_tokens](https://sandbox.mifiel.com/access_tokens).
+
+Just change the **www**.mifiel.com for **sandbox**.mifiel.com in every endpoint that you use.
 
 <aside class="warning">
   Documents signed in the Sandobox environment are legally invalid and should not be used for legal purposes.
 </aside>
+
+### Production enviroment
+
+To start using the API in the **Production** environment you need to first create an account at [mifiel.com](https://www.mifiel.com).
+
+Once you have an account you will need an _APP_ID_ and a _APP_SECRET_ which you can generate in [mifiel.com/access_tokens](https://www.mifiel.com/access_tokens).
 
 ## Mifiel-supported SDKs
 
