@@ -545,7 +545,11 @@ ScoutApm::Context.add(monthly_spend: current_org.monthly_spend) if current_org
 
 ## Environments
 
-It typically makes sense to treat each environment (production, staging, etc) as a separate application within Scout and ignore the development and test environments.
+It typically makes sense to treat each environment (production, staging, etc) as a separate application within Scout and ignore the development and test environments. Configure a unique app name for each environment as Scout aggregrates data by the app name.
+
+There are 2 approaches:
+
+### 1. Modifying your scout_apm.yml config file
 
 Here's an example `scout_apm.yml` configuration to achieve this:
 
@@ -570,6 +574,16 @@ test:
 staging:
   <<: *defaults
 ```
+
+### 2. Setting the SCOUT_NAME environment variable
+
+Setting the `SCOUT_NAME` and `SCOUT_MONITOR` environment variables will override settings settings your `scout_apm.yml` config file.
+
+To isolate data for a staging environment: `SCOUT_NAME="YOUR_APP_NAME (Staging)"`. 
+
+To disable monitoring: `SCOUT_MONITOR=false`.
+
+See the full list of [configuration options](#configuration-options).
 
 ## Disabling a Node
 
