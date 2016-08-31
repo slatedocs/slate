@@ -225,6 +225,7 @@ sig	| <span class="label label-required">Required</span> [See above for how to g
 expires	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 campaign_id	| <span class="label label-required">Required</span>	
 package_id | <span class="label label-required">Required</span> CB package id corresponding to the number of ordered credits: 'cb10' for 10 citations, 'cb15' for 15, then 25, 30, 50, 75, 100. To use only aggregators and ignore citations or package_id, please use 'cb0' package only. 
+autoselect | String. Possible values 'N' or 'Y'. Default 'N'.
 citations | JSON Array. List of sites you require listings for. You can leave citations empty for auto selecting citations.
 remove-duplicates | String. Possible values 'N' or 'Y'. Default 'N'. Find and Remove Duplicate Listings
 aggregators | JSON Array. List of aggregators you require listings for. Possible values are 'factual', 'infogroup', 'neustar', 'axciom' for USA. The only possible value for all non USA countries is 'factual'.
