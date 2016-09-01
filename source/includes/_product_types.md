@@ -165,20 +165,20 @@ __latest_software__ | The associated latest_software
 ### POST
      | value
  ----:|:---
-endpoint | `/v1/['table_name_plural']`
+endpoint | `/v1/product_types`
 method | `POST`
 url_params | <font color="DarkGray">N/A</font>
 query params | <font color="DarkGray">N/A</font>
-body | JSON-formatted dictionary with the details of the `['table_name_singular']` that you wish to create
+body | JSON-formatted dictionary with the details of the `product_type` that you wish to create
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `201`
 
 ### GET
      | value
  ----:|:---
-endpoint | `/v1/['table_name_plural']` or `/v1/['table_name_plural']/<['pk_name']>`
+endpoint | `/v1/product_types` or `/v1/product_types/<product_type_id>`
 method | `GET`
-url_params | `['pk_name']` <font color="DarkGray">_(['pk_type'])_</font>
+url_params | `product_type_id` <font color="DarkGray">_(int)_</font>
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>

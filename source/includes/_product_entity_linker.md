@@ -105,9 +105,9 @@ Relationship | Description
 ### GET
      | value
  ----:|:---
-endpoint | `/v1/['table_name_plural']` or `/v1/['table_name_plural']/<['pk_name']>`
+endpoint | `/v1/product_entity_linker` or `/v1/product_entity_linker/<product_entity_linker_id>`
 method | `GET`
-url_params | `['pk_name']` <font color="DarkGray">_(['pk_type'])_</font>
+url_params | `product_entity_linker_id` <font color="DarkGray">_(int)_</font>
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>

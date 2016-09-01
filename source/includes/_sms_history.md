@@ -115,9 +115,9 @@ Relationship | Description
 ### GET
      | value
  ----:|:---
-endpoint | `/v1/['table_name_plural']` or `/v1/['table_name_plural']/<['pk_name']>`
+endpoint | `/v1/sms_history` or `/v1/sms_history/<sms_history_id>`
 method | `GET`
-url_params | `['pk_name']` <font color="DarkGray">_(['pk_type'])_</font>
+url_params | `sms_history_id` <font color="DarkGray">_(int)_</font>
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>
