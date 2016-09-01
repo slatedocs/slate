@@ -9,7 +9,7 @@ The current version is v3.0, released ## August, 2016. Version 2.14 is available
 [![Build on .Net Core (Linux)](https://travis-ci.org/bandwidthcom/csharp-bandwidth.svg)](https://travis-ci.org/bandwidthcom/csharp-bandwidth)
 [![Coverage Status](https://coveralls.io/repos/github/bandwidthcom/csharp-bandwidth/badge.svg)](https://coveralls.io/github/bandwidthcom/csharp-bandwidth)
 
-[![github](http://docs.whitesourcesoftware.com/download/attachments/17989744/github_logo.png?version=1&modificationDate=1463491374000)](https://github.com/bandwidthcom/csharp-bandwidth/tree/v3-preview)
+[![github](images/github_logo.png)](https://github.com/bandwidthcom/csharp-bandwidth/tree/v3-preview)
 
 [Full API Reference](http://bwdemos.com/csharp-bandwidth/html/R_Project_API.htm)
 

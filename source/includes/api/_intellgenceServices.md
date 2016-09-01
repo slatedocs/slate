@@ -20,11 +20,6 @@ Early access will begin in Q3. Email signup@bandwidth.com to obtain early access
 
 ## GET intelligenceServices
 
-This resource will provide number intelligence data for the number provided.
-
-| `GET` | /v1/users/{user-id}/intelligenceServices/number/{number} |
-|-------|----------------------------------------------------------|
-
 ### Supported Parameters
 
 | PARAMETER  | DESCRIPTION                             | MANDATORY |

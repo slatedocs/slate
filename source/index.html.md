@@ -31,6 +31,23 @@ includes:
   - api/recordings
   - api/transcriptions
   - api/intellgenceServices
-
+  - apiCallbacks/callbacks
+  - apiCallbacks/sms
+  - apiCallbacks/mms
+  - apiCallbacks/answer
+  - apiCallbacks/audio
+  - apiCallbacks/timeout
+  - apiCallbacks/conf
+  - apiCallbacks/confAudio
+  - apiCallbacks/confMember
+  - apiCallbacks/confSpeak
+  - apiCallbacks/dtmf
+  - apiCallbacks/gather
+  - apiCallbacks/incomingCall
+  - apiCallbacks/hangup
+  - apiCallbacks/recording
+  - apiCallbacks/speak
+  - apiCallbacks/transcription
+  - errors
 search: true
 ---
