@@ -1,0 +1,7 @@
+version: "2"
+
+services:
+  docs:
+    image: kryptnostic/slate
+    ports:
+      - "4567:4567"
