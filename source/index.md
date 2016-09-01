@@ -24,6 +24,7 @@ includes:
   - endpoint-variable
   - endpoint-filter
   - endpoint-deck
+  - endpoint-geodata
   - endpoint-tabbook
   - endpoint-comparison
   - endpoint-version
