@@ -482,6 +482,12 @@ A 204 response will be returned on success.
 As analyses get added to a slide, they will be stored on a
 `shoji:order` resource.
 
+Like other order resources, it will expose a `graph` attribute that contains
+the list of created analyses having new ones added at the end.
+
+If an incomplete set of analyses is sent to the graph, the missing analyses
+will be added in arbitrary order.
+
 This is a flat order and does not allow nesting.
 
 ### Entity
