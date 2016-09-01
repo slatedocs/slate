@@ -3,8 +3,10 @@
 It is possible to copy over data from another dataset by joining them together.
 Doing so will join only non personal variables.
 
-To join and bring over the complete dataset it is necessary to POST an `adapt`
-function expression to the variables catalog endpoint.
+To join and bring over the right dataset it is necessary to POST an `adapt`
+function expression to the variables catalog endpoint. This will fire up an
+asynchronous task to add all the new variables in the current dataset.
+
 
 ```http
 POST /datasets/{dataset_id}/variables/ HTTP/1.1
@@ -22,7 +24,14 @@ Content-Type: application/json
 }
 
 -----
-HTTP/1.1 201 Created
+HTTP/1.1 202 Accepted
+
+
+{
+    "element": "shoji:view",
+    "self": "https://beta.crunch.io/api/datasets/{dataset_id}/variables/",
+    "value": "https://beta.crunch.io/api/progress/5be82a/"
+}
 
 ```
 
@@ -62,7 +71,14 @@ Content-Type: application/json
 }
 
 -----
-HTTP/1.1 201 Created
+HTTP/1.1 202 Accepted
+
+
+{
+    "element": "shoji:view",
+    "self": "https://beta.crunch.io/api/datasets/{dataset_id}/variables/",
+    "value": "https://beta.crunch.io/api/progress/5be82a/"
+}
 
 ```
 

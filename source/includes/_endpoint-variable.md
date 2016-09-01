@@ -278,7 +278,7 @@ After PUT any variable not present on any of the groups will always be appended
 
 Unlike the hierarchical order, the personal variable order returns different
 content per user.
-Each user can add variable references to it including personal variables and 
+Each user can add variable references to it including personal variables and
 will not be shared with other users.
 
 The personal variable order defaults to an empty Shoji order until each user
