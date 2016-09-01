@@ -511,7 +511,6 @@ weight_variables | array | Contains aliases of weight variables to start this da
 table | object | Metadata definition for the variables in the dataset
 
 
-
 ### Other catalogs
 
 In addition to `/datasets/`, there are a few other catalogs of datasets in the API:

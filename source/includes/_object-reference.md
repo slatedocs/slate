@@ -13,8 +13,8 @@ The Crunch API consists of just a few primitive objects, arranged differently fo
 ### Shoji entity
 
 A Shoji entity is identified by the `element` key having value `shoji:entity`.
-Its principal attribute is the `body` key wich is an object containing the 
-attributes that describe such entity.
+Its principal attribute is the `body` key, which is an object containing the
+attributes that describe the entity.
 
 ### Shoji Catalog
 
@@ -34,16 +34,16 @@ object.
 
 ### Shoji Order
 
-Shoji orders are identified by the `element` key having a value `shoji:order`. 
-Their principal attribute is the `graph` key which is an array containing the 
+Shoji orders are identified by the `element` key having a value `shoji:order`.
+Their principal attribute is the `graph` key which is an array containing the
 order of present resources.
 
-A shoji order may be associated to a catalog. In such case it will contain a 
-subset or totality of the entities present in the catalog. The catalog remains 
+A shoji order may be associated to a catalog. In such case it will contain a
+subset or totality of the entities present in the catalog. The catalog remains
 as the authoritative source of available entities.
- 
-Any entity not present on the order but present in the catalog should be 
-considered to belong at the bottom of the root of the graph in an arbitrary 
+
+Any entity not present on the order but present in the catalog should be
+considered to belong at the bottom of the root of the graph in an arbitrary
 order.
 
 ## Statistical data
@@ -194,13 +194,13 @@ The order of the array defines the order of the categories, and thus the order i
 ##### subvariables
 
 Multiple Response and Categorical Array variables contain an array of subvariable
- references. In the HTTP API, these are presented as URLs. To create a variable 
- of type "multiple_response" or "categorical_array", you must include a 
- "subvariables" member with an array of subvariable references. These variables 
+ references. In the HTTP API, these are presented as URLs. To create a variable
+ of type "multiple_response" or "categorical_array", you must include a
+ "subvariables" member with an array of subvariable references. These variables
  will become the subvariables in the new array variable.
 
 Like Categories, the array of subvariables within an array variable indicate
- the order in which they are presented; to reorder them, save a modified array 
+ the order in which they are presented; to reorder them, save a modified array
  of subvariable references.
 
 The shape of each subvariable member must contain a name and optionally an alias.
@@ -255,6 +255,7 @@ An object with various members to control the display of Variable data:
 * include_missing: For categorical types only. If true, include missing categories.
 * column_width: For "untyped" Variables only. The selected display width of column data, in pixels, or None.
 * include_noneoftheabove: For multipleresponse types only. If true, display a "none of the above" category in the requested summary or analysis.
+* geodata: A list of associations of a variable to Crunch geodatm entities. PATCH a variable entity amending the `view.geodata` in order to create, modify, or remove an association. An association is an object with required keys `geodatum`, `feature_key`, and optional `match_field`. The geodatum must exist; `feature_key` is the name of the property of each ‘feature’ in the geojson/topojson that corresponds to the `match_field` of the variable (perhaps a dotted string for nested properties; e.g. ”properties.postal-code”). By default, `match_field` is “name”: a categorical variable will match category names to the `feature_key` present in the given geodatum.
 
 ##### discarded
 
@@ -385,7 +386,7 @@ to compose an expression.
    * `~` invert
 
 ##### Builtin functions
-   
+
    * `bin` Return column's values broken into equidistant bins.
    * `bind` Return the given Frame materialized as an array.
    * `case` Evaluate the given conditions in order, selecting the corresponding choice.
@@ -429,7 +430,7 @@ to compose an expression.
    * `all_valid` Boolean array of rows where all of the subvariables are valid
    * `all_missing` Boolean array of rows where all of the subvariables are missing
    * `is_none_of_the_above` is none of the above
-    
+
 ##### Date Functions
 
    * `default_rollup_resolution` default_rollup_resolution
@@ -456,7 +457,7 @@ to compose an expression.
    * `cube_weighted_max`
    * `cube_weighted_min`
    * `top` Return the given (1D/1M) cube, filtered to its top N members.
-    
+
 ##### Variables searching functions
 
    * `identify` Return the set of variable ids which match the given criteria
@@ -471,7 +472,7 @@ to compose an expression.
    * `multitable` Return cubes for each target variable crossed by None + each template variable.
    * `transpose` Transpose the given cube, rearranging its (0-based) axes to the given order.
    * `stack` Return a cube of 1 more dimension formed by stacking the given array.
-    
+
 #### Filter terms
 
 Terms that refer to filters entities by URL are shorthand for the boolean expression stored in the entity. So, `{"filter": "../filters/59fc4d/"}` yields the Crunch expression contained in the Filter entity's "expression" attribute. Filter terms can be combined together with other expressions as well. For example, `{"function": "and", "args": [{"filter": "../filters/59fc4d/"}, {"function": "==", "args": [{"variable": "../variables/X/"}, {"value": 13}]}]}` would "and" together the boolean expression in filter 59fc4d with the `X == 13` expression.
