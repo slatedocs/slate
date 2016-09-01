@@ -7,14 +7,13 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __product_imei__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">__(primary key)__</font> | 
-__modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __analysis_timestamp__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __capacity_limit__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
 __current_enable_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
 __desired_enable_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
 __current_tamper_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
 __desired_tamper_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
-__device_key__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson">(unique)</font> | 
+__device_key__ <br><font color="DarkGray">_varchar(24)_</font> <font color="Crimson">(unique)</font> | 
 __<a href="/#hub">hub_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __imsi__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,unique)</font> | 
 __<a href="/#latest-connection">latest_connection_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
@@ -27,13 +26,13 @@ __<a href="/#software-l">software_lock</a>__ <br><font color="DarkGray">_int_</f
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
+__modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
 
 
 <br>
 
 Relationship | Description
 -------------:|:------------
-__alerts__ | The associated alerts
 __anomalies__ | The associated anomalies
 __connections__ | The associated connections
 __customer_product_history__ | The associated customer_product_history

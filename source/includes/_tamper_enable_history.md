@@ -7,7 +7,6 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __tamper_enable_history_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each tamper_enable_history.
-__modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __prev_tamper_enable_state__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["pending_enabled", "pending_disabled", "init", "enabled", "disabled"]</font>
 __current_tamper_enable_state__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["pending_enabled", "pending_disabled", "init", "enabled", "disabled"]</font>
@@ -16,6 +15,7 @@ __date__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
+__modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
 
 
 <br>

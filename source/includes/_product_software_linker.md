@@ -7,7 +7,6 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __product_software_linker_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each product_software_linker.
-__modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __<a href="/#software-version-type">software_version_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __date_added__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
@@ -16,6 +15,7 @@ __update_attempts__ <br><font color="DarkGray">_int_</font> <font color="Crimson
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
+__modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
 
 
 <br>
@@ -60,7 +60,7 @@ Relationship | Description
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
-    ```
+```
 
     > We can retrieve the `product_software_linker` created by specifying its `product_software_linker_id` in the request url:
 

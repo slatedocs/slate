@@ -51,7 +51,7 @@ software_version_type | software_version_type_id
 
 The id is assigned by the system automatically during any `POST` request and should __not__ be specified by the user.
 
-There is one exception to this. The `Product` table uses `imei` (a 15 char string) as the `primary key`. It does not have a `product_id` field.
+There is one exception to this. The <a href="/#product">`Product`</a> table uses `imei` (a 15 char string) as the `primary key`. It does not have a `product_id` field.
 
 ### created_at
 

@@ -7,13 +7,13 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __product_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each product_type.
-__modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
 __erp_code__ <br><font color="DarkGray">_varchar(6)_</font> <font color="Crimson"></font> | 
-__parameter_types__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | 
+__parameter_types__ <br><font color="DarkGray">_array_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
+__modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
 
 
 <br>
@@ -61,7 +61,7 @@ __latest_software__ | The associated latest_software
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
-    ```
+```
 
     > We can retrieve the `product_type` created by specifying its `product_type_id` in the request url:
 

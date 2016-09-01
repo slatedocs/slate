@@ -7,7 +7,6 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __sms_history_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each sms_history.
-__modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __attempted_retries__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null)</font> | 
 __<a href="/#enable-history">enable_history_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __message_reference__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
@@ -20,6 +19,7 @@ __trigger__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></f
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
+__modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
 
 
 <br>

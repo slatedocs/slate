@@ -7,13 +7,13 @@ A table of each possible type of parameter that may be set. The valid parameter
 Field | Description
 ------:|:------------
 __parameter_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each parameter_type.
-__modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
 __data_type__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["int", "float", "bool", "string", "datetime"]</font>
-__validation_rules__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | 
+__validation_rules__ <br><font color="DarkGray">_json_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
+__modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
 
 
 <br>
@@ -55,7 +55,7 @@ __parameters__ | The associated parameters
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
-    ```
+```
 
     > We can retrieve the `parameter_type` created by specifying its `parameter_type_id` in the request url:
 

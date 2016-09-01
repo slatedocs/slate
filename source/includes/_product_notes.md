@@ -7,12 +7,12 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __product_note_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each product_note.
-__modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __note_text__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
 __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
+__modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
 
 
 <br>
@@ -51,7 +51,7 @@ Relationship | Description
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
-    ```
+```
 
     > We can retrieve the `product_note` created by specifying its `product_note_id` in the request url:
 

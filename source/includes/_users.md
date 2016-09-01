@@ -7,7 +7,6 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __username__ <br><font color="DarkGray">_string_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each user.
-__modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __<a href="/#entity">entity_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __hub_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __shop_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
@@ -18,6 +17,7 @@ __token_expiry__ <br><font color="DarkGray">_datetime_</font> <font color="Crims
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
+__modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
 
 
 <br>

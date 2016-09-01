@@ -7,13 +7,13 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __part_type_replacement_linker_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each part_type_replacement_linker.
-__modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __<a href="/#product-type">product_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __<a href="/#existing-part-type">existing_part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __<a href="/#replacement-part-type">replacement_part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
+__modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
 
 
 <br>
@@ -54,7 +54,7 @@ Relationship | Description
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
-    ```
+```
 
     > We can retrieve the `part_type_replacement_linker` created by specifying its `part_type_replacement_linker_id` in the request url:
 

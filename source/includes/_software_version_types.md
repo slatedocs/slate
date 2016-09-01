@@ -7,16 +7,16 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __software_version_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each software_version_type.
-__modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
 __description__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __link__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __checksum__ <br><font color="DarkGray">_varchar(8)_</font> <font color="Crimson"></font> | 
 __release_date__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
-__parameter_types__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | 
+__parameter_types__ <br><font color="DarkGray">_array_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
+__modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
 
 
 <br>
@@ -40,7 +40,7 @@ __latest_software__ | The associated latest_software
 		"name": "test",
 		"description": "test",
 		"link": "test",
-		"checksum": Unknown column type,
+		"checksum": "checksum",
 		"release_date": "2000-01-01 00:00:00",
 		"parameter_types": Unknown column type,
 		})
@@ -59,14 +59,14 @@ __latest_software__ | The associated latest_software
 		"name": "test",
 		"description": "test",
 		"link": "test",
-		"checksum": Unknown column type,
+		"checksum": "checksum",
 		"release_date": "2000-01-01 00:00:00",
 		"parameter_types": Unknown column type,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
-    ```
+```
 
     > We can retrieve the `software_version_type` created by specifying its `software_version_type_id` in the request url:
 
@@ -86,7 +86,7 @@ __latest_software__ | The associated latest_software
 		"name": "test",
 		"description": "test",
 		"link": "test",
-		"checksum": Unknown column type,
+		"checksum": "checksum",
 		"release_date": "2000-01-01 00:00:00",
 		"parameter_types": Unknown column type,
 		"created_at": "2000-01-01 00:00:00"
@@ -130,7 +130,7 @@ __latest_software__ | The associated latest_software
 		"name": "changed",
 		"description": "changed",
 		"link": "changed",
-		"checksum": Unknown column type,
+		"checksum": "csedited",
 		"release_date": "2016-07-01 12:34:45",
 		"parameter_types": Unknown column type,
 		})
@@ -148,7 +148,7 @@ __latest_software__ | The associated latest_software
 		"name": "changed",
 		"description": "changed",
 		"link": "changed",
-		"checksum": Unknown column type,
+		"checksum": "csedited",
 		"release_date": "2016-07-01 12:34:45",
 		"parameter_types": Unknown column type,
 		"created_at": "2000-01-01 00:00:00"

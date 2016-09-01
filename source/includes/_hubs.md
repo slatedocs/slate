@@ -7,7 +7,6 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __hub_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each hub.
-__modified_by__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
 __guid__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(unique)</font> | 
 __<a href="/#entity">entity_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
@@ -16,6 +15,7 @@ __longitude__ <br><font color="DarkGray">_varchar(12)_</font> <font color="Crims
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
+__modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
 
 
 <br>
@@ -62,7 +62,7 @@ __shops__ | The associated shops
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
-    ```
+```
 
     > We can retrieve the `hub` created by specifying its `hub_id` in the request url:
 
