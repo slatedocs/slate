@@ -15,6 +15,7 @@ $app_signature = "601be68e3bb4e7eb953024eb4f2ac03376e2c2fb";  # replace this wit
 $gaid = "8df6c9bf-d647-4400-bc13-7ff317ff0003";  # example Google Advertising ID
 $android_id = "f533bc6a9d9a2000";  # example legacy Android ID
 $ifa = "8df6c9bf-d647-4400-bc13-7ff317ff0004";  # example iOS Identifier for Advertising
+$click_id = "178660e204b0166e0364e637"; # only used if fingerprinting attribution is enabled by your server in lieu of a device identifier; optional
 $claim = 1;  # indicates install is attributable, set claim = 0 if install is non-attributable / organic
 $attributed_to = "Chartboost";  # optional, send another network name if attributed to other network, or Organic if organic
 $is_organic = 0;  # optional, send 0 if not organic, 1 if organic
@@ -23,6 +24,7 @@ $data = json_encode(array(
   "app_id" => $app_id,
   "gaid" => $gaid,
   "uuid" => $android_id,
+  "click_id" = > $click_id
   "claim" => $claim,
   "attributed_to" => $attributed_to,
   "is_organic" => $is_organic
@@ -57,6 +59,7 @@ app_signature = '601be68e3bb4e7eb953024eb4f2ac03376e2c2fb'  # replace this with 
 gaid = '8df6c9bf-d647-4400-bc13-7ff317ff0003'  # example Google Advertising ID
 android_id = 'f533bc6a9d9a2000'  # example Legacy Android ID
 ifa = '8df6c9bf-d647-4400-bc13-7ff317ff0004'  # example iOS Identifier for Advertising
+click_id = '178660e204b0166e0364e637';  # only used if fingerprinting attribution is enabled by your server in lieu of a device identifier; optional
 claim = 1  # indicates install is attributable, set claim=0 if install is non-attributable / organic
 attributed_to = 'Chartboost'  # optional, send another network name if attributed to other network, or Organic if organic
 is_organic = 0  # optional, send 0 if not organic, 1 if organic
@@ -65,6 +68,7 @@ data = json.dumps({
   'app_id': app_id,
   'gaid': gaid,
   'uuid': android_id,
+  'click_id': click_id
   'claim': claim,
   'attributed_to': attributed_to,
   'is_organic': is_organic
@@ -100,6 +104,7 @@ var app_signature = "601be68e3bb4e7eb953024eb4f2ac03376e2c2fb"; // replace this 
 var gaid = "8df6c9bf-d647-4400-bc13-7ff317ff0003";  // example Google Advertising ID
 var android_id = "f533bc6a9d9a2000";  // example Legacy Android ID
 var ifa = "61109b4c-0f16-4fbc-82ec-5475313af000";  // example iOS Identifier for Advertising
+var click_id = "178660e204b0166e0364e637";  // only used if fingerprinting attribution is enabled by your server in lieu of a device identifier; optional
 var claim = 1; // indicates install is attributable, set claim = 0 if install is non-attributable / organic
 var attributed_to = "Chartboost"; // optional, send another network name if attributed to other network, or Organic if organic
 var is_organic = 0; // optional, send 0 if not organic, 1 if organic
@@ -108,6 +113,7 @@ function sendInstall(callback) {
     data = JSON.stringify({
         "app_id": app_id,
         "ifa": ifa,
+        "click_id": click_id
         "claim": claim,
         "attributed_to": attributed_to,
         "organic": is_organic
@@ -200,6 +206,7 @@ claim         | true     | int    | 1 if Chartboost can claim the install, 0 oth
 gaid          | true*    | string | Google advertising identifier
 ifa           | true     | string | Apple identifier for advertising
 uuid          | false*   | string | `android_id` if Android
+click_id      | true     | string | if available, else send empty string as value
 organic       | false    | int    | 1 if organic install, 0 if attributed to a network
 attributed_to | false    | string | Name of network that received the attribution
 timestamp     | false    | int    | UNIX timestamp in seconds
@@ -229,6 +236,7 @@ var app_signature = "601be68e3bb4e7eb953024eb4f2ac03376e2c2fb"; // replace this 
 var gaid = "8df6c9bf-d647-4400-bc13-7ff317ff0003";  // example Google Advertising ID
 var android_id = "f533bc6a9d9a2000";  // example Legacy Android ID
 var ifa = "61109b4c-0f16-4fbc-82ec-5475313af000";  // example iOS Identifier for Advertising
+var click_id = "178660e204b0166e0364e637";  // only used if fingerprinting attribution is enabled by your server in lieu of a device identifier; optional
 var claim = 1; // indicates install is attributable, set claim = 0 if install is non-attributable / organic
 var attributed_to = "Chartboost"; // optional, send another network name if attributed to other network, or Organic if organic
 var is_organic = 0; // optional, send 0 if not organic, 1 if organic
@@ -238,6 +246,7 @@ function sendInstall(callback) {
     params = {
         "app_id": app_id,
         "ifa": ifa,
+        "click_id": click_id,
         "claim": claim,
         "attributed_to": attributed_to,
         "is_organic": is_organic
@@ -323,6 +332,7 @@ claim         | true     | int    | 1 if Chartboost can claim the install, 0 oth
 gaid          | true*    | string | Google advertising identifier
 ifa           | true     | string | Apple identifier for advertising
 uuid          | false*   | string | `android_id` if Android
+click_id      | true     | string | if available, else send empty string as value
 organic       | false    | int    | 1 if organic install, 0 if attributed to a network
 attributed_to | false    | string | Name of network that received the attribution
 timestamp     | false    | int    | UNIX timestamp in seconds
@@ -332,4 +342,4 @@ timestamp     | false    | int    | UNIX timestamp in seconds
 </aside>
 
 ### Example GET Request
-`GET https://live.chartboost.com/api/v1/install.json?app_id=538e68a3c2611441d13e3e15&ifa=60009b4c-0f16-4fbc-82ec-5475313af000&claim=1&attributed_to=Chartboost&is_organic=0`
+`GET https://live.chartboost.com/api/v1/install.json?app_id=538e68a3c2611441d13e3e15&ifa=60009b4c-0f16-4fbc-82ec-5475313af000&click_id=178660e204b0166e0364e637&claim=1&attributed_to=Chartboost&is_organic=0`
