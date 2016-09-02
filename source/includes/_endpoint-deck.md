@@ -280,22 +280,71 @@ display | object | Stores settings used to load the analysis
 
 #### POST
 
-To create a new slide, POST an analysis to the slides catalog. The payload,
-described in the [below](#analyses) section, should be wrapped as a shoji:entity.
+To create a new slide, POST a slide body to the slides catalog. It is necessary
+to include at least one analysis on the new slide.
+
+The body should contain an `analyses` attribute that contains an array with
+one or many analyses bodies as described in the [below](#analyses) section,
+should be wrapped as a shoji:entity.
 
 On success, the server returns a 201 response with a Location header containing
 the URL of the newly created slide entity with its first analysis.
 
-Only a `query` field is required to create a new slide; other attributes are optional.
+```json
+{
+  "title": "New slide",
+  "subtitle": "Variable A and B",
+  "analyses": [
+    {
+      "query": {},
+      "query_environment": {},
+      "display_settings": {}
+    },
+    {
+      "query": {},
+      "query_environment": {},
+      "display_settings": {}
+    }
+  ]
+}
+```
 
+On each analysis, only a `query` field is required to create a new slide; other attributes are optional.
+
+Slide attributes:
+
+Name | Type | Description
+---- | ---- | -----------
+title | string | Optional title for the slide
+subtitle | string | Optional subtitle for the slide
+
+Analysis attributes:
 
 Name | Type | Description
 ---- | ---- | -----------
 query | object | Contains a valid analysis query, required
-title | string | Optional title for the slide
 subtitle | string | Optional subtitle for the slide
 display_settings | object | Contains a set of attribtues to be interpreted by the client to render and export the analysis
 query_environment | object | Contains the `weight` and `filter` applied during the analysis, they will be applied up on future evaluation/render/export
+
+##### Old format
+
+It is possible to create slides with one single initial analysis by POSTing an
+analysis body directly to the slides catalog. It will create a slide automatically
+with the new analysis on it:
+
+
+```json
+{
+  "title": "New slide",
+  "subtitle": "Variable A and B",
+  "query": {},
+  "query_environment": {},
+  "display_settings": {}
+}
+```
+
+
 
 #### PATCH
 
