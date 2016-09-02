@@ -1,15 +1,15 @@
 ---
-title: API Reference
+title: iDa Mobile Test API Reference
 
 language_tabs:
   - shell
   - ruby
   - python
   - javascript
+  - xml : WSDL
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='http://www.idamob.ru'>@ copyright iDa Mobile 2016</a>
 
 includes:
   - errors
@@ -28,6 +28,72 @@ This example API documentation page was created with [Slate](https://github.com/
 # Authentication
 
 > To authorize, use this code:
+
+```xml
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Header>
+    <Action s:mustUnderstand="1" xmlns="http://schemas.microsoft.com/ws/2005/05/addressing/none">http://core.proxy.platform.idamobile.com/IdaMobProxyServiceFacadePortType/getPaymentFormResponse</Action>
+  </s:Header>
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <getPaymentFormResponse xmlns="http://core.proxy.platform.idamobile.com">
+      <return>
+        <form xmlns="http://servicedto.dto.proxy.platform.idamobile.com/xsd">
+          <id xmlns="http://modeldto.dto.proxy.platform.idamobile.com/xsd">275411748</id>
+          <beneficiaryId xsi:nil="true" xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd" />
+          <fields xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd">
+            <id xmlns="http://modeldto.dto.proxy.platform.idamobile.com/xsd">5</id>
+            <comboBoxValues>
+              <id xmlns="http://modeldto.dto.proxy.platform.idamobile.com/xsd">5_1</id>
+              <name>40817810200005239000</name>
+              <order>1</order>
+              <value>40817810200005239000</value>
+            </comboBoxValues>
+            <comboBoxValues>
+              <id xmlns="http://modeldto.dto.proxy.platform.idamobile.com/xsd">5_2</id>
+              <name>40817810500005239001</name>
+              <order>2</order>
+              <value>40817810500005239001</value>
+            </comboBoxValues>
+            <defaultValue xsi:nil="true" />
+            <errorMessage xsi:nil="true" />
+            <fieldClass>SOURCE_ACCOUNT</fieldClass>
+            <formOrder>1</formOrder>
+            <groupName xsi:nil="true" />
+            <hint xsi:nil="true" />
+            <mandatory>true</mandatory>
+            <maxLimit>0</maxLimit>
+            <minLimit>0</minLimit>
+            <name>Счет списания</name>
+            <readOnly>false</readOnly>
+            <regExp xsi:nil="true" />
+          </fields>
+          <fields xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd">
+            <id xmlns="http://modeldto.dto.proxy.platform.idamobile.com/xsd">9</id>
+            <defaultValue xsi:nil="true" />
+            <errorMessage xsi:nil="true" />
+            <fieldClass>MONEY</fieldClass>
+            <formOrder>1</formOrder>
+            <groupName xsi:nil="true" />
+            <hint xsi:nil="true" />
+            <mandatory>true</mandatory>
+            <maxLimit>922337203685477</maxLimit>
+            <minLimit>0</minLimit>
+            <name>Сумма списания</name>
+            <readOnly>false</readOnly>
+            <regExp xsi:nil="true" />
+          </fields>
+          <hasNext xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd">false</hasNext>
+          <logoResource xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd">https://i.lockobank.ru/mbaresources/icons/android-small/FORM_2.png</logoResource>
+          <name xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd">Îïëàòà óñëóã Áèëàéí</name>
+          <position xsi:nil="true" xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd" />
+          <requiresCommission xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd">false</requiresCommission>
+          <type xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd">PAYMENT</type>
+        </form>
+      </return>
+    </getPaymentFormResponse>
+  </s:Body>
+</s:Envelope>
+```
 
 ```ruby
 require 'kittn'
