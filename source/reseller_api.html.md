@@ -413,7 +413,8 @@ An item has two major attributes:
     "attributes": {
         "id": 247,
         "quantity": 1,
-        "time": "2016-07-07T13:00:00+02:00"
+        "time": "2016-07-07T13:00:00+02:00",
+        "reservations": ["8CE0mEgjyAvQB1IbPJ4iyg"]
     }
 }
 ```
@@ -424,6 +425,7 @@ A ticket item has a fairly simple structure:
 - id (integer), the tickets id, see ticket section in public api
 - quantity (integer), a count > 0
 - time (iso8601), the entry timestamp
+- reservations (array of tokens), if any (see Tickets -> Reservations for more info)
 
 
 
