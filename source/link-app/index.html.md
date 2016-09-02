@@ -412,7 +412,7 @@ descuento           | float | Suma de los descuentos de cada ítem y del descuen
 Obtiene información de los impuestos de los totales de la factura
 
 ```sql
-invoice_totals  = SELECT
+invoice_totals_taxes  = SELECT
   codigo,
   codigo_porcentaje,
   base_imponible,
