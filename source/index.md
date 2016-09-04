@@ -41,9 +41,9 @@ If you want to help develop Augur, you will need to build the client from source
 
 `$ npm install`
 
-`$ grunt`
+`$ npm run build`
 
-Next, start the static web server:
+(If you're going to be developing and want the build to update automatically when you make changes, use `npm run watch` instead of `npm run build`!) Next, start the static web server:
 
 `$ npm start`
 
