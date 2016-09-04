@@ -9,10 +9,11 @@ toc_footers:
 
 includes:
   - pro/requestStructs
-    - pro/login
+  - pro/login
   - pro/dataStructs
-    - pro/FormDTO
-    - pro/FormFieldDTO
+  - pro/FormDTO
+  - pro/FormFieldDTO
+  - errors
 
 search: true
 ---
