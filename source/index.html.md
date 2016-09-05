@@ -13,6 +13,8 @@ includes:
   - pro/requestHashedPassword
   - pro/getClientInfo
   - pro/getProducts
+  - pro/getTransactionsByFilter
+  - pro/getTransactionsByDateRange
   - pro/dataStructs
   - pro/BankClientDTO
   - pro/FormDTO
