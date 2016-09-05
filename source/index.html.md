@@ -34,6 +34,7 @@ includes:
   - pro/getStandardForms
   - pro/BeneficiaryCategoryDTO
   - pro/BeneficiaryDTO
+  - pro/PersonalNewsDTO
   - pro/FilledFormDTO
   - pro/FieldValueDTO
   - pro/ComboBoxValueDTO
