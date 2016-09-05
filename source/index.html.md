@@ -15,7 +15,13 @@ includes:
   - pro/getProducts
   - pro/getTransactionsByFilter
   - pro/getTransactionsByDateRange
+  - pro/getStandardForms
+  - pro/getPaymentForm
   - pro/getTemplates
+  - pro/getBills
+  - pro/getBeneficiaryCategories
+  - pro/getPersonalNews
+  - pro/markPersonalNewsRead
   - pro/dataStructs
   - pro/BankClientDTO
   - pro/CurrentAccountDTO
@@ -25,10 +31,12 @@ includes:
   - pro/FormFieldDTO
   - pro/TemplateDTO
   - pro/BillDTO
+  - pro/getStandardForms
   - pro/BeneficiaryCategoryDTO
   - pro/BeneficiaryDTO
   - pro/FilledFormDTO
   - pro/FieldValueDTO
+  - pro/ComboBoxValueDTO
   - pro/MarkerDTO
   - pro/sysReq
   - pro/faq
