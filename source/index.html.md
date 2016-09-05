@@ -17,6 +17,7 @@ includes:
   - pro/getTransactionsByDateRange
   - pro/dataStructs
   - pro/BankClientDTO
+  - pro/TransactionDTO
   - pro/FormDTO
   - pro/FormFieldDTO
   - pro/sysReq

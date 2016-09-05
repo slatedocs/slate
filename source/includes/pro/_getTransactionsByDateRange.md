@@ -10,11 +10,11 @@ productId | string | 1..1 | идентификатор продукта
 cardId | string | 0..1 | идентификатор карты
 fromIndex | int | 1..1 | начиная с какой позиции нужно передать транзакции (при первом запросе - 0)
 count | int | 0..1 | максимальное количество транзакций на странице
-since | UNIXTIME | 1..1 | дата начала периода
-to | UNIXTIME | 1..1 | дата конца периода
+since | [Date ISO 8601](https://ru.wikipedia.org/wiki/ISO_8601) | 1..1 | дата начала периода
+to | [Date ISO 8601](https://ru.wikipedia.org/wiki/ISO_8601) | 1..1 | дата конца периода
 **Response:** | | |
 transactions | [TransactionDTO](#transactiondto) | 0..1 | список объектов с информацией о транзакциях
-lastUpdateTime | UNIXTIME | 1..1 | дата последней по времени транзакции по продукту из запрашиваемого периода
+lastUpdateTime | [Date ISO 8601](https://ru.wikipedia.org/wiki/ISO_8601) | 1..1 | дата последней по времени транзакции по продукту из запрашиваемого периода
 balanceOnSinceDate | [AmountDTO](#amountdto) | 0..1 | баланс на начало периода
 balanceOnToDate | [AmountDTO](#amountdto) | 0..1 | баланс на конец периода
 **Exception:** | | |
