@@ -21,6 +21,8 @@ includes:
   - pro/TransactionDTO
   - pro/FormDTO
   - pro/FormFieldDTO
+  - pro/TemplateDTO
+  - pro/FilledFormDTO
   - pro/sysReq
   - pro/faq
 
