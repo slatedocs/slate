@@ -24,6 +24,9 @@ includes:
   - pro/FormDTO
   - pro/FormFieldDTO
   - pro/TemplateDTO
+  - pro/BillDTO
+  - pro/BeneficiaryCategoryDTO
+  - pro/BeneficiaryDTO
   - pro/FilledFormDTO
   - pro/FieldValueDTO
   - pro/MarkerDTO
