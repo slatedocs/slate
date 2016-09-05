@@ -88,10 +88,16 @@ curl -v https://link.datil.co/invoices/issue \
       "descuento": 0.0
     }
   ],
+  "valor_retenido_iva": 70.40,
+  "valor_retenido_renta": 29.60,
+  "credito": {
+    "fecha_vencimiento": "2015-03-28",
+    "monto": 34.21
+  },
   "pagos": [
     {
       "medio": "cheque",
-      "total": 4882.68,
+      "total": 4782.68,
       "propiedades": {
         "numero": "1234567890",
         "banco": "Banco Pacífico"
@@ -177,6 +183,12 @@ factura = {
       "descuento": 0.0
     }
   ],
+  "valor_retenido_iva": 70.40,
+  "valor_retenido_renta": 29.60,
+  "credito": {
+    "fecha_vencimiento": "2015-03-28",
+    "monto": 34.21
+  },
   "pagos": [
     {
       "medio": "cheque",
@@ -293,6 +305,12 @@ namespace DatilClient {
             ""descuento"": 0.0
           }
       ],
+        ""valor_retenido_iva"": 70.40,
+        ""valor_retenido_renta"": 29.60,
+        ""credito"": {
+            ""fecha_vencimiento"": ""2015-03-28"",
+            ""monto"": 34.21
+        },
       ""pagos"": [
         {
           ""medio"": ""cheque"",
@@ -332,6 +350,8 @@ items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en l
 version | string | Versión del formato de comprobantes electrónicos de SRI. Si no se especifica, se utilizará la última revisión del formato implementada,
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 informacion_adicional | objeto | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"plan": "Inicial", "vigencia": "1 mes"}`
+valor_retenido_iva | float | Valor retenido por IVA
+valor_retenido_renta | float | Valor retenido por renta
 retenciones | Listado de objetos de tipo [retencion](#retencion-de-factura) | Retenciones incluídas en la factura. Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que participan en la comercialización de periódicos y/o revistas.
 pagos | Listado de objetos tipo [pagos](#pagos) | Listado de formas de pago aplicables a la factura. __Requerido__
 credito | Objeto de tipo [credito](#cr-dito) | Información del crédito directo otorgado al cliente.
@@ -449,6 +469,12 @@ Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero
       "descuento": 0.0
     }
   ],
+  "valor_retenido_iva": 70.40,
+  "valor_retenido_renta": 29.60,
+  "credito": {
+    "fecha_vencimiento": "2015-03-28",
+    "monto": 34.21
+  },
   "pagos": [
     {
       "medio": "cheque",
@@ -612,6 +638,12 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
             ]
         }
     ],
+    "valor_retenido_iva": 70.40,
+    "valor_retenido_renta": 29.60,
+    "credito": {
+        "fecha_vencimiento": "2015-03-28",
+        "monto": 34.21
+    },    
     "pagos": [
       {
         "medio": "cheque",
