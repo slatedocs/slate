@@ -147,6 +147,15 @@ CREATE TABLE
 Abrir el Bloc de Notas con permisos de administrador, dando click derecho y escogiendo
 **Ejecutar como administrador**. Escoger `Archivo` -> `Abrir` -> `C:\Archivos de Programa\Datil\Link\config`, en la opción `Tipo` de la ventana seleccionar _Todos los archivos_ y seleccionar `environment.ini`
 
+### General 
+
+Es la configuración general de la aplicación
+
+En la sección `[General]` editar los parámetros:
+
+* `company` con el nombre de la compañía, ejemplo `Seguros Segurito S.A.`
+
+
 ### DatabaseSource
 
 Es la configuración de la base de datos que contiene las tablas de  control y mensaje.
@@ -192,7 +201,7 @@ Abrir el Bloc de Notas con permisos de administrador, dando click derecho y esco
 
 ### General
 
-En la sección `[General]` configurar el parámetro `ruc`.
+En la sección `[General]` configurar el parámetro `ruc` con el ruc de la empresa.
 
 ### Api
 En la sección `[Api]` configurar el parámetro `xkey` con el _API key_ de Dátil y 
