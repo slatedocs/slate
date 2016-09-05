@@ -13,6 +13,7 @@ includes:
   - pro/requestHashedPassword
   - pro/getClientInfo
   - pro/dataStructs
+  - pro/BankClientDTO
   - pro/FormDTO
   - pro/FormFieldDTO
   - pro/sysReq
