@@ -15,6 +15,7 @@ includes:
   - pro/getProducts
   - pro/getTransactionsByFilter
   - pro/getTransactionsByDateRange
+  - pro/getTemplates
   - pro/dataStructs
   - pro/BankClientDTO
   - pro/TransactionDTO
