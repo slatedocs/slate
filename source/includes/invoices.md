@@ -97,7 +97,7 @@ curl -v https://link.datil.co/invoices/issue \
   "pagos": [
     {
       "medio": "cheque",
-      "total": 4782.68,
+      "total": 4882.68,
       "propiedades": {
         "numero": "1234567890",
         "banco": "Banco Pacífico"
@@ -193,7 +193,7 @@ factura = {
     {
       "medio": "cheque",
       "total": 4882.68,
-      "propiedades: {
+      "propiedades": {
         "numero": "1234567890",
         "banco": "Banco Pacífico"
       }
@@ -559,7 +559,7 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
 {
     "id": "abcf12343faad06785",
     "secuencial": "16",
-    "fecha_emision": "2015-05-15",
+    "fecha_emision": "2016-05-15",
     "version": "1.0.0",
     "clave_acceso": "1505201501099271255400110011000000000162092727615",
     "emisor": {
@@ -641,14 +641,14 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
     "valor_retenido_iva": 70.40,
     "valor_retenido_renta": 29.60,
     "credito": {
-        "fecha_vencimiento": "2015-03-28",
+        "fecha_vencimiento": "2016-06-28",
         "monto": 34.21
     },    
     "pagos": [
       {
         "medio": "cheque",
         "total": 4882.68,
-        "propiedades: {
+        "propiedades": {
           "numero": "1234567890",
           "banco": "Banco Pacífico"
         }

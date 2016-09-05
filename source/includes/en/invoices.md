@@ -92,7 +92,7 @@ curl -v https://link.datil.co/invoices/issue \
     {
       "medio": "efectivo",
       "total": 4882.68,
-      "propiedades: {
+      "propiedades": {
         "plazo": 0,
         "unidad_tiempo": "dias"
       }
@@ -181,7 +181,7 @@ factura = {
     {
       "medio": "efectivo",
       "total": 4882.68,
-      "propiedades: {
+      "propiedades": {
         "plazo": 0,
         "unidad_tiempo": "dias"
       }
