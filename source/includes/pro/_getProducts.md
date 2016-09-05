@@ -13,7 +13,7 @@ currentAccounts | [CurrentAccountDTO](#currentaccountdto) | 0..1 | массив 
 loans | [LoanDTO](#loandto) | 0..1 | массив объектов с информацией о кредитах
 cardAccounts | [CardAccountDTO](#depositdto) | 0..1 | массив объектов с информацией о карточных счетах
 cardAccounts | [CardAccountDTO](#depositdto) | 0..1 | массив объектов с информацией о карточных счетах
-bonusPoints | [bonusPointsDTO](#bonuspointsdto) | 0..1 | массив объектов с информацией о бонусных счетах
+bonusPoints | [BonusPointsDTO](#bonuspointsdto) | 0..1 | массив объектов с информацией о бонусных счетах
 card | [CardDTO](#carddto) | 0..1 | массив объектов с информацией о пластиковых картах
 **Exception:** | | |
 BankClientNotExistsException | string | 0..1 | клиент с запрошенным bankClientId не существует

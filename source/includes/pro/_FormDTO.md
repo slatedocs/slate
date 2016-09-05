@@ -20,9 +20,16 @@
       <form xmlns="http://servicedto.dto.proxy.platform.idamobile.com/xsd">
         <id xmlns="http://modeldto.dto.proxy.platform.idamobile.com/xsd">form_id</id>
         <beneficiaryId xsi:nil="true" xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd" />
-          #
-          # fields
-          #
+          <fields>
+            #
+            # fields
+            #
+          </fields>
+          <fields>
+            #
+            # fields
+            #
+          </fields>
         <hasNext xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd">true</hasNext>
         <logoResource xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd">http://idamob.ru/ic.png</logoResource>
         <name xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd">Form name</name>

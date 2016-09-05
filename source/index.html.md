@@ -1,5 +1,5 @@
 ---
-title: iDa Mobile Test API Reference
+title: iDa Mobile Pro API
 
 language_tabs:
   - xml : WSDL
@@ -18,6 +18,8 @@ includes:
   - pro/getTemplates
   - pro/dataStructs
   - pro/BankClientDTO
+  - pro/CurrentAccountDTO
+  - pro/CardDTO
   - pro/TransactionDTO
   - pro/FormDTO
   - pro/FormFieldDTO
