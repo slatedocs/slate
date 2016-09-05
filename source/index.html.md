@@ -23,6 +23,8 @@ includes:
   - pro/FormFieldDTO
   - pro/TemplateDTO
   - pro/FilledFormDTO
+  - pro/FieldValueDTO
+  - pro/MarkerDTO
   - pro/sysReq
   - pro/faq
 
