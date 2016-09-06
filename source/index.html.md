@@ -61,6 +61,10 @@ DashboardSerializer(dashboard_obj).data
 
 # Deployments
 
+## JavaScript
+
+TODO: Synchronize with backend deploys to avoid race conditions (see Heroku email chain)
+
 * `gulp deploy` - builds production optimized JS app bundle; requires `firebase deploy`
 to actually hit the internets
 
