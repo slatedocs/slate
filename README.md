@@ -2,6 +2,8 @@
 
 Welcome to the go~mus API! You can use our API to access go~mus API endpoints, which can get information on various museums, exhibitions, products and tickets in our database.
 
+https://giantmonkey.github.io/gomus-api-doc/
+
 
 Contributing to the Documentation
 ------------------------------
