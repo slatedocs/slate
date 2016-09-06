@@ -61,6 +61,9 @@ DashboardSerializer(dashboard_obj).data
 
 # Deployments
 
+* `gulp deploy` - builds production optimized JS app bundle; requires `firebase deploy`
+to actually hit the internets
+
 * firebase environments
     * quilttest (stage)
     * quiltdata (production)
