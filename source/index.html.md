@@ -19,7 +19,33 @@ search: true
 # Introduction
 Quilt internal docs.
 
+
+# Dashboards
+User dashboard that points to a periscope dashboard. Partial feature.
+
+## Create and publish
+- get periscope dashboard id
+- associate dashboard with table that user can see
+- `init_firebase` for affected table id
+
+> Creating dashboard records in database:
+
+```shell
+heroku run python manage.py shell plus
+
+newdash = Dashboard.objects.create(
+  id=PERISCOPE_ID,
+  table=TABLE_ID,
+  name=NAME,
+  description=DESC,
+  image_url=IMAGE_URL,
+  image=OPTIONAL_FILE_OBJECT
+)
+```
+
+
 # Authentication (sample)
+
 
 > To authorize, use this code:
 
@@ -58,6 +84,7 @@ Kittn expects for the API key to be included in all API requests to the server i
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
+
 
 # Kittens (sample)
 
