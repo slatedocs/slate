@@ -19,17 +19,18 @@
 
 key | type | status | comment
 --- | ---- | :----: | ---:
-id | string | 1..1 | идентификатор карты
+id | string | 1..1 | идентификатор продукта
 maskedCardNumber | string | 1..1 | частично маскированный номер карты, например <code>1111 1111 **** 1111</code>
-blockAllowed | bool | 0..1 | признак разрешена ли блокировка карты из приложения
-cardHolder | string | 0..1 | имя держателя карты (как на карте)
-cardStatus | string | 0..1 | статус карты
-cardType | string | 0..1 | тип карты или название (например Visa Gold, MasterCard)
-logoResource | [LogoResource](#logoresource) | 0..1 | url для доступа к логотипу
-feeds | [FeedDTO](#feeddto) | 0..1 | элементы ленты событий
-tags | [MarkerDTO](#markerdto) | 0..1 | дополнительные поля
-blocked | bool | 0..1 | признак блокировки карты
-fxRunningBalance | int | 1..1 | сумма на карте умноженное на 100
-cardOwner | string | 0..1 | владелец карты
 expirationMonth | int | 1..1 | месяц истечения срока
 expirationYear | int | 1..1 | год истечения срока
+fxRunningBalance | int | 0..1 | сумма на карте умноженное на 100, при отсутствии берется из счета к которому привязана карты
+cardHolder | string | 0..1 | имя держателя карты (как на карте)
+logoResource | [LogoResource](#logoresource) | 0..1 | url для доступа к логотипу
+blockAllowed | bool | 0..1 | признак разрешена ли блокировка карты из приложения
+cardType | string | 0..1 | тип карты или название (например Visa Gold, MasterCard)
+blocked | bool | 0..1 | признак блокировки карты
+cardOwner | string | 0..1 | владелец карты
+cardStatus | string | 0..1 | статус карты
+--- |||
+feeds | [FeedDTO](#feeddto) | 0..1 | элементы ленты событий, например графика платежей по кредиту или затраченные поездки на общественном транспорте
+tags | [MarkerDTO](#markerdto) | 0..1 | дополнительные поля
