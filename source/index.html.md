@@ -7,7 +7,7 @@ language_tabs:
   - javascript
 
 toc_footers:
-  - <a href='https://api.scaleapi.com/signup'>Signup for Scale</a>
+  - <a href='https://dashboard.scaleapi.com/signup'>Signup for Scale</a>
   - <a href="https://scalesupport.herokuapp.com/">Join the Scale Support Slack channel!</a>
 
 includes:
