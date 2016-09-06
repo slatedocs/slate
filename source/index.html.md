@@ -31,7 +31,6 @@ includes:
   - pro/FormFieldDTO
   - pro/TemplateDTO
   - pro/BillDTO
-  - pro/getStandardForms
   - pro/BeneficiaryCategoryDTO
   - pro/BeneficiaryDTO
   - pro/PersonalNewsDTO
