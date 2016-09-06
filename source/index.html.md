@@ -40,6 +40,16 @@ Starting good habits from 9/6/2016. Probably.
 ## Tools
 - `init_firebase` - refresh firebase cache from database source
 
+## Environments
+- [Stage](https://quilt-heroku.herokuapp.com/)
+    - Database
+    - [Firebase (sometimes stage and prod swap)](https://console.firebase.google.com/project/firebase-quiltdata/database/data)
+    - [CDN](https://console.firebase.google.com/project/firebase-quilttest/hosting/main)
+- [Production](https://quiltdata.com/)
+    - Database
+    - [Firebase (sometimes stage and prod swap)](https://console.firebase.google.com/project/firebase-quilttest/database/data)
+    - [CDN](https://console.firebase.google.com/project/firebase-quiltdata/hosting/main)
+
 # Dashboards
 User dashboard that points to a periscope dashboard. Partial feature.
 
@@ -53,7 +63,7 @@ How to create and publish:
 
 ```shell
 # local cli
-heroku run python manage.py shell_plus
+heroku run python manage.py shell_plus --app ENVIRONMENT
 
 # inside shell_plus
 newdash = Dashboard.objects.create(
