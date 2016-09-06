@@ -61,11 +61,13 @@ DashboardSerializer(dashboard_obj).data
 
 # Deployments
 
-* firebase: quilttest (stage) and quiltdata (production)
+* firebase environments
+    * quilttest (stage)
+    * quiltdata (production)
 * `firebase list` to see environments
 * `firebase use --add` to set aliases
-* `firebase use ALIAS_OR_ENVIRONMENT`
-* `firebase deploy` - currently deploys CDN (hosting) files only
+* `firebase use ALIAS_OR_ENVIRONMENT` to set active environment
+* `firebase deploy` - currently deploys CDN (hosting) files only for active environment
 
 # Dashboards
 User dashboard that points to a periscope dashboard. Partial feature.
