@@ -25,9 +25,13 @@ includes:
   - pro/dataStructs
   - pro/BankClientDTO
   - pro/CurrentAccountDTO
+  - pro/CreditAccountDTO
+  - pro/CardAccountDTO
   - pro/CardDTO
   - pro/DepositDTO
   - pro/LoanDTO
+  - pro/BonusPointsDTO
+  - pro/MultiCurrencyAccountsDTO
   - pro/TransactionDTO
   - pro/FormDTO
   - pro/FormFieldDTO
