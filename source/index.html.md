@@ -59,6 +59,14 @@ DashboardSerializer(dashboard_obj).data
     - [Firebase (sometimes stage and prod swap)](https://console.firebase.google.com/project/firebase-quilttest/database/data)
     - [CDN](https://console.firebase.google.com/project/firebase-quiltdata/hosting/main)
 
+# Deployments
+
+* firebase: quilttest (stage) and quiltdata (production)
+* `firebase list` to see environments
+* `firebase use --add` to set aliases
+* `firebase use ALIAS_OR_ENVIRONMENT`
+* `firebase deploy` - currently deploys CDN (hosting) files only
+
 # Dashboards
 User dashboard that points to a periscope dashboard. Partial feature.
 
