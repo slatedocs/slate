@@ -743,6 +743,57 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 Marca determinada cobrança via Boleto como não recebida, retornando JSON contendo as informações da cobrança em caso de sucesso ou os erros, caso haja algum.
 
 
+## Renovação de Cobrança (Boleto)
+
+```shell
+Renovar Cobrança (Boleto)
+
+DEFINIÇÃO
+
+  PUT https://app.cobrato.com/api/v1/charges/:charge_id/renew
+  PATCH https://app.cobrato.com/api/v1/charges/:charge_id/renew
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X PUT https://app.cobrato.com/api/v1/charges/:charge_id/renew \
+    -d '{
+         "new_due_date": "2015-02-06"
+        }'
+
+EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
+
+    200 OK
+
+EXEMPLO DE ESTADO DA RESPOSTA COM COBRANÇA INEXISTENTE
+
+    404 Not Found
+
+EXEMPLO DE ESTADO DA RESPOSTA COM INSUCESSO
+
+    422 Unprocessable Entity
+
+EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
+
+  {
+    "errors": {
+      "due_date": ["não pode ficar em branco"]
+    }
+  }
+```
+
+Atualiza a data de vencimento do boleto bancário gerando um novo arquivo de remessa. Retorna um JSON contento informações atualizadas da cobrança em caso de sucesso ou erros caso haja algum.
+
+**Parâmetros (Boleto)**
+
+| Campo           | Tipo    | Comentário                                          |
+|-----------------|---------|-----------------------------------------------------|
+| new_due_date    | date    | **(requerido)** nova data de vencimento da cobrança |
+
+
 ## Boleto da Cobrança
 
 ```shell
