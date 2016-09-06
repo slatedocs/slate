@@ -68,14 +68,37 @@ heroku run python manage.py shell_plus --app ENVIRONMENT
 # inside shell_plus
 newdash = Dashboard.objects.create(
   id=PERISCOPE_ID,
-  table=TABLE_ID,
+  table=TABLE,
+  table_id=TABLE_ID,
   name=NAME,
   description=DESC,
   image_url=IMAGE_URL,
   image=OPTIONAL_FILE_OBJECT
 )
-```
 
+# to inspect
+Dashboard.objects.all()
+Dashboard.objects.filter(id=,name=, …):
+
+```
+- user only needs to enter one of table= or table_id=
+
+
+# Endpoints
+
+## Pose as specific user
+
+```shell
+>>> kaleb = User.objects.get(username='Kaleb')
+>>> request = factory.get('/tables/?dashboard=1')
+>>> force_authenticate(request, kaleb)
+>>> from tables.views import *
+>>> response = TableViewSet.as_view({'get' : 'list'})(request, {'dashboard' : True})
+>>> response.render()
+<rest_framework.response.Response object at 0x7f4b9b08ee90>
+>>> response.content
+'[{"id":2515,"name":"NDB Placeholder","sqlname":"ndb_placeholder_b7ab4953","description":"Empty data set for dashboard delivery","owner":"akarve","is_public":false,"csvfile":null,"viewonly":false,"dashboards":[{"id":71134,"table":2515,"name":"Geo Vis Sampler for NDB","image":null,"description":"9/6/2016"}]}]'
+```
 
 # Authentication (sample)
 
