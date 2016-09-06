@@ -17,13 +17,14 @@ search: true
 ---
 
 # Introduction
-Quilt internal docs.
-
+Quilt internal docs. We have documentation debt.
+Starting good habits from 9/6/2016. Probably.
 
 # Dashboards
 User dashboard that points to a periscope dashboard. Partial feature.
 
 ## Create and publish
+
 - get periscope dashboard id
 - associate dashboard with table that user can see
 - `init_firebase` for affected table id
