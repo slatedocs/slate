@@ -38,7 +38,16 @@ Starting good habits from 9/6/2016. Probably.
 
 
 ## Tools
-- `init_firebase` - refresh firebase cache from database source
+### init_firebase
+refresh firebase cache from database source
+
+### shell_plus
+serialize objects
+
+```shell
+from tables.serializers import *
+DashboardSerializer(dashboard_obj).data
+```
 
 ## Environments
 - [Stage](https://quilt-heroku.herokuapp.com/)
