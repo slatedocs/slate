@@ -98,7 +98,7 @@ This endpoint lets user's attempt to login.
 
 ### HTTP Requst
 
-`POST https://api.doordeck.com/auth/login`
+`POST https://api.doordeck.com/auth/token`
 
 ### Request Parameters
 
