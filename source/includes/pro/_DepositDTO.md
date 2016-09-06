@@ -4,7 +4,6 @@ key | type | status | comment
 --- | ---- | :----: | ---:
 id | string | 1..1 | идентификатор счета
 accountNumber | string | 1..1 | номер счета в банке
-status | string | 0..1 | статус депозита;
 currency | string | 1..1 | текстовый код валюты счета по ISO 4217
 productName | string | 1..1 | название счета
 runningBalance | [AmountDTO](#amountdto) | 0..1 | основная карта, привязанная к счету
