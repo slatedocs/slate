@@ -3,9 +3,9 @@ title: Engineering Reference
 
 language_tabs:
   - shell
-  - ruby
   - python
   - javascript
+  - SQL
 
 toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
@@ -16,14 +16,34 @@ includes:
 search: true
 ---
 
-# Introduction
+# Overview
 Quilt internal docs. We have documentation debt.
 Starting good habits from 9/6/2016. Probably.
+
+## Architecture
+- RDS Instance (Postgres; can use Redshift; working on Snowflake)
+- Django on Heroku
+- Firebase (reactive cache layer)
+- React and react-bootstrap
+
+## Backend
+- @kevin write something here
+
+## Frontend
+- npm and gulp
+- `npm test` to run unit tests (for redux)
+- Mixture of redux (Quilt dialog) and barebones React (everything else)
+- `gulp deploy` - builds production bundle
+- `firebase deploy` - deploys to CDN
+
+
+## Tools
+- `init_firebase` - refresh firebase cache from database source
 
 # Dashboards
 User dashboard that points to a periscope dashboard. Partial feature.
 
-## Create and publish
+How to create and publish:
 
 - get periscope dashboard id
 - associate dashboard with table that user can see
@@ -32,8 +52,10 @@ User dashboard that points to a periscope dashboard. Partial feature.
 > Creating dashboard records in database:
 
 ```shell
-heroku run python manage.py shell plus
+# local cli
+heroku run python manage.py shell_plus
 
+# inside shell_plus
 newdash = Dashboard.objects.create(
   id=PERISCOPE_ID,
   table=TABLE_ID,
