@@ -64,13 +64,15 @@ DashboardSerializer(dashboard_obj).data
 * `gulp deploy` - builds production optimized JS app bundle; requires `firebase deploy`
 to actually hit the internets
 
-* firebase environments
-    * quilttest (stage)
-    * quiltdata (production)
+* firebase environments (alias = full_name)
+    * stage = quilttest
+    * production = quilitdata
 * `firebase list` to see environments
 * `firebase use --add` to set aliases
 * `firebase use ALIAS_OR_ENVIRONMENT` to set active environment
 * `firebase deploy` - currently deploys CDN (hosting) files only for active environment
+
+Full [Firebase CLI reference](https://firebase.google.com/docs/cli/).
 
 # Dashboards
 User dashboard that points to a periscope dashboard. Partial feature.
