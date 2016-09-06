@@ -17,6 +17,15 @@ includes:
   - pro/getTransactionsByDateRange
   - pro/getStandardForms
   - pro/getPaymentForm
+  - pro/haveUpdates
+  - pro/blockCard
+  - pro/getNextForm
+  - pro/getCurrentForm
+  - pro/makeTransfer
+  - pro/requestCommission
+  - pro/confirmTransfer
+  - pro/getAdditonalProductDetails
+  - pro/getAccountRequisites
   - pro/getTemplates
   - pro/getBills
   - pro/getBeneficiaryCategories

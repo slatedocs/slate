@@ -17,7 +17,6 @@
          <currency>RUB</currency>
          <fxAmount>34567</fxAmount>
       </runningBalance>
-      <status>ACTIVE</status>
    </subAccounts>
    <subAccounts type="CurrentAccountDTO">
       <id>subAccounts_id</id>
