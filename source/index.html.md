@@ -8,7 +8,7 @@ language_tabs:
   - SQL
 
 toc_footers:
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='https://github.com/tripit/slate'>Docs powered by Slate</a>
 
 includes:
   - errors
