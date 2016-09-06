@@ -1,4 +1,4 @@
-﻿# System requirements1
+﻿# System requirements
 
 **Hardware**
 
