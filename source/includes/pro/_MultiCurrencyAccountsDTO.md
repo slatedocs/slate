@@ -36,7 +36,7 @@ key | type | status | comment
 --- | ---- | :----: | ---:
 id | string | 1..1 | идентификатор продукта
 accountNumber | string | 1..1 | номер продукта в банке
-currency | string | 1..1 | текстовый код валюты счета по [ISO 4217](https://ru.wikipedia.org/wiki/ISO_4217)
+currency | string | 1..1 | текстовый код валюты по [ISO 4217](https://ru.wikipedia.org/wiki/ISO_4217)
 productName | string | 1..1 | название продукта
 subAccounts | [CurrentAccountDTO](#currentaccountdto) | 1..1 | набор подсчетов в разных валютах
 fxConsolidateBalance | int | 0..1 | средства на продукте

@@ -33,7 +33,7 @@ key | type | status | comment
 --- | ---- | :----: | ---:
 id | string | 1..1 | идентификатор продукта
 accountNumber | string | 1..1 | номер продукта в банке
-currency | string | 1..1 | текстовый код валюты счета по [ISO 4217](https://ru.wikipedia.org/wiki/ISO_4217)
+currency | string | 1..1 | текстовый код валюты по [ISO 4217](https://ru.wikipedia.org/wiki/ISO_4217)
 productName | string | 1..1 | название продукта
 runningBalance | [AmountDTO](#amountdto) | 1..1 | доступные средства продукта
 --- |||

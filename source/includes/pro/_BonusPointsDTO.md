@@ -3,7 +3,7 @@
 key | type | status | comment
 --- | ---- | :----: | ---:
 id | string | 1..1 | идентификатор продукта
-currency | string | 1..1 | текстовый код валюты
+currency | string | 1..1 | текстовый код валюты по [ISO 4217](https://ru.wikipedia.org/wiki/ISO_4217)
 productName | string | 1..1 | название продукта
 fxRunningBalance | int | 1..1 | средства на продукте
 textMessage | string | 1..1 | описание продукта

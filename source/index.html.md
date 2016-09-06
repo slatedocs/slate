@@ -40,6 +40,7 @@ includes:
   - pro/BeneficiaryCategoryDTO
   - pro/BeneficiaryDTO
   - pro/PersonalNewsDTO
+  - pro/AmountDTO
   - pro/FilledFormDTO
   - pro/FieldValueDTO
   - pro/ComboBoxValueDTO
