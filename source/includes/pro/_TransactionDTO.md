@@ -15,7 +15,7 @@ filledFormId | string | 0..1 | идентификатор соответству
 tags | [MarkerDTO](#markerdto) | 0..1 | дополнительные поля
 isAuthorization | bool | 0..1 | операция авторизации
 cardId | string | 0..1 | ID карты, с которой связана данная транзакция
-sic | int | 0..1 | mcc код из процессинга или из SmartTransaction для PFM
+sic | int | 0..1 | mcc код из процессинга для SmartTransaction
 
 ### TransactionStatus
 

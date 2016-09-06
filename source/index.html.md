@@ -26,6 +26,7 @@ includes:
   - pro/BankClientDTO
   - pro/CurrentAccountDTO
   - pro/CardDTO
+  - pro/DepositDTO
   - pro/TransactionDTO
   - pro/FormDTO
   - pro/FormFieldDTO
