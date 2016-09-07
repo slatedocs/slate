@@ -38,6 +38,8 @@ _Disponible para 32 y 64 bits_
 * Windows Server 2003
 * Windows Server 2008
 * Windows Server 2012
+* Windows XP
+* Windows Vista
 * Windows 7
 * Windows 8
 
@@ -54,6 +56,7 @@ Link puede conectarse a los siguientes motores de bases de datos relacionales:
 
 **SQL Server** 
 
+* SQL Server 2000
 * SQL Server 2005
 * SQL Server 2008
 * SQL Server 2012
