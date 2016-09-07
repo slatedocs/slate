@@ -31,6 +31,9 @@ includes:
   - pro/getBeneficiaryCategories
   - pro/getPersonalNews
   - pro/markPersonalNewsRead
+  - pro/changePassword
+  - pro/checkClient
+  - pro/removeTemplate
   - pro/dataStructs
   - pro/BankClientDTO
   - pro/CurrentAccountDTO
