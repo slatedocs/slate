@@ -13,6 +13,7 @@ includes:
   - creativespecs
   - infeedapi
   - reportingapi
+  - dashboardapi
 
 search: true
 ---
