@@ -36,6 +36,8 @@ includes:
   - pro/removeTemplate
   - pro/getAvailableContacts
   - pro/getDynamicFieldValues
+  - pro/getEvents
+  - pro/getVersion
   - pro/dataStructs
   - pro/BankClientDTO
   - pro/CurrentAccountDTO
@@ -59,6 +61,8 @@ includes:
   - pro/FieldValueDTO
   - pro/ComboBoxValueDTO
   - pro/MarkerDTO
+  - pro/FeedDTO
+  - pro/FeedEventDTO
   - pro/sysReq
   - pro/faq
 
