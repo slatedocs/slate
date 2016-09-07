@@ -91,6 +91,8 @@ NUMERIC | int | чесло без дроби
 DECIMAL | int | число с дробной частью
 DYNAMIC | string | поле при вводе 2х символов делает запрос getDynamicFieldValues и в случае признака необходимости обновления текущей формы делает запрос getCurrentForm
 
+<aside class="warning">PHOTO_CHECK - эксперементальный ключ для фотографирования дорожных чеков</aside>
+
 ### ComboBoxValueDTO
 
 ```xml
