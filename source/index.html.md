@@ -34,6 +34,8 @@ includes:
   - pro/changePassword
   - pro/checkClient
   - pro/removeTemplate
+  - pro/getAvailableContacts
+  - pro/getDynamicFieldValues
   - pro/dataStructs
   - pro/BankClientDTO
   - pro/CurrentAccountDTO
