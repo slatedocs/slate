@@ -5,7 +5,7 @@
    <locale>ru</locale>
    <url>http://www.banki.ru/xml/news.rss</url>
 </localizedUrls>
- ```
+```
 
 key | type | status | comment
 --- | ---- | :----: | ---:

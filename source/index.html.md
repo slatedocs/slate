@@ -13,6 +13,11 @@ includes:
   - light/setLocalizedRssUrls
   - light/dataStructs
   - light/WsLocalizedRssUrl
+  - light/WsFormDTO
+  - light/WsFieldValueDTO
+  - light/WsBannerDTO
+  - light/WsCurrencyRateDTO
+  - light/WsLocationDTO
   - light/faq
 
 search: true
