@@ -23,7 +23,8 @@ includes:
   - endpoint-table
   - endpoint-variable
   - endpoint-filter
-  - endpoint-analysis
+  - endpoint-deck
+  - endpoint-geodata
   - endpoint-tabbook
   - endpoint-comparison
   - endpoint-version

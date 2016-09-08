@@ -511,7 +511,6 @@ weight_variables | array | Contains aliases of weight variables to start this da
 table | object | Metadata definition for the variables in the dataset
 
 
-
 ### Other catalogs
 
 In addition to `/datasets/`, there are a few other catalogs of datasets in the API:
@@ -644,19 +643,19 @@ dataset Shoji entity.
 
 Catalog name | Resource
 ------------ | --------
-batches | Returns all the batches (successful and failed) used for this dataset
-joins | Contains the list of all the joins available
+batches | Returns all the batches (successful and failed) used for this dataset. See [Batches](#batches).
+joins | Contains the list of all datasets joined to the current dataset. See [Joins](#joins).
 parent | Indicates the catalog where this dataset is found (project or main dataset catalog)
-variables | Catalog of all public variables of this dataset
-actions | All actions executed for this dataset
-savepoints | Lists the created versions for this dataset
+variables | Catalog of all public variables of this dataset. See [Variables](#variables).
+actions | All actions executed on this dataset
+savepoints | Lists the saved versions for this dataset. See [Versions](#versions).
 weight_variables | Includes the available variables to be used as weight
-filters | Makes available the public and user-created filters
+filters | Makes available the public and user-created filters. See [Filters](#filters).
 multitables | Similar to filters, displays all available multitables
-comparisons | Contains all user's created comparisons
-forks | Returns all the forks created from the dataset in question
+comparisons | Contains all available comparisons. See [Comparisons](#comparisons).
+forks | Returns all the forks created from this dataset
 decks | The list of all decks on this dataset for the authenticated user
-permissions | Returns the list of all users and teams with access to this dataset
+permissions | Returns the list of all users and teams with access to this dataset. See [Permissions](#permissions).
 
 #### PATCH
 

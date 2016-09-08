@@ -101,7 +101,8 @@ Content-Length: 974
             "element": "crunch:table",
             "metadata": {
                 "educ": {"name": "Education", "alias": "educ", "type": "categorical", "categories": [...], ...},
-                "color": {"name": "Favorite color", "alias": "color", "type": "text", ...}
+                "color": {"name": "Favorite color", "alias": "color", "type": "text", ...},
+                "state": {"name": "State", "alias": "state", "view": {"geodata": [{"geodatum": <uri>, "feature_key": "properties.postal-code"}]}}
             },
             "order": ["educ", {'my group": "color"}]
         },
