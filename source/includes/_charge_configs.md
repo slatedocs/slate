@@ -76,10 +76,10 @@ As Configurações de Cobrança do tipo **Boleto** (billet), pertencem as suas c
 ### Gateway de Pagamento
 
 <aside class="info">
-  Para homologar a Configuração de Cobrança
-  <a href="#cria-o-de-cobran-a">deve-se criar uma Cobrança</a> para ela. Esta Cobrança será efetivada e automaticamente cancelada
-  logo em seguida, apenas com o objetivo de verificar se de fato a configuração foi feita de forma correta. <strong>Até que uma Cobrança</strong>
-  tenha fechado este ciclo com sucesso e a conta dada como homologada, todas as cobranças criadas para esta Configuração serão consideradas Cobranças para homologação, ou seja, serão feitas e em seguida automaticamente canceladas.
+  Para homologar a Configuração de Cobrança existe uma série de passos que você encontra em
+  <a href="https://app.cobrato.com/wizard/payment_gateway/configs/new">nossa interface web</a>. Até 
+  que a Configuração tenha o status "ok" (Homologado), todas as cobranças criadas para esta Configuração 
+  serão consideradas Cobranças para homologação.
 </aside>
 
 **Parâmetros**
@@ -89,7 +89,7 @@ As Configurações de Cobrança do tipo **Boleto** (billet), pertencem as suas c
 | id           | integer         |                                                                                                                       |
 | type         | string          | indica o tipo da configuração de cobrança. Nese caso 'payment_gateway'                                                |
 | name         | string          | nome que identifica esta configuração de cobrança                                                                     |
-| status       | string          | 'ok' ou 'pending' para indicar se configuração de cobrança está ou não homologada, respectivamente                    |
+| status       | string          | indica o status, ou etapa, de homologação em que configuração de cobrança está ('pending', 'production_tests', 'ok')  |
 | gateway_name | string          | nome do gateway de pagamento (cielo)                                                                                  |
 | gateway_id   | string          | número de afiliação do contrato com o gateway de pagamento                                                            |
 | gateway_key  | string          | chave de acesso atribuída pelo gateway de pagamento                                                                   |
@@ -277,6 +277,7 @@ Cria uma nova Configuração de Cobrança, retornando as informações da mesma 
 | gateway_name | string  | **(requerido)** nome do gateway de pagamento (cielo)                                                                                                  |
 | gateway_id   | string  | **(requerido)** número de afiliação do contrato com o gateway de pagamento                                                                            |
 | gateway_key  | string  | **(requerido)** chave de acesso atribuída pelo gateway de pagamento                                                                                   |
+| status       | string  | (opctional, default "pending") indica o status, ou etapa, de homologação em que configuração de cobrança está ('pending', 'production_tests', 'ok')   |
 | use_avs      | boolean | (opcional) define se será feita a solicitação e a confirmação do endereço de cobrança da fatura do cartão utilizado no pagamento (`false` por padrão) |
 
 ## Atualização de Configuração de Cobrança
