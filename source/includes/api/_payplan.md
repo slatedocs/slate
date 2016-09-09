@@ -57,7 +57,17 @@ Recurring handles all types of recurring plans.
       "options": null,
       "payload": null,
       "callback_url": "http://www.sample.com/webhook.php"
-    }
+    },
+    "logs": [
+      {
+        "id": 5,
+        "payplan_id": 1,
+        "sku": "",
+        "amount": "67.00",
+        "description": "Another sample fee",
+        "completed": 0
+      },
+    ]
   }
 }
 ```
@@ -130,7 +140,17 @@ PLANID | The ID of the recurring plan to retrieve.
         "options": null,
         "payload": null,
         "callback_url": "http://www.sample.com/webhook.php"
-      }
+      },
+      "logs": [
+        {
+          "id": 5,
+          "payplan_id": 1,
+          "sku": "",
+          "amount": "67.00",
+          "description": "Another sample fee",
+          "completed": 0
+        },
+      ]
     },
     {
       "id": 2,
@@ -164,7 +184,17 @@ PLANID | The ID of the recurring plan to retrieve.
         "options": null,
         "payload": null,
         "callback_url": "http://www.sample.com/webhook.php"
-      }
+      },
+      "logs": [
+        {
+          "id": 5,
+          "payplan_id": 1,
+          "sku": "",
+          "amount": "67.00",
+          "description": "Another sample fee",
+          "completed": 0
+        },
+      ]     
     }
   ],
   "meta": {
@@ -236,7 +266,17 @@ page | 1 | Page number.
       "options": null,
       "payload": null,
       "callback_url": "http://www.sample.com/webhook.php"
-    }
+    },
+    "logs": [
+      {
+        "id": 5,
+        "payplan_id": 1,
+        "sku": "",
+        "amount": "67.00",
+        "description": "Another sample fee",
+        "completed": 0
+      },
+    ]
   }
 }
 ```
@@ -302,7 +342,17 @@ total | Total amount that will be charge for the entire plan period. Applies onl
       "options": null,
       "payload": null,
       "callback_url": "https://someurl.com"
-    }
+    },
+    "logs": [
+      {
+        "id": 5,
+        "payplan_id": 1,
+        "sku": "",
+        "amount": "67.00",
+        "description": "Another sample fee",
+        "completed": 0
+      },
+    ]
   }
 }
 ```
