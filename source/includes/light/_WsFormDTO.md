@@ -10,3 +10,12 @@ typeId | string | 0..1 | идентификатор типа
 position | string | 0..1 | расположение
 fieldValues | [WsFieldValueDTO](#wsfieldvaluedto) | 0..1 | список полей формы
 logoResource | [LogoResource](#logoresource) | 0..1 | url для доступа к логотипу
+
+### WsFieldValueDTO
+
+key | type | status | comment
+--- | ---- | :----: | ---:
+id | string | 1..1 | идентификатор
+serializedValue | string | 0..1 | значение
+name | string | 0..1 | название
+key | string | 0..1 | ключ

@@ -1,0 +1,12 @@
+## removeLocationStatus
+
+Удаление статусов локации
+
+key | type | status | comment
+--- | ---- | :----: | ---:
+**Request:** | | |
+key | string | 0..1 | ключ статуса
+locationId | string | 0..1 | идентификатор
+**Response:** | | |
+sucсess | bool | 0..1 | статус операции
+errorMessage | string | 0..1 | текстовое сообщение

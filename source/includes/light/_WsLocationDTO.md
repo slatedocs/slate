@@ -34,8 +34,8 @@ id | string | 1..1 | идентификатор
 name | string | 0..1 | наименование
 city | string | 0..1 | город
 address | string | 0..1 | адрес
-lat | int | 1..1 | широта
-lng | int | 1..1 | долгота
+lat | string | 1..1 | широта
+lng | string | 1..1 | долгота
 logicalId | string | 1..1 | логический идентификатор
 operationTime | string | 0..1 | режим работы
 type | [WsLocationTypeDTO](#wslocationtypedto) | 1..1 | тип
@@ -50,7 +50,9 @@ key | type | status | comment
 --- | ---- | :----: | ---:
 id | string | 1..1 | идентификатор
 kind | [LocationTypeKey](#locationtypekey) | 1..1 | тип
-order | int | 1..1 | порядок сортировки#### LocationTypeKey
+order | int | 1..1 | порядок сортировки
+
+#### LocationTypeKey
 
 key | comment
 --- | ---:
@@ -74,6 +76,8 @@ SALE |
    <value>i18n{"ru":"Аэропорт","en":"Aerport"}</value>
 </attributes>
 ```
+
+Данные по статусу запрашиваются мобильными клиентами отдельно, и позволяют более точно информировать пользователей о текущем состоянии точки, например изменение курса валют и сотояние работы
 
 key | type | status | comment
 --- | ---- | :----: | ---:
@@ -120,10 +124,12 @@ CURRENCY.n | string | текстовый код валюты по [ISO 4217](htt
 }
 ```
 
+Сервисы позволяют настроить более гибкий фильтр по точкам на карте
+
 key | type | status | comment
 --- | ---- | :----: | ---:
 id | string | 1..1 | идентификатор
 name | string | 1..1 | наименование
-description | string | 0..1 | описание
+description | string | 0..1 | логическая принадлежность
 logicalId | string | 1..1 | логический идентификатор
 parentId | string | 0..1 | родительский логический блок
