@@ -26,3 +26,5 @@ search: true
 # !!! Раздел в разработке | Section only creates !!!
 
 если нужен про, то смотри [doc.idamob.ru/pro](https://doc.idamob.ru/pro)
+
+![image](//placehold.it/800x200 "Некое название при наведении")
