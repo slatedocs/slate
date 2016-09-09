@@ -38,7 +38,7 @@
 
 **Эталонная wsdl**
 
-- pro server - [http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl](http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl)
+pro server - [http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl](http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl)
 
 **Рекомендация по развертыванию нескольких серверов на одной машине**
 

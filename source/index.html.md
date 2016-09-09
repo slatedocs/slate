@@ -46,6 +46,9 @@ includes:
   - light/WsFieldDTO
   - light/WsFormTypeDTO
   - light/WsNewsDTO
+  - light/outIntagration
+  - light/createOrder
+  - light/FieldValueDTO
   - light/faq
 
 search: true

@@ -1,4 +1,4 @@
-## removeLocationStatus
+## deleteLocationStatuses
 
 Удаление статусов локации
 
