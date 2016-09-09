@@ -156,10 +156,10 @@ Here are the parameters that can be passed to the search endpoint.
 
 Parameter             | Type        | Description
 ----------------------|-------------|------------------------------------------------
-q                     | string      | query string 
+q                     | string      | query string
 f                     | json Object | used to filter the output of the search (see below)
 limit                 | integer     | limit the number of results returned by the api to less than this amount (default 1000)
-offset                | integer     | offset into the search index to start gathering results from pre-filter 
+offset                | integer     | offset into the search index to start gathering results from pre-filter
 group_variables_limit | integer     | number of non-matching variable results inside matching group names to return (default 10)
 
 Allowable filter parameters:
@@ -176,7 +176,7 @@ The query string can only be alpha-numeric characters (including underscores) lo
 
 
 ##### Fields Searched
- 
+
 Here is a list of the fields that are searched by the Crunch search endpoint
 
 Field             | Type            | Description                                             | Post-Filter?
@@ -196,7 +196,7 @@ dataset_owner     | String          | ID of the owner of the dataset associated 
 dataset_users     | List of Strings | User IDs having read-access to the dataset associated with the variable | no
 dataset_teams     | List of Strings | Team IDs having read-access to the dataset associated with the variable | no
 dataset_projects  | List of Strings | Project IDs having read-access to the dataset associated with the variable | no
-                            
+
 <aside class="notice">
 Post-filter indicates whether post-index results are filtered by the field noted.  If the given query string does not
 match at least one of the Post-filter fields, then it will be eliminated from the results, which limits the results to a
@@ -207,7 +207,7 @@ reasonable number when the dataset attributes match but no variable attributes m
 ```http
 GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_variables_list={group_variables_list}  HTTP/1.1
 ```
-  
+
 ```json
 {
    "element": "shoji:view",
@@ -329,9 +329,9 @@ GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_v
 The variables grouping displays metadata for all of the variables that matched.
 The Datasets grouping displays metadata for all of the datasets where a variable or the dataset it self matched.  The "groups"
 parameter of the dataset indicates any variable groups that matched, along with variables that did not match the search but are contained
-within the variable grouping.  The group names that are indexed come from the variable ordering endpoint. 
+within the variable grouping.  The group names that are indexed come from the variable ordering endpoint.
 
-Use the `group_variables_limit` parameter to define how many group variables to expose in this parameter. 
+Use the `group_variables_limit` parameter to define how many group variables to expose in this parameter.
 variable_count is the total number of variables that matched the crunch's search index.  This number can be used when considering
 limit and offset parameters.  (limit + offset higher than variable_count will always return no results)
 Totals group defines the number of variables and datasets that matched post-index-filtering.  This parameter is useful in order to limit
@@ -502,7 +502,7 @@ Name | Type | Description
 name | string | Human-friendly string identifier
 description | string | Optional longer string
 archived | boolean | Whether the variable should be hidden from most views; default: false
-owner | URL | Provide a team URL to set the owner to that team; if omitted, the authenticated user will be the owner   
+owner | URL | Provide a team URL to set the owner to that team; if omitted, the authenticated user will be the owner
 notes | string | Blank if omitted. Optional notes for the dataset
 start_date | date | ISO-8601 formatted date with day resolution
 end_date | date | ISO-8601 formatted date with day resolution
@@ -564,7 +564,7 @@ bottom of the root list in arbitrary order.
      "graph": [
         "dataset_url",
         {"group": [
-            "dataset_url"        
+            "dataset_url"
         ]}
      ]
 }
@@ -733,7 +733,7 @@ GET returns a Shoji View of available dataset export formats.
 ```
 
 A POST request on any of the export views will return 202 status with a `shoji:view`, containing an attribute
-`url` pointing to the location of the exported file to be downloaded; GET that URL to download the file. 
+`url` pointing to the location of the exported file to be downloaded; GET that URL to download the file.
 
 
 ```http
@@ -852,6 +852,331 @@ PATCH the "expression" attribute to modify. An empty "expression" object, like
 
 ##### Stream
 
+##### Decks
+
+`/datasets/{id}/decks/`
+
+Decks allow you to store [saved analyses](#saving-analyses) as slides on them
+for exporting or future reference.
+
+Decks are personal per dataset and each dataset gets one by default but it is
+possible to create more as necessary by POSTing to the decks catalog. They
+only need a name.
+
+###### GET
+
+A GET request on the catalog endpoint will return all the decks available for
+this dataset for the authenticated user, this includes decks created by
+the user and public decks shared for this dataset.
+
+```json
+{
+    "element": "shoji:catalog",
+    "self": "https://beta.crunch.io/api/datasets/223fd4/decks/",
+    "index": {
+        "https://beta.crunch.io/api/datasets/cc9161/decks/4fa25/": {
+          "name": "my new deck",
+          "creation_time": "1986-11-26T12:05:00",
+          "id": "4fa25",
+          "is_public": false,
+          "owner_id": "https://beta.crunch.io/api/users/abcd3/",
+          "owner_name": "Real Person"
+        },
+        "https://beta.crunch.io/api/datasets/cc9161/decks/2b53e/": {
+          "name": "Default deck",
+          "creation_time": "1987-10-15T11:45:00",
+          "id": "2b53e",
+          "is_public": true,
+          "owner_id": "https://beta.crunch.io/api/users/4cba5/",
+          "owner_name": "Other Person"
+        },
+    },
+    "order": "https://beta.crunch.io/api/datasets/223fd4/decks/order/"
+}
+
+```
+
+###### POST
+
+POST will create a new decks for this dataset. It only needs to have
+identifiable name.
+
+```json
+{
+    "element": "shoji:entity",
+    "self": "https://beta.crunch.io/api/datasets/223fd4/decks/",
+    "body": {
+        "name": "my new deck"
+    }
+}
+```
+
+```http
+HTTP/1.1 201 Created
+Location: https://beta.crunch.io/api/datasets/223fd4/decks/2b3c5e/
+
+```
+
+###### Deck entity
+
+`/datasets/{id}/decks/{id}/`
+
+####### GET
+
+You can GET on the deck entity to see all its attributes:
+
+```json
+{
+    "element": "shoji:entity",
+    "self": "https://beta.crunch.io/api/datasets/223fd4/decks/223fd4/",
+    "body": {
+        "name": "Presentation deck",
+        "id": "223fd4",
+        "creation_time": "1987-10-15T11:45:00",
+        "description": "Explanation about the deck",
+        "id": "223fd4",
+        "is_public": false,
+        "owner_id": "https://beta.crunch.io/api/users/abcd3/",
+        "owner_name": "Real Person"
+    }
+}
+```
+
+####### PATCH
+
+In order to change the name or description of a deck you can PATCH a
+shoji:entity to it. The server will return a 204 response.
+
+```json
+{
+    "element": "shoji:entity",
+    "self": "https://beta.crunch.io/api/datasets/223fd4/decks/223fd4/",
+    "body": {
+        "name": "Presentation deck",
+        "id": "223fd4",
+        "creation_time": "1987-10-15T11:45:00",
+        "description": "Explanation about the deck"
+    }
+}
+```
+```http
+HTTP/1.1 204 No Content
+```
+
+Only the following attributes are editable:
+
+ * name
+ * description
+ * is_public
+
+The `is_public` attribute is only editable if the authenticated user is the
+owner of the deck.
+
+
+###### Decks order
+
+`/datasets/{id}/decks/order/`
+
+The Deck order allows to the user to customize the order in which they will be
+displayed by an API client.
+
+The deck order will always contain all existing decks that are visible to the
+authenticated user, private and public decks.
+
+
+####### GET
+
+Will return a (Shoji Order)[#shoji-order] payload.
+
+```json
+{
+  "element": "shoji:order",
+  "self": "https://beta.crunch.io/api/datasets/223fd4/decks/order/",
+  "graph": [
+    "https://beta.crunch.io/api/datasets/223fd4/decks/1/",
+    "https://beta.crunch.io/api/datasets/223fd4/decks/2/",
+    "https://beta.crunch.io/api/datasets/223fd4/decks/3/"
+  ]
+}
+
+```
+
+####### PATCH
+
+It is necessary to do a PATCH request to change the order of the decks. On success the server will return a 204 response.
+
+If the payload contains only a subset of the existing decks. The unmentioned decks will be always appended at the bottom of the top level graph in arbitrary order.
+
+```json
+{
+  "element": "shoji:order",
+  "self": "https://beta.crunch.io/api/datasets/223fd4/decks/order/",
+  "graph": [
+    "https://beta.crunch.io/api/datasets/223fd4/decks/1/",
+    "https://beta.crunch.io/api/datasets/223fd4/decks/3/"
+  ]
+}
+```
+
+Including invalid URLs or URLs to decks that are not present in the catalog will return a 400 response from the server.
+
+###### Slides
+
+`/datasets/223fd4/decks/slides/`
+
+Each deck will contain a list of slides for each of its saved analyses.
+
+
+####### GET
+
+Returns a `shoji:catalog` with the slides for this deck.
+
+```json
+
+{
+    "element": "shoji:catalog",
+    "self": "/api/datasets/123/decks/123/slides/",
+    "orders": {
+        "flat": "/api/datasets/123/decks/123/slides/flat/"
+    },
+    "specification": "https://beta.crunch.io/api/specifications/slides/",
+    "description": "A catalog of the Slides in this Deck",
+    "index": {
+        "/api/datasets/123/decks/123/slides/123/": {
+            "analysis_url": "/api/datasets/123/decks/123/slides/123/analyses/123/",
+            "subtitle": "z",
+            "display": {
+                "value": "table"
+            },
+            "title": "slide 1"
+        },
+        "/api/datasets/123/decks/123/slides/456/": {
+            "analysis_url": "/api/datasets/123/decks/123/slides/456/",
+            "subtitle": "",
+            "display": {
+                "value": "table"
+            },
+            "title": "slide 2"
+        }
+    },
+    "template": "{\"query\": {\"measures\": \"Object with keyed measures functions\", \"dimensions\": \"Array of variable references\", \"weight\": \"Optional weight variable URL\"}, \"display_settings\": {}, \"query_environment\": {\"filter\": \"Array of filter urls\"}}"
+}
+
+```
+
+####### POST
+
+To create a new slide an analysis has to be posted to the catalog. The payload
+is described in the [saved analyses](#saving-analyses) section.
+
+
+###### Slide Entity
+
+`/datasets/223fd4/decks/slides/a126ce/`
+
+
+Each slide in the Slide Catalog contains reference to its analysis.
+
+####### GET
+
+```json
+{
+    "element": "shoji:entity",
+    "self": "/api/datasets/123/decks/123/slides/123/",
+    "catalogs": {
+        "analyses": "/api/datasets/123/decks/123/slides/123/analyses/"
+    },
+    "description": "Returns the detail information for a given slide",
+    "body": {
+        "deck_id": "123",
+        "subtitle": "z",
+        "title": "slide 1",
+        "analysis_url": "/api/datasets/123/decks/123/slides/123/analyses/123/",
+        "display": {
+            "value": "table"
+        },
+        "id": "123"
+    }
+}
+```
+
+####### DELETE
+
+Call DELETE on the Slide entity endpoint to delete this slide and its analyses.
+
+
+###### Slides Order
+
+`/datasets/223fd4/decks/slides/flat/`
+
+The owner of the deck can pick the order of the slides on it. Unlike other
+`shoji:order` resources, this order does not allow grouping or nesting so it
+will always be a flat list of slide URLs.
+
+
+####### GET
+
+Will return the list of all the slides in the deck.
+
+```json
+{
+    "element": "shoji:order",
+    "self": "/api/datasets/123/decks/123/slides/flat/",
+    "description": "Order of the slides on this deck",
+    "graph": [
+        "/api/datasets/123/decks/123/slides/123/",
+        "/api/datasets/123/decks/123/slides/456/"
+    ]
+}
+```
+
+####### PATCH
+
+To make changes to the order, a client should PATCH the full `shoji:order`
+resource to the endpoint with the new order on its `graph` attribute.
+
+Any slide not mentioned on the payload will be added at the end of the graph
+in arbitrary order.
+
+
+```json
+{
+    "element": "shoji:order",
+    "self": "/api/datasets/123/decks/123/slides/flat/",
+    "description": "Order of the slides on this deck",
+    "graph": [
+        "/api/datasets/123/decks/123/slides/123/",
+        "/api/datasets/123/decks/123/slides/456/"
+    ]
+}
+```
+
+##### Settings
+
+`/datasets/{id}/settings/`
+
+The dataset settings allow editors to store dataset wide permissions and
+configurations for it.
+
+Will always return all the available settings with default values a dataset
+can have.
+
+
+```json
+{
+    "element": "shoji:entity",
+    "self": "https://beta.crunch.io/api/datasets/223fd4/settings/",
+    "body": {
+        "viewers_can_export": false
+    }
+}
+```
+
+To make changes, clients should PATCH the settings they wish to change with new
+values. Additional settings are not allowed, the server will return a 400
+response.
+
+
 ##### Preferences
 
 `/datasets/{id}/preferences/`
@@ -949,7 +1274,7 @@ When POSTing, set the body to a JSON object containing the key "pk" to modify
 the primary key. The "pk" key should be a list containing zero or more variable URLs.
 The variables referenced must be either text or numeric type
 and must have no duplicate or missing values.  Setting pk to ``[]`` is
-equivalent to deleting the primary key for a dataset.  
+equivalent to deleting the primary key for a dataset.
 
 <aside class="notice">
     We currently support only a single primary key variable, so the POST payload
