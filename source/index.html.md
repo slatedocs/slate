@@ -11,13 +11,13 @@ includes:
   - modules/setup
   - modules/authentication
   - api/payplan
-  - api/customer
-  - api/credits
-  - api/checks
-  - api/fee
+  - api/customer      
   - api/transaction
   - api/invoice
   - errors
+
+
+
 
 search: true
 ---

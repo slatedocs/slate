@@ -1,5 +1,165 @@
 # Transactions
 
+## Run Sale
+
+> Returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "sale",
+    "details": {
+      "amount": "2.22",
+      "paymethod": "2hlg-gztu-2sf4-7frw"
+    },
+    "result_code": "A",
+    "error_message": "",
+    "response": {
+      "acsUrl": "",
+      "authAmount": 2.22,
+      "authCode": "393354",
+      "avsResult": "Address: Match & 5 Digit Zip: Match",
+      "avsResultCode": "YYY",
+      "batchNum": 2215,
+      "batchRefNum": 238287,
+      "cardCodeResult": "Match",
+      "cardCodeResultCode": "M",
+      "cardLevelResult": "Visa Traditional",
+      "cardLevelResultCode": "A",
+      "conversionRate": 0,
+      "convertedAmount": 0,
+      "convertedAmountCurrency": "840",
+      "custNum": 0,
+      "error": "Approved",
+      "errorCode": 0,
+      "isDuplicate": false,
+      "payload": "",
+      "refNum": 109637007,
+      "result": "Approved",
+      "resultCode": "A",
+      "status": "Pending",
+      "statusCode": "P",
+      "vpasResultCode": ""
+    },
+    "custom_field": [],
+    "lineitems": []
+  }
+}
+```
+
+This method run a sale transaction
+
+### HTTP Request
+
+`POST transactions/run`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+amount* |  | Amount of the transaction
+paymethod* |  | Payment method to be used
+customer* |  | Customer ID
+billing[firstname] |  | First name
+billing[lastname] |  | Last name
+custom_field[one] |  | First custom field
+custom_field[two] |  | Second custom field
+lineitem1[sku] |  | Lineitem sku
+lineitem1[productname] |  | Lineitem product name
+lineitem1[description] |  | Lineitem description
+lineitem1[unitprice] |  | Lineitem unit price
+lineitem1[qty] |  | Lineitem quantity
+lineitem1[taxable] |  | Lineitem taxable
+
+<aside class="notice">* = Required.</aside>
+
+## Refund Transaction
+
+> Returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "refund",
+    "details": {
+      "amount": ".02"
+    },
+    "result_code": "A",
+    "error_message": "",
+    "response": {
+      "acsUrl": null,
+      "authAmount": ".02",
+      "authCode": "103408",
+      "avsResult": "Address: Match & 5 Digit Zip: Match",
+      "avsResultCode": "YYY",
+      "batchNum": 2622,
+      "batchRefNum": 234573,
+      "cardCodeResult": "Not Processed",
+      "cardCodeResultCode": "P",
+      "cardLevelResult": null,
+      "cardLevelResultCode": null,
+      "conversionRate": 0,
+      "convertedAmount": 0,
+      "convertedAmountCurrency": "",
+      "custNum": 0,
+      "error": "Approved",
+      "errorCode": 0,
+      "isDuplicate": false,
+      "payload": null,
+      "refNum": 108564342,
+      "result": "Approved",
+      "resultCode": "A",
+      "status": "Settled",
+      "statusCode": "S",
+      "vpasResultCode": null
+    }
+  }
+}
+```
+
+This method lets you refund a transaction
+
+### HTTP Request
+
+`POST transactions/<REFNUM>/<AMOUNT>/refund`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+REFNUM | Transaction reference number
+AMOUNT | Amount for refund.
+
+## Void Transaction
+
+> Returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "void",
+    "details": {
+      "amount": []
+    },
+    "result_code": "A",
+    "error_message": "",
+    "response": []
+  }
+}
+```
+
+This method lets you void a transaction
+
+### HTTP Request
+
+`POST transactions/<REFNUM>/void`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+REFNUM | Transaction reference number
+
 ## View
 
 > Returns JSON structured like this:
@@ -188,7 +348,7 @@ This method lets you view all transactions.
 
 Parameter | Description
 --------- | -----------
-PLANID | The ID of the payplan to retrieve fees.
+PLANID | The ID of the recurring plan to retrieve fees.
 
 ### Query Parameters
 

@@ -1,6 +1,6 @@
-# Payplans
+# Recurring
 
-Payplan handles all types of recurring plans.
+Recurring handles all types of recurring plans.
 
 ## View
 
@@ -62,17 +62,17 @@ Payplan handles all types of recurring plans.
 }
 ```
 
-This endpoint retrieves a specific payplan.
+This endpoint retrieves a specific recurring.
 
 ### HTTP Request
 
-`GET payplans/<PLANID>`
+`GET recurring/<PLANID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-PLANID | The ID of the payplan to retrieve.
+PLANID | The ID of the recurring plan to retrieve.
 
 ## View All
 
@@ -175,26 +175,26 @@ PLANID | The ID of the payplan to retrieve.
       "current_page": 1,
       "total_pages": 12,
       "links": {
-        "next": "https://www.sample.com/v1/payplans/?limit=2&page=2"
+        "next": "https://www.sample.com/v1/recurring/?limit=2&page=2"
       }
     }
   }
 }
 ```
 
-This endpoint retrieves all payplans.
+This endpoint retrieves all recurring plans.
 
 ### HTTP Request
 
-`GET payplans`
+`GET recurring plans`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-customer |  | If set, the result will include only paylans associated with specific customer.
-status |  | If set, the result will include only payplans with specific status. Possible values are "ongoing", "cancelled", and "completed".
-type |  | If set, the result will include only payplans with specific type. Possible values are "subscription" and "payplan".
+customer |  | If set, the result will include only recurring plans associated with specific customer.
+status |  | If set, the result will include only recurring plans with specific status. Possible values are "ongoing", "cancelled", and "completed".
+type |  | If set, the result will include only recurring plans with specific type. Possible values are "subscription" and "payplan".
 limit | 20 | Number of items to show per page.
 page | 1 | Page number.
 
@@ -241,11 +241,11 @@ page | 1 | Page number.
 }
 ```
 
-This method lets you create new payplan.
+This method lets you create new recurring plan.
 
 ### HTTP Request
 
-`POST payplans`
+`POST recurring plan`
 
 ### Query Parameters
 
@@ -253,14 +253,14 @@ Parameter | Description
 --------- | -----------
 customer* | The customer ID.
 method* | The payment method to use. Format: `cc:<id>` for cards. `ach:<id>` for ACH/Check payments. E.g.: `cc:12`.
-type* | Plan type. "S" for subscription and "P" for payplan.
-scheme* | The plan scheme type. "M" for monthly and "Y" for annually/yearly.
+type* | Plan type. "S" for subscription and "P" for recurring plan.
+scheme* | The plan scheme type. "M" for monthly, "Y" for annually/yearly, "W" for weekly, "BW" for bi-weekly, and "Q" for quarterly.
 balance* | The due amount.
 start* | The date the plan will start in YYYY-MM-DD format. (e.g 2015-10-12).
 fee | Initial fee amount.
 callback | The URL that will be use by the system when a payment has been made.
-duration | The payment count limit. Applies only to metered plan.
-total | Total amount that will be charge for the entire plan period. Applies only to metered plan.
+duration | The payment count limit. Applies only to payplan.
+total | Total amount that will be charge for the entire plan period. Applies only to payplan.
 
 <aside class="notice">* = Required.</aside>
 
@@ -307,26 +307,42 @@ total | Total amount that will be charge for the entire plan period. Applies onl
 }
 ```
 
-This method lets you update existing payplan.
+This method lets you update existing recurring plan.
 
 ### HTTP Request
 
-`PUT payplans/<PLANID>`
+`PUT recurring/<PLANID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-PLANID | The ID of the payplan to retrieve.
+PLANID | The ID of the recurring plan to retrieve.
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
 method | The payment method to use. Format: `cc:<id>` for cards. `ach:<id>` for ACH/Check payments. E.g.: `cc:12`.
-scheme | The plan scheme type. "M" for monthly and "Y" for annually/yearly.
+scheme | The plan scheme type. "M" for monthly, "Y" for annually/yearly, "W" for weekly, "BW" for bi-weekly, and "Q" for quarterly.
 balance | The due amount.
 callback | The URL that will be use by the system when a payment has been made.
+
+## Cancel Plan
+
+> Returns `[]` on successful
+
+This method lets you cancel recurring plan
+
+### HTTP Request
+
+`DELETE recurring/<PLANID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+PLANID | The ID of the recurring plan to be cancelled.
 
 
 ## Logs
@@ -367,7 +383,7 @@ callback | The URL that will be use by the system when a payment has been made.
       "current_page": 1,
       "total_pages": 2,
       "links": {
-        "next": "https://api.slycepay.com/v1/payplans/1/logs/?limit=2&page=2"
+        "next": "https://api.slycepay.com/v1/recurring/1/logs/?limit=2&page=2"
       }
     }
   }
@@ -378,10 +394,150 @@ This method lets view all logs in a specific plan.
 
 ### HTTP Request
 
-`GET payplans/<PLANID>/logs`
+`GET recurring/<PLANID>/logs`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-PLANID | The ID of the payplan to retrieve logs.
+PLANID | The ID of the recurring plan to retrieve logs.
+
+## Fees
+
+### View
+
+> Returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "id": 1,
+    "payplan_id": 1,
+    "sku": "123",
+    "amount": "123.50",
+    "description": "Test fee.",
+    "completed": true
+  }
+}
+```
+
+This method lets you view specific fee.
+
+#### HTTP Request
+
+`GET recurring/<PLANID>/fees/<FEEID>`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -----------
+PLANID | The ID of the recurring plan to retrieve fees.
+FEEID | The ID of the fee.
+
+
+### View All
+
+> Returns JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "payplan_id": 1,
+      "sku": "123",
+      "amount": "12.00",
+      "description": "Test Fee.",
+      "completed": true
+    },
+    {
+      "id": 2,
+      "payplan_id": 1,
+      "sku": "",
+      "amount": "10.00",
+      "description": "",
+      "completed": true
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "total": 6,
+      "count": 2,
+      "per_page": 2,
+      "current_page": 1,
+      "total_pages": 3,
+      "links": {
+        "next": "http://api.slycepay.com/v1/recurring/1/fees/?limit=2&page=1"
+      }
+    }
+  }
+}
+```
+
+This method lets you view all fees in a specific plan.
+
+#### HTTP Request
+
+`GET recurring/<PLANID>/fees`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -----------
+PLANID | The ID of the recurring plan to retrieve fees.
+
+
+
+### Create
+
+> Returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "id": 1,
+    "payplan_id": 1,
+    "sku": "123",
+    "amount": "12.52",
+    "description": "Test fee 2.",
+    "completed": true
+  }
+}
+```
+
+This method lets you create new fee.
+
+#### HTTP Request
+
+`POST recurring/<PLANID>/fees`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -----------
+PLANID | The ID of the recurring plan to retrieve fees.
+
+#### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+amount |  | Fee amount.
+sku |  | Tracking id for keeping purposes.
+
+
+### Delete
+
+> Returns `true` on successful
+
+This method lets you remove the unpaid fees identified by an SKU.
+
+#### HTTP Request
+
+`POST recurring/<PLANID>/fees/<SKU>`
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -----------
+PLANID | The ID of the recurring plan to retrieve fees.
+SKU | Sku id provided.

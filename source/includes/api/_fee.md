@@ -21,13 +21,13 @@ This method lets you view specific fee.
 
 ### HTTP Request
 
-`GET payplans/<PLANID>/fees/<FEEID>`
+`GET recurring/<PLANID>/fees/<FEEID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-PLANID | The ID of the payplan to retrieve fees.
+PLANID | The ID of the recurring plan to retrieve fees.
 FEEID | The ID of the fee.
 
 
@@ -63,7 +63,7 @@ FEEID | The ID of the fee.
       "current_page": 1,
       "total_pages": 3,
       "links": {
-        "next": "http://api.slycepay.com/v1/payplans/1/fees/?limit=2&page=1"
+        "next": "http://api.slycepay.com/v1/recurring/1/fees/?limit=2&page=1"
       }
     }
   }
@@ -74,13 +74,13 @@ This method lets you view all fees in a specific plan.
 
 ### HTTP Request
 
-`GET payplans/<PLANID>/fees`
+`GET recurring/<PLANID>/fees`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-PLANID | The ID of the payplan to retrieve fees.
+PLANID | The ID of the recurring plan to retrieve fees.
 
 
 
@@ -105,13 +105,13 @@ This method lets you create new fee.
 
 ### HTTP Request
 
-`POST payplans/<PLANID>/fees`
+`POST recurring/<PLANID>/fees`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-PLANID | The ID of the payplan to retrieve fees.
+PLANID | The ID of the recurring plan to retrieve fees.
 
 ### Query Parameters
 
@@ -129,11 +129,11 @@ This method lets you remove the unpaid fees identified by an SKU.
 
 ### HTTP Request
 
-`POST payplans/<PLANID>/fees/<SKU>`
+`POST recurring/<PLANID>/fees/<SKU>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-PLANID | The ID of the payplan to retrieve fees.
+PLANID | The ID of the recurring plan to retrieve fees.
 SKU | Sku id provided.

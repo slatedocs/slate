@@ -12,7 +12,7 @@
 
   var makeToc = function() {
     global.toc = $("#toc").tocify({
-      selectors: 'h1, h2',
+      selectors: 'h1, h2', //added the h3 but the existing h3 will be isolated.
       extendPage: false,
       theme: 'none',
       smoothScroll: false,

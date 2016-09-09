@@ -1,4 +1,4 @@
-# Credits
+# Cards
 
 ## View
 
@@ -20,7 +20,7 @@ This endpoint retrieves specific customer's credit method details.
 
 ### HTTP Request
 
-`GET customers/<CUSTID>/credits/<METHODID>`
+`GET customers/<CUSTID>/cards/<METHODID>`
 
 ### URL Parameters
 
@@ -64,11 +64,11 @@ METHODID | Method ID.
 }
 ```
 
-This endpoint retrieves all customer's credits.
+This endpoint retrieves all customer's cards.
 
 ### HTTP Request
 
-`GET customers/<CUSTID>/credits`
+`GET customers/<CUSTID>/cards`
 
 ### URL Parameters
 
@@ -85,7 +85,7 @@ This method lets you remove saved credit.
 
 ### HTTP Request
 
-`DELETE customers/<CUSTID>/credits/<METHODID>`
+`DELETE customers/<CUSTID>/cards/<METHODID>`
 
 ### URL Parameters
 
