@@ -303,7 +303,9 @@ export SCOUT_KEY=YOURKEY
 
 ## Deploy Tracking
 
-Scout can track deploys, making it easier to correlate changes in your app to performance. Scout identifies deploys via the following:
+Scout can track deploys, making it easier to correlate changes in your app to performance. To enable deploy tracking, first ensure you are on the latest version of `scout_apm`. See our [upgrade instructions](#updating-to-the-newest-version). 
+
+Scout identifies deploys via the following:
 
 1. If you are using Capistrano, no extra configuration is required. Scout reads the contents of the `REVISION` and/or `revisions.log` file and parses out the SHA of the most recent release.
 2. If you are using Heroku, enable [Dyno Metadata](https://devcenter.heroku.com/articles/dyno-metadata). This adds a `HEROKU_SLUG_COMMIT` environment variable to your dynos, which Scout then associates with deploys. 
