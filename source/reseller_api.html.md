@@ -124,6 +124,23 @@ curl "https://demo.gomus.de/api/v4/orders/1"
 - billing_address_id (integer), reference to an address dataset. Not in use right now, but in future versions of th API resellers might be able to use several adresses for one account.
 
 
+## Find single order by barcode
+
+`GET https://demo.gomus.de/api/v4/orders/barcode/:barcode`
+
+```shell
+curl "https://demo.gomus.de/api/v4/orders/barcode/704323341"
+    -H "Authorization: Bearer meowmeowmeow"
+```
+
+> The above command returns JSON structured just like the details of a single order.
+
+### Barcodes
+
+The barcode may belong to any item that is contained in the order.
+
+
+
 
 ## Documents
 
