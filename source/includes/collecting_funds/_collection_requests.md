@@ -50,7 +50,7 @@ collection = Beyonic::CollectionRequest.create(
     phonenumber: "+401000000001",
     amount: "100.2",
     currency: "BXC",
-    'metadata.my_id': "123ASDAsd123"
+    metadata: {"my_id": "123ASDAsd123"}
 )
 ```
 
@@ -63,7 +63,7 @@ Beyonic_Collection_Request::create(array(
   "phonenumber" => "+401000000001",
   "amount" => "100.2",
   "currency" => "BXC",
-  "metadata.my_id" => "123ASDAsd123"
+  "metadata" => array("my_id"=>"123ASDAsd123")
 ));
 ?>
 ```
@@ -72,14 +72,13 @@ Beyonic_Collection_Request::create(array(
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-kwargs = {'metadata.my_id': '123ASDAsd123'}
 
 beyonic.CollectionRequest.create(phonenumber='+401000000001',
                        amount='1200',
                        currency='BXC',
                        description='Per diem',
                        callback_url='https://my.website/payments/callback',
-                       **kwargs
+                       metadata={'my_id': '123ASDAsd123'}
                        )
 ```
 
@@ -168,10 +167,13 @@ public class CreateCollectionRequestExample {
     "amount": "30",
     "currency": "BXC",
     "phone_number": "+401000000001",
+    "metadata": {
+        "my_id": "123ASDAsd123"
+    },
     "created": "2014-11-22T20:57:04.017Z",
     "author": 15,
     "modified": "2014-11-22T20:57:04.018Z",
-    "updated_by": null,
+    "updated_by": null
 }
 ```
 
@@ -284,7 +286,7 @@ public class SingleCollectionRequestExample {
     "created": "2014-11-22T20:57:04.017Z",
     "author": 15,
     "modified": "2014-11-22T20:57:04.018Z",
-    "updated_by": null,
+    "updated_by": null
 }
 ```
 

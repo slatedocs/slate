@@ -48,7 +48,7 @@ contact = Beyonic::Contact.create(
     first_name: "John",
     last_name: "Doe",
     email: "john.doe@beyonic.com",
-    'metadata.my_id': "123ASDAsd123"
+    metadata: {"my_id": "123ASDAsd123"}
 )
 ```
 
@@ -62,7 +62,7 @@ Beyonic_Contact::create(array(
   "first_name" => "John",
   "last_name" => "Doe",
   "email" => "john.doe@beyonic.com",
-  "metadata.my_id" => "123ASDAsd123"
+  "metadata" => array("my_id"=>"123ASDAsd123")
 ));
 ?>
 ```
@@ -71,13 +71,11 @@ Beyonic_Contact::create(array(
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-kwargs = {'metadata.my_id': '123ASDAsd123'}
-
 beyonic.Contact.create(phone_number='+401000000001',
                        first_name='John',
                        last_name='Doe',
                        email='john.doe@beyonic.com',
-                       **kwargs
+                       metadata={'my_id': '123ASDAsd123'}
                        )
 ```
 
@@ -167,7 +165,9 @@ public class CreateContactExample {
     "phone_number": "+401000000001",
     "type": "employee",
     "status": "active",
-    "metadata": null,
+    "metadata": {
+        "my_id": "123ASDAsd123"
+    },
     "created": "2013-09-19T21:26:10Z",
     "author": 1,
     "modified": "2015-04-14T18:21:47Z",
