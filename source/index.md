@@ -23,12 +23,14 @@ includes:
   - metadata
   - testing
   - changelog
+  - collecting_funds
+  - collecting_funds/collection_requests
+  - collecting_funds/collections
+  - sending_funds
+  - sending_funds/payments
   - methods
   - methods/accounts
-  - methods/collections
-  - methods/collection_requests
   - methods/contacts
-  - methods/payments
   - methods/webhooks
 
 search: true
