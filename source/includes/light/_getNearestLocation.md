@@ -1,5 +1,7 @@
 ## getNearestLocation
 
+<aside class="success">данный метод применяется для реализации ботов и разного рода сторонних систем</aside>
+
 Запрос ближайшей к точке локации
 
 key | type | status | comment
