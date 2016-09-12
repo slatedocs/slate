@@ -42,8 +42,8 @@ pro server - [http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl]
 
 **Рекомендация по развертыванию нескольких серверов на одной машине**
 
-1. Повторно выполнить шаги 3, 4, 5 из разела 'Порядок установки серверной части iDa Mobile' для создания ещё одной копии схемы БД
+1. Повторно выполнить шаги 3, 4, 5 из раздела 'Порядок установки серверной части iDa Mobile' для создания ещё одной копии схемы БД
 2. В Apache Tomcat задеплоить копии pro.war и light.war предварительно переименовав их в pro_new.war и light_new.war
 3. Установить фронт-серверное приложение, например, NGinx или Apache HTTPD
 4. Настроить дополнительный домен (например, если у вас используется домен ida.mybank.com для мобильных приложений, то нужно создать домен ida_new.mybank.com), который так-же будет ссылаться на IP настраиваемого сервера
-4. Произвести настройку фронт-сервера таким образом, что бы траффик для домена ida.mybank.com перенаправлялся на localhost:8080/pro (8080 - порт Tomcat по умолчанию), а траффик ida_new.idamob.ru направлялся на localhost:8080/pro_new. Пример подобной настройки nginx приведен здесь: [http://serverfault.com/questions/536576/nginx-how-do-i-forward-a-http-request-to-another-port](http://serverfault.com/questions/536576/nginx-how-do-i-forward-a-http-request-to-another-port)
+4. Произвести настройку фронт-сервера таким образом, что бы траффик для домена ida.mybank.com перенаправлялся на localhost:8080/pro (8080 - порт Tomcat по умолчанию), а траффик ida_new.mybank.com направлялся на localhost:8080/pro_new. Пример подобной настройки nginx приведен здесь: [http://serverfault.com/questions/536576/nginx-how-do-i-forward-a-http-request-to-another-port](http://serverfault.com/questions/536576/nginx-how-do-i-forward-a-http-request-to-another-port)
