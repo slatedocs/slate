@@ -11,3 +11,11 @@ data | [FieldValueDTO](#fieldvaluedto) | 0..1 | массив полей со з�
 **Response:** | | |
 sucсess | bool | 0..1 | статус операции
 errorMessage | string | 0..1 | текстовое сообщение
+
+### FieldValueDTO
+
+key | type | status | comment
+--- | ---- | :----: | ---:
+fieldName | string | 1..1 | наименование
+value | string | 0..1 | значение
+type | string | 0..1 | тип

@@ -33,10 +33,10 @@ includes:
   - light/getForms
   - light/removeCurrencyRate
   - light/deleteLocations
-  - light/dataStructs
   - light/removeLocationStatus
   - light/deleteLocationStatuses
   - light/getNewsFeed
+  - light/dataStructs
   - light/WsLocalizedRssUrl
   - light/WsFormDTO
   - light/WsBannerDTO
@@ -48,7 +48,6 @@ includes:
   - light/WsNewsDTO
   - light/outIntagration
   - light/createOrder
-  - light/FieldValueDTO
   - light/faq
 
 search: true
@@ -56,6 +55,6 @@ search: true
 
 # !!! Раздел в разработке | Section only creates !!!
 
-если нужен про, то смотри [doc.idamob.ru/pro](https://doc.idamob.ru/pro)
+**если нужен про, то смотри [doc.idamob.ru/pro](https://doc.idamob.ru/pro)**
 
 ![image](//placehold.it/800x200 "Некое название при наведении")
