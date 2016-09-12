@@ -1,6 +1,4 @@
-# Collection Requests (Billing)
-
-## Introduction
+# Collection Requests
 
 Collection Requests allow you to notify a customer to send funds to you. When you create a collection request, we send a notification to the customer, with insructions on how to fulfill the request. When they send the funds, a collection object shall be created, and matched with the collection request.
 
