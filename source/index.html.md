@@ -14,6 +14,8 @@ includes:
   - api/customer      
   - api/transaction
   - api/invoice
+  - api/receipts
+  - api/batch
   - errors
 
 
