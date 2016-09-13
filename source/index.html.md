@@ -65,168 +65,331 @@ newdash = Dashboard.objects.create(
   image=OPTIONAL_FILE_OBJECT
 )
 ```
+# REST API
 
+<table>
+<colgroup>
+<col width="28%" />
+<col width="33%" />
+<col width="37%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Endpoint</th>
+<th>URL</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tables</td>
+<td><code>/tables/</code></td>
+<td><a href="#tables">Create/Delete/Manage Tables</a></td></td>
+</tr>
+<td>Columns</td>
+<td><code>/tables/TABLE_ID/columns/</code></td>
+<td><a href="#columns">Add/Delete Columns</a></td></td>
+</tr>
+<td>Table Data</td>
+<td><code>/data/TABLE_ID/rows/</code></td>
+<td><a href="#data-rows">Fetch and create table data</a></td></td>
+</tr>
+<td>Branches</td>
+<td><code>/data/TABLE_ID/branches/</code></td>
+<td><a href="#data-branches">Create data branches</a></td></td>
+</tr>
+<td>Commits</td>
+<td><code>/data/TABLE_ID/branches/</code></td>
+<td><a href="#data-commits">Commit data and schema changes</a></td></td>
+</tr>
+<tr class="even">
+<td>Files</td>
+<td><code>/files/</code></td>
+<td><a href="#files">Upload/Import files</a></td>
+</tr>
+<tr class="odd">
+<td>User Profiles</td>
+<td><code>/profiles/</code></td>
+<td><a href="#profiles">Update user profile information</a></td>
+</tr>
+<tr class="even">
+<td>Sharing</td>
+<td><code>/share/</code></td>
+<td><a href="#share">Share Tables</a></td>
+</tr>
+<tr class="odd">
+<td>Quilts</td>
+<td><code>/quilts/</code></td>
+<td><a href="#quilts">Connect tables in a Quilt</a></td>
+</tr>
+<tr class="even">
+<td>Gene Math</td>
+<td><code>/genemath</code></td>
+<td><a href="#genemath">Intersect and Subtract sets of genomic regions</a></td>
+</tr>
 
-# Authentication (sample)
+</tbody>
+</table>
 
+ [See below]: #delete-table
+  [1]: #update-table-meta-data
+  [2]: #add-column-to-table
+  [3]: #append-row
+  [4]: #get-rows
+  [5]: #get-row
+  [6]: #intersect-or-subtract
 
-> To authorize, use this code:
+Notes
 
-```ruby
-require 'kittn'
+-   For all REST calls, the content-type is `application/JSON`.
+-   Description fields automatically linkify URLs and support `<a>, <i>, <em>, <strong>, <b>` tags
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+Tables
+======
 
-```python
-import kittn
+### Create
 
-api = kittn.authorize('meowmeowmeow')
-```
+`POST /tables/`
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+#### Data format
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-
-# Kittens (sample)
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
+``` sourceCode
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  'name': string,
+  'description': text `<a>, <i>, <em>, <strong>, <b>` tags supported; automatic linkification of URLs
+  'columns': [
+    {
+      'name': string,
+      'sqlname': optional string,
+      'description': optional text,
+      'type' : one of 'String', 'Number', 'Image', 'Text'
+    },
+    ...
+  ]
 }
 ```
 
-This endpoint retrieves a specific kitten.
+#### Returns
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+Table data as JSON object, includes `id` field with the table’s
+identifier.
 
-### HTTP Request
+### Retrieve
 
-`GET http://example.com/kittens/<ID>`
+`GET /tables/TABLE_ID`
 
-### URL Parameters
+#### Returns
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Table data as JSON object, includes `id` field with the table’s
+identifier.
+
+
+### Update
+
+`PATCH /tables/TABLE_ID`
+
+#### Data format
+
+``` sourceCode
+{
+  'name': string,
+  'description': text `<a>, <i>, <em>, <strong>, <b>` tags supported; automatic linkification of URLs
+  'columns': [
+    {
+      'name': string,
+      'sqlname': optional string,
+      'description': optional text,
+      'type' : one of 'String', 'Number', 'Image', 'Text'
+    },
+    ...
+  ]
+}
+```
+
+#### Returns
+
+Table data as JSON object, includes `id` field with the table’s
+identifier.
+
+### Delete
+
+`DELETE /tables/TABLE_ID`
+
+#### Returns
+status code
+
+
+Columns
+=======
+
+### Add Column
+
+`POST /tables/TABLE_ID/columns/`
+
+#### Data format
+``` sourceCode
+    {
+       'name': string,
+       'sqlname': optional field name string,
+       'description': text,
+       'type': one of 'String', 'Number', 'Date', 'DateTime', 'Image', or 'Text'
+    }
+```
+
+#### Returns
+
+Column data as JSON object, includes `id` field with the column’s
+identifier.
+
+### Update
+
+`PATCH /tables/TABLE_ID/columns/COLUMN_ID`
+
+#### Data format
+
+``` sourceCode
+    {
+       'name': string,
+       'sqlname': optional field name string,
+       'description': text,
+       'type': one of 'String', 'Number', 'Date', 'DateTime', 'Image', or 'Text'
+    }
+```
+
+#### Returns
+
+Table data as JSON object, includes `id` field with the table’s
+identifier.
+
+### Delete
+
+`DELETE /tables/TABLE_ID/columns/COLUMN_ID`
+
+#### Returns
+status code
+
+
+Data
+====
+
+### Create
+
+`POST /data/TABLE_ID/rows/`
+-   Use column `sqlname` as keys in input data
+``` sourceCode
+    [
+      {columnSqlname0: value0, columnSqlname1 : value1, ... },
+      ...
+    ]
+```
+
+### Retrieve (single row)
+
+`GET /data/TABLE_ID/rows/ROW_ID`
+
+#### Returns
+``` sourceCode
+      {columnSqlname0: value0, columnSqlname1 : value1, ... }
+```
+
+### List/Search (multiple rows)
+`GET /data/TABLE_ID/rows/`
+- query params: [order_by, search]
+
+#### Returns
+``` sourceCode
+    [
+      {columnSqlname0: value0, columnSqlname1 : value1, ... },
+      ...
+    ]
+```
+
+Branch Data
+===========
+
+### Create
+
+`POST /data/TABLE_ID/branches/BRANCH_NAME/rows/`
+-   Use column `sqlname` as keys in input data
+``` sourceCode
+    [
+      {columnSqlname0: value0, columnSqlname1 : value1, ... },
+      ...
+    ]
+```
+
+### Retrieve (single row)
+
+`GET /data/TABLE_ID/branches/BRANCH_NAME/rows/ROW_ID`
+
+#### Returns
+``` sourceCode
+      {columnSqlname0: value0, columnSqlname1 : value1, ... }
+```
+
+### List/Search (multiple rows)
+`GET /data/TABLE_ID/branches/BRANCH_NAME/rows/`
+- query params: [order_by, search]
+
+#### Returns
+``` sourceCode
+    [
+      {columnSqlname0: value0, columnSqlname1 : value1, ... },
+      ...
+    ]
+```
+
+Quilts
+======
+
+### Create
+
+`POST /quilts/` \#\#\#\# Data format
+
+    {
+      'left_table_id': int,
+      'right_table_id': int,
+      'left_column_id': int,
+      'right_column_id': int,
+      'jointype': one of 'inner', 'leftOuter', 'firstMatch'
+    }
+
+#### Returns
+
+Quilt info as JSON object, includes `sqlname` field with the quilt’s
+identifier.
+
+### Delete
+
+`DELETE /quilts/QUILT_SQLNAME`
+
+Genome Math
+===========
+
+-   Performs a gene math operation on two tables
+-   Creates a new table with the result.
+-   Columns are specified by `column.id`.
+
+### Intersect or subtract
+
+`POST /genemath/`
+
+#### Data Format
+``` sourceCode
+
+    {
+      'operator': one of 'Intersect' or 'Subtract',
+      'left_chr': integer (column id),
+      'left_start': integer (column id),
+      'left_end':  integer (column id),
+      'right_chr':  integer (column id),
+      'right_start': integer (column id),
+      'right_end':  integer (column id)
+    }
+```
+
+#### Returns
+
+JSON object representing the result table.
+ 
+
