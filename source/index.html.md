@@ -38,7 +38,45 @@ Starting good habits from 9/6/2016. Probably.
 
 
 ## Tools
-- `init_firebase` - refresh firebase cache from database source
+### init_firebase
+refresh firebase cache from database source
+
+### shell_plus
+serialize objects
+
+```shell
+from tables.serializers import *
+DashboardSerializer(dashboard_obj).data
+```
+
+## Environments
+- [Stage](https://quilt-heroku.herokuapp.com/)
+    - Database
+    - [Firebase (sometimes stage and prod swap)](https://console.firebase.google.com/project/firebase-quiltdata/database/data)
+    - [CDN](https://console.firebase.google.com/project/firebase-quilttest/hosting/main)
+- [Production](https://quiltdata.com/)
+    - Database
+    - [Firebase (sometimes stage and prod swap)](https://console.firebase.google.com/project/firebase-quilttest/database/data)
+    - [CDN](https://console.firebase.google.com/project/firebase-quiltdata/hosting/main)
+
+# Deployments
+
+## JavaScript
+
+TODO: Synchronize with backend deploys to avoid race conditions (see Heroku email chain)
+
+* `gulp deploy` - builds production optimized JS app bundle; requires `firebase deploy`
+to actually hit the internets
+
+* firebase environments (alias = full_name)
+    * stage = quilttest
+    * production = quilitdata
+* `firebase list` to see environments
+* `firebase use --add` to set aliases
+* `firebase use ALIAS_OR_ENVIRONMENT` to set active environment
+* `firebase deploy` - currently deploys CDN (hosting) files only for active environment
+
+Full [Firebase CLI reference](https://firebase.google.com/docs/cli/).
 
 # Dashboards
 User dashboard that points to a periscope dashboard. Partial feature.
@@ -53,18 +91,40 @@ How to create and publish:
 
 ```shell
 # local cli
-heroku run python manage.py shell_plus
+heroku run python manage.py shell_plus --app ENVIRONMENT
 
 # inside shell_plus
 newdash = Dashboard.objects.create(
   id=PERISCOPE_ID,
-  table=TABLE_ID,
+  table=TABLE,
+  table_id=TABLE_ID,
   name=NAME,
   description=DESC,
   image_url=IMAGE_URL,
   image=OPTIONAL_FILE_OBJECT
 )
+
+# to inspect
+Dashboard.objects.all()
+Dashboard.objects.filter(id=,name=, …):
+
 ```
+
+## Pose as specific user
+
+```shell
+>>> kaleb = User.objects.get(username='Kaleb')
+>>> request = factory.get('/tables/?dashboard=1')
+>>> force_authenticate(request, kaleb)
+>>> from tables.views import *
+>>> response = TableViewSet.as_view({'get' : 'list'})(request, {'dashboard' : True})
+>>> response.render()
+<rest_framework.response.Response object at 0x7f4b9b08ee90>
+>>> response.content
+'[{"id":2515,"name":"NDB Placeholder","sqlname":"ndb_placeholder_b7ab4953","description":"Empty data set for dashboard delivery","owner":"akarve","is_public":false,"csvfile":null,"viewonly":false,"dashboards":[{"id":71134,"table":2515,"name":"Geo Vis Sampler for NDB","image":null,"description":"9/6/2016"}]}]'
+```
+
+
 # REST API
 
 <table>
@@ -170,6 +230,13 @@ Tables
 ```
 
 #### Returns
+
+- user only needs to enter one of table= or table_id=
+
+
+# Endpoints
+
+
 
 Table data as JSON object, includes `id` field with the table’s
 identifier.
