@@ -201,10 +201,17 @@ Multiple Response and Categorical Array variables contain an array of subvariabl
 
 Like Categories, the array of subvariables within an array variable indicate
  the order in which they are presented; to reorder them, save a modified array
- of subvariable references.
+ of subvariable ids/urls.
 
-The shape of each subvariable member must contain a name and optionally an alias.
-They will be created with the matching type according to the parent array.
+##### subreferences
+
+Multiple Response and Categorical Array variables contain an array of subvariable
+ "references": names, alias, description, etc. To create a variable of type
+ "multiple_response" or "categorical_array" directly, you must include a 
+ "subreferences" member with an array of objects. These label the subvariables
+ in the new array variable.
+
+The shape of each subreferences member must contain a name and optionally an alias.
 
 ```json
 {
@@ -224,7 +231,7 @@ They will be created with the matching type according to the parent array.
             "missing": false
         }
     ],
-    "subvariables": [
+    "subreferences": [
         {"name": "subvariable 1"}
         {"name": "subvariable 2", "alias": "subvar2_alias"}
         {"name": "subvariable 3"}
@@ -313,17 +320,9 @@ Datetime input and output are in ISO-8601 formatted strings.
 
 ##### Arrays
 
-Crunch supports array type variables, which contain an array of subvariables. "Multiple response" and "Categorical array" are both arrays of categorical variables. Subvariables that have been "bound" into arrays can be dealt with separately as well.
+Crunch supports array type variables, which contain an array of subvariables. "Multiple response" and "Categorical array" are both arrays of categorical subvariables. Subvariables do not exist as independent variables; they are exposed as "virtual" variables in some places, and can be analyzed independently, but they do not have their own type or categories.
 
-All statements about variables are also true for subvariables unless otherwise noted.
-
-##### Multiple Response
-
-Requesting multiple response values returns values that are each an array, the values of which are the subvariable names for which that row of the data has a value indicated as "selected".
-
-##### Categorical Array
-
-Requesting categorical array values return values that are each an array, the values of which are the category names of the values for each subvariable. Each value in a categorical array is an array of equal length of the number of subvariables in the array.
+Arrays are currently always categorical, so they sned and receive data in the same format: category ids. The only difference is that regular categorical variables sned and receive one id per row, where arrays send and receive a list of ids (of equal length to the number of subvariables in the array).
 
 ### Variables
 
@@ -387,8 +386,8 @@ to compose an expression.
 
 ##### Builtin functions
 
+   * `array` Return the given Frame materialized as an array.
    * `bin` Return column's values broken into equidistant bins.
-   * `bind` Return the given Frame materialized as an array.
    * `case` Evaluate the given conditions in order, selecting the corresponding choice.
    * `cast` Return a Column of column's values cast to the given type.
    * `char_length` Return the length of each string (or missing reason) in the given column.
@@ -402,6 +401,7 @@ to compose an expression.
    * `normalize` Return a Column with the given values normalized so sum(c) == len(c).
    * `row` Return a Numeric column with row indices.
    * `selected_array` Return a bool Array from the given categorical, plus None/__none__/__any__ .
+   * `subvariables` Return a Frame containing subvariables of the given array.
    * `typeof` Return (a copy of) the Type of the given column.
    * `unmissing` Return the given column with user missing replaced by valid values.
 
@@ -440,7 +440,17 @@ to compose an expression.
    * `parse_datetime` Parse string to datetime using optional format string
    * `rollup` Return column's values (which must be type datetime) into calendrical bins.
 
-<!-- #### Frame Functions -->
+##### Frame Functions
+
+    * `page` Return the given frame, limited/offset by the given values.
+    * `select` Return a Frame of results from the given map of variables.
+    * `sheet` Return the given frame, limited/offset in the number of variables.
+    * `dependents` Return the given frame with only dependents of the given variable.
+    * `deselect` Return a frame NOT including the indicated variables.
+    * `adapt` Return the given frame adapted to the given to_key.
+    * `join` Return a JoinedFrame from the given list of subframes.
+    * `find` Return a Frame with those variables which match the given criteria.
+    * `flatten` Return a frame including all variables, plus all subvariables at dotted ids.
 
 ##### Measures Functions
 
@@ -457,11 +467,6 @@ to compose an expression.
    * `cube_weighted_max`
    * `cube_weighted_min`
    * `top` Return the given (1D/1M) cube, filtered to its top N members.
-
-##### Variables searching functions
-
-   * `identify` Return the set of variable ids which match the given criteria
-   * `search_variable` Boolean array of variable rows which match terms.
 
 ##### Cube Functions
 
