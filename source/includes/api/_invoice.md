@@ -48,17 +48,40 @@ Lets you create invoice with line items. It will send the email with the attache
     "zip": "",
     "country": ""
   },
-  "line_items": [
+ "line_items": [
     {
-      "id": "233",
-      "sku": "1233476",
-      "name": "My ProductName 11",
+      "id": "123",
+      "sku": "PN01",
+      "name": "Peanut",
       "quantity": "1",
-      "total_cost": 200,
-      "due_date": "2016-07-14",
-      "order": 1
+      "total_cost": "200.00",
+      "due_date": "2016-07-18",
+      "child" : [
+          {
+            "id": 124,
+            "sku": "PNB01",
+            "name": "PButter",
+            "quantity": "1",
+            "total_cost": "10.00"
+          },
+          {
+            "id": 125,
+            "sku": "PNM01",
+            "name": "PMayo",
+            "quantity": "1",
+            "total_cost": "-3.00"
+          }
+      ]
+    },
+    {
+      "id": 130,
+      "sku": "STBJ",
+      "name": "Strawberry Jam",
+      "quantity": "1",
+      "total_cost": "115.50",
+      "due_date": "2016-07-18",
+      "child":[]
     }
-  ]
 }
 ```
 
@@ -306,6 +329,7 @@ Field Name | Required | Type | Description
 number | yes | string | Invoice Number
 date | yes | string | Invoice Date (Y-m-d).
 logo | | string | Invoice logo link.
+status | | string | Invoice status.
 mail_to | yes | string | Email where invoice will be send
 mail_body | | string | Email body. Can be html.
 credit | | string | Customer credit
