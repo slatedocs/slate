@@ -6,6 +6,7 @@ key | type | status | comment
 --- | ---- | :----: | ---:
 **Request:** | | |
 bankClientId | string | 1..1 | идентификатор клиента
+feedId | string | 1..1 | идентификатор ленты
 fromIndex | int | 0..1 | индекс начального элемента в общем списке
 toIndex | int | 0..1 | индекс начального элемента в общем списке
 **Response:** | | |
