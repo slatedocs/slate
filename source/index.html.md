@@ -422,10 +422,12 @@ The `response` object will be of the form:
 curl "https://api.scaleapi.com/v1/task/phonecall" \
   -u YOUR_API_KEY: \
   -d callback_url="http://www.example.com/callback" \
-  -d instruction="Call this person and tell me his email address" \
+  -d instruction="Call this person and tell me his email address. Ask if he's happy too." \
   -d phone_number=5055006865 \
   -d entity_name="Alexandr Wang" \
-  -d fields[email]="Email Address"
+  -d fields[email]="Email Address" \
+  -d choices="He is happy" \
+  -d choices="He is not happy"
 ```
 ```python
 import requests
@@ -438,7 +440,8 @@ payload = {
   'entity_name': 'Alexandr Wang',
   'fields': {
     'email': 'Email Address',
-  }
+  },
+  'choices': ['He is happy', 'He is not happy']
 }
 
 headers = {"Content-Type": "application/json"}
@@ -461,7 +464,8 @@ var payload = {
   'entity_name': 'Alexandr Wang',
   'fields': {
     'email': 'Email Address',
-  }
+  },
+  'choices': ['He is happy', 'He is not happy']
 };
 
 request.post('https://api.scaleapi.com/v1/task/phonecall', {
@@ -495,6 +499,10 @@ request.post('https://api.scaleapi.com/v1/task/phonecall', {
     "fields": {
       "email": "Email Address"
     },
+    "choices": [
+      "He is happy",
+      "He is not happy"
+    ]
     "entity_name": "Alexandr Wang",
     "phone_number": "5055006865"
   },
@@ -504,11 +512,11 @@ request.post('https://api.scaleapi.com/v1/task/phonecall', {
 
 This endpoint creates a `phonecall` task. In this task, one of our workers will call the specified phone number and follow the instructions. Potential use cases could be making reservations or appointments, confirming reservations, asking for contact numbers or emails, etc.
 
-This task involves a plaintext `instruction` about how to transcribe the attachment, a `phone_number` for the phone number to call, and an `entity_name` which describes the phone number.
+The required parameters are a plaintext `instruction` about how to transcribe the attachment, a `phone_number` for the phone number to call, and an `entity_name` which describes the phone number.
 
-The optional fields are `attachment_type` and `attachment` for an optional attachment, a plaintext string `script` for an optional script for the worker to follow, and `fields` for optional fields you'd like to be written down and returned to you.
+The optional parameters are `attachment_type` and `attachment` for an optional attachment, a plaintext string `script` for an optional script for the worker to follow, `fields`, and `choices`.
 
-The optional `field` parameter is a dictionary where the keys are the keys you'd like the results to be returned under, and values are the descriptions you'd like to show the human worker.
+There are two potential ways to record more information from the phonecall - the `field` and `choices` parameters. `choices` is an array of strings from which the worker to choose, and `fields` is useful for free-text response.
 
 If successful, Scale will immediately return the generated task object, of which you should at least store the `task_id`.
 
@@ -535,6 +543,7 @@ Parameter | Type | Description
 `attachment_type` (optional) | string | One of `text`, `image`, `video`, `audio`, `website`, or `pdf`. Describes what type of file the attachment is.
 `attachment` (optional) | string | The optional attachment to be used for the phone call. If `attachment_type` is `text`, then it should be plaintext. Otherwise, it should be a URL pointing to the attachment.
 `fields` (optional) | dictionary | A dictionary corresponding to the fields to be recorded. Keys are the keys you'd like the fields to be returned under, and values are descriptions to be shown to human workers.
+`choices` (optional) | [string] | An array of strings for the choices to be given to the worker. They will choose one of these in accordance with your `instruction`.
 
 ### Response on Callback
 
@@ -545,12 +554,16 @@ The `response` object will be of the form:
   "outcome": ...,
   "fields": {
     ...
-  }
+  },
+  "choice": "some_choice"
 }`
 
 The outcome will be a string equal to one of `no_pickup` (meaning nobody picked up), `hung_up` (meaning the recipient hung up before the task could be completed), or `success` (the call succeeded). 
 
-If your original call provided `fields`, `fields` will have keys corresponding to the keys you provided in the parameters, with values the transcribed value.
+If your original API request provided `fields`, `fields` will have keys corresponding to the keys you provided in the parameters, with values the transcribed value.
+
+If your original API request provided `choices`, `choice` will be one of the original choices.
+
 
 # Create Comparison Task
 
@@ -650,7 +663,7 @@ This endpoint creates a `comparison` task. In this task, one of our workers view
 
 This task involves a plaintext `instruction`, an array of `attachments`, and an `attachment_type`.
 
-At least of the `fields` or `choices` parameters must specified for the data to be returned. `choices` is an array of strings from which the user to choose, and `fields` is useful for free-text response. 
+At least of the `fields` or `choices` parameters must specified for the data to be returned. `choices` is an array of strings from which the worker to choose, and `fields` is useful for free-text response. 
 
 `fields` is a dictionary where the keys are the keys you'd like the results to be returned under, and values are the descriptions you'd like to show the human worker.
 
@@ -784,6 +797,8 @@ The required parameters for this task are `callback_url`, `attachment`, and `obj
 You can optionally provide additional plaintext instructions via the `instruction` parameter. 
 
 You can also optionally set `with_labels` to `true`, which will have Scalers provide labels for each box specifying what type of object it is. The labels will be strings in the `objects_to_annotate` list.
+
+If successful, Scale will immediately return the generated task object, of which you should at least store the `task_id`.
 
 ### HTTP Request
 
