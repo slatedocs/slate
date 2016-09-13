@@ -11,9 +11,10 @@ includes:
   - modules/setup
   - modules/authentication
   - api/payplan
-  - api/customer      
+  - api/customer
   - api/transaction
   - api/invoice
+  - api/merchantsettings
   - errors
 
 
