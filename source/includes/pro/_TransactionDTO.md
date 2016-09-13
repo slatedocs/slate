@@ -1,5 +1,27 @@
 ## TransactionDTO
 
+```xml
+<transactions type="TransactionDTO">
+   <id>f0dd6cd9-6b38-4a3c-b7b7-9826d3fe4f79</id>
+   <authorization>false</authorization>
+   <billingAmount type="AmountDTO">
+      <currency>RUB</currency>
+      <fxAmount>-84900</fxAmount>
+   </billingAmount>
+   <description>BEELINE</description>
+   <executionDate>2015-05-25T21:13:08.000+03:00</executionDate>
+   <name>BEELINE</name>
+   <postDate>2015-05-25T21:13:08.000+03:00</postDate>
+   <status>ACCEPTED</status>
+   <authorization>false</authorization>
+   <tags nil="true"/>
+   <transactionAmount type="AmountDTO">
+      <currency>RUB</currency>
+      <fxAmount>-84</fxAmount>
+   </transactionAmount>
+</transactions>
+```
+
 key | type | status | comment
 --- | ---- | :----: | ---:
 id | string | 1..1 | идентификатор операции
@@ -13,7 +35,7 @@ status | [TransactionStatus](#transactionstatus) | 1..1 | текущий ста�
 isOutgoing | bool | 0..1 | операция переводит деньги СО счета
 filledFormId | string | 0..1 | идентификатор соответствующей заполненной формы
 tags | [MarkerDTO](#markerdto) | 0..1 | дополнительные поля
-isAuthorization | bool | 0..1 | операция авторизации
+authorization | bool | 1..1 | операция авторизации
 cardId | string | 0..1 | ID карты, с которой связана данная транзакция
 sic | int | 0..1 | mcc код из процессинга для SmartTransaction
 
