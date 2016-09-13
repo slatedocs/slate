@@ -1,47 +1,47 @@
 ## FormFieldDTO
 
 ```xml
-<fields xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd">
-  <id xmlns="http://modeldto.dto.proxy.platform.idamobile.com/xsd">field_id</id>
+<fields>
+  <id>field_id</id>
   <comboBoxValues>
-    <id xmlns="http://modeldto.dto.proxy.platform.idamobile.com/xsd">val_id</id>
+    <id>val_1_id</id>
     <name>40817810200005239000</name>
     <order>1</order>
     <value>40817810200005239000</value>
   </comboBoxValues>
   <comboBoxValues>
-    <id xmlns="http://modeldto.dto.proxy.platform.idamobile.com/xsd">val_id</id>
+    <id>val_2_id</id>
     <name>40817810500005239001</name>
     <order>2</order>
     <value>40817810500005239001</value>
   </comboBoxValues>
-  <defaultValue xsi:nil="true" />
-  <errorMessage xsi:nil="true" />
+  <defaultValue nil="true" />
+  <errorMessage nil="true" />
   <fieldClass>SOURCE_ACCOUNT</fieldClass>
   <formOrder>1</formOrder>
-  <groupName xsi:nil="true" />
-  <hint xsi:nil="true" />
+  <groupName nil="true" />
+  <hint nil="true" />
   <mandatory>true</mandatory>
   <maxLimit>0</maxLimit>
   <minLimit>0</minLimit>
   <name>Счет списания</name>
   <readOnly>false</readOnly>
-  <regExp xsi:nil="true" />
+  <regExp nil="true" />
 </fields>
-<fields xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd">
-  <id xmlns="http://modeldto.dto.proxy.platform.idamobile.com/xsd">field_id</id>
-  <defaultValue xsi:nil="true" />
-  <errorMessage xsi:nil="true" />
+<fields>
+  <id>field_id</id>
+  <defaultValue nil="true" />
+  <errorMessage nil="true" />
   <fieldClass>AMOUNT</fieldClass>
   <formOrder>1</formOrder>
-  <groupName xsi:nil="true" />
-  <hint xsi:nil="true" />
+  <groupName nil="true" />
+  <hint nil="true" />
   <mandatory>true</mandatory>
   <maxLimit>922337203685477</maxLimit>
   <minLimit>0</minLimit>
   <name>Сумма списания</name>
   <readOnly>false</readOnly>
-  <regExp xsi:nil="true" />
+  <regExp nil="true" />
 </fields>
 ```
 
@@ -97,7 +97,7 @@ DYNAMIC | string | поле при вводе 2х символов делает 
 
 ```xml
 <comboBoxValues>
-  <id xmlns="http://modeldto.dto.proxy.platform.idamobile.com/xsd">val_id</id>
+  <id>val_id</id>
   <name>Некая надпись для удобства пользователя</name>
   <order>1</order>
   <value>id_for_server</value>

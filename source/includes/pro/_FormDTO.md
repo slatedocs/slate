@@ -1,45 +1,26 @@
 ## FormDTO
 
-> Запрос на сервер, пример:
-
 ```xml
-<soap:Body>
-  <getStandardForms>
-    <bankClientId>client_id</bankClientId>
-    <hash>forms_hash</hash>
-  </getStandardForms>
- </soap:Body>
-```
-
-> Ответ сервера, пример:
-
-```xml
-<soap:Body>
-  <getPaymentFormResponse xmlns="http://core.proxy.platform.idamobile.com">
-    <return>
-      <form xmlns="http://servicedto.dto.proxy.platform.idamobile.com/xsd">
-        <id xmlns="http://modeldto.dto.proxy.platform.idamobile.com/xsd">form_id</id>
-        <beneficiaryId xsi:nil="true" xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd" />
-          <fields>
-            #
-            # fields
-            #
-          </fields>
-          <fields>
-            #
-            # fields
-            #
-          </fields>
-        <hasNext xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd">true</hasNext>
-        <logoResource xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd">http://idamob.ru/ic.png</logoResource>
-        <name xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd">Form name</name>
-        <position xsi:nil="true" xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd" />
-        <requiresCommission xmlns ="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd">false</requiresCommission>
-        <type xmlns="http://form.modeldto.dto.proxy.platform.idamobile.com/xsd">PAYMENT</type>
-      </form>
-    </return>
-  </getPaymentFormResponse>
-</soap:Body>
+<form type="FormDTO">
+  <id>form_id</id>
+  <beneficiaryId nil="true">
+    <fields>
+      #
+      # fields
+      #
+    </fields>
+    <fields>
+      #
+      # fields
+      #
+    </fields>
+  <hasNext>true</hasNext>
+  <logoResource>http://idamob.ru/ic.png</logoResource>
+  <name>Form name</name>
+  <position nil="true"/>
+  <requiresCommission>false</requiresCommission>
+  <type>PAYMENT</type>
+</form>
 ```
 
 key | type | status | comment
