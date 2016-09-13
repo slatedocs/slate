@@ -11,5 +11,5 @@ The different sections of the Documentation are as follows:
 * <a href="/#schema">Schema</a> - A detailed listing of the resources available and how to access them.
 * <a href="/#product-actions">Product Actions</a> - A listing of the actions available for a specific product.
 * <a href="/#custom-endpoints">Custom Endpoints</a> - A listing of other endpoints available to a user not specifically relating to an individual product.
-* <a href="/#product-data">Product Timeseries Data</a> - A listing of the telemetry data recorded from each product.
+* <a href="/#product-data">Product Time-Series Data</a> - A listing of the telemetry data recorded from each [product](#product).
 * <a href="/#using-the-api">Using the API</a> - Information about the general use of the API including authentication, filtering and data format.
