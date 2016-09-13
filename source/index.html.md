@@ -88,6 +88,7 @@ If you'd like to authenticate our callbacks, we set a `scale-callback-auth` HTTP
 
 The task object represents a single task that you create with Scale and is completed by a worker.
 
+
 ```json
 {
   "task_id": "576ba74eec471ff9b01557cc",
@@ -625,7 +626,7 @@ request.post('https://api.scaleapi.com/v1/task/comparison', {
 ```json
 {
   "created_at": "2016-06-30T07:38:32.368Z",
-  "callback_url": "http://localhost:5000/internal/test_callback",
+  "callback_url": "http://www.example.com/callback",
   "type": "comparison",
   "status": "pending",
   "instruction": "Do the objects in these images have the same pattern?",
@@ -689,6 +690,158 @@ If your original call provided `choices`, `choice` will be one of the original c
 
 If your original call provided `fields`, `fields` will have keys corresponding to the keys you provided in the parameters, with values the transcribed value.
 
+# Create Annotation Task (Bounding Box)
+
+```shell
+curl "https://api.scaleapi.com/v1/task/annotation" \
+  -u YOUR_API_KEY: \
+  -d callback_url="http://www.example.com/callback" \
+  -d instruction="Draw a box around each baby cow and big cow." \
+  -d attachment_type=image \
+  -d attachment="http://i.imgur.com/v4cBreD.jpg" \
+  -d objects_to_annotate="baby cow" \
+  -d objects_to_annotate="big cow" \
+  -d with_labels=true
+```
+```python
+import requests
+import json
+
+payload = {
+  'callback_url': 'http://www.example.com/callback',
+  'instruction': 'Draw a box around each baby cow and big cow.',
+  'attachment_type': 'image',
+  'attachment': 'http://i.imgur.com/v4cBreD.jpg',
+  'objects_to_annotate': ['baby cow', 'big cow'],
+  'with_labels': True
+}
+
+headers = {"Content-Type": "application/json"}
+
+requests.post("https://api.scaleapi.com/v1/task/annotation", 
+  json=payload, 
+  headers=headers,
+  auth=('YOUR_API_KEY', ''))
+
+```
+
+```javascript
+var request = require("request");
+var SCALE_API_KEY = 'YOUR_API_KEY';
+
+var payload = {
+  'callback_url': 'http://www.example.com/callback',
+  'instruction': 'Draw a box around each baby cow and big cow.',
+  'attachment_type': 'image',
+  'attachment': 'http://i.imgur.com/v4cBreD.jpg',
+  'objects_to_annotate': ['baby cow', 'big cow'],
+  'with_labels': true
+}
+
+request.post('https://api.scaleapi.com/v1/task/annotation', {
+  'auth': {
+    'user': SCALE_API_KEY,
+    'pass': '',
+    'sendImmediately': true
+  },
+  'form': payload
+}, function(error, response, body) {
+  if (!error && response.statusCode == 200) {
+    console.log(body);
+  } else {
+    console.log(error);
+    console.log(response.statusCode);
+  }
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "created_at": "2016-9-03T07:38:32.368Z",
+  "callback_url": "http://www.example.com/callback",
+  "type": "annotation",
+  "status": "pending",
+  "instruction": "Draw a box around each baby cow and big cow.",
+  "urgency": "day",
+  "params": {
+    "attachment_type": "image",
+    "attachment": "http://i.imgur.com/v4cBreD.jpg",
+    "objects_to_annotate": ["baby cow", "big cow"],
+    "with_labels": true
+  },
+  "task_id": "5774cc78b01249ab09f089dd"
+}
+```
+
+This endpoint creates a `annotation` task. In this task, one of our Scalers view the given image and draw bounding boxes around the specified objects, returning the positions and sizes of these boxes.
+
+The required parameters for this task are `callback_url`, `attachment`, and `objects_to_annotate`. The `callback_url` is the URL which will be POSTed on task completion, and is described in more detail in the [Callbacks section](#callbacks). The `attachment` is a URL to an image you'd like to be annotated.
+
+`objects_to_annotate` is an array of strings describing the different types of objects you'd like annotated.
+
+You can optionally provide additional plaintext instructions via the `instruction` parameter. 
+
+You can also optionally set `with_labels` to `true`, which will have Scalers provide labels for each box specifying what type of object it is. The labels will be strings in the `objects_to_annotate` list.
+
+### HTTP Request
+
+`POST https://api.scaleapi.com/v1/task/annotation`
+
+### Parameters
+
+Parameter | Type | Description
+--------- | ---- | -------
+`callback_url` | string | The full url (including the scheme `http://` or `https://`) of the callback when the task is completed.
+`objects_to_annotate` | [string] | An array of strings describing which objects you'd like bounding boxes to be drawn around. Each string should be singular and self-descriptive (ex: "cat", "street sign", "potato")
+`attachment` | string | A URL to the image you'd like to be annotated with bounding boxes.
+`with_labels` (optional, default `false`) | boolean | Specifies whether you'd like labels for each bounding box in the response. Each label will be a member of the `objects_to_annotate` array.
+`urgency` (optional, default `day`) | string | A string describing the urgency of the response. One of `immediate`, `day`, or `week`, where `immediate` is a 15-minute response time.
+`instruction` (optional) | string | The plaintext instruction of how the bounding boxes should be drawn.
+`attachment_type` (optional, default `image`) | string | Describes what type of file the attachment is. We currently only support `image` for the annotation endpoint.
+
+### Response on Callback
+
+> Example of what the response field of the task will look like after completion
+
+```json
+{
+  "response": {
+    "annotations": [
+      {
+        "left": 123,
+        "top": 10,
+        "width": 121,
+        "height": 39,
+        "label": "big cow"
+      },
+      {
+        "left": 82,
+        "top": 56,
+        "width": 64,
+        "height": 30,
+        "label": "baby cow"
+      },
+      ...
+    ]
+  },
+  "task_id": "5774cc78b01249ab09f089dd",
+  ...
+}
+```
+
+The `response` field, which is part of the callback POST request and permanently stored as part of the `task` object, will contain only an `annotations` field.
+
+The `annotations` field will contain an array of annotations. Each annotation will have the following values:
+
+
+* `left`: The distance, in pixels, between the left border of the bounding box and the left border of the image.
+* `top`: The distance, in pixels, between the top border of the bounding box and the top border of the image.
+* `width`: The width, in pixels, of the bounding box.
+* `height`: The height, in pixels, of the bounding box.
+* `label` (if specified `with_labels` as `true`): The label for the bounding box, which will be one of the specified `task.params.objects_to_annotate`.
+
 # Callbacks
 
 > The `callback_url` will be POSTed with `application/json` data of the following object form:
@@ -728,6 +881,8 @@ If your original call provided `fields`, `fields` will have keys corresponding t
 On your tasks, you will be required to supply a `callback_url`, a fully qualified URL that we will POST with the results of the task when completed. The data will be served as a JSON body (`application/json`).
 
 You should respond to the POST request with a 200 status code. If we do not receive a 200 status code, we will retry one more time.
+
+If you're just testing and want to try a few requests, the easiest way to get started is to use a [RequestBin](http://requestb.in/) and send requests using your `http://requestb.in/someHash` URL as the `callback_url`.
 
 If you're just starting out and want the easiest way to set up your own callback URL, we recommend using [ngrok](https://ngrok.com/) to expose a local server to the internet. Feel free to [contact us](mailto:hello@scaleapi.com) if you have any trouble.
 
