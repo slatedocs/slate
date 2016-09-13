@@ -426,6 +426,12 @@ curl 'https://api.doordeck.com/device/00000000-0000-0000-0000-000000000000/execu
 
 This endpoint allows operations to be performed on a lock, typically this is lock and unlock. Requests to this endpoint must be signed and formed as a JSON web token.
 
+### HTTP Request
+
+`POST https://api.doordeck.com/device/LOCK_ID/execute`
+
+Replace `LOCK_ID` with the appropiate lock ID.
+
 ### Request Parameters
 
 The header is formed of the following fields.
@@ -443,7 +449,8 @@ iss | true | Issuer, this should be the user's ID
 sub | true | Subject, this should be the lock's ID
 nbf | true | Not before, a Unix timestamp indicating the earliest date the request is valid from
 iat | true | Issued at, the current Unix timestamp
-exp | true | Expires, a Unix timestamp indicating when the request should expire, most requests should only be valid for a few seconds, a minute at most
+exp | true | Expires, a Unix timestamp indicating when the request should expire, requests to change the lock status should be valid for up to one minute, other requests can have a much longer expiry time
+jti | false (but highly recommended) | User generated, unique ID used for tracking the request status and preventing replay attacks. UUIDs are recommended here.
 operation | true | A JSON object containing the instructions of the lock
 
 The operation object definition is as follows
