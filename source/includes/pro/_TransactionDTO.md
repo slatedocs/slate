@@ -2,23 +2,22 @@
 
 ```xml
 <transactions type="TransactionDTO">
-   <id>f0dd6cd9-6b38-4a3c-b7b7-9826d3fe4f79</id>
-   <authorization>false</authorization>
-   <billingAmount type="AmountDTO">
-      <currency>RUB</currency>
-      <fxAmount>-84900</fxAmount>
-   </billingAmount>
-   <description>BEELINE</description>
-   <executionDate>2015-05-25T21:13:08.000+03:00</executionDate>
-   <name>BEELINE</name>
-   <postDate>2015-05-25T21:13:08.000+03:00</postDate>
-   <status>ACCEPTED</status>
-   <authorization>false</authorization>
-   <tags nil="true"/>
-   <transactionAmount type="AmountDTO">
-      <currency>RUB</currency>
-      <fxAmount>-84</fxAmount>
-   </transactionAmount>
+    <id>f0dd6cd9-6b38-4a3c-b7b7-9826d3fe4f79</id>
+    <authorization>false</authorization>
+    <billingAmount type="AmountDTO">
+        <currency>RUB</currency>
+        <fxAmount>-84900</fxAmount>
+    </billingAmount>
+    <description>BEELINE</description>
+    <filledFormId>filled_form_id</filledFormId>
+    <executionDate>2015-05-25T21:13:08.000+03:00</executionDate>
+    <postDate>2015-05-25T21:13:08.000+03:00</postDate>
+    <status>ACCEPTED</status>
+    <tags nil="true"/>
+    <transactionAmount type="AmountDTO">
+        <currency>RUB</currency>
+        <fxAmount>-84000</fxAmount>
+    </transactionAmount>
 </transactions>
 ```
 
