@@ -1,4 +1,4 @@
-# iDa Bank Proxy to PiGeon
+# Bank Proxy to iDa PiGeon
 
 ```text
 www.websequencediagrams.com

@@ -56,7 +56,7 @@ pigeon server - [http://dev.idamob.ru/pigeon/services/SBIInboundWebService?wsdl]
 
 **Конфигурирование сервиса**
 
-```html
+```xml
 <Environment name="apnsCertificatePath" value="/var/cert/unimegabank.p12" type="java.lang.String"/>
 <Environment name="apnsPassword" value="12345" type="java.lang.String"/>
 <Environment name="apnsIsProduction" value="false" type="java.lang.Boolean"/>
