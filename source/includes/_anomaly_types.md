@@ -52,7 +52,7 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 		"gap_anomaly": True,
 		"status": "test",
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.post(url=url, data=data, headers=headers)
 
@@ -84,7 +84,7 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -115,7 +115,7 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -140,7 +140,7 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 > We can edit the newly created `anomaly_type` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types'
+    url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types/1'
     data = json.dumps({
 		"modified_by": "changed",
 		"name": "changed",
@@ -154,9 +154,9 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 		"gap_anomaly": False,
 		"status": "changed",
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
-    r = requests.post(url=url, data=data, headers=headers)
+    r = requests.put(url=url, data=data, headers=headers)
 
     r
     >>> <Response 200>
@@ -186,7 +186,7 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)
 

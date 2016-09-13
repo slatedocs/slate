@@ -49,7 +49,6 @@ includes:
   - symptom_types
   - symptom_type_product_type_linker
   - tamper_enable_history
-  - users
 
   - product_actions
   - enable
@@ -67,6 +66,7 @@ includes:
   - change_customer
   - expire_customer
 
+  - product_data
 
   - custom_endpoints
   - home

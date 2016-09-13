@@ -24,7 +24,7 @@ __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modifie
 
 Relationship | Description
 -------------:|:------------
-<font color="DarkGray">N/A</font> | <font color="DarkGray">_There are no relatioships for this table._</font>
+<font color="DarkGray">N/A</font> | <font color="DarkGray">_There are no relationships for this table._</font>
 
 <hr>
 <br>
@@ -43,7 +43,7 @@ Relationship | Description
 		"removed_repair_id": 1,
 		"replaced_part_id": 1,
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.post(url=url, data=data, headers=headers)
 
@@ -72,7 +72,7 @@ Relationship | Description
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/part_product_linker/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -100,7 +100,7 @@ Relationship | Description
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/part_product_linker'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -125,7 +125,7 @@ Relationship | Description
 > We can edit the newly created `part_product_linker` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/part_product_linker'
+    url = 'http://smartapi.bboxx.co.uk/v1/part_product_linker/1'
     data = json.dumps({
 		"modified_by": "changed",
 		"part_id": 2,
@@ -136,9 +136,9 @@ Relationship | Description
 		"removed_repair_id": 2,
 		"replaced_part_id": 2,
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
-    r = requests.post(url=url, data=data, headers=headers)
+    r = requests.put(url=url, data=data, headers=headers)
 
     r
     >>> <Response 200>
@@ -165,7 +165,7 @@ Relationship | Description
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/part_product_linker/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)
 

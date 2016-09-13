@@ -20,7 +20,7 @@ __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modifie
 
 Relationship | Description
 -------------:|:------------
-<font color="DarkGray">N/A</font> | <font color="DarkGray">_There are no relatioships for this table._</font>
+<font color="DarkGray">N/A</font> | <font color="DarkGray">_There are no relationships for this table._</font>
 
 <hr>
 <br>
@@ -31,7 +31,7 @@ Relationship | Description
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/states/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -55,7 +55,7 @@ Relationship | Description
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/states'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -77,13 +77,13 @@ Relationship | Description
     }
 ```
 
->`PUT` requests are not allowed at this endpoint
+> `PUT` requests are not allowed at this endpoint
 
 > If a user has `SYSTEM` permissions they can delete the `state`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/states/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)
 

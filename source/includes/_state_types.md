@@ -34,7 +34,7 @@ __states__ | The associated states
 		"name": "test",
 		"description": "test",
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.post(url=url, data=data, headers=headers)
 
@@ -58,7 +58,7 @@ __states__ | The associated states
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/state_types/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -81,7 +81,7 @@ __states__ | The associated states
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/state_types'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -106,15 +106,15 @@ __states__ | The associated states
 > We can edit the newly created `state_type` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/state_types'
+    url = 'http://smartapi.bboxx.co.uk/v1/state_types/1'
     data = json.dumps({
 		"modified_by": "changed",
 		"name": "changed",
 		"description": "changed",
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
-    r = requests.post(url=url, data=data, headers=headers)
+    r = requests.put(url=url, data=data, headers=headers)
 
     r
     >>> <Response 200>
@@ -136,7 +136,7 @@ __states__ | The associated states
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/state_types/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)
 

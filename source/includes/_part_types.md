@@ -41,7 +41,7 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 		"serial_number_category": "test",
 		"parameter_types": Unknown column type,
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.post(url=url, data=data, headers=headers)
 
@@ -68,7 +68,7 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/part_types/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -94,7 +94,7 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/part_types'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -119,7 +119,7 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 > We can edit the newly created `part_type` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/part_types'
+    url = 'http://smartapi.bboxx.co.uk/v1/part_types/1'
     data = json.dumps({
 		"modified_by": "changed",
 		"name": "changed",
@@ -128,9 +128,9 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 		"serial_number_category": "changed",
 		"parameter_types": Unknown column type,
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
-    r = requests.post(url=url, data=data, headers=headers)
+    r = requests.put(url=url, data=data, headers=headers)
 
     r
     >>> <Response 200>
@@ -155,7 +155,7 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/part_types/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)
 

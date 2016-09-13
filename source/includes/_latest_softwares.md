@@ -21,16 +21,16 @@ __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modifie
 
 Relationship | Description
 -------------:|:------------
-<font color="DarkGray">N/A</font> | <font color="DarkGray">_There are no relatioships for this table._</font>
+<font color="DarkGray">N/A</font> | <font color="DarkGray">_There are no relationships for this table._</font>
 
 <hr>
 <br>
 
 > `POST` requests are not allowed at this endpoint
 
-`GET` requests are not allowed at this endpoint
+> `GET` requests are not allowed at this endpoint
 
->`PUT` requests are not allowed at this endpoint
+> `PUT` requests are not allowed at this endpoint
 
 > `DELETE` requests are not allowed at this endpoint
 

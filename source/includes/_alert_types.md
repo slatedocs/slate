@@ -46,7 +46,7 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 		"status": "test",
 		"severity": "test",
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.post(url=url, data=data, headers=headers)
 
@@ -75,7 +75,7 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/alert_types/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -103,7 +103,7 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/alert_types'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -128,7 +128,7 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 > We can edit the newly created `alert_type` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/alert_types'
+    url = 'http://smartapi.bboxx.co.uk/v1/alert_types/1'
     data = json.dumps({
 		"modified_by": "changed",
 		"name": "changed",
@@ -139,9 +139,9 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 		"status": "changed",
 		"severity": "changed",
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
-    r = requests.post(url=url, data=data, headers=headers)
+    r = requests.put(url=url, data=data, headers=headers)
 
     r
     >>> <Response 200>
@@ -168,7 +168,7 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/alert_types/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)
 

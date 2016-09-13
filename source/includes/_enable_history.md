@@ -34,7 +34,7 @@ __sms_history__ | The associated sms_history
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/enable_history/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -60,7 +60,7 @@ __sms_history__ | The associated sms_history
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/enable_history'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -82,13 +82,13 @@ __sms_history__ | The associated sms_history
     }
 ```
 
->`PUT` requests are not allowed at this endpoint
+> `PUT` requests are not allowed at this endpoint
 
 > If a user has `SYSTEM` permissions they can delete the `enable_history`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/enable_history/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)
 

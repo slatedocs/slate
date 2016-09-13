@@ -36,7 +36,7 @@ __parameters__ | The associated parameters
 		"data_type": "test",
 		"validation_rules": Unknown column type,
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.post(url=url, data=data, headers=headers)
 
@@ -61,7 +61,7 @@ __parameters__ | The associated parameters
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/parameter_types/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -85,7 +85,7 @@ __parameters__ | The associated parameters
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/parameter_types'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -110,16 +110,16 @@ __parameters__ | The associated parameters
 > We can edit the newly created `parameter_type` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/parameter_types'
+    url = 'http://smartapi.bboxx.co.uk/v1/parameter_types/1'
     data = json.dumps({
 		"modified_by": "changed",
 		"name": "changed",
 		"data_type": "changed",
 		"validation_rules": Unknown column type,
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
-    r = requests.post(url=url, data=data, headers=headers)
+    r = requests.put(url=url, data=data, headers=headers)
 
     r
     >>> <Response 200>
@@ -142,7 +142,7 @@ __parameters__ | The associated parameters
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/parameter_types/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)
 

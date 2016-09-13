@@ -21,7 +21,7 @@ __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modifie
 
 Relationship | Description
 -------------:|:------------
-<font color="DarkGray">N/A</font> | <font color="DarkGray">_There are no relatioships for this table._</font>
+<font color="DarkGray">N/A</font> | <font color="DarkGray">_There are no relationships for this table._</font>
 
 <hr>
 <br>
@@ -32,7 +32,7 @@ Relationship | Description
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/customer_entity_linker/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -57,7 +57,7 @@ Relationship | Description
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/customer_entity_linker'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -82,7 +82,7 @@ Relationship | Description
 > We can edit the newly created `customer_entity_linker` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/customer_entity_linker'
+    url = 'http://smartapi.bboxx.co.uk/v1/customer_entity_linker/1'
     data = json.dumps({
 		"modified_by": "changed",
 		"customer_id": 2,
@@ -90,9 +90,9 @@ Relationship | Description
 		"date_added": "2016-07-01 12:34:45",
 		"date_removed": "2016-07-01 12:34:45",
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
-    r = requests.post(url=url, data=data, headers=headers)
+    r = requests.put(url=url, data=data, headers=headers)
 
     r
     >>> <Response 200>
@@ -116,7 +116,7 @@ Relationship | Description
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/customer_entity_linker/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)
 

@@ -40,7 +40,7 @@ __product_entity_linker__ | The associated product_entity_linker
 		"tariff": "test",
 		"financier": True,
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.post(url=url, data=data, headers=headers)
 
@@ -66,7 +66,7 @@ __product_entity_linker__ | The associated product_entity_linker
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/entities/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -91,7 +91,7 @@ __product_entity_linker__ | The associated product_entity_linker
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/entities'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -116,7 +116,7 @@ __product_entity_linker__ | The associated product_entity_linker
 > We can edit the newly created `entity` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/entities'
+    url = 'http://smartapi.bboxx.co.uk/v1/entities/1'
     data = json.dumps({
 		"modified_by": "changed",
 		"name": "changed",
@@ -124,9 +124,9 @@ __product_entity_linker__ | The associated product_entity_linker
 		"tariff": "changed",
 		"financier": False,
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
-    r = requests.post(url=url, data=data, headers=headers)
+    r = requests.put(url=url, data=data, headers=headers)
 
     r
     >>> <Response 200>
@@ -150,7 +150,7 @@ __product_entity_linker__ | The associated product_entity_linker
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/entities/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)
 

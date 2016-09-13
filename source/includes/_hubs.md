@@ -41,7 +41,7 @@ __shops__ | The associated shops
 		"latitude": -1.111111111,
 		"longitude": -1.111111111,
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.post(url=url, data=data, headers=headers)
 
@@ -68,7 +68,7 @@ __shops__ | The associated shops
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/hubs/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -94,7 +94,7 @@ __shops__ | The associated shops
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/hubs'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -119,7 +119,7 @@ __shops__ | The associated shops
 > We can edit the newly created `hub` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/hubs'
+    url = 'http://smartapi.bboxx.co.uk/v1/hubs/1'
     data = json.dumps({
 		"modified_by": "changed",
 		"name": "changed",
@@ -128,9 +128,9 @@ __shops__ | The associated shops
 		"latitude": -9.999999999,
 		"longitude": -9.999999999,
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
-    r = requests.post(url=url, data=data, headers=headers)
+    r = requests.put(url=url, data=data, headers=headers)
 
     r
     >>> <Response 200>
@@ -155,7 +155,7 @@ __shops__ | The associated shops
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/hubs/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)
 

@@ -42,7 +42,7 @@ __latest_software__ | The associated latest_software
 		"erp_code": "XX0001",
 		"parameter_types": Unknown column type,
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.post(url=url, data=data, headers=headers)
 
@@ -67,7 +67,7 @@ __latest_software__ | The associated latest_software
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/product_types/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -91,7 +91,7 @@ __latest_software__ | The associated latest_software
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/product_types'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -116,16 +116,16 @@ __latest_software__ | The associated latest_software
 > We can edit the newly created `product_type` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/product_types'
+    url = 'http://smartapi.bboxx.co.uk/v1/product_types/1'
     data = json.dumps({
 		"modified_by": "changed",
 		"name": "changed",
 		"erp_code": YY9999,
 		"parameter_types": Unknown column type,
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
-    r = requests.post(url=url, data=data, headers=headers)
+    r = requests.put(url=url, data=data, headers=headers)
 
     r
     >>> <Response 200>
@@ -148,7 +148,7 @@ __latest_software__ | The associated latest_software
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/product_types/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)
 

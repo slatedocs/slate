@@ -47,7 +47,7 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 		"process": "test",
 		"measured_battery_capacity": Unknown column type,
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.post(url=url, data=data, headers=headers)
 
@@ -77,7 +77,7 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/repairs/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -106,7 +106,7 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/repairs'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
@@ -131,7 +131,7 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 > We can edit the newly created `repair` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/repairs'
+    url = 'http://smartapi.bboxx.co.uk/v1/repairs/1'
     data = json.dumps({
 		"modified_by": "changed",
 		"product_imei": "999999999999999",
@@ -143,9 +143,9 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 		"process": "changed",
 		"measured_battery_capacity": Unknown column type,
 		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
-    r = requests.post(url=url, data=data, headers=headers)
+    r = requests.put(url=url, data=data, headers=headers)
 
     r
     >>> <Response 200>
@@ -173,7 +173,7 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/repairs/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)
 
