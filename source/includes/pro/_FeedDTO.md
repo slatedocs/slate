@@ -1,7 +1,7 @@
 ## FeedDTO
 
 ```xml
-<feeds xsi:type="FeedDTO">
+<feeds type="FeedDTO">
   <id>feed_id</id>
   <title>% по депозиту</title>
   <type>DEPOSIT_PRODUCT</type>

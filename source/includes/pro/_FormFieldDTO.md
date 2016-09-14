@@ -1,7 +1,7 @@
 ## FormFieldDTO
 
 ```xml
-<fields>
+<fields type="FormFieldDTO">
   <id>field_id</id>
   <comboBoxValues>
     <id>val_1_id</id>
@@ -28,7 +28,7 @@
   <readOnly>false</readOnly>
   <regExp nil="true" />
 </fields>
-<fields>
+<fields type="FormFieldDTO">
   <id>field_id</id>
   <defaultValue nil="true" />
   <errorMessage nil="true" />
@@ -89,7 +89,7 @@ IMAGE | [LogoResource](#logoresource) | картинка
 HIDDEN | string | скрытое поле для технического применения
 NUMERIC | int | чесло без дроби
 DECIMAL | int | число с дробной частью
-DYNAMIC | string | поле при вводе 2х символов делает запрос getDynamicFieldValues и в случае признака необходимости обновления текущей формы делает запрос getCurrentForm
+DYNAMIC | string | поле при вводе 2х символов делает запрос [getDynamicFieldValues](#getdynamicfieldvalues) и в случае признака необходимости обновления текущей формы делает запрос [getCurrentForm](#getcurrentform)
 
 <aside class="warning">PHOTO_CHECK - эксперементальный ключ для фотографирования дорожных чеков</aside>
 

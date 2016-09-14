@@ -8,7 +8,8 @@
         <currency>RUB</currency>
         <fxAmount>-84900</fxAmount>
     </billingAmount>
-    <description>BEELINE</description>
+    <name>BEELINE</name>
+    <description>Оплата BEELINE для телефона +7(910)123-45-67</description>
     <filledFormId>filled_form_id</filledFormId>
     <executionDate>2015-05-25T21:13:08.000+03:00</executionDate>
     <postDate>2015-05-25T21:13:08.000+03:00</postDate>
