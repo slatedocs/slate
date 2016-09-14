@@ -785,7 +785,11 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
   }
 ```
 
-Atualiza a data de vencimento do boleto bancário gerando um novo arquivo de remessa. Retorna um JSON contento informações atualizadas da cobrança em caso de sucesso ou erros caso haja algum.
+Atualiza a data de vencimento do boleto bancário. É importante ressaltar que **é necessária a criação e envio de um novo arquivo de remessa para efetivar a renovação junto ao banco**.
+
+A renovação só será permitida caso a cobrança seja do tipo registrada e já esteja registrada junto ao banco. Caso contrário, é possível nenovar editando a data de vencimento da cobrança.
+
+Retorna um JSON contento informações atualizadas da cobrança em caso de sucesso ou erros caso haja algum.
 
 **Parâmetros (Boleto)**
 
