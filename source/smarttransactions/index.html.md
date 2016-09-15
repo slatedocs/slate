@@ -12,6 +12,7 @@ includes:
   - smarttransactions/architecture
   - smarttransactions/protocol
   - smarttransactions/installation
+  - smarttransactions/faq
   
 search: true
 ---
