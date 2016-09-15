@@ -2,12 +2,13 @@
 title: iDa Mobile SmartTransactions
 
 language_tabs:
-  - xml : WSDL
+  - xml : JSON
 
 toc_footers:
   - <a href='http://www.idamob.ru'>@ copyright iDa Mobile 2016</a>
 
 includes:
+  - smarttransactions/description
   - smarttransactions/architecture
   
 search: true
