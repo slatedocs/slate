@@ -11,6 +11,7 @@ includes:
   - smarttransactions/description
   - smarttransactions/architecture
   - smarttransactions/protocol
+  - smarttransactions/installation
   
 search: true
 ---
