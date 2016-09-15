@@ -2,11 +2,10 @@
 
 **Схема размещения**
 
-img/placement_dmz.png
-Схема размещения в ДМЗ
+![image](../images/placement_dmz.png "Схема размещения в ДМЗ")
 
-img/placement_local.png
-Схема размещения в локальной сети банка
+![image](../images/placement_local.png "Схема размещения в локальной сети банка")
+
 
 Сервис SmartTransactions устанавливается в зоне iDa Pro или iDa Proxy, возможно, на том же самом веб-контейнере.
 Необходимо, чтобы iDa Pro имел доступ к сервису. 
