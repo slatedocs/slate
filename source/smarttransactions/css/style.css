@@ -1,0 +1,70 @@
+body, ul, ol, li, pre {
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	list-style: none;
+}
+
+
+body {
+	background-color: #f5f5f5;
+	font-family: Helvetica;
+}
+
+body>div {
+	background-color: white;
+	width: 840px;
+	margin: 0 auto;
+	padding: 2em;
+}
+
+li {
+	margin-left: 3em;
+}
+li span:first-child {
+	font-weight: bold;
+}
+
+nav {
+	width: 100%;
+	height: 40px;
+	background-color: #333;
+	position: fixed;
+}
+
+nav div {
+	width: 840px;
+	margin: 0 auto;
+	height: 40px;
+}
+
+nav a {
+	color: #aaa;
+	display: block;
+	float: left;
+	line-height: 40px;
+	text-align: center;
+	text-decoration: none;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+
+nav a:hover,nav a.active {
+	background-color: #aaa;
+	color: white;
+}
+
+.listing {
+	background-color: #FFE;
+	border: 1px solid #bbbbbb;
+	margin: 10px 10px;
+	overflow: auto;
+	padding: 1em;
+	word-wrap: break-word;
+	font: 80%/125% "Droid Sans Mono", Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+	-webkit-border-radius: 9px;
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+}

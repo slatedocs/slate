@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Smart Transactions</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav>
+	<div>
+		<a href="about.html">О решении</a>
+		<a href="architecture.html">Архитектура</a>
+		<a href="installation.html">Установка</a>
+		<a href="protocol.html">Протокол</a>
+		<a class="active" href="faq.html">Вопросы</a>
+	</div>
+</nav>
+<div>
+	<h1>Вопросы</h1>
+
+	<h2>Мониторинг запросов, для которых нет описания</h2>
+	<p>
+		Запросы, для которых не нашлось описание мерчента по ключевым словам, попадают в таблицу <code>missed_queries</code>
+	</p>
+
+	<h2>Запрос текущей версии сборки</h2>
+	<p>Запрос <code>http://{HOST}:{PORT}/SmartTransactionsEndpoint/version</code> возвращает текущую версию сборки</p>
+
+	<h2>Переключение сервиса в режим сбора статистики</h2>
+	<p>
+		В режиме сбора статистики сервис только накапливает ненайденные запросы, в ответе всегда возвращается пустой список.
+		Для переключения нужно в файле <code>${TOMCAT_HOME}/webapps/SmartTransactionsEndpoint/META-INF/context.xml</code> установить
+		параметр <code>silentMode</code> в <code>true</code>
+	</p>
+
+	<h2>Пример вызова сервиса с помощью cURL</h2>
+	<p>
+		<code>
+			curl -X POST -H "Content-Type: application/json" -d '{"0": {"text": "Starbucks"}, "1": {"text": "Burger king"}}' http://dev.podmigni.com/SmartTransactionsEndpoint/describeTransactions
+		</code>
+	</p>
+</div>
+</body>
+</html>
