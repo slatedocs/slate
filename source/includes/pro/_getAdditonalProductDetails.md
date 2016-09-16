@@ -1,24 +1,28 @@
 ## getAdditonalProductDetails
 
 ```xml
-<sections type="DetailsSectionDTO">
-   <fields type="DetailsFieldDTO">
-      <key>Карти №1</key>
-      <value>3245</value>
-   </fields>
-   <fields type="DetailsFieldDTO">
-      <key>Карти №2</key>
-      <value>4358</value>
-   </fields>
-   <name>Информация по картам</name>
-</sections>
-<sections type="DetailsSectionDTO">
-   <fields type="DetailsFieldDTO">
-      <key>Дневной</key>
-      <value>25 000 руб.</value>
-   </fields>
-   <name>Лимиты</name>
-</sections>
+<getAdditonalProductDetailsResponse>
+   <return>
+      <sections type="DetailsSectionDTO">
+         <fields type="DetailsFieldDTO">
+            <key>Карти №1</key>
+            <value>3245</value>
+         </fields>
+         <fields type="DetailsFieldDTO">
+            <key>Карти №2</key>
+            <value>4358</value>
+         </fields>
+         <name>Информация по картам</name>
+      </sections>
+      <sections type="DetailsSectionDTO">
+         <fields type="DetailsFieldDTO">
+            <key>Дневной</key>
+            <value>25 000 руб.</value>
+         </fields>
+         <name>Лимиты</name>
+      </sections>
+   </return>
+</getAdditonalProductDetailsResponse>
 ```
 
 Запрос на получение дополнительной информации о продукте
