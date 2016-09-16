@@ -9,10 +9,10 @@ toc_footers:
 
 includes:
 
-search: true
+search: false
 ---
 
-# !!! Раздел в разработке | Section only creates !!!
+# iDa Mobile Docs
 
 **если нужен PRO, то смотри [doc.idamob.ru/pro](https://doc.idamob.ru/pro)**
 
@@ -21,5 +21,3 @@ search: true
 **если нужен PIGEON, то смотри [doc.idamob.ru/pigeon](https://doc.idamob.ru/pigeon)**
 
 **если нужен SMARTTRANSACTIONS, то смотри [doc.idamob.ru/smarttransactions](https://doc.idamob.ru/smarttransactions)**
-
-![image](//placehold.it/800x200 "Некое название при наведении")
