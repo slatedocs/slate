@@ -188,6 +188,8 @@ and the specific attributes block, which is different for every type.
         "title": "El Siglo de Oro mit Gemäldegalerie regulär",
         "ticket_id": 247,
         "quantity": 1,
+        "ticket_type": "time_slot",
+        "start_time": "2016-09-14T15:00:00+02:00"
         "location": {
             "name": "Gemäldegalerie",
             "city": "Berlin",
@@ -214,10 +216,12 @@ and the specific attributes block, which is different for every type.
 
 Each ticket type item contains attributes like
 
-- id (integer), the uniq database id this ticket sale
+- id (integer), the uniq database id of this ticket sale
 - title (string), the title of the parent ticket
 - ticket_id (integer), the database parents ticket id
 - quantity (integer)
+- ticket_type (string), the type of ticket
+- start_time (iso8601), the start time of the ticket
 - after_sale_information (text), text containing information for the customer after sale
 
 plus two attribute blocks for the location and the barcodes.
