@@ -12,6 +12,7 @@ includes:
   - boletoparcelado
   - split
   - examples
+  - errors
   - button
   - magento
   - opencart

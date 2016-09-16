@@ -4,6 +4,8 @@ HTMLs de Exemplos
 
 ## Submeter pagamento
 
+**Endpoint:** www.librepag.com.br/pagamento
+
 ```html
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -60,6 +62,8 @@ HTMLs de Exemplos
 
 ## Consultar Pagamento
 
+**Endpoint:** www.librepag.com.br/consulta
+
 ```html
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -82,6 +86,7 @@ HTMLs de Exemplos
                 <tbody>
                     <tr><td>identificacao</td><td><input type='text' name='identificacao' value='SEU LOGIN NO IPAG'/></td></tr>
                     <tr><td>transId</td><td><input type='text' name='transId' value='ID da Transação'/> </td></tr>
+                    <tr><td>numPedido</td><td><input type='text' name='numPedido' value='Número do Pedido'/> </td></tr>
                     <tr><td>url_retorno</td><td><input type='text' name='url_retorno' value='XML'/> </td></tr>
                 </tbody>
             </table>
@@ -92,16 +97,22 @@ HTMLs de Exemplos
 ```
 Parâmetro | size | type | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
-identificacao | 60 | string | obrigatório | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
-transId | 255 | string | obrigatório | Código identificação da transação.
-url_retorno | 255 | string | obrigatório | Pode ser XML, ou uma Url da sua loja.
+identificacao | 60 | string | sim | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
+transId | 255 | string | não | Código identificação da transação.
+numPedido | 20 | string | não | Código identificação do pedido.
+url_retorno | 255 | string | obrigatório | Pode ser `XML` ou uma Url da sua loja.
 
+<aside class="notice">
+    Deve ser enviado pelo menos um dos campos: `transId` ou `numPedido`
+</aside>
 <aside class="notice">
     Lembre, isto é apenas um exemplo para fazer testes de consulta de pagamento.
 </aside>
 
 
 ## Capturar Pagamento
+
+**Endpoint:** www.librepag.com.br/captura
 
 ```html
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -144,6 +155,8 @@ url_retorno | 255 | string | obrigatório | Pode ser XML, ou uma Url da sua loj
 </aside>
 
 ## Cancelar Pagamento
+
+**Endpoint:** www.librepag.com.br/cancela
 
 ```html
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
