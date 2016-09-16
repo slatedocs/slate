@@ -21,6 +21,6 @@
 
 key | comment
 --- | ---:
-transactionDescription | данные из POS-терминала при оплате картой
+text | данные из POS-терминала
 city | (при наличии)
-SIC  | (при наличии)
+sic  | (при наличии)
