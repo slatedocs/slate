@@ -2,19 +2,19 @@
 
 ## Requirements
 
-Для установки сервиса SmartTransactions необходимо наличие следующих запущенных сервисов:
+Для установки сервиса SmartTransactions необходимо наличие:
 
 - Apache Tomcat 7.x
 - Postgres 9.x
 
 ## Содержимое поставки
 
-- SmartTransactionsEndpoint.war веб-приложение сервиса
+- SmartTransactionsEndpoint.war - веб-приложение сервиса
 - merchants_dump.sql - дамп базы
 
 ## Инструкция по установке
 
-- Остановить Tomcat с текущей установкой SmartTransactions
+- Остановить TomCat с текущей установкой SmartTransactions
 - Удалить базу smarttransactions (данные и схему)
 - Создать базу пустую smarttransactions с владельцем dbUsername/dbPassword (параметры используются ниже в настройках подключения)
 - Выполнить предоставленный скрипт: <code>psql -U &lt;username&gt; -W smarttransactions &lt; merchants_dump.sql</code>
