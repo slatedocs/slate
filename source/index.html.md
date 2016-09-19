@@ -94,7 +94,7 @@ The task object represents a single task that you create with Scale and is compl
   "task_id": "576ba74eec471ff9b01557cc",
   "completed_at": "2016-06-23T09:10:02.798Z",
   "created_at": "2016-06-23T09:09:34.752Z",
-  "callback_url": "http://www.example.com/test_callback",
+  "callback_url": "http://www.example.com/callback",
   "type": "categorization",
   "status": "completed",
   "instruction": "Would you say this item is big or small?",
@@ -270,7 +270,7 @@ curl "https://api.scaleapi.com/v1/task/transcription" \
   -d callback_url="http://www.example.com/callback" \
   -d instruction="Transcribe the given fields. Then for each news item on the page, transcribe the information for the row." \
   -d attachment_type=website \
-  -d attachment="http://www.reddit.com/" \
+  -d attachment="http://www.google.com/" \
   -d fields[title]="Title of Webpage" \
   -d fields[top_result]="Title of the top result" \
   -d row_fields[username]="Username of submitter" \
@@ -346,7 +346,7 @@ request.post('https://api.scaleapi.com/v1/task/transcription', {
 ```json
 {
   "created_at": "2016-06-25T02:18:04.248Z",
-  "callback_url": "http://www.example.com/test_callback",
+  "callback_url": "http://www.example.com/callback",
   "type": "transcription",
   "status": "pending",
   "instruction": "Transcribe the given fields. Then for each news item on the page, transcribe the information for the row.",
@@ -360,7 +360,7 @@ request.post('https://api.scaleapi.com/v1/task/transcription', {
       "title": "Title of Webpage",
       "top_result": "Title of the top result"
     },
-    "attachment": "http://www.reddit.com/",
+    "attachment": "http://www.google.com/",
     "attachment_type": "website"
   },
   "task_id": "576de9dc1ea5f917d56fc2a0"
@@ -490,10 +490,10 @@ request.post('https://api.scaleapi.com/v1/task/phonecall', {
 ```json
 {
   "created_at": "2016-06-27T23:53:10.367Z",
-  "callback_url": "http://www.example.com/test_callback",
+  "callback_url": "http://www.example.com/callback",
   "type": "phonecall",
   "status": "pending",
-  "instruction": "Call this man and tell me his email.",
+  "instruction": "Call this person and tell me his email address",
   "urgency": "day",
   "params": {
     "fields": {
@@ -502,7 +502,7 @@ request.post('https://api.scaleapi.com/v1/task/phonecall', {
     "choices": [
       "He is happy",
       "He is not happy"
-    ]
+    ],
     "entity_name": "Alexandr Wang",
     "phone_number": "5055006865"
   },
@@ -870,7 +870,7 @@ The `annotations` field will contain an array of annotations. Each annotation wi
       "status_code": "200"
     },
     "created_at": "2016-06-23T20:08:31.573Z",
-    "callback_url": "http://www.example.com/test_callback",
+    "callback_url": "http://www.example.com/callback",
     "type": "categorization",
     "status": "completed",
     "instruction": "Is this object red or blue?",
@@ -963,7 +963,7 @@ request.get('https://api.scaleapi.com/v1/task/' + task_id + '/', {
   "task_id": "576ba74eec471ff9b01557cc",
   "completed_at": "2016-06-23T09:10:02.798Z",
   "created_at": "2016-06-23T09:09:34.752Z",
-  "callback_url": "http://www.example.com/test_callback",
+  "callback_url": "http://www.example.com/callback",
   "type": "categorization",
   "status": "completed",
   "instruction": "Would you say this item is big or small?",
@@ -1046,7 +1046,7 @@ request.post('https://api.scaleapi.com/v1/task/' + task_id + '/cancel/', {
 {
   "task_id": "576ba74eec471ff9b01557cc",
   "created_at": "2016-06-23T09:09:34.752Z",
-  "callback_url": "http://www.example.com/test_callback",
+  "callback_url": "http://www.example.com/callback",
   "type": "categorization",
   "status": "canceled",
   "instruction": "Would you say this item is big or small?",
@@ -1123,7 +1123,7 @@ request.get('https://api.scaleapi.com/v1/tasks/', {
 [
   {
     "created_at": "2016-06-23T08:10:51.032Z",
-    "callback_url": "http://www.example.com/test_callback",
+    "callback_url": "http://www.example.com/callback",
     "type": "categorization",
     "status": "completed",
     "instruction": "Is this object big or small?",
@@ -1145,7 +1145,7 @@ request.get('https://api.scaleapi.com/v1/tasks/', {
   },
   {
     "created_at": "2016-06-23T08:51:13.903Z",
-    "callback_url": "http://www.example.com/test_callback",
+    "callback_url": "http://www.example.com/callback",
     "type": "categorization",
     "status": "completed",
     "instruction": "Is this object big or small?",
