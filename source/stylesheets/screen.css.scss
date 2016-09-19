@@ -188,13 +188,14 @@ div[name=get-started] + h1 + p + p > a{
     transition-duration: 230ms;
   }
 
-  ul ul li{
+/*  ul ul li{
     padding-left: 1.5em;  
   }
 
   ul ul ul + ul li{
     padding-left: 3em;  
-  }
+  }*/
+  
   // This is the currently selected ToC entry
   .tocify-focus {
     box-shadow: 0px 1px 0px $nav-active-shadow;
@@ -212,7 +213,12 @@ div[name=get-started] + h1 + p + p > a{
       padding-left: $nav-padding + $nav-indent * 2;
       font-size: 12px;
     }
-
+    ul li{
+      padding-left: 1.5em;  
+    }
+    ul ul li{
+      padding-left: 3em;  
+    }
     // for embossed look:
     @include embossed-bg;
     &>li:last-child {
