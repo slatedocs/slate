@@ -1,5 +1,10 @@
-# Intelligence Services
-Use number intelligence to block traffic from spammers and fraudsters. This feature is in beta. Early access will begin in Q3. Email signup@bandwidth.com to obtain early access.
+# Intelligence Services BETA
+Use number intelligence to block traffic from spammers and fraudsters. This feature is in beta.
+
+<aside class="success">
+Early access will begin in Q3. Email signup@bandwidth.com to obtain early access.
+</aside>
+
 
 ## Number Intelligence Properties
 
@@ -15,11 +20,6 @@ Use number intelligence to block traffic from spammers and fraudsters. This feat
 
 ## GET intelligenceServices
 
-This resource will provide number intelligence data for the number provided.
-
-| `GET` | /v1/users/{user-id}/intelligenceServices/number/{number} |
-|-------|----------------------------------------------------------|
-
 ### Supported Parameters
 
 | PARAMETER  | DESCRIPTION                             | MANDATORY |
@@ -34,7 +34,7 @@ curl -v -X GET  https://api.catapult.inetwork.com/v1/users/{user-id}/intelligenc
 
 > The above command returns JSON structured like this:
 
- ```
+ ```json
 [
 	{
 		"number":"5554446666",

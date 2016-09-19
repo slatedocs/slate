@@ -59,7 +59,7 @@ client.AvailableNumber.search("local", { areaCode : "910", quantity : 3 }, funct
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
   {
     "number": "{number1}",
@@ -95,7 +95,7 @@ curl -v -X GET  https://api.catapult.inetwork.com/v1/availableNumbers/local?city
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
     {
         "number": "{number1}",
@@ -159,7 +159,7 @@ client.AvailableNumber.serchAndOrder("local", { areaCode : "910", quantity : 2 }
 
 > The above command returns a `201` response JSON structured like this:
 
-```
+```json
 [
     {
         "number": "{number1}",
@@ -219,7 +219,7 @@ client.AvailableNumber.search("tollFree", {
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
   {
     "number":"{number1}",
@@ -279,7 +279,7 @@ client.AvailableNumber.searchAndOrder("tollFree", {
 
 > The above command returns a `201` response JSON structured like this:
 
-```
+```json
 [
     {
         "number": "{number1}",

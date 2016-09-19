@@ -61,7 +61,7 @@ client.Bridge.list()
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
   {
     "id": "{bridgeId}",
@@ -369,7 +369,7 @@ client.Bridge.getCalls('brg-65dhjrmbasiei',
 
   > The above command returns JSON structured like this:
 
-```
+```json
 [
     {
         "activeTime": "2013-05-22T19:49:39Z",

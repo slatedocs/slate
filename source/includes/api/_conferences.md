@@ -353,7 +353,7 @@ client.Conference.getMembers("conferenceId", function(err, members){});
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
 	{
 			"addedTime": "2013-07-12T15:54:47-02",

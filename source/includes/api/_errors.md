@@ -45,7 +45,7 @@ client.Error.list({size: 1000}, function(err, errorResponse){});
 
 > The above command returns JSON structured like this:
 
-```
+```json
 [
    {
       "time" : "2012-11-15T01:30:16.208Z",
@@ -58,12 +58,12 @@ client.Error.list({size: 1000}, function(err, errorResponse){});
             "value" : "{applicationId}",
          },
          {
-            "id" : "{userErrorDetailId2}"
+            "id" : "{userErrorDetailId2}",
             "name" : "number",
             "value" : "{number}",
          },
          {
-            "id" : "{userErrorDetailId3}"
+            "id" : "{userErrorDetailId3}",
             "name" : "callId",
             "value" : "{callId}",
          }
