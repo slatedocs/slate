@@ -36,8 +36,8 @@ __products__ | The associated products
 		"name": "test",
 		"guid": "test",
 		"hub_id": 1,
-		"latitude": -1.111111111,
-		"longitude": -1.111111111,
+		"latitude": "-1.111111111",
+		"longitude": "-1.111111111",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -53,8 +53,8 @@ __products__ | The associated products
 		"name": "test",
 		"guid": "test",
 		"hub_id": 1,
-		"latitude": -1.111111111,
-		"longitude": -1.111111111,
+		"latitude": "-1.111111111",
+		"longitude": "-1.111111111",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -78,8 +78,8 @@ __products__ | The associated products
 		"name": "test",
 		"guid": "test",
 		"hub_id": 1,
-		"latitude": -1.111111111,
-		"longitude": -1.111111111,
+		"latitude": "-1.111111111",
+		"longitude": "-1.111111111",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -120,8 +120,8 @@ __products__ | The associated products
 		"name": "changed",
 		"guid": "changed",
 		"hub_id": 2,
-		"latitude": -9.999999999,
-		"longitude": -9.999999999,
+		"latitude": "-9.999999999",
+		"longitude": "-9.999999999",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -136,8 +136,8 @@ __products__ | The associated products
 		"name": "changed",
 		"guid": "changed",
 		"hub_id": 2,
-		"latitude": -9.999999999,
-		"longitude": -9.999999999,
+		"latitude": "-9.999999999",
+		"longitude": "-9.999999999",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45
