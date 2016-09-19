@@ -502,7 +502,7 @@ Name | Type | Description
 name | string | Human-friendly string identifier
 description | string | Optional longer string
 archived | boolean | Whether the variable should be hidden from most views; default: false
-owner | URL | Provide a project URL to set the owner to that team; if omitted, the authenticated user will be the owner
+owner | URL | Provide a project URL to set the owner to that project; if omitted, the authenticated user will be the owner
 notes | string | Blank if omitted. Optional notes for the dataset
 start_date | date | ISO-8601 formatted date with day resolution
 end_date | date | ISO-8601 formatted date with day resolution
