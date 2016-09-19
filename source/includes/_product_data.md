@@ -21,7 +21,7 @@ time                     current voltage temperature product_imei
 
 Influx uses <a href="https://docs.influxdata.com/influxdb/v1.0/concepts/key_concepts/#measurement">measurements</a>, <a href="https://docs.influxdata.com/influxdb/v1.0/concepts/key_concepts/#field-set">fields</a> and <a href="https://docs.influxdata.com/influxdb/v1.0/concepts/key_concepts/#tag-set">tags</a> to uniquely identify data.
 
-All data recorded from a unit is held in the "telemetry" measurement. The name of the  being recorded is the field name. Each series is then tagged with the <a href="#product">product_imei</a>.
+All data recorded from a unit is held in the "telemetry" measurement. The name of the data being recorded is the field name. Each series is then tagged with the <a href="#product">product_imei</a> and the <a href="#product_type">product_type_id</a>.
 
 For example - a unit has product_imei: 013777946874001
 This unit has 3 things being recorded:
@@ -48,7 +48,7 @@ The influx data would therefore be now look like this:
 
 ```python
 name: telemetry            fld     fld       fld     fld   fld       tag
------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 time                     current voltage temperature c_in c_out  product_imei
 
 2016-09-02T08:30:42.645Z    1       2         3                 013777946874001
@@ -65,61 +65,110 @@ Users can query data relating to each product, specifying fields and tags as des
 
 ## Writing Data to Influx
 
-> Each datapoint must be as follows:
+> Data should be supplied in the following data structure:
 
 
 ```python
-point = {
-        "measurement": <measurement_name>,
-        "time": <time>,
-        "fields": { "field_name": <value> },
-        "tags": { "tag_name": <value> },
+data = {
+    "measurement": <measurement_name>,
+    "tags": { "tag_name": <value> },
+    "fields": {
+        "field_name": [ [time, value], [time, value], [time, value] ]
+        "field_name": [ [time, value], [time, value], [time, value] ]
+        "field_name": [ [time, value], [time, value], [time, value] ]
+    },
+}
+```
+
+> Below is a specific example for storing current, voltage and temperature:
+
+```python
+data = {
+    "measurement": "telemetry",
+    "tags": { "some_tag": "tag_value" },
+    "fields": {
+        "current": [
+            ['2016-09-01', 1.0],
+            ['2016-09-02', 2.0],
+            ['2016-09-03', 3.0]
+        ],
+        "voltage": [
+            ['2016-09-01', 10],
+            ['2016-09-02', 20],
+            ['2016-09-03', 30]
+        ],
+        "temperature": [
+            ['2016-09-01', 0.1],
+            ['2016-09-02', 0.2],
+            ['2016-09-03', 0.3]
+        ]
     }
+}
 ```
 
-> data is written as a list of points
+Data is written to influx as a list of timestamp/value pairs. The `measurement`, `field` and `tags` are defined in a data structure as shown on the right.
 
-```python
-data = [
-    {point 1},
-    {point 2},
-    {point 3},
-    {point 4},
-    {point 5},
-    {point 6},
-]
-```
+### Measurements
 
-The format for writing a single datapoint is a dictionary with:
+A `measurement` is a logical container for different series. Examples of sensible measurement names could be:  
 
-* measurement
-* timestamp
-* fields
-* tags
+* telemetry -_(for Current, Voltage, Temperature, Power)_
+* logging - _(for storing logs if required)_
+* analysis - _(for storing time-series that are not measured directly)_
 
-When writing data to influx users should send a list of influx datapoints in the correct format.
+### Fields
 
-`data = [ point_1, point_2, point_3 ]`
+Each `measurement` may have many `fields`. Each `field` represents a single stream of incoming data. Example of sensible fields could be:  
+
+* current
+* voltage
+* temperature
+
+### Tags
+
+Values inside a `field` are differentiated by the `tags` on each point. Sensible `tags` could be:  
+
+* product_imei
+* product_type_id
+* entity_id
+
+The combination of `Measurement/Field/Tag` therefore defines a time-series for a single unit.
+
+For example if we wish to see Current and Voltage data for the unit 013777894567 we would look inside:
+
+* `Measurement`: "telemetry"
+* `Fields`: "current, voltage"
+* `Tags`: {"product_imei": "013777894567"}
 
 ## Writing Data for a Product
 
-> Data can be written to a specific product like this:
+> Data can be written to a specific product like this - note that the product_imei is automatically written into the tags and does not need to be specified by the user:
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v2/products/<imei>/rm_data"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
-    data = json.dumps([{
+    data = json.dumps({
         "measurement": "telemetry",
-        "time": dt.datetime.utcnow().isoformat(),
+        "tags": {"some_tag": "tag_value"},
         "fields": {
-            "current": 1,
-            "voltage": 10,
-            "temperature": 26.5,
-        },
-        "tags": {
+            "current": [
+                ['2016-09-01', 1.0],
+                ['2016-09-02', 2.0],
+                ['2016-09-03', 3.0]
+            ],
+            "voltage": [
+                ['2016-09-01', 10],
+                ['2016-09-02', 20],
+                ['2016-09-03', 30]
+            ],
+            "temperature": [
+                ['2016-09-01', 0.1],
+                ['2016-09-02', 0.2],
+                ['2016-09-03', 0.3]
+            ]
         }
-    }])
+    })
 
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -127,7 +176,7 @@ When writing data to influx users should send a list of influx datapoints in the
     print r.text
     >>> {
       "staus": "success"
-      "message": "1 data-point(s) successfully written to influx",
+      "message": "9 data-point(s) successfully written to influx",
       "data": null,
     }
 ```
@@ -144,7 +193,8 @@ body | List of valid data-points
 permissions | <font color="Jade">__`TECHNICAL`__</font>
 response | `200`
 
-The <a href="#product">product_imei</a> tag doesn't need to be specified it will be added automatically.
+<aside class="notice">Note! The <a href="#product">product_imei</a> tag doesn't need to be specified it will be added automatically.</aside>
+
 
 ## Writing General Data
 
@@ -156,12 +206,16 @@ The <a href="#product">product_imei</a> tag doesn't need to be specified it will
 
     data = json.dumps([{
         "measurement": "analysis",
-        "time": dt.datetime.utcnow().isoformat(),
         "fields": {
-            "curve-data": 1,
+            "curve-data": [ 
+                ["2016-01-01T00:01:20", 1], 
+                ["2016-01-01T00:01:21", 2], 
+                ["2016-01-01T00:01:22", 3], 
+                ["2016-01-01T00:01:23", 4] ],
         },
         "tags": {
-            "some_tag": "testing"
+            "analysis-type": "state-of-health"
+            "product_imei": "000000000000000"
         }
     }])
 
@@ -171,13 +225,15 @@ The <a href="#product">product_imei</a> tag doesn't need to be specified it will
     print r.text
     >>> {
       "staus": "success"
-      "message": "1 data-point(s) successfully written to influx",
+      "message": "4 data-point(s) successfully written to influx",
       "data": null,
     }
 ```
 
 If a user wishes to store data that doesn't relate to a specific product they can use the more general `/v2/influx/write_data` endpoint.
-Note that this endpoint cannot auto-assign a product_imei tag so all fields and tags must be explicitly specific in the request.
+
+<aside class="notice">Note that this endpoint cannot auto-assign a <a href="#product">product_imei</a> tag so all fields and tags must be explicitly stated in the request.</aside>
+
 
 ### POST
      | value
@@ -270,8 +326,8 @@ Would return the first 100 datapoints in January where voltage > 14.0V for the u
 ## Reading General Data
 
 A `GET` request to `/v2/influx/data` allows the user to read more general data from influx. The parameter syntax and defaults are the same.
+<aside class="notice">Note! A <a href="#product">product_imei</a> must be explicity stated if required when using this endpoint.</aside>
 
-It's important to note that a <a href="#product">product_imei</a> must be explicity stated if required when using this endpoint.
 
 
 
