@@ -40,7 +40,6 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/anomaly_types"
     data = json.dumps({
-		"modified_by": "test",
 		"name": "test",
 		"version": 1,
 		"description": "test",
@@ -63,7 +62,6 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 
     >>> {
 		"anomaly_type_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"version": 1,
 		"description": "test",
@@ -94,7 +92,6 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
     r.json()
     >>> {
 		"anomaly_type_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"version": 1,
 		"description": "test",
@@ -142,7 +139,6 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"name": "changed",
 		"version": 2,
 		"description": "changed",
@@ -164,7 +160,6 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
     r.json()
     >>> {
 		"anomaly_type_id": 1
-		"modified_by": "changed",
 		"name": "changed",
 		"version": 2,
 		"description": "changed",

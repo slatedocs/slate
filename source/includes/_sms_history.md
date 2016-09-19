@@ -47,7 +47,6 @@ Relationship | Description
     r.json()
     >>> {
 		"sms_history_id": 1
-		"modified_by": "test",
 		"attempted_retries": 1,
 		"enable_history_id": 1,
 		"message_reference": "test",

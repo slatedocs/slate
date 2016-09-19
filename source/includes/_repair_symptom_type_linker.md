@@ -29,7 +29,6 @@ Relationship | Description
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/repair_symptom_type_linker"
     data = json.dumps({
-		"modified_by": "test",
 		"repair_id": 1,
 		"symptom_type_id": 1,
 		})
@@ -44,7 +43,6 @@ Relationship | Description
 
     >>> {
 		"repair_symptom_type_linker_id": 1
-		"modified_by": "test",
 		"repair_id": 1,
 		"symptom_type_id": 1,
 		"created_at": "2000-01-01 00:00:00"
@@ -67,7 +65,6 @@ Relationship | Description
     r.json()
     >>> {
 		"repair_symptom_type_linker_id": 1
-		"modified_by": "test",
 		"repair_id": 1,
 		"symptom_type_id": 1,
 		"created_at": "2000-01-01 00:00:00"
@@ -107,7 +104,6 @@ Relationship | Description
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/repair_symptom_type_linker/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"repair_id": 2,
 		"symptom_type_id": 2,
 		})
@@ -121,7 +117,6 @@ Relationship | Description
     r.json()
     >>> {
 		"repair_symptom_type_linker_id": 1
-		"modified_by": "changed",
 		"repair_id": 2,
 		"symptom_type_id": 2,
 		"created_at": "2000-01-01 00:00:00"

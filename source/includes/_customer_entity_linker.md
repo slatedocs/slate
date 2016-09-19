@@ -42,7 +42,6 @@ Relationship | Description
     r.json()
     >>> {
 		"customer_entity_linker_id": 1
-		"modified_by": "test",
 		"customer_id": 1,
 		"entity_id": 1,
 		"date_added": "2000-01-01 00:00:00",
@@ -84,7 +83,6 @@ Relationship | Description
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/customer_entity_linker/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"customer_id": 2,
 		"entity_id": 2,
 		"date_added": "2016-07-01 12:34:45",
@@ -100,7 +98,6 @@ Relationship | Description
     r.json()
     >>> {
 		"customer_entity_linker_id": 1
-		"modified_by": "changed",
 		"customer_id": 2,
 		"entity_id": 2,
 		"date_added": "2016-07-01 12:34:45",

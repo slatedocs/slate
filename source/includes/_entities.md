@@ -34,7 +34,6 @@ __product_entity_linker__ | The associated product_entity_linker
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/entities"
     data = json.dumps({
-		"modified_by": "test",
 		"name": "test",
 		"bboxx_company_flag": True,
 		"tariff": "test",
@@ -51,7 +50,6 @@ __product_entity_linker__ | The associated product_entity_linker
 
     >>> {
 		"entity_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"bboxx_company_flag": True,
 		"tariff": "test",
@@ -76,7 +74,6 @@ __product_entity_linker__ | The associated product_entity_linker
     r.json()
     >>> {
 		"entity_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"bboxx_company_flag": True,
 		"tariff": "test",
@@ -118,7 +115,6 @@ __product_entity_linker__ | The associated product_entity_linker
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/entities/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"name": "changed",
 		"bboxx_company_flag": False,
 		"tariff": "changed",
@@ -134,7 +130,6 @@ __product_entity_linker__ | The associated product_entity_linker
     r.json()
     >>> {
 		"entity_id": 1
-		"modified_by": "changed",
 		"name": "changed",
 		"bboxx_company_flag": False,
 		"tariff": "changed",

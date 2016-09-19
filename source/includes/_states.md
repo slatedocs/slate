@@ -41,7 +41,6 @@ Relationship | Description
     r.json()
     >>> {
 		"state_id": 1
-		"modified_by": "test",
 		"product_imei": "000000000000000",
 		"prev_state_type": 1,
 		"current_state_type": 1,

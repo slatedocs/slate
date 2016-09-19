@@ -30,7 +30,6 @@ Relationship | Description
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/part_type_replacement_linker"
     data = json.dumps({
-		"modified_by": "test",
 		"product_type_id": 1,
 		"existing_part_type_id": 1,
 		"replacement_part_type_id": 1,
@@ -46,7 +45,6 @@ Relationship | Description
 
     >>> {
 		"part_type_replacement_linker_id": 1
-		"modified_by": "test",
 		"product_type_id": 1,
 		"existing_part_type_id": 1,
 		"replacement_part_type_id": 1,
@@ -70,7 +68,6 @@ Relationship | Description
     r.json()
     >>> {
 		"part_type_replacement_linker_id": 1
-		"modified_by": "test",
 		"product_type_id": 1,
 		"existing_part_type_id": 1,
 		"replacement_part_type_id": 1,
@@ -111,7 +108,6 @@ Relationship | Description
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/part_type_replacement_linker/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"product_type_id": 2,
 		"existing_part_type_id": 2,
 		"replacement_part_type_id": 2,
@@ -126,7 +122,6 @@ Relationship | Description
     r.json()
     >>> {
 		"part_type_replacement_linker_id": 1
-		"modified_by": "changed",
 		"product_type_id": 2,
 		"existing_part_type_id": 2,
 		"replacement_part_type_id": 2,

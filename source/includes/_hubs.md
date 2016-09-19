@@ -34,7 +34,6 @@ __shops__ | The associated shops
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/hubs"
     data = json.dumps({
-		"modified_by": "test",
 		"name": "test",
 		"guid": "test",
 		"entity_id": 1,
@@ -52,7 +51,6 @@ __shops__ | The associated shops
 
     >>> {
 		"hub_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"guid": "test",
 		"entity_id": 1,
@@ -78,7 +76,6 @@ __shops__ | The associated shops
     r.json()
     >>> {
 		"hub_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"guid": "test",
 		"entity_id": 1,
@@ -121,7 +118,6 @@ __shops__ | The associated shops
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/hubs/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"name": "changed",
 		"guid": "changed",
 		"entity_id": 2,
@@ -138,7 +134,6 @@ __shops__ | The associated shops
     r.json()
     >>> {
 		"hub_id": 1
-		"modified_by": "changed",
 		"name": "changed",
 		"guid": "changed",
 		"entity_id": 2,

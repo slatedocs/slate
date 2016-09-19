@@ -43,7 +43,6 @@ __customer_entity_linker__ | The associated customer_entity_linker
     r.json()
     >>> {
 		"customer_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"external_customer_id": 1,
 		"external_customer_code": "test",
@@ -84,7 +83,6 @@ __customer_entity_linker__ | The associated customer_entity_linker
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/customers/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"name": "changed",
 		"external_customer_id": 2,
 		"external_customer_code": "changed",
@@ -99,7 +97,6 @@ __customer_entity_linker__ | The associated customer_entity_linker
     r.json()
     >>> {
 		"customer_id": 1
-		"modified_by": "changed",
 		"name": "changed",
 		"external_customer_id": 2,
 		"external_customer_code": "changed",

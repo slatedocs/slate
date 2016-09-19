@@ -30,7 +30,6 @@ __part_product_linker__ | The associated part_product_linker
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/parts"
     data = json.dumps({
-		"modified_by": "test",
 		"serial_number": "test",
 		"part_type_id": 1,
 		})
@@ -45,7 +44,6 @@ __part_product_linker__ | The associated part_product_linker
 
     >>> {
 		"part_id": 1
-		"modified_by": "test",
 		"serial_number": "test",
 		"part_type_id": 1,
 		"created_at": "2000-01-01 00:00:00"
@@ -68,7 +66,6 @@ __part_product_linker__ | The associated part_product_linker
     r.json()
     >>> {
 		"part_id": 1
-		"modified_by": "test",
 		"serial_number": "test",
 		"part_type_id": 1,
 		"created_at": "2000-01-01 00:00:00"
@@ -108,7 +105,6 @@ __part_product_linker__ | The associated part_product_linker
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/parts/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"serial_number": "changed",
 		"part_type_id": 2,
 		})
@@ -122,7 +118,6 @@ __part_product_linker__ | The associated part_product_linker
     r.json()
     >>> {
 		"part_id": 1
-		"modified_by": "changed",
 		"serial_number": "changed",
 		"part_type_id": 2,
 		"created_at": "2000-01-01 00:00:00"

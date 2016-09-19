@@ -33,7 +33,6 @@ Relationship | Description
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/parameters"
     data = json.dumps({
-		"modified_by": "test",
 		"parameter_type_id": 1,
 		"product_imei": "000000000000000",
 		"value": "test",
@@ -52,7 +51,6 @@ Relationship | Description
 
     >>> {
 		"parameter_id": 1
-		"modified_by": "test",
 		"parameter_type_id": 1,
 		"product_imei": "000000000000000",
 		"value": "test",
@@ -79,7 +77,6 @@ Relationship | Description
     r.json()
     >>> {
 		"parameter_id": 1
-		"modified_by": "test",
 		"parameter_type_id": 1,
 		"product_imei": "000000000000000",
 		"value": "test",
@@ -123,7 +120,6 @@ Relationship | Description
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/parameters/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"parameter_type_id": 2,
 		"product_imei": "999999999999999",
 		"value": "changed",
@@ -141,7 +137,6 @@ Relationship | Description
     r.json()
     >>> {
 		"parameter_id": 1
-		"modified_by": "changed",
 		"parameter_type_id": 2,
 		"product_imei": "999999999999999",
 		"value": "changed",

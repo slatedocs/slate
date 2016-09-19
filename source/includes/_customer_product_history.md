@@ -43,7 +43,6 @@ Relationship | Description
     r.json()
     >>> {
 		"customer_product_history_id": 1
-		"modified_by": "test",
 		"customer_id": 1,
 		"product_imei": "000000000000000",
 		"date_added": "2000-01-01 00:00:00",

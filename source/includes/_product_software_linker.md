@@ -32,7 +32,6 @@ Relationship | Description
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/product_software_linker"
     data = json.dumps({
-		"modified_by": "test",
 		"product_imei": "000000000000000",
 		"software_version_type_id": 1,
 		"date_added": "2000-01-01 00:00:00",
@@ -50,7 +49,6 @@ Relationship | Description
 
     >>> {
 		"product_software_linker_id": 1
-		"modified_by": "test",
 		"product_imei": "000000000000000",
 		"software_version_type_id": 1,
 		"date_added": "2000-01-01 00:00:00",
@@ -76,7 +74,6 @@ Relationship | Description
     r.json()
     >>> {
 		"product_software_linker_id": 1
-		"modified_by": "test",
 		"product_imei": "000000000000000",
 		"software_version_type_id": 1,
 		"date_added": "2000-01-01 00:00:00",
@@ -119,7 +116,6 @@ Relationship | Description
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/product_software_linker/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"product_imei": "999999999999999",
 		"software_version_type_id": 2,
 		"date_added": "2016-07-01 12:34:45",
@@ -136,7 +132,6 @@ Relationship | Description
     r.json()
     >>> {
 		"product_software_linker_id": 1
-		"modified_by": "changed",
 		"product_imei": "999999999999999",
 		"software_version_type_id": 2,
 		"date_added": "2016-07-01 12:34:45",

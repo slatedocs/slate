@@ -28,7 +28,6 @@ Relationship | Description
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/networks"
     data = json.dumps({
-		"modified_by": "test",
 		"name": "test",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
@@ -42,7 +41,6 @@ Relationship | Description
 
     >>> {
 		"mccmnc": 1
-		"modified_by": "test",
 		"name": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
@@ -64,7 +62,6 @@ Relationship | Description
     r.json()
     >>> {
 		"mccmnc": 1
-		"modified_by": "test",
 		"name": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
@@ -103,7 +100,6 @@ Relationship | Description
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/networks/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"name": "changed",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
@@ -116,7 +112,6 @@ Relationship | Description
     r.json()
     >>> {
 		"mccmnc": 1
-		"modified_by": "changed",
 		"name": "changed",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"

@@ -34,7 +34,6 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/part_types"
     data = json.dumps({
-		"modified_by": "test",
 		"name": "test",
 		"description": "test",
 		"erp_code": "XX0001",
@@ -52,7 +51,6 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 
     >>> {
 		"part_type_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"description": "test",
 		"erp_code": "XX0001",
@@ -78,7 +76,6 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
     r.json()
     >>> {
 		"part_type_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"description": "test",
 		"erp_code": "XX0001",
@@ -121,7 +118,6 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/part_types/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"name": "changed",
 		"description": "changed",
 		"erp_code": YY9999,
@@ -138,7 +134,6 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
     r.json()
     >>> {
 		"part_type_id": 1
-		"modified_by": "changed",
 		"name": "changed",
 		"description": "changed",
 		"erp_code": YY9999,

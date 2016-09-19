@@ -37,7 +37,6 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/alert_types"
     data = json.dumps({
-		"modified_by": "test",
 		"name": "test",
 		"version": 1,
 		"category": "test",
@@ -57,7 +56,6 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 
     >>> {
 		"alert_type_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"version": 1,
 		"category": "test",
@@ -85,7 +83,6 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
     r.json()
     >>> {
 		"alert_type_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"version": 1,
 		"category": "test",
@@ -130,7 +127,6 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/alert_types/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"name": "changed",
 		"version": 2,
 		"category": "changed",
@@ -149,7 +145,6 @@ __alert_type_product_type_linker__ | The associated alert_type_product_type_link
     r.json()
     >>> {
 		"alert_type_id": 1
-		"modified_by": "changed",
 		"name": "changed",
 		"version": 2,
 		"category": "changed",

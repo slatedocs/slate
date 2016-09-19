@@ -66,7 +66,6 @@ __tamper_enable_history__ | The associated tamper_enable_history
     r.json()
     >>> {
 		"product_imei": 1
-		"modified_by": "test",
 		"analysis_timestamp": "2000-01-01 00:00:00",
 		"capacity_limit": "test",
 		"current_enable_flag": True,
@@ -120,7 +119,6 @@ __tamper_enable_history__ | The associated tamper_enable_history
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/products/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"analysis_timestamp": "2016-07-01 12:34:45",
 		"capacity_limit": "changed",
 		"current_enable_flag": False,
@@ -148,7 +146,6 @@ __tamper_enable_history__ | The associated tamper_enable_history
     r.json()
     >>> {
 		"product_imei": 1
-		"modified_by": "changed",
 		"analysis_timestamp": "2016-07-01 12:34:45",
 		"capacity_limit": "changed",
 		"current_enable_flag": False,

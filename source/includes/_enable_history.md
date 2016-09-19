@@ -44,7 +44,6 @@ __sms_history__ | The associated sms_history
     r.json()
     >>> {
 		"enable_history_id": 1
-		"modified_by": "test",
 		"product_imei": "000000000000000",
 		"prev_enable_state": "test",
 		"current_enable_state": "test",

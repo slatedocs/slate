@@ -43,7 +43,6 @@ Relationship | Description
     r.json()
     >>> {
 		"tamper_enable_history_id": 1
-		"modified_by": "test",
 		"product_imei": "000000000000000",
 		"prev_tamper_enable_state": "test",
 		"current_tamper_enable_state": "test",

@@ -31,7 +31,6 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/symptom_types"
     data = json.dumps({
-		"modified_by": "test",
 		"name": "test",
 		"description": "test",
 		})
@@ -46,7 +45,6 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 
     >>> {
 		"symptom_type_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"description": "test",
 		"created_at": "2000-01-01 00:00:00"
@@ -69,7 +67,6 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
     r.json()
     >>> {
 		"symptom_type_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"description": "test",
 		"created_at": "2000-01-01 00:00:00"
@@ -109,7 +106,6 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/symptom_types/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"name": "changed",
 		"description": "changed",
 		})
@@ -123,7 +119,6 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
     r.json()
     >>> {
 		"symptom_type_id": 1
-		"modified_by": "changed",
 		"name": "changed",
 		"description": "changed",
 		"created_at": "2000-01-01 00:00:00"

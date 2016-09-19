@@ -36,7 +36,6 @@ __latest_software__ | The associated latest_software
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/software_version_types"
     data = json.dumps({
-		"modified_by": "test",
 		"name": "test",
 		"description": "test",
 		"link": "test",
@@ -55,7 +54,6 @@ __latest_software__ | The associated latest_software
 
     >>> {
 		"software_version_type_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"description": "test",
 		"link": "test",
@@ -82,7 +80,6 @@ __latest_software__ | The associated latest_software
     r.json()
     >>> {
 		"software_version_type_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"description": "test",
 		"link": "test",
@@ -126,7 +123,6 @@ __latest_software__ | The associated latest_software
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/software_version_types/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"name": "changed",
 		"description": "changed",
 		"link": "changed",
@@ -144,7 +140,6 @@ __latest_software__ | The associated latest_software
     r.json()
     >>> {
 		"software_version_type_id": 1
-		"modified_by": "changed",
 		"name": "changed",
 		"description": "changed",
 		"link": "changed",

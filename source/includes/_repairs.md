@@ -37,7 +37,6 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/repairs"
     data = json.dumps({
-		"modified_by": "test",
 		"product_imei": "000000000000000",
 		"customer_id": "test",
 		"purchase_date": "2000-01-01 00:00:00",
@@ -58,7 +57,6 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 
     >>> {
 		"repair_id": 1
-		"modified_by": "test",
 		"product_imei": "000000000000000",
 		"customer_id": "test",
 		"purchase_date": "2000-01-01 00:00:00",
@@ -87,7 +85,6 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
     r.json()
     >>> {
 		"repair_id": 1
-		"modified_by": "test",
 		"product_imei": "000000000000000",
 		"customer_id": "test",
 		"purchase_date": "2000-01-01 00:00:00",
@@ -133,7 +130,6 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/repairs/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"product_imei": "999999999999999",
 		"customer_id": "changed",
 		"purchase_date": "2000-01-01 00:00:00",
@@ -153,7 +149,6 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
     r.json()
     >>> {
 		"repair_id": 1
-		"modified_by": "changed",
 		"product_imei": "999999999999999",
 		"customer_id": "changed",
 		"purchase_date": "2000-01-01 00:00:00",

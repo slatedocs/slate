@@ -66,7 +66,6 @@ Relationship | Description
     r.json()
     >>> {
 		"connection_id": 1
-		"modified_by": "test",
 		"product_imei": "000000000000000",
 		"location_failed_flag": True,
 		"date": "2000-01-01 00:00:00",

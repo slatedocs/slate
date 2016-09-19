@@ -37,7 +37,6 @@ __latest_software__ | The associated latest_software
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/product_types"
     data = json.dumps({
-		"modified_by": "test",
 		"name": "test",
 		"erp_code": "XX0001",
 		"parameter_types": Unknown column type,
@@ -53,7 +52,6 @@ __latest_software__ | The associated latest_software
 
     >>> {
 		"product_type_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"erp_code": "XX0001",
 		"parameter_types": Unknown column type,
@@ -77,7 +75,6 @@ __latest_software__ | The associated latest_software
     r.json()
     >>> {
 		"product_type_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"erp_code": "XX0001",
 		"parameter_types": Unknown column type,
@@ -118,7 +115,6 @@ __latest_software__ | The associated latest_software
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/product_types/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"name": "changed",
 		"erp_code": YY9999,
 		"parameter_types": Unknown column type,
@@ -133,7 +129,6 @@ __latest_software__ | The associated latest_software
     r.json()
     >>> {
 		"product_type_id": 1
-		"modified_by": "changed",
 		"name": "changed",
 		"erp_code": YY9999,
 		"parameter_types": Unknown column type,

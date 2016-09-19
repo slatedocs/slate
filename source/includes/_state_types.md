@@ -30,7 +30,6 @@ __states__ | The associated states
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/state_types"
     data = json.dumps({
-		"modified_by": "test",
 		"name": "test",
 		"description": "test",
 		})
@@ -45,7 +44,6 @@ __states__ | The associated states
 
     >>> {
 		"state_type_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"description": "test",
 		"created_at": "2000-01-01 00:00:00"
@@ -68,7 +66,6 @@ __states__ | The associated states
     r.json()
     >>> {
 		"state_type_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"description": "test",
 		"created_at": "2000-01-01 00:00:00"
@@ -108,7 +105,6 @@ __states__ | The associated states
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/state_types/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"name": "changed",
 		"description": "changed",
 		})
@@ -122,7 +118,6 @@ __states__ | The associated states
     r.json()
     >>> {
 		"state_type_id": 1
-		"modified_by": "changed",
 		"name": "changed",
 		"description": "changed",
 		"created_at": "2000-01-01 00:00:00"

@@ -36,7 +36,6 @@ Relationship | Description
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/alerts"
     data = json.dumps({
-		"modified_by": "test",
 		"product_imei": "000000000000000",
 		"alert_type_id": 1,
 		"start_time": "2000-01-01 00:00:00",
@@ -58,7 +57,6 @@ Relationship | Description
 
     >>> {
 		"alert_id": 1
-		"modified_by": "test",
 		"product_imei": "000000000000000",
 		"alert_type_id": 1,
 		"start_time": "2000-01-01 00:00:00",
@@ -88,7 +86,6 @@ Relationship | Description
     r.json()
     >>> {
 		"alert_id": 1
-		"modified_by": "test",
 		"product_imei": "000000000000000",
 		"alert_type_id": 1,
 		"start_time": "2000-01-01 00:00:00",
@@ -135,7 +132,6 @@ Relationship | Description
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/alerts/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"product_imei": "999999999999999",
 		"alert_type_id": 2,
 		"start_time": "2016-07-01 12:34:45",
@@ -156,7 +152,6 @@ Relationship | Description
     r.json()
     >>> {
 		"alert_id": 1
-		"modified_by": "changed",
 		"product_imei": "999999999999999",
 		"alert_type_id": 2,
 		"start_time": "2016-07-01 12:34:45",

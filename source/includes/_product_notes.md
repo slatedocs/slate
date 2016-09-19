@@ -29,7 +29,6 @@ Relationship | Description
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/product_notes"
     data = json.dumps({
-		"modified_by": "test",
 		"note_text": "test",
 		"product_imei": "test",
 		})
@@ -44,7 +43,6 @@ Relationship | Description
 
     >>> {
 		"product_note_id": 1
-		"modified_by": "test",
 		"note_text": "test",
 		"product_imei": "test",
 		"created_at": "2000-01-01 00:00:00"
@@ -67,7 +65,6 @@ Relationship | Description
     r.json()
     >>> {
 		"product_note_id": 1
-		"modified_by": "test",
 		"note_text": "test",
 		"product_imei": "test",
 		"created_at": "2000-01-01 00:00:00"
@@ -107,7 +104,6 @@ Relationship | Description
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/product_notes/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"note_text": "changed",
 		"product_imei": "changed",
 		})
@@ -121,7 +117,6 @@ Relationship | Description
     r.json()
     >>> {
 		"product_note_id": 1
-		"modified_by": "changed",
 		"note_text": "changed",
 		"product_imei": "changed",
 		"created_at": "2000-01-01 00:00:00"

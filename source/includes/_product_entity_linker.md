@@ -42,7 +42,6 @@ Relationship | Description
     r.json()
     >>> {
 		"product_entity_linker_id": 1
-		"modified_by": "test",
 		"product_imei": "000000000000000",
 		"entity_id": 1,
 		"date_added": "2000-01-01 00:00:00",

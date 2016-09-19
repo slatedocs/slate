@@ -31,7 +31,6 @@ __parameters__ | The associated parameters
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/parameter_types"
     data = json.dumps({
-		"modified_by": "test",
 		"name": "test",
 		"data_type": "test",
 		"validation_rules": Unknown column type,
@@ -47,7 +46,6 @@ __parameters__ | The associated parameters
 
     >>> {
 		"parameter_type_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"data_type": "test",
 		"validation_rules": Unknown column type,
@@ -71,7 +69,6 @@ __parameters__ | The associated parameters
     r.json()
     >>> {
 		"parameter_type_id": 1
-		"modified_by": "test",
 		"name": "test",
 		"data_type": "test",
 		"validation_rules": Unknown column type,
@@ -112,7 +109,6 @@ __parameters__ | The associated parameters
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/parameter_types/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"name": "changed",
 		"data_type": "changed",
 		"validation_rules": Unknown column type,
@@ -127,7 +123,6 @@ __parameters__ | The associated parameters
     r.json()
     >>> {
 		"parameter_type_id": 1
-		"modified_by": "changed",
 		"name": "changed",
 		"data_type": "changed",
 		"validation_rules": Unknown column type,

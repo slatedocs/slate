@@ -31,7 +31,6 @@ Relationship | Description
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/anomalies"
     data = json.dumps({
-		"modified_by": "test",
 		"anomaly_type_id": 1,
 		"product_imei": "000000000000000",
 		"start_time": "2000-01-01 00:00:00",
@@ -48,7 +47,6 @@ Relationship | Description
 
     >>> {
 		"anomaly_id": 1
-		"modified_by": "test",
 		"anomaly_type_id": 1,
 		"product_imei": "000000000000000",
 		"start_time": "2000-01-01 00:00:00",
@@ -73,7 +71,6 @@ Relationship | Description
     r.json()
     >>> {
 		"anomaly_id": 1
-		"modified_by": "test",
 		"anomaly_type_id": 1,
 		"product_imei": "000000000000000",
 		"start_time": "2000-01-01 00:00:00",
@@ -115,7 +112,6 @@ Relationship | Description
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/anomalies/1'
     data = json.dumps({
-		"modified_by": "changed",
 		"anomaly_type_id": 2,
 		"product_imei": "999999999999999",
 		"start_time": "2016-07-01 12:34:45",
@@ -131,7 +127,6 @@ Relationship | Description
     r.json()
     >>> {
 		"anomaly_id": 1
-		"modified_by": "changed",
 		"anomaly_type_id": 2,
 		"product_imei": "999999999999999",
 		"start_time": "2016-07-01 12:34:45",
