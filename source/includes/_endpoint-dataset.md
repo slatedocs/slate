@@ -57,9 +57,9 @@ crGET("https://beta.crunch.io/api/datasets/")
             "archived": false,
             "permissions": {
                 "edit": false,
-                "change_permissions":,
-                "add_users":,
-                "change_weight":,
+                "change_permissions": false,
+                "add_users": false,
+                "change_weight": false,
                 "view": true
             },
             "size": {
@@ -83,9 +83,9 @@ crGET("https://beta.crunch.io/api/datasets/")
             "archived": false,
             "permissions": {
                 "edit": true,
-                "change_permissions":,
-                "add_users":,
-                "change_weight":,
+                "change_permissions": true,
+                "add_users": true,
+                "change_weight":true,
                 "view": true
             },
             "size": {
@@ -103,7 +103,7 @@ crGET("https://beta.crunch.io/api/datasets/")
             "current_editor_name": null
         }
     },
-    "template": "{"name": "Awesome Dataset", "description": "(optional) This dataset is awesome because I made it, and you can do it too."}"
+    "template": "{\"name\": \"Awesome Dataset\", \"description\": \"(optional) This dataset is awesome because I made it, and you can do it too.\"}"
 }
 ```
 
@@ -617,6 +617,7 @@ end_date | ISO-8601 string |  | End date/time of the dataset's data, defining a 
 current_editor | URL or null | | URL of the user entity that is currently editing the dataset, or `null` if there is no current editor
 current_editor_name | string or null | | That user's name, for display
 weight | URL | null | Points to the current weight variable applied for the given user
+app_settings | object | `{}` | A place for API clients to store values they need per dataset
 
 ##### Dataset catalogs
 
@@ -889,7 +890,7 @@ the user and public decks shared for this dataset.
           "is_public": true,
           "owner_id": "https://beta.crunch.io/api/users/4cba5/",
           "owner_name": "Other Person"
-        },
+        }
     },
     "order": "https://beta.crunch.io/api/datasets/223fd4/decks/order/"
 }
@@ -934,7 +935,6 @@ You can GET on the deck entity to see all its attributes:
         "id": "223fd4",
         "creation_time": "1987-10-15T11:45:00",
         "description": "Explanation about the deck",
-        "id": "223fd4",
         "is_public": false,
         "owner_id": "https://beta.crunch.io/api/users/abcd3/",
         "owner_name": "Real Person"
