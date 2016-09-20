@@ -4,11 +4,6 @@ A .Net client library for the [Bandwidth Application Platform](http://bandwidth.
 
 The current version is v3.0, released ## August, 2016. Version 2.14 is available  [here](https://github.com/bandwidthcom/csharp-bandwidth/tree/v2.14).
 
-
-[![Build on .Net 4.5 (Windows)](https://ci.appveyor.com/api/projects/status/bhv8hs3fx9k6c33i?svg=true)](https://ci.appveyor.com/project/avbel/csharp-bandwidth)
-[![Build on .Net Core (Linux)](https://travis-ci.org/bandwidthcom/csharp-bandwidth.svg)](https://travis-ci.org/bandwidthcom/csharp-bandwidth)
-[![Coverage Status](https://coveralls.io/repos/github/bandwidthcom/csharp-bandwidth/badge.svg)](https://coveralls.io/github/bandwidthcom/csharp-bandwidth)
-
 [![github](images/github_logo.png)](https://github.com/bandwidthcom/csharp-bandwidth/tree/v3-preview)
 
 [Full API Reference](http://bwdemos.com/csharp-bandwidth/html/R_Project_API.htm)
