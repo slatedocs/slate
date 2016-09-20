@@ -2,8 +2,8 @@
 
 [![github](images/github_logo.png)](https://github.com/bandwidthcom/java-bandwidth)
 
+### [Docs](http://www.javadoc.io/doc/com.bandwidth.sdk/bandwidth-java-sdk)
 
-[![Javadocs](https://www.javadoc.io/badge/com.bandwidth.sdk/bandwidth-java-sdk.svg)](http://www.javadoc.io/doc/com.bandwidth.sdk/bandwidth-java-sdk)
 
 [Code Examples](https://github.com/bandwidthcom/java-bandwidth-examples)
 
