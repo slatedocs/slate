@@ -11,14 +11,14 @@
 0. В созданной БД добавить схемы с названиями: lightschema, proschema
 0. Установить Apache Tomcat
 0. При желании - настроить работу [Apache Tomcat с протоколом SSL](http://habrahabr.ru/post/134453/) (можно выполнить позднее)
-0. Открыть файл *.war при помощи ZIP-архиватора и перейти в подпапку *.war\WEB-INF\classes\META-INF
+0. Открыть файл *.war при помощи ZIP-архиватора и перейти в подпапку ``*.war\WEB-INF\classes\META-INF``
 0. Открыть файл persistence.xml и внести соответствующие правки, необходимые для подключения к БД (параметры: hibernate.connection.url, hibernate.connection.username, hibernate.connection.password).
 0. Заменить в *.war файле persistence.xml на тот, который был отредактирован в п.3
-0. Запустить Apache Tomcat (в случае с linux - <code>./tomcat/bin/startup.sh</code>, в случае с windows вомпользоваться специальной системной службой)
+0. Запустить Apache Tomcat (в случае с linux - ``./tomcat/bin/startup.sh``, в случае с windows вомпользоваться специальной системной службой)
 
 Установка iDa Pro
 
-0. В подпапке pro.war\WEB-INF\classes\config открыть конфигурационный файл банка (Например, bank.properties) и проверить корректность значений параметров proxy.wsdl, proxy.service, proxy.endpoint а так же проверить доступность значения параметра proxy.wsdl с машины, на которой будет запущен iDa Pro. В случае внесения изменений в файл *.properties - сохранить новую версию этого файла в pro.war
+0. В подпапке ``pro.war\WEB-INF\classes\config`` открыть конфигурационный файл банка (Например, bank.properties) и проверить корректность значений параметров proxy.wsdl, proxy.service, proxy.endpoint а так же проверить доступность значения параметра proxy.wsdl с машины, на которой будет запущен iDa Pro. В случае внесения изменений в файл *.properties - сохранить новую версию этого файла в pro.war
 0. Скопировать файл pro.war в папку /tomcat/webapps и дождаться пока будет автоматически создана подпапка /Pro
 0. Открыть через pgAdmin требуемую БД и проверить, что в схеме proschema добавились таблицы
 0. Проверить работоспособность приложения с помощью настроенного мобильного клиента
@@ -26,10 +26,10 @@
 **Порядок обновления серверной части iDa Mobile (*.war)**
 
 0. Получить новую сборку в виде файла *.war
-0. Открыть файл *.war при помощи ZIP-архиватора и перейти в подпапку *.war\WEB-INF\classes\META-INF
+0. Открыть файл *.war при помощи ZIP-архиватора и перейти в подпапку ``*.war\WEB-INF\classes\META-INF``
 0. Открыть файл persistence.xml и внести соответствующие правки, необходимые для подключения к БД (параметры: hibernate.connection.url, hibernate.connection.username, hibernate.connection.password).
 0. Заменить в *.war файле persistence.xml на тот, который был отредактирован в п.3
-0. Убедится, что серверй приложений Tomcat запущен (в linux - <code>ps -ef|grep tomcat</code>). Если не запущен - запустить его (в linux - <code>./tomcat/bin/startup.sh</code>).
+0. Убедится, что серверй приложений Tomcat запущен (в linux - ``ps -ef|grep tomcat</code>)``. Если не запущен - запустить его (в linux - ``./tomcat/bin/startup.sh``).
 0. Перейти в папку tomcat/webapps
 0. В случае наличия в ней старой версии iDa - удалить файл *.war и дождаться пока папка обновляемого приложения удалится автоматически (~ 15 секунд)
 0. Скопировать в папку /tomcat/webapps/ полученный в п.4 файл *.war
@@ -48,7 +48,7 @@ pro server - [http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl]
 0. Настроить дополнительный домен, например, если у вас используется домен ida.mybank.com для мобильных приложений, то нужно создать домен ida_new.mybank.com, который так-же будет ссылаться на IP настраиваемого сервера
 0. Произвести настройку фронт-сервера таким образом, что бы траффик для домена ida.mybank.com перенаправлялся на localhost:8080/pro (8080 - порт TomCat по умолчанию), а траффик ida_new.mybank.com направлялся на localhost:8080/pro_new. Пример подобной [настройки nginx](http://serverfault.com/questions/536576/nginx-how-do-i-forward-a-http-request-to-another-port)
 
-**Дополнительно фиксируемые данные**
+**Дополнительно фиксируемые данные для безопасности**
 
 - Во всех запросах шлется версия приложения в хэддере запроса ``APP_VERSION=<app_version>``
-- LoginWithPassword, LoginUserWithPin, MakeTransfer в параметрах запроса шлется ``IP=<ip_address>;APP_VERSION=<app_version>;OS=<os_type>;VENDOR_ID=<device_uuid>``
+- LoginWithPassword, LoginUserWithPin, MakeTransfer в параметрах запроса шлется deviceInfo

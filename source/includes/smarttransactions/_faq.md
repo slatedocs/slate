@@ -2,15 +2,15 @@
 
 **Not found merchants**
 
-Запросы, для которых не нашлось описание мерчента по ключевым словам, попадают в таблицу <code>missed_queries</code>
+Запросы, для которых не нашлось описание мерчента по ключевым словам, попадают в таблицу missed_queries
 
 **Current version**
 
-Запрос <code>http://{HOST}:{PORT}/SmartTransactionsEndpoint/version</code> возвращает текущую версию сборки
+Запрос ``http://{HOST}:{PORT}/SmartTransactionsEndpoint/version`` возвращает текущую версию сборки
 
 **Statistics collection mode**
 
-В режиме сбора статистики сервис только накапливает ненайденные запросы, в ответе всегда возвращается пустой список. Для переключения нужно в файле <code>${TOMCAT_HOME}/webapps/SmartTransactionsEndpoint/META-INF/context.xml</code> установить параметр <code>silentMode</code> в <code>true</code>
+В режиме сбора статистики сервис только накапливает ненайденные запросы, в ответе всегда возвращается пустой список. Для переключения нужно в файле ``${TOMCAT_HOME}/webapps/SmartTransactionsEndpoint/META-INF/context.xml`` установить параметр silentMode в true
 
 **UTF-8 support**
 
