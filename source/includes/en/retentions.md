@@ -215,6 +215,7 @@ porcentaje                       | float  | Tax rate.
 valor_retenido                   | float  | Withholded tax amount, calculated from the product of `porcentaje` and `base_imponible`, with up to 2 decimals.  __Required__
 fecha_emision_documento_sustento | string | Issuance date in [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6) format (AAAA-MM-DDHourTimeZone). __Required__
 numero_documento_sustento        | string | Complete document number of the e-document being modified. Normally invoices. Example: 001-002-010023098 __Required__
+tipo_documento_sustento | string | [Document type](#document-types) object. __Required__
 
 ### Response
 
