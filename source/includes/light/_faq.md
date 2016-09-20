@@ -49,4 +49,4 @@ light server - [http://dev.idamob.ru/light/services/WsEndpointServiceFacade?wsdl
 
 **Дополнительно фиксируемые данные**
 
-Во всех запросах отдельными хэддерами IP=<ip_address>, APP_VERSION=<app_version>, OS=iOS, VENDOR_ID=<device_uuid>
+Во всех запросах отдельными хэддерами ``IP=<ip_address>;APP_VERSION=<app_version>;OS=<os_type>;VENDOR_ID=<device_uuid>``

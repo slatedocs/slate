@@ -51,4 +51,4 @@ pro server - [http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl]
 **Дополнительно фиксируемые данные**
 
 - Во всех запросах шлется версия приложения в хэддере запроса ``APP_VERSION=<app_version>``
-- LoginWithPassword, LoginUserWithPin, MakeTransfer в параметрах запроса шлется ``IP=<ip_address>;APP_VERSION=<app_version>;OS=iOS;VENDOR_ID=<device_uuid>``
+- LoginWithPassword, LoginUserWithPin, MakeTransfer в параметрах запроса шлется ``IP=<ip_address>;APP_VERSION=<app_version>;OS=<os_type>;VENDOR_ID=<device_uuid>``
