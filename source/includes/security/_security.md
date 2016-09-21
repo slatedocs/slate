@@ -39,7 +39,7 @@ You can password protect your web server for Bandwidth Callbacks for example:
 
 `https://username:password@yoursecurehost.com/yoursecureapp`
 
-Modify the callback URL for your application. This can be done through the API ([see documentation](#Applications)) or through the web portal on the “My Apps” tab. Select the Application you want to modify, and then click the “Edit” button.
+Modify the callback URL for your application. This can be done through the API ([see documentation](#applications)) or through the web portal on the “My Apps” tab. Select the Application you want to modify, and then click the “Edit” button.
 
 ![api](images/basic-auth.png)
 
