@@ -893,7 +893,8 @@ The `annotations` field will contain an array of annotations. Each annotation wi
 }
 ```
 
-On your tasks, you will be required to supply a `callback_url`, a fully qualified URL that we will POST with the results of the task when completed. The data will be served as a JSON body (`application/json`).
+On your tasks, you will be required to supply a `callback_url`, a fully qualified URL that we will POST with the results of the task when completed. The data will be served as a JSON body (`application/json`). Alternately,
+you can set a default callback URL in your profile, which will be used for tasks that do not specify one.
 
 You should respond to the POST request with a 200 status code. If we do not receive a 200 status code, we will retry one more time.
 
