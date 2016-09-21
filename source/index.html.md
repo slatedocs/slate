@@ -11,6 +11,7 @@ toc_footers:
 
 includes:
   - getstarted
+  - security/security
   - api/account
   - api/applications
   - api/availableNumbers
