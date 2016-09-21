@@ -206,7 +206,7 @@ and the specific attributes block, which is different for every type.
         "ticket_id": 247,
         "quantity": 1,
         "ticket_type": "time_slot",
-        "start_time": "2016-09-14T15:00:00+02:00"
+        "start_time": "2016-09-14T15:00:00+02:00",
         "location": {
             "name": "Gemäldegalerie",
             "city": "Berlin",
