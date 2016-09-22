@@ -9,12 +9,12 @@ toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
-  
+
 search: true
 ---
 
-# VERSATILE CREDIT
- 
+# Versatile Credit
+
 ##Background
 
 Versatile Credit is a kiosk based system used by stores to offer financing to their customers via a cascade approach.
@@ -58,7 +58,7 @@ V2 api needs to be updated to support pre-approval.
 
 # Pre-Approval
 
-###Partners that would like the Zibby preapproval functionality, but are unable to integrate via our zibby.js plugin, can interact directly with the Zibby API. 
+###Partners that would like the Zibby preapproval functionality, but are unable to integrate via our zibby.js plugin, can interact directly with the Zibby API.
 
 There are three steps involved in the Zibby preapproval process:
 
@@ -84,7 +84,7 @@ To begin an application, Zibby requires that the consumer verify their phone num
 
 ###Submit Phone Number for Verification->
 
-To begin a Zibby application, we require verification of the the consumer’s phone number. This is done by sending a code via SMS to their input phone. 
+To begin a Zibby application, we require verification of the the consumer’s phone number. This is done by sending a code via SMS to their input phone.
 
 >Example Request:
 
@@ -128,36 +128,40 @@ POST https://sandbox.zibby.com/api/ng/application/verify_verification_code
 >Customer Application Data:
 
 ```script
-{‘billing’: {
-  ‘first_name’: ‘Jane’,
-  ‘last_name’: ‘Doe’,
-  ‘phone’: ‘2144324537’,
-  ‘address’: ‘119 saint marks place’,
-  ‘address2’: ‘Apt 5b’,
-  ‘city’: ‘New York’,
-  ‘state’: ‘NY’,
-  ‘zip’: ‘10009’,
-  ‘email’: ‘jqdoe@anonmail.com’},
-‘personal’: {
-  ‘ssn’: ‘1782378757’,
-  ‘income’: ‘50000’,
-  ‘ip_address’: ‘483.28.289’,
-  ‘dob_year’: ‘1981’,
-  ‘dob_month’: ‘11’,
-  ‘dob_day’: ‘15’,
-  ‘driver_license_number’: ‘E82923892’,
-  ‘driver_license_state’: ‘NY’,
-  ‘driver_license_expiration_year’: ‘2018’,
-  ‘driver_license_expiration_month’: ‘09’,
-  ‘driver_license_expiration_day’: ‘12’,
-  ‘employment_type’: ‘full-time’,
-  ‘reference_name’: ‘Jamie Smith’,
-  ‘reference_phone_number’: ‘2172849548’,
-  ‘employment_name’: ‘Streamlake Insurance’,
-  ‘employment_number’: ‘3672734875’}}
+{
+   "billing": {
+      "first_name": "Jane",
+      "last_name": "Doe",
+      "phone": "2144324537",
+      "address": "119 saint marks place",
+      "address2": "Apt 5b",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10009",
+      "email": "jqdoe@anonmail.com"
+   },
+   "personal": {
+      "ssn": "1782378757",
+      "income": "50000",
+      "ip_address": "483.28.289",
+      "dob_year": "1981",
+      "dob_month": "11",
+      "dob_day": "15",
+      "driver_license_number": "E82923892",
+      "driver_license_state": "NY",
+      "driver_license_expiration_year": "2018",
+      "driver_license_expiration_month": "09",
+      "driver_license_expiration_day": "12",
+      "employment_type": "full-time",
+      "reference_name": "Jamie Smith",
+      "reference_phone_number": "2172849548",
+      "employment_name": "Streamlake Insurance",
+      "employment_number": "3672734875"
+   }
+}
 ```
 
-To build the Zibby application for a consumer, the customer’s application data as shown in the Application JSON to the right should be sent either in a POST or PATCH request to Zibby. 
+To build the Zibby application for a consumer, the customer’s application data as shown in the Application JSON to the right should be sent either in a POST or PATCH request to Zibby.
 
 <aside class="notice">
 The zibby application supports the following employment types
