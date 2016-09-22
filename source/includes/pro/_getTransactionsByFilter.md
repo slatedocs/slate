@@ -3,8 +3,6 @@
 ```xml
 <getTransactionsByFilterResponse>
  <return>
-    <balanceOnSinceDate nil="true"/>
-    <balanceOnToDate nil="true"/>
     <lastUpdateTime>2015-05-25T21:13:08.000+03:00</lastUpdateTime>
     <transactions type="TransactionDTO">
         #

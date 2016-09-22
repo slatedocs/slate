@@ -1,5 +1,46 @@
 ## getTransactionsByDateRange
 
+> Request:
+
+```xml
+<getTransactionsByDateRange>
+    <request>
+        <bankClientId>bank_client_id</bankClientId>
+        <productId>product_id</productId>
+        <since>2016-08-02T13:50:00+03:00</since>
+        <to>2016-08-30T13:50:00+03:00</to>
+    </request>
+</getTransactionsByDateRange>
+```
+
+> Response:
+
+```xml
+<getTransactionsByDateRangeResponse>
+ <return>
+     <balanceOnSinceDate type="AmountDTO">
+       <currency>RUB</currency>
+       <fxAmount>17600</fxAmount>
+    </balanceOnSinceDate>
+    <balanceOnToDate type="AmountDTO">
+       <currency>RUB</currency>
+       <fxAmount>-1054122</fxAmount>
+    </balanceOnToDate>
+    <lastUpdateTime>2015-08-25T21:13:08.000+03:00</lastUpdateTime>
+    <transactions type="TransactionDTO">
+        #
+        # transaction
+        #
+    </transactions>
+    <transactions type="TransactionDTO">
+        #
+        # transaction
+        #
+    </transactions>
+ </return>
+</getTransactionsByDateRangeResponse>
+```
+
 В запрос передается набор фильтров, результатом является список транзакций, отсортированный в порядке убывания даты их выполнения. Каждая из выбранных транзакций удовлетворяет каждому условию фильтра в запросе
 
 key | type | status | comment
