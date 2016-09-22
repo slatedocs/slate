@@ -39,6 +39,19 @@ Must contain the URL of a dataset that the current user can read. This action wi
 }
 ```
 
+If you wish to include only certain variables from the source dataset you're appending from, you can include an ``only_vars`` list in the body of the entity.  The list should include each URL of each variable from the source dataset that you wish to be appended to the target dataset:
+
+```json
+{
+  "element": "shoji:entity",
+  "body": {
+      "dataset": "<url>"
+      "only_vars": ["http://beta.crunch.io/api/datasets/3e2cfb/variables/000001/"]
+  }
+}
+```
+
+
 #### Appending a source
 
 Must contain the URL of a source that a user can read.
