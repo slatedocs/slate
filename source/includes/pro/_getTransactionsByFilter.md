@@ -1,5 +1,25 @@
 ## getTransactionsByFilter
 
+```xml
+<getTransactionsByFilterResponse>
+ <return>
+    <balanceOnSinceDate nil="true"/>
+    <balanceOnToDate nil="true"/>
+    <lastUpdateTime>2015-05-25T21:13:08.000+03:00</lastUpdateTime>
+    <transactions type="TransactionDTO">
+        #
+        # transaction
+        #
+    </transactions>
+    <transactions type="TransactionDTO">
+        #
+        # transaction
+        #
+    </transactions>
+ </return>
+</getTransactionsByFilterResponse>
+```
+
 Результатом является список транзакций, отсортированный на мобильном в порядке убывания даты их выполнения
 
 key | type | status | comment
