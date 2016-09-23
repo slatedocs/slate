@@ -1,196 +1,412 @@
 ---
-title: Versatile Credit
+title: Zibby API Documentation
 
 language_tabs:
- - javascript: JavaScript
+ - json: Json
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+
 
 includes:
 
 search: true
 ---
 
-# Versatile Credit
-
-##Background
-
-Versatile Credit is a kiosk based system used by stores to offer financing to their customers via a cascade approach.
-
-# Scope
-
-###-API
-
-Existing plugin application makes post and patch requests to the application resource, in addition to a separate call to the pre-approval endpoint, and separate calls to receive and update verification codes
+# Zibby API Documentation
 
 
-<aside class="warning">
-This is too much complexity for a direct integration to be expected to manage.
-</aside>
+The Zibby API is designed to be compatible with retailers on all
+platforms, both custom and off-shelf.
 
-<aside class="notice">
-V2 api needs to be updated to support pre-approval.
-</aside>
+The API is designed with the REST protocol and uses native HTTP
+features like HTTP verbs and HTTP authentication, which can be
+understood by all HTTP clients.
 
-###-DB
+All requests and responses are in JSON format, including errors.
 
-###-Implementation
+#Setting Up
 
-->Verify phone
+##Authentication
 
-->Enter verification code
-
-->Patch in application data
-
-->Apply for preapproval
-
-###-Steps
-
-->Get an application
-
-->Build an application
-
-->Commit an application
-
-
-
-# Pre-Approval
-
-###Partners that would like the Zibby preapproval functionality, but are unable to integrate via our zibby.js plugin, can interact directly with the Zibby API.
-
-There are three steps involved in the Zibby preapproval process:
-
-
-->Create the application
-
-->Build the application
-
-->Commit the application for approval
-
-##Create the Application
-
->Submit Phone Number for Verification
-
->DEFINITION:
+>Sample Curl
 
 ```script
-POST https://sandbox.zibby.com/api/ng/application/create
+curl -X GET https://sandbox.zibby.com/api/v3/application/2398798 \
+
+-H "Content-Type:application/json" \
+
+-H "Authorization: Bearer 01234567-89ab-cdef-0123-456789abcdef"
 ```
 
+Zibby uses Oauth 2.0 to authenticate all requests
+to the API. 
+
+During onboarding with Zibby, you will be provided an
+access token that can be used to access protected
+resources and initialize customers checking out  or applying with the
+Zibby payment method.
+
+Once you receive your Oauth access token you’re all set
+to make requests to the Zibby API. All API requests must
+be made over HTTPS. Calls made over plain HTTP will
+fail. You must authenticate for all requests.
+
+###Versioning
+
+The Zibby API is versioned for major backwards
+incompatible changes to the system.
+The API is currently on version 3.0.
+
+###Environment
+
+To make the Zibby Integration as easy as possible, we
+support sandbox and live environments. The two
+environments have distinct Oauth keys and can be active
+simultaneously. Data is never shared across environments.
+
+###Test Endpoint:
+
+https://sandbox.zibby.com/api/v3 
+
+###Live Endpoint:
+
+https://www.zibby.com/api/v3
+
+
+#Applying with Zibby
+
+
+
+##Request Verification Code
+
+>Request Phone Verification Code:
+
+```script
+URL:			/api/v3/user/auth/retailer/
+Method:			POST
+Request:		{"phone": "1234567890"}
+Response:		{"new_user": true}
+Status:			202
+```
 
 To begin an application, Zibby requires that the consumer verify their phone number. This is done by sending an SMS message to the input number.
 
-###Submit Phone Number for Verification->
 
-To begin a Zibby application, we require verification of the the consumer’s phone number. This is done by sending a code via SMS to their input phone.
+##Submit Verification Code
 
->Example Request:
 
-```script
--d {‘phone’: ‘2127338439’}
-```
-
->Example Response:
+>Submit Verification Code:
 
 ```script
-{‘id’: 4832}
+URL:			/api/v3/user/auth/verify/
+Method:			POST
+Request:		{"phone": "1234567890", "code": "123456"}
+Response:		{"verified": true}
+Status:			202
 ```
 
-###Verify Phone number->
+Once the customer has recieved the SMS code, it must be sent to Zibby to complete the verication of their phone number.
 
-<aside class="notice">
-The SMS code sent to the customer will be verified in this step.
-</aside>
-
->Verifiy Phone Number
-
->DEFINITION:
-
-```script
-POST https://sandbox.zibby.com/api/ng/application/verify_verification_code
-```
->Example Request:
-
-```script
--d {‘code’: ‘3GS37W’}
-```
-
->Example Response:
-
-```script
-{‘success’: true}
-```
-
-##Build the Application
+##Create an Application
 
 >Customer Application Data:
 
 ```script
-{
-   "billing": {
-      "first_name": "Jane",
-      "last_name": "Doe",
-      "phone": "2144324537",
-      "address": "119 saint marks place",
-      "address2": "Apt 5b",
-      "city": "New York",
-      "state": "NY",
-      "zip": "10009",
-      "email": "jqdoe@anonmail.com"
-   },
-   "personal": {
-      "ssn": "1782378757",
-      "income": "50000",
-      "ip_address": "483.28.289",
-      "dob_year": "1981",
-      "dob_month": "11",
-      "dob_day": "15",
-      "driver_license_number": "E82923892",
-      "driver_license_state": "NY",
-      "driver_license_expiration_year": "2018",
-      "driver_license_expiration_month": "09",
-      "driver_license_expiration_day": "12",
-      "employment_type": "full-time",
-      "reference_name": "Jamie Smith",
-      "reference_phone_number": "2172849548",
-      "employment_name": "Streamlake Insurance",
-      "employment_number": "3672734875"
-   }
-}
+URL:			/api/v3/application/
+Method:			POST
+Request:		{"phone": "1234567890",
+           		 "billing_first_name": "John",
+              	 "billing_last_name": "Doe", 
+              	 "email": "jdoe@jtest.com",
+              	 "billing_address": "14 28th Ave."
+              	 "billing_address2": ""
+              	 "billing_city": "New York"
+              	 "billing_state": "NY"
+              	 "billing_zip": "11102"
+              	 "dob_day": 15
+              	 "dob_month": 7
+              	 "dob_year": 1984
+              	 "income": "50000.00"
+              	 "ssn": "342134125"}
+Response:		{"uid": "2f0db9059d6a46c1a02e5361243e40b6"}
+Status: 		201
 ```
 
-To build the Zibby application for a consumer, the customer’s application data as shown in the Application JSON to the right should be sent either in a POST or PATCH request to Zibby.
+To create the Zibby application for a consumer, the customer’s application data as shown in the Application JSON to the right should be sent either in a POST or PATCH request to Zibby.
 
-<aside class="notice">
-The zibby application supports the following employment types
-</aside>
-
-<b>`Employment Types`</b>
-
-Public Display | API Mapping
--------------- | --------------
-Full time | full-time
-Part time | part-time
-Self employed | self-employed
-Unemployed | unemployed
-Social Security/Disability | social-security-disability
-Pension/Retirement | pension-retirement
-Military | military
-
-
-##Commit the Application for Approval
-
-
->DEFINITION:
+##Build the Application
 
 ```script
-POST https://sandbox.zibby.com/api/ng/application/preapprove
+URL: 			/api/v3/application/<uid>
+Method: 		PATCH
+Request:		{"billing_address" : "151 W 25th St"
+               	 "billing_address2" : "9th Fl"
+               	 "billing_city" : "NEW YORK"
+               	 "billing_first_name" : "John"
+               	 "billing_last_name" : "Doe"
+               	 "billing_state" : "NY"
+               	 "billing_zip" : "10010"
+               	 "dob_day" : 11
+               	 "dob_month" : 6
+               	 "dob_year" : 1986
+               	 "email" : "jd@cognical.com"
+               	 "income" : "50000.00"
+               	 "ssn" : "431135234" }
+Response: 		{"uid" : "2f0db9059d6a46c1a02e5361243e40b6"}
+Status: 		202 
 ```
-###Once the application has been built successfully, the final step in the Zibby approval process is to commit it for preapproval.
+The Zibby API Supports a multistep process for building the application once you have the uid.
+
+To build the Zibby application for a consumer, the customer’s application data as shown in the Application JSON to the right should be sent in a PATCH request to Zibby with the new information.
+
+##Submit Application for Underwriting
+
+>Submit Application for Underwriting
+
+```script
+URL:			/api/v3/application/<uid>/preapprove/
+METHOD: 		GET
+Response: 		{"approved": true,
+				 "approval_limit": "2000"}
+```
 
 
+Once the application has been built successfully, the final step in the Zibby approval process is to commit it for preapproval.
+
+At this point, Zibby will make a full approval decision in real-time. If approved, we will return the approval amount in the response.
+
+#Zibby Plugin Checkout
+
+##Step 1
+
+```script
+<a href="#" class="btn-zibby-checkout">
+<img src="https://www.zibby.com/static/img/btn-zibby-checkout.png" alt="Checkout with Zibby">
+</a>
+```
+
+Place or name the Zibby checkout button within the payment options page of your site.
+
+##Step 2
+
+```script
+<script>
+// setup and configure cart
+zibby.checkout.set({
+
+	customer: {
+		billing: {first_name: "jane",
+				  last_name: "doe",
+				  address: "123 main street",
+				  address2: "apt 5b",
+				  city: "New York",
+				  state: "NY",
+				  country: "United States",
+				  zip: "10009",
+				  phone: "5554324537",
+				  email: "jqdoe@anonmail.com"
+				  },
+				shipping: {
+					first_name: "jane",
+					last_name: "doe",
+					address: "123 main street",
+					address2: "apt 5b",
+					city: "New York",
+					state: "NY",
+					country: "United States",
+					zip: "10009",
+					phone: "5554324537",
+					email: "jqdoe@anonmail.com"
+					}
+				},
+				items: [{
+					display_name: "4K LG TV",
+					sku: "LG-4k2352",
+					unit_price: 1399.99,
+					quantity:1
+					}],
+					checkout: {
+						customer_id: "10004323",
+						discounts: {
+							discount_name_one: 10.00,
+							discount_name_two: 50.00
+							},
+						shipping_amount: 20.00},
+						urls: {
+							return: "https://yoursite.com/return",
+							cancel:"https://yoursite.com/cancel"
+							}
+						}
+					);
+							// load zibby checkout modalzibby.checkout.load();
+</script>
+```
+
+To check out with zibby, you must first initialize the cart object with the following information
+
+1. Customer information - This is the billing and shipping information that the customer has already entered on your site
+
+2. Item data - The contents of the customers’ shopping cart
+
+3. Checkout data - Meta data on the transaction, such as the order id and any applicable discounts
+
+4. URLS - These are the routes we will send the customer to at the end of the transaction
+
+	a. The return URL is where we will redirect to after the customer completes their checkout. We will also POST to that URL the customer_id provided and the zibby_id associated with the order.
+
+	b. The cancel URL is where we will redirect if a customer cancels a checkout with Zibby.
+
+<aside class="success">Once initialized, the Zibby checkout modal can then be triggered.</aside>
+
+
+#Direct Checkout
+
+##Request Verification Code
+
+>Request Verification Code:
+
+```script
+URL:			/api/v3/user/auth/retailer/
+Method:			POST
+Request:		{"phone": "1234567890"}
+Response:		{"new_user": true}
+Status:			202
+```
+
+To begin the checkout, Zibby requires that the consumer verify their phone number. This is done by sending an SMS message to the input number.
+
+##Submit Verification Code
+
+>Submit Verification Code:
+
+```script
+URL:			/api/v3/user/auth/verify/
+Method:			POST
+Request:		{"phone": "1234567890", "code": "123456", "last_four": "6789"}
+Response:		{"verified": true, "approval_limit": "2000", "available_limt": "1500"}
+Status:			202
+```
+
+Once the customer has recieved the SMS code, it must be sent to Zibby along with the last four of their SSN/ITIN to complete the verication of their phone number.
+
+##Estimate Monthly Payment
+
+```script
+URL:			/api/v3/estimate/
+Method:			POST
+Request:		{"cash_price": "500", "zip_code": "12345"}
+Response:		{"term": "18", "monthly_payment": "68.05"}
+Status:			202
+```
+
+Zibby API allows you to be able to view what the monthly payment would be based on a cash price and a zip code.
+
+<aside class="warning">Note: This assumes that all items in that cash price are leasable.</aside>
+
+
+##Preview Lease Pricing
+
+
+
+```script
+URL:		/api/v3/preview/
+Method:		POST
+Request:	{"state":"NY","items":
+						[{"item_type":"new",
+ 						  "quantity":1,
+ 						  "retailer_price":500,
+ 						  "item_code":"ukz637",
+ 						  "item_name":"samsung tv",
+ 						  "warranty":{"price":100,
+ 									  "name":"warranty name",
+ 									  "code":"warranty sku"},
+ 						  "leasable":true}],
+ 			 "delivery_method":"delivery",
+ 		 	 "shipping":10,
+ 			 "zipcode":"10010"}
+Response:	{"delivery_method": "delivery", 
+ 			 "processing_fee": 0, 
+ 			 "shipping": "10", 
+ 			 "shipping_tax": "0.89",  
+ 			 "items": [{"item_code": "item make", 
+ 			 "item_name": "item description", 
+ 			 "item_type": "new", 
+ 			 "quantity": 1, 
+ 			 "rent": "62.50", 
+ 			 "retailer_price": "500", 
+ 			 "sales_tax": "5.55", 
+ 			 "warranty": {"code": "warranty sku",
+ 						  "monthly_amount": "5.56", 
+ 						  "monthly_tax": "0.49", 
+ 						  "name": "warranty name", 
+ 						  "price": "100"}}], 
+ 			 "term": 18, 
+ 			 "monthly_total": "67.50", 
+			 "due_at_checkout": "84.99"}
+```
+
+Based on the content of a customer's shopping cart, the Zibby API can return a preview of the customer's initial payment at checkout as well as their subsequent monthly payments.
+
+##Initialize the Lease for Checkout
+
+```script
+URL: 		/api/v3/initialize/
+Method: 	POST
+Request:	{"customer":{
+				"billing":{
+					"first_name":"jane",
+					"middle_name":"Q",
+					"last_name":"doe",
+					"address":"123 main street",
+					"address2":"apt 5b",
+					"city":"New York",
+					"state":"NY",
+					"country":"United States",
+					"zip":"10009",
+					"phone":"5554324537",
+					"email":"jqdoe@anonmail.com"
+					},
+				"shipping":{
+					"first_name":"jane",
+					"middle_name":"Q",
+					"last_name":"doe",
+					"address":"123 main street",
+					"address2":"apt 5b",
+					"city":"New York",
+					"state":"NY",
+					"country":"United States",
+					"zip":"10009",
+					"phone":"5554324537",
+					"email":"jqdoe@anonmail.com"
+					}
+				},"items":[{
+					"display_name":"Furniture Set",
+					"sku":"FS3525",
+					"unit_price":700,
+					"quantity":1
+					},
+					{"display_name":"AA Batteries",
+					 "sku":"AA5234",
+					 "unit_price":15,
+					 "quantity":1
+					 }],"checkout":{"customer_id":"1000438727823","shipping_amount":10,"discounts":[{"discount_name":"Birthday Discount","discount_amount":50},{"discount_name":"Towel Discount","discount_amount":50}]},"urls":{"return":"https://teststore.zibby.com/plugin/invoice.html","cancel":"https://teststore.zibby.com/plugin/checkout.html"},"phone":"6073393582","code":"258446","new_address":false}
+Response: 	{“uid": "113c8c68ab9a4b7ba999af018574ee2d"}
+```
+
+To begin the checkout, we must open the checkout by submitting the full contents of the shopping cart.
+
+##Complete the Checkout
+
+```script
+URL:	 api/v3/application/uid/first_payment/
+Method: POST
+Request: {"payment_details":{"CardNumber":"4111111111111111","CardExpiration":"2/2019",
+		  "CardCvv":"685","disclosures":"true","Contract":"true","PaymentType":"debit"},
+		  "id":"113c8c68ab9a4b7ba999af018574ee2d"}
+Response: {success: true}
+```
+
+To complete the checkout, the first payment must be submitted successfully. Once the transaction is complete, zibby will post the zibby_id to the return url above.
 
 
 
