@@ -2,19 +2,19 @@
 
 ```xml
 <getTransactionsByFilterResponse>
- <return>
-    <lastUpdateTime>2015-05-25T21:13:08.000+03:00</lastUpdateTime>
-    <transactions type="TransactionDTO">
-        #
-        # transaction
-        #
-    </transactions>
-    <transactions type="TransactionDTO">
-        #
-        # transaction
-        #
-    </transactions>
- </return>
+    <return>
+        <lastUpdateTime>2015-05-25T21:13:08.000+03:00</lastUpdateTime>
+        <transactions type="TransactionDTO">
+            #
+            # transaction
+            #
+        </transactions>
+        <transactions type="TransactionDTO">
+            #
+            # transaction
+            #
+        </transactions>
+    </return>
 </getTransactionsByFilterResponse>
 ```
 
