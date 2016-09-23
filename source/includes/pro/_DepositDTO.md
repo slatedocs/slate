@@ -18,7 +18,7 @@ hasRequisites | bool | 0..1 | наличие реквизитов для отп�
 
  |||
 --- | ---- | :----: | ---:
-runningBalance | [AmountDTO](#amountdto) | 0..1 | 
+runningBalance | [AmountDTO](#amountdto) | 1..1 | 
 openingDate | [Date ISO 8601](https://ru.wikipedia.org/wiki/ISO_8601) | 1..1 | 
 period | [Date ISO 8601](https://ru.wikipedia.org/wiki/ISO_8601) | 1..1 | 
 interestRate | [AmountDTO](#amountdto) | 1..1 | 
