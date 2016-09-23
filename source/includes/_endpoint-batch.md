@@ -47,7 +47,6 @@ If you wish to include only certain variables from the source dataset you're app
   "body": {
       "dataset": "<url>"
       "function":"select",
-      "frame": "primary",
       "args": [
                 {"map":
                     {"000001": {'variable': "<url>"},
