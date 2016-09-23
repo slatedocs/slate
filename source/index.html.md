@@ -436,9 +436,10 @@ The `response` object will be of the form:
 curl "https://api.scaleapi.com/v1/task/phonecall" \
   -u YOUR_API_KEY: \
   -d callback_url="http://www.example.com/callback" \
-  -d instruction="Call this person and tell me his email address. Ask if he's happy too." \
+  -d instruction="Call this person and follow the script provided, recording responses" \
   -d phone_number=5055006865 \
   -d entity_name="Alexandr Wang" \
+  -d script="Hello {{name}}! Are you happy today? (pause) One more thing - what is your email address?"
   -d fields[email]="Email Address" \
   -d choices="He is happy" \
   -d choices="He is not happy"
@@ -449,9 +450,10 @@ import json
 
 payload = {
   'callback_url': 'http://www.example.com/callback',
-  'instruction': 'Call this person and tell me his email address',
+  'instruction': 'Call this person and follow the script provided, recording responses',
   'phone_number': '5055006865',
   'entity_name': 'Alexandr Wang',
+  'script': 'Hello {{name}}! Are you happy today? (pause) One more thing - what is your email address?',
   'fields': {
     'email': 'Email Address',
   },
@@ -473,9 +475,10 @@ var SCALE_API_KEY = 'YOUR_API_KEY';
 
 var payload = {
   'callback_url': 'http://www.example.com/callback',
-  'instruction': 'Call this person and tell me his email address',
+  'instruction': 'Call this person and follow the script provided, recording responses',
   'phone_number': '5055006865',
   'entity_name': 'Alexandr Wang',
+  'script': 'Hello {{name}}! Are you happy today? (pause) One more thing - what is your email address?',
   'fields': {
     'email': 'Email Address',
   },
@@ -507,7 +510,8 @@ request.post('https://api.scaleapi.com/v1/task/phonecall', {
   "callback_url": "http://www.example.com/callback",
   "type": "phonecall",
   "status": "pending",
-  "instruction": "Call this person and tell me his email address",
+  "instruction": "Call this person and follow the script provided, recording responses",
+  'script': 'Hello {{name}}! Are you happy today? (pause) One more thing - what is your email address?',
   "urgency": "day",
   "params": {
     "fields": {
@@ -526,9 +530,9 @@ request.post('https://api.scaleapi.com/v1/task/phonecall', {
 
 This endpoint creates a `phonecall` task. In this task, one of our workers will call the specified phone number and follow the instructions. Potential use cases could be making reservations or appointments, confirming reservations, asking for contact numbers or emails, etc.
 
-The required parameters are a plaintext `instruction` about how to transcribe the attachment, a `phone_number` for the phone number to call, and an `entity_name` which describes the phone number.
+The required parameters are a plaintext `instruction` about how to transcribe the attachment, a `script` for the Scaler to follow, a `phone_number` for the phone number to call, and an `entity_name` which describes the phone number.
 
-The optional parameters are `attachment_type` and `attachment` for an optional attachment, a plaintext string `script` for an optional script for the worker to follow, `fields`, and `choices`.
+The optional parameters are `attachment_type` and `attachment` for an optional attachment, `fields`, and `choices`.
 
 There are two potential ways to record more information from the phonecall - the `field` and `choices` parameters. `choices` is an array of strings from which the worker to choose, and `fields` is useful for free-text response.
 
@@ -551,7 +555,7 @@ Parameter | Type | Description
 `callback_url` | string | The full url (including the scheme `http://` or `https://`) of the callback when the task is completed.
 `instruction` | string | The plaintext instruction of how to make the phone call.
 `phone_number` | string | The phone number which will be called by our worker. Should include a country code (+1 for US numbers).
-`script` (optional) | string | An optional script to be shown the the worker as they make the phone call. You should use this if you've already optimized a script for phone calling.
+`script` | string | A script to be shown the the worker as they make the phone call. Your script will greatly impact the quality of the results you receive.
 `entity_name` | name | The name of the entity which corresponds to the person or business of the phone number.
 `urgency` (optional, default `day`) | string | A string describing the urgency of the response. One of `immediate`, `day`, or `week`, where `immediate` is a one-hour response time.
 `attachment_type` (optional) | string | One of `text`, `image`, `video`, `audio`, `website`, or `pdf`. Describes what type of file the attachment is.
