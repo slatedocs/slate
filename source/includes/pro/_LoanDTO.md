@@ -1,4 +1,4 @@
-## LoanDTO
+﻿## LoanDTO
 
 key | type | status | comment
 --- | ---- | :----: | ---:
@@ -19,7 +19,7 @@ hasRequisites | bool | 0..1 | наличие реквизитов для отп�
  |||
 --- | ---- | :----: | ---:
 openingDate | [Date ISO 8601](https://ru.wikipedia.org/wiki/ISO_8601) | 0..1 | 
-remainderAmount | [AmountDTO](#amountdto) | 0..1 | 
+remainderAmount | [AmountDTO](#amountdto) | 1..1 | 
 initialAmount | [AmountDTO](#amountdto) | 0..1 | 
 contractNumber | string | 0..1 | 
 contractStatus | string | 0..1 | 

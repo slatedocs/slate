@@ -1,4 +1,4 @@
-## MultiCurrencyAccountsDTO
+﻿## MultiCurrencyAccountsDTO
 
 ```xml
 <multiCurrencyAccounts type="MultiCurrencyCurrentAccountDTO">
@@ -37,7 +37,7 @@ id | string | 1..1 | идентификатор продукта
 accountNumber | string | 1..1 | номер продукта в банке
 currency | string | 1..1 | текстовый код валюты по [ISO 4217](https://ru.wikipedia.org/wiki/ISO_4217)
 productName | string | 1..1 | название продукта
-subAccounts | [CurrentAccountDTO](#currentaccountdto) | 1..1 | набор подсчетов в разных валютах
+subAccounts | [CurrentAccountDTO](#currentaccountdto) | 0..1 | набор подсчетов в разных валютах
 fxConsolidateBalance | int | 0..1 | средства на продукте
 --- |||
 feeds | [FeedDTO](#feeddto) | 0..1 | элементы ленты событий, например графика платежей по кредиту или затраченные поездки на общественном транспорте

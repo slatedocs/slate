@@ -1,4 +1,4 @@
-## CreditAccountDTO
+﻿## CreditAccountDTO
 
 key | type | status | comment
 --- | ---- | :----: | ---:
@@ -19,7 +19,7 @@ hasRequisites | bool | 0..1 | наличие реквизитов для отп�
  |||
 --- | ---- | :----: | ---:
 openingDate | [Date ISO 8601](https://ru.wikipedia.org/wiki/ISO_8601) | 0..1 | 
-creditLimit | [AmountDTO](#amountdto) | 0..1 | 
+creditLimit | [AmountDTO](#amountdto) | 1..1 | 
 blockedAmount | [AmountDTO](#amountdto) | 0..1 | 
 penaltyAmount | [AmountDTO](#amountdto) | 0..1 | 
 contractNumber | string | 0..1 | 
