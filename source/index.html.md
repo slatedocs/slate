@@ -32,6 +32,20 @@ You can also join our [Slack channel here](https://scalesupport.herokuapp.com/)!
 
 <!-- We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
  -->
+
+# Client Libraries / SDKs
+
+We're working hard to build official client libraries as quickly as possible! We intend on releasing SDKs soon for the following languages:
+
+* JavaScript
+* Python
+
+We also have unnoficial SDKs in the following languages:
+
+* [Ruby](https://github.com/wikiti/scaleapi-ruby) (thanks to [wikiti](https://github.com/wikiti)!)
+
+[Let us know](mailto:hello@scaleapi.com) if you want (or are interested in writing) a library for a language not represented here, or if you’re eagerly waiting for us to get our JavaScript/Python SDKs out the door!
+
 # Authentication
 
 > To authorize, use this code:
