@@ -39,14 +39,21 @@ Must contain the URL of a dataset that the current user can read. This action wi
 }
 ```
 
-If you wish to include only certain variables from the source dataset you're appending from, you can include an ``only_vars`` list in the body of the entity.  The list should include each URL of each variable from the source dataset that you wish to be appended to the target dataset:
+If you wish to include only certain variables from the source dataset you're appending from, you can include an ``function`` in the body of the entity.  The function should be a ZCL function name.  Its arguments should be present in the ``args`` key in the body.
 
 ```json
 {
   "element": "shoji:entity",
   "body": {
       "dataset": "<url>"
-      "only_vars": ["http://beta.crunch.io/api/datasets/3e2cfb/variables/000001/"]
+      "function":"select",
+      "frame": "primary",
+      "args": [
+                {"map":
+                    {"000001": {'variable': "<url>"},
+                     "000002": {'variable': "<url>"}}
+                }
+                ],
   }
 }
 ```
