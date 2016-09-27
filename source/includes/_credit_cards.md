@@ -155,7 +155,7 @@ Criar Cartão de Crédito
 
 DEFINIÇÃO
 
-  POST https://app.cobrato.com/api/v1/payees
+  POST https://app.cobrato.com/api/v1/credit_cards
 
 EXEMPLO DE REQUISIÇÃO
 
@@ -163,19 +163,20 @@ EXEMPLO DE REQUISIÇÃO
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X POST https://app.cobrato.com/api/v1/payees \
+    -X POST https://app.cobrato.com/api/v1/credit_cards \
     -d '{
         "number": "5453010000066167",
         "holder_name": "John Doe",
         "brand": "mastercard",
         "expiration": "05/18",
+        "cvv": "123",
         "avs_address": "Rua Julio de Castilhos",
         "avs_number": "100",
         "avs_complement": "Apto 103",
         "avs_district": "Centro",
         "avs_zipcode": "99000-750",
         "payer_id": 1,
-        "charge_config_id": 12.
+        "charge_config_id": 12,
         "soft_descriptor": "CompanyName"
       }'
 
@@ -222,6 +223,7 @@ pode ser verificado no atributo `reusability_error_message`.
 | expiration        | string  | **(requerido)** expiração do cartão, no formato "mm/aa"                                                                                                                  |
 | holder_name       | string  | **(requerido)** nome do dono do cartão                                                                                                                                   |
 | brand             | string  | **(requerido)** bandeira do cartão (visa, mastercard, amex, elo, diners, discover, jcb, aura)                                                                            |
+| cvv               | string  | **(requerido)** código de segurança do cartão                                                                                                                            |
 | charge_config_id  | integer | **(requerido)** identificador da ChargeConfig à qual este cartão pertence                                                                                                |
 | payer_id          | integer | **(requerido, se não enviar payer_attributes )** identificador do pagador ao qual este cartão pertence (caso seja fornecido, o parâmetro payer_attributes será ignorado) |
 | payer_attributes* | object  | **(requerido, se não enviar payer_id )** atributos para a criação de um novo pagador ou atualização de um pagador existente com o mesmo documento (national_identifier)  |
