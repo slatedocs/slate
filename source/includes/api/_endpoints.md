@@ -71,6 +71,14 @@ client.Endpoint.list("domainId", {size: 1000})
 client.Endpoint.list("domainId" {size: 1000}, function (err, res) {});
 ```
 
+```csharp
+// Default size (25)
+var endpoints = client.Endpoint.List("{domainId1}");
+
+// Specify number of endpoints
+var endpoints = client.Endpoint.List("{domainId1}", new EndpointQuery {Size = 1000});
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -120,6 +128,17 @@ client.Endpoint.create("domainId", { name : "my-endpoint", applicationId : "appI
 credentials : { password : "123456" }}, function (err, endpoint) {});
 ```
 
+```csharp
+var endpoint = await client.Endpoint.CreateAsync(new CreateEndpointData {
+	DomainId = "domainId",
+	Name = "jsmith_mobile",
+	Description = "John Smiths mobile client",
+	ApplicationId = "applicationId",
+	Enabled = false,
+	Credentials = new CreateEndpointCredentials {Password = "123456"}
+});
+```
+
 > The above command returns HTTP Header structured like this:
 
 ```
@@ -144,6 +163,10 @@ client.Endpoint.get(domainId, endpointId).then(function(endpoint){});
 
 // Callback
 client.Endpoint.get(domainId, endpointId, function(err, endpoint){});
+```
+
+```csharp
+var endpoint = await client.Endpoint.GetAsync("{domainId1}", "{endpointId1}");
 ```
 
 > The above command returns JSON structured like this:
@@ -180,6 +203,10 @@ client.Endpoint.delete("domainId", "endpointId").then(function (endpoint) {});
 client.Endpoint.delete("domainId", "endpointId", function (err, endpoint) {});
 ```
 
+```csharp
+await client.Endpoint.DeleteAsync("{domainId1}", "{endpointId1}");
+```
+
 ## POST domains/{domain-id}/endpoints/{endpoint-id}
 This will update an endpoint.
 
@@ -206,4 +233,8 @@ curl -v -X POST https://api.catapult.inetwork.com/v1/users/{userId}/domains/{dom
 client.Endpoint.update("domainId", "endpointId", { enabled : true }).then(function (endpoint) {});
 // Callback
 client.Endpoint.update("domainId", "endpointId", { enabled : true }, function (err, endpoint) {});
+```
+
+```csharp
+await client.Endpoint.UpdateAsync("{domainId1}", "{endpointId1}", new UpdateEndpointData {Enabled = true});
 ```
