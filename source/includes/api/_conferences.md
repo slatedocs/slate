@@ -75,6 +75,10 @@ client.Conference.create({from: "+1234567890"}).then(function(conference){});
 client.Conference.create({from: "+1234567890"}, function(err, conference){});
 ```
 
+```csharp
+var conference = await client.Conference.CreateAsync(new CreateConferenceData {From = "+1234567890"});
+```
+
 > The above command returns HTTP Header structured like this:
 
 ```
@@ -112,6 +116,15 @@ client.Conference.create(params).then(function(conference){});
 client.Conference.create(params, function(err, conference){});
 ```
 
+```csharp
+var conference = await client.Conference.CreateAsync(new CreateConferenceData {
+	From = "{number}",
+	CallbackUrl ="http://my.callback.url",
+	CallbackTimeout = 2000,
+	FallbackUrl ="http://my.fallback.url"
+});
+```
+
 > The above command returns HTTP Header structured like this:
 
 ```
@@ -135,6 +148,10 @@ curl -v -X GET https://api.catapult.inetwork.com/v1/users/{userId}/conferences/{
 client.Conference.get("conferenceId").then(function(conference){});
 // Callback
 client.Conference.get("conferenceId", function(err, conference){});
+```
+
+```csharp
+var conference = await client.Conference.GetAsync("{conferenceId1}");
 ```
 
 > The above command returns JSON structured like this:
@@ -186,6 +203,11 @@ client.Conference.update("conferenceID", {state: "completed"}).then(function(){}
 client.Conference.update("conferenceID", {state: "completed"}, function(err){});
 ```
 
+```csharp
+await client.Conference.TerminateAsync("{conferenceId1}");
+```
+
+
 ### Example: Prevent all members from speaking
 ```shell
 curl -v -X POST https://api.catapult.inetwork.com/v1/users/{userId}/conferences/{conferenceId} \
@@ -204,6 +226,11 @@ client.Conference.update("conferenceID", {mute: "true"}).then(function(){});
 // Callback
 client.Conference.update("conferenceID", {mute: "true"}, function(err){});
 ```
+
+```csharp
+await client.Conference.MuteAsync("{conferenceId1}", true);
+```
+
 
 ## POST conferences/{conferenceId}/audio
 Speak a text or play audio in the conference
@@ -261,6 +288,20 @@ client.Conference.playAudioAdvanced("conferenceId", options).then(function (res)
 client.Conference.playAudioAdvanced("conferenceId", options, function (err,res) {});
 ```
 
+```csharp
+// Speak sentence in a conference
+await client.Conference.SpeakSentenceAsync("{conferenceId1}", "Hello From Bandwidth");
+
+// Speak sentence with options
+await client.Conference.PlayAudioAsync("{conferenceId1}", new PlayAudioData {
+	Sentence = "hola de Bandwidth",
+	Gender = Genger.Male,
+	Voice = "Jorge",
+	Locale = "es"
+});
+```
+
+
 ### Example: Play audio in conference
 
 ```shell
@@ -290,6 +331,17 @@ var options = {
 client.Conference.playAudioAdvanced("conferenceId", options).then(function (res) {});
 //Callback
 client.Conference.playAudioAdvanced("conferenceId", options, function (err,res) {});
+```
+
+```csharp
+// Play audio file in a conference
+await client.Conference.PlayAudioFileAsync("{conferenceId1}", "http://myurl.com/file.mp3");
+
+// Play audio file with options
+await client.Conference.PlayAudioAsync("{conferenceId1}", new PlayAudioData {
+	FileUrl = "http://myurl.com/file.mp3",
+	LoopEnabled = true
+});
 ```
 
 ## POST conferences/{conferenceId}/members
@@ -326,6 +378,11 @@ client.Conference.createMember("conferenceId", {callId: "callID"}).then(function
 client.Conference.createMember("conferenceId", {callId: "callID"}, function(err, member){});
 ```
 
+```csharp
+var member = await client.Conference.CreateMemberAsync("{conferenceId1}", new CreateConferenceMemberData {
+	CallId = "callID"
+});
+```
 > The above command returns HTTP Header structured like this:
 
 ```
@@ -349,6 +406,10 @@ curl -v -X GET https://api.catapult.inetwork.com/v1/users/{userId}/conferences/{
 client.Conference.getMembers("conferenceId").then(function(members){});
 // Callback
 client.Conference.getMembers("conferenceId", function(err, members){});
+```
+
+```csharp
+var members = client.Conference.GetMembers("{conferenceId1}");
 ```
 
 > The above command returns JSON structured like this:
@@ -421,6 +482,11 @@ client.Conference.updateMember("conferenceID", "memberId", {state: "completed"})
 client.Conference.updateMember("conferenceID", "memberId", {state: "completed"}, function(err){});
 ```
 
+```csharp
+var member = await client.Conference.GetMemberAsync("{conferenceId1}", "{memberId1}");
+```
+
+
 ### Example: Keep member from speaking in the conference
 
 ```shell
@@ -440,6 +506,11 @@ client.Conference.updateMember("conferenceID", "memberId", {mute: "true"}).then(
 // Callback
 client.Conference.updateMember("conferenceID", "memberId", {mute: "true"}, function(err){});
 ```
+
+```csharp
+await client.Conference.MuteMemberAsync("{conferenceId1}", "{memberId1}", true);
+```
+
 
 ### Example: Keep member from hearing the conference audio
 
@@ -461,6 +532,11 @@ client.Conference.updateMember("conferenceID", "memberId", {hold: "true"}).then(
 client.Conference.updateMember("conferenceID", "memberId", {hold: "true"}, function(err){});
 ```
 
+```csharp
+await client.Conference.HoldMemberAsync("{conferenceId1}", "{memberId1}", true);
+```
+
+
 ## GET conferences/{conferenceId}/members/{memberId}
 Retrieve a conference member properties.
 
@@ -478,6 +554,11 @@ client.Conference.getMember("conferenceId", "memberId").then(function(member){})
 // Callback
 client.Conference.getMember("conferenceId", "memberId", function(err, member){});
 ```
+
+```csharp
+var member = await client.Conference.GetMemberAsync("{conferenceId1}", "{memberId1}");
+```
+
 
 > The above command returns JSON structured like this:
 
@@ -553,6 +634,20 @@ client.Conference.speakSentenceToMember("conferenceID", "memberID", "Hello From 
   client.Conference.playAudioAdvanced("conferenceId", options, function (err,res) {});
 ```
 
+```csharp
+//Speak sentence with options
+await client.Conference.PlayAudioToMemberAsync("{conferenceId1}", "{memberId1}", new PlayAudioData
+{
+	Sentence = "hola de Bandwidth",
+	Gender = Genger.Male,
+	Voice = "Jorge",
+	Locale = "es"
+});
+
+//Speak sentence in a conference
+await client.Conference.SpeakSentenceToMemberAsync("{conferenceId1}", "{memberId1}", "Hello From Bandwidth");
+```
+
 ### Example: Play audio to a conference member
 
 ```shell
@@ -589,4 +684,16 @@ client.Conference.playAudioAdvancedToMember("conferenceId", "memberId", options)
 //Callback
 client.Conference.playAudioAdvancedToMember("conferenceId", "memberId", options,
   function (err,res) {});
+```
+
+```csharp
+//Play audio file with options
+await client.Conference.PlayAudioToMemberAsync("{conferenceId1}", "{memberId1}", new PlayAudioData
+{
+	FileUrl = "http://myurl.com/file.mp3",
+	LoopEnabled = true
+});
+
+//Speak sentence in a conference
+await client.Conference.PlayAudioFileToMemberAsync("{conferenceId1}", "{memberId1}", "http://myurl.com/file.mp3");
 ```
