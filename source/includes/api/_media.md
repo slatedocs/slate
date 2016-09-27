@@ -24,6 +24,11 @@ then(function (media) {
 });
 ```
 
+```csharp
+var list = client.Media.List();
+```
+
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -57,12 +62,27 @@ Uploads a file the normal HTTP way. You may add headers to the request in order 
 
 ### Example: Upload an MP3 File
 
+```csharp
+await client.Media.UploadAsync(new UploadMediaData{ MediaName = "file.mp3", Path = "/path/to/file.mp3", ContentType = "audio/mp3"});
+```
+
 ## GET media/{mediaName}
 Downloads a media file you previously uploaded.
 
 ### Example: Download an MP3 File
 
+```csharp
+using(var data = await client.Media.DownloadAsync("file.mp3"))
+{
+  var fileContent = await data.ReadAsStreamAsync();
+}
+```
+
 ## DELETE media/{mediaName}
 Deletes a media file from Bandwidth API server. Make sure you don't have any application scripts still using the media before you delete. If you accidentally delete a media file, you can immediately upload a new file with the same name.
 
 ### Example: Delete an MP3 File
+
+```csharp
+await client.Media.DeleteAsync("file.mp3");
+```

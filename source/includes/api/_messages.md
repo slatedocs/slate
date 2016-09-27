@@ -100,6 +100,10 @@ curl -v -X GET https://api.catapult.inetwork.com/v1/users/{userId}/messages \
 //need to add this
 ```
 
+```csharp
+var messages = client.Message.List();
+```
+
 > The above command returns JSON structured like this:
 
 ```
@@ -170,6 +174,10 @@ curl -v -X GET https://api.catapult.inetwork.com/v1/users/{userId}/messages?from
 //Need to add this
 ```
 
+```csharp
+var messages = client.Message.List(new MessageQuery {From = "{fromNumber}"});
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -210,6 +218,15 @@ curl -v -X GET https://api.catapult.inetwork.com/v1/users/{userId}/messages?from
 ```js
 //need to add this
 ```
+
+```csharp
+var messages = client.Message.List(new MessageQuery {
+	From = "{fromNumber}",
+	Direction = MessageDirection.Out,
+	ToDateTime = new DateTime(2015, 10, 5, 20, 37, 39, 0, DateTimeKind.Utc)
+});
+```
+
 
 > The above command returns JSON structured like this:
 
@@ -293,6 +310,14 @@ client.Message.send({
 //}
 ```
 
+```csharp
+var message = await client.Message.SendAsync(new MessageData {
+	From = "+19195551212",
+	To = "+19195551213",
+	Text = "Thank you for susbcribing to Unicorn Enterprises!"
+});
+```
+
 > The above command returns HTTP Header structured like this:
 
 ```
@@ -330,6 +355,17 @@ client.Message.send({
 });
 ```
 
+```csharp
+var message = await client.Message.SendAsync(new MessageData {
+	From = "+19195551212",
+	To = "+19195551213",
+	Text = "Thank you for susbcribing to Unicorn Enterprises!",
+	Media = new[] {"https://api.catapult.inetwork.com/v1/users/<user-id>/media/image-1.jpg"},
+	CallbackUrl = "http://my.callback.url"
+});
+```
+
+
 > The above command returns HTTP Header structured like this:
 
 ```
@@ -365,6 +401,16 @@ client.Message.send({
 })
 .then(function(message){
 	console.log(message);
+});
+```
+
+```csharp
+var message = await client.Message.SendAsync(new MessageData {
+	From = "+19195551212",
+	To = "+19195551213",
+	Text = "Thank you for susbcribing to Unicorn Enterprises!",
+	Media = new[] {"http://your-site.com/image-1.jpg"},
+	CallbackUrl = "http://my.callback.url"
 });
 ```
 
@@ -444,6 +490,22 @@ client.Message.sendMultiple({
 });
 ```
 
+```csharp
+var messages = await client.Message.SendAsync(new[] {
+	new MessageData {
+		From = "+19195551211",
+		To = "+19195551213",
+		Text = "Thank you for susbcribing to Unicorn Enterprises!"
+	},
+	new MessageData {
+		From = "+19195551212",
+		To = "+19195551214",
+		Text = "Thank you for susbcribing to Unicorn Enterprises!"
+	}
+});
+```
+
+
 ```js
 //returns
 [{
@@ -482,9 +544,40 @@ client.Message.sendMultiple({
 ### Example: Request receipt for single text message
 To send a text message with request receipt from {fromNumber} to {toNumber}, send the following request:
 
+```csharp
+var message = await client.Message.SendAsync(new MessageData {
+	From = "+19195551212",
+	To = "+19195551213",
+	Text = "Thank you for susbcribing to Unicorn Enterprises!",
+	ReceiptRequested = MessageReceiptRequested.All
+});
+```
+
 ### Example: Send a single text message with custom callback timeout of 2 seconds
 
+```csharp
+var message = await client.Message.SendAsync(new MessageData {
+	From = "+19195551212",
+	To = "+19195551213",
+	Text = "Thank you for susbcribing to Unicorn Enterprises!",
+	CallbackUrl = "http://my.callback.url",
+	CallbackTimeout = 2000
+});
+```
+
 ### Example: Send a single text message with custom callback timeout of 2 seconds and a fallback URL
+
+```csharp
+var message = await client.Message.SendAsync(new MessageData {
+	From = "+19195551212",
+	To = "+19195551213",
+	Text = "Thank you for susbcribing to Unicorn Enterprises!",
+	CallbackUrl = "http://my.callback.url",
+	CallbackTimeout = 2000,
+	FallbackUrl = "http://my.fallback.url"
+});
+```
+
 
 ## GET messages/{messageId}
 Gets information about a previously sent or received message. No query parameters are supported.
@@ -511,4 +604,8 @@ client.Message.get("{messageId}", function (err, message) {
     console.log(message);
   }
 });
+```
+
+```csharp
+var message = await client.Message.GetAsync("{messageId}");
 ```
