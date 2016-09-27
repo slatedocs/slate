@@ -47,6 +47,11 @@ client.PhoneNumber.list({size: 1000}).then(function(numbersResponse){});
 client.PhoneNumber.list({size: 1000}, function(err, numbersResponse){});
 ```
 
+```csharp
+var numbers = client.PhoneNumber.List(new PhoneNumberQuery {Size = 1000});
+```
+
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -113,6 +118,10 @@ client.PhoneNumber.create({ number : "+1234567890" }).then(function(number){});
 client.PhoneNumber.create({ number : "+1234567890" }, function(err, number){});
 ```
 
+```csharp
+var number = await client.PhoneNumber.CreateAsync(new CreatePhoneNumberData {Number = "+1234567890"});
+```
+
 > The above command returns HTTP Header structured like this:
 
 ```
@@ -145,6 +154,10 @@ client.PhoneNumber.get("+1234567890").then(function(number){});
 client.PhoneNumber.get(numberId, function(err, number){});
 // or
 client.PhoneNumber.get("+1234567890", function(err, number){});
+```
+
+```csharp
+var number = await client.PhoneNumber.GetAsync("+1234567890");
 ```
 
 > The above command returns JSON structured like this:
@@ -195,6 +208,13 @@ client.PhoneNumber.update(numberId, {applicationId: "{application_id}"}).then(fu
 client.PhoneNumber.update(numberId, {applicationId: "{application_id}"}, function(err){});
 ```
 
+```csharp
+await client.PhoneNumber.UpdateAsync(numberId, new UpdatePhoneNUmberData {
+    ApplicationId = "{application_id}"
+});
+```
+
+
 ## DELETE phoneNumbers/{numberId}
 Removes a number from your account so you can no longer make or receive calls, or send or receive messages with it. When you remove a number from your account, it will not be available to add back to your account, so be careful.
 
@@ -210,4 +230,8 @@ client.PhoneNumber.delete(numberId).then(function(){});
 
 // Callback
 client.PhoneNumber.delete(numberId, function(err){});
+```
+
+```csharp
+await client.PhoneNumber.DeleteAsync(numberId);
 ```

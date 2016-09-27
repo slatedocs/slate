@@ -25,6 +25,10 @@ client.NumberInfo.get("+1234567890").then(function(info){});
 client.NumberInfo.get("+1234567890", function(err, info){});
 ```
 
+```csharp
+var info = await client.NumberInfo.GetAsync("+1234567890");
+```
+
 > The above command returns JSON structured like this:
 
 ```
