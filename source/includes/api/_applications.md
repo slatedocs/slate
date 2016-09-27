@@ -49,6 +49,10 @@ client.Application.list()
 });
 ```
 
+```csharp
+var applications = client.Application.List();
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -121,6 +125,13 @@ client.Application.create({
 	}
 });
 ```
+```csharp
+var application = await client.Application.CreateAsync(new CreateApplicationData{
+	Name = "SampleApp2",
+	IncomingCallUrl = "http://your-server.com/CallCallback",
+	IncomingMessageUrl = "http://your-server.com/MsgCallback"
+});
+```
 
 ## GET applications/{applicationId}
 
@@ -151,6 +162,10 @@ client.Application.get('a-zuwwfzzrbea',
 			console.log(response);
 		}
 });
+```
+
+```csharp
+var application = await client.Application.GetAsync("a-zuwwfzzrbea");
 ```
 
 > The above command returns JSON structured like this:
@@ -221,6 +236,13 @@ client.Application.update('a-zudcfzzrbea',
 });
 ```
 
+```csharp
+await client.Application.UpdateAsync("a-zuwwfzzrbea", new UpdateApplicationData{
+	Name =  "Rename App2",
+	AutoAnswer = false
+});
+```
+
 ## DELETE applications/{applicationId}
 
 Permanently deletes an application.
@@ -250,4 +272,8 @@ client.Application.delete('a-zuwwzrbea',
 			console.log(response);
 		}
 });
+```
+
+```csharp
+await client.Application.DeleteAsync("a-zuwwfzzrbea");
 ```
