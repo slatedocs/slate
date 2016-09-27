@@ -401,7 +401,7 @@ client.Bridge.getCalls('brg-65dhjrmbasiei',
   ```
 
 ```csharp
-var calls = await client.Bridge.GetCalls("brg-65dhmbasiei");
+var calls = client.Bridge.GetCalls("brg-65dhmbasiei");
 ```
 
 

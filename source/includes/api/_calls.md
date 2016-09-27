@@ -75,6 +75,10 @@ client.Call.list()
 });
 ```
 
+```csharp
+var calls = client.Call.List();
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -127,6 +131,10 @@ client.Call.list({
 .then(function (response) {
 	console.log(response);
 });
+
+```
+```csharp
+var calls = client.Call.List(new CallQuery{From = "+19195551212"});
 ```
 
 > The above command returns JSON structured like this:
@@ -212,6 +220,14 @@ client.Call.create({
 	console.log(id);
 })
 ```
+```csharp
+var call = await client.Call.CreateAsync(new CreateCallData{
+	From = "{fromNumber}",
+	To = "{toNumber}"
+});
+```
+
+
 ### Example: Create call and start recording it
 
 ### Example: Create a call in a bridge
@@ -260,6 +276,17 @@ client.Call.create({
 })
 ```
 
+```csharp
+var call = await client.Call.CreateAsync(new CreateCallData{
+	From = "{fromNumber}",
+	To = "sip:someone@somewhere.com",
+	SipHeaders = new Dictionary<string, string> {
+		{"X-Header-1", "value1"},
+		{"X-Header-2", "value2"}
+	}
+});
+```
+
 ## GET calls/{callId}
 Gets information about an active or completed call. No query parameters are supported.
 
@@ -277,6 +304,11 @@ client.Call.get("{callId}")
 	console.log(respone);
 });
 ```
+
+```csharp
+var call = await client.Call.GetAsync("{callId1}");
+```
+
 
 > The above command returns JSON structured like this:
 
@@ -384,6 +416,21 @@ client.Call.speakSentence("callId", "Hello From Bandwidth").then(function (res) 
 client.Call.speakSentence("callId", "Hello From Bandwidth", function (err, res) {});
 ```
 
+```csharp
+//Speak sentence with options
+await client.Call.PlayAudioAsync("{callId1}", new PlayAudioData
+{
+	Sentence = "hola de Bandwidth",
+	Gender = Genger.Male,
+	Voice = "Jorge",
+	Locale = "es"
+});
+
+//Speak sentence in a call
+await client.Call.SpeakSentenceAsync("{callId1}", "Hello From Bandwidth");
+```
+
+
 ### Example: Interrupt/stop a sentence from speaking.
 ```shell
 curl -v -X POST https://api.catapult.inetwork.com/v1/users/{userId}/calls/{callId}/audio \
@@ -401,6 +448,10 @@ client.Call.speakSentence("callId", "").then(function (res) {});
 
 //Callback
 client.Call.speakSentence("callId", "", function (err, res) {});
+```
+
+```csharp
+await client.Call.SpeakSentenceAsync("{callId1}", "");
 ```
 
 ### Example: Speak a Sentence with male gender voice
@@ -423,6 +474,12 @@ client.Call.playAudioFile("callId", "http://myurl.com/file.mp3").then(function (
 //Callback
 client.Call.playAudioFile("callId", "http://myurl.com/file.wav", function (err, res) {});
 ```
+
+```csharp
+await client.Call.PlayAudioFileAsync("{callId1}", "http://myurl.com/file.wav");
+```
+
+
 ### Example: Stop an Audio File Playing
 ```shell
 curl -v -X POST https://api.catapult.inetwork.com/v1/users/{userId}/calls/{callId}/audio \
@@ -441,6 +498,11 @@ client.Call.playAudioFile("callId", "").then(function (res) {});
 //Callback
 client.Call.playAudioFile("callId", "", function (err, res) {});
 ```
+
+```csharp
+await client.Call.PlayAudioFileAsync("{callId1}", "");
+```
+
 
 ## POST calls/{callId}/dtmf
 Send DTMF (phone keypad digit presses).
@@ -465,6 +527,10 @@ curl -v -X POST https://api.catapult.inetwork.com/v1/users/{userId}/calls/{callI
 client.Call.sendDtmf(callId, "9193334444").then(function () {});
 // Callback
 client.Call.sendDtmf(callId, "9193334444", function (err) {});
+```
+
+```csharp
+await client.Call.SendDtmfAsync("{callId1}", new SendDtmfData{DtmfOut = "9193334444"});
 ```
 
 ## GET calls/{callId}/events
@@ -493,6 +559,11 @@ client.Call.getEvents(callId).then(function (events) {});
 // Callback
 client.Call.getEvents(callId, function (err, events) {});
 ```
+
+```csharp
+var events = client.Call.GetEvents("{callId1}");
+```
+
 
 > The above command returns JSON structured like this:
 
@@ -570,6 +641,11 @@ client.Call.getEvent(callId, eventId).then(function (callEvent) {});
 client.Call.getEvent(callId, eventId, function (err, callEvent) {});
 ```
 
+```csharp
+var callEvent = async client.Call.GetEventAsync("{callId1}", "{eventId1}");
+```
+
+
 > The above command returns JSON structured like this:
 
 ```
@@ -598,6 +674,11 @@ client.Call.getRecordings(callId).then(function (list) {});
 // Callback
 client.Call.getRecordings(callId, function (err, list) {});
 ```
+
+```csharp
+var recordings = client.Call.GetRecordings("{callId1}");
+```
+
 
 > The above command returns JSON structured like this:
 
@@ -638,6 +719,10 @@ curl -v -X GET https://api.catapult.inetwork.com/v1/users/{userId}/calls/{callId
 client.Call.getTranscriptions(callId).then(function (list) {});
 // Callback
 client.Call.getTranscriptions(callId, function (err, list) {});
+```
+
+```csharp
+var transcriptions = client.Call.GetTranscriptions("{callId1}");
 ```
 
 ## POST calls/{callId}/gather
@@ -695,6 +780,18 @@ client.Call.createGather("callId", options).then(function(res) {});
 client.Call.createGather("callId", options, function(err, res) {});
 ```
 
+```csharp
+var gather = await client.Call.CreateGatherAsync("{callId1}", new CreateGatherData {
+	MaxDigits = "5",
+	TerminatingDigits = "*",
+	InterDigitTimeout = "7",
+	Prompt = new GatherPrompt {
+		Sentence = "Please enter your 5 digit code"
+	}
+});
+```
+
+
 ## GET calls/{callId}/gather/{gatherId}
 Get the gather DTMF parameters and results.
 
@@ -709,6 +806,10 @@ client.Call.getGather("{callId}", "{gatherId}")
 .then(function (res) {
   console.log(res);
 });
+```
+
+```csharp
+var gather = await client.Call.GetGatherAsync("{callId1}", "{gatherId1}");
 ```
 
 > The above command returns JSON structured like this:
@@ -747,4 +848,8 @@ curl -v -X POST https://api.catapult.inetwork.com/v1/users/{userId}/calls/{callI
 ```js
 client.Call.completeGather("{callId}", "{gatherId}")
 .then(function () {});
+```
+
+```csharp
+await client.Call.UpdateGatherAsync("{callId1}", "{gatherId1}", new UpdateGatherData {State = CallGatherState.Completed});
 ```
