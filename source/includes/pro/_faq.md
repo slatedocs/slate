@@ -52,3 +52,21 @@ pro server - [http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl]
 
 - Во всех запросах шлется версия приложения в хэддере запроса ``APP_VERSION=<app_version>``
 - LoginWithPassword, LoginUserWithPin, MakeTransfer в параметрах запроса шлется deviceInfo
+
+**Конфигурирование сервиса**
+
+key | type | comment
+--- | --- | ---:
+security.password.hash | bool | 
+security.password.encrypt | bool | наличие шифрования пароля (должно быть так же включено в апликации)
+security.verification.encrypt | bool | 
+security.incorrect_login_attempts | int | количество неверных логинов
+pro.banner.enabled | bool | 
+proxy.wsdl | string | ${bank.proxy.wsdl}
+proxy.service | string | IdaMobProxyServiceFacade
+proxy.endpoint | string | IdaMobProxyServiceFacadeHttpSoap12Endpoint
+smarttransactions.enabled | bool | наличие модуля SmartTransactions
+pigeon.enabled | bool | 
+pigeon.url | string | ``http://dev.idamob.ru/pigeon``
+pigeon.twoFactorAuth | bool | 
+proxy.timeout | int | время ожидания отвера сервера из бэка, в милесекундах
