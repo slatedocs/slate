@@ -51,6 +51,11 @@ client.Recording.list({}, function (err, recordings) {
 	}
 });
 ```
+
+```csharp
+var recordings = client.Recording.List();
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -108,6 +113,11 @@ client.Recording.get("{recordingId}", function (err, recording) {
 	}
 });
 ```
+
+```csharp
+var recording = await client.Recording.GetAsync("{recordingId}");
+```
+
 
 > The above command returns JSON structured like this:
 

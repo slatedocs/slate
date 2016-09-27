@@ -44,6 +44,10 @@ client.Recording.createTranscription(recordingId).then(function(transcription){}
 client.Recording.createTranscription(recordingId, function(err, transcription){});
 ```
 
+```csharp
+var transcription = await client.Transcription.CreateAsync("{recordingId}");
+```
+
 > The above command returns HTTP Header structured like this:
 
 ```
@@ -70,6 +74,11 @@ client.Recording.getTranscription(recordingId, transcriptionId).then(function(tr
 // Callback
 client.Recording.getTranscription(recordingId, transcriptionId, function(err, transcription){});
 ```
+
+```csharp
+var transcriptions = client.Transcription.List();
+```
+
 
 > The above command returns JSON structured like this:
 
@@ -104,6 +113,10 @@ client.Recording.getTranscriptions(recordingId).then(function(transcriptions){})
 client.Recording.getTranscriptions(recordingId, function(err, transcriptions){});
 ```
 
+```csharp
+var transcription = await client.Transcription.GetAsync("{recordingId}", "{transcriptionId}");
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -111,7 +124,7 @@ client.Recording.getTranscriptions(recordingId, function(err, transcriptions){})
     {
         "chargeableDuration": 60,
         "id": "{transcription-id}",
-        "state": "completed",        
+        "state": "completed",
         "time": "2014-10-09T12:09:16Z",
         "text": "{transcription-text}",
         "textSize": 3627,
