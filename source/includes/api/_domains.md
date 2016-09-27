@@ -29,6 +29,11 @@ client.Domain.list()
 });
 ```
 
+```csharp
+var domains = client.Domain.List();
+```
+
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -80,6 +85,13 @@ client.Domain.create(params)
 });
 ```
 
+```csharp
+var domain = await client.Domain.CreateAsync(new CreateDomainData{
+	Name = "mycoolapp",
+	Description = "disruptive app that is going to revolutionize telecom"
+});
+```
+
 > The above command returns HTTP Header structured like this:
 
 ```
@@ -101,4 +113,8 @@ curl -v -X DELETE https://api.catapult.inetwork.com/v1/users/{userId}/domain/{do
 ```js
 client.Domain.delete("{domain-id}")
 .then(function () {});
+```
+
+```csharp
+await client.Domain.DeleteAsync("{domainId1}");
 ```
