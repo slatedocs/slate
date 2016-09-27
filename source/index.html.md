@@ -4,6 +4,7 @@ title: Bandwidth API Docs
 language_tabs:
   - shell: curl
   - javascript: NodeJS
+  - csharp: C#
 
 toc_footers:
   - <a href="https://catapult.inetwork.com/portal/signup" class="api_ab_cta">Sign up for free</a>

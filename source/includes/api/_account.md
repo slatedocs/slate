@@ -68,6 +68,10 @@ client.Account.get().then(function(info){});
 client.Account.get(function(err, info){});
 ```
 
+```csharp
+var account = await client.Account.GetAsync();
+```
+
 > The above command returns JSON structured like this:
 
 ```
@@ -113,6 +117,11 @@ client.Account.getTransactions()
 		console.log(response.transactions);
 	});
 ```
+
+```csharp
+var transactions = client.Account.GetTransactions();
+```
+
 
 > The above command returns JSON structured like this:
 
@@ -166,6 +175,9 @@ client.Account.getTransactions(params)
 		console.log(response.transactions);
 	});
 ```
+```csharp
+var transactions = await client.Account.GetTransactions(new AccountTransactionQuery {FromDate = new DateTime(2013, 2, 21, 13, 38, 0, 0, DateTimeKind.Utc)});
+```
 
 > The above command returns JSON structured like this:
 
@@ -213,6 +225,14 @@ client.Account.getTransactions(params)
 	});
   ```
 
+```csharp
+var transactions = client.Account.GetTransactions(new AccountTransactionQuery {
+  FromDate = new DateTime(2013, 2, 21, 13, 38, 0, 0, DateTimeKind.Utc),
+  ToDate = new DateTime(2013, 2, 21, 13, 40, 0, 0, DateTimeKind.Utc)
+});
+```
+
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -259,6 +279,12 @@ client.Account.getTransactions(params)
 	});
   ```
 
+```csharp
+var transactions = client.Account.GetTransactions(new AccountTransactionQuery {
+  MaxItem = 1
+});
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -303,6 +329,13 @@ client.Account.getTransactions(params)
 		console.log(response.transactions);
 	});
   ```
+
+```csharp
+var transactions = client.Account.GetTransactions(new AccountTransactionQuery {
+  Type = AccountTransactionType.Payment
+});
+```
+
 
 > The above command returns JSON structured like this:
 
