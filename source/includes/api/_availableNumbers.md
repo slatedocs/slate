@@ -57,6 +57,11 @@ client.AvailableNumber.search("local", { areaCode : "910", quantity : 3 }).then(
 client.AvailableNumber.search("local", { areaCode : "910", quantity : 3 }, function (err, numbers) {});
 ```
 
+```csharp
+var results = await client.AvailableNumber.SearchLocalAsync(new LocalNumberQuery{ Area = "910", Quantity = 3});
+```
+
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -91,6 +96,9 @@ client.AvailableNumber.search("local", { areaCode : "910", quantity : 3 }, funct
 curl -v -X GET  https://api.catapult.inetwork.com/v1/availableNumbers/local?city=Cary&state=NC&pattern=*2%3F9*&quantity=2 \
   -u {token}:{secret} \
   -H "Content-type: application/json" \
+```
+```csharp
+var results = await client.AvailableNumber.SearchLocalAsync(new LocalNumberQuery{ City = "Cary", State = "NC", Pattern = "*2?9*", Quantity = 2});
 ```
 
 > The above command returns JSON structured like this:
@@ -157,6 +165,10 @@ client.AvailableNumber.searchAndOrder("local", { areaCode : "910", quantity : 2 
 client.AvailableNumber.serchAndOrder("local", { areaCode : "910", quantity : 2 }, function (err, numbers) {});
 ```
 
+```csharp
+var results = await client.AvailableNumber.SearchAndOrderLocalAsync(new LocalNumberQueryForOrder{ AreaCode = "910", Quantity = 2});
+```
+
 > The above command returns a `201` response JSON structured like this:
 
 ```json
@@ -215,6 +227,10 @@ client.AvailableNumber.search("tollFree", {
 			console.log(numbers);
 		}
 	});
+```
+
+```csharp
+var results = await client.AvailableNumber.SearchTollFreeAsync(new TollFreeNumberQuery{ Pattern = "*2?9*", Quantity = 2});
 ```
 
 > The above command returns JSON structured like this:
@@ -276,6 +292,12 @@ client.AvailableNumber.searchAndOrder("tollFree", {
 		}
 	});
   ```
+
+
+```csharp
+var results = await client.AvailableNumber.SearchAndOrderTollFreeAsync(new TollFreeNumberQueryForOrder{Quantity = 2});
+```
+
 
 > The above command returns a `201` response JSON structured like this:
 
