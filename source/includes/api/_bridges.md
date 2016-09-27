@@ -59,6 +59,10 @@ client.Bridge.list()
 });
 ```
 
+```csharp
+var bridges = client.Bridge.List();
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -128,6 +132,13 @@ client.Bridge.create({
 	});
   ```
 
+```csharp
+var bridge = await client.Bridge.CreateAsync(new CreateBridgeData{
+	BridgeAudio = true,
+	CallIds = new[]{"c-qbsx6wsdi", "c-zan4g7prsq"}
+});
+```
+
 > The above command returns HTTP Status structured like this:
 ```
 HTTP/1.1 201 Created
@@ -164,6 +175,12 @@ client.Bridge.create({
 		}
 	});
   ```
+```csharp
+var bridge = await client.Bridge.CreateAsync(new CreateBridgeData{
+	BridgeAudio = true
+});
+```
+
 > The above command returns HTTP Status structured like this:
 ```
 HTTP/1.1 201 Created
@@ -199,6 +216,9 @@ client.Bridge.get('brg-65dhmbasiei',
 			console.log(response);
 		}
 	});
+```
+```csharp
+var bridge = await client.Bridge.GetAsync("brg-65dhmbasiei");
 ```
 
 > The above command returns JSON structured like this:
@@ -280,6 +300,10 @@ client.Bridge.playAudioFile("bridgeID", "").then(function (res) {});
 client.Bridge.playAudioFile("bridgeID", "", function (err, res) {});
 ```
 
+```csharp
+await client.Bridge.PlayAudioFileAsync("brg-65dhmbasiei", "http://myurl.com/file.wav");
+```
+
 
 ### Example: Speak a Sentence
 ```shell
@@ -319,6 +343,11 @@ client.Bridge.speakSentence("bridgeID", "Hello From Bandwidth").then(function (r
 client.Bridge.speakSentence("bridgeID", "Hello From Bandwidth", function (err, res) {});
 ```
 
+```csharp
+await client.Bridge.SpeakSentenceAsync("brg-65dhmbasiei", "Hello From Bandwidth");
+```
+
+
 ### Example: Stop a Sentence
 ```shell
 curl -v -X POST https://api.catapult.inetwork.com/v1/users/{userId}/bridges/{bridgeId}/audio \
@@ -337,6 +366,10 @@ client.Bridge.speakSentence("bridgeID", "").then(function (res) {});
 //Callback
 client.Bridge.speakSentence("bridgeID", "", function (err, res) {});
 ```
+```csharp
+await client.Bridge.SpeakSentenceAsync("brg-65dhmbasiei", "");
+```
+
 
 ## GET bridges/{bridgeId}/calls
 
@@ -366,6 +399,11 @@ client.Bridge.getCalls('brg-65dhjrmbasiei',
 		}
 	});
   ```
+
+```csharp
+var calls = await client.Bridge.GetCalls("brg-65dhmbasiei");
+```
+
 
   > The above command returns JSON structured like this:
 
