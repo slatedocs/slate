@@ -43,6 +43,10 @@ client.Error.list({size: 1000}).then(function(errorResponse){});
 client.Error.list({size: 1000}, function(err, errorResponse){});
 ```
 
+```csharp
+var errors = client.Error.List(new ErrorQuery{Size = 1000});
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -97,6 +101,10 @@ client.Error.get(userErrorId).then(function(errorInfo){});
 
 // Callback
 client.Error.get(userErrorId, function(err, errorInfo){});
+```
+
+```csharp
+var error = async client.Error.GetAsync("{errorId1}");
 ```
 
 > The above command returns JSON structured like this:
