@@ -112,19 +112,39 @@ public class SingleCollectionExample {
 
 ```json
 {
-    "id": 230,
+    "id": 1,
     "remote_transaction_id": "12132",
     "organization": 1,
-    "amount": "20.0000",
-    "currency": 1,
-    "phonenumber": "+401000000001",
-    "payment_date": "2015-12-12T00:00:00Z",
-    "reference": null,
+    "amount": "200.0000",
+    "currency": "KES",
+    "phonenumber": "+254722000000",
+    "payment_date": "2016-09-21T08:55:54Z",
+    "reference": "98989",
     "status": "successful",
-    "created": "2015-08-01T16:49:48Z",
-    "author": null,
-    "modified": "2015-08-01T16:55:38Z",
-    "updated_by": null
+    "created": "2016-09-21T08:56:18Z",
+    "author": 1,
+    "modified": "2016-09-21T09:07:13Z",
+    "updated_by": 1,
+    "collection_request": {
+        "id": 2,
+        "organization": 1,
+        "amount": "200.0000",
+        "currency": "KES",
+        "phonenumber": "+254722000000",
+        "reason": "Test payment",
+        "metadata": {},
+        "created": "2016-09-21T08:52:54Z",
+        "author": 1,
+        "modified": "2016-09-21T09:04:14Z",
+        "updated_by": 1,
+        "collection": 1,
+        "success_message": "",
+        "instructions": "",
+        "send_instructions": false,
+        "status": "successful",
+        "error_message": null,
+        "error_details": null
+    }
 }
 ```
 
