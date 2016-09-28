@@ -2,36 +2,32 @@
 
 ## Setting up the SDK
 
-Once you’ve brought the Foxtrot Android SDK into your project, the first thing you’ll want to do is set it up.
-You’ll need three things:
+Once the Foxtrot Android SDK is installed, you're ready to set it up.
+You’ll need to do three things:
 
-1. an Android `context` (any context should be fine)
-2. your Foxtrot API key
-3. enable permissions
+1. Get an Android `context` (any context should be fine)
+2. Grant runtime permissions
+3. Set up Foxtrot with your API key
 
-The Foxtrot Android SDK require these permissions: `ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`, `INTERNET`, and `ACCESS_NETWORK_STATE`.
+The Foxtrot Android SDK will automatically request these permissions: 
 
-Add these lines to your `AndroidManifest.xml` file
-
-```xml
-  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-  <uses-permission android:name="android.permission.INTERNET"/>
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-```
+- `android.permission.ACCESS_FINE_LOCATION`
+- `android.permission.INTERNET`
+- `android.permission.ACCESS_NETWORK_STATE`,
+- `android.permission.WAKE_LOCK`.
 
 <aside class="notice">
-If your app is targeting Android Marshmallow or above, you will also need to request permission from the user to ACCESS_COARSE_LOCATION and ACCESS_FINE_LOCATION.
+There should be no need to explicitly add these permissions to your AndroidManifest.xml file. The Android manifest merger will detect these requirements from the Foxtrot SDK and add them to your bundle automatically.
 </aside>
 
-Sample code to ask user to grant permissions:
+If your app is targeting Android Marshmallow or above, you will need to request run-time permission from the user to ACCESS_FINE_LOCATION. Here's an example Activity asking the user for permission and initializing the Foxtrot SDK:
 
 ```java
 public class SetupFoxtrotSDKActivity extends AppCompatActivity {
 
   private static final int REQUEST_CODE_ASK_PERMISSIONS = 1;
   private static final int REQUEST_CODE_SET_PERMISSIONS_APP_SETTINGS = 2;
-  private static final List<String> REQUIRED_PERMISSIONS = Arrays.asList(permission.ACCESS_FINE_LOCATION, permission.ACCESS_COARSE_LOCATION);
+  private static final List<String> REQUIRED_PERMISSIONS = Arrays.asList(permission.ACCESS_FINE_LOCATION);
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -189,8 +185,7 @@ public class SetupFoxtrotSDKActivity extends AppCompatActivity {
 }
 ```
 
-Great job, now you’ve set up the Foxtrot SDK singleton… give yourself a high five!
-From now on, when you call the FoxtrotSDK you’ll need to access the singleton by calling:
+Great job! You’ve set up the Foxtrot SDK singleton. From now on, when you call the FoxtrotSDK you’ll need to access the singleton by calling:
 
 ```java
 FoxtrotSDK.getInstance().SOME_METHOD()
@@ -198,9 +193,9 @@ FoxtrotSDK.getInstance().SOME_METHOD()
 
 ## Logging In
 
-Once your driver has logged into your app using your existing login flow, you'll need to log them into Foxtrot as a [Driver](#driver).
+Once a driver has logged into the app using your existing login flow, you'll need to log them in to Foxtrot as a [Driver](#driver).
 
-Logging in is an asynchronous process requiring a [LoginCallback](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/controllers/auth/LoginCallback.html) to be registered to the `FoxtrotSDK` object in order for you can respond to any issues that may arise.
+Logging in is an asynchronous process requiring a [LoginCallback](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/controllers/auth/LoginCallback.html) to be registered to the `FoxtrotSDK` object. This allows your application to respond to any issues that may arise.
 
 Here is a sample `Activity` that implements the login process.
 
@@ -267,7 +262,7 @@ public class SampleLoginActivity extends Activity {
 
 ## Registering an Error Listener
 
-Now that you’ve set Foxtrot up, you’ll want to register an object that conforms to our [ErrorStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/ErrorStateListener.html) interface so you know if anything goes wrong. Here’s how to create a simple listener:
+Now that you’ve set Foxtrot up, you’ll want to register an object that conforms to our [ErrorStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/ErrorStateListener.html) interface so you will know if anything goes wrong. Here’s how to create a simple listener:
 
 ```java
 public class YourErrorStateListener extends ErrorStateListener {
@@ -306,39 +301,36 @@ ErrorStateListener myErrorStateListener = YourErrorStateListener.create(handler)
 FoxtrotSDK.getInstance().registerErrorStateListener(myErrorStateListener);
 ```
 
-You can register as many error state listeners as you’d like and they’ll all receive the current state of the SDK whenever they’re registered. This makes it incredibly easy to simply and powerfully handle any issues that may arise while developing, or while your users are using your app.
+You can register as many error state listeners as you’d like and they’ll all receive the current state of the SDK whenever they’re registered. This makes it easy to handle any issues that may arise during development or while users are using your app.
 
 ## Importing a Route
 
 Assuming you’ve had no problems so far, now you can import one or more [Route](#route) objects into Foxtrot. Foxtrot will cache these objects for you so you don't need to import them again after the app restarts.
 
-<aside class="notice">
-We’ll sort routes based on their start times, treating whichever route starts earlier as the first one.
-</aside>
-
 Here is some sample code to add a route:
 
 ```java
 Delivery delivery = Delivery.builder()
-                            .setProduct("Kittens")
+                            .setProduct("Soda")
                             .setQuantity(1.0)
                             .build();
 List<Delivery> deliveries = Collections.singletonList(delivery);
 
 DateTime routeStartTime = new DateTime(0L, DateTimeZone.UTC);
-// Construct time constraint to delivery 1 kitty between 1 and 2 UTC
+
+// We need to deliver the soda between 1:00 and 2:00 UTC
 TimeWindow timeWindow = TimeWindow.builder()
                                   .setStart(routeStartTime.plusHours(1))
                                   .setEnd(routeStartTime.plusHours(2))
                                   .build();
-// There may be more
+// Foxtrot allows you to specify multiple possible TimeWindows per delivery
 List<TimeWindow> timeWindows = Collections.singletonList(timeWindow);
 
 Location location = Location.create(37.7749, -122.4194);
 Waypoint waypoint = Waypoint.builder()
                             .setLocation(location)
                             .setAddress("123 Fake St")
-                            .setName("Whole Foods")
+                            .setName("Friendly Neighborhood Bakery")
                             .setCustomerId("UNIQUE_CUSTOMER_ID")
                             .setDeliveries(deliveries)
                             .setTimeWindows(timeWindows)
@@ -365,7 +357,6 @@ Route route = Route.builder()
 Now that we’ve created a Route, it can be imported like this:
 
 ```java
-//You can add multiple routes too if that's what you need
 FoxtrotSDK.getInstance().addRoute(route);
 ```
 
@@ -413,15 +404,15 @@ public class SampleRouteActivity extends Activity {
 }
 ```
 
+<aside class="notice">
+If you have imported multiple routes, your listener will only be informed of changes to the active route. When a route is finished, the route with the next-earliest start time will automatically become the new active route.
+</aside>
+
 Great, we’ve got a route! What’s next?
 
 ## Making a Delivery Attempt
 
-As your user works on their route, they'll be attempting to make deliveries.
-In order to finish the route, we need to make DeliveryAttempts.
-A [DeliveryAttempt](#deliveryattempt) belongs to a [Delivery](#delivery).
-A DeliveryAttempt needs a [DeliveryStatus](#deliverystatus), where the possible values are Success, Failure, and Reattempt.
-A DeliveryAttempt may also optionally contain notes if you’d like to include additional information.
+As your user is on-route, they will visiting various waypoints and attempt to make deliveries. You will record their progress by making [DeliveryAttempt](#deliveryattempt)s on the [Waypoint](#waypoint)s. A DeliveryAttempt needs a [DeliveryStatus](#deliverystatus), which is either Success or Failure. A DeliveryAttempt may also optionally contain notes if you’d like to include additional information.
 
 Here’s how to create and add a successful DeliveryAttempt, using the Route we created previously:
 
@@ -430,18 +421,28 @@ DeliveryAttempt successfulAttempt = DeliveryAttempt.builder()
         .setStatus(DeliveryStatus.SUCCESSFUL)
         .setNotes("Delivered the cookies") // notes are optional
         .build();
-FoxtrotSDK.getInstance().addDeliveryAttempt("SOME_DELIVERY_ID", successfulAttempt);
+FoxtrotSDK.getInstance().addDeliveryAttempt("SOME_WAYPOINT_ID", successfulAttempt);
 ```
 
-##Undoing a Delivery Attempt
+## Undoing a Delivery Attempt
 
 If the user makes a mistake, you might want to provide the ability to undo a [DeliveryAttempt](#deliveryattempt). If that's the case, here's how:
 
 ```java
-FoxtrotSDK.getInstance().undoDeliveryAttempt("A_DELIVERY_ID");
+FoxtrotSDK.getInstance().undoDeliveryAttempt("A_WAYPOINT_ID");
 ```
 
 This will automatically find the most recent [DeliveryAttempt](#deliveryattempt) on that [Delivery](#delivery) and undo it.
+
+## Authorizing a Reattempt
+
+If a driver marks an attempt with [DeliveryStatus](#deliverystatus) of `FAILED`, they will not be directed back to that Waypoint unless a reattempt is authorized. Until a reattempt at that Waypoint is authorized, they will not be able to make another [DeliveryAttempt](#deliveryattempt).
+
+If you application decides that the driver should be sent back to that Waypoint, you will need to authorize the re-attempt in Foxtrot:
+
+```java
+FoxtrotSDK.getInstance().authorizeDeliveryReattempt("A_WAYPOINT_ID");
+```
 
 ##Finishing a Route
 
@@ -458,4 +459,4 @@ If your users run multiple routes throughout the day, it's possible to import mo
 In order to begin the second Route, you'll need to finish the first one by making the call to finishRoute. The first route will then be marked as 'finished', and you will begin receiving events for the second route.
 </aside>
 
-When all the routes that Foxtrot has have been finished, our [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) will call `onAllRoutesFinished()` and you'll have the opportunity to respond to that event.
+When all the routes that Foxtrot has have been finished, your [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) will receive a call to `onAllRoutesFinished()` and you'll have the opportunity to respond.

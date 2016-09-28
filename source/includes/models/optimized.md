@@ -1,8 +1,7 @@
 # Optimized Models
 
 Once the [User Created Models](#user-created-models) have been imported into Foxtrot, an optimized version of
-each will be returned. You will never need to create these Optimized models. The Foxtrot SDK will create them for you.
-In addition to the original fields the models are based on, new fields are added to make the models easier to work with.
+each will be returned. You will never need to create these Optimized models. The Foxtrot SDK will create them for you. In addition to the original fields the models are based on, new fields are added to make the models easier to work with. For example, an OptimizedWaypoint has an `eta` field, denoting when the driver is expected to arrive at that waypoint.
 
 ## OptimizedRoute
 
@@ -11,7 +10,7 @@ In addition to the original fields the models are based on, new fields are added
 | id                        | String                                         | false    | The id of the route.
 | startTime                 | DateTime                                       | false    | The estimated start time of the route.
 | name                      | String                                         | true     | The name of the route.
-| waypoints                 | List<[OptimizedWaypoint](#optimizedwaypoint)>  | false    | The list of waypoint objects. This list must not be empty.
+| waypoints                 | List<[OptimizedWaypoint](#optimizedwaypoint)>  | false    | The list of waypoint objects. This list will not be empty.
 
 
 ## OptimizedWarehouse
@@ -37,8 +36,8 @@ In addition to the original fields the models are based on, new fields are added
 | eta                                  | DateTime                                           | true     | The estimated time of arrival at this waypoint.
 | distanceInMetersFromPreviousWaypoint | Long                                               | true     | The estimated distance in meters to get to this waypoint from the previous waypoint.
 | timeInSecondsFromPreviousWaypoint    | Long                                               | true     | The estimated time in seconds to get to this waypoint from the previous waypoint.
-| deliveries                           | List<[OptimizedDelivery](#optimizeddelivery)>      | false    | The list of Delivery objects at this waypoint. This list must not be empty.
-| timeWindows                          | List<[OptimizedTimeWindow](#optimizedtimewindow)>  | false    | The list of TimeWindow objects at this waypoint. This list must not be empty.
+| deliveries                           | Collection<[OptimizedDelivery](#optimizeddelivery)>      | false    | The collection of Delivery objects at this waypoint. This collection will have at least one element.
+| timeWindows                          | Collection<[OptimizedTimeWindow](#optimizedtimewindow)>  | false    | The collection of TimeWindow objects at this waypoint. This collection may be empty.
 
 
 ## OptimizedTimeWindow
@@ -55,7 +54,7 @@ In addition to the original fields the models are based on, new fields are added
 |---------------------------|-------------------------------------------------------|----------|------------
 | id                        | String                                                | false    | The id of the delivery.
 | name                      | String                                                | false    | The name of the product.
-| quantity                  | Double                                                | true     | The quantity of the product. This field should in the unit that makes sense for the product.
+| quantity                  | Double                                                | true     | The quantity of the product. This field should be in the unit that makes sense for the product.
 | latestAttempt             | [OptimizedDeliveryAttempt](#optimizeddeliveryattempt) | true     | The last attempt status that was made to this delivery.
 
 ## OptimizedDeliveryAttempt

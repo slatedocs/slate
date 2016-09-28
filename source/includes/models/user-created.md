@@ -1,20 +1,20 @@
 # User Created Models
 
-These models must be created and imported into Foxtrot before they can be optimized. You should never be manually creating any of the [Optimized](#optimized-models) models.
+These models must be created and imported into Foxtrot before they can be optimized. You will never directly create any of the [Optimized](#optimized-models) models.
 
 <aside class="notice">
-The Foxtrot SDK will not return these objects that you import, but rather their Optimized equivalents.
+The Foxtrot SDK will not return the same objects that you import, but rather their Optimized equivalents.
 </aside>
 
 ## Route
-A Route contains a list of [Waypoint](#waypoint) the driver will visit.
+A Route contains a list of [Waypoint](#waypoint)s the driver will visit.
 
 | Field                     | Type                         | Required | Description
 |---------------------------|------------------------------|----------|------------
 | startTime                 | DateTime                     | true     | The estimated start time of the route.
 | name                      | String                       | false    | The name of the route.
 | warehouse                 | [Warehouse](#warehouse)      | true     | The warehouse of the route. This field will be the beginning and end point of the route.
-| waypoints                 | List<[Waypoint](#waypoint)>  | true     | The list of waypoint objects. This list must not be empty.
+| waypoints                 | Collection<[Waypoint](#waypoint)>  | true     | The collection of waypoint objects. This collection must not be empty.
 
 ```java
 List<Waypoint> waypoints = ...
@@ -34,7 +34,7 @@ A Warehouse is the beginning and end point of a route
 |---------------------------|----------------------------------|----------|------------
 | name                      | String                           | false    | The name of the warehouse.
 | address                   | String                           | false    | The address at the warehouse.
-| location                  | [Location](#location)            | true     | The geocode coordinate at this warehouse.
+| location                  | [Location](#location)            | true     | The geocode coordinate of the warehouse.
 
 ```java
 Warehouse warehouse = Warehouse.builder()
@@ -54,16 +54,16 @@ A Waypoint contains the customer information, their location, and a list of [Del
 | location                  | [Location](#location)            | true     | The geocode coordinate at this waypoint.
 | customerId                | String                           | true     | The globally unique identifier identifying the customer at this waypoint.
 | serviceTimeInSeconds      | Long                             | false    | The estimated amount of time in seconds the driver will take to complete this waypoint.
-| deliveries                | List<[Delivery](#delivery)>      | true     | The list of Delivery objects at this waypoint. This list must not be empty.
-| timeWindows               | List<[TimeWindow](#timewindow)>  | false    | The list of TimeWindow objects at this waypoint. This list must not be empty.
+| deliveries                | Collection<[Delivery](#delivery)>      | true     | The collection of Delivery objects at this waypoint. This collection must not be empty.
+| timeWindows               | Collection<[TimeWindow](#timewindow)>  | false    | The collection of TimeWindow objects at this waypoint. This list may be empty.
 
 ```java
-List<Delivery> deliveries = ...;
-List<TimeWindow> timeWindows = ...;
+Collection<Delivery> deliveries = ...;
+Collection<TimeWindow> timeWindows = ...;
 Waypoint waypoint = Waypoint.builder()
                             .setLocation(Location.create(1.0, 2.0))
                             .setAddress("123 Fake St")
-                            .setName("Whole Foods")
+                            .setName("Friendly Neighborhood Bakery")
                             .setCustomerId("Customer Unique Id")
                             .setDeliveries(deliveries)
                             .setTimeWindows(timeWindows)
@@ -136,7 +136,7 @@ A DeliveryStatus is an enumeration for possible attempt states.
 |---------------|------------
 | FAILED        | Marks a failed delivery.
 | SUCCESSFUL    | Marks a successful delivery.
-| REATTEMPT     | Marks the delivery can be reattempted. The delivery was previously marked FAILED, but the route manager has re-authorized a reattempt.
+| REATTEMPT     | The delivery was previously marked FAILED, but the route manager has re-authorized a reattempt.
 
 ## Driver
 A Driver represents the driver driving the route.
