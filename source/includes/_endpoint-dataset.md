@@ -57,9 +57,9 @@ crGET("https://beta.crunch.io/api/datasets/")
             "archived": false,
             "permissions": {
                 "edit": false,
-                "change_permissions":,
-                "add_users":,
-                "change_weight":,
+                "change_permissions": false,
+                "add_users": false,
+                "change_weight": false,
                 "view": true
             },
             "size": {
@@ -83,9 +83,9 @@ crGET("https://beta.crunch.io/api/datasets/")
             "archived": false,
             "permissions": {
                 "edit": true,
-                "change_permissions":,
-                "add_users":,
-                "change_weight":,
+                "change_permissions": true,
+                "add_users": true,
+                "change_weight":true,
                 "view": true
             },
             "size": {
@@ -103,7 +103,7 @@ crGET("https://beta.crunch.io/api/datasets/")
             "current_editor_name": null
         }
     },
-    "template": "{"name": "Awesome Dataset", "description": "(optional) This dataset is awesome because I made it, and you can do it too."}"
+    "template": "{\"name\": \"Awesome Dataset\", \"description\": \"(optional) This dataset is awesome because I made it, and you can do it too.\"}"
 }
 ```
 
@@ -616,7 +616,6 @@ start_date | ISO-8601 string |  | Date/time for which the data in the dataset co
 end_date | ISO-8601 string |  | End date/time of the dataset's data, defining a start_date:end_date range
 current_editor | URL or null | | URL of the user entity that is currently editing the dataset, or `null` if there is no current editor
 current_editor_name | string or null | | That user's name, for display
-weight | URL | null | Points to the current weight variable applied for the given user
 
 ##### Dataset catalogs
 
@@ -665,7 +664,7 @@ permissions | Returns the list of all users and teams with access to this datase
 See above about PATCHing the dataset catalog for all attributes duplicated on
 the entity and the catalog. You may PATCH those attributes on the entity, but you
 are encouraged to PATCH the catalog instead. The two attributes appearing on the
-entity and not the catalog, "notes" and "weight", are modifiable by PATCH here.
+entity and not the catalog, "notes" is modifiable by PATCH here.
 
 A successful PATCH request returns a 204 response. The attributes changed will be seen
 by all users with access to this dataset; i.e., names, descriptions, and archived
@@ -889,7 +888,7 @@ the user and public decks shared for this dataset.
           "is_public": true,
           "owner_id": "https://beta.crunch.io/api/users/4cba5/",
           "owner_name": "Other Person"
-        },
+        }
     },
     "order": "https://beta.crunch.io/api/datasets/223fd4/decks/order/"
 }
@@ -1167,7 +1166,9 @@ can have.
     "element": "shoji:entity",
     "self": "https://beta.crunch.io/api/datasets/223fd4/settings/",
     "body": {
-        "viewers_can_export": false
+        "viewers_can_export": false,
+        "viewers_can_change_weight": false,
+        "weight": "https://beta.crunch.io/api/datasets/223fd4/variables/123456/"
     }
 }
 ```
@@ -1177,6 +1178,13 @@ values. Additional settings are not allowed, the server will return a 400
 response.
 
 
+Setting | Description
+--------|------------
+viewers_can_export | When false, only editor can export; else, all users with view access can export the data
+viewers_can_change_weight | When true, all users with access can set their own personal weight; else, the editor configured weight will be applied to all without option to change
+weight | When  `viewers_can_change_weight`, this variable will be the always and only applied weight for all users of the dataset; it will also work as default initial weight for all new users on this dataset
+
+
 ##### Preferences
 
 `/datasets/{id}/preferences/`
@@ -1184,14 +1192,16 @@ response.
 The dataset preferences provide API clients with a key/value store for settings
 or customizations each would need for each user.
 
-By default all dataset preferences start out as an empty object where clients can
-PATCH the keys each deems necessary.
+By default all datasets' preferences start out with only a `weight` key
+ set to None unless changed. Clients can PATCH attributes each deems necessary.
 
 ```json
 {
     "element": "shoji:entity",
     "self": "https://beta.crunch.io/api/datasets/223fd4/preferences/",
-    "body": {}
+    "body": {
+      "weight": null
+    }
 }
 ```
 
@@ -1199,6 +1209,13 @@ To delete keys from the preferences the value needs to be patched with `null`.
 
 There is no order associated with the saved preferences. Clients should assume
 they are in arbitrary order.
+
+##### Weight
+
+If the dataset has `viewers_can_change_weight` setting set to false, then
+all users' preferences `weight` will be set to the dataset wide configured
+weight without option to change it. Attempts to modify it will return a 403
+response.
 
 
 ##### Primary key
