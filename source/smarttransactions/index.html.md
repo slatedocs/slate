@@ -1,5 +1,5 @@
 ---
-title: iDa Mobile SmartTransactions
+title: iDa Mobile SmartTransactions API
 
 language_tabs:
   - json : JSON

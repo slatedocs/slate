@@ -13,15 +13,15 @@ tags | [MarkerDTO](#markerdto) | 0..1 | дополнительные поля
 mainCard | string | 0..1 | основная карта, привязанная к счету
 allCards | [CardDTO](#carddto) | 0..1 | список всех карт, привязанных к счету
 hasRequisites | bool | 0..1 | наличие реквизитов для отправки по смс или почте
+openingDate | [Date ISO 8601](https://ru.wikipedia.org/wiki/ISO_8601) | 1..1 | дата открытия
+period | [Date ISO 8601](https://ru.wikipedia.org/wiki/ISO_8601) | 1..1 | период начисления процентов в месяцах
+interestRate | [AmountDTO](#amountdto) | 1..1 | процентая ставка
 
 **deprecated:**
 
  |||
 --- | ---- | :----: | ---:
 runningBalance | [AmountDTO](#amountdto) | 1..1 | 
-openingDate | [Date ISO 8601](https://ru.wikipedia.org/wiki/ISO_8601) | 1..1 | 
-period | [Date ISO 8601](https://ru.wikipedia.org/wiki/ISO_8601) | 1..1 | 
-interestRate | [AmountDTO](#amountdto) | 1..1 | 
 maturityDate | int | 0..1 | 
 contractNumber | string | 0..1 | 
 contractStatus | string | 0..1 | 

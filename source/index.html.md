@@ -12,12 +12,42 @@ includes:
 search: false
 ---
 
-# iDa Mobile Docs
+# API Documents
 
-**если нужен PRO, то смотри [doc.idamob.ru/pro](https://doc.idamob.ru/pro)**
+>request:
 
-**если нужен LIGHT, то смотри [doc.idamob.ru/light](https://doc.idamob.ru/light)**
+~~~xml
+<getRequest>
+    <request>
+        <id>id</id>
+        <param_01>param</param_01>
+        <param_02>param</param_02>
+    </request>
+</getRequest>
+~~~
 
-**если нужен PIGEON, то смотри [doc.idamob.ru/pigeon](https://doc.idamob.ru/pigeon)**
+>response:
 
-**если нужен SMARTTRANSACTIONS, то смотри [doc.idamob.ru/smarttransactions](https://doc.idamob.ru/smarttransactions)**
+~~~xml
+<getResponse>
+    <return>
+        <param_01 type="type">
+            <currency>RUB</currency>
+            <fxAmount>100</fxAmount>
+        </param_01>
+        <lastUpdateTime>2015-08-25T21:13:08.000+03:00</lastUpdateTime>
+    </return>
+</getResponse>
+~~~
+
+>log:
+
+~~~text
+19-09-2016_15:59:44 [https-jsse-nio-9443-exec-10] DEBUG - PRO=>Bank [get] GetDTO(id=id, param_01=param, param_02=param)
+19-09-2016_15:59:45 [https-jsse-nio-9443-exec-10] ERROR - org.apache.axis2.AxisFault: Read timed out
+~~~
+
+[![image](button_pro.png "iDa Pro API")](https://doc.idamob.ru/pro)
+[![image](button_light.png "iDa Light API")](https://doc.idamob.ru/light)
+[![image](button_pigeon.png "iDa PiGeon API")](https://doc.idamob.ru/pigeon)
+[![image](button_st.png "iDa SmartTransactions API")](https://doc.idamob.ru/smarttransactions)
