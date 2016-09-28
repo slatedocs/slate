@@ -13,5 +13,5 @@ v2 - February 2016
 v2 - November 2015
 
 * Versioning improvements to provide transparent backward compatibility by automatically saving users' version. Versions can be upgraded manually via web interface
-* _orgnaization_ field now contains the organization ID, not name, in the Payments, Contacts and Collection Requests methods
+* _organization_ field now contains the organization ID, not name, in the Payments, Contacts and Collection Requests methods
 * _currency_ field now contains the currency code, not the currency ID, in the Collections method
