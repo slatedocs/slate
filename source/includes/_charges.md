@@ -16,16 +16,19 @@ EXEMPLO
     "custom_our_number": "true",
     "our_number":"0",
     "our_number_digit":null,
-    "total_amount":"10.07",
+    "charged_amount":"10.07",
     "interest_amount_per_month": "1.02",
     "mulct_type": "percentage",
     "mulct_value": "10.12",
     "instructions":"Pagável em qualquer agência até data do vencimento.",
     "demonstrative":"Não receber após o vencimento.",
     "notification_emails":["myemail@gmail.com"],
-    "received":true,
-    "received_amount":"10.07",
-    "received_at":"2015-01-30",
+    "received":true, # deprecated
+    "received_amount":"10.07", # deprecated
+    "received_at":"2015-01-30", # deprecated
+    "paid_amount":"10.07",
+    "paid_at":"2015-01-30",
+    "payment_tax":"2.5",
     "processing_date":"2015-01-30",
     "for_homologation":true,
     "registrable": true,
@@ -73,7 +76,7 @@ Cada uma das cobranças criadas serão do mesmo tipo da configuração. Desta fo
 | our_number                     | string           | nosso número                                                                                                                                        |
 | our_number_digit               | integer          | digito do verificador do nosso número                                                                                                               |
 | custom_our_number              | boolean          | indica se a cobrança utiliza um "nosso número" customizado. O valor padrão é false, mas caso definido true, o campo 'our_number' se torna requerido |
-| total_amount                   | decimal          | valor total do boleto                                                                                                                               |
+| charged_amount                 | decimal          | valor cobrado no boleto                                                                                                                             |
 | interest_amount_per_month      | decimal          | porcentagem de juros mensal que deve ser aplicado em caso de atraso. No boleto será mostrado o valor diário de juros que será calculado             |
 | mulct_type                     | string           | indica o tipo de multa que deve ser aplicada em caso de atraso ("percentage" para porcentagem, "currency" para valor em reais)                      |
 | mulct_value                    | decimal          | valor da multa que deve ser aplicada em caso de atraso, com base em seu tipo                                                                        |
@@ -81,9 +84,12 @@ Cada uma das cobranças criadas serão do mesmo tipo da configuração. Desta fo
 | demonstrative                  | string           | demonstrativo do Boleto, por padrão "Não receber após o vencimento."                                                                                |
 | notification_emails            | array of strings | emails que receberão notificações sobre a cobrança                                                                                                  |
 | payer_emails                   | array of strings | (DEPRECATED: use notification_emails) emails que receberão notificações sobre a cobrança                                                            |
-| received                       | boolean          | indica se a cobrança foi recebida                                                                                                                   |
-| received_amount                | decimal          | valor recebido                                                                                                                                      |
-| received_at                    | date             | dia em que a cobrança foi recebida                                                                                                                  |
+| received                       | boolean          | (DEPRECATED: use paid_at) indica se a cobrança foi recebida                                                                                         |
+| received_amount                | decimal          | (DEPRECATED: use paid_amount) valor pago                                                                                                            |
+| received_at                    | datetime         | (DEPRECATED: use paid_at) date e horário em que a cobrança foi paga                                                                                 |
+| paid_amount                    | decimal          | valor pago                                                                                                                                          |
+| paid_at                        | datetime         | date e horário em que a cobrança foi paga                                                                                                           |
+| payment_tax                    | decimal          | valor taxa cobrada pela instituição financeira para o processamento da cobrança                                                                     |
 | processing_date                | date             | data de geração do boleto                                                                                                                           |
 | for_homologation               | boolean          | indica se é uma cobrança que foi criada com o objetivo de homologar uma Configuração de cobrança                                                    |
 | registrable                    | boolean          | indica se a cobrança é registrável (do tipo que deve ser registrada no banco). Por padrão é o que está definido na Configuração de Cobrança         |
@@ -113,7 +119,7 @@ As Cobranças tem o comportamento assíncrono em relação à comunicação com 
 | id                             | integer          |                                                                                                                                               |
 | type                           | string           | indica o tipo da cobrança. Nesse caso, "payment_gateway"                                                                                      |
 | charge_config_id               | integer          | identificador da configuração de cobrança a qual esta cobrança pertece                                                                        |
-| total_amount                   | decimal          | valor total do boleto                                                                                                                         |
+| charged_amount                 | decimal          | valor cobrado no boleto                                                                                                                       |
 | notification_emails            | array of strings | emails que receberão notificações sobre a cobrança                                                                                            |
 | payer_emails                   | array of strings | (DEPRECATED: use notification_emails) emails que receberão notificações sobre a cobrança                                                      |
 | payer_id                       | integer          | identificador do pagador                                                                                                                      |
@@ -172,16 +178,19 @@ EXEMPLO DE CORPO DA RESPOSTA (BOLETO)
     "custom_our_number": "true",
     "our_number":"0",
     "our_number_digit":null,
-    "total_amount":"10.07",
+    "charged_amount":"10.07",
     "interest_amount_per_month": "1.02",
     "mulct_type": "percentage",
     "mulct_value": "10.12",
     "instructions":"Pagável em qualquer agência até data do vencimento.",
     "demonstrative":"Não receber após o vencimento.",
     "notification_emails":["myemail@gmail.com"],
-    "received":true,
-    "received_amount":"10.07",
-    "received_at":"2015-01-30",
+    "received":true, # deprecated
+    "received_amount":"10.07", # deprecated
+    "received_at":"2015-01-30", # deprecated
+    "paid_amount":"10.07",
+    "paid_at":"2015-01-30",
+    "payment_tax":"2.5",
     "processing_date":"2015-01-30",
     "for_homologation":true,
     "registrable": true,
@@ -293,7 +302,7 @@ EXEMPLO DE REQUISIÇÃO
           "due_date":"2015-02-14",
           "document_kind":"DV",
           "our_number":"12345678",
-          "total_amount":"10.07",
+          "charged_amount":"10.07",
           "notification_emails":["myemail@gmail.com"]
         }'
 
@@ -312,7 +321,7 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
       {
         "charge_config_id":["não pode ficar em branco"],
         "our_number":["não pode ficar em branco"],
-        "total_amount":["não pode ficar em branco"],
+        "charged_amount":["não pode ficar em branco"],
         "document_kind":["não pode ficar em branco","não está incluído na lista"],
         "due_date":["não pode ficar em branco"]
       }
@@ -331,7 +340,7 @@ Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e
 | charge_config_id               | integer          | **(requerido)** código de identificação da configuração de cobrança da qual a cobrança irá pertencer                                                                    |
 | due_date                       | date             | **(requerido)** data de vencimento da cobrança                                                                                                                          |
 | document_kind                  | string           | **(requerido)** espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                           |
-| total_amount                   | decimal          | **(requerido)** valor total do boleto                                                                                                                                   |
+| charged_amount                 | decimal          | **(requerido)** valor cobrado no boleto                                                                                                                                 |
 | document_number                | string           | **(requerido)** número do documento, também chamado de "seu número", é o número utilizado e controlado pelo beneficiário para identificar o título de cobrança          |
 | notification_emails            | array of strings | (opcional) emails que receberão notificações sobre a cobrança                                                                                                           |
 | payer_emails                   | array of strings | (opcional) (DEPRECATED: use notification_emails) emails que receberão notificações sobre a cobrança                                                                     |
@@ -381,7 +390,7 @@ Se for utilizado um cartão já existente (enviando o parâmetro <code>credit_ca
 | Campo                   | Tipo             | Comentário                                                                                                                                                                    |
 |-------------------------|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | charge_config_id        | integer          | **(requerido)** código de identificação da configuração de cobrança da qual a cobrança irá pertencer                                                                          |
-| total_amount            | decimal          | **(requerido)** valor total da cobrança                                                                                                                                       |
+| charged_amount          | decimal          | **(requerido)** valor cobrado                                                                                                                                                 |
 | payment_method          | string           | **(requerido)** método de pagamento ("credit_card_in_cash" pagamento à vista, "credit_card_financed" pagamento parcelado)                                                     |
 | description             | string           | (opcional) descrição da cobrança                                                                                                                                              |
 | soft_descriptor         | string           | (opcional) descritor que irá aparecer na fatura do cartão (no máximo 13 caracteres)                                                                                           |
@@ -482,7 +491,7 @@ Para cobranças do tipo <strong>Boleto</strong> não é possível atualizar uma 
 </aside>
 
 <aside class="notice">
-Para cobranças do tipo <strong>Boleto</strong> os campos 'received', 'received_at' e 'received_amount', não são alterados via atualização de cobrança, apenas no recebimento ou desfazendo o recebimento da mesma.
+Para cobranças do tipo <strong>Boleto</strong> os campos 'paid_at', 'paid_amount' e 'payment_tax', não são alterados via atualização de cobrança, apenas no recebimento ou desfazendo o recebimento da mesma.
 </aside>
 
 **Parâmetros**
@@ -491,7 +500,7 @@ Para cobranças do tipo <strong>Boleto</strong> os campos 'received', 'received_
 |--------------------------------|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | due_date                       | date             | **(requerido)** data de vencimento da cobrança                                                                                                                          |
 | document_kind                  | string           | **(requerido)** espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                           |
-| total_amount                   | decimal          | **(requerido)** valor total da cobrança                                                                                                                                 |
+| charged_amount                 | decimal          | **(requerido)** valor cobrado                                                                                                                                           |
 | document_number                | string           | **(requerido)** número do documento, também chamado de "seu número", é o número utilizado e controlado pelo beneficiário para identificar o título de cobrança          |
 | notification_emails            | array of strings | (opcional) emails que receberão notificações sobre a cobrança                                                                                                           |
 | payer_emails                   | array of strings | (opcional) (DEPRECATED: use notification_emails) emails que receberão notificações sobre a cobrança                                                                     |
@@ -535,7 +544,7 @@ Uma cobrança com o status de erro no gateway de pagamento pode ser editada com 
 
 | Campo                          | Tipo             | Comentário                                                                                                                                                              |
 |--------------------------------|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| total_amount                   | decimal          | **(requerido)** valor total do boleto                                                                                                                                   |
+| charged_amount                 | decimal          | **(requerido)** valor cobrado no boleto                                                                                                                                 |
 | payment_method                 | string           | **(requerido)** método de pagamento (1: pagamento à vista, 2: pagamento parcelado)                                                                                      |
 | description                    | string           | (opcional) descrição da cobrança                                                                                                                                        |
 | soft_descriptor                | string           | (opcional) descritor que irá aparecer na fatura do cartão (no máximo 13 caracteres)                                                                                     |
@@ -668,8 +677,9 @@ EXEMPLO DE REQUISIÇÃO
     -H 'Content-type: application/json' \
     -X POST https://app.cobrato.com/api/v1/charges/:charge_id/receive \
     -d '{
-         "received_at": "2015-02-06",
-         "received_amount": "9.57"
+         "paid_at": "2015-02-06",
+         "paid_amount": "9.57",
+         "payment_tax": "2.5"
         }'
 
 EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
@@ -688,8 +698,8 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
   {
     "errors": {
-      "received_at": ["não pode ficar em branco"],
-      "received_amount": ["não pode ficar em branco"]
+      "paid_at": ["não pode ficar em branco"],
+      "paid_amount": ["não pode ficar em branco"]
     }
   }
 ```
@@ -698,10 +708,13 @@ Marca determinada cobrança via Boleto como recebida, retornando JSON contendo a
 
 **Parâmetros (Boleto)**
 
-| Campo           | Tipo    | Comentário                                    |
-|-----------------|---------|-----------------------------------------------|
-| received_at     | date    | **(requerido)** data de pagamento da cobrança |
-| received_amount | decimal | **(requerido)** valor recebido da cobrança    |
+| Campo           | Tipo     | Comentário                                                                                 |
+|-----------------|----------|--------------------------------------------------------------------------------------------|
+| received_amount | decimal  | **(requerido)** (DEPRECATED: use paid_amount) valor pago                                   |
+| received_at     | datetime | **(requerido)** (DEPRECATED: use paid_at) date e horário em que a cobrança foi paga        |
+| paid_amount     | decimal  | **(requerido)** valor pago                                                                 |
+| paid_at         | datetime | **(requerido)** date e horário em que a cobrança foi paga                                  |
+| payment_tax     | decimal  | (opcional) valor taxa cobrada pela instituição financeira para o processamento da cobrança |
 
 
 ## Desfazer Recebimento de Cobrança (Boleto)
@@ -737,7 +750,7 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
   {
     "errors": {
-      "received": [
+      "paid_amount": [
         "Impossível cancelar o recebimento de uma cobrança não recebida!"
       ]
     }
