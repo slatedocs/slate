@@ -24,7 +24,7 @@ created | string | The date that the collection was created, in the UTC timezone
 author | long integer | The ID of the user who created the collection
 modified | string | The date that the collection was last modified, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
 updated_by | string | The ID of the user who last updated the collection
-collection_request | long integer or null | The ID of the collection request that this collection was matched to, if any
+collection_request | JSON string| A JSON representation of the collection request that this collection was matched to, if any
 
 ## Retrieving a single collection
 
