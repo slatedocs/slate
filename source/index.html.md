@@ -195,50 +195,51 @@ Place or name the Zibby checkout button within the payment options page of your 
 zibby.checkout.set({
 
 	customer: {
-		billing: {first_name: "jane",
-				  last_name: "doe",
-				  address: "123 main street",
-				  address2: "apt 5b",
-				  city: "New York",
-				  state: "NY",
-				  country: "United States",
-				  zip: "10009",
-				  phone: "5554324537",
-				  email: "jqdoe@anonmail.com"
+		billing: {"first_name": "jane",
+				  "last_name": "doe",
+				  "address": "123 main street",
+				  "address2": "apt 5b",
+				  "city": "New York",
+				  "state": "NY",
+				  "country": "United States",
+				  "zip": "10009",
+				  "phone": "5554324537",
+				  "email": "jqdoe@anonmail.com"
 				  },
 				shipping: {
-					first_name: "jane",
-					last_name: "doe",
-					address: "123 main street",
-					address2: "apt 5b",
-					city: "New York",
-					state: "NY",
-					country: "United States",
-					zip: "10009",
-					phone: "5554324537",
-					email: "jqdoe@anonmail.com"
+					"first_name": "jane",
+					"last_name": "doe",
+					"address": "123 main street",
+					"address2": "apt 5b",
+					"city": "New York",
+					"state": "NY",
+					"country": "United States",
+					"zip": "10009",
+					"phone": "5554324537",
+					"email": "jqdoe@anonmail.com"
 					}
 				},
 				items: [{
-					display_name: "4K LG TV",
-					sku: "LG-4k2352",
-					unit_price: 1399.99,
-					quantity:1
+					"display_name": "4K LG TV",
+					"sku": "LG-4k2352",
+					"unit_price": 1399.99,
+					"quantity":1
 					}],
 					checkout: {
-						customer_id: "10004323",
-						discounts: {
-							discount_name_one: 10.00,
-							discount_name_two: 50.00
+						"customer_id": "10004323",
+						"discounts": {
+							"discount_name_one": 10.00,
+							"discount_name_two": 50.00
 							},
-						shipping_amount: 20.00},
+						"shipping_amount": 20.00},
 						urls: {
 							return: "https://yoursite.com/return",
 							cancel:"https://yoursite.com/cancel"
 							}
 						}
 					);
-							// load zibby checkout modalzibby.checkout.load();
+							// load zibby checkout modal
+				zibby.checkout.load();
 </script>
 ```
 
@@ -384,29 +385,96 @@ Request:	{"customer":{
 					"sku":"FS3525",
 					"unit_price":700,
 					"quantity":1
-					},
+					"leasable": true,
+					"shipping":{"sku":"000HD999000",
+								"display_name":"HOME DELIVERY CHARGE",
+								"unit_price":"5.0",
+								"quantity":"1"}	
+								},
 					{"display_name":"AA Batteries",
 					 "sku":"AA5234",
 					 "unit_price":15,
-					 "quantity":1
-					 }],"checkout":{"customer_id":"1000438727823","shipping_amount":10,"discounts":[{"discount_name":"Birthday Discount","discount_amount":50},{"discount_name":"Towel Discount","discount_amount":50}]},"urls":{"return":"https://teststore.zibby.com/plugin/invoice.html","cancel":"https://teststore.zibby.com/plugin/checkout.html"},"phone":"6073393582","code":"258446","new_address":false}
-Response: 	{“uid": "113c8c68ab9a4b7ba999af018574ee2d"}
+					 "quantity":1,
+					 "leasable": false
+					 }],"checkout":{"customer_id":"1000438727823",
+					 				"shipping_amount":10,
+					 				"discounts":[{"discount_name":"Birthday Discount",
+					 							  "discount_amount":50},
+					 							  {"discount_name":"Towel Discount","discount_amount":50}]},
+					 				"urls":{"return":"https://teststore.zibby.com/plugin/invoice.html","cancel":"https://teststore.zibby.com/plugin/checkout.html"},"phone":"6073393582","code":"258446","new_address":false}
+Response: 	{"delivery_method": "delivery", 
+ 			 "processing_fee": 0, 
+ 			 "shipping": "10", 
+ 			 "shipping_tax": "0.89",  
+ 			 "items": [{"item_code": "item make", 
+ 			 "item_name": "item description", 
+ 			 "item_type": "new", 
+ 			 "quantity": 1, 
+ 			 "rent": "62.50", 
+ 			 "retailer_price": "500", 
+ 			 "sales_tax": "5.55", 
+ 			 "shipping": {"sku":"000HD999000",
+								"display_name":"HOME DELIVERY CHARGE",
+								"unit_price":"5.0",
+								"quantity":"1"},	 
+ 			 "warranty": {"code": "warranty sku",
+ 						  "monthly_amount": "5.56", 
+ 						  "monthly_tax": "0.49", 
+ 						  "name": "warranty name", 
+ 						  "price": "100"}}], 
+ 			 "term": 18, 
+ 			 "monthly_total": "67.50", 
+			 "due_at_checkout": "84.99",
+			 "uid": "113c8c68ab9a4b7ba999af018574ee2d"}
 ```
 
 To begin the checkout, we must open the checkout by submitting the full contents of the shopping cart.
 
-##Complete the Checkout
+#Post-Origination
+
+Once an order has been originated, Zibby provides certain API endpoints to allow a retailer to manipulate the order. These enpoints are accessed by means of a private authentication token with which Zibby provides the retailer.
+
+##Cancel Order 
 
 ```script
-URL:	 api/v3/application/uid/first_payment/
-Method: POST
-Request: {"payment_details":{"CardNumber":"4111111111111111","CardExpiration":"2/2019",
-		  "CardCvv":"685","disclosures":"true","Contract":"true","PaymentType":"debit"},
-		  "id":"113c8c68ab9a4b7ba999af018574ee2d"}
-Response: {success: true}
+URL: 		/api/v3/application/<zibby_id>/cancel_order
+Method: 	GET
+Return: 	{"success": true}
 ```
 
-To complete the checkout, the first payment must be submitted successfully. Once the transaction is complete, zibby will post the zibby_id to the return url above.
+The Zibby API allows retailers to directly cancel the entire order.
+
+##Cancel Item
+
+```script
+URL: 		/api/v3/application/<zibby_id>/cancel_item
+Method: 	POST
+Request:	{"items": [{"sku": "285868","display_name": "BATTERY","unit_price": 4.0, "quantity": 4}]}
+Return: 	{"success": true}
+```
+
+The Zibby API allows retailers to directly cancel individual items within an originated order. 
+
+##Confirm Order
+
+```script
+URL: 		/api/v3/application/<zibby_id>/confirm_order
+Method: 	POST
+Request: 	{"order_id": "abcd"} 
+Return: 	{"success": true}
+```
+
+Zibby's API allows for the retailer to be able to confirm an order once it is initialized in the retailer's downstream system.
+
+
+
+
+
+
+
+
+
+
 
 
 
