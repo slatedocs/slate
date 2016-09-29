@@ -35,7 +35,7 @@ Each dimension used in a cube query needs to be reduced to distinct values. For 
  * categorical_array:
    * One dimension for the categories: {"variable": url}
    * One dimension for the subvariables: {"each": url}
- * multiple response: 
+ * multiple response:
    * One dimension for the selected categories, which means transforming the array from a set of categorical variables to a set of boolean (true/false) variables via:
      * {"function": "selected_array", "args": [{"variable": url}]}
      * Note that, because this input dimension is now a boolean, it will not add an output dimension. Instead, it will filter the calculation to only consider those entries (for each subvariable) which are true, which means they were selected categories. If you wish to have a separate output dimension including each distinct category (whether selected or not), do not apply the "selected_array" function; instead, just supply the variable reference as-is.
@@ -65,7 +65,7 @@ When applied to the dimensions we defined above, this second example might fill 
 | 15|13.1|0.0|9.2|
 | 25|72.4|4.2|55.5|
 | 35|8.9|9.1|0.4|
- 
+
 ...and produce a similar one for the "stddev" measure. You can think of multiple measures as producing "overlays" over the same dimensions. However, the actual output format (in JSON) is more compact in that the dimensions are not repeated; see Object Reference:Cube output for details.
 
 ZCL expressions are composable. If you need, for example, to find the mean of a categorical variable's "numeric_value" attributes, cast the variable to the "numeric" type class before including it as the cube argument:
@@ -110,7 +110,7 @@ then we might obtain a cube with the following output:
 |  3|23|4|17|
 
 Let's say we then want to overlay a comparison showing benchmarks for 88dd88 as follows:
- 
+
 |   | 1 | 2 | -1 |benchmarks|
 |---|---|---|----|----------|
 |1|15|12|9|20|
@@ -154,7 +154,7 @@ We POST the above to datasets/{id}/comparisons/ and can obtain the overlay outpu
 
 ### Multitables
 
-Analyses as described above are truly multidimensional; when you add another variable, the resulting cube obtains another dimension. Sometimes, however, you want to compare analyses side by side, typically looking at several (even *all*) variables against a common set of conditioning variables. For example, you might nominate "Gender", "Age", and "Race" as the conditioning variables and cross every other variable with those, in order to quickly discover common correlations. 
+Analyses as described above are truly multidimensional; when you add another variable, the resulting cube obtains another dimension. Sometimes, however, you want to compare analyses side by side, typically looking at several (even *all*) variables against a common set of conditioning variables. For example, you might nominate "Gender", "Age", and "Race" as the conditioning variables and cross every other variable with those, in order to quickly discover common correlations.
 
 Multi-table definitions mainly provide a `template` member that clients can use to construct a valid query with the variable(s) of interest.
 
@@ -383,20 +383,50 @@ The result will be an array of output cubes:
 ### Transforming analyses for presentation
 
 The `transform` member of an analysis specification (or multitable definition)
-provides a way to transform that dimension's results after computation. The 
+provides a way to transform that dimension's results after computation. The
 cube result dimension will always be derived from the `query` part of the
 request (`{variable: $variableId})`, `{function: f, args: [$variableId, …]}`, &c.
 
 ### Structure
 
-A `transform` is an array of target transforms for output-dimension elements. 
-Therefore to create a valid `transform` it is generally necessary to make a cube query, inspect
+A `transform` can contain `elements` or `categoriees`, which is an array of
+target transforms for output-dimension elements. Therefore to create a valid
+element/category `transform` it is generally necessary to make a cube query, inspect
 the result dimension, and proceed from there. For categorical and multiple response
 variables, elements may also be obtained from the variable entity.
 
 Transforms are designed for variables that are more stable than not, with element ids
 that inhere in the underlying elements, such as category or subvariable ids. Dynamic
 elements such as results of `bin`ning a numeric variable, may not be transformed.
+
+Transformations stored on a variable’s `view` are the default transforms for
+that variable. They may be shorter, alternate versions of category names, or
+contain insertions, described below.
+
+### Insertions
+
+In addition to transforming the categories or elements already defined on
+a cube ‘dimension’, it is possible to insert headings and subtotals to the
+result. These `insertions` are attached after an `anchor` element/category id.
+
+Insertions are processed **last**, after renaming, reordering, or sorting
+elements according to the elements/categories transform specification. They
+are “attached” to their anchor, always following it in the result; or, simply
+appended to the end of the result. If the result is sorted by some column’s
+value, it may make the most sense to choose to display insertions last, rather
+than inserting them into a result table because their values will not be
+considered when sorting the non-inserted elements themselves.
+
+An insertion is defined by an anchor and a name, which will be displayed
+alongside the names of categories/elements. It may also contain
+`"function": { "combine": []}`, where array arguments are the `id`s of elements
+to combine as “subtotals”.
+
+Use an anchor of `0` to indicate an insertion before other results. Any anchor
+other than `0` that does not match an id in the elements/categories will be
+included at the end of results.
+
+#### Examples
 
 Consider the following example result dimension:
 
@@ -408,49 +438,30 @@ Consider the following example result dimension:
 | Don’t know |         | 3  |
 | Not asked  | true    | 4  |
 
-A full `transform` can specify a new order of output elements, new names, 
-and in the future, bases for hypothesis testing, result sorting, and 
+An element transform can specify a new order of output elements, new names,
+and in the future, bases for hypothesis testing, result sorting, and
 aggregation of results. A `transform` has elements that look generally like
-the dimension's extent, with some optional properties: 
+the dimension's extent, with some optional properties:
 
-- **id**: (required) id or array of ids in the target row/column
-- **name**: name of new target column
+- **id**: (required) id of the target element/category
+- **name**: name of new target element/category
 - **sort**: `-1` or `1` indicating to sort results descending or ascending by this element
 - **compare**: `neq`, `leq`, `geq` indicating to test other rows/columns against
 the hypothesis that they are ≠, ≤, or ≥ to the present element
-- **combine**: `sum` (or `mean`?) — combine the indices in `[i]` to produce this target row/column
 - **hide**: suppress this element's row/column from displaying at all. Defaults to false for valid elements, true for missing, so that if an element is added, it will be present until a transform with `hide: true` is added to suppress it.
 
-A `transform` with object members can do lots of things. Suppose we want to put _Element C_ first, 
+A `transform` with object members can do lots of things. Suppose we want to put _Element C_ first,
 hide the _Don’t know_, and more compactly represent the result as just _C, A, B_:
 
 ```json
-transform: [
-    {'id': 2, 'name': 'C'},
-    {'id': 0, 'name': 'A'},
-    {'id': 1, 'name': 'B'},
-    {'id': 3, 'hide': true}
-]
+transform: {"categories": [
+    {"id": 2, "name": "C"},
+    {"id": 0, "name": "A"},
+    {"id": 1, "name": "B"},
+    {"id": 3, "hide": true}
+]}
 ```
 
-#### In the future: `combine`
-
-Suppose we want to combine results in _A_ and _B_ into _Others_:
-
-```json
-transform: [
-    {'id': 2, 'name': 'C'},
-    {'id': [0,1], 'name': 'Others', 'combine': 'sum'},
-    {'id': 3, 'hide': true}
-]
-```
-
-#### Order of transform operations
-
-1. Combine
-1. Name
-1. Order
-2. Hide
 
 #### Example transform in a saved analysis
 
@@ -481,8 +492,8 @@ In a saved analysis the transforms are an array in `display_settings` with the s
         }
     },
     "display_settings": {
-        "transform": [
-            {
+        "transform": {
+            "categories": [{
                 "id": "f007",
                 "value": "My preferred first item"
             },
@@ -493,15 +504,18 @@ In a saved analysis the transforms are an array in `display_settings` with the s
             {
                 "id": "c001",
                 "name": "Third response"
-            }
-        ]
+            }],
+            "insertions": [
+                {"anchor": "fee7", "name": "Feet", "combine": ["f00t", "fee7"]}
+            ]
+        }
     }
 }
 ```
 
 #### Example transform in a multitable template
 
-In a multitable, the `transform` is part of each dimension definition object in the `template` array. 
+In a multitable, the `transform` is part of each dimension definition object in the `template` array.
 
 ```json
 {
