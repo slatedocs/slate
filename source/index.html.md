@@ -134,7 +134,7 @@ Request:		{"phone": "1234567890",
               	 "dob_year": 1984,
               	 "income": "50000.00",
               	 "ssn": "342134125",
-              	 "privacy_policy_signature": pngBase64EncodedString}
+              	 "privacy_policy_signature": "pngBase64EncodedString"}
 Response:		{"uid": "2f0db9059d6a46c1a02e5361243e40b6"}
 Status: 		201
 ```
@@ -159,7 +159,7 @@ Request:		{"billing_address" : "151 W 25th St",
                	 "email" : "jd@cognical.com",
                	 "income" : "50000.00",
                	 "ssn" : "431135234"
-               	 "signature": pngBase64EncodedString}
+               	 "privacy_policy_signatur": "pngBase64EncodedString"}
 Response: 		{"uid" : "2f0db9059d6a46c1a02e5361243e40b6"}
 Status: 		202
 ```
