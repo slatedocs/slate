@@ -702,7 +702,7 @@ attribute pointing to the URL of the source dataset to use.
 
 ```json
 {
-  "element": "shoji:entity"
+  "element": "shoji:entity",
   "body": {
     "copy_from": "htp://beta.crunch.io/api/datasets/1234/"
   }
