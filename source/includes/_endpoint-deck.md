@@ -95,7 +95,7 @@ the decks' catalog.
     "index": {
         "https://beta.crunch.io/api/datasets/cc9161/decks/4fa25/": {
           "name": "Renamed deck",
-          "is_public": true,
+          "is_public": true
         }
     },
     "order": "https://beta.crunch.io/api/datasets/223fd4/decks/order/"
@@ -280,20 +280,71 @@ display | object | Stores settings used to load the analysis
 
 #### POST
 
-To create a new slide, POST an analysis to the slides catalog. The payload, described in the [below](#analyses) section, should be wrapped as a shoji:entity.
+To create a new slide, POST a slide body to the slides catalog. It is necessary
+to include at least one analysis on the new slide.
 
-On success, the server returns a 201 response with a Location header containing the URL of the newly created slide entity.
+The body should contain an `analyses` attribute that contains an array with
+one or many analyses bodies as described in the [below](#analyses) section,
+should be wrapped as a shoji:entity.
 
-Only a `query` field is required to create a new slide; other attributes are optional.
+On success, the server returns a 201 response with a Location header containing
+the URL of the newly created slide entity with its first analysis.
 
+```json
+{
+  "title": "New slide",
+  "subtitle": "Variable A and B",
+  "analyses": [
+    {
+      "query": {},
+      "query_environment": {},
+      "display_settings": {}
+    },
+    {
+      "query": {},
+      "query_environment": {},
+      "display_settings": {}
+    }
+  ]
+}
+```
+
+On each analysis, only a `query` field is required to create a new slide; other attributes are optional.
+
+Slide attributes:
+
+Name | Type | Description
+---- | ---- | -----------
+title | string | Optional title for the slide
+subtitle | string | Optional subtitle for the slide
+
+Analysis attributes:
 
 Name | Type | Description
 ---- | ---- | -----------
 query | object | Contains a valid analysis query, required
-title | string | Optional title for the slide
 subtitle | string | Optional subtitle for the slide
 display_settings | object | Contains a set of attribtues to be interpreted by the client to render and export the analysis
 query_environment | object | Contains the `weight` and `filter` applied during the analysis, they will be applied up on future evaluation/render/export
+
+##### Old format
+
+It is possible to create slides with one single initial analysis by POSTing an
+analysis body directly to the slides catalog. It will create a slide automatically
+with the new analysis on it:
+
+
+```json
+{
+  "title": "New slide",
+  "subtitle": "Variable A and B",
+  "query": {},
+  "query_environment": {},
+  "display_settings": {}
+}
+```
+
+
 
 #### PATCH
 
@@ -307,7 +358,11 @@ The only editable attributes with this method are:
 
 Other attributes should be considered read-only.
 
-Submitting invalid attributes or references to other slides results in a 400 error response.
+Submitting invalid attributes or references to other slides results in a 400
+error response.
+
+To edit the first or any of the slide's analyses query attributes it is necessary
+to PATCH the individual analysis entity.
 
 ### Entity
 
@@ -408,8 +463,86 @@ direction and decimal places -- can be saved to a _deck_, which can then be
 exported, or the analysis can be reloaded in whole in the application or even
 exported as a standalone embeddable result.
 
+### Catalog
+
+```
+/api/datasets/123/decks/123/slides/123/analyses/
+```
+
+#### POST
+
+To create multiple analyses on a slide, clients should POST analyses
+to the slide's analyses catalog.
+
+```json
+{
+    "query": {
+        "dimensions" : [],
+        "measures": {}
+    },
+    "query_environment": {
+        "filter": [
+            {"filter": "<url>"},
+            {"function": "expression", "args": [], "name": "(Optional)"}
+        ],
+        "weight": "url"
+    },
+    "display_settings": {
+        "decimalPlaces": {
+            "value": 0
+        },
+        "percentageDirection": {
+            "value": "colPct"
+        },
+        "vizType": {
+            "value": "table"
+        },
+        "countsOrPercents": {
+            "value": "percent"
+        },
+        "uiView": {
+            "value": "expanded"
+        }
+    }
+}
+```
+
+The server will return a 201 response with the new slide created.
+In case of invalid analysis attributes, a 400 response will be returned
+indicating the problems.
+
+#### PATCH
+
+It is possible to delete many analyses at once from the catalog sending
+`null` as their tuple. It is not possible to delete all the analysis
+from a slide. For that it is necessary to delete the slide itself.
+
+```json
+{
+    "/api/datasets/123/decks/123/slides/123/analyses/1/": null,
+    "/api/datasets/123/decks/123/slides/123/analyses/2/": {}
+}
+```
+
+A 204 response will be returned on success.
+
+### Order
+
+As analyses get added to a slide, they will be stored on a
+`shoji:order` resource.
+
+Like other order resources, it will expose a `graph` attribute that contains
+the list of created analyses having new ones added at the end.
+
+If an incomplete set of analyses is sent to the graph, the missing analyses
+will be added in arbitrary order.
+
+This is a flat order and does not allow nesting.
+
+### Entity
+
 An analysis is defined by a _query_, _query environment_, and _display settings_.
-To save an analysis, `POST` these to a deck.
+To save an analysis, `POST` these to a deck as a new slide.
 
 <aside class="notice">
 Analysis queries are described in detail in the
@@ -451,8 +584,8 @@ Display settings should be objects with a `value` member.
             "value": "percent"
         },
         "uiView": {
-        	"value": "expanded"
-	    }
+            "value": "expanded"
+        }
     }
 }
 ```
@@ -464,7 +597,7 @@ query_environment | An object with a `weight` and `filters` to be used for rende
 display_settings | An object containing client specific instructions on how to recreate the analysis
 
 
-### PATCH
+#### PATCH
 
 To edit an analysis, PATCH its URL with a shoji:entity.
 
@@ -476,7 +609,7 @@ The editable attributes are:
 
 Providing invalid values for those attributes or extra attributes will be rejected with a 400 response from the server.
 
-### DELETE
+#### DELETE
 
 It is possible to delete analyses from a slide as long as there is always
 one analysis left.
