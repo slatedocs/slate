@@ -39,7 +39,7 @@ curl -X GET https://sandbox.zibby.com/api/v3/application/2398798 \
 ```
 
 Zibby uses Oauth 2.0 to authenticate all requests
-to the API. 
+to the API.
 
 During onboarding with Zibby, you will be provided an
 access token that can be used to access protected
@@ -66,7 +66,7 @@ simultaneously. Data is never shared across environments.
 
 ###Test Endpoint:
 
-https://sandbox.zibby.com/api/v3 
+https://sandbox.zibby.com/api/v3
 
 ###Live Endpoint:
 
@@ -116,17 +116,17 @@ URL:			/api/v3/application/
 Method:			POST
 Request:		{"phone": "1234567890",
            		 "billing_first_name": "John",
-              	 "billing_last_name": "Doe", 
+              	 "billing_last_name": "Doe",
               	 "email": "jdoe@jtest.com",
-              	 "billing_address": "14 28th Ave."
-              	 "billing_address2": ""
-              	 "billing_city": "New York"
-              	 "billing_state": "NY"
-              	 "billing_zip": "11102"
-              	 "dob_day": 15
-              	 "dob_month": 7
-              	 "dob_year": 1984
-              	 "income": "50000.00"
+              	 "billing_address": "14 28th Ave.",
+              	 "billing_address2": "",
+              	 "billing_city": "New York",
+              	 "billing_state": "NY",
+              	 "billing_zip": "11102",
+              	 "dob_day": 15,
+              	 "dob_month": 7,
+              	 "dob_year": 1984,
+              	 "income": "50000.00",
               	 "ssn": "342134125"}
 Response:		{"uid": "2f0db9059d6a46c1a02e5361243e40b6"}
 Status: 		201
@@ -139,21 +139,21 @@ To create the Zibby application for a consumer, the customer’s application dat
 ```script
 URL: 			/api/v3/application/<uid>
 Method: 		PATCH
-Request:		{"billing_address" : "151 W 25th St"
-               	 "billing_address2" : "9th Fl"
-               	 "billing_city" : "NEW YORK"
-               	 "billing_first_name" : "John"
-               	 "billing_last_name" : "Doe"
-               	 "billing_state" : "NY"
-               	 "billing_zip" : "10010"
-               	 "dob_day" : 11
-               	 "dob_month" : 6
-               	 "dob_year" : 1986
-               	 "email" : "jd@cognical.com"
-               	 "income" : "50000.00"
+Request:		{"billing_address" : "151 W 25th St",
+               	 "billing_address2" : "9th Fl",
+               	 "billing_city" : "NEW YORK",
+               	 "billing_first_name" : "John",
+               	 "billing_last_name" : "Doe",
+               	 "billing_state" : "NY",
+               	 "billing_zip" : "10010",
+               	 "dob_day" : 11,
+               	 "dob_month" : 6,
+               	 "dob_year" : 1986,
+               	 "email" : "jd@cognical.com",
+               	 "income" : "50000.00",
                	 "ssn" : "431135234" }
 Response: 		{"uid" : "2f0db9059d6a46c1a02e5361243e40b6"}
-Status: 		202 
+Status: 		202
 ```
 The Zibby API Supports a multistep process for building the application once you have the uid.
 
@@ -284,7 +284,7 @@ To begin the checkout, Zibby requires that the consumer verify their phone numbe
 URL:			/api/v3/user/auth/verify/
 Method:			POST
 Request:		{"phone": "1234567890", "code": "123456", "last_four": "6789"}
-Response:		{"verified": true, "approval_limit": "2000", "available_limt": "1500"}
+Response:		{"verified": true, "approval_limit": "2000", "available_limit": "1500"}
 Status:			202
 ```
 
@@ -325,24 +325,24 @@ Request:	{"state":"NY","items":
  			 "delivery_method":"delivery",
  		 	 "shipping":10,
  			 "zipcode":"10010"}
-Response:	{"delivery_method": "delivery", 
- 			 "processing_fee": 0, 
- 			 "shipping": "10", 
- 			 "shipping_tax": "0.89",  
- 			 "items": [{"item_code": "item make", 
- 			 "item_name": "item description", 
- 			 "item_type": "new", 
- 			 "quantity": 1, 
- 			 "rent": "62.50", 
- 			 "retailer_price": "500", 
- 			 "sales_tax": "5.55", 
+Response:	{"delivery_method": "delivery",
+ 			 "processing_fee": 0,
+ 			 "shipping": "10",
+ 			 "shipping_tax": "0.89",
+ 			 "items": [{"item_code": "item make",
+ 			 "item_name": "item description",
+ 			 "item_type": "new",
+ 			 "quantity": 1,
+ 			 "rent": "62.50",
+ 			 "retailer_price": "500",
+ 			 "sales_tax": "5.55",
  			 "warranty": {"code": "warranty sku",
- 						  "monthly_amount": "5.56", 
- 						  "monthly_tax": "0.49", 
- 						  "name": "warranty name", 
- 						  "price": "100"}}], 
- 			 "term": 18, 
- 			 "monthly_total": "67.50", 
+ 						  "monthly_amount": "5.56",
+ 						  "monthly_tax": "0.49",
+ 						  "name": "warranty name",
+ 						  "price": "100"}}],
+ 			 "term": 18,
+ 			 "monthly_total": "67.50",
 			 "due_at_checkout": "84.99"}
 ```
 
@@ -389,7 +389,7 @@ Request:	{"customer":{
 					"shipping":{"sku":"000HD999000",
 								"display_name":"HOME DELIVERY CHARGE",
 								"unit_price":"5.0",
-								"quantity":"1"}	
+								"quantity":"1"}
 								},
 					{"display_name":"AA Batteries",
 					 "sku":"AA5234",
@@ -401,29 +401,29 @@ Request:	{"customer":{
 					 				"discounts":[{"discount_name":"Birthday Discount",
 					 							  "discount_amount":50},
 					 							  {"discount_name":"Towel Discount","discount_amount":50}]},
-					 				"urls":{"return":"https://teststore.zibby.com/plugin/invoice.html","cancel":"https://teststore.zibby.com/plugin/checkout.html"},"phone":"6073393582","code":"258446","new_address":false}
-Response: 	{"delivery_method": "delivery", 
- 			 "processing_fee": 0, 
- 			 "shipping": "10", 
- 			 "shipping_tax": "0.89",  
- 			 "items": [{"item_code": "item make", 
- 			 "item_name": "item description", 
- 			 "item_type": "new", 
- 			 "quantity": 1, 
- 			 "rent": "62.50", 
- 			 "retailer_price": "500", 
- 			 "sales_tax": "5.55", 
+					 				"urls":{"return":"https://yoursite.com/return","cancel":"https://yoursite.com/cancel"},"phone":"6073393582","code":"258446","new_address":false}
+Response: 	{"delivery_method": "delivery",
+ 			 "processing_fee": 0,
+ 			 "shipping": "10",
+ 			 "shipping_tax": "0.89",
+ 			 "items": [{"item_code": "item make",
+ 			 "item_name": "item description",
+ 			 "item_type": "new",
+ 			 "quantity": 1,
+ 			 "rent": "62.50",
+ 			 "retailer_price": "500",
+ 			 "sales_tax": "5.55",
  			 "shipping": {"sku":"000HD999000",
 								"display_name":"HOME DELIVERY CHARGE",
 								"unit_price":"5.0",
-								"quantity":"1"},	 
+								"quantity":"1"},
  			 "warranty": {"code": "warranty sku",
- 						  "monthly_amount": "5.56", 
- 						  "monthly_tax": "0.49", 
- 						  "name": "warranty name", 
- 						  "price": "100"}}], 
- 			 "term": 18, 
- 			 "monthly_total": "67.50", 
+ 						  "monthly_amount": "5.56",
+ 						  "monthly_tax": "0.49",
+ 						  "name": "warranty name",
+ 						  "price": "100"}}],
+ 			 "term": 18,
+ 			 "monthly_total": "67.50",
 			 "due_at_checkout": "84.99",
 			 "uid": "113c8c68ab9a4b7ba999af018574ee2d"}
 ```
@@ -434,7 +434,7 @@ To begin the checkout, we must open the checkout by submitting the full contents
 
 Once an order has been originated, Zibby provides certain API endpoints to allow a retailer to manipulate the order. These enpoints are accessed by means of a private authentication token with which Zibby provides the retailer.
 
-##Cancel Order 
+##Cancel Order
 
 ```script
 URL: 		/api/v3/application/<zibby_id>/cancel_order
@@ -453,14 +453,14 @@ Request:	{"items": [{"sku": "285868","display_name": "BATTERY","unit_price": 4.0
 Return: 	{"success": true}
 ```
 
-The Zibby API allows retailers to directly cancel individual items within an originated order. 
+The Zibby API allows retailers to directly cancel individual items within an originated order.
 
 ##Confirm Order
 
 ```script
 URL: 		/api/v3/application/<zibby_id>/confirm_order
 Method: 	POST
-Request: 	{"order_id": "abcd"} 
+Request: 	{"order_id": "abcd"}
 Return: 	{"success": true}
 ```
 
