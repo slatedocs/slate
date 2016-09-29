@@ -8,6 +8,7 @@ toc_footers:
 
 
 includes:
+ 
 
 search: true
 ---
@@ -92,6 +93,11 @@ Status:			202
 To begin an application, Zibby requires that the consumer verify their phone number. This is done by sending an SMS message to the input number.
 
 
+Customers will need to review and accept the privacy policy before proceeding. The privacy policy can be viewed here:
+
+URL: https://www.zibby.com/privacy-policy
+
+
 ##Submit Verification Code
 
 
@@ -127,7 +133,8 @@ Request:		{"phone": "1234567890",
               	 "dob_month": 7,
               	 "dob_year": 1984,
               	 "income": "50000.00",
-              	 "ssn": "342134125"}
+              	 "ssn": "342134125",
+              	 "privacy_policy_signature": pngBase64EncodedString}
 Response:		{"uid": "2f0db9059d6a46c1a02e5361243e40b6"}
 Status: 		201
 ```
@@ -151,7 +158,8 @@ Request:		{"billing_address" : "151 W 25th St",
                	 "dob_year" : 1986,
                	 "email" : "jd@cognical.com",
                	 "income" : "50000.00",
-               	 "ssn" : "431135234" }
+               	 "ssn" : "431135234"
+               	 "signature": pngBase64EncodedString}
 Response: 		{"uid" : "2f0db9059d6a46c1a02e5361243e40b6"}
 Status: 		202
 ```
@@ -174,6 +182,16 @@ Response: 		{"approved": true,
 Once the application has been built successfully, the final step in the Zibby approval process is to commit it for preapproval.
 
 At this point, Zibby will make a full approval decision in real-time. If approved, we will return the approval amount in the response.
+
+
+##Error Example
+
+```script
+Response: {"error": {"ssn": ["Invalid Ssn"]}}
+Status: 400
+```
+
+When an error is encountered the system will return this response.
 
 #Zibby Plugin Checkout
 
