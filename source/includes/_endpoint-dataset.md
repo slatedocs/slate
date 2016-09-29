@@ -851,305 +851,6 @@ PATCH the "expression" attribute to modify. An empty "expression" object, like
 
 ##### Stream
 
-##### Decks
-
-`/datasets/{id}/decks/`
-
-Decks allow you to store [saved analyses](#saving-analyses) as slides on them
-for exporting or future reference.
-
-Decks are personal per dataset and each dataset gets one by default but it is
-possible to create more as necessary by POSTing to the decks catalog. They
-only need a name.
-
-###### GET
-
-A GET request on the catalog endpoint will return all the decks available for
-this dataset for the authenticated user, this includes decks created by
-the user and public decks shared for this dataset.
-
-```json
-{
-    "element": "shoji:catalog",
-    "self": "https://beta.crunch.io/api/datasets/223fd4/decks/",
-    "index": {
-        "https://beta.crunch.io/api/datasets/cc9161/decks/4fa25/": {
-          "name": "my new deck",
-          "creation_time": "1986-11-26T12:05:00",
-          "id": "4fa25",
-          "is_public": false,
-          "owner_id": "https://beta.crunch.io/api/users/abcd3/",
-          "owner_name": "Real Person"
-        },
-        "https://beta.crunch.io/api/datasets/cc9161/decks/2b53e/": {
-          "name": "Default deck",
-          "creation_time": "1987-10-15T11:45:00",
-          "id": "2b53e",
-          "is_public": true,
-          "owner_id": "https://beta.crunch.io/api/users/4cba5/",
-          "owner_name": "Other Person"
-        }
-    },
-    "order": "https://beta.crunch.io/api/datasets/223fd4/decks/order/"
-}
-
-```
-
-###### POST
-
-POST will create a new decks for this dataset. It only needs to have
-identifiable name.
-
-```json
-{
-    "element": "shoji:entity",
-    "self": "https://beta.crunch.io/api/datasets/223fd4/decks/",
-    "body": {
-        "name": "my new deck"
-    }
-}
-```
-
-```http
-HTTP/1.1 201 Created
-Location: https://beta.crunch.io/api/datasets/223fd4/decks/2b3c5e/
-
-```
-
-###### Deck entity
-
-`/datasets/{id}/decks/{id}/`
-
-####### GET
-
-You can GET on the deck entity to see all its attributes:
-
-```json
-{
-    "element": "shoji:entity",
-    "self": "https://beta.crunch.io/api/datasets/223fd4/decks/223fd4/",
-    "body": {
-        "name": "Presentation deck",
-        "id": "223fd4",
-        "creation_time": "1987-10-15T11:45:00",
-        "description": "Explanation about the deck",
-        "id": "223fd4",
-        "is_public": false,
-        "owner_id": "https://beta.crunch.io/api/users/abcd3/",
-        "owner_name": "Real Person"
-    }
-}
-```
-
-####### PATCH
-
-In order to change the name or description of a deck you can PATCH a
-shoji:entity to it. The server will return a 204 response.
-
-```json
-{
-    "element": "shoji:entity",
-    "self": "https://beta.crunch.io/api/datasets/223fd4/decks/223fd4/",
-    "body": {
-        "name": "Presentation deck",
-        "id": "223fd4",
-        "creation_time": "1987-10-15T11:45:00",
-        "description": "Explanation about the deck"
-    }
-}
-```
-```http
-HTTP/1.1 204 No Content
-```
-
-Only the following attributes are editable:
-
- * name
- * description
- * is_public
-
-The `is_public` attribute is only editable if the authenticated user is the
-owner of the deck.
-
-
-###### Decks order
-
-`/datasets/{id}/decks/order/`
-
-The Deck order allows to the user to customize the order in which they will be
-displayed by an API client.
-
-The deck order will always contain all existing decks that are visible to the
-authenticated user, private and public decks.
-
-
-####### GET
-
-Will return a (Shoji Order)[#shoji-order] payload.
-
-```json
-{
-  "element": "shoji:order",
-  "self": "https://beta.crunch.io/api/datasets/223fd4/decks/order/",
-  "graph": [
-    "https://beta.crunch.io/api/datasets/223fd4/decks/1/",
-    "https://beta.crunch.io/api/datasets/223fd4/decks/2/",
-    "https://beta.crunch.io/api/datasets/223fd4/decks/3/"
-  ]
-}
-
-```
-
-####### PATCH
-
-It is necessary to do a PATCH request to change the order of the decks. On success the server will return a 204 response.
-
-If the payload contains only a subset of the existing decks. The unmentioned decks will be always appended at the bottom of the top level graph in arbitrary order.
-
-```json
-{
-  "element": "shoji:order",
-  "self": "https://beta.crunch.io/api/datasets/223fd4/decks/order/",
-  "graph": [
-    "https://beta.crunch.io/api/datasets/223fd4/decks/1/",
-    "https://beta.crunch.io/api/datasets/223fd4/decks/3/"
-  ]
-}
-```
-
-Including invalid URLs or URLs to decks that are not present in the catalog will return a 400 response from the server.
-
-###### Slides
-
-`/datasets/223fd4/decks/slides/`
-
-Each deck will contain a list of slides for each of its saved analyses.
-
-
-####### GET
-
-Returns a `shoji:catalog` with the slides for this deck.
-
-```json
-
-{
-    "element": "shoji:catalog",
-    "self": "/api/datasets/123/decks/123/slides/",
-    "orders": {
-        "flat": "/api/datasets/123/decks/123/slides/flat/"
-    },
-    "specification": "https://beta.crunch.io/api/specifications/slides/",
-    "description": "A catalog of the Slides in this Deck",
-    "index": {
-        "/api/datasets/123/decks/123/slides/123/": {
-            "analysis_url": "/api/datasets/123/decks/123/slides/123/analyses/123/",
-            "subtitle": "z",
-            "display": {
-                "value": "table"
-            },
-            "title": "slide 1"
-        },
-        "/api/datasets/123/decks/123/slides/456/": {
-            "analysis_url": "/api/datasets/123/decks/123/slides/456/",
-            "subtitle": "",
-            "display": {
-                "value": "table"
-            },
-            "title": "slide 2"
-        }
-    },
-    "template": "{\"query\": {\"measures\": \"Object with keyed measures functions\", \"dimensions\": \"Array of variable references\", \"weight\": \"Optional weight variable URL\"}, \"display_settings\": {}, \"query_environment\": {\"filter\": \"Array of filter urls\"}}"
-}
-
-```
-
-####### POST
-
-To create a new slide an analysis has to be posted to the catalog. The payload
-is described in the [saved analyses](#saving-analyses) section.
-
-
-###### Slide Entity
-
-`/datasets/223fd4/decks/slides/a126ce/`
-
-
-Each slide in the Slide Catalog contains reference to its analysis.
-
-####### GET
-
-```json
-{
-    "element": "shoji:entity",
-    "self": "/api/datasets/123/decks/123/slides/123/",
-    "catalogs": {
-        "analyses": "/api/datasets/123/decks/123/slides/123/analyses/"
-    },
-    "description": "Returns the detail information for a given slide",
-    "body": {
-        "deck_id": "123",
-        "subtitle": "z",
-        "title": "slide 1",
-        "analysis_url": "/api/datasets/123/decks/123/slides/123/analyses/123/",
-        "display": {
-            "value": "table"
-        },
-        "id": "123"
-    }
-}
-```
-
-####### DELETE
-
-Call DELETE on the Slide entity endpoint to delete this slide and its analyses.
-
-
-###### Slides Order
-
-`/datasets/223fd4/decks/slides/flat/`
-
-The owner of the deck can pick the order of the slides on it. Unlike other
-`shoji:order` resources, this order does not allow grouping or nesting so it
-will always be a flat list of slide URLs.
-
-
-####### GET
-
-Will return the list of all the slides in the deck.
-
-```json
-{
-    "element": "shoji:order",
-    "self": "/api/datasets/123/decks/123/slides/flat/",
-    "description": "Order of the slides on this deck",
-    "graph": [
-        "/api/datasets/123/decks/123/slides/123/",
-        "/api/datasets/123/decks/123/slides/456/"
-    ]
-}
-```
-
-####### PATCH
-
-To make changes to the order, a client should PATCH the full `shoji:order`
-resource to the endpoint with the new order on its `graph` attribute.
-
-Any slide not mentioned on the payload will be added at the end of the graph
-in arbitrary order.
-
-
-```json
-{
-    "element": "shoji:order",
-    "self": "/api/datasets/123/decks/123/slides/flat/",
-    "description": "Order of the slides on this deck",
-    "graph": [
-        "/api/datasets/123/decks/123/slides/123/",
-        "/api/datasets/123/decks/123/slides/456/"
-    ]
-}
-```
-
 ##### Settings
 
 `/datasets/{id}/settings/`
@@ -1325,24 +1026,50 @@ success, this method returns no body and a 204 response code.
 
 #### Catalogs
 
+##### Actions
+
 ##### Batches
+
+`/datasets/{dataset_id}/batches/`
+
+See [Batches](#batches) and the feature guides for [importing](#importing-data) and [appending](#appending-data).
+
+##### Decks
+
+`/datasets/{dataset_id}/decks/`
+
+See [Decks](#decks).
+
+##### Comparisons
 
 ##### Filters
 
-##### Variables
+`/datasets/{dataset_id}/filters/`
 
-##### Actions
+See [Filters](#filters).
 
-##### Savepoints
-
-##### Weight variables
+##### Forks
 
 ##### Joins
 
 ##### Multitables
 
-##### Comparisons
-
-##### Forks
-
 ##### Permissions
+
+`/datasets/{dataset_id}/permissions/`
+
+See [Permissions](#permissions).
+
+##### Savepoints
+
+`/datasets/{dataset_id}/savepoints/`
+
+See [Versions](#versions).
+
+##### Variables
+
+`/datasets/{dataset_id}/variables/`
+
+See [Variables](#variables).
+
+##### Weight variables
