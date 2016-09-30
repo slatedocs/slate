@@ -122,8 +122,7 @@ The task object represents a single task that you create with Scale and is compl
     ]
   },
   "response": {
-    "category": "big",
-    "status_code": 200
+    "category": "big"
   }
 }
 ```
@@ -884,8 +883,7 @@ The `annotations` field will contain an array of annotations. Each annotation wi
   "task": {
     "completed_at": "2016-06-23T21:54:44.904Z",
     "response": {
-      "category": "big",
-      "status_code": "200"
+      "category": "big"
     },
     "created_at": "2016-06-23T20:08:31.573Z",
     "callback_url": "http://www.example.com/callback",
@@ -904,7 +902,6 @@ The `annotations` field will contain an array of annotations. Each annotation wi
     "task_id": "576c41bf13e36b0600b02b34"
   },
   "response": {
-    "status_code": "200",
     "category": "red"
   },
   "task_id": "576c41bf13e36b0600b02b34"
@@ -996,8 +993,7 @@ request.get('https://api.scaleapi.com/v1/task/' + task_id + '/', {
     ]
   },
   "response": {
-    "category": "big",
-    "status_code": 200
+    "category": "big"
   }
 }
 ```
@@ -1157,7 +1153,6 @@ request.get('https://api.scaleapi.com/v1/tasks/', {
     },
     "completed_at": "2016-06-23T19:36:23.084Z",
     "response": {
-      "status_code": 200,
       "category": "small"
     },
     "task_id": "576b998b4628d1bfaed7d3a4"
@@ -1179,7 +1174,6 @@ request.get('https://api.scaleapi.com/v1/tasks/', {
     },
     "completed_at": "2016-06-23T09:09:10.108Z",
     "response": {
-      "status_code": 200,
       "category": "big"
     },
     "task_id": "576ba301eed30241b0e9bbf7"
