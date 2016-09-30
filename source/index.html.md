@@ -3,6 +3,7 @@ title: iPag Documentations
 
 language_tabs:
   - php: PHP
+  - html: HTML
 
 toc_footers:
   - <a href='http://www.ipag.com.br'>iPag &copy; 2016</a>

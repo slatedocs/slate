@@ -2,9 +2,13 @@
 
 HTMLs de Exemplos
 
+Endpoint Produção: www.librepag.com.br
+
+Endpoint Sandbox: sandbox.ipag.com.br
+
 ## Submeter pagamento
 
-**Endpoint:** www.librepag.com.br/pagamento
+**Endpoint:** /pagamento
 
 ```html
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -56,13 +60,68 @@ HTMLs de Exemplos
 </html>
 ```
 
+```php
+<?php
+//Exemplo de Submissão via cURL
+//URL do iPag
+$url = 'https://www.librepag.com.br/pagamento';
+// $url = 'http://sandbox.ipag.com.br/pagamento';
+
+$fields = array(
+      'identificacao' => urlencode('SEU LOGIN'),
+      'pedido' => urlencode('10000000'),
+      'operacao' => urlencode('Pagamento'),
+      'url_retorno' => urlencode('http://minhaloja.com'),
+      'retorno_tipo' => urlencode('xml'),
+      'valor' => urlencode('1.00'),
+      'nome' => urlencode('teste ipag'),
+      'email' => urlencode('ipag@teste.com.br'),
+      'doc' => urlencode('11111111100'),
+      'fone' => urlencode('1839161627'),
+      'endereco' => urlencode('Rua Teste'),
+      'numero_endereco' => urlencode('1000'),
+      'complemento' => urlencode(''),
+      'bairro' => urlencode('Bairro Teste'),
+      'cidade' => urlencode('São Paulo'),
+      'estado' => urlencode('SP'),
+      'pais' => urlencode('Brasil'),
+      'cep'=> urlencode('01156060'),
+      'metodo'=> urlencode('visa'),
+      'parcelas'=> urlencode('1'),
+      'nome_cartao'=> urlencode('JOSE TESTE'),
+      'num_cartao'=> urlencode('4066553613548107'),
+      'cvv_cartao'=> urlencode('123'),
+      'mes_cartao'=> urlencode('10'),
+      'ano_cartao'=> urlencode('17')
+);
+$fields_string ='';
+foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+rtrim($fields_string, '&');
+
+$ch = curl_init();
+curl_setopt( $ch, CURLOPT_URL, $url );
+curl_setopt( $ch, CURLOPT_POST, true );
+curl_setopt( $ch, CURLOPT_POSTFIELDS, $fields_string );
+curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+curl_setopt($ch, CURLOPT_HEADER, true);
+curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt( $ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)' );
+curl_setopt( $ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1 );
+
+$result = curl_exec( $ch );
+
+echo $result;
+
+curl_close( $ch );
+?>
+```
 <aside class="notice">
     Lembre, isto é apenas um exemplo para fazer testes de submissão de pagamento.
 </aside>
 
 ## Consultar Pagamento
 
-**Endpoint:** www.librepag.com.br/consulta
+**Endpoint:** /consulta
 
 ```html
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -95,12 +154,50 @@ HTMLs de Exemplos
 </body>
 </html>
 ```
+
+```php
+<?php
+//Exemplo de Consulta via cURL
+//URL do iPag
+$url = 'https://www.librepag.com.br/consulta';
+// $url = 'http://sandbox.ipag.com.br/consulta';
+
+$fields = array(
+      'identificacao' => urlencode('SEU LOGIN'),
+      'transId' => urlencode('100000'),
+      'numPedido' => urlencode('10000000'),
+      // 'url_retorno' => urlencode('https://minhaurl.com'),
+      'retorno_tipo' => urlencode('xml')
+);
+$fields_string ='';
+foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+rtrim($fields_string, '&');
+
+$ch = curl_init();
+curl_setopt( $ch, CURLOPT_URL, $url );
+curl_setopt( $ch, CURLOPT_POST, true );
+curl_setopt( $ch, CURLOPT_POSTFIELDS, $fields_string );
+curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+curl_setopt($ch, CURLOPT_HEADER, true);
+curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt( $ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)' );
+curl_setopt( $ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1 );
+
+$result = curl_exec( $ch );
+
+echo $result;
+
+curl_close( $ch );
+?>
+```
+
 Parâmetro | size | type | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
 identificacao | 60 | string | sim | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
-transId | 255 | string | não | Código identificação da transação.
-numPedido | 20 | string | não | Código identificação do pedido.
-url_retorno | 255 | string | obrigatório | Pode ser `XML` ou uma Url da sua loja.
+transId | 255 | string | sim/não | Código identificação da transação.
+numPedido | 20 | string | não/sim | Código identificação do pedido.
+retorno_tipo | 20 | string | não | `xml`
+url_retorno | 255 | string | não | Url da sua loja.
 
 <aside class="notice">
     Deve ser enviado pelo menos um dos campos: `transId` ou `numPedido`
@@ -112,7 +209,7 @@ url_retorno | 255 | string | obrigatório | Pode ser `XML` ou uma Url da sua lo
 
 ## Capturar Pagamento
 
-**Endpoint:** www.librepag.com.br/captura
+**Endpoint:** /captura
 
 ```html
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -144,11 +241,46 @@ url_retorno | 255 | string | obrigatório | Pode ser `XML` ou uma Url da sua lo
 </body>
 </html>
 ```
+
+```php
+<?php
+//Exemplo de Captura via cURL
+//URL do iPag
+$url = 'https://www.librepag.com.br/captura';
+// $url = 'http://sandbox.ipag.com.br/captura';
+
+$fields = array(
+      'identificacao' => urlencode('SEU LOGIN'),
+      'transId' => urlencode('100000'),
+      'url_retorno' => urlencode('https://minhaurl.com') // ou 'xml'
+);
+$fields_string ='';
+foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+rtrim($fields_string, '&');
+
+$ch = curl_init();
+curl_setopt( $ch, CURLOPT_URL, $url );
+curl_setopt( $ch, CURLOPT_POST, true );
+curl_setopt( $ch, CURLOPT_POSTFIELDS, $fields_string );
+curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+curl_setopt($ch, CURLOPT_HEADER, true);
+curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt( $ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)' );
+curl_setopt( $ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1 );
+
+$result = curl_exec( $ch );
+
+echo $result;
+
+curl_close( $ch );
+?>
+```
+
 Parâmetro | size | type | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
-identificacao | 60 | string | obrigatório | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
-transId | 255 | string | obrigatório | Código identificação da transação.
-url_retorno | 255 | string | obrigatório | Pode ser XML, ou uma Url da sua loja.
+identificacao | 60 | string | sim | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
+transId | 255 | string | sim | Código identificação da transação.
+url_retorno | 255 | string | sim |`xml` ou  Url da sua loja.
 
 <aside class="notice">
     Lembre, isto é apenas um exemplo para fazer testes de captura de pagamento.
@@ -156,7 +288,7 @@ url_retorno | 255 | string | obrigatório | Pode ser XML, ou uma Url da sua loj
 
 ## Cancelar Pagamento
 
-**Endpoint:** www.librepag.com.br/cancela
+**Endpoint:** /cancela
 
 ```html
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -188,11 +320,46 @@ url_retorno | 255 | string | obrigatório | Pode ser XML, ou uma Url da sua loj
 </body>
 </html>
 ```
+
+```php
+<?php
+//Exemplo de Cancelamento via cURL
+//URL do iPag
+$url = 'https://www.librepag.com.br/cancela';
+// $url = 'http://sandbox.ipag.com.br/cancela';
+
+$fields = array(
+      'identificacao' => urlencode('SEU LOGIN'),
+      'transId' => urlencode('100000'),
+      'url_retorno' => urlencode('https://minhaurl.com') // ou 'xml
+);
+$fields_string ='';
+foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+rtrim($fields_string, '&');
+
+$ch = curl_init();
+curl_setopt( $ch, CURLOPT_URL, $url );
+curl_setopt( $ch, CURLOPT_POST, true );
+curl_setopt( $ch, CURLOPT_POSTFIELDS, $fields_string );
+curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+curl_setopt($ch, CURLOPT_HEADER, true);
+curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt( $ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)' );
+curl_setopt( $ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1 );
+
+$result = curl_exec( $ch );
+
+echo $result;
+
+curl_close( $ch );
+?>
+```
+
 Parâmetro | size | type | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
 identificacao | 60 | string | obrigatório | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
 transId | 255 | string | obrigatório | Código identificação da transação.
-url_retorno | 255 | string | obrigatório | Pode ser XML, ou uma Url da sua loja.
+url_retorno | 255 | string | obrigatório | Pode ser `xml` ou uma Url da sua loja.
 
 <aside class="notice">
     Lembre, isto é apenas um exemplo para fazer testes de cancelamento de pagamento.
