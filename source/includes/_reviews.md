@@ -53,7 +53,7 @@ if ($batchId) {
     "job-id": 318
 }
 ```
- 
+
 > Failure (400 Bad Request)
 
 ```json
@@ -151,6 +151,175 @@ if ($batchId) {
 }
 ```
  
+ > Success (200 Ok)
+
+```json
+{
+  "success": true,
+  "results": {
+    "LdFetchProfileUrl": [
+      {
+        "results": [
+          {
+            "url": "https://www.google.com/search?q=%22%5B%22Pick+A+Bagel%22%5D%22+%2210021%22&gws_rd=cr&gl=us"
+          }
+        ],
+        "payload": {
+          "business-names": "[\"Pick A Bagel\"]",
+          "country": "USA",
+          "city": "Manhattan",
+          "postcode": "10021",
+          "telephone": "(212) 717-4668",
+          "directory": "google",
+          "street-address": "1475 2nd Avenue",
+          "api-key": "1a08b2e1fd07fa4150f91b80636906a9a29b8e47",
+          "dependent-job": {
+            "name": "LdFetchReviews",
+            "payload": {
+              "profile-url": null,
+              "country": "USA",
+              "date-from": null,
+              "reviews-limit": 250,
+              "sort-type": "date",
+              "api-key": "1a08b2e1fd07fa4150f91b80636906a9a29b8e47"
+            }
+          }
+        },
+        "status": "Completed",
+        "job-id": 549612293
+      },
+      {
+        "results": [
+          {
+            "url": "http://www.yelp.com/biz/pick-a-bagel-new-york-5"
+          }
+        ],
+        "payload": {
+          "business-names": "[\"Pick A Bagel\"]",
+          "country": "USA",
+          "city": "Manhattan",
+          "postcode": "10021",
+          "telephone": "(212) 717-4668",
+          "directory": "yelp",
+          "street-address": "1475 2nd Avenue",
+          "api-key": "1a08b2e1fd07fa4150f91b80636906a9a29b8e47",
+          "dependent-job": {
+            "name": "LdFetchReviews",
+            "payload": {
+              "profile-url": null,
+              "country": "USA",
+              "date-from": null,
+              "reviews-limit": 250,
+              "sort-type": "date",
+              "api-key": "1a08b2e1fd07fa4150f91b80636906a9a29b8e47"
+            }
+          }
+        },
+        "status": "Completed",
+        "job-id": 549612304
+      }
+     
+    ],
+    "LdFetchReviews": [
+      {
+        "results": [
+          {
+            "reviews": [
+         
+              {
+                "rating": 4,
+                "author": "Jeremy Dayan",
+                "timestamp": "2016-07-30",
+                "text": "Nice place to have breakfast in. Relatively good prices and fast service.",
+                "id": "0c64b06e4c8ddaa0c6be4ba88df17f7e13cd95a0"
+              },
+              
+              {
+                "rating": 4,
+                "author": "Alain Schmid",
+                "timestamp": "2016-05-30",
+                "text": "Choose your Bagle and cream cheese from a broad range of different sets and ingredients.",
+                "id": "92d26048a7e297ef8911c21e35479fd2cd267d83"
+              },
+              {
+                "rating": 4,
+                "author": "David van der Loo",
+                "timestamp": "2016-05-30",
+                "text": "Okay for morning breakfast take-away.",
+                "id": "1d5abf2447d6d78b467fae216b630c4eef7b3eb5"
+              },
+              {
+                "rating": 4,
+                "author": "Riley Sherer",
+                "timestamp": "2015-09-30",
+                "text": "You want a bagel? Okay, pick a bagel. Come on, I don't got all day. Yeah yeah the coffee's alright.",
+                "id": "c88db1e509fbc2e9731f7946b84fdbfc4eb2f607"
+              }
+            ],
+            "reviews-count":4,
+            "star-rating": 4
+          }
+        ],
+        "payload": {
+          "profile-url": "https://www.google.com/search?q=%22%5B%22Pick+A+Bagel%22%5D%22+%2210021%22&gws_rd=cr&gl=us",
+          "country": "USA",
+          "date-from": null,
+          "reviews-limit": 250,
+          "sort-type": "date",
+          "api-key": "1a08b2e1fd07fa4150f91b80636906a9a29b8e47",
+          "parent-id": 549612293
+        },
+        "status": "Completed",
+        "job-id": 549612293
+      },
+      {
+        "results": [
+          {
+            "reviews": [
+              {
+                "rating": 1,
+                "author": "Krista C.",
+                "timestamp": "2008-05-27",
+                "text": "One of the worst bagels NYC has to offer.Now I don't consider myself a bagel snob but i'm used to having a Ess-A-Bagel and a Hot Jumbo Bagel around the corner.But now after moving I needed to find my new bagel place, I thought I'd give Pick-A-Bagel a try.",
+                "link": "http://www.yelp.com/biz/pick-a-bagel-new-york-5?hrid=6ijWFhvccHDdiSj5MnX3yQ",
+                "id": "c0f1160d92b4d60bb6609b7b9d4e7be31013781e"
+              },
+              {
+                "rating": 1,
+                "author": "Jeffrey C.",
+                "timestamp": "2008-03-04",
+                "text": "I don't know about others in the store but I tried from their \"make your own pasta\" menu and had the pesto sauce for the pasta.  It was the worst pesto sauce I had in my life.",
+                "link": "http://www.yelp.com/biz/pick-a-bagel-new-york-5?hrid=1ZIo0LYcFqmK7IJTMmw_bg",
+                "id": "b0223bea06d6fd8e907f41ec73cc792db538b0f9"
+              }
+            ],
+            "reviews-count": 2,
+            "star-rating": "1.0"
+          }
+        ],
+        "payload": {
+          "profile-url": "http://www.yelp.com/biz/pick-a-bagel-new-york-5",
+          "country": "USA",
+          "date-from": null,
+          "reviews-limit": 250,
+          "sort-type": "date",
+          "api-key": "1a08b2e1fd07fa4150f91b80636906a9a29b8e47",
+          "parent-id": 549612304
+        },
+        "status": "Completed",
+        "job-id": 549612304
+      }
+      
+    ]
+  },
+  "statuses": {
+    "Completed": 6,
+    "Failed": 0
+  },
+  "status": "Finished"
+}
+```
+
 > Failure (400 Bad Request)
 
 ```json
