@@ -438,7 +438,7 @@ curl "https://api.scaleapi.com/v1/task/phonecall" \
   -d instruction="Call this person and follow the script provided, recording responses" \
   -d phone_number=5055006865 \
   -d entity_name="Alexandr Wang" \
-  -d script="Hello {{name}}! Are you happy today? (pause) One more thing - what is your email address?"
+  -d script="Hello {{name}}! Are you happy today? (pause) One more thing - what is your email address?" \
   -d fields[email]="Email Address" \
   -d choices="He is happy" \
   -d choices="He is not happy"
@@ -510,7 +510,7 @@ request.post('https://api.scaleapi.com/v1/task/phonecall', {
   "type": "phonecall",
   "status": "pending",
   "instruction": "Call this person and follow the script provided, recording responses",
-  'script': 'Hello {{name}}! Are you happy today? (pause) One more thing - what is your email address?',
+  "script": "Hello {{name}}! Are you happy today? (pause) One more thing - what is your email address?",
   "urgency": "day",
   "params": {
     "fields": {
