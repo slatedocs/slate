@@ -1,7 +1,7 @@
 # Sending Money
 
 # Introduction
-Beyonic uses the term "Payments" to refer to money that you send to a mobile subscriber. This differentiates money you send (Payments) to mobile subscribers from money you receive from mobile subscribers (Collections).
+Beyonic uses the term "Payments" to refer to money (or prepaid airtime) that you send to a mobile subscriber. This differentiates money you send to mobile subscribers (aka Payments) from money you receive from mobile subscribers (aka Collections).
 
 Beyonic provides the [Payments API](#payments) to enable you to send a payment to a mobile subscriber, or to view payments that you have previously sent to a mobile subscriber. See the [Payments](#payments) documentation below for more information.
 
