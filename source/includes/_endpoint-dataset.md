@@ -693,6 +693,34 @@ Only Users, Teams or Projects can be set as owners of a dataset.
 * Teams: Authenticated user needs to be a member of the team.
 * Projects: Authenticated user needs to have edit permissions on the project.
 
+##### Copying over from another dataset
+
+In the needed case to copy over the work from another dataset to the
+current one, it is possible to issue a PATCH request with the `copy_from`
+attribute pointing to the URL of the source dataset to use.
+
+```json
+{
+  "element": "shoji:entity",
+  "body": {
+    "copy_from": "htp://beta.crunch.io/api/datasets/1234/"
+  }
+}
+```
+
+
+All dataset attributes, permissions, derivations, private variables, etc
+will be brought over to the current dataset:
+
+* Decks
+* Filters
+* Multitables
+* Comparisons
+* Personal variable order
+* Derived variables
+* Personal variables
+* Permissions
+
 
 #### DELETE
 
