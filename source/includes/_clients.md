@@ -4,6 +4,31 @@
 
 <span class="label label-info">Account Method</span>
 
+> Creating a Client
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->post('v1/clients-and-locations/clients/', [
+    'name' => 'Le Bernardin',           
+    'company-url' => 'http://www.example.com',
+    'business-category-id' => 791
+    
+]);
+print_r($success);
+```
+
+```shell
+curl -X POST \
+     -d 'api-key=<INSERT_API_KEY>' \
+    -d 'name=<INSERT_NAME>' \
+	-d 'company-url=<INSERT_COMPANY_URL>'\
+	-d 'business-category-id=<INSERT_BUSINESS_CATEGORY_ID>'\
+    https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
+```
+
 > Success (200 OK)
 
 ```json
@@ -37,6 +62,32 @@ reference-number | An arbitrary unique reference you can use to identify a clien
 
 Update an existing client. Only supply values you want to update. The rest will be left unchanged.
 
+> Update a Client
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->put('v1/clients-and-locations/clients/', [
+    'name' => 'Le Bernardin',           
+    'company-url' => 'http://www.example.com',
+    'business-category-id' => 791
+    
+]);
+print_r($success);
+```
+
+```shell
+curl -X PUT \
+     -d 'api-key=<INSERT_API_KEY>' \
+    -d 'name=<INSERT_NAME>' \
+	-d 'company-url=<INSERT_COMPANY_URL>'\
+	-d 'business-category-id=<INSERT_BUSINESS_CATEGORY_ID>'\
+    https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
+```
+
+
 > Success (200 OK)
 
 ```json
@@ -67,6 +118,25 @@ reference-number | An arbitrary unique reference you can use to identify a clien
 
 <span class="label label-info">Account Method</span>
 
+> Delete a Client
+
+```php
+<?php
+use BrightLocal\Api;
+
+$clientId = 1;
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+
+$success = $api->delete('v1/clients-and-locations/clients/:' .$clientId.);
+if($success) {
+echo 'Successfully deleted client.' . PHP_EOL;
+}
+```
+
+```shell
+curl -X DELETE 'https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/:<INSERT_CLIENT_ID>?api-key=<INSERT_API_KEY>'
+```
+
 > Success (200 OK)
 
 ```json
@@ -94,6 +164,24 @@ client-id | <span class="label label-required">Required</span>
 
 <span class="label label-info">Account Method</span>
 
+> Get a Client
+
+```php
+<?php
+use BrightLocal\Api;
+$id = 1;
+
+$api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
+$client = $api->get('v1/clients-and-locations/clients/:'. $id.);
+print_r($client);
+```
+
+
+```shell
+curl 'https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/:<INSERT_CLIENT_ID>?api-key=<INSERT_API_KEY>'
+  
+```
+
 > Success (200 OK)
 
 ```json
@@ -115,7 +203,7 @@ Get extended details for a specific client.
 
 `GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/:id`
 
-### Query Parameters
+<h3>Query Parameters</h3>
 
 Parameter | Notes
 --------- | -----
@@ -127,6 +215,28 @@ client-id | <span class="label label-required">Required</span>
 ## Search Clients
 
 <span class="label label-info">Account Method</span>
+
+> Search for a client
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->get('v1/clients-and-locations/clients/search', [
+    'q' => 'My Sample Company'
+    
+]);
+print_r($results);
+
+```
+```shell
+curl -X GET \
+     -d 'api-key=<INSERT_API_KEY>' \
+    -d 'q=<INSERT_SEARCH_QUERY>' \	
+    https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
+```
+
 
 > Success (200 OK)
 
@@ -154,11 +264,11 @@ client-id | <span class="label label-required">Required</span>
 
 Search for clients matching a specified search string.
 
-### HTTP Request
+<h3>HTTP Request</h3>
 
 `GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/search`
 
-### Query Parameters
+<h3>Query Parameters</h3>
 
 Parameter | Notes
 --------- | -----
