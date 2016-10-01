@@ -62,6 +62,142 @@ curl "https://demo.gomus.de/api/v4/tours/languages"
 
 The json response contains a list of all languages used by online bookable tour products to build up filters. 
 
+## Tour tags
+
+Tours can be tagged with the following tag types:
+
+### Age groups
+
+`GET https://demo.gomus.de/api/v4/tours/age_groups`
+
+```shell
+curl "https://demo.gomus.de/api/v4/tours/age_groups"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "age_groups": [
+        {
+            "id": 1,
+            "name": "Kinder bis 10 Jahre"
+        },
+        {
+            "id": 2,
+            "name": "Kinder ab 10 Jahre"
+        }
+    ]
+}
+```
+
+### Audiences
+
+`GET https://demo.gomus.de/api/v4/tours/audiences`
+
+```shell
+curl "https://demo.gomus.de/api/v4/tours/audiences"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "audiences": [
+        {
+            "id": 1,
+            "name": "Jugendliche"
+        },
+        {
+            "id": 2,
+            "name": "Erwachsene"
+        }
+    ]
+}
+```
+
+### Catch words
+
+`GET https://demo.gomus.de/api/v4/tours/catch_words`
+
+```shell
+curl "https://demo.gomus.de/api/v4/tours/catch_words"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "catch_words": [
+        {
+            "id": 1,
+            "name": "Ägypten"
+        },
+        {
+            "id": 2,
+            "name": "Mythologie"
+        }
+    ]
+}
+```
+### Proposal categories
+
+`GET https://demo.gomus.de/api/v4/tours/proposal_categories`
+
+```shell
+curl "https://demo.gomus.de/api/v4/tours/proposal_categories"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "proposal_categories": [
+        {
+            "id": 1,
+            "name": "Schulklasse"
+        },
+        {
+            "id": 2,
+            "name": "Gruppe ohne Guide"
+        }
+    ]
+}
+```
+### Grades
+
+`GET https://demo.gomus.de/api/v4/tours/grades`
+
+```shell
+curl "https://demo.gomus.de/api/v4/tours/grades"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "grades": [
+        {
+            "id": 1,
+            "name": "Grundschule Klasse 1"
+        },
+        {
+            "id": 2,
+            "name": "Grundschule Klasse 2"
+        },
+        {
+            "id": 3,
+            "name": "Sekundarstufe II"
+        }
+    ]
+}
+```
+
+### Tag responses
+
+The json response contains a list of used tour tags by category to build up filters.
+
+
 ## List of tours
 
 `GET https://demo.gomus.de/api/v4/tours`
@@ -104,7 +240,18 @@ curl "https://demo.gomus.de/api/v4/tours"
                 "latitude": 52.5082,
                 "longitude": 13.3673
             },
-            "audiences": []
+            "age_groups": [],
+            "audiences": [],
+            "catch_words": [],
+            "disablements": [],
+            "grades": [],
+            "proposal_categories": [],
+            "languages": [
+                {
+                    "id": 1,
+                    "name": "Deutsch"
+                }
+            ]
         }
     ],
     "meta": {
@@ -125,6 +272,12 @@ curl "https://demo.gomus.de/api/v4/tours"
 - by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section
 - by_categories (Array of category names), filter by categories, see categories section
 - by_category_ids (Array of category ids), filter by category, see categories section
+- by_age_group_ids (Array of category ids), filter by category, see age group section
+- by_audience_ids (Array of category ids), filter by category, see audience section
+- by_catch_word_ids (Array of category ids), filter by category, see catch words section
+- by_disablement_ids (Array of category ids), filter by category, see disablements section
+- by_grade_ids (Array of category ids), filter by category, see grades section
+- by_proposal_category_ids (Array of category ids), filter by proposal category, see categories section
 - by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)
 
 ### Available parameters:
@@ -151,7 +304,8 @@ plus blocks of attributes for category, picture, location and audiences.
 curl "https://demo.gomus.de/api/v4/tours/1"
 ```
 
-The information is the same as that of the tours list response, but with the addition of the description key.
+The information is the same as that of the tours list response, but with the addition of the description 
+key and some other attributes.
 
 
 
