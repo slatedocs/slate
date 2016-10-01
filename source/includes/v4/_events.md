@@ -383,7 +383,6 @@ The calender for a single event provides a fast way to check when the event has 
 - depth: string, one of `any|all`, defaults to `any`
 
 
-
 ## Dates for a single event
 
 `GET https://demo.gomus.de/api/v4/events/:id/dates`
@@ -449,18 +448,7 @@ The json response contains a list of dates as an array and a meta block.
 - title (string), the name of the date
 - sub_title (string), the sub title of the date
 - start_time (iso8601), the date's timestamp
-
-plus a block of attributes for available seats (see below).
-
-### Seats
-
-The seats block contains four attributes:
-
-- min (integer), minimum number of seats to book
-- max (integer), maximum number of seats to book
-- booked (integer), number of seats already booked
-- available (integer), number of seats still available to book
-
+- language, with id and name
 
 ## Details for a single date
 
@@ -532,9 +520,18 @@ The json response contains more attributes than in the overview:
 
 plus a block of attributes for available seats (see below) languages, location and prices.
 
-### Languages
+### Seats
 
-Usualy this block contains an array with one element, since most of events are in one language.
+The seats block contains four attributes:
+
+- min (integer), minimum number of seats to book
+- max (integer), maximum number of seats to book
+- booked (integer), number of seats already booked
+- available (integer), number of seats still available to book
+
+### Location
+
+The location block provides information about the event starting/meeting point and address.
 
 ### Prices
 
