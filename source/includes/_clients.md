@@ -20,15 +20,6 @@ $success = $api->post('v1/clients-and-locations/clients/', [
 print_r($success);
 ```
 
-```shell
-curl -X POST \
-     -d 'api-key=<INSERT_API_KEY>' \
-    -d 'name=<INSERT_NAME>' \
-	-d 'company-url=<INSERT_COMPANY_URL>'\
-	-d 'business-category-id=<INSERT_BUSINESS_CATEGORY_ID>'\
-    https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
-```
-
 > Success (200 OK)
 
 ```json
@@ -78,16 +69,6 @@ $success = $api->put('v1/clients-and-locations/clients/', [
 print_r($success);
 ```
 
-```shell
-curl -X PUT \
-     -d 'api-key=<INSERT_API_KEY>' \
-    -d 'name=<INSERT_NAME>' \
-	-d 'company-url=<INSERT_COMPANY_URL>'\
-	-d 'business-category-id=<INSERT_BUSINESS_CATEGORY_ID>'\
-    https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
-```
-
-
 > Success (200 OK)
 
 ```json
@@ -127,14 +108,10 @@ use BrightLocal\Api;
 $clientId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 
-$success = $api->delete('v1/clients-and-locations/clients/:' .$clientId.);
+$success = $api->delete('v1/clients-and-locations/clients/' .$clientId.);
 if($success) {
 echo 'Successfully deleted client.' . PHP_EOL;
 }
-```
-
-```shell
-curl -X DELETE 'https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/:<INSERT_CLIENT_ID>?api-key=<INSERT_API_KEY>'
 ```
 
 > Success (200 OK)
@@ -171,15 +148,9 @@ client-id | <span class="label label-required">Required</span>
 use BrightLocal\Api;
 $id = 1;
 
-$api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
-$client = $api->call('v1/clients-and-locations/clients/:'. $id.);
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$client = $api->post('v1/clients-and-locations/clients/'. $id.);
 print_r($client);
-```
-
-
-```shell
-curl 'https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/:<INSERT_CLIENT_ID>?api-key=<INSERT_API_KEY>'
-  
 ```
 
 > Success (200 OK)
@@ -223,20 +194,13 @@ client-id | <span class="label label-required">Required</span>
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->call('v1/clients-and-locations/clients/search', [
+$results = $api->get('v1/clients-and-locations/clients/search', [
     'q' => 'My Sample Company'
     
 ]);
 print_r($results);
 
 ```
-```shell
-curl -X GET \
-     -d 'api-key=<INSERT_API_KEY>' \
-    -d 'q=<INSERT_SEARCH_QUERY>' \	
-    https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
-```
-
 
 > Success (200 OK)
 
