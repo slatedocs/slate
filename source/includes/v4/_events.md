@@ -14,22 +14,28 @@ curl "https://demo.gomus.de/api/v4/events/categories"
 
 ```json
 {
-    "categories": [
-        "Vorträge / Seminare / Tagungen",
-        "öffentliche Führung",
-        "Sonderveranstaltung",
-        "Führung / Exkursion",
-        "Bühne / Musik / Film",
-        "Fortbildung",
-        "Workshops / Kurse",
-        "Künstlergespräche / Performances / Podiumsdiskussionen"
-    ]
+  "categories": [
+    {
+      "id": 3,
+      "name": "öffentliche Führung"
+    },
+    {
+      "id": 4,
+      "name": "Kurs / Workshop"
+    },
+    {
+      "id": 5,
+      "name": "Kinder / Familien"
+    }
+  ] 
 }
 ```
 
 ### Response
 
-The json response contains a list of all event categories to build up filters. Note: this only contains valid elements, some events might have no filtername set.
+The json response contains a list of all event categories to build up filters. 
+Note: this only contains valid elements, some events might have no name set. Some categories have
+duplicate names.
 
 
 
@@ -54,8 +60,8 @@ curl "https://demo.gomus.de/api/v4/events"
             "sub_title": "60 Minuten | 4 EUR zzg. Eintritt<br>Di – Fr / 16:00 Uhr, Sa und So / 14:30 und 16:00 Uhr<br>",
             "featured": false,
             "category": {
-                "name": "öffentliche Führung",
-                "filtername": "öffentliche Führung"
+                "id": 3,
+                "name": "öffentliche Führung"
             },
             "picture": {
                 "title": null,
@@ -94,7 +100,7 @@ curl "https://demo.gomus.de/api/v4/events"
 - by_featured (Boolean, true|false), filter by featured flag
 - by_museum_ids (Array of museum ids), filter by museums, see museums section
 - by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section
-- by_categories (Array of category names), filter by categories, see categories section
+- by_category_ids (Array of category ids), filter by category, see categories section
 - by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)
 
 ### Available parameters:
@@ -209,6 +215,10 @@ curl "https://demo.gomus.de/api/v4/events/1/dates"
             "event_id": 101174,
             "exhibition_id": 2057,
             "museum_id": 20,
+            "category": {
+               "id": 23,
+               "name": "öffentliche Führung"
+            },
             "title": "El Siglo de Oro",
             "sub_title": null,
             "start_time": "2016-07-10T14:30:00+02:00",
@@ -283,6 +293,10 @@ curl "https://demo.gomus.de/api/v4/events/1/dates/1"
         "event_id": 101174,
         "exhibition_id": 2057,
         "museum_id": 20,
+        "category": {
+            "id": 23,
+            "name": "öffentliche Führung"
+        },
         "title": "El Siglo de Oro",
         "sub_title": null,
         "description": null,
@@ -379,6 +393,7 @@ curl "https://demo.gomus.de/api/v4/dates"
 - by_museum_ids (Array of museum ids), filter by museums, see museums section
 - by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section
 - by_event_ids (Array of event ids), filter by events
+- by_category_ids (Array of category ids), filter by category, see categories section
 - by_categories (Array of category names), filter by categories, see categories section
 
 ### Available parameters:
@@ -412,6 +427,7 @@ The global calender provides a nice way to check wether dates are available for 
 - by_museum_ids (Array of museum ids), filter by museums, see museums section
 - by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section
 - by_event_ids (Array of event ids), filter by events
+- by_category_ids (Array of category ids), filter by category, see categories section
 - by_categories (Array of category names), filter by categories, see categories section
 
 ### Available parameters:
