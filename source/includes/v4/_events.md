@@ -318,12 +318,10 @@ curl "https://demo.gomus.de/api/v4/events/1/dates/1"
             "latitude": 52.5082,
             "longitude": 13.3673
         },
-        "languages": [
-            {
+        "language": {
             "id": 1,
             "name": "Deutsch"
-            }
-        ],
+        },
         "prices": [
             {
                 "group": false,
