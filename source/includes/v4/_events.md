@@ -38,6 +38,170 @@ Note: this only contains valid elements, some events might have no name set. Som
 duplicate names.
 
 
+## Event languages
+
+`GET https://demo.gomus.de/api/v4/events/languages`
+
+```shell
+curl "https://demo.gomus.de/api/v4/events/languages"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "languages": [
+        {
+        "id": 1,
+        "name": "Deutsch"
+        },
+        {
+         "id": 2,
+         "name": "Englisch"
+        }
+    ]
+}
+```
+
+### Response
+
+The json response contains a list of all languages used by online bookable event products to build up filters. 
+
+## Event tags
+
+Events can be tagged with the following tag types:
+
+### Age groups
+
+`GET https://demo.gomus.de/api/v4/events/age_groups`
+
+```shell
+curl "https://demo.gomus.de/api/v4/events/age_groups"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "age_groups": [
+        {
+            "id": 1,
+            "name": "Kinder bis 10 Jahre"
+        },
+        {
+            "id": 2,
+            "name": "Kinder ab 10 Jahre"
+        }
+    ]
+}
+```
+
+### Audiences
+
+`GET https://demo.gomus.de/api/v4/events/audiences`
+
+```shell
+curl "https://demo.gomus.de/api/v4/events/audiences"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "audiences": [
+        {
+            "id": 1,
+            "name": "Jugendliche"
+        },
+        {
+            "id": 2,
+            "name": "Erwachsene"
+        }
+    ]
+}
+```
+
+### Catch words
+
+`GET https://demo.gomus.de/api/v4/events/catch_words`
+
+```shell
+curl "https://demo.gomus.de/api/v4/events/catch_words"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "catch_words": [
+        {
+            "id": 1,
+            "name": "Ägypten"
+        },
+        {
+            "id": 2,
+            "name": "Mythologie"
+        }
+    ]
+}
+```
+### Proposal categories
+
+`GET https://demo.gomus.de/api/v4/events/proposal_categories`
+
+```shell
+curl "https://demo.gomus.de/api/v4/events/proposal_categories"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "proposal_categories": [
+        {
+            "id": 1,
+            "name": "Schulklasse"
+        },
+        {
+            "id": 2,
+            "name": "Gruppe ohne Guide"
+        }
+    ]
+}
+```
+### Grades
+
+`GET https://demo.gomus.de/api/v4/events/grades`
+
+```shell
+curl "https://demo.gomus.de/api/v4/events/grades"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "grades": [
+        {
+            "id": 1,
+            "name": "Grundschule Klasse 1"
+        },
+        {
+            "id": 2,
+            "name": "Grundschule Klasse 2"
+        },
+        {
+            "id": 3,
+            "name": "Sekundarstufe II"
+        }
+    ]
+}
+```
+
+### Tag responses
+
+The json response contains a list of used event tags by category to build up filters.
+
 
 ## List of events
 
@@ -81,7 +245,18 @@ curl "https://demo.gomus.de/api/v4/events"
                 "latitude": 52.5082,
                 "longitude": 13.3673
             },
-            "audiences": []
+            "age_groups": [],
+            "audiences": [],
+            "catch_words": [],
+            "disablements": [],
+            "grades": [],
+            "proposal_categories": [],
+            "languages": [
+                {
+                    "id": 1,
+                    "name": "Deutsch"
+                }
+            ]
         }
     ],
     "meta": {
@@ -101,6 +276,14 @@ curl "https://demo.gomus.de/api/v4/events"
 - by_museum_ids (Array of museum ids), filter by museums, see museums section
 - by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section
 - by_category_ids (Array of category ids), filter by category, see categories section
+- by_age_group_ids (Array of category ids), filter by category, see age group section
+- by_audience_ids (Array of category ids), filter by category, see audience section
+- by_catch_word_ids (Array of category ids), filter by category, see catch words section
+- by_disablement_ids (Array of category ids), filter by category, see disablements section
+- by_grade_ids (Array of category ids), filter by category, see grades section
+- by_proposal_category_ids (Array of category ids), filter by proposal category, see categories section
+- by_categories (Array of category names), filter by category names, see categories section
+- by_language_ids (Array of language ids), filter by language, see languages section
 - by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)
 
 ### Available parameters:
@@ -185,6 +368,11 @@ curl "https://demo.gomus.de/api/v4/events/1/calendar"
 ```
 
 The calender for a single event provides a fast way to check when the event has dates or not. With the default mode, returns a simple boolean as the value for each day in the range specified. With depth `all` we get the details of the dates available for each day as well. However, this calculation will take longer.
+
+
+### Available filters:
+
+- by_language_ids (Array of language ids), filter by language, see languages section
 
 ### Available parameters:
 
@@ -391,6 +579,13 @@ curl "https://demo.gomus.de/api/v4/dates"
 - by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section
 - by_event_ids (Array of event ids), filter by events
 - by_category_ids (Array of category ids), filter by category, see categories section
+- by_age_group_ids (Array of age group ids), filter by age group, see age group section
+- by_audience_ids (Array of audience ids), filter by audience, see audience section
+- by_catch_word_ids (Array of catch word ids), filter by catch word, see catch words section
+- by_disablement_ids (Array of disablement ids), filter by disablement, see disablements section
+- by_grade_ids (Array of grade ids), filter by grade, see grades section
+- by_proposal_category_ids (Array of proposal category ids), filter by proposal category, see proposal categories section
+- by_language_ids (Array of language ids), filter by language, see languages section
 - by_categories (Array of category names), filter by categories, see categories section
 
 ### Available parameters:
@@ -404,6 +599,37 @@ curl "https://demo.gomus.de/api/v4/dates"
 ### Response
 
 The json response contains a list of dates for all events as an array and a meta block.
+
+## Date languages
+
+The available languages for dates within the selection (same filters as in global dates list apply here)
+
+`GET https://demo.gomus.de/api/v4/dates/languages`
+
+```shell
+curl "https://demo.gomus.de/api/v4/dates/languages"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "languages": [
+        {
+        "id": 1,
+        "name": "Deutsch"
+        },
+        {
+         "id": 2,
+         "name": "Englisch"
+        }
+    ]
+}
+```
+
+### Response
+
+The json response contains a list of all languages used by online bookable date to build up filters. 
 
 
 ## Global events calendar
@@ -425,6 +651,13 @@ The global calender provides a nice way to check wether dates are available for 
 - by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section
 - by_event_ids (Array of event ids), filter by events
 - by_category_ids (Array of category ids), filter by category, see categories section
+- by_age_group_ids (Array of age group ids), filter by age group, see age group section
+- by_audience_ids (Array of audience ids), filter by audience, see audience section
+- by_catch_word_ids (Array of catch word ids), filter by catch word, see catch words section
+- by_disablement_ids (Array of disablement ids), filter by disablement, see disablements section
+- by_grade_ids (Array of grade ids), filter by grade, see grades section
+- by_proposal_category_ids (Array of proposal category ids), filter by proposal category, see proposal categories section
+- by_language_ids (Array of language ids), filter by language, see languages section
 - by_categories (Array of category names), filter by categories, see categories section
 
 ### Available parameters:
