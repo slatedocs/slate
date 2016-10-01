@@ -270,14 +270,15 @@ curl "https://demo.gomus.de/api/v4/tours"
 - by_featured (Boolean, true|false, default: all), filter by featured flag
 - by_museum_ids (Array of museum ids), filter by museums, see museums section
 - by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section
-- by_categories (Array of category names), filter by categories, see categories section
 - by_category_ids (Array of category ids), filter by category, see categories section
-- by_age_group_ids (Array of category ids), filter by category, see age group section
-- by_audience_ids (Array of category ids), filter by category, see audience section
-- by_catch_word_ids (Array of category ids), filter by category, see catch words section
-- by_disablement_ids (Array of category ids), filter by category, see disablements section
-- by_grade_ids (Array of category ids), filter by category, see grades section
-- by_proposal_category_ids (Array of category ids), filter by proposal category, see categories section
+- by_age_group_ids (Array of age group ids), filter by age group, see age group section
+- by_audience_ids (Array of audience ids), filter by audience, see audience section
+- by_catch_word_ids (Array of catch word ids), filter by catch word, see catch words section
+- by_disablement_ids (Array of disablement ids), filter by disablement, see disablements section
+- by_grade_ids (Array of grade ids), filter by grade, see grades section
+- by_proposal_category_ids (Array of proposal category ids), filter by proposal category, see proposal categories section
+- by_language_ids (Array of language ids), filter by language, see languages section
+- by_categories (Array of category names), filter by categories, see categories section
 - by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)
 
 ### Available parameters:
