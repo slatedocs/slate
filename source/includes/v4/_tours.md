@@ -15,16 +15,23 @@ curl "https://demo.gomus.de/api/v4/tours/categories"
 ```json
 {
     "categories": [
-        "Projekt",
-        "Führung"
+        {
+        "id": 1,
+        "name": "Projekt"
+        },
+        {
+         "id": 2,
+         "name": "Führung"
+        }
     ]
 }
 ```
 
 ### Response
 
-The json response contains a list of all tour categories to build up filters. Note: this only contains valid elements, some tours might have no filtername set.
-
+The json response contains a list of all tour categories to build up filters. 
+Note: this only contains valid elements, some events might have no name set. Some categories have
+duplicate names.
 
 
 ## List of tours
@@ -48,8 +55,8 @@ curl "https://demo.gomus.de/api/v4/tours"
             "sub_title": "60 Minuten | 90 EUR zzgl. Eintritt <br>Buchung 14 Tage im Voraus<br>(Gruppen bis 25 Personen)",
             "featured": false,
             "category": {
-                "name": "Führung (60 min)",
-                "filtername": ""
+                "id": 2,
+                "name": "Führung"
             },
             "picture": {
                 "title": null,
@@ -89,6 +96,7 @@ curl "https://demo.gomus.de/api/v4/tours"
 - by_museum_ids (Array of museum ids), filter by museums, see museums section
 - by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section
 - by_categories (Array of category names), filter by categories, see categories section
+- by_category_ids (Array of category ids), filter by category, see categories section
 - by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)
 
 ### Available parameters:
