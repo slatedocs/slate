@@ -222,11 +222,10 @@ curl "https://demo.gomus.de/api/v4/events/1/dates"
             "title": "El Siglo de Oro",
             "sub_title": null,
             "start_time": "2016-07-10T14:30:00+02:00",
-            "seats": {
-                "min": 1,
-                "max": 20,
-                "booked": 0,
-                "available": 20
+            "duration": 60,
+            "language": {
+                "id": 1,
+                "name": "Deutsch"
             }
         }
     ],
