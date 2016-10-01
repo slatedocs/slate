@@ -33,6 +33,34 @@ The json response contains a list of all tour categories to build up filters.
 Note: this only contains valid elements, some events might have no name set. Some categories have
 duplicate names.
 
+## Tour languages
+
+`GET https://demo.gomus.de/api/v4/tours/languages`
+
+```shell
+curl "https://demo.gomus.de/api/v4/tours/languages"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "languages": [
+        {
+        "id": 1,
+        "name": "Deutsch"
+        },
+        {
+         "id": 2,
+         "name": "Englisch"
+        }
+    ]
+}
+```
+
+### Response
+
+The json response contains a list of all languages used by online bookable tour products to build up filters. 
 
 ## List of tours
 
