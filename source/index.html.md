@@ -2,9 +2,9 @@
 title: API Reference
 
 language_tabs:
-  - shell
-  - python
-  - javascript
+  - shell: cURL
+  - python: Python
+  - javascript: JavaScript
 
 toc_footers:
   - <a href='https://dashboard.scaleapi.com/signup'>Signup for Scale</a>
@@ -53,18 +53,18 @@ We also have unnoficial SDKs in the following languages:
 ```shell
 # With curl, you can just pass the correct header with each request
 curl "api_endpoint_here" \
-  -u "YOUR_API_KEY:"
+  -u "{{ApiKey}}:"
 ```
 
 ```python
 import requests
 
-requests.get('api_endpoint_here', auth=('YOUR_API_KEY', ''))
+requests.get('api_endpoint_here', auth=('{{ApiKey}}', ''))
 ```
 
 ```javascript
 var request = require("request");
-var SCALE_API_KEY = 'YOUR_API_KEY';
+var SCALE_API_KEY = '{{ApiKey}}';
 
 request.get('api_endpoint_here', {
   'auth': {
@@ -82,16 +82,21 @@ request.get('api_endpoint_here', {
 });
 ```
 
-> Make sure to replace `YOUR_API_KEY` with your API key.
+> <span ng-if="!user.testApiKey">You must replace <code>{{ApiKey}}</code> with your personal API key. If you <a href="https://dashboard.scaleapi.com/signup">sign up</a> or <a href="https://dashboard.scaleapi.com/login">log in</a>, your API key will be automatically filled.</span>
+> <span ng-if="user.testApiKey">Your test API key <code>{{ApiKey}}</code> is included in all the examples on this page, so you can test any example right away. Only you can see this value.</span>
 
 Scale uses API keys to allow access to the API. You can register a new Scale API key on your dashboard (if you have access to Scale).
 
 Scale expects for the API key to be included in all API requests to the server via [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authentication). Provide your API key as the basic auth username value. You do not need to provide a password. You can do this using the `-u` flag:
 
-`-u YOUR_API_KEY:`
+`-u "{{ApiKey}}:"`
 
-<aside class="notice">
-You must replace <code>YOUR_API_KEY</code> with your personal API key.
+<aside class="notice" ng-if="!user.testApiKey">
+You must replace <code>{{ApiKey}}</code> with your personal API key. If you <a href="https://dashboard.scaleapi.com/signup">sign up</a> or <a href="https://dashboard.scaleapi.com/login">log in</a>, your API key will be automatically filled.
+</aside>
+
+<aside class="notice" ng-if="user.testApiKey">
+Your test API key <code>{{ApiKey}}</code> is included in all the examples on this page, so you can test any example right away. Only you can see this value.
 </aside>
 
 ### Callback Authentication
@@ -147,7 +152,7 @@ Attribute | Type | Description
 
 ```shell
 curl "https://api.scaleapi.com/v1/task/categorize" \
-  -u YOUR_API_KEY: \
+  -u "{{ApiKey}}:" \
   -d callback_url="http://www.example.com/callback" \
   -d instruction="Is this company public or private?" \
   -d attachment_type=website \
@@ -169,13 +174,13 @@ payload = {
 
 requests.post("https://api.scaleapi.com/v1/task/categorize", 
   json=payload, 
-  auth=('YOUR_API_KEY', ''))
+  auth=('{{ApiKey}}', ''))
 
 ```
 
 ```javascript
 var request = require("request");
-var SCALE_API_KEY = 'YOUR_API_KEY';
+var SCALE_API_KEY = '{{ApiKey}}';
 
 var payload = {
   'callback_url': 'http://www.example.com/callback',
@@ -279,7 +284,7 @@ If `category_ids` was provided, there will be another field `category_id` corres
 
 ```shell
 curl "https://api.scaleapi.com/v1/task/transcription" \
-  -u YOUR_API_KEY: \
+  -u "{{ApiKey}}:" \
   -d callback_url="http://www.example.com/callback" \
   -d instruction="Transcribe the given fields. Then for each news item on the page, transcribe the information for the row." \
   -d attachment_type=website \
@@ -314,13 +319,13 @@ headers = {"Content-Type": "application/json"}
 requests.post("https://api.scaleapi.com/v1/task/transcription", 
   json=payload, 
   headers=headers,
-  auth=('YOUR_API_KEY', ''))
+  auth=('{{ApiKey}}', ''))
 
 ```
 
 ```javascript
 var request = require("request");
-var SCALE_API_KEY = 'YOUR_API_KEY';
+var SCALE_API_KEY = '{{ApiKey}}';
 
 var payload = {
   'callback_url': 'http://www.example.com/callback',
@@ -433,7 +438,7 @@ The `response` object will be of the form:
 
 ```shell
 curl "https://api.scaleapi.com/v1/task/phonecall" \
-  -u YOUR_API_KEY: \
+  -u "{{ApiKey}}:" \
   -d callback_url="http://www.example.com/callback" \
   -d instruction="Call this person and follow the script provided, recording responses" \
   -d phone_number=5055006865 \
@@ -464,13 +469,13 @@ headers = {"Content-Type": "application/json"}
 requests.post("https://api.scaleapi.com/v1/task/phonecall", 
   json=payload, 
   headers=headers,
-  auth=('YOUR_API_KEY', ''))
+  auth=('{{ApiKey}}', ''))
 
 ```
 
 ```javascript
 var request = require("request");
-var SCALE_API_KEY = 'YOUR_API_KEY';
+var SCALE_API_KEY = '{{ApiKey}}';
 
 var payload = {
   'callback_url': 'http://www.example.com/callback',
@@ -586,7 +591,7 @@ If your original API request provided `choices`, `choice` will be one of the ori
 
 ```shell
 curl "https://api.scaleapi.com/v1/task/comparison" \
-  -u YOUR_API_KEY: \
+  -u "{{ApiKey}}:" \
   -d callback_url="http://www.example.com/callback" \
   -d instruction="Do the objects in these images have the same pattern?" \
   -d attachment_type=image \
@@ -615,13 +620,13 @@ headers = {"Content-Type": "application/json"}
 requests.post("https://api.scaleapi.com/v1/task/comparison", 
   json=payload, 
   headers=headers,
-  auth=('YOUR_API_KEY', ''))
+  auth=('{{ApiKey}}', ''))
 
 ```
 
 ```javascript
 var request = require("request");
-var SCALE_API_KEY = 'YOUR_API_KEY';
+var SCALE_API_KEY = '{{ApiKey}}';
 
 var payload = {
   'callback_url': 'http://www.example.com/callback',
@@ -724,7 +729,7 @@ If your original call provided `fields`, `fields` will have keys corresponding t
 
 ```shell
 curl "https://api.scaleapi.com/v1/task/annotation" \
-  -u YOUR_API_KEY: \
+  -u "{{ApiKey}}:" \
   -d callback_url="http://www.example.com/callback" \
   -d instruction="Draw a box around each baby cow and big cow." \
   -d attachment_type=image \
@@ -751,13 +756,13 @@ headers = {"Content-Type": "application/json"}
 requests.post("https://api.scaleapi.com/v1/task/annotation", 
   json=payload, 
   headers=headers,
-  auth=('YOUR_API_KEY', ''))
+  auth=('{{ApiKey}}', ''))
 
 ```
 
 ```javascript
 var request = require("request");
-var SCALE_API_KEY = 'YOUR_API_KEY';
+var SCALE_API_KEY = '{{ApiKey}}';
 
 var payload = {
   'callback_url': 'http://www.example.com/callback',
@@ -855,11 +860,12 @@ Parameter | Type | Description
         "height": 30,
         "label": "baby cow"
       },
-      ...
+      { ... },
+      { ... }
     ]
   },
   "task_id": "5774cc78b01249ab09f089dd",
-  ...
+  "task": { ... }
 }
 ```
 
@@ -936,7 +942,7 @@ Attribute | Type | Description
 
 ```shell
 curl "https://api.scaleapi.com/v1/task/{task_id}" \
-  -u YOUR_API_KEY:
+  -u "{{ApiKey}}:"
 ```
 
 ```python
@@ -944,7 +950,7 @@ import requests
 
 task_id = 'YOUR_TASK_ID'
 
-response = requests.get('https://api.scaleapi.com/v1/task/%s' % task_id, auth=('YOUR_API_KEY', ''))
+response = requests.get('https://api.scaleapi.com/v1/task/%s' % task_id, auth=('{{ApiKey}}', ''))
 
 # Return dictionary can be accessible in this way
 response_dict = json.loads(response.content)
@@ -952,7 +958,7 @@ response_dict = json.loads(response.content)
 
 ```javascript
 var request = require("request");
-var SCALE_API_KEY = 'YOUR_API_KEY';
+var SCALE_API_KEY = '{{ApiKey}}';
 
 var task_id = 'YOUR_TASK_ID';
 
@@ -1018,7 +1024,7 @@ Returns a task if a valid identifier was provided, and returns a 404 error other
 
 ```shell
 curl -X POST "https://api.scaleapi.com/v1/task/{task_id}/cancel" \
-  -u YOUR_API_KEY:
+  -u "{{ApiKey}}:"
 ```
 
 ```python
@@ -1027,7 +1033,7 @@ import json
 
 task_id = 'YOUR_TASK_ID'
 
-response = requests.post('https://api.scaleapi.com/v1/task/%s/cancel/' % task_id, auth=('YOUR_API_KEY', ''))
+response = requests.post('https://api.scaleapi.com/v1/task/%s/cancel/' % task_id, auth=('{{ApiKey}}', ''))
 
 # Return dictionary can be accessible in this way
 response_dict = json.loads(response.content)
@@ -1035,7 +1041,7 @@ response_dict = json.loads(response.content)
 
 ```javascript
 var request = require("request");
-var SCALE_API_KEY = 'YOUR_API_KEY';
+var SCALE_API_KEY = '{{ApiKey}}';
 
 var task_id = 'YOUR_TASK_ID';
 
@@ -1099,14 +1105,14 @@ Returns the canceled task if a valid identifier for a pending task was provided,
 
 ```shell
 curl "https://api.scaleapi.com/v1/tasks" \
-  -u YOUR_API_KEY:
+  -u "{{ApiKey}}:"
 ```
 
 ```python
 import requests
 import json
 
-response = requests.get('https://api.scaleapi.com/v1/tasks/', auth=('YOUR_API_KEY', ''))
+response = requests.get('https://api.scaleapi.com/v1/tasks/', auth=('{{ApiKey}}', ''))
 
 # Return dictionary can be accessible in this way
 response_dict = json.loads(response.content)
@@ -1114,7 +1120,7 @@ response_dict = json.loads(response.content)
 
 ```javascript
 var request = require("request");
-var SCALE_API_KEY = 'YOUR_API_KEY';
+var SCALE_API_KEY = '{{ApiKey}}';
 
 request.get('https://api.scaleapi.com/v1/tasks/', {
   'auth': {

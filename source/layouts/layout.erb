@@ -15,7 +15,7 @@ under the License.
 %>
 <% language_tabs = current_page.data.language_tabs || [] %>
 <!doctype html>
-<html>
+<html ng-app="scale">
   <head>
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
@@ -24,7 +24,7 @@ under the License.
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular-resource.min.js"></script>
-    
+
     <style>
       <%= Rouge::Themes::Base16::Monokai.render(:scope => '.highlight') %>
     </style>
@@ -37,7 +37,7 @@ under the License.
     <% end %>
   </head>
 
-  <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
+  <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>" ng-controller="docsController" ng-cloak>
     <a href="#" id="nav-button">
       <span>
         NAV
