@@ -1,5 +1,12 @@
 # Changelog
 
+### 4.1-rc-3
+
+- added tagging for events, tours and dates
+- added documentation for multi locale support
+- add documentation for cash point "show_by_barcode" method
+
+
 ### 4.1-rc-2
 
 - added by_bookable filter for events, tickets and tours
