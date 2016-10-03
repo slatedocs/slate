@@ -2,7 +2,7 @@
 title: Zibby API Documentation
 
 language_tabs:
- - json: Json
+ - json: JSON
 
 toc_footers:
 
@@ -93,10 +93,6 @@ Status:			202
 To begin an application, Zibby requires that the consumer verify their phone number. This is done by sending an SMS message to the input number.
 
 
-Customers will need to review and accept the privacy policy before proceeding. The privacy policy can be viewed here:
-
-URL: https://www.zibby.com/privacy-policy
-
 
 ##Submit Verification Code
 
@@ -133,18 +129,36 @@ Request:		{"phone": "1234567890",
               	 "dob_month": 7,
               	 "dob_year": 1984,
               	 "income": "50000.00",
-              	 "ssn": "342134125",
-              	 "privacy_policy_signature": "pngBase64EncodedString"}
+              	 "ssn": "342134125"}
 Response:		{"uid": "2f0db9059d6a46c1a02e5361243e40b6"}
 Status: 		201
 ```
 
 To create the Zibby application for a consumer, the customer’s application data as shown in the Application JSON to the right should be sent either in a POST or PATCH request to Zibby.
 
+##Privacy Policy Signature
+
+>Submit Privacy Policy Signature:
+
+```script
+URL:			/api/v3/application/<uid>/privacy_policy_signature/
+Method:			POST
+Request:		{"signature": "PNG image as base64 encoded string"}
+Response:		{"success": true}
+Status: 		201
+```
+
+
+Customers will need to review and accept the privacy policy before proceeding. The privacy policy can be viewed here:
+
+URL: https://www.zibby.com/privacy-policy
+
+
+
 ##Build the Application
 
 ```script
-URL: 			/api/v3/application/<uid>
+URL: 			/api/v3/application/<uid>/
 Method: 		PATCH
 Request:		{"billing_address" : "151 W 25th St",
                	 "billing_address2" : "9th Fl",
@@ -158,8 +172,7 @@ Request:		{"billing_address" : "151 W 25th St",
                	 "dob_year" : 1986,
                	 "email" : "jd@cognical.com",
                	 "income" : "50000.00",
-               	 "ssn" : "431135234"
-               	 "privacy_policy_signatur": "pngBase64EncodedString"}
+               	 "ssn" : "431135234"}
 Response: 		{"uid" : "2f0db9059d6a46c1a02e5361243e40b6"}
 Status: 		202
 ```
@@ -241,7 +254,8 @@ zibby.checkout.set({
 					"display_name": "4K LG TV",
 					"sku": "LG-4k2352",
 					"unit_price": 1399.99,
-					"quantity":1
+                                        "quantity": 1,
+                                        "leasable": true
 					}],
 					checkout: {
 						"customer_id": "10004323",
@@ -311,7 +325,7 @@ Once the customer has recieved the SMS code, it must be sent to Zibby along with
 ##Estimate Monthly Payment
 
 ```script
-URL:			/api/v3/estimate/
+URL:			/api/v3/application/estimate/
 Method:			POST
 Request:		{"cash_price": "500", "zip_code": "12345"}
 Response:		{"term": "18", "monthly_payment": "68.05"}
@@ -328,7 +342,7 @@ Zibby API allows you to be able to view what the monthly payment would be based 
 
 
 ```script
-URL:		/api/v3/preview/
+URL:		/api/v3/application/preview/
 Method:		POST
 Request:	{"state":"NY","items":
 						[{"item_type":"new",
@@ -369,9 +383,10 @@ Based on the content of a customer's shopping cart, the Zibby API can return a p
 ##Initialize the Lease for Checkout
 
 ```script
-URL: 		/api/v3/initialize/
+URL: 		/api/v3/application/initialize/
 Method: 	POST
-Request:	{"customer":{
+Request:	{"code": "123456",
+                 "customer":{
 				"billing":{
 					"first_name":"jane",
 					"middle_name":"Q",
@@ -455,7 +470,7 @@ Once an order has been originated, Zibby provides certain API endpoints to allow
 ##Cancel Order
 
 ```script
-URL: 		/api/v3/application/<zibby_id>/cancel_order
+URL: 		/api/v3/application/<zibby_id>/cancel_order/
 Method: 	GET
 Return: 	{"success": true}
 ```
@@ -465,7 +480,7 @@ The Zibby API allows retailers to directly cancel the entire order.
 ##Cancel Item
 
 ```script
-URL: 		/api/v3/application/<zibby_id>/cancel_item
+URL: 		/api/v3/application/<zibby_id>/cancel_item/
 Method: 	POST
 Request:	{"items": [{"sku": "285868","display_name": "BATTERY","unit_price": 4.0, "quantity": 4}]}
 Return: 	{"success": true}
@@ -476,7 +491,7 @@ The Zibby API allows retailers to directly cancel individual items within an ori
 ##Confirm Order
 
 ```script
-URL: 		/api/v3/application/<zibby_id>/confirm_order
+URL: 		/api/v3/application/<zibby_id>/confirm_order/
 Method: 	POST
 Request: 	{"order_id": "abcd"}
 Return: 	{"success": true}
