@@ -1,6 +1,6 @@
 var app = angular.module('scale', ['ngResource']);
 
-app.controller('docsController', function ($scope, $http, $resource) {
+app.controller('docsController', ["$scope", "$http", "$resource", function ($scope, $http, $resource) {
   $http.defaults.withCredentials = true;
   var User = $resource('https://dashboard.scaleapi.com/internal/logged_in_user');
 
@@ -13,4 +13,4 @@ app.controller('docsController', function ($scope, $http, $resource) {
       $scope.ApiKey = user.testApiKey;
     }
   });
-});
+}]);

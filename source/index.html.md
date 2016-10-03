@@ -82,7 +82,7 @@ request.get('api_endpoint_here', {
 });
 ```
 
-> <span ng-if="!user.testApiKey">You must replace <code>{{ApiKey}}</code> with your personal API key. If you <a href="https://dashboard.scaleapi.com/signup">sign up</a> or <a href="https://dashboard.scaleapi.com/login">log in</a>, your API key will be automatically filled.</span>
+> <span ng-if="!user.testApiKey">You must replace <code>{{ApiKey}}</code> with your personal API key. If you <a href="https://dashboard.scaleapi.com/signup">sign up</a> or <a href="https://dashboard.scaleapi.com/login">log in</a>, your API key will be automatically filled in the docs.</span>
 > <span ng-if="user.testApiKey">Your test API key <code>{{ApiKey}}</code> is included in all the examples on this page, so you can test any example right away. Only you can see this value.</span>
 
 Scale uses API keys to allow access to the API. You can register a new Scale API key on your dashboard (if you have access to Scale).
@@ -92,7 +92,7 @@ Scale expects for the API key to be included in all API requests to the server v
 `-u "{{ApiKey}}:"`
 
 <aside class="notice" ng-if="!user.testApiKey">
-You must replace <code>{{ApiKey}}</code> with your personal API key. If you <a href="https://dashboard.scaleapi.com/signup">sign up</a> or <a href="https://dashboard.scaleapi.com/login">log in</a>, your API key will be automatically filled.
+You must replace <code>{{ApiKey}}</code> with your personal API key. If you <a href="https://dashboard.scaleapi.com/signup">sign up</a> or <a href="https://dashboard.scaleapi.com/login">log in</a>, your API key will be automatically filled in the docs.
 </aside>
 
 <aside class="notice" ng-if="user.testApiKey">
