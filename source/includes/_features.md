@@ -107,6 +107,14 @@ When inspecting a [transaction trace](#transaction-traces), you'll see a "Memory
 
 For perspective, we display how this trace's allocations compare to the norm.
 
+## Deploy Tracking
+
+![deploy tracking](deploy_tracking.png)
+
+Correlate deploys with your app's performance: Scout's GitHub-enhanced deploy tracking makes it easy to identify the Git branch or tag running now and which team members contributed to every deploy.
+
+Scout tracks your deploys without additional configuration if you are running Capistrano. If you aren't using Capistrano or deploying your app to Heroku, see our [deploy tracking configuration docs](#deploy-tracking-config).
+
 ### Sorting
 
 You can sort by memory allocations throughout the UI: from the list of endpoints, to our pulldowns, to transaction traces.
