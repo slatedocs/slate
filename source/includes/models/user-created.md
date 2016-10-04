@@ -51,11 +51,11 @@ A Waypoint contains the customer information, their location, and a list of [Del
 |---------------------------|----------------------------------|----------|------------
 | name                      | String                           | false    | The name of the waypoint.
 | address                   | String                           | false    | The address at the waypoint.
-| location                  | [Location](#location)            | true     | The geocode coordinate at this waypoint.
-| customerId                | String                           | true     | The globally unique identifier identifying the customer at this waypoint.
-| serviceTimeInSeconds      | Long                             | false    | The estimated amount of time in seconds the driver will take to complete this waypoint.
-| deliveries                | Collection<[Delivery](#delivery)>      | true     | The collection of Delivery objects at this waypoint. This collection must not be empty.
-| timeWindows               | Collection<[TimeWindow](#timewindow)>  | false    | The collection of TimeWindow objects at this waypoint. This list may be empty.
+| location                  | [Location](#location)            | true     | The geocode coordinate of the waypoint.
+| customerId                | String                           | true     | The globally unique identifier identifying the customer at the waypoint.
+| serviceTimeInSeconds      | Long                             | false    | The estimated amount of time in seconds the driver will take to complete the waypoint.
+| deliveries                | Collection<[Delivery](#delivery)>      | true     | The collection of Delivery objects at the waypoint. This collection must not be empty.
+| timeWindows               | Collection<[TimeWindow](#timewindow)>  | false    | The collection of TimeWindow objects at the waypoint. This list may be empty.
 
 ```java
 Collection<Delivery> deliveries = ...;
@@ -105,7 +105,7 @@ A Delivery describes an item and quantity to be delivered. e.g. SKU
 | Field                     | Type                             | Required | Description
 |---------------------------|----------------------------------|----------|------------
 | name                      | String                           | true     | The name of the product.
-| quantity                  | Double                           | false    | The quantity of the product. This field should in the unit that makes sense for the product.
+| quantity                  | Double                           | false    | The quantity of the product. This field should be in the unit that makes sense for the product.
 
 ```java
 Delivery delivery = Delivery.builder()

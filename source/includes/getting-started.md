@@ -360,7 +360,7 @@ Now that we’ve created a Route, it can be imported like this:
 FoxtrotSDK.getInstance().addRoute(route);
 ```
 
-Now let's get the [OptimizedRoute](#optimizedroute). You will need to register a [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) to get latest route changes. Once registered, an `OptimizedRoute` will be immediately given to you via the `onRouteChanged()` callback. Here is a sample `Activity` that uses the `RouteStateListener`.
+Now let's get the [OptimizedRoute](#optimizedroute). You will need to register a [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) to get the latest route changes. Once registered, an `OptimizedRoute` will be immediately given to you via the `onRouteChanged()` callback. Here is a sample `Activity` that uses the `RouteStateListener`.
 
 ```java
 public class SampleRouteActivity extends Activity {
@@ -459,4 +459,4 @@ If your users run multiple routes throughout the day, it's possible to import mo
 In order to begin the second Route, you'll need to finish the first one by making the call to finishRoute. The first route will then be marked as 'finished', and you will begin receiving events for the second route.
 </aside>
 
-When all the routes that Foxtrot has have been finished, your [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) will receive a call to `onAllRoutesFinished()` and you'll have the opportunity to respond.
+When all the routes have been finished, your [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) will receive a call to `onAllRoutesFinished()` and you'll have the opportunity to respond.
