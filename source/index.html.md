@@ -925,9 +925,16 @@ you can set a default callback URL in your profile, which will be used for tasks
 
 You should respond to the POST request with a 200 status code. If we do not receive a 200 status code, we will retry one more time.
 
-If you're just testing and want to try a few requests, the easiest way to get started is to use a [RequestBin](http://requestb.in/) and send requests using your `http://requestb.in/someHash` URL as the `callback_url`.
+### Getting Started
 
-If you're just starting out and want the easiest way to set up your own callback URL, we recommend using [ngrok](https://ngrok.com/) to expose a local server to the internet. Feel free to [contact us](mailto:hello@scaleapi.com) if you have any trouble.
+We have sample callback server implementations, which you can deploy to Heroku in seconds, in the following languages:
+
+* [Node.js](https://github.com/scaleapi/sample-callback-server-node)
+* Python (coming soon!)
+
+If you're just testing and want to try a few requests, the easiest way to get started is to use a [RequestBin](http://requestb.in/) and send requests using your `http://requestb.in/someHash` URL as the `callback_url`. You can also use [ngrok](https://ngrok.com/) to expose a local server to the internet for fast prototyping.
+
+Feel free to [chat us on Slack](https://chat.scaleapi.com) or [email us](mailto:hello@scaleapi.com) if you have any trouble.
 
 ### Authentication
 
