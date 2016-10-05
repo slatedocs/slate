@@ -44,6 +44,8 @@ monthly-run | One of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 
 weekly-run | One of 1, 2, 3, 4, 5, 6, 7. Defaults to 0 (none).
 white-label-profile-id |	
 active-only | Flag to fetch only active citations. One of Yes, No. Defaults to No. This cannot be changed once the report has been added.
+notify | One of yes or no. If set to yes we will send report alerts to all email addresses specified (see field below). If you include customer email addresses when setting up your report we'll also email them the alerts so please be sure this is what you want before adding their addresses. Default is no.
+email-addresses | Supply one or more (max 5) email addresses for us to send report alerts to. Emails should be passed as a JSON encoded array. This only takes effect if notify is set to yes.
 is-public | Publish reports on a white label URL. Yes or No.
 
 ## Update Report
@@ -91,6 +93,8 @@ monthly-run | One of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 
 weekly-run | One of 1, 2, 3, 4, 5, 6, 7. Defaults to 0 (none).
 white-label-profile-id |	
 active-only | Flag to fetch only active citations. One of Yes, No. Defaults to No.
+notify | One of yes or no. If set to yes we will send report alerts to all email addresses specified (see field below). If you include customer email addresses when setting up your report we'll also email them the alerts so please be sure this is what you want before adding their addresses. Default is no.
+email-addresses | Supply one or more (max 5) email addresses for us to send report alerts to. Emails should be passed as a JSON encoded array. This only takes effect if notify is set to yes.
 is-public | Publish reports on a white label URL. Yes or No.
 
 ## Get Report
