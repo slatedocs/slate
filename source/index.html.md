@@ -26,7 +26,7 @@ https://api.scaleapi.com/v1/
 
 Welcome to the Scale API! You can use our API to access Scale API endpoints, which can create, access, and cancel human tasks.
 
-Anyone can use our API! [Sign up here](https://api.scaleapi.com/signup) to get started using Scale. You can also [contact us](mailto:hello@scaleapi.com) for volume pricing or any inquiries.
+Anyone can use our API! [Sign up here](https://dashboard.scaleapi.com/signup) to get started using Scale. You can also [contact us](mailto:hello@scaleapi.com) for volume pricing or any inquiries.
 
 You can also join our [Slack channel here](https://scalesupport.herokuapp.com/)!
 
