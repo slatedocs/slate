@@ -411,9 +411,10 @@ curl 'https://api.doordeck.com/auth/token/' \
 
 HEADER='{"alg":"RS256","typ":"JWT"}'
 BODY='{"iss":"USER_ID","sub":"00000000-0000-0000-0000-000000000000","nbf":1473083829,"iat":1473083829,"exp":1473083889,"operation":{"type":"MUTATE_LOCK","locked":false,"duration":5}}'
-HASH=`echo $HEADER.$BODY | openssl dgst -sha256`
-SIGNATURE=`echo $HASH | openssl rsautl -sign -inkey privatekey.pem -keyform PEM`
-JWT=`echo -n $HEADER | base64`.`echo -n $BODY | base64`.`echo -n $SIGNATURE | base64`
+HEADER_B64=`echo -n $HEADER | base64 | sed 's/+/-/g;s/\//_/g;s/=//g'`
+BODY_B64=`echo -n $BODY | base64  | sed 's/+/-/g;s/\//_/g;s/=//g'`
+SIGNATURE_B64=`echo -n $HEADER_B64.$BODY_B64 | openssl sha -sha256 -sign privatekey.pem | base64 | sed 's/+/-/g;s/\//_/g;s/=//g'`
+JWT=`echo -n $HEADER_B64.$BODY_B64.$SIGNATURE_B64`
 
 curl 'https://api.doordeck.com/device/00000000-0000-0000-0000-000000000000/execute'
   -X POST
@@ -422,7 +423,7 @@ curl 'https://api.doordeck.com/device/00000000-0000-0000-0000-000000000000/execu
   --data-binary "$JWT"
 ```
 
-> Replace `00000000-0000-0000-0000-000000000000` with the lock's ID, `USERNAME` and `PASSWORD` with the appropiate credentials.
+> Replace `00000000-0000-0000-0000-000000000000` with the lock's ID, `USER_ID` with the user's ID (obtained from decoding their auth token), `USERNAME` and `PASSWORD` with the appropriate credentials.
 
 This endpoint allows operations to be performed on a lock, typically this is lock and unlock. Requests to this endpoint must be signed and formed as a JSON web token.
 
