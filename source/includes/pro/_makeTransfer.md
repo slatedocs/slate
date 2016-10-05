@@ -8,7 +8,7 @@ key | type | status | comment
 bankClientId | string | 1..1 | идентификатор клиента
 filledForm | [FilledFormDTO](#filledformdto) | 1..1 | заполненная форма с данными
 requestId | string | 1..1 | уникальный идентификатор запроса в виде UUID
-deviceInfo | string | 1..1 | ``IP=<ip_address>;APP_VERSION=<app_version>;OS=<os_type>;VENDOR_ID=<device_uuid>``
+deviceInfo | [DeviceInfoDTO](#deviceinfodto) | 1..1 | дополнительная информация об устройстве
 **Response:** | | |
 result | string | 1..1 | результат операции {OK, ERROR}
 needConfirmation | bool | 0..1 | признак необходимости подтверждения

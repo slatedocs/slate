@@ -49,7 +49,7 @@ key | type | status | comment
 **Request:** | | |
 bankClientId | string | 1..1 | идентификатор клиента
 login | string | 1..1 | логин клиента
-deviceInfo | string | 1..1 | ``IP=<ip_address>;APP_VERSION=<app_version>;OS=<os_type>;VENDOR_ID=<device_uuid>``
+deviceInfo | [DeviceInfoDTO](#deviceinfodto) | 1..1 | дополнительная информация об устройстве
 **Response:** | | |
 result | string | 1..1 | результат выполнения команды {OK, ERROR, PASSWORD_CHANGING_REQUIRED}
 correctClient | bool | 0..1 | флаг, отвечающий за разрешение или запрет авторизации по корректному ПИН-коду в текущий момент

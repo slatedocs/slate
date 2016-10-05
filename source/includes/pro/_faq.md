@@ -48,11 +48,6 @@ pro server - [http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl]
 0. Настроить дополнительный домен, например, если у вас используется домен ida.mybank.com для мобильных приложений, то нужно создать домен ida_new.mybank.com, который так-же будет ссылаться на IP настраиваемого сервера
 0. Произвести настройку фронт-сервера таким образом, что бы траффик для домена ida.mybank.com перенаправлялся на localhost:8080/pro (8080 - порт TomCat по умолчанию), а траффик ida_new.mybank.com направлялся на localhost:8080/pro_new. Пример подобной [настройки nginx](http://serverfault.com/questions/536576/nginx-how-do-i-forward-a-http-request-to-another-port)
 
-**Дополнительно фиксируемые данные для безопасности**
-
-- Во всех запросах шлется версия приложения в хэддере запроса ``APP_VERSION=<app_version>``
-- LoginWithPassword, LoginUserWithPin, MakeTransfer в параметрах запроса шлется deviceInfo
-
 **Конфигурирование сервиса**
 
 key | type | comment

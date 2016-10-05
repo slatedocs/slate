@@ -8,7 +8,7 @@ key | type | status | comment
 login | string | 1..1 | логин
 password | string | 1..1 | пароль
 validationCode | string | 0..1 | код из SMS, который передаётся только в случае ответа на команду логин с результатом VALIDATION_REQUIRED
-deviceInfo | string | 1..1 | ``IP=<ip_address>;APP_VERSION=<app_version>;OS=<os_type>;VENDOR_ID=<device_uuid>``
+deviceInfo | [DeviceInfoDTO](#deviceinfodto) | 1..1 | дополнительная информация об устройстве
 **Response:** | | |
 result | [resultLoginKey](#resultloginkey) | 1..1 | результат проверки пары логин-пароль
 bankClientId | string | 1..1 | идентификатор клиента

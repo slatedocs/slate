@@ -63,6 +63,7 @@ includes:
   - pro/MarkerDTO
   - pro/FeedDTO
   - pro/FeedEventDTO
+  - pro/DeviceInfoDTO
   - pro/sysReq
   - pro/faq
 
