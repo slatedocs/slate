@@ -220,19 +220,10 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $results = $api->call('v1/clients-and-locations/clients/search', array(
-    'q' => 'My Sample Company'
-    
+    'q' => 'My Sample Company'    
 ));
 print_r($results);
-
 ```
-```shell
-curl -X GET \
-     -d 'api-key=<INSERT_API_KEY>' \
-    -d 'q=<INSERT_SEARCH_QUERY>' \	
-    https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
-```
-
 
 > Success (200 OK)
 
