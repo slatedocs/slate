@@ -35,17 +35,17 @@ curl -X POST -H "Content-Type: application/json" -d '{"0": {"text": "Starbucks",
 
 ### iconURL
 
-URL для доступа к логотипу категории на мобильном распознает параметр для удобства расположения на сервере и оптимизации размеров - _http://.../**${image.type}**/name.png_ и будет автоматически в зависимости от платформы подменять его на **ios-small** или **android-small**
+URL для доступа к логотипу категории на мобильном распознает параметр для удобства расположения на сервере и оптимизации размеров - http://.../**${image.type}**/name.png и будет автоматически в зависимости от платформы подменять его на **ios-small** или **android-small**
 
 comment | url
 --- | ---
-пришло от сервиса | ``http://static.idamob.ru/smarttransaction/category/**${image.type}**/restaurants_and_cafes.png``
+пришло от сервиса | ``http://static.idamob.ru/smarttransaction/category/${image.type}/restaurants_and_cafes.png``
 на iPhone стало | [http://static.idamob.ru/smarttransaction/category/ios-small/restaurants_and_cafes.png](http://static.idamob.ru/smarttransaction/category/ios-small/restaurants_and_cafes.png)
 на Android стало | [http://static.idamob.ru/smarttransaction/category/ios-small/restaurants_and_cafes.png](http://static.idamob.ru/smarttransaction/category/android-small/restaurants_and_cafes.png)
 
 ### logoURL
 
-URL для доступа к логотипу мерчента на мобильном распознает параметр для удобства скелинга картинки и оптимизации трафика и размеров _http://.../**c_scale,w_64**/name.png_
+URL для доступа к логотипу мерчента на мобильном распознает параметр для удобства скелинга картинки и оптимизации трафика и размеров http://.../**c_scale,w_64**/name.png
 
 size | url
 --- | ---

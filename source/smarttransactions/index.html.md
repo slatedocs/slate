@@ -10,7 +10,6 @@ toc_footers:
 
 includes:
   - smarttransactions/description
-  - smarttransactions/architecture
   - smarttransactions/protocol
   - smarttransactions/installation
   - smarttransactions/faq
