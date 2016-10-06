@@ -6,6 +6,17 @@ BBOXX uses <a href="https://docs.influxdata.com/influxdb/v1.0/">InfluxDB</a> as 
 
 ## Schema
 
+InfluxDB uses <a href="https://docs.influxdata.com/influxdb/v1.0/concepts/key_concepts/#measurement">`measurements`</a>, <a href="https://docs.influxdata.com/influxdb/v1.0/concepts/key_concepts/#field-set">`fields`</a> and <a href="https://docs.influxdata.com/influxdb/v1.0/concepts/key_concepts/#tag-set">`tags`</a> to uniquely identify data.
+
+A `measurement` is a logical grouping of streams of incoming data.  
+A `field` describes a single stream like `current`, `voltage` or `temperature`.   
+The `tags` identify the unit that the data is generated from.  
+
+
+All data recorded from a unit is held in the relevant `field` in a measurement called `"telemetry"`. 
+Each datapoint is then tagged with the <a href="#product">product_imei</a>.
+
+## Example 1
 > InfluxDB schema for a single unit storing I, V, T
 
 ```python
@@ -18,11 +29,6 @@ time                     current voltage temperature product_imei
 2016-09-02T08:41:56.348Z    1       2         3      013777946874001
 2016-09-02T08:42:35.505Z    1       2         3      013777946874001
 ```
-
-Influx uses <a href="https://docs.influxdata.com/influxdb/v1.0/concepts/key_concepts/#measurement">measurements</a>, <a href="https://docs.influxdata.com/influxdb/v1.0/concepts/key_concepts/#field-set">fields</a> and <a href="https://docs.influxdata.com/influxdb/v1.0/concepts/key_concepts/#tag-set">tags</a> to uniquely identify data.
-
-All data recorded from a unit is held in the "telemetry" measurement. The name of the data being recorded is the field name. Each series is then tagged with the <a href="#product">product_imei</a> and the <a href="#product_type">product_type_id</a>.
-
 For example - a unit has product_imei: 013777946874001
 This unit has 3 things being recorded:
 
@@ -32,18 +38,7 @@ This unit has 3 things being recorded:
 
 The data would therefore be recorded in influx as follows (see right):
 
-
-A second unit has product_imei: 866771029491460
-This unit has 5 things being recorded:
-
-* current (I)
-* current_in (I_in)
-* current_out (I_out)
-* voltage (V)
-* temperature (T)
-
-The influx data would therefore be now look like this:
-
+## Example 2
 > New schema for the 'telemetry' measurement with a second unit adding data.
 
 ```python
@@ -60,6 +55,20 @@ time                     current voltage temperature c_in c_out  product_imei
 2016-08-30T16:43:11.984Z    4       5         6       7     8   013950004127933
 2016-08-30T16:43:22.646Z    4       5         6       7     8   013950004127933
 ```
+
+A second unit has product_imei: 866771029491460
+This unit has 5 things being recorded:
+
+* current (I)
+* current_in (I_in)
+* current_out (I_out)
+* voltage (V)
+* temperature (T)
+
+The influx data would therefore be now look like this (see right):
+
+Note that two new `fields` have been added `current_in`, and `current_out` (abbreviated for readability), which are null for unit 4001 but filled for unit 7933. The telemetry measurement can support arbitrary new fields from a unit.
+
 
 Users can query data relating to each product, specifying fields and tags as desired. See <a href="#reading-data-from-influx">Reading Data From Influx</a> for more information.
 
@@ -110,7 +119,7 @@ Data is written to influx as a list of timestamp/value pairs. The `measurement`,
 
 ### Measurements
 
-A `measurement` is a logical container for different series. Examples of sensible measurement names could be:  
+A `measurement` is a logical container for different series. Examples of sensible measurement names could be:
 
 * telemetry -_(for Current, Voltage, Temperature, Power)_
 * logging - _(for storing logs if required)_
@@ -118,15 +127,16 @@ A `measurement` is a logical container for different series. Examples of sensibl
 
 ### Fields
 
-Each `measurement` may have many `fields`. Each `field` represents a single stream of incoming data. Example of sensible fields could be:  
+Each `measurement` may have many `fields`. Each `field` represents a single stream of incoming data. Example of sensible fields could be:
 
 * current
 * voltage
 * temperature
+* product_logs
 
 ### Tags
 
-Values inside a `field` are differentiated by the `tags` on each point. Sensible `tags` could be:  
+Values inside a `field` are differentiated by the `tags` on each point. Sensible `tags` could be:
 
 * product_imei
 * product_type_id
@@ -142,10 +152,10 @@ For example if we wish to see Current and Voltage data for the unit 013777894567
 
 ## Writing Data for a Product
 
-> Data can be written to a specific product like this - note that the product_imei is automatically written into the tags and does not need to be specified by the user:
+> Data can be written to a specific product like this - note that the <a href="#product">`product_imei`</a> is automatically written into the tags and does not need to be specified by the user:
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v2/products/<imei>/rm_data"
+    url = "http://smartapi.bboxx.co.uk/v1/products/<imei>/data"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     data = json.dumps({
@@ -153,19 +163,19 @@ For example if we wish to see Current and Voltage data for the unit 013777894567
         "tags": {"some_tag": "tag_value"},
         "fields": {
             "current": [
-                ['2016-09-01', 1.0],
-                ['2016-09-02', 2.0],
-                ['2016-09-03', 3.0]
+                [1472688000000, 1.0],
+                [1472774400000, 2.0],
+                [1472860800000, 3.0]
             ],
             "voltage": [
-                ['2016-09-01', 10],
-                ['2016-09-02', 20],
-                ['2016-09-03', 30]
+                ['2016-09-01T00:00:00Z', 10.0],
+                ['2016-09-02 00:00:00', 20.0],
+                ['2016-09-03', 30.0]
             ],
             "temperature": [
-                ['2016-09-01', 0.1],
-                ['2016-09-02', 0.2],
-                ['2016-09-03', 0.3]
+                ['Thu, September 1st 2016', 0.1],
+                ['Fri, September 2nd 2016', 0.2],
+                ['Sat, September 3rd 2016', 0.3]
             ]
         }
     })
@@ -180,20 +190,37 @@ For example if we wish to see Current and Voltage data for the unit 013777894567
       "data": null,
     }
 ```
-Data for a single product data is written using the `/v2/products/<imei>/rm_data` endpoint.
+Data for a single product data is written using the `/v1/products/<imei>/data` endpoint.
+
+This endpoint will write data into the database tagged with the product_imei supplied in the endpoint.
+Users can also specify other tags to be applied to every point in the supplied data by including them in the `tags` sections of the `POST` request. 
+
+Data is supplied as a dictionary with the `measurement`, `tags` and `fields` specified in the format as shown on the right.
+
+The actual data is supplied as a list of `[<timestamp>, <value>]` pairs.
+
+The `<timestamp>` can be any of the following:    
+* _milliseconds_ since epoch eg: 1475685693839  
+* isoformatted date-time object eg: 'yyyy-mm-ddTHH:MM:SS.nnnnnnnnnZ'  
+* sensibly formatted datetime string eg: 'yyyy-mm-dd HH:MM:SS.nnnnnnnnn'  
+* most sensibly formatted string eg: 'Tue, October 4th 2016'  
+
+
+<aside class="notice">If using integer-since-epoch the user <b>MUST</b> supply in <b>MILLISECONDS</b> since epoch start. Supplying seconds, microseconds or nanoseconds can result in unpredictable behaviour.</aside>
+
 
 ### POST
      | value
  ----:|:---
-endpoint | `/v2/products/<imei>/rm_data`
+endpoint | `/v1/products/<imei>/data`
 method | `POST`
 url_params | `product_imei` <font color="DarkGray">_(varchar(15))_</font>
 query params |  None
-body | List of valid data-points
+body | dictionary with  data-structure and a list of valid datapoints. 
 permissions | <font color="Jade">__`TECHNICAL`__</font>
 response | `200`
 
-<aside class="notice">Note! The <a href="#product">product_imei</a> tag doesn't need to be specified it will be added automatically.</aside>
+<aside class="notice">Note! The <a href="#product">product_imei</a> tag doesn't need to be specified - it will be added automatically.</aside>
 
 
 ## Writing General Data
@@ -201,23 +228,24 @@ response | `200`
 > More general data can be written like this:
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v2/influx/write_data"
+    url = "http://smartapi.bboxx.co.uk/v1/influx/data"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
-    data = json.dumps([{
+    data = json.dumps({
         "measurement": "analysis",
         "fields": {
-            "curve-data": [ 
-                ["2016-01-01T00:01:20", 1], 
-                ["2016-01-01T00:01:21", 2], 
-                ["2016-01-01T00:01:22", 3], 
-                ["2016-01-01T00:01:23", 4] ],
+            "curve-data": [
+                ["2016-01-01T00:01:20", 1],
+                ["2016-01-01T00:01:21", 2],
+                ["2016-01-01T00:01:22", 3],
+                ["2016-01-01T00:01:23", 4],
+            ],
         },
         "tags": {
-            "analysis-type": "state-of-health"
+            "analysis-type": "state-of-health",
             "product_imei": "000000000000000"
         }
-    }])
+    })
 
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -230,7 +258,7 @@ response | `200`
     }
 ```
 
-If a user wishes to store data that doesn't relate to a specific product they can use the more general `/v2/influx/write_data` endpoint.
+If a user wishes to store data that doesn't relate to a specific product they can send a `POST` the more general `/v1/influx/data` endpoint. With data in the same format as before. 
 
 <aside class="notice">Note that this endpoint cannot auto-assign a <a href="#product">product_imei</a> tag so all fields and tags must be explicitly stated in the request.</aside>
 
@@ -238,11 +266,11 @@ If a user wishes to store data that doesn't relate to a specific product they ca
 ### POST
      | value
  ----:|:---
-endpoint | `/v2/influx/write_data`
+endpoint | `/v1/influx/data`
 method | `POST`
 url_params | None
 query params |  None
-body | List of valid data-points
+body | Correctly formatted set of datapoints (see right)
 permissions | <font color="Jade">__`TECHNICAL`__</font>
 response | `200`
 
@@ -251,7 +279,7 @@ response | `200`
 > A `GET` request with no parameters will return the default query for the product.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v2/products/000000000000000/rm_data"
+    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000000/data"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     r = requests.get(url=url, headers=headers)
@@ -260,7 +288,7 @@ response | `200`
 > Any number of parameters can be explicitly specified, the other parameters will be filled with the default options.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v2/products/000000000000000/rm_data"
+    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000000/data"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     params = {
@@ -273,7 +301,7 @@ response | `200`
 > Complex queries can be built using the `where` clause parameters
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v2/products/000000000000000/rm_data"
+    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000000/data"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     params = {
@@ -286,46 +314,55 @@ response | `200`
     r = requests.get(url=url, params=params, headers=headers)
 ```
 
-Users can `GET` data for a particular product using the same rm_data endpoint `/v2/products/<imei>/rm_data`
+Users can `GET` data for a particular product using the same rm_data endpoint `/v1/products/<imei>/data`
 
 As expected a `GET` request to this endpoint returns data relating that product.
 
-Users can filter the data they received by providing filters in the parameters of the `GET` request. Each parameter is optional and if not provided will be filled by the default option.
+Users can filter the data they received by providing filters in the `parameters` of the `GET` request. Each parameter is optional and if not provided will be filled by the default option.
 
-Defaults will be defined separately for each <a href="#product_type">product_type</a> so different products will return different data structures.
+Defaults will be defined separately for each <a href="#product_type">product_type</a> so different product types will return different data structures.
 
 ### Parameters
 
  name | description | default
  ----:|:--- | ---
-"start" | start-time | 7 days ago
-"end" | end-time | now()
-"fields" | fields to query | ["current", "voltage", "temperature"]
-"measurement" | measurement to query | "telemetry"
-"limit" | number of data-points to return | No limit
-"where" | An optional WHERE-clause | None
-"tags" | tags to query | {}
+`start` | start-time | 7 days ago
+`end` | end-time | now()
+`fields` | fields to query | ["current", "voltage", "temperature"]
+`measurement` | measurement to query | "telemetry"
+`limit` | number of data-points to return | No limit
+`where` | An optional WHERE-clause | None
+`tags` | tags to query | {}
+`ds_interval` | A downsampling interval to apply to the query | None
+`ds_function` | The downsampling function to apply with `ds_interval` | `mean()`
 
 For example:
 
-If a user queries `/v2/products/<imei>/rm_data` and includes the following parameters:
+If a user queries `/v1/products/<imei>/data` and includes the following parameters:
 
-* start: "2016-01-01"
+* `{start: "2016-01-01"}`
 
-Then they can expect to receive `current`, `voltage`, and `temperature` data for the unit specified from the `Telemetry` measurement before 2016-01-01 and `now()`. Since `now()` is the default endtime and I,V,T are the default fields.
+Then they can expect to receive `current`, `voltage`, and `temperature` data for the unit specified from the `telemetry` measurement before 2016-01-01 and `now()`. Since `now()` is the default endtime and I,V,T are the default fields.
 
 A second query with parameters:
 
-* start: "2016-01-01"
-* end: "2016-02-01"
-* limit: 100
-* where: "'voltage' > 14.0"
+<code>
+{  
+&emsp;&emsp;start: "2016-01-01",  
+&emsp;&emsp;end: "2016-02-01",  
+&emsp;&emsp;limit: 100,  
+&emsp;&emsp;where: "'voltage' > 14.0"  
+}
+</code>
 
-Would return the first 100 datapoints in January where voltage > 14.0V for the unit.
+
+Would return the first 100 datapoints in January where voltage > 14.0V for the unit. Note that since `fields` is not specified here the default fields of `current`, `voltage` and `temperature` are returned so the data returned is the current, voltage and temperature data for all the points in the time where the voltage was > 14.0, 
 
 ## Reading General Data
 
-A `GET` request to `/v2/influx/data` allows the user to read more general data from influx. The parameter syntax and defaults are the same.
+A `GET` request to `/v1/influx/data` allows the user to read more general data from influx. The parameter syntax and defaults are the same.
+
+
 <aside class="notice">Note! A <a href="#product">product_imei</a> must be explicity stated if required when using this endpoint.</aside>
 
 
