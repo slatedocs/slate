@@ -19,6 +19,17 @@ $success = $api->post('v1/clients-and-locations/clients/', [
 print_r($success);
 ```
 
+```shell
+curl -X POST \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'name=<INSERT_NAME>' \
+ -d 'company-url=<INSERT_COMPANY_URL>'\
+ -d 'business-category-id=<INSERT_BUSINESS_CATEGORY_ID>'\ 
+ https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
+```
+
 > Success (200 OK)
 
 ```json
@@ -59,13 +70,25 @@ Update an existing client. Only supply values you want to update. The rest will 
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->put('v1/clients-and-locations/clients/', array(
+$success = $api->put('v1/clients-and-locations/clients/', [
     'name' => 'Le Bernardin',           
     'company-url' => 'http://www.example.com',
     'business-category-id' => 791    
-));
+]);
 print_r($success);
 ```
+
+```shell
+curl -X PUT \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'name=<INSERT_NAME>' \
+ -d 'company-url=<INSERT_COMPANY_URL>'\
+ -d 'business-category-id=<INSERT_BUSINESS_CATEGORY_ID>'\
+   https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
+```
+
 
 > Success (200 OK)
 
@@ -111,6 +134,10 @@ $success = $api->delete('v1/clients-and-locations/clients/:' .$clientId);
 	}
 ```
 
+```shell
+curl -X DELETE 'https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/:<INSERT_CLIENT_ID>?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>'
+```
+
 > Success (200 OK)
 
 ```json
@@ -147,6 +174,12 @@ $clientId = 1;
 $api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
 $client = $api->call('v1/clients-and-locations/clients/:'. $clientId);
 print_r($client);
+```
+
+
+```shell
+curl 'https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/:<INSERT_CLIENT_ID>?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>'
+  
 ```
 
 > Success (200 OK)
@@ -190,10 +223,19 @@ client-id | <span class="label label-required">Required</span>
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->call('v1/clients-and-locations/clients/search', array(
-    'q' => 'My Sample Company'    
-));
+$results = $api->call('v1/clients-and-locations/clients/search', [
+ 'q' => 'My Sample Company'    
+]);
 print_r($results);
+
+```
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'q=<INSERT_SEARCH_QUERY>' \	
+  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
 ```
 
 > Success (200 OK)
