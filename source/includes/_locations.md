@@ -4,6 +4,28 @@
 
 <span class="label label-info">Account Method</span>
 
+> Add Location
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->post('v1/clients-and-locations/locations/', [
+    'name'                   => 'Le Bernardin',    
+    'url'                    => 'http://www.example.com',
+	'business-category-id'   => 605,
+	'country'                => 'USA', // 3 letter iso code
+	'address1'               => '155 West 51st Street',
+    'address2'               => '',
+	'region'                 => 'NY' // State or Region
+	'city'                   => 'New York',
+	'postcode'               => '10019',
+    'telephone'              => '+1 212-554-1515'
+]);
+print_r($success);
+```
+
 > Success (200 OK)
 
 ```json
@@ -29,7 +51,7 @@ expires | <span class="label label-required">Required</span> [See above for how 
 name | <span class="label label-required">Required</span> 50 characters max.
 client-id | 
 url | <span class="label label-required">Required</span> 150 characters max
-business-category-id | <span class="label label-required">Required</span> See here for a full list of valid business codes.
+business-category-id | <span class="label label-required">Required</span> [See here for a full list of valid business codes.](#appendix)
 country | <span class="label label-required">Required</span> ISO 3 country code.
 address1 | <span class="label label-required">Required</span> 50 characters max
 address2 | 50 characters max
@@ -58,6 +80,29 @@ services-of-products| Json encoded array
 <span class="label label-info">Account Method</span>
 
 Update an existing location. Only supply values you want to update. The rest will be left unchanged.
+
+> Update Location
+
+```php
+<?php
+use BrightLocal\Api;
+
+$locationId = 1;
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->put('v1/clients-and-locations/locations/:' .$locationId, [
+    'name'                   => 'Le Bernardin',    
+    'url'                    => 'http://www.example.com',
+	'business-category-id'   => 605,
+	'country'                => 'USA', // 3 letter iso code
+	'address1'               => '155 West 51st Street',
+    'address2'               => '',
+	'region'                 => 'NY' // State or Region
+	'city'                   => 'New York',
+	'postcode'               => '10019',
+    'telephone'              => '+1 212-554-1515'
+]);
+print_r($success);
+```
 
 > Success (200 OK)
 
@@ -110,6 +155,20 @@ services-of-products| Json encoded array
 
 <span class="label label-info">Account Method</span>
 
+> Delete a Location
+
+```php
+<?php
+use BrightLocal\Api;
+
+$locationId = 1;
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->delete('v1/clients-and-locations/locations/:' .$locationId);
+	if($success) {
+	echo 'Successfully deleted location.' . PHP_EOL;
+	}
+```
+
 > Success (200 OK)
 
 ```json
@@ -136,6 +195,18 @@ location-id | <span class="label label-required">Required</span>
 ## Get Location
 
 <span class="label label-info">Account Method</span>
+
+> Get location
+
+```php
+<?php
+use BrightLocal\Api;
+
+$locationId = 1;
+$api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
+$location = $api->call('v1/clients-and-locations/locations/:'. $locationId);
+print_r($location);
+```
 
 > Success (200 OK)
 
@@ -200,6 +271,19 @@ expires | <span class="label label-required">Required</span> [See above for how 
 
 <span class="label label-info">Account Method</span>
 
+> Search for a location
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->call('v1/clients-and-locations/locations/search', array(
+    'q' => 'New York'    
+));
+print_r($results);
+```
+
 > Success (200 OK)
 
 ```json
@@ -211,6 +295,12 @@ expires | <span class="label label-required">Required</span> [See above for how 
 			"location-name":"BrightLocal HQ",
 			"client-id":1,
 			"location-reference":"BL1"
+	   },
+	    {
+			"location-id": 2,
+			"location-name":"Talking Elephant",
+			"client-id":12,
+			"location-reference":"TE12"
 	   }
     ]
 }
