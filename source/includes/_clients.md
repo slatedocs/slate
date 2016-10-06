@@ -14,8 +14,7 @@ $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v1/clients-and-locations/clients/', [
     'name' => 'Le Bernardin',           
     'company-url' => 'http://www.example.com',
-    'business-category-id' => 791
-    
+    'business-category-id' => 791    
 ]);
 print_r($success);
 ```
@@ -72,8 +71,7 @@ $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->put('v1/clients-and-locations/clients/', array(
     'name' => 'Le Bernardin',           
     'company-url' => 'http://www.example.com',
-    'business-category-id' => 791
-    
+    'business-category-id' => 791    
 ));
 print_r($success);
 ```
@@ -126,11 +124,10 @@ use BrightLocal\Api;
 
 $clientId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-
-$success = $api->delete('v1/clients-and-locations/clients/:' .$clientId.);
-if($success) {
-echo 'Successfully deleted client.' . PHP_EOL;
-}
+$success = $api->delete('v1/clients-and-locations/clients/:' .$clientId);
+	if($success) {
+	echo 'Successfully deleted client.' . PHP_EOL;
+	}
 ```
 
 ```shell
@@ -169,10 +166,9 @@ client-id | <span class="label label-required">Required</span>
 ```php
 <?php
 use BrightLocal\Api;
-$id = 1;
-
+$clientId = 1;
 $api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
-$client = $api->call('v1/clients-and-locations/clients/:'. $id.);
+$client = $api->call('v1/clients-and-locations/clients/:'. $clientId);
 print_r($client);
 ```
 
@@ -203,7 +199,7 @@ Get extended details for a specific client.
 
 `GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/:id`
 
-<h3>Query Parameters</h3>
+### Query Parameters
 
 Parameter | Notes
 --------- | -----
@@ -212,7 +208,7 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 client-id | <span class="label label-required">Required</span>
 
-<h3> Search Clients</h3>
+## Search Clients
 
 <span class="label label-info">Account Method</span>
 
@@ -264,11 +260,11 @@ curl -X GET \
 
 Search for clients matching a specified search string.
 
-<h3>HTTP Request</h3>
+### HTTP Request
 
 `GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/search`
 
-<h3>Query Parameters</h3>
+### Query Parameters
 
 Parameter | Notes
 --------- | -----
