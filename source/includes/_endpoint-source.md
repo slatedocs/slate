@@ -27,7 +27,9 @@ body POSTed.
 {
   "element": "shoji:entity",
   "body": {
-    "location": "<url>"
+    "location": "<url>",
+    "name": "Optional name",
+    "description": "Optional description"
   }
 }
 ```
