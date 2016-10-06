@@ -105,3 +105,31 @@ curl "https://demo.gomus.de/api/v4/museums/1"
 The json response contains a museum block with information for that museum. The information is the same as that of the museums list response, but with the addition of a location block.
 
 - location, contains information about the location of the museum.
+
+
+## Opening hours of a single museum
+
+`GET https://demo.gomus.de/api/v4/museums/:id/opening_hours`
+
+```shell
+curl "https://demo.gomus.de/api/v4/museums/1/opening_hours?date=2016-12-31"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "opening_hours": {
+        "begin": "2016-12-31T10:00:00+01:00",
+        "end": "2016-12-31T18:30:00+01:00",
+    }
+}
+```
+
+### Available parameters:
+
+- date, defaults to today
+
+### Response
+
+The json response contains the begin and end of the opening hours as datetimes.
