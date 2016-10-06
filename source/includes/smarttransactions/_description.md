@@ -4,7 +4,7 @@
 
 Решение работает совместно с продуктом iDa Pro.
 
-#№ Architecture
+## Architecture
 
 Сервис SmartTransactions устанавливается в зоне iDa Pro или iDa Proxy, возможно, на том же самом веб-контейнере. Необходимо, чтобы iDa Pro имел доступ к сервису.
 
