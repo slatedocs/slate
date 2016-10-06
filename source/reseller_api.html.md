@@ -124,6 +124,23 @@ curl "https://demo.gomus.de/api/v4/orders/1"
 - billing_address_id (integer), reference to an address dataset. Not in use right now, but in future versions of th API resellers might be able to use several adresses for one account.
 
 
+## Find single order by barcode
+
+`GET https://demo.gomus.de/api/v4/orders/barcode/:barcode`
+
+```shell
+curl "https://demo.gomus.de/api/v4/orders/barcode/704323341"
+    -H "Authorization: Bearer meowmeowmeow"
+```
+
+> The above command returns JSON structured just like the details of a single order.
+
+### Barcodes
+
+The barcode may belong to any item that is contained in the order.
+
+
+
 
 ## Documents
 
@@ -417,7 +434,8 @@ An item has two major attributes:
     "attributes": {
         "id": 247,
         "quantity": 1,
-        "time": "2016-07-07T13:00:00+02:00"
+        "time": "2016-07-07T13:00:00+02:00",
+        "reservations": ["8CE0mEgjyAvQB1IbPJ4iyg"]
     }
 }
 ```
@@ -428,6 +446,7 @@ A ticket item has a fairly simple structure:
 - id (integer), the tickets id, see ticket section in public api
 - quantity (integer), a count > 0
 - time (iso8601), the entry timestamp
+- reservations (array of tokens), if any (see Tickets -> Reservations for more info)
 
 
 

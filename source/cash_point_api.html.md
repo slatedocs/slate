@@ -29,16 +29,130 @@ In a success case a JSON with the valid order will be returned.
 
 All orders placed by a cash point are assumed to be payed in place.
 
+## Additional filters
+
+The order endpoint for cash point users might configured with global access to all orders placed. To filter
+for the orders placed by the cash point, the filter `only_my_orders` is provided:
+
+- only_my_orders (boolean, true|false, default: all)
+
 See [detailed documentation on Reseller API](/reseller_api.html) for information on how to create an order 
 for events, tours and tickets against the orders end point.
 
 # Bookings
 
-The cash point is able to access the global booking lists to e.g. display a by day list on the screen.
+The cash point is able to access the global booking lists to e.g. display a by day list or the booking
+list for events.
 
+## Event bookings
+
+The bookings for event dates can be accessed via the date bookings endpoint:
+
+
+`GET https://demo.gomus.de/api/v4/events/:event_id/dates/:date_id/bookings`
+
+```shell
+curl "https://demo.gomus.de/api/v4/events/123/dates/456/bookings"
+```
+
+> The above command returns JSON structured like this:
+
+
+```json
+{
+    "bookings": [
+        {
+            "id": 1221,
+            "comment": null,
+            "customer": {
+              "name": "Herr Bruce Wayne",
+              "category": "Superhero",
+              "insitution": "Wayne Industries"
+            },
+            "status": 20,
+            "seats": 2,
+            "created_at": "2016-08-18T20:51:19+02:00",
+            "canceled_at": null,
+            "prices": [
+                {
+                    "title": "Preis",
+                    "quantity": 2,
+                    "price_cents": 4,
+                    "total_price_cents": 8
+                }
+            ]
+        },
+        {
+            "id": 1222,
+            "comment": "Hinweis für die Kasse",
+            "customer": {
+              "name": "Herr Bruce Wayne",
+              "category": "Superhero",
+              "insitution": "Wayne Industries"
+            },
+            "status": 20,
+            "seats": 4,
+            "created_at": "2016-08-30T13:07:31+02:00",
+            "canceled_at": null,
+            "prices": [
+                {
+                    "title": "regulär",
+                    "quantity": 2,
+                    "price_cents": 4,
+                    "total_price_cents": 8
+                },
+                {
+                    "title": "ermäßigt",
+                    "quantity": 2,
+                    "price_cents": 3,
+                    "total_price_cents": 6
+                }
+            ]
+        },
+        {
+            "id": 1223,
+            "comment": "Stornierung mit voller Gebühr",
+            "customer": {
+              "name": "Herr Bruce Wayne",
+              "category": "Superhero",
+              "insitution": "Wayne Industries"
+            },
+            "status": 60,
+            "seats": 2,
+            "created_at": "2016-08-21T19:53:00+02:00",
+            "canceled_at": "2016-08-30T13:21:58+02:00",
+            "prices": [
+                {
+                    "title": "Storno-Preis",
+                    "quantity": 1,
+                    "price_cents": 28,
+                    "total_price_cents": 28
+                }
+            ]
+        }
+    ],
+    "meta": {
+        "total_count": 3,
+        "page": 1,
+        "per_page": 25
+    }
+}
+```
+
+### Response
+
+The json response contains a list of existing bookings as an array and a meta block.
+
+- id (integer), the unique database id of the booking
+- customer (object), contains name, category and institution reference
+- comment (string) contains comment for cash point
+- status (integer, any of BOOKED=20, CANCELED=60)
+- seats (integer) number of booked seats
+- prices (array)
+    
 ## Tour bookings
 
-The cash point can access all individual tour bookings via the bookings endpoint.
+The cash point can access all individual tour bookings via the tours bookings endpoint.
 
 ### List of tour bookings
 
@@ -65,14 +179,13 @@ curl "https://demo.gomus.de/api/v4/tours/bookings"
                 "tour_id": 100177,
                 "title": "Gruppenanmeldung"
             },
-            "comment_cash_point": "",
+            "comment": "",
             "status": 20,
-            "count_participants": 15,
+            "participants": 15,
             "customer": {
-              ...
-            },
-            "institution": {
-              ...
+                "name": "Herr Bruce Wayne",
+                "category": "Superhero",
+                "insitution": "Wayne Industries"
             },
             "created_at": "2016-04-28T13:03:30+02:00",
             "updated_at": "2016-04-28T13:07:02+02:00",
@@ -86,14 +199,13 @@ curl "https://demo.gomus.de/api/v4/tours/bookings"
                 "tour_id": 100178,
                 "title": "Gruppenführung"
             },
-            "comment_cash_point": "",
+            "comment": "",
             "status": 50,
-            "count_participants": 15,
+            "participants": 15,
             "customer": {
-              ...
-            },
-            "institution": {
-              ...
+                "name": "Herr Bruce Wayne",
+                "category": "Superhero",
+                "insitution": "Wayne Industries"
             },
             "created_at": "2016-04-28T13:05:40+02:00",
             "updated_at": "2016-08-19T12:07:04+02:00",
@@ -126,18 +238,10 @@ The json response contains a list of existing bookings as an array and a meta bl
 - start_time (iso8601), the booking's timestamp
 - duration (integer), duration in minutes
 - tour (object), contains information about the bookings tour
-
-- customer (object)
-- institution (object)
-
-- comment_cash_point (string)
-
-- status (string)
-- count_participants (string)
-
-
-
-
+- customer (object), contains name, category and institution reference
+- comment (string) contains comment for cash point
+- status (integer, any of BOOKED=20, CANCELED=50, FINISHED=25)
+- participants (integer)
 
 ### Details of a tour booking
 
@@ -160,14 +264,13 @@ curl "https://demo.gomus.de/api/v4/tours/bookings/1"
             "tour_id": 100177,
             "title": "Gruppenanmeldung"
         },
-        "comment_cash_point": "",
+        "comment": "",
         "status": 20,
-        "count_participants": 15,
+        "participants": 15,
         "customer": {
-          ...
-        },
-        "institution": {
-          ...
+            "name": "Herr Bruce Wayne",
+            "category": "Superhero",
+            "insitution": "Wayne Industries"
         },
         "created_at": "2016-04-28T13:03:30+02:00",
         "updated_at": "2016-04-28T13:07:02+02:00",
@@ -178,9 +281,10 @@ curl "https://demo.gomus.de/api/v4/tours/bookings/1"
                 "booking_id": 12345,
                 "title": "Entgelt",
                 "description": "Gruppenpreis",
-                "amount": 1,
+                "quantity": 1,
                 "price_cents": 0,
                 "total_price_cents": 0,
+                "type": "fee",
                 "created_at": "2016-04-28T13:04:17+02:00"
             },
             {
@@ -188,9 +292,10 @@ curl "https://demo.gomus.de/api/v4/tours/bookings/1"
                 "booking_id": 12345,
                 "title": "Zusätzlicher Pauschalpreis",
                 "description": "ein zusätzlicher Pauschalpreis",
-                "amount": 1,
+                "quantity": 1,
                 "price_cents": 9000,
                 "total_price_cents": 9000,
+                "type": "custom",
                 "created_at": "2016-04-28T13:04:17+02:00"
             }
         ]
@@ -212,15 +317,13 @@ The json response contains details for a booking like in the list view, but with
 It is possible to add and update custom booking prices unless the booking has been payed already. It is not possible 
 to change the default prices but e.g. give a discount and add additional custom items.
 
-Note that the cash point has only access to customer booking prices.
+Note that the cash point has only access to customer booking prices and can change only custom type prices.
 
 ### Adding prices
 
-`POST https://demo.gomus.de/api/v4/tours/bookings/:booking_id/prices`
+Custom customer prices can be added like this:
 
-```shell
-curl "https://demo.gomus.de/api/v4/tours/bookings/1/prices"
-```
+`POST https://demo.gomus.de/api/v4/tours/bookings/:booking_id/prices`
 
 > Write definition of order into /tmp/prices.json before executing shell command.
 
@@ -239,30 +342,26 @@ curl "https://demo.gomus.de/api/v4/tours/bookings/1/prices"
          {
              "title": "Zusätzlicher Pauschalpreis",
              "description": "ein zusätzlicher Pauschalpreis",
-             "amount": 1,
+             "quantity": 1,
              "price_cents": 9000
          },
          {
              "title": "Zusätzliche Audioguides",
              "description": "zusätzliche Audioguides",
-             "amount": 3,
+             "quantity": 3,
              "price_cents": 500
          }
      ]
  }
 ```
 
-The response will an http ok or an error.
+The response will contain a http ok or an error.
 
 ### Updating prices
 
 Custom prices can be updated like this:
 
 `PUT https://demo.gomus.de/api/v4/tours/bookings/:booking_id/prices/:id`
-
-```shell
-curl "https://demo.gomus.de/api/v4/tours/bookings/1/prices/9998"
-```
 
 > Write definition of order into /tmp/price_update.json before executing shell command.
 
@@ -281,9 +380,94 @@ curl "https://demo.gomus.de/api/v4/tours/bookings/1/prices/9998"
         {
             "title": "Pauschalpreis Update",
             "description": "hab mich vertippt",
-            "amount": 1,
+            "quantity": 1,
             "price_cents": 8000
        }
 }
 ```
 The response will contain the updated price object or an error.
+
+### Deleting prices
+
+A custom price can be updated like this:
+
+`DELETE https://demo.gomus.de/api/v4/tours/bookings/:booking_id/prices/:id`
+
+
+```shell
+curl "https://demo.gomus.de/api/v4/tours/bookings/1/prices/9998"
+    -XDELETE
+    -H "Content-Type: application/json"
+    -H "Authorization: Bearer meowmeowmeow"
+```
+
+
+The response will contain a http ok or an error.
+
+## Giving feedback
+
+The cash point is able to set a feedback for a tour booking, e.g. if it took place, how many participants took part
+and a generic comment.
+
+### Setting feedback
+
+`PUT https://demo.gomus.de/api/v4/tours/bookings/:id/feedback`
+
+> Write definition of order into /tmp/feedback.json before executing shell command.
+
+```shell
+curl "https://demo.gomus.de/api/v4/tours/bookings/1/feedback"
+    -XPUT --data "@/tmp/feedback.json"
+    -H "Content-Type: application/json"
+    -H "Authorization: Bearer meowmeowmeow"
+```
+
+> The above command assumes the prices.json JSON is structured like this:
+
+```json
+{
+	"feedback":
+		{
+			"comment": "eine tolle Führung, der Kunde war sehr zufrieden!",
+			"participants": "25",
+			"took_place": "true"
+		}
+}
+```
+
+The response will contain the feedback or an error.
+
+### Getting feedback
+
+Custom prices can be updated like this:
+
+`GET https://demo.gomus.de/api/v4/tours/bookings/:id/feedback`
+
+```json
+{
+    "feedback": {
+        "took_place": true,
+        "comment": "eine tolle Führung, der Kunde war sehr zufrieden!",
+        "participants": 25,
+        "updated_at": "2016-08-30T09:35:17+02:00"
+    }
+}
+```
+The response will contain the current feedback.
+
+### Clearing feedback
+
+The feedback can be cleared like this:
+
+`DELETE https://demo.gomus.de/api/v4/tours/bookings/:id/feedback`
+
+
+```shell
+curl "https://demo.gomus.de/api/v4/tours/bookings/:id/feedback"
+    -XDELETE
+    -H "Content-Type: application/json"
+    -H "Authorization: Bearer meowmeowmeow"
+```
+
+
+The response will contain a http ok or an error.
