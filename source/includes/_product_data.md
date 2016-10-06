@@ -322,6 +322,34 @@ Users can filter the data they received by providing filters in the `parameters`
 
 Defaults will be defined separately for each <a href="#product_type">product_type</a> so different product types will return different data structures.
 
+### Data Structure
+Provided no errors occured with the request the response will be structured as follows:
+
+<code>
+{  
+&emsp;&emsp;"status": "success",  
+&emsp;&emsp;"message": "data returned successfully",  
+&emsp;&emsp;"data": <influx data structure> 
+}
+</code>
+
+Where `<influx data structure>` is as follows:
+<code>
+{
+    "measurement": <measurement name>,
+    "tags": {
+        <tagName1>: <tagValue1>,
+        <tagName2>: <tagValue2>,
+        <tagName3>: <tagValue3>,
+        etc..
+    },
+    fieldName1: [[value, timestamp],[value, timestamp],[value, timestamp]],
+    fieldName2: [[value, timestamp],[value, timestamp],[value, timestamp]],
+    fieldName3: [[value, timestamp],[value, timestamp],[value, timestamp]],
+}
+</code>
+
+
 ### Parameters
 
  name | description | default
