@@ -4,13 +4,33 @@
 
 `/sources/`
 
-A Shoji Catalog representing the Sources added by this User. POST a multipart form here, with an "uploaded_file" field containing the file to upload; 201 indicates success, and the returned Location header refers to the new Source resource.
+A Shoji Catalog representing the Sources added by this User. POST a multipart form
+here, with an "uploaded_file" field containing the file to upload; 201 indicates
+success, and the returned Location header refers to the new Source resource.
 
-The uploaded sources will use the file's filename as their .name attribute and will have blank description.
+The uploaded sources will use the file's filename as their .name attribute and
+will have blank description.
 
 The catalog will include the sources' .name and .description
 
-Alternately, you may POST a urlencoded payload with a `source_url` parameter that points to a publicly accessible URL. Both "http" and the "s3" scheme are supported. This endpoint will then download such file synchronously and verify that it is a valid source file. It will be made available for the current user sources catalog.
+Alternately, you may POST a urlencoded payload with a `source_url` parameter that
+ points to a publicly accessible URL. Both "http" and the "s3" scheme are
+ supported. This endpoint will then download such file synchronously and verify
+ that it is a valid source file. It will be made available for the current user
+ sources catalog.
+
+Regular Shoji POST payloads are also supported to create new sources from
+remote source URLs. A `location` attribute should be included in the Shoji:entity
+body POSTed.
+
+```json
+{
+  "element": "shoji:entity",
+  "body": {
+    "location": "<url>"
+  }
+}
+```
 
 ### Entity
 
