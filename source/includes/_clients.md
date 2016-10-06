@@ -134,10 +134,6 @@ $success = $api->delete('v1/clients-and-locations/clients/:' .$clientId);
 	}
 ```
 
-```shell
-curl -X DELETE 'https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/:<INSERT_CLIENT_ID>?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>'
-```
-
 > Success (200 OK)
 
 ```json
@@ -174,12 +170,6 @@ $clientId = 1;
 $api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
 $client = $api->call('v1/clients-and-locations/clients/:'. $clientId);
 print_r($client);
-```
-
-
-```shell
-curl 'https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/:<INSERT_CLIENT_ID>?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>'
-  
 ```
 
 > Success (200 OK)
@@ -224,7 +214,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $results = $api->call('v1/clients-and-locations/clients/search', [
- 'q' => 'My Sample Company'    
+ 'q' => 'My Sample Query'    
 ]);
 print_r($results);
 
@@ -234,7 +224,7 @@ curl -X GET \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'q=<INSERT_SEARCH_QUERY>' \	
+ -d 'q=My+Sample+Query' \	
   https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
 ```
 
