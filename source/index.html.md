@@ -237,7 +237,8 @@ request.post('https://api.scaleapi.com/v1/task/categorize', {
       "public",
       "private"
     ]
-  }
+  },
+  "metadata": {}
 }
 ```
 
@@ -376,6 +377,7 @@ request.post('https://api.scaleapi.com/v1/task/transcription', {
 
 ```json
 {
+  "task_id": "576de9dc1ea5f917d56fc2a0",
   "created_at": "2016-06-25T02:18:04.248Z",
   "callback_url": "http://www.example.com/callback",
   "type": "transcription",
@@ -394,7 +396,7 @@ request.post('https://api.scaleapi.com/v1/task/transcription', {
     "attachment": "http://www.google.com/",
     "attachment_type": "website"
   },
-  "task_id": "576de9dc1ea5f917d56fc2a0"
+  "metadata": {}
 }
 ```
 
@@ -524,6 +526,7 @@ request.post('https://api.scaleapi.com/v1/task/phonecall', {
 
 ```json
 {
+  "task_id": "5771bc6631b72659f0d3692b",
   "created_at": "2016-06-27T23:53:10.367Z",
   "callback_url": "http://www.example.com/callback",
   "type": "phonecall",
@@ -542,7 +545,7 @@ request.post('https://api.scaleapi.com/v1/task/phonecall', {
     "entity_name": "Alexandr Wang",
     "phone_number": "5055006865"
   },
-  "task_id": "5771bc6631b72659f0d3692b"
+  "metadata": {}
 }
 ```
 
@@ -675,6 +678,7 @@ request.post('https://api.scaleapi.com/v1/task/comparison', {
 
 ```json
 {
+  "task_id": "5774cc78b02487c424f089dd",
   "created_at": "2016-06-30T07:38:32.368Z",
   "callback_url": "http://www.example.com/callback",
   "type": "comparison",
@@ -692,7 +696,7 @@ request.post('https://api.scaleapi.com/v1/task/comparison', {
       "http://images.wisegeek.com/checkered-tablecloth.jpg"
     ]
   },
-  "task_id": "5774cc78b02487c424f089dd"
+  "metadata": {}
 }
 ```
 
@@ -810,6 +814,7 @@ request.post('https://api.scaleapi.com/v1/task/annotation', {
 
 ```json
 {
+  "task_id": "5774cc78b01249ab09f089dd",
   "created_at": "2016-9-03T07:38:32.368Z",
   "callback_url": "http://www.example.com/callback",
   "type": "annotation",
@@ -822,7 +827,7 @@ request.post('https://api.scaleapi.com/v1/task/annotation', {
     "objects_to_annotate": ["baby cow", "big cow"],
     "with_labels": true
   },
-  "task_id": "5774cc78b01249ab09f089dd"
+  "metadata": {}
 }
 ```
 
@@ -904,6 +909,7 @@ The `annotations` field will contain an array of annotations. Each annotation wi
 ```json
 {
   "task": {
+    "task_id": "576c41bf13e36b0600b02b34",
     "completed_at": "2016-06-23T21:54:44.904Z",
     "response": {
       "category": "big"
@@ -922,7 +928,7 @@ The `annotations` field will contain an array of annotations. Each annotation wi
         "blue"
       ]
     },
-    "task_id": "576c41bf13e36b0600b02b34"
+    "metadata": {}
   },
   "response": {
     "category": "red"
@@ -1024,7 +1030,8 @@ request.get('https://api.scaleapi.com/v1/task/' + task_id + '/', {
   },
   "response": {
     "category": "big"
-  }
+  },
+  "metadata": {}
 }
 ```
 
@@ -1103,7 +1110,8 @@ request.post('https://api.scaleapi.com/v1/task/' + task_id + '/cancel/', {
       "big",
       "small"
     ]
-  }
+  },
+  "metadata": {}
 }
 ```
 
@@ -1167,6 +1175,7 @@ request.get('https://api.scaleapi.com/v1/tasks/', {
 ```json
 [
   {
+    "task_id": "576b998b4628d1bfaed7d3a4",
     "created_at": "2016-06-23T08:10:51.032Z",
     "callback_url": "http://www.example.com/callback",
     "type": "categorization",
@@ -1185,9 +1194,10 @@ request.get('https://api.scaleapi.com/v1/tasks/', {
     "response": {
       "category": "small"
     },
-    "task_id": "576b998b4628d1bfaed7d3a4"
+    "metadata": {}
   },
   {
+    "task_id": "576ba301eed30241b0e9bbf7",
     "created_at": "2016-06-23T08:51:13.903Z",
     "callback_url": "http://www.example.com/callback",
     "type": "categorization",
@@ -1206,7 +1216,7 @@ request.get('https://api.scaleapi.com/v1/tasks/', {
     "response": {
       "category": "big"
     },
-    "task_id": "576ba301eed30241b0e9bbf7"
+    "metadata": {}
   }
 ]
 ```
