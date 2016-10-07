@@ -151,7 +151,7 @@ curl -X PUT \
 
 ### HTTP Request
 
-`PUT https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/:locationId`
+`PUT https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/<locationId>`
 
 ### Query Parameters
 
@@ -217,7 +217,7 @@ Delete an existing location. If there are reports associated with this location 
 
 ### HTTP Request
 
-`DELETE https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/:locationId`
+`DELETE https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/<locationId>`
 
 ### Query Parameters
 
@@ -293,7 +293,7 @@ Get extended details for a specific location.
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/:locationId`
+`GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/<locationId>`
 
 ### Query Parameters
 

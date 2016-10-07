@@ -191,7 +191,7 @@ Get extended details for a specific client.
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/:id`
+`GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/<clientId>`
 
 ### Query Parameters
 

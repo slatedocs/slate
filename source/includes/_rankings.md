@@ -69,14 +69,14 @@ if ($batchId) {
 
 ```shell
 curl -X POST \
-    -F 'api-key=<INSERT_API_KEY>' \
-    -F 'batch-id=<INSERT_BATCH_ID>' \
-    -F 'search-engine=google' \
-    -F 'country=USA' \
-    -F 'google-location=new+york,ny' \
-    -F 'search-term=restaurant' \
-    -F 'urls=["jean-georgesrestaurant.com"]' \
-    -F 'business-names=["Jean-Georges Restaurant"]' \
+    -d 'api-key=<INSERT_API_KEY>' \
+    -d 'batch-id=<INSERT_BATCH_ID>' \
+    -d 'search-engine=google' \
+    -d 'country=USA' \
+    -d 'google-location=new+york,ny' \
+    -d 'search-term=restaurant' \
+    -d 'urls=["jean-georgesrestaurant.com"]' \
+    -d 'business-names=["Jean-Georges Restaurant"]' \
     https://tools.brightlocal.com/seo-tools/api/v4/rankings/search
 ```
 

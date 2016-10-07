@@ -114,7 +114,7 @@ echo json_encode(array(
 
 ### HTTP Request
 
-`PUT https://tools.brightlocal.com/seo-tools/api/v4/rf/[reportId]`
+`PUT https://tools.brightlocal.com/seo-tools/api/v4/rf/<reportId>`
 
 ### Query Parameters
 
@@ -274,7 +274,7 @@ directories | <p>If you need to add or change a profile URL you can do so here.<
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/[reportId]`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/<reportId>`
 
 ### Query Parameters
 
@@ -320,7 +320,7 @@ expires | <span class="label label-required">Required</span> [See above for how 
 
 ### HTTP Request
 
-`DELETE https://tools.brightlocal.com/seo-tools/api/v4/rf/[reportId]`
+`DELETE https://tools.brightlocal.com/seo-tools/api/v4/rf/<reportId>`
 
 ### Query Parameters
 
@@ -528,7 +528,7 @@ Fetch all reviews associated with a report.
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/[reportId]/reviews`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/<reportId>/reviews`
 
 ### Query Parameters
 
@@ -581,7 +581,7 @@ hash | Unique identifier based on directory, author and review text. This can be
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/[reportId]/reviews/count`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/<reportId>/reviews/count`
 
 ### Query Parameters
 
@@ -622,7 +622,7 @@ Get count and percentage of new reviews since last report run.
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/[reportId]/reviews/growth`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/<reportId>/reviews/growth`
 
 ### Query Parameters
 
@@ -773,7 +773,7 @@ Get a list of directories associated with a report. Results contain directory de
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/[reportId]/directories`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/<reportId>/directories`
 
 ### Query Parameters
 
@@ -839,7 +839,7 @@ Fetch stats showing average rating and review count for every directory in a giv
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/[reportId]/directories/stats`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/<reportId>/directories/stats`
 
 Fetch stats showing average rating and review count for every directory in a given report.
 
@@ -886,7 +886,7 @@ Get count of reviews for each star rating for a given report.
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/[reportId]/stars/count`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/<reportId>/stars/count`
 
 ### Query Parameters
 

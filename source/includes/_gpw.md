@@ -97,7 +97,7 @@ run | One of Yes or No. Runs the report after adding. Defaults to Yes.
 
 ### HTTP Request
 
-`PUT https://tools.brightlocal.com/seo-tools/api/v4/gpw/[reportId]`
+`PUT https://tools.brightlocal.com/seo-tools/api/v4/gpw/<reportId>`
 
 ### Query Parameters
 
@@ -189,7 +189,7 @@ run | One of Yes or No. Runs the report after adding. Defaults to Yes.
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v4/gpw/[reportId]`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/gpw/<reportId>`
 
 ### Query Parameters
 
@@ -224,7 +224,7 @@ expires | <span class="label label-required">Required</span> [See above for how 
 
 ### HTTP Request
 
-`DELETE https://tools.brightlocal.com/seo-tools/api/v4/gpw/[reportId]`
+`DELETE https://tools.brightlocal.com/seo-tools/api/v4/gpw/<reportId>`
 
 ### Query Parameters
 
@@ -905,7 +905,7 @@ Return report URLs and raw data.
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v4/gpw/[reportId]/results`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/gpw/<reportId>/results`
 
 ### Query Parameters
 
