@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: API reference
 
 language_tabs:
   - shell
@@ -75,7 +75,7 @@ Parameter | Default | Description
 --------- | ------- | -----------
 e         | N/A     | A comma separated list of technical indicators to be calculated.
 s         | N/A     | A list of symbols for which to calculate technical indicators.
-t         | day     | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day' or 'week'.
+t         | day     | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day'.
 d         | 1       | The number of data items to return.
 
 ## signals
@@ -107,13 +107,13 @@ This endpoint calculates signals ie: rsi crossed above 70, closing price is abov
 
 `GET http://api.fxhistoricaldata.com/v1/signals`
 
-### URL Parameters
+### Query Parameters
 
 Parameter | Description
 --------- | -----------
 e         | N/A     | The signal expression to be evaluated.
 s         | N/A     | A list of symbols for which to calculate the signal.
-t         | day     | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day' or 'week'.
+t         | day     | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day'.  This is ignored if the expression uses multiple timeframe signals.
 d         | 1       | The number of data items to return.
 
 
@@ -245,6 +245,52 @@ abs( close - previous(close,1) )
 
 Returns absolute value of expression (eg: abs(close - previous(close, 1)) )
 
+
+# Signal reference
+
+## crossoverup(expression1,expression2)
+
+```bash
+crossoverup(close,ema(close,200))
+```
+
+True when expression1 goes above expression2 in this period.
+
+## crossoverdown(expression1,expression2)
+
+```bash
+crossoverdown(close,ema(close,200))
+```
+
+True when expression1 goes below expression2 in this period.a
+
+## expression1 compare_to expression2
+
+```bash
+ema(close,50) >  ema(close,200)
+ema(close,50) >= ema(close,200)
+ema(close,50) <  ema(close,200)
+ema(close,50) <= ema(close,200)
+```
+
+Compares expression1 to expression2, ie, greater, greater than, lesser, lesser than.
+
+## Multiple timeframe signals
+
+```bash
+day(close > ema(close,200)) and 4hour(close < ema(close,200))
+```
+
+Compare signals in different timeframes. When using expressions with multiple timeframe signals, the timeframe querystring parameter is ignored.  The following timeframe functions are available:
+
+* 5min
+* 15min
+* 30min
+* hour
+* 2hour
+* 3hour
+* 4hour
+* day
 
 
 # Available markets
