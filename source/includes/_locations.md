@@ -14,7 +14,7 @@ $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v1/clients-and-locations/locations/', [
     'name'                   => 'Le Bernardin',    
     'url'                    => 'http://www.example.com',
-	'business-category-id'   => 605,
+	'business-category-id'   =>  605,
 	'country'                => 'USA', // 3 letter iso code
 	'address1'               => '155 West 51st Street',
     'address2'               => '',
@@ -107,10 +107,10 @@ use BrightLocal\Api;
 
 $locationId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->put('v1/clients-and-locations/locations/:' .$locationId, [
+$success = $api->put('v1/clients-and-locations/locations/' .$locationId, [
     'name'                   => 'Le Bernardin',    
     'url'                    => 'http://www.example.com',
-	'business-category-id'   => 605,
+	'business-category-id'   =>  605,
 	'country'                => 'USA', // 3 letter iso code
 	'address1'               => '155 West 51st Street',
     'address2'               => '',
@@ -137,7 +137,7 @@ curl -X PUT \
  -d 'city=<INSERT_CITY>'\
  -d 'postcode=<INSERT_POSTAL_CODE>'\
  -d 'telephone=<INSERT_TELEPHONE_NUMBER>'\
- https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/
+ https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/<locationId>
 ```
 
 > Success (200 OK)
@@ -199,10 +199,10 @@ use BrightLocal\Api;
 
 $locationId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->delete('v1/clients-and-locations/locations/:' .$locationId);
-	if($success) {
-	echo 'Successfully deleted location.' . PHP_EOL;
-	}
+$success = $api->delete('v1/clients-and-locations/locations/' .$locationId);
+if($success) {
+    echo 'Successfully deleted location.' . PHP_EOL;
+}
 ```
 
 > Success (200 OK)
@@ -240,7 +240,7 @@ use BrightLocal\Api;
 
 $locationId = 1;
 $api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
-$location = $api->call('v1/clients-and-locations/locations/:'. $locationId);
+$location = $api->get('v1/clients-and-locations/locations/' .$locationId);
 print_r($location);
 ```
 
@@ -314,9 +314,9 @@ expires | <span class="label label-required">Required</span> [See above for how 
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->call('v1/clients-and-locations/locations/search', array(
-    'q' => 'New York'    
-));
+$results = $api->call('v1/clients-and-locations/locations/search', [
+    'q'                     => 'My Sample Query'    
+]);
 print_r($results);
 ```
 
