@@ -16,7 +16,7 @@ search: true
 
 # Introduction
 
-Market Alerts is a simple API to calculate market indicators and signals across different timeframes in Commodity, Stock Indices and FX markets.
+Market Alerts is a simple API to calculate market indicators and signals across different timeframes in Commodity, Bonds, Stock Indices and FX markets.
 
 The API works in a REST like manner over HTTP, and covers 3 main areas:
 
@@ -33,7 +33,7 @@ The API works in a REST like manner over HTTP, and covers 3 main areas:
 # Authentication
 
 
-MarketAlerts is currently open for beta and does not require Authentication at this point.
+MarketAlerts is open for beta and does not currently require Authentication.
 
 # API Reference
 
@@ -73,9 +73,9 @@ This endpoint retrieves market data and calculates technical indicators
 
 Parameter | Default | Description
 --------- | ------- | -----------
-t         | day     | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day' or 'week'.
 e         | N/A     | A comma separated list of technical indicators to be calculated.
 s         | N/A     | A list of symbols for which to calculate technical indicators.
+t         | day     | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day' or 'week'.
 d         | 1       | The number of data items to return.
 
 ## signals
@@ -111,8 +111,53 @@ This endpoint calculates signals ie: rsi crossed above 70, closing price is abov
 
 Parameter | Description
 --------- | -----------
-t         | day     | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day' or 'week'.
 e         | N/A     | The signal expression to be evaluated.
 s         | N/A     | A list of symbols for which to calculate the signal.
+t         | day     | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day' or 'week'.
 d         | 1       | The number of data items to return.
 
+# Available markets
+
+The symbols that can be passed to the 's' argument of the API endpoints are:
+
+## Forex
+
+- AUDUSD
+- AUDJPY
+- AUDNZD
+- CHFJPY
+- EURCAD
+- EURCHF
+- EURGBP
+- EURJPY
+- EURUSD
+- GBPCHF
+- GBPJPY
+- GBPNZD
+- GBPUSD
+- NZDUSD
+- NZDJPY
+- USDCAD
+- USDCHF
+- USDHKD
+- USDJPY
+- USDOLLAR
+
+## Commodities/Bonds
+- XAUUSD
+- XAGUSD
+- UKOil
+- USOil
+- Bund
+
+## Stock Market Indices
+- AUS200
+- ESP35
+- FRA40
+- GER30
+- HKG33
+- JPN225
+- NAS100
+- SPX500
+- UK100
+- US30
