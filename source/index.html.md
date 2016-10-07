@@ -3,9 +3,6 @@ title: API Reference
 
 language_tabs:
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -19,171 +16,103 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Market Alerts is a simple API to calculate market indicators and signals across different timeframes in Commodity, Stock Indices and FX markets.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+The API works in a REST like manner over HTTP, and covers 3 main areas:
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+  * Market Data
+    * Download historical open,high,low,close data for various symbols in different timeframes.
+  * Indicators
+    * Calculate different technical indicators
+      * RSI, Moving averages, MACD, Bollinger Bands, Average True Range
+  * Signals
+    * Test for the existence of market signals, eg:
+      * close > ema(close,200) # Price closed above 200-day moving average
+      * crossoverup(rsi(close,14),70) # RSI just went above 70
 
 # Authentication
 
-> To authorize, use this code:
 
-```ruby
-require 'kittn'
+MarketAlerts is currently open for beta and does not require Authentication at this point.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+# API Reference
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+## indicators
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+curl \
+"http://api.fxhistoricaldata.com/v1/indicators?e=close,ema(close,200),rsi(close,14)&s=USDJPY"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+	results: {
+		USDJPY: {
+			data: [
+				[
+				"2016-10-07 00:00:00",
+				"103.1000",
+				"107.5165",
+				"57.80"
+				]
+			]
+		}
+	}
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint retrieves market data and calculates technical indicators
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET http://api.fxhistoricaldata.com/v1/indicators`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+t         | day     | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day' or 'week'.
+e         | N/A     | A comma separated list of technical indicators to be calculated.
+s         | N/A     | A list of symbols for which to calculate technical indicators.
+d         | 1       | The number of data items to return.
+
+## signals
+
+```shell
+curl \
+"http://api.fxhistoricaldata.com/v1/signals?e=close>ema(close,200) and rsi(close,14)<50&s=USDJPY"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	results: {
+		USDJPY: {
+			data: [
+				[
+					"2016-10-07 00:00:00"
+				]
+			]
+		}
+	}
+}
+```
+
+This endpoint calculates signals ie: rsi crossed above 70, closing price is above upper bollinger band, etc
+
+### HTTP Request
+
+`GET http://api.fxhistoricaldata.com/v1/signals`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+t         | day     | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day' or 'week'.
+e         | N/A     | The signal expression to be evaluated.
+s         | N/A     | A list of symbols for which to calculate the signal.
+d         | 1       | The number of data items to return.
 
