@@ -113,6 +113,7 @@ If you'd like to authenticate our callbacks, we set a `scale-callback-auth` HTTP
 
 The task object represents a single task that you create with Scale and is completed by a worker.
 
+## Attributes
 
 ```json
 {
@@ -134,11 +135,10 @@ The task object represents a single task that you create with Scale and is compl
   },
   "response": {
     "category": "big"
-  }
+  },
+  "metadata": {}
 }
 ```
-
-### Attributes
 
 Attribute | Type | Description
 --------- | ------- | -----------
@@ -152,7 +152,13 @@ Attribute | Type | Description
 `status` | string | The status of the task, one of `pending`, `completed`, or `canceled`.
 `created_at` | timestamp | A string of the UTC timestamp of when the task was created.
 `completed_at` | timestamp | A string of the UTC timestamp of when the task was completed. This will only be filled in after it is completed.
+`metadata` | object, default `{}` | A set of key/value pairs that you can attach to a task object. It can be useful for storing additional information about the task in a structured format.
 
+## Metadata
+
+Tasks objects have a metadata parameter. You can use this parameter to attach key-value data to tasks.
+
+Metadata is useful for storing additional, structured information on an object. As an example, you could store a video's unique identifier in your system on its content moderation `categorization` task. You can also use it to denote the end use case for the task, as "content moderation" or "data categorization" for example. Metadata is not used by Scale (e.g., to affect how the task is done).
 
 # Create Categorization Task
 
@@ -266,8 +272,9 @@ Parameter | Type | Description
 `urgency` (optional, default `day`) | string | A string describing the urgency of the response. One of `immediate`, `day`, or `week`, where `immediate` is a one-hour response time.
 `category_ids` (optional) | dictionary | An optional dictionary where the keys are the optional ids, and the values are the category values provided in `categories`.
 `allow_multiple` (optional) | boolean | Default is `false`. Determines whether you allow multiple categories to be chosen for the attachment
+`metadata` (optional, default `{}`) | object | A set of key/value pairs that you can attach to a task object. It can be useful for storing additional information about the task in a structured format.
 
-### Response on Callback
+## Response on Callback
 
 The `response` object will be of the form:
 
@@ -420,8 +427,9 @@ Parameter | Type | Description
 `fields` (optional if using `row_fields`) | dictionary | A dictionary corresponding to the fields to be transcribed. Keys are the keys you'd like the fields to be returned under, and values are descriptions to be shown to human workers.
 `row_fields` (optional if using `fields`) | dictionary | If your transcription requires a transcription of a variable number of row items, then this dictionary describes the fields for these rows. The format is the same as `fields`.
 `urgency` (optional, default `day`) | string | A string describing the urgency of the response. One of `immediate`, `day`, or `week`, where `immediate` is a one-hour response time.
+`metadata` (optional, default `{}`) | object | A set of key/value pairs that you can attach to a task object. It can be useful for storing additional information about the task in a structured format.
 
-### Response on Callback
+## Response on Callback
 
 The `response` object will be of the form:
 
@@ -572,8 +580,9 @@ Parameter | Type | Description
 `attachment` (optional) | string | The optional attachment to be used for the phone call. If `attachment_type` is `text`, then it should be plaintext. Otherwise, it should be a URL pointing to the attachment.
 `fields` (optional) | dictionary | A dictionary corresponding to the fields to be recorded. Keys are the keys you'd like the fields to be returned under, and values are descriptions to be shown to human workers.
 `choices` (optional) | [string] | An array of strings for the choices to be given to the worker. They will choose one of these in accordance with your `instruction`.
+`metadata` (optional, default `{}`) | object | A set of key/value pairs that you can attach to a task object. It can be useful for storing additional information about the task in a structured format.
 
-### Response on Callback
+## Response on Callback
 
 The `response` object will be of the form:
 
@@ -714,8 +723,9 @@ Parameter | Type | Description
 `urgency` (optional, default `day`) | string | A string describing the urgency of the response. One of `immediate`, `day`, or `week`, where `immediate` is a one hour response time.
 `fields` (optional) | dictionary | A dictionary corresponding to the fields to be recorded. Keys are the keys you'd like the fields to be returned under, and values are descriptions to be shown to human workers.
 `choices` (optional) | [string] | An array of strings for the choices to be given to the worker. One of `choices` or `fields` must be specified.
+`metadata` (optional, default `{}`) | object | A set of key/value pairs that you can attach to a task object. It can be useful for storing additional information about the task in a structured format.
 
-### Response on Callback
+## Response on Callback
 
 The `response` object will be of the form:
 
@@ -843,8 +853,9 @@ Parameter | Type | Description
 `urgency` (optional, default `day`) | string | A string describing the urgency of the response. One of `immediate`, `day`, or `week`, where `immediate` is a one-hour response time.
 `instruction` (optional) | string | The plaintext instruction of how the bounding boxes should be drawn.
 `attachment_type` (optional, default `image`) | string | Describes what type of file the attachment is. We currently only support `image` for the annotation endpoint.
+`metadata` (optional, default `{}`) | object | A set of key/value pairs that you can attach to a task object. It can be useful for storing additional information about the task in a structured format.
 
-### Response on Callback
+## Response on Callback
 
 > Example of what the response field of the task will look like after completion
 
