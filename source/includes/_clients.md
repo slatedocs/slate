@@ -11,10 +11,10 @@
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('v1/clients-and-locations/clients/', [
-    'name' => 'Le Bernardin',           
-    'company-url' => 'http://www.example.com',
-    'business-category-id' => 791    
+$success = $api->post('v1/clients-and-locations/clients/', [	   
+    'name'                   => 'Le Bernardin',               
+    'company-url'            => 'http://www.example.com',
+    'business-category-id'   => 791    
 ]);
 print_r($success);
 ```
@@ -71,9 +71,9 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->put('v1/clients-and-locations/clients/', [
-    'name' => 'Le Bernardin',           
-    'company-url' => 'http://www.example.com',
-    'business-category-id' => 791    
+    'name'                   => 'Le Bernardin',               
+    'company-url'            => 'http://www.example.com',
+    'business-category-id'   => 791    
 ]);
 print_r($success);
 ```
@@ -128,8 +128,8 @@ use BrightLocal\Api;
 
 $clientId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->delete('v1/clients-and-locations/clients/:' .$clientId);
-	if($success) {
+$success = $api->delete('v1/clients-and-locations/clients/' .$clientId);
+if($success) {
 	echo 'Successfully deleted client.' . PHP_EOL;
 	}
 ```
@@ -168,7 +168,7 @@ client-id | <span class="label label-required">Required</span>
 use BrightLocal\Api;
 $clientId = 1;
 $api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
-$client = $api->call('v1/clients-and-locations/clients/:'. $clientId);
+$client = $api->call('v1/clients-and-locations/clients/'. $clientId);
 print_r($client);
 ```
 
@@ -213,12 +213,12 @@ client-id | <span class="label label-required">Required</span>
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->call('v1/clients-and-locations/clients/search', [
- 'q' => 'My Sample Query'    
+$results = $api->call('v1/clients-and-locations/clients/search', [   
+ 'q'                     => 'My Sample Query'    
 ]);
 print_r($results);
-
 ```
+
 ```shell
 curl -X GET \
  -d 'api-key=<INSERT_API_KEY>' \
