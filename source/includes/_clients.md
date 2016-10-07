@@ -131,7 +131,7 @@ $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->delete('v1/clients-and-locations/clients/' .$clientId);
 if($success) {
 	echo 'Successfully deleted client.' . PHP_EOL;
-	}
+}
 ```
 
 > Success (200 OK)
