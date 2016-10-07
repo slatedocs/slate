@@ -26,6 +26,24 @@ $success = $api->post('v1/clients-and-locations/locations/', [
 print_r($success);
 ```
 
+```shell
+curl -X POST \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'name=<INSERT_BUSINESS_NAME>' \
+ -d 'url=<INSERT_COMPANY_URL>'\
+ -d 'business-category-id=<INSERT_BUSINESS_CATEGORY_ID>'\ 
+ -d 'country=<INSERT_THREE_LETTER_COUNTRY_CODE>'\
+ -d 'address1=<INSERT_ADDRESS_LINE_ONE>'\
+ -d 'address1=<INSERT_ADDRESS_LINE_TWO>'\
+ -d 'region=<INSERT_STATE_OR_REGION>'\
+ -d 'city=<INSERT_CITY>'\
+ -d 'postcode=<INSERT_POSTAL_CODE>'\
+ -d 'telephone=<INSERT_TELEPHONE_NUMBER>'\
+ https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/
+```
+
 > Success (200 OK)
 
 ```json
@@ -102,6 +120,24 @@ $success = $api->put('v1/clients-and-locations/locations/:' .$locationId, [
     'telephone'              => '+1 212-554-1515'
 ]);
 print_r($success);
+```
+
+```shell
+curl -X PUT \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'name=<INSERT_BUSINESS_NAME>' \
+ -d 'url=<INSERT_COMPANY_URL>'\
+ -d 'business-category-id=<INSERT_BUSINESS_CATEGORY_ID>'\ 
+ -d 'country=<INSERT_THREE_LETTER_COUNTRY_CODE>'\
+ -d 'address1=<INSERT_ADDRESS_LINE_ONE>'\
+ -d 'address1=<INSERT_ADDRESS_LINE_TWO>'\
+ -d 'region=<INSERT_STATE_OR_REGION>'\
+ -d 'city=<INSERT_CITY>'\
+ -d 'postcode=<INSERT_POSTAL_CODE>'\
+ -d 'telephone=<INSERT_TELEPHONE_NUMBER>'\
+ https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/
 ```
 
 > Success (200 OK)
@@ -282,6 +318,15 @@ $results = $api->call('v1/clients-and-locations/locations/search', array(
     'q' => 'New York'    
 ));
 print_r($results);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'q=My+Sample+Query' \	
+  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/search/
 ```
 
 > Success (200 OK)
