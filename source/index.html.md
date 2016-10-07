@@ -116,6 +116,137 @@ s         | N/A     | A list of symbols for which to calculate the signal.
 t         | day     | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day' or 'week'.
 d         | 1       | The number of data items to return.
 
+
+# Function reference
+
+<aside class="notice">
+Expressions can be arbitrarly nested, ie: <code>rsi(ema(close,20),14</code>
+</aside>
+
+
+## open,high,low,close
+
+The open, high, low and closing price of the security in the given timeframe.
+
+## ema(expression, n)
+
+```shell
+ema(close,200)
+ema(abs(high-low),20)
+```
+
+Exponential moving average of expression of n periods
+
+## sma(expression, n)
+
+```shell
+sma(close,200)
+sma(abs(high-low),20)
+```
+
+Simple moving average of expression over n periods
+
+
+## rsi(expression, n)
+
+```shell
+rsi(close,14)
+```
+
+Relative strength index of expression over n periods
+
+## max(expression, n)
+
+```shell
+max(high,10)
+```
+
+Maximum value of expression over n periods
+
+## min(expression, n)
+
+```shell
+min(low,10)
+```
+
+Minimum value of expression over n periods
+
+## tr()
+
+```shell
+tr()
+```
+
+True range is defined as:
+max[ (high-low), abs(high - previous_close), abs(low - previous_close) ]
+
+## atr(n)
+
+```shell
+atr(14)
+```
+
+Average true range over n periods (eg: atr(14) )
+
+## previous(expression, n)
+
+```shell
+previous(close, 1)
+```
+
+Value of expression n periods ago, useful to calculate crossover signals 
+
+## bolhigh(expression, n, y)
+
+```shell
+bolhigh(close,21,2)
+```
+
+Upper bollinger band of expression 
+
+## bollow(expression, n, y)
+
+```shell
+bollow(close, 21, 2)
+```
+
+Lower bollinger band of expression 
+
+## macd(expression, shortperiod, longperiod, smoothingperiod)
+
+```shell
+macd(close, 12, 26, 9)
+```
+
+Macd value of expression
+
+## macdsig(expression, shortperiod, longperiod, smoothingperiod)
+
+```shell
+macdsig(close, 12, 26, 9)
+```
+
+Macd signal value of expression
+
+## macddiff(expression, shortperiod, longperiod, smoothingperiod)
+
+
+```shell
+macddiff(close, 12, 26, 9)
+```
+
+Difference between macd and the macd signal (eg: macddiff(close, 12, 26, 9) )
+
+## abs(expression)
+
+```shell
+abs( close - previous(close,1) )
+```
+
+Returns absolute value of expression (eg: abs(close - previous(close, 1)) )
+
+
+
 # Available markets
 
 The symbols that can be passed to the 's' argument of the API endpoints are:
