@@ -28,7 +28,7 @@ Welcome to the Scale API! You can use our API to access Scale API endpoints, whi
 
 Anyone can use our API! [Sign up here](https://dashboard.scaleapi.com/signup) to get started using Scale. You can also [contact us](mailto:hello@scaleapi.com) for volume pricing or any inquiries.
 
-You can also join our [Slack channel here](https://scalesupport.herokuapp.com/)!
+You can also join our [Slack channel here](https://chat.scaleapi.com/)!
 
 <!-- We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
  -->
