@@ -380,10 +380,6 @@ Users can `GET` data for a particular product using the same rm_data endpoint `/
 
 As expected a `GET` request to this endpoint returns data relating to that product.
 
-Users can filter the data they received by providing filters in the `parameters` of the `GET` request. Each parameter is optional and if not provided will be filled by the default option.
-
-Defaults will be defined separately for each <a href="#product_type">product_type</a> so different product types will return different data structures.
-
 ### Data Structure
 Provided no errors occured with the request the response will be structured as follows:
 
@@ -415,7 +411,11 @@ Where `<influx data structure>` is as follows:
 
 ### Parameters
 
- name | description | default
+Users can filter the data they received by providing filters in the `parameters` of the `GET` request. Each parameter is optional and if not provided will be filled by the default option.
+
+Defaults will be defined separately for each <a href="#product_type">product_type</a> so different product types will return different data structures.
+
+name | description | default
  ----:|:--- | ---
 `start` | start-time | 7 days ago
 `end` | end-time | now()
