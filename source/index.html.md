@@ -237,72 +237,215 @@ See <https://integrations.expensify.com/Integration-Server/doc/export_report_tem
 We recommend storing your template in separate files, which can be passed to the request more easily with cURL's `@` operator.
 </aside>
 
-### HTTP Request
 
-`GET http://example.com/api/kittens`
+# Create
 
-### Query Parameters
+## Report creator
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations' \
+    -d 'requestJobDescription={
+        "type": "create",
+        "credentials": {
+            "partnerUserID": "_REPLACE_",
+            "partnerUserSecret": "_REPLACE_"
+        },
+        "inputSettings": {
+            "type": "report",
+            "policyID": "0123456789ABCDEF",
+            "report": {
+                "title": "Name of the report",
+                "fields":{
+                    "reason_of_trip": "Business trip",
+                    "employees": "3"
+                }
+            },
+            "employeeEmail": "user@domain.com",
+            "expenses": [
+                {
+                    "date": "yyyy-mm-dd",
+                    "currency": "USD",
+                    "merchant": "Name of merchant",
+                    "amount": 1234
+                },
+                {
+                    "date": "yyyy-mm-dd",
+                    "currency": "CAD",
+                    "merchant": "Name of merchant",
+                    "amount": 2211
+                }
+            ]
+        }
+    }'
 ```
 
-```javascript
-const kittn = require('kittn');
+> Response
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
+> - A success response message is comprised of a `responseCode` `200`, the name of the generated report and its ID on Expensify.
 
-> The above command returns JSON structured like this:
-
-```json
+```shell
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "responseCode": 200,
+    "reportName": "Name of the report",
+    "reportID": "3397451"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+> - Error
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+```shell
+{
+    "responseMessage": "Not authorized to authenticate as user user@domain.com",
+    "responseCode": 500
+}
+```
 
-### HTTP Request
+Lets you create a report, with transactions, in a user’s account from your external system.
 
-`GET http://example.com/kittens/<ID>`
+### `requestJobDescription` format
 
-### URL Parameters
+- `inputSettings`
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+type | String | "report" | Specifies to the job that it has to create a report.
+employeeEmail | String | A valid email address | The report will be created in that account. |
+report | JSON Object | See report. ||
+expenses | JSON Array | See expenses. ||
+policyID | String | Any valid Expensify policy ID, owned or shared by the user | The report will be created in that policy. |
 
+- `inputSettings.report`
+
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+title | String | | The title of the report that will be created.
+**Optional elements** |
+fields | JSON Object | A series of JSON objects whose key is the name of the report field to modify, and the value is the value to set. The key needs to have all non-alphanumerical characters replaced with underscores (`_`). | Values for custom fields on the specified `policyID`.
+
+- `inputSettings.expenses`
+
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+merchant | String |  | The title of the report that will be created.
+currency | String | Three-letter currency code of the transaction. | The currency in which the transaction was made.
+date | Date | yyyy-mm-dd formatted date | The date the expense was made.
+amount | Integer |  | The amount of the transaction, in pennies.
+
+
+## Expense creator
+
+
+```shell
+curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations' \
+    -d 'requestJobDescription={
+        "type":"create",
+        "credentials":{
+            "partnerUserID":"_REPLACE_",
+            "partnerUserSecret":"_REPLACE_"
+        },
+        "inputSettings":{
+            "type":"expenses",
+            "employeeEmail":"user@domain.com",
+            "transactionList": [
+                {
+                    "created": "2016-01-01",
+                    "currency": "USD",
+                    "merchant": "Name of merchant 1",
+                    "amount": 1234
+                },
+                {
+                    "created": "2016-01-21",
+                    "currency": "EUR",
+                    "merchant": "Name of merchant 2",
+                    "amount": 2211,
+                    "policyID": "E40D9B8DF456E233",
+                    "tax": {
+                       "rateID":"id_TAX_OPTION_16"
+                    }
+                },
+                {
+                    "created": "2016-01-31",
+                    "currency": "CAD",
+                    "merchant": "Name of merchant 3",
+                    "amount": 2211,
+                    "reportID": 4,
+                    "tax": {
+                        "rateID":"id_TAX_OPTION_16",
+                        "amount":600
+                    }
+                }
+            ]
+        }
+    }'
+```
+
+> Response
+
+> -  A success response message is comprised of a `responseCode` `200`, and the list of transactions that were created. Each transaction also has a unique `transactionID`.
+
+```shell
+{
+    "responseCode" : 200,
+    "transactionList" : [
+        {
+            "amount" : 1234,
+            "merchant" : "Name Of Merchant 1",
+            "created" : "2016-01-01",
+            "transactionID" : "6720309558248016",
+            "currency" : "USD"
+        },
+        {
+            "amount" : 2211,
+            "merchant" : "Name Of Merchant 2",
+            "created" : "2016-01-31",
+            "transactionID" : "6720309558248017",
+            "currency" : "CAD"
+        }
+    ]
+}
+```
+
+> - Error
+
+```shell
+{
+    "responseMessage" : "Malformed date '16-01-01'. Expected format is yyyy-MM-dd",
+    "responseCode" : 410
+}
+```
+
+Allows you to create expenses in a user’s account.
+
+### `requestJobDescription` format
+
+- `inputSettings`
+
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+type | String | "expenses" | Specifies to the job that it has to create expenses.
+employeeEmail | String | A valid email address | The expenses will be created in that account. |
+transactionList | JSON array | See below | List of expense objects. |
+
+- `expense` objects
+
+Name | Format | Description
+-------- | --------- | ---------------- | ---------
+merchant | String | The name of the merchant of the expense. |
+created | String | The date of the expense (format yyyy-mm-dd). |
+amount | Integer | The amount of the expense, in cents. |
+currency | String | The three-letter currency code of the expense. |
+**Optional elements** |
+externalID | String | A unique, custom string that you specify - this will help identify the expense after being exported. |
+comment | String | An expense comment. |
+reportID | String | The ID of the report you want to attach the expense to.|
+policyID | String | The ID of the policy the tax belongs to. |
+tax | JSONObject | A tax object |
+
+- `tax` objects
+
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+rateID | String | The tax rateID, as defined in the policy. To retrieve the tax information from the policy, refer to the Policy Getter job.
+**Optional elements** |
+amount | Integer | The tax amount paid on the expense. Specify it when only a sub-part of the expense was taxed.
