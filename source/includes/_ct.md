@@ -4,6 +4,38 @@
 
 <span class="label label-info">Account Method</span>
 
+> Add Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->post('v2/ct/add', [
+    'report-name'            => 'My First Citation Report',
+	'business-name'          => 'Le Bernardin',
+	'business-location'      => 'New York, NY',
+	'phone'                  => '+1 212-554-1515',
+	'website'                => 'http://www.example.com',
+	'business-type'          => 'Restaurant',
+	'state-code'             => 'NY'	
+]);
+print_r($success);
+```
+
+```shell
+curl -X POST \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'report-name=Le Bernardin' \
+ -d 'schedule=Adhoc'\
+ -d 'search-terms=Restaurant\nfood+nyc\ndelivery+midtown+manhattan'\ 
+ -d 'website-addresses=["http://www.example.com","http://www.example2.com"]'\
+ -d 'search-engines=google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'\ 
+ https://tools.brightlocal.com/seo-tools/api/v2/ct/add
+```
+
 > Success (200 OK)
 
 ```json
@@ -38,7 +70,7 @@ old-postcode-2 |
 country | One of USA, GBR, CAN, AUS. Defaults to USA.
 phone | <span class="label label-required">Required</span>	
 website | <span class="label label-required">Required</span> Link to the website of your business.
-business-type | <span class="label label-required">Required</span>	
+business-type | <span class="label label-required">Required</span> Business type (e.g. Hotel) NOT a business category (e.g. Hotels & Guest houses)
 state-code | <span class="label label-required">Required</span> (USA only). 2-letter state code (USA only).
 monthly-run | One of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31. Defaults to 0 (none).
 weekly-run | One of 1, 2, 3, 4, 5, 6, 7. Defaults to 0 (none).
