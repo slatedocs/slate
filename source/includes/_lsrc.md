@@ -14,8 +14,8 @@ $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v2/lsrc/add', [
     'name'                   => 'Le Bernardin',
 	'schedule'               => 'Adhoc',
-	'search-terms'           => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan'
-    'website-addresses'      => ['http://www.example.com','http://www.example2.com']
+	'search-terms'           => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
+    'website-addresses'      => ['http://www.example.com','http://www.example2.com'],
 	'search-engines'         => 'google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'
 ]);
 print_r($success);
@@ -27,10 +27,10 @@ curl -X POST \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'name=Le Bernardin' \
- -d 'schedule=Adhoc'\
- -d 'search-terms=Restaurant\nfood+nyc\ndelivery+midtown+manhattan'\ 
- -d 'website-addresses=["http://www.example.com","http://www.example2.com"]'\
- -d 'search-engines=google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'\ 
+ -d 'schedule=Adhoc' \
+ -d 'search-terms=Restaurant\nfood+nyc\ndelivery+midtown+manhattan' \ 
+ -d 'website-addresses=["http://www.example.com","http://www.example2.com"]' \
+ -d 'search-engines=google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local' \ 
  https://tools.brightlocal.com/seo-tools/api/v2/lsrc/add
 ```
 
@@ -96,8 +96,8 @@ $success = $api->post('v2/lsrc/update', [
     'campaign-id'            => 9907,
     'name'                   => 'Le Bernardin',
 	'schedule'               => 'Adhoc',
-	'search-terms'           => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan'
-    'website-addresses'      => ['http://www.example.com','http://www.example2.com']
+	'search-terms'           => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
+    'website-addresses'      => ['http://www.example.com','http://www.example2.com'],
 	'search-engines'         => 'google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'
 ]);
 print_r($success);
@@ -110,10 +110,10 @@ curl -X POST \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'campaign-id=9907' \
  -d 'name=Le Bernardin' \
- -d 'schedule=Adhoc'\
- -d 'search-terms=Restaurant\nfood+nyc\ndelivery+midtown+manhattan'\ 
- -d 'website-addresses=["http://www.example.com","http://www.example2.com"]'\
- -d 'search-engines=google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'\ 
+ -d 'schedule=Adhoc' \
+ -d 'search-terms=Restaurant\nfood+nyc\ndelivery+midtown+manhattan' \ 
+ -d 'website-addresses=["http://www.example.com","http://www.example2.com"]' \
+ -d 'search-engines=google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local' \ 
  https://tools.brightlocal.com/seo-tools/api/v2/lsrc/update
 ```
 
@@ -179,7 +179,7 @@ use BrightLocal\Api;
 $clientId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->delete('v2/lsrc/delete', [
-    'campaign-id'            => 9907,
+    'campaign-id'            => 9907
 ]);
 if($success) {
 	echo 'Successfully deleted report.' . PHP_EOL;
@@ -222,7 +222,7 @@ campaign-id | <span class="label label-required">Required</span>
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->get('v2/lsrc/get-all');
+$results = $api->get('v2/lsrc/get-all');
 print_r($results);
 ```
 
@@ -296,7 +296,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->get('v2/lsrc/get', [
-    'campaign-id'            => 50,
+    'campaign-id'            => 50
 ]);
 print_r($results);
 ```
@@ -306,7 +306,7 @@ curl -X GET \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'campaign-id=50'\
+ -d 'campaign-id=50' \
   https://tools.brightlocal.com/seo-tools/api/v2/lsrc/get
 ```
 
@@ -420,7 +420,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v2/lsrc/run', [
-    'campaign-id'            => 50,
+    'campaign-id'            => 50
 ]);
 print_r($results);
 ```
@@ -430,7 +430,7 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'campaign-id=50'\	
+ -d 'campaign-id=50' \	
   https://tools.brightlocal.com/seo-tools/api/v2/lsrc/run
 ```
 
@@ -483,7 +483,7 @@ curl -X GET \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'campaign-id=50'\
+ -d 'campaign-id=50' \
   https://tools.brightlocal.com/seo-tools/api/v2/lsrc/history/get
 ```
 
@@ -546,7 +546,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->get('v2/lsrc/results/get', [
-    'campaign-id'            => 9636,
+    'campaign-id'            => 9636
 ]);
 print_r($results);
 ```
@@ -556,7 +556,7 @@ curl -X GET \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'campaign-id=9636'\
+ -d 'campaign-id=9636' \
   https://tools.brightlocal.com/seo-tools/api/v2/lsrc/results/get
 ```
 

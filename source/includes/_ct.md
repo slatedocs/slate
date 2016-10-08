@@ -28,11 +28,13 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'report-name=Le Bernardin' \
- -d 'schedule=Adhoc'\
- -d 'search-terms=Restaurant\nfood+nyc\ndelivery+midtown+manhattan'\ 
- -d 'website-addresses=["http://www.example.com","http://www.example2.com"]'\
- -d 'search-engines=google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'\ 
+ -d 'report-name=My First Citation Report' \
+ -d 'business-name=Le Bernardin' \
+ -d 'business-location=New York, NY' \ 
+ -d 'phone=+1 212-554-1515' \
+ -d 'website=http://www.example.com' \ 
+ -d 'business-type=Restaurant' \
+ -d 'state-code=NY' \
  https://tools.brightlocal.com/seo-tools/api/v2/ct/add
 ```
 
@@ -70,7 +72,7 @@ old-postcode-2 |
 country | One of USA, GBR, CAN, AUS. Defaults to USA.
 phone | <span class="label label-required">Required</span>	
 website | <span class="label label-required">Required</span> Link to the website of your business.
-business-type | <span class="label label-required">Required</span> Business type (e.g. Hotel) NOT a business category (e.g. Hotels & Guest houses)
+business-type | <span class="label label-required">Required</span> Business type (e.g. Hotel) NOT a business category (e.g. Hotels & Guest houses).
 state-code | <span class="label label-required">Required</span> (USA only). 2-letter state code (USA only).
 monthly-run | One of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31. Defaults to 0 (none).
 weekly-run | One of 1, 2, 3, 4, 5, 6, 7. Defaults to 0 (none).
@@ -81,6 +83,42 @@ is-public | Publish reports on a white label URL. Yes or No.
 ## Update Report
 
 <span class="label label-info">Account Method</span>
+
+> Update Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->post('v2/ct/update', [
+	'report-id'              =>  682,
+    'report-name'            => 'My First Citation Report',
+	'business-name'          => 'Le Bernardin',
+	'business-location'      => 'New York, NY',
+	'phone'                  => '+1 212-554-1515',
+	'website'                => 'http://www.example.com',
+	'business-type'          => 'Restaurant',
+	'state-code'             => 'NY'	
+]);
+print_r($success);
+```
+
+```shell
+curl -X POST \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'report-id'=682,
+ -d 'report-name=My First Citation Report' \
+ -d 'business-name=Le Bernardin' \
+ -d 'business-location=New York, NY' \ 
+ -d 'phone=+1 212-554-1515' \
+ -d 'website=http://www.example.com' \ 
+ -d 'business-type=Restaurant' \
+ -d 'state-code=NY' \
+ https://tools.brightlocal.com/seo-tools/api/v2/ct/update
+```
 
 > Success (200 OK)
 
@@ -116,7 +154,7 @@ old-postcode-2 |
 country	| One of USA, GBR, CAN, AUS. Defaults to USA.
 phone |	
 website	| Link to the website of your business.
-business-type |	
+business-type |	Business type (e.g. Hotel) NOT a business category (e.g. Hotels & Guest houses).
 location |	
 state-code | 2-letter state code (USA only).
 monthly-run | One of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31. Defaults to 0 (none).
@@ -128,6 +166,28 @@ is-public | Publish reports on a white label URL. Yes or No.
 ## Get Report
 
 <span class="label label-info">Account Method</span>
+
+> Get Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->get('v2/ct/get', [
+	'report-id'              =>  682   	
+]);
+print_r($results);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'report-id=682' \
+ https://tools.brightlocal.com/seo-tools/api/v2/ct/get
+```
 
 > Success (200 OK)
 
@@ -196,6 +256,28 @@ report-id | <span class="label label-required">Required</span>
 
 <span class="label label-info">Account Method</span>
 
+> Run Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->post('v2/ct/run', [
+	'report-id'              =>  682   	
+]);
+print_r($success);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'report-id=682' \ 
+ https://tools.brightlocal.com/seo-tools/api/v2/ct/run
+```
+
 > Success (200 OK)
 
 ```json
@@ -222,6 +304,31 @@ report-id | <span class="label label-required">Required</span>
 ## Delete Report
 
 <span class="label label-info">Account Method</span>
+
+> Delete Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->post('v2/ct/delete', [
+	'report-id'              =>  682   	
+]);
+if($success) {
+	echo 'Successfully deleted report.' . PHP_EOL;
+}
+print_r($success);
+```
+
+```shell
+curl -X POST \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'report-id=682' \ 
+ https://tools.brightlocal.com/seo-tools/api/v2/ct/delete
+```
 
 > Success (200 OK)
 
@@ -251,6 +358,26 @@ report-id | <span class="label label-required">Required</span>
 ## Get All Reports
 
 <span class="label label-info">Account Method</span>
+
+> Get All Reports
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->get('v2/ct/get-all');
+print_r($results);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \ 
+  https://tools.brightlocal.com/seo-tools/api/v2/ct/get-all
+```
+
 
 > Success (200 OK)
 
@@ -368,6 +495,28 @@ location-id |
 ## Get Report Results
 
 <span class="label label-info">Account Method</span>
+
+> Get Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->get('v2/ct/get-results', [
+	'report-id'              =>  2457   	
+]);
+print_r($results);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'report-id=2457' \
+ https://tools.brightlocal.com/seo-tools/api/v2/ct/get-results
+```
 
 > Success (200 OK)
 
