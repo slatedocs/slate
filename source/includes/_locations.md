@@ -114,7 +114,7 @@ $success = $api->put('v1/clients-and-locations/locations/' .$locationId, [
 	'country'                => 'USA', // 3 letter iso code
 	'address1'               => '155 West 51st Street',
     'address2'               => '',
-	'region'                 => 'NY' // State or Region
+	'region'                 => 'NY', // State or Region
 	'city'                   => 'New York',
 	'postcode'               => '10019',
     'telephone'              => '+1 212-554-1515'
@@ -127,17 +127,17 @@ curl -X PUT \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'name=<INSERT_BUSINESS_NAME>' \
- -d 'url=<INSERT_COMPANY_URL>'\
- -d 'business-category-id=<INSERT_BUSINESS_CATEGORY_ID>'\ 
- -d 'country=<INSERT_THREE_LETTER_COUNTRY_CODE>'\
- -d 'address1=<INSERT_ADDRESS_LINE_ONE>'\
- -d 'address1=<INSERT_ADDRESS_LINE_TWO>'\
- -d 'region=<INSERT_STATE_OR_REGION>'\
- -d 'city=<INSERT_CITY>'\
- -d 'postcode=<INSERT_POSTAL_CODE>'\
- -d 'telephone=<INSERT_TELEPHONE_NUMBER>'\
- https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/<locationId>
+ -d 'name=Le Bernardin' \
+ -d 'url=http://www.example.com'\
+ -d 'business-category-id=605'\ 
+ -d 'country=USA'\
+ -d 'address1=155 West 51st Street'\
+ -d 'address1='\
+ -d 'region=NY'\
+ -d 'city=New York'\
+ -d 'postcode=10019'\
+ -d 'telephone=+1 212-554-1515'\
+ https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/1
 ```
 
 > Success (200 OK)

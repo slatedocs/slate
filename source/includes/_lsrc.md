@@ -14,8 +14,8 @@ $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v2/lsrc/add', [
     'name'                   => 'Le Bernardin',
 	'schedule'               => 'Adhoc',
-	'search-terms'           => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan'
-    'website-addresses'      => ['http://www.example.com','http://www.example2.com']
+	'search-terms'           => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
+    'website-addresses'      => ['http://www.example.com','http://www.example2.com'],
 	'search-engines'         => 'google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'
 ]);
 print_r($success);
@@ -96,8 +96,8 @@ $success = $api->post('v2/lsrc/update', [
     'campaign-id'            => 9907,
     'name'                   => 'Le Bernardin',
 	'schedule'               => 'Adhoc',
-	'search-terms'           => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan'
-    'website-addresses'      => ['http://www.example.com','http://www.example2.com']
+	'search-terms'           => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
+    'website-addresses'      => ['http://www.example.com','http://www.example2.com'],
 	'search-engines'         => 'google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'
 ]);
 print_r($success);
@@ -179,7 +179,7 @@ use BrightLocal\Api;
 $clientId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->delete('v2/lsrc/delete', [
-    'campaign-id'            => 9907,
+    'campaign-id'            => 9907
 ]);
 if($success) {
 	echo 'Successfully deleted report.' . PHP_EOL;
@@ -296,7 +296,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->get('v2/lsrc/get', [
-    'campaign-id'            => 50,
+    'campaign-id'            => 50
 ]);
 print_r($results);
 ```
@@ -420,7 +420,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v2/lsrc/run', [
-    'campaign-id'            => 50,
+    'campaign-id'            => 50
 ]);
 print_r($results);
 ```
