@@ -21,7 +21,7 @@ Market Alerts is a simple API to calculate market indicators and signals across 
 The API works in a REST like manner over HTTP, and covers 3 main areas:
 
   * Market Data
-    * Download historical open,high,low,close data for various symbols in different timeframes.
+    * Download historical open,high,low,close data for various instruments in different timeframes.
   * Indicators
     * Calculate different technical indicators
       * RSI, Moving averages, MACD, Bollinger Bands, Average True Range
@@ -41,12 +41,12 @@ MarketAlerts is open for beta and does not currently require Authentication.
 
 ```shell
 curl \
-"http://api.fxhistoricaldata.com/v1/indicators?e=close,ema(close,200),rsi(close,14)&s=USDJPY"
+"http://api.fxhistoricaldata.com/v1/indicators?expression=close,ema(close,200),rsi(close,14)&instruments=USDJPY"
 ```
 
 > The above command returns JSON structured like this:
 
-```json
+```shell
 {
 	results: {
 		USDJPY: {
@@ -73,21 +73,21 @@ This endpoint retrieves market data and calculates technical indicators
 
 Parameter | Default | Description
 --------- | ------- | -----------
-e         | N/A     | A comma separated list of technical indicators to be calculated.
-s         | N/A     | A list of symbols for which to calculate technical indicators.
-t         | day     | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day'.
-d         | 1       | The number of data items to return.
+expression | Yes      | A comma separated list of technical indicators to be calculated.
+instruments| Yes      | A list of instruments for which to calculate the indicators expression. See http://api.fxhistoricaldata.com/v1/instruments for a list of available instruments.
+timeframe  | No (day) | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day'.  This is ignored if the expression uses multiple timeframe signals.
+itemcount  | No (1)   | The number of data items to return.
 
 ## signals
 
 ```shell
 curl \
-"http://api.fxhistoricaldata.com/v1/signals?e=close>ema(close,200) and rsi(close,14)<50&s=USDJPY"
+"http://api.fxhistoricaldata.com/v1/signals?expression=close>ema(close,200) and rsi(close,14)<50&s=USDJPY"
 ```
 
 > The above command returns JSON structured like this:
 
-```json
+```shell
 {
 	results: {
 		USDJPY: {
@@ -109,12 +109,12 @@ This endpoint calculates signals ie: rsi crossed above 70, closing price is abov
 
 ### Query Parameters
 
-Parameter | Description
---------- | -----------
-e         | N/A     | The signal expression to be evaluated.
-s         | N/A     | A list of symbols for which to calculate the signal.
-t         | day     | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day'.  This is ignored if the expression uses multiple timeframe signals.
-d         | 1       | The number of data items to return.
+Parameter  | Required | Description
+---------  | -------- | ----------
+expression | Yes      | The signal expression to be evaluated.
+instruments| Yes      | A list of instruments for which to calculate the signal expression. See http://api.fxhistoricaldata.com/v1/instruments for a list of available instruments.
+timeframe  | No (day) | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day'.  This is ignored if the expression uses multiple timeframe signals.
+itemcount  | No (1)   | The number of data items to return.
 
 
 # Function reference
@@ -250,7 +250,7 @@ Returns absolute value of expression (eg: abs(close - previous(close, 1)) )
 
 ## crossoverup(expression1,expression2)
 
-```bash
+```shell
 crossoverup(close,ema(close,200))
 ```
 
@@ -258,7 +258,7 @@ True when expression1 goes above expression2 in this period.
 
 ## crossoverdown(expression1,expression2)
 
-```bash
+```shell
 crossoverdown(close,ema(close,200))
 ```
 
@@ -266,7 +266,7 @@ True when expression1 goes below expression2 in this period.a
 
 ## expression1 compare_to expression2
 
-```bash
+```shell
 ema(close,50) >  ema(close,200)
 ema(close,50) >= ema(close,200)
 ema(close,50) <  ema(close,200)
@@ -277,7 +277,7 @@ Compares expression1 to expression2, ie, greater, greater than, lesser, lesser t
 
 ## Multiple timeframe signals
 
-```bash
+```shell
 day(close > ema(close,200)) and 4hour(close < ema(close,200))
 ```
 
@@ -295,7 +295,12 @@ Compare signals in different timeframes. When using expressions with multiple ti
 
 # Available markets
 
-The symbols that can be passed to the 's' argument of the API endpoints are:
+The list of instruments available can be retrieved programmatically with a get request to the instruments endpoint.
+
+```shell
+curl \
+http://api.fxhistoricaldata.com/v1/instruments
+```
 
 ## Forex
 
