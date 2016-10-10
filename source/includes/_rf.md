@@ -11,7 +11,7 @@
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('api/v4/rf/add', [
+$success = $api->post('v4/rf/add', [
     'report-name'            => 'Sample Review Report', 
 	'business-name'          => 'Le Bernardin',
 	'contact-telephone'      => '+1 212-554-1515',
@@ -526,7 +526,7 @@ location-id | Filter the list of reports returned by location ID. This ID must c
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('/v4/rf/search', [
+$results = $api->get('v4/rf/search', [
     'q'                     => 'My Sample Query'	 
 ]);
 print_r($results);
