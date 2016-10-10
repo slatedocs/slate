@@ -4,6 +4,50 @@
 
 <span class="label label-info">Account Method</span>
 
+> Add Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->post('v2/lsrc/add', [
+    'report-name'				   => 'Sample SEO Check-Up Report', 
+	'business-names'			   => ["Le Bernardin"],
+	'website-addresses'			   => ["http://www.example.com","http://www.example2.com"],
+	'address1'					   => '155 West 51st Street',
+    'address2'					   => '',      
+    'city'						   => 'New York',
+	'state-code'				   => 'NY',
+	'postcode'					   => '10019',	
+	'telephone'					   => '+1 212-554-1515',
+	'country'					   => 'USA',
+	'business-category'            => 'Restaurant',
+	'primary-business-location'    => 'NY, New York',
+	'search-terms'                 => '["restaurant manhattan","cafe new york"]'
+]);
+print_r($success);
+```
+
+```shell
+curl -X POST \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \ 
+ -d 'report-name=Sample SEO Check-Up Report' \
+ -d 'business-names=["Le Bernardin"]' \
+ -d 'address1=155 West 51st Street' \ 
+ -d 'address2=' \
+ -d 'city=New York' \
+ -d 'state-code=NY' \ 
+ -d 'postcode=10019' \
+ -d 'telephone=+1 212-554-1515'
+ -d 'country=USA' \
+ -d 'business-category=Restaurant' \
+ -d 'primary-business-location=NY+NewYork'
+ https://tools.brightlocal.com/seo-tools/api/v4/rf/add
+```
+
 > Supplying Local Directory URLs (see local-directory-urls parameter)
 
 ```php
