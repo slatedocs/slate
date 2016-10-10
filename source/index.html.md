@@ -278,22 +278,44 @@ Parameter | Type | Description
 
 ## Response on Callback
 
-The `response` object will be of the form:
+> If `allow_multiple` is `false`, the `response` will look like:
 
-`
+```json
 {
-  "category": ...
-}`
+  "category": "one_of_the_categories"
+}
+```
+> If `allow_multiple` is `true`, the `response` will look like:
+
+```json
+{
+  "category": ["some_of", "the_categories"]
+}
+```
+> Example if `category_ids` is provided and `allow_multiple` is `false`
+
+```json
+{
+  "category": "Blue Cross",
+  "category_id": "123"
+}
+```
+> Example if `category_ids` is provided and `allow_multiple` is `true`
+
+```json
+{
+  "category": ["Blue Cross", "Red Cross"],
+  "category_id": ["123", "124"]
+}
+```
+
+The `response` object, which is part of the callback POST request and permanently stored as part of the task object, will have a `category` field and potentially a `category_id` field.
 
 If `allow_multiple` is `false`, then the value will be a string equal to one of the original categories. 
 
 If `allow_multiple` is `true`, the value will be an array of categories, each one being one of the original categories.
 
 If `category_ids` was provided, there will be another field `category_id` corresponding to the given id of the chosen category/categories. For example, it could look like:
-
-```{
-  "category": "Blue Cross", "category_id": "123"
-}```
 
 # Create Transcription Task
 
@@ -434,22 +456,32 @@ Parameter | Type | Description
 
 ## Response on Callback
 
-The `response` object will be of the form:
+> Example response object if both `fields` and `row_fields` are specified
 
-`
+```json
 {
   "fields": {
-    ...
+    "title": "Some Title",
+    "top_result": "The Top Result or Something"
   },
-  "rows": [{
-    ...
-  },
-  {
-    ...
-  }]
-}`
+  "rows": [
+    {
+      "username": "connaissance",
+      "comment_count": "12"
+    },
+    {
+      "username": "alexandr_wang",
+      "comment_count": "132"
+    }
+  ]
+}
+```
 
-`fields` will have keys corresponding to the keys you provided in the parameters, with values the transcribed value. `rows` will be an array of such dictionaries, with keys corresponding to the keys you provided in the parameters, and values corresponding to the transcribed value.
+The `response` object, which is part of the callback POST request and permanently stored as part of the task object, will have either a `fields` field, a `rows` field, or both.
+
+`fields` will have keys corresponding to the keys you provided in the parameters, with values the transcribed value. 
+
+`rows` will be an array of such dictionaries, with keys corresponding to the keys you provided in the parameters, and values corresponding to the transcribed value.
 
 # Create Phone Call Task
 
@@ -588,16 +620,19 @@ Parameter | Type | Description
 
 ## Response on Callback
 
-The `response` object will be of the form:
+> Example `response` object:
 
-`
+```json
 {
-  "outcome": ...,
+  "outcome": "success",
   "fields": {
-    ...
+    "email": "hello@scaleapi.com"
   },
-  "choice": "some_choice"
-}`
+  "choice": "He is happy"
+}
+```
+
+The `response` object, which is part of the callback POST request and permanently stored as part of the task object, will have an `outcome` field, and a `fields` field and/or `choice` field depending on the original request.
 
 The outcome will be a string equal to one of `no_pickup` (meaning nobody picked up), `hung_up` (meaning the recipient hung up before the task could be completed), or `success` (the call succeeded). 
 
@@ -732,15 +767,18 @@ Parameter | Type | Description
 
 ## Response on Callback
 
-The `response` object will be of the form:
+> Example `response` object:
 
-`
+```json
 {
-  "choice": "some_choice",
+  "choice": "yes",
   "fields": {
-    ...
+    "difference": "The patterns are identical."
   }
-}`
+}
+```
+
+The `response` object, which is part of the callback POST request and permanently stored as part of the task object, will have a `fields` field and/or `choice` field depending on the original request.
 
 If your original call provided `choices`, `choice` will be one of the original choices.
 
