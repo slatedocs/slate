@@ -144,8 +144,6 @@ run-report | One of yes or no. Runs the report after adding. Defaults to no.
 
 <span class="label label-info">Account Method</span>
 
-> Supplying Local Directory URLs (see local-directory-urls parameter)
-
 > Update Report
 
 ```php
@@ -177,6 +175,9 @@ curl -X PUT \
  -d 'search-terms=["restaurant manhattan","cafe new york"]'
  https://tools.brightlocal.com/seo-tools/api/v4/lscu
 ```
+
+> Supplying Local Directory URLs (see local-directory-urls parameter)
+
 
 ```php
 <?php
