@@ -43,6 +43,7 @@ We're working hard to build official client libraries as quickly as possible! We
 We also have unnoficial SDKs in the following languages:
 
 * [Ruby](https://github.com/wikiti/scaleapi-ruby) (thanks to [wikiti](https://github.com/wikiti)!)
+* [Android SDK](https://github.com/vanshg/Scale) (thanks to [vanshg](https://github.com/vanshg)!)
 
 [Let us know](mailto:hello@scaleapi.com) if you want (or are interested in writing) a library for a language not represented here, or if you’re eagerly waiting for us to get our JavaScript/Python SDKs out the door!
 
