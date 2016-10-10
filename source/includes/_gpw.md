@@ -4,6 +4,53 @@
 
 <span class="label label-info">Account Method</span>
 
+> Add Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->post('v4/gpw/add', [
+    'report_name'            => 'Sample Google Plus Report', 
+	'business_names'         => 'Le Bernardin',
+	'schedule'               => 'Adhoc',
+	'day_of_month'           => '2',
+	'report_type'            => 'with',
+	'address1'               => '155 West 51st Street',
+    'address2'               => '',      
+    'city'                   => 'New York',
+	'state_code'             => 'NY',
+	'postcode'               => '10019',	
+	'phone_number'           => '+1 212-554-1515',
+	'country'                => 'USA',
+	'search_terms'           => '["restaurant manhattan","cafe new york"]'  
+]);
+print_r($success);
+```
+
+```shell
+curl -X POST \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \ 
+ -d 'report_name=Sample Google Plus Report' \
+ -d 'business_names=Le Bernardin' \
+ -d 'schedule=Adhoc' \
+ -d 'day_of_month=2' \
+ -d 'report_type=with' \ 
+ -d 'address1=155 West 51st Street' \ 
+ -d 'address2=' \
+ -d 'city=New York' \
+ -d 'state_code=NY' \
+ -d 'postcode=10019' \
+ -d 'phone_number=+1 212-554-151' \
+ -d 'country=USA' \
+ -d 'search_terms=["restaurant manhattan","cafe new york"]'
+ https://tools.brightlocal.com/seo-tools/api/v4/gpw/add
+```
+
+
 > Success (201 Created)
 
 ```json
@@ -133,6 +180,26 @@ run | One of Yes or No. Runs the report after adding. Defaults to Yes.
 
 <span class="label label-info">Account Method</span>
 
+> Get Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$reportId = 1;
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->get('v4/gpw/' .$reportId);
+print_r($results);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ https://tools.brightlocal.com/seo-tools/api/v4/gpw/1
+```
+
 > Success (200 OK)
 
 ```json
@@ -203,6 +270,29 @@ expires | <span class="label label-required">Required</span> [See above for how 
 
 <span class="label label-info">Account Method</span>
 
+> Delete Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$reportId = 1;
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->delete('v4/gpw/' .$reportId);
+if($success) {
+	echo 'Successfully deleted report.' . PHP_EOL;
+}
+print_r($success);
+```
+
+```shell
+curl -X DELETE \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ https://tools.brightlocal.com/seo-tools/api/v4/gpw/1
+```
+
 > Success (200 OK)
 
 ```json
@@ -237,6 +327,25 @@ expires | <span class="label label-required">Required</span> [See above for how 
 ## Get All Reports
 
 <span class="label label-info">Account Method</span>
+
+> Get All Reports
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->get('v4/gpw/');
+print_r($results);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ https://tools.brightlocal.com/seo-tools/api/v4/gpw
+```
 
 > Success (200 OK)
 
@@ -294,6 +403,28 @@ location-id |
 
 <span class="label label-info">Account Method</span>
 
+> Run Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->put('v4/gpw/run', [
+    'report-id'            => 860
+]);
+print_r($success);
+```
+
+```shell
+curl -X PUT \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'report-id=860' \
+  https://tools.brightlocal.com/seo-tools/api/v4/gpw/run
+```
+
 > Success (200 OK)
 
 ```json
@@ -341,6 +472,26 @@ report-id | <span class="label label-required">Required</span> The unique ID for
 ## Get Report Results
 
 <span class="label label-info">Account Method</span>
+
+> Get Report Results
+
+```php
+<?php
+use BrightLocal\Api;
+
+$reportId = 1;
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->get('v4/gpw/' .$reportId. '/results');
+print_r($results);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ https://tools.brightlocal.com/seo-tools/api/v4/gpw/1/results
+```
 
 > Success (200 OK)
 
