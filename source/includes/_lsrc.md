@@ -422,7 +422,7 @@ $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v2/lsrc/run', [
     'campaign-id'            => 50
 ]);
-print_r($results);
+print_r($success);
 ```
 
 ```shell
@@ -472,7 +472,7 @@ campaign-id | <span class="label label-required">Required</span>
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->get('v2/lsrc/history/get', [
+$results = $api->get('v2/lsrc/history/get', [
     'campaign-id'            => 50,
 ]);
 print_r($results);
@@ -545,7 +545,7 @@ campaign-id | <span class="label label-required">Required</span>
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->get('v2/lsrc/results/get', [
+$results = $api->get('v2/lsrc/results/get', [
     'campaign-id'            => 9636
 ]);
 print_r($results);
