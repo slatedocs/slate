@@ -806,8 +806,8 @@ See ["Expressions"](#expressions) for more on Crunch expressions.
 The following rules apply for all formats:
 
 * The dataset's exclusion filter will be applied; however, any of the user's personal "applied filters" are not, unless they are explicitly included in the request.
-* Hidden/discarded variables are not exported unless there is a `where` clause, then it will be evaluated over all non hidden variables.
-* Personal (private) variables are not exported.
+* Hidden/discarded variables are not exported unless editors use a `where` clause, then it will be evaluated over all non hidden variables.
+* Personal (private) variables are not exported unless indicated, then only the current user's personal variables will be exported
 * Variables (columns) will be ordered in a flattened version of the dataset's hierarchical order.
 * Derived variables will be exported with their values, without their functional links.
 
