@@ -4,6 +4,42 @@
 
 <span class="label label-info">Account Method</span>
 
+> Add Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->post('api/v4/rf/add', [
+    'report-name'            => 'Sample Review Report', 
+	'business-name'          => 'Le Bernardin',
+	'contact-telephone'      => '+1 212-554-1515',
+	'address1'               => '155 West 51st Street',
+    'address2'               => '',      
+    'city'                   => 'New York',
+	'postcode'               => '10019',
+	'country'                => 'USA' // USA only    
+]);
+print_r($success);
+```
+
+```shell
+curl -X POST \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \ 
+ -d 'report-name=Sample Review Report' \
+ -d 'business-name=Le Bernardin' \
+ -d 'contact-telephone=+1 212-554-1515' \
+ -d 'address1=155 West 51st Street' \ 
+ -d 'address2=' \
+ -d 'city=New York' \
+ -d 'postcode=10019' \
+ -d 'country=USA' \
+ https://tools.brightlocal.com/seo-tools/api/v4/rf/add
+```
+
 > Example of specifying directories
 
 ```php
@@ -85,6 +121,20 @@ directories | <p>By default we try and find profile URLs and reviews in all dire
 
 <span class="label label-info">Account Method</span>
 
+> Update Report
+
+```php
+<?php
+use BrightLocal\Api;
+$reportId = 1;
+$api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
+$success = $api->put('v4/rf/' .$reportId, [
+    'business-name'          => 'Le Bernardin',
+	'contact-telephone'      => '+1 212-554-1515'
+]);
+print_r($success);
+```
+
 > Example of modifying directories
 
 ```php
@@ -135,6 +185,26 @@ directories | <p>If you need to add or change a profile URL you can do so here.<
 ## Get Report
 
 <span class="label label-info">Account Method</span>
+
+> Get Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$reportId = 1;
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->get('v4/rf/' .$reportId);
+print_r($results);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ https://tools.brightlocal.com/seo-tools/api/v4/rf/1
+```
 
 > Success (200 OK)
 
@@ -288,6 +358,29 @@ expires | <span class="label label-required">Required</span> [See above for how 
 
 <span class="label label-info">Account Method</span>
 
+> Delete Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$reportId = 1;
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->delete('v4/rf/' .$reportId);
+if($success) {
+	echo 'Successfully deleted report.' . PHP_EOL;
+}
+print_r($success);
+```
+
+```shell
+curl -X DELETE \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ https://tools.brightlocal.com/seo-tools/api/v4/rf/1
+```
+
 > Success (200 OK)
 
 ```json
@@ -333,6 +426,25 @@ expires | <span class="label label-required">Required</span> [See above for how 
 ## Get Reports
 
 <span class="label label-info">Account Method</span>
+
+> Get Reports
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->get('v4/rf/');
+print_r($results);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ https://tools.brightlocal.com/seo-tools/api/v4/rf
+```
 
 > Success (200 OK)
 
@@ -407,6 +519,28 @@ location-id | Filter the list of reports returned by location ID. This ID must c
 
 <span class="label label-info">Account Method</span>
 
+> Search for a ReviewFlow Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->get('/v4/rf/search', [
+    'q'                     => 'My Sample Query'	 
+]);
+print_r($results);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'q=My+Sample+Query' \	
+  https://tools.brightlocal.com/seo-tools/api/v4/rf/search
+```
+
 > Success (200 OK)
 
 ```json
@@ -457,6 +591,26 @@ q | <span class="label label-required">Required</span> Supply an arbitrary searc
 ## Get Reviews
 
 <span class="label label-info">Account Method</span>
+
+> Get Reviews
+
+```php
+<?php
+use BrightLocal\Api;
+
+$reportId = 141;
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$reviews = $api->get('v4/rf/' .$reportId. '/reviews');
+print_r($reviews);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ https://tools.brightlocal.com/seo-tools/api/v4/rf/141/reviews
+```
 
 > Success (200 OK)
 
@@ -559,6 +713,26 @@ hash | Unique identifier based on directory, author and review text. This can be
 
 <span class="label label-info">Account Method</span>
 
+> Get Reviews Count
+
+```php
+<?php
+use BrightLocal\Api;
+
+$reportId = 141;
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$count = $api->get('v4/rf/' .$reportId. '/reviews/count');
+print_r($count);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ https://tools.brightlocal.com/seo-tools/api/v4/rf/141/reviews/count
+```
+
 > Success (200 OK)
 
 ```json
@@ -594,6 +768,26 @@ expires | <span class="label label-required">Required</span> [See above for how 
 ## Get Growth
 
 <span class="label label-info">Account Method</span>
+
+> Get Growth
+
+```php
+<?php
+use BrightLocal\Api;
+
+$reportId = 141;
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$growth = $api->get('v4/rf/' .$reportId. '/reviews/growth');
+print_r($growth);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ https://tools.brightlocal.com/seo-tools/api/v4/rf/141/reviews/growth
+```
 
 Get count and percentage of new reviews since last report run.
 
@@ -635,6 +829,26 @@ expires | <span class="label label-required">Required</span> [See above for how 
 ## Get Directories
 
 <span class="label label-info">Account Method</span>
+
+> Get Directories
+
+```php
+<?php
+use BrightLocal\Api;
+
+$reportId = 141;
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$directories = $api->get('v4/rf/' .$reportId. '/directories');
+print_r($directories);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ https://tools.brightlocal.com/seo-tools/api/v4/rf/141/directories
+```
 
 > Success (200 OK)
 
@@ -789,6 +1003,26 @@ expires | <span class="label label-required">Required</span> [See above for how 
 
 Fetch stats showing average rating and review count for every directory in a given report.
 
+> Get Directory Stats
+
+```php
+<?php
+use BrightLocal\Api;
+
+$reportId = 141;
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$stats = $api->get('v4/rf/' .$reportId. '/directories/stats');
+print_r($stats);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ https://tools.brightlocal.com/seo-tools/api/v4/rf/141//directories/stats
+```
+
 > Success (200 OK)
 
 ```json
@@ -854,6 +1088,26 @@ expires | <span class="label label-required">Required</span> [See above for how 
 ## Get Star Counts
 
 <span class="label label-info">Account Method</span>
+
+> Get Start Counts
+
+```php
+<?php
+use BrightLocal\Api;
+
+$reportId = 141;
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$stars = $api->get('v4/rf/' .$reportId. '/stars/count');
+print_r($stars);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ https://tools.brightlocal.com/seo-tools/api/v4/rf/141//stars/count
+```
 
 > Success (200 OK)
 
