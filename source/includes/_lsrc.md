@@ -295,7 +295,7 @@ location-id |
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->get('v2/lsrc/get', [
+$results = $api->get('v2/lsrc/get', [
     'campaign-id'            => 50
 ]);
 print_r($results);
