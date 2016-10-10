@@ -45,7 +45,8 @@ curl -X POST \
  -d 'country=USA' \
  -d 'business-category=Restaurant' \
  -d 'primary-business-location=NY+NewYork'
- https://tools.brightlocal.com/seo-tools/api/v4/rf/add
+ -d 'search-terms=["restaurant manhattan","cafe new york"]'
+ https://tools.brightlocal.com/seo-tools/api/v4/lscu
 ```
 
 > Supplying Local Directory URLs (see local-directory-urls parameter)
