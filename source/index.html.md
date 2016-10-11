@@ -237,6 +237,27 @@ See <https://integrations.expensify.com/Integration-Server/doc/export_report_tem
 We recommend storing your template in separate files, which can be passed to the request more easily with cURL's `@` operator.
 </aside>
 
+## Downloader
+
+
+```shell
+curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations' \
+    -d 'requestJobDescription={
+        "type":"download",
+        "credentials":{
+            "partnerUserID":"_REPLACE_",
+            "partnerUserSecret":"_REPLACE_"
+        },
+        "fileName":"myFile.csv"
+    }'
+```
+
+This job lets you download reports that were generated with the [Report Exporter job](#report-exporter).
+
+
+Name | Format | Description
+-------- | ---------- | ---------
+fileName | String | The name of a file generated from the exporter job.
 
 # Create
 
@@ -498,3 +519,233 @@ type | String | "policy" | Specifies to the job that it has to create a policy.
 policyName | String | | The name of the policy to create. |
 **Optional elements** |
 plan | String | "team", "corporate" | Specifies the [plan](https://www.expensify.com/pricing) of the policy. If not specified, the new policy will be created under the team plan.
+
+# Read/Get
+
+## Policy getter
+
+```shell
+curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations' \
+    -d 'requestJobDescription={
+        "type":"get",
+        "credentials":{
+            "partnerUserID": "_REPLACE_",
+            "partnerUserSecret": "_REPLACE_"
+        },
+        "inputSettings":{
+            "type":"policy",
+            "fields": ["tax"],
+            "policyIDList": ["0123456789ABCDEF","DEADBEEF01234567","BA5EBA11BA5EBA11"],
+            "userEmail":"employee@youraccessibledomain.com"
+        }
+    }'
+```
+
+> Response
+
+> -  A success response message is comprised of a `responseCode` `200`, and a `policyInfo` object containing information that was requested for the provided policies.
+
+```
+{
+    "responseCode": 200,
+    "policyInfo": {
+        "4C6722D4BD2BD941": {
+            "reportFields": [{
+                "values": [],
+                "name": "title",
+                "type": "formula"
+            }, {
+                "values": ["Class 1", "Class 2", "Class 2:Sub class 2"],
+                "name": "Classes",
+                "type": "dropdown"
+            }, {
+                "values": ["Donatello", "Leonardo", "Michelangelo", "Rafael"],
+                "name": "Customers/Jobs",
+                "type": "dropdown"
+            }],
+            "categories": [{
+                "name": "Entertainment",
+                "enabled": true
+            }, {
+                "name": "Transportation",
+                "enabled": true
+            }, {
+                "name": "Phone",
+                "enabled": true
+            }, {
+                "name": "Fuel/Mileage",
+                "enabled": true
+            }, {
+                "name": "Lodging",
+                "enabled": true
+            }, {
+                "name": "Meals",
+                "enabled": true
+            }, {
+                "name": "Other",
+                "enabled": false
+            }],
+            "tags": [{
+                "glCode": "",
+                "name": "Enterprise",
+                "enabled": true
+            }, {
+                "glCode": "",
+                "name": "Enterprise:Jean-Luc Picard",
+                "enabled": true
+            }, {
+                "glCode": "",
+                "name": "Enterprise:Lt. Commander Data",
+                "enabled": true
+            }, {
+                "glCode": "",
+                "name": "Enterprise:William Riker",
+                "enabled": true
+            }],
+            "tax": {
+                "default": "4",
+                "rates": [{
+                    "rate": 0,
+                    "name": "EC Goods Zero-rated",
+                    "rateID": "5"
+                }, {
+                    "rate": 0,
+                    "name": "EC Services Standard",
+                    "rateID": "4"
+                }, {
+                    "rate": 20,
+                    "name": "Standard",
+                    "rateID": "2"
+                }, {
+                    "rate": 5,
+                    "name": "Reduced",
+                    "rateID": "9"
+                }],
+                "name": "Tax"
+            }
+        },
+        "3F329EA1C3809E6C": {
+            "categories": [{
+                "name": "Phone Costs",
+                "areCommentsRequired": false,
+                "enabled": false
+            }, {
+                "name": "Legal",
+                "areCommentsRequired": false,
+                "enabled": false
+            }, {
+                "name": "Agency Expense",
+                "areCommentsRequired": false,
+                "enabled": false
+            }],
+            "reportFields": [{
+                "values": [],
+                "name": "title",
+                "type": "formula"
+            }],
+            "tags": [{
+                "name": "Tags",
+                "tags": []
+            }],
+            "tax": {}
+        }
+    }
+}
+```
+
+> - Error
+
+```
+{
+    "responseMessage": "Required parameter 'policyIDList' is missing",
+    "responseCode": 410
+}
+```
+
+Lets you get specific information about listed policies. At this time, only category, report field, tag, and tax information is supported.
+
+
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+type | String | "policy" | Specifies to the job that it has to get information specific to policies.
+policyIDList | JSON Array | | The IDs of the policies to get information for. |
+fields | JSON Array | "categories", "reportFields", "tags", "tax" | Specifies the fields of the policy to gather information for. |
+**Optional elements** |
+userEmail | String |   | Specifies the user to gather the policy data for. You must have been granted third-party access by that user/company domain beforehand. |
+
+## Policy list getter
+
+```shell
+curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations' \
+    -d 'requestJobDescription={
+        "type":"get",
+        "credentials":{
+            "partnerUserID": "_REPLACE_",
+            "partnerUserSecret": "_REPLACE_"
+        },
+        "inputSettings":{
+            "type":"policyList",
+            "adminOnly":true,
+            "userEmail":"employee@youraccessibledomain.com"
+        }
+    }'
+```
+
+> Response
+
+> -  A success response message is comprised of a `responseCode` `200`, and a `policyList` array containing information that was requested.
+
+```
+{
+    "policyList": [{
+        "outputCurrency": "USD",
+        "owner": "admin@acmecorp.com",
+        "role": "user",
+        "name": "Acme Corp USA Policy",
+        "id": "DEADBEEF12345678",
+        "type": "corporate"
+    }, {
+        "outputCurrency": "EUR",
+        "owner": "admin@acmecorp.com",
+        "role": "auditor",
+        "name": "Acme Corp France Policy",
+        "id": "BA5EBA1187654321",
+        "type": "corporate"
+    }, {
+        "outputCurrency": "USD",
+        "owner": "hr@acmecorp.com",
+        "role": "admin",
+        "name": "ACME Corp Candidate Policy",
+        "id": "F005BA11000099999",
+        "type": "corporate"
+    }],
+    "responseCode": 200
+}
+```
+
+> - Error
+
+```
+{
+    "responseMessage":"Argument 'type' is missing or malformed",
+    "responseCode":410
+}
+```
+
+Lets you get a list of policies with some relevant information about them. Optionally, you may retrieve policies for another user on a domain you have been granted access to.
+
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+type | String | "policyList" | Specifies to the job that it has to get a policy summary list.
+**Optional elements** |
+adminOnly | Boolean | true, false| Whether or not to get only policies for which the user is an admin for |
+userEmail | String | | Specifies the user to gather the policy list for. You must have been granted third-party access by that user/company domain beforehand|
+
+
+# Update
+
+## Policy updater
+
+## Employee updater
+
+## Expense rules updater
