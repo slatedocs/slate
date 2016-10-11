@@ -75,7 +75,7 @@ This endpoint retrieves market data and calculates technical indicators
 Parameter | Default | Description
 --------- | ------- | -----------
 expression | Yes      | A comma separated list of technical indicators to be calculated.
-instruments| Yes      | A list of instruments for which to calculate the indicators expression. See http://api.fxhistoricaldata.com/v1/instruments for a list of available instruments.
+instruments| Yes      | A list of instruments for which to calculate the indicators expression. See the <a href='#available-markets'>list of available instruments</a>.
 timeframe  | No (day) | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day'.  This is ignored if the expression uses multiple timeframe signals.
 itemcount  | No (1)   | The number of data items to return.
 
@@ -113,7 +113,7 @@ This endpoint calculates signals ie: rsi crossed above 70, closing price is abov
 Parameter  | Required | Description
 ---------  | -------- | ----------
 expression | Yes      | The signal expression to be evaluated.
-instruments| Yes      | A list of instruments for which to calculate the signal expression. See http://api.fxhistoricaldata.com/v1/instruments for a list of available instruments.
+instruments| Yes      | A list of instruments for which to calculate the signal expression. See the <a href='#available-markets'>list of available instruments</a>.
 timeframe  | No (day) | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day'.  This is ignored if the expression uses multiple timeframe signals.
 itemcount  | No (1)   | The number of data items to return.
 
