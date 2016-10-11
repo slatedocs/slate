@@ -2,7 +2,7 @@
 
 > The API returns structured errors that look like:
 
-```json
+```shell
 {
     "id": "error_id",
     "message": "Error description",
