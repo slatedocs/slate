@@ -284,7 +284,7 @@ curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyInt
 
 > - A success response message is comprised of a `responseCode` `200`, the name of the generated report and its ID on Expensify.
 
-```shell
+```
 {
     "responseCode": 200,
     "reportName": "Name of the report",
@@ -294,7 +294,7 @@ curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyInt
 
 > - Error
 
-```shell
+```
 {
     "responseMessage": "Not authorized to authenticate as user user@domain.com",
     "responseCode": 500
@@ -384,7 +384,7 @@ curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyInt
 
 > -  A success response message is comprised of a `responseCode` `200`, and the list of transactions that were created. Each transaction also has a unique `transactionID`.
 
-```shell
+```
 {
     "responseCode" : 200,
     "transactionList" : [
@@ -408,7 +408,7 @@ curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyInt
 
 > - Error
 
-```shell
+```
 {
     "responseMessage" : "Malformed date '16-01-01'. Expected format is yyyy-MM-dd",
     "responseCode" : 410
@@ -449,3 +449,52 @@ Name | Format | Valid values | Description
 rateID | String | The tax rateID, as defined in the policy. To retrieve the tax information from the policy, refer to the Policy Getter job.
 **Optional elements** |
 amount | Integer | The tax amount paid on the expense. Specify it when only a sub-part of the expense was taxed.
+
+## Policy creator
+
+```shell
+curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations' \
+    -d 'requestJobDescription={
+        "type": "create",
+        "credentials": {
+            "partnerUserID": "_REPLACE_",
+            "partnerUserSecret": "_REPLACE_"
+        },
+        "inputSettings": {
+            "type": "policy",
+            "policyName": "My New Policy"
+        }
+    }'
+```
+
+> Response
+
+> -  A success response message is comprised of a `responseCode` `200`, and the ID of the policy that got created.
+
+```
+{
+    "responseCode": 200,
+    "policyID": "0123456789ABCDEF",
+    "policyName": "My New Policy"
+}
+```
+
+> - Error
+
+```
+{
+    "responseMessage": "Required parameter 'policyName' is missing",
+    "responseCode": 500
+}
+```
+
+Lets you create a policy.
+
+- `inputSettings`
+
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+type | String | "policy" | Specifies to the job that it has to create a policy.
+policyName | String | | The name of the policy to create. |
+**Optional elements** |
+plan | String | "team", "corporate" | Specifies the [plan](https://www.expensify.com/pricing) of the policy. If not specified, the new policy will be created under the team plan.
