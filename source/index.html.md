@@ -19,13 +19,13 @@ search: true
 
 Market Alerts is a simple API to calculate market indicators and signals across different timeframes in Commodity, Bonds, Stock Indices and FX markets.
 
-The API works in a REST like manner over HTTP, and covers 3 main areas:
+The API works in a REST like manner over HTTP, and covers these areas:
 
   * Market Data
     * Download historical open,high,low,close data for various instruments in different timeframes.
   * Indicators
     * Calculate different technical indicators
-      * RSI, Moving averages, MACD, Bollinger Bands, Average True Range
+      * RSI, Moving averages, MACD, Bollinger Bands, Average True Range, Minimum/Maximum/Previous period values.
   * Signals
     * Test for the existence of market signals, eg:
       * close > ema(close,200) # Price closed above 200-day moving average
