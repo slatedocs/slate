@@ -382,17 +382,26 @@ http://api.fxhistoricaldata.com/v1/instruments
 - XAUUSD
 - XAGUSD
 - UKOil
+- UKOilUSD - Brent crude priced in US Dollars
 - USOil
 - Bund
+- BundUSD - German Bunds priced in US Dollars
 
 ## Stock Market Indices
 - AUS200
+- AUS200USD - AUS200 priced in US Dollars
 - ESP35
+- ESP35USD - ESP35 priced in US Dollars
 - FRA40
+- FRA40USD - FRA40 priced in US Dollars
 - GER30
+- GER30USD - GER30 priced in US Dollars
 - HKG33
+- HKG33USD - HKG33 priced in US Dollars
 - JPN225
+- JPN225USD - JPN225 priced in US Dollars
 - NAS100
 - SPX500
 - UK100
+- UK100USD - UK100 priced in US Dollars
 - US30
