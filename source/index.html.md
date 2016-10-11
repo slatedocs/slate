@@ -310,6 +310,41 @@ Compare signals in different timeframes. When using expressions with multiple ti
 * 4hour
 * day
 
+### Limitations
+
+#### Unique timeframe functions
+
+> This doesn't work
+
+```shell
+hour(close > ema(close,21)) and hour(ema(close,21) > ema(close,50)) and 2hour(close > ema(close,21))
+```
+
+> But this does
+
+```shell
+hour(close > ema(close,21) and ema(close,21) > ema(close,50)) and 2hour(close > ema(close,21))
+```
+
+A timeframe function can only be called once per expression, however, multiple expressions can exist inside a timeframe function.
+
+#### Boolean combinations
+
+> This doesn't work
+
+```shell
+hour(signal_expression) and 2hour(signal_expression) or hour(signal_expression)
+```
+
+> But these do
+
+```shell
+hour(signal_expression) and 2hour(signal_expression) and hour(signal_expression)
+hour(signal_expression) or  2hour(signal_expression) or  hour(signal_expression)
+```
+
+
+Signal expressions with multiple timeframes are only supported when the different timeframe functions are joined by the same boolean operator (one of 'and','or').
 
 # Available markets
 
