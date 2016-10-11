@@ -40,9 +40,18 @@ MarketAlerts is open for beta and does not currently require Authentication.
 
 ## indicators
 
+> See also the full <a href='#function-reference'>indicator function reference</a>
+
 ```shell
 curl \
 "http://api.fxhistoricaldata.com/v1/indicators?expression=close,ema(close,200),rsi(close,14)&instruments=USDJPY"
+
+# Example expressions
+open,high,low,close
+rsi(close,14)
+ema(close,200)
+rsi(ema(close,20),14)
+
 ```
 
 > The above command returns JSON structured like this:
@@ -81,9 +90,17 @@ itemcount  | No (1)   | The number of data items to return.
 
 ## signals
 
+> See also the full <a href='#signal-reference'>signal expression reference</a>
+
 ```shell
 curl \
 "http://api.fxhistoricaldata.com/v1/signals?expression=close>ema(close,200) and rsi(close,14)<50&s=USDJPY"
+
+# Example expressions
+rsi(close,14) > 70
+close > ema(close,200)
+# Mixed timeframes are also allowed in expressions
+day(close > ema(close,200)) and 4hour(close < ema(close,200))
 ```
 
 > The above command returns JSON structured like this:
@@ -255,7 +272,7 @@ Returns absolute value of expression (eg: abs(close - previous(close, 1)) )
 crossoverup(close,ema(close,200))
 ```
 
-True when expression1 goes above expression2 in this period.
+True when expression1 goes above expression2.
 
 ## crossoverdown(expression1,expression2)
 
@@ -263,7 +280,7 @@ True when expression1 goes above expression2 in this period.
 crossoverdown(close,ema(close,200))
 ```
 
-True when expression1 goes below expression2 in this period.a
+True when expression1 goes below expression2.
 
 ## expression1 compare_to expression2
 
