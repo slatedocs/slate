@@ -15,6 +15,38 @@ under the License.
 */
 
 
+// Expensify Colors
+$color-white:                     #ffffff;
+$color-black:                     #000000;
+$color-blue:                      #00a5d5;
+$color-yellow:                    #fbd300;
+$color-green:                     #2ecc71;
+$color-brand-green:               #afbd22;
+$color-dark:                      #404040;
+$color-smoke:                     #39444b;
+$color-lightSmoke:                #5d6e73;
+$color-medSmoke:                  #5e7d77;
+$color-success:                   $color-green;
+$color-danger:                    #df524e;
+$color-danger__bg:                #f9dcdc;
+$color-purple:                    #9b59b6;
+$color-teal:                      #1abc9c;
+$color-orange:                    #e67e22;
+$color-text:                      #8c857d;
+$color-depreciated:               #d9d6d3;
+$color-warm:                      #faf9f8;
+$color-warmer:                    #f2f1f0;
+$color-border:                    #e9e6e4;
+$color-border--dark:              #d9d6d3;
+$color-highlight:                 #ddeff7;
+$color-selected:                  #fefbcc;
+$color-warning-bg:                $color-selected;
+$color-danger-bg:                 #f9dcdc;
+$color-success-bg:                #d5f5e3;
+$color-info-bg:                   $color-highlight;
+$color-message-text:              rgba(0, 0, 0, 0.6);
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // CUSTOMIZE SLATE
 ////////////////////////////////////////////////////////////////////////////////
@@ -23,29 +55,31 @@ under the License.
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #393939;
-$examples-bg: #393939;
-$code-bg: #292929;
-$code-annotation-bg: #1c1c1c;
-$nav-subitem-bg: #262626;
-$nav-active-bg: #2467af;
+$nav-bg: $color-smoke;
+$examples-bg: #433e3b;
+$code-bg: #2b2725;
+$code-annotation-bg: #25211f;
+$nav-subitem-bg: transparentize($color-black, .9);
+$nav-active-bg: $color-blue;
+
 $lang-select-border: #000;
-$lang-select-bg: #222;
+$lang-select-bg: #3b3532;
 $lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
-$lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
-$main-bg: #eaf2f6;
-$aside-notice-bg: #8fbcd4;
-$aside-warning-bg: #c97a7e;
-$aside-success-bg: #6ac174;
-$search-notice-bg: #c97a7e;
+$lang-select-pressed-bg: #3a3431; // color of language tab bg when mouse is pressed
+
+$main-bg: $color-white;
+$aside-notice-bg: $color-info-bg;
+$aside-warning-bg: $color-danger-bg;
+$aside-success-bg: $color-success-bg;
+$search-notice-bg: $color-info-bg;
 
 
 // TEXT COLORS
 ////////////////////
-$main-text: #333; // main content text color
-$nav-text: #fff;
+$main-text: $color-text; // main content text color
+$nav-text: transparentize($color-white, .5);
 $nav-active-text: #fff;
-$lang-select-text: #fff; // color of unselected language tab text
+$lang-select-text: transparentize($color-white, .5); // color of unselected language tab text
 $lang-select-active-text: #fff; // color of selected language tab text
 $lang-select-pressed-text: #fff; // color of language tab text when mouse is pressed
 
@@ -56,9 +90,9 @@ $nav-width: 230px; // width of the navbar
 $examples-width: 50%; // portion of the screen taken up by code examples
 $logo-margin: 20px; // margin between nav items and logo, ignored if search is active
 $main-padding: 28px; // padding to left and right of content & examples
-$nav-padding: 15px; // padding to left and right of navbar
+$nav-padding: 20px; // padding to left and right of navbar
 $nav-v-padding: 10px; // padding used vertically around search boxes and results
-$nav-indent: 10px; // extra padding for ToC subitems
+$nav-indent: 20px; // extra padding for ToC subitems
 $code-annotation-padding: 13px; // padding inside code annotations
 $h1-margin-bottom: 21px; // padding under the largest header tags
 $tablet-width: 930px; // min width before reverting to tablet size
@@ -69,7 +103,7 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 ////////////////////
 %default-font {
   font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 %header-font {
@@ -90,8 +124,7 @@ $nav-active-shadow: #000;
 $nav-footer-border-color: #666;
 $nav-embossed-border-top: #000;
 $nav-embossed-border-bottom: #939393;
-$main-embossed-text-shadow: 0px 1px 0px #fff;
-$search-box-border-color: #666;
+$search-box-border-color: transparentize($color-black, 1);
 
 
 ////////////////////////////////////////////////////////////////////////////////
