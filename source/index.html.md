@@ -145,7 +145,7 @@ Attribute | Type | Description
 --------- | ------- | -----------
 `task_id` | string | The `task_id` is the unique identifier for the task.
 `type` | string | The type of the task. Currently, we support `categorization`, `transcription`, `phonecall`, and `comparison`.
-`instruction` | string | A plaintext string explaining the instructions for the task.
+`instruction` | string | A markdown-enabled string explaining the instructions for the task. You can use [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) to show example images, give structure to your instructions, and more.
 `params` | object | An object with the parameters of the task based on the type. For `categorization`, for example, this will include `attachment_type`, `attachment`, and `categories`.
 `urgency` | string | A string describing the urgency of the response. One of `immediate`, `day`, or `week`, where `immediate` is a one-hour response time.
 `response` | object | An object corresponding to the response once the task is completed. For `categorization`, it will have the attribute `category`, corresponding to the chosen category.
@@ -245,7 +245,7 @@ request.post('https://api.scaleapi.com/v1/task/categorize', {
 
 This endpoint creates a `categorization` task. In this task, one of our workers will view the attachment and choose a category for it according to the instruction. You may allow multiple categories to be chosen by setting `allow_multiple` to `true`. Example use cases are spam detection, copyright detection, product categorization, etc.
 
-This task involves a plaintext `instruction` about how to make the categorization, an `attachment` of what you'd like to categorize, an `attachment_type`, and finally a list of `categories`. 
+This task involves a [markdown-enabled](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) `instruction` about how to make the categorization, an `attachment` of what you'd like to categorize, an `attachment_type`, and finally a list of `categories`. 
 
 There is an optional `category_ids` parameter, which you can use to impose an id system over the categories. The format of this parameter should be a dictionary, where the keys are the ids (as strings), and then the values are the category values provided in `categories`. An example is:
 
@@ -267,7 +267,7 @@ The parameters `attachment_type`, `attachment`, `categories`, and `category_ids`
 Parameter | Type | Description
 --------- | ---- | -------
 `callback_url` | string | The full url (including the scheme `http://` or `https://`) of the callback when the task is completed.
-`instruction` | string | The plaintext instruction of how to categorize the item.
+`instruction` | string | A markdown-enabled string explaining how to categorize the item. You can use [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) to show example images, give structure to your instructions, and more.
 `attachment_type` | string | One of `text`, `image`, `video`, `audio`, `website`, or `pdf`. Describes what type of file the attachment is.
 `attachment` | string | The attachment to be categorized. If `attachment_type` is `text`, then it should be plaintext. Otherwise, it should be a URL pointing to the attachment.
 `categories` | [string] | An array of strings for the categories which you'd like the object to be sorted between.
@@ -425,7 +425,7 @@ request.post('https://api.scaleapi.com/v1/task/transcription', {
 
 This endpoint creates a `transcription` task. In this task, one of our workers will read an attachment and arbitrarily transcribe any information you'd like. Example use cases could be transcribing information from PDFs, manually scraping a web page for information, etc.
 
-This task involves a plaintext `instruction` about how to transcribe the attachment, an `attachment` of what you'd like to transcribe, an `attachment_type`, and at least one of `fields` and `row_fields`. `fields` is a dictionary which describes items you'd like transcribed once per attachment, and `row_fields` is a dictionary which describes items which need to be transcribed per row in the attachment.
+This task involves a [markdown-enabled](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) `instruction` about how to transcribe the attachment, an `attachment` of what you'd like to transcribe, an `attachment_type`, and at least one of `fields` and `row_fields`. `fields` is a dictionary which describes items you'd like transcribed once per attachment, and `row_fields` is a dictionary which describes items which need to be transcribed per row in the attachment.
 
 At least one of `fields` or `row_fields` is required. Both `fields` and `row_fields` are dictionaries where the keys are the keys you'd like the results to be returned under, and values are the descriptions you'd like to show the human worker.
 
@@ -446,7 +446,7 @@ We limit the number of rows you may transcribe per API request to 10 rows. If yo
 Parameter | Type | Description
 --------- | ---- | -------
 `callback_url` | string | The full url (including the scheme `http://` or `https://`) of the callback when the task is completed.
-`instruction` | string | The plaintext instruction of how to transcribe the attachment.
+`instruction` | string | A markdown-enabled string explaining how to transcribe the attachment. You can use [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) to show example images, give structure to your instructions, and more.
 `attachment_type` | string | One of `text`, `image`, `video`, `audio`, `website`, or `pdf`. Describes what type of file the attachment is.
 `attachment` | string | The attachment to be transcribed. If `attachment_type` is `text`, then it should be plaintext. Otherwise, it should be a URL pointing to the attachment.
 `fields` (optional if using `row_fields`) | dictionary | A dictionary corresponding to the fields to be transcribed. Keys are the keys you'd like the fields to be returned under, and values are descriptions to be shown to human workers.
@@ -584,7 +584,7 @@ request.post('https://api.scaleapi.com/v1/task/phonecall', {
 
 This endpoint creates a `phonecall` task. In this task, one of our workers will call the specified phone number and follow the instructions. Potential use cases could be making reservations or appointments, confirming reservations, asking for contact numbers or emails, etc.
 
-The required parameters are a plaintext `instruction` about how to transcribe the attachment, a `script` for the Scaler to follow, a `phone_number` for the phone number to call, and an `entity_name` which describes the phone number.
+The required parameters are a [markdown-enabled](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) `instruction` about how to transcribe the attachment, a `script` for the Scaler to follow, a `phone_number` for the phone number to call, and an `entity_name` which describes the phone number.
 
 The optional parameters are `attachment_type` and `attachment` for an optional attachment, `fields`, and `choices`.
 
@@ -607,7 +607,7 @@ For low volume, we currently only support calling US numbers. For higher volume 
 Parameter | Type | Description
 --------- | ---- | -------
 `callback_url` | string | The full url (including the scheme `http://` or `https://`) of the callback when the task is completed.
-`instruction` | string | The plaintext instruction of how to make the phone call.
+`instruction` | string | A markdown-enabled string explaining how to complete the phone call. You can use [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) to show example images, give structure to your instructions, and more.
 `phone_number` | string | The phone number which will be called by our worker. Should include a country code (+1 for US numbers).
 `script` | string | A script to be shown the the worker as they make the phone call. Your script will greatly impact the quality of the results you receive.
 `entity_name` | name | The name of the entity which corresponds to the person or business of the phone number.
@@ -738,7 +738,7 @@ request.post('https://api.scaleapi.com/v1/task/comparison', {
 
 This endpoint creates a `comparison` task. In this task, one of our workers view the given attachments and do any comparison requested.
 
-This task involves a plaintext `instruction`, an array of `attachments`, and an `attachment_type`.
+This task involves a [markdown-enabled](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) `instruction`, an array of `attachments`, and an `attachment_type`.
 
 At least of the `fields` or `choices` parameters must specified for the data to be returned. `choices` is an array of strings from which the worker to choose, and `fields` is useful for free-text response. 
 
@@ -757,7 +757,7 @@ The parameters `attachment_type`, `attachments`, `choices`, and `fields` will be
 Parameter | Type | Description
 --------- | ---- | -------
 `callback_url` | string | The full url (including the scheme `http://` or `https://`) of the callback when the task is completed.
-`instruction` | string | The plaintext instruction of how to compare the attachments.
+`instruction` | string | A markdown-enabled string explaining how to compare the attachments. You can use [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) to show example images, give structure to your instructions, and more.
 `attachment_type` | string | One of `text`, `image`, `video`, `audio`, `website`, or `pdf`. Describes what type of file the attachments are.
 `attachments` | array | An array of attachments to compare. If `attachment_type` is `text`, then each attachment should be plaintext. Otherwise, they should be URLs pointing to the attachments.
 `urgency` (optional, default `day`) | string | A string describing the urgency of the response. One of `immediate`, `day`, or `week`, where `immediate` is a one hour response time.
@@ -790,7 +790,7 @@ If your original call provided `fields`, `fields` will have keys corresponding t
 curl "https://api.scaleapi.com/v1/task/annotation" \
   -u "{{ApiKey}}:" \
   -d callback_url="http://www.example.com/callback" \
-  -d instruction="Draw a box around each baby cow and big cow." \
+  -d instruction="Draw a box around each **baby cow** and **big cow**." \
   -d attachment_type=image \
   -d attachment="http://i.imgur.com/v4cBreD.jpg" \
   -d objects_to_annotate="baby cow" \
@@ -803,7 +803,7 @@ import json
 
 payload = {
   'callback_url': 'http://www.example.com/callback',
-  'instruction': 'Draw a box around each baby cow and big cow.',
+  'instruction': 'Draw a box around each **baby cow** and **big cow**',
   'attachment_type': 'image',
   'attachment': 'http://i.imgur.com/v4cBreD.jpg',
   'objects_to_annotate': ['baby cow', 'big cow'],
@@ -825,7 +825,7 @@ var SCALE_API_KEY = '{{ApiKey}}';
 
 var payload = {
   'callback_url': 'http://www.example.com/callback',
-  'instruction': 'Draw a box around each baby cow and big cow.',
+  'instruction': 'Draw a box around each **baby cow** and **big cow**',
   'attachment_type': 'image',
   'attachment': 'http://i.imgur.com/v4cBreD.jpg',
   'objects_to_annotate': ['baby cow', 'big cow'],
@@ -858,7 +858,7 @@ request.post('https://api.scaleapi.com/v1/task/annotation', {
   "callback_url": "http://www.example.com/callback",
   "type": "annotation",
   "status": "pending",
-  "instruction": "Draw a box around each baby cow and big cow.",
+  "instruction": "Draw a box around each **baby cow** and **big cow**",
   "urgency": "day",
   "params": {
     "attachment_type": "image",
@@ -876,7 +876,7 @@ The required parameters for this task are `callback_url`, `attachment`, and `obj
 
 `objects_to_annotate` is an array of strings describing the different types of objects you'd like annotated.
 
-You can optionally provide additional plaintext instructions via the `instruction` parameter. 
+You can optionally provide additional [markdown-enabled](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) instructions via the `instruction` parameter. 
 
 You can also optionally set `with_labels` to `true`, which will have Scalers provide labels for each box specifying what type of object it is. The labels will be strings in the `objects_to_annotate` list.
 
@@ -895,7 +895,7 @@ Parameter | Type | Description
 `attachment` | string | A URL to the image you'd like to be annotated with bounding boxes.
 `with_labels` (optional, default `false`) | boolean | Specifies whether you'd like labels for each bounding box in the response. Each label will be a member of the `objects_to_annotate` array.
 `urgency` (optional, default `day`) | string | A string describing the urgency of the response. One of `immediate`, `day`, or `week`, where `immediate` is a one-hour response time.
-`instruction` (optional) | string | The plaintext instruction of how the bounding boxes should be drawn.
+`instruction` (optional) | string | A markdown-enabled string explaining how to draw the bounding boxes. You can use [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) to show example images, give structure to your instructions, and more.
 `attachment_type` (optional, default `image`) | string | Describes what type of file the attachment is. We currently only support `image` for the annotation endpoint.
 `metadata` (optional, default `{}`) | object | A set of key/value pairs that you can attach to a task object. It can be useful for storing additional information about the task in a structured format.
 
