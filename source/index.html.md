@@ -86,7 +86,7 @@ Parameter     | Required | Default      | Description
 expression    | Yes      |              | A comma separated list of technical indicators to be calculated.
 instruments   | Yes      |              | A list of instruments for which to calculate the indicators expression. See the <a href='#available-markets'>list of available instruments</a>.
 timeframe     | No       | day          | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day'.  This is ignored if the expression uses multiple timeframe signals.
-itemcount     | No       | 1            | The number of data items to return.
+item_count    | No       | 10           | The number of data items to return.
 
 ## signals
 
@@ -132,7 +132,7 @@ Parameter     | Required | Default      | Description
 expression    | Yes      |              | The signal expression to be evaluated.
 instruments   | Yes      |              | A list of instruments for which to calculate the signal expression. See the <a href='#available-markets'>list of available instruments</a>.
 timeframe     | No       | day          | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day'.  This is ignored if the expression uses multiple timeframe signals.
-itemcount     | No       | 1            | The maximum number of data items to return.
+item_count    | No       | 50           | The maximum number of data items to return.
 start_period  | No       | 3 months ago | A datetime in the UTC timezone representing the date of the earliest signal to be returned
 end_period    | No       | now          | A datetime in the UTC timezone representing the date of the lastest signal to be returned
 
