@@ -334,6 +334,65 @@ Content-Length: 739
 Location: /api/datasets/{datasetid}/variables/{variableid}/
 ```
 
+### Multiple Response Views
+
+The "select_categories" function allows you to form a multiple response array from a categorical array, or alter the "selected" categories in an existing multiple response array. It takes two arguments:
+
+* A reference to a categorical or categorical_array variable
+* A list of the category ids to mark as "selected"
+
+Given a variable such as:
+
+```json
+{
+    "element": "shoji:entity",
+    "self": "https://beta.crunch.io/api/datasets/3ad42c/variables/0000f5/",
+    "body": {
+        "name": "Cola",
+        "alias": "cola",
+        "type": "categorical",
+        "categories": [
+            {"id": -1, "name": "No Data", "numeric_value": null, "missing": true},
+            {"id": 0, "name": "Never", "numeric_value": null, "missing": false},
+            {"id": 1, "name": "Sometimes", "numeric_value": null, "missing": false},
+            {"id": 2, "name": "Frequently", "numeric_value": null, "missing": false},
+            {"id": 3, "name": "Always", "numeric_value": null, "missing": false}
+        ],
+        "subvariables": ["0001", "0002", "0003"],
+        "references": {
+            "subreferences": [
+                {"alias": "Coke"},
+                {"alias": "Pepsi"},
+                {"alias": "RC"},
+            ]
+        }
+    }
+}
+```
+
+POST'ing to the private variables catalog a Shoji Entity containing a ZCL function like:
+
+```json
+{
+    "element": "shoji:entity",
+    "body": {
+        "name": "Cola likes",
+        "description": "Cola preferences",
+        "alias": "cola_likes",
+        "expr": {
+            "function": "select_categories",
+            "args": [
+                {"variable": "https://beta.crunch.io/api/datasets/3ad42c/variables/0000f5/"},
+                {"value": [2, 3]}
+            ]
+        }
+    }
+}
+```
+
+...results in a private multiple_response variable where the "Frequently" and "Always" categories are selected.
+
+
 ### Other transformations
 
 Forthcoming.
