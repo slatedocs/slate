@@ -1,5 +1,21 @@
 ## DeviceInfoDTO
 
+> iPhone
+
+```xml
+<deviceInfo>
+    IP=10.7.17.104;OS=iOS;APP_VERSION=1.0.23;VENDOR_ID=EDC2C767-31DC-4095-82B1-71890EE2778B
+</deviceInfo>
+```
+
+> Android
+
+```xml
+<deviceInfo>
+    IP=10.40.116.222;OS=ANDROID;APP_VERSION=3.1.943;VENDOR_ID=353490066235256;MAC=BE:BD:61:2B:F3:B9
+</deviceInfo>
+```
+
 key | type | status | comment
 --- | ---- | :----: | ---:
 IP | string | 1..1 | IP адрес устройства в случае его доступности или ``0.0.0.0``
