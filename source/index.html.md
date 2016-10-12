@@ -1212,52 +1212,58 @@ request.get('https://api.scaleapi.com/v1/tasks/', {
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "task_id": "576b998b4628d1bfaed7d3a4",
-    "created_at": "2016-06-23T08:10:51.032Z",
-    "callback_url": "http://www.example.com/callback",
-    "type": "categorization",
-    "status": "completed",
-    "instruction": "Is this object big or small?",
-    "urgency": "immediate",
-    "params": {
-      "attachment_type": "text",
-      "attachment": "ant",
-      "categories": [
-        "big",
-        "small"
-      ]
+{
+  "docs": [
+    {
+      "task_id": "576b998b4628d1bfaed7d3a4",
+      "created_at": "2016-06-23T08:10:51.032Z",
+      "callback_url": "http://www.example.com/callback",
+      "type": "categorization",
+      "status": "completed",
+      "instruction": "Is this object big or small?",
+      "urgency": "immediate",
+      "params": {
+        "attachment_type": "text",
+        "attachment": "ant",
+        "categories": [
+          "big",
+          "small"
+        ]
+      },
+      "completed_at": "2016-06-23T19:36:23.084Z",
+      "response": {
+        "category": "small"
+      },
+      "metadata": {}
     },
-    "completed_at": "2016-06-23T19:36:23.084Z",
-    "response": {
-      "category": "small"
-    },
-    "metadata": {}
-  },
-  {
-    "task_id": "576ba301eed30241b0e9bbf7",
-    "created_at": "2016-06-23T08:51:13.903Z",
-    "callback_url": "http://www.example.com/callback",
-    "type": "categorization",
-    "status": "completed",
-    "instruction": "Is this object big or small?",
-    "urgency": "day",
-    "params": {
-      "attachment_type": "text",
-      "attachment": "T-Rex",
-      "categories": [
-        "big",
-        "small"
-      ]
-    },
-    "completed_at": "2016-06-23T09:09:10.108Z",
-    "response": {
-      "category": "big"
-    },
-    "metadata": {}
-  }
-]
+    {
+      "task_id": "576ba301eed30241b0e9bbf7",
+      "created_at": "2016-06-23T08:51:13.903Z",
+      "callback_url": "http://www.example.com/callback",
+      "type": "categorization",
+      "status": "completed",
+      "instruction": "Is this object big or small?",
+      "urgency": "day",
+      "params": {
+        "attachment_type": "text",
+        "attachment": "T-Rex",
+        "categories": [
+          "big",
+          "small"
+        ]
+      },
+      "completed_at": "2016-06-23T09:09:10.108Z",
+      "response": {
+        "category": "big"
+      },
+      "metadata": {}
+    }
+  ],
+  "total": 2,
+  "limit": 100,
+  "offset": 0,
+  "has_more": false
+}
 ```
 
 This endpoint retrieves a list of your tasks.
@@ -1265,6 +1271,17 @@ This endpoint retrieves a list of your tasks.
 ### HTTP Request
 
 `GET https://api.scaleapi.com/v1/tasks`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`start_time` | The minimum value of created_at for tasks to be returned (ISO 8601 Date)
+`end_time`   | The maximum value of created_at for tasks to be returned (ISO 8601 Date)
+`status`     | The status of the task - can be: `completed`, `pending`, or `canceled`
+`type`       | The type of the task - can be: `transcription`, `categorization`, `phonecall`, `comparison`, `annotation`, `datacollection`, or any other task type.
+`limit`      | The maximum number of results to display per page
+`offset`     | How many results to skip, for showing the next page
 
 ### Returns
 
