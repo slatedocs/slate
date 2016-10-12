@@ -401,6 +401,7 @@ to compose an expression.
    * `normalize` Return a Column with the given values normalized so sum(c) == len(c).
    * `row` Return a Numeric column with row indices.
    * `selected_array` Return a bool Array from the given categorical, plus None/__none__/__any__ .
+   * `selected_depth` Return a numeric column containing the number of selected categories in each row of the given array.
    * `subvariables` Return a Frame containing subvariables of the given array.
    * `typeof` Return (a copy of) the Type of the given column.
    * `unmissing` Return the given column with user missing replaced by valid values.
@@ -416,8 +417,9 @@ to compose an expression.
    * `<=` less than or equal
    * `>=` greater than or equal
    * `in` in
-   * `all` all selected
-   * `any` any selected
+   * `all` True for each row where all subvariables in a multiple_response array are selected
+   * `any` True for each row where any subvariable in a multiple_response array is selected
+   * `is_none_of_the_above` True for each row where no subvariables in a multiple_response array are selected, unless all subvariables have missing values
    * `contains` Return a mask where A is an element of array B, or a key of object B.
    * `icontains` Case-insensitive version of 'contains'
    * `~=` compare against regular expression (regex)
@@ -429,7 +431,6 @@ to compose an expression.
    * `any_missing` Boolean array of rows where any of the subvariables are missing
    * `all_valid` Boolean array of rows where all of the subvariables are valid
    * `all_missing` Boolean array of rows where all of the subvariables are missing
-   * `is_none_of_the_above` is none of the above
 
 ##### Date Functions
 
