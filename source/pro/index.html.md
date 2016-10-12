@@ -6,7 +6,7 @@ language_tabs:
 
 toc_footers:
   - <a href='http://www.idamob.ru'>@ copyright iDa Mobile 2016</a>
-  - <a href='http://www.doc.idamob.ru'>@ documentation iDa Mobile</a>
+  - <a href='http://doc.idamob.ru'>@ documentation iDa Mobile</a>
 
 includes:
   - pro/requestStructs
