@@ -85,7 +85,7 @@ Parameter     | Required | Default      | Description
 ------------- | -------- | ------------ | -----------
 expression    | Yes      |              | A comma separated list of technical indicators to be calculated.
 instruments   | Yes      |              | A list of instruments for which to calculate the indicators expression. See the <a href='#available-markets'>list of available instruments</a>.
-timeframe     | No       | day          | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day'.  This is ignored if the expression uses multiple timeframe signals.
+timeframe     | No       | day          | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day'.  See also <a href='#available-timeframes'>available timeframes</a>.
 item_count    | No       | 10           | The number of data items to return.
 
 ## signals
@@ -131,7 +131,7 @@ Parameter     | Required | Default      | Description
 ------------- | -------- | ------------ | -----------
 expression    | Yes      |              | The signal expression to be evaluated.
 instruments   | Yes      |              | A list of instruments for which to calculate the signal expression. See the <a href='#available-markets'>list of available instruments</a>.
-timeframe     | No       | day          | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day'.  This is ignored if the expression uses multiple timeframe signals.
+timeframe     | No       | day          | The timeframe of the request. One of '5min', '15min', '30min', 'hour', '2hour', '3hour', '4hour', 'day'.  This is ignored if the expression uses multiple timeframe signals. See also <a href='#available-timeframes'>available timeframes</a>.
 item_count    | No       | 50           | The maximum number of data items to return.
 start_period  | No       | 3 months ago | A datetime in the UTC timezone representing the date of the earliest signal to be returned
 end_period    | No       | now          | A datetime in the UTC timezone representing the date of the lastest signal to be returned
@@ -347,6 +347,15 @@ hour(signal_expression) or  2hour(signal_expression) or  hour(signal_expression)
 
 
 Signal expressions with multiple timeframes are only supported when the different timeframe functions are joined by the same boolean operator (one of 'and','or').
+
+# Available timeframes
+
+The list of timeframes available can be retrieved programmatically with a get request to the timeframes endpoint.
+
+```shell
+curl \
+http://api.fxhistoricaldata.com/v1/timeframes
+```
 
 # Available markets
 
