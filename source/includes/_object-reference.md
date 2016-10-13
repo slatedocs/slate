@@ -466,8 +466,8 @@ to compose an expression.
   "function": "select",
   "args": [{
     "map": {
-      <destination id>: <source frame id>,
-      <destination id>: <source frame id>,
+      <destination id>: {variable: <source frame id>},
+      <destination id>: {variable: <source frame id>},
       ...
     }
   }]
@@ -487,8 +487,8 @@ argument are disregarded.
   "function": "deselect",
   "args": [{
     "map": {
-      <destination id>: <source frame id>,
-      <destination id>: <source frame id>,
+      <destination id>: {variable: <source frame id>},
+      <destination id>: {variable: <source frame id>},
       ...
     }
   }]

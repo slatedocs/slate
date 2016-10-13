@@ -774,9 +774,9 @@ POST `/api/datasets/f2364cc66e604d63a3be3e8811fc902f/export/spss/` HTTP/1.1
         "args":[
           {
             "map": {
-              "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000000/": "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000000/",
-              "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000001/": "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000001/",
-              "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000002/": "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000002/"
+              "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000000/": {"variable": "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000000/"},
+              "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000001/": {"variable": "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000001/"},
+              "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000002/": {"variable": "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000002/"}
               }
           }
         ]
@@ -798,7 +798,7 @@ To export a subset of the dataset, instead perform a POST request and include a 
 Attribute | Description | Example
 --------- | ----------- | ------------------------------------
 filter | A Crunch filter expression defining a filter for the given export | `{"function": "==", "args": [{"variable": "000000"}, {"value": 1}]}`
-where  | A Crunch expression defining which variables to export. Refer to [Frame functions](#frame-functions) for the available functions to here. | `{"function": "select", "args": [{"map": {"000000": "000000"}}]}`
+where  | A Crunch expression defining which variables to export. Refer to [Frame functions](#frame-functions) for the available functions to here. | `{"function": "select", "args": [{"map": {"000000": {"variable": 000000"}}}]}`
 options | An object of extra settings, which may be format-specific. See below. | `{"use_category_ids": true}`
 
 See ["Expressions"](#expressions) for more on Crunch expressions.
