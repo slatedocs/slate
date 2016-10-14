@@ -499,6 +499,28 @@ Return: 	{"success": true}
 
 Zibby's API allows for the retailer to be able to confirm an order once it is initialized in the retailer's downstream system.
 
+##Submit Sales Receipt
+
+```script
+URL: 		/api/v3/application/<zibby_id>/receipt/
+Method: 	POST
+Request:	{"receipt": "base 64 encoded PDF"}
+Return: 	{"success": true}
+```
+
+Once the sale is complete retailers can submit their invoice for the transaction with Zibby in order to meet their funding requirement.
+
+##Submit Delivery
+
+```script
+URL: 		/api/v3/application/<zibby_id>/delivery/
+Method: 	POST
+Request: 	{"items": [{"sku": "285868","display_name": "BATTERY","unit_price": 4.0, "quantity": 4}], "delivery_date": "2016-10-14T13:40:16.368888"}
+Return: 	{"success": true}
+```
+
+Once items are delivered, retailers can update Zibby on the delivery via the API.
+
 
 
 
