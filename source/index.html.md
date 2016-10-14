@@ -47,7 +47,8 @@ search: false
 19-09-2016_15:59:45 [https-jsse-nio-9443-exec-10] ERROR - org.apache.axis2.AxisFault: Read timed out
 ~~~
 
-[![image](button_pro.png "iDa Pro API")](https://doc.idamob.ru/pro)
-[![image](button_light.png "iDa Light API")](https://doc.idamob.ru/light)
-[![image](button_pigeon.png "iDa PiGeon API")](https://doc.idamob.ru/pigeon)
-[![image](button_st.png "iDa SmartTransactions API")](https://doc.idamob.ru/smarttransactions)
+[![image](button_pro.svg "iDa Pro API")](https://doc.idamob.ru/pro)
+[![image](button_light.svg "iDa Light API")](https://doc.idamob.ru/light)
+[![image](button_pigeon.svg "iDa PiGeon API")](https://doc.idamob.ru/pigeon)
+[![image](button_st.svg "iDa SmartTransactions API")](https://doc.idamob.ru/smarttransactions)
+[![image](button_vh.svg "iDa Version History")](https://doc.idamob.ru/history)

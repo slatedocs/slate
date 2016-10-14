@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800px" height="200px" viewBox="0 0 800 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40.3 (33839) - http://www.bohemiancoding.com/sketch -->
+    <title>button_st</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 8.25955863 62.88 0 62.88 77.5737747 0 85.8333333"></polygon>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="66.88" height="89.8333333">
+            <rect x="-2" y="-2" width="66.88" height="89.8333333" fill="white"></rect>
+            <use xlink:href="#path-1" fill="black"></use>
+        </mask>
+        <polygon id="path-3" points="6 12.2595586 68.88 4 68.88 81.5737747 6 89.8333333"></polygon>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="66.88" height="89.8333333">
+            <rect x="4" y="2" width="66.88" height="89.8333333" fill="white"></rect>
+            <use xlink:href="#path-3" fill="black"></use>
+        </mask>
+        <polygon id="path-5" points="14 16.2595586 76.88 8 76.88 85.5737747 14 93.8333333"></polygon>
+        <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="66.88" height="89.8333333">
+            <rect x="12" y="6" width="66.88" height="89.8333333" fill="white"></rect>
+            <use xlink:href="#path-5" fill="black"></use>
+        </mask>
+        <polygon id="path-7" points="20 20.2595586 84.88 12 84.88 87.5737747 20 100"></polygon>
+        <mask id="mask-8" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="68.88" height="92">
+            <rect x="18" y="10" width="68.88" height="92" fill="white"></rect>
+            <use xlink:href="#path-7" fill="black"></use>
+        </mask>
+        <polygon id="path-9" points="0 9.16666667 19 20.0666667 19 100 0 86.1678363"></polygon>
+        <mask id="mask-10" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="23" height="94.8333333">
+            <rect x="-2" y="7.16666667" width="23" height="94.8333333" fill="white"></rect>
+            <use xlink:href="#path-9" fill="black"></use>
+        </mask>
+        <ellipse id="path-11" cx="8.33333333" cy="31.6666667" rx="3.33333333" ry="5"></ellipse>
+        <mask id="mask-12" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="6.66666667" height="10" fill="white">
+            <use xlink:href="#path-11"></use>
+        </mask>
+    </defs>
+    <g id="doc" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="pictures-of-products" transform="translate(-100.000000, -687.000000)">
+            <g id="Group" transform="translate(100.000000, 687.000000)">
+                <rect id="Rectangle-2" fill="#FFFFFF" x="0" y="0" width="800" height="200"></rect>
+                <text id="iDa-Mobile-Smart-Tra" font-family="HelveticaNeue, Helvetica Neue" font-size="36" font-weight="normal" fill="#000000">
+                    <tspan x="206" y="113">iDa Mobile Smart Transaсtion API</tspan>
+                </text>
+                <g id="box" transform="translate(50.000000, 47.000000)">
+                    <g id="Group">
+                        <use id="Rectangle-4" stroke="#2467AF" mask="url(#mask-2)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" xlink:href="#path-1"></use>
+                        <g id="Rectangle-4">
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                            <use stroke="#2467AF" mask="url(#mask-4)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" xlink:href="#path-3"></use>
+                        </g>
+                        <g id="Rectangle-4">
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-5"></use>
+                            <use stroke="#2467AF" mask="url(#mask-6)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" xlink:href="#path-5"></use>
+                        </g>
+                        <g id="Combined-Shape">
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-7"></use>
+                            <use stroke="#2467AF" mask="url(#mask-8)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" xlink:href="#path-7"></use>
+                        </g>
+                        <g id="Rectangle">
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-9"></use>
+                            <use stroke="#2467AF" mask="url(#mask-10)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" xlink:href="#path-9"></use>
+                        </g>
+                        <use id="Oval-2" stroke="#2467AF" mask="url(#mask-12)" stroke-width="4" xlink:href="#path-11"></use>
+                    </g>
+                </g>
+                <polygon id="Rectangle-4" fill="#FFFFFF" points="97 92 155 92 155 150 97 150"></polygon>
+                <g id="ic_shopping_cart" transform="translate(105.000000, 103.000000)">
+                    <polygon id="Bounds" points="10.4210526 4.63157895 38.2105263 4.63157895 38.2105263 32.4210526 10.4210526 32.4210526"></polygon>
+                    <path d="M13.2,35.2 C10.78,35.2 8.822,37.18 8.822,39.6 C8.822,42.02 10.78,44 13.2,44 C15.62,44 17.6,42.02 17.6,39.6 C17.6,37.18 15.62,35.2 13.2,35.2 L13.2,35.2 Z M0,0 L0,4.4 L4.4,4.4 L12.32,21.098 L9.35,26.488 C8.998,27.104 8.8,27.83 8.8,28.6 C8.8,31.02 10.78,33 13.2,33 L39.6,33 L39.6,28.6 L14.124,28.6 C13.816,28.6 13.574,28.358 13.574,28.05 L13.64,27.786 L15.62,24.2 L32.01,24.2 C33.66,24.2 35.112,23.298 35.86,21.934 L43.736,7.656 C43.912,7.348 44,6.974 44,6.6 C44,5.39 43.01,4.4 41.8,4.4 L9.262,4.4 L7.194,0 L1.07469589e-14,0 L0,0 Z M35.2,35.2 C32.78,35.2 30.822,37.18 30.822,39.6 C30.822,42.02 32.78,44 35.2,44 C37.62,44 39.6,42.02 39.6,39.6 C39.6,37.18 37.62,35.2 35.2,35.2 L35.2,35.2 Z" id="Shape" fill="#2467AF"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

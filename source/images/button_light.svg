@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800px" height="200px" viewBox="0 0 800 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40.3 (33839) - http://www.bohemiancoding.com/sketch -->
+    <title>button_light</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 8.25955863 62.88 0 62.88 77.5737747 0 85.8333333"></polygon>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="66.88" height="89.8333333">
+            <rect x="-2" y="-2" width="66.88" height="89.8333333" fill="white"></rect>
+            <use xlink:href="#path-1" fill="black"></use>
+        </mask>
+        <polygon id="path-3" points="6 12.2595586 68.88 4 68.88 81.5737747 6 89.8333333"></polygon>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="66.88" height="89.8333333">
+            <rect x="4" y="2" width="66.88" height="89.8333333" fill="white"></rect>
+            <use xlink:href="#path-3" fill="black"></use>
+        </mask>
+        <polygon id="path-5" points="14 16.2595586 76.88 8 76.88 85.5737747 14 93.8333333"></polygon>
+        <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="66.88" height="89.8333333">
+            <rect x="12" y="6" width="66.88" height="89.8333333" fill="white"></rect>
+            <use xlink:href="#path-5" fill="black"></use>
+        </mask>
+        <polygon id="path-7" points="20 20.2595586 84.88 12 84.88 87.5737747 20 100"></polygon>
+        <mask id="mask-8" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="68.88" height="92">
+            <rect x="18" y="10" width="68.88" height="92" fill="white"></rect>
+            <use xlink:href="#path-7" fill="black"></use>
+        </mask>
+        <polygon id="path-9" points="0 9.16666667 19 20.0666667 19 100 0 86.1678363"></polygon>
+        <mask id="mask-10" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="23" height="94.8333333">
+            <rect x="-2" y="7.16666667" width="23" height="94.8333333" fill="white"></rect>
+            <use xlink:href="#path-9" fill="black"></use>
+        </mask>
+        <ellipse id="path-11" cx="8.33333333" cy="31.6666667" rx="3.33333333" ry="5"></ellipse>
+        <mask id="mask-12" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="6.66666667" height="10" fill="white">
+            <use xlink:href="#path-11"></use>
+        </mask>
+    </defs>
+    <g id="doc" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="pictures-of-products" transform="translate(-100.000000, -267.000000)">
+            <g id="light" transform="translate(100.000000, 267.000000)">
+                <rect id="Rectangle-2" fill="#FFFFFF" x="0" y="0" width="800" height="200"></rect>
+                <g id="box" transform="translate(50.000000, 47.000000)">
+                    <g id="Group">
+                        <use id="Rectangle-4" stroke="#2467AF" mask="url(#mask-2)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" xlink:href="#path-1"></use>
+                        <g id="Rectangle-4">
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                            <use stroke="#2467AF" mask="url(#mask-4)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" xlink:href="#path-3"></use>
+                        </g>
+                        <g id="Rectangle-4">
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-5"></use>
+                            <use stroke="#2467AF" mask="url(#mask-6)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" xlink:href="#path-5"></use>
+                        </g>
+                        <g id="Combined-Shape">
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-7"></use>
+                            <use stroke="#2467AF" mask="url(#mask-8)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" xlink:href="#path-7"></use>
+                        </g>
+                        <g id="Rectangle">
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-9"></use>
+                            <use stroke="#2467AF" mask="url(#mask-10)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" xlink:href="#path-9"></use>
+                        </g>
+                        <use id="Oval-2" stroke="#2467AF" mask="url(#mask-12)" stroke-width="4" xlink:href="#path-11"></use>
+                    </g>
+                </g>
+                <polygon id="Rectangle-4" fill="#FFFFFF" points="102 92 160 92 160 150 102 150"></polygon>
+                <path d="M148.706131,130.627099 C149.876858,128.257505 150.534721,125.589259 150.534721,122.76736 C150.534721,112.954718 142.580003,105 132.76736,105 C122.954718,105 115,112.954718 115,122.76736 C115,125.678165 115.699969,128.425484 116.940767,130.850174 C117.801253,133.085331 119.200136,136.183429 121.39625,139.824027 C125.960617,147.661852 132.76736,156.169998 132.76736,156.169998 C132.76736,156.169998 139.003319,149.436707 144.138471,139.824027 C146.51022,135.659627 147.89722,132.666154 148.706131,130.627099 Z M132.76736,131.295694 C137.084923,131.295694 140.584999,127.795617 140.584999,123.478055 C140.584999,119.160492 137.084923,115.660416 132.76736,115.660416 C128.449798,115.660416 124.949722,119.160492 124.949722,123.478055 C124.949722,127.795617 128.449798,131.295694 132.76736,131.295694 Z" id="Oval-11" fill="#2467AF"></path>
+                <text id="iDa-Mobile-Light-API" font-family="HelveticaNeue, Helvetica Neue" font-size="36" font-weight="normal" fill="#000000">
+                    <tspan x="206" y="113">iDa Mobile Light API</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
