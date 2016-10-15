@@ -207,7 +207,7 @@ Like Categories, the array of subvariables within an array variable indicate
 
 Multiple Response and Categorical Array variables contain an array of subvariable
  "references": names, alias, description, etc. To create a variable of type
- "multiple_response" or "categorical_array" directly, you must include a 
+ "multiple_response" or "categorical_array" directly, you must include a
  "subreferences" member with an array of objects. These label the subvariables
  in the new array variable.
 
@@ -232,8 +232,8 @@ The shape of each subreferences member must contain a name and optionally an ali
         }
     ],
     "subreferences": [
-        {"name": "subvariable 1"}
-        {"name": "subvariable 2", "alias": "subvar2_alias"}
+        {"name": "subvariable 1"},
+        {"name": "subvariable 2", "alias": "subvar2_alias"},
         {"name": "subvariable 3"}
     ]
 }
@@ -330,7 +330,12 @@ A complete Variable, then, is simply a Definition combined with its data array.
 
 ### Expressions
 
-Crunch expressions are used to compute on a dataset, to do nuanced selects, updates, and deletes, and to accomplish many other routine operations. Expressions are JSON objects in which each term is wrapped in an object which declares whether the term is a variable, a value, or a function, etc. While verbose, doing so allows us to be more explicit about the operations we wish to do.
+Crunch expressions are used to compute on a dataset, to do nuanced selects,
+updates, and deletes, and to accomplish many other routine operations.
+Expressions are JSON objects in which each term is wrapped in an object which
+declares whether the term is a variable, a value, or a function, etc. While
+verbose, doing so allows us to be more explicit about the operations we wish
+to do.
 
 Expressions generally contain references to **variables**, **values**, or **columns** of values, often composed in **functions**. The output of expressions can be other variables, values, boolean masks, or cube aggregations, depending on the context and expression content. Some endpoints have special semantics, but the general structure of the expressions follows the model described below.
 
@@ -452,6 +457,45 @@ to compose an expression.
     * `join` Return a JoinedFrame from the given list of subframes.
     * `find` Return a Frame with those variables which match the given criteria.
     * `flatten` Return a frame including all variables, plus all subvariables at dotted ids.
+
+###### Examples
+
+* **select**: Receives an argument which is a map expression in the following shape:
+```json
+
+{
+  "function": "select",
+  "args": [{
+    "map": {
+      <destination id>: {variable: <source frame id>},
+      <destination id>: {variable: <source frame id>},
+      ...
+    }
+  }]
+
+}
+```
+Where `destination id` is the ID that the mapped variable will have on the
+resulting frame by selecting only the `source frame id` variables from the
+frame where this function is applied on.
+
+* **deselect**: Same as `select` but will exclude the variable ids mentioned
+from the source frame. On this usage the `destination id` part of the `map`
+argument are disregarded.
+```json
+
+{
+  "function": "deselect",
+  "args": [{
+    "map": {
+      <destination id>: {variable: <source frame id>},
+      <destination id>: {variable: <source frame id>},
+      ...
+    }
+  }]
+
+}
+```
 
 ##### Measures Functions
 
@@ -661,7 +705,7 @@ Cubes collect columns of measure data in an arbitrary number of dimensions. Mult
     ],
     "measures": {
         "count": {
-            "metadata": {"references": {}, "type": {"class": "numeric", "integer": True, ...}},
+            "metadata": {"references": {}, "type": {"class": "numeric", "integer": true, ...}},
             "data": [10, 20, 30, 40, 50, 60],
             "n_missing": 12
         },
@@ -708,7 +752,7 @@ The number of rows that are missing for this measure. Because different measures
 The "margins" member is optional. When present, it is a tree of nested margins with one level of depth for each dimension. At the top, we always include the "grand total" for all dimensions. Then, we include a branch for each axis we "unroll". So, for example, for a 3-dimensional cube of X, Y, and Z, the margins member might contain:
 
 ```json
-{ 
+{
 "margins": {
     "data": [4526],
     "0": {

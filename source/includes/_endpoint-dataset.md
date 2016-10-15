@@ -750,27 +750,38 @@ GET returns a Shoji View of available dataset export formats.
 
 ```json
 {
-	"element": "shoji:view",
-	"self": "https://beta.crunch.io/api/datasets/223fd4/export/",
-	"views": {
-		"spss": "https://beta.crunch.io/api/datasets/223fd4/export/spss/",
-		"csv": "https://beta.crunch.io/api/datasets/223fd4/export/csv/"
-	}
+    "element": "shoji:view",
+    "self": "https://beta.crunch.io/api/datasets/223fd4/export/",
+    "views": {
+        "spss": "https://beta.crunch.io/api/datasets/223fd4/export/spss/",
+        "csv": "https://beta.crunch.io/api/datasets/223fd4/export/csv/"
+    }
 }
 ```
 
-A POST request on any of the export views will return 202 status with a `shoji:view`, containing an attribute
-`url` pointing to the location of the exported file to be downloaded; GET that URL to download the file.
+A POST request on any of the export views will return 202 status with a `shoji:view`,
+containing an attribute `url` pointing to the location of the exported file to
+be downloaded; GET that URL to download the file.
 
 
 ```http
 POST `/api/datasets/f2364cc66e604d63a3be3e8811fc902f/export/spss/` HTTP/1.1
 ```
 ```json
-{"where":{"function": "identify",
-          "args":[{"id":["https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000000/",
-                         "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000001/",
-                         "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000002/"]}]}}
+    {
+      "where": {
+        "function": "select",
+        "args":[
+          {
+            "map": {
+              "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000000/": {"variable": "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000000/"},
+              "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000001/": {"variable": "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000001/"},
+              "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000002/": {"variable": "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000002/"}
+              }
+          }
+        ]
+      }
+    }
 ```
 ```http
 HTTP/1.1 202 Accepted
@@ -787,7 +798,7 @@ To export a subset of the dataset, instead perform a POST request and include a 
 Attribute | Description | Example
 --------- | ----------- | ------------------------------------
 filter | A Crunch filter expression defining a filter for the given export | `{"function": "==", "args": [{"variable": "000000"}, {"value": 1}]}`
-where  | A Crunch expression defining which variables to export | `{"function": "identify", "args": [{"id": ["000000"]}]}`
+where  | A Crunch expression defining which variables to export. Refer to [Frame functions](#frame-functions) for the available functions to here. | `{"function": "select", "args": [{"map": {"000000": {"variable": 000000"}}}]}`
 options | An object of extra settings, which may be format-specific. See below. | `{"use_category_ids": true}`
 
 See ["Expressions"](#expressions) for more on Crunch expressions.
@@ -795,8 +806,8 @@ See ["Expressions"](#expressions) for more on Crunch expressions.
 The following rules apply for all formats:
 
 * The dataset's exclusion filter will be applied; however, any of the user's personal "applied filters" are not, unless they are explicitly included in the request.
-* Hidden/discarded variables are not exported.
-* Personal (private) variables are not exported.
+* Hidden/discarded variables are not exported unless editors use a `where` clause, then it will be evaluated over all non hidden variables.
+* Personal (private) variables are not exported unless indicated, then only the current user's personal variables will be exported
 * Variables (columns) will be ordered in a flattened version of the dataset's hierarchical order.
 * Derived variables will be exported with their values, without their functional links.
 
@@ -805,6 +816,7 @@ Some format-specific properties and options:
 Format    | Attribute        | Description                                                      | Example
 --------- | ---------------- | ---------------------------------------------------------------- | --------------------------
 csv       | use_category_ids | instead of category names export the fields as their numeric ids | {"use_category_ids": true}
+all       | include_personal | Will include the user's personal variables on the exported file  | {"include_personal": true}
 
 For both types of responses, the "location" header is set to the location for the download, whether completed or not.  Besides
  looking for a 100 percent completion with progress requests, the user may also look for a non-404 response on this location.
