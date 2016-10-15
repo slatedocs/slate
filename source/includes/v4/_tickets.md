@@ -417,7 +417,7 @@ The response is a data block, which contains the validity information like this:
 
 ### Updating and refreshing a reservation
 
-A ticket eservation can be updated and refreshed like this:
+A ticket reservation can be updated and refreshed like this:
 
 `PUT https://demo.gomus.de/api/v4/tickets/reservations/:token`
 
@@ -438,10 +438,30 @@ curl "https://demo.gomus.de/api/v4/tickets/reservations/:token"
     "reservation":
         {
             "quantity": 10
-       }
+        }
  }
 ```
 
 The response will contain the reservation object or an error.
 
 Note: you can only update the quantity, the validity will automaticaly refresh on each update.
+
+
+
+### Deleting a reservation
+
+A ticket reservation can be deleted. It is advised that you do so if the reservation is no longer needed.
+
+`DELETE https://demo.gomus.de/api/v4/tickets/reservations/:token`
+
+> Write definition of order into /tmp/reservation_update.json before executing shell command.
+
+```shell
+curl "https://demo.gomus.de/api/v4/tickets/reservations/:token"
+    -XDELETE
+    -H "Content-Type: application/json"
+    -H "Authorization: Bearer meowmeowmeow"
+```
+
+The response will have no content.
+
