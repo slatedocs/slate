@@ -8,7 +8,7 @@ toc_footers:
 
 
 includes:
- 
+
 
 search: true
 ---
@@ -466,11 +466,12 @@ To begin the checkout, we must open the checkout by submitting the full contents
 #Post-Origination
 
 Once an order has been originated, Zibby provides certain API endpoints to allow a retailer to manipulate the order. These enpoints are accessed by means of a private authentication token with which Zibby provides the retailer.
+The uid provided in the initialize response is required to access these endpoints.
 
 ##Cancel Order
 
 ```script
-URL: 		/api/v3/application/<zibby_id>/cancel_order/
+URL: 		/api/v3/application/<uid>/cancel_order/
 Method: 	GET
 Return: 	{"success": true}
 ```
@@ -480,7 +481,7 @@ The Zibby API allows retailers to directly cancel the entire order.
 ##Cancel Item
 
 ```script
-URL: 		/api/v3/application/<zibby_id>/cancel_item/
+URL: 		/api/v3/application/<uid>/cancel_item/
 Method: 	POST
 Request:	{"items": [{"sku": "285868","display_name": "BATTERY","unit_price": 4.0, "quantity": 4}]}
 Return: 	{"success": true}
@@ -491,7 +492,7 @@ The Zibby API allows retailers to directly cancel individual items within an ori
 ##Confirm Order
 
 ```script
-URL: 		/api/v3/application/<zibby_id>/confirm_order/
+URL: 		/api/v3/application/<uid>/confirm_order/
 Method: 	POST
 Request: 	{"order_id": "abcd"}
 Return: 	{"success": true}
@@ -502,7 +503,7 @@ Zibby's API allows for the retailer to be able to confirm an order once it is in
 ##Submit Sales Receipt
 
 ```script
-URL: 		/api/v3/application/<zibby_id>/receipt/
+URL: 		/api/v3/application/<uid>/receipt/
 Method: 	POST
 Request:	{"receipt": "base 64 encoded PDF"}
 Return: 	{"success": true}
@@ -513,7 +514,7 @@ Once the sale is complete retailers can submit their invoice for the transaction
 ##Submit Delivery
 
 ```script
-URL: 		/api/v3/application/<zibby_id>/delivery/
+URL: 		/api/v3/application/<uid>/delivery/
 Method: 	POST
 Request: 	{"items": [{"sku": "285868","display_name": "BATTERY","unit_price": 4.0, "quantity": 4}], "delivery_date": "2016-10-14T13:40:16.368888"}
 Return: 	{"success": true}
