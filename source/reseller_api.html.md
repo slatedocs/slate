@@ -6,6 +6,7 @@ toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation powered by Slate</a>
 
 includes:
+  - v4/reservations
   - errors
 
 search: true
