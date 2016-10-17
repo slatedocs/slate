@@ -389,6 +389,48 @@ La información de crédito será enviada como forma de pago al Servicio de
 Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero.
 </aside>
 
+
+### Operación a partir de XML
+
+`POST /invoices/issue/xml`
+
+### Requerimiento a partir de XML
+
+Para la emisión de una factura a partir de un xml se debe enviar contenido del archivo xml como parámetro en el cuerpo del requerimiento en formato JSON.
+
+
+Parámetro           | Tipo    | Descripción
+------------------- | ------- | ----------
+xml   | string  | Contenido del archivo xml. __Requerido__
+
+
+> #### Requerimiento de ejemplo
+
+
+```shell
+
+```
+
+```python
+import requests, json
+
+factura = { 
+    "xml" : "<?xml ... "
+}
+
+cabeceras = {
+    'x-key': '<clave-del-api>',
+    'x-password': '<clave-certificado-firma>',
+    'content-type': 'application/json'}
+respuesta = requests.post(
+    "https://link.datil.co/invoices/issue",
+    headers = cabeceras,
+    data = json.dumps(factura))
+```
+
+```c#
+```
+
 ### Respuesta
 
 > #### Respuesta de ejemplo
@@ -550,6 +592,7 @@ namespace DatilClient {
 ```
 
 Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas consultar.
+
 
 ### Respuesta
 
