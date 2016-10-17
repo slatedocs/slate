@@ -2,10 +2,7 @@
 title: Fast Notas API
 
 language_tabs:
-  - shell
-  - ruby
-  - python
-  - javascript
+  - shell: cURL
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
