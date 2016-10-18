@@ -32,9 +32,31 @@ Must contain the URL of a dataset that the current user can read. This action wi
 
 ```json
 {
-  "dataset": "<url>"
+  "element": "shoji:entity",
+  "body": {
+      "dataset": "<url>"
+  }
 }
 ```
+
+If you wish to include only certain variables from the source dataset you're appending from, you can include an ``function`` in the body of the entity.  The function should be a ZCL function name.  Its arguments should be present in the ``args`` key in the body.
+
+```json
+{
+  "element": "shoji:entity",
+  "body": {
+      "dataset": "<url>"
+      "function":"select",
+      "args": [
+                {"map":
+                    {"000001": {'variable': "<url>"},
+                     "000002": {'variable': "<url>"}}
+                }
+                ],
+  }
+}
+```
+
 
 #### Appending a source
 
@@ -42,7 +64,10 @@ Must contain the URL of a source that a user can read.
 
 ```json
 {
-  "source": "<url>"
+  "element": "shoji:entity",
+  "body": {
+      "source": "<url>"
+  }
 }
 ```
 
@@ -62,6 +87,40 @@ The variables IDs must match those of the target dataset since their types will 
 }
 ```
 
+#### Managing Append Failures
+
+In case of failures while appending the batch, the dataset will be automatically reverted
+back to the state it was before the append and the batch is automatically deleted.
+
+This behaviour can be changed by providing a `autorollback: false` value into the POST
+performed to append the data. When `autorollback: false` is provided a savepoint to which
+user can revert to is still created, but the dataset is left in errored state for inspection.
+The user can then manually revert to the savepoint and delete the associated batch.
+
+```json
+{
+  "element": "shoji:entity",
+  "autorollback": false,
+  "body": {
+      "source": "<url>"
+  }
+}
+```
+
+In case of appending to an empty dataset you might want to avoid the cost of creating
+a savepoint at all as reverting to it will just lead to an empty dataset which you probably
+just want to delete, in such case a `savepoint: false` value can be provided which will
+totally disable the savepoint support:
+
+```json
+{
+  "element": "shoji:entity",
+  "savepoint": false,
+  "body": {
+      "source": "<url>"
+  }
+}
+```
 
 #### Checking if an append will cause problems
 

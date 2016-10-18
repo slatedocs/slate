@@ -15,7 +15,8 @@ Name | Type | Default | Description
 user_display_name | string | "" | The name of the user who saved this version
 description | string | | An informative note about the version, as in a commit message
 version | string |  | An internal identifier for the saved version
-last_update | datetime | | Timestamp for when the version was created
+creation_time | datetime | | Timestamp for when the version was created
+last_update | datetime | | Timestamp for when the version was last updated
 revert | url | | URL to POST to in order to roll back to this version; see below
 
 Query parameters:
