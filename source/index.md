@@ -14,9 +14,11 @@ includes:
   - feature-authentication
   - feature-importing
   - feature-appending
+  - feature-extending
   - feature-deriving
   - feature-arrays
   - feature-analyzing
+  - feature-versioning
   - endpoint-intro
   - endpoint-public
   - endpoint-dataset
