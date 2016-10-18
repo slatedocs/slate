@@ -12,8 +12,8 @@
   > POST /v1/addresses
 
   ```shell
-    curl -v -X POST *url* \
-    -H "Authorization: Bearer Access-Token" \
+    curl -v -X POST /v1/addresses \
+    -d 'api_key=YOUR_API_KEY' \
     -d '[ {
             country: "BR",
             zipcode: "11111111",
@@ -22,31 +22,17 @@
         ]'
   ```
   <br> <br> <br>
-  **Parâmetros**
-  <br>
-  **country** `string` <br>
-  *Obrigatório. Deve ser a abreviação do país.*
-  <br>
-  **zipcode** `string` <br>
-  *Obrigatório. Coloque somente os números do CEP*
-  <br>
-  **number** `string` <br>
-  *Opcional. Número da casa/prédio.*
-  <br>
-  **neighborhood** `string` <br>
-  *Opcional.*
-  <br>
-  **street** `string` <br>
-  *Opcional.*
-  <br>
-  **additional_details** `string` <br>
-  *Opcional.*
-  <br>
-  **city** `string` <br>
-  *Opcional.*
-  <br>
-  **state** `string` <br>
-  *Opcional.*
+
+  Parâmetro | Tipo | Descrição
+ -------------- | -------------- | --------------
+  **country** | `string` | *Obrigatório. Deve ser a abreviação do país.*
+  **zipcode** |`string` | *Obrigatório. Coloque somente os números do CEP*
+  **number** |`string` | *Opcional. Número da casa/prédio.*
+  **neighborhood** | `string` | *Opcional.*
+  **street** | `string` | *Opcional.*
+  **additional_details** | `string` | *Opcional.*
+  **city** |`string` | *Opcional.*
+  **state** | `string` | *Opcional.*
 
 
 <br> <br> <br> <br> <br>
@@ -61,30 +47,26 @@
   > Exemplo de retorno em JSON:
 
   ```json
-
-    {
-      “id”: “9bf4xxxxxxxxxe37”,
-      “neighborhood”: “Vila Clementino”,
-      “street”: “Rua Doutor Diogo de Faria”,
-      “number”: “123”,
-      “additional_details”: null,
-      “zipcode”: “04635021”,
-      “city”: “São Paulo”,
-      “state”: “SP”,
-      “country”: “BR”
-    }
+  {
+    “id”: “9bf4xxxxxxxxxe37”,
+    “neighborhood”: “Vila Clementino”,
+    “street”: “Rua Doutor Diogo de Faria”,
+    “number”: “123”,
+    “additional_details”: null,
+    “zipcode”: “04635021”,
+    “city”: “São Paulo”,
+    “state”: “SP”,
+    “country”: “BR”
+  }
   ```
 
   Retorna os dados do endereço criado ou solicitado pelo id.
 
-   **Parâmetros**
-  <br>
-  **:id** <br>
-  *Obrigatório. Id do endereço criado.*
-  <br>
-  **api_key** <br>
-  *Obrigatório. Chave da API.*
-  <br>
+  Parâmetro | Tipo | Descrição
+ -------------- | -------------- | --------------
+  **:id** | `string` | *Obrigatório. Id do endereço criado.*
+  **api_key** | `string` | *Obrigatório. Chave da API.*
+
 
 <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
@@ -97,7 +79,137 @@
 
   ```shell
     curl -v -X GET /v1/addresses/
+    -d 'api_key=YOUR_API_KEY'
+  ```
+  > Exemplo de retorno em JSON:
+
+  ```json
+    [
+  {
+    "id": "9bxxxxxxxxxxxxx8e37",
+    "neighborhood": "Vila Alexandria",
+    "street": "Rua Palacete das Águias",
+    "number": "123",
+    "additional_details": null,
+    "zipcode": "04635021",
+    "city": "São Paulo",
+    "state": "SP",
+    "country": "BR"
+  }
+  {
+    "id": "9bxxxxxxxxxxxxxxx7",
+    "neighborhood": "Vila Clementino",
+    "street": "Rua Doutor Diogo de Faria",
+    "number": "123",
+    "additional_details": null,
+    "zipcode": "046xxxx1",
+    "city": "SãoPaulo",
+    "state": "SP",
+    "country": "BR"
+  }
+
+]
+
+  ```
+
+
+## Phones
+
+  Um telefone pertence à um cliente ou uma empresa. Use a rota `phones` para criar, deletar e atualizar telefones.
+
+<br> <br> <br> <br> <br>
+
+### Criando um telefone
+
+  > POST /v1/phones
+
+  ```shell
+    curl -v -X POST /v1/phones \
     -d 'api_key=YOUR_API_KEY' \
+    -d '[ {
+            "phone_type": "celular",
+            "number": "96xxxx65",
+            "area_code": "11"
+          }
+        ]'
+  ```
+  <br> <br> <br>
+
+   Parâmetro | Tipo | Descrição
+ -------------- | -------------- | --------------
+  **phone_type** | `int` | *Obrigatório. Telefone residencial (0) ou celular(1).*
+  **number** |`int` | *Obrigatório. Coloque somente os números.*
+  **area_code** |`int` | *Obrigatório. Código de área do município.*
+  **country_code** | `int` | *Opcional. Código do país.*
+  **extension** | `int` | *Opcional.*
+
+
+<br> <br> <br> <br> <br>
+
+###Retornando um phone
+
+  > GET v1/phones/:id
+
+   ```shell
+    curl -v -X GET /v1/phones/:id \
+    -d 'api_key=YOUR_API_KEY'
+  ```
+  > Exemplo de retorno em JSON:
+
+  ```json
+  {
+    "id": "ce745f0xxxxxxxxx6a2cc851",
+    "phone_type": 1,
+    "number": "966xxxx65",
+    "area_code": "11",
+    "country_code": null,
+    "extension": null
+  }
+  ```
+
+  Retorna os dados do telefone criado ou solicitado pelo id.
+
+  Parâmetro | Tipo | Descrição
+ -------------- | -------------- | --------------
+  **:id** | `string` | *Obrigatório. Id do telefone criado.*
+  **api_key** | `string` | *Obrigatório. Chave da API.*
+
+
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+
+###Retornando telefones
+
+  Retorna um array contendo objetos de Phones.
+
+  > GET v1/phones/
+
+  ```shell
+    curl -v -X GET /v1/phones/
+    -d 'api_key=YOUR_API_KEY'
+  ```
+  > Exemplo de retorno em JSON:
+
+  ```json
+    [
+      {
+        "id": "ce745f0xxxxxxxxx6a2cc851",
+        "phone_type": 1,
+        "number": "966xxxx65",
+        "area_code": "11",
+        "country_code": null,
+        "extension": null
+      },
+      {
+        "id": "9767f516xxxxxxxxxx6366de4",
+        "phone_type": 0,
+        "number": "51xxxx22",
+        "area_code": "21",
+        "country_code": null,
+        "extension": null
+      }
+    ]
+
   ```
 
 
@@ -125,23 +237,13 @@
       ]'
  ```
 
-  **Parâmetros**
-  <br>
-  **name** `string` <br>
-  *Obrigatório.*
-  <br>
-  **registry_code** `string` <br>
-  *Obrigatório. CNPJ da empresa.*
-  <br>
-  **legal_name** `string` <br>
-  *Opcional.*
-  <br>
-  **email** `string` <br>
-  *Obrigatório.*
-  <br>
-  **address_id** `string` <br>
-  *Obrigatório.*
-  <br>
+  Parâmetro | Tipo| Descrição
+ -------------- | -------------- | --------------
+  **name** |`string` | *Obrigatório.*
+  **registry_code** | `string` | *Obrigatório. CNPJ da empresa.*
+  **legal_name** | `string` | *Opcional.*
+  **email** |`string` | *Obrigatório.*
+  **address_id** | `string` | *Obrigatório.*
 
 <br> <br> <br> <br> <br> <br> <br> <br>
 ###Retornando uma empresa
@@ -180,25 +282,19 @@
 
   Retorna dados em JSON de uma determinada empresa.
 
-  **Parâmetros**
-  <br>
-  **:id** <br>
-  *Obrigatório. Id do endereço criado.*
-  <br>
-  **api_key** <br>
-  *Obrigatório. Chave da API.*
-  <br>
+  Parâmetro | Tipo| Descrição
+ -------------- | -------------- | --------------
+  **:id** | `string` | *Obrigatório. Id do endereço criado.*
+  **api_key** | `string`| *Obrigatório. Chave da API.*
 
 <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 <br> <br> <br>
 
 ###Retornando as empresas
-  **Parâmetros**
-  <br>
-  **api_key** <br>
-  *Obrigatório. Chave da API.*
-  <br>
+  Parâmetro | Tipo | Descrição
+ -------------- | -------------- | --------------
+  **api_key** | `string` | *Obrigatório. Chave da API.*
 
   > `GET /v1/companies`
 
@@ -264,29 +360,16 @@
 
 
 ###Objeto `document_scheme`
-  <br>
-  **name** `string` <br>
-  *Nome do documento.*
-  <br> <br>
-  **code** `string` <br>
-  *Código para identificação(Por exemplo:"NFS-e").*
-  <br> <br>
-  **type** `string` <br>
-  *Tipo do esquema do documento.*
-  <br> <br>
-  **status** `int` <br>
-  *Status ativo(1) ou inativo(0 - deletado).* <br>
-  *Default: 1*
-  <br> <br>
-  **credentials** `text` <br>
-  *Credenciais para a criação do objeto. Retorna JSON.*
-  <br> <br>
-  **sequence** `int` <br>
-  *O documento é guardado com uma sequência.*
-  <br> <br>
-  **company_id** `string` <br>
-  *O document_scheme pertence à uma empresa.*
-  <br> <br>
+  Parâmetro | Tipo | Descrição
+  -------------- | -------------- | --------------
+  **name** | `string` | *Nome do documento.*
+  **code** | `string` | *Código para identificação(Por exemplo:"NFS-e").*
+  **type** | `string` | *Tipo do esquema do documento.*
+  **status** | `int`  | *Status ativo(1) ou inativo(0 - deletado). Default: 1*
+  **credentials** | `text` | *Credenciais para a criação do objeto. Retorna JSON.*
+  **sequence** | `int` | *O documento é guardado com uma sequência.*
+  **company_id** |`string` | *O document_scheme pertence à uma empresa.*
+
 
 ### Criando um esquema de documento
 
@@ -303,19 +386,13 @@
       ]'
  ```
 
-  <br>
-  **name** `string` <br>
-  *Obrigatório. Deve ser preenchido como preferir.*
-  <br> <br>
-  **code** `string` <br>
-  *Obrigatório. Código para identificação(Por exemplo:"NFS-e")*
-  <br> <br>
-  **type** `string` <br>
-  *Obrigatório.*
-  <br> <br>
-  **credentials** `text` <br>
-  *Opcional. Deve ser preenchido com as credenciais para o objeto.(Por exemplo: certificado).*
-  <br>
+  Parâmetro | Tipo | Descrição
+ -------------- | -------------- | --------------
+  **name** | `string` | *Obrigatório. Deve ser preenchido como preferir.*
+  **code** | `string` | *Obrigatório. Código para identificação(Por exemplo:"NFS-e")*
+  **type** | `string` | *Obrigatório.*
+  **credentials** | `text` | *Opcional. Deve ser preenchido com as credenciais para o objeto.(Por exemplo: certificado).*
+
 <br> <br> <br> <br> <br> <br>
 ### Retornando um esquema de documento
   > GET v1/document_schemes/:id
@@ -339,18 +416,13 @@
 
   Retorna os dados do esquema criado ou solicitado pelo id.
 
-  **Parâmetros**
-  <br>
-  **:id** <br>
-  *Obrigatório. Id do esquema criado.*
-  <br>
-  **api_key** <br>
-  *Obrigatório. Chave da API.*
-  <br>
-
+  Parâmetro | Tipo | Descrição
+ -------------- | -------------- | --------------
+  **:id** | `string` | *Obrigatório. Id do esquema criado.*
+  **api_key** | `string` | *Obrigatório. Chave da API.*
 
 <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
-### Criando credentials para o esquema de documento
+### Atualizando as credenciais para o esquema de documento
 
   > PUT /v1/document_scheme/:id
 
@@ -384,14 +456,10 @@
     }
   ```
 
-  **Parâmetros**
-  <br>
-  **:id** <br>
-  *Obrigatório. Id de um document_scheme*
-  <br> <br>
-  **credentials** <br>
-  *Parâmetros válidos para determinado esquema de documento.*
-  <br>
+  Parâmetro | Tipo | Descrição
+ -------------- | -------------- | --------------
+  **:id** | `string` | *Obrigatório. Id de um document_scheme*
+  **credentials** | `text` | *Parâmetros válidos para determinado esquema de documento.*
 
 
   <br> <br> <br>
@@ -402,8 +470,11 @@
   </aside>
 
 
-
-
+### Credenciais de cada município
+  Município | Estado | Credenciais
+ -------------- | -------------- | --------------
+  São Paulo | SP | Certificado, senha, data de expiração
+  Rio de Janeiro | RJ | Certificado, senha, data de expiração
 
 
 ## Items

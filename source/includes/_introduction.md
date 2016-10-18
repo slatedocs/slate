@@ -8,7 +8,7 @@ We have language bindings in Shell, Ruby, and Python! You can view code examples
 
 ## Endpoints da API
 
-Método | Endpoint | Decrição
+Método | Endpoint | Descrição
 -------------- | -------------- | --------------
 GET | `/v1/addresses` | Retorna todos endereços
 POST | `/v1/addresses` | Cria um endereço
