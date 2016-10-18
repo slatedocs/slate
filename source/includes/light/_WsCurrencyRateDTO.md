@@ -2,20 +2,20 @@
 
 ```xml
 <rates type="WsCurrencyRateDTO">
-   <buy>66.03</buy>
-   <date>2016-09-08</date>
-   <firstCurrency>CHF</firstCurrency>
-   <groupName>Курс отделений</groupName>
-   <id>сurrency_id</id>
-   <secondCurrency>RUB</secondCurrency>
-   <sell>70.0</sell>
-   <type>CENTRAL_BANK</type>
+    <id>сurrencyRate_id</id>
+    <date>2016-09-08</date>
+    <buy>66.03</buy>
+    <sell>70.0</sell>
+    <firstCurrency>CHF</firstCurrency>
+    <secondCurrency>RUB</secondCurrency>
+    <groupName>Internet bank exchange</groupName>
+    <type>OTHER</type>
 </rates>
 ```
 
 key | type | status | comment
 --- | ---- | :----: | ---:
-id | string | 1..1 | идентификатор
+id | string | 1..1 | уникальный идентификатор операции
 date | string | 0..1 | дата
 firstCurrency | string | 1..1 | первая валюта
 secondCurrency | string | 1..1 | вторая валюта
