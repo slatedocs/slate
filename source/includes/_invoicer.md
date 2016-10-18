@@ -146,7 +146,7 @@
 
 <br> <br> <br> <br> <br>
 
-###Retornando um phone
+###Retornando um telefone
 
   > GET v1/phones/:id
 
