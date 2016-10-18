@@ -922,8 +922,8 @@ response.
 Setting | Description
 --------|------------
 viewers_can_export | When false, only editor can export; else, all users with view access can export the data
-viewers_can_change_weight | When true, all users with access can set their own personal weight; else, the editor configured weight will be applied to all without option to change
-weight | When  `viewers_can_change_weight`, this variable will be the always and only applied weight for all users of the dataset; it will also work as default initial weight for all new users on this dataset
+viewers_can_change_weight | When true, all users with access can set their own personal weight; else, the editor configured `weight` will be applied to all without option to change
+weight | Default initial weight for all new users on this dataset, and when `viewers_can_change_weight` is false, this variable will be the always-applied weight for all viewers of the dataset.
 
 
 ##### Preferences
@@ -933,8 +933,8 @@ weight | When  `viewers_can_change_weight`, this variable will be the always and
 The dataset preferences provide API clients with a key/value store for settings
 or customizations each would need for each user.
 
-By default all datasets' preferences start out with only a `weight` key
- set to None unless changed. Clients can PATCH attributes each deems necessary.
+By default, all dataset preferences start out with only a `weight` key
+ set to `null`, unless otherwise set. Clients can PATCH to add additional attributes.
 
 ```json
 {
@@ -946,12 +946,11 @@ By default all datasets' preferences start out with only a `weight` key
 }
 ```
 
-To delete keys from the preferences the value needs to be patched with `null`.
+To delete attributes from the preferences resources, PATCH them with `null`.
 
-There is no order associated with the saved preferences. Clients should assume
-they are in arbitrary order.
+Preferences are unordered; clients should not assume that they are ordered.
 
-##### Weight
+###### Weight
 
 If the dataset has `viewers_can_change_weight` setting set to false, then
 all users' preferences `weight` will be set to the dataset wide configured
