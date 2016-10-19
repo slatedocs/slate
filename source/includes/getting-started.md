@@ -21,7 +21,11 @@ The Foxtrot Android SDK will automatically request these permissions:
 There should be no need to explicitly add these permissions to your AndroidManifest.xml file. The Android manifest merger will detect these requirements from the Foxtrot SDK and add them to your bundle automatically.
 </aside>
 
-If your app is targeting Android Marshmallow or above, you will need to request run-time permission from the user to ACCESS_FINE_LOCATION. Here's an example Activity asking the user for permission and initializing the Foxtrot SDK:
+<aside class="warning">
+Note that each distribution center has a unique SDK key. If your application will be used by multiple distribution centers, be sure to use the specific SDK keys for that particular distribution center.
+</aside>
+
+If your app is targeting Android Marshmallow or above, you will need to request run-time permission from the user to `ACCESS_FINE_LOCATION`. Here's an example Activity asking the user for permission and initializing the Foxtrot SDK:
 
 ```java
 public class SetupFoxtrotSDKActivity extends AppCompatActivity {
