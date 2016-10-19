@@ -4,9 +4,6 @@ title: Expensify API Reference
 language_tabs:
   - shell
 
-includes:
-  - errors
-
 search: true
 ---
 
@@ -664,6 +661,7 @@ curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyInt
 
 Lets you get specific information about listed policies. At this time, only category, report field, tag, and tax information is supported.
 
+- `inputSettings`
 
 Name | Format | Valid values | Description
 -------- | --------- | ---------------- | ---------
@@ -734,6 +732,8 @@ curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyInt
 
 Lets you get a list of policies with some relevant information about them. Optionally, you may retrieve policies for another user on a domain you have been granted access to.
 
+- `inputSettings`
+
 Name | Format | Valid values | Description
 -------- | --------- | ---------------- | ---------
 type | String | "policyList" | Specifies to the job that it has to get a policy summary list.
@@ -746,6 +746,277 @@ userEmail | String | | Specifies the user to gather the policy list for. You mus
 
 ## Policy updater
 
+> - Categories, tags and report fields
+
+```shell
+curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations' \
+    -d 'requestJobDescription={
+        "type": "update",
+        "credentials": {
+            "partnerUserID": "_REPLACE_",
+            "partnerUserSecret": "_REPLACE_"
+        },
+        "inputSettings": {
+            "type": "policy",
+            "policyID": "0123456789ABCDEF"
+        },
+        "categories": {
+            "action": "merge",
+            "data": [
+                {
+                    "name": "Category 1",
+                    "enabled": true,
+                    "payrollCode": "Payroll Code 1",
+                    "glCode": "GL Code 1",
+                    "commentHint": "Comment hint 1",
+                    "areCommentsRequired": true,
+                    "maxExpenseAmount": 2500
+                },
+                {
+                    "name": "Category 2",
+                    "enabled": false
+                }
+            ]
+        },
+        "tags": {
+            "data": [
+                {
+                    "name": "Tag",
+                    "tags": [
+                        {
+                            "name": "Tag 1",
+                            "glCode": "Tag 1 GL Code"
+                        },
+                        {
+                            "name": "Tag 2",
+                            "enabled": false
+                        }
+                    ]
+                }
+            ]
+        },
+        "reportFields": {
+            "action": "merge",
+            "data": [
+                {
+                    "name": "Report field 1",
+                    "type": "dropdown",
+                    "values": [
+                        "value 1",
+                        "value 2",
+                        "value 3"
+                    ]
+                }
+            ]
+        }
+    }'
+```
+
+> - Independent multi-level tags, in JSON
+
+```shell
+curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations' \
+    -d 'requestJobDescription={
+        "type": "update",
+        "credentials": {
+            "partnerUserID": "_REPLACE_",
+            "partnerUserSecret": "_REPLACE_"
+        },
+        "inputSettings": {
+            "type": "policy",
+            "policyID": "0123456789ABCDEF"
+        },
+        "tags": {
+            "data": [
+                {
+                    "name": "Tag Level 1",
+                    "tags": [
+                        {
+                            "name": "Tag 1",
+                            "glCode": "Tag 1 GL Code"
+                        },
+                        {
+                            "name": "Tag 2",
+                            "glCode": "Tag 2 GL Code"
+                        }
+                    ]
+                },
+                {
+                    "name": "Tag Level 2",
+                    "tags": [
+                        {
+                            "name": "Tag 3",
+                            "glCode": "Tag 3 GL Code"
+                        },
+                        {
+                            "name": "Tag 4",
+                            "glCode": "Tag 4 GL Code"
+                        }
+                    ]
+                }
+            ]
+        }
+    }'
+```
+
+> - Dependent multi-level tags, with GL Codes and tag level names, passed in CSV.
+
+> Tag file - save the following data in a file called `tags.csv`, for example.
+
+```
+State,State GL,Region,Region GL,City,City GL
+California,100,North,20,San Francisco,1California,100,North,20,Oakland,2California,100,South,30,Los Angeles,3California,100,South,30,San Diego,4Texas,200,East,40,Dallas,5
+Texas,200,East,40,Houston,6
+Texas,200,South,50,San Antonio,7
+```
+
+> Request
+
+```shell
+curl -X POST "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations" \
+    -d 'requestJobDescription={
+        "type": "update",
+        "credentials": {
+            "partnerUserID":"...",
+            "partnerUserSecret":"..."
+        },
+        "inputSettings": {
+            "type": "policy",
+            "policyID": "0123456789ABCDEF"
+        },
+        "tags": {
+            "action": "replace",
+            "source":"file",
+            "config": {
+                    "dependency":true,
+                    "glCodes":true,
+                    "header":true,
+                    "setRequired":true,
+                    "fileType":"csv"
+            }
+        }
+    }' \
+    --data-urlencode file@tags.csv
+```
+
+Lets you independently manage categories, tags and report fields on a policy.
+
+- `requestJobDescription`
+
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+**Optional elements** |
+categories | JSON object | See `categories` below | Replace or update the existing tags of the policy with the ones provided.
+tags | JSON object | See the dedicated [Update tags](#update-tags) section below | Replace the existing tags of the policy with the ones provided.
+reportFields | JSON object | See `reportFields` below | Replace or update the existing report fields of the policy with the ones provided.
+
+- `inputSettings`
+
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+type | String | "policy" | Specifies to the job that it has to update a policy.
+policyID | String | Any valid Expensify policy ID, owned or shared with the user with admin permissions. | The ID of the policy to update. |
+
+- `categories`
+
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+action | String | "merge", "replace" | Specifies how the categories will be updated. <br>- "replace" removes all existing categories and replaces them with the specified list<br>- "merge" keeps existing categories and updates/adds the ones specified.
+data | JSON array | See below | |
+
+- `categories.data` objects
+
+Name | Format | Description
+-------- | --------- | ---------
+name | String | The name of the category. |
+enabled | Boolean | Whether the category is enabled on Expensify. |
+**Optional elements** |
+glCode | String | The GL Code associated to the category. |
+payrollCode | String | The Payroll Code associated to the category. |
+areCommentsRequired | Boolean | Whether comments are required for expenses under that category. |
+commentHint | String | The hint value for the comment for expenses under that category. |
+maxExpenseAmount | Integer | The maximum amount (in cents) for expenses under that category. |
+
+- `reportFields`
+
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+action | String | "merge", "replace" | Specifies how the report fields will be updated. <br>- "replace" removes all existing report fields and replaces them with the specified list<br>- "merge" keeps existing report fields and updates/adds the ones specified.
+data | JSON array | See below |
+
+- `reportFields.data` objects
+
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+name | String | | The name of the report field. |
+type | String | "text", "dropdown", "date" | The type of the report field. |
+values | JSON array | Strings | *Only if type is "dropdown"*<br>The values of the dropdown. |
+**Optional elements**  |
+defaultValue | String | | The default value of the report field.<br>*Only used for types "text" and "dropdown"* |
+
+### Update tags<a name="update-tags">&nbsp;</a>
+
+Tags can be specified in two ways:
+
+- Directly in the JSON job description
+- As extra parameters of the request
+
+#### Tag levels dependency
+For multi-level tagging, Expensify has the notion of tag level dependency. This means each tag level is dependent on the parent tag level above it.
+For more information and examples about multi-tagging, please refer to our [help site](https://docs.expensify.com/setup-for-admins-and-accountants/advanced-configuration-for-managers-and-accountants/tags).
+
+#### Passing tag data in JSON (independent levels only)
+
+- `tags`
+
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+data | JSON array | See below |
+source | String | "inline" | Specifies that the tags are directly passed in the JSON payload.
+
+- `tags.data` objects
+
+Multiple objects can be specified. Each one corresponds to a level in multi-level tagging.
+
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+name | String | | The name of the tag level. Only use with multi-level tagging.
+tags | JSON array | See below | The tags for that level.
+
+- `tags.data.tags` objects
+
+Name | Format | Description
+-------- | --------- | ---------
+name | String | | The name of the tag.
+**Optional elements** |
+enabled | Boolean | Whether the tag is enabled or not. Default value is `true`.<br>*Note:* When multi-level tagging is used, this value is ignored and is consider `true`.
+glCode | String | The GL Code associated to the tag.
+
+
+#### Passing tag data from plain text as additional request parameters (dependent or independent tag levels)
+
+The tag data must be passed in a parameter called `file` in the request.
+
+The `tags` object must contain the following information:
+
+Name | Format | Valid values
+-------- | --------- | ---------
+source | String | "file" |
+config | JSON Object | See below |
+
+
+- `tags.config`
+
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+dependency | Boolean | true, false | Whether tag level are dependent. |
+glCodes | Boolean | true, false | Whether adjacent columns in the tag file(s) contain GL Codes.
+header | Boolean | true, false | Whether the first line of the file contains the names of the tag levels.
+setRequired | Boolean | true, false | If set to `true`, users will be required to tag each expenses under that category.
+fileType | String | "cvs" or "tsv" | Format of the tag data.
+
 ## Employee updater
 
 ## Expense rules updater
+
+## Report status updater
