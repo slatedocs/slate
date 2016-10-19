@@ -12,19 +12,19 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v4/lscu', [
-    'report-name'				   => 'Sample SEO Check-Up Report', 
-	'business-names'			   => ["Le Bernardin"],
-	'website-addresses'			   => ["http://www.example.com","http://www.example2.com"],
-	'address1'					   => '155 West 51st Street',
-    'address2'					   => '',      
-    'city'						   => 'New York',
-	'state-code'				   => 'NY',
-	'postcode'					   => '10019',	
-	'telephone'					   => '+1 212-554-1515',
-	'country'					   => 'USA',
-	'business-category'            => 'Restaurant',
-	'primary-business-location'    => 'NY, New York',
-	'search-terms'                 => '["restaurant manhattan","cafe new york"]'
+    'report-name'				=> 'Sample SEO Check-Up Report', 
+	'business-names'			=> ["Le Bernardin"],
+	'website-addresses'			=> ["http://www.example.com","http://www.example2.com"],
+	'address1'                  => '155 West 51st Street',
+    'address2'                  => '',      
+    'city'                      => 'New York',
+	'state-code'				=> 'NY',
+	'postcode'					=> '10019',	
+	'telephone'					=> '+1 212-554-1515',
+	'country'					=> 'USA',
+	'business-category'         => 'Restaurant',
+	'primary-business-location' => 'NY, New York',
+	'search-terms'              => '["restaurant manhattan","cafe new york"]'
 ]);
 print_r($success);
 ```
@@ -152,12 +152,12 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->put('v4/lscu', [   
-	'postcode'					   => '10019',	
-	'telephone'					   => '+1 212-554-1515',
-	'country'					   => 'USA',
-	'business-category'            => 'Restaurant',
-	'primary-business-location'    => 'NY, New York',
-	'search-terms'                 => '["restaurant manhattan","cafe new york"]'
+	'postcode'                  => '10019',	
+	'telephone'                 => '+1 212-554-1515',
+	'country'                   => 'USA',
+	'business-category'         => 'Restaurant',
+	'primary-business-location' => 'NY, New York',
+	'search-terms'              => '["restaurant manhattan","cafe new york"]'
 ]);
 print_r($success);
 ```
@@ -276,7 +276,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $results = $api->get('v4/lscu', [
-    'report-id'            => 860
+    'report-id' => 860
 ]);
 print_r($results);
 ```
@@ -376,7 +376,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $results = $api->put('v4/lscu/run', [
-    'report-id'            => 860
+    'report-id' => 860
 ]);
 print_r($results);
 ```
@@ -446,7 +446,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->delete('v4/lscu', [
-    'report-id'            => 860
+    'report-id' => 860
 ]);
 if($success) {
 	echo 'Successfully deleted report.' . PHP_EOL;
@@ -518,7 +518,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $results = $api->get('v4/lscu/search', [
-    'q'                     => 'My Sample Query'	 
+    'q' => 'My Sample Query'	 
 ]);
 print_r($results);
 ```
