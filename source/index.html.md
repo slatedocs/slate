@@ -3,9 +3,6 @@ title: API Reference
 
 language_tabs:
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -19,171 +16,199 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API(modified)! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to XRM/MP API.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+## Environments
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+* **LIVE** `api.fantasticservices.com`  
+* **STAGE** `middlepoint-dev.1dxr.com`
+* **DEV** `middlepoint-dev.1dxr.com`
 
-# Authentication
+In this document `{base URL}` is used as a palceholder for current environment.
 
-> To authorize, use this code:
+## Versioning
 
-```ruby
-require 'kittn'
+Version is added after `{base URL}` (latest version 2).
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+Example
 
-```python
-import kittn
+`api.fantasticservices.com/v2`  
 
-api = kittn.authorize('meowmeowmeow')
-```
+In this document `{version}` is used as a palceholder for selected version.
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
 
-```javascript
-const kittn = require('kittn');
+## Applications identifying tokens
 
-let api = kittn.authorize('meowmeowmeow');
-```
+To access API all request must include identifying token header field
 
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`X-Client-Token: token`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>token</code> with your personal API token.
 </aside>
 
-# Kittens
+## Authentication
 
-## Get All Kittens
+To access user specific data request should include header field
 
-```ruby
-require 'kittn'
+`Authorization: Bearer token`
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+<aside class="notice">
+You must replace <code>token</code> with your personal authorization token.
 </aside>
 
-## Get a Specific Kitten
+# Checklists
 
-```ruby
-require 'kittn'
+## /checklists
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+curl --request GET \
+--url https://api.fantasticservices.com/v2/checklists/1 \
+--header 'authorization: 5dc54yuch5sabfxr90d46hcifv1pdt59f1s3q0jzxinjl5y1' \
+--header 'x-client-token: ffx0jW6rwE1VeE4F53ElyfuSbII92rfhEBFgf4wpmoZkP58bJGtkkIu15g9Z0end'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "id": 1,
+  "display_location": 1,
+  "required": true,
+  "categories": [
+    {
+      "sort": 1,
+      "title": "Client specific requirements",
+      "items": [
+        {
+          "id": 1,
+          "sort": 1,
+          "group": 1,
+          "title": "Clean your car",
+          "needs_confirmation": true
+        },
+        {
+          "id": 2,
+          "sort": 2,
+          "group": 2,
+          "title": "Take your tools",
+          "needs_confirmation": true
+        },
+        {
+          "id": 9,
+          "sort": 3,
+          "group": 2,
+          "title": "Smile",
+          "needs_confirmation": false
+        }
+      ]
+    },
+    {
+      "sort": 2,
+      "title": "Quality of service",
+      "items": [
+        {
+          "id": 3,
+          "sort": 1,
+          "group": 1,
+          "title": "Wear shoe covers",
+          "needs_confirmation": true
+        }
+      ]
+    }
+  ],
+  "answers": [
+    {
+      "item_id": 26,
+      "answer": 1,
+      "note": null
+    },
+    {
+      "item_id": 26,
+      "answer": 2,
+      "note": "1 cleaner was sick today"
+    }
+  ]
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint retrieves checklist object.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://{base URL}/{version}/checklists/{checklist_id}`
 
-### URL Parameters
+### Object attributes
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Attribute | Type | Description
+--------- | -----| -------------------
+`id` | *integer* | Object identifier
+`display_location` | *integer* | Points where checklist will be used<br><br>1 - *start of the day*<br>2 - *before checkin*<br>3 - *after checkout*
+`required` | *boolean* | Is the item required to be answered
+`categories` | *<a href="#checklists-categories">object</a>* | Groups checklist questions into sections
+`answers` | *<a href="#checklists-answers">object</a>* | Checklist answer
+
+<aside class="success">
+Checklists may be global or related to a job.
+</aside>
+
+## /checklists/categories
+
+
+```shell
+curl --request GET \
+--url https://api.fantasticservices.com/v2/checklists/1/categories/25 \
+--header 'authorization: 5dc54yuch5sabfxr90d46hcifv1pdt59f1s3q0jzxinjl5y1' \
+--header 'x-client-token: ffx0jW6rwE1VeE4F53ElyfuSbII92rfhEBFgf4wpmoZkP58bJGtkkIu15g9Z0end'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 25,
+  "sort": 1,
+  "title": "Client specific requirements",
+  "items": [
+    {
+      "id": 1,
+      "sort": 1,
+      "group": 1,
+      "title": "Clean your car",
+      "needs_confirmation": true
+    },
+    {
+      "id": 2,
+      "sort": 2,
+      "group": 2,
+      "title": "Take your tools",
+      "needs_confirmation": true
+    },
+    {
+      "id": 9,
+      "sort": 3,
+      "group": 2,
+      "title": "Smile",
+      "needs_confirmation": false
+    }
+  ]
+}
+```
+
+This endpoint retrieves checklist category object.
+
+### HTTP Request
+
+`GET https://{base URL}/{version}/checklists/{checklist_id}/categories/{category_id}`
+
+### Object attributes
+
+Attribute | Type | Description
+--------- | -----| -------------------
+`id` | *integer* | Object identifier
+`sort` | *integer* | Determines sort position
+`title` | *string* | Display title of section for the category
+`items` | *object* | The questions for the category
+
 
