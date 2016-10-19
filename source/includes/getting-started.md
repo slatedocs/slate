@@ -361,7 +361,11 @@ Now that we’ve created a Route, it can be imported like this:
 FoxtrotSDK.getInstance().addRoute(route);
 ```
 
-Now let's get the [OptimizedRoute](#optimizedroute). You will need to register a [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) to get the latest route changes. Once registered, an `OptimizedRoute` will be immediately given to you via the `onRouteChanged()` callback. Here is a sample `Activity` that uses the `RouteStateListener`.
+Now let's get the [OptimizedRoute](#optimizedroute). You will need to register a [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) to get the latest route changes. Once registered, an `OptimizedRoute` will be immediately given to you via the `onRouteChanged()` callback. After registration, the Foxtrot SDK will use the `RouteStateListener` to inform your application of any further changes to the route. Here is a sample `Activity` that uses the `RouteStateListener`.
+
+<aside class="notice">
+Foxtrot will optimize the current route whenever driving conditions change, so it's important that you update your UI when onRouteChanged is called. Your application should ensure that the driver is aware of the route changes by playing a sound, displaying a banner, or sending a notification to alert the driver.
+</aside>
 
 ```java
 public class SampleRouteActivity extends Activity {
