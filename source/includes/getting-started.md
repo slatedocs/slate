@@ -3,6 +3,7 @@
 ## Setting up the SDK
 
 Once the Foxtrot Android SDK is installed, you're ready to set it up.
+
 You’ll need to do three things:
 
 1. Get an Android `context` (any context should be fine)
