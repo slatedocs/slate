@@ -896,7 +896,7 @@ curl -X POST "https://integrations.expensify.com/Integration-Server/ExpensifyInt
             }
         }
     }' \
-    --data-urlencode file@tags.csv
+    --data-urlencode 'file@tags.csv'
 ```
 
 Lets you independently manage categories, tags and report fields on a policy.
@@ -1016,6 +1016,92 @@ setRequired | Boolean | true, false | If set to `true`, users will be required t
 fileType | String | "cvs" or "tsv" | Format of the tag data.
 
 ## Employee updater
+
+```shell
+curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations' \
+    -d 'requestJobDescription={
+        "type": "update",
+        "credentials": {
+            "partnerUserID": "_REPLACE_",
+            "partnerUserSecret": "_REPLACE_"
+        },
+        "inputSettings": {
+            "type": "employees",
+            "policyID":"0123456789ABCDEF",
+            "fileType": "csv"
+        }
+    }'
+    --data-urlencode 'data@employeeData.csv'
+```
+
+> Employee data samples - employeeData.csv
+
+> - Basic information
+
+```
+EmployeeEmail,ManagerEmail,Admin
+user1@domain.com,manager1@domain.com,false
+user2@domain.com,manager1@domain.com,true
+manager2@domain.com,manager1@domain.com,true
+```
+
+> - All supported fields
+
+```
+EmployeeEmail,ManagerEmail,Admin,ForwardManagerEmail,EmployeeUserId,EmployeePayrollId
+user1@domain.com,manager1@domain.com,false,cfo@domain.com,User1ID,User1PayrollID
+user2@domain.com,manager1@domain.com,true,cfo@domain.com,,User2PayrollID
+manager2@domain.com,manager1@domain.com,true,,Manager1ID,
+```
+
+> Response
+
+> - A success response message is comprised of a `responseCode` 200, and the total number of employees after the update.
+
+```
+{
+    "responseCode": 200,
+    "nbEmployees": 42
+}
+```
+
+> - Error
+
+```
+{
+    "responseMessage": "Column EmployeeEmail not found in CSV header",
+    "responseCode": 500
+}
+```
+
+Lets you manage employees on an Expensify policy. Use this to upload employee data in order to configure or provision accounts for new hires.
+
+The employee data must be passed in the request parameter `data`.
+
+- `inputSettings`
+
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+type | String | "employees" | Specifies to the job that it has to create or update employees.
+fileType | String | "csv" | The format of the file that contains the employee data. Only CSV is supported at this point.
+policyID | String | Any valid Expensify policy ID, owned or shared with the user. | The policy to add the employees to.
+
+- `data` request argument
+
+CSV file containing the employee data to update. The first line of the file lists the columns that will exist. The order of each attribute does not matter.
+
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+**Required CSV columns** |
+EmployeeEmail | String | Any valid email address | The email address of the employee to update or create.
+ManagerEmail | String | Any valid email address | The email address of the manager of that user (corresponds to the column `Submits To` on Expensify).
+Admin | Boolean | true, false | Determines whether that user has administrator privileges.
+**Optional CSV columns** |
+EmployeeUserId | String | | The User ID of the employee.
+EmployeePayrollId | String | | The Payroll ID of the employee.
+ForwardManagerEmail | String | Any valid email address or an empty value | To whom reports will be sent to after the manager clicks 'Approve and Forward'.
+
+Optional attributes can be left blank. In that case, the corresponding value will be removed for existing employees, and left blank for new employees.
 
 ## Expense rules updater
 
