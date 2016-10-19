@@ -417,7 +417,11 @@ Great, we’ve got a route! What’s next?
 
 ## Making a Delivery Attempt
 
-As your user is on-route, they will visiting various waypoints and attempt to make deliveries. You will record their progress by making [DeliveryAttempt](#deliveryattempt)s on the [Waypoint](#waypoint)s. A DeliveryAttempt needs a [DeliveryStatus](#deliverystatus), which is either Success or Failure. A DeliveryAttempt may also optionally contain notes if you’d like to include additional information.
+As your user is on-route, they will visit various waypoints and attempt to make deliveries. You will record their progress by making [DeliveryAttempt](#deliveryattempt)s on the [Waypoint](#waypoint)s. A `DeliveryAttempt` needs a [DeliveryStatus](#deliverystatus), which is either Success or Failure. A `DeliveryAttempt` may also optionally contain notes if you’d like to include additional information.
+
+<aside class="notice">
+Foxtrot uses delivery attempts to determine where to send the driver next. To help Foxtrot optimize your routes most efficiently, never delay or enqueue delivery attempts. Always submit delivery attempts as soon as the driver attempts the delivery.
+</aside>
 
 Here’s how to create and add a successful DeliveryAttempt, using the Route we created previously:
 
