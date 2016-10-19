@@ -899,6 +899,32 @@ curl -X POST "https://integrations.expensify.com/Integration-Server/ExpensifyInt
     --data-urlencode 'file@tags.csv'
 ```
 
+> Response
+
+> - Success
+
+```
+{
+    "responseCode": 200
+}
+```
+
+> - Error
+
+```
+{
+    "responseMessage": "'categories' object malformed",
+    "responseCode": 410
+}
+```
+
+> Error code | Description
+> -------- | ---------
+> 404 | Policy not found
+> 410 | Validation error
+> 500 | Generic error
+
+
 Lets you independently manage categories, tags and report fields on a policy.
 
 - `requestJobDescription`
@@ -987,7 +1013,7 @@ tags | JSON array | See below | The tags for that level.
 
 Name | Format | Description
 -------- | --------- | ---------
-name | String | | The name of the tag.
+name | String | The name of the tag.
 **Optional elements** |
 enabled | Boolean | Whether the tag is enabled or not. Default value is `true`.<br>*Note:* When multi-level tagging is used, this value is ignored and is consider `true`.
 glCode | String | The GL Code associated to the tag.
@@ -1105,4 +1131,130 @@ Optional attributes can be left blank. In that case, the corresponding value wil
 
 ## Expense rules updater
 
+```shell
+curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations' \
+    -d 'requestJobDescription={
+        "type": "update",
+        "credentials": {
+            "partnerUserID": "_REPLACE_",
+            "partnerUserSecret": "_REPLACE_"
+        },
+        "inputSettings": {
+            "type": "expenseRules",
+            "policyID": "0123456789ABCDEF",
+            "employeeEmail": "employee@domain.com",
+            "actions": {
+                "tag": "Tag Name"
+            }
+        }
+    }'
+```
+
+Lets you create expense rules for a given employee on a given policy.
+
+- `inputSettings`
+
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+type | String | `expenseRules` | Specifies to the job that it has to create an expense rule.
+employeeEmail | String | | The email address of the policy member that should receive the expense rule. |
+policyID | String | A valid Expensify policy ID. | |
+actions | JSON Object | | Supported keys:<br/>- `tag` |
+
 ## Report status updater
+
+```shell
+curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations' \
+    -d 'requestJobDescription={
+        "type":"update",
+        "credentials":{
+            "partnerUserID":"_REPLACE_",
+            "partnerUserSecret":"_REPLACE_",
+        },
+        "inputSettings":{
+            "type":"reportStatus",
+            "status" : "REIMBURSED",
+            "filters":{
+                "reportIDList":"1234567,1234568,1234569"
+            }
+        }
+    }'
+```
+
+> Response
+
+> Error code | Description
+> -------- | ---------
+> 200 | Success
+> 207 | Partial success: some of the reports failed to update. Their IDs are contained in the list `failedReports`.
+> 410 | Validation error
+> 500 | Generic error
+
+> - Success
+
+```
+{
+    "responseCode" : 200,
+    "reportIDs" : [
+        1234567,
+        1234568,
+        1234569
+    ]
+}
+````
+
+> - Partial success
+> - `skippedReports` corresponds to a list of reports that could not be updated because they are in an invalid status.
+> - `failedReports` corresponds to a list of reports that failed to be updated for another reason.
+
+
+```
+{
+    "responseCode" : 207,
+    "reportIDs" : [
+        1234567
+    ],
+    "skippedReports" : [
+        {
+            "reason" : "Report is in status 'Open'",
+            "reportID" : 1234568
+        }
+    ],
+    "failedReports": [
+        {
+            "reason" : "Internal error",
+            "reportID" : 1234569
+        }
+    ]
+}
+```
+
+> - Validation error
+
+```
+{
+    "responseMessage" : "Status 'APPROVED' is not supported",
+    "responseCode" : 410
+}
+```
+
+Lets you update the status of a report.
+
+**Note: at the moment, the only supported action is to mark Approved reports as Reimbursed.**
+
+- `inputSettings`
+
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+type | String | "reportStatus" | Specifies to the job that it has to update the status of a list of reports.
+status | String | "REIMBURSED" | The status to change the reports to. At the moment, only Reimbursed is supported.<br>**Note: at the moment, the only supported action is to mark Approved reports as Reimbursed.**<br>**Only reports in the `Approved` status can be updated to `Reimbursed`. All other reports will be ignored.** |
+filters | JSON object | See inputSettings filters |
+
+
+- `inputSettings.filters`
+
+Name | Format | Valid values | Description
+-------- | --------- | ---------------- | ---------
+| reportIDList | String, <br>*Optional* |  | Comma-separated list of report IDs to update. |
+| startDate | Date, <br>*Required if `reportIDList` is not specified* | yyyy-mm-dd formatted date | Filters all reports submitted or created before the given date, whichever occurred last (inclusive). |
+| endDate | Date, <br> *Optional* | yyyy-mm-dd formatted date | Filters all reports submitted or created after the given date, whichever occurred last (inclusive).
