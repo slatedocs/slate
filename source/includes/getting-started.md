@@ -417,18 +417,30 @@ Great, we’ve got a route! What’s next?
 
 ## Making a Delivery Attempt
 
-As your user is on-route, they will visit various waypoints and attempt to make deliveries. You will record their progress by making [DeliveryAttempt](#deliveryattempt)s on the [Waypoint](#waypoint)s. A `DeliveryAttempt` needs a [DeliveryStatus](#deliverystatus), which is either Success or Failure. A `DeliveryAttempt` may also optionally contain notes if you’d like to include additional information.
+As your user is on-route, they will visit various waypoints and attempt to make deliveries. You will record their progress by making [DeliveryAttempt](#deliveryattempt)s at the [Waypoint](#waypoint)s. Each `DeliveryAttempt` has a [DeliveryStatus](#deliverystatus) representing what happened during the driver's visit.
 
 <aside class="notice">
 Foxtrot uses delivery attempts to determine where to send the driver next. To help Foxtrot optimize your routes most efficiently, never delay or enqueue delivery attempts. Always submit delivery attempts as soon as the driver attempts the delivery.
 </aside>
+
+If the driver was able to make the delivery, you should submit the attempt using `DeliveryStatus.SUCCESSFUL`. Since the delivery has been completed, Foxtrot will not send the driver to this waypoint again.
+
+If the driver was unable to make the delivery, your application can do one of two things. If you submit an attempt using `DeliveryStatus.VISIT_LATER`, Foxtrot will re-schedule the driver's visit to the waypoint. If you submit a `DeliveryAttempt` with `DeliveryStatus.FAILED`, Foxtrot will consider the delivery a permanent failure and will not attempt to re-schedule the delivery.
+
+<aside class="warning">
+DeliveryStatus.FAILED should only be used when the driver intends to return the goods to the warehouse. If the delivery can be made later in the day, be sure to use DeliveryStatus.VISIT_LATER.
+</aside>
+
+
+You can also use the `DeliveryAttempt`'s notes field to provide additional information about the attempted delivery.
+
 
 Here’s how to create and add a successful DeliveryAttempt, using the Route we created previously:
 
 ```java
 DeliveryAttempt successfulAttempt = DeliveryAttempt.builder()
         .setStatus(DeliveryStatus.SUCCESSFUL)
-        .setNotes("Delivered the cookies") // notes are optional
+        .setNotes("Handed to customer") // notes are optional
         .build();
 FoxtrotSDK.getInstance().addDeliveryAttempt("SOME_WAYPOINT_ID", successfulAttempt);
 ```
@@ -447,7 +459,7 @@ This will automatically find the most recent [DeliveryAttempt](#deliveryattempt)
 
 If a driver marks an attempt with [DeliveryStatus](#deliverystatus) of `FAILED`, they will not be directed back to that Waypoint unless a reattempt is authorized. Until a reattempt at that Waypoint is authorized, they will not be able to make another [DeliveryAttempt](#deliveryattempt).
 
-If you application decides that the driver should be sent back to that Waypoint, you will need to authorize the re-attempt in Foxtrot:
+If your application decides that the driver should be sent back to that Waypoint, you will need to authorize the re-attempt in Foxtrot:
 
 ```java
 FoxtrotSDK.getInstance().authorizeDeliveryReattempt("A_WAYPOINT_ID");
