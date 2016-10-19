@@ -12,7 +12,7 @@ A Route contains a list of [Waypoint](#waypoint)s the driver will visit.
 | Field                     | Type                         | Required | Description
 |---------------------------|------------------------------|----------|------------
 | startTime                 | DateTime                     | true     | The estimated start time of the route.
-| name                      | String                       | false    | The name of the route.
+| name                      | String                       | true     | The name of the route.
 | warehouse                 | [Warehouse](#warehouse)      | true     | The warehouse of the route. This field will be the beginning and end point of the route.
 | waypoints                 | Collection<[Waypoint](#waypoint)>  | true     | The collection of waypoint objects. This collection must not be empty.
 
@@ -32,15 +32,15 @@ A Warehouse is the beginning and end point of a route
 
 | Field                     | Type                             | Required | Description
 |---------------------------|----------------------------------|----------|------------
-| name                      | String                           | false    | The name of the warehouse.
-| address                   | String                           | false    | The address at the warehouse.
+| name                      | String                           | true     | The name of the warehouse.
+| address                   | String                           | true     | The address of the warehouse.
 | location                  | [Location](#location)            | true     | The geocode coordinate of the warehouse.
 
 ```java
 Warehouse warehouse = Warehouse.builder()
                                .setLocation(Location.create(1.0, 2.0))
                                .setAddress("123 Fake St")
-                               .setName("The warehouse")
+                               .setName("My warehouse")
                                .build();
 ```
 
@@ -49,25 +49,25 @@ A Waypoint contains the customer information, their location, and a list of [Del
 
 | Field                     | Type                             | Required | Description
 |---------------------------|----------------------------------|----------|------------
-| name                      | String                           | false    | The name of the waypoint.
-| address                   | String                           | false    | The address at the waypoint.
+| name                      | String                           | true     | The name of the waypoint.
+| address                   | String                           | true     | The address of the waypoint.
 | location                  | [Location](#location)            | true     | The geocode coordinate of the waypoint.
 | customerId                | String                           | true     | The globally unique identifier identifying the customer at the waypoint.
-| serviceTimeInSeconds      | Long                             | false    | The estimated amount of time in seconds the driver will take to complete the waypoint.
+| serviceTimeInSeconds      | Long                             | true     | The estimated amount of time in seconds the driver will take to complete the waypoint.
 | deliveries                | Collection<[Delivery](#delivery)>      | true     | The collection of Delivery objects at the waypoint. This collection must not be empty.
-| timeWindows               | Collection<[TimeWindow](#timewindow)>  | false    | The collection of TimeWindow objects at the waypoint. This list may be empty.
+| timeWindows               | Collection<[TimeWindow](#timewindow)>  | true     | The collection of TimeWindow objects at the waypoint. This collection may be empty.
 
 ```java
 Collection<Delivery> deliveries = ...;
 Collection<TimeWindow> timeWindows = ...;
 Waypoint waypoint = Waypoint.builder()
-                            .setLocation(Location.create(1.0, 2.0))
-                            .setAddress("123 Fake St")
                             .setName("Friendly Neighborhood Bakery")
+                            .setAddress("123 Fake St")
+                            .setLocation(Location.create(1.0, 2.0))
                             .setCustomerId("Customer Unique Id")
+                            .setServiceTimeInSeconds(600L) // 10 minutes
                             .setDeliveries(deliveries)
                             .setTimeWindows(timeWindows)
-                            .setServiceTimeInSeconds(600L) // 10 minutes
                             .build();
 ```
 
@@ -104,8 +104,8 @@ A Delivery describes an item and quantity to be delivered. e.g. SKU
 
 | Field                     | Type                             | Required | Description
 |---------------------------|----------------------------------|----------|------------
-| name                      | String                           | true     | The name of the product.
-| quantity                  | Double                           | false    | The quantity of the product. This field should be in the unit that makes sense for the product.
+| name                      | String                           | true     | The name or SKU of the product.
+| quantity                  | Double                           | true     | The quantity of the product. This field should be in the unit that makes sense for the product.
 
 ```java
 Delivery delivery = Delivery.builder()
