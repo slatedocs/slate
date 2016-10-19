@@ -13,7 +13,7 @@ curl -X POST \
       "image_uri": "data:image/jpeg;base64,...some_image_encoded_on_base64" \
     } \
   }' \
-  "http://search.markable.us/v5/search"
+  "http://api.markable.us/v1/search"
 ```
 
 > The above command returns JSON structured like this:

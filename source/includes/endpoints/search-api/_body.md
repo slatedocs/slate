@@ -2,7 +2,7 @@ This endpoint retrieves brands and products based on the similarity with the pro
 
 ### HTTP Request
 
-`POST http://search.markable.us/v5/search`
+`POST http://api.markable.us/v1/search`
 
 ### Headers
 
