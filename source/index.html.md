@@ -14,6 +14,9 @@ includes:
 search: true
 ---
 
+
+
+
 # Introduction
 
 Welcome to XRM/MP API.
@@ -36,7 +39,6 @@ Example
 
 In this document `{version}` is used as a palceholder for selected version.
 
-
 ## Applications identifying tokens
 
 To access API all request must include identifying token header field
@@ -57,16 +59,249 @@ To access user specific data request should include header field
 You must replace <code>token</code> with your personal authorization token.
 </aside>
 
+
+
+
+# Communication Protocol
+
+## Read
+
+```shell
+curl --request GET \
+--url https://api.fantasticservices.com/v2/services/1 \
+--header 'x-client-token: YOUR_API_TOKEN'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "sort": 100,
+  "title": "Cleaning",
+  "description": "Free up more time for you and your family. The skilled cleaning experts will take care of your home.",
+  "short_description": "One-off cleaning",
+  "keywords": [
+    "clean",
+    "one-off",
+    "fantastic"
+  ],
+  "list_image": null,
+  "phone": "02034044444",
+  "choice_views": [
+    338,
+    339,
+    340,
+    341,
+    342
+  ],
+  "updated_at": 1459492785
+}
+```
+
+Get data by requesting it by resource name. Add id for specific object.
+
+`GET https://{base URL}/{version}/services/1`
+
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+`expand` | *none* | Attributes to be returned as full objects
+`fields` | *all* | Attributes to receive in response
+`exclude_fields` | *none* | Attributes to exclude from response
+
+
+
+## Create/Update
+
+```shell
+curl --request POST \
+--url https://api.fantasticservices.com/v2/addresses \
+--header 'x-client-token: YOUR_API_TOKEN' \
+--header 'authorization: YOUR_AUTH_TOKEN' \
+  --data '{"address_line_1":"9 Apt.","address_line_2":"24 Red Lion Street","postcode":"SW12 2TN","lat":51.604903,"lng":-0.457022}'
+```
+
+> The above command posts JSON structured like this:
+
+```json
+{
+  "address_line_1": "9 Apt.",
+  "address_line_2": "24 Red Lion Street",
+  "postcode": "SW12 2TN",
+  "lat": 51.604903,
+  "lng": -0.457022
+}
+```
+
+> The above request success response is:
+
+```json
+{
+  "id": 2
+}
+```
+
+Create objects by posting data to the resource name. Add id to update existing objects
+
+`POST https://{base URL}/{version}/addresses`
+
+If operation is successful created/updated object id is returned.
+
+## Delete
+
+```shell
+curl --request DELETE \
+--url https://api.fantasticservices.com/v2/addresses/2 \
+--header 'x-client-token: YOUR_API_TOKEN' \
+--header 'authorization: YOUR_AUTH_TOKEN'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 2
+}
+```
+
+Delete objects by sending delete request with the resource name and object id
+
+`DELETE https://{base URL}/{version}/addresses/2`
+
+If object is deleted successfully it's id is returned.
+
+## Batching requests
+
+```shell
+curl --request POST \
+--url https://api.fantasticservices.com/v2/addresses \
+--header 'x-client-token: YOUR_API_TOKEN' \
+--header 'authorization: YOUR_AUTH_TOKEN' \
+--data '{"requests":[{"method":"POST","name":"addresses","object":{"address_line_1":"7 Apt.","address_line_2":"27 Red Lion Street","postal":"SW14 8PT","lat":51.604903,"lng":-0.457022}},{"method":"POST","name":"addresses/27","object":{"address_line_1":"7 Apt.","address_line_2":"27 Red Lion Street"}}]}'
+```
+
+> The above command posts JSON structured like this:
+
+```json
+{
+  "requests": [
+    {
+      "method": "POST",
+      "name": "addresses",
+      "object": {
+        "address_line_1": "7 Apt.",
+        "address_line_2": "27 Red Lion Street",
+        "postal": "SW14 8PT",
+        "lat": 51.604903,
+        "lng": -0.457022
+      }
+    },
+    {
+      "method": "POST",
+      "name": "addresses/27",
+      "object": {
+        "address_line_1": "7 Apt.",
+        "address_line_2": "27 Red Lion Street"
+      }
+    }
+  ]
+}
+```
+
+> The above request success response is:
+
+```json
+[
+  {
+    "id": 28
+  },
+  {
+    "id": 27
+  }
+]
+```
+
+Requests can be combined by sending array of request objects.
+
+`POST https://{base URL}/{version}/resources`
+
+### Post Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+`method` | *string* | HTTP method of combined request
+`name` | *string* | Resource path of combined request
+`object` | *object* | Body of combined request
+
+<aside class="notice">
+Query parameters are passed as attributes to the request object e.g. `fields` is array of strings etc.
+</aside>
+
+
+## Response structure
+
+
+> JSON response structured
+
+```json
+{
+  "data": [
+    {
+      "objects": [
+        {
+          "id": 27
+        }
+      ],
+      "success": [
+        {
+          "code": 1020,
+          "message": "Address created."
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "DBVersion": 25
+  }
+}
+```
+
+Requests can be combined by sending array of request objects.
+
+`POST https://{base URL}/{version}/resources`
+
+### Response attributes
+
+Parameter | Type | Description
+--------- | ---- | -----------
+`data` | *array* | Array of responses of requests (one or more if batched).
+`meta` | *object* | Attributes containing information for the system.
+`objects` | *array* | Response data for the request
+`success`, `warning`, `error` | *array* | Messages with information for the request
+
+<aside class="notice">
+Single and batched requests return the same response format.
+</aside>
+
+
+
+
+
+
+
+
 # Checklists
 
 ## /checklists
 
-
 ```shell
 curl --request GET \
 --url https://api.fantasticservices.com/v2/checklists/1 \
---header 'authorization: 5dc54yuch5sabfxr90d46hcifv1pdt59f1s3q0jzxinjl5y1' \
---header 'x-client-token: ffx0jW6rwE1VeE4F53ElyfuSbII92rfhEBFgf4wpmoZkP58bJGtkkIu15g9Z0end'
+--header 'x-client-token: YOUR_API_TOKEN' \
+--header 'authorization: YOUR_AUTH_TOKEN'
 ```
 
 > The above command returns JSON structured like this:
@@ -101,8 +336,8 @@ Attribute | Type | Description
 `id` | *integer* | Object identifier
 `display_location` | *integer* | Points where checklist will be used<br><br>1 - *start of the day*<br>2 - *before checkin*<br>3 - *after checkout*
 `required` | *boolean* | Is the item required to be answered
-`categories` | *<a href="#checklists-categories">object</a>* | Groups checklist questions into sections
-`answers` | *<a href="#checklists-answers">object</a>* | Checklist answer
+`categories` | [*<a href="#checklists-categories">object</a>*] | Groups checklist questions into sections
+`answers` | [*<a href="#checklists-answers">object</a>*] | Checklist answer
 
 <aside class="success">
 Checklists may be global or related to a job.
@@ -114,8 +349,8 @@ Checklists may be global or related to a job.
 ```shell
 curl --request GET \
 --url https://api.fantasticservices.com/v2/checklists/1/categories/25 \
---header 'authorization: 5dc54yuch5sabfxr90d46hcifv1pdt59f1s3q0jzxinjl5y1' \
---header 'x-client-token: ffx0jW6rwE1VeE4F53ElyfuSbII92rfhEBFgf4wpmoZkP58bJGtkkIu15g9Z0end'
+--header 'x-client-token: YOUR_API_TOKEN' \
+--header 'authorization: YOUR_AUTH_TOKEN'
 ```
 
 > The above command returns JSON structured like this:
@@ -146,7 +381,7 @@ Attribute | Type | Description
 `id` | *integer* | Object identifier
 `sort` | *integer* | Determines sort position
 `title` | *string* | Display title of section for the category
-`items` | *<a href="#checklists-categories-items">object</a>* | The questions for the category
+`items` | [*<a href="#checklists-categories-items">object</a>*] | The questions for the category
 
 ## /checklists/categories/items
 
@@ -154,8 +389,8 @@ Attribute | Type | Description
 ```shell
 curl --request GET \
 --url https://api.fantasticservices.com/v2/checklists/1/categories/25/items/15 \
---header 'authorization: 5dc54yuch5sabfxr90d46hcifv1pdt59f1s3q0jzxinjl5y1' \
---header 'x-client-token: ffx0jW6rwE1VeE4F53ElyfuSbII92rfhEBFgf4wpmoZkP58bJGtkkIu15g9Z0end'
+--header 'x-client-token: YOUR_API_TOKEN' \
+--header 'authorization: YOUR_AUTH_TOKEN'
 ```
 
 > The above command returns JSON structured like this:
@@ -192,15 +427,15 @@ Attribute | Type | Description
 ```shell
 curl --request GET \
 --url https://api.fantasticservices.com/v2/checklists/1/answers/3 \
---header 'authorization: 5dc54yuch5sabfxr90d46hcifv1pdt59f1s3q0jzxinjl5y1' \
---header 'x-client-token: ffx0jW6rwE1VeE4F53ElyfuSbII92rfhEBFgf4wpmoZkP58bJGtkkIu15g9Z0end'
+--header 'x-client-token: YOUR_API_TOKEN' \
+--header 'authorization: YOUR_AUTH_TOKEN'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 1,
+  "id": 3,
   "item_id": 26,
   "answer": 1,
   "note": null
