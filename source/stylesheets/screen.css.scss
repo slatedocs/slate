@@ -82,6 +82,7 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
+    width: 230px;
     max-width: 100%;
   }
 
@@ -405,9 +406,17 @@ html, body {
     border-bottom: 2px solid $main-bg;
   }
 
+
+
   table {
     margin-bottom: 1em;
     overflow: auto;
+    float: center;
+
+    p {
+      color: $nav-active-bg;
+    }
+
     th,td {
       text-align: left;
       vertical-align: top;
@@ -421,20 +430,17 @@ html, body {
     }
 
     td {
-      padding: 10px;
+      padding: 5px 20px;
+    }
+
+    td:first-child {
+      text-align: right;
     }
 
     tr:last-child {
       border-bottom: 1px solid #ccc;
     }
 
-    tr:nth-child(odd)>td {
-      background-color: lighten($main-bg,4.2%);
-    }
-
-    tr:nth-child(even)>td {
-      background-color: lighten($main-bg,2.4%);
-    }
   }
 
   dt {
