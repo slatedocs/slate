@@ -77,58 +77,13 @@ curl --request GET \
   "display_location": 1,
   "required": true,
   "categories": [
-    {
-      "sort": 1,
-      "title": "Client specific requirements",
-      "items": [
-        {
-          "id": 1,
-          "sort": 1,
-          "group": 1,
-          "title": "Clean your car",
-          "needs_confirmation": true
-        },
-        {
-          "id": 2,
-          "sort": 2,
-          "group": 2,
-          "title": "Take your tools",
-          "needs_confirmation": true
-        },
-        {
-          "id": 9,
-          "sort": 3,
-          "group": 2,
-          "title": "Smile",
-          "needs_confirmation": false
-        }
-      ]
-    },
-    {
-      "sort": 2,
-      "title": "Quality of service",
-      "items": [
-        {
-          "id": 3,
-          "sort": 1,
-          "group": 1,
-          "title": "Wear shoe covers",
-          "needs_confirmation": true
-        }
-      ]
-    }
+    25,
+    28,
+    29
   ],
   "answers": [
-    {
-      "item_id": 26,
-      "answer": 1,
-      "note": null
-    },
-    {
-      "item_id": 26,
-      "answer": 2,
-      "note": "1 cleaner was sick today"
-    }
+    3,
+    6
   ]
 }
 ```
@@ -171,27 +126,9 @@ curl --request GET \
   "sort": 1,
   "title": "Client specific requirements",
   "items": [
-    {
-      "id": 1,
-      "sort": 1,
-      "group": 1,
-      "title": "Clean your car",
-      "needs_confirmation": true
-    },
-    {
-      "id": 2,
-      "sort": 2,
-      "group": 2,
-      "title": "Take your tools",
-      "needs_confirmation": true
-    },
-    {
-      "id": 9,
-      "sort": 3,
-      "group": 2,
-      "title": "Smile",
-      "needs_confirmation": false
-    }
+    1,
+    2,
+    9
   ]
 }
 ```
@@ -209,6 +146,78 @@ Attribute | Type | Description
 `id` | *integer* | Object identifier
 `sort` | *integer* | Determines sort position
 `title` | *string* | Display title of section for the category
-`items` | *object* | The questions for the category
+`items` | *<a href="#checklists-categories-items">object</a>* | The questions for the category
+
+## /checklists/categories/items
 
 
+```shell
+curl --request GET \
+--url https://api.fantasticservices.com/v2/checklists/1/categories/25/items/15 \
+--header 'authorization: 5dc54yuch5sabfxr90d46hcifv1pdt59f1s3q0jzxinjl5y1' \
+--header 'x-client-token: ffx0jW6rwE1VeE4F53ElyfuSbII92rfhEBFgf4wpmoZkP58bJGtkkIu15g9Z0end'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 15,
+  "sort": 1,
+  "group": 1,
+  "title": "Clean your car",
+  "needs_confirmation": true
+}
+```
+
+This endpoint retrieves checklist category item object.
+
+### HTTP Request
+
+`GET https://{base URL}/{version}/checklists/{checklist_id}/categories/{category_id}/items/{item_id}`
+
+### Object attributes
+
+Attribute | Type | Description
+--------- | -----| -------------------
+`id` | *integer* | Object identifier
+`sort` | *integer* | Determines sort position
+`group` | *integer* | Items can be part of a group. Answers apply to the whole group.
+`title` | *string* | Display title of question item.
+`needs_confirmation ` | *boolean* | Is user required to anaswer this question.
+
+## /checklists/answers
+
+
+```shell
+curl --request GET \
+--url https://api.fantasticservices.com/v2/checklists/1/answers/3 \
+--header 'authorization: 5dc54yuch5sabfxr90d46hcifv1pdt59f1s3q0jzxinjl5y1' \
+--header 'x-client-token: ffx0jW6rwE1VeE4F53ElyfuSbII92rfhEBFgf4wpmoZkP58bJGtkkIu15g9Z0end'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "item_id": 26,
+  "answer": 1,
+  "note": null
+}
+```
+
+This endpoint retrieves checklist answer object.
+
+### HTTP Request
+
+`GET https://{base URL}/{version}/checklists/{checklist_id}/answers/{answer_id}`
+
+### Object attributes
+
+Attribute | Type | Description
+--------- | -----| -------------------
+`id` | *integer* | Object identifier
+`item_id` | *integer* | Checklist question item for this answer.
+`answer ` | *integer* | User answer to the question<br><br>0 - *no answer*<br>1 - *confirmed*<br>2 - *declined*
+`note ` | *string* | Note for decline.
