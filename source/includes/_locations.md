@@ -12,16 +12,16 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v1/clients-and-locations/locations/', [
-    'name'                   => 'Le Bernardin',    
-    'url'                    => 'http://www.example.com',
-	'business-category-id'   =>  605,
-	'country'                => 'USA', // 3 letter iso code
-	'address1'               => '155 West 51st Street',
-    'address2'               => '',
-	'region'                 => 'NY' // State or Region
-	'city'                   => 'New York',
-	'postcode'               => '10019',
-    'telephone'              => '+1 212-554-1515'
+    'name'                  => 'Le Bernardin',    
+    'url'                   => 'http://le-bernardin.com',
+    'business-category-id'  =>  605,
+    'country'               => 'USA', // 3 letter iso code
+    'address1'              => '155 West 51st Street',
+    'address2'              => '',
+    'region'                => 'NY' // State or Region
+    'city'                  => 'New York',
+    'postcode'              => '10019',
+    'telephone'             => '+1 212-554-1515'
 ]);
 print_r($success);
 ```
@@ -108,16 +108,16 @@ use BrightLocal\Api;
 $locationId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->put('v1/clients-and-locations/locations/' .$locationId, [
-    'name'                   => 'Le Bernardin',    
-    'url'                    => 'http://www.example.com',
-	'business-category-id'   =>  605,
-	'country'                => 'USA', // 3 letter iso code
-	'address1'               => '155 West 51st Street',
-    'address2'               => '',
-	'region'                 => 'NY', // State or Region
-	'city'                   => 'New York',
-	'postcode'               => '10019',
-    'telephone'              => '+1 212-554-1515'
+    'name'                 => 'Le Bernardin',    
+    'url'                  => 'http://le-bernardin.com',
+    'business-category-id' =>  605,
+    'country'              => 'USA', // 3 letter iso code
+    'address1'             => '155 West 51st Street',
+    'address2'             => '',
+    'region'               => 'NY', // State or Region
+    'city'                 => 'New York',
+    'postcode'             => '10019',
+    'telephone'            => '+1 212-554-1515'
 ]);
 print_r($success);
 ```
@@ -128,7 +128,7 @@ curl -X PUT \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'name=Le Bernardin' \
- -d 'url=http://www.example.com' \
+ -d 'url=http://le-bernardin.com' \
  -d 'business-category-id=605' \ 
  -d 'country=USA' \
  -d 'address1=155 West 51st Street' \
@@ -315,7 +315,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $results = $api->call('v1/clients-and-locations/locations/search', [
-    'q'                     => 'My Sample Query'    
+    'q' => 'My Sample Query'    
 ]);
 print_r($results);
 ```
