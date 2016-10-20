@@ -12,11 +12,11 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v2/ct/add', [
-    'report-name'       => 'My First Citation Report',
+    'report-name'       => 'Le Bernardin',
 	'business-name'     => 'Le Bernardin',
 	'business-location' => 'New York, NY',
 	'phone'             => '+1 212-554-1515',
-	'website'           => 'http://www.example.com',
+	'website'           => 'le-bernardin.com',
 	'business-type'     => 'Restaurant',
 	'state-code'        => 'NY'	
 ]);
@@ -28,11 +28,11 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'report-name=My First Citation Report' \
+ -d 'report-name=Le Bernardin' \
  -d 'business-name=Le Bernardin' \
  -d 'business-location=New York, NY' \ 
  -d 'phone=+1 212-554-1515' \
- -d 'website=http://www.example.com' \ 
+ -d 'website=le-bernardin.com' \ 
  -d 'business-type=Restaurant' \
  -d 'state-code=NY' \
  https://tools.brightlocal.com/seo-tools/api/v2/ct/add
@@ -95,11 +95,11 @@ use BrightLocal\Api;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v2/ct/update', [
     'report-id'         => 682,
-    'report-name'       => 'My First Citation Report',
+    'report-name'       => 'Le Bernardin',
     'business-name'     => 'Le Bernardin',
     'business-location' => 'New York, NY',
     'phone'             => '+1 212-554-1515',
-    'website'           => 'http://www.example.com',
+    'website'           => 'le-bernardin.com',
     'business-type'     => 'Restaurant',
     'state-code'        => 'NY'	
 ]);
@@ -112,11 +112,11 @@ curl -X POST \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'report-id'=682,
- -d 'report-name=My First Citation Report' \
+ -d 'report-name=Le Bernardin' \
  -d 'business-name=Le Bernardin' \
  -d 'business-location=New York, NY' \ 
  -d 'phone=+1 212-554-1515' \
- -d 'website=http://www.example.com' \ 
+ -d 'website=le-bernardin.com' \ 
  -d 'business-type=Restaurant' \
  -d 'state-code=NY' \
  https://tools.brightlocal.com/seo-tools/api/v2/ct/update

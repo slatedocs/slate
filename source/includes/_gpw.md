@@ -12,7 +12,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v4/gpw/add', [
-    'report_name'    => 'Sample Google Plus Report', 
+    'report_name'    => 'Le Bernardin', 
 	'business_names' => 'Le Bernardin',
 	'schedule'       => 'Adhoc',
 	'day_of_month'   => '2',
@@ -34,7 +34,7 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \ 
- -d 'report_name=Sample Google Plus Report' \
+ -d 'report_name=Le Bernardin' \
  -d 'business_names=Le Bernardin' \
  -d 'schedule=Adhoc' \
  -d 'day_of_month=2' \
@@ -188,7 +188,7 @@ use BrightLocal\Api;
 
 $reportId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('v4/gpw/' .$reportId);
+$results = $api->get('v4/gpw/' . $reportId);
 print_r($results);
 ```
 
@@ -278,8 +278,8 @@ use BrightLocal\Api;
 
 $reportId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->delete('v4/gpw/' .$reportId);
-if($success) {
+$result = $api->delete('v4/gpw/' . $reportId);
+if (!empty($result['success'])) {
 	echo 'Successfully deleted report.' . PHP_EOL;
 }
 print_r($success);
@@ -481,7 +481,7 @@ use BrightLocal\Api;
 
 $reportId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('v4/gpw/' .$reportId. '/results');
+$results = $api->get('v4/gpw/' . $reportId . '/results');
 print_r($results);
 ```
 

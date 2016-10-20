@@ -12,7 +12,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v4/rf/add', [
-    'report-name'       => 'Sample Review Report', 
+    'report-name'       => 'Le Bernardin', 
 	'business-name'     => 'Le Bernardin',
 	'contact-telephone' => '+1 212-554-1515',
 	'address1'          => '155 West 51st Street',
@@ -29,7 +29,7 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \ 
- -d 'report-name=Sample Review Report' \
+ -d 'report-name=Le Bernardin' \
  -d 'business-name=Le Bernardin' \
  -d 'contact-telephone=+1 212-554-1515' \
  -d 'address1=155 West 51st Street' \ 
@@ -527,7 +527,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $results = $api->get('v4/rf/search', [
-    'q' => 'My Sample Query'	 
+    'q' => 'Le Bernardin'	 
 ]);
 print_r($results);
 ```

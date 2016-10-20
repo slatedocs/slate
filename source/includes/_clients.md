@@ -13,7 +13,7 @@ use BrightLocal\Api;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v1/clients-and-locations/clients/', [	   
     'name'                 => 'Le Bernardin',               
-    'company-url'          => 'http://www.example.com',
+    'company-url'          => 'le-bernardin.com',
     'business-category-id' =>  791    
 ]);
 print_r($success);
@@ -72,7 +72,7 @@ use BrightLocal\Api;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->put('v1/clients-and-locations/clients/', [
     'name'                 => 'Le Bernardin',               
-    'company-url'          => 'http://www.example.com',
+    'company-url'          => 'le-bernardin.com',
     'business-category-id' =>  791    
 ]);
 print_r($success);
@@ -128,8 +128,8 @@ use BrightLocal\Api;
 
 $clientId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->delete('v1/clients-and-locations/clients/' .$clientId);
-if($success) {
+$result = $api->delete('v1/clients-and-locations/clients/' . $clientId);
+if (!empty($result['success'])) {
 	echo 'Successfully deleted client.' . PHP_EOL;
 }
 ```
@@ -214,7 +214,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $results = $api->call('v1/clients-and-locations/clients/search', [   
- 'q' => 'My Sample Query'    
+    'q' => 'BrightLocal'    
 ]);
 print_r($results);
 ```

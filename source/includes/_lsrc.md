@@ -15,7 +15,7 @@ $success = $api->post('v2/lsrc/add', [
     'name'              => 'Le Bernardin',
 	'schedule'          => 'Adhoc',
 	'search-terms'      => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
-    'website-addresses' => ["http://www.example.com","http://www.example2.com"],
+    'website-addresses' => ["le-bernardin.com","le-bernardin2.com"],
 	'search-engines'    => 'google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'
 ]);
 print_r($success);
@@ -29,7 +29,7 @@ curl -X POST \
  -d 'name=Le Bernardin' \
  -d 'schedule=Adhoc' \
  -d 'search-terms=Restaurant\nfood+nyc\ndelivery+midtown+manhattan' \ 
- -d 'website-addresses=["http://www.example.com","http://www.example2.com"]' \
+ -d 'website-addresses=["le-bernardin.com","le-bernardin2.com"]' \
  -d 'search-engines=google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local' \ 
  https://tools.brightlocal.com/seo-tools/api/v2/lsrc/add
 ```
@@ -97,7 +97,7 @@ $success = $api->post('v2/lsrc/update', [
     'name'              => 'Le Bernardin',
 	'schedule'          => 'Adhoc',
 	'search-terms'      => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
-    'website-addresses' => ['http://www.example.com','http://www.example2.com'],
+    'website-addresses' => ['le-bernardin.com','le-bernardin2.com'],
 	'search-engines'    => 'google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'
 ]);
 print_r($success);
@@ -112,7 +112,7 @@ curl -X POST \
  -d 'name=Le Bernardin' \
  -d 'schedule=Adhoc' \
  -d 'search-terms=Restaurant\nfood+nyc\ndelivery+midtown+manhattan' \ 
- -d 'website-addresses=["http://www.example.com","http://www.example2.com"]' \
+ -d 'website-addresses=["le-bernardin.com","le-bernardin2.com"]' \
  -d 'search-engines=google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local' \ 
  https://tools.brightlocal.com/seo-tools/api/v2/lsrc/update
 ```

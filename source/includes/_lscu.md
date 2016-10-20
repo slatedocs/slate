@@ -14,7 +14,7 @@ $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v4/lscu', [
     'report-name'				=> 'Sample SEO Check-Up Report', 
 	'business-names'			=> ["Le Bernardin"],
-	'website-addresses'			=> ["http://www.example.com","http://www.example2.com"],
+	'website-addresses'			=> ["le-bernardin.com","le-bernardin2.com"],
 	'address1'                  => '155 West 51st Street',
     'address2'                  => '',      
     'city'                      => 'New York',
@@ -518,7 +518,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $results = $api->get('v4/lscu/search', [
-    'q' => 'My Sample Query'	 
+    'q' => 'Bodega Wine Bar'	 
 ]);
 print_r($results);
 ```
@@ -528,7 +528,7 @@ curl -X GET \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'q=My+Sample+Query' \	
+ -d 'q=Bodega+Wine+Bar' \	
   https://tools.brightlocal.com/seo-tools/api/v4/lscu/search
 ```
 
