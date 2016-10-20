@@ -172,7 +172,7 @@ if ($batchId) {
           "telephone": "(212) 717-4668",
           "directory": "google",
           "street-address": "1475 2nd Avenue",
-           "api-key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "api-key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
           "dependent-job": {
             "name": "LdFetchReviews",
             "payload": {
@@ -303,7 +303,7 @@ if ($batchId) {
           "date-from": null,
           "reviews-limit": 250,
           "sort-type": "date",
-           "api-key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "api-key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
           "parent-id": 549612304
         },
         "status": "Completed",

@@ -28,7 +28,7 @@ if ($result['success']) {
 
 ```shell
 curl -X POST \
-    -F 'api-key=<INSERT_API_KEY>' \
+    -d 'api-key=<INSERT_API_KEY>' \
     https://tools.brightlocal.com/seo-tools/api/v4/batch
 ```
 
@@ -306,8 +306,8 @@ if ($batchApi->stop($batchId)) {
 ```
 
 ```shell
-curl -X PUT -d \
-    'api-key=<INSERT_API_KEY>' \
+curl -X PUT
+    -d 'api-key=<INSERT_API_KEY>' \
     -d 'batch-id=<INSERT_BATCH_ID>' \
     https://tools.brightlocal.com/seo-tools/api/v4/batch/stop
 ```

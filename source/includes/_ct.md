@@ -12,11 +12,11 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v2/ct/add', [
-    'report-name'       => 'My First Citation Report',
+    'report-name'       => 'Le Bernardin',
 	'business-name'     => 'Le Bernardin',
 	'business-location' => 'New York, NY',
 	'phone'             => '+1 212-554-1515',
-	'website'           => 'http://www.example.com',
+	'website'           => 'le-bernardin.com',
 	'business-type'     => 'Restaurant',
 	'state-code'        => 'NY'	
 ]);
@@ -28,11 +28,11 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'report-name=My First Citation Report' \
+ -d 'report-name=Le Bernardin' \
  -d 'business-name=Le Bernardin' \
  -d 'business-location=New York, NY' \ 
  -d 'phone=+1 212-554-1515' \
- -d 'website=http://www.example.com' \ 
+ -d 'website=le-bernardin.com' \ 
  -d 'business-type=Restaurant' \
  -d 'state-code=NY' \
  https://tools.brightlocal.com/seo-tools/api/v2/ct/add
@@ -78,6 +78,8 @@ monthly-run | One of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 
 weekly-run | One of 1, 2, 3, 4, 5, 6, 7. Defaults to 0 (none).
 white-label-profile-id |	
 active-only | Flag to fetch only active citations. One of Yes, No. Defaults to No. This cannot be changed once the report has been added.
+notify | One of yes or no. If set to yes we will send report alerts to all email addresses specified (see field below). If you include customer email addresses when setting up your report we'll also email them the alerts so please be sure this is what you want before adding their addresses. Default is no.
+email-addresses | Supply one or more (max 5) email addresses for us to send report alerts to. Emails should be passed as a JSON encoded array. This only takes effect if notify is set to yes.
 is-public | Publish reports on a white label URL. Yes or No.
 
 ## Update Report
@@ -93,11 +95,11 @@ use BrightLocal\Api;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v2/ct/update', [
     'report-id'         => 682,
-    'report-name'       => 'My First Citation Report',
+    'report-name'       => 'Le Bernardin',
     'business-name'     => 'Le Bernardin',
     'business-location' => 'New York, NY',
     'phone'             => '+1 212-554-1515',
-    'website'           => 'http://www.example.com',
+    'website'           => 'le-bernardin.com',
     'business-type'     => 'Restaurant',
     'state-code'        => 'NY'	
 ]);
@@ -110,11 +112,11 @@ curl -X POST \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'report-id'=682,
- -d 'report-name=My First Citation Report' \
+ -d 'report-name=Le Bernardin' \
  -d 'business-name=Le Bernardin' \
  -d 'business-location=New York, NY' \ 
  -d 'phone=+1 212-554-1515' \
- -d 'website=http://www.example.com' \ 
+ -d 'website=le-bernardin.com' \ 
  -d 'business-type=Restaurant' \
  -d 'state-code=NY' \
  https://tools.brightlocal.com/seo-tools/api/v2/ct/update
@@ -161,6 +163,8 @@ monthly-run | One of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 
 weekly-run | One of 1, 2, 3, 4, 5, 6, 7. Defaults to 0 (none).
 white-label-profile-id |	
 active-only | Flag to fetch only active citations. One of Yes, No. Defaults to No.
+notify | One of yes or no. If set to yes we will send report alerts to all email addresses specified (see field below). If you include customer email addresses when setting up your report we'll also email them the alerts so please be sure this is what you want before adding their addresses. Default is no.
+email-addresses | Supply one or more (max 5) email addresses for us to send report alerts to. Emails should be passed as a JSON encoded array. This only takes effect if notify is set to yes.
 is-public | Publish reports on a white label URL. Yes or No.
 
 ## Get Report
@@ -590,6 +594,7 @@ curl -X GET \
                     "business-name": "John's business",
                     "address": "Lungomare Zara, 1234 Giulianova",
                     "postcode": "1234",
+                    "website-url": "http://www.johns-s-business.co.uk/",
                     "telephone": "03 12345678"
                 }
             ],
