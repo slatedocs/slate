@@ -92,9 +92,10 @@ where | A Crunch expression indicating which variables to include in the CrunchB
 
 Use POST to create a new datasource for crunchbox.  Note that new boxdata is only created when there is a new
  combination of where and filter data.  If the same variables and filteres are indicated by the POST data,
- the existing combination will result in a modification of metadata associated with the cube data.
+ the existing combination will result in a modification of metadata associated with the cube data.  This is to keep
+ avoid recomputing analysis needlessly.
 
-##### POST parameters
+A POST to this resource must be a Shoji Entity with the following "body" attributes:
 
 Name | Type | Description
 ---- | ---- | -----------
@@ -109,32 +110,27 @@ where | A Crunch expression indicating which variables to include in the CrunchB
 
 ```json
 
-{
-    "where": {
-        "function": "identify",
-        "args": [
-            {
-                "id": [
-                    "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/variables/000002/",
-                    "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/variables/000003/"
-                ]
-            }
-        ]
-    },
-    "filters": {
-        "function": "identify",
-        "args": [
-            {
-                "filter": [
-                    "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/filters/da9d86e43381443d9d708dc29c0c6308/",
-                    "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/filters/80638457c8bd4731990eebdc3baee839/"
-                ]
-            }
-        ]
-    },
-    "force": false,
-    "title": "z and str",
-    "notes": "just a couple of variables",
-    "header": "This is for the header",
-    "footer": "This is for the footer"
+{  
+    "element": "shoji:entity",
+    "body": {
+        "where": {
+            "function": "select",
+            "args": [{"map": {"000002": 
+                        {"variable": "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/variables/000002/"},
+                              "000003":
+                        {"variable": "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/variables/000003/"}
+                        }
+                    }]
+                }
+            ]
+        },
+        "filters": [{"filter": "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/filters/da9d86e43381443d9d708dc29c0c6308/"},
+                    {"filter": "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/filters/80638457c8bd4731990eebdc3baee839/"}
+                    ],
+        "force": false,
+        "title": "z and str",
+        "notes": "just a couple of variables",
+        "header": "This is for the header",
+        "footer": "This is for the footer"
+    }
 }
