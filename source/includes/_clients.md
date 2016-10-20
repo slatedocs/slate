@@ -24,9 +24,9 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'name=<INSERT_NAME>' \
- -d 'company-url=<INSERT_COMPANY_URL>'\
- -d 'business-category-id=<INSERT_BUSINESS_CATEGORY_ID>'\ 
+ -d 'name=Le Bernardin' \
+ -d 'company-url=le-bernardin.com' \
+ -d 'business-category-id=791' \ 
  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
 ```
 
@@ -83,9 +83,9 @@ curl -X PUT \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'name=<INSERT_NAME>' \
- -d 'company-url=<INSERT_COMPANY_URL>'\
- -d 'business-category-id=<INSERT_BUSINESS_CATEGORY_ID>'\
+ -d 'name=Le Bernardin' \
+ -d 'company-url=le-bernardin.com' \
+ -d 'business-category-id=<INSERT_BUSINESS_CATEGORY_ID>' \
    https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
 ```
 
