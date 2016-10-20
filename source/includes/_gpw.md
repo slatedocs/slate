@@ -1035,7 +1035,7 @@ curl -X GET \
     },
     "urls": {
       "report_url": "https://tools.brightlocal.com/seo-tools/admin/gpw/reports/view/275",
-      "wl_url": "http://local-marketing-reports.com/google-plus-reports/b8ff7ea94bb0e1b79cf437719afc7126c20a3295/275"
+      "wl_url": "http://<replaced>.com/google-plus-reports/b8ff7ea94bb0e1b79cf437719afc7126c20a3295/275"
     }
   }
 }

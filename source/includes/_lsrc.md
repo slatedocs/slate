@@ -619,9 +619,9 @@ curl -X GET \
         "interactive_url": "https://tools.brightlocal.com/seo-tools/admin/lsrc/reports/interactive/9636",
         "pdf_url": "https://tools.brightlocal.com/seo-tools/admin/lsrc/reports/pdf/9636.pdf",
         "csv_url": "https://tools.brightlocal.com/seo-tools/admin/lsrc/reports/csv/9636.csv",
-        "public_interactive_url": "http://www.local-marketing-reports.com/ranking-reports/9199201efe2cf540638f19c23df864a01dc8199e/9636",
-        "public_pdf_url": "http://www.local-marketing-reports.com/ranking-reports/9199201efe2cf540638f19c23df864a01dc8199e/9636.pdf",
-        "public_csv_url": "http://www.local-marketing-reports.com/ranking-reports/9199201efe2cf540638f19c23df864a01dc8199e/9636.csv"
+        "public_interactive_url": "http://www.<replaced>.com/ranking-reports/9199201efe2cf540638f19c23df864a01dc8199e/9636",
+        "public_pdf_url": "http://www.<replaced>.com/ranking-reports/9199201efe2cf540638f19c23df864a01dc8199e/9636.pdf",
+        "public_csv_url": "http://www.<replaced>.com/ranking-reports/9199201efe2cf540638f19c23df864a01dc8199e/9636.csv"
       },
       "rankings": {
         "keywords": [

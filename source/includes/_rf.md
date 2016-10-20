@@ -324,8 +324,8 @@ curl -X GET \
         "urls": {
             "interactive_url": "https://dev-ed.brightlocal.com/seo-tools/admin/rf/tracker/276",
             "pdf_url": "https://dev-ed.brightlocal.com/seo-tools/admin/rf/pdf-report/276",
-            "public_interactive_url": "http://dev-ed.local-marketing-reports.com/review-reports/46ae0487db4f2f5c749e683d41b7571974c86f8c/tracker/276",
-            "public_pdf_url": "http://dev-ed.local-marketing-reports.com/review-reports/46ae0487db4f2f5c749e683d41b7571974c86f8c/276.pdf"
+            "public_interactive_url": "http://dev-ed.<replaced>.com/review-reports/46ae0487db4f2f5c749e683d41b7571974c86f8c/tracker/276",
+            "public_pdf_url": "http://dev-ed.<replaced>.com/review-reports/46ae0487db4f2f5c749e683d41b7571974c86f8c/276.pdf"
         }
     }
 }
