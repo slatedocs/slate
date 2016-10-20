@@ -111,7 +111,7 @@ Content-Type: application/json
             "function": "==",
             "args": [
                 {"variable": "https://beta.crunch.io/api/datasets/{other_id}/variables/{variable_id}/"},
-                {"value": <value>}
+                {"value": "<value>"}
             ]
         }
     }
