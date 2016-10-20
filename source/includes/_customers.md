@@ -1,5 +1,9 @@
 # Customers
 
+  Representa uma pessoa física ou jurídica que será o tomador dos seus serviços ou o comprador dos produtos da sua empresa.
+
+  Através do endpoint `/customers` é possível listar, exibir, criar, atualizar e deletar clientes.
+
 ##Objeto `customer`
   Parâmetro |  Descrição
   -------------- | --------------
@@ -75,11 +79,12 @@
   **phone_id** <br> |  *Id do telefone do cliente*
 
 <br> <br> <br> <br> <br> <br>
-## Retornando um cliente
-  > GET https://api.fastnotas.com/v1/customers/c7538d37-3ed1-4ee2-bc2d-f89afecb08d1
+## Retornando o cliente solicitado.
+
+  > GET https://api.fastnotas.com/v1/customers/{CUSTOMER_ID}
 
    ```shell
-    curl -X GET https://api.fastnotas.com/v1/customers/c7538d37-3ed1-4ee2-bc2d-f89afecb08d1
+    curl -X GET https://api.fastnotas.com/v1/customers/{CUSTOMER_ID}
     -u 'YOUR_API_KEY:'
   ```
   > Exemplo de retorno em JSON:
@@ -126,7 +131,7 @@
 
 ##Retornando clientes
 
-  Retorna um array contendo objetos de Customers.
+  Retorna um array contendo objetos de clientes.
 
   > GET https://api.fastnotas.com/v1/customers/
 
@@ -170,16 +175,16 @@
 
 ## Atualizando um cliente
 
-  Retorna o cliente solicitado com os parâmetros atualizados
+  Atualiza o cliente solicitado e retorna o mesmo com os parâmetros atualizados
 
   Parâmetro | Descrição
  -------------- | --------------
   **:id** <br> <p>obrigatório</p> | *Id do cliente*
 
-  > PUT https://api.fastnotas.com/v1/customers/c7538d37-3ed1-4ee2-bc2d-f89afecb08d1
+  > PUT https://api.fastnotas.com/v1/customers/{CUSTOMER_ID}
 
   ```shell
-    curl -X PUT https://api.fastnotas.com/v1/customers/c7538d37-3ed1-4ee2-bc2d-f89afecb08d1
+    curl -X PUT https://api.fastnotas.com/v1/customers/{CUSTOMER_ID} \
       -u 'YOUR_API_KEY:' \
       -d 'email=novo_email@gmail.com'
   ```
@@ -220,11 +225,11 @@
 
   Parâmetro | Descrição
  -------------- | --------------
-  **:id** <br> <p>obrigatório</p> | *Id do cliente*
+  **:id** <br> <p>obrigatório</p> | *Id do cliente que será deletado.*
 
-  > DELETE https://api.fastnotas.com/v1/customers/c7538d37-3ed1-4ee2-bc2d-f89afecb08d1
+  > DELETE https://api.fastnotas.com/v1/customers/{CUSTOMER_ID}
 
   ```shell
-    curl -X DELETE https://api.fastnotas.com/v1/customers/c7538d37-3ed1-4ee2-bc2d-f89afecb08d1
+    curl -X DELETE https://api.fastnotas.com/v1/customers/{CUSTOMER_ID} \
     -u 'YOUR_API_KEY:'
   ```

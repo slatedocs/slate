@@ -1,7 +1,9 @@
 
 # Addresses
 
-  Um endereço pertence à um cliente ou uma empresa. Use a rota `addresses` para criar, deletar e atualizar endereços.
+  Um endereço é a associado à um cliente ou uma empresa.
+
+  Através do endpoint `/addresses` é possível listar, exibir, criar, atualizar e deletar endereços.
 
 <br> <br>
 
@@ -69,10 +71,10 @@
 <br> <br>
 
 ##Retornando um endereço
-  > GET https://api.fastnotas.comv1/addresses/b7658863-988b-4e44-9632-a93a282dd41a
+  > GET https://api.fastnotas.comv1/addresses/{ADDRESS_ID}
 
    ```shell
-    curl -X GET https://api.fastnotas.com/v1/addresses/b7658863-988b-4e44-9632-a93a282dd41a \
+    curl -X GET https://api.fastnotas.com/v1/addresses/{ADDRESS_ID} \
       -u 'YOUR_API_KEY'
   ```
   > Exemplo de retorno em JSON:
@@ -91,7 +93,7 @@
     }
   ```
 
-  Retorna os dados do endereço criado ou solicitado pelo id.
+  Retorna os dados do endereço solicitado.
 
   Parâmetro | Descrição
  -------------- | --------------
@@ -102,7 +104,7 @@
 
 ##Retornando endereços
 
-  Retorna um array contendo objetos de Address.
+  Retorna um array contendo objetos de endereço.
 
   > GET https://api.fastnotas.com/v1/addresses/
 
@@ -142,16 +144,16 @@
 
 ## Atualizando um endereço
 
-  Retorna o endereço solicitado com os parâmetros atualizados
+  Atualiza o endereço solicitado e retorna o mesmo com os parâmetros atualizados.
 
   Parâmetro | Descrição
  -------------- | --------------
   **:id** <br> <p>obrigatório</p> | *Id do endereço*
 
-  > PUT https://api.fastnotas.com/v1/addresses/0ff70195-6b8a-41bc-b394-f1f9c9eb50d9
+  > PUT https://api.fastnotas.com/v1/addresses/{ADDRESS_ID}
 
   ```shell
-    curl -X PUT https://api.fastnotas.com/v1/addresses/0ff70195-6b8a-41bc-b394-f1f9c9eb50d9
+    curl -X PUT https://api.fastnotas.com/v1/addresses/{ADDRESS_ID} \
       -u 'YOUR_API_KEY:' \
       -d 'number=775'
   ```
@@ -178,9 +180,9 @@
  -------------- | --------------
   **:id** <br> <p>obrigatório</p> | *Id do endereço que será deletado.*
 
-  > DELETE https://api.fastnotas.com/v1/addresses/0ff70195-6b8a-41bc-b394-f1f9c9eb50d9
+  > DELETE https://api.fastnotas.com/v1/addresses/{ADDRESS_ID}
 
   ```shell
-    curl -X DELETE https://api.fastnotas.com/v1/addresses/0ff70195-6b8a-41bc-b394-f1f9c9eb50d9
+    curl -X DELETE https://api.fastnotas.com/v1/addresses/{ADDRESS_ID} \
     -u 'YOUR_API_KEY:'
   ```

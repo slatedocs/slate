@@ -1,6 +1,8 @@
 # Phones
 
-  Um telefone pertence à um cliente ou uma empresa. Use a rota `phones` para criar, deletar e atualizar telefones.
+  Um telefone é a associado à um cliente ou uma empresa.
+
+  Através do endpoint `/phones` é possível listar, exibir, criar, atualizar e deletar telefones.
 
 <br> <br> <br>
 
@@ -8,11 +10,11 @@
 
   Parâmetro | Descrição
  -------------- | --------------
-  **phone_type** <br> String | *Telefone residencial ou celular* <br> **Valores possíveis:** <br> `landline` <br>`mobile`
+  **phone_type** <br> String | *Telefone residencial ou celular* <br> **Tipos:** `landline`, `mobile`
   **number** <br> String | *Número do telefone sem separadores*
   **area_code** <br> String | *Código de área do município*
   **country_code**  <br> String | *Código do país*
-  **extension**  <br> String | *Extensão*
+  **extension**  <br> String | *Ramal*
 
 
 ## Criando um telefone
@@ -47,17 +49,18 @@
   **number** <br> <p>obrigatório</p> | *Número do telefone sem separadores*
   **area_code** <br> <p>obrigatório</p> | *Código de área do município*
   **country_code**  | *Código do país*
-  **extension**  | *Extensão*
+  **extension**  | *Ramal*
 
 
 <br> <br> <br> <br> <br>
 
 ##Retornando um telefone
 
-  > GET https://api.fastnotas.com/v1/phones/bed01a89-2ff8-4ef2-8d0b-586a3bcbba3f
+  > GET https://api.fastnotas.com/v1/phones/{PHONE_ID}
 
   ```shell
-    curl -X GET https://api.fastnotas.com/v1/phones/bed01a89-2ff8-4ef2-8d0b-586a3bcbba3f
+    curl -X GET https://api.fastnotas.com/v1/phones/{PHONE_ID} \
+    -u 'YOUR_API_KEY:'
   ```
   > Exemplo de retorno em JSON:
 
@@ -72,7 +75,7 @@
     }
   ```
 
-  Retorna os dados do telefone criado ou solicitado pelo id.
+  Retorna os dados do telefone solicitado.
 
   Parâmetro | Descrição
  -------------- | --------------
@@ -83,13 +86,13 @@
 
 ##Retornando telefones
 
-  Retorna um array contendo objetos de Phones.
+  Retorna um array contendo objetos de telefones.
 
   > GET https://api.fastnotas.com/v1/phones/
 
   ```shell
-    curl -X GET https://api.fastnotas.com/v1/phones/
-    -u 'YOUR_API_KEY:' \
+    curl -X GET https://api.fastnotas.com/v1/phones/ \
+    -u 'YOUR_API_KEY:'
   ```
   > Exemplo de retorno em JSON:
 
@@ -115,18 +118,18 @@
   ```
 ## Atualizando um telefone
 
-Retorna o telefone solicitado com os parâmetros atualizados
+Atualiza o telefone solicitado e retorna o mesmo com os parâmetros atualizados
 
   Parâmetro | Descrição
  -------------- | --------------
   **:id** <br> <p>obrigatório</p> | *Id do telefone criado*
 
-  > PUT https://api.fastnotas.com/v1/phones/88e506c5-218b-420a-86f7-6c168c58937c
+  > PUT https://api.fastnotas.com/v1/phones/{PHONE_ID}
 
   ```shell
-    curl -X PUT https://api.fastnotas.com/v1/phones/88e506c5-218b-420a-86f7-6c168c58937c
+    curl -X PUT https://api.fastnotas.com/v1/phones/{PHONE_ID} \
       -u 'YOUR_API_KEY:' \
-      -d 'number=94321234'
+      -d 'number=999999999'
   ```
   > Exemplo de retorno em JSON:
 
@@ -134,7 +137,7 @@ Retorna o telefone solicitado com os parâmetros atualizados
     {
       "id": "88e506c5-218b-420a-86f7-6c168c58937c",
       "phone_type": "mobile",
-      "number": "94321234",
+      "number": "999999999",
       "area_code": "11",
       "country_code": "55",
       "extension": null
@@ -146,11 +149,11 @@ Retorna o telefone solicitado com os parâmetros atualizados
 
   Parâmetro | Descrição
  -------------- | --------------
-  **:id** <br> <p>obrigatório</p> | *Id do telefone*
+  **:id** <br> <p>obrigatório</p> | *Id do telefone que será deletado*
 
-  > DELETE https://api.fastnotas.com/v1/phones/88e506c5-218b-420a-86f7-6c168c58937c
+  > DELETE https://api.fastnotas.com/v1/phones/{PHONE_ID}
 
   ```shell
-    curl -X DELETE https://api.fastnotas.com/v1/phones/88e506c5-218b-420a-86f7-6c168c58937c
+    curl -X DELETE https://api.fastnotas.com/v1/phones/{PHONE_ID} \
     -u 'YOUR_API_KEY:'
   ```

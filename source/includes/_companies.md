@@ -1,8 +1,10 @@
 # Companies
 
-  Uma empresa contém um endereço e telefone, e contém muitos “document schemes”. Autorização apenas para retornar uma ou todas empresas.
+  Uma empresa vai ser a base da comunicação com a API Fast Notas.
 
-  <aside class="notice"> Cada empresa tem uma chave de API.</aside>
+  É esta estidade que possui a `API_KEY` ou seja todas as outras entidades que forem criadas, serão diretamente relacionadas a empresa que fez a requisição, está informação é vinculada através do header de [autenticação](#autentica-o).
+
+  Através do endpoint `/companies` é possível exibir todos os dados da sua empresa.
 
 ## Objeto `company`
 
@@ -30,10 +32,10 @@
 
 ##Retornando uma empresa
 
-  > `GET https://api.fastnotas.com/v1/companies/3eb45d08-f70b-4110-a1db-fd5572c08114`
+  > `GET https://api.fastnotas.com/v1/companies`
 
   ```shell
-    curl -X GET https://api.fastnotas.com/v1/companies/3eb45d08-f70b-4110-a1db-fd5572c08114 \
+    curl -X GET https://api.fastnotas.com/v1/companies \
       -u 'YOUR_API_KEY'
   ```
   > Exemplo de retorno em JSON:
@@ -57,12 +59,11 @@
       },
       "api_key": "275aab6d-e37f-4d90-9bad-8b743e2cf724",
       "address": {
-        "id": "2087a58d-4f06-40d9-b788-74d80959afff",
-        "neighborhood": "Rua Dona Leopoldina",
-        "street": "Rua Dona Leopoldina",
-        "number": "825",
-        "additional_details": "Cj. 12",
-        "zipcode": "04278040",
+        "neighborhood": "Rua Doutor Diogo de Faria",
+        "street": "Rua Doutor Diogo de Faria",
+        "number": "775",
+        "additional_details": "Cj. 123",
+        "zipcode": "04037003",
         "city": "São Paulo",
         "state": "SP",
         "country": "BR"
@@ -70,8 +71,4 @@
     }
   ```
 
-  Retorna dados em JSON de uma determinada empresa.
-
-Parâmetro | Descrição
- -------------- | --------------
-**:id** <br> <p>obrigatório</p> | *Id da empresa*
+  Retorna os dados da empresa cuja `API_KEY` foi informada via header de [autenticação](#autentica-o).
