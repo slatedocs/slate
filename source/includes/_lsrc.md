@@ -4,6 +4,36 @@
 
 <span class="label label-info">Account Method</span>
 
+> Add Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->post('v2/lsrc/add', [
+    'name'                   => 'Le Bernardin',
+	'schedule'               => 'Adhoc',
+	'search-terms'           => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
+    'website-addresses'      => ["http://www.example.com","http://www.example2.com"],
+	'search-engines'         => 'google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'
+]);
+print_r($success);
+```
+
+```shell
+curl -X POST \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'name=Le Bernardin' \
+ -d 'schedule=Adhoc' \
+ -d 'search-terms=Restaurant\nfood+nyc\ndelivery+midtown+manhattan' \ 
+ -d 'website-addresses=["http://www.example.com","http://www.example2.com"]' \
+ -d 'search-engines=google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local' \ 
+ https://tools.brightlocal.com/seo-tools/api/v2/lsrc/add
+```
+
 > Success (200 OK)
 
 ```json
@@ -54,6 +84,38 @@ is-public | Publish reports on a white label URL. Yes or No. Defaults to No.
 ## Update Report
 
 <span class="label label-info">Account Method</span>
+
+> Update Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->post('v2/lsrc/update', [
+    'campaign-id'            => 9907,
+    'name'                   => 'Le Bernardin',
+	'schedule'               => 'Adhoc',
+	'search-terms'           => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
+    'website-addresses'      => ['http://www.example.com','http://www.example2.com'],
+	'search-engines'         => 'google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'
+]);
+print_r($success);
+```
+
+```shell
+curl -X POST \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'campaign-id=9907' \
+ -d 'name=Le Bernardin' \
+ -d 'schedule=Adhoc' \
+ -d 'search-terms=Restaurant\nfood+nyc\ndelivery+midtown+manhattan' \ 
+ -d 'website-addresses=["http://www.example.com","http://www.example2.com"]' \
+ -d 'search-engines=google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local' \ 
+ https://tools.brightlocal.com/seo-tools/api/v2/lsrc/update
+```
 
 > Success (200 OK)
 
@@ -108,6 +170,22 @@ is-public | Publish reports on a white label URL. Yes or No.
 
 <span class="label label-info">Account Method</span>
 
+> Delete Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$clientId = 1;
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->delete('v2/lsrc/delete', [
+    'campaign-id'            => 9907
+]);
+if($success) {
+	echo 'Successfully deleted report.' . PHP_EOL;
+}
+```
+
 > Success (200 OK)
 
 ```json
@@ -136,6 +214,25 @@ campaign-id | <span class="label label-required">Required</span>
 ## Get All Reports
 
 <span class="label label-info">Account Method</span>
+
+> Get All Reports
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->get('v2/lsrc/get-all');
+print_r($results);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \ 
+  https://tools.brightlocal.com/seo-tools/api/v2/lsrc/get-all
+```
 
 > Success (200 OK)
 
@@ -187,63 +284,31 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 location-id |
 
-## Get All Reports
-
-<span class="label label-info">Account Method</span>
-
-> Success (200 OK)
-
-```json
-{
-    "response":  {
-        "results":  [
-            {
-                "campaign_id": "49",
-                "name": "Test 1",
-                "schedule": "Weekly",
-                "day_of_week": "Thursday",
-                "day_of_month": "0",
-                "location_id": "0"
-            },
-            {
-                "campaign_id": "50",
-                "name": "Test 2",
-                "schedule": "Weekly",
-                "day_of_week": "Wednesday",
-                "day_of_month": null,
-                "location_id": "0"
-            },
-            {
-                "campaign_id": "52",
-                "name": "Test 3",
-                "schedule": "Weekly",
-                "day_of_week": "Wednesday",
-                "day_of_month": null,
-                "location_id": "0"
-            }
-        ]    
-    }
-}
-```
-
-Returns basic details about all reports that match your search criteria.
-
-### HTTP Request
-
-`GET https://tools.brightlocal.com/seo-tools/api/v2/lsrc/search`
-
-### Query Parameters
-
-Parameter | Notes
---------- | -----
-api-key | <span class="label label-required">Required</span>	
-sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-q | Search string to match reports against. <span class="label label-required">Required</span>
-
 ## Get Report
 
 <span class="label label-info">Account Method</span>
+
+> Get Single Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->get('v2/lsrc/get', [
+    'campaign-id'            => 50
+]);
+print_r($results);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'campaign-id=50' \
+  https://tools.brightlocal.com/seo-tools/api/v2/lsrc/get
+```
 
 > Success (200 OK)
 
@@ -347,6 +412,28 @@ campaign-id | <span class="label label-required">Required</span>
 
 <span class="label label-info">Account Method</span>
 
+> Run Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->post('v2/lsrc/run', [
+    'campaign-id'            => 50
+]);
+print_r($success);
+```
+
+```shell
+curl -X POST \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'campaign-id=50' \	
+  https://tools.brightlocal.com/seo-tools/api/v2/lsrc/run
+```
+
 > Success (200 OK)
 
 ```json
@@ -377,6 +464,28 @@ campaign-id | <span class="label label-required">Required</span>
 ## Get Report History
 
 <span class="label label-info">Account Method</span>
+
+> Get Report History
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->get('v2/lsrc/history/get', [
+    'campaign-id'            => 50,
+]);
+print_r($results);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'campaign-id=50' \
+  https://tools.brightlocal.com/seo-tools/api/v2/lsrc/history/get
+```
 
 > Success (200 OK)
 
@@ -429,22 +538,27 @@ campaign-id | <span class="label label-required">Required</span>
 
 <span class="label label-info">Account Method</span>
 
-If no campaign history ID or previous campaign history ID are passed then the latest results for the specified report are returned.
+> Get Report Results
 
-### HTTP Request
+```php
+<?php
+use BrightLocal\Api;
 
-`GET https://tools.brightlocal.com/seo-tools/api/v2/lsrc/results/get`
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->get('v2/lsrc/results/get', [
+    'campaign-id'            => 9636
+]);
+print_r($results);
+```
 
-### Query Parameters
-
-Parameter | Notes
---------- | -----
-api-key | <span class="label label-required">Required</span>	
-sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-campaign-id | <span class="label label-required">Required</span>	
-campaign-history-id | If both campaign-history-id and previous-campaign-history-id are not specified then the latest report is returned.
-previous-campaign-history-id | If both campaign-history-id and previous-campaign-history-id are not specified then the latest report is returned.
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'campaign-id=9636' \
+  https://tools.brightlocal.com/seo-tools/api/v2/lsrc/results/get
+```
 
 > Success (200 OK)
 
@@ -848,3 +962,20 @@ previous-campaign-history-id | If both campaign-history-id and previous-campaign
   }
 }
 ```
+
+If no campaign history ID or previous campaign history ID are passed then the latest results for the specified report are returned.
+
+### HTTP Request
+
+`GET https://tools.brightlocal.com/seo-tools/api/v2/lsrc/results/get`
+
+### Query Parameters
+
+Parameter | Notes
+--------- | -----
+api-key | <span class="label label-required">Required</span>	
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+campaign-id | <span class="label label-required">Required</span>	
+campaign-history-id | If both campaign-history-id and previous-campaign-history-id are not specified then the latest report is returned.
+previous-campaign-history-id | If both campaign-history-id and previous-campaign-history-id are not specified then the latest report is returned.

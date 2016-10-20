@@ -4,6 +4,51 @@
 
 <span class="label label-info">Account Method</span>
 
+> Add Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->post('v4/lscu', [
+    'report-name'				   => 'Sample SEO Check-Up Report', 
+	'business-names'			   => ["Le Bernardin"],
+	'website-addresses'			   => ["http://www.example.com","http://www.example2.com"],
+	'address1'					   => '155 West 51st Street',
+    'address2'					   => '',      
+    'city'						   => 'New York',
+	'state-code'				   => 'NY',
+	'postcode'					   => '10019',	
+	'telephone'					   => '+1 212-554-1515',
+	'country'					   => 'USA',
+	'business-category'            => 'Restaurant',
+	'primary-business-location'    => 'NY, New York',
+	'search-terms'                 => '["restaurant manhattan","cafe new york"]'
+]);
+print_r($success);
+```
+
+```shell
+curl -X POST \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \ 
+ -d 'report-name=Sample SEO Check-Up Report' \
+ -d 'business-names=["Le Bernardin"]' \
+ -d 'address1=155 West 51st Street' \ 
+ -d 'address2=' \
+ -d 'city=New York' \
+ -d 'state-code=NY' \ 
+ -d 'postcode=10019' \
+ -d 'telephone=+1 212-554-1515'
+ -d 'country=USA' \
+ -d 'business-category=Restaurant' \
+ -d 'primary-business-location=NY+NewYork'
+ -d 'search-terms=["restaurant manhattan","cafe new york"]'
+ https://tools.brightlocal.com/seo-tools/api/v4/lscu
+```
+
 > Supplying Local Directory URLs (see local-directory-urls parameter)
 
 ```php
@@ -99,7 +144,40 @@ run-report | One of yes or no. Runs the report after adding. Defaults to no.
 
 <span class="label label-info">Account Method</span>
 
+> Update Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->put('v4/lscu', [   
+	'postcode'					   => '10019',	
+	'telephone'					   => '+1 212-554-1515',
+	'country'					   => 'USA',
+	'business-category'            => 'Restaurant',
+	'primary-business-location'    => 'NY, New York',
+	'search-terms'                 => '["restaurant manhattan","cafe new york"]'
+]);
+print_r($success);
+```
+
+```shell
+curl -X PUT \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \  
+ -d 'postcode=10019' \
+ -d 'telephone=+1 212-554-1515'
+ -d 'country=USA' \
+ -d 'business-category=Restaurant' \
+ -d 'primary-business-location=NY+NewYork'
+ -d 'search-terms=["restaurant manhattan","cafe new york"]'
+ https://tools.brightlocal.com/seo-tools/api/v4/lscu
+```
+
 > Supplying Local Directory URLs (see local-directory-urls parameter)
+
 
 ```php
 <?php
@@ -190,6 +268,28 @@ local-directory-urls | <p>This parameter allows you update the profile URLs we h
 
 <span class="label label-info">Account Method</span>
 
+> Get Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->get('v4/lscu', [
+    'report-id'            => 860
+]);
+print_r($results);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'report-id=860' \
+  https://tools.brightlocal.com/seo-tools/api/v4/lscu
+```
+
 > Success (200 OK)
 
 ```json
@@ -268,6 +368,28 @@ report-id | <span class="label label-required">Required</span> The unique ID for
 
 <span class="label label-info">Account Method</span>
 
+> Run Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->put('v4/lscu/run', [
+    'report-id'            => 860
+]);
+print_r($results);
+```
+
+```shell
+curl -X PUT \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'report-id=860' \
+  https://tools.brightlocal.com/seo-tools/api/v4/lscu/run
+```
+
 > Success (200 OK)
 
 ```json
@@ -316,6 +438,31 @@ report-id | <span class="label label-required">Required</span> The unique ID for
 
 <span class="label label-info">Account Method</span>
 
+> Delete Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->delete('v4/lscu', [
+    'report-id'            => 860
+]);
+if($success) {
+	echo 'Successfully deleted report.' . PHP_EOL;
+}
+print_r($success);
+```
+
+```shell
+curl -X DELETE \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'report-id=860' \
+  https://tools.brightlocal.com/seo-tools/api/v4/lscu
+```
+
 > Success (200 OK)
 
 ```json
@@ -362,6 +509,28 @@ report-id | <span class="label label-required">Required</span> The unique ID for
 ## Search
 
 <span class="label label-info">Account Method</span>
+
+> Search for a Report
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->get('v4/lscu/search', [
+    'q'                     => 'My Sample Query'	 
+]);
+print_r($results);
+```
+
+```shell
+curl -X GET \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'q=My+Sample+Query' \	
+  https://tools.brightlocal.com/seo-tools/api/v4/lscu/search
+```
 
 > Success (200 OK)
 
