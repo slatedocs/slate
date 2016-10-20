@@ -13,18 +13,18 @@ use BrightLocal\Api;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v4/lscu', [
     'report-name'				=> 'Sample SEO Check-Up Report', 
-	'business-names'			=> ["Le Bernardin"],
-	'website-addresses'			=> ["http://www.example.com","http://www.example2.com"],
-	'address1'                  => '155 West 51st Street',
+    'business-names'			=> ["Le Bernardin"],
+    'website-addresses'			=> ["http://www.example.com","http://www.example2.com"],
+    'address1'                  => '155 West 51st Street',
     'address2'                  => '',      
     'city'                      => 'New York',
-	'state-code'				=> 'NY',
-	'postcode'					=> '10019',	
-	'telephone'					=> '+1 212-554-1515',
-	'country'					=> 'USA',
-	'business-category'         => 'Restaurant',
-	'primary-business-location' => 'NY, New York',
-	'search-terms'              => '["restaurant manhattan","cafe new york"]'
+    'state-code'				=> 'NY',
+    'postcode'					=> '10019',	
+    'telephone'					=> '+1 212-554-1515',
+    'country'					=> 'USA',
+    'business-category'         => 'Restaurant',
+    'primary-business-location' => 'NY, New York',
+    'search-terms'              => '["restaurant manhattan","cafe new york"]'
 ]);
 print_r($success);
 ```
