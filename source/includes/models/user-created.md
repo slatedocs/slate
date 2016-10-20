@@ -119,15 +119,34 @@ A DeliveryAttempt contains status information on a visit a [Driver](#driver) mad
 
 | Field                     | Type                             | Required | Description
 |---------------------------|----------------------------------|----------|------------
-| deliveryStatus            | [DeliveryStatus](#deliverystatus)| true     | The status of the [Delivery](#delivery).
+| status                    | [DeliveryStatus](#deliverystatus)| true     | The status of the [Delivery](#delivery).
+| deliveryCode              | [DeliveryCode](#deliverycode)    | false    | Additional information about the attempted delivery.
 | notes                     | String                           | false    | The driver's note about the attempt.
 
 ```java
+DeliveryCode deliveryCode = ...
 DeliveryAttempt attempt = DeliveryAttempt.builder()
+                                         .setDeliveryCode(deliveryCode)
                                          .setNotes("Handed to customer")
                                          .setStatus(DeliveryStatus.SUCCESSFUL)
                                          .build();
 ```
+
+## DeliveryCode
+A DeliveryCode allows the driver to give additional information about what happened during a `DeliveryAttempt`.
+
+| Field                     | Type                             | Required | Description
+|---------------------------|----------------------------------|----------|------------
+| deliveryCode              | String                           | true     | The delivery code.
+| message                   | String                           | true     | A message that describes the delivery code.
+
+```java
+DeliveryCode deliveryCode = DeliveryCode.builder()
+                                         .setCode("E-201")
+                                         .setMessage("Customer was not available")
+                                         .build();
+```
+
 
 ## DeliveryStatus
 A DeliveryStatus is an enumeration for possible attempt states.
@@ -152,3 +171,5 @@ Driver driver = Driver.builder()
                       .setName("the name")
                       .build();
 ```
+
+

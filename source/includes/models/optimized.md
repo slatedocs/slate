@@ -63,6 +63,7 @@ each will be returned. You will never need to create these Optimized models. The
 |---------------------------|----------------------------------|----------|------------
 | id                        | String                           | false    | The id of the delivery attempt.
 | deliveryStatus            | [DeliveryStatus](#deliverystatus)| false    | The status of the [OptimizedDelivery](#optimizeddelivery).
+| deliveryCode              | [DeliveryCode](#deliverycode)    | true     | Additional information about the attempted delivery.
 | timestamp                 | DateTime                         | false    | The timestamp the attempt was created.
 | notes                     | String                           | true     | The driver's note about the attempt.
 
