@@ -128,7 +128,7 @@ curl -X POST \
               {
                 "url": "http://thecenternyc.com/tag/back-pain/",
                 "orig_url": "http://www.thecenternyc.com/tag/back-pain/",
-                "title": "Back Pain Archives » New York, NY 10001",
+                "title": "Back Pain Archives >> New York, NY 10001",
                 "rank": 13,
                 "sub_rank": null,
                 "page": 2,
@@ -142,7 +142,7 @@ curl -X POST \
               {
                 "url": "http://thecenternyc.com/back-pain-nyc/",
                 "orig_url": "http://www.thecenternyc.com/back-pain-nyc/",
-                "title": "Back Pain NYC Archives » The Center Chiropractic &amp; PT NYC",
+                "title": "Back Pain NYC Archives >> The Center Chiropractic &amp; PT NYC",
                 "rank": 14,
                 "sub_rank": null,
                 "page": 2,
@@ -370,7 +370,7 @@ curl -X POST \
               {
                 "url": "http://thecenternyc.com/redcord-manhattan/",
                 "orig_url": "http://www.thecenternyc.com/redcord-manhattan/",
-                "title": "Redcord Manhattan Archives » The Center...",
+                "title": "Redcord Manhattan Archives >> The Center...",
                 "rank": 5,
                 "sub_rank": null,
                 "page": 1,
