@@ -331,10 +331,10 @@ curl -X GET \
     "is_public": "Yes",
     "public_key": "<hidden>",
     "latest_run":  {
-      "interactive_url": "https://dev-tools.brightlocal.com/seo-tools/admin/lscu/reports/view/858/2171",
-      "pdf_url": "https://dev-tools.brightlocal.com/seo-tools/admin/lscu/reports/pdf/858",
-      "public_interactive_url": "http://dev-tools.<replaced>.com/seo-reports/<hidden>/858",
-      "public_pdf_url": "http://dev-tools.<replaced>.com/seo-reports/<hidden>/858.pdf"
+      "interactive_url": "https://tools.brightlocal.com/seo-tools/admin/lscu/reports/view/858/2171",
+      "pdf_url": "https://tools.brightlocal.com/seo-tools/admin/lscu/reports/pdf/858",
+      "public_interactive_url": "http://www.local-marketing-reports.com/seo-reports/<hidden>/858",
+      "public_pdf_url": "http://www.local-marketing-reports.com/seo-reports/<hidden>/858.pdf"
     }
   }
 }
