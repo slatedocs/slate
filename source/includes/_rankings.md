@@ -178,7 +178,7 @@ curl -X POST \
             0
           ],
           "source": 3,
-          "api-key": "1a08b2e1fd07fa4150f91b80636906a9a29b8e47",
+          "api-key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
           "search-engine": "google",
           "options": {
             "urls": [
@@ -255,7 +255,7 @@ curl -X POST \
             0
           ],
           "source": 3,
-          "api-key": "1a08b2e1fd07fa4150f91b80636906a9a29b8e47",
+          "api-key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
           "search-engine": "google",
           "options": {
             "urls": [
@@ -315,7 +315,7 @@ curl -X POST \
             0
           ],
           "source": 3,
-          "api-key": "1a08b2e1fd07fa4150f91b80636906a9a29b8e47",
+          "api-key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
           "search-engine": "yahoo",
           "options": {
             "urls": [
@@ -404,7 +404,7 @@ curl -X POST \
             0
           ],
           "source": 3,
-          "api-key": "1a08b2e1fd07fa4150f91b80636906a9a29b8e47",
+          "api-key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
           "search-engine": "yahoo",
           "options": {
             "urls": [
