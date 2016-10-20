@@ -13,12 +13,12 @@ use BrightLocal\Api;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v2/ct/add', [
     'report-name'       => 'My First Citation Report',
-    'business-name'     => 'Le Bernardin',
-    'business-location' => 'New York, NY',
-    'phone'             => '+1 212-554-1515',
-    'website'           => 'http://www.example.com',
-    'business-type'     => 'Restaurant',
-    'state-code'        => 'NY'	
+	'business-name'     => 'Le Bernardin',
+	'business-location' => 'New York, NY',
+	'phone'             => '+1 212-554-1515',
+	'website'           => 'http://www.example.com',
+	'business-type'     => 'Restaurant',
+	'state-code'        => 'NY'	
 ]);
 print_r($success);
 ```

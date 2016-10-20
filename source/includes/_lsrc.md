@@ -13,10 +13,10 @@ use BrightLocal\Api;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v2/lsrc/add', [
     'name'              => 'Le Bernardin',
-    'schedule'          => 'Adhoc',
-    'search-terms'      => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
+	'schedule'          => 'Adhoc',
+	'search-terms'      => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
     'website-addresses' => ["http://www.example.com","http://www.example2.com"],
-    'search-engines'    => 'google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'
+	'search-engines'    => 'google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'
 ]);
 print_r($success);
 ```
@@ -95,10 +95,10 @@ $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v2/lsrc/update', [
     'campaign-id'       => 9907,
     'name'              => 'Le Bernardin',
-    'schedule'          => 'Adhoc',
-    'search-terms'      => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
+	'schedule'          => 'Adhoc',
+	'search-terms'      => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
     'website-addresses' => ['http://www.example.com','http://www.example2.com'],
-    'search-engines'    => 'google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'
+	'search-engines'    => 'google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'
 ]);
 print_r($success);
 ```

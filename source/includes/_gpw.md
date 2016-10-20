@@ -13,18 +13,18 @@ use BrightLocal\Api;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v4/gpw/add', [
     'report_name'    => 'Sample Google Plus Report', 
-    'business_names' => 'Le Bernardin',
-    'schedule'       => 'Adhoc',
-    'day_of_month'   => '2',
-    'report_type'    => 'with',
-    'address1'       => '155 West 51st Street',
+	'business_names' => 'Le Bernardin',
+	'schedule'       => 'Adhoc',
+	'day_of_month'   => '2',
+	'report_type'    => 'with',
+	'address1'       => '155 West 51st Street',
     'address2'       => '',      
     'city'           => 'New York',
-    'state_code'     => 'NY',
-    'postcode'       => '10019',	
-    'phone_number'   => '+1 212-554-1515',
-    'country'        => 'USA',
-    'search_terms'   => '["restaurant manhattan","cafe new york"]'  
+	'state_code'     => 'NY',
+	'postcode'       => '10019',	
+	'phone_number'   => '+1 212-554-1515',
+	'country'        => 'USA',
+	'search_terms'   => '["restaurant manhattan","cafe new york"]'  
 ]);
 print_r($success);
 ```

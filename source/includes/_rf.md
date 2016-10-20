@@ -13,13 +13,13 @@ use BrightLocal\Api;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v4/rf/add', [
     'report-name'       => 'Sample Review Report', 
-    'business-name'     => 'Le Bernardin',
-    'contact-telephone' => '+1 212-554-1515',
-    'address1'          => '155 West 51st Street',
+	'business-name'     => 'Le Bernardin',
+	'contact-telephone' => '+1 212-554-1515',
+	'address1'          => '155 West 51st Street',
     'address2'          => '',      
     'city'              => 'New York',
-    'postcode'          => '10019',
-    'country'           => 'USA' // USA only    
+	'postcode'          => '10019',
+	'country'           => 'USA' // USA only    
 ]);
 print_r($success);
 ```
@@ -130,7 +130,7 @@ $reportId = 1;
 $api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
 $success = $api->put('v4/rf/' .$reportId, [
     'business-name'     => 'Le Bernardin',
-    'contact-telephone' => '+1 212-554-1515'
+	'contact-telephone' => '+1 212-554-1515'
 ]);
 print_r($success);
 ```
