@@ -12,9 +12,9 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v1/clients-and-locations/clients/', [	   
-    'name'                   => 'Le Bernardin',               
-    'company-url'            => 'http://www.example.com',
-    'business-category-id'   => 791    
+    'name'                 => 'Le Bernardin',               
+    'company-url'          => 'http://www.example.com',
+    'business-category-id' =>  791    
 ]);
 print_r($success);
 ```
@@ -71,9 +71,9 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->put('v1/clients-and-locations/clients/', [
-    'name'                   => 'Le Bernardin',               
-    'company-url'            => 'http://www.example.com',
-    'business-category-id'   => 791    
+    'name'                 => 'Le Bernardin',               
+    'company-url'          => 'http://www.example.com',
+    'business-category-id' =>  791    
 ]);
 print_r($success);
 ```
@@ -214,7 +214,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $results = $api->call('v1/clients-and-locations/clients/search', [   
- 'q'                     => 'My Sample Query'    
+ 'q' => 'My Sample Query'    
 ]);
 print_r($results);
 ```

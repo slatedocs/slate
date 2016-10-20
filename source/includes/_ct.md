@@ -12,13 +12,13 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v2/ct/add', [
-    'report-name'            => 'My First Citation Report',
-	'business-name'          => 'Le Bernardin',
-	'business-location'      => 'New York, NY',
-	'phone'                  => '+1 212-554-1515',
-	'website'                => 'http://www.example.com',
-	'business-type'          => 'Restaurant',
-	'state-code'             => 'NY'	
+    'report-name'       => 'My First Citation Report',
+	'business-name'     => 'Le Bernardin',
+	'business-location' => 'New York, NY',
+	'phone'             => '+1 212-554-1515',
+	'website'           => 'http://www.example.com',
+	'business-type'     => 'Restaurant',
+	'state-code'        => 'NY'	
 ]);
 print_r($success);
 ```
@@ -94,14 +94,14 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v2/ct/update', [
-	'report-id'              =>  682,
-    'report-name'            => 'My First Citation Report',
-	'business-name'          => 'Le Bernardin',
-	'business-location'      => 'New York, NY',
-	'phone'                  => '+1 212-554-1515',
-	'website'                => 'http://www.example.com',
-	'business-type'          => 'Restaurant',
-	'state-code'             => 'NY'	
+    'report-id'         => 682,
+    'report-name'       => 'My First Citation Report',
+    'business-name'     => 'Le Bernardin',
+    'business-location' => 'New York, NY',
+    'phone'             => '+1 212-554-1515',
+    'website'           => 'http://www.example.com',
+    'business-type'     => 'Restaurant',
+    'state-code'        => 'NY'	
 ]);
 print_r($success);
 ```
@@ -179,7 +179,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $results = $api->get('v2/ct/get', [
-	'report-id'              =>  682   	
+	'report-id' => 682   	
 ]);
 print_r($results);
 ```
@@ -268,13 +268,13 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v2/ct/run', [
-	'report-id'              =>  682   	
+	'report-id' => 682   	
 ]);
 print_r($success);
 ```
 
 ```shell
-curl -X GET \
+curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
@@ -317,7 +317,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v2/ct/delete', [
-	'report-id'              =>  682   	
+	'report-id' => 682   	
 ]);
 if($success) {
 	echo 'Successfully deleted report.' . PHP_EOL;
@@ -508,7 +508,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $results = $api->get('v2/ct/get-results', [
-	'report-id'              =>  2457   	
+	'report-id' => 2457   	
 ]);
 print_r($results);
 ```
