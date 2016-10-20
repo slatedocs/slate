@@ -439,7 +439,7 @@ You can also use the `DeliveryAttempt`'s `notes` and `deliveryCode` fields to pr
 
 The `notes` field is useful for capturing freeform feedback from the driver. For example, if a driver is trying to make a delivery but the waypoint is closed, they may wish to provide the updated hours. You should allow the driver to provide this freeform feedback whenever they make a delivery attempt.
 
-The `deliveryCode` is useful for gathering structured driver feedback. For example, you may wish to have the driver choose a `deliveryCode` from a list of failure reasons. Using consistent `deliveryCodes`s will allow your users to identify common issues and improve their operation.
+The `deliveryCode` is useful for gathering structured driver feedback. For example, you may wish to have the driver choose a `deliveryCode` from a list of failure reasons. Using consistent `deliveryCode`s will allow your users to identify common issues and improve their operation.
 
 Here’s how to create and add a successful DeliveryAttempt, using the Route we created previously:
 
