@@ -180,7 +180,7 @@ curl --request POST \
 --url https://api.fantasticservices.com/v2/addresses \
 --header 'x-client-token: YOUR_API_TOKEN' \
 --header 'authorization: YOUR_AUTH_TOKEN' \
---data '{"requests":[{"method":"POST","name":"addresses","object":{"address_line_1":"7 Apt.","address_line_2":"27 Red Lion Street","postal":"SW14 8PT","lat":51.604903,"lng":-0.457022}},{"method":"POST","name":"addresses/27","object":{"address_line_1":"7 Apt.","address_line_2":"27 Red Lion Street"}}]}'
+--data '{"requests":[{"method":"POST","path":"addresses","object":{"address_line_1":"7 Apt.","address_line_2":"27 Red Lion Street","postal":"SW14 8PT","lat":51.604903,"lng":-0.457022}},{"method":"POST","path":"addresses/27","object":{"address_line_1":"7 Apt.","address_line_2":"27 Red Lion Street"}}]}'
 ```
 
 > The above command posts JSON structured like this:
@@ -190,7 +190,7 @@ curl --request POST \
   "requests": [
     {
       "method": "POST",
-      "name": "addresses",
+      "path": "addresses",
       "object": {
         "address_line_1": "7 Apt.",
         "address_line_2": "27 Red Lion Street",
@@ -201,7 +201,7 @@ curl --request POST \
     },
     {
       "method": "POST",
-      "name": "addresses/27",
+      "path": "addresses/27",
       "object": {
         "address_line_1": "7 Apt.",
         "address_line_2": "27 Red Lion Street"
@@ -233,7 +233,7 @@ Requests can be combined by sending array of request objects.
 Parameter | Type | Description
 --------- | ---- | -----------
 `method` | *string* | HTTP method of combined request
-`name` | *string* | Resource path of combined request
+`path` | *string* | Resource path of combined request
 `object` | *object* | Body of combined request
 
 <aside class="notice">
