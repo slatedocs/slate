@@ -109,6 +109,341 @@ curl -X POST \
 }
 ```
 
+> Get Batch Rankings Result,  Sucess(200 Ok)
+
+ ```json
+{
+  "success": true,
+  "results": {
+    "SearchRankV2Api": [
+      {
+        "results": [
+          {
+            "identifier": "google",
+            "site": "Google Search",
+            "site-url": "http://www.google.com",
+            "search-url": "https://www.google.com/search?q=Back+Pain+midtown+manhattan&gl=us&gws_rd=cr&pws=0",
+            "search-term": "Back Pain midtown manhattan",
+            "results": [
+              {
+                "url": "http://thecenternyc.com/tag/back-pain/",
+                "orig_url": "http://www.thecenternyc.com/tag/back-pain/",
+                "title": "Back Pain Archives » New York, NY 10001",
+                "rank": 13,
+                "sub_rank": null,
+                "page": 2,
+                "type": "Organic",
+                "match": [
+                  "website address"
+                ],
+                "matched_url": "www.thecenternyc.com",
+                "serp-screenshot-url": "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/6daa949323ef54687f41d95500751fd08256bc17.png"
+              },
+              {
+                "url": "http://thecenternyc.com/back-pain-nyc/",
+                "orig_url": "http://www.thecenternyc.com/back-pain-nyc/",
+                "title": "Back Pain NYC Archives » The Center Chiropractic &amp; PT NYC",
+                "rank": 14,
+                "sub_rank": null,
+                "page": 2,
+                "type": "Organic",
+                "match": [
+                  "website address"
+                ],
+                "matched_url": "www.thecenternyc.com",
+                "serp-screenshot-url": "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/6daa949323ef54687f41d95500751fd08256bc17.png"
+              }
+            ],
+            "result-types": [
+              "Organic",
+              "Places",
+              "Carousel",
+              "Directory",
+              "Secondary"
+            ],
+            "http-error": false,
+            "error-type": "None",
+            "serp-screenshots": [
+              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/6b3c2ea8060ad5d564bbbfb84e1dc877e401d7ab.png",
+              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/6daa949323ef54687f41d95500751fd08256bc17.png",
+              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/7e4fe6933ceff9303c541c3a4ff078d762aefff9.png",
+              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/fec74577c27321aa403da6733b82f3e3daa06407.png",
+              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/ceac0abca0233cb404f7859e8942ee1ed6851564.png"
+            ]
+          }
+        ],
+        "payload": {
+          "queue-attempts": 1,
+          "http-codes": [
+            0
+          ],
+          "source": 3,
+          "api-key": "1a08b2e1fd07fa4150f91b80636906a9a29b8e47",
+          "search-engine": "google",
+          "options": {
+            "urls": [
+              "www.thecenternyc.com"
+            ],
+            "business-names": [
+              "The center for chiropractic & pt",
+              "the center for chiropractic decomperssion"
+            ],
+            "search-term": "Back Pain midtown manhattan",
+            "postcode": "10001",
+            "telephone": "646-606-2580",
+            "country": "USA",
+            "google-location": "",
+            "bing-location": "",
+            "include-name-only-matches": true,
+            "num-search-pages": 5,
+            "debug": false,
+            "listings": false,
+            "screenshots-enabled": true,
+            "include-intermediate-html": false,
+            "append-location": false
+          },
+          "position": 0
+        },
+        "status": "Completed",
+        "job-id": 564270998
+      },
+      {
+        "results": [
+          {
+            "identifier": "google",
+            "site": "Google Search",
+            "site-url": "http://www.google.com",
+            "search-url": "https://www.google.com/search?q=apos+therapy+new+york&gl=us&gws_rd=cr&pws=0",
+            "search-term": "apos therapy new york",
+            "results": [
+              {
+                "url": "http://thecenternyc.com/apostherapy/",
+                "orig_url": "http://www.thecenternyc.com/apostherapy/",
+                "title": "Apostherapy NYC - Chiropractor NYC",
+                "rank": 18,
+                "sub_rank": null,
+                "page": 2,
+                "type": "Organic",
+                "match": [
+                  "website address"
+                ],
+                "matched_url": "www.thecenternyc.com",
+                "serp-screenshot-url": "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/9fce8698cbbfb59eeb4237dbb337c35e73fca0fa.png"
+              }
+            ],
+            "result-types": [
+              "Organic",
+              "Places",
+              "Carousel",
+              "Directory",
+              "Secondary"
+            ],
+            "http-error": false,
+            "error-type": "None",
+            "serp-screenshots": [
+              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/98aa8a19a602cefdb4d1ee0c2d220bf651b8d5cc.png",
+              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/9fce8698cbbfb59eeb4237dbb337c35e73fca0fa.png",
+              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/7346a7078076feaf155456e4437429bfc7e7bf94.png",
+              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/95b95e6189dc6a4cae2ec8247b53f507a6cf4925.png",
+              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/e6b467b76c9e2ea66c1ebfbdcd316ee95f97af6e.png"
+            ]
+          }
+        ],
+        "payload": {
+          "queue-attempts": 1,
+          "http-codes": [
+            0
+          ],
+          "source": 3,
+          "api-key": "1a08b2e1fd07fa4150f91b80636906a9a29b8e47",
+          "search-engine": "google",
+          "options": {
+            "urls": [
+              "www.thecenternyc.com"
+            ],
+            "business-names": [
+              "The center for chiropractic & pt",
+              "the center for chiropractic decomperssion"
+            ],
+            "search-term": "apos therapy new york",
+            "postcode": "10001",
+            "telephone": "646-606-2580",
+            "country": "USA",
+            "google-location": "",
+            "bing-location": "",
+            "include-name-only-matches": true,
+            "num-search-pages": 5,
+            "debug": false,
+            "listings": false,
+            "screenshots-enabled": true,
+            "include-intermediate-html": false,
+            "append-location": false
+          },
+          "position": 0
+        },
+        "status": "Completed",
+        "job-id": 564270999
+      },
+      {
+        "results": [
+          {
+            "identifier": "yahoo",
+            "site": "Yahoo! Search",
+            "site-url": "http://www.yahoo.com",
+            "search-url": "http://search.yahoo.com/search?p=apos+therapy+new+york",
+            "search-term": "apos therapy new york",
+            "results": [],
+            "result-types": [
+              "Organic",
+              "Local",
+              "Directory"
+            ],
+            "http-error": false,
+            "error-type": "None",
+            "serp-screenshots": [
+              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/60f6391ac2751102165e4f6b7b360c97e8a63bc1.png",
+              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/712b2c7d35f59309e36f8bdc79dab76b04695388.png",
+              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/dace1c14755c4b1467e36cfce7a96af86604a785.png",
+              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/2c381e008d53e0d02ec4d11cc03e29e5b618a236.png",
+              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/f754b72bd373673cd6e4010519413d28ec22a1ab.png"
+            ]
+          }
+        ],
+        "payload": {
+          "queue-attempts": 1,
+          "http-codes": [
+            0
+          ],
+          "source": 3,
+          "api-key": "1a08b2e1fd07fa4150f91b80636906a9a29b8e47",
+          "search-engine": "yahoo",
+          "options": {
+            "urls": [
+              "www.thecenternyc.com"
+            ],
+            "business-names": [
+              "The center for chiropractic & pt",
+              "the center for chiropractic decomperssion"
+            ],
+            "search-term": "apos therapy new york",
+            "postcode": "10001",
+            "telephone": "646-606-2580",
+            "country": "USA",
+            "google-location": "",
+            "bing-location": "",
+            "include-name-only-matches": true,
+            "num-search-pages": 5,
+            "debug": false,
+            "listings": false,
+            "screenshots-enabled": true,
+            "include-intermediate-html": false,
+            "append-location": false
+          },
+          "position": 0
+        },
+        "status": "Completed",
+        "job-id": 564271014
+      },
+      {
+        "results": [
+          {
+            "identifier": "yahoo",
+            "site": "Yahoo! Search",
+            "site-url": "http://www.yahoo.com",
+            "search-url": "http://search.yahoo.com/search?p=redcord+therapy+manhattan",
+            "search-term": "redcord therapy manhattan",
+            "results": [
+              {
+                "url": "http://thecenternyc.com/redcord-physical-therapy-manhattan/",
+                "orig_url": "http://www.thecenternyc.com/redcord-physical-therapy-manhattan/",
+                "title": "Redcord Physical Therapy Manhattan | Chiropractor...",
+                "rank": 3,
+                "sub_rank": null,
+                "page": 1,
+                "type": "Organic",
+                "match": [
+                  "website address"
+                ],
+                "matched_url": "www.thecenternyc.com",
+                "serp-screenshot-url": "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/7609663e9087a81b92015e1c9af025257ae4be62.png"
+              },
+              {
+                "url": "http://thecenternyc.com/redcord-manhattan/",
+                "orig_url": "http://www.thecenternyc.com/redcord-manhattan/",
+                "title": "Redcord Manhattan Archives » The Center...",
+                "rank": 5,
+                "sub_rank": null,
+                "page": 1,
+                "type": "Organic",
+                "match": [
+                  "website address"
+                ],
+                "matched_url": "www.thecenternyc.com",
+                "serp-screenshot-url": "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/7609663e9087a81b92015e1c9af025257ae4be62.png"
+              }
+            ],
+            "result-types": [
+              "Organic",
+              "Local",
+              "Directory"
+            ],
+            "http-error": false,
+            "error-type": "None",
+            "serp-screenshots": [
+              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/7609663e9087a81b92015e1c9af025257ae4be62.png",
+              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/09424d6d44a145c86aa72c2948414d6bc220969b.png",
+              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/54938f2561fea42cb97af038e85d3b8ec41d8a4c.png",
+              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/2256d2c5362c6a7745f82f76bd28801322f902fa.png",
+              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/11ae9ee7f549d89e2248d97bf6cf3764d997e047.png"
+            ]
+          }
+        ],
+        "payload": {
+          "queue-attempts": 1,
+          "http-codes": [
+            0
+          ],
+          "source": 3,
+          "api-key": "1a08b2e1fd07fa4150f91b80636906a9a29b8e47",
+          "search-engine": "yahoo",
+          "options": {
+            "urls": [
+              "www.thecenternyc.com"
+            ],
+            "business-names": [
+              "The center for chiropractic & pt",
+              "the center for chiropractic decomperssion"
+            ],
+            "search-term": "redcord therapy manhattan",
+            "postcode": "10001",
+            "telephone": "646-606-2580",
+            "country": "USA",
+            "google-location": "",
+            "bing-location": "",
+            "include-name-only-matches": true,
+            "num-search-pages": 5,
+            "debug": false,
+            "listings": false,
+            "screenshots-enabled": true,
+            "include-intermediate-html": false,
+            "append-location": false
+          },
+          "position": 0
+        },
+        "status": "Completed",
+        "job-id": 564271015
+      }
+     
+   
+    ]
+  },
+  "statuses": {
+    "Completed": 4
+  },
+  "status": "Finished"
+}
+```
+
 This API method allows you to retrieve search ranking (and listing data) from the major search engines and their local variants, namely Google, Google Maps, Yahoo!, Yahoo! Local, Bing and Bing Maps. It works for the USA, United Kingdom, Canada and Australia. The only exception is in Australia where Yahoo! Local is not supported.
 
 This method needs to be used in conjunction with the [batch methods](#batches) described above.
