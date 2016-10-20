@@ -435,9 +435,11 @@ If the driver was unable to make the delivery, your application can do one of tw
 DeliveryStatus.FAILED should only be used when the driver intends to return the goods to the warehouse. If the delivery can be made later in the day, be sure to use DeliveryStatus.VISIT_LATER.
 </aside>
 
+You can also use the `DeliveryAttempt`'s `notes` and `deliveryCode` fields to provide additional information about the attempted delivery.
 
-You can also use the `DeliveryAttempt`'s notes field to provide additional information about the attempted delivery.
+The `notes` field is useful for capturing freeform feedback from the driver. For example, if a driver is trying to make a delivery but the waypoint is closed, they may wish to provide the updated hours. You should allow the driver to provide this freeform feedback whenever they make a delivery attempt.
 
+The `deliveryCode` is useful for gathering structured driver feedback. For example, you may wish to have the driver choose a `deliveryCode` from a list of failure reasons. Using consistent `deliveryCodes`s will allow your users to identify common issues and improve their operation.
 
 Here’s how to create and add a successful DeliveryAttempt, using the Route we created previously:
 
@@ -447,6 +449,20 @@ DeliveryAttempt successfulAttempt = DeliveryAttempt.builder()
         .setNotes("Handed to customer") // notes are optional
         .build();
 FoxtrotSDK.getInstance().addDeliveryAttempt("SOME_WAYPOINT_ID", successfulAttempt);
+```
+
+And similarly, a failed attempt with a DeliveryCode explaining why the attempt was not successful:
+
+```java
+DeliveryCode deliveryCode = DeliveryCode.builder()
+                                        .setCode("F-605")
+                                        .setMessage("The customer is not open on Thursdays");
+DeliveryAttempt failedAttempt = DeliveryAttempt.builder()
+        .setStatus(DeliveryStatus.FAILED)
+        .setDeliveryCode(deliveryCode)
+        .setNotes("Customer closed") // notes are optional
+        .build();
+FoxtrotSDK.getInstance().addDeliveryAttempt("SOME_WAYPOINT_ID", failedAttempt);
 ```
 
 ## Undoing a Delivery Attempt
