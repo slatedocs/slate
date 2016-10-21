@@ -1,7 +1,7 @@
 ## `/products/<imei>/parameters/history`
 ### Description
 
-This endpoint is designed for users to look at the parameter history of a product and its parts. A `GET` request to this endpoint will return:
+This endpoint is designed for users to retrieve the parameter history of a product and its parts. A `GET` request to this endpoint will return:
 
 * The parameter histories of the product
 * The parameter histories of all the parts associated with the product
@@ -153,3 +153,11 @@ __endpoint__ | `/products/<imei>/parameters/history`
 __method__ | `GET`
 __url_params__ | `product_imei`  <font color="DarkGray">_(str)_</font> 
 __response__ | 200
+
+### Response
+
+The format of the data returned by this endpoint is a dictionary where the keys are part_parameters and product_parameters.
+
+The part_parameter dictionary contains integer keys which represent the part_id of a part which belongs to the product. The values linked to the key is a list of dictionaries, each of which represents a single parameter for the product.
+
+The product_parameter dictionary consists of a single list of dictionaries which contains the parameters assigned to the product.
