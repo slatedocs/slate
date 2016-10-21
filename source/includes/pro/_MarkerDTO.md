@@ -27,7 +27,7 @@ PERSONAL_NEWS | наличие в меню раздела персональны
 ```xml
 <tags type="MarkerDTO">
   <key>BUTTON_1_TEXT</key>
-  <value>Перевод средств</value>
+  <value>Payments</value>
 </tags>
 <tags type="MarkerDTO">
   <key>BUTTON_1_TARGET</key>
@@ -35,25 +35,27 @@ PERSONAL_NEWS | наличие в меню раздела персональны
 </tags>
 <tags type="MarkerDTO">
   <key>BUTTON_2_TEXT</key>
-  <value>Открытие депозита</value>
+  <value>Transfer by phone</value>
 </tags>
 <tags type="MarkerDTO">
   <key>BUTTON_2_TARGET</key>
-  <value>form_type</value>
+  <value>TRANSFER_BY_PHONE</value>
 </tags>
 ```
 
 key | type | status | comment
 --- | ---- | :----: | ---:
 BUTTON_1_TEXT | string | 1..1 | текст подсказки на кнопке
-BUTTON_1_TARGET | string | 0..1 | переход по нажатию кнопки
+BUTTON_1_TARGET | [TargetType](#targettype) | 1..1 | переход по нажатию кнопки
 ANALYTICS | string | 1..1 | наличие на продукте кнопки перехода на экран аналитики
+
+### TargetType
 
 key | comment
 --- | ---:
 payment_full | раздел платежей полностью
 payment_short | платежный раздел короткий
-FormType | открытие формы
+form_type | открытие формы с определенным типом (необходимо подать конкретный тип, например ``TRANSFER_BY_PHONE``)
 
 <aside class="notice">если необходимо более одной кнопки используется изменение порядкового номера в ключе, например BUTTON_2_TEXT</aside>
 <aside class="warning">TARGET является фактически фильтром, так что в форме обязательно должно присутствовать поле со счетом, с которого происходит переход</aside>
