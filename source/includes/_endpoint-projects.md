@@ -20,15 +20,15 @@ GET /projects/ HTTP/1.1
 ```json
 {
   "element": "shoji:catalog",
-  "self": "http://beta.crunch.io/api/projects/",
+  "self": "http://app.crunch.io/api/projects/",
   "index": {
-    "http://beta.crunch.io/api/projects/4643/": {
+    "http://app.crunch.io/api/projects/4643/": {
       "name": "Project 1",
       "id": "4643",
       "icon": "",
       "permissions": {"view":true, "edit": "true"}
     },
-    "http://beta.crunch.io/api/projects/6c01/": {
+    "http://app.crunch.io/api/projects/6c01/": {
       "name": "Project 2",
       "id": "6c01",
       "icon": "",
@@ -93,12 +93,12 @@ GET /icons/ HTTP/1.1
 ```json
 {
   "element": "shoji:catalog",
-  "self": "http://beta.crunch.io/api/icons/",
+  "self": "http://app.crunch.io/api/icons/",
   "index": {
-    "http://beta.crunch.io/api/icons/01/": {},
-    "http://beta.crunch.io/api/icons/02/": {},
-    "http://beta.crunch.io/api/icons/03/": {},
-    "http://beta.crunch.io/api/icons/04/": {}
+    "http://app.crunch.io/api/icons/01/": {},
+    "http://app.crunch.io/api/icons/02/": {},
+    "http://app.crunch.io/api/icons/03/": {},
+    "http://app.crunch.io/api/icons/04/": {}
   }
 }
 ```
@@ -115,13 +115,13 @@ GET /projects/6c01/ HTTP/1.1
 ```json
 {
   "element": "shoji:entity",
-  "self": "http://beta.crunch.io/api/projects/6c01/",
+  "self": "http://app.crunch.io/api/projects/6c01/",
   "catalogs": {
-    "datasets": "http://beta.crunch.io/api/projects/6c01/datasets/",
-    "members": "http://beta.crunch.io/api/projects/6c01/members/"
+    "datasets": "http://app.crunch.io/api/projects/6c01/datasets/",
+    "members": "http://app.crunch.io/api/projects/6c01/members/"
   },
   "views": {
-    "icon": "http://beta.crunch.io/api/projects/6c01/icon/"
+    "icon": "http://app.crunch.io/api/projects/6c01/icon/"
   },
   "body": {
     "name": "Project 2",
@@ -188,10 +188,10 @@ GET /projects/order/ HTTP/1.1
 ```json
 {
   "element": "shoji:order",
-  "self": "http://beta.crunch.io/api/projects/order/",
+  "self": "http://app.crunch.io/api/projects/order/",
   "graph": [
-    "https://beta.crunch.io/api/projects/cc9161/",
-    "https://beta.crunch.io/api/projects/a598c7/"
+    "https://app.crunch.io/api/projects/cc9161/",
+    "https://app.crunch.io/api/projects/a598c7/"
   ]
 }
 ```
@@ -213,10 +213,10 @@ PUT /projects/order/ HTTP/1.1
 ```json
 {
   "element": "shoji:order",
-  "self": "http://beta.crunch.io/api/projects/order/",
+  "self": "http://app.crunch.io/api/projects/order/",
   "graph": [
-    "https://beta.crunch.io/api/projects/cc9161/",
-    "https://beta.crunch.io/api/projects/a598c7/"
+    "https://app.crunch.io/api/projects/cc9161/",
+    "https://app.crunch.io/api/projects/a598c7/"
   ]
 }
 ```
@@ -257,9 +257,9 @@ GET /projects/abcd/members/ HTTP/1.1
 ```json
 {
   "element": "shoji:catalog",
-  "self": "http://beta.crunch.io/api/projects/6c01/members/",
+  "self": "http://app.crunch.io/api/projects/6c01/members/",
   "index": {
-    "http://beta.crunch.io/api/users/00002/": {
+    "http://app.crunch.io/api/users/00002/": {
       "name": "Jean-Luc Picard",
       "email": "captain@crunch.io",
       "permissions": {
@@ -267,7 +267,7 @@ GET /projects/abcd/members/ HTTP/1.1
         "view": true
       }
     },
-    "http://beta.crunch.io/api/users/00005/": {
+    "http://app.crunch.io/api/users/00005/": {
       "name": "William Riker",
       "email": "firstofficer@crunch.io",
       "permissions": {
@@ -320,18 +320,18 @@ PATCH /projects/abcd/members/ HTTP/1.1
 ```json
 {
   "element": "shoji:catalog",
-  "self": "http://beta.crunch.io/api/projects/6c01/members/",
+  "self": "http://app.crunch.io/api/projects/6c01/members/",
   "index": {
-    "http://beta.crunch.io/api/users/001/": {},
-    "http://beta.crunch.io/api/users/002/": {
+    "http://app.crunch.io/api/users/001/": {},
+    "http://app.crunch.io/api/users/002/": {
       "permissions": {
         "edit": true
       }
     },
-    "http://beta.crunch.io/api/users/003/": null,
+    "http://app.crunch.io/api/users/003/": null,
     "user@email.com": {},
     "send_notification": true,
-    "url_base": "https://beta.crunch.io/password/change/${token}/"
+    "url_base": "https://app.crunch.io/password/change/${token}/"
   }
 }
 ```
@@ -380,7 +380,7 @@ PATCH /datasets/cc9161/ HTTP/1.1
 ```
 
 ```json
-{"owner":"https://beta.crunch.io/api/projects/abcd/"}
+{"owner":"https://app.crunch.io/api/projects/abcd/"}
 ```
 
 #### GET
@@ -396,12 +396,12 @@ GET /projects/6c01/datasets/ HTTP/1.1
 ```json
 {
   "element": "shoji:catalog",
-  "self": "http://beta.crunch.io/api/projects/6c01/datasets/",
+  "self": "http://app.crunch.io/api/projects/6c01/datasets/",
   "orders": {
-    "order": "http://beta.crunch.io/api/projects/6c01/datasets/order/"
+    "order": "http://app.crunch.io/api/projects/6c01/datasets/order/"
   },
   "index": {
-    "https://beta.crunch.io/api/datasets/cc9161/": {
+    "https://app.crunch.io/api/datasets/cc9161/": {
         "owner_name": "James T. Kirk",
         "name": "The Voyage Home",
         "description": "Stardate 8390",
@@ -418,15 +418,15 @@ GET /projects/6c01/datasets/ HTTP/1.1
             "columns": 67
         },
         "id": "cc9161",
-        "owner_id": "https://beta.crunch.io/api/users/685722/",
+        "owner_id": "https://app.crunch.io/api/users/685722/",
         "start_date": "2286",
         "end_date": null,
         "creation_time": "1986-11-26T12:05:00",
         "modification_time": "1986-11-26T12:05:00",
-        "current_editor": "https://beta.crunch.io/api/users/ff9443/",
+        "current_editor": "https://app.crunch.io/api/users/ff9443/",
         "current_editor_name": "Leonard Nimoy"
     },
-    "https://beta.crunch.io/api/datasets/a598c7/": {
+    "https://app.crunch.io/api/datasets/a598c7/": {
         "owner_name": "Spock",
         "name": "The Wrath of Khan",
         "description": "",
@@ -443,7 +443,7 @@ GET /projects/6c01/datasets/ HTTP/1.1
             "columns": null
         },
         "id": "a598c7",
-        "owner_id": "https://beta.crunch.io/api/users/af432c/",
+        "owner_id": "https://app.crunch.io/api/users/af432c/",
         "start_date": "2285-10-03",
         "end_date": "2285-10-20",
         "creation_time": "1982-06-04T09:16:23.231045",
@@ -476,7 +476,7 @@ GET /projects/6c01/icon/ HTTP/1.1
 ```json
 {
   "element": "shoji:view",
-  "self": "http://beta.crunch.io/api/projects/6c01/icon/",
+  "self": "http://app.crunch.io/api/projects/6c01/icon/",
   "value": ""
 }
 ```
@@ -508,7 +508,7 @@ Content-Type: image/jpeg
 
 ```http
 HTTP/1.1 201 Created
-Location: https://beta.crunch.io/api/datasets/223fd4/
+Location: https://app.crunch.io/api/datasets/223fd4/
 ```
 
 ##### Icon URL
@@ -524,7 +524,7 @@ PUT /projects/6c01/datasets/icon/ HTTP/1.1
 ```json
 {
   "element": "shoji:view",
-  "self": "http://beta.crunch.io/api/projects/6c01/datasets/icon/",
+  "self": "http://app.crunch.io/api/projects/6c01/datasets/icon/",
   "value": "http://public.domain.com/icon.png"
 }
 ```
@@ -532,7 +532,7 @@ PUT /projects/6c01/datasets/icon/ HTTP/1.1
 
 ```http
 HTTP/1.1 201 Created
-Location: https://beta.crunch.io/api/datasets/223fd4/
+Location: https://app.crunch.io/api/datasets/223fd4/
 ```
 
 #### POST
@@ -560,10 +560,10 @@ GET /projects/6c01/datasets/order/ HTTP/1.1
 ```json
 {
   "element": "shoji:order",
-  "self": "http://beta.crunch.io/api/projects/6c01/datasets/order/",
+  "self": "http://app.crunch.io/api/projects/6c01/datasets/order/",
   "graph": [
-    "https://beta.crunch.io/api/datasets/cc9161/",
-    "https://beta.crunch.io/api/datasets/a598c7/"
+    "https://app.crunch.io/api/datasets/cc9161/",
+    "https://app.crunch.io/api/datasets/a598c7/"
   ]
 }
 ```
@@ -583,11 +583,11 @@ PUT /projects/6c01/datasets/order/ HTTP/1.1
 ```json
 {
   "element": "shoji:order",
-  "self": "http://beta.crunch.io/api/projects/6c01/datasets/order/",
+  "self": "http://app.crunch.io/api/projects/6c01/datasets/order/",
   "graph": [
-    "https://beta.crunch.io/api/datasets/cc9161/",
+    "https://app.crunch.io/api/datasets/cc9161/",
     {
-      "group": "https://beta.crunch.io/api/datasets/a598c7/"
+      "group": "https://app.crunch.io/api/datasets/a598c7/"
     }
   ]
 }

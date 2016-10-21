@@ -16,26 +16,26 @@ the user, as well as public decks shared with all users of the dataset.
 ```json
 {
     "element": "shoji:catalog",
-    "self": "https://beta.crunch.io/api/datasets/223fd4/decks/",
+    "self": "https://app.crunch.io/api/datasets/223fd4/decks/",
     "index": {
-        "https://beta.crunch.io/api/datasets/cc9161/decks/4fa25/": {
+        "https://app.crunch.io/api/datasets/cc9161/decks/4fa25/": {
           "name": "my new deck",
           "creation_time": "1986-11-26T12:05:00",
           "id": "4fa25",
           "is_public": false,
-          "owner_id": "https://beta.crunch.io/api/users/abcd3/",
+          "owner_id": "https://app.crunch.io/api/users/abcd3/",
           "owner_name": "Real Person"
         },
-        "https://beta.crunch.io/api/datasets/cc9161/decks/2b53e/": {
+        "https://app.crunch.io/api/datasets/cc9161/decks/2b53e/": {
           "name": "Default deck",
           "creation_time": "1987-10-15T11:45:00",
           "id": "2b53e",
           "is_public": true,
-          "owner_id": "https://beta.crunch.io/api/users/4cba5/",
+          "owner_id": "https://app.crunch.io/api/users/4cba5/",
           "owner_name": "Other Person"
         }
     },
-    "order": "https://beta.crunch.io/api/datasets/223fd4/decks/order/"
+    "order": "https://app.crunch.io/api/datasets/223fd4/decks/order/"
 }
 ```
 
@@ -60,7 +60,7 @@ POST a shoji:entity to create a new deck for this dataset. The only required bod
 ```json
 {
     "element": "shoji:entity",
-    "self": "https://beta.crunch.io/api/datasets/223fd4/decks/",
+    "self": "https://app.crunch.io/api/datasets/223fd4/decks/",
     "body": {
         "name": "my new deck",
         "description": "This deck will contain analyses for a variable",
@@ -71,7 +71,7 @@ POST a shoji:entity to create a new deck for this dataset. The only required bod
 
 ```http
 HTTP/1.1 201 Created
-Location: https://beta.crunch.io/api/datasets/223fd4/decks/2b3c5e/
+Location: https://app.crunch.io/api/datasets/223fd4/decks/2b3c5e/
 
 ```
 
@@ -93,12 +93,12 @@ the decks' catalog.
 {
     "element": "shoji:catalog",
     "index": {
-        "https://beta.crunch.io/api/datasets/cc9161/decks/4fa25/": {
+        "https://app.crunch.io/api/datasets/cc9161/decks/4fa25/": {
           "name": "Renamed deck",
           "is_public": true
         }
     },
-    "order": "https://beta.crunch.io/api/datasets/223fd4/decks/order/"
+    "order": "https://app.crunch.io/api/datasets/223fd4/decks/order/"
 }
 ```
 
@@ -123,14 +123,14 @@ GET a deck entity resource to return a shoji:entity with all of its attributes:
 ```json
 {
     "element": "shoji:entity",
-    "self": "https://beta.crunch.io/api/datasets/223fd4/decks/223fd4/",
+    "self": "https://app.crunch.io/api/datasets/223fd4/decks/223fd4/",
     "body": {
         "name": "Presentation deck",
         "id": "223fd4",
         "creation_time": "1987-10-15T11:45:00",
         "description": "Explanation about the deck",
         "is_public": false,
-        "owner_id": "https://beta.crunch.io/api/users/abcd3/",
+        "owner_id": "https://app.crunch.io/api/users/abcd3/",
         "owner_name": "Real Person"
     }
 }
@@ -155,7 +155,7 @@ if the request is invalid.
 ```json
 {
     "element": "shoji:entity",
-    "self": "https://beta.crunch.io/api/datasets/223fd4/decks/223fd4/",
+    "self": "https://app.crunch.io/api/datasets/223fd4/decks/223fd4/",
     "body": {
         "name": "Presentation deck",
         "id": "223fd4",
@@ -190,11 +190,11 @@ Returns a [Shoji Order](#shoji-order) response.
 ```json
 {
   "element": "shoji:order",
-  "self": "https://beta.crunch.io/api/datasets/223fd4/decks/order/",
+  "self": "https://app.crunch.io/api/datasets/223fd4/decks/order/",
   "graph": [
-    "https://beta.crunch.io/api/datasets/223fd4/decks/1/",
-    "https://beta.crunch.io/api/datasets/223fd4/decks/2/",
-    "https://beta.crunch.io/api/datasets/223fd4/decks/3/"
+    "https://app.crunch.io/api/datasets/223fd4/decks/1/",
+    "https://app.crunch.io/api/datasets/223fd4/decks/2/",
+    "https://app.crunch.io/api/datasets/223fd4/decks/3/"
   ]
 }
 
@@ -211,10 +211,10 @@ order.
 ```json
 {
   "element": "shoji:order",
-  "self": "https://beta.crunch.io/api/datasets/223fd4/decks/order/",
+  "self": "https://app.crunch.io/api/datasets/223fd4/decks/order/",
   "graph": [
-    "https://beta.crunch.io/api/datasets/223fd4/decks/1/",
-    "https://beta.crunch.io/api/datasets/223fd4/decks/3/"
+    "https://app.crunch.io/api/datasets/223fd4/decks/1/",
+    "https://app.crunch.io/api/datasets/223fd4/decks/3/"
   ]
 }
 ```
@@ -241,23 +241,23 @@ Returns a `shoji:catalog` with the slides for this deck.
 
 {
     "element": "shoji:catalog",
-    "self": "https://beta.crunch.io/api/datasets/123/decks/123/slides/",
+    "self": "https://app.crunch.io/api/datasets/123/decks/123/slides/",
     "orders": {
-        "flat": "https://beta.crunch.io/api/datasets/123/decks/123/slides/flat/"
+        "flat": "https://app.crunch.io/api/datasets/123/decks/123/slides/flat/"
     },
-    "specification": "https://beta.crunch.io/api/specifications/slides/",
+    "specification": "https://app.crunch.io/api/specifications/slides/",
     "description": "A catalog of the Slides in this Deck",
     "index": {
-        "https://beta.crunch.io/api/datasets/123/decks/123/slides/123/": {
-            "analysis_url": "https://beta.crunch.io/api/datasets/123/decks/123/slides/123/analyses/123/",
+        "https://app.crunch.io/api/datasets/123/decks/123/slides/123/": {
+            "analysis_url": "https://app.crunch.io/api/datasets/123/decks/123/slides/123/analyses/123/",
             "subtitle": "z",
             "display": {
                 "value": "table"
             },
             "title": "slide 1"
         },
-        "https://beta.crunch.io/api/datasets/123/decks/123/slides/456/": {
-            "analysis_url": "https://beta.crunch.io/api/datasets/123/decks/123/slides/456/",
+        "https://app.crunch.io/api/datasets/123/decks/123/slides/456/": {
+            "analysis_url": "https://app.crunch.io/api/datasets/123/decks/123/slides/456/",
             "subtitle": "",
             "display": {
                 "value": "table"

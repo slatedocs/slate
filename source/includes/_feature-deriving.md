@@ -18,7 +18,7 @@ Given a variable such as:
 ```json
 {
     "element": "shoji:entity",
-    "self": "https://beta.crunch.io/api/datasets/3ad42c/variables/0000f5/",
+    "self": "https://app.crunch.io/api/datasets/3ad42c/variables/0000f5/",
     "body": {
         "name": "Education",
         "alias": "educ",
@@ -97,7 +97,7 @@ POST'ing to the private variables catalog a Shoji Entity containing a ZCL functi
             "function": "combine_categories",
             "args": [
                 {
-                    "variable": "https://beta.crunch.io/api/datasets/3ad42c/variables/0000f5/"
+                    "variable": "https://app.crunch.io/api/datasets/3ad42c/variables/0000f5/"
                 },
                 {
                     "value": [
@@ -157,7 +157,7 @@ Given a variable such as:
 ```json
 {
     "element": "shoji:entity",
-    "self": "https://beta.crunch.io/api/datasets/455288/variables/3c2e57/",
+    "self": "https://app.crunch.io/api/datasets/455288/variables/3c2e57/",
     "body": {
         "name": "Aided awareness",
         "alias": "aided",
@@ -221,7 +221,7 @@ POSTing to the variables catalog a Shoji Entity containing a ZCL function like:
             "function": "combine_responses",
             "args": [
                 {
-                    "variable": "https://beta.crunch.io/api/datasets/455288/variables/3c2e57/"
+                    "variable": "https://app.crunch.io/api/datasets/455288/variables/3c2e57/"
                 },
                 {
                     "value": [
@@ -346,7 +346,7 @@ Given a variable such as:
 ```json
 {
     "element": "shoji:entity",
-    "self": "https://beta.crunch.io/api/datasets/3ad42c/variables/0000f5/",
+    "self": "https://app.crunch.io/api/datasets/3ad42c/variables/0000f5/",
     "body": {
         "name": "Cola",
         "alias": "cola",
@@ -382,7 +382,7 @@ POST'ing to the private variables catalog a Shoji Entity containing a ZCL functi
         "expr": {
             "function": "select_categories",
             "args": [
-                {"variable": "https://beta.crunch.io/api/datasets/3ad42c/variables/0000f5/"},
+                {"variable": "https://app.crunch.io/api/datasets/3ad42c/variables/0000f5/"},
                 {"value": [2, 3]}
             ]
         }

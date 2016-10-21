@@ -51,15 +51,15 @@ With the relative flag enabled, the variable catalog looks something like this:
 ```json
 {
     "element": "shoji:catalog",
-    "self": "https://beta.crunch.io/api/datasets/5ee0a0/variables/",
+    "self": "https://app.crunch.io/api/datasets/5ee0a0/variables/",
     "orders": {
-        "hier": "https://beta.crunch.io/api/datasets/5330a0/variables/hier/",
-        "personal": "https://beta.crunch.io/api/datasets/5330a0/variables/personal/"
+        "hier": "https://app.crunch.io/api/datasets/5330a0/variables/hier/",
+        "personal": "https://app.crunch.io/api/datasets/5330a0/variables/personal/"
     },
     "views": {
-        "weights": "https://beta.crunch.io/api/datasets/5ee0a0/variables/weights/"
+        "weights": "https://app.crunch.io/api/datasets/5ee0a0/variables/weights/"
     },
-    "specification": "https://beta.crunch.io/api/specifications/variables/",
+    "specification": "https://app.crunch.io/api/specifications/variables/",
     "description": "List of Variables of this dataset",
     "index": {
         "a77d9f/": {
@@ -151,14 +151,14 @@ line 24.
 ```json
 {
     "element": "shoji:catalog",
-    "self": "https://beta.crunch.io/api/datasets/5ee0a0/variables/",
+    "self": "https://app.crunch.io/api/datasets/5ee0a0/variables/",
     "orders": {
-        "hier": "https://beta.crunch.io/api/datasets/5330a0/variables/hier/"
+        "hier": "https://app.crunch.io/api/datasets/5330a0/variables/hier/"
     },
     "views": {
-        "weights": "https://beta.crunch.io/api/datasets/5ee0a0/variables/weights/"
+        "weights": "https://app.crunch.io/api/datasets/5ee0a0/variables/weights/"
     },
-    "specification": "https://beta.crunch.io/api/specifications/variables/",
+    "specification": "https://app.crunch.io/api/specifications/variables/",
     "description": "List of Variables of this dataset",
     "index": {
         "a77d9f/": {
@@ -315,7 +315,7 @@ weight variables with the incoming ones. Use this to delete weight variables.
 {
   "groups": [{
     "group": "weight_variables",
-    "entities": ["https://beta.crunch.io/api/datasets/42d0a3/variables/42229f"]
+    "entities": ["https://app.crunch.io/api/datasets/42d0a3/variables/42229f"]
   }]
 }
 ```

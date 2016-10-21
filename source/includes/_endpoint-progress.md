@@ -11,7 +11,7 @@ GET /progress/{id}/ HTTP/1.1
 ```json
 {
     "element": "shoji:view",
-    "self": "https:/beta.crunch.io/api/progress/{id}/",
+    "self": "https:/app.crunch.io/api/progress/{id}/",
     "value": {
         "progress": 22,
         "message": "exported 2 variables"

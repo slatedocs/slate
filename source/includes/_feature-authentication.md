@@ -2,7 +2,7 @@
 
 ```http
 POST /api/public/login/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 Content-Type: application/json
 Content-Length: 67
 
@@ -35,7 +35,7 @@ curl -c cookie-jar
     -X POST 
     -d '{"email": "fake.user@example.com", "password": "password"}' 
     -H "Content-type: application/json"
-    https://beta.crunch.io/api/public/login/
+    https://app.crunch.io/api/public/login/
 
 # The above command will perform a login and save the login cookie to a file called 'cookie-jar'.
 # After this, you can access the endpoint via `curl' commands (POST, GET, PATCH), as long as the '-b cookie-jar' flag is present.  Note, -b not -c.  -c saves cookies, -b submits cookies from the existing file. It is good practice to delete this file when you are done.

@@ -28,7 +28,7 @@ listDatasets() # Shows the names of all datasets you have
 listDatasets(refresh=TRUE) # Refreshes that list (and does GET /datasets/)
 
 # To get the raw Shoji object, should you need it,
-crGET("https://beta.crunch.io/api/datasets/")
+crGET("https://app.crunch.io/api/datasets/")
 ```
 
 ```python
@@ -37,20 +37,20 @@ crGET("https://beta.crunch.io/api/datasets/")
 ```json
 {
     "element": "shoji:catalog",
-    "self": "https://beta.crunch.io/api/datasets/",
+    "self": "https://app.crunch.io/api/datasets/",
     "catalogs": {
-        "by_name": "https://beta.crunch.io/api/datasets/by_name/{name}/"
+        "by_name": "https://app.crunch.io/api/datasets/by_name/{name}/"
     },
     "views": {
-        "search": "https://beta.crunch.io/api/datasets/search/"
+        "search": "https://app.crunch.io/api/datasets/search/"
     },
     "orders": {
-        "order": "https://beta.crunch.io/api/datasets/order/"
+        "order": "https://app.crunch.io/api/datasets/order/"
     },
-    "specification": "https://beta.crunch.io/api/specifications/datasets/",
+    "specification": "https://app.crunch.io/api/specifications/datasets/",
     "description": "Catalog of Datasets that belong to this user. POST a Dataset representation (serialized JSON) here to create a new one; a 201 response indicates success and returns the location of the new object. GET that URL to retrieve the object.",
     "index": {
-        "https://beta.crunch.io/api/datasets/cc9161/": {
+        "https://app.crunch.io/api/datasets/cc9161/": {
             "owner_name": "James T. Kirk",
             "name": "The Voyage Home",
             "description": "Stardate 8390",
@@ -68,15 +68,15 @@ crGET("https://beta.crunch.io/api/datasets/")
             },
             "is_published": true,
             "id": "cc9161",
-            "owner_id": "https://beta.crunch.io/api/users/685722/",
+            "owner_id": "https://app.crunch.io/api/users/685722/",
             "start_date": "2286",
             "end_date": null,
             "creation_time": "1986-11-26T12:05:00",
             "modification_time": "1986-11-26T12:05:00",
-            "current_editor": "https://beta.crunch.io/api/users/ff9443/",
+            "current_editor": "https://app.crunch.io/api/users/ff9443/",
             "current_editor_name": "Leonard Nimoy"
         },
-        "https://beta.crunch.io/api/datasets/a598c7/": {
+        "https://app.crunch.io/api/datasets/a598c7/": {
             "owner_name": "Spock",
             "name": "The Wrath of Khan",
             "description": "",
@@ -94,7 +94,7 @@ crGET("https://beta.crunch.io/api/datasets/")
             },
             "is_published": true,
             "id": "a598c7",
-            "owner_id": "https://beta.crunch.io/api/users/af432c/",
+            "owner_id": "https://app.crunch.io/api/users/af432c/",
             "start_date": "2285-10-03",
             "end_date": "2285-10-20",
             "creation_time": "1982-06-04T09:16:23.231045",
@@ -211,19 +211,19 @@ GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_v
 ```json
 {
    "element": "shoji:view",
-    "self": "https://beta.crunch.io/api/datasets/search/?q=blue",
+    "self": "https://app.crunch.io/api/datasets/search/?q=blue",
     "description": "Returns a view with relevant search information",
     "value": {
         "groups": [
             {
                 "group": "Search Results",
                 "datasets": {
-                    "https://beta.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/": {
+                    "https://app.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/": {
                         "labels": [],
                         "name": "econ_few_columns_0",
                         "groups": {
                             "blue": {
-                                "https://beta.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/variables/000004/": {
+                                "https://app.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/variables/000004/": {
                                     "dataset_labels": [],
                                     "users": [
                                         "00004",
@@ -245,14 +245,14 @@ GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_v
                                     "group_names": [
                                         "blue"
                                     ],
-                                    "dataset": "https://beta.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/",
+                                    "dataset": "https://app.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/",
                                     "dataset_id": "173b4eec13f542588b9b0a9cbcd764c9",
                                     "dataset_created_time": null,
                                     "subvar_names": [],
                                     "dataset_name": "econ_few_columns_0",
                                     "description": "Are you male or female?"
                                 },
-                                "https://beta.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/variables/000003/": {
+                                "https://app.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/variables/000003/": {
                                     "dataset_labels": [],
                                     "users": [
                                         "00004",
@@ -268,7 +268,7 @@ GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_v
                                     "group_names": [
                                         "blue"
                                     ],
-                                    "dataset": "https://beta.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/",
+                                    "dataset": "https://app.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/",
                                     "dataset_id": "173b4eec13f542588b9b0a9cbcd764c9",
                                     "dataset_created_time": null,
                                     "subvar_names": [],
@@ -279,14 +279,14 @@ GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_v
                         },
                         "description": ""
                     },
-                    "https://beta.crunch.io/api/datasets/4473ab4ee84b40b2a7cd5cab4548d584/": {
+                    "https://app.crunch.io/api/datasets/4473ab4ee84b40b2a7cd5cab4548d584/": {
                         "labels": [],
                         "name": "simple_alltypes",
                         "description": ""
                     }
                 },
                 "variables": {
-                    "https://beta.crunch.io/api/datasets/4473ab4ee84b40b2a7cd5cab4548d584/variables/000000/": {
+                    "https://app.crunch.io/api/datasets/4473ab4ee84b40b2a7cd5cab4548d584/variables/000000/": {
                         "dataset_labels": [],
                         "users": [
                             "00002"
@@ -307,7 +307,7 @@ GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_v
                         "dataset_description": "",
                         "dataset_archived": false,
                         "group_names": null,
-                        "dataset": "https://beta.crunch.io/api/datasets/4473ab4ee84b40b2a7cd5cab4548d584/",
+                        "dataset": "https://app.crunch.io/api/datasets/4473ab4ee84b40b2a7cd5cab4548d584/",
                         "dataset_id": "bb987b45a5b04caba10dec4dad7b37a8",
                         "dataset_created_time": null,
                         "subvar_names": [],
@@ -350,14 +350,14 @@ directly on the dataset entity.
 #### PATCH
 ```http
 PATCH /api/datasets/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 Content-Type: application/json
 Content-Length: 231
 
 {
     "element": "shoji:catalog",
     "index": {
-        "https://beta.crunch.io/api/datasets/a598c7/": {
+        "https://app.crunch.io/api/datasets/a598c7/": {
             "description": "Stardate 8130.4"
         }
     }
@@ -388,11 +388,11 @@ description(ds)
 # If you needed to touch HTTP more directly,
 # you could:
 payload <- list(
-    `https://beta.crunch.io/api/datasets/a598c7/`=list(
+    `https://app.crunch.io/api/datasets/a598c7/`=list(
         description="Stardate 8130.4"
     )
 )
-crPATCH("https://beta.crunch.io/api/datasets/",
+crPATCH("https://app.crunch.io/api/datasets/",
     body=toJSON(payload))
 ```
 ```shell
@@ -449,7 +449,7 @@ on such project.
 #### POST
 ```http
 POST /api/datasets/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 Content-Type: application/json
 Content-Length: 88
 
@@ -465,7 +465,7 @@ Content-Length: 88
 
 ```http
 HTTP/1.1 201 Created
-Location: https://beta.crunch.io/api/datasets/223fd4/
+Location: https://app.crunch.io/api/datasets/223fd4/
 
 ```
 ```r
@@ -625,19 +625,19 @@ dataset Shoji entity.
 
 ```json
 {
-  "batches": "http://beta.crunch.io/api/datasets/c5d751/batches/",
-  "joins": "http://beta.crunch.io/api/datasets/c5d751/joins/",
-  "parent": "http://beta.crunch.io/api/datasets/",
-  "variables": "http://beta.crunch.io/api/datasets/c5d751/variables/",
-  "actions": "http://beta.crunch.io/api/datasets/c5d751/actions/",
-  "savepoints": "http://beta.crunch.io/api/datasets/c5d751/savepoints/",
-  "weight_variables": "http://beta.crunch.io/api/datasets/c5d751/weight_variables/",
-  "filters": "http://beta.crunch.io/api/datasets/c5d751/filters/",
-  "multitables": "http://beta.crunch.io/api/datasets/c5d751/multitables/",
-  "comparisons": "http://beta.crunch.io/api/datasets/c5d751/comparisons/",
-  "forks": "http://beta.crunch.io/api/datasets/c5d751/forks/",
-  "decks": "http://beta.crunch.io/api/datasets/c5d751/decks/",
-  "permissions": "http://beta.crunch.io/api/datasets/c5d751/permissions/"
+  "batches": "http://app.crunch.io/api/datasets/c5d751/batches/",
+  "joins": "http://app.crunch.io/api/datasets/c5d751/joins/",
+  "parent": "http://app.crunch.io/api/datasets/",
+  "variables": "http://app.crunch.io/api/datasets/c5d751/variables/",
+  "actions": "http://app.crunch.io/api/datasets/c5d751/actions/",
+  "savepoints": "http://app.crunch.io/api/datasets/c5d751/savepoints/",
+  "weight_variables": "http://app.crunch.io/api/datasets/c5d751/weight_variables/",
+  "filters": "http://app.crunch.io/api/datasets/c5d751/filters/",
+  "multitables": "http://app.crunch.io/api/datasets/c5d751/multitables/",
+  "comparisons": "http://app.crunch.io/api/datasets/c5d751/comparisons/",
+  "forks": "http://app.crunch.io/api/datasets/c5d751/forks/",
+  "decks": "http://app.crunch.io/api/datasets/c5d751/decks/",
+  "permissions": "http://app.crunch.io/api/datasets/c5d751/permissions/"
 }
 ```
 
@@ -703,7 +703,7 @@ attribute pointing to the URL of the source dataset to use.
 {
   "element": "shoji:entity",
   "body": {
-    "copy_from": "htp://beta.crunch.io/api/datasets/1234/"
+    "copy_from": "htp://app.crunch.io/api/datasets/1234/"
   }
 }
 ```
@@ -743,7 +743,7 @@ See [Multidimensional Analysis](#multidimensional-analysis).
 
 ```http
 GET `/datasets/{id}/export/` HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 ```
 
 GET returns a Shoji View of available dataset export formats.
@@ -751,10 +751,10 @@ GET returns a Shoji View of available dataset export formats.
 ```json
 {
     "element": "shoji:view",
-    "self": "https://beta.crunch.io/api/datasets/223fd4/export/",
+    "self": "https://app.crunch.io/api/datasets/223fd4/export/",
     "views": {
-        "spss": "https://beta.crunch.io/api/datasets/223fd4/export/spss/",
-        "csv": "https://beta.crunch.io/api/datasets/223fd4/export/csv/"
+        "spss": "https://app.crunch.io/api/datasets/223fd4/export/spss/",
+        "csv": "https://app.crunch.io/api/datasets/223fd4/export/csv/"
     }
 }
 ```
@@ -774,9 +774,9 @@ POST `/api/datasets/f2364cc66e604d63a3be3e8811fc902f/export/spss/` HTTP/1.1
         "args":[
           {
             "map": {
-              "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000000/": {"variable": "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000000/"},
-              "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000001/": {"variable": "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000001/"},
-              "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000002/": {"variable": "https://beta.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000002/"}
+              "https://app.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000000/": {"variable": "https://app.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000000/"},
+              "https://app.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000001/": {"variable": "https://app.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000001/"},
+              "https://app.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000002/": {"variable": "https://app.crunch.io/api/datasets/f2364cc66e604d63a3be3e8811fc902f/variables/000002/"}
               }
           }
         ]
@@ -853,7 +853,7 @@ expression. If omitted, your applied filters will be used.
 ```json
 {
 	"element": "shoji:view",
-	"self": "https://beta.crunch.io/api/datasets/223fd4/summary/",
+	"self": "https://app.crunch.io/api/datasets/223fd4/summary/",
 	"value": {
 		"unweighted": {
 			"filtered": 2000,
@@ -905,11 +905,11 @@ can have.
 ```json
 {
     "element": "shoji:entity",
-    "self": "https://beta.crunch.io/api/datasets/223fd4/settings/",
+    "self": "https://app.crunch.io/api/datasets/223fd4/settings/",
     "body": {
         "viewers_can_export": false,
         "viewers_can_change_weight": false,
-        "weight": "https://beta.crunch.io/api/datasets/223fd4/variables/123456/"
+        "weight": "https://app.crunch.io/api/datasets/223fd4/variables/123456/"
     }
 }
 ```
@@ -939,7 +939,7 @@ By default, all dataset preferences start out with only a `weight` key
 ```json
 {
     "element": "shoji:entity",
-    "self": "https://beta.crunch.io/api/datasets/223fd4/preferences/",
+    "self": "https://app.crunch.io/api/datasets/223fd4/preferences/",
     "body": {
       "weight": null
     }
@@ -976,7 +976,7 @@ and it can only be set after that variable has been added to the dataset.
 ###### GET
 ```http
 GET /api/datasets/{dataset_id}/pk/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 
 --------
 200 OK
@@ -985,7 +985,7 @@ Content-Type:application/json;charset=utf-8
 {
     "element": "shoji:entity",
     "body": {
-        "pk": ["https://beta.crunch.io/api/datasets/{dataset_id}/variables/000001/"],
+        "pk": ["https://app.crunch.io/api/datasets/{dataset_id}/variables/000001/"],
     }
 }
 ```
@@ -996,7 +996,7 @@ Content-Type:application/json;charset=utf-8
 ```python
 >>> # "ds" is dataset via pycrunch
 >>> ds.pk.body.pk
-['https://beta.crunch.io/api/datasets/{dataset_id}/variables/000001/']
+['https://app.crunch.io/api/datasets/{dataset_id}/variables/000001/']
 ```
 
 `GET /datasets/{dataset_id}/pk/`
@@ -1009,18 +1009,18 @@ this dataset, the ``pk`` value will be ``[]``.
 ###### POST
 ```http
 POST /api/datasets/{dataset_id}/pk/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 Content-Type: application/json
 Content-Length: 15
 
-{"pk": ["https://beta.crunch.io/api/datasets/{dataset_id}/variables/000001/"]}
+{"pk": ["https://app.crunch.io/api/datasets/{dataset_id}/variables/000001/"]}
 
 --------
 204 No Content
 ```
 ```python
 >>> # "ds" is dataset via pycrunch
->>> ds.pk.post({'pk':['https://beta.crunch.io/api/datasets/{dataset_id}/variables/000001/']})
+>>> ds.pk.post({'pk':['https://app.crunch.io/api/datasets/{dataset_id}/variables/000001/']})
 >>> ds.pk.body.pk
 ['000001']
 ```
@@ -1042,7 +1042,7 @@ equivalent to deleting the primary key for a dataset.
 ###### DELETE
 ```http
 DELETE /api/datasets/{dataset_id}/pk/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 
 --------
 204 No Content

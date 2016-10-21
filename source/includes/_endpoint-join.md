@@ -13,11 +13,11 @@ A GET on this resource returns a Shoji Catalog enumerating the joins present in 
 ```json
 {
     "element": "shoji:catalog",
-    "self": "https://beta.crunch.io/api/datasets/837498a/joins/",
+    "self": "https://app.crunch.io/api/datasets/837498a/joins/",
     "index": {
-        "https://beta.crunch.io/api/datasets/837498a/joins/demo/": {
-            "left_key": "https://beta.crunch.io/api/datasets/837498a/variables/1ef71d/",
-            "right_key": "https://beta.crunch.io/api/datasets/de3095/variables/19471d/"
+        "https://app.crunch.io/api/datasets/837498a/joins/demo/": {
+            "left_key": "https://app.crunch.io/api/datasets/837498a/variables/1ef71d/",
+            "right_key": "https://app.crunch.io/api/datasets/de3095/variables/19471d/"
         }
     }
 }

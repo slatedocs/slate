@@ -135,7 +135,7 @@ It is possible to verify these conditions before trying the append using
 the batches compare endpoint.
 
 ```
-GET /datasets/4bc6af/batches/compare/?dataset=http://beta.crunch.io/api/datasets/3e2cfb/
+GET /datasets/4bc6af/batches/compare/?dataset=http://app.crunch.io/api/datasets/3e2cfb/
 ```
 
 The response will contain a conflicts key that can contain either `current`, 

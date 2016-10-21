@@ -11,10 +11,10 @@ The permissions catalog is a Shoji Catalog that collects (not contains) Users. T
 ```json
 {
     "element": "shoji:catalog",
-    "self": "https://beta.crunch.io/api/datasets/1/permissions/",
+    "self": "https://app.crunch.io/api/datasets/1/permissions/",
     "description": "Lists all the users that have access to this dataset",
     "index": {
-        "https://beta.crunch.io/api/users/42/": {
+        "https://app.crunch.io/api/users/42/": {
             "dataset_permissions": {
                 "edit": true,
                 "change_permissions": true,
@@ -57,14 +57,14 @@ To change the permissions a user has, PATCH new dataset_permissions, like:
 
 ```json
 {
-    "https://beta.crunch.io/api/users/42/": {
+    "https://app.crunch.io/api/users/42/": {
         "dataset_permissions": {
             "edit": false,
             "view": true
         }
     },
     "send_notification": true,
-    "dataset_url": "https://beta.crunch.io/dataset/1"
+    "dataset_url": "https://app.crunch.io/dataset/1"
  }
 ```
 
@@ -76,7 +76,7 @@ Multiple users' permissions can be modified in a single request by including mul
 
 The "send_notification" key in the payload is optional; if included and True, the server will send an email invitation to all newly added users (see below), as well as to users who are granted "edit" privileges. 
 
-If "send_notification" is included and true, you may also include a "dataset_url", which is the URL that will be included in the email notifying the users that they now have access to the dataset. The web application will send the "browse" view URL, for example, so that when the user receives the email notification, the link they follow will take them to the relevant dataset. If "send_notification" is true and "dataset_url" is omitted, the email link will default to https://beta.crunch.io/.
+If "send_notification" is included and true, you may also include a "dataset_url", which is the URL that will be included in the email notifying the users that they now have access to the dataset. The web application will send the "browse" view URL, for example, so that when the user receives the email notification, the link they follow will take them to the relevant dataset. If "send_notification" is true and "dataset_url" is omitted, the email link will default to https://app.crunch.io/.
 
 #### Add new user from within account
 
@@ -143,14 +143,14 @@ It is possible to share a dataset with people that are not users of Crunch yet. 
         }
     },
     "send_notifications": true,
-    "url_base": "https://beta.crunch.io/password/change/${token}/",
-    "dataset_url": "https://beta.crunch.io/dataset/1/"
+    "url_base": "https://app.crunch.io/password/change/${token}/",
+    "dataset_url": "https://app.crunch.io/dataset/1/"
 }
 ```
 
 A new user with such email address will be created and added to the account of the user that is making the request. The new user will receive an invitation email to Crunch.io with an activation link. In case the user exists on other or the same account, no changes to the user will be made.
 
-If "send_notification" was included and true in the request, the user will receive a notification email informing her about the new shared dataset if requested so. New users, unless they have an OAuth provider specified, will need to set a password, and the client application should send a URL template that directs them to a place where they can set that password. To do so, include a "url_base" attribute in the payload, a URL template with a `${token}` variable into which the server will insert the password-setting token. For the Crunch web application, this template is `https://beta.crunch.io/password/change/${token}/`.
+If "send_notification" was included and true in the request, the user will receive a notification email informing her about the new shared dataset if requested so. New users, unless they have an OAuth provider specified, will need to set a password, and the client application should send a URL template that directs them to a place where they can set that password. To do so, include a "url_base" attribute in the payload, a URL template with a `${token}` variable into which the server will insert the password-setting token. For the Crunch web application, this template is `https://app.crunch.io/password/change/${token}/`.
 
 <aside class="success">
     You may not know whether the email address you're sharing with already has a Crunch account. To be safe, you can always include "url_base" whenever you include `"send_notifications": true`. If it's needed, your invitees will thank you. If it's not needed, it will be ignored.

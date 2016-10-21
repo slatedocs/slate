@@ -344,9 +344,9 @@ Expressions generally contain references to **variables**, **values**, or **colu
 Terms refer to variables when they include a "variable" member. The value is the URL for the desired variable. For example:
 
  * `{"variable": "../variables/X/"}`
- * `{"variable": "https://beta.crunch.io/api/datasets/48ffc3/joins/abcd/variables/Y/"}`
+ * `{"variable": "https://app.crunch.io/api/datasets/48ffc3/joins/abcd/variables/Y/"}`
 
-URLs must either be absolute or relative to the URL of the current request. For example, to refer to a variable in a query at `https://beta.crunch.io/api/datasets/48ffc3/cube/`, a variable at `https://beta.crunch.io/api/datasets/48ffc3/variables/9410fc/` may be referenced by its full URL or by "../variables/9410fc/".
+URLs must either be absolute or relative to the URL of the current request. For example, to refer to a variable in a query at `https://app.crunch.io/api/datasets/48ffc3/cube/`, a variable at `https://app.crunch.io/api/datasets/48ffc3/variables/9410fc/` may be referenced by its full URL or by "../variables/9410fc/".
 
 #### Value terms
 

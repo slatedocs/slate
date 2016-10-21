@@ -10,16 +10,16 @@ of geojson or topojson.
 #### GET
 
 Crunch maintains a few geojson/topojson resources and publishes them on CDN.
-GET the catalog <https://beta.crunch.io/api/geodata/> for an index of available
+GET the catalog <https://app.crunch.io/api/geodata/> for an index of available
 geographies, each of which then includes a location to download the actual
 geojson or topojson.
 
 ```json
 {
     "element": "shoji:catalog",
-    "self": "https://beta.crunch.io/api/geodata/",
+    "self": "https://app.crunch.io/api/geodata/",
     "index": {
-        "https://beta.crunch.io/api/geodata/7ae898e210b04a9a8992314452c6677b/": {
+        "https://app.crunch.io/api/geodata/7ae898e210b04a9a8992314452c6677b/": {
             "description": "use properties.name or properties.postal-code",
             "created": "2016-07-08T16:33:44.601000+00:00",
             "name": "US States GeoJSON Name + Postal Code",
@@ -43,13 +43,13 @@ description | string | Any additional information about the geodatum
 
 ### Geodata for common applications
 
-- <https://beta.crunch.io/api/geodata/7ae898e210b04a9a8992314452c6677b/>
+- <https://app.crunch.io/api/geodata/7ae898e210b04a9a8992314452c6677b/>
   **US States** –
   Use `properties.name` or `properties.postal-code` as your `feature_key` depending on the variable (state name or abbreviation), or `id` is FIPS code.
-- <https://beta.crunch.io/api/geodata/8f9f5fed101042c4815d2dd1fd248cec/>
+- <https://app.crunch.io/api/geodata/8f9f5fed101042c4815d2dd1fd248cec/>
   **World** –
   `properties` include ISO3166 `name` as well as ISO3166-1 Alpha-3 `abbrev`
-- <https://beta.crunch.io/api/geodata/2b64724ce81c41c9bdc2436fb0bf6026/>
+- <https://app.crunch.io/api/geodata/2b64724ce81c41c9bdc2436fb0bf6026/>
   **UK Regions** –
   `properties.EER13NM` matches a YouGov stylization of United Kingdom region names.
 

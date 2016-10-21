@@ -10,7 +10,7 @@ Teams contain references to users and datasets. By sharing a dataset with a team
 
 ```http
 GET /teams/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 --------
 200 OK
 Content-Type: application/json
@@ -23,15 +23,15 @@ Content-Type: application/json
 ```json
 {
     "element": "shoji:catalog",
-    "self": "https://beta.crunch.io/api/teams/",
+    "self": "https://app.crunch.io/api/teams/",
     "description": "List of all the teams where the current user is member",
     "index": {
-        "https://beta.crunch.io/api/teams/d07edb/": {
-            "owner": "https://beta.crunch.io/api/users/41c69d/",
+        "https://app.crunch.io/api/teams/d07edb/": {
+            "owner": "https://app.crunch.io/api/users/41c69d/",
             "name": "The A-Team"
         },
-        "https://beta.crunch.io/api/teams/67fe89/": {
-            "owner": "https://beta.crunch.io/api/users/41c69d/",
+        "https://app.crunch.io/api/teams/67fe89/": {
+            "owner": "https://app.crunch.io/api/users/41c69d/",
             "name": "Palo Alto Data Science"
         }
     }
@@ -50,7 +50,7 @@ To create a new team, POST a Shoji Entity with a team "name" in the body. No oth
 
 ```http
 POST /teams/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 Content-Type: application/json
 ...
 {
@@ -84,7 +84,7 @@ teams[["New team with members"]] <- list(members="fake.user@example.com")
 
 ```http
 GET /teams/d07edb/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 --------
 200 OK
 Content-Type: application/json
@@ -97,15 +97,15 @@ Content-Type: application/json
 ```json
 {
     "element": "shoji:entity",
-    "self": "https://beta.crunch.io/api/teams/d07edb/",
+    "self": "https://app.crunch.io/api/teams/d07edb/",
     "description": "Details for a specific team",
     "body": {
-        "owner": "https://beta.crunch.io/api/users/41c69d/",
+        "owner": "https://app.crunch.io/api/users/41c69d/",
         "name": "The A-Team"
     },
     "catalogs": {
-        "datasets": "https://beta.crunch.io/api/teams/d07edb/datasets/",
-        "members": "https://beta.crunch.io/api/teams/d07edb/members/"
+        "datasets": "https://app.crunch.io/api/teams/d07edb/datasets/",
+        "members": "https://app.crunch.io/api/teams/d07edb/members/"
     }
 }
 ```
@@ -116,7 +116,7 @@ a.team <- teams[["The A-Team"]]
 name(a.team)
 ## [1] "The A-Team"
 self(a.team)
-## [1] "https://beta.crunch.io/api/teams/d07edb/"
+## [1] "https://app.crunch.io/api/teams/d07edb/"
 ```
 
 A GET request on a team entity URL returns the same "name" and "owner" attributes as shown in the team catalog, as well as references to the "datasets" and "members" catalogs corresponding to the team. Authorization is required: if the requesting user is not a member of the team, a 404 response will result.
@@ -126,7 +126,7 @@ Team names are editable by PATCHing the team entity. Authorization is required: 
 
 ```http
 PATCH /teams/03df2a/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 Content-Type: application/json
 {
     "element": "shoji:entity",
@@ -156,7 +156,7 @@ The team members catalog is a Shoji Catalog similar in nature to the [dataset pe
 
 ```http
 GET /teams/d07edb/members/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 --------
 200 OK
 Content-Type: application/json
@@ -164,16 +164,16 @@ Content-Type: application/json
 ```json
 {
     "element": "shoji:catalog",
-    "self": "https://beta.crunch.io/api/teams/d07edb/members/",
+    "self": "https://app.crunch.io/api/teams/d07edb/members/",
     "description": "Catalog of users that belong to this team",
     "index": {
-        "https://beta.crunch.io/api/users/47193a/": {
+        "https://app.crunch.io/api/users/47193a/": {
             "name": "B. A. Baracus",
             "permissions": {
                 "manage_members": false
             }
         },
-        "https://beta.crunch.io/api/users/41c69d/": {
+        "https://app.crunch.io/api/users/41c69d/": {
             "name": "Hannibal",
             "permissions": {
                 "manage_members": true
@@ -210,17 +210,17 @@ In the "index" attribute of the catalog, object keys must be either (a) URLs of 
 
 ```http
 PATCH /teams/d07edb/members/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 Content-Type: application/json
 {
     "element": "shoji:catalog",
     "index": {
-        "https://beta.crunch.io/api/users/47193a/": {
+        "https://app.crunch.io/api/users/47193a/": {
             "permissions": {
                 "manage_members": true
             }
         },
-        "https://beta.crunch.io/api/users/e3211a/": {},
+        "https://app.crunch.io/api/users/e3211a/": {},
         "templeton.peck@army.gov": {
             "permissions": {
                 "manage_members": true
@@ -228,7 +228,7 @@ Content-Type: application/json
         }
     },
     "send_notification": true,
-    "url_base": "https://beta.crunch.io/password/change/${token}/"
+    "url_base": "https://app.crunch.io/password/change/${token}/"
 }
 --------
 204 No Content
@@ -238,13 +238,13 @@ If the index object keys correspond to users that already appear in the member c
 
 If the index object keys do not correspond to users already found in the member catalog, the indicated users will be added to the team. And, if the indicated user, as specified by email address, does not yet exist, they will be invited to Crunch and added to the team. In this example, we added existing user `e3211a`, implicitly with `manage_members` set to False, to the team, and we also added "templeton.peck@army.gov", who did not previously have a Crunch account. 
 
-If "send_notification" was included and true in the request, new-to-Crunch users will receive a notification email informing them that they have been invited to Crunch. New users, unless they have an OAuth provider specified, will need to set a password, and the client application should send a URL template that directs them to a place where they can set that password. To do so, include a "url_base" attribute in the payload, a URL template with a `${token}` variable into which the server will insert the password-setting token. For the Crunch web application, this template is `https://beta.crunch.io/password/change/${token}/`.
+If "send_notification" was included and true in the request, new-to-Crunch users will receive a notification email informing them that they have been invited to Crunch. New users, unless they have an OAuth provider specified, will need to set a password, and the client application should send a URL template that directs them to a place where they can set that password. To do so, include a "url_base" attribute in the payload, a URL template with a `${token}` variable into which the server will insert the password-setting token. For the Crunch web application, this template is `https://app.crunch.io/password/change/${token}/`.
 
 A GET on the members catalog shows the updated catalog.
 
 ```http
 GET /teams/d07edb/members/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 --------
 200 OK
 Content-Type: application/json
@@ -252,28 +252,28 @@ Content-Type: application/json
 ```json
 {
     "element": "shoji:catalog",
-    "self": "https://beta.crunch.io/api/teams/d07edb/members/",
+    "self": "https://app.crunch.io/api/teams/d07edb/members/",
     "description": "Catalog of users that belong to this team",
     "index": {
-        "https://beta.crunch.io/api/users/47193a/": {
+        "https://app.crunch.io/api/users/47193a/": {
             "name": "B. A. Baracus",
             "permissions": {
                 "manage_members": true
             }
         },
-        "https://beta.crunch.io/api/users/41c69d/": {
+        "https://app.crunch.io/api/users/41c69d/": {
             "name": "Hannibal",
             "permissions": {
                 "manage_members": true
             }
         },
-        "https://beta.crunch.io/api/users/e3211a/": {
+        "https://app.crunch.io/api/users/e3211a/": {
             "name": "Howling Mad Murdock",
             "permissions": {
                 "manage_members": false
             }
         },
-        "https://beta.crunch.io/api/users/89eb3a/": {
+        "https://app.crunch.io/api/users/89eb3a/": {
             "name": "templeton.peck@army.gov",
             "permissions": {
                 "manage_members": true
@@ -290,13 +290,13 @@ To remove members from the team, PATCH the catalog with a `null` value:
 
 ```http
 PATCH /teams/d07edb/members/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 Content-Type: application/json
 ```json
 {
     "element": "shoji:catalog",
     "index": {
-        "https://beta.crunch.io/api/users/e3211a/": null
+        "https://app.crunch.io/api/users/e3211a/": null
     }
 }
 --------
@@ -306,7 +306,7 @@ Content-Type: application/json
 
 ```http
 GET /teams/d07edb/members/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 --------
 200 OK
 Content-Type: application/json
@@ -314,22 +314,22 @@ Content-Type: application/json
 ```json
 {
     "element": "shoji:catalog",
-    "self": "https://beta.crunch.io/api/teams/d07edb/members/",
+    "self": "https://app.crunch.io/api/teams/d07edb/members/",
     "description": "Catalog of users that belong to this team",
     "index": {
-        "https://beta.crunch.io/api/users/47193a/": {
+        "https://app.crunch.io/api/users/47193a/": {
             "name": "B. A. Baracus",
             "permissions": {
                 "manage_members": true
             }
         },
-        "https://beta.crunch.io/api/users/41c69d/": {
+        "https://app.crunch.io/api/users/41c69d/": {
             "name": "Hannibal",
             "permissions": {
                 "manage_members": true
             }
         },
-        "https://beta.crunch.io/api/users/89eb3a/": {
+        "https://app.crunch.io/api/users/89eb3a/": {
             "name": "templeton.peck@army.gov",
             "permissions": {
                 "manage_members": false

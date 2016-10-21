@@ -42,7 +42,7 @@ True
 
 ```http
 POST /api/datasets/{id}/forks/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 Content-Type: application/json
 Content-Length: 231
 
@@ -54,7 +54,7 @@ Content-Length: 231
 ----
 
 HTTP/1.1 201 Created
-Location: https://beta.crunch.io/api/datasets/{forked_id}/
+Location: https://app.crunch.io/api/datasets/{forked_id}/
 ```
 
 The forked dataset can then be viewed and altered like the original; however, those changes do not alter the original until you merge them back with a POST to `datasets/{id}/actions/`.
@@ -68,7 +68,7 @@ ds.actions.post({
 
 ```http
 POST /api/datasets/5de96a/actions/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 Content-Type: application/json
 Content-Length: 231
 
@@ -92,8 +92,8 @@ HTTP/1.1 202 Accepted
 ```json
 {
     "element": "shoji:view",
-    "self": "https://beta.crunch.io/api/datasets/5de96a/actions/",
-    "value": "https://beta.crunch.io/api/progress/912ab3/"
+    "self": "https://app.crunch.io/api/datasets/5de96a/actions/",
+    "value": "https://app.crunch.io/api/progress/912ab3/"
 }
 ```
 

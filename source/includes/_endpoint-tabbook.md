@@ -39,8 +39,8 @@ Location: https://s3-url/filename.xlsx
 ```json
 {
     "element": "shoji:view",
-    "self": "https://beta.crunch.io/api/datasets/a598c7/multitables/{id}/tabbook/",
-    "value": "https://beta.crunch.io/api/progress/5be83a/"
+    "self": "https://app.crunch.io/api/datasets/a598c7/multitables/{id}/tabbook/",
+    "value": "https://app.crunch.io/api/progress/5be83a/"
 }
 ```
 
@@ -50,8 +50,8 @@ At the top level, the tab book endpoint can take filtering and variable limiting
 
 Name | Type | Default | Description | Example
 ------ | ---- | ------- | ----------- | ------------- 
-filter | object | None | Filter by Crunch Expression.  Variables used in the filter should be fully-expressed urls. | [{"filter":"https://beta.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/filters/5f14133582f34b8b85b408830f4b4a9b/"}]
-where  | object | None | Crunch Expression signifying which variables to use |{<br>"function": "select",<br>"args": [<br>{<br>"map": {<br>"https://beta.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/000004/": {<br>"variable": "https://beta.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/000004/"<br>},<br>"https://beta.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/000003/": {<br>"variable": "https://beta.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/000003/"<br>}<br>}<br>}<br>]<br>}
+filter | object | None | Filter by Crunch Expression.  Variables used in the filter should be fully-expressed urls. | [{"filter":"https://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/filters/5f14133582f34b8b85b408830f4b4a9b/"}]
+where  | object | None | Crunch Expression signifying which variables to use |{<br>"function": "select",<br>"args": [<br>{<br>"map": {<br>"https://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/000004/": {<br>"variable": "https://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/000004/"<br>},<br>"https://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/000003/": {<br>"variable": "https://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/000003/"<br>}<br>}<br>}<br>]<br>}
 options| object | {}| further options defining the tabbook output.
 
 
@@ -62,7 +62,7 @@ Options for generating tab books
 Name | Type | Default | Description | Example
 ------ | ---- | ------- | ----------- | ------------- 
 display_settings | object | {} | a set of settings to define how the output should be displayed | See Below.
-weight | url | None| ""http://beta.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/5f14133582f34b8b85b408830f4b4a9b/"
+weight | url | None| ""http://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/5f14133582f34b8b85b408830f4b4a9b/"
 
 
 ###### Display Settings

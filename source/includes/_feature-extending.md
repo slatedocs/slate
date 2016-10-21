@@ -5,17 +5,17 @@ function expression to its variables catalog.
 
 ```http
 POST /api/datasets/{dataset_id}/variables/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 Content-Type: application/json
 
 {
     "function": "adapt",
     "args": [{
-        "dataset": "https://beta.crunch.io/api/datasets/{other_id}/"
+        "dataset": "https://app.crunch.io/api/datasets/{other_id}/"
     }, {
-        "variable": "https://beta.crunch.io/api/datasets/{other_id}/variables/{right_key_id}/"
+        "variable": "https://app.crunch.io/api/datasets/{other_id}/variables/{right_key_id}/"
     }, {
-        "variable": "https://beta.crunch.io/api/datasets/{dataset_id}/variables/{left_key_id}/"
+        "variable": "https://app.crunch.io/api/datasets/{dataset_id}/variables/{left_key_id}/"
     }]
 }
 
@@ -25,8 +25,8 @@ HTTP/1.1 202 Accepted
 
 {
     "element": "shoji:view",
-    "self": "https://beta.crunch.io/api/datasets/{dataset_id}/variables/",
-    "value": "https://beta.crunch.io/api/progress/5be82a/"
+    "self": "https://app.crunch.io/api/datasets/{dataset_id}/variables/",
+    "value": "https://app.crunch.io/api/progress/5be82a/"
 }
 
 ```
@@ -44,7 +44,7 @@ function expression around the `adapt` function described above:
 
 ```http
 POST /api/datasets/{dataset_id}/variables/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 Content-Type: application/json
 
 {
@@ -52,24 +52,24 @@ Content-Type: application/json
     "args": [{
         "map": {
             "{right_var1_id}/": {
-                "variable": "https://beta.crunch.io/api/datasets/{other_id}/variables/{right_var1_id}/"
+                "variable": "https://app.crunch.io/api/datasets/{other_id}/variables/{right_var1_id}/"
             },
             "{right_var2_id}/": {
-                "variable": "https://beta.crunch.io/api/datasets/{other_id}/variables/{right_var2_id}/"
+                "variable": "https://app.crunch.io/api/datasets/{other_id}/variables/{right_var2_id}/"
             },
             "{right_var3_id}/": {
-                "variable": "https://beta.crunch.io/api/datasets/{other_id}/variables/{right_var3_id}/"
+                "variable": "https://app.crunch.io/api/datasets/{other_id}/variables/{right_var3_id}/"
             }
         }
     }],
     "frame": {
         "function": "adapt",
         "args": [{
-            "dataset": "https://beta.crunch.io/api/datasets/{other_id}/"
+            "dataset": "https://app.crunch.io/api/datasets/{other_id}/"
         }, {
-            "variable": "https://beta.crunch.io/api/datasets/{other_id}/variables/{right_key_id}/"
+            "variable": "https://app.crunch.io/api/datasets/{other_id}/variables/{right_key_id}/"
         }, {
-            "variable": "https://beta.crunch.io/api/datasets/{dataset_id}/variables/{left_key_id}/"
+            "variable": "https://app.crunch.io/api/datasets/{dataset_id}/variables/{left_key_id}/"
         }]
     }
 }
@@ -80,8 +80,8 @@ HTTP/1.1 202 Accepted
 
 {
     "element": "shoji:view",
-    "self": "https://beta.crunch.io/api/datasets/{dataset_id}/variables/",
-    "value": "https://beta.crunch.io/api/progress/5be82a/"
+    "self": "https://app.crunch.io/api/datasets/{dataset_id}/variables/",
+    "value": "https://app.crunch.io/api/progress/5be82a/"
 }
 
 ```
@@ -94,23 +94,23 @@ an existing filter entity URL (from the right-side dataset), wrapped as `{"filte
 
 ```http
 POST /api/datasets/{dataset_id}/variables/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 Content-Type: application/json
 
 {
     "function": "adapt",
     "args": [{
-        "dataset": "https://beta.crunch.io/api/datasets/{other_id}/"
+        "dataset": "https://app.crunch.io/api/datasets/{other_id}/"
     }, {
-        "variable": "https://beta.crunch.io/api/datasets/{other_id}/variables/{right_key_id}/"
+        "variable": "https://app.crunch.io/api/datasets/{other_id}/variables/{right_key_id}/"
     }, {
-        "variable": "https://beta.crunch.io/api/datasets/{dataset_id}/variables/{left_key_id}/"
+        "variable": "https://app.crunch.io/api/datasets/{dataset_id}/variables/{left_key_id}/"
     }],
     "filter": {
         "expression": {
             "function": "==",
             "args": [
-                {"variable": "https://beta.crunch.io/api/datasets/{other_id}/variables/{variable_id}/"},
+                {"variable": "https://app.crunch.io/api/datasets/{other_id}/variables/{variable_id}/"},
                 {"value": "<value>"}
             ]
         }
@@ -122,7 +122,7 @@ You can filter both rows and variables in the same request. Note that the "filte
 
 ```http
 POST /api/datasets/{dataset_id}/variables/ HTTP/1.1
-Host: beta.crunch.io
+Host: app.crunch.io
 Content-Type: application/json
 
 {
@@ -130,28 +130,28 @@ Content-Type: application/json
     "args": [{
         "map": {
             "{right_var1_id}/": {
-                "variable": "https://beta.crunch.io/api/datasets/{other_id}/variables/{right_var1_id}/"
+                "variable": "https://app.crunch.io/api/datasets/{other_id}/variables/{right_var1_id}/"
             },
             "{right_var2_id}/": {
-                "variable": "https://beta.crunch.io/api/datasets/{other_id}/variables/{right_var2_id}/"
+                "variable": "https://app.crunch.io/api/datasets/{other_id}/variables/{right_var2_id}/"
             },
             "{right_var3_id}/": {
-                "variable": "https://beta.crunch.io/api/datasets/{other_id}/variables/{right_var3_id}/"
+                "variable": "https://app.crunch.io/api/datasets/{other_id}/variables/{right_var3_id}/"
             }
         }
     }],
     "frame": {
         "function": "adapt",
         "args": [{
-            "dataset": "https://beta.crunch.io/api/datasets/{other_id}/"
+            "dataset": "https://app.crunch.io/api/datasets/{other_id}/"
         }, {
-            "variable": "https://beta.crunch.io/api/datasets/{other_id}/variables/{right_key_id}/"
+            "variable": "https://app.crunch.io/api/datasets/{other_id}/variables/{right_key_id}/"
         }, {
-            "variable": "https://beta.crunch.io/api/datasets/{dataset_id}/variables/{left_key_id}/"
+            "variable": "https://app.crunch.io/api/datasets/{dataset_id}/variables/{left_key_id}/"
         }]
     },
     "filter": {
-        "filter": "https://beta.crunch.io/api/datasets/{other_id}/filters/{filter_id}/"
+        "filter": "https://app.crunch.io/api/datasets/{other_id}/filters/{filter_id}/"
     }
 }
 ```
