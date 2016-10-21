@@ -17,7 +17,8 @@ This endpoint is designed for users to retrieve the parameter history of a produ
         "status": "success", 
         "message": "Full parameter history for #111010101010101 returned successfully", 
         "data": 
-        	{"part_parameters": 
+        	{
+        		"part_parameters": 
         		{
         			'616479': 
         			[
@@ -67,8 +68,9 @@ This endpoint is designed for users to retrieve the parameter history of a produ
 	        		'616482': [],
 	        		'616481': [],
 	        		'616480': []
-        	}, 
-        	'product_parameters': 
+        		}, 
+        	
+        		'product_parameters': 
         		[
         			{
         				'product_imei': '111010101010101', 
@@ -153,11 +155,13 @@ __endpoint__ | `/products/<imei>/parameters/history`
 __method__ | `GET`
 __url_params__ | `product_imei`  <font color="DarkGray">_(str)_</font> 
 __response__ | 200
+__payload__ | date <font color="DarkGray">_(optional)_</font>
+__permissions__ | `OVERVIEW`
 
 ### Response
 
-The format of the data returned by this endpoint is a dictionary where the keys are part_parameters and product_parameters.
+The format of the data returned by this endpoint is a dictionary where the keys are `part_parameters` and `product_parameters`.
 
-The part_parameter dictionary contains integer keys which represent the part_id of a part which belongs to the product. The values linked to the key is a list of dictionaries, each of which represents a single parameter for the product.
+The `part_parameter` dictionary contains integer keys which represent the `part_id` of a part which belongs to the product. The values linked to the key is a list of dictionaries, each of which represents a single parameter for the product.
 
-The product_parameter dictionary consists of a single list of dictionaries which contains the parameters assigned to the product.
+The `product_parameter` dictionary consists of a single list of dictionaries which contains the parameters assigned to the product.
