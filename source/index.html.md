@@ -65,8 +65,7 @@ includes:
   - product_parts
   - change_customer
   - expire_customer
-  - get_parameter
-  - set_parameter
+  - product_parameters
   - parameter_history
 
   - product_data
