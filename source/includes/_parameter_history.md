@@ -1,6 +1,11 @@
 ## `/products/<imei>/parameters/history`
 ### Description
 
+This endpoint is designed for users to look at the parameter history of a product and its parts. A `GET` request to this endpoint will return:
+
+* The parameter histories of the product
+* The parameter histories of all the parts associated with the product
+
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/products/111010101010101/parameters/history"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
