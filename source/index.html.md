@@ -2,13 +2,22 @@
 title: OKCash Documentation
 
 language_tabs:
-  - shell
-  - ruby
-  - python
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='http://okcash.co'>OKCash Website</a>
+  - <a href='http://okcash.co/#jf_download'>Download</a>
+  - <a href='http://discord.me/cryptocurrency'>Discord</a>
+  - <a href='http://okcashtalk.org'>Forum</a>
+  - <a href='http://explorer.okcash.co'>Block Explorer</a>
+  - <a href='https://github.com/okcashpro'>Github</a>
+  - <a href='https://twitter.com/OKCashCrypto'>Twitter</a>
+  - <a href='https://facebook.com/OKCashCrypto'>Facebook</a>
+  - <a href='https://instagram.com/okcashcrypto'>Instagram</a>
+  - <a href='https://plus.google.com/+PimpCashMe'>Google+</a>
+  - <a href='https://youtube.com/channel/UC5BCYmlBtPZiC7NNv-a5gfA'>YouTube</a>
+  - <a href='https://pinterest.com/okcash'>Pinterest</a>
+  - <a href='https://reddit.com/r/OKcash'>Reddit</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
