@@ -1,4 +1,8 @@
 @charset "utf-8";
+
+@import url("//fonts.googleapis.com/css?family=Open+Sans:400,600,700");
+@import url("//fonts.googleapis.com/css?family=Raleway:300,500,700");
+
 @import 'normalize';
 @import 'variables';
 @import 'icon-font';
@@ -261,7 +265,7 @@ html, body {
   margin-left: $nav-width;
   position: relative;
   z-index: 10;
-  background-color: $main-bg;
+  background-color: $page-wrapper-bg;
   min-height: 100%;
 
   padding-bottom: 1px; // prevent margin overflow

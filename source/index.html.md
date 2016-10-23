@@ -28,6 +28,10 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 # Community
 
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
 ## Social Media
 
 Below you will find a list of places where you can find other Shadow users, community members and news.
@@ -63,6 +67,7 @@ Select your OK wallet & Start gaining the benefits of using OKCash Today.
 - Latest [Windows ZIP File](http://bit.ly/OKzipdownload) download.
 - Latest [Mac OS X](http://bit.ly/OKmacosx) download.
 - Latest [Ubuntu Linux](http://bit.ly/OKubuntulinux) download.
+- Latest [AUR](https://aur.archlinux.org/packages/?O=0&SeB=nd&K=okcash&outdated=&SB=n&SO=a&PP=50&do_Search=Go) download.
 
 ## Web Wallet
 - Latest [Cripto-Pay](https://cripto-pay.com) download.
