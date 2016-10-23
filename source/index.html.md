@@ -5,194 +5,72 @@ language_tabs:
   - javascript
 
 toc_footers:
-  - <a href='http://okcash.co'>OKCash Website</a>
-  - <a href='http://okcash.co/#jf_download'>Download</a>
-  - <a href='http://discord.me/cryptocurrency'>Discord</a>
-  - <a href='http://okcashtalk.org'>Forum</a>
-  - <a href='http://explorer.okcash.co'>Block Explorer</a>
-  - <a href='https://github.com/okcashpro'>Github</a>
-  - <a href='https://twitter.com/OKCashCrypto'>Twitter</a>
-  - <a href='https://facebook.com/OKCashCrypto'>Facebook</a>
-  - <a href='https://instagram.com/okcashcrypto'>Instagram</a>
-  - <a href='https://plus.google.com/+PimpCashMe'>Google+</a>
-  - <a href='https://youtube.com/channel/UC5BCYmlBtPZiC7NNv-a5gfA'>YouTube</a>
-  - <a href='https://pinterest.com/okcash'>Pinterest</a>
-  - <a href='https://reddit.com/r/OKcash'>Reddit</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
+- <a href='http://okcash.co'>OKCash Website</a>
+- <a href='http://okcash.co/#jf_download'>Download</a>
+- <a href='http://discord.me/cryptocurrency'>Discord</a>
+- <a href='http://okcashtalk.org'>Forum</a>
+- <a href='http://explorer.okcash.co'>Block Explorer</a>
+- <a href='https://github.com/okcashpro'>Github</a>
+- <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 search: true
 ---
 
-# Introduction
+# About
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-# Authentication
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-> To authorize, use this code:
+# Community
 
-```ruby
-require 'kittn'
+## Social Media
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+Below you will find a list of places where you can find other Shadow users, community members and news.
 
-```python
-import kittn
+- Discord: [discord.me/cryptocurrency](http://discord.me/cryptocurrency)
+- Forum: [okcashtalk.org](http://okcashtalk.org)
+- Twitter: [twitter.com/OKCashCrypto](https://twitter.com/OKCashCrypto)
+- Facebook: [facebook.com/OKCashCrypto](https://facebook.com/OKCashCrypto)
+- Instagram: [instagram.com/okcashcrypto](https://instagram.com/okcashcrypto)
+- Google+: [plus.google.com/+PimpCashMe](https://plus.google.com/+PimpCashMe)
+- YouTube: [youtube.com/channel/UC5BCYmlBtPZiC7NNv-a5gfA](https://youtube.com/channel/UC5BCYmlBtPZiC7NNv-a5gfA)
+- Pinterest: [pinterest.com/okcash](https://pinterest.com/okcash)
+- Reddit: [reddit.com/r/OKcash](https://reddit.com/r/OKcash)
 
-api = kittn.authorize('meowmeowmeow')
-```
+# Download
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+Select your OK wallet & Start gaining the benefits of using OKCash Today.
 
-```javascript
-const kittn = require('kittn');
+## IoT Wallet
+- Latest [Pine64](http://bit.ly/OKpine64) download.
+- Latest [Raspberry Pi](http://bit.ly/OKraspberrypi) download.
 
-let api = kittn.authorize('meowmeowmeow');
-```
+## Mobile Wallet
+- **Andoid**
+  - Latest [UberPay](https://play.google.com/store/apps/details?id=com.mygeopay.wallet) download.
+  - Latest [Coinomi](https://play.google.com/store/apps/details?id=com.coinomi.wallet) download.
 
-> Make sure to replace `meowmeowmeow` with your API key.
+- **iOS**
+  - Coming soon...
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+## Desktop Wallet
+- Latest [Windows Easy Installer](http://bit.ly/OKeasyinstall) download.
+- Latest [Windows ZIP File](http://bit.ly/OKzipdownload) download.
+- Latest [Mac OS X](http://bit.ly/OKmacosx) download.
+- Latest [Ubuntu Linux](http://bit.ly/OKubuntulinux) download.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+## Web Wallet
+- Latest [Cripto-Pay](https://cripto-pay.com) download.
+- Latest [CoinToPay](https://cointopay.com) download.
 
-`Authorization: meowmeowmeow`
+## Off-line Wallet
+- Latest [Paper](http://paperwallets.okcash.co) download.
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+## Bootstrap?
 
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
+<aside class="notice">Use this method to synchronize your node within 10 minutes!</aside>
