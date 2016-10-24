@@ -4,7 +4,7 @@
 > A `GET` request to this endpoint returns a dictionary containing active and pending parameters of the product and its parts
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/product_parameters"
+    url = "http://smartapi.bboxx.co.uk/v1/products/111010101010101/product_parameters"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     r = requests.get(url=url, headers=headers)
@@ -13,25 +13,120 @@
     >>> {
         "status": "success", 
         "message": "Current parameters for # returned successfully", 
-        "data": 
-    }
+        "data": {
+                    'part_parameters': 
+                    [
+                        {
+                            'status': 'pending',
+                            'modified_by': None, 
+                            'part_parameter_id': 105, 
+                            'date_removed': None, 
+                            'created_at': '2016-10-24T09:46:33.613074', 
+                            'modified_at': None, 
+                            'created_by': 'ci.system@bboxx.co.uk', 
+                            'parameter_type_id': 55, 
+                            'value': 'elephants', 
+                            'part_id': 616479, 
+                            'date_added': None
+                        }
+                    ], 
+                    'product_parameters': 
+                    [
+                        {
+                            'product_imei': '111010101010101', 
+                            'status': 'active', 
+                            'modified_by': 'ci.system@bboxx.co.uk', 
+                            'date_removed': None, 
+                            'created_at': '2016-10-24T09:46:15.945135', 
+                            'modified_at': '2016-10-24T09:46:16.287039', 
+                            'created_by': 'ci.system@bboxx.co.uk', 
+                            'parameter_type_id': 1, 
+                            'value': 'False', 
+                            'date_added': '2016-10-24T09:46:16.285136', 
+                            'product_parameter_id': 76880
+                        }, 
+                        {
+                            'product_imei': '111010101010101', 
+                            'status': 'active', 
+                            'modified_by': 'ci.system@bboxx.co.uk', 
+                            'date_removed': None, 
+                            'created_at': '2016-10-24T09:46:16.139237', 
+                            'modified_at': '2016-10-24T09:46:16.412951', 
+                            'created_by': 'ci.system@bboxx.co.uk', 
+                            'parameter_type_id': 2, 
+                            'value': 'False', 
+                            'date_added': '2016-10-24T09:46:16.411008', 
+                            'product_parameter_id': 76881
+                        }, 
+                        {
+                            'product_imei': '111010101010101', 
+                            'status': 'pending', 
+                            'modified_by': None, 
+                            'date_removed': None, 
+                            'created_at': '2016-10-24T09:46:33.678810', 
+                            'modified_at': None, 
+                            'created_by': 'ci.system@bboxx.co.uk', 
+                            'parameter_type_id': 55, 
+                            'value': 'elephants', 
+                            'date_added': None, 
+                            'product_parameter_id': 76890
+                        }
+                    ]
+                }
+        }
+
 ```
 
 > A `POST` request to this endpoint will update the product and parts with the new parameters and return a response dictionary confirming newly set values
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/product_parameters"
+    url = "http://smartapi.bboxx.co.uk/v1/products/111010101010101/product_parameters"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
-    data = {}
+    data = {
+            'part_parameters': {'616479': {'string_test_parameter': 'elephants'}},
+            'product_parameters': {'string_test_parameter': 'elephants'}}
+    }
 
     r = requests.post(url=url, headers=headers, data=data)
 
     print r.json()
     >>> {
         "status": "success", 
-        "message": "Current parameters for # successfully updated", 
-        "data": None
-    }
+        "message": "Current parameters for #111010101010101 successfully updated", 
+        "data": {
+                    'data': 
+                    {
+                        'part_parameters': 
+                        {
+                            '616479': 
+                            [
+                                {
+                                    'status': 'pending',
+                                    'modified_by': None, 
+                                    'part_parameter_id': 105, 
+                                    'date_removed': None, 
+                                    'created_at': '2016-10-24T09:28:34.601150', 
+                                    'modified_at': None, 
+                                    'created_by': 'ci.system@bboxx.co.uk', 
+                                    'parameter_type_id': 55, 
+                                    'value': 'elephants', 
+                                    'part_id': 616479, 
+                                    'date_added': None
+                                }
+                            ]
+                        }, 
+                        'product_parameters': 
+                        [
+                            {
+                                'product_imei': '111010101010101',
+                                'status': 'pending',
+                                'modified_by': None,
+                                'date_removed': None, 
+                                'created_at': '2016-10-24T09:28:34.63
+                            }
+                        ]
+                    }
+                }
 ```
 
 The `GET` request endpoint is designed for users to retrieve the current parameters for the product. The request should:
