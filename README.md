@@ -64,7 +64,7 @@ $ git checkout -b (BRANCHNAME)
 $ git remote add forkedfrom https://github.com/lord/slate.git
 
 ---
-If you git remote -v it should look like this:
+#If you git remote -v it should look like this:
 ```shell 
 forkedfrom	https://github.com/lord/slate.git (fetch)
 forkedfrom	https://github.com/lord/slate.git (push)
@@ -73,14 +73,12 @@ origin	https://github.com/Geezeo/developers.geezeo.com.git (push)
 
 ---
 
-From here, you can run: 
-```shell
+#From here, you can run: 
 git fetch forkedfrom/master
 git rebase 
 ---
-Either rebase manually, or use "git mergetool" after you receive a conflict error. These errors are about our local changes vs. any updates we missed from Slate core. "git mergetool" will bring up a visual diff of the changes for rebasing the update, so you can quickly preserve our documentation while updating the underpinnings. Save, quit it, and then run:
-```shell 
+#Either rebase manually, or use "git mergetool" after you receive a conflict error. These errors are about our local changes vs. any updates we missed from Slate core. "git mergetool" will bring up a visual diff of the changes for rebasing the update, so you can quickly preserve our documentation while updating the underpinnings. Save, quit it, and then run:
 git rebase --continue
 ---
-After running through the changes, you should eventually finish the rebase, and be left with an updated Slate-core that runs with (hopefully) the same launch synopsis.
+#After running through the changes, you should eventually finish the rebase, and be left with an updated Slate-core that runs with (hopefully) the same launch synopsis.
 
