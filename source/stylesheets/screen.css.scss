@@ -420,13 +420,27 @@ html, body {
 
   h3, h4, h5, h6 {
     @extend %header-font;
-    font-size: 15px;
+
     margin-top: 2.5em;
     margin-bottom: 0.8em;
   }
 
-  h4, h5, h6 {
-    font-size: 10px;
+  h3 {
+      font-size: 18px;
+  }
+
+  h4 {
+      font-size: 15px;
+  }
+
+  h5 {
+      font-size: 13px;
+  }
+
+  h6 {
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 500;
   }
 
   hr {
@@ -436,8 +450,10 @@ html, body {
   }
 
   table {
-    margin-bottom: 1em;
+    margin-bottom: 2em;
     overflow: auto;
+    width: 50%;
+
     th,td {
       text-align: left;
       vertical-align: top;
@@ -445,26 +461,48 @@ html, body {
     }
 
     th {
-      padding: 5px 10px;
+      padding: 7px 10px;
       border-bottom: 1px solid $color-border;
-      vertical-align: bottom;
+      vertical-align: middle;
+      text-transform: uppercase;
+      font-weight: 500;
+      font-size: 10px;
+      line-height: 1.2;
+      background-color: rgba(43, 39, 37, 0.055);
+
+      &:first-child {
+          border-radius: 4px 0 0 0;
+      }
+
+      &:last-child {
+          border-radius: 0 4px 0 0;
+      }
     }
 
     td {
-      padding: 10px;
+          border-bottom: 1px solid transparentize($color-border, .5);
+          padding: 10px;
     }
+  }
 
-    tr:last-child {
-      border-bottom: 1px solid $color-border;
-    }
+  blockquote {
+      table {
+          color: transparentize(#ffffff, .35);
+          width: 100%;
 
-    tr:nth-child(odd)>td {
-      background-color: lighten($main-bg,4.2%);
-    }
+          th {
+              background-color: $lang-select-bg;
+              border-color: $examples-bg;
+          }
 
-    tr:nth-child(even)>td {
-      background-color: lighten($main-bg,2.4%);
-    }
+          td {
+              border-color: transparentize($examples-bg, .5);
+          }
+      }
+
+      > p + table {
+          margin-top: 1em;
+      }
   }
 
   dt {
