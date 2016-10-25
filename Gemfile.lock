@@ -131,4 +131,4 @@ DEPENDENCIES
   rouge (~> 1.10.1)
 
 BUNDLED WITH
-   1.10.6
+   1.13.6
