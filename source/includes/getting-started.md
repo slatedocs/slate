@@ -421,7 +421,10 @@ Great, we’ve got a route! What’s next?
 
 ## Making a Delivery Attempt
 
-As your user is on-route, they will visit various waypoints and attempt to make deliveries. You will record their progress by making [DeliveryAttempt](#deliveryattempt)s at the [Waypoint](#waypoint)s. Each `DeliveryAttempt` has a [DeliveryStatus](#deliverystatus) representing what happened during the driver's visit.
+As your drivers are on-route, they will visit various waypoints and attempt to make deliveries. You will record their progress by making [DeliveryAttempt](#deliveryattempt)s at the [Waypoint](#waypoint)s. Each `DeliveryAttempt`
+has a [DeliveryStatus](#deliverystatus) representing what happened during the driver's visit. In addition, the `notes` and `deliveryCode` fields can be used to provide additional information about the attempted delivery.
+The `notes` field is useful for capturing freeform feedback from the driver. For example, if a driver is trying to make a delivery but the waypoint is closed, they may wish to provide the updated hours. You should allow the driver to provide this freeform feedback whenever they make a delivery attempt.
+The `deliveryCode` is useful for gathering structured driver feedback. For example, you may wish to have the driver choose a `deliveryCode` from a list of failure reasons. Using consistent `deliveryCode`s will allow your users to identify common issues and improve their operation.
 
 <aside class="notice">
 Foxtrot uses delivery attempts to determine where to send the driver next. To help Foxtrot optimize your routes most efficiently, never delay or enqueue delivery attempts. Always submit delivery attempts as soon as the driver attempts the delivery.
@@ -429,17 +432,20 @@ Foxtrot uses delivery attempts to determine where to send the driver next. To he
 
 If the driver was able to make the delivery, you should submit the attempt using `DeliveryStatus.SUCCESSFUL`. Since the delivery has been completed, Foxtrot will not send the driver to this waypoint again.
 
-If the driver was unable to make the delivery, your application can do one of two things. If you submit an attempt using `DeliveryStatus.VISIT_LATER`, Foxtrot will re-schedule the driver's visit to the waypoint. If you submit a `DeliveryAttempt` with `DeliveryStatus.FAILED`, Foxtrot will consider the delivery a permanent failure and will not attempt to re-schedule the delivery.
+If the driver was unable to make the delivery, your application can do one of two things. If you submit an attempt using `DeliveryStatus.VISIT_LATER`, Foxtrot will re-schedule the driver's visit to the waypoint.
+If you submit the attempt with `DeliveryStatus.FAILED`, Foxtrot will consider the delivery a permanent failure and will not attempt to re-schedule the delivery.
 
 <aside class="warning">
-DeliveryStatus.FAILED should only be used when the driver intends to return the goods to the warehouse. If the delivery can be made later in the day, be sure to use DeliveryStatus.VISIT_LATER.
+DeliveryStatus.FAILED should only be used when the driver intends to return the goods to the warehouse. If the delivery can be made later in the day, a DeliveryStatus.VISIT_LATER can be used.
 </aside>
 
-You can also use the `DeliveryAttempt`'s `notes` and `deliveryCode` fields to provide additional information about the attempted delivery.
+In the circumstances when a driver does not know when he/she should visit the waypoint again, it is recommended that you should mark the delivery as `DeliveryStatus.FAILED`. Later during the day, if the driver would like to
+go back to the waypoint, you should submit a `DeliveryStatus.AUTHORIZE_REATTEMPT`. Foxtrot will re-schedule waypoint to be visited later.
 
-The `notes` field is useful for capturing freeform feedback from the driver. For example, if a driver is trying to make a delivery but the waypoint is closed, they may wish to provide the updated hours. You should allow the driver to provide this freeform feedback whenever they make a delivery attempt.
-
-The `deliveryCode` is useful for gathering structured driver feedback. For example, you may wish to have the driver choose a `deliveryCode` from a list of failure reasons. Using consistent `deliveryCode`s will allow your users to identify common issues and improve their operation.
+<aside class="notice">
+In order to submit a DeliveryStatus.VISIT_LATER or DeliveryStatus.AUTHORIZE_REATTEMPT, a different api should be used, FoxtrotSDK.markDeliveryToVisitLater() and FoxtrotSDK.authorizeDeliveryReattempt(), respectively.
+These two apis require a DeliveryVisitLater or DeliveryReattempt, respectively. An optional TimeWindow can be set when constructing these objects if the driver knows the expected time to visit the waypoint again.
+</aside>
 
 Here’s how to create and add a successful DeliveryAttempt, using the Route we created previously:
 
@@ -456,13 +462,47 @@ And similarly, a failed attempt with a DeliveryCode explaining why the attempt w
 ```java
 DeliveryCode deliveryCode = DeliveryCode.builder()
                                         .setCode("F-605")
-                                        .setMessage("The customer is not open on Thursdays");
+                                        .setMessage("The customer is not open on Thursdays")
+                                        .build();
 DeliveryAttempt failedAttempt = DeliveryAttempt.builder()
         .setStatus(DeliveryStatus.FAILED)
         .setDeliveryCode(deliveryCode)
         .setNotes("Customer closed") // notes are optional
         .build();
 FoxtrotSDK.getInstance().addDeliveryAttempt("SOME_WAYPOINT_ID", failedAttempt);
+```
+
+Here's how to create a `DeliveryStatus.VISIT_LATER`
+
+```java
+DeliveryCode deliveryCode = DeliveryCode.builder()
+                                        .setCode("F-605")
+                                        .setMessage("The customer is not open on Thursdays")
+                                        .build();
+TimeWindow timeWindow = TimeWindow.builder()
+                                  .setStart(DateTime.now().plusHours(3))
+                                  .setEnd(DateTime.now().plusHours(4))
+                                  .build();
+DeliveryVisitLater deliveryVisitLater = DeliveryVisitLater.builder()
+                                               .setDeliveryCode(deliveryCode) // deliveryCode is optional
+                                               .setNotes("Customer hours are closed") // notes are optional
+                                               .setTimeWindow(timeWindow) // timeWindow is optional
+                                               .build();
+FoxtrotSDK.getInstance().markDeliveryToVisitLater("SOME_WAYPOINT_ID", deliveryVisitLater);
+```
+
+Here's how to create a `DeliveryStatus.AUTHORIZE_REATTEMPT`
+
+```java
+TimeWindow timeWindow = TimeWindow.builder()
+                                  .setStart(DateTime.now().plusHours(3))
+                                  .setEnd(DateTime.now().plusHours(4))
+                                  .build();
+DeliveryReattempt reattempt = DeliveryReattempt.builder()
+                                               .setNotes("Customer is now open") // notes are optional
+                                               .setTimeWindow(timeWindow) // timeWindow is optional
+                                               .build();
+FoxtrotSDK.getInstance().authorizeDeliveryReattempt("SOME_WAYPOINT_ID", reattempt);
 ```
 
 ## Undoing a Delivery Attempt

@@ -132,8 +132,44 @@ DeliveryAttempt attempt = DeliveryAttempt.builder()
                                          .build();
 ```
 
+## DeliveryReattempt
+A DeliveryReattempt marks the need to reattempt a delivery at a [Waypoint](#waypoint) in the future.
+
+| Field                     | Type                             | Required | Description
+|---------------------------|----------------------------------|----------|------------
+| deliveryCode              | [DeliveryCode](#deliverycode)    | false    | Additional information about the reattempt.
+| notes                     | String                           | false    | The driver's note about the reattempt.
+| timeWindow                | [TimeWindow](#timewindow)        | false    | The estimated time the driver would like to come back.
+
+```java
+DeliveryCode deliveryCode = ...
+DeliveryReattempt reattempt = DeliveryReattempt.builder()
+                                               .setDeliveryCode(deliveryCode)
+                                               .setNotes("Customer is not home")
+                                               .setTimeWindow(...)
+                                               .build();
+```
+
+## DeliveryVisitLater
+A DeliveryVisitLater marks the need to visit the [Waypoint](#waypoint) in the future.
+
+| Field                     | Type                             | Required | Description
+|---------------------------|----------------------------------|----------|------------
+| deliveryCode              | [DeliveryCode](#deliverycode)    | false    | Additional information about the visit later status.
+| notes                     | String                           | false    | The driver's note about the visit later status.
+| timeWindow                | [TimeWindow](#timewindow)        | false    | The estimated time the driver would like to come back.
+
+```java
+DeliveryCode deliveryCode = ...
+DeliveryVisitLater deliveryVisitLater = DeliveryVisitLater.builder()
+                                                          .setDeliveryCode(deliveryCode)
+                                                          .setNotes("Customer is not home")
+                                                          .setTimeWindow(...)
+                                                          .build();
+```
+
 ## DeliveryCode
-A DeliveryCode allows the driver to give additional information about what happened during a `DeliveryAttempt`.
+A DeliveryCode allows the driver to give additional information about what happened during a [DeliveryAttempt](#deliveryattempt).
 
 | Field                     | Type                             | Required | Description
 |---------------------------|----------------------------------|----------|------------
@@ -151,11 +187,28 @@ DeliveryCode deliveryCode = DeliveryCode.builder()
 ## DeliveryStatus
 A DeliveryStatus is an enumeration for possible attempt states.
 
-| States        | Description
-|---------------|------------
-| FAILED        | Marks a failed delivery.
-| SUCCESSFUL    | Marks a successful delivery.
-| REATTEMPT     | The delivery was previously marked FAILED, but the route manager has re-authorized a reattempt.
+| States                  | Description
+|-------------------------|------------
+| FAILED                  | Marks a failed delivery.
+| SUCCESSFUL              | Marks a successful delivery.
+| AUTHORIZE_REATTEMPT     | Mark the delivery to be reattempted later.
+| VISIT_LATER             | Mark the delivery to be visited later.
+
+Both `AUTHORIZE_REATTEMPT` and `VISIT_LATER` emit the same behavior; however, it is recommended to use them based on the
+context of the situation.
+
+### `VISIT_LATER` sample use-cases:
+
+1. Driver failed to deliver the goods product, but knows he/she will come back later during the day.
+
+### `AUTHORIZE_REATTEMPT` sample use-cases:
+
+1. Driver failed to deliver the goods and marked it as `FAILED`. Later during the day, the driver wants to come back.
+The driver can now `AUTHORIZE_REATTEMPT` on the same delivery. Foxtrot will automatically re-optimize the route with the
+new information.
+2. Driver failed to deliver the goods and marked it as `FAILED`. Later during the day, a route manager wants the driver
+to come back. The manager can `AUTHORIZE_REATTEMPT` on the failed delivery. Foxtrot will automatically re-optimize the route with the
+new information.
 
 ## Driver
 A Driver represents the driver driving the route.
