@@ -529,15 +529,13 @@ html, body {
     background-color: $code-bg;
     color: #fff;
 
-    padding: 2em $main-padding;
-    margin: 0;
+    margin: 0 0 0 30px;
     width: $examples-width;
 
     float:right;
     clear:right;
 
     box-sizing: border-box;
-    text-shadow: 0px 1px 2px rgba(0,0,0,0.4);
 
     @extend %right-col;
 
@@ -551,17 +549,20 @@ html, body {
   }
 
   pre {
+    padding: 17px 20px !important;
+    white-space: pre-line;
     @extend %code-font;
   }
 
   blockquote {
     &>p {
       background-color: $code-annotation-bg;
-      border-radius: 5px;
-      padding: $code-annotation-padding;
-      color: #ccc;
       border-top: 1px solid #000;
       border-bottom: 1px solid #404040;
+      padding: $code-annotation-padding;
+      color: #ccc;
+      white-space: pre-line;
+	  @extend %break-words;
     }
   }
 }

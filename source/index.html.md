@@ -1,9 +1,6 @@
 ---
 title: OKCash Documentation
 
-language_tabs:
-  - javascript
-
 toc_footers:
 - <a href='http://okcash.co'>OKCash Website</a>
 - <a href='http://okcash.co/#jf_download'>Download</a>
@@ -20,19 +17,7 @@ search: true
 
 ## History
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
 # Community
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 ## Forums
 - [OKCash Talk](http://okcashtalk.org)
@@ -133,7 +118,57 @@ First fully optimized  Operating System for IoT devices (Raspberry Pi [zero, 2, 
 
 ## Bootstrap?
 
-<aside class="notice">Use this method to synchronize your node within 10 minutes!</aside>
+<aside class="notice">
+Use this method to synchronize your node in minutes!
+</aside>
+
+When you load the OK Wallet for the first time it connects to the peer-to-peer network and starts to synchronize the OK blockchain.
+
+### When to use the ok-blockchain to Sync your OK wallet
+
+The first time sync of the OK blockchain can take quite a while; sometimes up to 24 hours depending on your hardware.
+
+With OK you can speed up this process by loading compressed backups of the OK blockchain.
+
+Adding the current ok-blockchain to your local okcash data directory speeds up the synchronization process which will get your wallet up and running in minutes.
+
+### How to use the ok-blockchain to sync your OK wallet
+
+1. Close the OK Wallet and download the latest ok-blockchain.zip file from: [Releases](https://github.com/okcashpro/ok-blockchain/releases)
+
+2. Place the ok-blockchain.zip file in the Okcash data directory, location depends on your operating system.
+
+3. Unzip the ok-blockchain.zip file. `(includes txleveldb folder + blk0001.dat files)`
+
+4. Start your OK Wallet and give it some minutes to finish it's first time Sync process. `(The client might be unresponsive but don’t worry - it’s just loading and verifying all the ok-blockchain data)`
+
+## Useful Paths
+```
+Linux and IoT devices:
+```
+>~/.okcash/
+
+```
+Mac OS X
+```
+>~/Library/Application Support/Okcash/
+
+```
+Windows
+```
+>%APPDATA%\OKCash
+
+>This defaults on:
+>Windows XP: `C:\Documents and Settings\YourUserName\Application data\OKCash`
+>Windows Vista, 7, 8, and 10: `C:\Users\YourUserName\Appdata\Roaming\OKCash`
+
+<aside class="warning">
+Warning: deleting the wallet.dat file in this directory will cause you to lose all of your coins if you have no back up.
+</aside>
+
+These are the paths where your **blockchain data, wallet and pretty much everything related to OKCash** is stored.
+
+When using the ok-blockchain.zip method these are the location where you extract the ok-blockchain.zip file.
 
 # Support
 
