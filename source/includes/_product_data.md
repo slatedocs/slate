@@ -8,12 +8,12 @@ BBOXX uses <a href="https://docs.influxdata.com/influxdb/v1.0/">InfluxDB</a> as 
 
 InfluxDB uses <a href="https://docs.influxdata.com/influxdb/v1.0/concepts/key_concepts/#measurement">`measurements`</a>, <a href="https://docs.influxdata.com/influxdb/v1.0/concepts/key_concepts/#field-set">`fields`</a> and <a href="https://docs.influxdata.com/influxdb/v1.0/concepts/key_concepts/#tag-set">`tags`</a> to uniquely identify data.
 
-A `measurement` is a logical grouping of streams of incoming data.  
-A `field` describes a single stream like `current`, `voltage` or `temperature`.   
-The `tags` identify the unit that the data is generated from.  
+A `measurement` is a logical grouping of streams of incoming data.
+A `field` describes a single stream like `current`, `voltage` or `temperature`.
+The `tags` identify the unit that the data is generated from.
 
 
-All data recorded from a unit is held in the relevant `field` in a measurement called `"telemetry"`. 
+All data recorded from a unit is held in the relevant `field` in a measurement called `"telemetry"`.
 Each datapoint is then tagged with the <a href="#product">product_imei</a>.
 
 ## Example 1
@@ -74,7 +74,7 @@ Users can query data relating to each product, specifying fields and tags as des
 
 ## Writing Data to Influx
 
-> Data should be supplied in the following data structure:
+> Data should be supplied in the following JSON data structure:
 
 
 ```python
@@ -142,6 +142,8 @@ Values inside a `field` are differentiated by the `tags` on each point. Sensible
 * product_type_id
 * entity_id
 
+Tags may only contain Uppercase, Lowercase, '_' and '-' characters.
+
 The combination of `Measurement/Field/Tag` therefore defines a time-series for a single unit.
 
 For example if we wish to see Current and Voltage data for the unit 013777894567 we would look inside:
@@ -193,18 +195,18 @@ For example if we wish to see Current and Voltage data for the unit 013777894567
 Data for a single product data is written using the `/v1/products/<imei>/data` endpoint.
 
 This endpoint will write data into the database tagged with the product_imei supplied in the endpoint.
-Users can also specify other tags to be applied to every point in the supplied data by including them in the `tags` sections of the `POST` request. 
+Users can also specify other tags to be applied to every point in the supplied data by including them in the `tags` sections of the `POST` request.
 
 Data is supplied as a dictionary with the `measurement`, `tags` and `fields` specified in the format as shown on the right.
 
 The actual data is supplied as a list of `[<timestamp>, <value>]` pairs.
 
-The `<timestamp>` can be any of the following:      
+The `<timestamp>` can be any of the following:
 
-* _**milliseconds**_ since epoch eg: `1475685693839`  
-* isoformatted date-time object eg: `'yyyy-mm-ddTHH:MM:SS.nnnnnnnnnZ'`  
-* sensibly formatted datetime string eg: `'yyyy-mm-dd HH:MM:SS.nnnnnnnnn'`  
-* most sensibly formatted string eg: `'Tue, October 4th 2016'`  
+* _**milliseconds**_ since epoch eg: `1475685693839`
+* isoformatted date-time object eg: `'yyyy-mm-ddTHH:MM:SS.nnnnnnnnnZ'`
+* sensibly formatted datetime string eg: `'yyyy-mm-dd HH:MM:SS.nnnnnnnnn'`
+* most sensibly formatted string eg: `'Tue, October 4th 2016'`
 
 
 <aside class="notice">If using integer-since-epoch the user <b>MUST</b> supply in <b>MILLISECONDS</b> since epoch start. Supplying seconds, microseconds or nanoseconds can result in unpredictable behaviour.</aside>
@@ -217,7 +219,7 @@ endpoint | `/v1/products/<imei>/data`
 method | `POST`
 url_params | `product_imei` <font color="DarkGray">_(varchar(15))_</font>
 query params |  None
-body | dictionary with  data-structure and a list of valid datapoints. 
+body | dictionary with  data-structure and a list of valid datapoints.
 permissions | <font color="Jade">__`TECHNICAL`__</font>
 response | `200`
 
@@ -259,7 +261,7 @@ response | `200`
     }
 ```
 
-If a user wishes to store data that doesn't relate to a specific product they can send a `POST` the more general `/v1/influx/data` endpoint with data in the same format as before. 
+If a user wishes to store data that doesn't relate to a specific product they can send a `POST` the more general `/v1/influx/data` endpoint with data in the same format as before.
 
 <aside class="notice">Note that this endpoint cannot auto-assign a <a href="#product">product_imei</a> tag so all fields and tags must be explicitly stated in the request.</aside>
 
@@ -279,21 +281,21 @@ response | `200`
 > Here's an example dataset for a product with imei = 000000000000000
 
 ```
-time                 current  product_imei    voltage  temperature 
+time                 current  product_imei    voltage  temperature
 ------------------------------------------------------------------
-2016-01-01 00:00:00   1.234  000000000000000   14.243   21.345     
-2016-01-01 04:00:00   2.234  000000000000000   14.723              
-2016-01-01 08:00:00   3.234  000000000000000   14.826   21.345     
-2016-01-01 12:00:00   1.234  000000000000000   13.284              
-2016-01-01 16:00:00   2.345  000000000000000   12.345   21.345     
-2016-01-01 20:00:00   2.678  000000000000000   12.678              
-2016-01-02 00:00:00   2.910  000000000000000   12.910   21.910     
-2016-01-02 04:00:00   2.345  000000000000000   12.345              
-2016-01-02 08:00:00   2.678  000000000000000   12.678   21.678     
-2016-01-02 12:00:00   2.910  000000000000000   12.910              
-2016-01-02 16:00:00   2.345  000000000000000   12.345   21.345     
-2016-01-02 20:00:00   2.678  000000000000000   12.678              
-2016-01-03 00:00:00   2.910  000000000000000   12.910   21.910     
+2016-01-01 00:00:00   1.234  000000000000000   14.243   21.345
+2016-01-01 04:00:00   2.234  000000000000000   14.723
+2016-01-01 08:00:00   3.234  000000000000000   14.826   21.345
+2016-01-01 12:00:00   1.234  000000000000000   13.284
+2016-01-01 16:00:00   2.345  000000000000000   12.345   21.345
+2016-01-01 20:00:00   2.678  000000000000000   12.678
+2016-01-02 00:00:00   2.910  000000000000000   12.910   21.910
+2016-01-02 04:00:00   2.345  000000000000000   12.345
+2016-01-02 08:00:00   2.678  000000000000000   12.678   21.678
+2016-01-02 12:00:00   2.910  000000000000000   12.910
+2016-01-02 16:00:00   2.345  000000000000000   12.345   21.345
+2016-01-02 20:00:00   2.678  000000000000000   12.678
+2016-01-03 00:00:00   2.910  000000000000000   12.910   21.910
 
 ```
 
@@ -306,20 +308,20 @@ time                 current  product_imei    voltage  temperature
     r = requests.get(url=url, headers=headers)
     print r.json()
     >>> {
-    u'status': u'success', 
-    u'message': u'data retrieved successfully', 
+    u'status': u'success',
+    u'message': u'data retrieved successfully',
     u'data': {
         u'measurement': u'telemetry'},
-        u'tags': {u'product_imei': u'000000000000000'}, 
+        u'tags': {u'product_imei': u'000000000000000'},
         u'current': [
             [1.234, u'2016-01-01T00:00:00Z'], [2.234, u'2016-01-01T04:00:00Z'], [3.234, u'2016-01-01T08:00:00Z'], [1.234, u'2016-01-01T12:00:00Z'], [2.345, u'2016-01-01T16:00:00Z'], [2.678, u'2016-01-01T20:00:00Z'], [2.91, u'2016-01-02T00:00:00Z'], [2.345, u'2016-01-02T04:00:00Z'], [2.678, u'2016-01-02T08:00:00Z'], [2.91, u'2016-01-02T12:00:00Z'], [2.345, u'2016-01-02T16:00:00Z'], [2.678, u'2016-01-02T20:00:00Z'], [2.91, u'2016-01-03T00:00:00Z']
-        ], 
+        ],
         u'voltage': [
             [14.243, u'2016-01-01T00:00:00Z'], [14.723, u'2016-01-01T04:00:00Z'], [14.826, u'2016-01-01T08:00:00Z'], [13.284, u'2016-01-01T12:00:00Z'], [12.345, u'2016-01-01T16:00:00Z'], [12.678, u'2016-01-01T20:00:00Z'], [12.91, u'2016-01-02T00:00:00Z'], [12.345, u'2016-01-02T04:00:00Z'], [12.678, u'2016-01-02T08:00:00Z'], [12.91, u'2016-01-02T12:00:00Z'], [12.345, u'2016-01-02T16:00:00Z'], [12.678, u'2016-01-02T20:00:00Z'], [12.91, u'2016-01-03T00:00:00Z']
-        ], 
+        ],
         u'temperature': [
             [21.345, u'2016-01-01T00:00:00Z'], [None, u'2016-01-01T04:00:00Z'], [21.345, u'2016-01-01T08:00:00Z'], [None, u'2016-01-01T12:00:00Z'], [21.345, u'2016-01-01T16:00:00Z'], [None, u'2016-01-01T20:00:00Z'], [21.91, u'2016-01-02T00:00:00Z'], [None, u'2016-01-02T04:00:00Z'], [21.678, u'2016-01-02T08:00:00Z'], [None, u'2016-01-02T12:00:00Z'], [21.345, u'2016-01-02T16:00:00Z'], [None, u'2016-01-02T20:00:00Z'], [21.91, u'2016-01-03T00:00:00Z']
-        ], 
+        ],
 }
 ```
 
@@ -336,14 +338,14 @@ time                 current  product_imei    voltage  temperature
     r = requests.get(url=url, params=params, headers=headers)
     r.json()
     >>> {
-        u'status': u'success', 
-        u'message': u'data retrieved successfully', 
+        u'status': u'success',
+        u'message': u'data retrieved successfully',
         u'data': {
-            u'tags': {u'product_imei': u'000000000000000'}, 
+            u'tags': {u'product_imei': u'000000000000000'},
             u'measurement': u'telemetry'}
-            u'current': [[2.91, u'2016-01-03T00:00:00Z']], 
-            u'voltage': [[12.91, u'2016-01-03T00:00:00Z']], 
-            u'temperature': [[21.91, u'2016-01-03T00:00:00Z']], 
+            u'current': [[2.91, u'2016-01-03T00:00:00Z']],
+            u'voltage': [[12.91, u'2016-01-03T00:00:00Z']],
+            u'temperature': [[21.91, u'2016-01-03T00:00:00Z']],
         }
 ```
 
@@ -361,16 +363,16 @@ time                 current  product_imei    voltage  temperature
         "fields": ["current", "temperature"]
     }
 
-    r = requests.get(url=url, params=params, headers=headers
+    r = requests.get(url=url, params=params, headers=headers)
     r.json()
     >>> {
-        u'status': u'success', 
-        u'message': u'data retrieved successfully', 
+        u'status': u'success',
+        u'message': u'data retrieved successfully',
         u'data': {
             u'measurement': u'telemetry'}
-            u'tags': {u'product_imei': u'000000000000000'}, 
-            u'current': [[2.234, u'2016-01-01T04:00:00Z'], [3.234, u'2016-01-01T08:00:00Z']], 
-            u'temperature': [[None, u'2016-01-01T04:00:00Z'], [21.345, u'2016-01-01T08:00:00Z']], 
+            u'tags': {u'product_imei': u'000000000000000'},
+            u'current': [[2.234, u'2016-01-01T04:00:00Z'], [3.234, u'2016-01-01T08:00:00Z']],
+            u'temperature': [[None, u'2016-01-01T04:00:00Z'], [21.345, u'2016-01-01T08:00:00Z']],
     }
 ```
 
@@ -391,21 +393,21 @@ Provided no errors occured with the request the response will be structured as f
 }
 </code>
 
-Where `<influx data structure>` is as follows:  
+Where `<influx data structure>` is as follows:
 
 <code>
 {  
 &emsp;&emsp;"measurement": `<measurement name>`,  
 &emsp;&emsp;"tags": {  
 &emsp;&emsp;&emsp;&emsp;`<tagName1>`: `<tagValue1>`,  
-&emsp;&emsp;&emsp;&emsp;`<tagName2>`: `<tagValue2>`,  
+&emsp;&emsp;&emsp;&emsp;`<tagName2>`: `<tagValue2>`, 
 &emsp;&emsp;&emsp;&emsp;`<tagName3>`: `<tagValue3>`,  
 &emsp;&emsp;&emsp;&emsp;etc..  
 &emsp;&emsp;},  
 &emsp;&emsp;`<fieldName1>`: [[`<value>`, `<timestamp>`],[`<value>`, `<timestamp>`],[`<value>`, `<timestamp>`]],  
 &emsp;&emsp;`<fieldName2>`: [[`<value>`, `<timestamp>`],[`<value>`, `<timestamp>`],[`<value>`, `<timestamp>`]],  
 &emsp;&emsp;`<fieldName3>`: [[`<value>`, `<timestamp>`],[`<value>`, `<timestamp>`],[`<value>`, `<timestamp>`]],  
-}
+}  
 </code>
 
 
@@ -423,11 +425,14 @@ name | description | default
 `measurement` | measurement to query | "telemetry"
 `limit` | number of data-points to return | No limit
 `where` | an optional <a href="https://docs.influxdata.com/influxdb/v1.0//query_language/data_exploration/#the-where-clause">`WHERE`-clause</a> | None
-`tags` | tags to query | {}
+`tags` | JSON dictionary of tags to query | "{}" _(an empty JSON dictionary)
 `ds_interval` | A downsampling interval to apply to the query | None
 `ds_function` | The downsampling function to apply with `ds_interval` | `mean()`
 
-### Examples
+
+
+
+### Full Query Examples
 
 If a user queries `/v1/products/<imei>/data` and includes the following parameters:
 
@@ -442,21 +447,151 @@ A second query with parameters:
 &emsp;&emsp;start: "2016-01-01",  
 &emsp;&emsp;end: "2016-02-01",  
 &emsp;&emsp;limit: 100,  
-&emsp;&emsp;where: "'voltage' > 14.0"  
-&emsp;&emsp;fields: ["current", "temperature"]
+&emsp;&emsp;where: "'voltage' > 14.0",  
+&emsp;&emsp;fields: ["current", "temperature"]  
 }
 </code>
 
 
-Would return the first 100 datapoints in January where voltage > 14.0V for the unit. Note that since `fields` is specified as only `current` and `temperature` here the data returned are the values of `current` and `temperature` where the corresponding voltage was > 14.0, 
+Would return the first 100 datapoints in January where voltage > 14.0V for the unit. Note that since `fields` is specified as only `current` and `temperature` here the data returned are the values of `current` and `temperature` where the corresponding voltage was > 14.0,
+
+
+### Tags
+Users can filter by specific tags by supplying a JSON formatted dictionary in the parameters like this:
+
+<code>
+{  
+&emsp;&emsp;start: "2016-01-01",  
+&emsp;&emsp;end: "2016-02-01",  
+&emsp;&emsp;tags: "{tagKey: tagValue, tagKey: tagValue}"  
+}  
+</code>
+
+### Downsampling
+
+Users can downsample data by using the `ds_interval` and `ds_function` parameters. These parameters are used to implement the `GROUP BY` functionality listed <a href="https://docs.influxdata.com/influxdb/v1.0//query_language/data_exploration/#group-by-tag-values">HERE</a> in the influxDB documentation.
+
+Users can specifiy a time-range using `ds_interval` and a function using `ds_function` and the API will return data which been downsampled into '`ds_interval`'' chunks by applying the '`ds_interval`' function to datapoints with-in each chunk.  
+When choosing a function users only need to name the function - do NOT include brackets (). 
+
+### Available Downsampling Functions
+
+<a href="https://docs.influxdata.com/influxdb/v1.0/query_language/functions/#integral">You can find a full list of available functions here</a>
+
+The default downsampling functin is `mean`
+
+### Available Time Intervals
+Time intervals are specifed as a string in the format: `"[number][unit]"`.  
+Five minutes would be specified as `"5m"`  
+The following units are available:  
+<code>
+{  
+&emsp;&emsp; `u` _(microseconds)_  
+&emsp;&emsp; `ms` _(milliseconds)_  
+&emsp;&emsp; `s` _(seconds)_  
+&emsp;&emsp; `m` _(minutes)_  
+&emsp;&emsp; `h` _(hours)_  
+&emsp;&emsp; `d` _(days)_  
+&emsp;&emsp; `w` _(weeks)_  
+}  
+</code>
+
+**Time Interval Examples**
+
+Specifying 1 minute intervals  
+`{ds_interval: "1m"}`  
+
+Specifying 10 d intervals  
+`{ds_interval: "10d"}`
+
+Specifying half-second intervals in microseconds  
+`{ds_interval: "500000u"}`
+
+### Downsample Examples
+
+To compute the 5 minute average of a series:
+
+<code>
+{  
+&emsp;&emsp;"ds_interval": "5m"  
+&emsp;&emsp;"ds_fucntion": "mean"  
+}  
+</code>
+
+To compute the daily sum of a series:
+
+<code>
+{  
+&emsp;&emsp;"ds_interval": "1d"  
+&emsp;&emsp;"ds_fucntion": "sum"  
+}  
+</code>
+
+To compute the hourly maximum of a series:
+
+<code>
+{  
+&emsp;&emsp;"ds_interval": "1h"  
+&emsp;&emsp;"ds_fucntion": "max"  
+}  
+</code>
+
 
 ## Reading General Data
 
-A `GET` request to `/v1/influx/data` allows the user to read more general data from influx that doesn't relate to a specific product_imei. The parameter syntax and defaults are the same. 
+A `GET` request to `/v1/influx/data` allows the user to read more general data from influx that doesn't relate to a specific product_imei. The parameter syntax and defaults are the same.
 
 
 <aside class="notice">Note! A <a href="#product">product_imei</a> must be explicity stated if required when using this endpoint.</aside>
 
+`Tags` are specified in the `GET` request as a JSON dictionary of key/value pairs. For example:
 
+<code>
+{  
+&emsp;&emsp;start: "2016-01-01",  
+&emsp;&emsp;end: "2016-02-01",  
+&emsp;&emsp;tags: json.dumps({"product_imei": 111010101010101010})  
+}
+</code>
+
+## Custom Queries
+
+```python
+    url = "http://smartapi.bboxx.co.uk/v1/influx/custom_query"
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
+
+    params = {
+        "q": "SELECT max(current) / mean(voltage) FROM telemetry WHERE "product_imei" = '000000000000000' and time > '2016-01-01'"
+    }
+
+    r = requests.get(url=url, params=params, headers=headers)
+    r.json()
+    >>> {
+        u'status': u'success',
+        u'message': u'data retrieved successfully',
+        u'data': {}
+```
+
+For more complex queries and to leverage the full power of the <a href="https://docs.influxdata.com/influxdb/v1.0/query_language/data_exploration/">influxQL</a> the `/influx/custom_query` endpoint is available. 
+
+Here users can submit a plain-text influxQL query which will be directly executed and the results returned. The other query parameters will not be accepted here.  
+
+Queries should be submitted in the `q` parameter like this:  
+
+<code>
+{  
+&emsp;&emsp;"q": `<valid-influxQL-query-str>`  
+}  
+</code>
+
+Error checking and reporting on this endpoint is minimal so it's important to check that your query is valid before sending. 
+
+The data is returned in a raw format so the format of the response will depend heavily on the query that is run. 
+
+It's important to avoid queries that could cause enormous returns such as `"SELECT * FROM telemetry"`.   
+In addition please note that `limit 1` will return 1 result _**per series**_.   
+Therefore `SELECT * FROM telemetry limit 1` will return many thousands of results.   
+
+Finally note that in plain-text influxQL queries quotes are important for naming `measurements`, `tags`, `fields` and timestamps. If unsure please check the influx documentation for details of what values should be quoted and what should, and which types of quotes (single/double) to use. 
 
 
