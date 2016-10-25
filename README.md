@@ -1,3 +1,3 @@
-# OKCash - Docs and Information
+# Okcash - Docs and Information
 
 Under construction...
