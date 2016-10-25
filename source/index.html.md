@@ -1,8 +1,8 @@
 ---
-title: OKCash Documentation
+title: Okcash Documentation
 
 toc_footers:
-- <a href='http://okcash.co'>OKCash Website</a>
+- <a href='http://okcash.co'>Okcash Website</a>
 - <a href='http://okcash.co/#jf_download'>Download</a>
 - <a href='http://discord.me/cryptocurrency'>Discord</a>
 - <a href='http://okcashtalk.org'>Forum</a>
@@ -20,8 +20,8 @@ search: true
 # Community
 
 ## Forums
-- [OKCash Talk](http://okcashtalk.org)
-- [Reddit's OKCash Community](http://reddit.com/r/OKcash/)
+- [Okcash Talk](http://okcashtalk.org)
+- [Reddit's Okcash Community](http://reddit.com/r/OKcash/)
 - [Bitcoin Talk Forum](https://bitcointalk.org/index.php?topic=1028368.0)
 - [Bitcoin Garden](http://bitcoingarden.tk/forum/index.php?topic=3941.0)
 - [Cryptopia](https://www.cryptopia.co.nz/Forum/Thread/449)
@@ -48,8 +48,8 @@ search: true
 - [Discord](http://discord.me/cryptocurrency)
 
 ## Tip Bots
-- [OKCashTip at Twitter](https://twitter.com/okcashtip/)
-- [OKCashTip at Reddit](https://www.reddit.com/r/OKcash/comments/3i97g0/okcash_tip_bot/)
+- [OkcashTip at Twitter](https://twitter.com/okcashtip/)
+- [OkcashTip at Reddit](https://www.reddit.com/r/OKcash/comments/3i97g0/okcash_tip_bot/)
 
 # Currency
 
@@ -59,9 +59,9 @@ search: true
 
 ## Exchanges
 
-Currently you can buy and sell OKCash (OK) for Bitcoin, Doge, Dots, USD, EURO and more.
+Currently you can buy and sell Okcash (OK) for Bitcoin, Doge, Dots, USD, EURO and more.
 
-OKCash is available at these exchanges:
+Okcash is available at these exchanges:
 
 - [Bleutrade](https://bleutrade.com/exchange/OK/BTC)
 - [BTCPOP](https://btcpop.co/Exchange/OK)
@@ -79,7 +79,7 @@ OKCash is available at these exchanges:
 
 # Download
 
-Select your OK wallet & Start gaining the benefits of using OKCash Today.
+Select your OK wallet & Start gaining the benefits of using Okcash Today.
 
 <aside class="success">
 Files Distribution powered by dropbox.com secure encrypted files services.
@@ -114,7 +114,7 @@ Files Distribution powered by dropbox.com secure encrypted files services.
 ## ROKOS
 - Latest [ROKOS](http://rokos.space) download.
 
-First fully optimized  Operating System for IoT devices (Raspberry Pi [zero, 2, 3], BananaPi, Pine64+) with Bitcoin, OKCash, OpenBazaar and more cryptocurrencies and decentralized tech.
+First fully optimized  Operating System for IoT devices (Raspberry Pi [zero, 2, 3], BananaPi, Pine64+) with Bitcoin, Okcash, OpenBazaar and more cryptocurrencies and decentralized tech.
 
 ## Bootstrap?
 
@@ -130,7 +130,7 @@ The first time sync of the OK blockchain can take quite a while; sometimes up to
 
 With OK you can speed up this process by loading compressed backups of the OK blockchain.
 
-Adding the current ok-blockchain to your local okcash data directory speeds up the synchronization process which will get your wallet up and running in minutes.
+Adding the current ok-blockchain to your local Okcash data directory speeds up the synchronization process which will get your wallet up and running in minutes.
 
 ### How to use the ok-blockchain to sync your OK wallet
 
@@ -166,7 +166,7 @@ Windows
 Warning: deleting the wallet.dat file in this directory will cause you to lose all of your coins if you have no back up.
 </aside>
 
-These are the paths where your **blockchain data, wallet and pretty much everything related to OKCash** is stored.
+These are the paths where your **blockchain data, wallet and pretty much everything related to Okcash** is stored.
 
 When using the ok-blockchain.zip method these are the location where you extract the ok-blockchain.zip file.
 
