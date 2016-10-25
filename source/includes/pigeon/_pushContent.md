@@ -2,7 +2,7 @@
 
 ```xml
 <pushContent>
-    <badge>0</badge>
+   <badge>0</badge>
    <details>
       <entry>
          <key>target</key>
