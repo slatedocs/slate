@@ -10,19 +10,19 @@
   **name**  <br> String | *Nome do cliente*
   **registry_code**  <br> String | *Documento do cliente(CPF ou CNPJ)*
   **email**  <br> String | *Email do cliente*
-  **address[:country]** <br> String | *Código do país no formato ISO 3166-1 alpha-2. Exemplo: BR*
-  **address[:zipcode]** <br> String | *Código postal do cliente*
-  **address[:state]** <br> String | *Código do estado no formato ISO 3166-2. Exemplo: SP*
-  **address[:city]** <br> String | *Cidade do cliente*
-  **address[:neighborhood]** <br> String | *Bairro do cliente*
-  **address[:street]** <br> String | *Rua do cliente*
-  **address[:number]** <br> String |  *Número do endereço do cliente*
-  **address[:additional_details]** <br> String | *Complemento do endereço do cliente*
+  **address[country]** <br> String | *Código do país no formato ISO 3166-1 alpha-2. Exemplo: BR*
+  **address[zipcode]** <br> String | *Código postal do cliente*
+  **address[state]** <br> String | *Código do estado no formato ISO 3166-2. Exemplo: SP*
+  **address[city]** <br> String | *Cidade do cliente*
+  **address[neighborhood]** <br> String | *Bairro do cliente*
+  **address[street]** <br> String | *Rua do cliente*
+  **address[number]** <br> String |  *Número do endereço do cliente*
+  **address[additional_details]** <br> String | *Complemento do endereço do cliente*
   **phone[phone_type]** <br> String | *Telefone residencial ou celular*
   **phone[number]** <br> String | *Número do telefone sem separadores do cliente*
   **phone[area_code]** <br> String | *Código de área do município*
   **phone[country_code]**  <br> String | *Código do país*
-  **phone[extension]**  <br> String | *Extensão*
+  **phone[extension]**  <br> String | *Ramal*
 
 ## Criando um cliente
 

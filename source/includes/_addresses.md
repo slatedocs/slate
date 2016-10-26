@@ -1,4 +1,3 @@
-
 # Addresses
 
   Um endereço é a associado à um cliente ou uma empresa.
@@ -139,8 +138,8 @@
         "country": "BR"
       }
     ]
-
   ```
+
 
 ## Atualizando um endereço
 

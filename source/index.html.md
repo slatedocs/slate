@@ -16,6 +16,7 @@ includes:
   - companies
   - customers
   - document_schemes
+  - items
   - errors
 
 

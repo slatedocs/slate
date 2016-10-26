@@ -16,19 +16,19 @@
   **email** <br> String | *Email da empresa*
   **registry_code** <br>String | *Documento da empresa (CNPJ)*
   **status** <br> Default: active | *Define se a empresa está ativada ou não na API.*
-  **address[:country]** <br> String | *Código do país no formato ISO 3166-1 alpha-2. Exemplo: BR*
-  **address[:zipcode]** <br> String | *Código postal da empresa*
-  **address[:state]** <br> String | *Código do estado no formato ISO 3166-2. Exemplo: SP*
-  **address[:city]** <br> String | *Cidade da empresa*
-  **address[:neighborhood]** <br> String | *Bairro da empresa*
-  **address[:street]** <br> String | *Rua da empresa*
-  **address[:number]** <br> String |  *Número do endereço da empresa*
-  **address[:additional_details]** <br> String | *Complemento do endereço da empresa*
+  **address[country]** <br> String | *Código do país no formato ISO 3166-1 alpha-2. Exemplo: BR*
+  **address[zipcode]** <br> String | *Código postal da empresa*
+  **address[state]** <br> String | *Código do estado no formato ISO 3166-2. Exemplo: SP*
+  **address[city]** <br> String | *Cidade da empresa*
+  **address[neighborhood]** <br> String | *Bairro da empresa*
+  **address[street]** <br> String | *Rua da empresa*
+  **address[number]** <br> String |  *Número do endereço da empresa*
+  **address[additional_details]** <br> String | *Complemento do endereço da empresa*
   **phone[phone_type]** <br> String | *Telefone residencial ou celular*
   **phone[number]** <br> String | *Número do telefone sem separadores da empresa*
   **phone[area_code]** <br> String | *Código de área do município*
   **phone[country_code]**  <br> String | *Código do país*
-  **phone[extension]**  <br> String | *Extensão*
+  **phone[extension]**  <br> String | *Ramal*
 
 ##Retornando uma empresa
 

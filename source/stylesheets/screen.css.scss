@@ -427,14 +427,19 @@ html, body {
       padding: 5px 10px;
       border-bottom: 1px solid #ccc;
       vertical-align: bottom;
+      text-align: center;
     }
 
     td {
       padding: 5px 20px;
+      border-left: #ccc solid 1px;
+      border-top: #ccc solid 1px;
+      vertical-align: middle;
     }
 
     td:first-child {
       text-align: right;
+      border-left: none !important;
     }
 
     tr:last-child {
@@ -454,6 +459,7 @@ html, body {
   p, li, dt, dd {
     line-height: 1.6;
     margin-top: 0;
+    margin-bottom: 0;
   }
 
   img {

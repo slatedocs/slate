@@ -116,6 +116,8 @@
       }
     ]
   ```
+
+
 ## Atualizando um telefone
 
 Atualiza o telefone solicitado e retorna o mesmo com os parâmetros atualizados

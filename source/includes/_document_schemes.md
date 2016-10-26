@@ -45,7 +45,7 @@
   > GET https://api.fastnotas.com/v1/document_schemes/{DOCUMENT_SCHEME_ID}
 
    ```shell
-    curl -X GET https://api.fastnotas.com/v1/document_schemes/{DOCUMENT_SCHEME_ID}
+    curl -X GET https://api.fastnotas.com/v1/document_schemes/{DOCUMENT_SCHEME_ID} \
     -u 'YOUR_API_KEY:'
   ```
   > Exemplo de retorno em JSON:
@@ -139,12 +139,3 @@ Parâmetro | Descrição
     curl -X DELETE https://api.fastnotas.com/v1/document_schemes/{DOCUMENT_SCHEME_ID} \
     -u 'YOUR_API_KEY:'
   ```
-
-
-# Items
-
-# Documents
-
-# Operations
-
-# Transactions
