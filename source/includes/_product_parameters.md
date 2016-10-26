@@ -11,64 +11,64 @@
 
     print r.json()
     >>> {
-        "status": "success", 
-        "message": "Current parameters for # returned successfully", 
+        "status": "success",
+        "message": "Current parameters for # returned successfully",
         "data": {
-                    'part_parameters': 
+                    'part_parameters':
                     [
                         {
                             'status': 'pending',
-                            'modified_by': None, 
-                            'part_parameter_id': 105, 
-                            'date_removed': None, 
-                            'created_at': '2016-10-24T09:46:33.613074', 
-                            'modified_at': None, 
-                            'created_by': 'ci.system@bboxx.co.uk', 
-                            'parameter_type_id': 55, 
-                            'value': 'elephants', 
-                            'part_id': 616479, 
+                            'modified_by': None,
+                            'part_parameter_id': 105,
+                            'date_removed': None,
+                            'created_at': '2016-10-24T09:46:33.613074',
+                            'modified_at': None,
+                            'created_by': 'ci.system@bboxx.co.uk',
+                            'parameter_type_id': 55,
+                            'value': 'elephants',
+                            'part_id': 616479,
                             'date_added': None
                         }
-                    ], 
-                    'product_parameters': 
+                    ],
+                    'product_parameters':
                     [
                         {
-                            'product_imei': '111010101010101', 
-                            'status': 'active', 
-                            'modified_by': 'ci.system@bboxx.co.uk', 
-                            'date_removed': None, 
-                            'created_at': '2016-10-24T09:46:15.945135', 
-                            'modified_at': '2016-10-24T09:46:16.287039', 
-                            'created_by': 'ci.system@bboxx.co.uk', 
-                            'parameter_type_id': 1, 
-                            'value': 'False', 
-                            'date_added': '2016-10-24T09:46:16.285136', 
+                            'product_imei': '111010101010101',
+                            'status': 'active',
+                            'modified_by': 'ci.system@bboxx.co.uk',
+                            'date_removed': None,
+                            'created_at': '2016-10-24T09:46:15.945135',
+                            'modified_at': '2016-10-24T09:46:16.287039',
+                            'created_by': 'ci.system@bboxx.co.uk',
+                            'parameter_type_id': 1,
+                            'value': 'False',
+                            'date_added': '2016-10-24T09:46:16.285136',
                             'product_parameter_id': 76880
-                        }, 
+                        },
                         {
-                            'product_imei': '111010101010101', 
-                            'status': 'active', 
-                            'modified_by': 'ci.system@bboxx.co.uk', 
-                            'date_removed': None, 
-                            'created_at': '2016-10-24T09:46:16.139237', 
-                            'modified_at': '2016-10-24T09:46:16.412951', 
-                            'created_by': 'ci.system@bboxx.co.uk', 
-                            'parameter_type_id': 2, 
-                            'value': 'False', 
-                            'date_added': '2016-10-24T09:46:16.411008', 
+                            'product_imei': '111010101010101',
+                            'status': 'active',
+                            'modified_by': 'ci.system@bboxx.co.uk',
+                            'date_removed': None,
+                            'created_at': '2016-10-24T09:46:16.139237',
+                            'modified_at': '2016-10-24T09:46:16.412951',
+                            'created_by': 'ci.system@bboxx.co.uk',
+                            'parameter_type_id': 2,
+                            'value': 'False',
+                            'date_added': '2016-10-24T09:46:16.411008',
                             'product_parameter_id': 76881
-                        }, 
+                        },
                         {
-                            'product_imei': '111010101010101', 
-                            'status': 'pending', 
-                            'modified_by': None, 
-                            'date_removed': None, 
-                            'created_at': '2016-10-24T09:46:33.678810', 
-                            'modified_at': None, 
-                            'created_by': 'ci.system@bboxx.co.uk', 
-                            'parameter_type_id': 55, 
-                            'value': 'elephants', 
-                            'date_added': None, 
+                            'product_imei': '111010101010101',
+                            'status': 'pending',
+                            'modified_by': None,
+                            'date_removed': None,
+                            'created_at': '2016-10-24T09:46:33.678810',
+                            'modified_at': None,
+                            'created_by': 'ci.system@bboxx.co.uk',
+                            'parameter_type_id': 55,
+                            'value': 'elephants',
+                            'date_added': None,
                             'product_parameter_id': 76890
                         }
                     ]
@@ -91,37 +91,37 @@
 
     print r.json()
     >>> {
-        "status": "success", 
-        "message": "Current parameters for #111010101010101 successfully updated", 
+        "status": "success",
+        "message": "Current parameters for #111010101010101 successfully updated",
         "data": {
-                    'data': 
+                    'data':
                     {
-                        'part_parameters': 
+                        'part_parameters':
                         {
-                            '616479': 
+                            '616479':
                             [
                                 {
                                     'status': 'pending',
-                                    'modified_by': None, 
-                                    'part_parameter_id': 105, 
-                                    'date_removed': None, 
-                                    'created_at': '2016-10-24T09:28:34.601150', 
-                                    'modified_at': None, 
-                                    'created_by': 'ci.system@bboxx.co.uk', 
-                                    'parameter_type_id': 55, 
-                                    'value': 'elephants', 
-                                    'part_id': 616479, 
+                                    'modified_by': None,
+                                    'part_parameter_id': 105,
+                                    'date_removed': None,
+                                    'created_at': '2016-10-24T09:28:34.601150',
+                                    'modified_at': None,
+                                    'created_by': 'ci.system@bboxx.co.uk',
+                                    'parameter_type_id': 55,
+                                    'value': 'elephants',
+                                    'part_id': 616479,
                                     'date_added': None
                                 }
                             ]
-                        }, 
-                        'product_parameters': 
+                        },
+                        'product_parameters':
                         [
                             {
                                 'product_imei': '111010101010101',
                                 'status': 'pending',
                                 'modified_by': None,
-                                'date_removed': None, 
+                                'date_removed': None,
                                 'created_at': '2016-10-24T09:28:34.63
                             }
                         ]
@@ -129,35 +129,47 @@
                 }
 ```
 
-The `GET` request endpoint is designed for users to retrieve the current parameters for the product. The request should:
+There are a variety of settings and configurations that a user may wish to apply to a particular unit. In order to allow flexible configuration of any unit, and keep a record of the configurations at any given time the system uses `parameters` to control it's configuration.
+
+In addition to settings on the unit in question, the parts on the unit may also require configuration.
+
+For this reason `product_parameters` and `part_parameters` distinguish between a setting applied to a particular product, and a setting applied to a particular part on a particular product.
+
+When a user wishes to change the settings on a unit they should create a new `product_parameter` or `part_parameter`, with that setting, for the unit.
+All new `parameters` are initialised as `pending` until the unit has been successfully sent the new setting, at which point they move to `active`. Previously active `parameters` are changed to `removed` when a new parameter of that `parameter_type` is added.
+
+If a `parameter` is `pending` and another `parameter` is sent, the old pending parameter is changed to `overwritten` and the most recently submitted `parameter` becomes `pending`.
+
+A complete history of parameters for a unit is kept so that the historical state of a unit may be observed.
+
+A list of possile `parameters` for a unit is shown in `parameter_types`.
+
+### Endpoint
+Users can retrieve the current parameters for the product with a `GET` request to `product/<imei>/parameters. The request should:
 
 * Return all the parameters with the state `active` that belongs to the product
 * Return all the parameters with the state `pending` that belongs to the product
 
-The `POST` request endpoint is designed for users to provide new parameters for the product or parts associated with the product. The request should:
-
-* Set the parameters to the product or part if it is a completely new parameter_type on the part or product and set the state of the parameter as `active`
-* Update the parameters for the parts and product. This happens if the parameter_types being posted are pre-existing on the product or part, if this is the case, the previous parameters will have their state changed to `removed` and the new parameter will be given the state `active`
-
-### Endpoint
-To view the current parameter of a  <a href=/#product>`Product`</a>  and its parts, make a `GET` request to `/products/<imei>/product_parameters` with a valid imei.
+To view the current active and pending parameters of a  <a href=/#product>`Product`</a>  and its parts, make a `GET` request to `/products/<imei>/parameters` with a valid imei.
 
     | value
 ---:|:------
 __endpoint__ | `/products/<imei>/product_parameter`
 __method__ | `GET`
-__url_params__ | product_imei <font color="DarkGray">_(str)_</font> 
+__url_params__ | product_imei <font color="DarkGray">_(str)_</font>
 __payload__ | None
 __response__ | 200
 __permissions | `OVERVIEW`
 
-To `POST` parameters to the product or its parts, make a `GET` request to `/products/<imei>/product_parameters` with a valid imei.
+Users can set new parameters for the product or parts associated with the product using a `POST` request.
+
+
 
     | value
 ---:|:------
 __endpoint__ | `/products/<imei>/product_parameter`
 __method__ | `POST`
-__url_params__ | product_imei <font color="DarkGray">_(str)_</font> 
+__url_params__ | product_imei <font color="DarkGray">_(str)_</font>
 __payload__ | data <font color="DarkGray">_(JSON dictionary)_</font>
 __response__ | 200
 __permissions | `OVERVIEW`
