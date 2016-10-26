@@ -15,7 +15,6 @@ __created_by__  <br><font color="DarkGray">_text_</font>| username of the user w
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
 __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
 
-
 <br>
 
 Relationship | Description
@@ -39,7 +38,7 @@ __latest_software__ | The associated latest_software
     data = json.dumps({
 		"name": "test",
 		"erp_code": "XX0001",
-		"parameter_types": Unknown column type,
+		"parameter_types": [1,2,3],
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -54,7 +53,7 @@ __latest_software__ | The associated latest_software
 		"product_type_id": 1
 		"name": "test",
 		"erp_code": "XX0001",
-		"parameter_types": Unknown column type,
+		"parameter_types": [1,2,3],
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -77,7 +76,7 @@ __latest_software__ | The associated latest_software
 		"product_type_id": 1
 		"name": "test",
 		"erp_code": "XX0001",
-		"parameter_types": Unknown column type,
+		"parameter_types": [1,2,3],
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -117,7 +116,7 @@ __latest_software__ | The associated latest_software
     data = json.dumps({
 		"name": "changed",
 		"erp_code": YY9999,
-		"parameter_types": Unknown column type,
+		"parameter_types": [1,2,3,4,5,6],
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -131,7 +130,7 @@ __latest_software__ | The associated latest_software
 		"product_type_id": 1
 		"name": "changed",
 		"erp_code": YY9999,
-		"parameter_types": Unknown column type,
+		"parameter_types": [1,2,3,4,5,6],
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

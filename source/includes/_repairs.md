@@ -20,7 +20,6 @@ __created_by__  <br><font color="DarkGray">_text_</font>| username of the user w
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
 __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
 
-
 <br>
 
 Relationship | Description
@@ -44,7 +43,7 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 		"refurbishment_date": "2000-01-01 00:00:00",
 		"package": "test",
 		"process": "test",
-		"measured_battery_capacity": Unknown column type,
+		"measured_battery_capacity": 1.0,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -64,7 +63,7 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 		"refurbishment_date": "2000-01-01 00:00:00",
 		"package": "test",
 		"process": "test",
-		"measured_battery_capacity": Unknown column type,
+		"measured_battery_capacity": 1.0,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -92,7 +91,7 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 		"refurbishment_date": "2000-01-01 00:00:00",
 		"package": "test",
 		"process": "test",
-		"measured_battery_capacity": Unknown column type,
+		"measured_battery_capacity": 1.0,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -137,7 +136,7 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 		"refurbishment_date": "2000-01-01 00:00:00",
 		"package": "changed",
 		"process": "changed",
-		"measured_battery_capacity": Unknown column type,
+		"measured_battery_capacity": 2.0,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -156,7 +155,7 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 		"refurbishment_date": "2000-01-01 00:00:00",
 		"package": "changed",
 		"process": "changed",
-		"measured_battery_capacity": Unknown column type,
+		"measured_battery_capacity": 2.0,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

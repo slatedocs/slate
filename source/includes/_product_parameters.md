@@ -1,231 +1,214 @@
-## `/products/<imei>/product_parameters`
-### Description
+## <u>Product Parameter</u>
+This description is not yet complete it should be filled in!
 
-> A `GET` request to this endpoint returns a dictionary containing active and pending parameters of the product and its parts
+
+### <u>The product_parameter object</u>
+
+Field | Description
+------:|:------------
+__product_parameter_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each product_parameter.
+__value__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
+__date_added__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
+__date_removed__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
+__<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__status__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["active", "removed", "expired", "pending"]</font>
+__<a href="/#parameter-type">parameter_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
+__created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
+__modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
+__modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
+
+<br>
+
+Relationship | Description
+-------------:|:------------
+<font color="DarkGray">N/A</font> | <font color="DarkGray">_There are no relationships for this table._</font>
+
+<hr>
+<br>
+
+> An example POST request. Note that `product_parameter_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/111010101010101/product_parameters"
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
+    url = "http://smartapi.bboxx.co.uk/v1/product_parameters"
+    data = json.dumps({
+		"value": "test",
+		"date_added": "2000-01-01 00:00:00",
+		"date_removed": "2000-01-01 00:00:00",
+		"product_imei": "000000000000000",
+		"status": "test",
+		"parameter_type_id": 1,
+		})
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
+
+    r = requests.post(url=url, data=data, headers=headers)
+
+    r
+    >>> <Response 201>
+
+    r.json()
+
+    >>> {
+		"product_parameter_id": 1
+		"value": "test",
+		"date_added": "2000-01-01 00:00:00",
+		"date_removed": "2000-01-01 00:00:00",
+		"product_imei": "000000000000000",
+		"status": "test",
+		"parameter_type_id": 1,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
+```
+
+    > We can retrieve the `product_parameter` created by specifying its `product_parameter_id` in the request url:
+
+```python
+    url = 'http://smartapi.bboxx.co.uk/v1/product_parameters/1'
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
 
-    print r.json()
-    >>> {
-        "status": "success",
-        "message": "Current parameters for # returned successfully",
-        "data": {
-                    'part_parameters':
-                    [
-                        {
-                            'status': 'pending',
-                            'modified_by': None,
-                            'part_parameter_id': 105,
-                            'date_removed': None,
-                            'created_at': '2016-10-24T09:46:33.613074',
-                            'modified_at': None,
-                            'created_by': 'ci.system@bboxx.co.uk',
-                            'parameter_type_id': 55,
-                            'value': 'elephants',
-                            'part_id': 616479,
-                            'date_added': None
-                        }
-                    ],
-                    'product_parameters':
-                    [
-                        {
-                            'product_imei': '111010101010101',
-                            'status': 'active',
-                            'modified_by': 'ci.system@bboxx.co.uk',
-                            'date_removed': None,
-                            'created_at': '2016-10-24T09:46:15.945135',
-                            'modified_at': '2016-10-24T09:46:16.287039',
-                            'created_by': 'ci.system@bboxx.co.uk',
-                            'parameter_type_id': 1,
-                            'value': 'False',
-                            'date_added': '2016-10-24T09:46:16.285136',
-                            'product_parameter_id': 76880
-                        },
-                        {
-                            'product_imei': '111010101010101',
-                            'status': 'active',
-                            'modified_by': 'ci.system@bboxx.co.uk',
-                            'date_removed': None,
-                            'created_at': '2016-10-24T09:46:16.139237',
-                            'modified_at': '2016-10-24T09:46:16.412951',
-                            'created_by': 'ci.system@bboxx.co.uk',
-                            'parameter_type_id': 2,
-                            'value': 'False',
-                            'date_added': '2016-10-24T09:46:16.411008',
-                            'product_parameter_id': 76881
-                        },
-                        {
-                            'product_imei': '111010101010101',
-                            'status': 'pending',
-                            'modified_by': None,
-                            'date_removed': None,
-                            'created_at': '2016-10-24T09:46:33.678810',
-                            'modified_at': None,
-                            'created_by': 'ci.system@bboxx.co.uk',
-                            'parameter_type_id': 55,
-                            'value': 'elephants',
-                            'date_added': None,
-                            'product_parameter_id': 76890
-                        }
-                    ]
-                }
-        }
+    r
+    >>> <Response 200>
 
+    r.json()
+    >>> {
+		"product_parameter_id": 1
+		"value": "test",
+		"date_added": "2000-01-01 00:00:00",
+		"date_removed": "2000-01-01 00:00:00",
+		"product_imei": "000000000000000",
+		"status": "test",
+		"parameter_type_id": 1,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
-> A `POST` request to this endpoint will update the product and parts with the new parameters and return a response dictionary confirming newly set values
+> We can retrieve all `product_parameters` by omitting the `product_parameter_id`:
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/111010101010101/product_parameters"
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
-    data = {
-            'part_parameters': {'616479': {'string_test_parameter': 'elephants'}},
-            'product_parameters': {'string_test_parameter': 'elephants'}}
+    url = 'http://smartapi.bboxx.co.uk/v1/product_parameters'
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
+
+    r = requests.get(url=url, headers=headers)
+
+    r
+    >>> <Response 200>
+
+    r.json()
+    >>> {
+        u'total_pages': 1,
+        u'objects': [
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+        ],
+        u'num_results': 10,
+        u'page': 1
     }
+```
 
-    r = requests.post(url=url, headers=headers, data=data)
+> We can edit the newly created `product_parameter` with a `PUT` request:
 
-    print r.json()
+```python
+    url = 'http://smartapi.bboxx.co.uk/v1/product_parameters/1'
+    data = json.dumps({
+		"value": "changed",
+		"date_added": "2016-07-01 12:34:45",
+		"date_removed": "2016-07-01 12:34:45",
+		"product_imei": "999999999999999",
+		"status": "changed",
+		"parameter_type_id": 2,
+		})
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
+
+    r = requests.put(url=url, data=data, headers=headers)
+
+    r
+    >>> <Response 200>
+
+    r.json()
     >>> {
-        "status": "success",
-        "message": "Current parameters for #111010101010101 successfully updated",
-        "data": {
-                    'data':
-                    {
-                        'part_parameters':
-                        {
-                            '616479':
-                            [
-                                {
-                                    'status': 'pending',
-                                    'modified_by': None,
-                                    'part_parameter_id': 105,
-                                    'date_removed': None,
-                                    'created_at': '2016-10-24T09:28:34.601150',
-                                    'modified_at': None,
-                                    'created_by': 'ci.system@bboxx.co.uk',
-                                    'parameter_type_id': 55,
-                                    'value': 'elephants',
-                                    'part_id': 616479,
-                                    'date_added': None
-                                }
-                            ]
-                        },
-                        'product_parameters':
-                        [
-                            {
-                                'product_imei': '111010101010101',
-                                'status': 'pending',
-                                'modified_by': None,
-                                'date_removed': None,
-                                'created_at': '2016-10-24T09:28:34.63
-                            }
-                        ]
-                    }
-                }
+		"product_parameter_id": 1
+		"value": "changed",
+		"date_added": "2016-07-01 12:34:45",
+		"date_removed": "2016-07-01 12:34:45",
+		"product_imei": "999999999999999",
+		"status": "changed",
+		"parameter_type_id": 2,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": 2016-07-07 12:34:45
+	}
 ```
+> Note that the `modified_at` field has been updated accordingly.
 
-There are a variety of settings and configurations that a user may wish to apply to a particular unit. In order to allow flexible configuration of any unit, and keep a record of the configurations at any given time the system uses `parameters` to control it's configuration.
-
-In addition to settings on the unit in question, the parts on the unit may also require configuration.
-
-For this reason `product_parameters` and `part_parameters` distinguish between a setting applied to a particular product, and a setting applied to a particular part on a particular product.
-
-When a user wishes to change the settings on a unit they should create a new `product_parameter` or `part_parameter`, with that setting, for the unit.
-All new `parameters` are initialised as `pending` until the unit has been successfully sent the new setting, at which point they move to `active`. Previously active `parameters` are changed to `removed` when a new parameter of that `parameter_type` is added.
-
-If a `parameter` is `pending` and another `parameter` is sent, the old pending parameter is changed to `overwritten` and the most recently submitted `parameter` becomes `pending`.
-
-A complete history of parameters for a unit is kept so that the historical state of a unit may be observed.
-
-A list of possile `parameters` for a unit is shown in `parameter_types`.
-
-### Endpoint
-Users can retrieve the current parameters for the product with a `GET` request to `product/<imei>/parameters. The request should:
-
-* Return all the parameters with the state `active` that belongs to the product
-* Return all the parameters with the state `pending` that belongs to the product
-
-To view the current active and pending parameters of a  <a href=/#product>`Product`</a>  and its parts, make a `GET` request to `/products/<imei>/parameters` with a valid imei.
-
-    | value
----:|:------
-__endpoint__ | `/products/<imei>/product_parameter`
-__method__ | `GET`
-__url_params__ | product_imei <font color="DarkGray">_(str)_</font>
-__payload__ | None
-__response__ | 200
-__permissions | `OVERVIEW`
-
-Users can set new parameters for the product or parts associated with the product using a `POST` request.
-
-
-
-    | value
----:|:------
-__endpoint__ | `/products/<imei>/product_parameter`
-__method__ | `POST`
-__url_params__ | product_imei <font color="DarkGray">_(str)_</font>
-__payload__ | data <font color="DarkGray">_(JSON dictionary)_</font>
-__response__ | 200
-__permissions | `OVERVIEW`
-
-* The data has be in the form of a valid JSON object and follow the standardised format, valid `part_ids` for each part must be declared in the dictionary. (See Example 1)
-
-> `Example 1`
+> If a user has `SYSTEM` permissions they can delete the `product_parameter`
 
 ```python
-data = {
-	"product_parameters": {parameter_type_name: valid_parameter_value},
-	"part_parameters": {
-		sim_id: {parameter_type_name: valid_parameter_value}
-	}
-}
+    url = 'http://smartapi.bboxx.co.uk/v1/product_parameters/1'
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
+
+    r = requests.delete(url=url, headers=headers)
+
+    r
+    >>> <Response 204>
+
+    r.text
+    >>>
 ```
+> Note that the response from a 204 request is empty. This means that `r.json()` cannot be called and will throw a JSONDecodeError. In fact the response is `u''` - an empty unicode string.
 
-* All `parameter_type_name`(str) can be found in the `parameter_types` table and the values for the `parameter_types` must follow the validation rules set for the parameter_type. Alternative, users may choose to use the `parameter__type_id`(int) as an alternative to `parameter_type_name`. (See Example 2)
 
-> `Example 2`
 
-```python
-data = {
-	"product_parameters": {parameter_id: valid_parameter_value},
-	"part_parameters": {
-		sim_id: {parameter_id: valid_parameter_value}
-	}
-}
-data = json.dumps(data)
-```
+### POST
+     | value
+ ----:|:---
+endpoint | `/v1/product_parameters`
+method | `POST`
+url_params | <font color="DarkGray">N/A</font>
+query params | <font color="DarkGray">N/A</font>
+body | JSON-formatted dictionary with the details of the `product_parameter` that you wish to create
+permissions | <font color="Crimson">__`SYSTEM`__</font>
+response | `201`
 
-* If only `product_parameters` or only `part_parameters` are to be altered, an empty dictionary should be provided in place of the dictionary of parameter values. (See Example 3)
+### GET
+     | value
+ ----:|:---
+endpoint | `/v1/product_parameters` or `/v1/product_parameters/<product_parameter_id>`
+method | `GET`
+url_params | `product_parameter_id` <font color="DarkGray">_(int)_</font>
+query params | *> See Query Format and Filtering*
+body | <font color="DarkGray">N/A</font>
+permissions | <font color="Jade">__`OVERVIEW`__</font>
+response | `200`
 
-> `Example 3`
+### PUT
+     | value
+ ----:|:---
+endpoint | `/v1/product_parameters/<product_parameter_id>`
+method | `PUT`
+url_params | `product_parameter_id` of the product_parameter you wish to edit
+query params | <font color="DarkGray">N/A</font>
+body | JSON-formatted dictionary of the columns that you wish to alter
+permissions | <font color="Crimson">__`SYSTEM`__</font>
+response | `200`
 
-```python
-data = {
-	"product_parameters": {},
-	"part_parameters": {
-		sim_id: {parameter_type_name: valid_parameter_value}
-	}
-}
-data = json.dumps(data)
-```
+### DELETE
+     | value
+ ----:|:---
+endpoint | `/v1/product_parameters/<product_parameter_id>`
+method | `DELETE`
+url_params | `product_parameter_id` <font color="DarkGray">_(int)_</font>
+query params | <font color="DarkGray">N/A</font>
+body | <font color="DarkGray">N/A</font>
+permissions | <font color="Crimson">__`SYSTEM`__</font>
+response | `204`
 
-* Parameters may be declared for multiple parts in `part_parameters`. (See Example 4)
-
-> `Example 4`
-
-```python
-data = {
-	"product_parameters": {parameter_type_name: valid_parameter_value},
-	"part_parameters": {
-		sim_id: {parameter_type_name: valid_parameter_value},
-		battery_id: {parameter_type_name: valid_parameter_value}
-	}
-}
-data = json.dumps(data)
-```
+    

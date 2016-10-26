@@ -15,7 +15,6 @@ __created_by__  <br><font color="DarkGray">_text_</font>| username of the user w
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
 __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
 
-
 <br>
 
 Relationship | Description
@@ -78,21 +77,7 @@ Relationship | Description
 
 > `PUT` requests are not allowed at this endpoint
 
-> If a user has `SYSTEM` permissions they can delete the `state`
-
-```python
-    url = 'http://smartapi.bboxx.co.uk/v1/states/1'
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
-
-    r = requests.delete(url=url, headers=headers)
-
-    r
-    >>> <Response 204>
-
-    r.text
-    >>>
-```
-> Note that the response from a 204 request is empty. This means that `r.json()` cannot be called and will throw a JSONDecodeError. In fact the response is `u''` - an empty unicode string.
+> `DELETE` requests are not allowed at this endpoint
 
 
 
@@ -114,14 +99,8 @@ response | `200`
 `PUT` requests are not allowed at this endpoint
 
 ### DELETE
-     | value
- ----:|:---
-endpoint | `/v1/states/<state_id>`
-method | `DELETE`
-url_params | `state_id` <font color="DarkGray">_(int)_</font>
-query params | <font color="DarkGray">N/A</font>
-body | <font color="DarkGray">N/A</font>
-permissions | <font color="Crimson">__`SYSTEM`__</font>
-response | `204`
+`DELETE` requests are not allowed at this endpoint
+
+
 
     

@@ -16,8 +16,8 @@ __desired_tamper_flag__ <br><font color="DarkGray">_boolean_</font> <font color=
 __device_key__ <br><font color="DarkGray">_varchar(24)_</font> <font color="Crimson">(unique)</font> | 
 __<a href="/#hub">hub_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __imsi__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,unique)</font> | 
-__<a href="/#latest-connection">latest_connection_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
-__<a href="/#latest-connection-location">latest_connection_location_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__latest_connection_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__latest_connection_location_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __<a href="/#latest-state">latest_state_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __<a href="/#product-type">product_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __serial_number__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
@@ -27,7 +27,6 @@ __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that th
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
 __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
-
 
 <br>
 
@@ -45,6 +44,7 @@ __repairs__ | The associated repairs
 __sms_history__ | The associated sms_history
 __states__ | The associated states
 __tamper_enable_history__ | The associated tamper_enable_history
+__product_parameter__ | The associated product_parameter
 
 
 <hr>
@@ -72,7 +72,7 @@ __tamper_enable_history__ | The associated tamper_enable_history
 		"desired_enable_flag": True,
 		"current_tamper_flag": True,
 		"desired_tamper_flag": True,
-		"device_key": Unknown column type,
+		"device_key": "awjs875jg7thskr9485984rf",
 		"hub_id": 1,
 		"imsi": "000000000000000",
 		"latest_connection_id": 1,
@@ -125,7 +125,7 @@ __tamper_enable_history__ | The associated tamper_enable_history
 		"desired_enable_flag": False,
 		"current_tamper_flag": False,
 		"desired_tamper_flag": False,
-		"device_key": Unknown column type,
+		"device_key": "awjs875jg7thskr9485984rf",
 		"hub_id": 2,
 		"imsi": "999999999999999",
 		"latest_connection_id": 2,
@@ -152,7 +152,7 @@ __tamper_enable_history__ | The associated tamper_enable_history
 		"desired_enable_flag": False,
 		"current_tamper_flag": False,
 		"desired_tamper_flag": False,
-		"device_key": Unknown column type,
+		"device_key": "awjs875jg7thskr9485984rf",
 		"hub_id": 2,
 		"imsi": "999999999999999",
 		"latest_connection_id": 2,

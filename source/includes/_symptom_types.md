@@ -14,7 +14,6 @@ __created_by__  <br><font color="DarkGray">_text_</font>| username of the user w
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
 __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
 
-
 <br>
 
 Relationship | Description

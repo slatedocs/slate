@@ -1,5 +1,5 @@
 ## <u>Parameter Type</u>
-A table of each possible type of parameter that may be set. The valid parameter
+A table of the possible types of Parameter that may be set. Each ParameterType is linked to oneor more ProductTypes.
 
 
 ### <u>The parameter_type object</u>
@@ -10,17 +10,18 @@ __parameter_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crims
 __name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
 __data_type__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["int", "float", "bool", "string", "datetime"]</font>
 __validation_rules__ <br><font color="DarkGray">_json_</font> <font color="Crimson"></font> | 
+__description__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
 __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
 
-
 <br>
 
 Relationship | Description
 -------------:|:------------
-__parameters__ | The associated parameters
+__product_parameters__ | The associated product_parameters
+__part_parameters__ | The associated part_parameters
 
 
 <hr>
@@ -33,7 +34,8 @@ __parameters__ | The associated parameters
     data = json.dumps({
 		"name": "test",
 		"data_type": "test",
-		"validation_rules": Unknown column type,
+		"validation_rules": {},
+		"description": "test",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -48,7 +50,8 @@ __parameters__ | The associated parameters
 		"parameter_type_id": 1
 		"name": "test",
 		"data_type": "test",
-		"validation_rules": Unknown column type,
+		"validation_rules": {},
+		"description": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -71,7 +74,8 @@ __parameters__ | The associated parameters
 		"parameter_type_id": 1
 		"name": "test",
 		"data_type": "test",
-		"validation_rules": Unknown column type,
+		"validation_rules": {},
+		"description": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -111,7 +115,8 @@ __parameters__ | The associated parameters
     data = json.dumps({
 		"name": "changed",
 		"data_type": "changed",
-		"validation_rules": Unknown column type,
+		"validation_rules": {},
+		"description": "changed",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -125,7 +130,8 @@ __parameters__ | The associated parameters
 		"parameter_type_id": 1
 		"name": "changed",
 		"data_type": "changed",
-		"validation_rules": Unknown column type,
+		"validation_rules": {},
+		"description": "changed",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

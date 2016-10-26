@@ -17,7 +17,6 @@ __created_by__  <br><font color="DarkGray">_text_</font>| username of the user w
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
 __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
 
-
 <br>
 
 Relationship | Description
@@ -38,7 +37,7 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 		"description": "test",
 		"erp_code": "XX0001",
 		"serial_number_category": "test",
-		"parameter_types": Unknown column type,
+		"parameter_types": [1,2,3],
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -55,7 +54,7 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 		"description": "test",
 		"erp_code": "XX0001",
 		"serial_number_category": "test",
-		"parameter_types": Unknown column type,
+		"parameter_types": [1,2,3],
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -80,7 +79,7 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 		"description": "test",
 		"erp_code": "XX0001",
 		"serial_number_category": "test",
-		"parameter_types": Unknown column type,
+		"parameter_types": [1,2,3],
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -122,7 +121,7 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 		"description": "changed",
 		"erp_code": YY9999,
 		"serial_number_category": "changed",
-		"parameter_types": Unknown column type,
+		"parameter_types": [1,2,3,4,5,6],
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -138,7 +137,7 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 		"description": "changed",
 		"erp_code": YY9999,
 		"serial_number_category": "changed",
-		"parameter_types": Unknown column type,
+		"parameter_types": [1,2,3,4,5,6],
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45
