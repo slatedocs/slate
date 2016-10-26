@@ -233,11 +233,11 @@ Requests can be combined by sending array of request objects.
 Parameter | Type | Description
 --------- | ---- | -----------
 `method` | *string* | HTTP method of combined request
-`path` | *string* | Resource path of combined request
+`path` | *string* | Resource path of combined request. It countains all query parameters as well.
 `object` | *object* | Body of combined request
 
 <aside class="notice">
-Query parameters are passed as attributes to the request object e.g. `fields` is array of strings etc.
+Query parameters are the same as for individual requests
 </aside>
 
 
@@ -295,6 +295,87 @@ Single and batched requests return the same response format.
 
 # Checklists
 
+```shell
+curl --request GET \
+--url https://api.fantasticservices.com/v2/checklists/1?expand=all \
+--header 'x-client-token: YOUR_API_TOKEN' \
+--header 'authorization: YOUR_AUTH_TOKEN'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "display_location": 1,
+  "required": true,
+  "categories": [
+    {
+      "id": 25,
+      "checklist_id": 1,
+      "sort": 100,
+      "title": "Client specific requirements",
+      "items": [
+        {
+          "id": 15,
+          "category_id": 25,
+          "sort": 100,
+          "group": 1,
+          "title": "Clean your car",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "answers": [
+    {
+      "id": 3,
+      "checklist_id": 1,
+      "item_id": 26,
+      "answer": 1,
+      "note": null
+    }
+  ]
+}
+```
+
+This endpoint retrieves full checklist object.
+
+### HTTP Request
+
+`GET https://{base URL}/{version}/checklists/{checklist_id}?expand=all`
+
+### Object attributes
+
+Attribute | Type | Description
+--------- | -----| -------------------
+`id` | *integer* | Object identifier
+`display_location` | *integer* | Points where checklist will be used<br><br>1 - *start of the day*<br>2 - *before checkin*<br>3 - *after checkout*
+`required` | *boolean* | Is the item required to be answered
+`categories` | [*<a href="#checklists-categories">object</a>*] | Groups checklist questions into sections
+`categories.id` | *integer* | Object identifier
+`categories.checklist_id` | *integer* | Parent object identifier
+`categories.sort` | *integer* | Determines sort position
+`categories.title` | *string* | Display title of section for the category
+`categories.items` | [*<a href="#checklists-categories-items">object</a>*] | The questions for the category
+`categories.item.id` | *integer* | Object identifier
+`categories.item.category_id` | *integer* | Parent object identifier
+`categories.item.sort` | *integer* | Determines sort position
+`categories.item.group` | *integer* | Items can be part of a group. Answers apply to the whole group.
+`categories.item.title` | *string* | Display title of question item.
+`categories.item.required ` | *boolean* | Is user required to anaswer this question.
+`answers` | [*<a href="#checklists-answers">object</a>*] | Checklist answer
+`answers.id` | *integer* | Object identifier
+`answers.checklist_id` | *integer* | Parent object identifier
+`answers.item_id` | *integer* | Checklist question item for this answer.
+`answers.answer ` | *integer* | User answer to the question<br><br>0 - *no answer*<br>1 - *confirmed*<br>2 - *declined*
+`answers.note ` | *string* | Note for decline.
+
+<aside class="success">
+Checklists may be global or related to a job.
+</aside>
+
+
 ## /checklists
 
 ```shell
@@ -334,6 +415,7 @@ This endpoint retrieves checklist object.
 Attribute | Type | Description
 --------- | -----| -------------------
 `id` | *integer* | Object identifier
+`checklist_id` | *integer* | Parent object identifier
 `display_location` | *integer* | Points where checklist will be used<br><br>1 - *start of the day*<br>2 - *before checkin*<br>3 - *after checkout*
 `required` | *boolean* | Is the item required to be answered
 `categories` | [*<a href="#checklists-categories">object</a>*] | Groups checklist questions into sections
@@ -358,7 +440,8 @@ curl --request GET \
 ```json
 {
   "id": 25,
-  "sort": 1,
+  "checklist_id": 1,
+  "sort": 100,
   "title": "Client specific requirements",
   "items": [
     1,
@@ -379,6 +462,7 @@ This endpoint retrieves checklist category object.
 Attribute | Type | Description
 --------- | -----| -------------------
 `id` | *integer* | Object identifier
+`checklist_id` | *integer* | Parent object identifier
 `sort` | *integer* | Determines sort position
 `title` | *string* | Display title of section for the category
 `items` | [*<a href="#checklists-categories-items">object</a>*] | The questions for the category
@@ -398,10 +482,11 @@ curl --request GET \
 ```json
 {
   "id": 15,
-  "sort": 1,
+  "category_id": 25,
+  "sort": 100,
   "group": 1,
   "title": "Clean your car",
-  "needs_confirmation": true
+  "required": true
 }
 ```
 
@@ -416,10 +501,11 @@ This endpoint retrieves checklist category item object.
 Attribute | Type | Description
 --------- | -----| -------------------
 `id` | *integer* | Object identifier
+`category_id` | *integer* | Parent object identifier
 `sort` | *integer* | Determines sort position
 `group` | *integer* | Items can be part of a group. Answers apply to the whole group.
 `title` | *string* | Display title of question item.
-`needs_confirmation ` | *boolean* | Is user required to anaswer this question.
+`required ` | *boolean* | Is user required to anaswer this question.
 
 ## /checklists/answers
 
@@ -436,6 +522,7 @@ curl --request GET \
 ```json
 {
   "id": 3,
+  "checklist_id": 1,
   "item_id": 26,
   "answer": 1,
   "note": null
@@ -453,6 +540,7 @@ This endpoint retrieves checklist answer object.
 Attribute | Type | Description
 --------- | -----| -------------------
 `id` | *integer* | Object identifier
+`checklist_id` | *integer* | Parent object identifier
 `item_id` | *integer* | Checklist question item for this answer.
 `answer ` | *integer* | User answer to the question<br><br>0 - *no answer*<br>1 - *confirmed*<br>2 - *declined*
 `note ` | *string* | Note for decline.
