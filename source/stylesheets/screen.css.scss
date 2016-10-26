@@ -443,7 +443,15 @@ html, body {
     }
 
     tr:last-child {
-      border-bottom: 1px solid #ccc;
+      /* border-bottom: 1px solid #ccc; */
+    }
+
+    tr:nth-child(odd) {
+      background-color: #dbecf5;
+    }
+
+    thead tr {
+      background: transparent !important;
     }
 
   }
