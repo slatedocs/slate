@@ -6,7 +6,8 @@ The [Foxtrot](https://foxtrot.io/) Android SDK allows you to leverage Foxtrot's 
 
 ## Prerequisites
 1. The Foxtrot Android SDK is supported on Android API level 21 and above.
-2. You will need one or more Foxtrot API keys to identify your organization (one API key per distribution center).
+2. The Foxtrot Android SDK requires [Google Play Services](https://play.google.com/store/apps/details?id=com.google.android.gms) for best results.
+3. You will need one or more Foxtrot API keys to identify your organization (one API key per distribution center).
 
 ## Getting Access
 
