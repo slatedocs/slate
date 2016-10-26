@@ -10,7 +10,7 @@
   -------------- | --------------
   **name**  <br> String | *Nome do documento.*
   **code**  <br> String | *Código para identificação(Por exemplo:"NFS-e").*
-  **type**  <br> String | *Tipo de documento que deve ser emitido/arquivado* <br> *Tipos:* `Invoice::Nfse`
+  **type**  <br> String | *Tipo de documento que deve ser emitido/arquivado* <br> **Tipos:** `Invoice::Nfse`
   **status** <br> Default: active | *Define se o esquema de documento está ativado ou não na API.*
   **credentials** <br>[`attributes`]<br> Hash | *Consulte a [tabela](#credenciais) de refêrencia para cada tipo de <br>`document_scheme`.*
   **sequence**  <br> Int | *Número sequencial do último documento emitido/armazenado deste tipo.*
@@ -35,7 +35,7 @@
   -------------- | --------------
   **name**  <br> <p>obrigatório</p>  | *Nome do documento.*
   **code**  <br> <p>obrigatório</p>  | *Código para identificação(Por exemplo:"NFS-e").*
-  **type**  <br> <p>obrigatório</p>  | *Aceita o tipo do esquema do documento* <br> `Invoice::Nfse`
+  **type**  <br> <p>obrigatório</p>  | *Aceita o tipo do esquema do documento* <br> **Tipos:** `Invoice::Nfse`
   **credentials<br>[`attributes`]** <br> <p>obrigatório</p> | *Consulte a [tabela](#credenciais) de refêrencia para cada tipo de <br>`document_scheme`.*
 
 
@@ -59,8 +59,8 @@
       "status": "active",
       "sequence": 1,
       "credentials": {
-        "certificate": [FILTERED],
-        "password": [FILTERED],
+        "certificate": "[FILTERED]",
+        "password": "[FILTERED]",
         "expiration_date": "2020-12-30"
       }
     }
@@ -97,8 +97,8 @@
       "status": "active",
       "sequence": 1,
       "credentials": {
-        "certificate": [FILTERED],
-        "password": [FILTERED],
+        "certificate": "[FILTERED]",
+        "password": "[FILTERED]",
         "expiration_date": "2020-12-30"
       }
     }

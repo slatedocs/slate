@@ -4,9 +4,10 @@
 
   Através do endpoint `/items` é possível listar, exibir, criar, atualizar e deletar itens.
 
-  *Obs.: Os parametros `settings` utilizados em todos os exemplos são referentes a NFS-e emitidas em SP/São Paulo,
+
+  __*Obs.: Os parametros `settings` utilizados em todos os exemplos são referentes a NFS-e emitidas em SP/São Paulo,
   consulte a [tabela](#configura-es-do-item) para visualizar quais os attributos são necessários para o documento
-  que voê vai emitir.*
+  que você vai emitir.*__
 
 <br> <br>
 
@@ -174,7 +175,21 @@ Deleta o item solicitado.
 
   Cada tabela refere-se a um attributo `settings`, contendo na terceira coluna seus respectivos parametros.
 
-  Ex: Para emitir uma nota fiscal de serviço em SP/São Paulo são necessários os attributos `settings[taxes][iss]` e `settings[parameters][service_code]`.
+
+  > Ex: Para emitir uma nota fiscal de serviço em SP/São Paulo são necessários seguintes attributos:
+
+  ```shell
+    ...
+    "setting": {
+      "taxes": {
+        "iss":"3.1"
+      },
+      "parameters": {
+        "service_code":"123"
+      }
+    }
+    ...
+  ```
 
   Estado | Município | Tipo | Atributo: `taxes`
  -------------- | -------------- | -------------- | --------------
