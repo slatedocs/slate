@@ -12,6 +12,7 @@ includes:
   - ping_server
   - getting_quotes
   - create_orders
+  - weights_and_dimensions
   - view_order
   - getting_labels
   - track_parcel
