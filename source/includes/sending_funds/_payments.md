@@ -5,7 +5,36 @@ To send payments (mobile money or prepaid airtime credit) to a mobile subscriber
 The payments api endpoint is:
     <aside class="notice">https://app.beyonic.com/api/payments</aside>
 
-## The payment object
+## The Payment object
+
+> Sample Payment Object (JSON):
+
+```json
+{
+    "id": 3620,
+    "organization": 1,
+    "amount": "30",
+    "currency": "BXC",
+    "account": "1",
+    "payment_type": "money",
+    "metadata": {"id": 1234, "name": "Lucy"},
+    "description": "Per diem payment",
+    "phone_nos": ["+401000000001"],
+    "state": "new",
+    "last_error": null,
+    "rejected_reason": null,
+    "rejected_by": null,
+    "rejected_time": null,
+    "cancelled_reason": null,
+    "cancelled_by": null,
+    "cancelled_time": null,
+    "created": "2014-11-22T20:57:04.017Z",
+    "author": 15,
+    "modified": "2014-11-22T20:57:04.018Z",
+    "updated_by": null,
+    "start_date": "2014-11-22T20:57:04.018Z"
+}
+```
 
 Field | Type | Description
 ----- | -----| ----
@@ -32,7 +61,7 @@ author | long integer | The ID of the user who created the payment
 modified | string | The date that the payment was last modified, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
 updated_by | string | The ID of the user who last updated the payment
 
-## Creating a new payment
+## Creating a new Payment
 
 > Sample Request:
 
@@ -177,7 +206,7 @@ public class CreatePayment {
 }
 ```
 
-> Sample Response (JSON):
+> Sample Response (JSON) - if you use one of the development libraries, this is automatically converted into a native object for you:
 
 ```json
 {
@@ -240,7 +269,7 @@ last_name | No | String | Doe | If this payment is to a new contact, you can inc
     * rejected – for payments that were rejected during the approval process. The following fields will have more information: rejected_reason, rejected_by and rejected_time
     * cancelled – for payments that were cancelled. The following fields will have more information: cancelled_reason, cancelled_by and cancelled_time
 
-## Retrieving a single payment
+## Retrieving a single Payment
 
 > Sample Request:
 
@@ -322,7 +351,7 @@ public class SinglePaymentExample {
 }
 ```
 
-> Sample Response (JSON):
+> Sample Response (JSON) - if you use one of the development libraries, this is automatically converted into a native object for you:
 
 ```json
 {
@@ -357,7 +386,7 @@ Parameter | Required | Type | Example | Notes
 --------- | -------- | ---- | ------- | -----
 id | Yes | Integer | 2314 | The id of the payment you want to retrieve
 
-## Listing all payments
+## Listing all Payments
 
 > Sample Request:
 
@@ -438,7 +467,7 @@ public class ListAllPaymentsExample {
 }
 ```
 
-> Sample Response (JSON)
+> Sample Response (JSON) - if you use one of the development libraries, this is automatically converted into a native object for you:
 
 
 ```json
@@ -499,11 +528,13 @@ public class ListAllPaymentsExample {
             "updated_by": 1,
             "start_date": "2013-08-21T00:00:00Z"
         },
+   ]
+}
 ```
 
 To return a list of all payments, make a GET request to the payments endpoint. This will return a list of payment objects.
 
-## Filtering payments
+## Filtering Payments
 
 > Sample Request:
 

@@ -31,6 +31,7 @@ includes:
   - methods
   - methods/accounts
   - methods/contacts
+  - methods/events
   - methods/webhooks
 
 search: true

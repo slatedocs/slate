@@ -17,14 +17,9 @@ The webhooks api endpoint is:
 * Therefore, you are encouraged to use the one URL for each event type. Since URLs are stored at a per-organization level, using different URLs may result in duplicate notifications being sent to the different URLs.
 * Previously submitted urls can be deleted via the web browser, or the Webhooks API methods described elsewhere in this reference.
 
-## Supported events
+## Supported Event types
 
-The following events are supported
-
-Event | Description | Object returned in data
---------- | -------- | ----------------------
-payment.status.changed | Triggered any time a payment changes status. | Payment object
-collection.received | Triggered any time a collection (an incoming payment) is received from a customer | Collection object
+See the [Events API](#events) for a list of supported event types.
 
 ## Managing Webhooks
 
@@ -37,9 +32,7 @@ You can create and manage webhooks in two ways:
 
 To manage webhooks using the web browser:
 1. Log into your account.
-2. Go to your organizations profile page. You can access this either from the organizations menu, or by clicking your organization name at the top left of the page.
-3. Click the Settings button (Cog wheel with an arrow pointing down)
-4. Click “Manage Webhooks” from the drop down menu that appears
+2. Go "Home" > "Company Settings" > "Advanced Settings" > "Notification Endpoints".
 
 **Managing Webhooks from the API**
 
@@ -50,6 +43,19 @@ You can use the Webhooks API described below to update or delete your callback U
 To manage webhooks, either with the API or the web browser, you must have “Manage Users and Organization Settings” permissions for your organization.
 
 ## The Webhook object
+
+> Sample Webhook Object (JSON):
+
+```json
+{
+    "id": 53,
+    "created": "2015-08-01T16:56:29Z",
+    "updated": "2015-08-01T16:56:29Z",
+    "event": "payment.status.changed",
+    "target": "https://my.callback.url/",
+    "user": 42
+}
+```
 
 Field | Type | Description
 ----- | -----| ----
@@ -62,7 +68,7 @@ target | string | The URL that triggered events will be sent to
 
 ## Notification body format
 
-> Sample Response (JSON):
+> Sample Response (JSON) - if you use one of the development libraries, this is automatically converted into a native object for you:
 
 ```json
 {
@@ -219,7 +225,7 @@ public class CreateWebhookExample {
 }
 ```
 
-> Sample Response (JSON)
+> Sample Response (JSON) - if you use one of the development libraries, this is automatically converted into a native object for you:
 
 ```json
 {
@@ -327,7 +333,7 @@ public class SingleWebhookExample {
 
 ```
 
-> Sample Response (JSON)
+> Sample Response (JSON) - if you use one of the development libraries, this is automatically converted into a native object for you:
 
 ```json
 {
@@ -427,7 +433,7 @@ public class ListAllWebhooksExample {
 }
 ```
 
-> Sample Response (JSON)
+> Sample Response (JSON) - if you use one of the development libraries, this is automatically converted into a native object for you:
 
 ```json
 {
@@ -581,7 +587,7 @@ public class UpdateWebhookExample {
 }
 ```
 
-> Sample Response (JSON)
+> Sample Response (JSON) - if you use one of the development libraries, this is automatically converted into a native object for you:
 
 ```json
 {

@@ -9,7 +9,23 @@ On some supported networks, collection requests actually "pull" the funds from t
 The collection requests api endpoint is:
     <aside class="notice">https://app.beyonic.com/api/collectionrequests</aside>
 
-## The collection request object
+## The Collection Request object
+
+> Sample Collection Request Object (JSON):
+
+```json
+{
+    "id": 3620,
+    "organization": 1,
+    "amount": "30",
+    "currency": "BXC",
+    "phone_number": "+401000000001",
+    "created": "2014-11-22T20:57:04.017Z",
+    "author": 15,
+    "modified": "2014-11-22T20:57:04.018Z",
+    "updated_by": 15
+}
+```
 
 Field | Type | Description
 ----- | -----| ----
@@ -30,7 +46,7 @@ instructions | string or null | Any custom instructions that were delivered to t
 send_instructions | boolean | Whether or not Beyonic will attempt to send instructions to the user
 
 
-## Creating a new collection request
+## Creating a new Collection Request
 
 > Sample Request:
 
@@ -158,7 +174,7 @@ public class CreateCollectionRequestExample {
 }
 ```
 
-> Sample Response (JSON):
+> Sample Response (JSON) - if you use one of the development libraries, this is automatically converted into a native object for you:
 
 ```json
 {
@@ -173,7 +189,7 @@ public class CreateCollectionRequestExample {
     "created": "2014-11-22T20:57:04.017Z",
     "author": 15,
     "modified": "2014-11-22T20:57:04.018Z",
-    "updated_by": null
+    "updated_by": 15
 }
 ```
 
@@ -192,7 +208,7 @@ success_message | No | String (Max 140 characters) | "Thank you for your payment
 send_instructions | No | Boolean | False | *New in V2.* Defaults to True. Indicates whether we should send payment instructions to the subscriber via SMS. This value may be ignored on some networks that have alternative ways of notifying the subscriber of pending payment requests.
 instructions | No | String (Max 140 characters) | "Use #1234 as the reference" | *New in V2.* Allows overriding of the default instructions sent to the subscriber. This value may be ignored on some networks that have alternative ways of notifying the subscriber of pending payment requests.
 
-## Retrieving a single collection request
+## Retrieving a single Collection Request
 
 > Sample Request:
 
@@ -274,7 +290,7 @@ public class SingleCollectionRequestExample {
 }
 ```
 
-> Sample Response (JSON):
+> Sample Response (JSON) - if you use one of the development libraries, this is automatically converted into a native object for you:
 
 ```json
 {
@@ -286,7 +302,7 @@ public class SingleCollectionRequestExample {
     "created": "2014-11-22T20:57:04.017Z",
     "author": 15,
     "modified": "2014-11-22T20:57:04.018Z",
-    "updated_by": null
+    "updated_by": 15
 }
 ```
 
@@ -296,7 +312,7 @@ Parameter | Required | Type | Example | Notes
 --------- | -------- | ---- | ------- | -----
 id | Yes | Integer | 23 | The id of the collection you want to retrieve
 
-## Listing all collection requests
+## Listing all Collection Requests
 
 > Sample Request:
 
@@ -377,7 +393,7 @@ public class ListAllCollectionRequestsExample {
 }
 ```
 
-> Sample Response (JSON)
+> Sample Response (JSON) - if you use one of the development libraries, this is automatically converted into a native object for you:
 
 ```json
 {
@@ -427,7 +443,7 @@ public class ListAllCollectionRequestsExample {
 
 To retrieve a list of all collections, make a GET request to the collections endpoint. This will return a list of collection objects.
 
-## Filtering collection requests
+## Filtering Collection Requests
 
 > Sample Request:
 

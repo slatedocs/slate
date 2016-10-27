@@ -7,7 +7,27 @@ Contacts represent people whom you can send payments to, or receive payments fro
 The contacts api endpoint is:
     <aside class="notice">https://app.beyonic.com/api/contacts</aside>
 
-## The contact object
+## The Contact object
+
+> Sample Contact Object (JSON)
+
+```json
+{
+    "id": 26,
+    "organization": "Beyonic",
+    "first_name": "Suzanne",
+    "last_name": "Kwagala",
+    "email": "suzanne@beyonic.com",
+    "phone_number": "+401000000001",
+    "type": "employee",
+    "status": "active",
+    "metadata": null,
+    "created": "2013-09-19T21:26:10Z",
+    "author": 1,
+    "modified": "2015-04-14T18:21:47Z",
+    "updated_by": 42
+}
+```
 
 Field | Type | Description
 ----- | -----| ----
@@ -26,7 +46,7 @@ modified | string | The date that the contact was last modified, in the UTC time
 updated_by | string | The ID of the user who last updated the contact
 
 
-## Creating a new contact
+## Creating a new Contact
 
 > Sample Request:
 
@@ -153,7 +173,7 @@ public class CreateContactExample {
 }
 ```
 
-> Sample Response (JSON):
+> Sample Response (JSON) - if you use one of the development libraries, this is automatically converted into a native object for you:
 
 ```json
 {
@@ -267,7 +287,7 @@ public class SingleContactExample {
 }
 ```
 
-> Sample Response (JSON):
+> Sample Response (JSON) - if you use one of the development libraries, this is automatically converted into a native object for you:
 
 ```json
 {
@@ -293,7 +313,7 @@ Parameter | Required | Type | Example | Notes
 --------- | -------- | ---- | ------- | -----
 id | Yes | Integer | 23 | The id of the contact you want to retrieve
 
-## Listing all contacts
+## Listing all Contacts
 
 > Sample Request:
 
@@ -372,7 +392,7 @@ public class ListAllContactsExample{
 }
 ```
 
-> Sample Response (JSON)
+> Sample Response (JSON) - if you use one of the development libraries, this is automatically converted into a native object for you:
 
 ```json
 {
@@ -416,7 +436,7 @@ public class ListAllContactsExample{
 
 To retrieve a list of all contacts, make a GET request to the contact end point. This will return a list of contacts.
 
-## Filtering contacts
+## Filtering Contacts
 
 > Sample Request:
 
