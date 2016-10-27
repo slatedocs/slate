@@ -371,6 +371,8 @@ Now let's get the [OptimizedRoute](#optimizedroute). You will need to register a
 Foxtrot will optimize the current route whenever driving conditions change, so it's important that you update your UI when onRouteChanged is called. Your application should ensure that the driver is aware of the route changes by playing a sound, displaying a banner, or sending a notification to alert the driver.
 </aside>
 
+Since Foxtrot will be optimizing the route frequently, it may not be appropriate to notify the driver for every single route change. You should use the provided `RouteChangeInfo` to help determine whether or not to alert the driver.  For example, you should notify the driver if their route changes or if the waypoint order changes, but may not want to notify them if just the ETAs have changed.
+
 ```java
 public class SampleRouteActivity extends Activity {
 
@@ -390,9 +392,10 @@ public class SampleRouteActivity extends Activity {
     }
 
     @Override
-    public void onRouteChanged(@Nonnull OptimizedRoute route) {
+    public void onRouteChanged(@Nonnull OptimizedRoute route, EnumSet<RouteChangeInfo> routeChangeInfo) {
       super.onRouteChanged(route);
       // update view with new route
+      // if the route or waypoint order changed, alert the driver
     }
 
   };
