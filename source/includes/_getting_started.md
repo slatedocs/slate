@@ -7,17 +7,15 @@
   Accept: application/json
 ```
 
-Before anything else, you will need to have a [Sendle Account](https://www.sendle.com/#signup-form) authorised with an API.
+Before anything else, you will need to have a [Sendle Account](https://www.sendle.com/#signup-form)
 
-<aside class="success"><strong>For API access, please contact <a href="mailto:support@sendle.com?subject=Sendle%20API%20Access">support@sendle.com</a></strong></aside>
+From the Sendle Dashboard visit `Account Settings` by clicking the account's email in the top right corner and selecting `Account Settings` from the drop down.
 
 ![Account Settings](images/account_settings.png)
 
-With Access granted, visit `Account Settings` by clicking the account's email in the top right corner and selecting `Account Settings` from the drop down.
-
 ![API Modal](images/api_modal.png)
 
-Once you have been granted API access, visit your API tab to get your `api key`.
+Visit your API tab to get your `api key`.
 
 Requests to the API require the use of HTTP Basic Authentication using
 your account's Sendle ID as the user name and your API key as the
@@ -27,13 +25,7 @@ password.
 
 ## Sandbox Server
 
-Sendle provides access to a sandbox server at https://sandbox.sendle.com. Any orders
-created on the sandbox server will be created in the test mode, they will not result in
-actual consignments that can be used to send a parcel, nor will actual charges be
-created against your card.
-
-Contact <a href="mailto:support@sendle.com">support@sendle.com</a> for access to the
-sandbox server.
+Sendle provides access to a sandbox server at <a href="https://sandbox.sendle.com">https://sandbox.sendle.com.</a> You will need to create a new user in sandbox – just like you did for Sendle. Any orders created on the sandbox server will be created in the test mode, they will not result in actual consignments that can be used to send a parcel, nor will actual charges be created against your card.
 
 ## Set Up Payments
 

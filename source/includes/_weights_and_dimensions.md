@@ -25,6 +25,7 @@
   "cubic_metre_volume":"0.05"
 }
 ```
+> Note that the kilogram_weight (5.2) has bumped the parcel to the carry-on size despite the relatively small cubic_metre_volume.
 
 ![Sendle Sizes](sizes.png)
 
@@ -56,6 +57,6 @@ Sendle will choose the parcel size that can accommodate the weight and volume of
 
 ![Size Calculator](size_calc.gif)
 
-If you are ever unsure about your parcel size, the Dashboard Size Calculator will convert your length, width, and height measurements (in centimetres) together with your weight (in kilograms) to select the correct parcel size.
+If you are ever unsure about your parcel size, the **Dashboard Size Calculator** will convert your parcel's length, width, and height measurements together with the weight to display the litre volume and select the correct parcel size.
 
 <aside class="warning">The Sendle API does not use length, width, or depth values.<br>Only use <strong><code>kilogram_weight</code></strong> and <strong><code>cubic_metre_volume</code></strong> for api requests.</aside>
