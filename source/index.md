@@ -26,8 +26,8 @@ includes:
   - endpoint-variable
   - endpoint-filter
   - endpoint-deck
-  - endpoint-geodata
   - endpoint-tabbook
+  - endpoint-boxdata
   - endpoint-comparison
   - endpoint-version
   - endpoint-batch
@@ -38,6 +38,7 @@ includes:
   - endpoint-user
   - endpoint-team
   - endpoint-projects
+  - endpoint-geodata
   - object-reference
 
 search: true
