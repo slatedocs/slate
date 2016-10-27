@@ -29,11 +29,13 @@ includes:
   - latest_softwares
   - parameter_types
   - parts
+  - part_parameters
   - part_product_linker
   - part_types
   - part_type_product_type_linker
   - part_type_replacement_linker
   - products
+  - product_parameters
   - product_entity_linker
   - product_notes
   - product_software_linker
@@ -65,7 +67,7 @@ includes:
   - product_parts
   - change_customer
   - expire_customer
-  - product_parameters
+  - parameters
   - parameter_history
 
   - product_data
