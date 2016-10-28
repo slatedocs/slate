@@ -83,9 +83,9 @@ Sendle will choose the parcel size that can accommodate the weight and volume of
 
 - Order's `delivery_instructions` must be blank.
 
-- `kilogram_weight` is less or equal to 0.5
+- `kilogram_weight` is less than or equal to 0.5
 
-- `cubic_metre_voume` is below or equal to 0.002.
+- `cubic_metre_voume` is less than or equal to 0.002.
 
 ## Size Calculator
 
