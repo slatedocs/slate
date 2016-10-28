@@ -47,7 +47,7 @@ Sendle uses weight (**kilogram weight**) and volume (**cubic metre volume**) tog
 
 Sendle will choose the parcel size that can accommodate the weight and volume of your request. If either unit is over, Sendle will select the next size for your parcel.
 
-- `kilogram_weight`	(**required**) must be a decimal value over zero and less than the category/max weight allowed (25kg max).
+- `kilogram_weight`	(**required**) must be a decimal value greater than 0 and less than the category/max weight allowed (25kg max).
 
 - `cubic_metre_volume` (_optional_) must be a decimal value above zero and less than one. To get value, multiply length x width x depth of parcel in metres.
 
