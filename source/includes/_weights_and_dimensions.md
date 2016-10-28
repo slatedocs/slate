@@ -37,21 +37,55 @@ calculator.</a></strong></aside>
 
 | Size | Weight – Kg (Max) | Volume – m<sup>3</sup> (Max) |
 |------|:--------:|:------------:|
-**Satchel*** | 0.5kg | 0.002 |
+**[Satchel](#satchel-specifics)** | 0.5kg | 0.002 |
 **Shoebox** | 2kg | 0.008 |
 **Briefcase** | 5kg | 0.02 |
 **Carry-on** | 10kg | 0.04 |
 **Luggage** | 25kg | 0.1 |
 
-**Satchel must be packaged in an A4 satchel-pack*
-
 Sendle uses weight (**kilogram weight**) and volume (**cubic metre volume**) together to determine the size of your parcel.
 
 Sendle will choose the parcel size that can accommodate the weight and volume of your request. If either unit is over, Sendle will select the next size for your parcel.
 
-- `kilogram_weight`	must be a decimal value over zero and less than the category/max weight allowed (25kg max).
+- `kilogram_weight`	(**required**) must be a decimal value over zero and less than the category/max weight allowed (25kg max).
 
-- `cubic_metre_volume` must be a decimal value above zero and less than one. To get value, multiply length x width x depth of parcel in metres.
+- `cubic_metre_volume` (_optional_) must be a decimal value above zero and less than one. To get value, multiply length x width x depth of parcel in metres.
+
+## Satchel Specifics
+
+> Satchels cannot have delivery_instructions
+
+```json
+{
+  "receiver": {
+    "delivery_instructions": "Give directly to Clark."
+  }
+}
+```
+
+> Returns error message:
+
+```json
+{
+  "messages":{
+    "receiver":[
+      "No delivery instructions are allowed when booking at satchel rates - all satchels are 'Authority to Leave'"
+    ]
+  },
+  "error":"unprocessable_entity",
+  "error_description":"The data you supplied is invalid. Error messages are in the messages section. Please fix those fields and try again."
+}
+```
+
+### Requirements:
+
+- Satchels must be packaged in an A4 satchel-pack.
+
+- Order's `delivery_instructions` must be blank.
+
+- `kilogram_weight` is less or equal to 0.5
+
+- `cubic_metre_voume` is below or equal to 0.002.
 
 ## Size Calculator
 
