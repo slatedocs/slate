@@ -109,9 +109,11 @@ The `?` after the quote endpoint initiates the query. Be sure to separate terms 
 **pickup_postcode** | Four-digit post code for the pickup address.
 **delivery_suburb** | Suburb must be real and match delivery postcode.
 **delivery_postcode** | Four-digit post code for the delivery address.
-**kilogram_weight** <div class="optional"><a href="#weights-and-dimensions">more details</a></div> | Must be a decimal-value above zero and below weight limits.  Max weight is 25 kilograms.
-**cubic_metre_volume** <div class="optional"><a href="#weights-and-dimensions">more details</a></div> | Must be decimal-value above zero and less than one.  To determine this measurement multiply *length* x *width* x *depth* of the parcel **in metres**
+**kilogram_weight** | Must be a decimal-value above 0 and less than weight limits.  Max weight is 25 kilograms.
+**cubic_metre_volume** <div class="optional">optional</div> | Must be decimal-value between 0 and 1.  To determine this measurement multiply *length* x *width* x *depth* of the parcel **in metres.**
 **plan_name** | Without authenticating, the API will give quotes for all publicly available plans by default. If **plan_name** is specified, the API will respond with a quote for just the given plan. Current available plans are **Easy**, **Premium**, and **Pro**. For authenticated requests, the API always returns the quote for the account's current plan and ignores **plan_name**.
+
+For specific information about weight limits and parcel sizing, visit the [**Weights and Dimensions**](#weights-and-dimensions) section.
 
 > Request with `plan_name`
 
