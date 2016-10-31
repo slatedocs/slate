@@ -238,7 +238,6 @@ curl -X GET \
             "public_interactive_url": "<REPLACED>",
             "public_pdf_url": "<REPLACED>",
             "public_csv_url": "<REPLACED>"
-        }
     }
 }
 ```

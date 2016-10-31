@@ -211,7 +211,7 @@ if ($batchId) {
               "date-from": null,
               "reviews-limit": 250,
               "sort-type": "date",
-               "api-key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+              "api-key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
             }
           }
         },
