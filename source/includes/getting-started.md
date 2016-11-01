@@ -196,6 +196,12 @@ Great job! You’ve set up the Foxtrot SDK singleton. From now on, when you call
 FoxtrotSDK.getInstance().SOME_METHOD()
 ```
 
+## Integrating with an existing application
+
+The Foxtrot SDK is designed to easily integrate into your existing application. In general, you simply need to keep the Foxtrot SDK informed about the driver, their assigned route, and their progress throughout the day. The SDK will make sure the route is continuously being optimized, and inform your application of any changes.
+
+<img src="/images/dataflow-diagram.png" />
+
 ## Logging In
 
 Once a driver has logged into the app using your existing login flow, you'll need to log them in to Foxtrot as a [Driver](#driver).

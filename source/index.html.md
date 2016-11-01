@@ -10,7 +10,7 @@ toc_footers:
   - <a href='https://foxtrotsystems.github.io/android-sdk-javadoc/'>Javadoc</a>
   - <a href='https://app.foxtrot.io/terms'>Terms of Service</a>
   - <a href='https://app.foxtrot.io/privacy'>Privacy Policy</a>
-  - Last Updated 2016-10-27
+  - Last Updated 2016-11-01
 
 includes:
   - introduction
