@@ -9,7 +9,7 @@ search: true
 
 # Introduction
 
-Welcome to the documentation for the Expensify Integration Server. This documentation is designed to give you all the information you need to integrate with Expensify. You will find information on how to programmatically download expense reports data for analysis or insertion into your accounting package, upload employee data to configure or provision accounts for new hires or insert report data into a user’s account from your external system.
+Welcome to the documentation for the Expensify Integration Server. This is designed to give you all the information you need to integrate with Expensify. You will find information on how to programmatically download expense reports data for analysis or insertion into your accounting package, provision or update accounts for new hires, and much more.
 
 For more information, please contact us at <help@expensify.com>. Enjoy!
 
@@ -34,7 +34,7 @@ curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyInt
     -d 'requestJobDescription={...}'
 ```
 
-Every request to the Expensify API follows the same pattern: a JSON payload that identifies the job to execute is passed, as a parameter called `requestJobDescription`. Additionally, other parameters may be needed based on the type of job.
+Every request to the Expensify API follows the same pattern: a JSON payload that identifies the job to execute is passed as a parameter called `requestJobDescription`. Additionally, other parameters may be needed based on the type of job.
 
 Every request has to be made against the endpoint `https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations`.
 
@@ -95,7 +95,7 @@ curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyInt
     --data-urlencode 'template@expensify_template.ftl'
 ```
 
-> - Export at most 10 Approved and Reimbursed reports generated between 2016-01-01 and 2016-02-01 to an xls file. The exported reports are then marked as exported with the label "Expensify Report" (markAsExported action), and an email with a link to the output is sent. Reports that have already been marked with the label "Expensify Report" are ignored (markedAsExported filter)
+> - Export at most 10 Approved and Reimbursed reports generated between 2016-01-01 and 2016-02-01 to an xlsx file starting with `myExport`. The exported reports are then marked as exported with the label "Expensify Export" (`markAsExported` action), and an email with a link to the output is sent. Reports that have already been marked with the label "Expensify Export" are ignored (`markedAsExported` filter)
 
 ```shell
 curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations' \
@@ -119,7 +119,7 @@ curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyInt
             }
         },
         "outputSettings":{
-            "fileExtension":"xls",
+            "fileExtension":"xlsx",
             "fileBasename":"myExport"
         },
         "onFinish":[
@@ -130,7 +130,7 @@ curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyInt
     --data-urlencode 'template@expensify_template.ftl'
 ```
 
-> - expensify_template.ftl sample
+> - expensify_template.ftl sample. See the [export template format reference](/export_report_template.html) for more information about how to write export templates.
 
 
 ```shell
@@ -152,14 +152,14 @@ curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyInt
 </#list>
 ```
 
-Export expense or report data for analysis or insertion into your accounting package, in a configurable format.
+Export expense or report data in a configurable format for analysis or insertion into your accounting package.
 
 ### `requestJobDescription` format
 
 Name | Format | Valid values | Description
 --------- | --------- | --------- | ---------
 type | String | file | |
-onReceive | JSON object | `{"immediateResponse":["returnRandomFileName"]}` | Returns the name of the generated report.
+onReceive | JSON object | `{"immediateResponse":["returnRandomFileName"]}` | Returns the name of the generated report. Only this export mode is supported at the moment.
 inputSettings | JSON object | See inputSettings | Settings used to filter the reports that are exported.
 outputSettings | JSON object | See outputSettings | Settings for the generated file.
 **Optional elements** |
@@ -183,9 +183,9 @@ Name | Format | Valid values | Description
 --------- | --------- | --------- | ---------
 reportIDList | String, <br>*Optional* |  | Comma-separated list of report IDs to be exported.
 policyIDList | String, <br>*Optional* |  | Comma-separated list of policy IDs the exported reports must be under.
-startDate | Date, <br>*Required if `reportIDList` is not specified* | yyyy-mm-dd formatted date | Filters all reports submitted or created before the given date, whichever occurred last (inclusive).
+startDate | Date, <br>*Required if `reportIDList` is not specified* | yyyy-mm-dd formatted date | Filters out all reports submitted or created before the given date, whichever occurred last (inclusive).
 endDate | Date, <br> *Optional* | yyyy-mm-dd formatted date | Filters all reports submitted or created after the given date, whichever occurred last (inclusive). |
-approvedAfter | Date, <br> *Optional* | yyyy-mm-dd formatted date | Filters all reports approved before, or on that date. This filter is only used against reports that have been approved. |
+approvedAfter | Date, <br> *Optional* | yyyy-mm-dd formatted date | Filters out all reports approved before, or on that date. This filter is only used against reports that have been approved. |
 markedAsExported | String,<br>*Optional* | Any string | Filters reports that have already been exported with that label out.
 
 
@@ -197,7 +197,7 @@ fileExtension | String | One or multiple of "csv", "xls", "xlsx", "txt",  "pdf",
 **Optional elements** |
 fileBasename | String | Any valid file base name | The name of the generated file(s) will start with this value, and a random part will be added to make each filename globally unique. If not specified, the default value `export` is used. |
 includeFullPageReceiptsPdf | Boolean | `true`, `false` | Specifies whether generated PDFs should include full page receipts. This parameter is used only if `fileExtension` contains `pdf`. |
-spreadsheetFilename | String | Name of a workbook template stored for you on Expensify. (e.g. "testWorkbook.xlsx")| Specifies workbook template that report data will be written to. <br />*Note*: if this is provided, then the only file made available to export will be an xlsx file. All other file extensions provided in `fileExtension` will be ignored.
+spreadsheetFilename | String | Name of a workbook template stored for you on Expensify. (e.g. "testWorkbook.xlsx") | Specifies workbook template that report data will be written to. <br />*Note*: if this is provided, then the only file made available to export will be an xlsx file. All other file extensions provided in `fileExtension` will be ignored. This is an enterprise feature.
 
 - `onFinish` (Optional)
 
@@ -228,7 +228,7 @@ port | Integer | | The port to connect to on the SFTP server. |
 
 The `template` parameter is used to format the Expensify data as you wish. It is based on the Freemarker language's syntax.
 
-See <https://integrations.expensify.com/Integration-Server/doc/export_report_template.html> for more information about export templates.
+See the [export template format reference](/export_report_template.html) for more information about how to write export templates.
 
 <aside class="notice">
 We recommend storing your template in separate files, which can be passed to the request more easily with cURL's `@` operator.
@@ -348,7 +348,7 @@ Name | Format | Valid values | Description
 merchant | String |  | The title of the report that will be created.
 currency | String | Three-letter currency code of the transaction. | The currency in which the transaction was made.
 date | Date | yyyy-mm-dd formatted date | The date the expense was made.
-amount | Integer |  | The amount of the transaction, in pennies.
+amount | Integer |  | The amount of the transaction, in cents.
 
 
 ## Expense creator
@@ -859,9 +859,9 @@ curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyInt
     }'
 ```
 
-> - Dependent multi-level tags, with GL Codes and tag level names, passed in CSV.
+> - Dependent multi-level tags, with GL Codes and tag level names. These must be passed via CSV.
 
-> Tag file - save the following data in a file called `tags.csv`, for example.
+> Tag file - In this example, we have the following data in a file called `tags.csv`.
 
 ```
 State,State GL,Region,Region GL,City,City GL
@@ -985,7 +985,7 @@ defaultValue | String | | The default value of the report field.<br>*Only used f
 Tags can be specified in two ways:
 
 - Directly in the JSON job description
-- As extra parameters of the request
+- As extra parameters of the request (via a `csv` file)
 
 #### Tag levels dependency
 For multi-level tagging, Expensify has the notion of tag level dependency. This means each tag level is dependent on the parent tag level above it.
@@ -1015,7 +1015,7 @@ Name | Format | Description
 -------- | --------- | ---------
 name | String | The name of the tag.
 **Optional elements** |
-enabled | Boolean | Whether the tag is enabled or not. Default value is `true`.<br>*Note:* When multi-level tagging is used, this value is ignored and is consider `true`.
+enabled | Boolean | Whether the tag is enabled or not. Default value is `true`.<br>*Note:* When multi-level tagging is used, this value is ignored and is considered `true`.
 glCode | String | The GL Code associated to the tag.
 
 
@@ -1035,10 +1035,10 @@ config | JSON Object | See below |
 
 Name | Format | Valid values | Description
 -------- | --------- | ---------------- | ---------
-dependency | Boolean | true, false | Whether tag level are dependent. |
+dependency | Boolean | true, false | Whether the tag levels are dependent. |
 glCodes | Boolean | true, false | Whether adjacent columns in the tag file(s) contain GL Codes.
 header | Boolean | true, false | Whether the first line of the file contains the names of the tag levels.
-setRequired | Boolean | true, false | If set to `true`, users will be required to tag each expenses under that category.
+setRequired | Boolean | true, false | If set to `true`, users will be required to tag each expense under that category.
 fileType | String | "cvs" or "tsv" | Format of the tag data.
 
 ## Employee updater
@@ -1100,7 +1100,7 @@ manager2@domain.com,manager1@domain.com,true,,Manager1ID,
 }
 ```
 
-Lets you manage employees on an Expensify policy. Use this to upload employee data in order to configure or provision accounts for new hires.
+Lets you manage employees on an Expensify policy. Use this to configure or provision accounts for new hires, as well as to update existing employee data.
 
 The employee data must be passed in the request parameter `data`.
 
@@ -1114,13 +1114,13 @@ policyID | String | Any valid Expensify policy ID, owned or shared with the user
 
 - `data` request argument
 
-CSV file containing the employee data to update. The first line of the file lists the columns that will exist. The order of each attribute does not matter.
+CSV file containing the employee data to update. The first line of the file lists the columns that will exist. The order of the columns does not matter.
 
 Name | Format | Valid values | Description
 -------- | --------- | ---------------- | ---------
 **Required CSV columns** |
 EmployeeEmail | String | Any valid email address | The email address of the employee to update or create.
-ManagerEmail | String | Any valid email address | The email address of the manager of that user (corresponds to the column `Submits To` on Expensify).
+ManagerEmail | String | Any valid email address | The email address the employee's manager (corresponds to the column `Submits To` on Expensify).
 Admin | Boolean | true, false | Determines whether that user has administrator privileges.
 **Optional CSV columns** |
 EmployeeUserId | String | | The User ID of the employee.
@@ -1247,7 +1247,7 @@ Lets you update the status of a report.
 Name | Format | Valid values | Description
 -------- | --------- | ---------------- | ---------
 type | String | "reportStatus" | Specifies to the job that it has to update the status of a list of reports.
-status | String | "REIMBURSED" | The status to change the reports to. At the moment, only Reimbursed is supported.<br>**Note: at the moment, the only supported action is to mark Approved reports as Reimbursed.**<br>**Only reports in the `Approved` status can be updated to `Reimbursed`. All other reports will be ignored.** |
+status | String | "REIMBURSED" | The status to change the reports to. At the moment, only Reimbursed is supported.<br>**Only reports in the `Approved` status can be updated to `Reimbursed`. All other reports will be ignored.** |
 filters | JSON object | See inputSettings filters |
 
 
