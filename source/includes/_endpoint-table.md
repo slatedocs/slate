@@ -8,9 +8,13 @@ values. It provides granular control over the rows and columns for each dataset.
 #### GET
 
 When authenticated, GET returns a 200 status with a Shoji Table of the 
-dataset's data. It will expose all the variables that are visible by the authenticated
-user (Public + privates created by them) as well as the exclusion filter 
-applied (if any).
+dataset's data. It will expose all the variables that are visible by the 
+authenticated user (Public + personals created by them if requested) as 
+well as the exclusion filter applied (if any).
+
+To include the personal variables on the output table the client should
+include the `include_personal` GET parameter on the request with a True 
+value.
 
 A `metadata` section contains the definitions of all the variables matched
 by variable ID with the corresponding entry under `data`.
