@@ -252,50 +252,31 @@ Withholding | 07
 Payment form            | Code
 ------------------------ | ------
 Cash | efectivo
-Other payment methods | other
-Check | cheque
-Certified check | cheque_certificado
-Cashiers check | cheque_gerencia
-International check | cheque_exterior
-Debit account | debito_cuenta_bancaria
-Transfer from the same bank | transferencia_mismo_banco
-Transfer from other domestic bank | transferencia_otro_banco
-Transfer from bank overseas | transferencia_banco_exterior
-Domestic credit card | tarjeta_credito_nacional
-International credit card| tarjeta_credito_internacional
-Wire transfer | giro
-Deposit (Checking / Savings) | deposito_cuenta_bancaria
-Investment endorsement | endoso_inversion
-Debt compensation | compensacion_deudas
+Cheque | cheque
+Bank debit | debito_cuenta_bancaria
+Bank transfer | transferencia
+Bank deposit | deposito_cuenta_bancaria
 Debit card | tarjeta_debito
 Ecuador E-Money | dinero_electronico_ec
 Prepaid card | tarjeta_prepago
 Credit card | tarjeta_credito
-Others | otros
+Other payment methods | otros
 Certificate endorsement | endoso_titulos
 
 ## Payment method code equivalences between SRI and Dátil
 
-Datil payment method      | Code | SRI payment method      | Code
+Dátil payment method   | Code | SRI payment method      | Code
 ------------------------ | ------ | -----------------------|-------
-Cash | efectivo | Outside of the financial system | 01
-Check | cheque | Own check | 02
-Certified check | cheque_certificado | Certified check | 03
-Cashiers check | cheque_gerencia | Cashiers check | 04
-International check | cheque_exterior | International check | 05
-Debit account | debito_cuenta_bancaria | Debit account | 06
-Transfer from the same bank | transferencia_mismo_banco | Transfer from the same bank | 07
-Transfer from other domestic bank | transferencia_otro_banco | Transfer from other domestic bank | 08
-Transfer from overseas bank | transferencia_banco_exterior | Transfer from overseas bank | 09
-Domestic credit card | tarjeta_credito_nacional | Domestic credit card | 10
-International credit card | tarjeta_credito_internacional | International credit card | 11
-Wire transfer | giro | Wire transfer | 12
-Deposit (Checking / Savings) | deposito_cuenta_bancaria | Deposit (Checking / Savings) | 13
-Investment endorsement | endoso_inversion | Investment endorsement | 14
-Debt compensation | compensacion_deudas | Debt compensation | 15
-Debit card | tarjeta_debito | Debit card | 16
-Ecuador E-Money | dinero_electronico_ec | Ecuador E-Money | 17
-Prepaid card | tarjeta_prepago | Prepaid card | 18
-Credit card | tarjeta_credito | Credit card | 19
-Others | otros | Other payment methods using the financial system | 20
-Certificate endorsement | endoso_titulos | Certificate endorsement | 21
+Cash | efectivo | Sin utilización del sistema financiero | 01
+Cheque | cheque | Otros con utilización del sistema financiero | 20
+ | debito_cuenta_bancaria | Otros con utilización del sistema financiero| 20
+Bank transfer | transferencia | Otros con utilización del sistema financiero | 20
+Credit card | tarjeta_credito | Tarjeta de crédito nacional | 19
+Bank deposit | deposito_cuenta_bancaria | Otros con utilización del sistema financiero | 20
+Debit card | tarjeta_debito | Tarjeta de débito | 16
+Ecuador E-Money| dinero_electronico_ec | Dinero electrónico | 17
+Prepaid card | tarjeta_prepago | Tarjeta prepago | 18
+Other payment methods | otros | Otros con utilización del sistema financiero | 20
+Certificate endorsement | endoso_titulos | Endoso de títulos | 21
+
+Due to the Ecuadorean Internal Revenue Service requiring payment methods to be included in all invoices, Dátil will assign code `20` to invoices with accounts receivables.
