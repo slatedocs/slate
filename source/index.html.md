@@ -9,7 +9,7 @@ search: true
 
 # Introduction
 
-Welcome to the documentation for the Expensify Integration Server. This is designed to give you all the information you need to integrate with Expensify. You will find information on how to programmatically download expense reports data for analysis or insertion into your accounting package, provision or update accounts for new hires, and much more.
+Welcome to the documentation for the Expensify Integration Server. This is designed to give you all the information you need to integrate with Expensify. You will find information on how to programmatically download expense report data for analysis or insertion into your accounting package, provision accounts for new hires, and much more.
 
 For more information, please contact us at <help@expensify.com>. Enjoy!
 
@@ -19,7 +19,7 @@ To use the API, you will need to generate API credentials.
 
 1. Create an Expensify account at <https://www.expensify.com/>
 2. Go to <https://www.expensify.com/tools/integrations/>
-3. A pair of credentials `partnerUserID` and `partnerUserSecret` will be generated and shown on the page.
+3. A pair of credentials: `partnerUserID` and `partnerUserSecret` will be generated and shown on the page.
 
 <aside class="notice">
 Make sure to store the <code>partnerUserID</code> and <code>partnerUserSecret</code> pair you're given in a secure location, as you won't be shown them again.
@@ -59,7 +59,7 @@ For every request, the `requestJobDescription` JSON parameter will need to conta
 Parameter | Type | Description
 --------- | ------- | -----------
 type | String | The type of job to execute
-credentials | JSON object | An object containing two key/values: `partnerUserID` and `partnerUserSecret`, used to authenticate you
+credentials | JSON object | An object containing two key/values used to authenticate you: `partnerUserID` and `partnerUserSecret`.
 `inputSettings` | JSON Object | Additional information about the job to execute
 
 
@@ -69,7 +69,7 @@ credentials | JSON object | An object containing two key/values: `partnerUserID`
 
 > The following examples assume the template is stored in the file 'expensify_template.ftl'
 
-> - Export report by IDs, to a CSV file
+> - Export reports by ID, to a CSV file
 
 ```shell
 curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations' \
@@ -95,7 +95,7 @@ curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyInt
     --data-urlencode 'template@expensify_template.ftl'
 ```
 
-> - Export at most 10 Approved and Reimbursed reports generated between 2016-01-01 and 2016-02-01 to an xlsx file starting with `myExport`. The exported reports are then marked as exported with the label "Expensify Export" (`markAsExported` action), and an email with a link to the output is sent. Reports that have already been marked with the label "Expensify Export" are ignored (`markedAsExported` filter)
+> - Export at most 10 Approved and Reimbursed reports generated between 2016-01-01 and 2016-02-01 to an xlsx file named `myExport.xlsx`. The exported reports are then marked as exported with the label "Expensify Export" (`markAsExported` action), and an email with a link to the output is sent. Reports that have already been marked with the label "Expensify Export" are ignored (`markedAsExported` filter)
 
 ```shell
 curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations' \
@@ -173,20 +173,20 @@ Name | Format | Valid values | Description
 type | String | combinedReportData | Specifies all Expensify reports will be combined into a single file.
 filters | JSON object | See inputSettings filters |
 **Optional elements** |
-reportState | String | One or more of `"OPEN"`, `"SUBMITTED"`, `"APPROVED"`, `"REIMBURSED"`, `"ARCHIVED"`.<br>When using multiple statuses, separate them by a comma, *e.g.* `"APPROVED,REIMBURSED"`<br>**Note:** These values respectively match the statuses "Open", "Processing", "Approved", "Reimbursed" and "Closed" on the website | Only the reports matching the specified status(es) will be exported.
+reportState | String | One or more of `"OPEN"`, `"SUBMITTED"`, `"APPROVED"`, `"REIMBURSED"`, `"ARCHIVED"`.<br/>When using multiple statuses, separate them by a comma, *e.g.* `"APPROVED,REIMBURSED"`<br/>**Note:** These values respectively match the statuses "Open", "Processing", "Approved", "Reimbursed" and "Closed" on the website | Only the reports matching the specified status(es) will be exported.
 limit | String | Any integer, as a string | Maximum number of reports to export. |
-employeeEmail | String | A valid email address<br>**Note:**<br> * The usage of this parameter is restricted to certain domains<br>* If this parameter is used, reports in the OPEN status cannot be exported  | The reports will be exported from that account.
+employeeEmail | String | A valid email address<br/>**Note:**<br/> * The usage of this parameter is restricted to certain domains<br/>* If this parameter is used, reports in the OPEN status cannot be exported  | The reports will be exported from that account.
 
 - `inputSettings.filters`
 
 Name | Format | Valid values | Description
 --------- | --------- | --------- | ---------
-reportIDList | String, <br>*Optional* |  | Comma-separated list of report IDs to be exported.
-policyIDList | String, <br>*Optional* |  | Comma-separated list of policy IDs the exported reports must be under.
-startDate | Date, <br>*Required if `reportIDList` is not specified* | yyyy-mm-dd formatted date | Filters out all reports submitted or created before the given date, whichever occurred last (inclusive).
-endDate | Date, <br> *Optional* | yyyy-mm-dd formatted date | Filters all reports submitted or created after the given date, whichever occurred last (inclusive). |
-approvedAfter | Date, <br> *Optional* | yyyy-mm-dd formatted date | Filters out all reports approved before, or on that date. This filter is only used against reports that have been approved. |
-markedAsExported | String,<br>*Optional* | Any string | Filters reports that have already been exported with that label out.
+reportIDList | String, <br/>*Optional* |  | Comma-separated list of report IDs to be exported.
+policyIDList | String, <br/>*Optional* |  | Comma-separated list of policy IDs the exported reports must be under.
+startDate | Date, <br/>*Required if `reportIDList` is not specified* | yyyy-mm-dd formatted date | Filters out all reports submitted or created before the given date, whichever occurred last (inclusive).
+endDate | Date, <br/> *Optional* | yyyy-mm-dd formatted date | Filters out all reports submitted or created after the given date, whichever occurred last (inclusive). |
+approvedAfter | Date, <br/> *Optional* | yyyy-mm-dd formatted date | Filters out all reports approved before, or on that date. This filter is only used against reports that have been approved. |
+markedAsExported | String,<br/>*Optional* | Any string | Filters out reports that have already been exported with that label out.
 
 
 - `outputSettings`
@@ -205,7 +205,7 @@ This section can be used to describe actions that need to be performed at the en
 
 Action Name  | Description
 -------- | ---------
-email | Send an email with a link to the generated report to a list of recipients.
+email | Send an email linking to the generated report to a provided list of recipients.
 markAsExported | Mark the exported reports as “Exported” in Expensify.
 sftpUpload | upload the generated file(s) to an SFTP server.
 
@@ -300,7 +300,7 @@ curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyInt
 
 > Response
 
-> - A success response message is comprised of a `responseCode` `200`, the name of the generated report and its ID on Expensify.
+> - A success response message is comprised of a `responseCode` `200`, the name of the generated report, and its ID on Expensify.
 
 ```
 {
@@ -319,7 +319,7 @@ curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyInt
 }
 ```
 
-Lets you create a report, with transactions, in a user’s account from your external system.
+Lets you create a report, with transactions, in a user’s account.
 
 ### `requestJobDescription` format
 
@@ -400,7 +400,7 @@ curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyInt
 
 > Response
 
-> -  A success response message is comprised of a `responseCode` `200`, and the list of transactions that were created. Each transaction also has a unique `transactionID`.
+> - A success response message is comprised of a `responseCode` `200`, and the list of transactions that were created. Each transaction also has a unique `transactionID`.
 
 ```
 {
@@ -442,14 +442,14 @@ Allows you to create expenses in a user’s account.
 Name | Format | Valid values | Description
 -------- | --------- | ---------------- | ---------
 type | String | "expenses" | Specifies to the job that it has to create expenses.
-employeeEmail | String | A valid email address | The expenses will be created in that account. |
+employeeEmail | String | A valid email address | The expenses will be created in this account. |
 transactionList | JSON array | See below | List of expense objects. |
 
 - `expense` objects
 
 Name | Format | Description
 -------- | --------- | ---------------- | ---------
-merchant | String | The name of the merchant of the expense. |
+merchant | String | The name of the expense's merchant. |
 created | String | The date of the expense (format yyyy-mm-dd). |
 amount | Integer | The amount of the expense, in cents. |
 currency | String | The three-letter currency code of the expense. |
@@ -738,7 +738,7 @@ Name | Format | Valid values | Description
 -------- | --------- | ---------------- | ---------
 type | String | "policyList" | Specifies to the job that it has to get a policy summary list.
 **Optional elements** |
-adminOnly | Boolean | true, false| Whether or not to get only policies for which the user is an admin for |
+adminOnly | Boolean | true, false | Whether or not to only get policies for which the user is an admin for. |
 userEmail | String | | Specifies the user to gather the policy list for. You must have been granted third-party access by that user/company domain beforehand|
 
 
@@ -865,7 +865,11 @@ curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyInt
 
 ```
 State,State GL,Region,Region GL,City,City GL
-California,100,North,20,San Francisco,1California,100,North,20,Oakland,2California,100,South,30,Los Angeles,3California,100,South,30,San Diego,4Texas,200,East,40,Dallas,5
+California,100,North,20,San Francisco,1
+California,100,North,20,Oakland,2
+California,100,South,30,Los Angeles,3
+California,100,South,30,San Diego,4
+Texas,200,East,40,Dallas,5
 Texas,200,East,40,Houston,6
 Texas,200,South,50,San Antonio,7
 ```
@@ -932,7 +936,7 @@ Lets you independently manage categories, tags and report fields on a policy.
 Name | Format | Valid values | Description
 -------- | --------- | ---------------- | ---------
 **Optional elements** |
-categories | JSON object | See `categories` below | Replace or update the existing tags of the policy with the ones provided.
+categories | JSON object | See `categories` below | Replace or update the existing categories of the policy with the ones provided.
 tags | JSON object | See the dedicated [Update tags](#update-tags) section below | Replace the existing tags of the policy with the ones provided.
 reportFields | JSON object | See `reportFields` below | Replace or update the existing report fields of the policy with the ones provided.
 
@@ -947,7 +951,7 @@ policyID | String | Any valid Expensify policy ID, owned or shared with the user
 
 Name | Format | Valid values | Description
 -------- | --------- | ---------------- | ---------
-action | String | "merge", "replace" | Specifies how the categories will be updated. <br>- "replace" removes all existing categories and replaces them with the specified list<br>- "merge" keeps existing categories and updates/adds the ones specified.
+action | String | "merge", "replace" | Specifies how the categories will be updated. <br/>- "replace" removes all existing categories and replaces them with the specified list<br/>- "merge" keeps existing categories and updates/adds the ones specified.
 data | JSON array | See below | |
 
 - `categories.data` objects
@@ -967,7 +971,7 @@ maxExpenseAmount | Integer | The maximum amount (in cents) for expenses under th
 
 Name | Format | Valid values | Description
 -------- | --------- | ---------------- | ---------
-action | String | "merge", "replace" | Specifies how the report fields will be updated. <br>- "replace" removes all existing report fields and replaces them with the specified list<br>- "merge" keeps existing report fields and updates/adds the ones specified.
+action | String | "merge", "replace" | Specifies how the report fields will be updated. <br/>- "replace" removes all existing report fields and replaces them with the specified list<br/>- "merge" keeps existing report fields and updates/adds the ones specified.
 data | JSON array | See below |
 
 - `reportFields.data` objects
@@ -976,9 +980,9 @@ Name | Format | Valid values | Description
 -------- | --------- | ---------------- | ---------
 name | String | | The name of the report field. |
 type | String | "text", "dropdown", "date" | The type of the report field. |
-values | JSON array | Strings | *Only if type is "dropdown"*<br>The values of the dropdown. |
+values | JSON array | Strings | *Only if type is "dropdown"*<br/>The values of the dropdown. |
 **Optional elements**  |
-defaultValue | String | | The default value of the report field.<br>*Only used for types "text" and "dropdown"* |
+defaultValue | String | | The default value of the report field.<br/>*Only used for types "text" and "dropdown"* |
 
 ### Update tags<a name="update-tags">&nbsp;</a>
 
@@ -1015,7 +1019,7 @@ Name | Format | Description
 -------- | --------- | ---------
 name | String | The name of the tag.
 **Optional elements** |
-enabled | Boolean | Whether the tag is enabled or not. Default value is `true`.<br>*Note:* When multi-level tagging is used, this value is ignored and is considered `true`.
+enabled | Boolean | Whether the tag is enabled or not. Default value is `true`.<br/>*Note:* When multi-level tagging is used, this value is ignored and is considered `true`.
 glCode | String | The GL Code associated to the tag.
 
 
@@ -1100,7 +1104,7 @@ manager2@domain.com,manager1@domain.com,true,,Manager1ID,
 }
 ```
 
-Lets you manage employees on an Expensify policy. Use this to configure or provision accounts for new hires, as well as to update existing employee data.
+Lets you manage employees on an Expensify policy. Use this to configure or provision accounts for new hires, as well as update existing employee data.
 
 The employee data must be passed in the request parameter `data`.
 
@@ -1247,7 +1251,7 @@ Lets you update the status of a report.
 Name | Format | Valid values | Description
 -------- | --------- | ---------------- | ---------
 type | String | "reportStatus" | Specifies to the job that it has to update the status of a list of reports.
-status | String | "REIMBURSED" | The status to change the reports to. At the moment, only Reimbursed is supported.<br>**Only reports in the `Approved` status can be updated to `Reimbursed`. All other reports will be ignored.** |
+status | String | "REIMBURSED" | The status to change the reports to. At the moment, only Reimbursed is supported.<br/>**Only reports in the `Approved` status can be updated to `Reimbursed`. All other reports will be ignored.** |
 filters | JSON object | See inputSettings filters |
 
 
@@ -1255,6 +1259,6 @@ filters | JSON object | See inputSettings filters |
 
 Name | Format | Valid values | Description
 -------- | --------- | ---------------- | ---------
-| reportIDList | String, <br>*Optional* |  | Comma-separated list of report IDs to update. |
-| startDate | Date, <br>*Required if `reportIDList` is not specified* | yyyy-mm-dd formatted date | Filters all reports submitted or created before the given date, whichever occurred last (inclusive). |
-| endDate | Date, <br> *Optional* | yyyy-mm-dd formatted date | Filters all reports submitted or created after the given date, whichever occurred last (inclusive).
+| reportIDList | String, <br/>*Optional* |  | Comma-separated list of report IDs to update. |
+| startDate | Date, <br/>*Required if `reportIDList` is not specified* | yyyy-mm-dd formatted date | Filters out all reports submitted or created before the given date, whichever occurred last (inclusive). |
+| endDate | Date, <br/> *Optional* | yyyy-mm-dd formatted date | Filters out all reports submitted or created after the given date, whichever occurred last (inclusive).
