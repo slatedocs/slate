@@ -10,7 +10,7 @@ You’ll need to do three things:
 2. Grant runtime permissions
 3. Set up Foxtrot with your API key
 
-The Foxtrot Android SDK will automatically request these permissions: 
+The Foxtrot Android SDK will automatically request these permissions:
 
 - `android.permission.ACCESS_FINE_LOCATION`
 - `android.permission.INTERNET`
@@ -285,7 +285,7 @@ public class YourErrorStateListener extends ErrorStateListener {
 
   public static ErrorStateListener create(Handler handler) {
     return new YourErrorStateListener(handler);
-  
+
 
   @Nonnull 
   @Override 
@@ -439,17 +439,19 @@ The `deliveryCode` is useful for gathering structured driver feedback. For examp
 Foxtrot uses delivery attempts to determine where to send the driver next. To help Foxtrot optimize your routes most efficiently, never delay or enqueue delivery attempts. Always submit delivery attempts as soon as the driver attempts the delivery.
 </aside>
 
+Three attempt types can be registered at the delivery site. One of these 3 choices must be registered each time there is a visit. 1) `DeliveryStatus.SUCCESSFUL`; 2) `DeliveryStatus.VISIT_LATER`; 3) `DeliveryStatus.FAILED`
+
 If the driver was able to make the delivery, you should submit the attempt using `DeliveryStatus.SUCCESSFUL`. Since the delivery has been completed, Foxtrot will not send the driver to this waypoint again.
 
-If the driver was unable to make the delivery, your application can do one of two things. If you submit an attempt using `DeliveryStatus.VISIT_LATER`, Foxtrot will re-schedule the driver's visit to the waypoint.
-If you submit the attempt with `DeliveryStatus.FAILED`, Foxtrot will consider the delivery a permanent failure and will not attempt to re-schedule the delivery.
+If the driver was unable to make the delivery, and wishes to come back later, the driver should submit an attempt using `DeliveryStatus.VISIT_LATER`. Foxtrot will re-schedule the driver's visit to the waypoint.
+
+If the driver was unable to make the delivery, and DOES NOT wish to come back later, the driver should submit an attempt with `DeliveryStatus.FAILED`. Foxtrot will consider the delivery a permanent failure and will not attempt to re-schedule the delivery.
 
 <aside class="warning">
-DeliveryStatus.FAILED should only be used when the driver intends to return the goods to the warehouse. If the delivery can be made later in the day, a DeliveryStatus.VISIT_LATER can be used.
+DeliveryStatus.FAILED should only be used when the driver intends to return the goods to the warehouse. If the delivery is to be attempted later in the day, a DeliveryStatus.VISIT_LATER needs to be used.
 </aside>
 
-In the circumstances when a driver does not know when he/she should visit the waypoint again, it is recommended that you should mark the delivery as `DeliveryStatus.FAILED`. Later during the day, if the driver would like to
-go back to the waypoint, you should submit a `DeliveryStatus.AUTHORIZE_REATTEMPT`. Foxtrot will re-schedule waypoint to be visited later.
+In the circumstances when the waypoint has been designated as successful or failed and circumstances change, a fourth attempt can be used: `DeliveryStatus.AUTHORIZE_REATTEMPT`. The possible use-cases for utilization of this status is either a) the driver previously succeeded or failed an attempt permanently, but circumstances changed and he/she would like to make another visit to the waypoint, or b) the driver previously succeeded or failed an attempt permanently, but circumstances changed and their manager would like the driver to make another visit to the waypoint. In either of these cases, you should submit a `DeliveryStatus.AUTHORIZE_REATTEMPT`. Foxtrot will re-schedule waypoint to be visited later.
 
 <aside class="notice">
 In order to submit a DeliveryStatus.VISIT_LATER or DeliveryStatus.AUTHORIZE_REATTEMPT, a different api should be used, FoxtrotSDK.markDeliveryToVisitLater() and FoxtrotSDK.authorizeDeliveryReattempt(), respectively.

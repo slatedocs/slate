@@ -55,7 +55,7 @@ A Waypoint contains the customer information, their location, and a list of [Del
 | customerId                | String                           | true     | The globally unique identifier identifying the customer at the waypoint.
 | serviceTimeInSeconds      | Long                             | true     | The estimated amount of time in seconds the driver will take to complete the waypoint.
 | deliveries                | Collection<[Delivery](#delivery)>      | true     | The collection of Delivery objects at the waypoint. This collection must not be empty.
-| timeWindows               | Collection<[TimeWindow](#timewindow)>  | true     | The collection of TimeWindow objects at the waypoint. This collection may be empty.
+| timeWindows               | Collection<[TimeWindow](#timewindow)>  | true     | The collection of TimeWindow objects at the waypoint. This collection may be empty. The TimeWindow Collection must sum up to at least 4hrs 30min in duration, and each TimeWindow cannot be shorter than 3hrs.
 
 ```java
 Collection<Delivery> deliveries = ...;
@@ -84,7 +84,7 @@ Location location = Location.create(37.780177, -122.397055);
 ```
 
 ## TimeWindow
-A TimeWindow describes the time constraint to make the delivery. e.g. the working hours of the customer.
+A TimeWindow describes the time constraint to make the delivery. e.g. the working hours of the customer. Foxtrot will try to help the driver arrive inside a TimeWindow. Keep in mind, the TimeWindow Collection for each waypoint must be at least 4hrs 30min in duration, and each TimeWindow cannot be shorter than 3hrs.
 
 | Field                     | Type                             | Required | Description
 |---------------------------|----------------------------------|----------|------------
@@ -189,25 +189,34 @@ A DeliveryStatus is an enumeration for possible attempt states.
 
 | States                  | Description
 |-------------------------|------------
-| FAILED                  | Marks a failed delivery.
-| SUCCESSFUL              | Marks a successful delivery.
-| AUTHORIZE_REATTEMPT     | Mark the delivery to be reattempted later.
-| VISIT_LATER             | Mark the delivery to be visited later.
+| `FAILED`                | (At Delivery Site: Option 1/3) Marks a failed delivery.
+| `SUCCESSFUL`            | (At Delivery Site: Option 2/3) Marks a successful delivery.
+| `VISIT_LATER`           | (At Delivery Site: Option 3/3) Marks the delivery to be visited later.
+| `AUTHORIZE_REATTEMPT`   | (Optional: After prior DeliveryAttempt) Marks the delivery to be reattempted later.
 
-Both `AUTHORIZE_REATTEMPT` and `VISIT_LATER` emit the same behavior; however, it is recommended to use them based on the
-context of the situation.
+It is critical that upon conclusion of every delivery attempt, the driver mark the waypoint as `FAILED`, `SUCCESSFUL` OR `VISIT_LATER`.
 
-### `VISIT_LATER` sample use-cases:
+### `SUCCESSFUL` use-case:
 
-1. Driver failed to deliver the goods product, but knows he/she will come back later during the day.
+Driver succeeded in delivering the product.
 
-### `AUTHORIZE_REATTEMPT` sample use-cases:
+### `FAILED` use-case:
 
-1. Driver failed to deliver the goods and marked it as `FAILED`. Later during the day, the driver wants to come back.
-The driver can now `AUTHORIZE_REATTEMPT` on the same delivery. Foxtrot will automatically re-optimize the route with the
+Driver failed in delivering the product and does not expect to make another attempt today. Knowing there will be no further attempts today, the driver marks the waypoint as FAILED.
+
+### `VISIT_LATER` use-case:
+
+Driver failed to deliver the product, but knows he/she will come back to try again later during the day.
+
+### `AUTHORIZE_REATTEMPT` use-cases:
+
+** In all circumstances using the `AUTHORIZE_REATTEMPT`, there MUST be a `FAILED` or `SUCCESSFUL` attempt immediately preceeding.
+
+1. Driver failed to deliver the goods, sure that they will not come again later that day, and thus registers a FAILED attempt. Unexpectedly, circumstances change later during the day, and the driver decides he/she will want to try again.
+The driver can `AUTHORIZE_REATTEMPT` on the same delivery and Foxtrot will automatically re-optimize the route with the
 new information.
-2. Driver failed to deliver the goods and marked it as `FAILED`. Later during the day, a route manager wants the driver
-to come back. The manager can `AUTHORIZE_REATTEMPT` on the failed delivery. Foxtrot will automatically re-optimize the route with the
+2. Driver failed to deliver the goods, sure that they will not come again later that day, and thus registers a FAILED attempt. Unexpectedly, circumstances change later during the day, and the manager decides that the driver should try again.
+The manager can `AUTHORIZE_REATTEMPT` on the same delivery and Foxtrot will automatically re-optimize the route with the
 new information.
 
 ## Driver
