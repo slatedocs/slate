@@ -455,6 +455,10 @@ amount | Integer | The amount of the expense, in cents. |
 currency | String | The three-letter currency code of the expense. |
 **Optional elements** |
 externalID | String | A unique, custom string that you specify - this will help identify the expense after being exported. |
+category | String | The name of the category to assign to the expense
+tag | String | The name of the tag to assign to the expense
+billable | boolean | Whether to mark the expense as billable or not
+reimbursable | boolean | Whether to mark the expense as reimbursable or not
 comment | String | An expense comment. |
 reportID | String | The ID of the report you want to attach the expense to.|
 policyID | String | The ID of the policy the tax belongs to. |
@@ -1131,7 +1135,7 @@ EmployeeUserId | String | | The User ID of the employee.
 EmployeePayrollId | String | | The Payroll ID of the employee.
 ForwardManagerEmail | String | Any valid email address or an empty value | To whom reports will be sent to after the manager clicks 'Approve and Forward'.
 
-Optional attributes can be left blank. In that case, the corresponding value will be removed for existing employees, and left blank for new employees.
+If optional attributes are not provided or left blank, the corresponding value will be removed for existing employees, and left blank for new employees.
 
 ## Expense rules updater
 
