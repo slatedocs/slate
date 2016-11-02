@@ -279,4 +279,4 @@ Prepaid card | tarjeta_prepago | Tarjeta prepago | 18
 Other payment methods | otros | Otros con utilización del sistema financiero | 20
 Certificate endorsement | endoso_titulos | Endoso de títulos | 21
 
-Due to the Ecuadorian Internal Revenue Service requiring all invoices to include payment method information, Dátil will automatically add a payment with code `20` in invoices that include a `credit` object.
+Due to the Ecuadorian Internal Revenue Service requiring all invoices to include payment method information, Dátil will automatically add a payment with code `20` to invoices that include a `credit` object.
