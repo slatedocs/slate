@@ -5,7 +5,7 @@
 </aside>
 
 ```html
-<form method='post' action='https://www.librepag.com.br/vpos'>
+<form method='post' action='http://sandbox.ipag.com.br/vpos'>
     <input type='hidden' name='identificacao' value='LOGIN_IPAG'/>
     <input type='hidden' name='operacao' value='Pagamento'/>
     <input type='hidden' name='pedido' value=''/>
@@ -15,6 +15,6 @@
     <input type="hidden" name="item_descr_1" value="NOME_PRODUTO" />
     <input type="hidden" name="item_valor_1" value="1.00" />
     <input type="hidden" name="item_id_1" value="123" />
-    <input type="image" src="https://www.librepag.com.br/images/comprar100px.png" name="submit" alt="Comprar" />
+    <input type="image" src="http://sandbox.ipag.com.br/images/comprar100px.png" name="submit" alt="Comprar" />
 </form>
 ```

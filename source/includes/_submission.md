@@ -1,13 +1,13 @@
 # Submissão de Pagamentos
 
-Para integrar sua Loja Virtual ou Site ao iPag, envie os seguintes parâmetros via POST ao sistema iPag para a URL https://www.librepag.com.br/pagamento
+Para integrar sua Loja Virtual ou Site ao iPag, envie os seguintes parâmetros via POST ao sistema iPag para a URL http://sandbox.ipag.com.br/pagamento
 
 > Exemplo de cURL
 
 ```php
 <?php
 //URL do iPag
-$url = 'https://www.librepag.com.br/pagamento';
+$url = 'http://sandbox.ipag.com.br/pagamento';
 
 //os dados abaixo são apenas de exemplo
 //preencha com os dados necessários para relizar os testes
@@ -177,10 +177,10 @@ ano | Numérico. Tamanho: 2. Referente ano de vencimento do cartão. Somente e
 
 Operações | Descrição
 --------- | ----------------
-Pagamento | https://www.librepag.com.br/pagamento
-Consulta | https://www.librepag.com.br/consulta
-Captura | https://www.librepag.com.br/captura
-Cancela | https://www.librepag.com.br/cancela
+Pagamento | http://sandbox.ipag.com.br/pagamento
+Consulta | http://sandbox.ipag.com.br/consulta
+Captura | http://sandbox.ipag.com.br/captura
+Cancela | http://sandbox.ipag.com.br/cancela
 
 ## Métodos
 Cartões | Boleto Bancário | Banco

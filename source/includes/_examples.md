@@ -2,7 +2,7 @@
 
 HTMLs de Exemplos
 
-Endpoint Produção: www.librepag.com.br
+Endpoint Produção: //Requisitar para o iPag em atedimento@ipag.com.br
 
 Endpoint Sandbox: sandbox.ipag.com.br
 
@@ -22,7 +22,7 @@ Endpoint Sandbox: sandbox.ipag.com.br
     <body>
         <div class="text">Complete os campos com os valores desejados para testar:</div>
         <br/>
-        <form method='post' action='https://www.librepag.com.br/pagamento'>
+        <form method='post' action='http://sandbox.ipag.com.br/pagamento'>
             <table cellpadding="5" cellspacing="0" style="" class="comBorda">
                 <thead>
                     <tr>
@@ -64,7 +64,7 @@ Endpoint Sandbox: sandbox.ipag.com.br
 <?php
 //Exemplo de Submissão via cURL
 //URL do iPag
-$url = 'https://www.librepag.com.br/pagamento';
+$url = 'http://sandbox.ipag.com.br/pagamento';
 // $url = 'http://sandbox.ipag.com.br/pagamento';
 
 $fields = array(
@@ -134,7 +134,7 @@ curl_close( $ch );
 <body>
     <div class="text">Complete os campos com os valores desejados para testar a consulta:</div>
         <br/>
-        <form method='post' action='https://www.librepag.com.br/consulta'>
+        <form method='post' action='http://sandbox.ipag.com.br/consulta'>
             <table cellpadding="5" cellspacing="0" style="" class="comBorda">
                 <thead>
                     <tr>
@@ -159,14 +159,14 @@ curl_close( $ch );
 <?php
 //Exemplo de Consulta via cURL
 //URL do iPag
-$url = 'https://www.librepag.com.br/consulta';
+$url = 'http://sandbox.ipag.com.br/consulta';
 // $url = 'http://sandbox.ipag.com.br/consulta';
 
 $fields = array(
       'identificacao' => urlencode('SEU LOGIN'),
       'transId' => urlencode('100000'),
       'numPedido' => urlencode('10000000'),
-      // 'url_retorno' => urlencode('https://minhaurl.com'),
+      // 'url_retorno' => urlencode('http://minhaurl.com'),
       'retorno_tipo' => urlencode('xml')
 );
 $fields_string ='';
@@ -222,7 +222,7 @@ url_retorno | 255 | string | não | Url da sua loja.
 <body>
     <div class="text">Complete os campos com os valores desejados para testar a captura:</div>
         <br/>
-        <form method='post' action='https://www.librepag.com.br/captura'>
+        <form method='post' action='http://sandbox.ipag.com.br/captura'>
             <table cellpadding="5" cellspacing="0" style="" class="comBorda">
                 <thead>
                     <tr>
@@ -246,13 +246,13 @@ url_retorno | 255 | string | não | Url da sua loja.
 <?php
 //Exemplo de Captura via cURL
 //URL do iPag
-$url = 'https://www.librepag.com.br/captura';
+$url = 'http://sandbox.ipag.com.br/captura';
 // $url = 'http://sandbox.ipag.com.br/captura';
 
 $fields = array(
       'identificacao' => urlencode('SEU LOGIN'),
       'transId' => urlencode('100000'),
-      'url_retorno' => urlencode('https://minhaurl.com') // ou 'xml'
+      'url_retorno' => urlencode('http://minhaurl.com') // ou 'xml'
 );
 $fields_string ='';
 foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
@@ -301,7 +301,7 @@ url_retorno | 255 | string | sim |`xml` ou  Url da sua loja.
 <body>
     <div class="text">Complete os campos com os valores desejados para testar o cancelamento:</div>
         <br/>
-        <form method='post' action='https://www.librepag.com.br/cancela'>
+        <form method='post' action='http://sandbox.ipag.com.br/cancela'>
             <table cellpadding="5" cellspacing="0" style="" class="comBorda">
                 <thead>
                     <tr>
@@ -325,13 +325,13 @@ url_retorno | 255 | string | sim |`xml` ou  Url da sua loja.
 <?php
 //Exemplo de Cancelamento via cURL
 //URL do iPag
-$url = 'https://www.librepag.com.br/cancela';
+$url = 'http://sandbox.ipag.com.br/cancela';
 // $url = 'http://sandbox.ipag.com.br/cancela';
 
 $fields = array(
       'identificacao' => urlencode('SEU LOGIN'),
       'transId' => urlencode('100000'),
-      'url_retorno' => urlencode('https://minhaurl.com') // ou 'xml
+      'url_retorno' => urlencode('http://minhaurl.com') // ou 'xml
 );
 $fields_string ='';
 foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
