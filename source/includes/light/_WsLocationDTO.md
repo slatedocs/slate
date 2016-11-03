@@ -39,7 +39,7 @@ lng | string | 1..1 | долгота
 logicalId | string | 1..1 | логический идентификатор
 operationTime | string | 0..1 | режим работы
 type | [WsLocationTypeDTO](#wslocationtypedto) | 1..1 | тип
-attributes | [WsLocationAttributeDTO](#wslocationservicedto) | 0..1 | атрибуты фильтра
+attributes | [WsLocationAttributeDTO](#wslocationattributedto) | 0..1 | атрибуты фильтра
 services | [WsLocationServiceDTO](#wslocationservicedto) | 0..1 | список сервисов
 
 <aside class="notice">для локализации использовать i18n{"ru":"Русский текст","en":"English text"}</aside>
