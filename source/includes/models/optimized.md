@@ -37,7 +37,7 @@ each will be returned. You will never need to create these Optimized models. The
 | distanceInMetersFromPreviousWaypoint | Long                                                      | true     | The estimated distance in meters to get to this waypoint from the previous waypoint.
 | timeInSecondsFromPreviousWaypoint    | Long                                                      | true     | The estimated time in seconds to get to this waypoint from the previous waypoint.
 | deliveries                           | Collection<[OptimizedDelivery](#optimizeddelivery)>       | false    | The collection of Delivery objects at this waypoint. This collection will have at least one element.
-| operationHours                          | Collection<[OptimizedOperationHours](#optimizedoperationHours)>   | false    | The collection of OperationHours objects at this waypoint. This collection may be empty.
+| operationHours                          | Collection<[OptimizedOperationHours](#optimizedoperationhours)>   | false    | The collection of OperationHours objects at this waypoint. This collection may be empty.
 
 
 ## OptimizedOperationHours

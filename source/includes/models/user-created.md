@@ -55,7 +55,7 @@ A Waypoint contains the customer information, their location, and a list of [Del
 | customerId                | String                           | true     | The globally unique identifier identifying the customer at the waypoint.
 | serviceTimeInSeconds      | Long                             | true     | The estimated amount of time in seconds the driver will take to complete the waypoint.
 | deliveries                | Collection<[Delivery](#delivery)>      | true     | The collection of Delivery objects at the waypoint. This collection must not be empty.
-| operatingHours               | Collection<[OperatingHours](#operatinghours)>  | true     | The collection of OperatingHours objects at the waypoint. This collection may be empty. The OperatingHours Collection must sum up to at least 4hrs 30min in duration, and each OperatingHours cannot be shorter than 3hrs.
+| operatingHours               | Collection<[OperatingHours](#operatinghours)>  | true     | The collection of OperatingHours objects at the waypoint. This collection may be empty. The OperatingHours Collection must sum up to at least 4hrs 30min in duration, and any single OperatingHours cannot be shorter than 3hrs.
 
 ```java
 Collection<Delivery> deliveries = ...;
@@ -94,9 +94,9 @@ A OperatingHours describes the time constraint to make the delivery. e.g. the wo
 ```java
 DateTime now = new DateTime();
 OperatingHours operatingHours = OperatingHours.builder()
-                                          .setStart(now)
-                                          .setEnd(now.plusHours(4)) //four hours from now
-                                          .build();
+                                              .setStart(now)
+                                              .setEnd(now.plusHours(4)) //four hours from now
+                                              .build();
 ```
 
 ## Delivery
@@ -115,7 +115,16 @@ Delivery delivery = Delivery.builder()
 ```
 
 ## DeliveryAttempt
-A DeliveryAttempt contains status information on a visit a [Driver](#driver) made at a [Waypoint](#waypoint).
+A DeliveryAttempt contains status information on a visit a [Driver](#driver) made at a [Waypoint](#waypoint). A DeliveryAttempt can have either a `DeliveryStatus.SUCCESSFUL` or `DeliveryStatus.FAILED` DeliveryStatus, and when used, the algorithm will stop optimizing the waypoint since the `Driver` is not planning on returning to that stop.
+
+### `SUCCESSFUL` use-case:
+
+Driver succeeded in delivering the product and does not expect to make another attempt today.
+
+### `FAILED` use-case:
+
+Driver failed in delivering the product and does not expect to make another attempt today. Knowing there will be no further attempts today, the driver marks the waypoint as FAILED.
+
 
 | Field                     | Type                             | Required | Description
 |---------------------------|----------------------------------|----------|------------
@@ -132,24 +141,12 @@ DeliveryAttempt attempt = DeliveryAttempt.builder()
                                          .build();
 ```
 
-## DeliveryReattempt
-A DeliveryReattempt marks the need to reattempt a delivery at a [Waypoint](#waypoint) in the future.
-
-| Field                     | Type                             | Required | Description
-|---------------------------|----------------------------------|----------|------------
-| deliveryCode              | [DeliveryCode](#deliverycode)    | false    | Additional information about the reattempt.
-| notes                     | String                           | false    | The driver's note about the reattempt.
-
-```java
-DeliveryCode deliveryCode = ...
-DeliveryReattempt reattempt = DeliveryReattempt.builder()
-                                               .setDeliveryCode(deliveryCode)
-                                               .setNotes("Customer is not home")
-                                               .build();
-```
-
 ## DeliveryVisitLater
-A DeliveryVisitLater marks the need to visit the [Waypoint](#waypoint) in the future.
+A DeliveryVisitLater marks an unsuccessful delivery attempt, but also registers the need to visit the [Waypoint](#waypoint) in the future. The `Waypoint` is continued to be optimized by the algorithm.
+
+### `VISIT_LATER` use-case:
+
+Driver failed to deliver the product, but knows he/she will come back to try again later during the day.
 
 | Field                     | Type                             | Required | Description
 |---------------------------|----------------------------------|----------|------------
@@ -162,6 +159,34 @@ DeliveryVisitLater deliveryVisitLater = DeliveryVisitLater.builder()
                                                           .setDeliveryCode(deliveryCode)
                                                           .setNotes("Customer is not home")
                                                           .build();
+```
+
+## DeliveryReattempt
+A DeliveryReattempt marks the need to reattempt a previously `Failed` or `Successful` delivery status in a [Waypoint](#waypoint). This can come as an authorization from the Warehouse, or the driver may be able to trigger this status in order to add the [Waypoint](#waypoint) back onto the route so they can visit the stop again.
+
+### `AUTHORIZE_REATTEMPT` use-cases:
+
+** In all circumstances using the `AUTHORIZE_REATTEMPT`, there MUST be a `FAILED` or `SUCCESSFUL` attempt immediately preceeding.
+
+1. Driver failed to deliver the goods, sure that they will not come again later that day, and thus registers a FAILED attempt. Unexpectedly, circumstances change later during the day, and the driver decides he/she will want to try again.
+The driver can `AUTHORIZE_REATTEMPT` on the same delivery and Foxtrot will automatically re-optimize the route with the
+new information.
+2. Driver failed to deliver the goods, sure that they will not come again later that day, and thus registers a FAILED attempt. Unexpectedly, circumstances change later during the day, and the manager decides that the driver should try again.
+The manager can `AUTHORIZE_REATTEMPT` on the same delivery and Foxtrot will automatically re-optimize the route with the
+new information.
+
+
+| Field                     | Type                             | Required | Description
+|---------------------------|----------------------------------|----------|------------
+| deliveryCode              | [DeliveryCode](#deliverycode)    | false    | Additional information about the reattempt.
+| notes                     | String                           | false    | The driver's note about the reattempt.
+
+```java
+DeliveryCode deliveryCode = ...
+DeliveryReattempt reattempt = DeliveryReattempt.builder()
+                                               .setDeliveryCode(deliveryCode)
+                                               .setNotes("Customer is not home")
+                                               .build();
 ```
 
 ## DeliveryCode
@@ -192,28 +217,6 @@ A DeliveryStatus is an enumeration for possible attempt states.
 
 It is critical that upon conclusion of every delivery attempt, the driver mark the waypoint as `FAILED`, `SUCCESSFUL` OR `VISIT_LATER`.
 
-### `SUCCESSFUL` use-case:
-
-Driver succeeded in delivering the product.
-
-### `FAILED` use-case:
-
-Driver failed in delivering the product and does not expect to make another attempt today. Knowing there will be no further attempts today, the driver marks the waypoint as FAILED.
-
-### `VISIT_LATER` use-case:
-
-Driver failed to deliver the product, but knows he/she will come back to try again later during the day.
-
-### `AUTHORIZE_REATTEMPT` use-cases:
-
-** In all circumstances using the `AUTHORIZE_REATTEMPT`, there MUST be a `FAILED` or `SUCCESSFUL` attempt immediately preceeding.
-
-1. Driver failed to deliver the goods, sure that they will not come again later that day, and thus registers a FAILED attempt. Unexpectedly, circumstances change later during the day, and the driver decides he/she will want to try again.
-The driver can `AUTHORIZE_REATTEMPT` on the same delivery and Foxtrot will automatically re-optimize the route with the
-new information.
-2. Driver failed to deliver the goods, sure that they will not come again later that day, and thus registers a FAILED attempt. Unexpectedly, circumstances change later during the day, and the manager decides that the driver should try again.
-The manager can `AUTHORIZE_REATTEMPT` on the same delivery and Foxtrot will automatically re-optimize the route with the
-new information.
 
 ## Driver
 A Driver represents the driver driving the route.

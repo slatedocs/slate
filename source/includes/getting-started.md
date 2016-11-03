@@ -330,10 +330,10 @@ List<Delivery> deliveries = Collections.singletonList(delivery);
 DateTime routeStartTime = new DateTime(0L, DateTimeZone.UTC);
 
 // We need to deliver the soda between 1:00 and 2:00 UTC
-OperatingHours operatingHours = OperatingHours.builder()
-                                              .setStart(routeStartTime.plusHours(1))
-                                              .setEnd(routeStartTime.plusHours(2))
-                                              .build();
+OperatingHours operatingHour = OperatingHours.builder()
+                                             .setStart(routeStartTime.plusHours(1))
+                                             .setEnd(routeStartTime.plusHours(2))
+                                             .build();
 // Foxtrot allows you to specify multiple possible OperatingHours per delivery
 List<OperatingHours> operatingHours = Collections.singletonList(operatingHour);
 
