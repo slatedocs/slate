@@ -142,7 +142,7 @@ DeliveryAttempt attempt = DeliveryAttempt.builder()
 ```
 
 ## DeliveryVisitLater
-A DeliveryVisitLater marks an unsuccessful delivery attempt, but also registers the need to visit the [Waypoint](#waypoint) in the future. The `Waypoint` is continued to be optimized by the algorithm.
+A DeliveryVisitLater marks an unsuccessful delivery attempt, but also registers the need to visit the [Waypoint](#waypoint) in the future. A DeliveryVisitLater constitutes of a `DeliveryStatus.VISIT_LATER` DeliveryStatus. The `Waypoint` is continued to be optimized by the algorithm.
 
 ### `VISIT_LATER` use-case:
 
@@ -162,7 +162,7 @@ DeliveryVisitLater deliveryVisitLater = DeliveryVisitLater.builder()
 ```
 
 ## DeliveryReattempt
-A DeliveryReattempt marks the need to reattempt a previously `Failed` or `Successful` delivery status in a [Waypoint](#waypoint). This can come as an authorization from the Warehouse, or the driver may be able to trigger this status in order to add the [Waypoint](#waypoint) back onto the route so they can visit the stop again.
+A DeliveryReattempt marks the need to reattempt a previously `Failed` or `Successful` delivery status in a [Waypoint](#waypoint). A DeliveryReattempt constitutes of a `DeliveryStatus.AUTHORIZE_REATTEMPT` DeliveryStatus. This can come as an authorization from the Warehouse, or the driver may be able to trigger this status in order to add the [Waypoint](#waypoint) back onto the route so they can visit the stop again.
 
 ### `AUTHORIZE_REATTEMPT` use-cases:
 
