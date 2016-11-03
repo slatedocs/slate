@@ -330,12 +330,12 @@ List<Delivery> deliveries = Collections.singletonList(delivery);
 DateTime routeStartTime = new DateTime(0L, DateTimeZone.UTC);
 
 // We need to deliver the soda between 1:00 and 2:00 UTC
-TimeWindow timeWindow = TimeWindow.builder()
-                                  .setStart(routeStartTime.plusHours(1))
-                                  .setEnd(routeStartTime.plusHours(2))
-                                  .build();
-// Foxtrot allows you to specify multiple possible TimeWindows per delivery
-List<TimeWindow> timeWindows = Collections.singletonList(timeWindow);
+OperatingHours operatingHours = OperatingHours.builder()
+                                              .setStart(routeStartTime.plusHours(1))
+                                              .setEnd(routeStartTime.plusHours(2))
+                                              .build();
+// Foxtrot allows you to specify multiple possible OperatingHours per delivery
+List<OperatingHours> operatingHours = Collections.singletonList(operatingHour);
 
 Location location = Location.create(37.7749, -122.4194);
 Waypoint waypoint = Waypoint.builder()
@@ -344,7 +344,7 @@ Waypoint waypoint = Waypoint.builder()
                             .setName("Friendly Neighborhood Bakery")
                             .setCustomerId("UNIQUE_CUSTOMER_ID")
                             .setDeliveries(deliveries)
-                            .setTimeWindows(timeWindows)
+                            .setOperatingHours(operatingHours)
                             .setServiceTimeInSeconds(600L) // 10 minutes
                             .build();
 // There may be more
@@ -455,7 +455,7 @@ In the circumstances when the waypoint has been designated as successful or fail
 
 <aside class="notice">
 In order to submit a DeliveryStatus.VISIT_LATER or DeliveryStatus.AUTHORIZE_REATTEMPT, a different api should be used, FoxtrotSDK.markDeliveryToVisitLater() and FoxtrotSDK.authorizeDeliveryReattempt(), respectively.
-These two apis require a DeliveryVisitLater or DeliveryReattempt, respectively. An optional TimeWindow can be set when constructing these objects if the driver knows the expected time to visit the waypoint again.
+These two apis require a DeliveryVisitLater or DeliveryReattempt, respectively.
 </aside>
 
 Here’s how to create and add a successful DeliveryAttempt, using the Route we created previously:
@@ -490,14 +490,14 @@ DeliveryCode deliveryCode = DeliveryCode.builder()
                                         .setCode("F-605")
                                         .setMessage("The customer is not open on Thursdays")
                                         .build();
-TimeWindow timeWindow = TimeWindow.builder()
+OperatingHours operatingHours = OperatingHours.builder()
                                   .setStart(DateTime.now().plusHours(3))
                                   .setEnd(DateTime.now().plusHours(4))
                                   .build();
 DeliveryVisitLater deliveryVisitLater = DeliveryVisitLater.builder()
                                                .setDeliveryCode(deliveryCode) // deliveryCode is optional
                                                .setNotes("Customer hours are closed") // notes are optional
-                                               .setTimeWindow(timeWindow) // timeWindow is optional
+                                               .setOperatingHours(operatingHours) // operatingHours is optional
                                                .build();
 FoxtrotSDK.getInstance().markDeliveryToVisitLater("SOME_WAYPOINT_ID", deliveryVisitLater);
 ```
@@ -505,13 +505,13 @@ FoxtrotSDK.getInstance().markDeliveryToVisitLater("SOME_WAYPOINT_ID", deliveryVi
 Here's how to create a `DeliveryStatus.AUTHORIZE_REATTEMPT`
 
 ```java
-TimeWindow timeWindow = TimeWindow.builder()
+OperatingHours operatingHours = OperatingHours.builder()
                                   .setStart(DateTime.now().plusHours(3))
                                   .setEnd(DateTime.now().plusHours(4))
                                   .build();
 DeliveryReattempt reattempt = DeliveryReattempt.builder()
                                                .setNotes("Customer is now open") // notes are optional
-                                               .setTimeWindow(timeWindow) // timeWindow is optional
+                                               .setOperatingHours(operatingHours) // operatingHours is optional
                                                .build();
 FoxtrotSDK.getInstance().authorizeDeliveryReattempt("SOME_WAYPOINT_ID", reattempt);
 ```
