@@ -439,7 +439,10 @@ The `deliveryCode` is useful for gathering structured driver feedback. For examp
 Foxtrot uses delivery attempts to determine where to send the driver next. To help Foxtrot optimize your routes most efficiently, never delay or enqueue delivery attempts. Always submit delivery attempts as soon as the driver attempts the delivery.
 </aside>
 
-Three attempt types can be registered at the delivery site. One of these 3 choices must be registered each time there is a visit. 1) `DeliveryStatus.SUCCESSFUL`; 2) `DeliveryStatus.VISIT_LATER`; 3) `DeliveryStatus.FAILED`
+Three attempt types can be registered at the delivery site. One of these 3 choices must be registered each time there is a visit.  
+1) `DeliveryStatus.SUCCESSFUL`;  
+2) `DeliveryStatus.VISIT_LATER`;  
+3) `DeliveryStatus.FAILED`;  
 
 If the driver was able to make the delivery, you should submit the attempt using `DeliveryStatus.SUCCESSFUL`. Since the delivery has been completed, Foxtrot will not send the driver to this waypoint again.
 
@@ -452,6 +455,28 @@ DeliveryStatus.FAILED should only be used when the driver intends to return the 
 </aside>
 
 In the circumstances when the waypoint has been designated as successful or failed and circumstances change, a fourth attempt can be used: `DeliveryStatus.AUTHORIZE_REATTEMPT`. The possible use-cases for utilization of this status is either a) the driver previously succeeded or failed an attempt permanently, but circumstances changed and he/she would like to make another visit to the waypoint, or b) the driver previously succeeded or failed an attempt permanently, but circumstances changed and their manager would like the driver to make another visit to the waypoint. In either of these cases, you should submit a `DeliveryStatus.AUTHORIZE_REATTEMPT`. Foxtrot will re-schedule waypoint to be visited later.
+
+### UI Guide
+To make it easier to integrate, please review the follow graphics displaying Foxtrot's UI guidelines for [DeliveryAttempt](#deliveryattempt)s:  
+
+![UI State Guidelines](ui_state_guidelines.png)
+
+We have also included two sample UI flows for DeliveryAttempts in order to make integration an easier process. Foxtrot recommends that developers use these flows and follow the suggestions contained within.
+
+
+###Recommended Approach
+First, for developers with three button UIs, Foxtrot has created a sample Dataflow showing how to display UI and which kinds of attempts can be made following every step in the flow. Foxtrot recommends this UI pattern, it provides a more enjoyable user experience and allows drivers to more clearly understand their options:  
+
+![Three Button UI Flow](3_button_flow.png)
+
+
+
+Additionally, for developers with two button UIs we also included a sample flow for users of apps using such an approach:  
+
+![Two Button UI Flow](2_button_flow.png)
+
+
+
 
 <aside class="notice">
 In order to submit a DeliveryStatus.VISIT_LATER or DeliveryStatus.AUTHORIZE_REATTEMPT, a different api should be used, FoxtrotSDK.markDeliveryToVisitLater() and FoxtrotSDK.authorizeDeliveryReattempt(), respectively.
