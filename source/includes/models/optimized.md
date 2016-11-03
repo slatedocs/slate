@@ -37,15 +37,15 @@ each will be returned. You will never need to create these Optimized models. The
 | distanceInMetersFromPreviousWaypoint | Long                                                      | true     | The estimated distance in meters to get to this waypoint from the previous waypoint.
 | timeInSecondsFromPreviousWaypoint    | Long                                                      | true     | The estimated time in seconds to get to this waypoint from the previous waypoint.
 | deliveries                           | Collection<[OptimizedDelivery](#optimizeddelivery)>       | false    | The collection of Delivery objects at this waypoint. This collection will have at least one element.
-| timeWindows                          | Collection<[OptimizedTimeWindow](#optimizedtimewindow)>   | false    | The collection of TimeWindow objects at this waypoint. This collection may be empty.
+| operationHours                          | Collection<[OptimizedOperationHours](#optimizedoperationHours)>   | false    | The collection of OperationHours objects at this waypoint. This collection may be empty.
 
 
-## OptimizedTimeWindow
+## OptimizedOperationHours
 
 | Field                     | Type                             | Nullable | Description
 |---------------------------|----------------------------------|----------|------------
-| start                     | DateTime                         | false    | The start time of this time window. This value must be after the start of the route.
-| end                       | DateTime                         | false    | The end time of this time window. This value must be after the start of this time window.
+| start                     | DateTime                         | false    | The start time of this operation hours. This value must be after the start of the route.
+| end                       | DateTime                         | false    | The end time of this operation hours. This value must be after the start of this operation hours.
 
 
 ## OptimizedDelivery
