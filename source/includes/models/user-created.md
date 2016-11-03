@@ -55,11 +55,11 @@ A Waypoint contains the customer information, their location, and a list of [Del
 | customerId                | String                           | true     | The globally unique identifier identifying the customer at the waypoint.
 | serviceTimeInSeconds      | Long                             | true     | The estimated amount of time in seconds the driver will take to complete the waypoint.
 | deliveries                | Collection<[Delivery](#delivery)>      | true     | The collection of Delivery objects at the waypoint. This collection must not be empty.
-| timeWindows               | Collection<[TimeWindow](#timewindow)>  | true     | The collection of TimeWindow objects at the waypoint. This collection may be empty. The TimeWindow Collection must sum up to at least 4hrs 30min in duration, and each TimeWindow cannot be shorter than 3hrs.
+| operatingHours               | Collection<[OperatingHours](#operatinghours)>  | true     | The collection of OperatingHours objects at the waypoint. This collection may be empty. The OperatingHours Collection must sum up to at least 4hrs 30min in duration, and each OperatingHours cannot be shorter than 3hrs.
 
 ```java
 Collection<Delivery> deliveries = ...;
-Collection<TimeWindow> timeWindows = ...;
+Collection<OperatingHours> operatingHours = ...;
 Waypoint waypoint = Waypoint.builder()
                             .setName("Friendly Neighborhood Bakery")
                             .setAddress("123 Fake St")
@@ -67,7 +67,7 @@ Waypoint waypoint = Waypoint.builder()
                             .setCustomerId("Customer Unique Id")
                             .setServiceTimeInSeconds(600L) // 10 minutes
                             .setDeliveries(deliveries)
-                            .setTimeWindows(timeWindows)
+                            .setOperatingHours(operatingHours)
                             .build();
 ```
 
@@ -83,20 +83,20 @@ A Location object describes a latitude and longitude coordinate position
 Location location = Location.create(37.780177, -122.397055);
 ```
 
-## TimeWindow
-A TimeWindow describes the time constraint to make the delivery. e.g. the working hours of the customer. Foxtrot will try to help the driver arrive inside a TimeWindow. Keep in mind, the TimeWindow Collection for each waypoint must be at least 4hrs 30min in duration, and each TimeWindow cannot be shorter than 3hrs.
+## OperatingHours
+A OperatingHours describes the time constraint to make the delivery. e.g. the working hours of the customer. Foxtrot will try to help the driver arrive inside a OperatingHours. Keep in mind, the OperatingHours Collection for each waypoint must be at least 4hrs 30min in duration, and each OperatingHours cannot be shorter than 3hrs.
 
 | Field                     | Type                             | Required | Description
 |---------------------------|----------------------------------|----------|------------
-| start                     | DateTime                         | true     | The start time of this time window. This value must be after the start of the route.
-| end                       | DateTime                         | true     | The end time of this time window. This value must be after the start of this time window.
+| start                     | DateTime                         | true     | The start time of this operating hour. This value must be after the start of the route.
+| end                       | DateTime                         | true     | The end time of this operating hour. This value must be after the start of this operating hour.
 
 ```java
 DateTime now = new DateTime();
-TimeWindow timeWindow = TimeWindow.builder()
-                                  .setStart(now)
-                                  .setEnd(now.plusHours(4)) //four hours from now
-                                  .build();
+OperatingHours operatingHours = OperatingHours.builder()
+                                          .setStart(now)
+                                          .setEnd(now.plusHours(4)) //four hours from now
+                                          .build();
 ```
 
 ## Delivery
@@ -139,14 +139,12 @@ A DeliveryReattempt marks the need to reattempt a delivery at a [Waypoint](#wayp
 |---------------------------|----------------------------------|----------|------------
 | deliveryCode              | [DeliveryCode](#deliverycode)    | false    | Additional information about the reattempt.
 | notes                     | String                           | false    | The driver's note about the reattempt.
-| timeWindow                | [TimeWindow](#timewindow)        | false    | The estimated time the driver would like to come back.
 
 ```java
 DeliveryCode deliveryCode = ...
 DeliveryReattempt reattempt = DeliveryReattempt.builder()
                                                .setDeliveryCode(deliveryCode)
                                                .setNotes("Customer is not home")
-                                               .setTimeWindow(...)
                                                .build();
 ```
 
@@ -157,14 +155,12 @@ A DeliveryVisitLater marks the need to visit the [Waypoint](#waypoint) in the fu
 |---------------------------|----------------------------------|----------|------------
 | deliveryCode              | [DeliveryCode](#deliverycode)    | false    | Additional information about the visit later status.
 | notes                     | String                           | false    | The driver's note about the visit later status.
-| timeWindow                | [TimeWindow](#timewindow)        | false    | The estimated time the driver would like to come back.
 
 ```java
 DeliveryCode deliveryCode = ...
 DeliveryVisitLater deliveryVisitLater = DeliveryVisitLater.builder()
                                                           .setDeliveryCode(deliveryCode)
                                                           .setNotes("Customer is not home")
-                                                          .setTimeWindow(...)
                                                           .build();
 ```
 
@@ -178,9 +174,9 @@ A DeliveryCode allows the driver to give additional information about what happe
 
 ```java
 DeliveryCode deliveryCode = DeliveryCode.builder()
-                                         .setCode("E-201")
-                                         .setMessage("Customer was not available")
-                                         .build();
+                                        .setCode("E-201")
+                                        .setMessage("Customer was not available")
+                                        .build();
 ```
 
 
