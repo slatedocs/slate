@@ -196,7 +196,7 @@ Great job! You’ve set up the Foxtrot SDK singleton. From now on, when you call
 FoxtrotSDK.getInstance().SOME_METHOD()
 ```
 
-## Integrating with an existing application
+## Integrating With An Existing Application
 
 The Foxtrot SDK is designed to easily integrate into your existing application. In general, you simply need to keep the Foxtrot SDK informed about the driver, their assigned route, and their progress throughout the day. The SDK will make sure the route is continuously being optimized, and inform your application of any changes.
 
@@ -316,7 +316,7 @@ You can register as many error state listeners as you’d like and they’ll all
 
 ## Importing a Route
 
-Assuming you’ve had no problems so far, now you can import one or more [Route](#route) objects into Foxtrot. Foxtrot will cache these objects for you so you don't need to import them again after the app restarts.
+Assuming you’ve had no problems so far, now you can import one or more [Route](#route) objects into Foxtrot. Foxtrot will cache these objects for you so you don't need to import them again incase the app restarts.
 
 Here is some sample code to add a route:
 
@@ -374,10 +374,8 @@ FoxtrotSDK.getInstance().addRoute(route);
 Now let's get the [OptimizedRoute](#optimizedroute). You will need to register a [RouteStateListener](https://foxtrotsystems.github.io/android-sdk-javadoc/io/foxtrot/android/sdk/state/RouteStateListener.html) to get the latest route changes. Once registered, an `OptimizedRoute` will be immediately given to you via the `onRouteChanged()` callback. After registration, the Foxtrot SDK will use the `RouteStateListener` to inform your application of any further changes to the route. Here is a sample `Activity` that uses the `RouteStateListener`.
 
 <aside class="notice">
-Foxtrot will optimize the current route whenever driving conditions change, so it's important that you update your UI when onRouteChanged is called. Your application should ensure that the driver is aware of the route changes by playing a sound, displaying a banner, or sending a notification to alert the driver.
+Foxtrot will optimize the current route whenever driving conditions change, so it's important that you update your UI when onRouteChanged is called. In some cases, your application should ensure that the driver is aware of the route changes by playing a sound, displaying a banner, or sending a notification to alert the driver.
 </aside>
-
-Since Foxtrot will be optimizing the route frequently, it may not be appropriate to notify the driver for every single route change. You should use the provided `RouteChangeInfo` to help determine whether or not to alert the driver.  For example, you should notify the driver if their route changes or if the waypoint order changes, but may not want to notify them if just the ETAs have changed.
 
 ```java
 public class SampleRouteActivity extends Activity {
@@ -422,33 +420,53 @@ public class SampleRouteActivity extends Activity {
 }
 ```
 
+### Alerting Drivers Correctly with `RouteChangeInfo`
+
+Since Foxtrot will be optimizing the route frequently, it may not be appropriate to notify the driver for every single route change. You should use the provided `RouteChangeInfo` to help determine whether or not to alert the driver.  For example, you should notify the driver if their route changes or if the waypoint order changes, but may not want to notify them if just the ETAs have changed.
+
+| Type                         | Description                                            | Suggested Behavior
+|------------------------------|--------------------------------------------------------|--------------------------
+| `NEW_ROUTE`                  | The driver has been assigned to a different route.     | Show banner, play sound & update interface.
+| `WAYPOINT_SEQUENCE_CHANGED`  | The order of the route's waypoints have been changed.  | Show banner, play sound & update interface.
+| `ROUTE_ETAS_CHANGED`         | The ETAs have been updated.                            | Only update interface.
+
 <aside class="notice">
-If you have imported multiple routes, your listener will only be informed of changes to the active route. When a route is finished, the route with the next-earliest start time will automatically become the new active route.
+If you have imported multiple routes, your listener will only be informed of changes to the active (current) route. When a route is finished, the route with the next-earliest start time will automatically become the new active route.
 </aside>
 
 Great, we’ve got a route! What’s next?
 
 ## Making a Delivery Attempt
 
-As your drivers are on-route, they will visit various waypoints and attempt to make deliveries. You will record their progress by making [DeliveryAttempt](#deliveryattempt)s at the [Waypoint](#waypoint)s. Each `DeliveryAttempt`
-has a [DeliveryStatus](#deliverystatus) representing what happened during the driver's visit. In addition, the `notes` and `deliveryCode` fields can be used to provide additional information about the attempted delivery.
-The `notes` field is useful for capturing freeform feedback from the driver. For example, if a driver is trying to make a delivery but the waypoint is closed, they may wish to provide the updated hours. You should allow the driver to provide this freeform feedback whenever they make a delivery attempt.
+As your drivers are on-route, they will visit various waypoints and attempt to make deliveries. You will record their progress by making [DeliveryAttempt](#deliveryattempt)s at the [Waypoint](#waypoint)s. Each `DeliveryAttempt` has a [DeliveryStatus](#deliverystatus) representing what happened during the driver's visit.
+
+In addition, the `notes` and `deliveryCode` fields can be used to provide additional information about the attempted delivery.
+
+### Free Form Driver Updates
+
+The `notes` field is useful for capturing freeform feedback from the driver. For example, if a driver is trying to make a delivery but the waypoint is closed, they may wish to provide feedback that the store was closed. You should allow the driver to provide this freeform feedback whenever they make a delivery attempt.
+
+### Structured Driver Updates
+
 The `deliveryCode` is useful for gathering structured driver feedback. For example, you may wish to have the driver choose a `deliveryCode` from a list of failure reasons. Using consistent `deliveryCode`s will allow your users to identify common issues and improve their operation.
 
 <aside class="notice">
 Foxtrot uses delivery attempts to determine where to send the driver next. To help Foxtrot optimize your routes most efficiently, never delay or enqueue delivery attempts. Always submit delivery attempts as soon as the driver attempts the delivery.
 </aside>
 
-Three attempt types can be registered at the delivery site. One of these 3 choices must be registered each time there is a visit. 1) `DeliveryStatus.SUCCESSFUL`; 2) `DeliveryStatus.VISIT_LATER`; 3) `DeliveryStatus.FAILED`
+### Attempt Types
 
-If the driver was able to make the delivery, you should submit the attempt using `DeliveryStatus.SUCCESSFUL`. Since the delivery has been completed, Foxtrot will not send the driver to this waypoint again.
+Three attempt types can be registered at the delivery site. One of these 3 choices must be registered each time there is a visit.
 
-If the driver was unable to make the delivery, and wishes to come back later, the driver should submit an attempt using `DeliveryStatus.VISIT_LATER`. Foxtrot will re-schedule the driver's visit to the waypoint.
+| Type                              | Use
+|-----------------------------------|------------------------------------------------------
+| `DeliveryStatus.SUCCESSFUL`       | The driver was able to make the delivery. Since the delivery has been completed, Foxtrot will not send the driver to this waypoint again.
+| `DeliveryStatus.VISIT_LATER`      | The driver was unable to make the delivery, and wishes to come back later. Foxtrot will re-schedule the driver's visit to the waypoint.
+| `DeliveryStatus.FAILED`           | The driver was unable to make the delivery, and DOES NOT wish to come back later. Foxtrot will not attempt to re-schedule the delivery.
 
-If the driver was unable to make the delivery, and DOES NOT wish to come back later, the driver should submit an attempt with `DeliveryStatus.FAILED`. Foxtrot will consider the delivery a permanent failure and will not attempt to re-schedule the delivery.
 
 <aside class="warning">
-DeliveryStatus.FAILED should only be used when the driver intends to return the goods to the warehouse. If the delivery is to be attempted later in the day, a DeliveryStatus.VISIT_LATER needs to be used.
+DeliveryStatus.FAILED should only be used when the driver intends to return the goods to the warehouse or if the driver needs help from the warehouse. If the delivery is to be attempted later in the day, a DeliveryStatus.VISIT_LATER needs to be used.
 </aside>
 
 In the circumstances when the waypoint has been designated as successful or failed and circumstances change, a fourth attempt can be used: `DeliveryStatus.AUTHORIZE_REATTEMPT`. The possible use-cases for utilization of this status is either a) the driver previously succeeded or failed an attempt permanently, but circumstances changed and he/she would like to make another visit to the waypoint, or b) the driver previously succeeded or failed an attempt permanently, but circumstances changed and their manager would like the driver to make another visit to the waypoint. In either of these cases, you should submit a `DeliveryStatus.AUTHORIZE_REATTEMPT`. Foxtrot will re-schedule waypoint to be visited later.
