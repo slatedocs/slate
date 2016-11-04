@@ -329,10 +329,10 @@ List<Delivery> deliveries = Collections.singletonList(delivery);
 
 DateTime routeStartTime = new DateTime(0L, DateTimeZone.UTC);
 
-// We need to deliver the soda between 1:00 and 2:00 UTC
+// We need to deliver the soda between 1:00 and 6:00 UTC
 OperatingHours operatingHour = OperatingHours.builder()
                                              .setStart(routeStartTime.plusHours(1))
-                                             .setEnd(routeStartTime.plusHours(2))
+                                             .setEnd(routeStartTime.plusHours(6))
                                              .build();
 // Foxtrot allows you to specify multiple possible OperatingHours per delivery
 List<OperatingHours> operatingHours = Collections.singletonList(operatingHour);
@@ -438,9 +438,9 @@ Great, we’ve got a route! What’s next?
 
 ## Making a Delivery Attempt
 
-As your drivers are on-route, they will visit various waypoints and attempt to make deliveries. You will record their progress by making [DeliveryAttempt](#deliveryattempt)s at the [Waypoint](#waypoint)s. Each `DeliveryAttempt` has a [DeliveryStatus](#deliverystatus) representing what happened during the driver's visit.
+As your drivers are on-route, they will visit various waypoints and attempt to make deliveries. You will record their progress by making [DeliveryAttempts](#deliveryattempt) at the [Waypoints](#waypoint). Each [DeliveryAttempt](#deliveryattempt) has a [DeliveryStatus](#deliverystatus) representing what happened during the driver's visit.
 
-In addition, the `notes` and `deliveryCode` fields can be used to provide additional information about the attempted delivery.
+In addition, the `notes` and `deliveryCode` fields can be used to provide additional information about the attempt.
 
 ### Free Form Driver Updates
 
@@ -469,7 +469,14 @@ Three attempt types can be registered at the delivery site. One of these 3 choic
 DeliveryStatus.FAILED should only be used when the driver intends to return the goods to the warehouse or if the driver needs help from the warehouse. If the delivery is to be attempted later in the day, a DeliveryStatus.VISIT_LATER needs to be used.
 </aside>
 
-In the circumstances when the waypoint has been designated as successful or failed and circumstances change, a fourth attempt can be used: `DeliveryStatus.AUTHORIZE_REATTEMPT`. The possible use-cases for utilization of this status is either a) the driver previously succeeded or failed an attempt permanently, but circumstances changed and he/she would like to make another visit to the waypoint, or b) the driver previously succeeded or failed an attempt permanently, but circumstances changed and their manager would like the driver to make another visit to the waypoint. In either of these cases, you should submit a `DeliveryStatus.AUTHORIZE_REATTEMPT`. Foxtrot will re-schedule waypoint to be visited later.
+If a waypoint has been designated as successful or failed and conditions change, a fourth delivery status can be used: `DeliveryStatus.AUTHORIZE_REATTEMPT`.
+The possible use-cases for utilization of this status are either
+
+1. the driver previously succeeded or failed an attempt permanently, but conditions changed and he/she would like to make another visit to the waypoint, or
+2. the driver previously succeeded or failed an attempt permanently, but conditions changed and their manager would like the driver to make another visit
+to the waypoint.
+
+In either of these cases, you should submit a `DeliveryStatus.AUTHORIZE_REATTEMPT`. Foxtrot will re-schedule waypoint to be visited later.
 
 <aside class="notice">
 In order to submit a DeliveryStatus.VISIT_LATER or DeliveryStatus.AUTHORIZE_REATTEMPT, a different api should be used, FoxtrotSDK.markDeliveryToVisitLater() and FoxtrotSDK.authorizeDeliveryReattempt(), respectively.
@@ -509,8 +516,8 @@ DeliveryCode deliveryCode = DeliveryCode.builder()
                                         .setMessage("The customer is not open on Thursdays")
                                         .build();
 OperatingHours operatingHours = OperatingHours.builder()
-                                  .setStart(DateTime.now().plusHours(3))
-                                  .setEnd(DateTime.now().plusHours(4))
+                                  .setStart(DateTime.now().plusHours(1))
+                                  .setEnd(DateTime.now().plusHours(6))
                                   .build();
 DeliveryVisitLater deliveryVisitLater = DeliveryVisitLater.builder()
                                                .setDeliveryCode(deliveryCode) // deliveryCode is optional
@@ -524,8 +531,8 @@ Here's how to create a `DeliveryStatus.AUTHORIZE_REATTEMPT`
 
 ```java
 OperatingHours operatingHours = OperatingHours.builder()
-                                  .setStart(DateTime.now().plusHours(3))
-                                  .setEnd(DateTime.now().plusHours(4))
+                                  .setStart(DateTime.now().plusHours(1))
+                                  .setEnd(DateTime.now().plusHours(6))
                                   .build();
 DeliveryReattempt reattempt = DeliveryReattempt.builder()
                                                .setNotes("Customer is now open") // notes are optional
@@ -543,16 +550,6 @@ FoxtrotSDK.getInstance().undoDeliveryAttempt("A_WAYPOINT_ID");
 ```
 
 This will automatically find the most recent [DeliveryAttempt](#deliveryattempt) on that [Delivery](#delivery) and undo it.
-
-## Authorizing a Reattempt
-
-If a driver marks an attempt with [DeliveryStatus](#deliverystatus) of `FAILED`, they will not be directed back to that Waypoint unless a reattempt is authorized. Until a reattempt at that Waypoint is authorized, they will not be able to make another [DeliveryAttempt](#deliveryattempt).
-
-If your application decides that the driver should be sent back to that Waypoint, you will need to authorize the re-attempt in Foxtrot:
-
-```java
-FoxtrotSDK.getInstance().authorizeDeliveryReattempt("A_WAYPOINT_ID");
-```
 
 ##Finishing a Route
 

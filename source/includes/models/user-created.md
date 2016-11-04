@@ -84,18 +84,21 @@ Location location = Location.create(37.780177, -122.397055);
 ```
 
 ## OperatingHours
-A OperatingHours describes the time constraint to make the delivery. e.g. the working hours of the customer. Foxtrot will try to help the driver arrive inside a OperatingHours. Keep in mind, the OperatingHours Collection for each waypoint must be at least 4hrs 30min in duration, and each OperatingHours cannot be shorter than 3hrs.
+A OperatingHours describes the time constraint to make the delivery. e.g. the working hours of the customer.
+Foxtrot will try to help the driver arrive inside a OperatingHours. Keep in mind, the OperatingHours Collection
+for each waypoint must be at least 4hrs 30min in duration, and each OperatingHours cannot be shorter than 3hrs.
+If this requirement is not met, the value will be ignored.
 
 | Field                     | Type                             | Required | Description
 |---------------------------|----------------------------------|----------|------------
-| start                     | DateTime                         | true     | The start time of this operating hour. This value must be after the start of the route.
+| start                     | DateTime                         | true     | The start time of this operating hour.
 | end                       | DateTime                         | true     | The end time of this operating hour. This value must be after the start of this operating hour.
 
 ```java
 DateTime now = new DateTime();
 OperatingHours operatingHours = OperatingHours.builder()
                                               .setStart(now)
-                                              .setEnd(now.plusHours(4)) //four hours from now
+                                              .setEnd(now.plusHours(5)) //five hours from now
                                               .build();
 ```
 
@@ -115,15 +118,17 @@ Delivery delivery = Delivery.builder()
 ```
 
 ## DeliveryAttempt
-A DeliveryAttempt contains status information on a visit a [Driver](#driver) made at a [Waypoint](#waypoint). A DeliveryAttempt can have either a `DeliveryStatus.SUCCESSFUL` or `DeliveryStatus.FAILED` DeliveryStatus, and when used, the algorithm will stop optimizing the waypoint since the `Driver` is not planning on returning to that stop.
+A DeliveryAttempt contains information about a visit to a [Waypoint](#waypoint).
+A DeliveryAttempt can either represent a `SUCCESSFUL` or a `FAILED` [DeliveryStatus](#deliverystatus),
+and when used, Foxtrot will not schedule another visit to that waypoint.
 
 ### `SUCCESSFUL` use-case:
 
-Driver succeeded in delivering the product and does not expect to make another attempt today.
+Driver succeeded in delivering the product and does not expect to make another visit to that waypoint.
 
 ### `FAILED` use-case:
 
-Driver failed in delivering the product and does not expect to make another attempt today. Knowing there will be no further attempts today, the driver marks the waypoint as FAILED.
+Driver failed in delivering the product and does not expect to make another visit to that waypoint. Knowing there will be no further attempts today, the driver marks the waypoint as `FAILED`.
 
 
 | Field                     | Type                             | Required | Description
@@ -142,7 +147,9 @@ DeliveryAttempt attempt = DeliveryAttempt.builder()
 ```
 
 ## DeliveryVisitLater
-A DeliveryVisitLater marks an unsuccessful delivery attempt, but also registers the need to visit the [Waypoint](#waypoint) in the future. A DeliveryVisitLater constitutes of a `DeliveryStatus.VISIT_LATER` DeliveryStatus. The `Waypoint` is continued to be optimized by the algorithm.
+A DeliveryVisitLater marks an unsuccessful delivery attempt, but also registers the need to visit the
+[Waypoint](#waypoint) in the future. A DeliveryVisitLater represents a `VISIT_LATER` [DeliveryStatus](#deliverystatus).
+Foxtrot will schedule a visit to this waypoint sometime in the future.
 
 ### `VISIT_LATER` use-case:
 
@@ -162,7 +169,10 @@ DeliveryVisitLater deliveryVisitLater = DeliveryVisitLater.builder()
 ```
 
 ## DeliveryReattempt
-A DeliveryReattempt marks the need to reattempt a previously `Failed` or `Successful` delivery status in a [Waypoint](#waypoint). A DeliveryReattempt constitutes of a `DeliveryStatus.AUTHORIZE_REATTEMPT` DeliveryStatus. This can come as an authorization from the Warehouse, or the driver may be able to trigger this status in order to add the [Waypoint](#waypoint) back onto the route so they can visit the stop again.
+A DeliveryReattempt marks the need to reattempt a previously `Failed` or `Successful` delivery status in a [Waypoint](#waypoint).
+A DeliveryReattempt represents a `AUTHORIZE_REATTEMPT` [DeliveryStatus](#deliverystatus). This can come as an authorization from the
+Warehouse, or the driver may be able to trigger this status in order to add the [Waypoint](#waypoint) back onto the route so
+they can visit the stop again.
 
 ### `AUTHORIZE_REATTEMPT` use-cases:
 
