@@ -396,47 +396,56 @@ POST'ing to the private variables catalog a Shoji Entity containing a ZCL functi
 ### Other transformations
 
 #### bin
-    Receives a numeric column and returns a categorical column where each
-    category represents a bin of the numeric values.
-    Each category is annotated with a "boundaries" member that contains the 
-    lower/upper bound of each bin.
+Receives a numeric column and returns a categorical column where each
+category represents a bin of the numeric values.
+Each category is annotated with a "boundaries" member that contains the 
+lower/upper bound of each bin.
+
+```
+{
+    "function": "bin",
+    "args": []
+}
+```
 
 #### case
-    Returns a categorical column with its categories following the specified
-    conditions from different columns on the dataset.
+Returns a categorical column with its categories following the specified
+conditions from different columns on the dataset.
 
 #### cast
-    Returns a new column with its type and values casted. Not applicable
-    on arrays or date columns
+Returns a new column with its type and values casted. Not applicable
+on arrays or date columns
 
 #### char_length
-    Returns a numeric column containing the text length of each value. Only
-    applicable on text columns
+Returns a numeric column containing the text length of each value. Only
+applicable on text columns
 
 #### copy_variable
-    Returns a shallow copy of the indicated column maintaining type and data.
+Returns a shallow copy of the indicated column maintaining type and data.
 
 #### combine_categories
-    Returns a categorical column with values combined following the specified
-    combination rules
+Returns a categorical column with values combined following the specified
+combination rules
 
 #### combine_responses
-    Given a list of categorical columns, return the selected value out
-    of them.
+Given a list of categorical columns, return the selected value out
+of them.
 
 #### get
-    Returns a subvariable from an array as a categorical column
+Returns a subvariable from an array as a categorical column
 
 #### missing
-    Returns a column marked as missing accorging to a value. This is 
-    generally used with a filter to mark certain values of a column as missing
+Returns a column marked as missing accorging to a value. This is 
+generally used with a filter to mark certain values of a column as missing
+
 #### normalize
-    Receives a numeric value and returns a numeric column with
-    normalized values such that the its sum == its length
+Receives a numeric value and returns a numeric column with
+normalized values such that the its sum == its length
+
 #### row
-    Returns a numeric column with row indices
+Returns a numeric column with row indices
 
 #### unmissing
-    Returns a numeric column without without the missing marks, instead
-    all the original column values. This is generally used with a filter
-    to unset missing marks on certain values.
+Returns a numeric column without without the missing marks, instead
+all the original column values. This is generally used with a filter
+to unset missing marks on certain values.
