@@ -44,6 +44,9 @@ includes:
   - light/WsBannerDTO
   - light/WsCurrencyRateDTO
   - light/WsLocationDTO
+  - light/WsLocationTypeDTO
+  - light/WsLocationStatusDTO
+  - light/WsLocationServiceDTO
   - light/WsContactDTO
   - light/WsFieldDTO
   - light/WsFormTypeDTO
