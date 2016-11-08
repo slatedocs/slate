@@ -37,6 +37,6 @@ repositories {
 ```groovy
 dependencies {
     ...
-    compile "io.foxtrot:android-sdk:0.3.0"
+    compile "io.foxtrot:android-sdk:0.3.2"
 }
 ```
