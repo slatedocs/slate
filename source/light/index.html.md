@@ -21,6 +21,7 @@ includes:
   - light/mergeLocations
   - light/mergeLocationServices
   - light/mergeLocationStatuses
+  - light/mergeLocationTypes
   - light/removeContact
   - light/updateBanner
   - light/getContacts
