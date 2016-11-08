@@ -16,9 +16,7 @@
    <name>i18n{"ru":"АТМ в ЖК «Триумф Паласс»","en":"ATM Victory Plasa"}</name>
    <operationTime>i18n{"ru":"24 часа","en":"24 hour"}</operationTime>
    <services type="WsLocationServiceDTO">
-      #
-      # services
-      #
+      <logicalId>logical_id</logicalId>
    </services>
    <type type="WsLocationTypeDTO">
       <id>bank_atm</id>
@@ -28,6 +26,8 @@
 </locations>
 ```
 
+Локация обьекта на карте. При включенном геопозиционировании на устройстве список сортируется по удаленности от устройства.
+
 key | type | status | comment
 --- | ---- | :----: | ---:
 id | string | 1..1 | идентификатор
@@ -36,11 +36,11 @@ city | string | 0..1 | город
 address | string | 0..1 | адрес
 lat | string | 1..1 | широта
 lng | string | 1..1 | долгота
-logicalId | string | 1..1 | логический идентификатор
+logicalId | string | 1..1 | логический идентификатор, может быть такой же как id
 operationTime | string | 0..1 | режим работы
 type | [WsLocationTypeDTO](#wslocationtypedto) | 1..1 | тип
-attributes | [WsLocationAttributeDTO](#wslocationattributedto) | 0..1 | атрибуты фильтра
-services | [WsLocationServiceDTO](#wslocationservicedto) | 0..1 | список сервисов
+attributes | [WsLocationAttributeDTO](#wslocationattributedto) | 0..1 | атрибуты локации
+services | [WsLocationServiceDTO](#wslocationservicedto) | 0..1 | список ссылок на сервис через логический идентификатор
 
 <aside class="notice">для локализации использовать i18n{"ru":"Русский текст","en":"English text"}</aside>
 
@@ -48,51 +48,39 @@ services | [WsLocationServiceDTO](#wslocationservicedto) | 0..1 | список �
 
 key | type | status | comment
 --- | ---- | :----: | ---:
-id | string | 1..1 | идентификатор
+id | string | 1..1 | идентификатор типа для группировки
 kind | [LocationTypeKey](#locationtypekey) | 1..1 | тип
-order | int | 1..1 | порядок сортировки
+order | int | 1..1 | порядок сортировки в списке фильтра
 
 #### LocationTypeKey
 
 key | comment
 --- | ---:
-OFFICE | 
-ATM | 
-SALE | 
+OFFICE | офис
+ATM | банкомат
+SALE | партнер по скидкам
 
 ### WsLocationAttributeDTO
 
 ```xml
-<attributes type="WsLocationAttributeDTO">
-   <key>CURRENCY.1</key>
-   <value>USD;EUR;OTHER;0.732;0.733;UP;DOWN</value>
-</attributes>
-<attributes type="WsLocationAttributeDTO">
-   <key>CURRENCY.2</key>
-   <value>USD;CHF;OTHER;0.891;0.910;UP;UP</value>
-</attributes>
 <attributes type="WsLocationAttributeDTO">
    <key>METRO</key>
    <value>i18n{"ru":"Аэропорт","en":"Aerport"}</value>
 </attributes>
 ```
 
-Данные по статусу запрашиваются мобильными клиентами отдельно, и позволяют более точно информировать пользователей о текущем состоянии точки, например изменение курса валют и сотояние работы
-
 key | type | status | comment
 --- | ---- | :----: | ---:
-key | [LocationAttributeKey](#locationattributekey) | 1..1 | ключ
+key | [LocationAttributeType](#locationattributetype) | 1..1 | ключ
 value | string | 1..1 | значение
 
-#### LocationAttributeKey
+#### LocationAttributeType
 
 key | type | comment
 --- | ---- | ---:
-OPEN | bool | признак открыто/закрыто
 METRO | string | ближайшая станция метро
 DESCRIPTION | string | описание в виде текстового блока
 PHONE | string | номер телефона точки
-CURRENCY.n | string | текстовый код валюты по [ISO 4217](https://ru.wikipedia.org/wiki/ISO_4217)
 
 ### WsLocationServiceDTO
 
@@ -133,3 +121,33 @@ name | string | 1..1 | наименование
 description | string | 0..1 | логическая принадлежность
 logicalId | string | 1..1 | логический идентификатор
 parentId | string | 0..1 | родительский логический блок
+
+### WsLocationStatusDTO
+
+```xml
+<status type="WsLocationStatusDTO">
+   <id>159b3b82-8391-44c0-8448-d7e1f0f344d1</id>
+   <key>CURRENCY.1</key>
+   <value>USD;EUR;OTHER;0.732;0.733;UP;DOWN</value>
+</status>
+<status type="WsLocationAttributeDTO">
+   <id>159b3b82-8391-44c0-8448-d7e1f0f344d1</id>
+   <key>CURRENCY.2</key>
+   <value>USD;CHF;OTHER;0.891;0.910;UP;UP</value>
+</status>
+```
+Данные запрашиваются мобильными клиентами отдельно, и позволяют более точно информировать пользователей о текущем состоянии точки, например изменение курса валют и сотояние работы
+
+key | type | status | comment
+--- | ---- | :----: | ---:
+id | string | 1..1 | идентификатор локации
+key | [LocationStatusType](#locationstatustype) | 1..1 | ключ
+value | string | 1..1 | значение
+
+#### LocationStatusType
+
+key | type | comment
+--- | ---- | ---:
+OPEN | bool | признак открыто/закрыто
+DESCRIPTION | string | описание в виде текстового блока
+CURRENCY.n | string | текстовый код валюты по [ISO 4217](https://ru.wikipedia.org/wiki/ISO_4217)

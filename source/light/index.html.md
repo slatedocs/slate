@@ -20,6 +20,7 @@ includes:
   - light/removeForm
   - light/mergeLocations
   - light/mergeLocationServices
+  - light/mergeLocationStatuses
   - light/removeContact
   - light/updateBanner
   - light/getContacts
