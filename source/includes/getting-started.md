@@ -287,19 +287,19 @@ public class YourErrorStateListener extends ErrorStateListener {
     return new YourErrorStateListener(handler);
 
 
-  @Nonnull 
-  @Override 
-  public Handler getHandler() { 
-    return handler; 
+  @Nonnull
+  @Override
+  public Handler getHandler() {
+    return handler;
   }
 
   @Override
   public void onErrors(EnumSet<ErrorState> errors) {
-    // respond to any errors that may appear 
-  } 
-  @Override 
+    // respond to any errors that may appear
+  }
+  @Override
   public void onWarnings(EnumSet<WarningState> warnings) {
-    // respond to any warnings that may appear 
+    // respond to any warnings that may appear
   }
 }
 ```
