@@ -25,6 +25,7 @@ under the License.
 // GENERAL STUFF
 ////////////////////////////////////////////////////////////////////////////////
 
+
 html, body {
   color: $main-text;
   padding: 0;
@@ -60,6 +61,7 @@ html, body {
 .tocify-wrapper {
   transition: left 0.3s ease-in-out;
 
+  padding: 20px 0 0 0;
   overflow-y: auto;
   overflow-x: hidden;
   position: fixed;
@@ -84,29 +86,28 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
+    padding-left: $nav-padding
   }
 
   &>.search {
     position: relative;
 
     input {
-      background: $nav-bg;
-      border-width: 0 0 1px 0;
-      border-color: $search-box-border-color;
-      padding: 6px 0 6px 20px;
+      background: white;
+      border: none;
+      padding: 4px 0 4px 24px;
       box-sizing: border-box;
       margin: $nav-v-padding $nav-padding;
-      width: $nav-width - 30;
+      width: $nav-width - 40;
       outline: none;
       color: $nav-text;
-      border-radius: 0; /* ios has a default border radius */
     }
 
     &:before {
       position: absolute;
       top: 17px;
-      left: $nav-padding;
-      color: $nav-text;
+      left: $nav-padding +3px;
+      color: $nav-gray;
       @extend %icon-search;
     }
   }
@@ -144,7 +145,13 @@ html, body {
     }
   }
 
-
+  .tocify {
+    position: absolute;
+    width: 100%;
+    overflow-y: auto;
+    top: 100px;
+    bottom:85px;
+  }
   .tocify-item>a, .toc-footer li {
     padding: 0 $nav-padding 0 $nav-padding;
     display: block;
@@ -160,7 +167,7 @@ html, body {
     list-style: none;
     margin: 0;
     padding: 0;
-    line-height: 28px;
+    line-height: 36px;
   }
 
   li {
@@ -173,7 +180,6 @@ html, body {
   // This is the currently selected ToC entry
   .tocify-focus {
     background-color: $nav-active-bg;
-    color: $nav-active-text;
   }
 
   // Subheaders are the submenus that slide open
@@ -205,20 +211,32 @@ html, body {
   .toc-footer {
     padding: 1em 0;
     margin-top: 1em;
-    border-top: 1px dashed $nav-footer-border-color;
-
+    position: absolute;
+    bottom:15px;
+    width: 100%;
+    
     li,a {
       color: $nav-text;
       text-decoration: none;
     }
+    
+    a {
+        display: block;
+    }
 
-    a:hover {
-      text-decoration: underline;
+    li:hover {
+      cursor: pointer;
+      background: #cccccc;
     }
 
     li {
-      font-size: 0.8em;
-      line-height: 1.7;
+      line-height: 36px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0;
+      width: 160px;
+      height: 36px;
+      background: $button-background;
       text-decoration: none;
     }
   }
@@ -341,8 +359,8 @@ html, body {
   }
 
   &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
-    margin-right: $examples-width;
-    padding: 0 $main-padding;
+    margin-right: calc(50% + 50px);
+    margin-left: $main-padding;
     box-sizing: border-box;
     display: block;
 
@@ -360,13 +378,12 @@ html, body {
 
   h1 {
     @extend %header-font;
-    font-size: 24px;
+    font-size: 20px;
     padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    border-bottom: 1px solid #ccc;
     margin-bottom: $h1-margin-bottom;
-    margin-top: 2em;
+    margin-top: 1.5em;
     border-top: 1px solid #ddd;
+    color: $h1-color;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -376,12 +393,13 @@ html, body {
 
   h2 {
     @extend %header-font;
-    font-size: 20px;
+    font-size: 16px;
     margin-top: 4em;
     margin-bottom: 0;
     border-top: 1px solid #ccc;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
+    color: $h2-color;
   }
 
   // h2s right after h1s should bump right up
@@ -471,27 +489,25 @@ html, body {
   }
 
   aside {
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding: 15px 15px 15px 50px;
     margin-top: 1.5em;
     margin-bottom: 1.5em;
-    background: $aside-notice-bg;
-    color: $almost-white;
     line-height: 1.6;
-
-    &.warning {
-      background-color: $aside-warning-bg;
-    }
-
-    &.success {
-      background-color: $aside-success-bg;
+    border: 1px solid #ddd;
+  
+    &.success:before {
+      color: $aside-success-bg;
     }
   }
 
   aside:before {
     vertical-align: middle;
+    color: $notification-logo-color;
     padding-right: 0.5em;
     font-size: 14px;
+    font-size: 19px;
+    position: absolute;
+    left: 65px;
   }
 
   aside.notice:before {
