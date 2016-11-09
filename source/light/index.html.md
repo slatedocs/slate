@@ -14,6 +14,7 @@ includes:
   - light/setLocalizedRssUrls
   - light/updateCurrencyRate
   - light/getFormTypes
+  - light/getLocationTypes
   - light/addForm
   - light/editForm
   - light/getBanners
