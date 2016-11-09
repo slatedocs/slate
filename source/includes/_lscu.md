@@ -11,7 +11,7 @@
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('v4/lscu', [
+$success = $api->post('/v4/lscu', [
     'report-name'				=> 'Sample SEO Check-Up Report', 
 	'business-names'			=> ["Le Bernardin"],
 	'website-addresses'			=> ["le-bernardin.com","le-bernardin2.com"],
@@ -151,7 +151,7 @@ run-report | One of yes or no. Runs the report after adding. Defaults to no.
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->put('v4/lscu', [   
+$success = $api->put('/v4/lscu', [   
 	'postcode'                  => '10019',	
 	'telephone'                 => '+1 212-554-1515',
 	'country'                   => 'USA',
@@ -275,7 +275,7 @@ local-directory-urls | <p>This parameter allows you update the profile URLs we h
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('v4/lscu', [
+$results = $api->get('/v4/lscu', [
     'report-id' => 860
 ]);
 print_r($results);
@@ -375,7 +375,7 @@ report-id | <span class="label label-required">Required</span> The unique ID for
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->put('v4/lscu/run', [
+$results = $api->put('/v4/lscu/run', [
     'report-id' => 860
 ]);
 print_r($results);
@@ -445,7 +445,7 @@ report-id | <span class="label label-required">Required</span> The unique ID for
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->delete('v4/lscu', [
+$success = $api->delete('/v4/lscu', [
     'report-id' => 860
 ]);
 if($success) {
@@ -517,7 +517,7 @@ report-id | <span class="label label-required">Required</span> The unique ID for
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('v4/lscu/search', [
+$results = $api->get('/v4/lscu/search', [
     'q' => 'Bodega Wine Bar'	 
 ]);
 print_r($results);
