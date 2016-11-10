@@ -38,6 +38,7 @@ includes:
   - light/removeCurrencyRate
   - light/deleteLocations
   - light/removeLocationStatus
+  - light/removeLocationType
   - light/deleteLocationStatuses
   - light/getNewsFeed
   - light/dataStructs
