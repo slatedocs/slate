@@ -1,15 +1,21 @@
 ## setLocalizedRssUrls
 
 ```xml
-<defaultUrl>http://www.banki.ru/xml/news.rss</defaultUrl>
-<localizedUrls type="WsLocalizedRssUrl">
-   <locale>en</locale>
-   <url>http://newsroom.bankofamerica.com/feeds/press_release/all/rss.xml</url>
-</localizedUrls>
-<localizedUrls type="WsLocalizedRssUrl">
-   <locale>ru</locale>
-   <url>http://www.banki.ru/xml/news.rss</url>
-</localizedUrls>
+<setLocalizedRssUrls>
+    <rss>
+        <defaultUrl>http://www.banki.ru/xml/news.rss</defaultUrl>
+        <localizedUrls type="WsLocalizedRssUrl">
+            #
+            # localizedUrls
+            #
+        </localizedUrls>
+        <localizedUrls type="WsLocalizedRssUrl">
+            #
+            # localizedUrls
+            #
+        </localizedUrls>
+    </rss>
+</setLocalizedRssUrls>
  ```
 
 Установка источника новостей банка в виде RSS
