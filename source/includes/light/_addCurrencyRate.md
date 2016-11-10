@@ -1,10 +1,22 @@
-## getCurrencyRates
+## addCurrencyRate
 
-Запрос курсов валют
+```xml
+<addCurrencyRate>
+    <rate type="WsCurrencyRateDTO">
+        #
+        # rate
+        #
+    </rate>
+</addCurrencyRate>
+```
+
+Добавление курса валют
 
 key | type | status | comment
 --- | ---- | :----: | ---:
 **Request:** | | |
+rate | [WsCurrencyRateDTO](#wscurrencyratedto) | 1..1 | курс
 **Response:** | | |
 rate | [WsCurrencyRateDTO](#wscurrencyratedto) | 1..1 | курс
-lastUpdateTime | [Date ISO 8601](https://ru.wikipedia.org/wiki/ISO_8601) | 1..1 | время последнего обновления данных
+sucсess | bool | 0..1 | статус операции
+errorMessage | string | 0..1 | текстовое сообщение

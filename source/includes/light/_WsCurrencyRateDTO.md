@@ -1,7 +1,7 @@
 ## WsCurrencyRateDTO
 
 ```xml
-<rates type="WsCurrencyRateDTO">
+<rate type="WsCurrencyRateDTO">
     <id>сurrencyRate_id</id>
     <date>2016-09-08</date>
     <buy>66.03</buy>
@@ -10,7 +10,7 @@
     <secondCurrency>RUB</secondCurrency>
     <groupName>Internet bank exchange</groupName>
     <type>OTHER</type>
-</rates>
+</rate>
 ```
 
 key | type | status | comment
