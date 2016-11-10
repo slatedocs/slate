@@ -25,4 +25,4 @@ title | string | 0..1 | заголовок
 text | string | 0..1 | подпись
 landingURL | string | 0..1 | ссылка, открывающаяся по клику на баннере
 imageURL | string | 0..1 | ссылка на изображение
-type | string | 1..1 | тип, по умолчанию: PHONE_SMALL
+type | string | 1..1 | тип, по умолчанию: ``PHONE_SMALL``

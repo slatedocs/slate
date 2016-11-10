@@ -11,10 +11,10 @@
 key | type | status | comment
 --- | ---- | :----: | ---:
 id | string | 1..1 | идентификатор типа для группировки
-kind | [LocationTypeKey](#locationtypekey) | 1..1 | тип
+kind | [LocationType](#locationtype) | 1..1 | тип
 order | int | 1..1 | порядок сортировки в списке фильтра
 
-### LocationTypeKey
+### LocationType
 
 key | comment
 --- | ---:
