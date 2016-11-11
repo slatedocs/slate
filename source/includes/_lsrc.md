@@ -15,7 +15,7 @@ $success = $api->post('v2/lsrc/add', [
     'name'              => 'Le Bernardin',
 	'schedule'          => 'Adhoc',
 	'search-terms'      => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
-    'website-addresses' => ["le-bernardin.com","le-bernardin2.com"],
+    'website-addresses' => '["le-bernardin.com","le-bernardin2.com"]',
 	'search-engines'    => 'google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'
 ]);
 print_r($success);
@@ -97,7 +97,7 @@ $success = $api->post('v2/lsrc/update', [
     'name'              => 'Le Bernardin',
 	'schedule'          => 'Adhoc',
 	'search-terms'      => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
-    'website-addresses' => ['le-bernardin.com','le-bernardin2.com'],
+    'website-addresses' => '["le-bernardin.com","le-bernardin2.com"]',
 	'search-engines'    => 'google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'
 ]);
 print_r($success);
