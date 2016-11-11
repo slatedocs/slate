@@ -176,7 +176,6 @@ is-public | Publish reports on a white label URL. Yes or No.
 <?php
 use BrightLocal\Api;
 
-$clientId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->delete('v2/lsrc/delete', [
     'campaign-id' => 9907

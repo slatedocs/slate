@@ -14,7 +14,7 @@ $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v4/lscu', [
     'report-name'				=> 'Sample SEO Check-Up Report', 
 	'business-names'			=> ["Le Bernardin"],
-	'website-addresses'			=> ["le-bernardin.com","le-bernardin2.com"],
+	'website-address'			=> "le-bernardin.com",
 	'address1'                  => '155 West 51st Street',
     'address2'                  => '',      
     'city'                      => 'New York',
@@ -24,7 +24,7 @@ $success = $api->post('v4/lscu', [
 	'country'					=> 'USA',
 	'business-category'         => 'Restaurant',
 	'primary-business-location' => 'NY, New York',
-	'search-terms'              => '["restaurant manhattan","cafe new york"]'
+	'search-terms'              => ["restaurant manhattan","cafe new york"]
 ]);
 print_r($success);
 ```
@@ -151,7 +151,8 @@ run-report | One of yes or no. Runs the report after adding. Defaults to no.
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->put('v4/lscu', [   
+$success = $api->put('v4/lscu', [
+	'report-id'                 => '1',
 	'postcode'                  => '10019',	
 	'telephone'                 => '+1 212-554-1515',
 	'country'                   => 'USA',
@@ -238,7 +239,7 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-report-id |
+report-id | <span class="label label-required">Required</span>
 report-name |
 location-id | Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
 white-label-profile-id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
