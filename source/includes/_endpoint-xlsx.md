@@ -1,4 +1,4 @@
-## Single-page xlsx tables
+## Xlsx
 
 The `xlsx` endpoint takes as input a prepared table (intended for use with
 multitables) and returns an xlsx file, with some basic formatting conventions.
@@ -45,14 +45,14 @@ placed on a single sheet.
 
 Name | Type | Typical element | Description
 ------ | ---- | ------- | ----------- | -------------
-rows | array | {"value": 30, "class": "formatted"} | Cells are objects with at least a `value` member, and optional `class`, where a value of `"formatted"` prevents the exporter from applying any number format to the result cell
-colLabels | array | {"value": "All"} | Array of objects with a `value` member
-colTitles | array | "Age" | Array of strings
-spans | array | 4 | array of integers matching the length of colTitles, indicating the number of cells to be joined for each colTitle after the first one. The first colTitle is assumed to be only one column wide.
-rowTitle | string | "Dog food brands" | A title, which is formatted bold above the first column of the table (the rowLabels, below)
-rowLabels | array | {"value": "Canine Crunch"} | labels for rows of the table
-rowVariableName | string | "Preferred dog food" | title to display at the very top left of the result sheet
-filter_names | array | "Breed: Dachshund" | Names of any filters to print beneath the table, will be labeled "Filters". If multiple result objects are included in the payload, the filter names from the *first* result are used, and placed at the bottom of the sheet beneath all results.
+rows | array | `{"value": 30, "class": "formatted"} `| Cells are objects with at least a `value` member, and optional `class`, where a value of `"formatted"` prevents the exporter from applying any number format to the result cell
+colLabels | array | `{"value": "All"}` | Array of objects with a `value` member
+colTitles | array | `"Age"` | Array of strings
+spans | array | `4` | array of integers matching the length of colTitles, indicating the number of cells to be joined for each colTitle after the first one. The first colTitle is assumed to be only one column wide.
+rowTitle | string | `"Dog food brands"` | A title, which is formatted bold above the first column of the table (the rowLabels, below)
+rowLabels | array | `{"value": "Canine Crunch"}` | labels for rows of the table
+rowVariableName | string | `"Preferred dog food"` | title to display at the very top left of the result sheet
+filter_names | array | `"Breed: Dachshund"` | Names of any filters to print beneath the table, will be labeled "Filters". If multiple result objects are included in the payload, the filter names from the *first* result are used, and placed at the bottom of the sheet beneath all results.
 
 
 ##### Display Settings
@@ -61,10 +61,10 @@ Further customization for the resulting output.
 
 Name | Type | Default | Description | Example
 ------ | ---- | ------- | ----------- | -------------
-decimalPlaces| object | 0 | number of decimal places to diaplay| {"value": 0}
-countsOrPercents| object | percent | use counts or percents| {"value": "percent"}
-percentageDirection| object | row or column based percents | {"value": "colPct"}
-valuesAreMeans| object | false | are values means? (If so, will be formatted with decimal places) | {"value": false}
+decimalPlaces| object | 0 | number of decimal places to diaplay| `{"value": 0}`
+countsOrPercents| object | percent | use counts or percents| `{"value": "percent"}`
+percentageDirection| object | {"value": "colPct"} | row or column based percents | `{"value": "colPct"}`
+valuesAreMeans| object | false | are values means? (If so, will be formatted with decimal places) | `{"value": false}`
 
 ##### Quirks
 
@@ -82,7 +82,7 @@ it abuses some assumptions about the tables it is displaying. Some of these are 
 ### Complete example
 
 ```json
-[
+"result": [
   {
     "filter_names": ["Name_of_filter"],
     "rows": [
@@ -405,5 +405,11 @@ it abuses some assumptions about the tables it is displaying. Some of these are 
       "quarter"
     ]
   }
-]
+],
+"display_settings":{
+    "valuesAreMeans": {"value": false},
+    "countsOrPercents": {"value": "percent"},
+    "percentageDirection": {"value": "colPct"},
+    "decimalPlaces": {"value": 1}
+}
 ```
