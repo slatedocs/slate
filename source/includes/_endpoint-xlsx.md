@@ -4,6 +4,7 @@ The `xlsx` endpoint takes as input a prepared table (intended for use with
 multitables) and returns an xlsx file, with some basic formatting conventions.
 
 A POST request to `/api/xlsx/` will return an xlsx file directly, with
+correct content-disposition and type headers.
 
 #### POST
 
