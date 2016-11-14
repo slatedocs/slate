@@ -44,6 +44,24 @@ curl -X POST \
  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/
 ```
 
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+           parameters.Add("name", "Le Bernardin");
+           parameters.Add("url", "http://le-bernardin.com");
+           parameters.Add("business-category-id", "605");
+           parameters.Add("country", "USA"); // 3 Letter iso code
+           parameters.Add("address1", "155 Weest 51st Street");
+           parameters.Add("address2", "");
+           parameters.Add("region", "NY"); // State or Region
+           parameters.Add("city", "New York");
+           parameters.Add("postcode", "10019");
+           parameters.Add("telephone", "+1 212-554-1515");    
+
+var success = request.Post("v1/clients-and-locations/locations/", parameters);
+```
+
 > Success (200 OK)
 
 ```json
@@ -140,6 +158,25 @@ curl -X PUT \
  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/1
 ```
 
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var locationId = 1;
+var parameters = new api.Parameters();
+       parameters.Add("name", "Le Bernardin");
+       parameters.Add("url", "http://le-bernardin.com");
+       parameters.Add("business-category-id", "605");
+       parameters.Add("country", "USA"); // 3 Letter iso code
+       parameters.Add("address1", "155 Weest 51st Street");
+       parameters.Add("address2", "");
+       parameters.Add("region", "NY"); // State or Region
+       parameters.Add("city", "New York");
+       parameters.Add("postcode", "10019");
+       parameters.Add("telephone", "+1 212-554-1515");
+
+    var success = request.Put("v1/clients-and-locations/locations/" + locationId + "", parameters);
+```
+
 > Success (200 OK)
 
 ```json
@@ -205,6 +242,15 @@ if (!empty($result['success'])) {
 }
 ```
 
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var locationId = 1;
+var parameters = new api.Parameters();           
+
+var success = request.Delete("v1/clients-and-locations/locations/" + locationId + "", parameters);
+```
+
 > Success (200 OK)
 
 ```json
@@ -242,6 +288,15 @@ $locationId = 1;
 $api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
 $location = $api->get('v1/clients-and-locations/locations/' . $locationId);
 print_r($location);
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var locationId = 1;
+var parameters = new api.Parameters();
+
+var success = request.Get("v1/clients-and-locations/locations/" + locationId + "", parameters);
 ```
 
 > Success (200 OK)
@@ -327,6 +382,15 @@ curl -X GET \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'q=My+Sample+Query' \	
   https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/search/
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+       parameters.Add("q", "My Sample Query");
+
+var success = request.Get("v1/clients-and-locations/locations/search", parameters);
 ```
 
 > Success (200 OK)
