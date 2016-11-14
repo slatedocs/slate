@@ -11,7 +11,7 @@
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('v4/gpw/add', [
+$success = $api->post('/v4/gpw/add', [
     'report_name'    => 'Le Bernardin', 
 	'business_names' => 'Le Bernardin',
 	'schedule'       => 'Adhoc',
@@ -188,7 +188,7 @@ use BrightLocal\Api;
 
 $reportId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('v4/gpw/' . $reportId);
+$results = $api->get('/v4/gpw/' . $reportId);
 print_r($results);
 ```
 
@@ -278,7 +278,7 @@ use BrightLocal\Api;
 
 $reportId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$result = $api->delete('v4/gpw/' . $reportId);
+$result = $api->delete('/v4/gpw/' . $reportId);
 if (!empty($result['success'])) {
 	echo 'Successfully deleted report.' . PHP_EOL;
 }
@@ -335,7 +335,7 @@ expires | <span class="label label-required">Required</span> [See above for how 
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('v4/gpw/');
+$results = $api->get('/v4/gpw/');
 print_r($results);
 ```
 
@@ -410,7 +410,7 @@ location-id |
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->put('v4/gpw/run', [
+$success = $api->put('/v4/gpw/run', [
     'report-id' => 860
 ]);
 print_r($success);
@@ -481,7 +481,7 @@ use BrightLocal\Api;
 
 $reportId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('v4/gpw/' . $reportId . '/results');
+$results = $api->get('/v4/gpw/' . $reportId . '/results');
 print_r($results);
 ```
 
