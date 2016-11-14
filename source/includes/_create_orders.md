@@ -89,10 +89,12 @@ Each collection within the example booking JSON is described in detail in the se
 |-----------:|:-----------|
 **pickup_date** <div class="optional">"yyyy-mm-dd"</div>| If provided the date must be at least one non-holiday, business day in the future. If pickup date is omitted it will be set to the first available pickup date option and returned in the order payload on subsequent requests.
 **description** <div class="optional">optional</div> | Description is used by the customer to track the parcel on Sendle Dashboard. It does not show up on a label.  It must be under 255 characters in length.
-**kilogram_weight** | Must be a decimal value over zero and less than the category/max weight allowed (25kg max).
-**cubic_metre_volume** | Must be a decimal value above zero and less than one.  To get value, multiply *length* x *width* x *depth* of parcel in metres.
+**kilogram_weight** | Must be a decimal value greater than 0 and less than the maximum allowed weight of 25kg.
+**cubic_metre_volume** <div class="optional">optional</div> | Must be a decimal value between 0 and 1.  When included, value will be *length* x *width* x *depth* of parcel in metres.
 **customer_reference** <div class="optional">optional</div> | Reference will appear on the label for parcel identification.  It must be under 255 characters in length.
 **metadata** <div class="optional">optional</div> | Up to 1MB of JSON key/value pairs which will be stored for this order. These are included when <a href="#view-an-order">Viewing an Order</a> and in some bulk reports available from the system.
+
+<aside class="success">For more information about <strong>kilogram weight</strong> and <strong>cubic metre volume</strong> check out <a href="#weights-and-dimensions"><strong>Weights and Dimensions.</strong></a></aside>
 
 ## Sender Details
 ```json
