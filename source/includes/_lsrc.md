@@ -15,7 +15,7 @@ $success = $api->post('v2/lsrc/add', [
     'name'              => 'Le Bernardin',
 	'schedule'          => 'Adhoc',
 	'search-terms'      => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
-    'website-addresses' => ["le-bernardin.com","le-bernardin2.com"],
+    'website-addresses' => '["le-bernardin.com","le-bernardin2.com"]',
 	'search-engines'    => 'google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'
 ]);
 print_r($success);
@@ -33,6 +33,20 @@ curl -X POST \
  -d 'search-engines=google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local' \ 
  https://tools.brightlocal.com/seo-tools/api/v2/lsrc/add
 ```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("name", "Le Bernardin");            
+        parameters.Add("schedule", "Adhoc");
+        parameters.Add("search-terms", "Restaurant\nfood+nyc\ndelivery+midtown+manhattan");
+        parameters.Add("website-addresses", "['le-bernardin.com', 'le-bernardin2.com']");
+        parameters.Add("search-engines", "google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local");
+
+var success = request.Post("v2/lsrc/add", parameters);        
+```
+
 
 > Success (200 OK)
 
@@ -97,7 +111,7 @@ $success = $api->post('v2/lsrc/update', [
     'name'              => 'Le Bernardin',
 	'schedule'          => 'Adhoc',
 	'search-terms'      => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
-    'website-addresses' => ['le-bernardin.com','le-bernardin2.com'],
+    'website-addresses' => '["le-bernardin.com","le-bernardin2.com"]',
 	'search-engines'    => 'google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'
 ]);
 print_r($success);
@@ -115,6 +129,20 @@ curl -X POST \
  -d 'website-addresses=["le-bernardin.com","le-bernardin2.com"]' \
  -d 'search-engines=google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local' \ 
  https://tools.brightlocal.com/seo-tools/api/v2/lsrc/update
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("campaign-id", "9907");
+        parameters.Add("name", "Le Bernardin");
+        parameters.Add("schedule", "Adhoc");
+        parameters.Add("search-terms", "Restaurant\nfood+nyc\ndelivery+midtown+manhattan");
+        parameters.Add("website-addresses", "['le-bernardin.com', 'le-bernardin2.com']");
+        parameters.Add("search-engines", "google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local");
+
+var success = request.Post("v2/lsrc/update", parameters);    
 ```
 
 > Success (200 OK)
@@ -176,7 +204,6 @@ is-public | Publish reports on a white label URL. Yes or No.
 <?php
 use BrightLocal\Api;
 
-$clientId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->delete('v2/lsrc/delete', [
     'campaign-id' => 9907
@@ -184,6 +211,15 @@ $success = $api->delete('v2/lsrc/delete', [
 if($success) {
 	echo 'Successfully deleted report.' . PHP_EOL;
 }
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("campaign-id", "9907");            
+
+var success = request.Delete("v2/lsrc/delete", parameters);        
 ```
 
 > Success (200 OK)
@@ -232,6 +268,14 @@ curl -X GET \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \ 
   https://tools.brightlocal.com/seo-tools/api/v2/lsrc/get-all
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();            
+    
+var results = request.Get("v2/lsrc/get-all", parameters); 
 ```
 
 > Success (200 OK)
@@ -308,6 +352,15 @@ curl -X GET \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'campaign-id=50' \
   https://tools.brightlocal.com/seo-tools/api/v2/lsrc/get
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("campaign-id", "50");    
+    
+var results = request.Get("v2/lsrc/get", parameters); 
 ```
 
 > Success (200 OK)
@@ -434,6 +487,15 @@ curl -X POST \
   https://tools.brightlocal.com/seo-tools/api/v2/lsrc/run
 ```
 
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("campaign-id", "50");
+
+var success = request.Post("v2/lsrc/run", parameters);
+```
+
 > Success (200 OK)
 
 ```json
@@ -485,6 +547,15 @@ curl -X GET \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'campaign-id=50' \
   https://tools.brightlocal.com/seo-tools/api/v2/lsrc/history/get
+```
+
+```csharp
+    api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+    var parameters = new api.Parameters();
+            parameters.Add("campaign-id", "50");    
+    
+    var results = request.Get("/v2/lsrc/history/get", parameters); 
 ```
 
 > Success (200 OK)
@@ -560,6 +631,17 @@ curl -X GET \
   https://tools.brightlocal.com/seo-tools/api/v2/lsrc/results/get
 ```
 
+### Get Report Results
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("campaign-id", "9636");
+
+var results = request.Get("v2/lsrc/results/get", parameters); 
+```
+
 > Success (200 OK)
 
 ```json
@@ -610,7 +692,7 @@ curl -X GET \
         "status": "Enabled",
         "red_flag": "No",
         "is_public": "Yes",
-        "public_key": "9199201efe2cf540638f19c23df864a01dc8199e",
+        "public_key": "<hidden>",
         "show_advanced_settings": "No",
         "last_batch_id": "2444",
         "tags": []
@@ -619,9 +701,9 @@ curl -X GET \
         "interactive_url": "https://tools.brightlocal.com/seo-tools/admin/lsrc/reports/interactive/9636",
         "pdf_url": "https://tools.brightlocal.com/seo-tools/admin/lsrc/reports/pdf/9636.pdf",
         "csv_url": "https://tools.brightlocal.com/seo-tools/admin/lsrc/reports/csv/9636.csv",
-        "public_interactive_url": "http://www.local-marketing-reports.com/ranking-reports/9199201efe2cf540638f19c23df864a01dc8199e/9636",
-        "public_pdf_url": "http://www.local-marketing-reports.com/ranking-reports/9199201efe2cf540638f19c23df864a01dc8199e/9636.pdf",
-        "public_csv_url": "http://www.local-marketing-reports.com/ranking-reports/9199201efe2cf540638f19c23df864a01dc8199e/9636.csv"
+        "public_interactive_url": "http://www.local-marketing-reports.com/ranking-reports/<hidden>/9636",
+        "public_pdf_url": "http://www.local-marketing-reports.com/ranking-reports/<hidden>/9636.pdf",
+        "public_csv_url": "http://www.local-marketing-reports.com/ranking-reports/<hidden>/9636.csv"
       },
       "rankings": {
         "keywords": [

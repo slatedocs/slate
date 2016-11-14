@@ -237,7 +237,7 @@ curl -X GET \
           ],
           "last_run_id": "626",
           "is_public": "Yes",
-          "public_key": "9e4356696cadcbc1c3ed87cc8103d4be5d09f04c",
+          "public_key": "<hidden>",
           "status": "Enabled"
       }
 }
@@ -1035,7 +1035,7 @@ curl -X GET \
     },
     "urls": {
       "report_url": "https://tools.brightlocal.com/seo-tools/admin/gpw/reports/view/275",
-      "wl_url": "http://local-marketing-reports.com/google-plus-reports/b8ff7ea94bb0e1b79cf437719afc7126c20a3295/275"
+      "wl_url": "http://local-marketing-reports.com/google-plus-reports/<hidden>/275"
     }
   }
 }

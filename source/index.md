@@ -4,6 +4,7 @@ title: API Reference
 language_tabs:
   - php
   - shell
+  - csharp
 
 toc_footers:
   - <a href="https://tools.brightlocal.com/seo-tools/admin/api">Sign Up for a Developer Key</a>

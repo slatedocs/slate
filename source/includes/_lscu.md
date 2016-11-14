@@ -14,7 +14,7 @@ $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v4/lscu', [
     'report-name'				=> 'Sample SEO Check-Up Report', 
 	'business-names'			=> ["Le Bernardin"],
-	'website-addresses'			=> ["le-bernardin.com","le-bernardin2.com"],
+	'website-address'			=> "le-bernardin.com",
 	'address1'                  => '155 West 51st Street',
     'address2'                  => '',      
     'city'                      => 'New York',
@@ -24,7 +24,7 @@ $success = $api->post('v4/lscu', [
 	'country'					=> 'USA',
 	'business-category'         => 'Restaurant',
 	'primary-business-location' => 'NY, New York',
-	'search-terms'              => '["restaurant manhattan","cafe new york"]'
+	'search-terms'              => ["restaurant manhattan","cafe new york"]
 ]);
 print_r($success);
 ```
@@ -47,6 +47,27 @@ curl -X POST \
  -d 'primary-business-location=NY+NewYork'
  -d 'search-terms=["restaurant manhattan","cafe new york"]'
  https://tools.brightlocal.com/seo-tools/api/v4/lscu
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("report-name", "Sample SEO Check-Up Report");
+        parameters.Add("business-names", "['Le Bernardin']");
+        parameters.Add("website-address", "le-bernardin.com");
+        parameters.Add("address1", "155 Weest 51st Street");
+        parameters.Add("address2", "");
+        parameters.Add("city", "New York");
+        parameters.Add("state-code", "NY");
+        parameters.Add("postcode", "10019");
+        parameters.Add("telephone", "+1 212-554-1515");
+        parameters.Add("country", "USA");
+        parameters.Add("business-category", "Restaurant");
+        parameters.Add("primary-business-location", "NY, New York");
+        parameters.Add("search-terms", "['restaurant manhattan', 'cafe new york']");
+
+var success = request.Post("v4/lscu", parameters);
 ```
 
 > Supplying Local Directory URLs (see local-directory-urls parameter)
@@ -151,7 +172,8 @@ run-report | One of yes or no. Runs the report after adding. Defaults to no.
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->put('v4/lscu', [   
+$success = $api->put('v4/lscu', [
+	'report-id'                 => '1',
 	'postcode'                  => '10019',	
 	'telephone'                 => '+1 212-554-1515',
 	'country'                   => 'USA',
@@ -174,6 +196,21 @@ curl -X PUT \
  -d 'primary-business-location=NY+NewYork'
  -d 'search-terms=["restaurant manhattan","cafe new york"]'
  https://tools.brightlocal.com/seo-tools/api/v4/lscu
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("report-id", "1");
+        parameters.Add("postcode", "10019");
+        parameters.Add("telephone", "+1 212-554-1515");
+        parameters.Add("country", "USA");
+        parameters.Add("business-category", "Restaurant");
+        parameters.Add("primary-business-location", "NY, New York");
+        parameters.Add("search-terms", "['restaurant manhattan', 'cafe new york']");
+
+var success = request.Put("v4/lscu", parameters);
 ```
 
 > Supplying Local Directory URLs (see local-directory-urls parameter)
@@ -238,7 +275,7 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-report-id |
+report-id | <span class="label label-required">Required</span>
 report-name |
 location-id | Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
 white-label-profile-id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
@@ -290,6 +327,15 @@ curl -X GET \
   https://tools.brightlocal.com/seo-tools/api/v4/lscu
 ```
 
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("report-id", "860");
+
+var results = request.Get("v4/lscu", parameters);
+```
+
 > Success (200 OK)
 
 ```json
@@ -331,10 +377,10 @@ curl -X GET \
     "is_public": "Yes",
     "public_key": "<hidden>",
     "latest_run":  {
-      "interactive_url": "https://dev-tools.brightlocal.com/seo-tools/admin/lscu/reports/view/858/2171",
-      "pdf_url": "https://dev-tools.brightlocal.com/seo-tools/admin/lscu/reports/pdf/858",
-      "public_interactive_url": "http://dev-tools.local-marketing-reports.com/seo-reports/<hidden>/858",
-      "public_pdf_url": "http://dev-tools.local-marketing-reports.com/seo-reports/<hidden>/858.pdf"
+      "interactive_url": "https://tools.brightlocal.com/seo-tools/admin/lscu/reports/view/858/2171",
+      "pdf_url": "https://tools.brightlocal.com/seo-tools/admin/lscu/reports/pdf/858",
+      "public_interactive_url": "http://www.local-marketing-reports.com/seo-reports/<hidden>/858",
+      "public_pdf_url": "http://www.local-marketing-reports.com/seo-reports/<hidden>/858.pdf"
     }
   }
 }
@@ -388,6 +434,15 @@ curl -X PUT \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'report-id=860' \
   https://tools.brightlocal.com/seo-tools/api/v4/lscu/run
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("report-id", "860");
+
+var success = request.Put("v4/lscu/run", parameters);
 ```
 
 > Success (200 OK)
@@ -463,6 +518,15 @@ curl -X DELETE \
   https://tools.brightlocal.com/seo-tools/api/v4/lscu
 ```
 
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("report-id", "860");
+
+var success = request.Delete("v4/lscu", parameters);
+```
+
 > Success (200 OK)
 
 ```json
@@ -530,6 +594,17 @@ curl -X GET \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'q=Bodega+Wine+Bar' \	
   https://tools.brightlocal.com/seo-tools/api/v4/lscu/search
+```
+
+### Search Reports
+
+```csharp
+    api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+    var parameters = new api.Parameters();
+            parameters.Add("q", "Bodega Wine Bar");
+
+    var results = request.Get("v4/lscu/search", parameters);
 ```
 
 > Success (200 OK)
