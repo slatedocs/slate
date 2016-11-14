@@ -77,6 +77,8 @@ Sendle will choose the parcel size that can accommodate the weight and volume of
 }
 ```
 
+Satchels are special pouch-only mailers. Delivery instructions cannot be included for satchel sizes as delivery defaults to **Authority To Leave (ATL)**
+
 ### Requirements:
 
 - Satchels must be packaged in an A4 satchel-pack.
