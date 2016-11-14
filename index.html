@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API Reference</title>
 
-    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -88,10 +86,12 @@
   color: #90a959;
 }
     </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -102,8 +102,6 @@
       <img src="images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -112,176 +110,109 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='https://prospect.io/api'>Get your API Key</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="introduction">Introduction</h1>
+        
+          <h1 id="introduction">Introduction</h1>
+<pre class="highlight shell"><code><span class="c"># API Endpoint</span>
+https://prospect.io/api/public/v1/
+</code></pre>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the <a href="https://prospect.io">Prospect.io</a> API! You can use our API to access Prospect.io API endpoints.</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>Our API follows the <a href="http://jsonapi.org/">JSON API specification</a>. You can view code examples in the dark area to the right.</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
-
-<h1 id="authentication">Authentication</h1>
+          <h1 id="authentication">Authentication</h1>
 
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+curl <span class="s2">"https://prospect.io/api/public/v1/XXX"</span>
+  -H <span class="s2">"Authorization: your_api_key"</span>
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+<p>Make sure to replace <code class="prettyprint">your_api_key</code> with your API key.</p>
 </blockquote>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>Prospect.io uses API keys to allow access to the API. You can get a new API key in your <a href="https://prospect.io/api">Prospect.io account</a>.</p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>Prospect.io expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<p><code class="prettyprint">Authorization: your_api_key</code></p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>your_api_key</code> with your personal API key.
 </aside>
 
-<h1 id="kittens">Kittens</h1>
+          <h1 id="sorting">Sorting</h1>
 
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>Our APIs supports requests to sort resource collections according to one or more criteria usin a <code class="prettyprint">sort</code> query parameter. The value for <code class="prettyprint">sort</code> must represent the object attributes.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p>We support <strong>multiple sort attributes</strong> by using comma-separated &ldquo;,&rdquo; attributes. Sort attributes are applied in the order specified.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
+<p>The sort order for each sort attributes is <strong>ascending by default</strong> unless it is prefixed with a minus &ldquo;-&rdquo;, in which case it is <strong>descending</strong>.</p>
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves all kittens.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
+          <h1 id="pagination">Pagination</h1>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io/api/public/v1/prospects?page%5Bnumber%5D=2&amp;page%5Bsize%5D=1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io/api/public/v1/prospects?page%5Bnumber%5D=1&amp;page%5Bsize%5D=1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"prev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io/api/public/v1/prospects?page%5Bnumber%5D=1&amp;page%5Bsize%5D=1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io/api/public/v1/prospects?page%5Bnumber%5D=3&amp;page%5Bsize%5D=1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io/api/public/v1/prospects?page%5Bnumber%5D=2203&amp;page%5Bsize%5D=1"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves a specific kitten.</p>
+<p>Collection APIs paginate their results. The first request returns up to 100 records. If the request returns more than 100 records and <code class="prettyprint">links</code> will be include in the result. This object may contains the following keys:</p>
 
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
+<ul>
+<li><strong>self</strong>: the current page of data</li>
+<li><strong>first</strong>: the first page of data</li>
+<li><strong>last</strong>: the last page of data</li>
+<li><strong>prev</strong>: the previous page of data</li>
+<li><strong>next</strong>: the next page of data</li>
+</ul>
 
           <h1 id="errors">Errors</h1>
+<pre class="highlight shell"><code><span class="c"># EXAMPLE OBJECT</span>
+<span class="c">## When trying to add a prospect with a duplicate email address</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"pointer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/data/attributes/email"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"detail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"has already been taken"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight shell"><code><span class="c">## Error on authentication</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unauthorized"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your API key is wrong. More information here https://prospect.io/docs/api#authentication"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
-
-<p>The Kittn API uses the following error codes:</p>
+<p>Prospect.io uses conventional HTTP response codes to indicate success or failure of an API request. In general, codes in the 2xx range indicate success, codes in the 4xx range indicate an error that resulted from the provided information (e.g. a required parameter was missing, a prospect cannot be created, etc.), and codes in the 5xx range indicate an error with Prospect.io&rsquo;s servers.</p>
 
 <table><thead>
 <tr>
@@ -299,15 +230,15 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>Forbidden &ndash; The resource requested is hidden for administrators only</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>Not Found &ndash; The specified resource could not be found</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+<td>Method Not Allowed &ndash; You tried to access a resource with an invalid method</td>
 </tr>
 <tr>
 <td>406</td>
@@ -315,15 +246,7 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 <tr>
 <td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+<td>Gone &ndash; The resource requested has been removed from our servers</td>
 </tr>
 <tr>
 <td>500</td>
@@ -335,12 +258,1312 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </tbody></table>
 
+          <h1 id="prospects">Prospects</h1>
+
+<h2 id="the-prospect-object">The prospect object</h2>
+<pre class="highlight plaintext"><code># EXAMPLE OBJECT
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prospects"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vincenzo@prospect.io"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vincenzo"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ruggiero"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"organisation_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Prospect.io"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"jobtitle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CEO"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"linkedin_profile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.linkedin.com/in/vincenzor"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"extension"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_emailed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"converted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"qualified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"archived"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"campaign_status"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-27T19:57:00.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03T13:36:13.000Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lists"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="object-attributes">Object attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><strong>integer</strong> <br />A unique identifier for the prospect</td>
+</tr>
+<tr>
+<td>email</td>
+<td><strong>string</strong> <br />The prospect&rsquo;s email address</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td><strong>string</strong> <br />The prospect&rsquo;s first name</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td><strong>string</strong> <br />The prospect&rsquo;s last name</td>
+</tr>
+<tr>
+<td>organisation_name</td>
+<td><strong>string</strong> <br />The prospect&rsquo;s company name</td>
+</tr>
+<tr>
+<td>description</td>
+<td><strong>string</strong> <br />A text description of the prospect</td>
+</tr>
+<tr>
+<td>domain</td>
+<td><strong>string</strong> <br />The prospect&rsquo;s website</td>
+</tr>
+<tr>
+<td>jobtitle</td>
+<td><strong>string</strong> <br />The prospect&rsquo;s job title</td>
+</tr>
+<tr>
+<td>linkedin_profile</td>
+<td><strong>string</strong> <br />A link to the prospect&rsquo;s LinkedIn profile</td>
+</tr>
+<tr>
+<td>created_from</td>
+<td><strong>string</strong> <br />The source of the prospect. Can be <code class="prettyprint">web</code>, <code class="prettyprint">extension</code>, <code class="prettyprint">api</code> or <code class="prettyprint">import</code></td>
+</tr>
+<tr>
+<td>last_emailed_at</td>
+<td><strong>datetime</strong> <br />The date and time of the last email sent to this prospect</td>
+</tr>
+<tr>
+<td>converted</td>
+<td><strong>boolean</strong> <br />Whether or not the prospect is marked as converted</td>
+</tr>
+<tr>
+<td>qualified</td>
+<td><strong>boolean</strong> <br />Whether or not the prospect is marked as qualified</td>
+</tr>
+<tr>
+<td>archived</td>
+<td><strong>boolean</strong> <br />Whether or not the prospect is archived</td>
+</tr>
+<tr>
+<td>campaign_status</td>
+<td><strong>string</strong> <br />If the prospect is currently in a campaign, this attribute contains the status of the campaign. Can be <code class="prettyprint">running</code>, <code class="prettyprint">paused</code> or <code class="prettyprint">scheduled</code></td>
+</tr>
+<tr>
+<td>created_at</td>
+<td><strong>datetime</strong></td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td><strong>datetime</strong></td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<table><thead>
+<tr>
+<th>Object</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>responsible</td>
+<td>The <a href="#users">user</a> responsible of the prospect</td>
+</tr>
+<tr>
+<td>list</td>
+<td>Describe a <a href="#lists">list object</a> if the prospect is in a list</td>
+</tr>
+<tr>
+<td>campaign</td>
+<td>Describe a <a href="#lists">campaign object</a> if the prospect is currently in a campaign. The campaign status is described in the <code class="prettyprint">campaign_status</code> attribute</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-prospect">Create a prospect</h2>
+<pre class="highlight shell"><code><span class="c"># DEFINITION</span>
+POST https://prospect.io/api/public/v1/prospects
+
+<span class="c"># EXAMPLE</span>
+curl -X POST <span class="s2">"https://prospect.io/api/public/v1/prospects"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: your_api_key"</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/vnd.api+json; charset=utf-8"</span> <span class="se">\</span>
+-d <span class="s1">'{
+  "data": {
+    "type": "prospects",
+    "attributes": {
+      "email": "vincenzo@prospect.io",
+      "first_name": "Vincenzo",
+      "last_name": "Ruggiero"
+    }
+  }
+}'</span>
+</code></pre>
+
+<p>This will create a new prospect. If you don&rsquo;t set the <code class="prettyprint">responsible_id</code> parameter then the user who performed the action will be assigned as the responsible user.</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email<br /><strong>required</strong> - <em>string</em></td>
+<td>/</td>
+<td>The prospect&rsquo;s email</td>
+</tr>
+<tr>
+<td>first_name<br /><em>string</em></td>
+<td><em>NULL</em></td>
+<td>The prospect&rsquo;s first name</td>
+</tr>
+<tr>
+<td>last_name<br /><em>string</em></td>
+<td><em>NULL</em></td>
+<td>The prospect&rsquo;s last name</td>
+</tr>
+<tr>
+<td>organisation_name<br /><em>string</em></td>
+<td><em>NULL</em></td>
+<td>The prospect&rsquo;s company name</td>
+</tr>
+<tr>
+<td>description<br /><em>string</em></td>
+<td><em>NULL</em></td>
+<td>A text description of the prospect</td>
+</tr>
+<tr>
+<td>domain<br /><em>string</em></td>
+<td><em>NULL</em></td>
+<td>The prospect&rsquo;s website</td>
+</tr>
+<tr>
+<td>jobtitle<br /><em>string</em></td>
+<td><em>NULL</em></td>
+<td>The prospect&rsquo;s job title</td>
+</tr>
+<tr>
+<td>linkedin_profile<br /><em>string</em></td>
+<td><em>NULL</em></td>
+<td>A link to the prospect&rsquo;s LinkedIn profile</td>
+</tr>
+<tr>
+<td>converted<br /><em>boolean</em></td>
+<td>false</td>
+<td>Whether or not the prospect is marked as converted</td>
+</tr>
+<tr>
+<td>qualified<br /><em>boolean</em></td>
+<td>false</td>
+<td>Whether or not the prospect is marked as qualified</td>
+</tr>
+<tr>
+<td>archived<br /><em>boolean</em></td>
+<td>false</td>
+<td>Whether or not the prospect is marked as archived</td>
+</tr>
+<tr>
+<td>list_id<br /><em>integer</em></td>
+<td><em>NULL</em></td>
+<td>ID of the list where to save the prospect</td>
+</tr>
+<tr>
+<td>responsible_id<br /><em>integer</em></td>
+<td>ID of the user who created the prospect</td>
+<td>The ID of the user responsible for this prospect</td>
+</tr>
+<tr>
+<td>campaign_id<br /><em>integer</em></td>
+<td><em>NULL</em></td>
+<td>If you specify a campaign ID we&rsquo;ll add the prospect in the campaign. The attribute <code class="prettyprint">campaign_status</code> will also be set to <code class="prettyprint">running</code>.</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>Returns the <a href="#the-prospect-object">prospect object</a>.</p>
+
+<h2 id="retrieve-a-prospect">Retrieve a prospect</h2>
+<pre class="highlight shell"><code><span class="c"># DEFINITION</span>
+GET https://prospect.io/api/public/v1/prospects/<span class="o">{</span>PROSPECT_ID<span class="o">}</span>
+
+<span class="c"># EXAMPLE</span>
+curl -X GET <span class="s2">"https://prospect.io/api/public/v1/prospects/1"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: your_api_key"</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/vnd.api+json; charset=utf-8"</span>
+</code></pre>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id<br /><strong>required</strong> - <em>integer</em></td>
+<td>The ID of the prospect to retrieve</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>Returns the <a href="#the-prospect-object">prospect object</a>.</p>
+
+<h2 id="update-a-prospect">Update a prospect</h2>
+<pre class="highlight shell"><code><span class="c"># DEFINITION</span>
+PATCH https://prospect.io/api/public/v1/prospects/<span class="o">{</span>PROSPECT_ID<span class="o">}</span>
+
+<span class="c"># EXAMPLE</span>
+curl -X PATCH <span class="s2">"https://prospect.io/api/public/v1/prospects/1"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: your_api_key"</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/vnd.api+json; charset=utf-8"</span> <span class="se">\</span>
+-d <span class="s1">'{
+  "data": {
+    "type": "prospects",
+    "attributes": {
+      "first_name": "Vincent"
+    }
+  }
+}'</span>
+</code></pre>
+
+<p>Updates the specified prospect by setting the values of the parameters passed. Any parameters not provided will be left unchanged.</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id<br /><strong>required</strong> - <em>integer</em></td>
+<td>The ID of the prospect to update</td>
+</tr>
+<tr>
+<td>email<br /><em>string</em></td>
+<td>The prospect&rsquo;s email</td>
+</tr>
+<tr>
+<td>first_name<br /><em>string</em></td>
+<td>The prospect&rsquo;s first name</td>
+</tr>
+<tr>
+<td>last_name<br /><em>string</em></td>
+<td>The prospect&rsquo;s last name</td>
+</tr>
+<tr>
+<td>organisation_name<br /><em>string</em></td>
+<td>The prospect&rsquo;s company name</td>
+</tr>
+<tr>
+<td>description<br /><em>string</em></td>
+<td>A text description of the prospect</td>
+</tr>
+<tr>
+<td>domain<br /><em>string</em></td>
+<td>The prospect&rsquo;s website</td>
+</tr>
+<tr>
+<td>jobtitle<br /><em>string</em></td>
+<td>The prospect&rsquo;s job title</td>
+</tr>
+<tr>
+<td>linkedin_profile<br /><em>string</em></td>
+<td>A link to the prospect&rsquo;s LinkedIn profile</td>
+</tr>
+<tr>
+<td>converted<br /><em>boolean</em></td>
+<td>Whether or not the prospect is marked as converted</td>
+</tr>
+<tr>
+<td>qualified<br /><em>boolean</em></td>
+<td>Whether or not the prospect is marked as qualified</td>
+</tr>
+<tr>
+<td>archived<br /><em>boolean</em></td>
+<td>Whether or not the prospect is marked as archived</td>
+</tr>
+<tr>
+<td>list_id<br /><em>integer</em></td>
+<td>ID of the list where to save the prospect</td>
+</tr>
+<tr>
+<td>responsible_id<br /><em>integer</em></td>
+<td>The ID of the user responsible for this prospect</td>
+</tr>
+<tr>
+<td>campaign_id<br /><em>integer</em></td>
+<td>If you specify a campaign ID here we&rsquo;ll add the prospect in the campaign. The attribute <code class="prettyprint">campaign_status</code> will also be set to <code class="prettyprint">running</code>. <br /><br />If the prospect was already in a campaign you first need to do an update and set <code class="prettyprint">campaign_id</code> to <code class="prettyprint">NULL</code> before adding the prospect to a new campaign. Setting <code class="prettyprint">campaign_id</code> to <code class="prettyprint">NULL</code> will <strong>stop</strong> the campaign.</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>Returns the <a href="#the-prospect-object">prospect object</a>.</p>
+
+<h2 id="delete-a-prospect">Delete a prospect</h2>
+<pre class="highlight shell"><code><span class="c"># DEFINITION</span>
+DELETE https://prospect.io/api/public/v1/prospects/<span class="o">{</span>PROSPECT_ID<span class="o">}</span>
+
+<span class="c"># EXAMPLE</span>
+curl -X DELETE <span class="s2">"https://prospect.io/api/public/v1/prospects/1"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: your_api_key"</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/vnd.api+json; charset=utf-8"</span> <span class="se">\</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prospects"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permanently deletes a prospect. It cannot be undone.</p>
+
+<aside class="warning">
+Warning — Deleting a prospect will also delete all history with this prospect (messages, replies, etc.)
+</aside>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required?</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><strong>yes</strong></td>
+<td>integer</td>
+<td>The ID of the prospect to delete</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>Returns an object containing the prospect ID.</p>
+
+<h2 id="list-prospects">List prospects</h2>
+<pre class="highlight shell"><code><span class="c"># DEFINITION</span>
+GET https://prospect.io/api/public/v1/prospects
+
+<span class="c"># EXAMPLE</span>
+curl -X GET <span class="s2">"https://prospect.io/api/public/v1/prospects"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: your_api_key"</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/vnd.api+json; charset=utf-8"</span> <span class="se">\</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prospects"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prospects"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io/api/public/v1/prospects/?page%5Bnumber%5D=1&amp;page%5Bsize%5D=100"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io/api/public/v1/prospects/?page%5Bnumber%5D=2&amp;page%5Bsize%5D=100"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io/api/public/v1/prospects/?page%5Bnumber%5D=5&amp;page%5Bsize%5D=100"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns a list of prospects.</p>
+
+<p>This list is <a href="#pagination">paginate</a> by 100 records and can also be <a href="#sorting">sorted</a>.</p>
+
+          <h1 id="lists">Lists</h1>
+
+<h2 id="the-list-object">The list object</h2>
+<pre class="highlight plaintext"><code># EXAMPLE OBJECT
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lists"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LinkedIn"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-27T19:57:00.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03T13:36:13.000Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="object-attributes">Object attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><strong>integer</strong> <br />A unique identifier for the list</td>
+</tr>
+<tr>
+<td>name</td>
+<td><strong>string</strong> <br />The list&rsquo;s name</td>
+</tr>
+<tr>
+<td>available</td>
+<td><strong>boolean</strong> <br />Whether or not the list is available</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td><strong>datetime</strong></td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td><strong>datetime</strong></td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-list">Create a list</h2>
+<pre class="highlight shell"><code><span class="c"># DEFINITION</span>
+POST https://prospect.io/api/public/v1/lists
+
+<span class="c"># EXAMPLE</span>
+curl -X POST <span class="s2">"https://prospect.io/api/public/v1/lists"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: your_api_key"</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/vnd.api+json; charset=utf-8"</span> <span class="se">\</span>
+-d <span class="s1">'{
+  "data": {
+    "type": "lists",
+    "attributes": {
+      "name": "A list name",
+      "available": true
+    }
+  }
+}'</span>
+</code></pre>
+
+<p>This will create a new list.</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name<br /><strong>required</strong> - <em>string</em></td>
+<td>/</td>
+<td>The list&rsquo;s name</td>
+</tr>
+<tr>
+<td>available<br /><em>boolean</em></td>
+<td><em>true</em></td>
+<td>Whether or not the list is available</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>Returns the <a href="#the-list-object">list object</a>.</p>
+
+<h2 id="retrieve-a-list">Retrieve a list</h2>
+<pre class="highlight shell"><code><span class="c"># DEFINITION</span>
+GET https://prospect.io/api/public/v1/lists/<span class="o">{</span>LIST_ID<span class="o">}</span>
+
+<span class="c"># EXAMPLE</span>
+curl -X GET <span class="s2">"https://prospect.io/api/public/v1/lists/1"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: your_api_key"</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/vnd.api+json; charset=utf-8"</span>
+</code></pre>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id<br /><strong>required</strong> - <em>integer</em></td>
+<td>The ID of the list to retrieve</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>Returns the <a href="#the-list-object">list object</a>.</p>
+
+<h2 id="update-a-list">Update a list</h2>
+<pre class="highlight shell"><code><span class="c"># DEFINITION</span>
+PATCH https://prospect.io/api/public/v1/lists/<span class="o">{</span>LIST_ID<span class="o">}</span>
+
+<span class="c"># EXAMPLE</span>
+curl -X PATCH <span class="s2">"https://prospect.io/api/public/v1/lists/1"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: your_api_key"</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/vnd.api+json; charset=utf-8"</span> <span class="se">\</span>
+-d <span class="s1">'{
+  "data": {
+    "type": "lists",
+    "attributes": {
+      "name": "LinkedIn bis"
+    }
+  }
+}'</span>
+</code></pre>
+
+<p>Updates the specified list by setting the values of the parameters passed. Any parameters not provided will be left unchanged.</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id<br /><strong>required</strong> - <em>integer</em></td>
+<td>The ID of the list to update</td>
+</tr>
+<tr>
+<td>name<br /><em>string</em></td>
+<td>/</td>
+</tr>
+<tr>
+<td>available<br /><em>boolean</em></td>
+<td><em>true</em></td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>Returns the <a href="#the-list-object">list object</a>.</p>
+
+<h2 id="delete-a-list">Delete a list</h2>
+<pre class="highlight shell"><code><span class="c"># DEFINITION</span>
+DELETE https://prospect.io/api/public/v1/lists/<span class="o">{</span>PROSPECT_ID<span class="o">}</span>
+
+<span class="c"># EXAMPLE</span>
+curl -X DELETE <span class="s2">"https://prospect.io/api/public/v1/lists/1"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: your_api_key"</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/vnd.api+json; charset=utf-8"</span> <span class="se">\</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lists"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permanently deletes a list. It cannot be undone.</p>
+
+<aside class="notice">
+Warning — Deleting a list will keep the prospects of that list the `list_id` field to `NULL`
+</aside>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required?</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><strong>yes</strong></td>
+<td>integer</td>
+<td>The ID of the list to delete</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>Returns an object containing the list ID.</p>
+
+<h2 id="list-lists">List lists</h2>
+<pre class="highlight shell"><code><span class="c"># DEFINITION</span>
+GET https://prospect.io/api/public/v1/lists
+
+<span class="c"># EXAMPLE</span>
+curl -X GET <span class="s2">"https://prospect.io/api/public/v1/lists"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: your_api_key"</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/vnd.api+json; charset=utf-8"</span> <span class="se">\</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lists"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io/api/public/v1/lists/?page%5Bnumber%5D=1&amp;page%5Bsize%5D=100"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io/api/public/v1/lists/?page%5Bnumber%5D=2&amp;page%5Bsize%5D=100"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io/api/public/v1/lists/?page%5Bnumber%5D=5&amp;page%5Bsize%5D=100"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns a list of lists.</p>
+
+<p>This list is <a href="#pagination">paginate</a> by 100 records and can also be <a href="#sorting">sorted</a>.</p>
+
+          <h1 id="campaigns">Campaigns</h1>
+
+<h2 id="the-campaign-object">The campaign object</h2>
+<pre class="highlight plaintext"><code># EXAMPLE OBJECT
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1961"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"campaigns"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Intro + 1 follow up"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"available"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"steps_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sending_days"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"5"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"stop_when"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"prospect.replied"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-27T19:57:00.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03T13:36:13.000Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3920"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steps_prospect_email_steps"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3922"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steps_prospect_email_steps"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="object-attributes">Object attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><strong>integer</strong> <br />A unique identifier for the campaign</td>
+</tr>
+<tr>
+<td>name</td>
+<td><strong>string</strong> <br />The campaign&rsquo;s name</td>
+</tr>
+<tr>
+<td>available</td>
+<td><strong>boolean</strong> <br />Whether or not the campaign is available</td>
+</tr>
+<tr>
+<td>steps_count</td>
+<td><strong>integer</strong> <br />The number of steps in the campaign</td>
+</tr>
+<tr>
+<td>sending_days</td>
+<td><strong>array</strong> <br />An array containing the days of the week when the campaign will send. Monday is <code class="prettyprint">1</code></td>
+</tr>
+<tr>
+<td>stop_when</td>
+<td><strong>array</strong> <br />An array containing the events that trigger the campaign to stops. Possible values are <code class="prettyprint">message.click</code>, <code class="prettyprint">prospect.replied</code> and <code class="prettyprint">prospect.convert</code></td>
+</tr>
+<tr>
+<td>created_at</td>
+<td><strong>datetime</strong></td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td><strong>datetime</strong></td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<table><thead>
+<tr>
+<th>Object</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>steps</td>
+<td>The <a href="#campaign-steps">steps</a> of the campaign. Can be a email to the prospect <code class="prettyprint">steps_prospect_email_steps</code> or a team notification email <code class="prettyprint">steps_notification_email_steps</code>.</td>
+</tr>
+</tbody></table>
+
+<h2 id="retrieve-a-campaign">Retrieve a campaign</h2>
+<pre class="highlight shell"><code><span class="c"># DEFINITION</span>
+GET https://prospect.io/api/public/v1/campaigns/<span class="o">{</span>CAMPAIGN_ID<span class="o">}</span>
+
+<span class="c"># EXAMPLE</span>
+curl -X GET <span class="s2">"https://prospect.io/api/public/v1/campaigns/1"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: your_api_key"</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/vnd.api+json; charset=utf-8"</span>
+</code></pre>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id<br /><strong>required</strong> - <em>integer</em></td>
+<td>The ID of the campaign to retrieve</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>Returns the <a href="#the-campaign-object">campaign object</a>.</p>
+
+<h2 id="list-campaigns">List campaigns</h2>
+<pre class="highlight shell"><code><span class="c"># DEFINITION</span>
+GET https://prospect.io/api/public/v1/campaigns
+
+<span class="c"># EXAMPLE</span>
+curl -X GET <span class="s2">"https://prospect.io/api/public/v1/campaigns"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: your_api_key"</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/vnd.api+json; charset=utf-8"</span> <span class="se">\</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"campaigns"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"campaigns"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io/api/public/v1/campaigns/?page%5Bnumber%5D=1&amp;page%5Bsize%5D=100"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io/api/public/v1/campaigns/?page%5Bnumber%5D=2&amp;page%5Bsize%5D=100"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io/api/public/v1/campaigns/?page%5Bnumber%5D=5&amp;page%5Bsize%5D=100"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns a list of campaigns.</p>
+
+<p>This list is <a href="#pagination">paginate</a> by 100 records and can also be <a href="#sorting">sorted</a>.</p>
+
+          <h1 id="campaign-steps">Campaign Steps</h1>
+
+<h2 id="the-campaign-step-object">The campaign step object</h2>
+<pre class="highlight plaintext"><code># EXAMPLE OBJECT
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3920"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steps_prospect_email_steps"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Introduction {{company_name}}"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;div&gt;Hi {{prospect_firstname | default: 'there'}},&lt;br /&gt;&lt;br /&gt;&lt;/div&gt;\r\n&lt;div&gt;My name is {{user_name}} and I'm the founder of&amp;nbsp;&lt;a href=\"https://prospect.io\"&gt;{{company_name}}&lt;/a&gt;. Our product is already used by hundred of organizations like {{prospect_company_name | default: 'yours'}} to improve their sales prospecting and cold emailing.&lt;br /&gt;&lt;br /&gt;&lt;/div&gt;\r\n&lt;div&gt;Could you direct me to the right person to talk about this so we can explore if this would be something valuable for you?&lt;a href=\"https://prospect.io\"&gt;&lt;br /&gt;&lt;/a&gt;&lt;/div&gt;\r\n&lt;div&gt;Thanks for your time,&lt;/div&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"recipient"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"schedule_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-27T19:57:00.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03T13:36:13.000Z"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1961"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"campaigns"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="object-attributes">Object attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><strong>integer</strong> <br />A unique identifier for the campaign step</td>
+</tr>
+<tr>
+<td>type</td>
+<td><strong>string</strong> <br />The type of step. Can be a email to the prospect <code class="prettyprint">steps_prospect_email_steps</code> or a team notification email <code class="prettyprint">steps_notification_email_steps</code></td>
+</tr>
+<tr>
+<td>subject</td>
+<td><strong>string</strong> <br />The subject of the email</td>
+</tr>
+<tr>
+<td>content</td>
+<td><strong>string</strong> <br />The HTML content of the email</td>
+</tr>
+<tr>
+<td>offset</td>
+<td><strong>integer</strong> <br />The number of days the step will be sent after the previous step</td>
+</tr>
+<tr>
+<td>position</td>
+<td><strong>integer</strong> <br />The order position in the list</td>
+</tr>
+<tr>
+<td>recipient</td>
+<td><strong>string</strong> <br />The recipient email for step of type <code class="prettyprint">steps_notification_email_steps</code></td>
+</tr>
+<tr>
+<td>schedule_time</td>
+<td><strong>datetime</strong> <br />Time of day for this step to send</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td><strong>datetime</strong></td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td><strong>datetime</strong></td>
+</tr>
+</tbody></table>
+
+<h3 id="relationships">Relationships</h3>
+
+<table><thead>
+<tr>
+<th>Object</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>campaign</td>
+<td>The parent <a href="#campaign">campaign</a></td>
+</tr>
+</tbody></table>
+
+<h2 id="retrieve-a-campaign-step">Retrieve a campaign step</h2>
+<pre class="highlight shell"><code><span class="c"># DEFINITION</span>
+GET https://prospect.io/api/public/v1/campaigns/<span class="o">{</span>CAMPAIGN_ID<span class="o">}</span>/steps/<span class="o">{</span>STEP_ID<span class="o">}</span>
+
+<span class="c"># EXAMPLE</span>
+curl -X GET <span class="s2">"https://prospect.io/api/public/v1/campaigns/1/steps/1"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: your_api_key"</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/vnd.api+json; charset=utf-8"</span>
+</code></pre>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>campaign_id<br /><strong>required</strong> - <em>integer</em></td>
+<td>The ID of the campaign</td>
+</tr>
+<tr>
+<td>id<br /><strong>required</strong> - <em>integer</em></td>
+<td>The ID of the campaign step to retrieve</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>Returns the <a href="#the-campaign-step-object">campaign step object</a>.</p>
+
+<h2 id="list-campaigns-steps">List campaigns steps</h2>
+<pre class="highlight shell"><code><span class="c"># DEFINITION</span>
+GET https://prospect.io/api/public/v1/campaigns/<span class="o">{</span>CAMPAIGN_ID<span class="o">}</span>/steps
+
+<span class="c"># EXAMPLE</span>
+curl -X GET <span class="s2">"https://prospect.io/api/public/v1/campaigns/1/steps"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: your_api_key"</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/vnd.api+json; charset=utf-8"</span> <span class="se">\</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3920"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steps_prospect_email_steps"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1961"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"campaigns"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3922"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steps_prospect_email_steps"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1961"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"campaigns"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20837"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steps_notification_email_steps"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1961"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"campaigns"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io/api/public/v1/campaigns/1/steps?page%5Bnumber%5D=1&amp;page%5Bsize%5D=100"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io/api/public/v1/campaigns/1/steps?page%5Bnumber%5D=2&amp;page%5Bsize%5D=100"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io/api/public/v1/campaigns/1/steps?page%5Bnumber%5D=5&amp;page%5Bsize%5D=100"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns a list of campaigns steps.</p>
+
+<p>This list is <a href="#pagination">paginate</a> by 100 records and can also be <a href="#sorting">sorted</a>.</p>
+
+          <h1 id="users">Users</h1>
+
+<h2 id="the-user-object">The user object</h2>
+<pre class="highlight plaintext"><code># EXAMPLE OBJECT
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vincenzo Ruggiero"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vincenzo@prospect.io"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"skype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ruggiero.vincenzo"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p class=\"p1\"&gt;&lt;span class=\"s1\"&gt;--&amp;nbsp;&lt;br /&gt;&lt;/span&gt;&lt;span class=\"s1\"&gt;&lt;strong&gt;Vincenzo Ruggiero&lt;br /&gt;&lt;/strong&gt;&lt;/span&gt;&lt;span class=\"s1\"&gt;Founder&lt;br /&gt;&lt;/span&gt;&lt;span class=\"s2\"&gt;&lt;a href=\"https://prospect.io/\"&gt;&lt;strong&gt;Prospect.io&lt;/strong&gt;&lt;br /&gt;&lt;/a&gt;&lt;/span&gt;&lt;span class=\"s2\"&gt;&lt;a href=\"mailto:vincenzo@prospect.io\"&gt;vincenzo@prospect.io&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"disabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"from_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vincenzo Ruggiero"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brussels"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-15T14:48:46.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-11T10:54:51.000Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="object-attributes">Object attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><strong>integer</strong> <br />A unique identifier for the user</td>
+</tr>
+<tr>
+<td>name</td>
+<td><strong>string</strong> <br />The user&rsquo;s name</td>
+</tr>
+<tr>
+<td>email</td>
+<td><strong>string</strong> <br />The user&rsquo;s email address</td>
+</tr>
+<tr>
+<td>role</td>
+<td><strong>string</strong> <br />The user&rsquo;s role. Can be <code class="prettyprint">admin</code> or <code class="prettyprint">user</code></td>
+</tr>
+<tr>
+<td>phone_number</td>
+<td><strong>string</strong> <br />The user&rsquo;s phone number</td>
+</tr>
+<tr>
+<td>skype</td>
+<td><strong>string</strong> <br />The user&rsquo;s Skype username</td>
+</tr>
+<tr>
+<td>signature</td>
+<td><strong>string</strong> <br />The user&rsquo;s HTML signature</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td><strong>boolean</strong> <br />Whether or not the user is disabled or not</td>
+</tr>
+<tr>
+<td>from_name</td>
+<td><strong>string</strong> <br />The name we put in the email <code class="prettyprint">from</code> field</td>
+</tr>
+<tr>
+<td>timezone</td>
+<td><strong>string</strong> <br />The user&rsquo;s time zone</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td><strong>datetime</strong></td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td><strong>datetime</strong></td>
+</tr>
+</tbody></table>
+
+<h2 id="retrieve-a-user">Retrieve a user</h2>
+<pre class="highlight shell"><code><span class="c"># DEFINITION</span>
+GET https://prospect.io/api/public/v1/users/<span class="o">{</span>USER_ID<span class="o">}</span>
+
+<span class="c"># EXAMPLE</span>
+curl -X GET <span class="s2">"https://prospect.io/api/public/v1/users/1"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: your_api_key"</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/vnd.api+json; charset=utf-8"</span>
+</code></pre>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id<br /><strong>required</strong> - <em>integer</em></td>
+<td>The ID of the user to retrieve</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>Returns the <a href="#the-user-object">user object</a>.</p>
+
+<h2 id="list-users">List users</h2>
+<pre class="highlight shell"><code><span class="c"># DEFINITION</span>
+GET https://prospect.io/api/public/v1/users
+
+<span class="c"># EXAMPLE</span>
+curl -X GET <span class="s2">"https://prospect.io/api/public/v1/users"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: your_api_key"</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/vnd.api+json; charset=utf-8"</span> <span class="se">\</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io/api/public/v1/users?page%5Bnumber%5D=1&amp;page%5Bsize%5D=100"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io/api/public/v1/users?page%5Bnumber%5D=2&amp;page%5Bsize%5D=100"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prospect.io/api/public/v1/users?page%5Bnumber%5D=5&amp;page%5Bsize%5D=100"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns a list of campaigns steps.</p>
+
+<p>This list is <a href="#pagination">paginate</a> by 100 records and can also be <a href="#sorting">sorted</a>.</p>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
           </div>
       </div>
     </div>
