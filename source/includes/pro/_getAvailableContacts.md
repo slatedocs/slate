@@ -41,4 +41,4 @@ lastUpdateTime | [Date ISO 8601](https://ru.wikipedia.org/wiki/ISO_8601) | 1..1 
 **Exception:** | | |
 BankClientNotExistsException | string | 0..1 | клиент с запрошенным bankClientId не существует
 
-<aside class="warning">Активация данного функционала происходит при наличии формы c типом ``TRANSFER_BY_PHONE`` (на форме должно быть минимум одно поле c типом PHONE)</aside>
+<aside class="warning">Активация данного функционала происходит при наличии формы c типом ``TRANSFER_BY_PHONE`` (на форме должно быть минимум одно поле c типом ``SINGLE_LINE_TEXT``)</aside>
