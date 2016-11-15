@@ -83,7 +83,9 @@ it abuses some assumptions about the tables it is displaying. Some of these are 
 ### Complete example
 
 ```json
-"result": [
+{"element":"shoji:entity",
+"body":{
+    "result": [
   {
     "filter_names": ["Name_of_filter"],
     "rows": [
@@ -408,9 +410,11 @@ it abuses some assumptions about the tables it is displaying. Some of these are 
   }
 ],
 "display_settings":{
-    "valuesAreMeans": {"value": false},
-    "countsOrPercents": {"value": "percent"},
-    "percentageDirection": {"value": "colPct"},
-    "decimalPlaces": {"value": 1}
+        "valuesAreMeans": {"value": false},
+        "countsOrPercents": {"value": "percent"},
+        "percentageDirection": {"value": "colPct"},
+        "decimalPlaces": {"value": 1}
+    }
+}
 }
 ```
