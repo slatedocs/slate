@@ -306,8 +306,7 @@ curl "https://demo.gomus.de/api/v4/tours/1"
 ```
 
 The information is the same as that of the tours list response, but with the addition of the description 
-key and some other attributes.
-
+key and some other attributes like the dynamic content attributes
 
 
 ## Prices for a tour

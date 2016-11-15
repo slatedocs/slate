@@ -3,6 +3,7 @@
 ### 4.1
 
 - added documentation for time frames
+- added documentation for dynamic content attributes (roughly)
 
 
 ### 4.1-rc-3

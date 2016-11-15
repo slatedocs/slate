@@ -87,6 +87,9 @@ curl "https://demo.gomus.de/api/v4/museums/1"
             "article": "../article/hintergrund_grau.jpg",
             "detail": "../detail/hintergrund_grau.jpg"
         },
+        "content": {
+            ...
+        },
         "location": {
             "name": "Alte Nationalgalerie",
             "city": "Berlin",
@@ -105,7 +108,20 @@ curl "https://demo.gomus.de/api/v4/museums/1"
 The json response contains a museum block with information for that museum. The information is the same as that of the museums list response, but with the addition of a location block.
 
 - location, contains information about the location of the museum.
+- content, contains key/value pairs of custom defined attributes, e.g. the following:
 
+
+```json
+"content": {
+    "cms_title": "Museum",
+    "cms_description": "Das Museum!",
+    "shop_title": "Museum",
+    "shop_description": "Das Museum lädt ein.",
+    "picture_title": "",
+    "picture_description": "",
+    "picture_copyright_info": ""
+}
+```
 
 ## Opening hours of a single museum
 

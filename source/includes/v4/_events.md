@@ -310,7 +310,7 @@ plus blocks of attributes for category, picture, location and audiences.
 curl "https://demo.gomus.de/api/v4/events/1"
 ```
 
-The information is the same as that of the events list response, but with the addition of the description key.
+The information is the same as that of the events list response, but with the addition of the description key and dynamic contents.
 
 ## Calendar for a single event
 

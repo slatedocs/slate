@@ -111,6 +111,9 @@ curl "https://demo.gomus.de/api/v4/exhibitions/1"
             "end_at": "2016-12-04T20:45:00+01:00"
             }
         ],
+        "content": {
+            ...
+        },
         "location": {
             "name": "Gemäldegalerie",
             "city": "Berlin",
@@ -129,3 +132,19 @@ curl "https://demo.gomus.de/api/v4/exhibitions/1"
 The json response contains an exhibition block with information for that exhibition. The information is the same as that of the exhibitions list response, but with the addition of a location block.
 
 - location, contains information about the location of the exhibition.
+- content, contains key/value pairs of custom defined attributes, e.g. the following:
+
+
+```json
+"content": {
+    "cms_title": "Museum Besuchertage",
+    "cms_sub_title": "",
+    "cms_description": "Das Museum lädt ein.",
+    "shop_title": "Museum Besuchertage",
+    "shop_sub_title": "",
+    "shop_description": "Das Museum lädt ein.",
+    "picture_title": "",
+    "picture_description": "",
+    "picture_copyright_info": ""
+}
+```
