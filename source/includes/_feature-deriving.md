@@ -401,51 +401,152 @@ category represents a bin of the numeric values.
 Each category is annotated with a "boundaries" member that contains the 
 lower/upper bound of each bin.
 
-```
+```json
 {
     "function": "bin",
-    "args": []
+    "args": [
+        {"variable": "http://.."}
+    ]
 }
 ```
 
 #### case
 Returns a categorical column with its categories following the specified
-conditions from different columns on the dataset.
+conditions from different columns on the dataset. [View Case Statements](#Case-statements)
 
 #### cast
 Returns a new column with its type and values casted. Not applicable
-on arrays or date columns
+on arrays or date columns.
+
+```json
+{
+    "function": "cast",
+    "args": [
+        {"variable": "http://.."},
+        {"value": "numeric"}
+    ]
+}
+```
+
+The allowed types are:
+
+* numeric
+* text
+* categorical
+
+For categorical types it is necessary to indicate the categories as a type
+definition.
+
+```json
+{
+    "function": "cast",
+    "args": [
+        {"variable": "http://.."},
+        {"value": {
+                "class": "categorical",
+                "categories": [
+                    {"id": 1, "name": "one", "missing": false, "numeric_value": null},
+                    {"id": 2, "name": "two", "missing": false, "numeric_value": null},
+                    {"id": -1, "name": "No Data", "missing": true, "numeric_value": null},
+                ]
+            }
+        }
+    ]
+}
+```
+
 
 #### char_length
 Returns a numeric column containing the text length of each value. Only
-applicable on text columns
+applicable on text columns.
+
+```json
+{
+    "function": "char_length",
+    "args": [
+        {"variable": "http://.."}
+    ]
+}
+```
 
 #### copy_variable
 Returns a shallow copy of the indicated column maintaining type and data.
 
+```json
+{
+    "function": "variable",
+    "args": [
+        {"variable": "http://.."}
+    ]
+}
+```
+
 #### combine_categories
 Returns a categorical column with values combined following the specified
-combination rules
+combination rules. See [Combining categories](#Combining-categories)
 
 #### combine_responses
 Given a list of categorical columns, return the selected value out
-of them.
+of them. See [Combining responses](#Combining-responses)
 
 #### get
-Returns a subvariable from an array as a categorical column
+Returns a subvariable from an array as a categorical column.
+The first argument should be the URL of an array variable and the 
+second attribute a `value` containing the string ID of the desired
+subvariable.
+
+
+```json
+{
+    "function": "get",
+    "args": [
+        {"variable": "http://.."},
+        {"value": "subvariable id"}
+    ]
+}
+```
+
 
 #### missing
-Returns a column marked as missing accorging to a value. This is 
-generally used with a filter to mark certain values of a column as missing
+Returns a column marked as missing accorging to a value. This is generally 
+used with a filter to mark certain values of a column as missing.
+
+```json
+{
+    "function": "missing",
+    "args": [
+        {"variable": "http://.."},
+        {"value": "Text missing reason"},
+        {"value": <int_code_to_use>}
+    ]
+}
+```
 
 #### normalize
 Receives a numeric value and returns a numeric column with
 normalized values such that the its sum == its length
 
 #### row
-Returns a numeric column with row indices
+Returns a numeric column with row indices.
+
+```json
+{
+    "function": "row",
+    "args": []
+}
+```
 
 #### unmissing
 Returns a numeric column without without the missing marks, instead
 all the original column values. This is generally used with a filter
 to unset missing marks on certain values.
+
+
+```json
+{
+    "function": "unmissing",
+    "args": [
+        {"variable": "http://.."}
+    ]
+}
+```
