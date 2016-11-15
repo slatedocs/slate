@@ -19,6 +19,12 @@ Our most recent benchmarks (_lower is better_):
 
 We've [open-sourced our benchmarks](http://blog.scoutapp.com/articles/2016/02/07/overhead-benchmarks-new-relic-vs-scout) so you can test on our own. If your results differ, [reach out to us at support@scoutapp.com](mailto:support@scoutapp.com).
 
+### Call Aggregation
+
+During a transaction, the Scout agent records each database call, each external HTTP request, each rendering of a view, and several other instrumented libraries. While each individual pieces of this overall trace has a tiny memory footprint, large transactions can sometimes build up thousands and thousands of them.  
+
+To limit our agent's memory usage, we stop recording the details of every instrument after a relatively high limit. Detailed metrics and backtraces are collected for all calls up to the limit and aggregated metrics are collected for calls over the limit.
+
 ## Security
 
 We take the security of your code metrics extremely seriously. Keeping your data secure is fundamental to our business. Scout is nearing a decade storing critical metrics with our server monitoring product and those same fundamentals are applied here:
@@ -119,7 +125,7 @@ __This is the default approach__. You are billed for the number of servers that 
 
 #### Per-Request
 
-If you have a smaller application or have many smaller instances or Docker containers per-request billing may make more sense. Volume discounts are automatically applied as your application handles more throughput. Contact [support@scoutapp.com](mailto:support@scoutapp.com) for pricing options. 
+If you have a smaller application or have many smaller instances or Docker containers per-request billing may make more sense. Volume discounts are automatically applied as your application handles more throughput. Contact [support@scoutapp.com](mailto:support@scoutapp.com) for pricing options.
 
 ## Replacing New Relic
 
