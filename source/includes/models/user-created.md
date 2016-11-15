@@ -50,12 +50,14 @@ A Waypoint contains the customer information, their location, and a list of [Del
 | Field                     | Type                             | Required | Description
 |---------------------------|----------------------------------|----------|------------
 | name                      | String                           | true     | The name of the waypoint.
-| address                   | String                           | true     | The address of the waypoint.
-| location                  | [Location](#location)            | true     | The geocode coordinate of the waypoint.
+| address                   | String                           | false    | The address of the waypoint.
+| location                  | [Location](#location)            | false    | The geocode coordinate of the waypoint.
 | customerId                | String                           | true     | The globally unique identifier identifying the customer at the waypoint.
 | serviceTimeInSeconds      | Long                             | true     | The estimated amount of time in seconds the driver will take to complete the waypoint.
 | deliveries                | Collection<[Delivery](#delivery)>      | true     | The collection of Delivery objects at the waypoint. This collection must not be empty.
 | operatingHours               | Collection<[OperatingHours](#operatinghours)>  | true     | The collection of OperatingHours objects at the waypoint. This collection may be empty. The OperatingHours Collection must sum up to at least 4hrs 30min in duration, and any single OperatingHours cannot be shorter than 3hrs.
+
+Although the `address` and `location` fields are not required for a Waypoint, they should be provided if they exist.
 
 ```java
 Collection<Delivery> deliveries = ...;

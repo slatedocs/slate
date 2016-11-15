@@ -29,8 +29,8 @@ each will be returned. You will never need to create these Optimized models. The
 |--------------------------------------|-----------------------------------------------------------|----------|-------------
 | id                                   | String                                                    | false    | The id of the waypoint.
 | name                                 | String                                                    | false    | The name of the waypoint.
-| address                              | String                                                    | false    | The address at the waypoint.
-| location                             | [Location](#location)                                     | false    | The geocode coordinate at this waypoint.
+| address                              | String                                                    | true     | The address at the waypoint.
+| location                             | [Location](#location)                                     | true     | The geocode coordinate at this waypoint.
 | customerId                           | String                                                    | false    | The globally unique identifier identifying the customer at this waypoint.
 | serviceTimeInSeconds                 | Long                                                      | false    | The estimated amount of time in seconds the driver will take to complete this waypoint.
 | eta                                  | DateTime                                                  | true     | The estimated time of arrival at this waypoint.
