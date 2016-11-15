@@ -59,8 +59,9 @@ html, body {
 }
 
 .tocify-wrapper {
+  display: flex;
+  flex-direction: column;
   transition: left 0.3s ease-in-out;
-
   padding: 20px 0 0 0;
   overflow-y: auto;
   overflow-x: hidden;
@@ -86,7 +87,8 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
-    padding-left: $nav-padding
+    padding-left: $nav-padding;
+    align-self: baseline;
   }
 
   &>.search {
@@ -126,18 +128,22 @@ html, body {
     transition-duration: 180ms;
     transition-timing-function: ease-in-out;
     &.visible {
-      height: 30%;
+      flex-basis: 30%;
+      flex-shrink:0;
       margin-bottom: 1em;
+      border-bottom: 1px solid #dfdfdf;
     }
 
     li {
       margin: 1em $nav-padding;
-      line-height: 1;
+      line-height: 1.6;
     }
 
     a {
       color: $nav-text;
       text-decoration: none;
+      font-size: 13px;
+      display: block;
 
       &:hover {
         text-decoration: underline;
@@ -146,11 +152,8 @@ html, body {
   }
 
   .tocify {
-    position: absolute;
-    width: 100%;
     overflow-y: auto;
-    top: 100px;
-    bottom:85px;
+    flex-grow: 1;
   }
   .tocify-item>a, .toc-footer li {
     padding: 0 $nav-padding 0 $nav-padding;
@@ -211,8 +214,7 @@ html, body {
   .toc-footer {
     padding: 1em 0;
     margin-top: 1em;
-    position: absolute;
-    bottom:15px;
+    margin-bottom: 1em;
     width: 100%;
     
     li,a {
