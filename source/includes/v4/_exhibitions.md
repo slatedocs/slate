@@ -16,21 +16,27 @@ curl "https://demo.gomus.de/api/v4/exhibitions"
 {
     "exhibitions": [
         {
-        "id": 33,
-        "museum_id": 20,
-        "title": "Dauerausstellung | Gemäldegalerie",
-        "sub_title": "Malerei vom 13. bis zum 18. Jahrhundert ",
-        "slider_description": "Malerei vom 13. bis zum 18. Jahrhundert",
-        "featured": true,
-        "picture": {
-            "title": null,
-            "description": null,
-            "copyright_info": null,
-            "teaser": "...",
-            "preview": "../preview/hintergrund_grau.jpg",
-            "article": "../article/hintergrund_grau.jpg",
-            "detail": "../detail/hintergrund_grau.jpg"
-            }
+            "id": 33,
+            "museum_id": 20,
+            "title": "Dauerausstellung | Gemäldegalerie",
+            "sub_title": "Malerei vom 13. bis zum 18. Jahrhundert ",
+            "slider_description": "Malerei vom 13. bis zum 18. Jahrhundert",
+            "featured": true,
+            "picture": {
+                "title": null,
+                "description": null,
+                "copyright_info": null,
+                "teaser": "...",
+                "preview": "../preview/hintergrund_grau.jpg",
+                "article": "../article/hintergrund_grau.jpg",
+                "detail": "../detail/hintergrund_grau.jpg"
+            },
+            "time_frames": [
+                {
+                "start_at": "2016-11-28T09:00:00+01:00",
+                "end_at": "2016-12-04T20:45:00+01:00"
+                }
+            ]
         },
         {
             ...
@@ -68,6 +74,7 @@ The json response contains a list of exhibitions as an array and a meta block.
 - picture, contains picture information and urls for various image formats
 - slider_description, additional description field used by the online shop slider
 - featured, boolean flag of whether the exhibition is featured or not
+- time_frames, array of hashes with start_at and end_at key/value pairs for retention times of exhibitions. An exhibition without any timeframes is permanent exhibition.
 
 ## Details of a single exhibition
 
@@ -98,6 +105,12 @@ curl "https://demo.gomus.de/api/v4/exhibitions/1"
             "article": "../article/hintergrund_grau.jpg",
             "detail": "../detail/hintergrund_grau.jpg"
         },
+        "time_frames": [
+            {
+            "start_at": "2016-11-28T09:00:00+01:00",
+            "end_at": "2016-12-04T20:45:00+01:00"
+            }
+        ],
         "location": {
             "name": "Gemäldegalerie",
             "city": "Berlin",

@@ -1,5 +1,10 @@
 # Changelog
 
+### 4.1
+
+- added documentation for time frames
+
+
 ### 4.1-rc-3
 
 - added tagging for events, tours and dates
