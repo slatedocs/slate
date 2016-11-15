@@ -704,7 +704,7 @@ attribute pointing to the URL of the source dataset to use.
 {
   "element": "shoji:entity",
   "body": {
-    "copy_from": "htp://app.crunch.io/api/datasets/1234/"
+    "copy_from": "http://app.crunch.io/api/datasets/1234/"
   }
 }
 ```
@@ -721,6 +721,36 @@ will be brought over to the current dataset:
 * Derived variables
 * Personal variables
 * Permissions
+
+The response will be a `shoji:entity` containing as a body an object with
+keys for each entity type that uas not been copied. In the case of variables
+these entities will display their name, alias and owner (if personal).
+
+All the URLs will refer to entities on the source dataset.
+
+```json
+{
+    "element": "shoji:entity",
+    "body": {
+        "variables": {
+            "http://app.crunch.io/dataset/:sourceid/variables/:varid/": {
+                "name": "Variable name",
+                "alias": "Variable alias",
+                "owner_url": "http://app.crunch.io/users/.../
+            }, 
+            "http://app.crunch.io/dataset/:sourceid/variables/:varid/": {
+                "name": "Variable name",
+                "alias": "Variable alias",
+                "owner_url": "http://app.crunch.io/users/.../
+            }, 
+        },
+        "Filter": {
+            "http://app.crunch.io/filters/abcd/": {},
+            "http://app.crunch.io/filters/abcd/": {}
+        }
+    }
+}
+```
 
 
 #### DELETE
