@@ -21,9 +21,9 @@ We've [open-sourced our benchmarks](http://blog.scoutapp.com/articles/2016/02/07
 
 ### Call Aggregation
 
-During a transaction, the Scout agent records each database call, each external HTTP request, each rendering of a view, and a several other instrumented libraries. While each individual pieces of this overall trace has a tiny memory footprint, large transactions can sometimes build up thousands and thousands of them.  
+During a transaction, the Scout agent records each database call, each external HTTP request, each rendering of a view, and several other instrumented libraries. While each individual pieces of this overall trace has a tiny memory footprint, large transactions can sometimes build up thousands and thousands of them.  
 
-To limit our agent's memory usage, we stop recording the details of every instrument after a relatively high limit. Detailed metrics and backtraces are available for all calls up to the limit and aggregated metrics are available for calls over the limit.
+To limit our agent's memory usage, we stop recording the details of every instrument after a relatively high limit. Detailed metrics and backtraces are collected for all calls up to the limit and aggregated metrics are collected for calls over the limit.
 
 ## Security
 
