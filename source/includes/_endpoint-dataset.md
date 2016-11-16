@@ -747,8 +747,14 @@ All the URLs will refer to entities on the source dataset.
             }, 
         },
         "Filter": {
-            "http://app.crunch.io/filters/abcd/": {},
-            "http://app.crunch.io/filters/cdef/": {}
+            "http://app.crunch.io/filters/abcd/": {
+                "name": "filter name",
+                "owner_url": "http://app.crunch.io/users/qwe/"
+            },
+            "http://app.crunch.io/filters/cdef/": {
+                "name": "filter name",
+                "owner_url": "http://app.crunch.io/users/qwe/"
+            }
         }
     }
 }
