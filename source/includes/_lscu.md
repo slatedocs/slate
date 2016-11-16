@@ -67,7 +67,7 @@ var parameters = new api.Parameters();
         parameters.Add("primary-business-location", "NY, New York");
         parameters.Add("search-terms", "['restaurant manhattan', 'cafe new york']");
 
-var success = request.Post("v4/lscu", parameters);
+var success = request.Post("/v4/lscu", parameters);
 ```
 
 > Supplying Local Directory URLs (see local-directory-urls parameter)
@@ -209,7 +209,7 @@ var parameters = new api.Parameters();
         parameters.Add("primary-business-location", "NY, New York");
         parameters.Add("search-terms", "['restaurant manhattan', 'cafe new york']");
 
-var success = request.Put("v4/lscu", parameters);
+var success = request.Put("/v4/lscu", parameters);
 ```
 
 > Supplying Local Directory URLs (see local-directory-urls parameter)
@@ -332,7 +332,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 var parameters = new api.Parameters();
         parameters.Add("report-id", "860");
 
-var results = request.Get("v4/lscu", parameters);
+var results = request.Get("/v4/lscu", parameters);
 ```
 
 > Success (200 OK)
@@ -441,7 +441,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 var parameters = new api.Parameters();
         parameters.Add("report-id", "860");
 
-var success = request.Put("v4/lscu/run", parameters);
+var success = request.Put("/v4/lscu/run", parameters);
 ```
 
 > Success (200 OK)
@@ -523,7 +523,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 var parameters = new api.Parameters();
         parameters.Add("report-id", "860");
 
-var success = request.Delete("v4/lscu", parameters);
+var success = request.Delete("/v4/lscu", parameters);
 ```
 
 > Success (200 OK)
@@ -603,7 +603,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 var parameters = new api.Parameters();
         parameters.Add("q", "Bodega Wine Bar");
 
-var results = request.Get("v4/lscu/search", parameters);
+var results = request.Get("/v4/lscu/search", parameters);
 ```
 
 > Success (200 OK)

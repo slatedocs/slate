@@ -11,7 +11,7 @@
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('v1/clients-and-locations/locations/', [
+$success = $api->post('/v1/clients-and-locations/locations/', [
     'name'                 => 'Le Bernardin',    
     'url'                  => 'le-bernardin.com',
 	'business-category-id' =>  605,
@@ -59,7 +59,7 @@ var parameters = new api.Parameters();
            parameters.Add("postcode", "10019");
            parameters.Add("telephone", "+1 212-554-1515");    
 
-var success = request.Post("v1/clients-and-locations/locations/", parameters);
+var success = request.Post("/v1/clients-and-locations/locations/", parameters);
 ```
 
 > Success (200 OK)
@@ -125,7 +125,7 @@ use BrightLocal\Api;
 
 $locationId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->put('v1/clients-and-locations/locations/' .$locationId, [
+$success = $api->put('/v1/clients-and-locations/locations/' .$locationId, [
     'name'                 => 'Le Bernardin',    
     'url'                  => 'le-bernardin.com',
 	'business-category-id' =>  605,
@@ -174,7 +174,7 @@ var parameters = new api.Parameters();
        parameters.Add("postcode", "10019");
        parameters.Add("telephone", "+1 212-554-1515");
 
-    var success = request.Put("v1/clients-and-locations/locations/" + locationId + "", parameters);
+var success = request.Put("/v1/clients-and-locations/locations/" + locationId + "", parameters);
 ```
 
 > Success (200 OK)
@@ -236,7 +236,7 @@ use BrightLocal\Api;
 
 $locationId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$result = $api->delete('v1/clients-and-locations/locations/' . $locationId);
+$result = $api->delete('/v1/clients-and-locations/locations/' . $locationId);
 if (!empty($result['success'])) {
     echo 'Successfully deleted location.' . PHP_EOL;
 }
@@ -248,7 +248,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 var locationId = 1;
 var parameters = new api.Parameters();           
 
-var success = request.Delete("v1/clients-and-locations/locations/" + locationId + "", parameters);
+var success = request.Delete("/v1/clients-and-locations/locations/" + locationId + "", parameters);
 ```
 
 > Success (200 OK)
@@ -286,7 +286,7 @@ use BrightLocal\Api;
 
 $locationId = 1;
 $api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
-$location = $api->get('v1/clients-and-locations/locations/' . $locationId);
+$location = $api->get('/v1/clients-and-locations/locations/' . $locationId);
 print_r($location);
 ```
 
@@ -296,7 +296,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 var locationId = 1;
 var parameters = new api.Parameters();
 
-var success = request.Get("v1/clients-and-locations/locations/" + locationId + "", parameters);
+var success = request.Get("/v1/clients-and-locations/locations/" + locationId + "", parameters);
 ```
 
 > Success (200 OK)
@@ -369,7 +369,7 @@ expires | <span class="label label-required">Required</span> [See above for how 
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->call('v1/clients-and-locations/locations/search', [
+$results = $api->call('/v1/clients-and-locations/locations/search', [
     'q' => 'BrightLocal'    
 ]);
 print_r($results);
@@ -388,9 +388,9 @@ curl -X GET \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-       parameters.Add("q", "My Sample Query");
+       parameters.Add("q", "BrightLocal");
 
-var success = request.Get("v1/clients-and-locations/locations/search", parameters);
+var success = request.Get("/v1/clients-and-locations/locations/search", parameters);
 ```
 
 > Success (200 OK)
