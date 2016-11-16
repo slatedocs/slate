@@ -733,20 +733,22 @@ All the URLs will refer to entities on the source dataset.
     "element": "shoji:entity",
     "body": {
         "variables": {
-            "http://app.crunch.io/dataset/:sourceid/variables/:varid/": {
+            "http://app.crunch.io/dataset/1234/variables/abc/": {
                 "name": "Variable name",
                 "alias": "Variable alias",
-                "owner_url": "http://app.crunch.io/users/.../
+                "owner_url": "http://app.crunch.io/users/qwe/",
+                "owner_name": "Angus MacGyver"
             }, 
-            "http://app.crunch.io/dataset/:sourceid/variables/:varid/": {
+            "http://app.crunch.io/dataset/1234/variables/cde/": {
                 "name": "Variable name",
                 "alias": "Variable alias",
-                "owner_url": "http://app.crunch.io/users/.../
+                "owner_url": null,
+                "owner_name": null
             }, 
         },
         "Filter": {
             "http://app.crunch.io/filters/abcd/": {},
-            "http://app.crunch.io/filters/abcd/": {}
+            "http://app.crunch.io/filters/cdef/": {}
         }
     }
 }
