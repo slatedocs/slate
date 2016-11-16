@@ -46,7 +46,7 @@ pro server - [http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl]
 0. В Apache TomCat задеплоить копии pro.war и light.war предварительно переименовав их, например в pro_new.war и light_new.war
 0. Установить фронт-серверное приложение, например, [nginx](https://nginx.org/ru/) или [Apache HTTPD](https://httpd.apache.org)
 0. Настроить дополнительный домен, например, если у вас используется домен ida.mybank.com для мобильных приложений, то нужно создать домен ida_new.mybank.com, который так-же будет ссылаться на IP настраиваемого сервера
-0. Произвести настройку фронт-сервера таким образом, что бы траффик для домена ida.mybank.com перенаправлялся на localhost:8080/pro (8080 - порт TomCat по умолчанию), а траффик ida_new.mybank.com направлялся на localhost:8080/pro_new. Пример подобной [настройки nginx](http://serverfault.com/questions/536576/nginx-how-do-i-forward-a-http-request-to-another-port)
+0. Произвести настройку фронт-сервера таким образом, что бы траффик для домена ida.mybank.com перенаправлялся на localhost:8080/pro (8080 - порт TomCat по умолчанию), а траффик ``ida_new.mybank.com`` направлялся на ``localhost:8080/pro_new``. Пример подобной [настройки nginx](http://serverfault.com/questions/536576/nginx-how-do-i-forward-a-http-request-to-another-port)
 
 **Конфигурирование сервиса**
 
