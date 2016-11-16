@@ -8,7 +8,8 @@ participant CRM as c
 participant iDaLight as l
 participant Mobile as m
 
-b->l: add form types to PostgresBD via sql script
+b->c: create contact form
+b->l: mergeFormTypes()
 c->l: getFormTypes()
 c->l: addForm(type, fields)
 l->m: update mobile forms are available\nthrough new login or pull-to-refresh
@@ -21,4 +22,4 @@ l->c: createOrder()
 
 Данный сервис разработан для интеграции с внешней CRM и позволяет направлять данные, полученные через контактные формы. Пример [WSDL](http://dev.idamob.ru/orders-server-stub/services/OrdersWebServiceFacade?wsdl)
 
-![image](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=cGFydGljaXBhbnQgQmFuayBhcyBiCgAKDENSTSBhcyBjAAgNaURhTGlnaHQgYXMgbAAiDU1vYmlsZSBhcyBtCgpiLT5sOiBhZGQgZm9ybSB0eXBlcyB0byBQb3N0Z3Jlc0JEIHZpYSBzcWwgc2NyaXB0CmMALQVnZXRGb3JtVHlwZXMoKQAOB2FkZEZvcm0odHlwZSwgZmllbGRzKQpsLT5tOiB1cGRhdGUgbQB3BmZvcm1zIGFyZSBhdmFpbGFibGVcbnRocm91Z2ggbmV3IGxvZ2luIG9yIHB1bGwtdG8tcmVmcmVzaAptAEkFZmlsbGluZwCBLwZ3aXRoAGgGIHZhbGlkYXRpb24KbQCBVQVyZXNwb25zZSBmcm9tAHcHXG4AKwdsbGVkAIEgBwpsLT5jOiBjcmVhdGVPcmRlcigp&s=default)
+![image](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=cGFydGljaXBhbnQgQmFuayBhcyBiCgAKDENSTSBhcyBjAAgNaURhTGlnaHQgYXMgbAAiDU1vYmlsZSBhcyBtCgpiLT5jOiBjcmVhdGUgY29udGFjdCBmb3JtCmItPmw6IG1lcmdlRm9ybVR5cGVzKCkKYwASBWdldAADEmFkZEZvcm0odHlwZSwgZmllbGRzKQpsLT5tOiB1cGRhdGUgbQB2BmZvcm1zIGFyZSBhdmFpbGFibGVcbnRocm91Z2ggbmV3IGxvZ2luIG9yIHB1bGwtdG8tcmVmcmVzaAptAEkFZmlsbGluZwCBJAUgd2l0aABoBiB2YWxpZGF0aW9uCm0AgToFcmVzcG9uc2UgZnJvbQB3B1xuACsHbGxlZACBIAcKbACBfQtPcmRlcigpCg&s=default)
