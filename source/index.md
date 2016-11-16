@@ -27,6 +27,7 @@ includes:
   - endpoint-filter
   - endpoint-deck
   - endpoint-tabbook
+  - endpoint-xlsx
   - endpoint-boxdata
   - endpoint-comparison
   - endpoint-version
