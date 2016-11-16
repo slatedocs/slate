@@ -40,6 +40,7 @@ includes:
   - pro/getEvents
   - pro/getVersion
   - pro/dataStructs
+  - pro/LogoResource
   - pro/BankClientDTO
   - pro/CurrentAccountDTO
   - pro/CreditAccountDTO
