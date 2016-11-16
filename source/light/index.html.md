@@ -23,6 +23,7 @@ includes:
   - light/mergeLocationServices
   - light/mergeLocationStatuses
   - light/mergeLocationTypes
+  - light/mergeFormTypes
   - light/removeContact
   - light/updateBanner
   - light/getContacts
@@ -39,7 +40,9 @@ includes:
   - light/deleteLocations
   - light/removeLocationStatus
   - light/removeLocationType
+  - light/removeFormType
   - light/deleteLocationStatuses
+  - light/deleteFormTypes
   - light/getNewsFeed
   - light/dataStructs
   - light/WsLocalizedRssUrl
@@ -51,7 +54,6 @@ includes:
   - light/WsLocationStatusDTO
   - light/WsLocationServiceDTO
   - light/WsContactDTO
-  - light/WsFieldDTO
   - light/WsFormTypeDTO
   - light/WsNewsDTO
   - light/outIntagration
