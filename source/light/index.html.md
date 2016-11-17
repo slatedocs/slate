@@ -10,41 +10,42 @@ toc_footers:
 
 includes:
   - light/requestStructs
-  - light/getLocalizedRssUrls
-  - light/setLocalizedRssUrls
-  - light/updateCurrencyRate
-  - light/getFormTypes
-  - light/getLocationTypes
   - light/addForm
   - light/addFormType
+  - light/addCurrencyRate
+  - light/addContact
+  - light/addBanner
+  - light/deleteLocations
+  - light/deleteLocationStatuses
+  - light/deleteFormTypes
   - light/editForm
   - light/editFormType
+  - light/editContact
+  - light/editBanner
   - light/getBanners
-  - light/removeForm
+  - light/getCurrencyRates
+  - light/getForms
+  - light/getFormTypes
+  - light/getLocations
+  - light/getLocationTypes
+  - light/getLocalizedRssUrls
+  - light/getContacts
+  - light/getNearestLocation
+  - light/getNewsFeed
   - light/mergeLocations
   - light/mergeLocationServices
   - light/mergeLocationStatuses
   - light/mergeLocationTypes
+  - light/removeForm
   - light/removeContact
-  - light/updateBanner
-  - light/getContacts
   - light/removeBanner
-  - light/getLocations
-  - light/getNearestLocation
-  - light/editContact
-  - light/addCurrencyRate
-  - light/addContact
-  - light/getCurrencyRates
-  - light/addBanner
-  - light/getForms
   - light/removeCurrencyRate
-  - light/deleteLocations
   - light/removeLocationStatus
   - light/removeLocationType
   - light/removeFormType
-  - light/deleteLocationStatuses
-  - light/deleteFormTypes
-  - light/getNewsFeed
+  - light/requestStructs
+  - light/setLocalizedRssUrls
+  - light/updateCurrencyRate
   - light/dataStructs
   - light/WsLocalizedRssUrl
   - light/WsFormDTO
