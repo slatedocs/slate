@@ -43,7 +43,6 @@ includes:
   - light/removeLocationStatus
   - light/removeLocationType
   - light/removeFormType
-  - light/requestStructs
   - light/setLocalizedRssUrls
   - light/updateCurrencyRate
   - light/dataStructs
