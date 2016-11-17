@@ -395,53 +395,101 @@ POST'ing to the private variables catalog a Shoji Entity containing a ZCL functi
 
 ### Other transformations
 
+#### Arithmetic operations
+
+It is possible to create new numeric variables out of pairs of other
+ numeric variables. The following arithmetic operations are available
+ and will take two numeric variables as their arguments.
+
+ * "+" for adding up two numeric columns.
+ * "-" returns the difference between two numeric columns.
+ * "*" for the product of two numeric columns.
+ * "/" Real division.
+ * "//" Floor division; Returns always an integer.
+ * "^" Raises the first argument to the power of the second argument
+ * "%" Modulo operation; Accepts floats
+
+
+The usage is as follows for all operators:
+
+```json
+{
+    "function": "+",
+    "args": [
+        {"variable": "https://app.crunch.io/api/datasets/123/variables/abc/"}
+        {"variable": "https://app.crunch.io/api/datasets/123/variables/def/"}
+    ]
+}
+```
+
+
 #### bin
-Receives a numeric column and returns a categorical column where each
+Receives a numeric variable and returns a categorical one where each
 category represents a bin of the numeric values.
-Each category is annotated with a "boundaries" member that contains the 
-lower/upper bound of each bin.
+
+Each category on the new variable is annotated with a "boundaries" 
+member that contains the lower/upper bound of each bin.
 
 ```json
 {
     "function": "bin",
     "args": [
-        {"variable": "http://.."}
+        {"variable": "https://app.crunch.io/api/datasets/123/variables/abc/"}
+    ]
+}
+```
+
+Optionally it is possible to pass a second argument indicating the desired
+bin size to use instead of allowing the API to decide them.
+
+
+```json
+{
+    "function": "bin",
+    "args": [
+        {"variable": "https://app.crunch.io/api/datasets/123/variables/abc/"},
+        {'value': 100}
     ]
 }
 ```
 
 #### case
-Returns a categorical column with its categories following the specified
-conditions from different columns on the dataset. [View Case Statements](#Case-statements)
+Returns a categorical variable with its categories following the specified
+conditions from different variables on the dataset. [View Case Statements](#Case-statements)
 
 #### cast
-Returns a new column with its type and values casted. Not applicable
-on arrays or date columns.
+Returns a new variable with its type and values casted. Not applicable
+on arrays or date variable; use [Date Functions](#Date-Functions) to
+work with date variables.
 
 ```json
 {
     "function": "cast",
     "args": [
-        {"variable": "http://.."},
+        {"variable": "https://app.crunch.io/api/datasets/123/variables/abc/"},
         {"value": "numeric"}
     ]
 }
 ```
 
-The allowed types are:
+The allowed output variable types are:
 
 * numeric
 * text
 * categorical
 
 For categorical types it is necessary to indicate the categories as a type
-definition.
+definition instead of a string name:
+
+To cast to categorical type, the second argument `value` should not be
+ a name string (`numeric`, `text`) but a type definition indicating a 
+ `class` and `categories` as follow:
 
 ```json
 {
     "function": "cast",
     "args": [
-        {"variable": "http://.."},
+        {"variable": "https://app.crunch.io/api/datasets/123/variables/abc/"},
         {"value": {
                 "class": "categorical",
                 "categories": [
@@ -455,98 +503,54 @@ definition.
 }
 ```
 
+To change the type of a variable a client should POST to the `/variable/:id/cast/`
+endpoint. See [Convert type](#Convert-type) for API examples.
+
 
 #### char_length
 Returns a numeric column containing the text length of each value. Only
-applicable on text columns.
+applicable on text variables.
 
 ```json
 {
     "function": "char_length",
     "args": [
-        {"variable": "http://.."}
+        {"variable": "https://app.crunch.io/api/datasets/123/variables/abc/"}
     ]
 }
 ```
 
 #### copy_variable
-Returns a shallow copy of the indicated column maintaining type and data.
+Returns a shallow copy of the indicated variable maintaining type and data.
 
 ```json
 {
     "function": "variable",
     "args": [
-        {"variable": "http://.."}
+        {"variable": "https://app.crunch.io/api/datasets/123/variables/abc/"}
     ]
 }
 ```
+
+Changes on the data of the original variable will be reflected on this copy.
+
 
 #### combine_categories
 Returns a categorical column with values combined following the specified
 combination rules. See [Combining categories](#Combining-categories)
 
+
 #### combine_responses
 Given a list of categorical columns, return the selected value out
 of them. See [Combining responses](#Combining-responses)
 
-#### get
-Returns a subvariable from an array as a categorical column.
-The first argument should be the URL of an array variable and the 
-second attribute a `value` containing the string ID of the desired
-subvariable.
-
-
-```json
-{
-    "function": "get",
-    "args": [
-        {"variable": "http://.."},
-        {"value": "subvariable id"}
-    ]
-}
-```
-
-
-#### missing
-Returns a column marked as missing accorging to a value. This is generally 
-used with a filter to mark certain values of a column as missing.
-
-```json
-{
-    "function": "missing",
-    "args": [
-        {"variable": "http://.."},
-        {"value": "Text missing reason"},
-        {"value": <int_code_to_use>}
-    ]
-}
-```
-
-#### normalize
-Receives a numeric value and returns a numeric column with
-normalized values such that the its sum == its length
 
 #### row
-Returns a numeric column with row indices.
+Returns a numeric variable with row 0 based indices. It takes no arguments.
 
 ```json
 {
     "function": "row",
     "args": []
-}
-```
-
-#### unmissing
-Returns a numeric column without without the missing marks, instead
-all the original column values. This is generally used with a filter
-to unset missing marks on certain values.
-
-
-```json
-{
-    "function": "unmissing",
-    "args": [
-        {"variable": "http://.."}
-    ]
 }
 ```
