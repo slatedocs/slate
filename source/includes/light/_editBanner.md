@@ -1,6 +1,4 @@
-## updateBanner
-
-Обновление баннера
+## editBanner
 
 key | type | status | comment
 --- | ---- | :----: | ---:
