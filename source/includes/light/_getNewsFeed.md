@@ -10,3 +10,5 @@ key | type | status | comment
 limit | int | 1..1 | ограничитель максимального количества новостей (0 или NULL - без ограничений)
 **Response:** | | |
 news | [WsNewsDTO](#wsnewsdto) | 0..1 | массив доступных новостей
+sucсess | bool | 0..1 | статус операции
+errorMessage | string | 0..1 | текстовое сообщение
