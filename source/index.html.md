@@ -51,7 +51,7 @@ Doordeck uses tokens to permit access to the API. Doordeck expects for the token
 You must replace <code>TOKEN</code> with your authentication token (the <code>authToken</code> from the login response).
 </aside>
 
-Authentication tokens are JSON web tokens, they can be examined to determine their expiry date, the user's ID. JSON web tokens are split into three sections seperated by a `.`, the header, payload and signature - each section can be base64 decoded to read further.
+Authentication tokens are JSON web tokens, they can be examined to determine their expiry date, the user's ID. JSON web tokens are split into three sections separated by a `.`, the header, payload and signature - each section can be base64 decoded to read further.
 
 ```shell
 echo 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NzMxNjMwNzUsImlhdCI6MTQ3MzA3NjY3NSwic3ViIjoiNWE1ZjZlODAtM2M1MS0xMWU2LTllNTctY2Y0MGJlMzAxM2ZiIiwic2Vzc2lvbiI6ImZiMmEwMDYwLTczNWYtMTFlNi1iNDg3LTZmMTZmZGE1MzkxNyIsInJlZnJlc2giOmZhbHNlLCJlbWFpbCI6Im1pY2hhZWxAZG9vcmRlY2suY29tIn0.REDCATED' | cut -d. -f2 | base64 -D
@@ -96,7 +96,7 @@ curl 'https://api.doordeck.com/auth/token/'
 
 This endpoint lets user's attempt to login.
 
-### HTTP Requst
+### HTTP Request
 
 `POST https://api.doordeck.com/auth/token`
 
@@ -291,7 +291,7 @@ This endpoint retrieves information about a specific lock, its usage is prefered
 
 `GET https://api.doordeck.com/device/LOCK_ID`
 
-Replace `LOCK_ID` with the appropiate lock ID.
+Replace `LOCK_ID` with the appropriate lock ID.
 
 ## Get lock audit trail
 
@@ -320,13 +320,13 @@ curl 'https://api.doordeck.com/device/00000000-0000-0000-0000-000000000000/log'
 ]
 ```
 
-This endpoint retrievs all log events associated with a particular lock.
+This endpoint retrieves all log events associated with a particular lock.
 
 ### HTTP Request
 
 `GET https://api.doordeck.com/device/LOCK_ID/log`
 
-Replace `LOCK_ID` with the appropiate lock ID.
+Replace `LOCK_ID` with the appropriate lock ID.
 
 ### Event Types
 The call returns an enum of event types:
@@ -431,7 +431,11 @@ This endpoint allows operations to be performed on a lock, typically this is loc
 
 `POST https://api.doordeck.com/device/LOCK_ID/execute`
 
-Replace `LOCK_ID` with the appropiate lock ID.
+Replace `LOCK_ID` with the appropriate lock ID.
+
+<aside class="success">
+If a request expires within the next 60 seconds, a 200 is returned upon success, if a request expires in more than 60 seconds, a 202 is returned to indicate the request has been queued for the device.
+</aside>
 
 ### Request Parameters
 
