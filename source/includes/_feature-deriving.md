@@ -401,9 +401,9 @@ It is possible to create new numeric variables out of pairs of other
  numeric variables. The following arithmetic operations are available
  and will take two numeric variables as their arguments.
 
- * "+" for adding up two numeric columns.
- * "-" returns the difference between two numeric columns.
- * "*" for the product of two numeric columns.
+ * "+" for adding up two numeric variables.
+ * "-" returns the difference between two numeric variables.
+ * "*" for the product of two numeric variables.
  * "/" Real division.
  * "//" Floor division; Returns always an integer.
  * "^" Raises the first argument to the power of the second argument
@@ -508,7 +508,7 @@ endpoint. See [Convert type](#Convert-type) for API examples.
 
 
 #### char_length
-Returns a numeric column containing the text length of each value. Only
+Returns a numeric variable containing the text length of each value. Only
 applicable on text variables.
 
 ```json
@@ -536,12 +536,12 @@ Changes on the data of the original variable will be reflected on this copy.
 
 
 #### combine_categories
-Returns a categorical column with values combined following the specified
+Returns a categorical variable with values combined following the specified
 combination rules. See [Combining categories](#Combining-categories)
 
 
 #### combine_responses
-Given a list of categorical columns, return the selected value out
+Given a list of categorical variables, return the selected value out
 of them. See [Combining responses](#Combining-responses)
 
 
