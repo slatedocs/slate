@@ -16,14 +16,15 @@ includes:
   - light/getFormTypes
   - light/getLocationTypes
   - light/addForm
+  - light/addFormType
   - light/editForm
+  - light/editFormType
   - light/getBanners
   - light/removeForm
   - light/mergeLocations
   - light/mergeLocationServices
   - light/mergeLocationStatuses
   - light/mergeLocationTypes
-  - light/mergeFormTypes
   - light/removeContact
   - light/updateBanner
   - light/getContacts

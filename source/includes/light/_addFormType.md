@@ -1,9 +1,10 @@
-## mergeLocationTypes
+## addFormType
 
 key | type | status | comment
 --- | ---- | :----: | ---:
 **Request:** | | |
-types | [WsLocationTypeDTO](#wslocationtypedto) | 1..1 | типы
+formType | [WsFormTypeDTO](#wsformtypedto) | 1..1 | шаблон формы
 **Response:** | | |
+formType | [WsFormTypeDTO](#wsformtypedto) | 1..1 | шаблон формы
 sucсess | bool | 0..1 | статус операции
 errorMessage | string | 0..1 | текстовое сообщение
