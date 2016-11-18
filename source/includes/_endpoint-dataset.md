@@ -704,7 +704,7 @@ attribute pointing to the URL of the source dataset to use.
 {
   "element": "shoji:entity",
   "body": {
-    "copy_from": "http://app.crunch.io/api/datasets/1234/"
+    "copy_from": "https://app.crunch.io/api/datasets/1234/"
   }
 }
 ```
@@ -733,27 +733,27 @@ All the URLs will refer to entities on the source dataset.
     "element": "shoji:entity",
     "body": {
         "variables": {
-            "http://app.crunch.io/dataset/1234/variables/abc/": {
+            "https://app.crunch.io/dataset/1234/variables/abc/": {
                 "name": "Variable name",
                 "alias": "Variable alias",
-                "owner_url": "http://app.crunch.io/users/qwe/",
+                "owner_url": "https://app.crunch.io/users/qwe/",
                 "owner_name": "Angus MacGyver"
             }, 
-            "http://app.crunch.io/dataset/1234/variables/cde/": {
+            "https://app.crunch.io/dataset/1234/variables/cde/": {
                 "name": "Variable name",
                 "alias": "Variable alias",
                 "owner_url": null,
                 "owner_name": null
             }, 
         },
-        "Filter": {
-            "http://app.crunch.io/filters/abcd/": {
+        "filters": {
+            "https://app.crunch.io/filters/abcd/": {
                 "name": "filter name",
                 "owner_url": "http://app.crunch.io/users/qwe/"
             },
             "http://app.crunch.io/filters/cdef/": {
                 "name": "filter name",
-                "owner_url": "http://app.crunch.io/users/qwe/"
+                "owner_url": "https://app.crunch.io/users/qwe/"
             }
         }
     }
