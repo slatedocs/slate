@@ -130,7 +130,7 @@ curl -X POST 'https://integrations.expensify.com/Integration-Server/ExpensifyInt
     --data-urlencode 'template@expensify_template.ftl'
 ```
 
-> - expensify_template.ftl sample. See the [export template format reference](/export_report_template.html) for more information about how to write export templates.
+> - expensify_template.ftl sample. See the [export template format reference](./export_report_template.html) for more information about how to write export templates.
 
 
 ```shell
@@ -228,7 +228,7 @@ port | Integer | | The port to connect to on the SFTP server. |
 
 The `template` parameter is used to format the Expensify data as you wish. It is based on the Freemarker language's syntax.
 
-See the [export template format reference](/export_report_template.html) for more information about how to write export templates.
+See the [export template format reference](./export_report_template.html) for more information about how to write export templates.
 
 <aside class="notice">
 We recommend storing your template in separate files, which can be passed to the request more easily with cURL's `@` operator.
