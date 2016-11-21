@@ -9,7 +9,7 @@
     <firstCurrency>CHF</firstCurrency>
     <secondCurrency>RUB</secondCurrency>
     <groupName>Internet bank exchange</groupName>
-    <type>OTHER</type>
+    <rateType>OTHER</rateType>
 </rate>
 ```
 
@@ -21,7 +21,7 @@ firstCurrency | string | 1..1 | первая валюта
 secondCurrency | string | 1..1 | вторая валюта
 buy | string | 1..1 | цена покупки
 sell | string | 1..1 | цена продажи
-type | [CurrencyRateType](#currencyratetype) | 1..1 | тип курса
+rateType | [CurrencyRateType](#currencyratetype) | 1..1 | тип курса
 groupName | string | 0..1 | имя группы
 
 ### CurrencyRateType
