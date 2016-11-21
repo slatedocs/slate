@@ -32,6 +32,13 @@ curl -X POST \
     https://tools.brightlocal.com/seo-tools/api/v4/batch
 ```
 
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+batchApi batchRequest = new batchApi(Api);
+
+int batchId = batchRequest.Create();
+```
+
 > Success - status code 201 Created
 
 ```json
@@ -107,6 +114,15 @@ curl -X PUT \
     https://tools.brightlocal.com/seo-tools/api/v4/batch
 ```
 
+```csharp
+int batchId = 1;
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+batchApi batchRequest = new batchApi(Api);
+
+// Commit the batch, resturns true or false
+bool commit = batchRequest.Commit(batchId);
+```
+
 > Success - status code 200 OK
 
 ```json
@@ -165,6 +181,14 @@ print_r($batchApi->get_results($batchId));
 
 ```shell
 curl 'https://tools.brightlocal.com/seo-tools/api/v4/batch?api-key=<INSERT_API_KEY>&batch-id=<INSERT_BATCH_ID>'
+```
+
+```csharp
+int batchId = 1;
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+batchApi batchRequest = new batchApi(Api);
+
+var results = batchRequest.GetResults(batchId);
 ```
 
 > Success - status code 200 OK
@@ -256,6 +280,14 @@ if ($batchApi->delete($batchId)) {
 curl -X DELETE 'https://tools.brightlocal.com/seo-tools/api/v4/batch?api-key=<INSERT_API_KEY>&batch-id=<INSERT_BATCH_ID>'
 ```
 
+```csharp
+int batchId = 1;
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+batchApi batchRequest = new batchApi(Api);
+
+var success = batchRequest.Delete(batchId);
+```
+
 > Success - status code 200 Ok
 
 ```json
@@ -310,6 +342,14 @@ curl -X PUT
     -d 'api-key=<INSERT_API_KEY>' \
     -d 'batch-id=<INSERT_BATCH_ID>' \
     https://tools.brightlocal.com/seo-tools/api/v4/batch/stop
+```
+
+```csharp
+int batchId = 1;
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+batchApi batchRequest = new batchApi(Api);
+
+var success = batchRequest.Stop(batchId);
 ```
 
 > Success - status code 200 Ok
