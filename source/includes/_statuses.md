@@ -17,7 +17,6 @@ State | Description
 ------|------
 **Payment** | An order is in the payment process.
 **Pickup** | Booking has been consigned and Courier is scheduled to pick up the parcel.
-**In Transit** | Parcel is in transit.
+**Transit** | Parcel is in transit.
 **Delivered** | Parcel has been successfully delivered.
 **Cancelled** | A cancelled order.
-
