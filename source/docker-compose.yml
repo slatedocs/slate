@@ -1,0 +1,6 @@
+version: "2"
+services:
+  slate:
+    build: .
+    ports:
+     - "4567:4567"
