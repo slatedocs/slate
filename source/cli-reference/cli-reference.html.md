@@ -21,7 +21,7 @@ The Bonsai Command Line Interface (CLI) is a text based tool that enables you to
 ```
 $ bonsai command --help
 ```
-Use bonsai _command_ \--help to get information about a specific command. You can use bonsai --help to view a list of groups and commands.
+Use `bonsai command --help` to get information about a specific command. You can use bonsai --help to view a list of groups and commands.
 
 The Bonsai CLI is hierarchical.
 
