@@ -1,11 +1,8 @@
 ---
-title: API Reference
+title: Bonsai Documentation
 
 language_tabs:
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -16,6 +13,11 @@ includes:
 
 search: true
 ---
+
+<aside class="success">Bonsai Docs Test Repo!!</aside>
+# Bonsai Documentation
+
+This is our test-bed for making new docs. A fully fleshed-out example can be found at [Getting Started with Anaconda](getting-started/getting-started-with-anaconda.html).
 
 # Introduction
 
@@ -186,4 +188,3 @@ This endpoint retrieves a specific kitten.
 Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to retrieve
-
