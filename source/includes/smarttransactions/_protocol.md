@@ -25,7 +25,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"0": {"text": "Starbucks",
     "category": null,
     "merchant": {
       "name": "Burger King",
-      "logoURL": "http://res.cloudinary.com/instabank/image/upload/c_scale,w_64/v1402048892/ic_bking_ju8w61.png"
+      "logoURL": "http://res.cloudinary.com/instabank/image/upload/v1402048892/ic_bking_ju8w61.png"
     }
   }
 }
@@ -45,7 +45,7 @@ comment | url
 
 ### logoURL
 
-URL для доступа к логотипу мерчента на мобильном распознает параметр для удобства скелинга картинки и оптимизации трафика и размеров http://.../**c_scale,w_64**/name.png
+URL для доступа к логотипу мерчента распознает параметр ``c_scale,w_64`` для удобства скелинга картинки и оптимизации трафика и размеров ``http://...upload/c_scale,w_64/v00000000000/name.png``
 
 size | url
 --- | ---
