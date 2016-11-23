@@ -234,6 +234,143 @@ See the [export template format reference](./export_report_template.html) for mo
 We recommend storing your template in separate files, which can be passed to the request more easily with cURL's `@` operator.
 </aside>
 
+## Reconciliation
+
+> - Export unreported transactions on all feeds between 1/1/2016 and 10/10/2016 to a CSV file.
+
+```shell
+{
+    "type":"reconciliation",
+    "credentials":{
+        "partnerUserID":"...",
+        "partnerUserSecret":"..."
+    },
+    "inputSettings":{
+        "startDate":"2016-01-01",
+        "endDate":"2016-10-10",
+        "domain":"example.com",
+        "feed":"export_all_feeds",
+        "type":"Unreported",
+        "async": false
+    },
+    "outputSettings":{
+        "fileExtension":"csv"
+    }
+}
+```
+
+> Response
+
+> -  A success response message is comprised of a `responseCode` `200`, and the filename of the report that got created. You can use the Downloader job to download the report.
+
+```
+{
+    "filename":"is_reconciliation_5429137734434770049.csv",
+    "responseMessage":"OK",
+    "responseCode":200
+}
+```
+
+> - Error
+
+```json
+{
+    "responseMessage":"Error encountered while trying to write reconcilation report to file.",
+    "responseCode":500
+}
+```
+
+Export card transaction data in a configurable format for a given feed in a specified time range.
+
+### `requestJobDescription` format
+
+Name | Format | Valid values | Description
+--------- | --------- | --------- | ---------
+| type | String | "reconciliation" | |
+| inputSettings | JSON object | See inputSettings | Settings used to filter the reports that are exported. |
+**Optional elements** |
+| outputSettings | JSON object | See outputSettings | Settings for the generated file.
+
+
+- `inputSettings`
+
+Name | Format | Valid values | Description
+--------- | --------- | --------- | ---------
+| startDate | String | yyyy-mm-dd formatted date | The beginning date for which we will include expenses in the generated report.
+| endDate | String | yyyy-mm-dd formatted date | The end date for which we will include expenses in the generated report.
+| domain | String | A valid domain, e.g.  "example.com"| Specifies the domain for which the reconciliation report will be run. **Note:** Only credentials generated for accounts that are domain admins on the provided domain will work. 
+| type | String |  "Unreported","All" | Specifies whether to run the report for only unreported card expenses, or for all card expenses.
+| async | Boolean | `true`, `false` | Specifies whether or not to run this command synchronously or asynchronously. **Note:** For the moment, only synchronous commands (`false`) are supported.
+**Optional elements** |
+| feed | String | Any name for a card feed, or `export_all_feeds` | Only the cards matching the specified feed will be exported.
+
+
+- `outputSettings` (Optional)
+
+Name | Format | Valid values | Description
+--------- | --------- | --------- | ---------
+| fileExtension | String | One of "csv", "txt", "json", "xml" | Specifies the format of the generated report. "csv" is the default.
+
+
+- `onFinish` (Optional)
+
+This section can be used to describe actions that need to be performed once the reconciliation report is generated.
+
+Action Name  | Description
+-------- | ---------
+email | Send an email linking to the generated report to a provided list of recipients.
+
+Name | Format | Valid values | Description
+-------- | ---------- | ---------------- | ---------
+**`email`** action | recipients | String | Comma-separated list of valid email addresses | People to email once the report is generated. The email will contain a link to download the report. |
+
+### Template parameter
+
+> - Template sample. See the [export template format reference](./export_report_template.html) for more information about how to write export templates.
+
+```
+<#-- Header Line -->
+Original Merchant,<#t>
+Posted date,<#t>
+Sales date,<#t>
+Modified Sales date,<#t>
+Original Amount,<#t>
+Modified Amount,<#t>
+<#list cards as card, reports>
+  <#list reports as report>
+      <#list report.transactionList as transaction>
+            ${transaction.originalMerchant},<#t>
+            ${transaction.posted},<#t>
+            ${transaction.originalCreated},<#t>
+            ${transaction.modifiedCreated},<#t>
+            ${(-transaction.originalAmount/100)?string("0.00")},<#t>
+            ${transaction.amountModified?then((-transaction.originalAmount/100)?string("0.00"), "")},<#t>
+        </#list>
+    </#list>
+</#list>
+```
+> - **Note:** Reconciliation templates follow a slightly different format than Export Templates. The basic iterative skeleton of the template is:
+
+```
+<#list cards as card, reports>
+    <#-- Properties to print per card -->
+    <#list reports as report>
+        <#-- Properties to print per report -->
+        <#list report.transactionList as transaction>
+            <#-- Properties to print per transaction -->
+        </#list>
+     </#list>
+</#list>
+```
+
+The `template` parameter is used to format the Expensify data as you wish. It is based on the Freemarker language's syntax.
+
+See the [export template format reference](./export_report_template.html) for more information about how to write export templates.
+
+<aside class="notice">
+We recommend storing your template in separate files, which can be passed to the request more easily with cURL's `@` operator.
+</aside>
+
 ## Downloader
 
 
