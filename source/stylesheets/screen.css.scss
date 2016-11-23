@@ -46,6 +46,22 @@ html, body {
   width: 20px;
 }
 
+div[name=get-started] + h1 + p + p > a{
+    padding: .8em 1em;
+    background-color: #00bcec;
+    border-radius: 3px;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: none;
+    width: 150px;
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 1em;
+}
+
 @mixin embossed-bg {
   background:
     linear-gradient(to bottom, rgba(#000, 0.2), rgba(#000, 0) 8px),
@@ -83,6 +99,7 @@ html, body {
   &>img {
     display: block;
     max-width: 100%;
+    padding: 1em;
   }
 
   &>.search {
@@ -95,7 +112,7 @@ html, body {
       padding: 6px 0 6px 20px;
       box-sizing: border-box;
       margin: $nav-v-padding $nav-padding;
-      width: $nav-width - 30;
+      width: $nav-width - 40;
       outline: none;
       color: $nav-text;
       border-radius: 0; /* ios has a default border radius */
@@ -170,7 +187,14 @@ html, body {
     transition-timing-function: linear;
     transition-duration: 230ms;
   }
+  
+  ul ul li{
+    padding-left: 1.5em;  
+  }
 
+  ul ul ul + ul li{
+    padding-left: 3em;  
+  }
   // This is the currently selected ToC entry
   .tocify-focus {
     box-shadow: 0px 1px 0px $nav-active-shadow;
@@ -185,7 +209,7 @@ html, body {
     background-color: $nav-subitem-bg;
     font-weight: 500;
     .tocify-item>a {
-      padding-left: $nav-padding + $nav-indent;
+      padding-left: $nav-padding + $nav-indent * 2;
       font-size: 12px;
     }
 
