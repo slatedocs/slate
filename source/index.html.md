@@ -2,12 +2,13 @@
 title: Zibby API Documentation
 
 language_tabs:
- - json: Json
+ - json: JSON
 
 toc_footers:
 
 
 includes:
+
 
 search: true
 ---
@@ -39,7 +40,7 @@ curl -X GET https://sandbox.zibby.com/api/v3/application/2398798 \
 ```
 
 Zibby uses Oauth 2.0 to authenticate all requests
-to the API. 
+to the API.
 
 During onboarding with Zibby, you will be provided an
 access token that can be used to access protected
@@ -66,7 +67,7 @@ simultaneously. Data is never shared across environments.
 
 ###Test Endpoint:
 
-https://sandbox.zibby.com/api/v3 
+https://sandbox.zibby.com/api/v3
 
 ###Live Endpoint:
 
@@ -90,6 +91,7 @@ Status:			202
 ```
 
 To begin an application, Zibby requires that the consumer verify their phone number. This is done by sending an SMS message to the input number.
+
 
 
 ##Submit Verification Code
@@ -116,17 +118,17 @@ URL:			/api/v3/application/
 Method:			POST
 Request:		{"phone": "1234567890",
            		 "billing_first_name": "John",
-              	 "billing_last_name": "Doe", 
+              	 "billing_last_name": "Doe",
               	 "email": "jdoe@jtest.com",
-              	 "billing_address": "14 28th Ave."
-              	 "billing_address2": ""
-              	 "billing_city": "New York"
-              	 "billing_state": "NY"
-              	 "billing_zip": "11102"
-              	 "dob_day": 15
-              	 "dob_month": 7
-              	 "dob_year": 1984
-              	 "income": "50000.00"
+              	 "billing_address": "14 28th Ave.",
+              	 "billing_address2": "",
+              	 "billing_city": "New York",
+              	 "billing_state": "NY",
+              	 "billing_zip": "11102",
+              	 "dob_day": 15,
+              	 "dob_month": 7,
+              	 "dob_year": 1984,
+              	 "income": "50000.00",
               	 "ssn": "342134125"}
 Response:		{"uid": "2f0db9059d6a46c1a02e5361243e40b6"}
 Status: 		201
@@ -134,26 +136,45 @@ Status: 		201
 
 To create the Zibby application for a consumer, the customer’s application data as shown in the Application JSON to the right should be sent either in a POST or PATCH request to Zibby.
 
+##Privacy Policy Signature
+
+>Submit Privacy Policy Signature:
+
+```script
+URL:			/api/v3/application/<uid>/privacy_policy_signature/
+Method:			POST
+Request:		{"signature": "PNG image as base64 encoded string"}
+Response:		{"success": true}
+Status: 		201
+```
+
+
+Customers will need to review and accept the privacy policy before proceeding. The privacy policy can be viewed here:
+
+URL: https://www.zibby.com/privacy-policy
+
+
+
 ##Build the Application
 
 ```script
-URL: 			/api/v3/application/<uid>
+URL: 			/api/v3/application/<uid>/
 Method: 		PATCH
-Request:		{"billing_address" : "151 W 25th St"
-               	 "billing_address2" : "9th Fl"
-               	 "billing_city" : "NEW YORK"
-               	 "billing_first_name" : "John"
-               	 "billing_last_name" : "Doe"
-               	 "billing_state" : "NY"
-               	 "billing_zip" : "10010"
-               	 "dob_day" : 11
-               	 "dob_month" : 6
-               	 "dob_year" : 1986
-               	 "email" : "jd@cognical.com"
-               	 "income" : "50000.00"
-               	 "ssn" : "431135234" }
+Request:		{"billing_address" : "151 W 25th St",
+               	 "billing_address2" : "9th Fl",
+               	 "billing_city" : "NEW YORK",
+               	 "billing_first_name" : "John",
+               	 "billing_last_name" : "Doe",
+               	 "billing_state" : "NY",
+               	 "billing_zip" : "10010",
+               	 "dob_day" : 11,
+               	 "dob_month" : 6,
+               	 "dob_year" : 1986,
+               	 "email" : "jd@cognical.com",
+               	 "income" : "50000.00",
+               	 "ssn" : "431135234"}
 Response: 		{"uid" : "2f0db9059d6a46c1a02e5361243e40b6"}
-Status: 		202 
+Status: 		202
 ```
 The Zibby API Supports a multistep process for building the application once you have the uid.
 
@@ -175,6 +196,16 @@ Once the application has been built successfully, the final step in the Zibby ap
 
 At this point, Zibby will make a full approval decision in real-time. If approved, we will return the approval amount in the response.
 
+
+##Error Example
+
+```script
+Response: {"error": {"ssn": ["Invalid Ssn"]}}
+Status: 400
+```
+
+When an error is encountered the system will return this response.
+
 #Zibby Plugin Checkout
 
 ##Step 1
@@ -195,50 +226,52 @@ Place or name the Zibby checkout button within the payment options page of your 
 zibby.checkout.set({
 
 	customer: {
-		billing: {first_name: "jane",
-				  last_name: "doe",
-				  address: "123 main street",
-				  address2: "apt 5b",
-				  city: "New York",
-				  state: "NY",
-				  country: "United States",
-				  zip: "10009",
-				  phone: "5554324537",
-				  email: "jqdoe@anonmail.com"
+		billing: {"first_name": "jane",
+				  "last_name": "doe",
+				  "address": "123 main street",
+				  "address2": "apt 5b",
+				  "city": "New York",
+				  "state": "NY",
+				  "country": "United States",
+				  "zip": "10009",
+				  "phone": "5554324537",
+				  "email": "jqdoe@anonmail.com"
 				  },
 				shipping: {
-					first_name: "jane",
-					last_name: "doe",
-					address: "123 main street",
-					address2: "apt 5b",
-					city: "New York",
-					state: "NY",
-					country: "United States",
-					zip: "10009",
-					phone: "5554324537",
-					email: "jqdoe@anonmail.com"
+					"first_name": "jane",
+					"last_name": "doe",
+					"address": "123 main street",
+					"address2": "apt 5b",
+					"city": "New York",
+					"state": "NY",
+					"country": "United States",
+					"zip": "10009",
+					"phone": "5554324537",
+					"email": "jqdoe@anonmail.com"
 					}
 				},
 				items: [{
-					display_name: "4K LG TV",
-					sku: "LG-4k2352",
-					unit_price: 1399.99,
-					quantity:1
+					"display_name": "4K LG TV",
+					"sku": "LG-4k2352",
+					"unit_price": 1399.99,
+                                        "quantity": 1,
+                                        "leasable": true
 					}],
 					checkout: {
-						customer_id: "10004323",
-						discounts: {
-							discount_name_one: 10.00,
-							discount_name_two: 50.00
+						"customer_id": "10004323",
+						"discounts": {
+							"discount_name_one": 10.00,
+							"discount_name_two": 50.00
 							},
-						shipping_amount: 20.00},
+						"shipping_amount": 20.00},
 						urls: {
 							return: "https://yoursite.com/return",
 							cancel:"https://yoursite.com/cancel"
 							}
 						}
 					);
-							// load zibby checkout modalzibby.checkout.load();
+							// load zibby checkout modal
+				zibby.checkout.load();
 </script>
 ```
 
@@ -283,7 +316,7 @@ To begin the checkout, Zibby requires that the consumer verify their phone numbe
 URL:			/api/v3/user/auth/verify/
 Method:			POST
 Request:		{"phone": "1234567890", "code": "123456", "last_four": "6789"}
-Response:		{"verified": true, "approval_limit": "2000", "available_limt": "1500"}
+Response:		{"verified": true, "approval_limit": "2000", "available_limit": "1500"}
 Status:			202
 ```
 
@@ -292,7 +325,7 @@ Once the customer has recieved the SMS code, it must be sent to Zibby along with
 ##Estimate Monthly Payment
 
 ```script
-URL:			/api/v3/estimate/
+URL:			/api/v3/application/estimate/
 Method:			POST
 Request:		{"cash_price": "500", "zip_code": "12345"}
 Response:		{"term": "18", "monthly_payment": "68.05"}
@@ -309,7 +342,7 @@ Zibby API allows you to be able to view what the monthly payment would be based 
 
 
 ```script
-URL:		/api/v3/preview/
+URL:		/api/v3/application/preview/
 Method:		POST
 Request:	{"state":"NY","items":
 						[{"item_type":"new",
@@ -324,24 +357,24 @@ Request:	{"state":"NY","items":
  			 "delivery_method":"delivery",
  		 	 "shipping":10,
  			 "zipcode":"10010"}
-Response:	{"delivery_method": "delivery", 
- 			 "processing_fee": 0, 
- 			 "shipping": "10", 
- 			 "shipping_tax": "0.89",  
- 			 "items": [{"item_code": "item make", 
- 			 "item_name": "item description", 
- 			 "item_type": "new", 
- 			 "quantity": 1, 
- 			 "rent": "62.50", 
- 			 "retailer_price": "500", 
- 			 "sales_tax": "5.55", 
+Response:	{"delivery_method": "delivery",
+ 			 "processing_fee": 0,
+ 			 "shipping": "10",
+ 			 "shipping_sales_tax": "0.89",
+ 			 "items": [{"item_code": "item make",
+ 			 "item_name": "item description",
+ 			 "item_type": "new",
+ 			 "quantity": 1,
+ 			 "rent": "62.50",
+ 			 "retailer_price": "500",
+ 			 "sales_tax": "5.55",
  			 "warranty": {"code": "warranty sku",
- 						  "monthly_amount": "5.56", 
- 						  "monthly_tax": "0.49", 
- 						  "name": "warranty name", 
- 						  "price": "100"}}], 
- 			 "term": 18, 
- 			 "monthly_total": "67.50", 
+ 						  "monthly_amount": "5.56",
+ 						  "monthly_tax": "0.49",
+ 						  "name": "warranty name",
+ 						  "price": "100"}}],
+ 			 "term": 18,
+ 			 "monthly_total": "67.50",
 			 "due_at_checkout": "84.99"}
 ```
 
@@ -350,9 +383,10 @@ Based on the content of a customer's shopping cart, the Zibby API can return a p
 ##Initialize the Lease for Checkout
 
 ```script
-URL: 		/api/v3/initialize/
+URL: 		/api/v3/application/initialize/
 Method: 	POST
-Request:	{"customer":{
+Request:	{"code": "123456",
+                 "customer":{
 				"billing":{
 					"first_name":"jane",
 					"middle_name":"Q",
@@ -384,29 +418,119 @@ Request:	{"customer":{
 					"sku":"FS3525",
 					"unit_price":700,
 					"quantity":1
-					},
+					"leasable": true,
+					"shipping":{"sku":"000HD999000",
+								"display_name":"HOME DELIVERY CHARGE",
+								"unit_price":"5.0",
+								"quantity":"1"}
+								},
 					{"display_name":"AA Batteries",
 					 "sku":"AA5234",
 					 "unit_price":15,
-					 "quantity":1
-					 }],"checkout":{"customer_id":"1000438727823","shipping_amount":10,"discounts":[{"discount_name":"Birthday Discount","discount_amount":50},{"discount_name":"Towel Discount","discount_amount":50}]},"urls":{"return":"https://teststore.zibby.com/plugin/invoice.html","cancel":"https://teststore.zibby.com/plugin/checkout.html"},"phone":"6073393582","code":"258446","new_address":false}
-Response: 	{“uid": "113c8c68ab9a4b7ba999af018574ee2d"}
+					 "quantity":1,
+					 "leasable": false
+					 }],"checkout":{"customer_id":"1000438727823",
+					 				"shipping_amount":10,
+					 				"discounts":[{"discount_name":"Birthday Discount",
+					 							  "discount_amount":50},
+					 							  {"discount_name":"Towel Discount","discount_amount":50}]},
+					 				"urls":{"return":"https://yoursite.com/return","cancel":"https://yoursite.com/cancel"},"phone":"6073393582","code":"258446","new_address":false}
+Response: 	{"delivery_method": "delivery",
+ 			 "processing_fee": 0,
+ 			 "shipping": "10",
+ 			 "shipping_sales_tax": "0.89",
+ 			 "items": [{"item_code": "item make",
+ 			 "item_name": "item description",
+ 			 "item_type": "new",
+ 			 "quantity": 1,
+ 			 "rent": "62.50",
+ 			 "retailer_price": "500",
+ 			 "sales_tax": "5.55",
+ 			 "shipping": {"sku":"000HD999000",
+								"display_name":"HOME DELIVERY CHARGE",
+								"unit_price":"5.0",
+								"quantity":"1"},
+ 			 "warranty": {"code": "warranty sku",
+ 						  "monthly_amount": "5.56",
+ 						  "monthly_tax": "0.49",
+ 						  "name": "warranty name",
+ 						  "price": "100"}}],
+ 			 "term": 18,
+ 			 "monthly_total": "67.50",
+			 "due_at_checkout": "84.99",
+			 "uid": "113c8c68ab9a4b7ba999af018574ee2d"}
 ```
 
 To begin the checkout, we must open the checkout by submitting the full contents of the shopping cart.
 
-##Complete the Checkout
+#Post-Origination
+
+Once an order has been originated, Zibby provides certain API endpoints to allow a retailer to manipulate the order. These enpoints are accessed by means of a private authentication token with which Zibby provides the retailer.
+The uid provided in the initialize response is required to access these endpoints.
+
+##Cancel Order
 
 ```script
-URL:	 api/v3/application/uid/first_payment/
-Method: POST
-Request: {"payment_details":{"CardNumber":"4111111111111111","CardExpiration":"2/2019",
-		  "CardCvv":"685","disclosures":"true","Contract":"true","PaymentType":"debit"},
-		  "id":"113c8c68ab9a4b7ba999af018574ee2d"}
-Response: {success: true}
+URL: 		/api/v3/application/<uid>/cancel_order/
+Method: 	GET
+Return: 	{"success": true}
 ```
 
-To complete the checkout, the first payment must be submitted successfully. Once the transaction is complete, zibby will post the zibby_id to the return url above.
+The Zibby API allows retailers to directly cancel the entire order.
+
+##Cancel Item
+
+```script
+URL: 		/api/v3/application/<uid>/cancel_item/
+Method: 	POST
+Request:	{"items": [{"sku": "285868","display_name": "BATTERY","unit_price": 4.0, "quantity": 4}]}
+Return: 	{"success": true}
+```
+
+The Zibby API allows retailers to directly cancel individual items within an originated order.
+
+##Confirm Order
+
+```script
+URL: 		/api/v3/application/<uid>/confirm_order/
+Method: 	POST
+Request: 	{"order_id": "abcd"}
+Return: 	{"success": true}
+```
+
+Zibby's API allows for the retailer to be able to confirm an order once it is initialized in the retailer's downstream system.
+
+##Submit Sales Receipt
+
+```script
+URL: 		/api/v3/application/<uid>/receipt/
+Method: 	POST
+Request:	{"receipt": "base 64 encoded PDF"}
+Return: 	{"success": true}
+```
+
+Once the sale is complete retailers can submit their invoice for the transaction with Zibby in order to meet their funding requirement.
+
+##Submit Delivery
+
+```script
+URL: 		/api/v3/application/<uid>/delivery/
+Method: 	POST
+Request: 	{"items": [{"sku": "285868","display_name": "BATTERY","unit_price": 4.0, "quantity": 4}], "delivery_date": "2016-10-14T13:40:16.368888"}
+Return: 	{"success": true}
+```
+
+Once items are delivered, retailers can update Zibby on the delivery via the API.
+
+
+
+
+
+
+
+
+
+
 
 
 
