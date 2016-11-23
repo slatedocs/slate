@@ -129,7 +129,18 @@ Request:		{"phone": "1234567890",
               	 "dob_month": 7,
               	 "dob_year": 1984,
               	 "income": "50000.00",
-              	 "ssn": "342134125"}
+              	 "ssn": "342134125",
+                 "driver_license_number": "E82923892",
+                 "driver_license_state": "NY",
+                 "driver_license_expiration_year": "2018",
+                 "driver_license_expiration_month": "09",
+                 "driver_license_expiration_day": "12",
+                 "employment_type": "full-time",
+                 "reference_name": "Jamie Smith",
+                 "reference_phone_number": "2172849548",
+                 "employment_name": "Streamlake Insurance",
+                 "employment_number": "3672734875",
+                 "privacy_agreement_accepted": "true"}
 Response:		{"uid": "2f0db9059d6a46c1a02e5361243e40b6"}
 Status: 		201
 ```
@@ -162,7 +173,7 @@ URL: 			/api/v3/application/<uid>/
 Method: 		PATCH
 Request:		{"billing_address" : "151 W 25th St",
                	 "billing_address2" : "9th Fl",
-               	 "billing_city" : "NEW YORK",
+               	 "billing_city" : "New York",
                	 "billing_first_name" : "John",
                	 "billing_last_name" : "Doe",
                	 "billing_state" : "NY",
@@ -172,7 +183,18 @@ Request:		{"billing_address" : "151 W 25th St",
                	 "dob_year" : 1986,
                	 "email" : "jd@cognical.com",
                	 "income" : "50000.00",
-               	 "ssn" : "431135234"}
+               	 "ssn" : "431135234",
+                 "driver_license_number": "E82923892",
+                 "driver_license_state": "NY",
+                 "driver_license_expiration_year": "2018",
+                 "driver_license_expiration_month": "09",
+                 "driver_license_expiration_day": "12",
+                 "employment_type": "full-time",
+                 "reference_name": "Jamie Smith",
+                 "reference_phone_number": "2172849548",
+                 "employment_name": "Streamlake Insurance",
+                 "employment_number": "3672734875",
+                 "privacy_agreement_accepted": "true"}
 Response: 		{"uid" : "2f0db9059d6a46c1a02e5361243e40b6"}
 Status: 		202
 ```
