@@ -14,6 +14,7 @@ includes:
   - payers
   - bank_accounts
   - charge_configs
+  - charge_templates
   - charges
   - credit_cards
   - remittance_cnabs
