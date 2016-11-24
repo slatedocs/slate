@@ -12,10 +12,20 @@ The webhooks api endpoint is:
 
 * Non-HTTPS URLs will be rejected. For testing with a self signed certificate, see the "Testing webhooks" section below.
 * Data will be posted to the URL, and a 200 response is expected.
-* A non 200 response may result in deletion of the URL, and no further notifications will be sent.
+* A non 200 response will result in an error, and Beyonic will retry the request a total of 10 times, with an increasing wait period between each try.
+* Beyonic implements a 5 second timeout on webhook requests. See **5 second timeout** below for more information.
+* A 410 (gone) response will lead to deletion of the webhook
 * The URL you submit isn’t specific to a specific object. Once submitted, it will receive notifications for all future events of the specific type made in your organization, whether they are made via the API or via the web-interface.
 * Therefore, you are encouraged to use the one URL for each event type. Since URLs are stored at a per-organization level, using different URLs may result in duplicate notifications being sent to the different URLs.
 * Previously submitted urls can be deleted via the web browser, or the Webhooks API methods described elsewhere in this reference.
+
+**5 second timeout**
+
+Beyonic implements a 5 second timeout. We wait 5 seconds for a response to each request, and if there isn't one, or there is an error, we will retry the request a total of 10 times, with an increasing wait period between each attempt. 
+
+Because of this timeout, we recommend that your webhook responds immediately with a 200 response, and then you continue processing the request. For example, you could store the event information, respond and then continue with your tasks. 
+
+Depending on the server and language you are using, there are various mechanisms for achieving this, including flushing() the output in PHP or using a message queue and background tasks in other languages. 
 
 ## Supported Event types
 
