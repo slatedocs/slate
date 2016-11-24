@@ -1,15 +1,14 @@
 ---
-title: API Reference
+title: Engineering Reference
 
 language_tabs:
   - shell
-  - ruby
   - python
   - javascript
+  - SQL
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='https://github.com/tripit/slate'>Docs powered by Slate</a>
 
 includes:
   - errors
@@ -17,173 +16,447 @@ includes:
 search: true
 ---
 
-# Introduction
+# Overview
+Quilt internal docs. We have documentation debt.
+Starting good habits from 9/6/2016. Probably.
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+## Architecture
+- RDS Instance (Postgres; can use Redshift; working on Snowflake)
+- Django on Heroku
+- Firebase (reactive cache layer)
+- React and react-bootstrap
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+## Backend
+- @kevin write something here
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+## Frontend
+- npm and gulp
+- `npm test` to run unit tests (for redux)
+- Mixture of redux (Quilt dialog) and barebones React (everything else)
+- `gulp deploy` - builds production bundle
+- `firebase deploy` - deploys to CDN
 
-# Authentication
 
-> To authorize, use this code:
+## Tools
+### init_firebase
+refresh firebase cache from database source
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+### shell_plus
+serialize objects
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+from tables.serializers import *
+DashboardSerializer(dashboard_obj).data
 ```
 
-```javascript
-const kittn = require('kittn');
+## Environments
+- [Stage](https://quilt-heroku.herokuapp.com/)
+    - Database
+    - [Firebase (sometimes stage and prod swap)](https://console.firebase.google.com/project/firebase-quiltdata/database/data)
+    - [CDN](https://console.firebase.google.com/project/firebase-quilttest/hosting/main)
+- [Production](https://quiltdata.com/)
+    - Database
+    - [Firebase (sometimes stage and prod swap)](https://console.firebase.google.com/project/firebase-quilttest/database/data)
+    - [CDN](https://console.firebase.google.com/project/firebase-quiltdata/hosting/main)
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
+# Deployments
 
-> The above command returns JSON structured like this:
+## JavaScript
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
+TODO: Synchronize with backend deploys to avoid race conditions (see Heroku email chain)
 
-This endpoint retrieves all kittens.
+* `gulp deploy` - builds production optimized JS app bundle; requires `firebase deploy`
+to actually hit the internets
 
-### HTTP Request
+* firebase environments (alias = full_name)
+    * stage = quilttest
+    * production = quilitdata
+* `firebase list` to see environments
+* `firebase use --add` to set aliases
+* `firebase use ALIAS_OR_ENVIRONMENT` to set active environment
+* `firebase deploy` - currently deploys CDN (hosting) files only for active environment
 
-`GET http://example.com/api/kittens`
+Full [Firebase CLI reference](https://firebase.google.com/docs/cli/).
 
-### Query Parameters
+# Dashboards
+User dashboard that points to a periscope dashboard. Partial feature.
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+How to create and publish:
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+- get periscope dashboard id
+- associate dashboard with table that user can see
+- `init_firebase` for affected table id
 
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+> Creating dashboard records in database:
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+# local cli
+heroku run python manage.py shell_plus --app ENVIRONMENT
+
+# inside shell_plus
+newdash = Dashboard.objects.create(
+  id=PERISCOPE_ID,
+  table=TABLE,
+  table_id=TABLE_ID,
+  name=NAME,
+  description=DESC,
+  image_url=IMAGE_URL,
+  image=OPTIONAL_FILE_OBJECT
+)
+
+# to inspect
+Dashboard.objects.all()
+Dashboard.objects.filter(id=,name=, …):
+
 ```
 
-```javascript
-const kittn = require('kittn');
+## Pose as specific user
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+```shell
+>>> kaleb = User.objects.get(username='Kaleb')
+>>> request = factory.get('/tables/?dashboard=1')
+>>> force_authenticate(request, kaleb)
+>>> from tables.views import *
+>>> response = TableViewSet.as_view({'get' : 'list'})(request, {'dashboard' : True})
+>>> response.render()
+<rest_framework.response.Response object at 0x7f4b9b08ee90>
+>>> response.content
+'[{"id":2515,"name":"NDB Placeholder","sqlname":"ndb_placeholder_b7ab4953","description":"Empty data set for dashboard delivery","owner":"akarve","is_public":false,"csvfile":null,"viewonly":false,"dashboards":[{"id":71134,"table":2515,"name":"Geo Vis Sampler for NDB","image":null,"description":"9/6/2016"}]}]'
 ```
 
-> The above command returns JSON structured like this:
 
-```json
+# REST API
+
+<table>
+<colgroup>
+<col width="28%" />
+<col width="33%" />
+<col width="37%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Endpoint</th>
+<th>URL</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tables</td>
+<td><code>/tables/</code></td>
+<td><a href="#tables">Create/Delete/Manage Tables</a></td></td>
+</tr>
+<td>Columns</td>
+<td><code>/tables/TABLE_ID/columns/</code></td>
+<td><a href="#columns">Add/Delete Columns</a></td></td>
+</tr>
+<td>Table Data</td>
+<td><code>/data/TABLE_ID/rows/</code></td>
+<td><a href="#data-rows">Fetch and create table data</a></td></td>
+</tr>
+<td>Branches</td>
+<td><code>/data/TABLE_ID/branches/</code></td>
+<td><a href="#data-branches">Create data branches</a></td></td>
+</tr>
+<td>Commits</td>
+<td><code>/data/TABLE_ID/branches/</code></td>
+<td><a href="#data-commits">Commit data and schema changes</a></td></td>
+</tr>
+<tr class="even">
+<td>Files</td>
+<td><code>/files/</code></td>
+<td><a href="#files">Upload/Import files</a></td>
+</tr>
+<tr class="odd">
+<td>User Profiles</td>
+<td><code>/profiles/</code></td>
+<td><a href="#profiles">Update user profile information</a></td>
+</tr>
+<tr class="even">
+<td>Sharing</td>
+<td><code>/share/</code></td>
+<td><a href="#share">Share Tables</a></td>
+</tr>
+<tr class="odd">
+<td>Quilts</td>
+<td><code>/quilts/</code></td>
+<td><a href="#quilts">Connect tables in a Quilt</a></td>
+</tr>
+<tr class="even">
+<td>Gene Math</td>
+<td><code>/genemath</code></td>
+<td><a href="#genemath">Intersect and Subtract sets of genomic regions</a></td>
+</tr>
+
+</tbody>
+</table>
+
+ [See below]: #delete-table
+  [1]: #update-table-meta-data
+  [2]: #add-column-to-table
+  [3]: #append-row
+  [4]: #get-rows
+  [5]: #get-row
+  [6]: #intersect-or-subtract
+
+Notes
+
+-   For all REST calls, the content-type is `application/JSON`.
+-   Description fields automatically linkify URLs and support `<a>, <i>, <em>, <strong>, <b>` tags
+
+Tables
+======
+
+### Create
+
+`POST /tables/`
+
+#### Data format
+
+``` sourceCode
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  'name': string,
+  'description': text `<a>, <i>, <em>, <strong>, <b>` tags supported; automatic linkification of URLs
+  'columns': [
+    {
+      'name': string,
+      'sqlname': optional string,
+      'description': optional text,
+      'type' : one of 'String', 'Number', 'Image', 'Text'
+    },
+    ...
+  ]
 }
 ```
 
-This endpoint retrieves a specific kitten.
+#### Returns
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+- user only needs to enter one of table= or table_id=
 
-### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+# Endpoints
 
-### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+
+Table data as JSON object, includes `id` field with the table’s
+identifier.
+
+### Retrieve
+
+`GET /tables/TABLE_ID`
+
+#### Returns
+
+Table data as JSON object, includes `id` field with the table’s
+identifier.
+
+
+### Update
+
+`PATCH /tables/TABLE_ID`
+
+#### Data format
+
+``` sourceCode
+{
+  'name': string,
+  'description': text `<a>, <i>, <em>, <strong>, <b>` tags supported; automatic linkification of URLs
+  'columns': [
+    {
+      'name': string,
+      'sqlname': optional string,
+      'description': optional text,
+      'type' : one of 'String', 'Number', 'Image', 'Text'
+    },
+    ...
+  ]
+}
+```
+
+#### Returns
+
+Table data as JSON object, includes `id` field with the table’s
+identifier.
+
+### Delete
+
+`DELETE /tables/TABLE_ID`
+
+#### Returns
+status code
+
+
+Columns
+=======
+
+### Add Column
+
+`POST /tables/TABLE_ID/columns/`
+
+#### Data format
+``` sourceCode
+    {
+       'name': string,
+       'sqlname': optional field name string,
+       'description': text,
+       'type': one of 'String', 'Number', 'Date', 'DateTime', 'Image', or 'Text'
+    }
+```
+
+#### Returns
+
+Column data as JSON object, includes `id` field with the column’s
+identifier.
+
+### Update
+
+`PATCH /tables/TABLE_ID/columns/COLUMN_ID`
+
+#### Data format
+
+``` sourceCode
+    {
+       'name': string,
+       'sqlname': optional field name string,
+       'description': text,
+       'type': one of 'String', 'Number', 'Date', 'DateTime', 'Image', or 'Text'
+    }
+```
+
+#### Returns
+
+Table data as JSON object, includes `id` field with the table’s
+identifier.
+
+### Delete
+
+`DELETE /tables/TABLE_ID/columns/COLUMN_ID`
+
+#### Returns
+status code
+
+
+Data
+====
+
+### Create
+
+`POST /data/TABLE_ID/rows/`
+-   Use column `sqlname` as keys in input data
+``` sourceCode
+    [
+      {columnSqlname0: value0, columnSqlname1 : value1, ... },
+      ...
+    ]
+```
+
+### Retrieve (single row)
+
+`GET /data/TABLE_ID/rows/ROW_ID`
+
+#### Returns
+``` sourceCode
+      {columnSqlname0: value0, columnSqlname1 : value1, ... }
+```
+
+### List/Search (multiple rows)
+`GET /data/TABLE_ID/rows/`
+- query params: [order_by, search]
+
+#### Returns
+``` sourceCode
+    [
+      {columnSqlname0: value0, columnSqlname1 : value1, ... },
+      ...
+    ]
+```
+
+Branch Data
+===========
+
+### Create
+
+`POST /data/TABLE_ID/branches/BRANCH_NAME/rows/`
+-   Use column `sqlname` as keys in input data
+``` sourceCode
+    [
+      {columnSqlname0: value0, columnSqlname1 : value1, ... },
+      ...
+    ]
+```
+
+### Retrieve (single row)
+
+`GET /data/TABLE_ID/branches/BRANCH_NAME/rows/ROW_ID`
+
+#### Returns
+``` sourceCode
+      {columnSqlname0: value0, columnSqlname1 : value1, ... }
+```
+
+### List/Search (multiple rows)
+`GET /data/TABLE_ID/branches/BRANCH_NAME/rows/`
+- query params: [order_by, search]
+
+#### Returns
+``` sourceCode
+    [
+      {columnSqlname0: value0, columnSqlname1 : value1, ... },
+      ...
+    ]
+```
+
+Quilts
+======
+
+### Create
+
+`POST /quilts/` \#\#\#\# Data format
+
+    {
+      'left_table_id': int,
+      'right_table_id': int,
+      'left_column_id': int,
+      'right_column_id': int,
+      'jointype': one of 'inner', 'leftOuter', 'firstMatch'
+    }
+
+#### Returns
+
+Quilt info as JSON object, includes `sqlname` field with the quilt’s
+identifier.
+
+### Delete
+
+`DELETE /quilts/QUILT_SQLNAME`
+
+Genome Math
+===========
+
+-   Performs a gene math operation on two tables
+-   Creates a new table with the result.
+-   Columns are specified by `column.id`.
+
+### Intersect or subtract
+
+`POST /genemath/`
+
+#### Data Format
+``` sourceCode
+
+    {
+      'operator': one of 'Intersect' or 'Subtract',
+      'left_chr': integer (column id),
+      'left_start': integer (column id),
+      'left_end':  integer (column id),
+      'right_chr':  integer (column id),
+      'right_start': integer (column id),
+      'right_end':  integer (column id)
+    }
+```
+
+#### Returns
+
+JSON object representing the result table.
+ 
 
