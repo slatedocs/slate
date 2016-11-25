@@ -390,7 +390,7 @@ Rentas Internas (SRI) con el código 01, Sin utilización del sistema financiero
 </aside>
 
 
-### Operación a partir de XML
+### Emisión a partir de XML
 
 `POST /invoices/issue/xml`
 
@@ -423,7 +423,7 @@ cabeceras = {
     'x-password': '<clave-certificado-firma>',
     'content-type': 'application/json'}
 respuesta = requests.post(
-    "https://link.datil.co/invoices/issue",
+    "https://link.datil.co/invoices/issue/xml",
     headers = cabeceras,
     data = json.dumps(factura))
 ```
