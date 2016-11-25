@@ -103,6 +103,13 @@ curl -v https://link.datil.co/invoices/issue \
         "banco": "Banco Pacífico"
       }
     }
+  ],
+  "compensaciones": [
+    {
+      "codigo": 1,
+      "tarifa": 2,
+      "valor": 2.00
+    }
   ]
 }'
 ```
@@ -197,6 +204,13 @@ factura = {
         "numero": "1234567890",
         "banco": "Banco Pacífico"
       }
+    }
+  ],
+  "compensaciones": [
+    {
+      "codigo": 1,
+      "tarifa": 2,
+      "valor": 2.00
     }
   ]
 }
@@ -320,6 +334,13 @@ namespace DatilClient {
             ""banco"": "Banco Pacífico""
           }
         }
+      ],
+        ""compensaciones"": [
+        {
+              ""codigo"": 1,
+              ""tarifa"": 2,
+              ""valor"": 2.00
+        }
       ]
       }");
       request.AddParameter("application/json", body, ParameterType.RequestBody);
@@ -355,6 +376,7 @@ valor_retenido_renta | float | Valor retenido por renta
 retenciones | Listado de objetos de tipo [retencion](#retencion-de-factura) | Retenciones incluídas en la factura. Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que participan en la comercialización de periódicos y/o revistas.
 pagos | Listado de objetos tipo [pagos](#pagos) | Listado de formas de pago aplicables a la factura. __Requerido__
 credito | Objeto de tipo [credito](#cr-dito) | Información del crédito directo otorgado al cliente.
+compensaciones | Objeto de tipo [compensación solidaria](#compensaci-n-solidaria) | __Solo__ para las provincias de Manabí y Esmeraldas según la Ley Orgánica de Solidaridad y de Corresponsabilidad Ciudadana
 
 
 #### Totales
@@ -383,6 +405,15 @@ Parámetro           | Tipo    | Descripción
 ------------------- | ------- | ----------
 fecha_vencimiento   | string  | Fecha de vencimiento en formato AAAA-MM-DD, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
 monto               | float   | Monto otorgado de crédito. __Requerido__
+
+#### Compensación solidaria
+
+Parámetro           | Tipo    | Descripción
+------------------- | ------- | ----------
+codigo   | int  | Código del porcentaje de IVA . __Requerido__
+tarifa   | int   | Porcentaje de compensación. __Requerido__
+valor   | float   | Valor de la compensación. __Requerido__
+
 
 <aside class="notice">
 La información de crédito será enviada como forma de pago al Servicio de
@@ -525,6 +556,13 @@ respuesta = requests.post(
         "numero": "1234567890",
         "banco": "Banco Pacífico"
       }
+    }
+  ],
+  "compensaciones": [
+    {
+      "codigo": 1,
+      "tarifa": 2,
+      "valor": 2.00
     }
   ]
 }
@@ -697,6 +735,13 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
         }
       }
     ],
+    "compensaciones": [
+      {
+        "codigo": 1,
+        "tarifa": 2,
+        "valor": 2.00
+      }
+    ], 
     "autorizacion": {
         "estado": "AUTORIZADO",
         "mensajes": [

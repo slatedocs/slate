@@ -618,6 +618,47 @@ Para el Servicio de Rentas Internas de Ecuador (SRI), las únicas propiedades qu
 
 Las demás propiedades que se especifiquen se registrarán en Dátil como parte del pago, pero no se reportarán al SRI.
 
+### Crédito
+
+Crédito otorgado en la venta. 
+
+Campo           | Tipo    | Descripción
+------------------- | ------- | ----------
+fecha_vencimiento   | string  | Fecha de vencimiento en formato AAAA-MM-DD, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
+monto               | float   | Monto otorgado de crédito. __Requerido__
+
+```sql
+invoice_credit = SELECT
+  monto,
+  fecha_vencimiento
+  FROM
+  facturas.credito
+  WHERE
+  id_factura = ?
+```
+
+### Compensación solidaria
+
+Descuento otorgado a las provincias de Manabí y Esmeraldas.
+
+
+Campo           | Tipo    | Descripción
+------------------- | ------- | ----------
+codigo   | int  | Código del porcentaje de IVA . __Requerido__
+tarifa   | int   | Porcentaje de compensación. __Requerido__
+valor   | float   | Valor de la compensación. __Requerido__
+
+```sql
+invoice_compensation = SELECT
+  codigo,
+  tarifa,
+  valor
+  FROM
+  facturas.compensacion
+  WHERE
+  id_factura = ?
+```
+
 ### Tablas recomendadas
 
 Estructura recomendada para las tablas o vistas con información de la factura. 
@@ -639,7 +680,7 @@ DROP TABLE [facturas].[factura]
 
 CREATE TABLE [facturas].[factura](
     [id] bigint IDENTITY(1,1) PRIMARY KEY,
-    [ambiente] [int] NOT NULL, 
+    [ambiente] [int] NOT NULL, -- (OPCIONAL) el ambiente se toma del archivo de configuración de Link App.
     [tipo_emision] [int] NOT NULL,
     [secuencial] [bigint] NOT NULL,
     [fecha_emision] [datetime] NULL,
@@ -727,6 +768,7 @@ CREATE TABLE [facturas].[informacion_adicional](
     CONSTRAINT PK_informacion_adicional PRIMARY KEY (id_factura, nombre)
 )
 
+-- FACTURA: PAGOS
 CREATE TABLE [facturas].[pago](
     [id] bigint IDENTITY(1,1) PRIMARY KEY,
     [id_factura] bigint NOT NULL FOREIGN KEY REFERENCES [facturas].[factura](id),
@@ -736,7 +778,7 @@ CREATE TABLE [facturas].[pago](
     [monto] [decimal](14, 2) NOT NULL
 )
 
-
+-- FACTURA: PROPIEDADES DE PAGOS
 CREATE TABLE [facturas].[pago_propiedad](
   [id_pago] bigint NOT NULL FOREIGN KEY REFERENCES [facturas].[pago](id),
   [nombre] [varchar](100) NOT NULL,
@@ -744,6 +786,22 @@ CREATE TABLE [facturas].[pago_propiedad](
   CONSTRAINT PK_pago_propiedad PRIMARY KEY (id_pago, nombre)
 )
 
+-- FACTURA: CREDITO 
+CREATE TABLE [facturas].[credito](
+  [id] bigint IDENTITY(1,1) PRIMARY KEY,
+  [id_factura] bigint NOT NULL FOREIGN KEY REFERENCES [facturas].[factura](id),
+  [monto] [decimal](14,2) NOT NULL,
+  [fecha_vencimiento] [varchar](10) NOT NULL
+)
+
+-- FACTURA: COMPENSACION SOLIDARIA
+CREATE TABLE [facturas].[compensacion](
+  [id] bigint IDENTITY(1,1) PRIMARY KEY,
+  [id_factura] bigint NOT NULL FOREIGN KEY REFERENCES [facturas].[factura](id),
+  [codigo] [int] NOT NULL,
+  [tarifa] [int] NOT NULL,
+  [valor] [decimal](14,2) NOT NULL
+)
 
 ```
 
