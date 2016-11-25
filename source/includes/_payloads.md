@@ -423,4 +423,4 @@ EXEMPLO DE PAYLOAD
   }
 ```
 
-Informações enviadas quando um Modelo de cobrança é atualizado.
+Informações enviadas quando um Modelo de cobrança é excluído.
