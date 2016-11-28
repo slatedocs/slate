@@ -2,18 +2,21 @@
 
 São as requisições enviadas pelo webhook do Cobrato para uma determinada URL para notificar que certas ações ocorreram. Estas ações notificadas são as seguintes:
 
-| Objeto         | Evento             | Descrição                                      |
-|----------------|--------------------|------------------------------------------------|
-| charge         | created            | quando a cobrança é criada                     |
-| charge         | updated            | quando a cobrança é atualizada                 |
-| charge         | destroyed          | quando a cobrança é excluída                   |
-| charge         | received           | quando a cobrança é recebida                   |
-| charge         | undone_receivement | quando a cobrança tem seu recebimento desfeito |
-| charge_config  | created            | quando a configuração de cobrança é criada     |
-| charge_config  | updated            | quando a configuração de cobrança é atualizada |
-| charge_config  | destroyed          | quando a configuração de cobrança é excluída   |
-| credit_card    | created            | quando o cartão de crédito é criado            |
-| credit_card    | updated            | quando o cartão de crédito é atualizado        |
+| Objeto          | Evento             | Descrição                                      |
+|-----------------|--------------------|------------------------------------------------|
+| charge          | created            | quando a cobrança é criada                     |
+| charge          | updated            | quando a cobrança é atualizada                 |
+| charge          | destroyed          | quando a cobrança é excluída                   |
+| charge          | received           | quando a cobrança é recebida                   |
+| charge          | undone_receivement | quando a cobrança tem seu recebimento desfeito |
+| charge_config   | created            | quando a configuração de cobrança é criada     |
+| charge_config   | updated            | quando a configuração de cobrança é atualizada |
+| charge_config   | destroyed          | quando a configuração de cobrança é excluída   |
+| credit_card     | created            | quando o cartão de crédito é criado            |
+| credit_card     | updated            | quando o cartão de crédito é atualizado        |
+| charge_template | created            | quando o modelo de cobrança é criado           |
+| charge_template | updated            | quando o modelo de cobrança é atualizado       |
+| charge_template | destroyed          | quando o modelo de cobrança é excluído         |
 
 ### Assinatura do Payload
 
@@ -353,3 +356,71 @@ EXEMPLO DE PAYLOAD
 ```
 
 Informações enviadas quando um Cartão de crédito é atualizado.
+
+## Modelo de Cobrança Criado
+
+```shell
+
+Modelo de Cobrança Criado
+
+EXEMPLO DE PAYLOAD
+
+  {
+    "created_at":"2015-05-21T16:13:33Z",
+    "event":"created",
+    "object_type":"charge_template",
+    "object_id":12,
+    "_links":[{
+      "rel":"self",
+      "method":"GET",
+      "url":"https://app.cobrato.com/api/v1/charge_templates/12"
+    }]
+  }
+
+```
+
+Informações enviadas quando um Modelo de cobraça é criado.
+
+## Modelo de cobrança Atualizado
+
+```shell
+Modelo de cobrança Atualizado
+
+EXEMPLO DE PAYLOAD
+
+  {
+    "created_at":"2015-05-21T16:13:33Z",
+    "event":"updated",
+    "object_type":"charge_template",
+    "object_id":13,
+    "_links":[{
+      "rel":"self",
+      "method":"GET",
+      "url":"https://app.cobrato.com/api/v1/charge_templates/13"
+    }]
+  }
+```
+
+Informações enviadas quando um Modelo de cobrança é atualizado.
+
+## Modelo de cobrança Excluído
+
+```shell
+Modelo de cobrança Excluído
+
+EXEMPLO DE PAYLOAD
+
+  {
+    "created_at":"2015-05-21T16:13:33Z",
+    "event":"updated",
+    "object_type":"charge_template",
+    "object_id":14,
+    "_links":[{
+      "rel":"self",
+      "method":"GET",
+      "url":"https://app.cobrato.com/api/v1/charge_templates/14"
+    }]
+  }
+```
+
+Informações enviadas quando um Modelo de cobrança é excluído.
