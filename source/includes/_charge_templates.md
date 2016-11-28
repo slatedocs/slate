@@ -8,9 +8,9 @@ EXEMPLO
   {
     "id": 1,
     "name": "Nome do Modelo",
+    "charge_config_id": 1,
     "charged_amount": 1,
     "document_kind": "DM",
-    "charge_config_id": 1,
     "instructions": "",
     "demonstrative": "",
     "registrable": false,
@@ -33,14 +33,14 @@ EXEMPLO
 
 | Campo                      | Tipo    | Comentário                                                                                                                                              |
 |----------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| name                       | string  | **(requerido)** Nome identificador do modelo de cobrança                                                                                                          |
+| name                       | string  | **(requerido)** Nome identificador do modelo de cobrança                                                                                                |
+| charge_config_id           | integer | **(requerido)** id da configuração de cobrança                                                                                                          |
 | charged_amount             | decimal | (opcional) valor cobrado no boleto                                                                                                                      |
 | document_kind              | string  | (opcional) espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                |
-| charge_config_id           | integer | **(requerido)** id da configuração de cobrança                                                                                                          |
 | instructions               | integer | (opcional) instruções de pagamento do boleto, por padrão "Pagável em qualquer agência até data do vencimento." (pode ser linhas separadas por "\n")     |
 | demonstrative              | integer | (opcional) demonstrativo do Boleto, por padrão "Não receber após o vencimento." (pode ser linhas separadas por "\n")                                    |
-| registrable                | boolan  | (opcional) indica se a cobrança é registrável (do tipo que deve ser registrada no banco). Por padrão é o que está definido na Configuração de Cobrança  |
-| auto_send_billet           | boolan  | (opcional) Padrão "false". Envio ou não de boleto por email                                                                                             |
+| registrable                | boolean | (opcional) indica se a cobrança é registrável (do tipo que deve ser registrada no banco). Por padrão é o que está definido na Configuração de Cobrança  |
+| auto_send_billet           | boolean | (opcional) Padrão "false". Envio ou não de boleto por email                                                                                             |
 | interest_amount_per_month  | decimal | (opcional) porcentagem de juros mensal que deve ser aplicado em caso de atraso. No boleto será mostrado o valor diário de juros que será calculado      |
 | mulct_type                 | string  | (opcional) indica o tipo de multa que deve ser aplicada em caso de atraso ("percentage" para porcentagem, "currency" para valor em reais)               |
 | mulct_value                | decimal | (opcional) valor da multa que deve ser aplicada em caso de atraso, com base em seu tipo                                                                 |
@@ -71,9 +71,9 @@ EXEMPLO DE CORPO DA RESPOSTA
   {
     "id": 1,
     "name": "Nome do Modelo",
+    "charge_config_id": 1,
     "charged_amount": 1,
     "document_kind": "DM",
-    "charge_config_id": 1,
     "instructions": "",
     "demonstrative": "",
     "registrable": false,
@@ -150,9 +150,9 @@ EXEMPLO DE REQUISIÇÃO
     -X POST https://app.cobrato.com/api/v1/charge_templates \
     -d '{
         "name": "Nome do Modelo",
+        "charge_config_id": 1,
         "charged_amount": 1,
         "document_kind": "DM",
-        "charge_config_id": 1,
         "instructions": "",
         "demonstrative": "",
         "registrable": false,
@@ -189,14 +189,14 @@ Cria um novo modelo de cobrança, retornando as informações do mesmo caso haja
 
 | Campo                      | Tipo    | Comentário                                                                                                                                              |
 |----------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| name                       | string  | **(requerido)** Nome identificador do modelo de cobrança                                                                                                          |
+| name                       | string  | **(requerido)** Nome identificador do modelo de cobrança                                                                                                |
+| charge_config_id           | integer | **(requerido)** id da configuração de cobrança                                                                                                          |
 | charged_amount             | decimal | (opcional) valor cobrado no boleto                                                                                                                      |
 | document_kind              | string  | (opcional) espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                |
-| charge_config_id           | integer | **(requerido)** id da configuração de cobrança                                                                                                          |
 | instructions               | integer | (opcional) instruções de pagamento do boleto, por padrão "Pagável em qualquer agência até data do vencimento." (pode ser linhas separadas por "\n")     |
 | demonstrative              | integer | (opcional) demonstrativo do Boleto, por padrão "Não receber após o vencimento." (pode ser linhas separadas por "\n")                                    |
-| registrable                | boolan  | (opcional) indica se a cobrança é registrável (do tipo que deve ser registrada no banco). Por padrão é o que está definido na Configuração de Cobrança  |
-| auto_send_billet           | boolan  | (opcional) Padrão "false". Envio ou não de boleto por email                                                                                             |
+| registrable                | boolean | (opcional) indica se a cobrança é registrável (do tipo que deve ser registrada no banco). Por padrão é o que está definido na Configuração de Cobrança  |
+| auto_send_billet           | boolean | (opcional) Padrão "false". Envio ou não de boleto por email                                                                                             |
 | interest_amount_per_month  | decimal | (opcional) porcentagem de juros mensal que deve ser aplicado em caso de atraso. No boleto será mostrado o valor diário de juros que será calculado      |
 | mulct_type                 | string  | (opcional) indica o tipo de multa que deve ser aplicada em caso de atraso ("percentage" para porcentagem, "currency" para valor em reais)               |
 | mulct_value                | decimal | (opcional) valor da multa que deve ser aplicada em caso de atraso, com base em seu tipo                                                                 |
@@ -254,14 +254,14 @@ Atualiza campos do Modelo de Cobrança. A requisição não diferencia a utiliza
 
 | Campo                      | Tipo    | Comentário                                                                                                                                              |
 |----------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| name                       | string  | **(requerido)** Nome identificador do modelo de cobrança                                                                                                          |
+| name                       | string  | **(requerido)** Nome identificador do modelo de cobrança                                                                                                |
+| charge_config_id           | integer | **(requerido)** id da configuração de cobrança                                                                                                          |
 | charged_amount             | decimal | (opcional) valor cobrado no boleto                                                                                                                      |
 | document_kind              | string  | (opcional) espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                |
-| charge_config_id           | integer | **(requerido)** id da configuração de cobrança                                                                                                          |
 | instructions               | integer | (opcional) instruções de pagamento do boleto, por padrão "Pagável em qualquer agência até data do vencimento." (pode ser linhas separadas por "\n")     |
 | demonstrative              | integer | (opcional) demonstrativo do Boleto, por padrão "Não receber após o vencimento." (pode ser linhas separadas por "\n")                                    |
-| registrable                | boolan  | (opcional) indica se a cobrança é registrável (do tipo que deve ser registrada no banco). Por padrão é o que está definido na Configuração de Cobrança  |
-| auto_send_billet           | boolan  | (opcional) Padrão "false". Envio ou não de boleto por email                                                                                             |
+| registrable                | boolean | (opcional) indica se a cobrança é registrável (do tipo que deve ser registrada no banco). Por padrão é o que está definido na Configuração de Cobrança  |
+| auto_send_billet           | boolean | (opcional) Padrão "false". Envio ou não de boleto por email                                                                                             |
 | interest_amount_per_month  | decimal | (opcional) porcentagem de juros mensal que deve ser aplicado em caso de atraso. No boleto será mostrado o valor diário de juros que será calculado      |
 | mulct_type                 | string  | (opcional) indica o tipo de multa que deve ser aplicada em caso de atraso ("percentage" para porcentagem, "currency" para valor em reais)               |
 | mulct_value                | decimal | (opcional) valor da multa que deve ser aplicada em caso de atraso, com base em seu tipo                                                                 |
