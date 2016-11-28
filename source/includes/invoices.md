@@ -483,7 +483,7 @@ valor   | float   | Valor de la compensación. __Requerido__
 
 Parámetro           | Tipo    | Descripción
 ------------------- | ------- | ----------
-incoterm   | Objeto de tipo [incoterm](#inconterm)  | Información del Incoterm
+incoterm   | Objeto de tipo [incoterm](#incoterm)  | Información del Incoterm
 origen   | Objeto de tipo [origen de exportación](#origen-de-exportaci-n)  | Origen de la exportación
 destino   | Objeto de tipo [destino de exportación](#destino-de-exportaci-n)  | Destino de la exportación
 codigo_pais_adquisicion   | string  | Código del país de adquisición según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) 
