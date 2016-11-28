@@ -146,6 +146,7 @@ cantidad | float | Cantidad de items. __Requerido__
 precio_unitario | float | Precio unitario. __Requerido__
 descuento | float | El descuento es aplicado por cada producto, expresado en valor monetario. __Requerido__
 precio_total_sin_impuestos | float | Precio antes de los impuestos. Se obtiene multiplicando la `cantidad` por el `precio_unitario`
+unidad_medida | string | Unidad de medida __Requerido para facturas de exportación__
 impuestos | listado de objetos tipo [impuesto item](#impuesto-item) | Impuestos grabados sobre el producto. __Requerido__
 detalles_adicionales | object | Diccionario de datos de carácter adicional. Ejemplo:<br><code>{"marca": "Ferrari", "chasis": "UANEI832-NAU101"}</code>
 

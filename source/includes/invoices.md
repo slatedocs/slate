@@ -110,7 +110,29 @@ curl -v https://link.datil.co/invoices/issue \
       "tarifa": 2,
       "valor": 2.00
     }
-  ]
+  ],
+  "exportacion": {
+    "incoterm": {
+      "termino": "CIF",
+      "lugar": "Guayaquil",
+      "total_sin_impuestos": 10.25
+    },
+    "origen": {
+      "codigo_pais":"EC",
+      "puerto": "Guayaquil"
+    },
+    "destino": {
+      "codigo_pais":"CN",
+      "puerto": "China"
+    },
+    "codigo_pais_adquisicion": "EC",
+    "totales": {
+      "flete_internacional": 1000.00,
+      "seguro_internacional": 200.00,
+      "gastos_aduaneros": 800,
+      "otros_gastos_transporte": 350.00
+    }
+  }
 }'
 ```
 
@@ -212,7 +234,29 @@ factura = {
       "tarifa": 2,
       "valor": 2.00
     }
-  ]
+  ],
+  "exportacion": {
+    "incoterm": {
+      "termino": "CIF",
+      "lugar": "Guayaquil",
+      "total_sin_impuestos": 10.25
+    },
+    "origen": {
+      "codigo_pais":"EC",
+      "puerto": "Guayaquil"
+    },
+    "destino": {
+      "codigo_pais":"CN",
+      "puerto": "China"
+    },
+    "codigo_pais_adquisicion": "EC",
+    "totales": {
+      "flete_internacional": 1000.00,
+      "seguro_internacional": 200.00,
+      "gastos_aduaneros": 800,
+      "otros_gastos_transporte": 350.00
+    }
+  }
 }
 cabeceras = {
     'x-key': '<clave-del-api>',
@@ -341,7 +385,28 @@ namespace DatilClient {
               ""tarifa"": 2,
               ""valor"": 2.00
         }
-      ]
+      ],
+      ""exportacion"": {
+        ""incoterm"": {
+          ""termino"": ""CIF"",
+          ""lugar"": ""Guayaquil"",
+          ""total_sin_impuestos"": 10.25
+        },
+        ""origen"": {
+          ""codigo_pais"":""EC"",
+          ""puerto"": ""Guayaquil""
+        },
+        ""destino"": {
+          ""codigo_pais"":""CN"",
+          ""puerto"": ""China""
+        },
+        ""codigo_pais_adquisicion"": ""EC"",
+        ""totales"": {
+          ""flete_internacional"": 1000.00,
+          ""seguro_internacional"": 200.00,
+          ""gastos_aduaneros"": 800,
+          ""otros_gastos_transporte"": 350.00
+        }
       }");
       request.AddParameter("application/json", body, ParameterType.RequestBody);
       IRestResponse response = client.Execute(request);
@@ -377,7 +442,7 @@ retenciones | Listado de objetos de tipo [retencion](#retencion-de-factura) | Re
 pagos | Listado de objetos tipo [pagos](#pagos) | Listado de formas de pago aplicables a la factura. __Requerido__
 credito | Objeto de tipo [credito](#cr-dito) | Información del crédito directo otorgado al cliente.
 compensaciones | Objeto de tipo [compensación solidaria](#compensaci-n-solidaria) | __Solo__ para las provincias de Manabí y Esmeraldas según la Ley Orgánica de Solidaridad y de Corresponsabilidad Ciudadana
-
+exportacion | Objeto de tipo [exportacion](#exportaci-n) | __Solo__ para facturas de exportación
 
 #### Totales
 
@@ -413,6 +478,47 @@ Parámetro           | Tipo    | Descripción
 codigo   | int  | Código del porcentaje de IVA . __Requerido__
 tarifa   | int   | Porcentaje de compensación. __Requerido__
 valor   | float   | Valor de la compensación. __Requerido__
+
+#### Exportación
+
+Parámetro           | Tipo    | Descripción
+------------------- | ------- | ----------
+incoterm   | Objeto de tipo [incoterm](#inconterm)  | Información del Incoterm
+origen   | Objeto de tipo [origen de exportación](#origen-de-exportaci-n)  | Origen de la exportación
+destino   | Objeto de tipo [destino de exportación](#destino-de-exportaci-n)  | Destino de la exportación
+codigo_pais_adquisicion   | string  | Código del país de adquisición según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) 
+totales | Objecto de tipo [totales de exportación](#totales-de-exportaci-n) | Totales de la exportación
+
+#### Incoterm
+
+Parámetro           | Tipo    | Descripción
+------------------- | ------- | ----------
+termino   | string  | Código de 3 letras correspondiente al [Incoterm](http://www.proecuador.gob.ec/exportadores/requisitos-para-exportar/incoterms/) 
+lugar   | string  | Lugar Incoterm
+total_sin_impuestos   | float  | Total sin impuestos del incoterm
+
+#### Origen de exportación
+
+Parámetro           | Tipo    | Descripción
+------------------- | ------- | ----------
+codigo_pais  | string  | Código del país origen según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
+puerto   | string  | Puerto de origen
+
+#### Destino de exportación
+
+Parámetro           | Tipo    | Descripción
+------------------- | ------- | ----------
+codigo_pais  | string  | Código del país destino según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
+puerto   | string  | Puerto de destino
+
+#### Totales de exportación
+
+Parámetro           | Tipo    | Descripción
+------------------- | ------- | ----------
+flete_internacional   | float  | Total del flete internacional
+seguro_internacional   | float  | Total del seguro internacional
+gastos_aduaneros   | float  | Total de los gastos aduaneros
+otros_gastos_transporte   | float  | Total de otros gastos de transporte
 
 
 <aside class="notice">
@@ -564,7 +670,29 @@ respuesta = requests.post(
       "tarifa": 2,
       "valor": 2.00
     }
-  ]
+  ],
+  "exportacion": {
+    "incoterm": {
+      "termino": "CIF",
+      "lugar": "Guayaquil",
+      "total_sin_impuestos": 10.25
+    },
+    "origen": {
+      "codigo_pais":"EC",
+      "puerto": "Guayaquil"
+    },
+    "destino": {
+      "codigo_pais":"CN",
+      "puerto": "China"
+    },
+    "codigo_pais_adquisicion": "EC",
+    "totales": {
+      "flete_internacional": 1000.00,
+      "seguro_internacional": 200.00,
+      "gastos_aduaneros": 800,
+      "otros_gastos_transporte": 350.00
+    }
+  }
 }
 ```
 
@@ -741,7 +869,29 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
         "tarifa": 2,
         "valor": 2.00
       }
-    ], 
+    ],
+    "exportacion": {
+      "incoterm": {
+        "termino": "CIF",
+        "lugar": "Guayaquil",
+        "total_sin_impuestos": 10.25
+      },
+      "origen": {
+        "codigo_pais":"EC",
+        "puerto": "Guayaquil"
+      },
+      "destino": {
+        "codigo_pais":"CN",
+        "puerto": "China"
+      },
+      "codigo_pais_adquisicion": "EC",
+      "totales": {
+        "flete_internacional": 1000.00,
+        "seguro_internacional": 200.00,
+        "gastos_aduaneros": 800,
+        "otros_gastos_transporte": 350.00
+      }
+    }
     "autorizacion": {
         "estado": "AUTORIZADO",
         "mensajes": [

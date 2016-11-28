@@ -456,7 +456,8 @@ items  = SELECT
   cantidad,
   precio_unitario,
   descuento,
-  precio_total_sin_impuestos
+  precio_total_sin_impuestos,
+  unidad_medida
   FROM
   DocElectronicoFactura.items
   WHERE
@@ -473,6 +474,7 @@ cantidad | float | Cantidad de items. __Requerido__
 precio_unitario | float | Precio unitario. __Requerido__
 descuento | float | El descuento es aplicado por cada producto. __Requerido__
 precio_total_sin_impuestos | float | Precio antes de los impuestos. Se obtiene multiplicando la `cantidad` por el `precio_unitario` __Requerido__
+unidad_medida | string | Unidad de medida __Requerido para facturas de exportación__
 
 ### Impuestos de items
 
@@ -659,6 +661,46 @@ invoice_compensation = SELECT
   id_factura = ?
 ```
 
+### Exportación 
+
+Obligatorio para facturas de exportación
+
+
+Campo           | Tipo    | Descripción
+------------------- | ------- | ----------
+incoterm_termino   | string  | Código de 3 letras correspondiente al [Incoterm](http://www.proecuador.gob.ec/exportadores/requisitos-para-exportar/incoterms/) 
+incoterm_lugar   | string  | Lugar Incoterm
+incoterm_total_sin_impuestos   | float  | Total sin impuestos pagado por el incoterm
+codigo_pais_origen   | string  | Código del país origen según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)  
+codigo_pais_destino   | string  | Código del país destino según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)  
+codigo_pais_adquisicion   | string  | Código del país de adquisición según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) 
+puerto_origen   | string  | Puerto de origen
+puerto_destino   | string  | Puerto de destino
+total_flete_internacional   | float  | Total del flete internacional
+total_seguro_internacional   | float  | Total del seguro internacional
+total_gastos_aduaneros   | float  | Total de los gastos aduaneros
+total_otros_gastos_transporte   | float  | Total de otros gastos de transporte
+
+```sql
+invoice_export = SELECT
+  incoterm_termino,
+  incoterm_lugar,
+  incoterm_total_sin_impuestos,
+  codigo_pais_origen,
+  codigo_pais_destino,
+  codigo_pais_adquisicion,
+  puerto_origen,
+  puerto_destino,
+  total_flete_internacional,
+  total_seguro_internacional,
+  total_gastos_aduaneros,
+  total_otros_gastos_transporte,
+  FROM
+  facturas.exportacion
+  WHERE
+  id_factura = ?
+```
+
 ### Tablas recomendadas
 
 Estructura recomendada para las tablas o vistas con información de la factura. 
@@ -728,7 +770,9 @@ CREATE TABLE [facturas].[item](
     [precio_unitario] [decimal](14,2)  NOT NULL,
     [descripcion] [varchar](300)  NOT NULL,
     [precio_total_sin_impuestos] [decimal](14,2)  NOT NULL,
-    [descuento] [decimal](14,2)  NULL
+    [descuento] [decimal](14,2)  NULL,
+    [unidad_medida] [varchar](50)  NULL
+
 )
 
 -- FACTURA: IMPUESTOS DE ITEMS 
@@ -803,6 +847,23 @@ CREATE TABLE [facturas].[compensacion](
   [valor] [decimal](14,2) NOT NULL
 )
 
+-- FACTURA: EXPORTACION
+CREATE TABLE [facturas].[exportacion](
+    [id] bigint IDENTITY(1,1) PRIMARY KEY,
+    [id_factura] bigint NOT NULL FOREIGN KEY REFERENCES [facturas].[factura](id),
+    [incoterm_termino] [varchar](10)  NULL,
+    [incoterm_lugar] [varchar](300)  NULL,
+    [incoterm_total_sin_impuestos] [decimal](14,2)  NOT NULL,
+    [codigo_pais_origen] [varchar](3)  NULL,
+    [codigo_pais_destino] [varchar](3)  NULL,
+    [codigo_pais_adquisicion] [varchar](3)  NULL,
+    [puerto_origen] [varchar](300)  NULL,
+    [puerto_destino] [varchar](300)  NULL,
+    [total_flete_internacional] [decimal](14,2)  NOT NULL,
+    [total_seguro_internacional] [decimal](14,2)  NOT NULL,
+    [total_gastos_aduaneros] [decimal](14,2)  NOT NULL,
+    [total_otros_gastos_transporte] [decimal](14,2)  NOT NULL
+)
 ```
 
 
@@ -1076,6 +1137,38 @@ Campo | Tipo | Descripción
 `_nombre_` | string | Nombre de la información adicional de la nota de crédito
 `_valor_` | string | Valor de la información adicional de la nota de crédito
 
+
+### Detalles adicionales de items
+
+Obtiene los detalles adicionales de un ítem. Este query es opcional.
+
+Los detalles adicionales de un ítem se manejan de la forma 'Clave':'Valor'. Ejemplo: 'Peso':'Kg'
+
+Se asume que en la tabla consultada
+una columna tiene los nombres y otra los valores.
+
+Ejemplo de columnas con detalles adicionales del ítem:
+
+columna_de_nombres  |  columna_de_valores
+-------------------- | --------------
+Peso        |   KG
+Color           |   Rojo
+Caducidad                 |   10 días
+
+```sql
+item_details = SELECT
+  columna_de_nombres    _nombre_,
+  columna_de_valores   _valor_
+  FROM
+  DocElectronicoNotaCredito.items_detalles_adicionales
+  WHERE
+  id_detalle = ?
+```
+
+Campo | Tipo | Descripción
+--------- | ------- | -----------
+nombre | string | Nombre del detalle adicional del ítem
+valor | string | Valor del detalle adicional del ítem
 ### Tablas recomendadas
 
 Estructura recomendada para las tablas o vistas con información de la nota de crédito. 
