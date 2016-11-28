@@ -14,11 +14,10 @@ includes:
 search: true
 ---
 
-<aside class="success">Bonsai Docs Test Repo!!</aside>
 # Bonsai Documentation
 
 This is our test-bed for making new docs. A fully fleshed-out example can be found at [Getting Started with Anaconda](getting-started/getting-started-with-anaconda.html).
-
+<aside class="success">Bonsai Docs Test Repo!!</aside>
 # Introduction
 
 Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
