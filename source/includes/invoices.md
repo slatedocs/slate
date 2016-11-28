@@ -85,7 +85,8 @@ curl -v https://link.datil.co/invoices/issue \
       "detalles_adicionales": {
         "Peso":"5000.0000"
       },
-      "descuento": 0.0
+      "descuento": 0.0,
+      "unidad_medida": "Kilos"
     }
   ],
   "valor_retenido_iva": 70.40,
@@ -209,7 +210,8 @@ factura = {
       "detalles_adicionales": {
         "Peso":"5000.0000"
       },
-      "descuento": 0.0
+      "descuento": 0.0,
+      "unidad_medida": "Kilos"
     }
   ],
   "valor_retenido_iva": 70.40,
@@ -360,7 +362,8 @@ namespace DatilClient {
             ""detalles_adicionales"": {
               ""Peso"":""5000.0000""
             },
-            ""descuento"": 0.0
+            ""descuento"": 0.0,
+            ""unidad_medida"": ""Kilos""
           }
       ],
         ""valor_retenido_iva"": 70.40,
@@ -645,7 +648,8 @@ respuesta = requests.post(
       "detalles_adicionales": {
         "Peso": "5000.0000"
       },
-      "descuento": 0.0
+      "descuento": 0.0,
+      "unidad_medida": "Kilos"
     }
   ],
   "valor_retenido_iva": 70.40,
@@ -844,7 +848,8 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
                     "base_imponible": "150.00",
                     "valor": "18.00"
                 }
-            ]
+            ],
+            "unidad_medida": "Kilos"
         }
     ],
     "valor_retenido_iva": 70.40,
