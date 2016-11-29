@@ -3,7 +3,7 @@
 ```xml
 <type type="WsLocationTypeDTO">
    <id>bank_atm</id>
-   <kind>ATM</kind>
+   <kind>atm</kind>
    <order>1</order>
 </type>
 ```

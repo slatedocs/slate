@@ -46,7 +46,7 @@ attributes | [WsLocationAttributeDTO](#wslocationattributedto) | 0..1 | атри
 
 ```xml
 <attributes type="WsLocationAttributeDTO">
-   <key>METRO</key>
+   <key>metro</key>
    <value>i18n{"ru":"Аэропорт","en":"Aerport"}</value>
 </attributes>
 ```

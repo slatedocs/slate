@@ -3,12 +3,12 @@
 ```xml
 <status type="WsLocationStatusDTO">
    <id>159b3b82-8391-44c0-8448-d7e1f0f344d1</id>
-   <key>CURRENCY.1</key>
+   <key>currency.1</key>
    <value>USD;EUR;OTHER;0.732;0.733;UP;DOWN</value>
 </status>
 <status type="WsLocationAttributeDTO">
    <id>159b3b82-8391-44c0-8448-d7e1f0f344d1</id>
-   <key>CURRENCY.2</key>
+   <key>currency.2</key>
    <value>USD;CHF;OTHER;0.891;0.910;UP;UP</value>
 </status>
 ```
