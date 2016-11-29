@@ -1,5 +1,5 @@
 ---
-title: CLI Reference
+title: Getting Started with Anaconda
 
 language_tabs:
   - shell
