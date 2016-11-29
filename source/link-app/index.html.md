@@ -670,7 +670,7 @@ Campo           | Tipo    | Descripción
 ------------------- | ------- | ----------
 incoterm_termino   | string  | Código de 3 letras correspondiente al [Incoterm](http://www.proecuador.gob.ec/exportadores/requisitos-para-exportar/incoterms/) 
 incoterm_lugar   | string  | Lugar Incoterm
-incoterm_total_sin_impuestos   | float  | Total sin impuestos pagado por el incoterm
+incoterm_total_sin_impuestos   | string  | Total sin impuestos pagado por el incoterm
 codigo_pais_origen   | string  | Código del país origen según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)  
 codigo_pais_destino   | string  | Código del país destino según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)  
 codigo_pais_adquisicion   | string  | Código del país de adquisición según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) 
@@ -853,7 +853,7 @@ CREATE TABLE [facturas].[exportacion](
     [id_factura] bigint NOT NULL FOREIGN KEY REFERENCES [facturas].[factura](id),
     [incoterm_termino] [varchar](10)  NULL,
     [incoterm_lugar] [varchar](300)  NULL,
-    [incoterm_total_sin_impuestos] [decimal](14,2)  NOT NULL,
+    [incoterm_total_sin_impuestos] [varchar](10)  NOT NULL,
     [codigo_pais_origen] [varchar](3)  NULL,
     [codigo_pais_destino] [varchar](3)  NULL,
     [codigo_pais_adquisicion] [varchar](3)  NULL,

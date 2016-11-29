@@ -116,7 +116,7 @@ curl -v https://link.datil.co/invoices/issue \
     "incoterm": {
       "termino": "CIF",
       "lugar": "Guayaquil",
-      "total_sin_impuestos": 10.25
+      "total_sin_impuestos": "CIF"
     },
     "origen": {
       "codigo_pais":"EC",
@@ -241,7 +241,7 @@ factura = {
     "incoterm": {
       "termino": "CIF",
       "lugar": "Guayaquil",
-      "total_sin_impuestos": 10.25
+      "total_sin_impuestos": "CIF"
     },
     "origen": {
       "codigo_pais":"EC",
@@ -498,7 +498,7 @@ Parámetro           | Tipo    | Descripción
 ------------------- | ------- | ----------
 termino   | string  | Código de 3 letras correspondiente al [Incoterm](http://www.proecuador.gob.ec/exportadores/requisitos-para-exportar/incoterms/) 
 lugar   | string  | Lugar Incoterm
-total_sin_impuestos   | float  | Total sin impuestos del incoterm
+total_sin_impuestos   | string  | Total sin impuestos del incoterm
 
 #### Origen de exportación
 
@@ -679,7 +679,7 @@ respuesta = requests.post(
     "incoterm": {
       "termino": "CIF",
       "lugar": "Guayaquil",
-      "total_sin_impuestos": 10.25
+      "total_sin_impuestos": "CIF"
     },
     "origen": {
       "codigo_pais":"EC",
@@ -879,7 +879,7 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
       "incoterm": {
         "termino": "CIF",
         "lugar": "Guayaquil",
-        "total_sin_impuestos": 10.25
+        "total_sin_impuestos": "CIF"
       },
       "origen": {
         "codigo_pais":"EC",
