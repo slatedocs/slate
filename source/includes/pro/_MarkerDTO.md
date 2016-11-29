@@ -17,7 +17,7 @@ value | string | 0..1 | информация, привязанная к марк
 key | type | comment
 --- | --- | ---:
 SPECIAL_ORDERS | string | наличие раздела в боковом меню с именем String, в который собираются формы с признаком ``PRODUCT_ORDER``
-FINANCIAL_REPORTS | string | наличие в меню раздела финансовой аналитики, запрос на аналитику идет через getTransactionsByDates с полем id продукта ``FINANCIAL_REPORTS``
+FINANCIAL_REPORTS | string | наличие в меню раздела финансовой аналитики, запрос на аналитику идет через getTransactionsByDateRange с полем id продукта ``FINANCIAL_REPORTS``
 PERSONAL_NEWS | string | наличие в меню раздела персональных новостей или уведомлений о событиях
 
 <aside class="notice">INCASSO : FLAG_COLLECTION, FLAG_SEQUESTRATION, FLAG_CALL_ANFSEQ</aside>
