@@ -277,6 +277,7 @@ var results = request.Get("/v2/ct/get", parameters);
             "public_interactive_url": "<REPLACED>",
             "public_pdf_url": "<REPLACED>",
             "public_csv_url": "<REPLACED>"
+            }
     }
 }
 ```
@@ -306,11 +307,28 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v2/ct/run', [
-    'report-id' => 682
+	'report-id' => 682   	
 ]);
 print_r($success);
 ```
 
+```shell
+curl -X POST \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'report-id=682' \ 
+ https://tools.brightlocal.com/seo-tools/api/v2/ct/run
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("report-id", "682");
+
+var success = request.put("/v2/ct/run", parameters);
+```
 
 > Success (200 OK)
 
