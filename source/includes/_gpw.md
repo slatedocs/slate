@@ -69,7 +69,7 @@ var parameters = new api.Parameters();
         parameters.Add("business-category", "Restaurant");
         parameters.Add("search-terms", "['restaurant manhattan', 'cafe new york']");
 
-    var success = request.Post("/v4/gpw/add", parameters);
+var success = request.Post("/v4/gpw/add", parameters);
 ```
 
 
@@ -153,7 +153,7 @@ $reportId = 1;
 $api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
 $success = $api->put('/v4/gpw/' .$reportId, [
     'business-name'     => 'Le Bernardin',
-	'contact-telephone' => '+1 212-554-1515'
+    'contact-telephone' => '+1 212-554-1515'
 ]);
 print_r($success);
 ```
