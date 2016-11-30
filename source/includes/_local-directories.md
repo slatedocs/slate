@@ -18,7 +18,6 @@ var parameters = new api.Parameters();
         parameters.Add("postcode", "10019");
         parameters.Add("local-directory", "google");
 
-
 var jobId = Api.Post("/v4/ld/fetch-profile-url", parameters);
 
 if (jobId.ResponseStatus == ResponseStatus.Completed)
@@ -168,7 +167,6 @@ var parameters = new api.Parameters();
         parameters.Add("local-directory", "google");
         parameters.Add("telephone", "+1 212-554-1515");
         parameters.Add("search-type", "search-by-phone");
-
 
 var jobId = Api.Post("/v4/ld/fetch-profile-url", parameters);
 

@@ -47,8 +47,8 @@ var parameters = new api.Parameters();
         parameters.Add("business-location", "NY, New York");
         parameters.Add("phone", "+1 212-554-1515");
         parameters.Add("website", "le-bernardin.com");
-        parameters.Add("business-type", "Restaurant");            
-        parameters.Add("state-code", "NY");           
+        parameters.Add("business-type", "Restaurant");
+        parameters.Add("state-code", "NY");
 
 var success = request.Post("/v2/ct/add", parameters);
 ```
@@ -209,7 +209,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $results = $api->get('/v2/ct/get', [
-	'report-id' => 682   	
+	'report-id' => 682 
 ]);
 print_r($results);
 ```
@@ -307,7 +307,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v2/ct/run', [
-	'report-id' => 682   	
+	'report-id' => 682
 ]);
 print_r($success);
 ```
@@ -365,7 +365,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v2/ct/delete', [
-	'report-id' => 682   	
+	'report-id' => 682
 ]);
 if($success) {
 	echo 'Successfully deleted report.' . PHP_EOL;
@@ -573,7 +573,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $results = $api->get('/v2/ct/get-results', [
-	'report-id' => 2457   	
+	'report-id' => 2457
 ]);
 print_r($results);
 ```

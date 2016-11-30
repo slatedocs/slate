@@ -12,7 +12,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v1/clients-and-locations/locations/', [
-    'name'                 => 'Le Bernardin',    
+    'name'                 => 'Le Bernardin',
     'url'                  => 'le-bernardin.com',
 	'business-category-id' =>  605,
 	'country'              => 'USA', // 3 letter iso code
@@ -57,7 +57,7 @@ var parameters = new api.Parameters();
            parameters.Add("region", "NY"); // State or Region
            parameters.Add("city", "New York");
            parameters.Add("postcode", "10019");
-           parameters.Add("telephone", "+1 212-554-1515");    
+           parameters.Add("telephone", "+1 212-554-1515");
 
 var success = request.Post("/v1/clients-and-locations/locations/", parameters);
 ```
@@ -126,7 +126,7 @@ use BrightLocal\Api;
 $locationId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->put('/v1/clients-and-locations/locations/' .$locationId, [
-    'name'                 => 'Le Bernardin',    
+    'name'                 => 'Le Bernardin',
     'url'                  => 'le-bernardin.com',
 	'business-category-id' =>  605,
 	'country'              => 'USA', // 3 letter iso code
@@ -246,7 +246,7 @@ if (!empty($result['success'])) {
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var locationId = 1;
-var parameters = new api.Parameters();           
+var parameters = new api.Parameters();
 
 var success = request.Delete("/v1/clients-and-locations/locations/" + locationId + "", parameters);
 ```
@@ -370,7 +370,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $results = $api->call('/v1/clients-and-locations/locations/search', [
-    'q' => 'BrightLocal'    
+    'q' => 'BrightLocal'
 ]);
 print_r($results);
 ```

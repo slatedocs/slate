@@ -108,7 +108,7 @@ batchApi batchRequest = new batchApi(Api);
 // Create a new batch
 int batchId = batchRequest.Create();
 var parameters = new api.Parameters();
-            
+
 // Add jobs to batch
 foreach (var item in searches)
 {
@@ -513,8 +513,7 @@ else
         "status": "Completed",
         "job-id": 564271015
       }
-     
-   
+
     ]
   },
   "statuses": {
@@ -688,7 +687,7 @@ else
 ```json
 {
     "success": true,
-    "job-ids": ["1", "2","3"]    
+    "job-ids": ["1", "2","3"]
 }
 ```
  

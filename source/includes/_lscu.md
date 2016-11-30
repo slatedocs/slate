@@ -16,7 +16,7 @@ $success = $api->post('/v4/lscu', [
     'business-names'            => ["Le Bernardin"],
     'website-address'           => "le-bernardin.com",
     'address1'                  => '155 West 51st Street',
-    'address2'                  => '',      
+    'address2'                  => '',
     'city'                      => 'New York',
     'state-code'                => 'NY',
     'postcode'                  => '10019',
@@ -172,8 +172,8 @@ run-report | One of yes or no. Runs the report after adding. Defaults to no.
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->put('/v4/lscu', [   
-    'postcode'                  => '10019', 
+$success = $api->put('/v4/lscu', [
+    'postcode'                  => '10019',
     'telephone'                 => '+1 212-554-1515',
     'country'                   => 'USA',
     'business-category'         => 'Restaurant',
@@ -187,7 +187,7 @@ print_r($success);
 curl -X PUT \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \  
+ -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'postcode=10019' \
  -d 'telephone=+1 212-554-1515'
  -d 'country=USA' \
@@ -581,7 +581,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $results = $api->get('/v4/lscu/search', [
-    'q' => 'Bodega Wine Bar'	 
+    'q' => 'Bodega Wine Bar'
 ]);
 print_r($results);
 ```
@@ -591,7 +591,7 @@ curl -X GET \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'q=Bodega+Wine+Bar' \	
+ -d 'q=Bodega+Wine+Bar' \
   https://tools.brightlocal.com/seo-tools/api/v4/lscu/search
 ```
 

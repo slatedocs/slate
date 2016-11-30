@@ -161,7 +161,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
        parameters.Add("client-id", "36447");
-                  
+
 var success = request.Delete("/v1/clients-and-locations/clients/", parameters);
 ```
 
