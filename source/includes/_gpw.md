@@ -18,13 +18,13 @@ $success = $api->post('/v4/gpw/add', [
 	'day_of_month'   => '2',
 	'report_type'    => 'with',
 	'address1'       => '155 West 51st Street',
-    'address2'       => '',      
+    'address2'       => '',
     'city'           => 'New York',
 	'state_code'     => 'NY',
-	'postcode'       => '10019',	
+	'postcode'       => '10019',
 	'phone_number'   => '+1 212-554-1515',
 	'country'        => 'USA',
-	'search_terms'   => '["restaurant manhattan","cafe new york"]'  
+	'search_terms'   => '["restaurant manhattan","cafe new york"]'
 ]);
 print_r($success);
 ```
@@ -188,7 +188,7 @@ var parameters = new api.Parameters();
         parameters.Add("phone_number", "+1 212-554-1515");
         parameters.Add("country", "USA");
         parameters.Add("business-category", "Restaurant");
-        parameters.Add("search-terms", "['restaurant manhattan', 'cafe new york']");        
+        parameters.Add("search-terms", "['restaurant manhattan', 'cafe new york']");
 
 var success = request.Put("/v4/gpw/" + reportId + "", parameters);
 ```
@@ -276,7 +276,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var reportId = 1;
 var parameters = new api.Parameters();
-     
+
 var results = request.Get("/v4/gpw/" + reportId + "", parameters);
 ```
 
@@ -378,7 +378,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var reportId = 1;
 var parameters = new api.Parameters();
-     
+
 var success = request.Delete("/v4/gpw/" + reportId + "", parameters);
 ```
 
@@ -441,7 +441,7 @@ curl -X GET \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-     
+
 var results = request.Get("/v4/gpw", parameters);
 ```
 
@@ -604,7 +604,7 @@ curl -X GET \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var reportId = 1;
-var parameters = new api.Parameters();            
+var parameters = new api.Parameters();
 
 var results = request.Get("/v4/gpw/" + reportId + "/results", parameters);
 ```
