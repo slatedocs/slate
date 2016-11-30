@@ -306,7 +306,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v2/ct/run', [
-	'report-id' => 682   	
+    'report-id' => 682
 ]);
 print_r($success);
 ```
