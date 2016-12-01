@@ -233,6 +233,29 @@ When an error is encountered the system will return this response.
 ##Step 1
 
 ```script
+<script>
+    var _zibby_config = {
+        api_key: "#############", 
+        environment: "<zibby.js url>"
+    };
+    !function(e,t){e.zibby=e.zibby||{};var n,i,r;i=!
+    1,n=document.createElement("script"),n.type="text/javascript",
+    n.async=0,n.src=t.environment+"/plugin/js/zibby.js",
+    n.onload=n.onreadystatechange=function(){i||this.readyState
+    &&"complete"!=this.readyState||(i=0,e.zibby.setConfig(t.api_key))},
+    r=document.getElementsByTagName("script")[0],r.parentNode.insertBefore(n,r);
+    var s=document.createElement("link");s.setAttribute("rel","stylesheet"),
+    s.setAttribute("type","text/css"),
+    s.setAttribute("href",t.environment+"/plugin/css/zibby.css");
+    var a=document.querySelector("head");a.insertBefore(s,a.firstChild)}(window,_zibby_config);
+</script>
+```
+
+Place the following script tag on the bottom of your page. This snippet uses an asynchronous loading method that allows you to immediately use the zibby.js plugin without a significant impact on the load time of your page.
+
+##Step 2
+
+```script
 <a href="#" class="btn-zibby-checkout">
 <img src="https://www.zibby.com/static/img/btn-zibby-checkout.png" alt="Checkout with Zibby">
 </a>
@@ -240,7 +263,7 @@ When an error is encountered the system will return this response.
 
 Place or name the Zibby checkout button within the payment options page of your site.
 
-##Step 2
+##Step 3
 
 ```script
 <script>
