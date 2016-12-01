@@ -171,8 +171,8 @@ key | value type | options
 ---:|-----------|--------
 `state` | _int_ | [1-9]
 `enabled_status`| _str_ | "enabled", "pending_enabled", "pending_disabled", "disabled"
-`user` | _str_ | \<username\>
-        
+`user` | _str_ | \<username\> - user that made the change
+`date` | _datetime-str_ | "2016-01-01 00:00:00" - date that the change was effected        
     
 ## Authenticating BBOXX Notifications
 
