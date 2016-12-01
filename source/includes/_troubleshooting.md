@@ -10,25 +10,28 @@ Not seeing any data?
         <span class="step">1</span>
       </td>
       <td>
-        <p>Is there a <code>log/scout_apm.log</code> file?
-        </p>
-        <p>
-          If not, the gem was never initialized by the application. <a href="#step6">Jump to the last step</a>.<br>If there is a file, examine the file for any error messages:</p>
-        <p></p>
+        <p>Is there a <code>log/scout_apm.log</code> file?</p>
+        <p><strong style="color:gray">Yes:</strong></p>
+        <p>Examine the log file for error messages:</p>
 <pre>
 tail -n1000 log/scout_apm.log | grep "Starting monitoring" -A20
 </pre>
-          See something noteworthy? Proceed to <a href="#step6">to the last step</a>.
-        </p>
         <p>
-          If there is no log file, check that the <code>scout_apm</code> gem is not restricted to a certain <code>group</code> in your <code>Gemfile</code>. This would prevent <code>scout_apm</code> from loading in a <code>staging</code> environment:
-          <p></p>
+          See something noteworthy? Proceed to <a href="#step8">to the last step</a>. Otherwise, continue to step 2.
+        </p>
+        <p><strong style="color:gray">No:</strong></p>
+        <p>
+          The gem was never initialized by the application.</p>
+        <p>
+          Ensure that the <code>scout_apm</code> gem is not restricted to a specific <code>group</code> in your <code>Gemfile</code>. For example, the configuration below would prevent <code>scout_apm</code> from loading in a <code>staging</code> environment:
+        </p>
 <pre>
 group :production do
   gem 'unicorn'
   gem 'scout_apm'
 end
 </pre>
+        <p><a href="#step8">Jump to the last step</a> if <code>scout_apm</code> is correctly configured in your <code>Gemfile</code>.</p>
       </td>
     </tr>
     <tr>
@@ -79,7 +82,8 @@ bundle list scout_apm
         <span class="step">6</span>
       </td>
       <td>
-        <p><a name="step6"></a>Are you sure the application has processed any requests?</p>
+        <a name="step6"></a>
+        <p>Are you sure the application has processed any requests?</p>
 <pre>
 tail -n1000 log/production.log | grep "Processing"
 </pre>
@@ -96,6 +100,7 @@ tail -n1000 log/production.log | grep "Processing"
     </tr>
     <tr>
       <td>
+        <a name="step8"></a>
         <span class="step">8</span>
       </td>
       <td>
@@ -103,7 +108,7 @@ tail -n1000 log/production.log | grep "Processing"
           Oops! Looks like messed up. <a href="mailto:support@scoutapp.com">Send us an email</a> with the following:
         </p>
         <ul>
-          <li>The last 1000 lines of your <code>log/scout_apm.log</code> file: <code>tail -n1000 log/scout_apm.log</code>.
+          <li>The last 1000 lines of your <code>log/scout_apm.log</code> file, if the file exists:<br/><code>tail -n1000 log/scout_apm.log</code>.
           </li>
           <li>Your application's gems <code>bundle list</code>.
           </li>
