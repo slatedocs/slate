@@ -235,8 +235,8 @@ When an error is encountered the system will return this response.
 ```script
 <script>
     var _zibby_config = {
-        api_key: "#############", 
-        environment: "<zibby.js url>"
+        api_key: "[INSERT YOUR API KEY HERE]",
+        environment: "https://sandbox.zibby.com"
     };
     !function(e,t){e.zibby=e.zibby||{};var n,i,r;i=!
     1,n=document.createElement("script"),n.type="text/javascript",
@@ -267,56 +267,67 @@ Place or name the Zibby checkout button within the payment options page of your 
 
 ```script
 <script>
-// setup and configure cart
-zibby.checkout.set({
 
-	customer: {
-		billing: {"first_name": "jane",
-				  "last_name": "doe",
-				  "address": "123 main street",
-				  "address2": "apt 5b",
-				  "city": "New York",
-				  "state": "NY",
-				  "country": "United States",
-				  "zip": "10009",
-				  "phone": "5554324537",
-				  "email": "jqdoe@anonmail.com"
-				  },
-				shipping: {
-					"first_name": "jane",
-					"last_name": "doe",
-					"address": "123 main street",
-					"address2": "apt 5b",
-					"city": "New York",
-					"state": "NY",
-					"country": "United States",
-					"zip": "10009",
-					"phone": "5554324537",
-					"email": "jqdoe@anonmail.com"
-					}
-				},
-				items: [{
-					"display_name": "4K LG TV",
-					"sku": "LG-4k2352",
-					"unit_price": 1399.99,
-                                        "quantity": 1,
-                                        "leasable": true
-					}],
-					checkout: {
-						"customer_id": "10004323",
-						"discounts": {
-							"discount_name_one": 10.00,
-							"discount_name_two": 50.00
-							},
-						"shipping_amount": 20.00},
-						urls: {
-							return: "https://yoursite.com/return",
-							cancel:"https://yoursite.com/cancel"
-							}
-						}
-					);
-							// load zibby checkout modal
-				zibby.checkout.load();
+
+$('.btn-zibby-checkout').on('click', function() {
+  var checkout = {
+     customer: {
+         billing: {
+             first_name: "jane",
+             middle_name: "Q",
+             last_name: "doe",
+             address: "123 main street",
+             address2: "apt 5b",
+             city: "New York",
+             state: "NY",
+             country: "United States",
+             zip: "10009",
+             phone: "5554324537",
+             email: "jqdoe@anonmail.com"
+         },
+         shipping: {
+             first_name: "jane",
+             middle_name: "Q",
+             last_name: "doe",
+             address: "123 main street",
+             address2: "apt 5b",
+             city: "New York",
+             state: "NY",
+             country: "United States",
+             zip: "10009",
+             phone: "5554324537",
+             email: "jqdoe@anonmail.com"
+         }
+     },
+
+    items: [{
+      display_name:         "4K LG TV",
+      sku:                  "LG-4k2352",
+      unit_price:           1399.99,
+      quantity:             1,
+      leasable:             true
+    }],
+
+    checkout: {
+      customer_id: "1000438727823",
+      shipping_amount: 20.00,
+      discounts: [
+         {discount_name: "Discount name 1", discount_amount: 50.00},
+         {discount_name: "Discount name 2", discount_amount: 50.00}
+      ]
+    },
+
+    urls: {
+        return: "https://yoursite.com/return",
+        cancel:"https://yoursite.com/cancel"
+    }
+
+  };
+  zibby.checkout.set(checkout);
+  zibby.checkout.load();
+});
+
+
 </script>
 ```
 
