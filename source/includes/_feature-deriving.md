@@ -395,4 +395,162 @@ POST'ing to the private variables catalog a Shoji Entity containing a ZCL functi
 
 ### Other transformations
 
-Forthcoming.
+#### Arithmetic operations
+
+It is possible to create new numeric variables out of pairs of other
+ numeric variables. The following arithmetic operations are available
+ and will take two numeric variables as their arguments.
+
+ * "+" for adding up two numeric variables.
+ * "-" returns the difference between two numeric variables.
+ * "*" for the product of two numeric variables.
+ * "/" Real division.
+ * "//" Floor division; Returns always an integer.
+ * "^" Raises the first argument to the power of the second argument
+ * "%" Modulo operation; Accepts floats
+
+
+The usage is as follows for all operators:
+
+```json
+{
+    "function": "+",
+    "args": [
+        {"variable": "https://app.crunch.io/api/datasets/123/variables/abc/"}
+        {"variable": "https://app.crunch.io/api/datasets/123/variables/def/"}
+    ]
+}
+```
+
+
+#### bin
+Receives a numeric variable and returns a categorical one where each
+category represents a bin of the numeric values.
+
+Each category on the new variable is annotated with a "boundaries" 
+member that contains the lower/upper bound of each bin.
+
+```json
+{
+    "function": "bin",
+    "args": [
+        {"variable": "https://app.crunch.io/api/datasets/123/variables/abc/"}
+    ]
+}
+```
+
+Optionally it is possible to pass a second argument indicating the desired
+bin size to use instead of allowing the API to decide them.
+
+
+```json
+{
+    "function": "bin",
+    "args": [
+        {"variable": "https://app.crunch.io/api/datasets/123/variables/abc/"},
+        {'value': 100}
+    ]
+}
+```
+
+#### case
+Returns a categorical variable with its categories following the specified
+conditions from different variables on the dataset. [View Case Statements](#Case-statements)
+
+#### cast
+Returns a new variable with its type and values casted. Not applicable
+on arrays or date variable; use [Date Functions](#Date-Functions) to
+work with date variables.
+
+```json
+{
+    "function": "cast",
+    "args": [
+        {"variable": "https://app.crunch.io/api/datasets/123/variables/abc/"},
+        {"value": "numeric"}
+    ]
+}
+```
+
+The allowed output variable types are:
+
+* numeric
+* text
+* categorical
+
+For categorical types it is necessary to indicate the categories as a type
+definition instead of a string name:
+
+To cast to categorical type, the second argument `value` should not be
+ a name string (`numeric`, `text`) but a type definition indicating a 
+ `class` and `categories` as follow:
+
+```json
+{
+    "function": "cast",
+    "args": [
+        {"variable": "https://app.crunch.io/api/datasets/123/variables/abc/"},
+        {"value": {
+                "class": "categorical",
+                "categories": [
+                    {"id": 1, "name": "one", "missing": false, "numeric_value": null},
+                    {"id": 2, "name": "two", "missing": false, "numeric_value": null},
+                    {"id": -1, "name": "No Data", "missing": true, "numeric_value": null},
+                ]
+            }
+        }
+    ]
+}
+```
+
+To change the type of a variable a client should POST to the `/variable/:id/cast/`
+endpoint. See [Convert type](#Convert-type) for API examples.
+
+
+#### char_length
+Returns a numeric variable containing the text length of each value. Only
+applicable on text variables.
+
+```json
+{
+    "function": "char_length",
+    "args": [
+        {"variable": "https://app.crunch.io/api/datasets/123/variables/abc/"}
+    ]
+}
+```
+
+#### copy_variable
+Returns a shallow copy of the indicated variable maintaining type and data.
+
+```json
+{
+    "function": "variable",
+    "args": [
+        {"variable": "https://app.crunch.io/api/datasets/123/variables/abc/"}
+    ]
+}
+```
+
+Changes on the data of the original variable will be reflected on this copy.
+
+
+#### combine_categories
+Returns a categorical variable with values combined following the specified
+combination rules. See [Combining categories](#Combining-categories)
+
+
+#### combine_responses
+Given a list of categorical variables, return the selected value out
+of them. See [Combining responses](#Combining-responses)
+
+
+#### row
+Returns a numeric variable with row 0 based indices. It takes no arguments.
+
+```json
+{
+    "function": "row",
+    "args": []
+}
+```
