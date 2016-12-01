@@ -486,42 +486,42 @@ valor   | float   | Valor de la compensación. __Requerido__
 
 Parámetro           | Tipo    | Descripción
 ------------------- | ------- | ----------
-incoterm   | Objeto de tipo [incoterm](#incoterm)  | Información del Incoterm
-origen   | Objeto de tipo [origen de exportación](#origen-de-exportaci-n)  | Origen de la exportación
-destino   | Objeto de tipo [destino de exportación](#destino-de-exportaci-n)  | Destino de la exportación
-codigo_pais_adquisicion   | string  | Código del país de adquisición según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) 
+incoterm   | Objeto de tipo [incoterm](#incoterm)  | Información del Incoterm . __Requerido__
+origen   | Objeto de tipo [origen de exportación](#origen-de-exportaci-n)  | Origen de la exportación . __Requerido__
+destino   | Objeto de tipo [destino de exportación](#destino-de-exportaci-n)  | Destino de la exportación. __Requerido__
+codigo_pais_adquisicion   | string  | Código de dos caracteres del país de adquisición según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) 
 totales | Objecto de tipo [totales de exportación](#totales-de-exportaci-n) | Totales de la exportación
 
 #### Incoterm
 
 Parámetro           | Tipo    | Descripción
 ------------------- | ------- | ----------
-termino   | string  | Código de 3 letras correspondiente al [Incoterm](http://www.proecuador.gob.ec/exportadores/requisitos-para-exportar/incoterms/) 
-lugar   | string  | Lugar Incoterm
-total_sin_impuestos   | string  | Total sin impuestos del incoterm
+termino   | string  | Código de 3 letras correspondiente al [Incoterm](http://www.proecuador.gob.ec/exportadores/requisitos-para-exportar/incoterms/). __Requerido__
+lugar   | string  | Lugar Incoterm. __Requerido__
+total_sin_impuestos   | string  | Total sin impuestos del incoterm. __Requerido__
 
 #### Origen de exportación
 
 Parámetro           | Tipo    | Descripción
 ------------------- | ------- | ----------
-codigo_pais  | string  | Código del país origen según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
-puerto   | string  | Puerto de origen
+codigo_pais  | string  | Código  de dos caracteres del país origen según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements). __Requerido__
+puerto   | string  | Puerto de origen . __Requerido__
 
 #### Destino de exportación
 
 Parámetro           | Tipo    | Descripción
 ------------------- | ------- | ----------
-codigo_pais  | string  | Código del país destino según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
-puerto   | string  | Puerto de destino
+codigo_pais  | string  | Código de dos caracteres del país destino según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
+puerto   | string  | Puerto de destino. . __Requerido__
 
 #### Totales de exportación
 
 Parámetro           | Tipo    | Descripción
 ------------------- | ------- | ----------
-flete_internacional   | float  | Total del flete internacional
-seguro_internacional   | float  | Total del seguro internacional
-gastos_aduaneros   | float  | Total de los gastos aduaneros
-otros_gastos_transporte   | float  | Total de otros gastos de transporte
+flete_internacional   | float  | Total del flete internacional.
+seguro_internacional   | float  | Total del seguro internacional.
+gastos_aduaneros   | float  | Total de los gastos aduaneros.
+otros_gastos_transporte   | float  | Total de otros gastos de transporte.
 
 
 <aside class="notice">

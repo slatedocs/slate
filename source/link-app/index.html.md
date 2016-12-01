@@ -668,14 +668,14 @@ Obligatorio para facturas de exportación
 
 Campo           | Tipo    | Descripción
 ------------------- | ------- | ----------
-incoterm_termino   | string  | Código de 3 letras correspondiente al [Incoterm](http://www.proecuador.gob.ec/exportadores/requisitos-para-exportar/incoterms/) 
-incoterm_lugar   | string  | Lugar Incoterm
-incoterm_total_sin_impuestos   | string  | Total sin impuestos pagado por el incoterm
-codigo_pais_origen   | string  | Código de dos letras del país origen según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)  
+incoterm_termino   | string  | Código de 3 letras correspondiente al [Incoterm](http://www.proecuador.gob.ec/exportadores/requisitos-para-exportar/incoterms/) . __Requerido__
+incoterm_lugar   | string  | Lugar Incoterm . __Requerido__
+incoterm_total_sin_impuestos   | string  | Total sin impuestos pagado por el incoterm. __Requerido__
+codigo_pais_origen   | string  | Código de dos letras del país origen según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)  . __Requerido__
 codigo_pais_destino   | string  | Código de dos letras del país origen según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)  
 codigo_pais_adquisicion   | string  | Código de dos letras del país origen según[ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) 
-puerto_origen   | string  | Puerto de origen
-puerto_destino   | string  | Puerto de destino
+puerto_origen   | string  | Puerto de origen. __Requerido__
+puerto_destino   | string  | Puerto de destino. __Requerido__
 total_flete_internacional   | float  | Total del flete internacional
 total_seguro_internacional   | float  | Total del seguro internacional
 total_gastos_aduaneros   | float  | Total de los gastos aduaneros
