@@ -764,10 +764,10 @@ CREATE TABLE [facturas].[factura](
 CREATE TABLE [facturas].[item](
     [id] bigint IDENTITY(1,1) PRIMARY KEY,
     [id_factura] bigint NOT NULL FOREIGN KEY REFERENCES [facturas].[factura](id),
-    [cantidad] [decimal](14,6)  NOT NULL,
+    [cantidad] [decimal](14,2)  NOT NULL,
     [codigo_principal] [varchar](50)  NULL,
     [codigo_auxiliar] [varchar](50)  NULL,
-    [precio_unitario] [decimal](14,6)  NOT NULL,
+    [precio_unitario] [decimal](14,2)  NOT NULL,
     [descripcion] [varchar](300)  NOT NULL,
     [precio_total_sin_impuestos] [decimal](14,2)  NOT NULL,
     [descuento] [decimal](14,2)  NULL,
@@ -1226,10 +1226,10 @@ CREATE TABLE [notas_de_credito].[nota_de_credito](
 CREATE TABLE [notas_de_credito].[item](
     [id] bigint IDENTITY(1,1) PRIMARY KEY,
     [id_nota_credito] bigint NOT NULL FOREIGN KEY REFERENCES [notas_de_credito].[nota_de_credito](id),
-    [cantidad] [decimal](14,6)  NOT NULL,
+    [cantidad] [decimal](14,2)  NOT NULL,
     [codigo_principal] [varchar](50)  NULL,
     [codigo_auxiliar] [varchar](50)  NULL,
-    [precio_unitario] [decimal](14,6)  NOT NULL,
+    [precio_unitario] [decimal](14,2)  NOT NULL,
     [descripcion] [varchar](300)  NOT NULL,
     [precio_total_sin_impuestos] [decimal](14,2)  NOT NULL,
     [descuento] [decimal](14,2)  NULL
