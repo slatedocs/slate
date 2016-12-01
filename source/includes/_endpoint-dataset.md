@@ -704,7 +704,7 @@ attribute pointing to the URL of the source dataset to use.
 {
   "element": "shoji:entity",
   "body": {
-    "copy_from": "htp://app.crunch.io/api/datasets/1234/"
+    "copy_from": "https://app.crunch.io/api/datasets/1234/"
   }
 }
 ```
@@ -721,6 +721,44 @@ will be brought over to the current dataset:
 * Derived variables
 * Personal variables
 * Permissions
+
+The response will be a `shoji:entity` containing as a body an object with
+keys for each entity type that uas not been copied. In the case of variables
+these entities will display their name, alias and owner (if personal).
+
+All the URLs will refer to entities on the source dataset.
+
+```json
+{
+    "element": "shoji:entity",
+    "body": {
+        "variables": {
+            "https://app.crunch.io/dataset/1234/variables/abc/": {
+                "name": "Variable name",
+                "alias": "Variable alias",
+                "owner_url": "https://app.crunch.io/users/qwe/",
+                "owner_name": "Angus MacGyver"
+            }, 
+            "https://app.crunch.io/dataset/1234/variables/cde/": {
+                "name": "Variable name",
+                "alias": "Variable alias",
+                "owner_url": null,
+                "owner_name": null
+            }, 
+        },
+        "filters": {
+            "https://app.crunch.io/filters/abcd/": {
+                "name": "filter name",
+                "owner_url": "http://app.crunch.io/users/qwe/"
+            },
+            "http://app.crunch.io/filters/cdef/": {
+                "name": "filter name",
+                "owner_url": "https://app.crunch.io/users/qwe/"
+            }
+        }
+    }
+}
+```
 
 
 #### DELETE
