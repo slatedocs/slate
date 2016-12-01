@@ -550,12 +550,12 @@ curl -X GET \
 ```
 
 ```csharp
-    api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
-    var parameters = new api.Parameters();
-            parameters.Add("campaign-id", "50");
+var parameters = new api.Parameters();
+        parameters.Add("campaign-id", "50");
 
-    var results = request.Get("/v2/lsrc/history/get", parameters);
+var results = request.Get("/v2/lsrc/history/get", parameters);
 ```
 
 > Success (200 OK)
