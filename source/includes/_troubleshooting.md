@@ -20,6 +20,15 @@ tail -n1000 log/scout_apm.log | grep "Starting monitoring" -A20
 </pre>
           See something noteworthy? Proceed to <a href="#step6">to the last step</a>.
         </p>
+        <p>
+          If there is no log file, check that the <code>scout_apm</code> gem is not restricted to a certain <code>group</code> in your <code>Gemfile</code>. This would prevent <code>scout_apm</code> from loading in a <code>staging</code> environment:
+          <p></p>
+<pre>
+group :production do
+  gem 'unicorn'
+  gem 'scout_apm'
+end
+</pre>
       </td>
     </tr>
     <tr>
