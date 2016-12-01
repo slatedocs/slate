@@ -238,16 +238,10 @@ When an error is encountered the system will return this response.
         api_key: "[INSERT YOUR API KEY HERE]",
         environment: "https://sandbox.zibby.com"
     };
-    !function(e,t){e.zibby=e.zibby||{};var n,i,r;i=!
-    1,n=document.createElement("script"),n.type="text/javascript",
-    n.async=0,n.src=t.environment+"/plugin/js/zibby.js",
-    n.onload=n.onreadystatechange=function(){i||this.readyState
-    &&"complete"!=this.readyState||(i=0,e.zibby.setConfig(t.api_key))},
-    r=document.getElementsByTagName("script")[0],r.parentNode.insertBefore(n,r);
-    var s=document.createElement("link");s.setAttribute("rel","stylesheet"),
-    s.setAttribute("type","text/css"),
-    s.setAttribute("href",t.environment+"/plugin/css/zibby.css");
-    var a=document.querySelector("head");a.insertBefore(s,a.firstChild)}(window,_zibby_config);
+
+     !function(e,t){e.zibby=e.zibby||{};var i,r,s;r=!1,i=document.createElement("script"),i.type="text/javascript",i.async=!0,i.src=t.script,i.onload=i.onreadystatechange=function(){r||this.readyState&&"complete"!=this.readyState||(r=!0,e.zibby.setConfig(t.api_key))},s=document.getElementsByTagName("script")[0],s.parentNode.insertBefore(i,s);var n=document.createElement("link");n.setAttribute("rel","stylesheet"),n.setAttribute("type","text/css"),n.setAttribute("href",_config.url+"plugin/css/zibby.css");var c=document.querySelector("head");c.insertBefore(n,c.firstChild)}(window,_zibby_config);
+
+
 </script>
 ```
 
