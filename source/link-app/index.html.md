@@ -326,7 +326,7 @@ Campo |  Descripción | Valor de ejemplo
 --------- | -----------| ---------
 id_local | string | Identifica de manera única la factura. __Requerido__
 secuencial | string  | Número de secuencia de la factura. __Requerido__
-fecha_emision | datetime  | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
+fecha_emision | datetime  | Fecha de emisión   __Requerido__
 guia_remision | string | Número de guía de remisión asociada a esta factura en formato 001-002-000000003 ([0-9]{3}-[0-9]{3}-[0-9]{9})
 moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. __Requerido__
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
@@ -764,10 +764,10 @@ CREATE TABLE [facturas].[factura](
 CREATE TABLE [facturas].[item](
     [id] bigint IDENTITY(1,1) PRIMARY KEY,
     [id_factura] bigint NOT NULL FOREIGN KEY REFERENCES [facturas].[factura](id),
-    [cantidad] [decimal](14,2)  NOT NULL,
+    [cantidad] [decimal](14,6)  NOT NULL,
     [codigo_principal] [varchar](50)  NULL,
     [codigo_auxiliar] [varchar](50)  NULL,
-    [precio_unitario] [decimal](14,2)  NOT NULL,
+    [precio_unitario] [decimal](14,6)  NOT NULL,
     [descripcion] [varchar](300)  NOT NULL,
     [precio_total_sin_impuestos] [decimal](14,2)  NOT NULL,
     [descuento] [decimal](14,2)  NULL,
@@ -1226,10 +1226,10 @@ CREATE TABLE [notas_de_credito].[nota_de_credito](
 CREATE TABLE [notas_de_credito].[item](
     [id] bigint IDENTITY(1,1) PRIMARY KEY,
     [id_nota_credito] bigint NOT NULL FOREIGN KEY REFERENCES [notas_de_credito].[nota_de_credito](id),
-    [cantidad] [decimal](14,2)  NOT NULL,
+    [cantidad] [decimal](14,6)  NOT NULL,
     [codigo_principal] [varchar](50)  NULL,
     [codigo_auxiliar] [varchar](50)  NULL,
-    [precio_unitario] [decimal](14,2)  NOT NULL,
+    [precio_unitario] [decimal](14,6)  NOT NULL,
     [descripcion] [varchar](300)  NOT NULL,
     [precio_total_sin_impuestos] [decimal](14,2)  NOT NULL,
     [descuento] [decimal](14,2)  NULL
