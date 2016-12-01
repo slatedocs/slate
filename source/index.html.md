@@ -20,9 +20,6 @@ includes:
   - anomaly_types
   - anomaly_type_product_type_linker
   - connections
-  - customers
-  - customer_entity_linker
-  - customer_product_history
   - enable_history
   - entities
   - hubs
@@ -65,8 +62,6 @@ includes:
   - disable_tamper_switch
   - send_wakeup
   - product_parts
-  - change_customer
-  - expire_customer
   - parameters
   - parameter_history
 
@@ -77,6 +72,7 @@ includes:
   - auth_login
   - dashboard2
   - create_customer
+  - pub_sub
 
   - using_the_api
   - authentication_and_permissions
