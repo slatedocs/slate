@@ -474,7 +474,7 @@ cantidad | float | Cantidad de items. __Requerido__
 precio_unitario | float | Precio unitario. __Requerido__
 descuento | float | El descuento es aplicado por cada producto. __Requerido__
 precio_total_sin_impuestos | float | Precio antes de los impuestos. Se obtiene multiplicando la `cantidad` por el `precio_unitario` __Requerido__
-unidad_medida | string | Unidad de medida __Requerido para facturas de exportación__
+unidad_medida | string | Unidad de medida. Ejemplo: Kilos. __Requerido para facturas de exportación__
 
 ### Impuestos de items
 
@@ -671,9 +671,9 @@ Campo           | Tipo    | Descripción
 incoterm_termino   | string  | Código de 3 letras correspondiente al [Incoterm](http://www.proecuador.gob.ec/exportadores/requisitos-para-exportar/incoterms/) 
 incoterm_lugar   | string  | Lugar Incoterm
 incoterm_total_sin_impuestos   | string  | Total sin impuestos pagado por el incoterm
-codigo_pais_origen   | string  | Código del país origen según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)  
-codigo_pais_destino   | string  | Código del país destino según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)  
-codigo_pais_adquisicion   | string  | Código del país de adquisición según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) 
+codigo_pais_origen   | string  | Código de dos letras del país origen según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)  
+codigo_pais_destino   | string  | Código de dos letras del país origen según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)  
+codigo_pais_adquisicion   | string  | Código de dos letras del país origen según[ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) 
 puerto_origen   | string  | Puerto de origen
 puerto_destino   | string  | Puerto de destino
 total_flete_internacional   | float  | Total del flete internacional
@@ -854,9 +854,9 @@ CREATE TABLE [facturas].[exportacion](
     [incoterm_termino] [varchar](10)  NULL,
     [incoterm_lugar] [varchar](300)  NULL,
     [incoterm_total_sin_impuestos] [varchar](10)  NOT NULL,
-    [codigo_pais_origen] [varchar](3)  NULL,
-    [codigo_pais_destino] [varchar](3)  NULL,
-    [codigo_pais_adquisicion] [varchar](3)  NULL,
+    [codigo_pais_origen] [varchar](2)  NULL,
+    [codigo_pais_destino] [varchar](2)  NULL,
+    [codigo_pais_adquisicion] [varchar](2)  NULL,
     [puerto_origen] [varchar](300)  NULL,
     [puerto_destino] [varchar](300)  NULL,
     [total_flete_internacional] [decimal](14,2)  NOT NULL,
@@ -901,7 +901,7 @@ Campo |  Descripción | Valor de ejemplo
 --------- | -----------| ---------
 id_local | string | Identifica de manera única la nota de crédito. __Requerido__
 secuencial | string  | Número de secuencia de la nota de crédito. __Requerido__
-fecha_emision | datetime  | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
+fecha_emision | datetime  | Fecha de emisión   __Requerido__
 moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. __Requerido__
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
@@ -1306,7 +1306,7 @@ Campo |  Descripción | Valor de ejemplo
 --------- | -----------| ---------
 id_local | string | Identifica de manera única la retención. __Requerido__
 secuencial | string  | Número de secuencia de la retención. __Requerido__
-fecha_emision | datetime  | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
+fecha_emision | datetime  | Fecha de emisión   __Requerido__
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
 periodo_fiscal | string | Mes y año en el siguiente formato MM/AAAA. Ejm: 12/2015 __Requerido__
@@ -1403,7 +1403,7 @@ base_imponible | float | Base imponible. __Requerido__
 valor_retenido | float | Valor retenido. __Requerido__
 tipo_documento_sustento | string | Códigos de [tipos de documentos](#tipos-de-documentos). __Requerido__
 numero_documento_sustento | string | Número completo del documento que se está afectando. Normalmente facturas. Ejm: 001-002-010023098 __Requerido__
-fecha_emision_documento_sustento | datetime | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria del documento sustento de la retención, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
+fecha_emision_documento_sustento | datetime | Fecha de emisión del documento sustento de la retención__Requerido__
 
 ### Información adicional
 
@@ -1537,8 +1537,8 @@ Campo |  Descripción | Valor de ejemplo
 --------- | -----------| ---------
 id_local | string | Identifica de manera única la guía de remisión. __Requerido__
 secuencial | string  | Número de secuencia de la retención. __Requerido__
-fecha_inicio_transporte | string  | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
-fecha_fin_transporte | string  | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
+fecha_inicio_transporte | datetime  | Fecha en la que inicia el transporte dada la guía de remisión __Requerido__
+fecha_fin_transporte | datetime  | Fecha en la que termina el transporte dada la guía de remisión __Requerido__
 direccion_partida | string | Dirección de partida
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
@@ -1643,10 +1643,9 @@ telefono | string | Teléfono del destinatario
 direccion | string | Dirección del destinatario
 ruta | string | Ruta de transporte. Máximo 300 caracteres.
 documento_aduanero_unico | string |  Máximo 20 caracteres.
-fecha_emision_documento_sustento | datetime  | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
+fecha_emision_documento_sustento | datetime  | Fecha de emisión del documento sustento de la guía de remisión, usualmente una factura.  __Requerido__
 numero_documento_sustento | string | Número completo del documento que detalla la mercadería a transportar. Normalmente facturas. Ejm: 001-002-010023098
 codigo_establecimiento_destino | string | Número establecimiento que recibe la entrega.  __Requerido__
-fecha_emision_documento_sustento | datetime | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).  __Requerido__
 numero_documento_sustento | string | Número completo del documento que detalla la mercadería a transportar. Normalmente facturas. Ejm: 001-002-010023098 __Requerido__
 tipo_documento_sustento | string | tipo_documento_sustento | string | Códigos de [tipos de documentos](#tipos-de-documentos). __Requerido__
 motivo_traslado | string | Motivo del traslado. Ejm: Entrega de mercadería. __Requerido__
