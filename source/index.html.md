@@ -233,6 +233,23 @@ When an error is encountered the system will return this response.
 ##Step 1
 
 ```script
+<script>
+    var _zibby_config = {
+        api_key: "[INSERT YOUR API KEY HERE]",
+        environment: "https://sandbox.zibby.com"
+    };
+
+     !function(e,t){e.zibby=e.zibby||{};var i,r,s;r=!1,i=document.createElement("script"),i.type="text/javascript",i.async=!0,i.src=t.script,i.onload=i.onreadystatechange=function(){r||this.readyState&&"complete"!=this.readyState||(r=!0,e.zibby.setConfig(t.api_key))},s=document.getElementsByTagName("script")[0],s.parentNode.insertBefore(i,s);var n=document.createElement("link");n.setAttribute("rel","stylesheet"),n.setAttribute("type","text/css"),n.setAttribute("href",_config.url+"plugin/css/zibby.css");var c=document.querySelector("head");c.insertBefore(n,c.firstChild)}(window,_zibby_config);
+
+
+</script>
+```
+
+Place the following script tag on the bottom of your page. This snippet uses an asynchronous loading method that allows you to immediately use the zibby.js plugin without a significant impact on the load time of your page.
+
+##Step 2
+
+```script
 <a href="#" class="btn-zibby-checkout">
 <img src="https://www.zibby.com/static/img/btn-zibby-checkout.png" alt="Checkout with Zibby">
 </a>
@@ -240,60 +257,71 @@ When an error is encountered the system will return this response.
 
 Place or name the Zibby checkout button within the payment options page of your site.
 
-##Step 2
+##Step 3
 
 ```script
 <script>
-// setup and configure cart
-zibby.checkout.set({
 
-	customer: {
-		billing: {"first_name": "jane",
-				  "last_name": "doe",
-				  "address": "123 main street",
-				  "address2": "apt 5b",
-				  "city": "New York",
-				  "state": "NY",
-				  "country": "United States",
-				  "zip": "10009",
-				  "phone": "5554324537",
-				  "email": "jqdoe@anonmail.com"
-				  },
-				shipping: {
-					"first_name": "jane",
-					"last_name": "doe",
-					"address": "123 main street",
-					"address2": "apt 5b",
-					"city": "New York",
-					"state": "NY",
-					"country": "United States",
-					"zip": "10009",
-					"phone": "5554324537",
-					"email": "jqdoe@anonmail.com"
-					}
-				},
-				items: [{
-					"display_name": "4K LG TV",
-					"sku": "LG-4k2352",
-					"unit_price": 1399.99,
-                                        "quantity": 1,
-                                        "leasable": true
-					}],
-					checkout: {
-						"customer_id": "10004323",
-						"discounts": {
-							"discount_name_one": 10.00,
-							"discount_name_two": 50.00
-							},
-						"shipping_amount": 20.00},
-						urls: {
-							return: "https://yoursite.com/return",
-							cancel:"https://yoursite.com/cancel"
-							}
-						}
-					);
-							// load zibby checkout modal
-				zibby.checkout.load();
+
+$('.btn-zibby-checkout').on('click', function() {
+  var checkout = {
+     customer: {
+         billing: {
+             first_name: "jane",
+             middle_name: "Q",
+             last_name: "doe",
+             address: "123 main street",
+             address2: "apt 5b",
+             city: "New York",
+             state: "NY",
+             country: "United States",
+             zip: "10009",
+             phone: "5554324537",
+             email: "jqdoe@anonmail.com"
+         },
+         shipping: {
+             first_name: "jane",
+             middle_name: "Q",
+             last_name: "doe",
+             address: "123 main street",
+             address2: "apt 5b",
+             city: "New York",
+             state: "NY",
+             country: "United States",
+             zip: "10009",
+             phone: "5554324537",
+             email: "jqdoe@anonmail.com"
+         }
+     },
+
+    items: [{
+      display_name:         "4K LG TV",
+      sku:                  "LG-4k2352",
+      unit_price:           1399.99,
+      quantity:             1,
+      leasable:             true
+    }],
+
+    checkout: {
+      customer_id: "1000438727823",
+      shipping_amount: 20.00,
+      discounts: [
+         {discount_name: "Discount name 1", discount_amount: 50.00},
+         {discount_name: "Discount name 2", discount_amount: 50.00}
+      ]
+    },
+
+    urls: {
+        return: "https://yoursite.com/return",
+        cancel:"https://yoursite.com/cancel"
+    }
+
+  };
+  zibby.checkout.set(checkout);
+  zibby.checkout.load();
+});
+
+
 </script>
 ```
 
