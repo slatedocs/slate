@@ -103,7 +103,7 @@ token_cartao | 37 | string | Obrigatório na utilização do token | Quando o
 > "intervalo"
 
 ```php
-'day' | 'week' | 'month' | 'year'
+'day' | 'week' | 'month'
 ```
 
 > "inicio"

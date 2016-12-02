@@ -19,6 +19,7 @@ includes:
   - opencart
   - woocommerce
   - prestashop
+  - integrationphp
 
 search: true
 ---
