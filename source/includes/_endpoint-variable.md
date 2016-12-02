@@ -401,6 +401,7 @@ variable entities:
 * Reordering or removing subvariables in an array. Unlike categories, subvariables cannot be added via PATCH here.
 * Editing derivation expressions
 * Editing format and view settings
+* Changing a date variable's resolution
 
 Actions that are best or only achieved elsewhere include:
 
