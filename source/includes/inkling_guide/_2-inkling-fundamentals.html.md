@@ -1,4 +1,4 @@
-# Introduction to Machine Learning
+# Introduction to Artificial Intelligence
 
 This chapter is intended for developers who have never worked with machine learning.
 

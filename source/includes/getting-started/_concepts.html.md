@@ -1,7 +1,4 @@
-
-[Source](http://docs.bons.ai/getting-started/concepts "Permalink to Fundamentals - Bons.ai")
-
-# Fundamentals - Bons.ai
+# Fundamentals
 
 There are some things you might want to know before you get started. In this section, we're going to walk you through the Bonsai Platform components and some of the basic Bonsai concepts. Let's jump right in!
 
@@ -90,5 +87,3 @@ There is a BRAIN Details page for each of your BRAINs. Each page shows that BRAI
 
 [1]: https://daks2k3a4ib2z.cloudfront.net/57bf257ce45825764c5cb54b/57e5bb2cab226c7d49d033f5_bonsai_infographic_2x_1024.png
 [2]: http://docs.bons.ai/inkling-guide-pages/introduction
-
-  

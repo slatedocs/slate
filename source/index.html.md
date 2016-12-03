@@ -1,189 +1,50 @@
 ---
 title: Bonsai Documentation
 
-language_tabs:
-  - shell
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
 
 search: true
 ---
 
 # Bonsai Documentation
 
-This is our test-bed for making new docs. A fully fleshed-out example can be found at [Getting Started with Anaconda](getting-started/getting-started-with-anaconda.html).
-<aside class="success">Bonsai Docs Test Repo!!</aside>
-# Introduction
-
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+Welcome to the sandbox for the future Slate-powered Bonsai documentation site!
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+This is a temporary landing page.
 </aside>
 
-# Kittens
+## Draft Sections:
 
-## Get All Kittens
+I've set up a draft of the following pages to show off the new format. These are early drafts, and subject to change.
 
-```ruby
-require 'kittn'
+Page | Status | Style
+-------------- | -------------- | --------------
+[Inkling Guide][1] | First Draft | Modular
+[Inkling Reference][2] | First Draft | Modular
+[Getting Started with Anaconda][3] | Second Draft | Single page
+[CLI Reference][5] | Second Draft | Single Page
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+## FAQ:
 
-```python
-import kittn
+### Where did the **Chapter/Section** numbers go?
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+These are temporarily removed until the site tree settles down, and will likely be replaced.
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+### What are Modular pages?
 
-```javascript
-const kittn = require('kittn');
+Slate supports the notion of [includes][4], which allow us to put the documentation into a database of sorts and rebuild it from parts. This works by holding the pages in the `includes` folder. A display page is made by adding an `includes` section to the front matter, and then listing the included pages in order.
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
+### What about headers/footers/toc_footers?
 
-> The above command returns JSON structured like this:
+These are still being designed.
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+[1]: /inkling_guide.html "Inkling Guide"
+[2]: /inkling_reference.html "Inkling Reference"
+[3]: /getting-started-with-anaconda.html "Anaconda CLI instructions"
+[5]: /cli_reference.html "CLI Reference"
