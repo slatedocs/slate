@@ -1,18 +1,3 @@
----
-title: CLI Reference
-
-language_tabs:
-  - shell
-
-toc_footers:
-  - <a href='https://bons.ai/sign-up'>Sign Up for our Private Beta!</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
-
-search: true
----
 # CLI Reference - Bons.ai
 
 The Bonsai Command Line Interface (CLI) is a text based tool that enables you to configure and control the Bonsai Artificial Intelligence Engine. The CLI is especially useful for automation and connection to other tools. Currently, there are some actions that can only be performed using the CLI, such as loading your inkling file and connecting your simulator.  
@@ -31,13 +16,13 @@ The Bonsai CLI command hierarchy.
 
 ## Configure Command
 ```
-$ bonsai configure _accessKey_
+$ bonsai configure accessKey
 ```
 **configure** sets up authentication between you, as a user, and the server. This enables the server to verify that you are allowed to write Inkling code to a specific BRAIN. You can find your access code in your account settings at .
 
 ## Brain Group Commands
 ```
-$ bonsai brain create _brainName_
+$ bonsai brain create brainName
 ```
 **create **generates a new brain and names it (brainName).
 
@@ -48,17 +33,17 @@ Brain names can include:
 
 It is case insensitive, but case aware.
 ```
-$ bonsai brain load _brainNameinklingFile_.ink
+$ bonsai brain load brainNameinklingFile.ink
 ```
 **load** loads an Inkling file (inklingFile.ink) to a specific BRAIN (brainName).
 
 ## train group commands
 ```
-$ bonsai brain train start _brainName_
+$ bonsai brain train start brainName
 ```
 **start** turns on/enables training mode for a specific BRAIN (brainName). The BRAIN trains whenever the simulator is connected. If the simulator is disconnected, the BRAIN remains in training mode, and it will train again where it left off when the simulator is reconnected.
 ```
-$ bonsai brain train stop _brainName_
+$ bonsai brain train stop brainName
 ```
 **stop** turns off training mode for a specific BRAIN (brainName).
 

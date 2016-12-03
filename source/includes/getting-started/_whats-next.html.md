@@ -1,7 +1,7 @@
 
 [Source](http://docs.bons.ai/getting-started/whats-next "Permalink to What's Next - Bons.ai")
 
-# What's Next - Bons.ai
+# What's Next
 
 Now that you've completed this guide, you can:
 
@@ -17,4 +17,4 @@ And we have these other resources that will enable you to maximize your AI devel
 
 ‍
 
-[1]: http://docs.bons.ai/inkling-guide-pages/introduction
+[1]: /inkling_guide.html

@@ -1,8 +1,7 @@
 ---
-title: Inkling Guide
+title: Getting Started
 
 language_tabs:
-  - shell
 
 toc_footers:
   - <a href='https://bons.ai/sign-up'>Sign Up for our Private Beta!</a>
@@ -10,6 +9,10 @@ toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - cli-reference.html.md
+  - getting-started/introduction.html.md
+  - getting-started/concepts.html.md
+  - getting-started/lets-get-started.html.md
+  - getting-started/getting-started-with-anaconda.html.md
+  - getting-started/whats-next.html.md
 search: true
 ---
