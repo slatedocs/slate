@@ -9,6 +9,6 @@ toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - cli_reference/cli_reference.html.md
+  - cli-reference/cli-reference.html.md
 search: true
 ---
