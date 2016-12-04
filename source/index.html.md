@@ -21,7 +21,7 @@ This is a temporary landing page.
 
 ## Draft Sections:
 
-I've set up a draft of the following pages to show off the new format. These are early drafts, and subject to change. There is some natural overlap between the pages
+I've set up a draft of the following pages to show off the new format. These are early drafts, and subject to change. There is some natural overlap between the pages because some modules are used more than once.
 
 Page | Status | Style
 -------------- | -------------- | --------------
