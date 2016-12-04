@@ -12,13 +12,15 @@ If you have Anaconda installed on your system, go to Step 1 of our [Getting Star
 2. Install Git (e.g. via GitHub desktop for windows - ).
 3. You may need to reboot your computer after installing Python and Git to make sure all install settings take effect.
 
-### Mac OS X
-
-1. Install pip
+> Mac OS
 
 ```
 sudo easy_install pip
 ```
+
+### Mac OS X
+
+1. Install pip
 
 ### pip is a tool for installing and managing Python dependencies. For more information about pip, refer to .
 
@@ -33,7 +35,7 @@ bonsai configure # Follow the instructions to retrieve your key, and enter it wh
 
 ## Step 3. Clone a sample project
 
-Clone our sample project, Mountain Car. This project uses[ OpenAI Gym's][4] Mountain Car simulation.
+Clone our sample project, Mountain Car. This project uses [OpenAI Gym's][4] Mountain Car simulation.
 
 ```
 git clone https://github.com/BonsaiAI/gym-mountaincar-sample
@@ -69,7 +71,7 @@ bonsai brain load myMountainCarBrain mountaincar.ink
 Start the training mode for your BRAIN.
 
 ```
-bonsai brain train start **myMountainCarBrain
+bonsai brain train start myMountainCarBrain
 ```
 
 ## Step 8. Connect the simulator for training

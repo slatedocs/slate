@@ -1,4 +1,4 @@
-# Introduction
+# Introduction to Inkling
 
 Welcome to Inkling, Bonsai AI's unique programming language for training AI.
 

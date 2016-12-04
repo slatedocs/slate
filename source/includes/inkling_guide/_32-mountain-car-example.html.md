@@ -1,4 +1,4 @@
-## Example: Mountain Car
+# Example: Mountain Car
 
 We've used pieces of code from this example in several places, but here we'll walk you through all the various statements that are part of the mountain car inkling file. Each statement is followed by an explanation of the statement.
 
@@ -6,7 +6,7 @@ Mountain car is a classic control problem. [OpenAI Gym][1] describes it as:
 
 _A car is on a one-dimensional track, positioned between two "mountains". The goal is to drive up the mountain on the right; however, the car's engine is not strong enough to scale the mountain in a single pass. Therefore, the only way to succeed is to drive back and forth to build up momentum._
 
-### Schemas
+## Schemas
 
 ```
 schema GameState
@@ -35,7 +35,7 @@ end
 
 The MountainCarConfig schema names three records — episode_length, num_episodes, and deque_size — and assigns types to them.
 
-### Concept
+## Concept
 
 ```
 concept high_score
@@ -48,7 +48,7 @@ end
 
 The concept is named high_score, and it takes input from the simulator about the state of the game (GameState schema). It outputs to the Action schema. This is the AI's next move in the game.
 
-### Curriculum and Lessons
+## Curriculum and Lessons
 
 ```
 simulator mountaincar_simulator(MountainCarConfig)

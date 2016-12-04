@@ -6,7 +6,8 @@ A **curriculum** in Inkling is used to define what and how to teach a concept. E
 
 Each curriculum trains a single concept, and every concept must have a curriculum. After you've determined your concepts, you will know how many curricula you need for your Inkling program. Curricula contain the information the Bonsai AI Engine uses to train your BRAIN on the concepts you've specified. They also specify the reward function (**objective**) for teaching a given concept. The reward function is a way the system concretely measures the AI's performance as it learns the concept.
 
-```curriculum balance_curriculum
+```
+curriculum balance_curriculum
     train balance
     with simulator cartpole_simulator(CartPoleConfig) : (GameState)
     objective open_ai_gym_default_objective

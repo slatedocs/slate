@@ -1,4 +1,4 @@
-# Overview
+# HTTP API Reference
 
 The Bonsai AI Engine provides programmers and data scientists with a new way of building sophisticated ML and AI applications. This HTTP API is at the core of how programmers interact with the AI engine.
 
@@ -16,10 +16,10 @@ requestMethod /v1/userName/assetName/assetVersion
 ```
 
 * **requestMethod:** The request method, such as GET, POST, or PUT.
-* v1: The API version number
-* userNameOrOrg: Your username or organization name.
-* assetName: Name of the asset. This could be a BRAIN (_brainName_), _dataset_ (_datasetName_), etc.
-* assetVersion: Version number of the asset.
+* **v1:** The API version number
+* **userNameOrOrg:** Your username or organization name.
+* **assetName:** Name of the asset. This could be a BRAIN (_brainName_), _dataset_ (_datasetName_), etc.
+* **assetVersion:** Version number of the asset.
 
 # User and BRAIN status
 
@@ -46,7 +46,7 @@ Content-Type: text/javascript
        "url": "/megan/mybrain1",
        "status": "uninitialized"
 
-    }, {
+   }, {
        "id": 2
        "name": "mybrain2",
        "url": "/megan/mybrain2",

@@ -11,7 +11,7 @@ Bonsai's AI Engine has several major components.
 
 * **The architect** :generates learning models using the Inkling program and characteristics of the provided training content.
 * **The instructor:** trains those topologies according to the information set out in the Inkling program
-* **The learner: **does the learning, and **the predictor** predicts.
+* **The learner:** does the learning, and **the predictor** predicts.
 * There are many other parts of our system that are more common—systems for storing and querying data, systems for streaming and manipulating data, and plumbing to expose models in the AI engine as API's
 
 ### Architect

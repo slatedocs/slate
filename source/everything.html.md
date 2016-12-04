@@ -1,11 +1,11 @@
 ---
-title: Everything Inkling
+title: Everything
 
 language_tabs:
 
 toc_footers:
   - <a href='https://bons.ai/sign-up'>Sign Up for our Private Beta!</a>
-  - <a href='/'>Return home</a>
+  - <a href='.'>Return home</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -27,6 +27,7 @@ includes:
 - inkling_guide/31-cart-pole.html.md
 - inkling_guide/32-mountain-car-example.html.md
 - inkling_guide/4-under-the-hood.html.md
+- inkling_reference/50-inkling-reference.html.md
 - inkling_reference/51-concept.html.md
 - inkling_reference/52-curriculum.html.md
 - inkling_reference/53-lesson.html.md

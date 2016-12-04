@@ -23,6 +23,8 @@ This is a temporary landing page.
 
 I've set up a draft of the following pages to show off the new format. These are early drafts, and subject to change. There is some natural overlap between the pages because some modules are used more than once.
 
+"Everything" pages represent compilations of full sections; I'm gradually going through and correcting name collision. The pages listed below are likely a superset of the pages we would want to link, and we would then use deep-links with anchors to fill out the switchboard.
+
 Page | Status | Style
 -------------- | -------------- | --------------
 [Inkling Guide][1] | Second Draft | Modular
@@ -33,6 +35,7 @@ Page | Status | Style
 [API Reference][7] | Second Draft | Modular
 [Getting Started][8] | Second Draft | Modular
 [One Big Doc][9] | Broken | Modular
+[Everything Reference][10] | First Draft | Modular
 
 # FAQ:
 
@@ -44,7 +47,7 @@ These are temporarily removed until the site tree settles down, and will likely 
 
 This body of work includes overlapping sections with similar names, which is confusing to the reader and breaks Slate functionality. In addition, we're conjoining a notional, concept-based approach with a concrete, lexicon-based approach.
 
-That said, the modular nature of this implementation allows us to continue to pursue this approach as long as we address name collision. Further, as they say in my neighborhood, ¿_porque no dos_? Using the modular approach, we can build topical as well as comprehensive Inkling pages out of the same bucket of [includes][6].
+That said, the modular nature of this implementation allows us to continue to pursue this approach as long as we address name collision. Further, as they say in my neighborhood, _¿porque no dos?_ Using the modular approach, we can build topical as well as comprehensive Inkling pages out of the same bucket of [includes][6].
 
 ## What are Modular pages?
 
@@ -52,7 +55,7 @@ Slate supports the notion of [includes][6], which allow us to put the documentat
 
 ## What about headers/footers/toc_footers?
 
-These are still being designed.
+These are still being designed. It seems like there's likely to be a full-width header including primary-nav to all sections.
 
 ## How do I get back to the beginning?
 
@@ -67,3 +70,4 @@ There's a **Return Home** link in the footer of the table of contents.
 [7]: /api-reference.html "API Reference"
 [8]: /getting_started.html "Getting Started"
 [9]: /everything.html "All the docs"
+[10]: /reference_everything.html

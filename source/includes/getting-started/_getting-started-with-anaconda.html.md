@@ -1,14 +1,14 @@
 # Getting Started with Anaconda
 
-<aside class="success">Before you begin, you will need to have access to our Beta. If you don't have access yet, request access at [bons.ai][1].</aside>
+<aside class="success">Before you begin, you will need to have access to our Beta.</aside>
 
 ## Step 1. Install Prerequisites
 
-<aside class="warning">If you *do not* have Anaconda installed on your system, go to our <a href=#let-39-s-get-started>'Let's Get Started</a>! guide instead.</aside>
+If you *do not* have Anaconda installed on your system, go to our [Let's Get Started!](#let-39-s-get-started) guide instead.
 
-<aside class="notice"> conda is a tool for installing and managing Python dependencies. For more information about pip, refer to <a href='https://pip.pypa.io/en/stable/'>the Pip documentation</a>.</aside>
+conda is a tool for installing and managing Python dependencies. For more information about pip, refer to the [Pip documentation](https://pip.pypa.io/en/stable/).
 
-### Windows
+> Windows
 
 ```
 conda create -n gym-env
@@ -16,7 +16,7 @@ activate gym-env
 conda install pip
 ```
 
-### Mac OS X  
+> Mac OS
 
 ```
 conda create -n gym-env

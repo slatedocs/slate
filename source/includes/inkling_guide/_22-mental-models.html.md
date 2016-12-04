@@ -12,7 +12,7 @@ Your mental models should help you plan the concepts you're going to write in yo
 * Learning to save electricity in your home
 * Learning to manage a process to specific guidelines
 
-After you've determined your success condition or criteria, you want to decide what the AI can do to prove it has successfully learned that condition. In a game, this could be, "I think if the AI can get a high score, it has successfully learned to play the game." For recognizing red things, this could be, "I think if the AI can successfully tell when something it is shown is red or not red it will have learned to recognize red things." This becomes your final** concept**, and it also ties into your objective (reward), which measures how successful the AI is at learning this concept.
+After you've determined your success condition or criteria, you want to decide what the AI can do to prove it has successfully learned that condition. In a game, this could be, "I think if the AI can get a high score, it has successfully learned to play the game." For recognizing red things, this could be, "I think if the AI can successfully tell when something it is shown is red or not red it will have learned to recognize red things." This becomes your final **concept**, and it also ties into your objective (reward), which measures how successful the AI is at learning this concept.
 
 For more complex goals and many use cases, you need multiple concepts that all become part of training your final concept. These additional concepts support your final concept and can also reduce the time it takes to train your BRAIN. For more information about determining concepts, refer to the next chapter.
 
@@ -41,7 +41,7 @@ Single concept model for learning breakout
 
 The **input** is a snapshot of the game in its current state.
 
-The **concept**, get_high_score, is our final** concept**. It describes what we want our BRAIN to learn to play the Breakout simulation, which means we've decided that being able to get a high score means that it's learned how to play the game. This single concept mental model is sufficient to train a BRAIN to play the game, but this training may take a long time.
+The **concept**, get_high_score, is our final **concept**. It describes what we want our BRAIN to learn to play the Breakout simulation, which means we've decided that being able to get a high score means that it's learned how to play the game. This single concept mental model is sufficient to train a BRAIN to play the game, but this training may take a long time.
 
 The **output** is the move that the AI wants to make. It chooses from left, right, or no move. The input and output are described in the schemas portion of the Inkling file.
 

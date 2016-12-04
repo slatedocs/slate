@@ -1,7 +1,7 @@
 
 [Source](http://docs.bons.ai/inkling-guide-pages/54-schemas-inkling-types-and-type-constraints "Permalink to (5.4) schemas - Bons.ai")
 
-# schemas
+# schema
 
 ## schemas, Inkling Types, and Type Constraints
 

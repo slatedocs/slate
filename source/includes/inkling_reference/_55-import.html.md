@@ -17,10 +17,11 @@ Note: Currently, the only function you can import is **split**.
 Typical import statements:
 
 ```
-from _libraryName_ import _importName1
-_import _importName2_
+from libraryName import importName1
+import importName2
+```
 
-## Examples
+### Examples
 
 ```
 from utils import split

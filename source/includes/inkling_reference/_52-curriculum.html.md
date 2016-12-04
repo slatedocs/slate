@@ -1,10 +1,10 @@
 # curriculum
 
-Reference for the keyword **curriculum**. Also, describes the keywords:** train**, **with**, **data**
+Reference for the keyword **curriculum**. Also, describes the keywords: **train**, **with**, **data**
 
 ## What is it?
 
-The** curriculum **(keyword) declares a set of lessons that are used to teach concepts. Each curriculum contains a lesson or set of lessons and trains a single concept.
+The **curriculum** (keyword) declares a set of lessons that are used to teach concepts. Each curriculum contains a lesson or set of lessons and trains a single concept.
 
 ## Why do I use it?
 
