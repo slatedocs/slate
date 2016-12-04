@@ -61,7 +61,7 @@ proxy.wsdl | string | ${bank.proxy.wsdl}
 proxy.service | string | IdaMobProxyServiceFacade
 proxy.endpoint | string | IdaMobProxyServiceFacadeHttpSoap12Endpoint
 smarttransactions.enabled | bool | наличие модуля SmartTransactions
-pigeon.enabled | bool | 
-pigeon.url | string | ``http://dev.idamob.ru/pigeon``
-pigeon.twoFactorAuth | bool | 
-proxy.timeout | int | время ожидания отвера сервера из бэка, в милесекундах
+pigeon.url | string | сервер пушей ``http://dev.idamob.ru/pigeon``
+pigeon.enabled | bool | наличие связки с сервером пуш сообщений PiGeon
+pigeon.twoFactorAuth | bool | наличие процесса двухфакторной аутентификации при подписке пользователя на пуш уведомления
+proxy.timeout | int | время ожидания отвера сервера из бэка, в милесекундах (должно быть так же установлено в апликации)

@@ -22,7 +22,7 @@ PERSONAL_NEWS | string | наличие в меню раздела персон�
 
 <aside class="notice">INCASSO : FLAG_COLLECTION, FLAG_SEQUESTRATION, FLAG_CALL_ANFSEQ</aside>
 
-### AccountDTO, CardDTO support MarkerDTO:
+### AccountDTO, CardDTO, DepositDTO, LoanDTO support MarkerDTO:
 
 ```xml
 <tags type="MarkerDTO">
