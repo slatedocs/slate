@@ -100,25 +100,78 @@ token_cartao | 37 | string | Obrigatório na utilização do token | Quando o
 
 ## Campos adicionais para recorrência
 
-> "intervalo"
+> Exemplo de recorrência com TRIAL
 
 ```php
-'day' | 'week' | 'month'
-```
+<?php
+$url = 'http://sandbox.ipag.com.br/pagamento';
 
-> "inicio"
+$fields = array(
+      'identificacao' => urlencode('identificacao'),
+      'pedido' => urlencode('111111'),
+      'operacao' => urlencode('Pagamento'),
+      'url_retorno' => urlencode('http://minhaloja.com/profile_id/1234'),
+      'retorno_tipo' => urlencode('xml'),
+      'boleto_tipo' => urlencode('xml'),
+      'valor' => urlencode('10.00'),
+      'nome' => urlencode('José Teste'),
+      'email' => urlencode('ipag@teste.com.br'),
+      'doc' => urlencode('11111111100'),
+      'fone' => urlencode('1839161627'),
+      'endereco' => urlencode('Rua Teste'),
+      'numero_endereco' => urlencode('1000'),
+      'complemento' => urlencode(''),
+      'bairro' => urlencode('Bairro Teste'),
+      'cidade' => urlencode('São Paulo'),
+      'estado' => urlencode('SP'),
+      'pais' => urlencode('Brasil'),
+      'cep'=> urlencode('01156060'),
+      'metodo'=> urlencode('visa'),
+      'parcelas'=> urlencode('1'),
+      'nome_cartao'=> urlencode('José Teste'),
+      'num_cartao'=> urlencode('4704556510746680'),
+      'cvv_cartao'=> urlencode('123'),
+      'mes_cartao'=> urlencode('12'),
+      'ano_cartao'=> urlencode('21'),
 
-```php
-"DD/MM/YYY"
+      'frequencia'=> urlencode('1'),
+      'intervalo'=> urlencode('month'),
+      'inicio'=> urlencode('10/12/2016'),
+      'ciclos'=> urlencode('12'),
+      'trial'=> urlencode(true),
+      'valor_rec'=> urlencode('30.00'),
+);    
+$fields_string ='';
+foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+rtrim($fields_string, '&');
 
-$inicio = '01/03/2016';
+$ch = curl_init();      
+curl_setopt( $ch, CURLOPT_URL, $url );
+curl_setopt( $ch, CURLOPT_POST, true );
+curl_setopt( $ch, CURLOPT_POSTFIELDS, $fields_string );     
+curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+curl_setopt( $ch, CURLOPT_HEADER, false);
+curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt( $ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)' );
+curl_setopt( $ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1 );
+
+$result = curl_exec( $ch );
+if (curl_errno($ch)) {
+      throw new Exception('Curl error: '.curl_error($ch));
+}
+
+echo $result;
+
+curl_close( $ch );
 ```
 
 Parâmetro | size | type | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
 frequencia | 2 | number | sim | Utilizado na criação de uma transação recorrente. Este campo deverá definir a frequência dos intervalos em que a cobrança será realizada.
-intervalo | 5 | string | sim | Utilizado na criação de uma transação recorrente. Define a unidade de intervalo que será utilizada.
-inicio | 10 | date | sim | Utilizado na criação de uma transação recorrente. A primeira cobrança ocorre no dia da criação da recorrência. As próximas cobranças ocorrerão no dia especificado no inicio + (frequencia*intervalo).
+intervalo | 5 | string | sim | Utilizado na criação de uma transação recorrente. Define a unidade de intervalo que será utilizada. ('day', 'week' ou 'month')
+inicio | 10 | date | sim | Utilizado na criação de uma transação recorrente. A primeira cobrança ocorre no dia da criação da recorrência. As próximas cobranças ocorrerão no dia especificado no inicio + (frequencia*intervalo). FORMATO: "DD/MM/YYYY"
+valor_rec | 12 | decimal | não | Valor que será cobrado no primeiro vencimento da recorrência. Não é obrigatório, caso não informado será utilizado o valor da transação (valor).
+trial | 1 | boolean | não | Se trial = 1 ou true então a primeira cobrança (valor da transação) será de R$1,00 afim de realizar uma transação de validação para geração do token.
 ciclos | 1 | number | não | Define o número de ciclos de transações recorrentes que serão realizadas.
 
 ### Observações
@@ -134,6 +187,12 @@ Será criada uma cobrança recorrente mensal, que terá início em 01/01/201
 
 **b)** frequencia = 3, intervalo = month, inicio = 01/01/2015
 Será criada uma cobrança recorrente trimestral, que terá início em 01/01/2015 e será cobrada por tempo indeterminado.
+
+**c)** Caso queira criar uma recorrência com período TRIAL, envie também o parâmetro trial = (1 ou true), neste caso é necessário informar o valor_rec, que será cobrado na data início.
+
+<aside class="warning">
+<b>Se definido como verdadeiro o parâmetro TRIAL, será realizado uma transação de R$1,00, somente como aprovada (Não gerará cobrança para o cliente). Essa transação é realizada para validar o cartão do cliente e criar o token de recorrência.</b>
+</aside>
 
 ### Importante
 
@@ -160,16 +219,28 @@ Caso o retorno tenha sido solicitado em XML, os mesmo parâmetros serão retor
 
 Parâmetros | Descrição
 --------- | ----------------
-id_transacao | Identificação da transação
+id_transacao | TID (Número emitido pela adquirente para identificar a transação)
 valor | Valor total da transação
 num_pedido | Número do pedido da loja
 status_pagamento | Status da transação. Veja os valores possíveis na seção Status das Transações deste documento
 mensagem_transacao | Mensagem da transação
 metodo | Método de pagamento utilizado para a transação. Veja os valores possíveis na seção Métodos deste documento
-token | Alfanumérico. Tamanho: 37. Trata-se do token gerado quando o parâmetro gera_token_cartao é enviado.
-last4 | Numérico. Tamanho: 4. Referente aos 4 últimos dígitos do cartão. Somente é retornado quando o parâmetro gera_token_cartao é enviado.
-mes | Numérico. Tamanho: 2. Referente ao mês de vencimento do cartão. Somente é retornado quando o parâmetro gera_token_cartao é enviado.
-ano | Numérico. Tamanho: 2. Referente ano de vencimento do cartão. Somente é retornado quando o parâmetro gera_token_cartao é enviado.
+operadora | Adquirente onde foi realizada a transação
+operadora_mensagem | Mensagem enviada pela Adquirente
+id_librepag | Id da Transação iPag
+autorizacao_id | Auth Id emitido pela Adquirente
+url_autenticacao | Url de validação para cartões de débito, ou link de impressão do boleto
+
+
+**Parâmetros adicionais quando Recorrência (assinatura) ou OneClick**
+
+Parâmetros | Descrição
+-----------|----------
+token |  Trata-se do token gerado quando o parâmetro gera_token_cartao é enviado.
+last4 | Referente aos 4 últimos dígitos do cartão. Somente é retornado quando o parâmetro gera_token_cartao é enviado.
+mes | Referente ao mês de vencimento do cartão. Somente é retornado quando o parâmetro gera_token_cartao é enviado.
+ano | Referente ano de vencimento do cartão. Somente é retornado quando o parâmetro gera_token_cartao é enviado.
+id_assinatura | Id da assinatura criado pelo iPag.
 
 ## Operações
 

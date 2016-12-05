@@ -60,12 +60,12 @@ Endpoint Sandbox: sandbox.ipag.com.br
 </html>
 ```
 
+> Exemplo de Submissão via cURL
+
 ```php
 <?php
-//Exemplo de Submissão via cURL
 //URL do iPag
 $url = 'http://sandbox.ipag.com.br/pagamento';
-// $url = 'http://sandbox.ipag.com.br/pagamento';
 
 $fields = array(
       'identificacao' => urlencode('SEU LOGIN'),
@@ -155,12 +155,13 @@ curl_close( $ch );
 </html>
 ```
 
+> Exemplo de Consulta via cURL
+
 ```php
 <?php
-//Exemplo de Consulta via cURL
+
 //URL do iPag
 $url = 'http://sandbox.ipag.com.br/consulta';
-// $url = 'http://sandbox.ipag.com.br/consulta';
 
 $fields = array(
       'identificacao' => urlencode('SEU LOGIN'),
@@ -242,12 +243,12 @@ url_retorno | 255 | string | não | Url da sua loja.
 </html>
 ```
 
+> Exemplo de Captura via cURL
+
 ```php
 <?php
-//Exemplo de Captura via cURL
 //URL do iPag
 $url = 'http://sandbox.ipag.com.br/captura';
-// $url = 'http://sandbox.ipag.com.br/captura';
 
 $fields = array(
       'identificacao' => urlencode('SEU LOGIN'),
@@ -321,12 +322,12 @@ url_retorno | 255 | string | sim |`xml` ou  Url da sua loja.
 </html>
 ```
 
+> Exemplo de Cancelamento via cURL
+
 ```php
 <?php
-//Exemplo de Cancelamento via cURL
 //URL do iPag
 $url = 'http://sandbox.ipag.com.br/cancela';
-// $url = 'http://sandbox.ipag.com.br/cancela';
 
 $fields = array(
       'identificacao' => urlencode('SEU LOGIN'),
