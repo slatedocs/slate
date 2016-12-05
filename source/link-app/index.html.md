@@ -303,7 +303,7 @@ Los queries para la emisión electrónica de __facturas__ se guardan en el archi
 
 ### Cabecera
 
-Obtiene información de la cabecera de la factura
+Obtiene información de la cabecera de la factura.
 
 ```sql
 headers = SELECT
@@ -333,7 +333,7 @@ clave_acceso | string | La clave de acceso representa un identificador único de
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
 
 
-### Vendedor
+### Emisor
 
 Obtiene información del vendedor en la factura
 
@@ -478,7 +478,7 @@ unidad_medida | string | Unidad de medida. Ejemplo: Kilos. __Requerido para fact
 
 ### Impuestos de items
 
-Obtiene los impuestos de un item
+Obtiene los impuestos de un item. Este query es __opcional__
 
 ```sql
 item_taxes  = SELECT
@@ -503,7 +503,7 @@ codigo_porcentaje | string | Código del [porcentaje](#c-digo-de-porcentaje-de-i
 
 ### Detalles adicionales de items
 
-Obtiene los detalles adicionales de un ítem. Este query es opcional.
+Obtiene los detalles adicionales de un ítem. Este query es __opcional__.
 
 Los detalles adicionales de un ítem se manejan de la forma 'Clave':'Valor'. Ejemplo: 'Peso':'Kg'
 
@@ -535,7 +535,7 @@ valor | string | Valor del detalle adicional del ítem
 
 ### Información adicional
 
-Obtiene la información adicional de la factura.
+Obtiene la información adicional de la factura. Este query es __opcional__
 
 La información adicional de la factura se maneja de la forma 'Clave':'Valor'. Ejemplo: 'Tipo de pago':'Cheque'
 
@@ -582,12 +582,14 @@ payment_methods  = SELECT
 
 Parámetro           | Tipo                    | Descripción
 ------------------- | ----------------------- | ----------
+id_pago              | --                  | Identificador único del pago, se usa para obtener las [propiedades
+del pago](Propiedades de Pagos), si no hay un identificador único del pago o no hay propiedades de pagos, se debe devolver el *id_factura*.
 medio              | string                  | Código del [tipo de forma de pago](#tipos-de-forma-de-pago). __Requerido__
 total               | float                   | Total aplicable a la forma de pago especificada. __Requerido__
 
 ### Propiedades de Pagos
 
-Obtiene la propiedades de los pagos de determinada factura.
+Obtiene la propiedades de los pagos de determinada factura. Este query es __opcional__
 
 Las propiedades de los pagos se manejan de la forma 'Clave':'Valor'. Ejemplo: 'Plazo':'5'
 
@@ -622,7 +624,7 @@ Las demás propiedades que se especifiquen se registrarán en Dátil como parte 
 
 ### Crédito
 
-Crédito otorgado en la venta. 
+Crédito otorgado en la venta.  Este query es __opcional__ , en caso de que todos los pagos se realizan en el momento de la venta, es decir no hay crédito.
 
 Campo           | Tipo    | Descripción
 ------------------- | ------- | ----------
@@ -641,7 +643,7 @@ invoice_credit = SELECT
 
 ### Compensación solidaria
 
-Descuento otorgado a las provincias de Manabí y Esmeraldas.
+Descuento otorgado a las provincias de Manabí y Esmeraldas. Obligatorio solo para estas provincias.
 
 
 Campo           | Tipo    | Descripción
@@ -663,7 +665,7 @@ invoice_compensation = SELECT
 
 ### Exportación 
 
-Obligatorio para facturas de exportación
+Obligatorio __solo__ para facturas de exportación
 
 
 Campo           | Tipo    | Descripción
