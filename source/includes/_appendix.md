@@ -70,6 +70,7 @@ cmac|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes
 corporationwiki|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 cortera|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 cylex|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+demandforce|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
 dexknows|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 doctoroogle|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 ebusinesspages|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
@@ -86,7 +87,7 @@ foursquare|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class
 freebusinessdirectory|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 garagecommerce|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 google|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-healthgrades|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
+healthgrades|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
 hotfrog|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 ibegin|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 insiderpages|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
@@ -110,14 +111,19 @@ nexport|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="
 opentable|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 powerprofiles|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 realself|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+realpatientratings|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
 salesspider|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 showmelocal|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+smilereminder|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
 superpages|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 <s>switchboard</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
 <s>theusaexplorer</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>||No longer available
 tripadvisor|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
 tupalo|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 tuugo|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+ucomparehealthcare|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
+vitals|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
+wellness|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
 wfaa|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 whitepages|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 worldweb|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
@@ -131,7 +137,7 @@ yellowpagecity|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
 yellowpages|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 yelp|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 ziplocalonline|<span class="yes">Yes</span>||<span class="yes">Yes</span>||Was previously referred to as ziplocal
-zocdoc|<span class="yes">Yes</span>||<span class="yes">Yes</span>||
+zocdoc|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
 zomato|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>||
 
 

@@ -11,7 +11,7 @@
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('v2/lsrc/add', [
+$success = $api->post('/v2/lsrc/add', [
     'name'              => 'Le Bernardin',
 	'schedule'          => 'Adhoc',
 	'search-terms'      => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
@@ -38,13 +38,13 @@ curl -X POST \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-        parameters.Add("name", "Le Bernardin");            
+        parameters.Add("name", "Le Bernardin");
         parameters.Add("schedule", "Adhoc");
         parameters.Add("search-terms", "Restaurant\nfood+nyc\ndelivery+midtown+manhattan");
         parameters.Add("website-addresses", "['le-bernardin.com', 'le-bernardin2.com']");
         parameters.Add("search-engines", "google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local");
 
-var success = request.Post("v2/lsrc/add", parameters);        
+var success = request.Post("/v2/lsrc/add", parameters);
 ```
 
 
@@ -106,7 +106,7 @@ is-public | Publish reports on a white label URL. Yes or No. Defaults to No.
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('v2/lsrc/update', [
+$success = $api->post('/v2/lsrc/update', [
     'campaign-id'       => 9907,
     'name'              => 'Le Bernardin',
 	'schedule'          => 'Adhoc',
@@ -142,7 +142,7 @@ var parameters = new api.Parameters();
         parameters.Add("website-addresses", "['le-bernardin.com', 'le-bernardin2.com']");
         parameters.Add("search-engines", "google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local");
 
-var success = request.Post("v2/lsrc/update", parameters);    
+var success = request.Post("/v2/lsrc/update", parameters);
 ```
 
 > Success (200 OK)
@@ -205,7 +205,7 @@ is-public | Publish reports on a white label URL. Yes or No.
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->delete('v2/lsrc/delete', [
+$success = $api->delete('/v2/lsrc/delete', [
     'campaign-id' => 9907
 ]);
 if($success) {
@@ -217,9 +217,9 @@ if($success) {
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-        parameters.Add("campaign-id", "9907");            
+        parameters.Add("campaign-id", "9907");
 
-var success = request.Delete("v2/lsrc/delete", parameters);        
+var success = request.Delete("/v2/lsrc/delete", parameters);
 ```
 
 > Success (200 OK)
@@ -266,16 +266,16 @@ print_r($results);
 curl -X GET \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \ 
+ -d 'expires=<INSERT_API_EXPIRES>' \
   https://tools.brightlocal.com/seo-tools/api/v2/lsrc/get-all
 ```
 
 ```csharp
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
-var parameters = new api.Parameters();            
-    
-var results = request.Get("v2/lsrc/get-all", parameters); 
+var parameters = new api.Parameters();
+
+var results = request.Get("/v2/lsrc/get-all", parameters);
 ```
 
 > Success (200 OK)
@@ -308,7 +308,7 @@ var results = request.Get("v2/lsrc/get-all", parameters);
                 "day_of_month": null,
                 "location_id": "0"
             }
-        ]    
+        ]
     }
 }
 ```
@@ -323,7 +323,7 @@ Returns basic details about all reports associated with your account.
 
 Parameter | Notes
 --------- | -----
-api-key | <span class="label label-required">Required</span>	
+api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 location-id |
@@ -339,7 +339,7 @@ location-id |
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('v2/lsrc/get', [
+$results = $api->get('/v2/lsrc/get', [
     'campaign-id' => 50
 ]);
 print_r($results);
@@ -358,9 +358,9 @@ curl -X GET \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-        parameters.Add("campaign-id", "50");    
-    
-var results = request.Get("v2/lsrc/get", parameters); 
+        parameters.Add("campaign-id", "50");
+
+var results = request.Get("/v2/lsrc/get", parameters);
 ```
 
 > Success (200 OK)
@@ -472,7 +472,7 @@ campaign-id | <span class="label label-required">Required</span>
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('v2/lsrc/run', [
+$success = $api->post('/v2/lsrc/run', [
     'campaign-id' => 50
 ]);
 print_r($success);
@@ -483,7 +483,7 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'campaign-id=50' \	
+ -d 'campaign-id=50' \
   https://tools.brightlocal.com/seo-tools/api/v2/lsrc/run
 ```
 
@@ -493,7 +493,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 var parameters = new api.Parameters();
         parameters.Add("campaign-id", "50");
 
-var success = request.Post("v2/lsrc/run", parameters);
+var success = request.Post("/v2/lsrc/run", parameters);
 ```
 
 > Success (200 OK)
@@ -534,7 +534,7 @@ campaign-id | <span class="label label-required">Required</span>
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('v2/lsrc/history/get', [
+$results = $api->get('/v2/lsrc/history/get', [
     'campaign-id' => 50,
 ]);
 print_r($results);
@@ -550,12 +550,12 @@ curl -X GET \
 ```
 
 ```csharp
-    api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
-    var parameters = new api.Parameters();
-            parameters.Add("campaign-id", "50");    
-    
-    var results = request.Get("/v2/lsrc/history/get", parameters); 
+var parameters = new api.Parameters();
+        parameters.Add("campaign-id", "50");
+
+var results = request.Get("/v2/lsrc/history/get", parameters);
 ```
 
 > Success (200 OK)
@@ -616,7 +616,7 @@ campaign-id | <span class="label label-required">Required</span>
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('v2/lsrc/results/get', [
+$results = $api->get('/v2/lsrc/results/get', [
     'campaign-id' => 9636
 ]);
 print_r($results);
@@ -639,7 +639,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 var parameters = new api.Parameters();
         parameters.Add("campaign-id", "9636");
 
-var results = request.Get("v2/lsrc/results/get", parameters); 
+var results = request.Get("/v2/lsrc/results/get", parameters);
 ```
 
 > Success (200 OK)

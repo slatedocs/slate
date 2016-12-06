@@ -11,20 +11,20 @@
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('v4/lscu', [
-    'report-name'				=> 'Sample SEO Check-Up Report', 
-	'business-names'			=> ["Le Bernardin"],
-	'website-address'			=> "le-bernardin.com",
-	'address1'                  => '155 West 51st Street',
-    'address2'                  => '',      
+$success = $api->post('/v4/lscu', [
+    'report-name'               => 'Sample SEO Check-Up Report',
+    'business-names'            => ["Le Bernardin"],
+    'website-address'           => "le-bernardin.com",
+    'address1'                  => '155 West 51st Street',
+    'address2'                  => '',
     'city'                      => 'New York',
-	'state-code'				=> 'NY',
-	'postcode'					=> '10019',	
-	'telephone'					=> '+1 212-554-1515',
-	'country'					=> 'USA',
-	'business-category'         => 'Restaurant',
-	'primary-business-location' => 'NY, New York',
-	'search-terms'              => ["restaurant manhattan","cafe new york"]
+    'state-code'                => 'NY',
+    'postcode'                  => '10019',
+    'telephone'                 => '+1 212-554-1515',
+    'country'					=> 'USA',
+    'business-category'         => 'Restaurant',
+    'primary-business-location' => 'NY, New York',
+    'search-terms'              => ["restaurant manhattan","cafe new york"]
 ]);
 print_r($success);
 ```
@@ -67,7 +67,7 @@ var parameters = new api.Parameters();
         parameters.Add("primary-business-location", "NY, New York");
         parameters.Add("search-terms", "['restaurant manhattan', 'cafe new york']");
 
-var success = request.Post("v4/lscu", parameters);
+var success = request.Post("/v4/lscu", parameters);
 ```
 
 > Supplying Local Directory URLs (see local-directory-urls parameter)
@@ -172,14 +172,13 @@ run-report | One of yes or no. Runs the report after adding. Defaults to no.
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->put('v4/lscu', [
-	'report-id'                 => '1',
-	'postcode'                  => '10019',	
-	'telephone'                 => '+1 212-554-1515',
-	'country'                   => 'USA',
-	'business-category'         => 'Restaurant',
-	'primary-business-location' => 'NY, New York',
-	'search-terms'              => '["restaurant manhattan","cafe new york"]'
+$success = $api->put('/v4/lscu', [
+    'postcode'                  => '10019',
+    'telephone'                 => '+1 212-554-1515',
+    'country'                   => 'USA',
+    'business-category'         => 'Restaurant',
+    'primary-business-location' => 'NY, New York',
+    'search-terms'              => '["restaurant manhattan","cafe new york"]'
 ]);
 print_r($success);
 ```
@@ -188,7 +187,7 @@ print_r($success);
 curl -X PUT \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \  
+ -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'postcode=10019' \
  -d 'telephone=+1 212-554-1515'
  -d 'country=USA' \
@@ -210,7 +209,7 @@ var parameters = new api.Parameters();
         parameters.Add("primary-business-location", "NY, New York");
         parameters.Add("search-terms", "['restaurant manhattan', 'cafe new york']");
 
-var success = request.Put("v4/lscu", parameters);
+var success = request.Put("/v4/lscu", parameters);
 ```
 
 > Supplying Local Directory URLs (see local-directory-urls parameter)
@@ -312,7 +311,7 @@ local-directory-urls | <p>This parameter allows you update the profile URLs we h
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('v4/lscu', [
+$results = $api->get('/v4/lscu', [
     'report-id' => 860
 ]);
 print_r($results);
@@ -333,7 +332,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 var parameters = new api.Parameters();
         parameters.Add("report-id", "860");
 
-var results = request.Get("v4/lscu", parameters);
+var results = request.Get("/v4/lscu", parameters);
 ```
 
 > Success (200 OK)
@@ -421,7 +420,7 @@ report-id | <span class="label label-required">Required</span> The unique ID for
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->put('v4/lscu/run', [
+$results = $api->put('/v4/lscu/run', [
     'report-id' => 860
 ]);
 print_r($results);
@@ -442,7 +441,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 var parameters = new api.Parameters();
         parameters.Add("report-id", "860");
 
-var success = request.Put("v4/lscu/run", parameters);
+var success = request.Put("/v4/lscu/run", parameters);
 ```
 
 > Success (200 OK)
@@ -500,7 +499,7 @@ report-id | <span class="label label-required">Required</span> The unique ID for
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->delete('v4/lscu', [
+$success = $api->delete('/v4/lscu', [
     'report-id' => 860
 ]);
 if($success) {
@@ -524,7 +523,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 var parameters = new api.Parameters();
         parameters.Add("report-id", "860");
 
-var success = request.Delete("v4/lscu", parameters);
+var success = request.Delete("/v4/lscu", parameters);
 ```
 
 > Success (200 OK)
@@ -581,8 +580,8 @@ report-id | <span class="label label-required">Required</span> The unique ID for
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('v4/lscu/search', [
-    'q' => 'Bodega Wine Bar'	 
+$results = $api->get('/v4/lscu/search', [
+    'q' => 'Bodega Wine Bar'
 ]);
 print_r($results);
 ```
@@ -592,19 +591,19 @@ curl -X GET \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'q=Bodega+Wine+Bar' \	
+ -d 'q=Bodega+Wine+Bar' \
   https://tools.brightlocal.com/seo-tools/api/v4/lscu/search
 ```
 
 ### Search Reports
 
 ```csharp
-    api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
-    var parameters = new api.Parameters();
-            parameters.Add("q", "Bodega Wine Bar");
+var parameters = new api.Parameters();
+        parameters.Add("q", "Bodega Wine Bar");
 
-    var results = request.Get("v4/lscu/search", parameters);
+var results = request.Get("/v4/lscu/search", parameters);
 ```
 
 > Success (200 OK)
