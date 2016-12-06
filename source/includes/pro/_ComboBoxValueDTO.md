@@ -1,8 +1,17 @@
 ## ComboBoxValueDTO
 
+```xml
+<comboBoxValues>
+  <id>val_id</id>
+  <name>Некая надпись для удобства пользователя</name>
+  <order>1</order>
+  <value>id_for_server</value>
+</comboBoxValues>
+```
+
 key | type | status | comment
 --- | ---- | :----: | ---:
-id | string | 1..1 | идентификатор
-order | int | 1..1 | порядковый номер значения поля в выпадающем списке
-name | string | 1..1 | текст, accountNamber или CardId, отображаемая в выпадающем списке
-value | string | 1..1 | id, которое будет отправляться на Pro-сервер
+id | string | 1..1 | уникальный идентификатор поля внутри системы, может быть равен value
+name | string | 1..1 | строка или accountNamber или cardId, отображаемая в списке
+order | int | 1..1 | порядковый номер значения поля в списке
+value | string | 1..1 | значение, которое будет отправляться в прокси в ответе апликации

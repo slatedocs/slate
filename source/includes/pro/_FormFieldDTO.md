@@ -92,21 +92,3 @@ DECIMAL | int | число с дробной частью
 DYNAMIC | string | поле при вводе 2х символов делает запрос [getDynamicFieldValues](#getdynamicfieldvalues) и в случае признака необходимости обновления текущей формы делает запрос [getCurrentForm](#getcurrentform)
 
 <aside class="warning">PHOTO_CHECK - эксперементальный ключ для фотографирования дорожных чеков</aside>
-
-### ComboBoxValueDTO
-
-```xml
-<comboBoxValues>
-  <id>val_id</id>
-  <name>Некая надпись для удобства пользователя</name>
-  <order>1</order>
-  <value>id_for_server</value>
-</comboBoxValues>
-```
-
-key | type | status | comment
---- | ---- | :----: | ---:
-id | string | 1..1 | уникальный идентификатор поля внутри системы, может быть равен value
-name | string | 1..1 | string, accountNamber или cardId, отображаемая в списке
-order | int | 1..1 | порядковый номер значения поля в списке
-value | string | 1..1 | не уникальное значение, которое будет отправляться на Pro-сервер
