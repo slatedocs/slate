@@ -38,7 +38,7 @@ else
 // Commit the batch, resturns true or false
 bool commit = batchRequest.Commit(batchId);
 
-// Poll for results. In a real world example you should do this in a backgroud process, such as HangFire,  or use the Task Parallel Library to create a BackGroundWorker Task.
+// Poll for results. In a real world example you should do this in a backgroud process, such as HangFire, or use the Task Parallel Library to create a BackGroundWorker Task.
 // It is bad practice to use Thread.Sleep(). This is only for the example and will actually freeze the UI until the while loop is finished. 
 
 var results = batchRequest.GetResults(batchId);
