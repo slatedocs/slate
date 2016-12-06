@@ -630,6 +630,9 @@ curl -X GET \
         "keywords_num_rankings": {
           "Alaska Bar Association": "2"
         },
+        "starred_keywords": {
+          "Alaska Bar Association": true
+        },
         "search_engines": [
           "google",
           "google-places",
