@@ -163,6 +163,7 @@ if (curl_errno($ch)) {
 echo $result;
 
 curl_close( $ch );
+?>
 ```
 
 Parâmetro | size | type | Obrigatório | Descrição
@@ -191,7 +192,7 @@ Será criada uma cobrança recorrente trimestral, que terá início em 01/01
 **c)** Caso queira criar uma recorrência com período TRIAL, envie também o parâmetro trial = (1 ou true), neste caso é necessário informar o valor_rec, que será cobrado na data início.
 
 <aside class="warning">
-<b>Se definido como verdadeiro o parâmetro TRIAL, será realizado uma transação de R$1,00, somente como aprovada (Não gerará cobrança para o cliente). Essa transação é realizada para validar o cartão do cliente e criar o token de recorrência.</b>
+<b>Se definido como verdadeiro o parâmetro TRIAL, será realizado uma transação de R$1,00, somente como aprovada (Não gerará cobrança para o cliente). Essa transação é realizada para validar o cartão do cliente e criar o token de recorrência. Essa transação não deve ser capturada, mas pode, se desejar, ser cancelada via API ou Painel.</b>
 </aside>
 
 ### Importante
