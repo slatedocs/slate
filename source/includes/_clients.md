@@ -252,7 +252,7 @@ client-id | <span class="label label-required">Required</span>
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->call('/v1/clients-and-locations/clients/search', [   
+$results = $api->get('/v1/clients-and-locations/clients/search', [   
     'q' => 'BrightLocal'    
 ]);
 print_r($results);
