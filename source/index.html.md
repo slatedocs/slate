@@ -543,6 +543,101 @@ need_reply | BOOLEAN field, set to true if a reply is required from the provider
 The server will return an "unprocessable entity" HTTP response if the purpose does not match the user type (e.g., the user is a provider but the purpose is "specialist_reply").
 </aside>
 
+# Images
+
+## Get All Images of a case
+
+```shell
+curl -i https://rubiconmd.com/api/v1/provider_cases/CASE_ID/attachments?access_token="AAAAAA"
+```
+
+> A successful request returns an array of JSON responses:
+
+```json
+{
+  "id": "Zhy7",
+  "image_file_name": "ee83c9baf45b73138bc6c771a.jpg",
+  "image_file_size": 73260,
+  "image_content_type": "image/jpg",
+  "created_at": "2014-04-12T14:11:38.554-04:00",
+  "updated_at": "2014-07-15T15:45:56.440-04:00",
+  "removable": false,
+  "original": "https://rubicon.s3.amazonaws.com/attachments/images/000/000/000/original/ee83c9baf45b73138bc6c771a.jpg?",
+  "large": "https://rubicon.s3.amazonaws.com/attachments/images/000/000/000/large/ee83c9baf45b73138bc6c771a.jpg?",
+  "thumb_340": "https://rubicon.s3.amazonaws.com/attachments/images/000/000/000/thumb_340/ee83c9baf45b73138bc6c771a.jpg?",
+  "thumb_180": "https://rubicon.s3.amazonaws.com/attachments/images/000/000/000/thumb_180/ee83c9baf45b73138bc6c771a.jpg?",
+  "response_id": null
+}  
+```
+
+Retrieves all the images associated with a specific case.
+
+### HTTP Request
+
+`GET https://rubiconmd.com/api/v1/provider_cases/CASE_ID/attachments?access_token=AAAAAA`
+
+### URL Parameters
+
+Parameter |  Description
+--------- | -----------
+CASE_ID | The ID of the case to retrieve
+
+### Response Fields
+
+Parameter |  Description
+--------- | -----------
+id | ID # of image
+image_file_name | Encrypted name of the file
+image_file_size | Size of the file
+image_content_type | The type of file
+created_at | Time image was created
+updated_at | Time image was updated
+removable | Whether or not the image can be deleted
+original | URL of the original image
+large | URL of the large size image
+thumb_340 | URL of the thumb sized(340px) image
+thumb_180 | URL of the thumb sized(180px) image
+response_id | Response ID of response attached to the image
+
+## Post an Image
+
+```shell
+curl -X POST
+  -H "Origin: https://rubiconmd.com"
+  -F "attachment[image]=@/path/filename.ext" "https://rubiconmd.com/api/v1/provider_cases/A-9AGj/attachments?access_token=AAAAAA"
+```
+
+>A successful POST request returns a JSON response:
+
+```json
+{
+  "id": "Zhy7",
+  "image_file_name": "ee83c9baf45b73138bc6c771a.jpg",
+  "image_file_size": 73260,
+  "image_content_type": "image/jpg",
+  "created_at": "2014-04-12T14:11:38.554-04:00",
+  "updated_at": "2014-07-15T15:45:56.440-04:00",
+  "removable": false,
+  "original": "https://rubicon.s3.amazonaws.com/attachments/images/000/000/000/original/ee83c9baf45b73138bc6c771a.jpg?",
+  "large": "https://rubicon.s3.amazonaws.com/attachments/images/000/000/000/large/ee83c9baf45b73138bc6c771a.jpg?",
+  "thumb_340": "https://rubicon.s3.amazonaws.com/attachments/images/000/000/000/thumb_340/ee83c9baf45b73138bc6c771a.jpg?",
+  "thumb_180": "https://rubicon.s3.amazonaws.com/attachments/images/000/000/000/thumb_180/ee83c9baf45b73138bc6c771a.jpg?",
+  "response_id": null
+}  
+```
+
+This allows you post an image in a specific case (as a pcp).
+
+### HTTP Request
+
+`POST https://rubiconmd.com/api/v1/provider_cases/CASE_ID/attachments?access_token=AAAAAA`
+
+### URL Parameters
+
+Parameter |  Description
+--------- | -----------
+CASE_ID | The ID of the case you want to upload to
+
 <!--
  ##
  ##
