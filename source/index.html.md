@@ -25,13 +25,12 @@ I've set up a draft of the following pages to show off the new format. These are
 
 The listed endpoints reflect the site map available at [Coggle](https://coggle.it/diagram/V_RLZO99g4VT4gaT/e87816a3386a4dcf961fcd2df53621233acaf8c1f3c0e2c735189ae0b0d4c90c)
 
-"Everything" pages represent compilations of full sections; I'm gradually going through and correcting name collision. The pages listed below are likely a superset of the pages we would want to link, and we would then use deep-links with anchors to fill out the switchboard.
 
 Page | Status | Style
 -------------- | -------------- | --------------
 [Getting Started][1] | Second Draft | Modular
-[Inkling New][2] | Zeroth Draft | Modular
-[Inkling Classic][3] | Second Draft | Modular
+[Inkling Classic][2] | Zeroth Draft | Modular
+[Inkling New][3] | Second Draft | Modular
 Mastermind | Absent | N/A
 [References][4] | Second Draft | Modular
 
@@ -41,11 +40,9 @@ Mastermind | Absent | N/A
 
 These are temporarily removed until the site tree settles down, and will likely be replaced.
 
-## Why are we splitting the [Everything Inkling][3] page?
+## Why are we reorganizing the [Inkling Classic][2] page?
 
-This body of work includes overlapping sections with similar names, which is confusing to the reader and breaks Slate functionality. In addition, we're conjoining a notional, concept-based approach with a concrete, lexicon-based approach.
-
-That said, the modular nature of this implementation allows us to continue to pursue this approach as long as we address name collision. Further, as they say in my neighborhood, _¿porque no dos?_ Using the modular approach, we can build topical as well as comprehensive Inkling pages out of the same bucket of [includes][6].
+This body of work includes overlapping sections with similar names, which is confusing to the reader and breaks Slate functionality. In addition, we're conjoining a notional, concept-based approach with a concrete, lexicon-based approach. The new layout joins the notional explanation with the reference for the actual command and its syntax. In addition, a [Refernces][4] section has the condensed Inkling reference.
 
 ## What are Modular pages?
 

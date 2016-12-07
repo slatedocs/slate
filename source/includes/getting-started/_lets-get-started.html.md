@@ -9,7 +9,7 @@ If you have Anaconda installed on your system, go to Step 1 of our [Getting Star
 ### Windows
 
 1. Download and install Python from [python.org][3].
-2. Install Git (e.g. via GitHub desktop for windows - ).
+2. Install Git (e.g. via GitHub desktop for windows).
 3. You may need to reboot your computer after installing Python and Git to make sure all install settings take effect.
 
 > Mac OS
@@ -22,11 +22,11 @@ sudo easy_install pip
 
 1. Install pip
 
-### pip is a tool for installing and managing Python dependencies. For more information about pip, refer to .
+### pip is a tool for installing and managing Python dependencies. For more information about pip, refer to the [Python Package Authority][6].
 
 ## Step 2. Setup the Bonsai CLI
 
-Install the Bonsai Command Line Interface tool and configure it. You'll need to have your access code (accessKey). You can find your access code in your account settings at .
+Install the Bonsai Command Line Interface tool and configure it. You'll need to have your access code (accessKey). You can find your access code in your account settings at [Bonsai Account Settings](https://beta.bons.ai/accounts/settings).
 
 ```
 pip install bonsai-cli
@@ -115,3 +115,4 @@ python mountaincar_simulator.py --predict-brain=myMountainCarBrain --predict-ver
 [3]: https://www.python.org
 [4]: https://gym.openai.com/envs/MountainCar-v0
 [5]: https://beta.bons.ai
+[6]: https://pip.pypa.io/en/stable/
