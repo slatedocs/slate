@@ -39,7 +39,7 @@ end
 
  The schema CartPoleConfig names three records — episode_length, num_episodes, and deque_size — and assigns each of them a type.
 
-## Concept
+## Concept `balance`
 
 ```
 concept balance

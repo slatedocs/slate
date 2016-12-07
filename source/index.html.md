@@ -21,21 +21,19 @@ This is a temporary landing page.
 
 ## Draft Sections:
 
-I've set up a draft of the following pages to show off the new format. These are early drafts, and subject to change. There is some natural overlap between the pages because some modules are used more than once.
+I've set up a draft of the following pages to show off the new format. These are early drafts, and subject to change.
+
+The listed endpoints reflect the site map available at [Coggle](https://coggle.it/diagram/V_RLZO99g4VT4gaT/e87816a3386a4dcf961fcd2df53621233acaf8c1f3c0e2c735189ae0b0d4c90c)
 
 "Everything" pages represent compilations of full sections; I'm gradually going through and correcting name collision. The pages listed below are likely a superset of the pages we would want to link, and we would then use deep-links with anchors to fill out the switchboard.
 
 Page | Status | Style
 -------------- | -------------- | --------------
-[Inkling Guide][1] | Second Draft | Modular
-[Inkling Reference][2] | Second Draft | Modular
-[Everything Inkling][3] | First Draft/Broken | Modular
-[Getting Started with Anaconda][4] | Second Draft | Single page
-[CLI Reference][5] | Second Draft | Modular
-[API Reference][7] | Second Draft | Modular
-[Getting Started][8] | Second Draft | Modular
-[One Big Doc][9] | Broken | Modular
-[Everything Reference][10] | First Draft | Modular
+[Getting Started][1] | Second Draft | Modular
+[Inkling New][2] | Zeroth Draft | Modular
+[Inkling Classic][3] | Second Draft | Modular
+Mastermind | Absent | N/A
+[References][4] | Second Draft | Modular
 
 # FAQ:
 
@@ -61,13 +59,9 @@ These are still being designed. It seems like there's likely to be a full-width 
 
 There's a **Return Home** link in the footer of the table of contents.
 
-[1]: /inkling_guide.html "Inkling Guide"
-[2]: /inkling_reference.html "Inkling Reference"
-[3]: /inkling_everything.html "Everything Inkling"
-[4]: /getting-started-with-anaconda.html "Anaconda CLI instructions"
+[1]: /getting_started.html "Getting Started"
+[2]: /inkling_classic.html "Classic Inkling"
+[3]: /inkling_everything.html "New Inkling"
+[4]: /reference_everything.html "Anaconda CLI instructions"
 [5]: /cli_reference.html "CLI Reference"
 [6]: https://github.com/lord/slate/wiki/Using-Includes "Using Includes: Slate Documentation"
-[7]: /api-reference.html "API Reference"
-[8]: /getting_started.html "Getting Started"
-[9]: /everything.html "All the docs"
-[10]: /reference_everything.html

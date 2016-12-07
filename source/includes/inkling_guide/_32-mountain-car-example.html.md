@@ -35,7 +35,7 @@ end
 
 The MountainCarConfig schema names three records — episode_length, num_episodes, and deque_size — and assigns types to them.
 
-## Concept
+## Concept `high_score`
 
 ```
 concept high_score

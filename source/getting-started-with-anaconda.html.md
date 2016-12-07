@@ -16,7 +16,7 @@ search: true
 
 # Getting Started with Anaconda - Bons.ai
 
-<aside class="success">Before you begin, you will need to have access to our Beta. If you don't have access yet, request access at [bons.ai][1].</aside>
+<aside class="success">Before you begin, you will need to have access to our Beta.</aside>
 
 # Step 1. Install Prerequisites
 
