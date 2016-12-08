@@ -1,8 +1,8 @@
-# Mental Models
+## Mental Models
 
 Mental models are a way of organizing concepts so that you can structure your data flow. Concepts are the ideas that you want to teach your BRAIN.
 
-## Determining Mental Models
+###### Determining Mental Models
 
 Your mental models should help you plan the concepts you're going to write in your Inkling file. Therefore, when you're determining your mental models, we suggest that you think about the condition that means the AI has successfully learned what you wanted it to learn. This could be:
 
@@ -20,7 +20,7 @@ For each concept, you will need to determine what the AI needs to take in to mak
 
 Your mental model can be mapped from left to right, starting with your input. Your other concepts come next, followed by your final concept, and finally, to the right, is your output. Your output is fed back through the Bonsai AI Engine to the application. You can draw arrows between the various nodes to represent data flow. Your concepts are trained in order. To visualize this more clearly, see our expanded example below.
 
-## Examples
+###### Examples
 
 ### Example: Breakout
 

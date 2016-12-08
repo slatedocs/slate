@@ -1,4 +1,4 @@
-# Schemas
+## Schemas
 
 Schemas describe a record and its fields. They contain a set of named data types that can be used throughout the system. They can include the common basic data types and native data types for working with common media formats (images, audio recordings). You add schemas in Inkling using the **schema** [keyword][1].
 
@@ -10,7 +10,7 @@ Inkling is also a strongly-typed language, which means that you are will receive
 
 Inkling supports various types, including (but not limited to) primitive types, which include types for integers, floats,  bytes and strings, as well as types commonly used with machine learning (for example, Luminance). See the section on schemas and Inkling types for more information.
 
-## Constrained Types
+###### Constrained Types
 
 Inkling supports constrained types in schemas (as well as for configuration of lessons). Constrained types use range expressions to constrain the values of the type to values defined by a range expression.
 
@@ -29,7 +29,7 @@ schema MyOutput
 end
 ```
 
-## Defining Schemas
+###### Defining Schemas
 
 Examine the input, returned data, and output of your mental model when defining your schemas. You need to match these requirements to Inkling types.
 

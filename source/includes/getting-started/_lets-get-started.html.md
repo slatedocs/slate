@@ -6,7 +6,7 @@ Before you begin, you will need to have access to our Beta. If you don't have ac
 
 If you have Anaconda installed on your system, go to Step 1 of our [Getting Started with Anaconda][2] guide instead.
 
-### Windows
+### - Windows
 
 1. Download and install Python from [python.org][3].
 2. Install Git (e.g. via GitHub desktop for windows).
@@ -18,11 +18,11 @@ If you have Anaconda installed on your system, go to Step 1 of our [Getting Star
 sudo easy_install pip
 ```
 
-### Mac OS X
+### - Mac OS X
 
 1. Install pip
 
-### pip is a tool for installing and managing Python dependencies. For more information about pip, refer to the [Python Package Authority][6].
+**pip is a tool for installing and managing Python dependencies. For more information about pip, refer to the [Python Package Authority][6].**
 
 ## Step 2. Setup the Bonsai CLI
 

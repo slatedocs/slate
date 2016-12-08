@@ -1,16 +1,16 @@
-# concept
+## Concept Reference
 
 Reference for the keyword concept. Also, describes the keywords: **predicts**, **input**, **output**, **is**, **follows**, **end**, and **feeds**.
 
-## What is it?
+###### What is it?
 
 **concept** (the keyword) declares an abstract concept (the idea) for the system to learn.
 
-## Why do I use it?
+###### Why do I use it?
 
 A concept statement describes what the computer will learn. It can be a feature (such as a curvy line in an image) or a goal (such as high score in a game).
 
-## How Do I Use It?
+###### How Do I Use It?
 
 A typical concept statement:
 
@@ -32,7 +32,7 @@ end
 * **feeds:** declares the list of concepts and streams that have this concept's output as input.
 * **end:** delimiter that declares the end of this statement.
 
-## Curriculum Statement Syntax
+###### Curriculum Statement Syntax
 
 > conceptStmt :=
 
@@ -73,7 +73,7 @@ end
 * The input keyword cannot not appear in the feeds list and the output keyword cannot appear in the follows list.
 * The concept statement is terminated by the **end** keyword.
 
-## Examples
+###### Examples
 
 > Concept get_high_score:
 

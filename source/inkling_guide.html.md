@@ -9,7 +9,7 @@ toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - inkling_guide/introduction.md
+  - inkling_guide/introduction.html.md
   - inkling_guide/2-inkling-fundamentals.html.md
   - inkling_guide/21-what-kind-of-lanuage-is-inkling.html.md
   - inkling_guide/22-mental-models.html.md

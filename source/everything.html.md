@@ -16,7 +16,7 @@ includes:
 - getting-started/whats-next.html.md
 - api-reference.html.md
 - cli-reference.html.md
-- inkling_guide/introduction.md
+- inkling_guide/introduction.html.md
 - inkling_guide/2-inkling-fundamentals.html.md
 - inkling_guide/21-what-kind-of-lanuage-is-inkling.html.md
 - inkling_guide/22-mental-models.html.md

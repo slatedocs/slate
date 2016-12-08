@@ -1,16 +1,16 @@
-# curriculum
+## curriculum
 
 Reference for the keyword **curriculum**. Also, describes the keywords: **train**, **with**, **data**
 
-## What is it?
+###### What is it?
 
 The **curriculum** (keyword) declares a set of lessons that are used to teach concepts. Each curriculum contains a lesson or set of lessons and trains a single concept.
 
-## Why do I use it?
+###### Why do I use it?
 
 A curriculum is used to teach a concept. The curriculum defines what concept is being taught (see the train clause below). Every concept needs a corresponding curriculum to teach it. A curriculum defines a set of lessons used to train the concept.
 
-## How do I use it?
+###### How do I use it?
 
 Here is the simple form of a curriculum statement:
 
@@ -101,7 +101,7 @@ The **predicts** schema Action also appears in the simulator clause discussed ab
 
 So far we have presented a simple version of the curriculum. Inkling supports multiple simulators and generators within a single curriculum. Here is the full syntax for the curriculum statement, which introduces a usingClause and a withClause (where **using** and **with** will specify simulators). These were not needed in our example above because we were using a single simulator.
 
-## Curriculum Statement Syntax
+###### Curriculum Statement Syntax
 
 > curriculumStmt :=
 
@@ -138,7 +138,7 @@ with data
 
 Any simulator or generator referenced in a curriculum must have an associated simulator or generator clause.
 
-## Simulator / Generator Clause Syntax
+###### Simulator / Generator Clause Syntax
 
 ```
 simulator '('')' # simulator clause
@@ -164,7 +164,7 @@ end
 * If the usingClause is present (that is, if the simplified curriculum syntax is not being used), there must be one usingClause for every withClause.
 * The objective is always required but if the trainingSpecifier is **data**, the objective must be either equality or linear_distance.
 
-## Examples
+###### Examples
 
 > Our curriculum is to train the get_high_score concept.
 

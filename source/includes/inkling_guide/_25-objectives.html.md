@@ -1,4 +1,4 @@
-# Objectives
+## Objectives
 
 The objective, often known in machine learning (ML) as the reward function, measures how well the AI is doing at learning the concept. Or, put differently, it is what you use to reward the AI.
 
@@ -10,7 +10,7 @@ If we are teaching the AI Pacman, and we are training the concept of avoid_non_b
 
 In these examples, the objective, or reward, is one of the factors we use to measure how well the AI is training on the concept.
 
-## Determining Objectives
+###### Determining Objectives
 
 There are several factors you can use to determine what your objective should be. Before you even start determining your objectives, you need to know what your concepts and curricula are. A good objective should reward the AI more often and be proportional to the quality of of the behavior.
 
@@ -28,7 +28,7 @@ In the Pong example, the AI learned exactly what you told it to learn, how to ma
 
 You need to think about what training with a specific reward  will produce in terms of the quality or correctness of the behavior.
 
-## In Inkling
+###### In Inkling
 
 In an Inkling program, your objective is going to be part of your curriculum statement.
 
