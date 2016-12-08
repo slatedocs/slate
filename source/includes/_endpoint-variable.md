@@ -350,9 +350,10 @@ type | string | The string type name
 categories | array | If "type" is "categorical", "multiple_response", or "categorical_array", an array of category definitions (see below). Other types have an empty array
 subvariables | array of URLs | For array variables, an ordered array of subvariable ids
 subreferences | array of objects | For array variables, an ordered array of {"name": ..., "alias": ..., ...} objects, one per subvariable
+resolution | string | For datetime variables, a string, such as "Y", "M", "D", "h", "m", "s", "ms", that indicates the unit size of the datetime data.
 derivation | object | For derived variables, a Crunch expression which was used to derive this variable; or null
 format | object | An object with various members to control the display of Variable data (see below)
-view | object | An object with various members to control the display of Variable data
+view | object | An object with various members to control the display of Variable data (see below)
 dataset_id | string | The id of the Dataset to which this Variable belongs
 missing_reasons | object | An object whose keys are reason phrases and whose values are missing codes; missing entries in Variable data are represented by a {"?": code} missing marker; clients may look up the corresponding reason phrase for each code in this one-to-one map
 
@@ -386,6 +387,7 @@ show_codes | boolean | For categorical types only; if true, numeric values are s
 show_counts | boolean | If true, show counts; if false, show percents
 include_missing | boolean | For categorical types only; if true, include missing categories
 include_noneoftheabove | boolean | For multiple response types only; if true, display a "none of the above" category in the requested summary or analysis
+rollup_resolution | string | For datetime variables, a unit to which data should be "rolled up" by default. See "resolution" above.
 
 #### PATCH
 
@@ -401,7 +403,7 @@ variable entities:
 * Reordering or removing subvariables in an array. Unlike categories, subvariables cannot be added via PATCH here.
 * Editing derivation expressions
 * Editing format and view settings
-* Changing a date variable's resolution
+* Changing a datetime variable's resolution
 
 Actions that are best or only achieved elsewhere include:
 
