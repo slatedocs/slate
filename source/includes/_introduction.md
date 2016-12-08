@@ -28,13 +28,20 @@ POST | `/customers` | Cria um cliente
 GET | `/customers/:id` | Retorna um cliente
 PUT | `/customers/:id` | Atualiza os parâmetros
 DELETE  | `/customers/:id` | Deleta um cliente
-GET | `/document_schemes` | Retorna todos os document_schemes de uma company
-POST | `/document_schemes` |  Cria um document_scheme
-GET | `/document_schemes/:id` | Retorna um document_scheme
-PUT | `/document_schemes/:id` | Atualiza os parâmetros
-DELETE | `/document_schemes/:id` | Atualiza o document_scheme para inativo
-GET | `/items` | Retorna todos os items de uma company
+GET | `/document_schemas` | Retorna todos os document_schemas de uma empresa
+POST | `/document_schemas` |  Cria um document_schema
+GET | `/document_schemas/:id` | Retorna um document_schema
+PUT | `/document_schemas/:id` | Atualiza os parâmetros
+DELETE | `/document_schemas/:id` | Inativa o document_schema
+GET | `/items` | Retorna todos os items de uma empresa
 POST | `/items` | Cria um item
 GET | `/items/:id` | Retorna um item
 PUT | `/items/:id` | Atualiza os parâmetros
-DELETE | `/items/:id` | Atualiza o item para inativo
+DELETE | `/items/:id` | Inativa o item
+GET | `/documents` | Retorna todos os documentos de uma empresa
+POST | `/documents` | Cria um documento
+GET | `/documents/:id` | Retorna um documento
+GET | `/documents/:id/operations` | Retorna todas operações do documento
+GET | `/operations/:id` | Retorna uma operação
+GET | `operations/:id/transactions` | Retorna todas transações da operação
+GET | `transactions/:id` | Retorna uma transação

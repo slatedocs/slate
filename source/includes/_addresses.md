@@ -1,6 +1,6 @@
 # Addresses
 
-  Um endereço é a associado à um cliente ou uma empresa.
+  Um endereço é associado a um cliente ou uma empresa.
 
   Através do endpoint `/addresses` é possível listar, exibir, criar, atualizar e deletar endereços.
 
@@ -11,7 +11,7 @@
    Parâmetro |  Descrição
  -------------- | --------------
   **country** <br> String | *Código do país no formato ISO 3166-1 alpha-2. Exemplo: BR*
-  **zipcode** <br>String | *Números do Código postal sem separadores*
+  **zipcode** <br>String | *Números do Código Postal sem separadores*
   **state** <br> String | *Código do estado no formato ISO 3166-2. Exemplo: SP*
   **city** <br>String | *Cidade*
   **neighborhood** <br> String | *Bairro*
@@ -59,7 +59,7 @@
   Parâmetro |  Descrição
  -------------- | --------------
   **country** <br> <p>obrigatório</p> | *Código do país no formato ISO 3166-1 alpha-2. Exemplo: BR*
-  **zipcode** <br> <p>obrigatório</p> | *Números do Código postal sem separadores*
+  **zipcode** <br> <p>obrigatório</p> | *Números do Código Postal sem separadores*
   **number** <br> <p>obrigatório</p> | *Número do endereço*
   **state**  | *Código do estado no formato ISO 3166-2. Exemplo: SP*
   **city** | *Cidade*
@@ -103,7 +103,7 @@
 
 ##Retornando endereços
 
-  Retorna um array contendo objetos de endereço.
+  Retorna um array que contém objetos de endereço.
 
   > GET https://api.fastnotas.com/v1/addresses/
 
@@ -143,7 +143,7 @@
 
 ## Atualizando um endereço
 
-  Atualiza o endereço solicitado e retorna o mesmo com os parâmetros atualizados.
+  Atualiza o endereço solicitado e retorna com os parâmetros atualizados.
 
   Parâmetro | Descrição
  -------------- | --------------

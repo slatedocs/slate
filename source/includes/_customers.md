@@ -8,10 +8,10 @@
   Parâmetro |  Descrição
   -------------- | --------------
   **name**  <br> String | *Nome do cliente*
-  **registry_code**  <br> String | *Documento do cliente(CPF ou CNPJ)*
+  **registry_code**  <br> String | *Documento do cliente (CPF ou CNPJ)*
   **email**  <br> String | *Email do cliente*
   **address[country]** <br> String | *Código do país no formato ISO 3166-1 alpha-2. Exemplo: BR*
-  **address[zipcode]** <br> String | *Código postal do cliente*
+  **address[zipcode]** <br> String | *Código Postal do cliente*
   **address[state]** <br> String | *Código do estado no formato ISO 3166-2. Exemplo: SP*
   **address[city]** <br> String | *Cidade do cliente*
   **address[neighborhood]** <br> String | *Bairro do cliente*
@@ -19,7 +19,7 @@
   **address[number]** <br> String |  *Número do endereço do cliente*
   **address[additional_details]** <br> String | *Complemento do endereço do cliente*
   **phone[phone_type]** <br> String | *Telefone residencial ou celular*
-  **phone[number]** <br> String | *Número do telefone sem separadores do cliente*
+  **phone[number]** <br> String | *Número do telefone do cliente sem separadores*
   **phone[area_code]** <br> String | *Código de área do município*
   **phone[country_code]**  <br> String | *Código do país*
   **phone[extension]**  <br> String | *Ramal*
@@ -73,13 +73,13 @@
   Parâmetro |  Descrição
   -------------- | --------------
   **name**  <br> <p> obrigatório </p> | *Nome do cliente*
-  **registry_code**  <br> <p> obrigatório </p> | *Documento do cliente(CPF ou CNPJ)*
+  **registry_code**  <br> <p> obrigatório </p> | *Documento do cliente (CPF ou CNPJ)*
   **email**  <br> <p> obrigatório </p> | *Email do cliente*
   **address_id** <br> <p> obrigatório </p> |  *Id do endereço do cliente*
   **phone_id** <br> |  *Id do telefone do cliente*
 
 <br> <br> <br> <br> <br> <br>
-## Retornando o cliente solicitado.
+## Retornando um cliente
 
   > GET https://api.fastnotas.com/v1/customers/{CUSTOMER_ID}
 
@@ -131,7 +131,7 @@
 
 ##Retornando clientes
 
-  Retorna um array contendo objetos de clientes.
+  Retorna um array que contém objetos de clientes.
 
   > GET https://api.fastnotas.com/v1/customers/
 
@@ -175,7 +175,7 @@
 
 ## Atualizando um cliente
 
-  Atualiza o cliente solicitado e retorna o mesmo com os parâmetros atualizados
+  Atualiza o cliente solicitado e retorna com os parâmetros atualizados
 
   Parâmetro | Descrição
  -------------- | --------------

@@ -1,6 +1,6 @@
 # Phones
 
-  Um telefone é a associado à um cliente ou uma empresa.
+  Um telefone é associado a um cliente ou uma empresa.
 
   Através do endpoint `/phones` é possível listar, exibir, criar, atualizar e deletar telefones.
 
@@ -86,7 +86,7 @@
 
 ##Retornando telefones
 
-  Retorna um array contendo objetos de telefones.
+  Retorna um array que contém objetos de telefones.
 
   > GET https://api.fastnotas.com/v1/phones/
 
@@ -120,7 +120,7 @@
 
 ## Atualizando um telefone
 
-Atualiza o telefone solicitado e retorna o mesmo com os parâmetros atualizados
+Atualiza o telefone solicitado e retorna com os parâmetros atualizados
 
   Parâmetro | Descrição
  -------------- | --------------

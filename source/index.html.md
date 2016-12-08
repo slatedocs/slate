@@ -11,12 +11,16 @@ toc_footers:
 includes:
   - introduction
   - authentication
+  - pagination
   - addresses
   - phones
   - companies
   - customers
-  - document_schemes
+  - document_schemas
   - items
+  - documents
+  - operations
+  - transactions
   - errors
 
 
