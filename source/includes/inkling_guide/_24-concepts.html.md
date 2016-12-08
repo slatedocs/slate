@@ -4,7 +4,7 @@ A concept in Inkling is an (abstract) idea. In Inkling, the concept defines what
 
 Every inkling program needs at least one concept. If there is more than one, determine which one is your main concept. You may have additional concepts to assist in teaching the main concept to your AI.
 
-### Fact and Strategy
+###### -Fact and Strategy
 
 When you're thinking about concepts, you can categorize them into two groups: fact and strategy. A fact concept describes the _**state**_ of a thing or things, such as an object, a ball, a character, an enemy, a light, a person, etc. The fact concept could be the state of whether that thing is on or off, is hot or cold, is a number or a letter, etc. It can also be a location. A strategy concept describes a _**method**_ or _**behavior**_, such as "avoid ghosts", "keep the paddle under the ball", "don't run into walls", "turn lights off".
 
@@ -23,7 +23,7 @@ Supporting concepts might include "eat dots", "avoid ghosts", "eat fruit", and "
 
 You can use a mental model to help you plan out your concepts and data flow.
 
-##### Determining Concepts
+###### -Determining Concepts
 
 Determining what concepts to teach may take time. You can use mental models to work out what concepts to write and how data should flow between them.
 
@@ -51,7 +51,7 @@ In our home automation example, let's imagine that we want to save energy by tur
 
 Any of these facts could be written into supporting concepts that would give information to your main concept.
 
-##### Writing Concept Statements
+###### -Writing Concept Statements
 
 ### Classifier and Estimator
 
@@ -61,7 +61,7 @@ In its simplest form, a classifier is taking in input and returning a classifica
 
 Estimators are used for larger outcome sets.  You would specify **is estimator** on your concept if you are estimating a value in a very large range, potentially near infinite range. Estimators are often used for control. For example, if you need to turn a dial a certain amount, the AI has to return the direction and how much the dial is being turned. Your AI is estimating both of those from a potentially nearly-infinite range and returning the most likely combination.
 
-##### Determining Concept Statements
+###### -Determining Concept Statements
 
 Determining what concepts to teach may take time. You can use mental models to work out what concepts need.  After you've created your mental model, you can write your schemas (input and output) as well as your concepts. You need to:
 

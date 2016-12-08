@@ -6,7 +6,7 @@ Mountain car is a classic control problem. [OpenAI Gym][1] describes it as:
 
 _A car is on a one-dimensional track, positioned between two "mountains". The goal is to drive up the mountain on the right; however, the car's engine is not strong enough to scale the mountain in a single pass. Therefore, the only way to succeed is to drive back and forth to build up momentum._
 
-###### Schemas
+###### -Schema: `GameState`, `Action`, `MountainCarConfig`
 
 ```
 schema GameState
@@ -35,7 +35,7 @@ end
 
 The MountainCarConfig schema names three records — episode_length, num_episodes, and deque_size — and assigns types to them.
 
-###### Concept `high_score`
+###### -Concept `high_score`
 
 ```
 concept high_score
@@ -48,7 +48,7 @@ end
 
 The concept is named high_score, and it takes input from the simulator about the state of the game (GameState schema). It outputs to the Action schema. This is the AI's next move in the game.
 
-## -Curriculum and Lessons
+###### -Curriculum: `high_score_curriculum`
 
 ```
 simulator mountaincar_simulator(MountainCarConfig)

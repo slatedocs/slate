@@ -30,19 +30,21 @@ The listed endpoints reflect the site map available at [Coggle](https://coggle.i
 
 "Classic" style pages reflect the original ordering. "New" style is the concatenated Details/Reference page.
 
+Name collision is almost totally resolved.
+
 | Page     | Status        | Style |
 |----------|---------------|-------|
-[Getting Started][1] | Second Draft | Modular
-[Inkling Classic][2] | Zeroth Draft | Modular
--- [Overview][7] | Zeroth Draft | Modular
--- [Details][8] | Zeroth Draft | Modular
--- [References][9] | Zeroth Draft | Modular
--- [Miscellany][10] | Zeroth Draft | Modular
-[Inkling New][3] | Second Draft | Modular
--- [Overview][11] | Zeroth Draft | Modular
--- [Details][12] | Zeroth Draft | Modular
--- [References][13] | Zeroth Draft | Modular
--- [Miscellany][14] | Zeroth Draft | Modular
+[Getting Started][1] | First Draft | Modular
+[Inkling Classic][2] | First Draft | Modular
+-- [Overview][7] | First Draft | Modular
+-- [Details][8] | First Draft | Modular
+-- [References][9] | First Draft | Modular
+-- [Miscellany][10] | First Draft | Modular
+[Inkling New][3] | First Draft | Modular
+-- [Overview][11] | First Draft | Modular
+-- [Details][12] | First Draft | Modular
+-- [References][13] | First Draft | Modular
+-- [Miscellany][14] | First Draft | Modular
 Mastermind | Absent | N/A
 [References][4] | Second Draft | Modular
 
@@ -50,7 +52,7 @@ Mastermind | Absent | N/A
 
 ## Where did the **Chapter/Section** numbers go?
 
-These are temporarily removed until the site tree settles down, and will likely be replaced.
+These are temporarily removed until the site tree settles down, and ~will likely~ may be replaced. We have not yet worked out the implementation of numbering on re-usable sections.
 
 ## Why are we reorganizing the [Inkling Classic][2] page?
 
@@ -60,9 +62,13 @@ This body of work includes overlapping sections with similar names, which is con
 
 Slate supports the notion of [includes][6], which allow us to put the documentation into a database of sorts and rebuild it from parts. This works by holding the pages in the `includes` folder. A display page is made by adding an `includes` section to the front matter, and then listing the included pages in order.
 
+## How do I report issues?
+
+File an issue at https://bonsai.phacility.com and tag Documentation project
+
 ## What about headers/footers/toc_footers?
 
-These are still being designed. It seems like there's likely to be a full-width header including primary-nav to all sections.
+These are still being designed. There's likely to be a full-width header including primary-nav to all sections.
 
 ## How do I get back to the beginning?
 

@@ -2,15 +2,15 @@
 
 Reference for the keyword **lesson**. Also, describes the keywords: **follows**, **configure**, **constrain**, **until**, **minimize**, **maximize**, **configure**, **with**, and **end.**
 
-###### What is it?
+### What is it?
 
 The **lesson** (keyword) declares an individual lesson for the concept being trained by the curriculum.  Lessons are contained within curriculum statements. A curriculum can contain multiple lessons.
 
-###### Why do I use it?
+### Why do I use it?
 
 Lessons give you control over the training of the mental model. They allow you to break down the training of the concept into phases where each phase is implemented by a lesson.
 
-###### How do I use it?
+### How do I use it?
 
 > Below we show the clauses a lesson can contain.
 
@@ -77,7 +77,7 @@ Note that the **constrain** name in the example above specifies a field in the c
 
 You can find more discussion of type constraint rules in the [schema][1] section. (Schema declarations can also use type constraints.)
 
-###### Lesson Syntax
+###### -Lesson Syntax
 
 > lessonStatement :=
 
@@ -91,7 +91,7 @@ lesson**
 ```
 ‍
 
-###Lesson Configure Clause Syntax
+###### -Lesson Configure Clause Syntax
 
 > configureClause :=
 
@@ -121,7 +121,7 @@ Double | Float64 | Float32 | Int8 | Int16 | Int32 |  Int64 | UInt8 | UInt16 | UI
 
 The testClause and the trainClause have identical syntax except for their keyword (**train** or **test**).  However they both vary depending on the trainingSpecifier in the curriculum. The **expect** is only available in those cases that have known expected values, and that occurs when the trainingSpecifier is **data** or **generator**.
 
-###### Lesson Train/Test Clause Syntax
+###### -Lesson Train/Test Clause Syntax
 
 > trainClause :=
 
@@ -179,7 +179,7 @@ This means train until the curriculum objective (ball_location_distance) is mini
 
 ‍
 
-###### Lesson Until Clause Syntax
+###### -Lesson Until Clause Syntax
 
 > untilClause :=
 
@@ -200,7 +200,7 @@ until
 
 The untilClause is only required if the curriculum trainingSpecifier is **simulator**.  If this curriculum has a trainingSpecifier of **data** or **generator**, the until clause is optional. If it is not present, a default with value minimize will be created.
 
-###### Lesson Clauses Table
+###### -Lesson Clauses Table
 
 Lesson clauses have defaults so if a clause is not specified the default will be assumed. Also in certain circumstances not all  clauses are available. This table specifies the rules. Recall that the trainingSpecifier appears after the keyword **with** in the curriculum.
 
@@ -208,7 +208,7 @@ Lesson clauses have defaults so if a clause is not specified the default will be
 
 Table for Lesson Clauses
 
-###Rules
+###### -Lesson Rules
 
 * To summarize the table above, for a lesson associated with a trainingSpecifier of **data**: one or both of the lesson clauses **train** and **test** are required (and there are no default versions of these clauses).
 * Test clause is optional for any particular lesson. However if the last lesson has no test clause it is an error.
