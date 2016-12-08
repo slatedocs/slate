@@ -26,7 +26,8 @@
 	  
   <div id="flex-container">	  
 	  
-	<div id="primary-nav"><%= link_to 'Getting Started', '/getting_started.html' %> </div>
+	<div id="primary-nav"><%= link_to 'Getting Started', '/getting_started.html' %> 
+	</div>
 	
 	<div id="main-wrapper">  
 		
@@ -37,16 +38,14 @@
       </span>
     </a>
     
-    <div class="page-wrapper">
-      
-      <div class="content">
-        <%= yield %>
-        <% current_page.data.includes && current_page.data.includes.each do |include| %>
-          <%= partial "includes/#{include}" %>
-        <% end %>
-      </div>
-      
-    </div>
+    <div id="search">Future home of the search bar</div>
+	<div id="browse">
+		
+		<div> <h2>This is a subtitle</h2> <ul><li>item</li><li>item</li><li>item</li></ul></div>
+		<div> <h2>This is a subtitle</h2> <ul><li>item</li><li>item</li><li>item</li></ul></div>
+		<div> <h2>This is a subtitle</h2> <ul><li>item</li><li>item</li><li>item</li></ul></div>
+		
+	</div>
 	
     </div>
 	
