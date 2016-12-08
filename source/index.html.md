@@ -9,6 +9,9 @@ toc_footers:
 includes:
 
 search: true
+
+layout: home
+
 ---
 
 # Bonsai Documentation
