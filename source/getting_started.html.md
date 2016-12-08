@@ -12,7 +12,6 @@ includes:
   - getting-started/introduction.html.md
   - getting-started/concepts.html.md
   - getting-started/lets-get-started.html.md
-  - getting-started/getting-started-with-anaconda.html.md
   - getting-started/whats-next.html.md
 search: true
 ---

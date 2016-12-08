@@ -4,15 +4,15 @@ Reference for the keyword **import**. Also, describes the keywords: **from**
 
 Note: Currently, the only function you can import is **split**.
 
-### -What is it?
+### What is it?
 
 **import** (the keyword) describes the usage and location of functions that are part of external libraries.
 
-### -Why do I use it?
+### Why do I use it?
 
 **import** is used to specify the location and usage external libraries. You specify libraries that you want to use in conjunction with your Inkling code.
 
-### -How do I use it?
+### How do I use it?
 
 Typical import statements:
 
@@ -21,7 +21,7 @@ from libraryName import importName1
 import importName2
 ```
 
-#### Examples
+###### -Examples
 
 ```
 from utils import split

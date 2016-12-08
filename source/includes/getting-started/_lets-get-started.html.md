@@ -111,7 +111,7 @@ python mountaincar_simulator.py --predict-brain=myMountainCarBrain --predict-ver
 ```
 
 [1]: https://bons.ai
-[2]: #getting-started-with-anaconda
+[2]: ./getting-started-with-anaconda.html
 [3]: https://www.python.org
 [4]: https://gym.openai.com/envs/MountainCar-v0
 [5]: https://beta.bons.ai

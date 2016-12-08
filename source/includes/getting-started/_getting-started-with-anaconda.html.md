@@ -26,7 +26,7 @@ conda install pip
 
 ## Step 2. Setup the Bonsai CLI
 
-Install the Bonsai Command Line Interface tool and configure it. You'll need to have your access code (accessKey). You can find your access code in your account settings at .
+Install the Bonsai Command Line Interface tool and configure it. You'll need to have your access code (accessKey). You can find your access code in your account settings at [Bonsai Account Settings](https://beta.bons.ai/accounts/settings).
 
 ```
 pip install bonsai-cli
@@ -35,7 +35,7 @@ bonsai configure # Enter key when prompted
 
 ## Step 3. Clone a sample project
 
-Clone our sample project, Mountain Car. This project uses[ OpenAI Gym's][3] Mountain Car simulation.
+Clone our sample project, Mountain Car. This project uses [OpenAI Gym's][3] Mountain Car simulation.
 
 ```
 git clone https://github.com/BonsaiAI/gym-mountaincar-sample
