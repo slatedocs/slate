@@ -21,7 +21,7 @@ The API is in beta. We would love to hear your thoughts about it.
 
 All API operations are done via POST requests to the following URL:
 
-`POST https://api.datil.co/ebilling`
+`POST https://api.datil.co/sales`
 
 # Authentication
 
@@ -42,14 +42,14 @@ Datil uses the following headers to authenticate your requests:
 
 ### Operation
 
-`POST /ebilling/invoices/issue`
+`POST /sales/invoices`
 
 ### Request
 
 > #### Example request
 
 ```shell
-curl -v https://api.datil.co/ebilling/invoices/issue \
+curl -v https://api.datil.co/sales/invoices \
 -H "Content-Type: application/json" \
 -H "X-Key: <your-legacy-api-key>" \
 -H "X-Api-Key: <your-api-key>" \
