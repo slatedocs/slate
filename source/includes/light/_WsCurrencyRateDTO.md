@@ -3,7 +3,6 @@
 ```xml
 <rate type="WsCurrencyRateDTO">
     <id>сurrencyRate_id</id>
-    <date>2016-09-08</date>
     <buy>66.03</buy>
     <sell>70.0</sell>
     <firstCurrency>CHF</firstCurrency>
@@ -16,7 +15,6 @@
 key | type | status | comment
 --- | ---- | :----: | ---:
 id | string | 1..1 | уникальный идентификатор операции
-date | string | 0..1 | дата
 firstCurrency | string | 1..1 | первая валюта
 secondCurrency | string | 1..1 | вторая валюта
 buy | string | 1..1 | цена покупки
