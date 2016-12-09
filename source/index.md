@@ -12,6 +12,7 @@ toc_footers:
 
 includes:
   - feature-authentication
+  - password-policy
   - feature-importing
   - feature-appending
   - feature-extending

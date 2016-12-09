@@ -22,7 +22,7 @@ Vary: Cookie, Accept-Encoding
 ```r
 library(crunch)
 login("fake.user@example.com", "password")
-# See ?login for options, including how to store your credentials 
+# See ?login for options, including how to store your credentials
 # in your .Rprofile
 ```
 
@@ -31,9 +31,9 @@ import pycrunch
 ```
 
 ```shell
-curl -c cookie-jar 
-    -X POST 
-    -d '{"email": "fake.user@example.com", "password": "password"}' 
+curl -c cookie-jar
+    -X POST
+    -d '{"email": "fake.user@example.com", "password": "password"}'
     -H "Content-type: application/json"
     https://app.crunch.io/api/public/login/
 
@@ -50,9 +50,9 @@ The client should then store the Cookie and pass it along with each subsequent r
 Failure will return 401 Unauthorized.
 
 <aside class="notice">
-Replace "fake.user@example.com" and "password" with your email and password, respectively.
+    Replace "fake.user@example.com" and "password" with your email and password, respectively. Refer to the [password policy](#Password-policy) for more information on passwords.
 </aside>
 
-Crunch also supports OAuth 2.0/OpenID Connect. See [the public endpoint reference](#public) for more on how to authenticate with OAuth. 
+Crunch also supports OAuth 2.0/OpenID Connect. See [the public endpoint reference](#public) for more on how to authenticate with OAuth.
 
 If you'd like to add your auth provider to the set of supported providers, contact [support@crunch.io](mailto:support@crunch.io)
