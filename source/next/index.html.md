@@ -72,7 +72,7 @@ curl -v https://api.datil.co/ebilling/invoices/issue \
          }
        ],
        "supplier": {
-         "id_type": "ruc",
+         "tax_id_type": "ruc",
          "properties": [
            {
              "key": "required_accounting",
@@ -104,7 +104,7 @@ curl -v https://api.datil.co/ebilling/invoices/issue \
       ],
       "issue_date": "2016-11-22 23:00:00",
       "customer": {
-        "id_type": "ruc",
+        "tax_id_type": "ruc",
         "properties": [
           {
             "key": "required_accounting",
