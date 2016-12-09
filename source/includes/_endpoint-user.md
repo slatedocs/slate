@@ -21,7 +21,7 @@ id_method (optional)
 id_provider (optional, and only if id_method == 'oauth')
 
 If the current user has the "alter_users" account permission, or is the viewed user, a hefty set of associated URL's is included. Otherwise, the current user must have the "view" permission for the viewed user, or receives 403 Forbidden.
- 
+
 The id_method member can be one of {'oauth', 'pwhash'}. If not present, 'pwhash' is assumed.
 
 Any user can PUT new attributes via a JSON-like request body. A 200 indicates success.
@@ -34,7 +34,12 @@ If a "url_base" parameter is included in the request body, it will be used to fo
 
 `/users/{id}/password/`
 
-A POST on this resource must consist of a JSON object with the members "old_pw" and "new_pw". A 204 indicates success.
+A POST on this resource must consist of a JSON object with the members "old_pw" and "new_pw". A 204 indicates success, a 400 indicates failure.
+
+<aside class="notice">
+    Please refer to the [password policy](#Password-policy) for information on
+    what the requirements are for a password.
+</aside>
 
 `/users/{id}/password_reset/`
 
