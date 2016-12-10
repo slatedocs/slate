@@ -16,14 +16,14 @@ Note: Currently, the only function you can import is **split**.
 
 Typical import statements:
 
-```
+```inkling
 from libraryName import importName1
 import importName2
 ```
 
 ###### -Examples
 
-```
+```inkling
 from utils import split
 
   datastore MNIST_data(MNIST_training_data_schema)
@@ -32,6 +32,6 @@ from utils import split
 
 > prepare the data with imported function split
 
-```
+```inkling
 training_data, test_data = split(MNIST_data, 0.8, shuffle=True)
 ```

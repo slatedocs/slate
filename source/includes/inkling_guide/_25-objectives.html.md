@@ -32,7 +32,7 @@ You need to think about what training with a specific reward  will produce in te
 
 In an Inkling program, your objective is going to be part of your curriculum statement.
 
-```
+```inkling
 curriculum _curriculumName
    train _conceptName
    with _trainingSpecifier

@@ -14,7 +14,7 @@ A concept statement describes what the computer will learn. It can be a feature 
 
 A typical concept statement:
 
-```
+```inkling
 concept conceptName
    is (classifier | estimator)
    predicts (outputSchema)
@@ -36,7 +36,7 @@ end
 
 > conceptStmt :=
 
-```
+```c
 concept
     is [ classifier | estimator ]
     predicts ( schemaRef )
@@ -52,13 +52,13 @@ end
 
 > inputSrc :=
 
-```
-   input '(' schemaRef? ')' |  // concept or stream name
+```c
+   input '(' schemaRef? ')' |  <name> // concept or stream name
 ```
 
 > outputTarget :=
 
-```
+```c
     output | <name>                    // concept or stream name
 ```
 
@@ -77,7 +77,7 @@ end
 
 > Concept get_high_score:
 
-```
+```inkling
 concept get_high_score
    is classifier
    predicts PlayerMove
@@ -102,7 +102,7 @@ Our concepts are Digit, Curvature, and Segments. In this example:
 
 > Concept Digit:
 
-```
+```inkling
 concept Digit
      is classifier
      predicts MNIST_output
@@ -122,7 +122,7 @@ end
 
 > Concept Curvature:
 
-```
+```inkling
 concept Curvature
    is classifier
    predicts (curve_output)
@@ -139,7 +139,7 @@ end
 
 > Concept Segments
 
-```
+```inkling
 concept Segments
    is classifier
    predicts (segments_output)

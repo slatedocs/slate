@@ -10,7 +10,7 @@ _A pole is attached by an un-actuated joint to a cart, which moves along a frict
 
 ###### -Schema: `GameState`, `Action`, and `CartPoleConfig`
 
-```
+```inkling
 schema GameState
    Float32 position,
    Float32 velocity,
@@ -21,7 +21,7 @@ end
 
 The schema `GameState` names four records — position, velocity, angle, and rotation — and assigns a type to them. This information is input from the simulation.
 
-```
+```inkling
 schema Action
    Int8{0,1} action
 end
@@ -29,7 +29,7 @@ end
 
 The schema Action names a record — action —  and assigns it a constrained type.
 
-```
+```inkling
 schema CartPoleConfig
    Int8 episode_length,
    Int8 num_episodes,
@@ -41,7 +41,7 @@ end
 
 ###### -Concept: `balance`
 
-```
+```inkling
 concept balance
    is classifier
    predicts Action
@@ -54,7 +54,7 @@ The concept is named balance, and it takes input from the simulator. That input 
 
 ###### -Curriculum: `balance_curriculum`
 
-```
+```inkling
 simulator cartpole_simulator(CartPoleConfig)
   state (GameState)
 end

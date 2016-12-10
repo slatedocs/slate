@@ -8,7 +8,7 @@ _A car is on a one-dimensional track, positioned between two "mountains". The go
 
 ###### -Schema: `GameState`, `Action`, `MountainCarConfig`
 
-```
+```inkling
 schema GameState
    Float32 x_position,
    Float32 y_velocity
@@ -17,7 +17,7 @@ end
 
 The GameState schema names two records — x_position and y_position — and assigns a type to them.
 
-```
+```inkling
 schema Action
    Int8{0,1,2} action
 end
@@ -25,7 +25,7 @@ end
 
 The Action schema names a single record — action — and assigns a constrained type to it.
 
-```
+```inkling
 schema MountainCarConfig
    Int8 episode_legnth,
    Int8 num_episodes,
@@ -37,7 +37,7 @@ The MountainCarConfig schema names three records — episode_length, num_episode
 
 ###### -Concept `high_score`
 
-```
+```inkling
 concept high_score
    is classifier
    predicts Action
@@ -50,7 +50,7 @@ The concept is named high_score, and it takes input from the simulator about the
 
 ###### -Curriculum: `high_score_curriculum`
 
-```
+```inkling
 simulator mountaincar_simulator(MountainCarConfig)
   state  (GameState)
 end

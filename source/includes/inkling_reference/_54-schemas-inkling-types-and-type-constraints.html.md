@@ -14,7 +14,7 @@ Schemas describe the structure of data in Inkling  streams, such as the predefin
 
 A sample schema declaration and use:
 
-```
+```inkling
 schema MySchema                   # declare
    UInt8  field1,
    UInt32 field2
@@ -39,29 +39,30 @@ end
 
 > schemaStmt :=
 
-```
-schema
+```c
+schema <name>
     fieldDclnList
 end
 ```
 
 > fieldDclnList      :=
 
-```
+```c
 fieldDcln [',' fieldDcln  ]*
 ```
 
 > fieldDcln          :=
 
-```
+```c
 scalarDcln                          |
-  structureDcln # see structured types
+  structureDcln // see structured types
 ```
 
 > scalarDcln         :=
 
-```
-  primitiveType                                                typeConstraint?
+```c
+  primitiveType
+  typeConstraint?
   <name>
   [ '[' arraySizeLiteral ']' ]*
 ```
@@ -72,10 +73,10 @@ A named schema is referenced by its name. An anonymous schema is referenced by i
 
 >  schemaRef :=
 
-```
-    '('  ')'            # named schema ref
+```c
+    '(' <name> ')'   // named schema ref
   |
-    '('   ')'  # anonymous schema ref
+    '(' <fieldDclnList>  ')'  // anonymous schema ref
 ```
 
 ###### -Inkling Primitive Types
@@ -84,7 +85,7 @@ Inkling has a set of primitive types which are used in schema declarations. The 
 
 > primitiveType :=
 
-```
+```c
 Double | Float64 | Float32 | Int8 | Int16 | Int32 |
 Int64 | UInt8 | UInt16 | UInt32  | UInt64 | Bool | String
 ```
@@ -95,15 +96,16 @@ Inkling supports the types Matrix and Luminance (more to come).
 
 > structureDcln      :=
 
-```
+```c
   ( Luminance | Matrix )
     structureInit
+    <name>
 ```
 
 
 > structureInit      :=
 
-```
+```c
 '('
 
   luminanceInit | matrixInit
@@ -113,7 +115,7 @@ Inkling supports the types Matrix and Luminance (more to come).
 
 > luminanceInit      :=
 
-```
+```c
 integerLiteral  ',' integerLiteral
 
  matrixInit         :=
@@ -128,7 +130,7 @@ integerLiteral  ',' integerLiteral
 
 This example shows a schema that has a field with a primitive type and a field with a structured type.
 
-```
+```inkling
 schema MNIST_training_data_schema
    UInt8 label,
    Luminance(28, 28) image
@@ -143,7 +145,7 @@ A range expression has the effect of constraining the values of the type to valu
 
 > Here are some examples of this syntax in a schema definition. Curly braces delineate the range expression.
 
-```
+```inkling
 schema MyOutput
     UInt8  {0,1,2,3,4}   label,    # a list of UInt8 values
     String {"a", "bc"}   category, # a list of Strings
@@ -157,19 +159,19 @@ end
 
 > constrainedType :=
 
-```
+```c
 numericType
   '{'
-    start ':' [ step':']? stop       # 1:2:10.   Called a 'colon range'. Specifies 'step' (default=1).
+    start ':' [ step':']? stop // 1:2:10.   Called a 'colon range'. Specifies 'step' (default=1).
     |
-    start '.' '.' stop ':' numSteps # 1..10:5  Called a 'dot range'. Specifies 'numsteps'.
+    start '.' '.' stop ':' numSteps //   1..10:5  Called a 'dot range'. Specifies 'numsteps'.
 
   '}'
 ```
 
 > numericType :=
 
-```
+```c
 Double | Float64 | Float32 | Int8 | Int16 | Int32 |  Int64 | UInt8 | UInt16 | UInt32  | UInt64
 ```
 
