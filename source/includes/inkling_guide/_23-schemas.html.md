@@ -18,7 +18,7 @@ Inkling supports constrained types in schemas (as well as for configuration of l
 
  Here are some examples of constrained types:
 
-```
+```inkling
 schema MyOutput
     UInt8  {0,1,2,3,4}   label,    # a list of UInt8 values
     String {"a", "bc"}   category, # a list of Strings

@@ -2,6 +2,7 @@
 title: Everything Inkling
 
 language_tabs:
+- inkling
 
 toc_footers:
   - <a href='https://bons.ai/sign-up'>Sign Up for our Private Beta!</a>

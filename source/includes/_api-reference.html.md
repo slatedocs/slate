@@ -25,8 +25,8 @@ requestMethod /v1/userName/assetName/assetVersion
 
 ###### -GET User status
 
-```
-GET /v1/userName
+```http
+GET /v1/userName HTTP/1.1
 ```
 
 Uses the GET request method to get a list of assets owned by the user (or organization).
@@ -35,7 +35,7 @@ Uses the GET request method to get a list of assets owned by the user (or organi
 
 This example response is for BRAIN assets:
 
-```
+```http
 HTTP/1.1 200 OK
 Vary: Accept
 Content-Type: text/javascript
@@ -66,8 +66,8 @@ Content-Type: text/javascript
 ‍
 ###### -GET BRAIN status
 
-```
-GET /v1/userName/brainName
+```http
+GET /v1/megan/myBrain HTTP/1.1
 ```
 
 Uses the GET request method to get information about a BRAIN (_brainName_) created by a user (_userName_).
@@ -76,11 +76,10 @@ Uses the GET request method to get information about a BRAIN (_brainName_) creat
 
 This is an example response for getting BRAIN information for a specific brain:
 
-```
+```http
 HTTP/1.1 200 OK
 Vary: Accept
 Content‐Type: text/javascript
-
 {
    "id": 1
    "name": "mybrain1",
@@ -98,8 +97,8 @@ Content‐Type: text/javascript
 ‍
 ###### -GET Inkling
 
-```
-GET /v1/userName/brainName/brainVersion/ink
+```http
+GET /v1/megan/myBrain/brainVersion/ink HTTP/1.1
 ```
 
 Uses the GET request method to get the Inkling code for a version (_brainVersion_) of a BRAIN (_brainName_) created by a user (_userName_). The _brainVersion_ is a number.
@@ -108,7 +107,7 @@ Uses the GET request method to get the Inkling code for a version (_brainVersion
 
 This is an example response to a request for Inkling code for a specific BRAIN.
 
-```
+```http
 HTTP/1.1 200 OK
 Vary: Accept
 Content‐Type: text/x‐bonsai‐inkling
@@ -118,18 +117,18 @@ concept foo follow input, feeds output
 ‍
 ###### -POST Inkling
 
-```
-POST /v1/userName/brainName/ink
-```
-
 Uses the POST request method to post a new version of the Inkling code for a BRAIN. You cannot POST new Inkling while a BRAIN is training.
+
+```http
+POST /v1/megan/myBrain/ink HTTP/1.1
+```
 
 ###### -Example Request
 
 This is an example request for posting new Inkling for a BRAIN that is not currently training.
 
-```
-POST /megan/mybrain HTTP/1.1
+```http
+POST /v1/megan/myBrain/ink HTTP/1.1
 Host:  api.bons.aiContent‐Type: text/x‐bonsai‐inkling
 Content‐Length:  1028
 concept foo follow input, feeds output
@@ -140,7 +139,7 @@ concept foo follow input, feeds output
 
 This is an example response to posting new Inkling for a BRAIN that is not training.
 
-```
+```http
 HTTP/1.1 201 CreatedLocation: http://api.bons.ai/v1/megan/mybrain/11
 ```
 ‍
@@ -148,8 +147,8 @@ HTTP/1.1 201 CreatedLocation: http://api.bons.ai/v1/megan/mybrain/11
 
 ###### -GET Simulator Information
 
-```
-GET /userName/brainName/sims
+```http
+GET /userName/brainName/sims HTTP/1.1
 ```
 
 Uses the GET request method to get the simulator information for a simulator connected to a BRAIN.
@@ -158,7 +157,7 @@ Uses the GET request method to get the simulator information for a simulator con
 
 This is an example response for getting simulator information.
 
-```
+```http
 HTTP/1.1 200 OK
 Vary: Accept
 Content‐Type: text/javascript{
@@ -173,8 +172,8 @@ Content‐Type: text/javascript{
 ‍
 ###### -GET Update Simulator
 
-```
-GET /V1/userName/brainName/sims/ws
+```http
+GET /V1/userName/brainName/sims/ws HTTP/1.1
 ```
 
 Uses the GET request method to update the simulator.
@@ -183,8 +182,8 @@ Uses the GET request method to update the simulator.
 
 This is an example response for updating the simulator.
 
-```
-GET /megan/mybrain/sims/ws HTTP/1.1
+```http
+HTTP/1.1 200 OK
 Host:  api.bons.ai
 Upgrade:  "Websocket"
 Connection:  upgrade
@@ -194,8 +193,8 @@ Connection:  upgrade
 
 ###### -PUT Training Mode
 
-```
-PUT /v1/userName/brainName/train
+```http
+PUT /v1/userName/brainName/train HTTP/1.1
 ```
 
 Uses the PUT request method to start training mode or stop training mode.
@@ -204,7 +203,7 @@ Uses the PUT request method to start training mode or stop training mode.
 
 This is an example response to using PUT to stop or start training mode.
 
-```
+```http
 HTTP/1.1 201 Created
 Location: http://api.bons.ai/v1/megan/mybrain/11
 ```

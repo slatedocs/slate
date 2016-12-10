@@ -24,7 +24,7 @@ Your mental model can be mapped from left to right, starting with your input. Yo
 
 ### Example: Breakout
 
-```
+```inkling
 concept get_high_score
     is classifier
     predicts (PlayerMove)
@@ -47,7 +47,7 @@ The **output** is the move that the AI wants to make. It chooses from left, righ
 
 To speed up training time and enable to learn the get_high_score concept more concretely, you can expand this mental model and include more concepts.
 
-```
+```inkling
 concept get_high_score
     is classifier
     predicts (PlayerMove)
