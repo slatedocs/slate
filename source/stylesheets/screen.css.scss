@@ -634,29 +634,18 @@ html, body {
 // CUSTOM
 ////////////////////////////////////////////////////////////////////////////////
 
-#flex-container{display:flex; flex-direction:column; padding:0 30px; height:100vh;}
-#primary-nav{display:flex; flex-direction:row; justify-content:flex-end; padding-top: 30px; padding-bottom:30px;}
+#flex-container{display:flex; flex-direction:column;  height:100vh;}
 .tocify-wrapper{top:inherit !important; bottom:inherit !important; height:100vh !important;}
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// TYPOGRAPHY
+// PRIMARY NAV
 ////////////////////////////////////////////////////////////////////////////////
  
+#primary-nav{display:flex; flex-direction:row; justify-content:flex-end; padding-top: 30px; padding-bottom:30px; align-items:center;}
  
-////////////////////////////////////////////////////////////////////////////////
-// LAYOUT
-////////////////////////////////////////////////////////////////////////////////
+ 
+ #nav-links {flex-grow:1; text-align:-webkit-right;}
+ .bonsai-logo{height:28px;}
 
-
-#search {padding-top: 100px; padding-bottom:100px;}
-
-#browse {display:flex; flex-direction:row; align-items:stretch;flex: 1 0 auto; padding-bottom:30px;}
-
-#browse div {flex-grow:1;background-color:#fafafa; margin-right:20px; }
-
-#main-wrapper {    flex: 1 0 auto;
-
-    display: flex;
-    flex-direction: column;}
 

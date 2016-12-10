@@ -1,0 +1,31 @@
+#flex-container{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;/* margin: 0 30px; */height:100vh;background-color:#ffffff;}
+#primary-nav {background-color: #fffadf;padding: 30px 30px;}
+#search {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding: 160px 30px;
+    background-color: #fffadf;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// LAYOUT
+////////////////////////////////////////////////////////////////////////////////
+
+
+#search {padding-top: 100px; padding-bottom:100px;}
+
+#browse {display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-align:stretch;align-items:stretch;-ms-flex: 1 0 auto;flex: 1 0 auto;padding-bottom:30px;/* padding: 0 30px; */}
+
+#browse div {-ms-flex-positive:1;flex-grow:1;background-color:#fafafa; margin-right:20px; }
+
+#browse div:first-of-type {color:red; padding:0; margin-left:20px}
+
+#main-wrapper {    -ms-flex: 1 0 auto;    flex: 1 0 auto;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;}
