@@ -14,6 +14,7 @@ toc_footers:
 
 includes:
   - authentication
+  - projects
   - kittens_example
   - errors
 
@@ -41,9 +42,3 @@ If you're new to PractiTest and you're just starting to write API code, you shou
 ### Current API V1 users
 If you already have V1 code, then you must change /api/resource_name to /api/v1/resource_name. Also, when you write new code, try to use V2, since V1 will depreciate.
 
-
-# Projects
-
-## GET/projects.json - GET a list of projects
-
-Here's an example  of the JSON response that you may get when submitting a GET request to: https://prod.practitest.com/api/v2/projects.json
