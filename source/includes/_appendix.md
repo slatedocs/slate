@@ -302,7 +302,7 @@ ibegin|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="y
 linkedin|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 <s>manta</s>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
 misterwhat|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
-n49|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
+<s>n49<s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>||No longer available
 <s>nearyouca</s>|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|No longer available
 opentable|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 ourbis|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
