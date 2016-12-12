@@ -11,7 +11,7 @@
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('v1/clients-and-locations/clients/', [	   
+$success = $api->post('/v1/clients-and-locations/clients/', [	   
     'name'                 => 'Le Bernardin',               
     'company-url'          => 'le-bernardin.com',
     'business-category-id' =>  791    
@@ -28,6 +28,17 @@ curl -X POST \
  -d 'company-url=le-bernardin.com' \
  -d 'business-category-id=791' \ 
  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+       parameters.Add("name", "Le Bernardin");
+       parameters.Add("company-url", "http://www.le-bernardin.com");
+       parameters.Add("business-category-id", "791");
+
+var success = request.Post("/v1/clients-and-locations/clients/", parameters);
 ```
 
 > Success (200 OK)
@@ -70,7 +81,7 @@ Update an existing client. Only supply values you want to update. The rest will 
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->put('v1/clients-and-locations/clients/', [
+$success = $api->put('/v1/clients-and-locations/clients/', [
     'name'                 => 'Le Bernardin',               
     'company-url'          => 'le-bernardin.com',
     'business-category-id' =>  791    
@@ -89,6 +100,17 @@ curl -X PUT \
    https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
 ```
 
+### Update a client
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+       parameters.Add("client-id", "36447");
+       parameters.Add("name", "Le Bernardin Cafe");
+
+var success = request.Put("/v1/clients-and-locations/clients/", parameters);
+```
 
 > Success (200 OK)
 
@@ -128,10 +150,19 @@ use BrightLocal\Api;
 
 $clientId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$result = $api->delete('v1/clients-and-locations/clients/' . $clientId);
+$result = $api->delete(/'v1/clients-and-locations/clients/' . $clientId);
 if (!empty($result['success'])) {
 	echo 'Successfully deleted client.' . PHP_EOL;
 }
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+       parameters.Add("client-id", "36447");
+
+var success = request.Delete("/v1/clients-and-locations/clients/", parameters);
 ```
 
 > Success (200 OK)
@@ -168,8 +199,16 @@ client-id | <span class="label label-required">Required</span>
 use BrightLocal\Api;
 $clientId = 1;
 $api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
-$client = $api->call('v1/clients-and-locations/clients/'. $clientId);
+$client = $api->get('/v1/clients-and-locations/clients/'. $clientId);
 print_r($client);
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+var clientId = 36447;
+var success = request.Get("/v1/clients-and-locations/clients/" + clientId + "", parameters);
 ```
 
 > Success (200 OK)
@@ -213,7 +252,7 @@ client-id | <span class="label label-required">Required</span>
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->call('v1/clients-and-locations/clients/search', [   
+$results = $api->get('/v1/clients-and-locations/clients/search', [   
     'q' => 'BrightLocal'    
 ]);
 print_r($results);
@@ -226,6 +265,15 @@ curl -X GET \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'q=My+Sample+Query' \	
   https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("q", "BrightLocal");      
+		         
+var success = request.Put("/v1/clients-and-locations/clients/search", parameters);
 ```
 
 > Success (200 OK)

@@ -40,6 +40,22 @@ curl -X POST \
  https://tools.brightlocal.com/seo-tools/api/v4/rf/add
 ```
 
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("report-name", "Sample Citation Tracking Report");
+        parameters.Add("business-name", "Le Bernardin");            
+        parameters.Add("contact-telephone", "+1 212-554-1515");
+        parameters.Add("address1", "155 Weest 51st Street");
+        parameters.Add("address2", "");
+        parameters.Add("city", "New York");            
+        parameters.Add("postcode", "10019");
+        parameters.Add("country", "USA"); // USA only
+
+var success = request.Post("/v4/rf/add", parameters);
+```
+
 > Example of specifying directories
 
 ```php
@@ -129,10 +145,34 @@ use BrightLocal\Api;
 $reportId = 1;
 $api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
 $success = $api->put('/v4/rf/' .$reportId, [
-    'business-name'     => 'Le Bernardin',
-	'contact-telephone' => '+1 212-554-1515'
+     -d 'report-name=Le Bernardin' \
+     -d 'business-name=Le Bernardin' \
+     -d 'contact-telephone=+1 212-554-1515' \
 ]);
 print_r($success);
+```
+
+```shell
+curl -X PUT \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'report_name=Le Bernardin' \
+ -d 'business_names=Le Bernardin' \
+ -d 'schedule=Adhoc' \
+ -d 'day_of_month=2' \
+ https://tools.brightlocal.com/seo-tools/api/v4/rf/1
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var reportId = 1;
+var parameters = new api.Parameters();
+        parameters.Add("business-name", "Le Bernardin");
+        parameters.Add("contact-telephone", "+1 212-554-1515");
+ 
+var success = request.Put("/v4/rf/" + reportId + "", parameters);
 ```
 
 > Example of modifying directories
@@ -153,6 +193,7 @@ echo json_encode(array(
     )
 ));
 ```
+
 
 > Success (200 Created)
 
@@ -204,6 +245,15 @@ curl -X GET \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
  https://tools.brightlocal.com/seo-tools/api/v4/rf/1
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var reportId = 1;
+var parameters = new api.Parameters();
+
+var results = request.Get("v4/rf/" + reportId + "", parameters);
 ```
 
 > Success (200 OK)
@@ -381,6 +431,15 @@ curl -X DELETE \
  https://tools.brightlocal.com/seo-tools/api/v4/rf/1
 ```
 
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var reportId = 1;
+var parameters = new api.Parameters();
+
+var success = request.Delete("/v4/rf/" + reportId + "", parameters);
+```
+
 > Success (200 OK)
 
 ```json
@@ -444,6 +503,14 @@ curl -X GET \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
  https://tools.brightlocal.com/seo-tools/api/v4/rf
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+
+var results = request.Get("/v4/rf", parameters);
 ```
 
 > Success (200 OK)
@@ -540,6 +607,16 @@ curl -X GET \
  -d 'q=My+Sample+Query' \	
   https://tools.brightlocal.com/seo-tools/api/v4/rf/search
 ```
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var reportId = 1;
+var parameters = new api.Parameters();
+        parameters.Add("q", "Le Bernardin");            
+
+var results = request.Get("/v4/rf/search", parameters);
+```
+
 
 > Success (200 OK)
 
@@ -610,6 +687,15 @@ curl -X GET \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
  https://tools.brightlocal.com/seo-tools/api/v4/rf/141/reviews
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var reportId = 141;
+var parameters = new api.Parameters();
+
+var results = request.Get(/"v4/rf/" + reportId + "/reviews", parameters);
 ```
 
 > Success (200 OK)
@@ -733,6 +819,15 @@ curl -X GET \
  https://tools.brightlocal.com/seo-tools/api/v4/rf/141/reviews/count
 ```
 
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var reportId = 141;
+var parameters = new api.Parameters();
+
+var results = request.Get("/v4/rf/" + reportId + "/reviews/count", parameters);
+```
+
 > Success (200 OK)
 
 ```json
@@ -787,6 +882,15 @@ curl -X GET \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
  https://tools.brightlocal.com/seo-tools/api/v4/rf/141/reviews/growth
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var reportId = 141;
+var parameters = new api.Parameters();
+
+var growth = request.Get("v4/rf/" + reportId + "/reviews/growth", parameters);
 ```
 
 Get count and percentage of new reviews since last report run.
@@ -848,6 +952,15 @@ curl -X GET \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
  https://tools.brightlocal.com/seo-tools/api/v4/rf/141/directories
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var reportId = 141;
+var parameters = new api.Parameters();
+
+var directories = request.Get("/v4/rf/" + reportId + "/directories", parameters);
 ```
 
 > Success (200 OK)
@@ -1023,6 +1136,15 @@ curl -X GET \
  https://tools.brightlocal.com/seo-tools/api/v4/rf/141//directories/stats
 ```
 
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var reportId = 141;
+var parameters = new api.Parameters();
+
+var stats = request.Get("/v4/rf/" + reportId + "/directories/stats", parameters);
+```
+
 > Success (200 OK)
 
 ```json
@@ -1107,6 +1229,15 @@ curl -X GET \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
  https://tools.brightlocal.com/seo-tools/api/v4/rf/141//stars/count
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var reportId = 141;
+var parameters = new api.Parameters();
+
+var stars = request.Get("/v4/rf/" + reportId + "/stars/count", parameters);
 ```
 
 > Success (200 OK)

@@ -11,14 +11,14 @@
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('v2/ct/add', [
+$success = $api->post('/v2/ct/add', [
     'report-name'       => 'Le Bernardin',
-	'business-name'     => 'Le Bernardin',
-	'business-location' => 'New York, NY',
-	'phone'             => '+1 212-554-1515',
-	'website'           => 'le-bernardin.com',
-	'business-type'     => 'Restaurant',
-	'state-code'        => 'NY'	
+    'business-name'     => 'Le Bernardin',
+    'business-location' => 'New York, NY',
+    'phone'             => '+1 212-554-1515',
+    'website'           => 'le-bernardin.com',
+    'business-type'     => 'Restaurant',
+    'state-code'        => 'NY'	
 ]);
 print_r($success);
 ```
@@ -36,6 +36,21 @@ curl -X POST \
  -d 'business-type=Restaurant' \
  -d 'state-code=NY' \
  https://tools.brightlocal.com/seo-tools/api/v2/ct/add
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("report-name", "Sample Citation Tracking Report");
+        parameters.Add("business-name", "Le Bernardin");
+        parameters.Add("business-location", "NY, New York");
+        parameters.Add("phone", "+1 212-554-1515");
+        parameters.Add("website", "le-bernardin.com");
+        parameters.Add("business-type", "Restaurant");
+        parameters.Add("state-code", "NY");
+
+var success = request.Post("/v2/ct/add", parameters);
 ```
 
 > Success (200 OK)
@@ -93,7 +108,7 @@ is-public | Publish reports on a white label URL. Yes or No.
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('v2/ct/update', [
+$success = $api->post('/v2/ct/update', [
     'report-id'         => 682,
     'report-name'       => 'Le Bernardin',
     'business-name'     => 'Le Bernardin',
@@ -120,6 +135,21 @@ curl -X POST \
  -d 'business-type=Restaurant' \
  -d 'state-code=NY' \
  https://tools.brightlocal.com/seo-tools/api/v2/ct/update
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("report-name", "Sample Citation Tracking Report");
+        parameters.Add("business-name", "Le Bernardin");
+        parameters.Add("business-location", "NY, New York");
+        parameters.Add("phone", "+1 212-554-1515");
+        parameters.Add("website", "le-bernardin.com");
+        parameters.Add("business-type", "Restaurant");
+        parameters.Add("state-code", "NY");
+
+var success = request.Post("/v2/ct/update", parameters);
 ```
 
 > Success (200 OK)
@@ -178,8 +208,8 @@ is-public | Publish reports on a white label URL. Yes or No.
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('v2/ct/get', [
-	'report-id' => 682   	
+$results = $api->get('/v2/ct/get', [
+	'report-id' => 682 
 ]);
 print_r($results);
 ```
@@ -191,6 +221,15 @@ curl -X GET \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'report-id=682' \
  https://tools.brightlocal.com/seo-tools/api/v2/ct/get
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("report-id", "682");
+
+var results = request.Get("/v2/ct/get", parameters);
 ```
 
 > Success (200 OK)
@@ -238,6 +277,7 @@ curl -X GET \
             "public_interactive_url": "<REPLACED>",
             "public_pdf_url": "<REPLACED>",
             "public_csv_url": "<REPLACED>"
+            }
     }
 }
 ```
@@ -266,8 +306,8 @@ report-id | <span class="label label-required">Required</span>
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('v2/ct/run', [
-	'report-id' => 682   	
+$success = $api->post('/v2/ct/run', [
+	'report-id' => 682
 ]);
 print_r($success);
 ```
@@ -279,6 +319,15 @@ curl -X POST \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'report-id=682' \ 
  https://tools.brightlocal.com/seo-tools/api/v2/ct/run
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("report-id", "682");
+
+var success = request.put("/v2/ct/run", parameters);
 ```
 
 > Success (200 OK)
@@ -315,8 +364,8 @@ report-id | <span class="label label-required">Required</span>
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('v2/ct/delete', [
-	'report-id' => 682   	
+$success = $api->post('/v2/ct/delete', [
+	'report-id' => 682
 ]);
 if($success) {
 	echo 'Successfully deleted report.' . PHP_EOL;
@@ -331,6 +380,15 @@ curl -X POST \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'report-id=682' \ 
  https://tools.brightlocal.com/seo-tools/api/v2/ct/delete
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("report-id", "682");
+
+var success = request.Post("/v2/ct/delete", parameters);
 ```
 
 > Success (200 OK)
@@ -369,7 +427,7 @@ report-id | <span class="label label-required">Required</span>
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('v2/ct/get-all');
+$results = $api->get('/v2/ct/get-all');
 print_r($results);
 ```
 
@@ -379,6 +437,14 @@ curl -X GET \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \ 
   https://tools.brightlocal.com/seo-tools/api/v2/ct/get-all
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+
+var results = request.Get("/v2/ct/get-all", parameters);
 ```
 
 
@@ -506,8 +572,8 @@ location-id |
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('v2/ct/get-results', [
-	'report-id' => 2457   	
+$results = $api->get('/v2/ct/get-results', [
+	'report-id' => 2457
 ]);
 print_r($results);
 ```
@@ -519,6 +585,15 @@ curl -X GET \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'report-id=2457' \
  https://tools.brightlocal.com/seo-tools/api/v2/ct/get-results
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("report-id", "2457");
+
+var results = request.Get("/v2/ct/get-results", parameters);
 ```
 
 > Success (200 OK)

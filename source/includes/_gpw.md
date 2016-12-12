@@ -18,13 +18,13 @@ $success = $api->post('/v4/gpw/add', [
 	'day_of_month'   => '2',
 	'report_type'    => 'with',
 	'address1'       => '155 West 51st Street',
-    'address2'       => '',      
+    'address2'       => '',
     'city'           => 'New York',
 	'state_code'     => 'NY',
-	'postcode'       => '10019',	
+	'postcode'       => '10019',
 	'phone_number'   => '+1 212-554-1515',
 	'country'        => 'USA',
-	'search_terms'   => '["restaurant manhattan","cafe new york"]'  
+	'search_terms'   => '["restaurant manhattan","cafe new york"]'
 ]);
 print_r($success);
 ```
@@ -48,6 +48,28 @@ curl -X POST \
  -d 'country=USA' \
  -d 'search_terms=["restaurant manhattan","cafe new york"]'
  https://tools.brightlocal.com/seo-tools/api/v4/gpw/add
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("report_name", "Sample SEO Check-Up Report");
+        parameters.Add("business_names", "Le Bernardin");
+        parameters.Add("schedule", "Adhoc");
+        parameters.Add("day_of_month", "2");
+        parameters.Add("report_type", "with");
+        parameters.Add("address1", "155 Weest 51st Street");
+        parameters.Add("address2", "");
+        parameters.Add("city", "New York");
+        parameters.Add("state_code", "NY");
+        parameters.Add("postcode", "10019");
+        parameters.Add("phone_number", "+1 212-554-1515");
+        parameters.Add("country", "USA");
+        parameters.Add("business-category", "Restaurant");
+        parameters.Add("search-terms", "['restaurant manhattan', 'cafe new york']");
+
+var success = request.Post("/v4/gpw/add", parameters);
 ```
 
 
@@ -121,6 +143,55 @@ run | One of Yes or No. Runs the report after adding. Defaults to Yes.
 ## Update Report
 
 <span class="label label-info">Account Method</span>
+
+> Update Report
+
+```php
+<?php
+use BrightLocal\Api;
+$reportId = 1;
+$api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
+$success = $api->put('/v4/gpw/' .$reportId, [
+    'business-name'     => 'Le Bernardin',
+    'contact-telephone' => '+1 212-554-1515'
+]);
+print_r($success);
+```
+
+```shell
+curl -X PUT \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'report_name=Le Bernardin' \
+ -d 'business_names=Le Bernardin' \
+ -d 'schedule=Adhoc' \
+ -d 'day_of_month=2' \
+ https://tools.brightlocal.com/seo-tools/api/v4/gpw/1
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var reportId = 1;
+var parameters = new api.Parameters();
+        parameters.Add("report_name", "Sample SEO Check-Up Report");
+        parameters.Add("business_names", "Le Bernardin");
+        parameters.Add("schedule", "Adhoc");
+        parameters.Add("day_of_month", "2");
+        parameters.Add("report_type", "with");
+        parameters.Add("address1", "155 Weest 51st Street");
+        parameters.Add("address2", "");
+        parameters.Add("city", "New York");
+        parameters.Add("state_code", "NY");
+        parameters.Add("postcode", "10019");
+        parameters.Add("phone_number", "+1 212-554-1515");
+        parameters.Add("country", "USA");
+        parameters.Add("business-category", "Restaurant");
+        parameters.Add("search-terms", "['restaurant manhattan', 'cafe new york']");
+
+var success = request.Put("/v4/gpw/" + reportId + "", parameters);
+```
 
 > Success (200 OK)
 
@@ -198,6 +269,15 @@ curl -X GET \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
  https://tools.brightlocal.com/seo-tools/api/v4/gpw/1
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var reportId = 1;
+var parameters = new api.Parameters();
+
+var results = request.Get("/v4/gpw/" + reportId + "", parameters);
 ```
 
 > Success (200 OK)
@@ -293,6 +373,16 @@ curl -X DELETE \
  https://tools.brightlocal.com/seo-tools/api/v4/gpw/1
 ```
 
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var reportId = 1;
+var parameters = new api.Parameters();
+
+var success = request.Delete("/v4/gpw/" + reportId + "", parameters);
+```
+
+
 > Success (200 OK)
 
 ```json
@@ -345,6 +435,14 @@ curl -X GET \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
  https://tools.brightlocal.com/seo-tools/api/v4/gpw
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+
+var results = request.Get("/v4/gpw", parameters);
 ```
 
 > Success (200 OK)
@@ -425,6 +523,15 @@ curl -X PUT \
   https://tools.brightlocal.com/seo-tools/api/v4/gpw/run
 ```
 
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+        parameters.Add("report-id", "1");
+
+var success = request.Put("/v4/gpw/run", parameters);
+```
+
 > Success (200 OK)
 
 ```json
@@ -491,6 +598,15 @@ curl -X GET \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
  https://tools.brightlocal.com/seo-tools/api/v4/gpw/1/results
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var reportId = 1;
+var parameters = new api.Parameters();
+
+var results = request.Get("/v4/gpw/" + reportId + "/results", parameters);
 ```
 
 > Success (200 OK)

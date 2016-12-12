@@ -11,8 +11,8 @@
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('v1/clients-and-locations/locations/', [
-    'name'                 => 'Le Bernardin',    
+$success = $api->post('/v1/clients-and-locations/locations/', [
+    'name'                 => 'Le Bernardin',
     'url'                  => 'le-bernardin.com',
 	'business-category-id' =>  605,
 	'country'              => 'USA', // 3 letter iso code
@@ -42,6 +42,24 @@ curl -X POST \
  -d 'postcode=10019' \
  -d 'telephone=+1 212-554-1515' \
  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+           parameters.Add("name", "Le Bernardin");
+           parameters.Add("url", "http://le-bernardin.com");
+           parameters.Add("business-category-id", "605");
+           parameters.Add("country", "USA"); // 3 Letter iso code
+           parameters.Add("address1", "155 Weest 51st Street");
+           parameters.Add("address2", "");
+           parameters.Add("region", "NY"); // State or Region
+           parameters.Add("city", "New York");
+           parameters.Add("postcode", "10019");
+           parameters.Add("telephone", "+1 212-554-1515");
+
+var success = request.Post("/v1/clients-and-locations/locations/", parameters);
 ```
 
 > Success (200 OK)
@@ -107,8 +125,8 @@ use BrightLocal\Api;
 
 $locationId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->put('v1/clients-and-locations/locations/' .$locationId, [
-    'name'                 => 'Le Bernardin',    
+$success = $api->put('/v1/clients-and-locations/locations/' .$locationId, [
+    'name'                 => 'Le Bernardin',
     'url'                  => 'le-bernardin.com',
 	'business-category-id' =>  605,
 	'country'              => 'USA', // 3 letter iso code
@@ -138,6 +156,25 @@ curl -X PUT \
  -d 'postcode=10019' \
  -d 'telephone=+1 212-554-1515' \
  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/1
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var locationId = 1;
+var parameters = new api.Parameters();
+       parameters.Add("name", "Le Bernardin");
+       parameters.Add("url", "http://le-bernardin.com");
+       parameters.Add("business-category-id", "605");
+       parameters.Add("country", "USA"); // 3 Letter iso code
+       parameters.Add("address1", "155 Weest 51st Street");
+       parameters.Add("address2", "");
+       parameters.Add("region", "NY"); // State or Region
+       parameters.Add("city", "New York");
+       parameters.Add("postcode", "10019");
+       parameters.Add("telephone", "+1 212-554-1515");
+
+var success = request.Put("/v1/clients-and-locations/locations/" + locationId + "", parameters);
 ```
 
 > Success (200 OK)
@@ -199,10 +236,19 @@ use BrightLocal\Api;
 
 $locationId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$result = $api->delete('v1/clients-and-locations/locations/' . $locationId);
+$result = $api->delete('/v1/clients-and-locations/locations/' . $locationId);
 if (!empty($result['success'])) {
     echo 'Successfully deleted location.' . PHP_EOL;
 }
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var locationId = 1;
+var parameters = new api.Parameters();
+
+var success = request.Delete("/v1/clients-and-locations/locations/" + locationId + "", parameters);
 ```
 
 > Success (200 OK)
@@ -240,8 +286,17 @@ use BrightLocal\Api;
 
 $locationId = 1;
 $api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
-$location = $api->get('v1/clients-and-locations/locations/' . $locationId);
+$location = $api->get('/v1/clients-and-locations/locations/' . $locationId);
 print_r($location);
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var locationId = 1;
+var parameters = new api.Parameters();
+
+var success = request.Get("/v1/clients-and-locations/locations/" + locationId + "", parameters);
 ```
 
 > Success (200 OK)
@@ -314,8 +369,8 @@ expires | <span class="label label-required">Required</span> [See above for how 
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->call('v1/clients-and-locations/locations/search', [
-    'q' => 'BrightLocal'    
+$results = $api->call('/v1/clients-and-locations/locations/search', [
+    'q' => 'BrightLocal'
 ]);
 print_r($results);
 ```
@@ -327,6 +382,15 @@ curl -X GET \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'q=My+Sample+Query' \	
   https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/search/
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+       parameters.Add("q", "BrightLocal");
+
+var success = request.Get("/v1/clients-and-locations/locations/search", parameters);
 ```
 
 > Success (200 OK)
