@@ -27,7 +27,7 @@ fxRunningBalance | int | 0..1 | сумма на карте умноженное 
 cardHolder | string | 0..1 | имя держателя карты (как на карте)
 logoResource | [LogoResource](#logoresource) | 0..1 | url для доступа к логотипу
 blockAllowed | bool | 0..1 | признак разрешена ли блокировка карты из приложения
-cardType | string | 0..1 | тип карты или название (например Visa Gold, MasterCard)
+cardType | string | 1..1 | тип карты или название (например Visa Gold, MasterCard)
 blocked | bool | 0..1 | признак блокировки карты
 cardOwner | string | 0..1 | владелец карты
 cardStatus | string | 0..1 | статус карты
