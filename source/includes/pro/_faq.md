@@ -55,7 +55,6 @@ key | type | comment
 security.password.hash | bool | 
 security.password.encrypt | bool | наличие шифрования пароля (должно быть так же включено в апликации)
 security.verification.encrypt | bool | 
-security.incorrect_login_attempts | int | количество неверных логинов
 pro.banner.enabled | bool | 
 proxy.wsdl | string | ${bank.proxy.wsdl}
 proxy.service | string | IdaMobProxyServiceFacade
@@ -65,3 +64,4 @@ pigeon.url | string | сервер пушей ``http://dev.idamob.ru/pigeon``
 pigeon.enabled | bool | наличие связки с сервером пуш сообщений PiGeon
 pigeon.twoFactorAuth | bool | наличие процесса двухфакторной аутентификации при подписке пользователя на пуш уведомления
 proxy.timeout | int | время ожидания отвера сервера из бэка, в милесекундах (должно быть так же установлено в апликации)
+security.incorrect_login_attempts | int | количество неверных попыток ввода ПИН кода
