@@ -27,8 +27,7 @@
 	  
   <div id="flex-container">	  
 	  
-	<div id="primary-nav"><img class="bonsai-logo" src="https://dl.dropboxusercontent.com/s/d37ndmizplio8mw/bonsai-logo-color-docs.svg?dl=0"><div id="nav-links"><%= link_to 'Getting Started', '/getting_started.html' %> <%= link_to 'Inkling', '/inkling_classic.html' %> <%= link_to 'References', '/reference_everything.html' %></div> 
-	</div>
+	<%= partial "primary-nav" %>
 	
 	<div id="main-wrapper">  
 		
@@ -39,12 +38,17 @@
       </span>
     </a>
     
-    <div id="search">Future home of the search bar</div>
+    
+	<p class="welcome">Welcome to Bonsai Docs</p>
+	<div id="search"><span>Future home of the search bar 🔎</span></div>
+	
+	
+	
 	<div id="browse">
 		
-		<div> <h2>This is a subtitle</h2> <ul><li>item</li><li>item</li><li>item</li></ul></div>
-		<div> <h2>This is a subtitle</h2> <ul><li>item</li><li>item</li><li>item</li></ul></div>
-		<div> <h2>This is a subtitle</h2> <ul><li>item</li><li>item</li><li>item</li></ul></div>
+		<div> <p class="p2">Inkling Docs</p> <ul><% link_to '/inkling-guide/2-inkling-fundamentals.html' do %><li>Inkling Fundamentals</li><% end %><li>Under the Hood</li><li>Curricula & Lessons</li></ul></div>
+		<div> <h2>References</h2> <ul><li>item</li><li>item</li><li>item</li></ul></div>
+		<div> <h2>Examples</h2> <ul><li>item</li><li>item</li><li>item</li></ul></div>
 		
 	</div>
 	
