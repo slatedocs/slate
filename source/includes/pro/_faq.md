@@ -52,16 +52,18 @@ pro server - [http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl]
 
 key | type | comment
 --- | --- | ---:
-security.password.hash | bool | 
-security.password.encrypt | bool | наличие шифрования пароля (должно быть так же включено в апликации)
-security.verification.encrypt | bool | 
-pro.banner.enabled | bool | 
+smarttransactions.enabled | bool | наличие модуля SmartTransactions
+proxy.timeout | int | время ожидания отвера сервера из бэка, в милесекундах (должно быть так же установлено в мобильной апликации)
+ | | 
 proxy.wsdl | string | ${bank.proxy.wsdl}
 proxy.service | string | IdaMobProxyServiceFacade
 proxy.endpoint | string | IdaMobProxyServiceFacadeHttpSoap12Endpoint
-smarttransactions.enabled | bool | наличие модуля SmartTransactions
+ | | 
+security.password.hash | bool | наличие запроса хэш пароля и алгоритм как он был получен. На сервере pro происходит проверка совпадают ли хеши полученные с клиента и с сервера банка
+security.password.encrypt | bool | пароль, зашифрованный по алгоритму Диффи-Хеллмана
+security.verification.encrypt | bool | верификационный код в запросе [confirmTransfer](#confirmTransfer) приходит в зашифрованном виде по алгоритму Диффи-Хеллмана
+security.incorrect_login_attempts | int | количество неверных попыток ввода ПИН кода
+ | | 
 pigeon.url | string | сервер пушей ``http://dev.idamob.ru/pigeon``
 pigeon.enabled | bool | наличие связки с сервером пуш сообщений PiGeon
 pigeon.twoFactorAuth | bool | наличие процесса двухфакторной аутентификации при подписке пользователя на пуш уведомления
-proxy.timeout | int | время ожидания отвера сервера из бэка, в милесекундах (должно быть так же установлено в апликации)
-security.incorrect_login_attempts | int | количество неверных попыток ввода ПИН кода
