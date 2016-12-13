@@ -131,11 +131,12 @@ tail -n1000 log/production.log | grep "Processing"
 
 ## Missing memory metrics
 
-Memory allocation metrics are available version 2.0 of our agent, which is in BETA. To add memory metrics, modify your Gemfile entry for Scout:
+Memory allocation metrics require the following:
 
-<code>gem 'scout_apm', '~> 2.0.x'</code>
+* Ruby version 2.1+
+* `scout_apm` version 2.0+.
 
-Then run `bundle update scout_apm` and deploy.
+If the above requirements are not met, Scout continues to function but does not report allocation-related metrics.
 
 ## Service Status
 
