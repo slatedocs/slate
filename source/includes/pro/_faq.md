@@ -1,5 +1,7 @@
 # FAQ
 
+## Pro Install
+
 **Порядок установки серверной части iDa Mobile**
 
 Общие шаги
@@ -40,6 +42,8 @@
 
 pro server - [http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl](http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl)
 
+## Multy server
+
 **Рекомендация по развертыванию нескольких серверов на одной машине**
 
 0. Повторно выполнить шаги 3, 4, 5 из раздела 'Порядок установки серверной части iDa Mobile' для создания ещё одной копии схемы БД
@@ -48,7 +52,7 @@ pro server - [http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl]
 0. Настроить дополнительный домен, например, если у вас используется домен ida.mybank.com для мобильных приложений, то нужно создать домен ida_new.mybank.com, который так-же будет ссылаться на IP настраиваемого сервера
 0. Произвести настройку фронт-сервера таким образом, что бы траффик для домена ida.mybank.com перенаправлялся на localhost:8080/pro (8080 - порт TomCat по умолчанию), а траффик ``ida_new.mybank.com`` направлялся на ``localhost:8080/pro_new``. Пример подобной [настройки nginx](http://serverfault.com/questions/536576/nginx-how-do-i-forward-a-http-request-to-another-port)
 
-**Конфигурирование сервиса**
+## Server config
 
 key | type | comment
 --- | --- | ---:
