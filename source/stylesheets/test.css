@@ -25,11 +25,21 @@ body{font-size:16px;}
 
 #browse div:first-of-type { margin-left:20px}
 
-#browse ul  {padding:0;list-style: none;margin: 0;}
+#browse ul  {padding:0;list-style: none;margin: 0;margin-top: 36px;}
+#browse ul a {text-decoration:none;}
+#browse ul li {margin-bottom:10px;border-bottom: solid 1px hsl(46, 6%, 92%);padding-bottom: 13px;}
+#browse ul li:last-of-type {margin-bottom:0px;border-bottom: none;}
+
 
 #main-wrapper {-ms-flex: 1 0 auto;flex: 1 0 auto;display: -ms-flexbox;display: flex;-ms-flex-direction: column;flex-direction: column;background-color: #fffadf;}
 	
-	
+@media (max-width: 690px) {
+  #browse { flex-direction:column; }
+  #browse div {margin:20px; }
+}
+
+
+
 	
 /*///////////////////////////////////////////////////////////////////////////////
 // PRIMARY NAV
