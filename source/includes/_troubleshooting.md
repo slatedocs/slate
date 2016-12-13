@@ -134,7 +134,7 @@ tail -n1000 log/production.log | grep "Processing"
 Memory allocation metrics require the following:
 
 * Ruby version 2.1+
-* `scout_apm` version 2.0+.
+* `scout_apm` version 2.0+
 
 If the above requirements are not met, Scout continues to function but does not report allocation-related metrics.
 
