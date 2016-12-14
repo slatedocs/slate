@@ -115,8 +115,8 @@ end
 * **kind:** classifier
 * **predicts:** MNIST_output
 * **follows:**
-** **Curvature:** a concept
-** **Segments:** another concept
+* **Curvature:** a concept
+* **Segments:** another concept
 * **input(MNIST_input):** The input keyword indicates the predefined input    stream with data formats defined by schema MNIST_input.
 * **feeds:** output
 

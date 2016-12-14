@@ -205,6 +205,17 @@ html, body {
     }
   }
 
+  // Sub-subheaders
+  .tocify-subheader .tocify-subheader {
+    display: none;
+    background-color: $nav-subsubitem-bg;
+    font-weight: 400;
+    .tocify-item>a {
+      padding-left: $nav-padding + $nav-indent * 2;
+      font-size: 12px;
+    }
+  }
+
   .toc-footer {
     padding: 1em 0;
     margin-top: 1em;
@@ -364,7 +375,7 @@ html, body {
 
   h1 {
     @extend %header-font;
-    font-size: 30px;
+    font-size: 200%;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     border-bottom: 1px solid #ccc;
@@ -381,7 +392,7 @@ html, body {
 
   h2 {
     @extend %header-font;
-    font-size: 20px;
+    font-size: 150%;
     margin-top: 4em;
     margin-bottom: 0;
     border-top: 1px solid #ccc;
@@ -397,17 +408,27 @@ html, body {
     border-top: none;
   }
 
-  h3, h4, h5, h6 {
+  h3, h4, h5 {
     @extend %header-font;
-    font-size: 15px;
+    font-size: 110%;
     margin-top: 2.5em;
     margin-bottom: 0.8em;
   }
 
-  h4, h5, h6 {
-    font-size: 10px;
+  h4, h5 {
+    font-size: 110%;
   }
 
+  h6 {
+    @extend %header-font;
+    font-size: 120%;
+    margin-top: 2em;
+    margin-bottom: 0;
+    border-top: 1px solid #ccc;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
+  }
   hr {
     margin: 2em 0;
     border-top: 2px solid $examples-bg;

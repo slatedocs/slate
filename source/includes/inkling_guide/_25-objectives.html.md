@@ -37,8 +37,7 @@ curriculum _curriculumName
    train _conceptName
    with _trainingSpecifier
    objective _objectiveName
-
-   lessons are specified here for more information, see [lesson][1].
+   # lessons are specified here.
 end
 ```
 
