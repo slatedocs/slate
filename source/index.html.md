@@ -34,17 +34,12 @@ Name collision is almost totally resolved.
 
 | Page     | Status        | Style |
 |----------|---------------|-------|
-[Getting Started][1] | First Draft | Modular
-[Inkling Classic][2] | First Draft | Modular
--- [Overview][7] | First Draft | Modular
--- [Details][8] | First Draft | Modular
--- [References][9] | First Draft | Modular
--- [Miscellany][10] | First Draft | Modular
-[Inkling New][3] | First Draft | Modular
--- [Overview][11] | First Draft | Modular
--- [Details][12] | First Draft | Modular
--- [References][13] | First Draft | Modular
--- [Miscellany][14] | First Draft | Modular
+[Getting Started][1] | Second Draft | Modular
+[Inkling New][3] | Second Draft | Modular
+-- [Overview][11] | Second Draft | Modular
+-- [Details][12] | Second Draft | Modular
+-- [References][13] | Second Draft | Modular
+-- [Miscellany][14] | Second Draft | Modular
 Mastermind | Absent | N/A
 [References][4] | Second Draft | Modular
 
@@ -53,10 +48,6 @@ Mastermind | Absent | N/A
 ## Where did the **Chapter/Section** numbers go?
 
 These are temporarily removed until the site tree settles down, and ~will likely~ may be replaced. We have not yet worked out the implementation of numbering on re-usable sections.
-
-## Why are we reorganizing the [Inkling Classic][2] page?
-
-This body of work includes overlapping sections with similar names, which is confusing to the reader and breaks Slate functionality. In addition, we're conjoining a notional, concept-based approach with a concrete, lexicon-based approach. The new layout joins the notional explanation with the reference for the actual command and its syntax. In addition, a [Refernces][4] section has the condensed Inkling reference.
 
 ## What are Modular pages?
 
@@ -76,15 +67,11 @@ There's a **Return Home** link in the footer of the table of contents.
 
 [1]: /getting_started.html "Getting Started"
 [2]: /inkling_classic.html "Classic Inkling"
-[3]: /inkling_everything.html "New Inkling"
-[4]: /reference_everything.html "Anaconda CLI instructions"
+[3]: /inkling.html "New Inkling"
+[4]: /reference.html "Reference"
 [5]: /cli_reference.html "CLI Reference"
 [6]: https://github.com/lord/slate/wiki/Using-Includes "Using Includes: Slate Documentation"
-[7]: /inkling_classic.html#overview
-[8]: /inkling_classic.html#details
-[9]: /inkling_classic.html#inkling-reference
-[10]: /inkling_classic.html#inkling-miscellany
-[11]: /inkling_everything.html#overview
-[12]: /inkling_everything.html#details
-[13]: /inkling_everything.html#inkling-reference
-[14]: /inkling_everything.html#inkling-miscellany
+[11]: /inkling.html#overview
+[12]: /inkling.html#details
+[13]: /inkling.html#inkling-reference
+[14]: /inkling.html#inkling-miscellany

@@ -5,7 +5,7 @@
 
 This section describes some of how Bonsai AI's engine works under the hood using Inkling to teach BRAINs.
 
-###### -Major components
+###### Major components
 
 Bonsai's AI Engine has several major components.
 
@@ -38,7 +38,7 @@ After an algorithm is trained, it is hosted in a 'prediction mode'. This mode ho
 
 The Bonsai AI Engine keeps versions of BRAINs. Each load operation and training session generates a new version. This way you can compare the latest version of a BRAIN with previous versions.
 
-###### -The Architect
+###### The Architect
 
 The architect component is responsible for creating and optimizing learning topologies (e.g. neural networks) based on mental models. In this section, we outline techniques used by the architect to determine reasonable architectures.
 
@@ -62,7 +62,7 @@ Meta learning is an advanced technique used by the architect.  It is, as the nam
 
 For advanced users, low level details of a learning topology can be explicitly specified in part or in completely.  The architect treats any such pinning of parameters as an override on its default behavior.  In this way, specific algorithms can be provided, or a generated model can be pinned for manual refinement.
 
-###### -The Instructor
+###### The Instructor
 
 The instructor component is responsible for carrying out the training plan codified in the pedagogy.  In this section, we outline techniques used by the instructor.
 
@@ -70,6 +70,6 @@ The instructor component is responsible for carrying out the training plan codif
 
 When starting a training operation, the instructor first generates an execution plan. It uses this ordering when teaching the concepts, and for each concept which lessons it intends to teach in what order. While the execution plan is executing, the instructor may jump back and forth between concepts and lessons to optimize training. The major techniques used to determine when to switch between lessons and concepts for training are reinforcement learning and adaptive learning.
 
-###### -The IDK and learning engines
+###### The IDK and learning engines
 
 The learning engine encodes the underlying detail needed to work with a particular artificial intelligence or machine learning algorithm. The BRAIN server provides many standard learning engines such as those used for deep learning. However, learning algorithm authors can provide their own backends if so desired. By architecting the BRAIN server in this way, Inkling code gains another level of abstraction from a particular approach. If a new learning algorithm is created that has superior performance to existing algorithms, all that need be added is a new backend. The architect will immediately start using the backend to build systems, and existing Inkling programs can be recompiled without modification to take advantage of the improved algorithms.

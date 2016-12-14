@@ -24,7 +24,7 @@ $ bonsai configure
 
 ## Brain Group Commands
 
-###### -Create
+###### Create
 
 ```
 $ bonsai brain create brainName
@@ -40,7 +40,7 @@ Brain names can include:
 
 It is case insensitive, but case aware.
 
-###### -Load
+###### Load
 
 ```
 $ bonsai brain load brainNameinklingFile.ink
@@ -50,7 +50,7 @@ $ bonsai brain load brainNameinklingFile.ink
 
 ## Train group commands
 
-###### -Start
+###### Start
 
 ```
 $ bonsai brain train start brainName
@@ -58,7 +58,7 @@ $ bonsai brain train start brainName
 
 **start** turns on/enables training mode for a specific BRAIN (brainName). The BRAIN trains whenever the simulator is connected. If the simulator is disconnected, the BRAIN remains in training mode, and it will train again where it left off when the simulator is reconnected.
 
-###### -Stop
+###### Stop
 
 ```
 $ bonsai brain train stop brainName
@@ -68,7 +68,7 @@ $ bonsai brain train stop brainName
 
 ## Bonsai CLI --help output
 
-###### -`bonsai --help`
+###### `bonsai --help`
 
 ```
 bonsai --help
@@ -85,7 +85,7 @@ Commands:
   sims       Retrieve information about simulators
 ```
 
-###### -`bonsai configure --help`
+###### `bonsai configure --help`
 
 ```
 $ bonsai configure --help
@@ -97,7 +97,7 @@ Options:
   --help  Show this message and exit.
 ```
 
-###### -`bonsai brain --help`
+###### `bonsai brain --help`
 
 ```
 $ bonsai brain --help
@@ -115,7 +115,7 @@ Commands:
   train   Start and stop training on a BRAIN, as well...
 ```
 
-###### -`bonsai brain train --help`
+###### `bonsai brain train --help`
 
 ```
 $ bonsai brain train --help
@@ -133,7 +133,7 @@ Commands:
   stop    Stops training on the specified BRAIN.
 ```
 
-###### -`bonsai brain train status --help`
+###### `bonsai brain train status --help`
 
 ```
 $ bonsai brain train status --help
@@ -145,7 +145,7 @@ Options:
   --help  Show this message and exit.
 ```
 
-###### -`bonsai brain train start --help`
+###### `bonsai brain train start --help`
 
 ```
 $ bonsai brain train start --help
@@ -157,7 +157,7 @@ Options:
   --help  Show this message and exit.
 ```
 
-###### -`bonsai brain train stop --help`
+###### `bonsai brain train stop --help`
 
 ```
 $ bonsai brain train stop --help

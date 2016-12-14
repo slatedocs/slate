@@ -1,8 +1,7 @@
 ---
-title: Everything Inkling
+title: Inkling Documentation - Bonsai
 
 language_tabs:
-- inkling
 
 toc_footers:
   - <a href='https://bons.ai/sign-up'>Sign Up for our Private Beta!</a>
@@ -24,7 +23,7 @@ includes:
 - inkling_reference/52-curriculum.html.md
 - inkling_reference/53-lesson.html.md
 - inkling_guide/25-objectives.html.md
-- inkling_guide/26-reference-link.html.md
+# - inkling_guide/26-reference-link.html.md
 - inkling_guide/33-misc-header.html.md
 - inkling_guide/31-cart-pole.html.md
 - inkling_guide/32-mountain-car-example.html.md

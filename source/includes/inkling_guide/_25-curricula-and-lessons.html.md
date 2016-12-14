@@ -2,7 +2,7 @@
 
 A **curriculum** in Inkling is used to define what and how to teach a concept. Each concept needs a corresponding curriculum to teach it, and every Inkling program must contain at least one curriculum. A **lesson** is part of a curriculum; it teaches a specific piece of the concept by specifying training and testing parameters and a stopping point (**until**). Lessons enable the AI to learn the concept bit-by-bit instead of all at once. Lessons are contained within curriculum statements. Each curriculum must contain at least one lesson.
 
-###### -Determining a Curriculum
+###### Determining a Curriculum
 
 Each curriculum trains a single concept, and every concept must have a curriculum. After you've determined your concepts, you will know how many curricula you need for your Inkling program. Curricula contain the information the Bonsai AI Engine uses to train your BRAIN on the concepts you've specified. They also specify the reward function (**objective**) for teaching a given concept. The reward function is a way the system concretely measures the AI's performance as it learns the concept.
 
@@ -16,7 +16,7 @@ curriculum balance_curriculum
 end
 ```
 
-###### -Determining Lessons
+###### Determining Lessons
 
 Each lesson specifies a portion of the training and, depending on the training sources, may contain information on configuring the training sources, training, testing, and a stopping point (**until**). When you're determining your lessons, you need to consider what your training sources are and what piece of the concept you are training. For example, if you're training with a simulator, you can place constraints on your simulation during training.
 
