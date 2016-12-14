@@ -72,7 +72,29 @@ A Shoji order containing the filters applied by the current user.
     ]
 }
 ```
+PUT the applied endpoint to change the which filters are applied for other operations.
+The graph parameter indicates which filters are applied.  Successful PUT requests return 204 status.
 
+### Filter Order
+
+```GET /datasets/{id}/filters/order/```
+
+A Shoji order containing the persisted filter order.
+
+```json
+{
+    "element": "shoji:order",
+    "self": "http://app.crunch.io/api/datasets/ac64ef/filters/order/",
+    "graph": [
+        "http://app.crunch.io/api/datasets/ac64ef/filters/28ef72/",
+        "http://app.crunch.io/api/datasets/ac64ef/filters/0ac6e1/",
+    ]
+}
+```
+
+PATCH the order to change the order of the filters.  The graph parameter indicates the order.  Private filters
+are not included in the order.  Any filters that are missing are appended to the end of the order. Successful
+PATCH requests return 204 status.
 
 ### Filtering endpoints
 
