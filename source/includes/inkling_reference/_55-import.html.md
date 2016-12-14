@@ -21,7 +21,7 @@ from libraryName import importName1
 import importName2
 ```
 
-###### -Examples
+###### Examples
 
 ```inkling
 from utils import split

@@ -28,7 +28,7 @@ concept MyConcept
 end
 ```
 ‍
-###### -Schema Rules
+###### Schema Rules
 
 * Inkling statements can reference schemas by name. Above, _MyConcept_ uses _MySchema_ as its **predicts** schema.
 * Statements can use anonymous schemas. That means that a list of fields appears where a schema name could appear. Above, after **follows**, the predefined stream input has an anonymous schema with one field. This is useful in cases where you will only need that information once. In general, anywhere a schema name can appear, an anonymous schema can appear.
@@ -79,7 +79,7 @@ A named schema is referenced by its name. An anonymous schema is referenced by i
     '(' <fieldDclnList>  ')'  // anonymous schema ref
 ```
 
-###### -Inkling Primitive Types
+###### Inkling Primitive Types
 
 Inkling has a set of primitive types which are used in schema declarations. The integer suffix indicates the size in bits of the type.
 
@@ -90,7 +90,7 @@ Double | Float64 | Float32 | Int8 | Int16 | Int32 |
 Int64 | UInt8 | UInt16 | UInt32  | UInt64 | Bool | String
 ```
 
-###### -Inkling Structured types
+###### Inkling Structured types
 
 Inkling supports the types Matrix and Luminance (more to come).
 
@@ -137,7 +137,7 @@ schema MNIST_training_data_schema
 end
 ```
 ‍
-###### -Constrained Type
+###### Constrained Type
 
 Constrained types are supported in schemas and also in [lessons][1]. They are constrained by means of a special type of expression called a range expression.
 
@@ -155,7 +155,7 @@ end
 ```
 ‍
 
-###### -constrained type syntax
+###### constrained type syntax
 
 > constrainedType :=
 
@@ -175,7 +175,7 @@ numericType
 Double | Float64 | Float32 | Int8 | Int16 | Int32 |  Int64 | UInt8 | UInt16 | UInt32  | UInt64
 ```
 
-###### -constrained type rules
+###### constrained type rules
 
 ###  For numeric ranges:
 

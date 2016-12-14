@@ -23,7 +23,7 @@ concept conceptName
 end
 ```
 
-###### -Breakdown of Concept statement
+###### Breakdown of Concept statement
 
 * **concept:** declares an abstract concept for the system to learn.
 * **is:** specifies the kind of prediction the trained concept will produce (**classifier** or **estimator**).
@@ -32,7 +32,7 @@ end
 * **feeds:** declares the list of concepts and streams that have this concept's output as input.
 * **end:** delimiter that declares the end of this statement.
 
-###### -Curriculum Statement Syntax
+###### Curriculum Statement Syntax
 
 > conceptStmt :=
 
@@ -62,7 +62,7 @@ end
     output | <name>                    // concept or stream name
 ```
 
-###### -Concept Rules
+###### Concept Rules
 
 * The concept must be named after the **concept** keyword.
 * The **is** keyword specifies the kind of prediction the trained concept will produce. For example, a concept can specify is classifier. This means that the trained concept will categorize its input. Email, for example, can be classified as spam or not spam. Another option with this keyword is estimator.
@@ -73,7 +73,7 @@ end
 * The input keyword cannot not appear in the feeds list and the output keyword cannot appear in the follows list.
 * The concept statement is terminated by the **end** keyword.
 
-###### -Concept Examples
+###### Concept Examples
 
 > Concept get_high_score:
 
