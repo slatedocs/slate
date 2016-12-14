@@ -34,17 +34,12 @@ Name collision is almost totally resolved.
 
 | Page     | Status        | Style |
 |----------|---------------|-------|
-[Getting Started][1] | First Draft | Modular
-[Inkling Classic][2] | First Draft | Modular
--- [Overview][7] | First Draft | Modular
--- [Details][8] | First Draft | Modular
--- [References][9] | First Draft | Modular
--- [Miscellany][10] | First Draft | Modular
-[Inkling New][3] | First Draft | Modular
--- [Overview][11] | First Draft | Modular
--- [Details][12] | First Draft | Modular
--- [References][13] | First Draft | Modular
--- [Miscellany][14] | First Draft | Modular
+[Getting Started][1] | Second Draft | Modular
+[Inkling New][3] | Second Draft | Modular
+-- [Overview][11] | Second Draft | Modular
+-- [Details][12] | Second Draft | Modular
+-- [References][13] | Second Draft | Modular
+-- [Miscellany][14] | Second Draft | Modular
 Mastermind | Absent | N/A
 [References][4] | Second Draft | Modular
 
@@ -80,11 +75,7 @@ There's a **Return Home** link in the footer of the table of contents.
 [4]: /reference_everything.html "Anaconda CLI instructions"
 [5]: /cli_reference.html "CLI Reference"
 [6]: https://github.com/lord/slate/wiki/Using-Includes "Using Includes: Slate Documentation"
-[7]: /inkling_classic.html#overview
-[8]: /inkling_classic.html#details
-[9]: /inkling_classic.html#inkling-reference
-[10]: /inkling_classic.html#inkling-miscellany
-[11]: /inkling_everything.html#overview
-[12]: /inkling_everything.html#details
-[13]: /inkling_everything.html#inkling-reference
-[14]: /inkling_everything.html#inkling-miscellany
+[11]: /inkling.html#overview
+[12]: /inkling.html#details
+[13]: /inkling.html#inkling-reference
+[14]: /inkling.html#inkling-miscellany
