@@ -72,7 +72,7 @@ There's a **Return Home** link in the footer of the table of contents.
 [1]: /getting_started.html "Getting Started"
 [2]: /inkling_classic.html "Classic Inkling"
 [3]: /inkling_everything.html "New Inkling"
-[4]: /reference_everything.html "Anaconda CLI instructions"
+[4]: /reference.html "Reference"
 [5]: /cli_reference.html "CLI Reference"
 [6]: https://github.com/lord/slate/wiki/Using-Includes "Using Includes: Slate Documentation"
 [11]: /inkling.html#overview
