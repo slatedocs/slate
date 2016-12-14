@@ -45,6 +45,42 @@ html, body {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+// SECTION NUMBERS
+////////////////////////////////////////////////////////////////////////////////
+
+body {counter-reset: section;}
+h1 {counter-reset: subsection;}
+h2 {counter-reset: subsubsection;}
+h1:before {
+  counter-increment: section;
+  content:counter(section) ". ";
+}
+h2:before {
+  counter-increment: subsection;
+  content:counter(section) "." counter(subsection) " ";
+}
+h6:before {
+  counter-increment: subsubsection;
+  content:counter(section) "." counter(subsection) "." counter(subsubsection) " ";
+}
+
+.tocify {counter-reset: toc-section;}
+.tocify-header {counter-reset: toc-subsection;}
+.tocify-subheader {counter-reset: toc-subsubsection;}
+.tocify-header > .tocify-item > a:before {
+  counter-increment: toc-section;
+  content:counter(toc-section) " ";
+}
+.tocify-header > .tocify-subheader > .tocify-item > a:before {
+  counter-increment: toc-subsection;
+  content:counter(toc-section) "." counter(toc-subsection) " ";
+}
+.tocify-header > .tocify-subheader > .tocify-subheader > .tocify-item > a:before {
+  counter-increment: toc-subsubsection;
+  content:counter(toc-section) "." counter(toc-subsection) "." counter(toc-subsubsection) " ";
+}
+
+////////////////////////////////////////////////////////////////////////////////
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
 

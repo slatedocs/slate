@@ -4,7 +4,7 @@ This chapter is intended for developers who have never worked with machine learn
 
 Inkling is a programming language specifically designed for artificial intelligence (AI); it's a special purpose language. It abstracts away the vast world of dynamic AI algorithms that require expertise in machine learning and enables more developers to program AI. Before you read through this section about the Inkling language, you should familiarize yourself with the various components of the Bonsai Artificial Intelligence Engine, which you can read about in our Getting Started Guide.
 
-###### -A Ten-Thousand Foot View
+###### A Ten-Thousand Foot View
 
 A [ten-thousand foot view][1] of Inkling is described below, and includes a general description of the various components of an Inkling file.
 

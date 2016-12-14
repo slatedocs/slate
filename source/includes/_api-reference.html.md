@@ -23,7 +23,7 @@ requestMethod /v1/userName/assetName/assetVersion
 
 ## User and BRAIN status
 
-###### -GET User status
+###### GET User status
 
 ```http
 GET /v1/userName HTTP/1.1
@@ -31,7 +31,7 @@ GET /v1/userName HTTP/1.1
 
 Uses the GET request method to get a list of assets owned by the user (or organization).
 
-###### -Example Response
+###### Example Response
 
 This example response is for BRAIN assets:
 
@@ -64,7 +64,7 @@ Content-Type: text/javascript
 }
 ```
 ‍
-###### -GET BRAIN status
+###### GET BRAIN status
 
 ```http
 GET /v1/megan/myBrain HTTP/1.1
@@ -72,7 +72,7 @@ GET /v1/megan/myBrain HTTP/1.1
 
 Uses the GET request method to get information about a BRAIN (_brainName_) created by a user (_userName_).
 
-###### -Example Response
+###### Example Response
 
 This is an example response for getting BRAIN information for a specific brain:
 
@@ -95,7 +95,7 @@ Content‐Type: text/javascript
 
 ## Inkling
 ‍
-###### -GET Inkling
+###### GET Inkling
 
 ```http
 GET /v1/megan/myBrain/brainVersion/ink HTTP/1.1
@@ -103,7 +103,7 @@ GET /v1/megan/myBrain/brainVersion/ink HTTP/1.1
 
 Uses the GET request method to get the Inkling code for a version (_brainVersion_) of a BRAIN (_brainName_) created by a user (_userName_). The _brainVersion_ is a number.
 
-###### -Example Response
+###### Example Response
 
 This is an example response to a request for Inkling code for a specific BRAIN.
 
@@ -115,7 +115,7 @@ concept foo follow input, feeds output
 ...
 ```
 ‍
-###### -POST Inkling
+###### POST Inkling
 
 Uses the POST request method to post a new version of the Inkling code for a BRAIN. You cannot POST new Inkling while a BRAIN is training.
 
@@ -123,7 +123,7 @@ Uses the POST request method to post a new version of the Inkling code for a BRA
 POST /v1/megan/myBrain/ink HTTP/1.1
 ```
 
-###### -Example Request
+###### Example Request
 
 This is an example request for posting new Inkling for a BRAIN that is not currently training.
 
@@ -135,7 +135,7 @@ concept foo follow input, feeds output
 ...
 ```
 
-###### -Example Response
+###### Example Response
 
 This is an example response to posting new Inkling for a BRAIN that is not training.
 
@@ -145,7 +145,7 @@ HTTP/1.1 201 CreatedLocation: http://api.bons.ai/v1/megan/mybrain/11
 ‍
 ## Simulators
 
-###### -GET Simulator Information
+###### GET Simulator Information
 
 ```http
 GET /userName/brainName/sims HTTP/1.1
@@ -153,7 +153,7 @@ GET /userName/brainName/sims HTTP/1.1
 
 Uses the GET request method to get the simulator information for a simulator connected to a BRAIN.
 
-###### -Example Response
+###### Example Response
 
 This is an example response for getting simulator information.
 
@@ -170,7 +170,7 @@ Content‐Type: text/javascript{
 }
 ```
 ‍
-###### -GET Update Simulator
+###### GET Update Simulator
 
 ```http
 GET /V1/userName/brainName/sims/ws HTTP/1.1
@@ -178,7 +178,7 @@ GET /V1/userName/brainName/sims/ws HTTP/1.1
 
 Uses the GET request method to update the simulator.
 
-###### -Example Response
+###### Example Response
 
 This is an example response for updating the simulator.
 
@@ -191,7 +191,7 @@ Connection:  upgrade
 ‍
 ## Training Mode
 
-###### -PUT Training Mode
+###### PUT Training Mode
 
 ```http
 PUT /v1/userName/brainName/train HTTP/1.1
@@ -199,7 +199,7 @@ PUT /v1/userName/brainName/train HTTP/1.1
 
 Uses the PUT request method to start training mode or stop training mode.
 
-###### -Example Response
+###### Example Response
 
 This is an example response to using PUT to stop or start training mode.
 
@@ -210,7 +210,7 @@ Location: http://api.bons.ai/v1/megan/mybrain/11
 
 ## BRAIN Versions and Modes
 
-###### -BRAIN Versions
+###### BRAIN Versions
 
 **BRAIN versions numerically count up as new code is uploaded to the server (and successfully compiled) or as BRAINs are trained.**
 
@@ -220,7 +220,7 @@ Location: http://api.bons.ai/v1/megan/mybrain/11
 * The BRAIN begins in an uninitialized state (aka version 0) which it permanently leaves after the first inkling is uploaded. version 0 cannot make predictions (it has no schema).
 * For private beta only the most recent version of a BRAIN may be used for prediction this version can be referred to with the special version latest
 
-###### -BRAIN Modes
+###### BRAIN Modes
 
 **BRAIN versions have the following modes:**
 

@@ -49,10 +49,6 @@ Mastermind | Absent | N/A
 
 These are temporarily removed until the site tree settles down, and ~will likely~ may be replaced. We have not yet worked out the implementation of numbering on re-usable sections.
 
-## Why are we reorganizing the [Inkling Classic][2] page?
-
-This body of work includes overlapping sections with similar names, which is confusing to the reader and breaks Slate functionality. In addition, we're conjoining a notional, concept-based approach with a concrete, lexicon-based approach. The new layout joins the notional explanation with the reference for the actual command and its syntax. In addition, a [Refernces][4] section has the condensed Inkling reference.
-
 ## What are Modular pages?
 
 Slate supports the notion of [includes][6], which allow us to put the documentation into a database of sorts and rebuild it from parts. This works by holding the pages in the `includes` folder. A display page is made by adding an `includes` section to the front matter, and then listing the included pages in order.
@@ -71,7 +67,7 @@ There's a **Return Home** link in the footer of the table of contents.
 
 [1]: /getting_started.html "Getting Started"
 [2]: /inkling_classic.html "Classic Inkling"
-[3]: /inkling_everything.html "New Inkling"
+[3]: /inkling.html "New Inkling"
 [4]: /reference.html "Reference"
 [5]: /cli_reference.html "CLI Reference"
 [6]: https://github.com/lord/slate/wiki/Using-Includes "Using Includes: Slate Documentation"
