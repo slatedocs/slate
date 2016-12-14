@@ -285,6 +285,7 @@ curl "https://demo.gomus.de/api/v4/events"
 - by_categories (Array of category names), filter by category names, see categories section
 - by_language_ids (Array of language ids), filter by language, see languages section
 - by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)
+- with_bookings_in_future (Boolean, true|false, default: all), filter events that have bookable dates in the future
 
 ### Available parameters:
 
