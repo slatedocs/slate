@@ -15,6 +15,7 @@ toc_footers:
 includes:
   - authentication
   - projects
+  - users
   - kittens_example
   - errors
 
@@ -41,4 +42,3 @@ If you're new to PractiTest and you're just starting to write API code, you shou
 
 ### Current API V1 users
 If you already have V1 code, then you must change /api/resource_name to /api/v1/resource_name. Also, when you write new code, try to use V2, since V1 will depreciate.
-
