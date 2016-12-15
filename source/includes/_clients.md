@@ -34,9 +34,9 @@ curl -X POST \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-       parameters.Add("name", "Le Bernardin");
-       parameters.Add("company-url", "http://www.le-bernardin.com");
-       parameters.Add("business-category-id", "791");
+parameters.Add("name", "Le Bernardin");
+parameters.Add("company-url", "http://www.le-bernardin.com");
+parameters.Add("business-category-id", "791");
 
 var success = request.Post("/v1/clients-and-locations/clients/", parameters);
 ```
@@ -106,8 +106,8 @@ curl -X PUT \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-       parameters.Add("client-id", "36447");
-       parameters.Add("name", "Le Bernardin Cafe");
+parameters.Add("client-id", "36447");
+parameters.Add("name", "Le Bernardin Cafe");
 
 var success = request.Put("/v1/clients-and-locations/clients/", parameters);
 ```

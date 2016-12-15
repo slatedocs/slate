@@ -135,12 +135,12 @@ curl -X POST \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-        parameters.Add("campaign-id", "9907");
-        parameters.Add("name", "Le Bernardin");
-        parameters.Add("schedule", "Adhoc");
-        parameters.Add("search-terms", "Restaurant\nfood+nyc\ndelivery+midtown+manhattan");
-        parameters.Add("website-addresses", "['le-bernardin.com', 'le-bernardin2.com']");
-        parameters.Add("search-engines", "google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local");
+parameters.Add("campaign-id", "9907");
+parameters.Add("name", "Le Bernardin");
+parameters.Add("schedule", "Adhoc");
+parameters.Add("search-terms", "Restaurant\nfood+nyc\ndelivery+midtown+manhattan");
+parameters.Add("website-addresses", "['le-bernardin.com', 'le-bernardin2.com']");
+parameters.Add("search-engines", "google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local");
 
 var success = request.Post("/v2/lsrc/update", parameters);
 ```
@@ -217,7 +217,7 @@ if($success) {
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-        parameters.Add("campaign-id", "9907");
+parameters.Add("campaign-id", "9907");
 
 var success = request.Delete("/v2/lsrc/delete", parameters);
 ```
@@ -272,9 +272,7 @@ curl -X GET \
 
 ```csharp
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
 var parameters = new api.Parameters();
-
 var results = request.Get("/v2/lsrc/get-all", parameters);
 ```
 
@@ -358,7 +356,7 @@ curl -X GET \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-        parameters.Add("campaign-id", "50");
+parameters.Add("campaign-id", "50");
 
 var results = request.Get("/v2/lsrc/get", parameters);
 ```
@@ -491,7 +489,7 @@ curl -X POST \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-        parameters.Add("campaign-id", "50");
+parameters.Add("campaign-id", "50");
 
 var success = request.Post("/v2/lsrc/run", parameters);
 ```
@@ -553,7 +551,7 @@ curl -X GET \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-        parameters.Add("campaign-id", "50");
+parameters.Add("campaign-id", "50");
 
 var results = request.Get("/v2/lsrc/history/get", parameters);
 ```
@@ -637,7 +635,7 @@ curl -X GET \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-        parameters.Add("campaign-id", "9636");
+parameters.Add("campaign-id", "9636");
 
 var results = request.Get("/v2/lsrc/results/get", parameters);
 ```

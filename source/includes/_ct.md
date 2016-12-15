@@ -42,13 +42,13 @@ curl -X POST \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-        parameters.Add("report-name", "Sample Citation Tracking Report");
-        parameters.Add("business-name", "Le Bernardin");
-        parameters.Add("business-location", "NY, New York");
-        parameters.Add("phone", "+1 212-554-1515");
-        parameters.Add("website", "le-bernardin.com");
-        parameters.Add("business-type", "Restaurant");
-        parameters.Add("state-code", "NY");
+parameters.Add("report-name", "Sample Citation Tracking Report");
+parameters.Add("business-name", "Le Bernardin");
+parameters.Add("business-location", "NY, New York");
+parameters.Add("phone", "+1 212-554-1515");
+parameters.Add("website", "le-bernardin.com");
+parameters.Add("business-type", "Restaurant");
+parameters.Add("state-code", "NY");
 
 var success = request.Post("/v2/ct/add", parameters);
 ```
@@ -141,13 +141,13 @@ curl -X POST \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-        parameters.Add("report-name", "Sample Citation Tracking Report");
-        parameters.Add("business-name", "Le Bernardin");
-        parameters.Add("business-location", "NY, New York");
-        parameters.Add("phone", "+1 212-554-1515");
-        parameters.Add("website", "le-bernardin.com");
-        parameters.Add("business-type", "Restaurant");
-        parameters.Add("state-code", "NY");
+parameters.Add("report-name", "Sample Citation Tracking Report");
+parameters.Add("business-name", "Le Bernardin");
+parameters.Add("business-location", "NY, New York");
+parameters.Add("phone", "+1 212-554-1515");
+parameters.Add("website", "le-bernardin.com");
+parameters.Add("business-type", "Restaurant");
+parameters.Add("state-code", "NY");
 
 var success = request.Post("/v2/ct/update", parameters);
 ```
@@ -386,7 +386,7 @@ curl -X POST \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-        parameters.Add("report-id", "682");
+parameters.Add("report-id", "682");
 
 var success = request.Post("/v2/ct/delete", parameters);
 ```
@@ -591,7 +591,7 @@ curl -X GET \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-        parameters.Add("report-id", "2457");
+parameters.Add("report-id", "2457");
 
 var results = request.Get("/v2/ct/get-results", parameters);
 ```

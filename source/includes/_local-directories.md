@@ -11,12 +11,12 @@ batchApi batchRequest = new batchApi(Api);
 // Create a new batch
 int batchId = batchRequest.Create();
 var parameters = new api.Parameters();
-        parameters.Add("batch-id", batchId);
-        parameters.Add("business-names", "La Bernardin\nBernardin Cafe\nBernardin restaraunt");
-        parameters.Add("country", "USA");
-        parameters.Add("city", "New York");
-        parameters.Add("postcode", "10019");
-        parameters.Add("local-directory", "google");
+parameters.Add("batch-id", batchId);
+parameters.Add("business-names", "La Bernardin\nBernardin Cafe\nBernardin restaraunt");
+parameters.Add("country", "USA");
+parameters.Add("city", "New York");
+parameters.Add("postcode", "10019");
+parameters.Add("local-directory", "google");
 
 var jobId = Api.Post("/v4/ld/fetch-profile-url", parameters);
 
@@ -163,10 +163,10 @@ batchApi batchRequest = new batchApi(Api);
 // Create a new batch
 int batchId = batchRequest.Create();
 var parameters = new api.Parameters();
-        parameters.Add("batch-id", batchId);
-        parameters.Add("local-directory", "google");
-        parameters.Add("telephone", "+1 212-554-1515");
-        parameters.Add("search-type", "search-by-phone");
+parameters.Add("batch-id", batchId);
+parameters.Add("local-directory", "google");
+parameters.Add("telephone", "+1 212-554-1515");
+parameters.Add("search-type", "search-by-phone");
 
 var jobId = Api.Post("/v4/ld/fetch-profile-url", parameters);
 

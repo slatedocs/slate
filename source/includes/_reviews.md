@@ -47,9 +47,9 @@ if ($batchId) {
 
 ```csharp
 List<string> profileUrls = new List<string>();
-        profileUrls.Add("https://plus.google.com/114222978585544488148/about?hl=en");
-        profileUrls.Add("https://plus.google.com/117313296997732479889/about?hl=en");
-        profileUrls.Add("https://plus.google.com/111550668382222753542/about?hl=en");
+profileUrls.Add("https://plus.google.com/114222978585544488148/about?hl=en");
+profileUrls.Add("https://plus.google.com/117313296997732479889/about?hl=en");
+profileUrls.Add("https://plus.google.com/111550668382222753542/about?hl=en");
 
 
 
@@ -64,9 +64,9 @@ int batchId = batchRequest.Create();
 foreach (var item in profileUrls)
 {
     var parameters = new api.Parameters();
-        parameters.Add("batch-id", batchId);
-	    parameters.Add("profile-url", item);
-	    parameters.Add("country", "USA");
+    parameters.Add("batch-id", batchId);
+    parameters.Add("profile-url", item);
+    parameters.Add("country", "USA");
 
     var jobId = Api.Post("/v4/ld/fetch-reviews", parameters);
 
@@ -211,9 +211,9 @@ if ($batchId) {
 
 ```csharp
 List<string> localDirectories = new List<string>();
-        localDirectories.Add("google");
-        localDirectories.Add("facebook");
-        localDirectories.Add("yahoo");
+localDirectories.Add("google");
+localDirectories.Add("facebook");
+localDirectories.Add("yahoo");
 
 
 
@@ -226,13 +226,13 @@ int batchId = batchRequest.Create();
 // Add jobs to batch
 foreach (var item in localDirectories)
 {    
-   var parameters = new api.Parameters();
-        parameters.Add("batch-id", batchId);
-        parameters.Add("business-names", "Le Bernardin\nLe Bernardin Cafe");
-        parameters.Add("city", "New York");
-        parameters.Add("postcode", "10019");
-        parameters.Add("local-directory", item);
-        parameters.Add("country", USA);    
+    var parameters = new api.Parameters();
+    parameters.Add("batch-id", batchId);
+    parameters.Add("business-names", "Le Bernardin\nLe Bernardin Cafe");
+    parameters.Add("city", "New York");
+    parameters.Add("postcode", "10019");
+    parameters.Add("local-directory", item);
+    parameters.Add("country", USA);    
 
     var jobId = Api.Post("/v4/ld/fetch-reviews-by-business-data", parameters);
 

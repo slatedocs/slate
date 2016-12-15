@@ -48,16 +48,16 @@ curl -X POST \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-           parameters.Add("name", "Le Bernardin");
-           parameters.Add("url", "http://le-bernardin.com");
-           parameters.Add("business-category-id", "605");
-           parameters.Add("country", "USA"); // 3 Letter iso code
-           parameters.Add("address1", "155 Weest 51st Street");
-           parameters.Add("address2", "");
-           parameters.Add("region", "NY"); // State or Region
-           parameters.Add("city", "New York");
-           parameters.Add("postcode", "10019");
-           parameters.Add("telephone", "+1 212-554-1515");
+parameters.Add("name", "Le Bernardin");
+parameters.Add("url", "http://le-bernardin.com");
+parameters.Add("business-category-id", "605");
+parameters.Add("country", "USA"); // 3 Letter iso code
+parameters.Add("address1", "155 Weest 51st Street");
+parameters.Add("address2", "");
+parameters.Add("region", "NY"); // State or Region
+parameters.Add("city", "New York");
+parameters.Add("postcode", "10019");
+parameters.Add("telephone", "+1 212-554-1515");
 
 var success = request.Post("/v1/clients-and-locations/locations/", parameters);
 ```
@@ -163,16 +163,16 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var locationId = 1;
 var parameters = new api.Parameters();
-       parameters.Add("name", "Le Bernardin");
-       parameters.Add("url", "http://le-bernardin.com");
-       parameters.Add("business-category-id", "605");
-       parameters.Add("country", "USA"); // 3 Letter iso code
-       parameters.Add("address1", "155 Weest 51st Street");
-       parameters.Add("address2", "");
-       parameters.Add("region", "NY"); // State or Region
-       parameters.Add("city", "New York");
-       parameters.Add("postcode", "10019");
-       parameters.Add("telephone", "+1 212-554-1515");
+parameters.Add("name", "Le Bernardin");
+parameters.Add("url", "http://le-bernardin.com");
+parameters.Add("business-category-id", "605");
+parameters.Add("country", "USA"); // 3 Letter iso code
+parameters.Add("address1", "155 Weest 51st Street");
+parameters.Add("address2", "");
+parameters.Add("region", "NY"); // State or Region
+parameters.Add("city", "New York");
+parameters.Add("postcode", "10019");
+parameters.Add("telephone", "+1 212-554-1515");
 
 var success = request.Put("/v1/clients-and-locations/locations/" + locationId + "", parameters);
 ```
@@ -305,41 +305,41 @@ var success = request.Get("/v1/clients-and-locations/locations/" + locationId + 
 {
    "success":true,
    "location":{
-            "location-name":"BrightLocal HQ",
-            "client-id":1,
-            "location-url":"https://www.brightlocal.com",
-            "business-category-id":650,
-            "country":"GBR",
-            "address1":"The Old Candlemakers",
-            "address2":"West St, Lewes",
-            "region":"East Sussex",
-            "town":"Lewes",
-            "postcode":"BN7 2NZ",
-            "telephone":"80500 050 0505",
-            "location-reference":"BL1",
-            "contact-first-name":"first name",
-            "contact-last-name":"last name",
-            "contact-telephone":"+44 1273 917 374",
-            "contact-fax":"",
-            "contact-mobile":"",
-            "num-of-employees":"50",
-            "year-of-formation":"2009",
-            "extra-business_categories":[
-            	"marketing"
-            ],
-            "working-hours":{
-            	"mon_start":"9 a.m.",
-            	"mon_end":"7 p.m."
-            },
-            "payment-methods-accepted":[
-                "visa",
-                "paypal"
-            ],
-            "short-desc":"",
-            "long-desc":"",
-            "services-or-products":[
-                "analytics"
-            ]
+        "location-name":"BrightLocal HQ",
+        "client-id":1,
+        "location-url":"https://www.brightlocal.com",
+        "business-category-id":650,
+        "country":"GBR",
+        "address1":"The Old Candlemakers",
+        "address2":"West St, Lewes",
+        "region":"East Sussex",
+        "town":"Lewes",
+        "postcode":"BN7 2NZ",
+        "telephone":"80500 050 0505",
+        "location-reference":"BL1",
+        "contact-first-name":"first name",
+        "contact-last-name":"last name",
+        "contact-telephone":"+44 1273 917 374",
+        "contact-fax":"",
+        "contact-mobile":"",
+        "num-of-employees":"50",
+        "year-of-formation":"2009",
+        "extra-business_categories":[
+            "marketing"
+        ],
+        "working-hours":{
+            "mon_start":"9 a.m.",
+            "mon_end":"7 p.m."
+        },
+        "payment-methods-accepted":[
+            "visa",
+            "paypal"
+        ],
+        "short-desc":"",
+        "long-desc":"",
+        "services-or-products":[
+            "analytics"
+        ]
    }
 }
 ```

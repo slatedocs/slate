@@ -619,26 +619,27 @@ curl -X POST \
 
 ```csharp
 List<string> searches = new List<string>(
-               new string[] {
-                    "restaurant new york'",
-                    "restaurant manhattan",
-                    "restaurant 10019"
-               });
+    new string[] {
+        "restaurant new york'",
+        "restaurant manhattan",
+        "restaurant 10019"
+    }
+);
 api Api = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 batchApi batchRequest = new batchApi(Api);
 
 // Create a new batch
 int batchId = batchRequest.Create();
 var parameters = new api.Parameters();
-        parameters.Add("batch-id", batchId);
-        parameters.Add("search-engine", "google");
-        parameters.Add("country", "USA");
-        parameters.Add("telephone", "+1 212-554-1515");
-        parameters.Add("google-location", "New York, NY");
-        parameters.Add("search-terms", searches);
-        parameters.Add("urls", "['le-bernardin.com']");
-        parameters.Add("business-names", "['Le Bernardin']");
-        var jobId = Api.Post("/v4/rankings/bulk-search", parameters);
+parameters.Add("batch-id", batchId);
+parameters.Add("search-engine", "google");
+parameters.Add("country", "USA");
+parameters.Add("telephone", "+1 212-554-1515");
+parameters.Add("google-location", "New York, NY");
+parameters.Add("search-terms", searches);
+parameters.Add("urls", "['le-bernardin.com']");
+parameters.Add("business-names", "['Le Bernardin']");
+var jobId = Api.Post("/v4/rankings/bulk-search", parameters);
 
 if (jobId.ResponseStatus == ResponseStatus.Completed)
 {
