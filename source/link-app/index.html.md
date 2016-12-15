@@ -322,16 +322,15 @@ headers = SELECT
 ```
 
 
-Campo |  Descripción | Valor de ejemplo
+Campo |  Tipo | Descripción
 --------- | -----------| ---------
-id_local | string | Identifica de manera única la factura. __Requerido__
+id_local | int o string | Identifica de manera única la factura. __Requerido__
 secuencial | string  | Número de secuencia de la factura. __Requerido__
 fecha_emision | datetime  | Fecha de emisión   __Requerido__
 guia_remision | string | Número de guía de remisión asociada a esta factura en formato 001-002-000000003 ([0-9]{3}-[0-9]{3}-[0-9]{9})
 moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. __Requerido__
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
-
 
 ### Emisor
 
@@ -901,7 +900,7 @@ headers = SELECT
 
 Campo |  Descripción | Valor de ejemplo
 --------- | -----------| ---------
-id_local | string | Identifica de manera única la nota de crédito. __Requerido__
+id_local | int o string | Identifica de manera única la nota de crédito. __Requerido__
 secuencial | string  | Número de secuencia de la nota de crédito. __Requerido__
 fecha_emision | datetime  | Fecha de emisión   __Requerido__
 moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. __Requerido__
@@ -1306,7 +1305,7 @@ headers = SELECT
 
 Campo |  Descripción | Valor de ejemplo
 --------- | -----------| ---------
-id_local | string | Identifica de manera única la retención. __Requerido__
+id_local | int o string | Identifica de manera única la retención. __Requerido__
 secuencial | string  | Número de secuencia de la retención. __Requerido__
 fecha_emision | datetime  | Fecha de emisión   __Requerido__
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
@@ -1487,7 +1486,7 @@ CREATE TABLE [retenciones].[item](
     [id] bigint IDENTITY(1,1) PRIMARY KEY,
     [id_retencion] bigint NOT NULL FOREIGN KEY REFERENCES [retenciones].[retencion](id),
     [codigo] [varchar](2) NOT NULL,
-    [codigo_porcentaje] [varchar](2) NOT NULL,
+    [codigo_porcentaje] [varchar](5) NOT NULL,
     [base_imponible] [decimal](14,2) NOT NULL,
     [fecha_emision_documento_sustento] [datetime] NULL,
     [numero_documento_sustento] [varchar](17) NULL,
@@ -1537,7 +1536,7 @@ headers = SELECT
 
 Campo |  Descripción | Valor de ejemplo
 --------- | -----------| ---------
-id_local | string | Identifica de manera única la guía de remisión. __Requerido__
+id_local | int o string | Identifica de manera única la guía de remisión. __Requerido__
 secuencial | string  | Número de secuencia de la retención. __Requerido__
 fecha_inicio_transporte | datetime  | Fecha en la que inicia el transporte dada la guía de remisión __Requerido__
 fecha_fin_transporte | datetime  | Fecha en la que termina el transporte dada la guía de remisión __Requerido__
