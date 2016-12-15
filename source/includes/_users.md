@@ -1,8 +1,14 @@
 # Users
 
-## GET a list of all users associated with your account - GET/users.json
+## GET all users at your account
 
-Here's the examples of the JSON requests and response that you may get when submitting a GET request to: https://prod.practitest.com/api/v2/users.json
+This endpoint retrieves all users.
+
+### HTTP Request
+
+`https://prod.practitest.com/api/v2/users.json`
+
+Here's the examples of the JSON requests and response that you may get when submitting a GET request 
 
 Remember, you can see examples in the dark area to the right.
 

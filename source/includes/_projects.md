@@ -1,8 +1,14 @@
 # Projects
 
-## GET a list of projects - GET/projects.json
+## GET all projects
 
-Here's the examples of the JSON requests and responses that you may get when submitting a GET request to: https://prod.practitest.com/api/v2/projects.json
+This endpoint retrieves all projects.
+
+### HTTP Request
+
+`GET http://prod.practitest.com/api/v2/projects.json`
+
+Here's the examples of the JSON requests and responses that you may get when submitting a GET request
 
 [shell_example](/?shell#authentication)
 
