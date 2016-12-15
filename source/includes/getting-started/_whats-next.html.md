@@ -1,11 +1,8 @@
-
-[Source](http://docs.bons.ai/getting-started/whats-next "Permalink to What's Next - Bons.ai")
-
 # What's Next
 
 Now that you've completed this guide, you can:
 
-**Check out our [Inkling Guide][1].**
+**Check out our [Inkling Documentation][1].**
 
 It contains all of the concepts and components of our unique programming language. You'll learn:
 
@@ -17,4 +14,4 @@ And we have these other resources that will enable you to maximize your AI devel
 
 ‍
 
-[1]: /inkling_guide.html
+[1]: ./inkling.html
