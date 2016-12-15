@@ -17,7 +17,7 @@ body{font-size:16px;}
 
 
 #search {padding-top: 25px;padding-bottom: 120px;}
-#search span {background-color:#fafafa;padding: 13px;border: solid 2px hsla(0,6%,92%,1);/* min-width: 300px; */min-width: 47vw;display: inline-block;margin: 0 auto;border-radius: 4px;color: #928d8d;}
+#search span {background-color:#fafafa;padding: 13px;border: solid 2px hsla(0,6%,92%,1);/* min-width: 300px; */min-width: 57vw;display: inline-block;margin: 0 auto;border-radius: 4px;color: #928d8d;}
 
 #browse {display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-align:stretch;align-items:stretch;-ms-flex: 1 0 auto;flex: 1 0 auto;padding-bottom:30px;/* padding: 0 30px; */background: hsla(30,11%,92%,1);padding-top: 30px;border-top: solid 1px #ccc;}
 
@@ -60,10 +60,195 @@ body{font-size:16px;}
 .p2{font-size: 135%;font-weight: 400;}	
 .welcome{font-size:200%;text-align:center;background-color: transparent;background: none;margin: 0;margin-top: 90px;}
 #browse ul li a:hover {color:#3bb94f;}	
+
+
+
 	
+/*///////////////////////////////////////////////////////////////////////////////
+// THE INCREADIBLE EDIBLE HAMBURGER NAV
+////////////////////////////////////////////////////////////////////////////////*/	
 	
-	
-	
+@charset "UTF-8";
+.navigation {
+  background: #a51919;
+}
+
+.brand {
+  padding-left: 20px;
+  /* float: left; */
+  /* display: inline-block; */
+  text-transform: uppercase;
+  font-size: 1.4em;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+.brand a,
+.brand a:visited {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.nav-container {
+  /* max-width: 1000px; */
+  /* margin: 0 auto; */
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+nav {
+  /* float: right; */
+  display: inline-block;
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+nav ul li {
+  float: left;
+  position: relative;
+}
+nav ul li a,
+nav ul li a:visited {
+  display: block;
+  padding: 0 20px;
+  /* background: #a51919; */
+  color: #ffffff;
+  text-decoration: none;
+}
+nav ul li a:hover,
+nav ul li a:visited:hover {
+  background: #2581DC;
+  color: #ffffff;
+}
+nav ul li a:not(:only-child):after,
+nav ul li a:visited:not(:only-child):after {
+  padding-left: 4px;
+  content: ' â–¾';
+}
+nav ul li ul li {
+  min-width: 190px;
+}
+nav ul li ul li a {
+  padding: 15px;
+  line-height: 20px;
+}
+
+.nav-dropdown {
+  position: absolute;
+  display: none;
+  z-index: 1;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile navigation */
+.nav-mobile {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* background: rgba(0, 0, 0, 0.17); */
+  height: 70px;
+  width: 70px;
+}
+
+@media only screen and (max-width: 800px) {
+  .nav-mobile {
+    display: block;
+  }
+
+  nav {
+    width: 100%;
+    /* padding: 70px 0 15px; */
+    /* margin-top: 10px; */
+  }
+  nav ul {
+    display: none;
+    margin-top: 30px;
+  }
+  nav ul li {
+    float: none;
+    text-align: center;
+  }
+  nav ul li a {
+    padding: 15px;
+    line-height: 20px;
+  }
+  nav ul li ul li a {
+    padding-left: 30px;
+  }
+
+  .nav-dropdown {
+    position: static;
+  }
+  
+  .brand {position: absolute;top: 19px;/* align-self: stretch; *//* display: block; */margin-left: -50%;left: 82%;/* align-self: initial; *//* margin-left: 36%; */padding-left: 0;}
+  
+  #primary-nav{padding-top: 50px;}
+  
+  .welcome {font-size: 140%;margin-top: 60px;}
+  
+  #search {padding-bottom:90px;}
+  
+  #search span {min-width: 77vw;}
+  
+  .bonsai-logo{height: 26px;}
+  
+  .nav-container {/* display: inline-block; *//* margin: 0 auto; */}
+  
+}
+@media screen and (min-width: 800px) {
+  .nav-list {
+    display: block !important;
+  }
+}
+#nav-toggle {
+  position: absolute;
+  left: 18px;
+  top: 22px;
+  cursor: pointer;
+  padding: 10px 35px 16px 0px;
+}
+#nav-toggle span,
+#nav-toggle span:before,
+#nav-toggle span:after {
+  cursor: pointer;
+  border-radius: 1px;
+  height: 3px;
+  width: 28px;
+  background: #2f9a41;
+  position: absolute;
+  display: block;
+  content: '';
+  transition: all 300ms ease-in-out;
+}
+#nav-toggle span:before {
+  top: -10px;
+}
+#nav-toggle span:after {
+  bottom: -10px;
+}
+#nav-toggle.active span {
+  background-color: transparent;
+}
+#nav-toggle.active span:before, #nav-toggle.active span:after {
+  top: 0;
+}
+#nav-toggle.active span:before {
+  transform: rotate(45deg);
+}
+#nav-toggle.active span:after {
+  transform: rotate(-45deg);
+}
+
+article {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
 	
 	
 	
