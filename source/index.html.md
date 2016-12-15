@@ -14,6 +14,7 @@ toc_footers:
 
 includes:
   - authentication
+  - pagination
   - projects
   - users
   - kittens_example
