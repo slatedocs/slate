@@ -192,11 +192,10 @@ h6:before {
 
 
   .tocify-item>a, .toc-footer li {
-    padding: 0 $nav-padding 0 $nav-padding;
+    padding: 5px $nav-padding 5px $nav-padding;
     display: block;
     overflow-x: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    white-space: normal;
   }
 
   // The Table of Contents is composed of multiple nested
@@ -206,7 +205,7 @@ h6:before {
     list-style: none;
     margin: 0;
     padding: 0;
-    line-height: 28px;
+    line-height: 15px;
   }
 
   li {
@@ -230,8 +229,9 @@ h6:before {
     background-color: $nav-subitem-bg;
     font-weight: 500;
     .tocify-item>a {
-      padding-left: $nav-padding + $nav-indent;
+      padding-left: $nav-padding + $nav-indent + 20px;
       font-size: 12px;
+      text-indent: -20px
     }
 
     // for embossed look:
@@ -247,7 +247,8 @@ h6:before {
     background-color: $nav-subsubitem-bg;
     font-weight: 400;
     .tocify-item>a {
-      padding-left: $nav-padding + $nav-indent * 2;
+      padding-left: $nav-padding + $nav-indent * 2 + 30px;
+      text-indent: -30px;
       font-size: 12px;
     }
   }
