@@ -27,16 +27,11 @@
 	  
   <div id="flex-container">	  
 	  
-	<%= partial "primary-nav" %>
+	
+	<%= partial "primary-nav-2" %>
 	
 	<div id="main-wrapper">  
 		
-    <a href="#" id="nav-button">
-      <span>
-        NAV
-        <%= image_tag('navbar.png') %>
-      </span>
-    </a>
     
     
 	<p class="welcome">Welcome to Bonsai Docs</p>
@@ -50,8 +45,8 @@
 			<p class="p2">Inkling Docs</p> 
 			<ul>
 				<li><% link_to '/inkling-guide/2-inkling-fundamentals.html' do %>Inkling Fundamentals<% end %></li>
-				<li>Under the Hood</li>
-				<li>Curricula & Lessons</li>
+				<li><% link_to '/inkling_classic.html#under-the-hood' do %>Under the Hood<% end %></li>
+				<li><% link_to '/inkling_classic.html#curricula-and-lessons' do %>Curricula & Lessons<% end %></li>
 			</ul>
 		</div>
 		
@@ -60,8 +55,8 @@
 			<p class="p2">References</p> 
 			<ul>
 				<li><% link_to '/reference_everything.html#http-api-reference' do %>HTTP API Reference<% end %></li>
-				<li>Under the Hood</li>
-				<li>Curricula & Lessons</li>
+				<li><% link_to '/cli_reference.html' do %>Command Line Interface (CLI)<% end %></li>
+				<li><% link_to '/inkling_classic.html#curricula-and-lessons' do %>Curricula & Lessons<% end %></li>
 			</ul>
 		</div>
 		
@@ -69,9 +64,9 @@
 		<div> 
 			<p class="p2">Examples</p> 
 			<ul>
-				<li><% link_to '/inkling-guide/2-inkling-fundamentals.html' do %>Inkling Fundamentals<% end %></li>
-				<li>Under the Hood</li>
-				<li>Curricula & Lessons</li>
+				<li><% link_to '/inkling_classic.html#example-cart-pole' do %>Cart Pole<% end %></li>
+				<li><% link_to '/inkling_classic.html#example-mountain-car' do %>Mountain Car<% end %></li>
+				<li><% link_to '/inkling_guide/25-curricula-and-lessons.html' do %>Curricula & Lessons<% end %></li>
 			</ul>
 		</div>
 		
