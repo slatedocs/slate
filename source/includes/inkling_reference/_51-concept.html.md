@@ -16,10 +16,10 @@ A typical concept statement:
 
 ```inkling
 concept conceptName
-   is (classifier | estimator)
-   predicts (outputSchema)
-   follows preceedingConcept1, input(schemaName)
-   feeds output, subsequentconcept
+  is (classifier | estimator)
+  predicts (outputSchema)
+  follows preceedingConcept1, input(schemaName)
+  feeds output, subsequentconcept
 end
 ```
 
@@ -38,28 +38,30 @@ end
 
 ```c
 concept
-    is [ classifier | estimator ]
-    predicts ( schemaRef )
-   [
-      follows inputSource [',' inputSource ]*                                ]?
-    [
-      feeds
-       outputTarget [',' outputTarget ]*
+  is [ classifier | estimator ]
+  predicts ( schemaRef )
+  [
+    follows
+      inputSource [',' inputSource ]*
+    ]?
+  [
+    feeds
+      outputTarget [',' outputTarget ]*
 
-     ]?
+  ]?
 end
 ```
 
 > inputSrc :=
 
 ```c
-   input '(' schemaRef? ')' |  <name> // concept or stream name
+  input '(' schemaRef? ')' |  <name> // concept or stream name
 ```
 
 > outputTarget :=
 
 ```c
-    output | <name>                    // concept or stream name
+  output | <name>                    // concept or stream name
 ```
 
 ###### Concept Rules
@@ -79,10 +81,10 @@ end
 
 ```inkling
 concept get_high_score
-   is classifier
-   predicts PlayerMove
-   follows input(GameState)
-   feeds output
+  is classifier
+  predicts PlayerMove
+  follows input(GameState)
+  feeds output
 end
 ```
 
@@ -104,9 +106,9 @@ Our concepts are Digit, Curvature, and Segments. In this example:
 
 ```inkling
 concept Digit
-     is classifier
-     predicts MNIST_output
-     follows Curvature, Segments, input(MNIST_input)
+  is classifier
+  predicts MNIST_output
+  follows Curvature, Segments, input(MNIST_input)
 end
 ```
 
@@ -124,9 +126,9 @@ end
 
 ```inkling
 concept Curvature
-   is classifier
-   predicts (curve_output)
-   follows input(MNIST_input)
+  is classifier
+  predicts (curve_output)
+  follows input(MNIST_input)
 end
 ```
 
@@ -141,9 +143,9 @@ end
 
 ```inkling
 concept Segments
-   is classifier
-   predicts (segments_output)
-   follows input(MNIST_input)
+  is classifier
+  predicts (segments_output)
+  follows input(MNIST_input)
 end
 ```
 

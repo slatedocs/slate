@@ -74,6 +74,6 @@ Every concept is trained by a curriculum. For more information about curricula, 
 
 We suggest you check out all of our examples and tutorials to build your understanding of how to extract concepts out of your problems to enhance the training of your BRAINs.
 
-[1]: http://docs.bons.ai/inkling-guide-pages/51-concept
+[1]: #concept-reference
 [2]: https://en.wikipedia.org/wiki/Tetris
 [3]: #curricula-and-lessons

@@ -186,7 +186,7 @@ h6:before {
 
 
   .tocify-item>a, .toc-footer li {
-    padding: 5px $nav-padding 5px $nav-padding;
+    padding: .3em $nav-padding .3em $nav-padding;
     display: block;
     overflow-x: hidden;
     white-space: normal;
@@ -199,7 +199,7 @@ h6:before {
     list-style: none;
     margin: 0;
     padding: 0;
-    line-height: 15px;
+    line-height: 1.1em;
   }
 
   li {
@@ -216,6 +216,13 @@ h6:before {
     color: $nav-active-text;
   }
 
+  // Headers are headers.
+  .tocify-header {
+    .tocify-item>a {
+      padding-left: $nav-padding + 0.8em;
+      text-indent: -0.8em;
+    }
+  }
   // Subheaders are the submenus that slide open
   // in the table of contents.
   .tocify-subheader {
@@ -223,9 +230,9 @@ h6:before {
     background-color: $nav-subitem-bg;
     font-weight: 500;
     .tocify-item>a {
-      padding-left: $nav-padding + $nav-indent + 20px;
+      padding-left: $nav-padding + $nav-indent + 1.65em;
       font-size: 12px;
-      text-indent: -20px
+      text-indent: -1.65em
     }
 
     // for embossed look:
@@ -241,8 +248,8 @@ h6:before {
     background-color: $nav-subsubitem-bg;
     font-weight: 400;
     .tocify-item>a {
-      padding-left: $nav-padding + $nav-indent * 2 + 30px;
-      text-indent: -30px;
+      padding-left: $nav-padding + $nav-indent * 2 + 2.5em;
+      text-indent: -2.5em;
       font-size: 12px;
     }
   }

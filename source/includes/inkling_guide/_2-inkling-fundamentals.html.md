@@ -2,7 +2,7 @@
 
 This chapter is intended for developers who have never worked with machine learning.
 
-Inkling is a programming language specifically designed for artificial intelligence (AI); it's a special purpose language. It abstracts away the vast world of dynamic AI algorithms that require expertise in machine learning and enables more developers to program AI. Before you read through this section about the Inkling language, you should familiarize yourself with the various components of the Bonsai Artificial Intelligence Engine, which you can read about in our Getting Started Guide.
+Inkling is a programming language specifically designed for artificial intelligence (AI); it's a special purpose language. It abstracts away the vast world of dynamic AI algorithms that require expertise in machine learning and enables more developers to program AI. Before you read through this section about the Inkling language, you should familiarize yourself with the various components of the Bonsai Artificial Intelligence Engine, which you can read about in our [Getting Started Guide][5].
 
 ###### A Ten-Thousand Foot View
 
@@ -31,6 +31,7 @@ Curricula contain the lesson plan for the lessons that you are using to train yo
 In our Fundamentals Chapter, we go into greater detail about the various Inkling components mentioned above. These are broken into the following topics:
 
 [1]: http://dictionary.cambridge.org/us/dictionary/english/10000-foot-view
-[2]: https://bonsai.quip.com/TsrpAgmShndg
+[2]: #schemas
 [3]: #concepts
-[4]: #5-1-concept
+[4]: ./reference.html#concept-reference
+[5]: ./getting_started.html

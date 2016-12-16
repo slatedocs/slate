@@ -26,10 +26,10 @@ Your mental model can be mapped from left to right, starting with your input. Yo
 
 ```inkling
 concept get_high_score
-    is classifier
-    predicts (PlayerMove)
-   follows input(GameState)
-   feeds output
+  is classifier
+  predicts (PlayerMove)
+  follows input(GameState)
+  feeds output
 end
 ```
 
@@ -49,16 +49,16 @@ To speed up training time and enable to learn the get_high_score concept more co
 
 ```inkling
 concept get_high_score
-    is classifier
-    predicts (PlayerMove)
-    follows input(GameState), keep_paddle_under_ball
-   feeds output
+  is classifier
+  predicts (PlayerMove)
+  follows input(GameState), keep_paddle_under_ball
+  feeds output
 end
 
 concept keep_paddle_under_ball
   is classifier
-   predicts (PlayerMove)
-   follows input(GameState), ball_location
+  predicts (PlayerMove)
+  follows input(GameState), ball_location
   feeds output
 end
 ```

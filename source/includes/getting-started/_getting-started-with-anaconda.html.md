@@ -2,9 +2,9 @@
 
 <aside class="success">Before you begin, you will need to have access to our Beta.</aside>
 
-## Step 1. Install Prerequisites
+## Install Prerequisites
 
-If you *do not* have Anaconda installed on your system, go to our [Let's Get Started!](#let-39-s-get-started) guide instead.
+If you *do not* have Anaconda installed on your system, go to our [Let's Get Started!][2] guide instead.
 
 conda is a tool for installing and managing Python dependencies. For more information about pip, refer to the [Pip documentation](https://pip.pypa.io/en/stable/).
 
@@ -24,7 +24,7 @@ source activate gym-env
 conda install pip
 ```
 
-## Step 2. Setup the Bonsai CLI
+## Setup the Bonsai CLI
 
 Install the Bonsai Command Line Interface tool and configure it. You'll need to have your access code (accessKey). You can find your access code in your account settings at [Bonsai Account Settings](https://beta.bons.ai/accounts/settings).
 
@@ -33,7 +33,7 @@ pip install bonsai-cli
 bonsai configure # Enter key when prompted
 ```
 
-## Step 3. Clone a sample project
+## Clone a sample project
 
 Clone our sample project, Mountain Car. This project uses [OpenAI Gym's][3] Mountain Car simulation.
 
@@ -41,7 +41,7 @@ Clone our sample project, Mountain Car. This project uses [OpenAI Gym's][3] Moun
 git clone https://github.com/BonsaiAI/gym-mountaincar-sample
 ```
 
-## Step 4. Install requirements
+## Install requirements
 
 Install the mountain car requirements from OpenAI Gym.
 
@@ -50,7 +50,7 @@ cd gym-mountaincar-sample
 pip install -r requirements.txt
 ```
 
-## Step 5. Create a BRAIN
+## Create a BRAIN
 
 Create your BRAIN and give it a name. You can also create a BRAIN from your beta.bons.ai BRAIN Dashboard. You will view your BRAIN's progress on the BRAIN Details page.
 
@@ -58,7 +58,7 @@ Create your BRAIN and give it a name. You can also create a BRAIN from your beta
 bonsai brain create myMountainCarBrain
 ```
 
-## Step 6. Load sample inkling into your BRAIN
+## Load sample inkling into your BRAIN
 
 Load our sample inkling file for the mountain car simulation.
 
@@ -66,7 +66,7 @@ Load our sample inkling file for the mountain car simulation.
 bonsai brain load myMountainCarBrain mountaincar.ink
 ```
 
-## Step 7. Train
+## Train
 
 Start the training mode for your BRAIN.
 
@@ -75,7 +75,7 @@ bonsai brain train start myMountainCarBrain
 ```
 ‍
 
-## Step 8. Connect the simulator for training
+## Connect the simulator for training
 
 Connect the simulator to the BRAIN. Training begins automatically. If the simulator gets disconnected, training resumes from the same point when the simulator is reconnected.
 
@@ -83,19 +83,19 @@ Connect the simulator to the BRAIN. Training begins automatically. If the simula
 python mountaincar_simulator.py --train-brain=myMountainCarBrain --headless
 ```
 
-## Step 9. View your BRAIN training status
+## View your BRAIN training status
 
 View your BRAIN's training status as it trains on the simulator.
 
  Go to [**beta.bons.ai**][4].
 
-## Step 10. Close the simulator
+## Close the simulator
 
 Training mountain car takes about 45 minutes.
 
 **Stop the simulator by closing it.**
 
-## Step 11. Stop training
+## Stop training
 
 Stop the training mode.
 
@@ -103,7 +103,7 @@ Stop the training mode.
 bonsai brain train stop myMountainCarBrain
 ```
 ‍
-## Step 12. Use your BRAIN
+## Use your BRAIN
 
 After your BRAIN is finished training, it can play the mountain car game.
 
@@ -112,6 +112,6 @@ python mountaincar_simulator.py --predict-brain=myMountainCarBrain --predict-ver
 ```
 
 [1]: https://bons.ai
-[2]: http://docs.bons.ai/getting-started/lets-get-started
+[2]: ./getting_started.html#let-39-s-get-started
 [3]: https://gym.openai.com/envs/MountainCar-v0
 [4]: https://beta.bons.ai

@@ -16,9 +16,10 @@ Here is the simple form of a curriculum statement:
 
 ```inkling
 curriculum curriculumName
-    train conceptName
-    with trainingSpecifier  #trainingSpecifier can be data, simulator, or generator
-    objective objectiveName #lessons are specified here. For more information, see [Lesson][1]
+  train conceptName
+  with trainingSpecifier  #trainingSpecifier can be data, simulator, or generator
+  objective objectiveName
+    #lessons are specified here.
 end
 ```
 
@@ -34,23 +35,23 @@ The **objective** specifies the termination condition for training.
 
 ```inkling
 simulator mountaincar_simulator(MountainCarConfig) #simulator clause
-     state (GameState)
-     control (Action)
+  state (GameState)
+  control (Action)
 end
 ```
 
 ```inkling
 curriculum high_score_curriculum
-    train high_score
-    with simulator mountaincar_simulator # with simulator clause
-    objective open_ai_gym_default_objective
-       lesson get_high_score
-           configure
-               constrain episode_length with Int8{-1},
-               constrain num_episodes with Int8{-1},
-               constrain deque_size with UInt8{1}
-           until
-               maximize open_ai_gym_default_objective
+train high_score
+with simulator mountaincar_simulator # with simulator clause
+objective open_ai_gym_default_objective
+  lesson get_high_score
+    configure
+      constrain episode_length with Int8{-1},
+      constrain num_episodes with Int8{-1},
+      constrain deque_size with UInt8{1}
+    until
+      maximize open_ai_gym_default_objective
 end
 ```
 ‍
@@ -61,9 +62,9 @@ The simulator clause declares the simulator name and two schemas. The first spec
 
 ```inkling
 schema MountainCarConfig
-   Int8 episode_length,
-   Int8 num_episodes,
-   UInt8 deque_size
+  Int8 episode_length,
+  Int8 num_episodes,
+  UInt8 deque_size
 end
 ```
 ‍
@@ -73,8 +74,8 @@ The second schema specified in the simulator clause is the state schema. It is s
 
 ```inkling
 schema GameState
-   Float32 x_position,
-   Float32 x_velocity
+  Float32 x_position,
+  Float32 x_velocity
 end
 ```
 ‍
@@ -86,13 +87,13 @@ Here is the concept high_score, with its **predict** schema Action:
 
 ```inkling
 schema Action
-   Int8{0, 1, 2} action # an enum whose values describe game moves
+  Int8{0, 1, 2} action # an enum whose values describe game moves
 end
 
 concept high_score
-   is classifier
-    predicts (Action)
-    follows input(GameState)    feeds outputend
+  is classifier
+  predicts (Action)
+  follows input(GameState)    feeds outputend
 ```
 
 The concept high_score trains the Brain to select the next move, which is an Action. Note that the predefined input stream **input** has the schema GameState. This reflects that fact that the simulator has state. The previous move is the state which is input into the selection of the next move.
@@ -109,16 +110,16 @@ So far we have presented a simple version of the curriculum. Inkling supports mu
 curriculum <name>
     train <conceptName>
 [
-    withClause # with clause
+  withClause                        # with clause
 
 ]+[
-    using  [ <simulatorName> | data ] # using clause
-    [
-         assignClause # assignment for training and test data
-         lessonClause # lesson set for this simulator
-   ]+
+  using  [ <simulatorName> | data ] # using clause
+  [
+    assignClause # assignment for training and test data
+    lessonClause # lesson set for this simulator
+  ]+
 
-     end # using
+  end # using
 ]+
 end # curriculum
 ```
@@ -127,13 +128,13 @@ end # curriculum
 
 ```inkling
 with data
-   objective <objectiveFunctionName>
+  objective <objectiveFunctionName>
 
- | with simulator
-     objective <objectiveFunctionName>
+| with simulator
+  objective <objectiveFunctionName>
 
- | with generator
-   objective <objectiveFunctionName>
+| with generator
+  objective <objectiveFunctionName>
 ```
 
 Any simulator or generator referenced in a curriculum must have an associated simulator or generator clause.
@@ -142,14 +143,14 @@ Any simulator or generator referenced in a curriculum must have an associated si
 
 ```c
 simulator <simulatorName>'('<configurationSchema>')' // simulator clause
-    state '('<stateSchema>')' // simulator state
-    control '('<controlSchema>')' // training concept predicts schema
+  state '('<stateSchema>')' // simulator state
+  control '('<controlSchema>')' // training concept predicts schema
 end
 ```
 
 ```c
 generator <generatorName>'('<configurationSchema>')'  // generator clause
-    yield '('<outputSchema>')'    // generator output (yield)
+  yield '('<outputSchema>')'    // generator output (yield)
 end
 ```
 
@@ -170,10 +171,10 @@ end
 
 ```inkling
 curriculum get_high_score_curriculum
-   train get_high_score
-   with simulator breakout_simulator
-   objective score
-     #lesson
+  train get_high_score
+  with simulator breakout_simulator
+  objective score
+    #lesson
 end
 ```
 
@@ -184,7 +185,7 @@ In this example:
 * **curriculumName:** get_high_score_curriculum
 * **conceptName:** get_high_score
 * **trainingSpecifier:** simulator
-*    the keyword to indicate that this is training on a simulator
+* **simulator** the keyword to indicate that this is training on a simulator
 * **simulatorName**: breakout_simulator
 * **objectiveName:** score
 
@@ -197,8 +198,8 @@ from utils import split
 
 schema MNIST_schema
 (
-    String text,
-    Luminance(28, 28) image
+  String text,
+  Luminance(28, 28) image
 )
 ```
 
@@ -210,9 +211,9 @@ copy "mnist-training.csv" into MNIST_data with format = "csv"
 
  # Training 'with data'
 curriculum digit_curriculum
-    train Digit
-    with data
-    objective_ equality  training_data_, _test_data_ = split(MNIST_data, 0.8, shuffle=True)
+  train Digit
+  with data
+  objective_ equality  training_data_, _test_data_ = split(MNIST_data, 0.8, shuffle=True)
     #lessons
 end
 ```
@@ -231,5 +232,3 @@ In this example:
 * **MNIST_data:** the data set used for training and testing.
 * **0.8:** the amount to split the data by. 80% of the data goes to training. The remaining data (20%) goes to testing.
 * **shuffle=True:** sets the shuffle parameter to true.
-
-[1]: https://bonsai.quip.com/WzFXANdJfJvl

@@ -19,7 +19,7 @@ The GameState schema names two records — x_position and y_position — and ass
 
 ```inkling
 schema Action
-   Int8{0,1,2} action
+  Int8{0,1,2} action
 end
 ```
 
@@ -27,9 +27,9 @@ The Action schema names a single record — action — and assigns a constrained
 
 ```inkling
 schema MountainCarConfig
-   Int8 episode_legnth,
-   Int8 num_episodes,
-   UInt8 deque_size
+  Int8 episode_legnth,
+  Int8 num_episodes,
+  UInt8 deque_size
 end
 ```
 
@@ -39,10 +39,10 @@ The MountainCarConfig schema names three records — episode_length, num_episode
 
 ```inkling
 concept high_score
-   is classifier
-   predicts Action
-   follows input(GameState)
-   feeds output
+  is classifier
+  predicts Action
+  follows input(GameState)
+  feeds output
 end
 ```
 
@@ -56,16 +56,16 @@ simulator mountaincar_simulator(MountainCarConfig)
 end
 
 curriculum high_score_curriculum
-   train high_score
-   with simulator mountaincar_simulator
-   objective score
-   lesson get_high_score
-       configure
-           constrain episode_length with Int8{-1},
-           constrain num_episodes with Int8{-1},
-           constrain deque_size with UInt8{1}
-       until
-           maximize score
+  train high_score
+  with simulator mountaincar_simulator
+  objective score
+  lesson get_high_score
+    configure
+      constrain episode_length with Int8{-1},
+      constrain num_episodes with Int8{-1},
+      constrain deque_size with UInt8{1}
+    until
+      maximize score
 end
 ```
 
