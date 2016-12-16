@@ -118,15 +118,15 @@ nav ul li a:visited {
   color: #ffffff;
   text-decoration: none;
 }
-nav ul li a:hover,
+/*nav ul li a:hover,
 nav ul li a:visited:hover {
   background: #2581DC;
   color: #ffffff;
-}
+}*/
 nav ul li a:not(:only-child):after,
 nav ul li a:visited:not(:only-child):after {
   padding-left: 4px;
-  content: ' â–¾';
+  content: ' Ã¢â€“Â¾';
 }
 nav ul li ul li {
   min-width: 190px;
@@ -250,6 +250,19 @@ article {
 }
 
 	
-	
-	
+/*	
+// The dark box is what gives the code samples their dark background.
+// It sits essentially under the actual content block, which has a
+// transparent background.
+// I know, it's hackish, but it's the simplist way to make the left
+// half of the content always this background color. */
+.dark-box {
+  width: 50%;
+  background-color: #393939;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 9999%;
+}
 	
