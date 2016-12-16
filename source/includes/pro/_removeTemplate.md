@@ -6,7 +6,7 @@ key | type | status | comment
 --- | ---- | :----: | ---:
 **Request:** | | |
 bankClientId | string | 1..1 | идентификатор клиента
-templateId | string | 1..1 | логин клиента
+templateId | string | 1..1 | идентификатор шаблона
 **Response:** | | |
 result | string | 1..1 | результат выполнения команды {OK, ERROR}
 **Exception:** | | |
