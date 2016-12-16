@@ -14,6 +14,7 @@
     </style>
     <%= stylesheet_link_tag :screen, media: :screen %>
     <%= stylesheet_link_tag :print, media: :print %>
+	<%= stylesheet_link_tag :test, media: :screen %>
     <%= favicon_tag '/favicon.ico' %>
     <% if current_page.data.search %>
       <%= javascript_include_tag  "all" %>
@@ -26,7 +27,7 @@
 	  
   <div id="flex-container">	  
 	  
-	<div id="primary-nav"><%= link_to 'Getting Started', '/getting_started.html' %> </div>
+	<%= partial "primary-nav-2" %>
 	
 	<div id="main-wrapper">  
 		

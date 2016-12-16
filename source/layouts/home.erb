@@ -14,6 +14,7 @@
     </style>
     <%= stylesheet_link_tag :screen, media: :screen %>
     <%= stylesheet_link_tag :print, media: :print %>
+	  <%= stylesheet_link_tag :test, media: :screen %>
     <%= favicon_tag '/favicon.ico' %>
     <% if current_page.data.search %>
       <%= javascript_include_tag  "all" %>
@@ -26,27 +27,51 @@
 	  
   <div id="flex-container">	  
 	  
-	<div id="primary-nav"><%= link_to 'Getting Started', '/getting_started.html' %> </div>
+	
+	<%= partial "primary-nav-2" %>
 	
 	<div id="main-wrapper">  
 		
-    <a href="#" id="nav-button">
-      <span>
-        NAV
-        <%= image_tag('navbar.png') %>
-      </span>
-    </a>
     
-    <div class="page-wrapper">
-      
-      <div class="content">
-        <%= yield %>
-        <% current_page.data.includes && current_page.data.includes.each do |include| %>
-          <%= partial "includes/#{include}" %>
-        <% end %>
-      </div>
-      
-    </div>
+    
+	<p class="welcome">Welcome to Bonsai Docs</p>
+	<div id="search"><span>Future home of the search bar 🔎</span></div>
+	
+	
+	
+	<div id="browse">
+		
+		<div> 
+			<p class="p2">Inkling Docs</p> 
+			<ul>
+				<li><% link_to '/inkling-guide/2-inkling-fundamentals.html' do %>Inkling Fundamentals<% end %></li>
+				<li><% link_to '/inkling_classic.html#under-the-hood' do %>Under the Hood<% end %></li>
+				<li><% link_to '/inkling_classic.html#curricula-and-lessons' do %>Curricula & Lessons<% end %></li>
+			</ul>
+		</div>
+		
+		
+		<div> 
+			<p class="p2">References</p> 
+			<ul>
+				<li><% link_to '/reference_everything.html#http-api-reference' do %>HTTP API Reference<% end %></li>
+				<li><% link_to '/cli_reference.html' do %>Command Line Interface (CLI)<% end %></li>
+				<li><% link_to '/inkling_classic.html#curricula-and-lessons' do %>Curricula & Lessons<% end %></li>
+			</ul>
+		</div>
+		
+		
+		<div> 
+			<p class="p2">Examples</p> 
+			<ul>
+				<li><% link_to '/inkling_classic.html#example-cart-pole' do %>Cart Pole<% end %></li>
+				<li><% link_to '/inkling_classic.html#example-mountain-car' do %>Mountain Car<% end %></li>
+				<li><% link_to '/inkling_guide/25-curricula-and-lessons.html' do %>Curricula & Lessons<% end %></li>
+			</ul>
+		</div>
+		
+		
+	</div>
 	
     </div>
 	

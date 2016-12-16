@@ -20,13 +20,7 @@ under the License.
 */
 
 
-////////////////////////////////////////////////////////////////////////////////
-// CUSTOM
-////////////////////////////////////////////////////////////////////////////////
 
-#flex-container{display:flex; flex-direction:column;}
-#primary-nav{display:flex; flex-direction:row; justify-content:flex-end; padding:30px 30px;}
-.tocify-wrapper{top:inherit !important; bottom:inherit !important; height:100vh !important;}
 
 ////////////////////////////////////////////////////////////////////////////////
 // GENERAL STUFF
@@ -323,19 +317,7 @@ h6:before {
 
   padding-bottom: 1px; // prevent margin overflow
 
-  // The dark box is what gives the code samples their dark background.
-  // It sits essentially under the actual content block, which has a
-  // transparent background.
-  // I know, it's hackish, but it's the simplist way to make the left
-  // half of the content always this background color.
-  .dark-box {
-    width: $examples-width;
-    background-color: $examples-bg;
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-  }
+  
 
   .lang-selector {
     position: fixed;
@@ -692,3 +674,26 @@ h6:before {
 .highlight, .highlight .w {
   background-color: $code-bg;
 }
+
+
+////////////////////////////////////////////////////////////////////////////////
+// CUSTOM
+////////////////////////////////////////////////////////////////////////////////
+
+#flex-container{display:flex; flex-direction:column;  height:100vh;}
+.tocify-wrapper{top:inherit !important; bottom:inherit !important; height:100vh !important;}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// PRIMARY NAV
+////////////////////////////////////////////////////////////////////////////////
+ 
+//#primary-nav{display:flex; flex-direction:row; justify-content:flex-end; padding-top: 30px; padding-bottom:30px; align-items:center;}
+ 
+ 
+// #nav-links {flex-grow:1; text-align:-webkit-right;}
+
+ 
+  
+  
+

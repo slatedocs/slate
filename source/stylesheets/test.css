@@ -1,0 +1,268 @@
+#flex-container{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;/* margin: 0 30px; */height:100vh;background-color:#ffffff;}
+#primary-nav {background-color: #fffadf;padding: 18px 30px;/* POSITION: FIXED; */Z-INDEX: 0;-ms-flex: 0 0 auto;flex: 0 0 auto;}
+#search {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding: 160px 30px;
+    background-color: #fffadf;
+    text-align: center;
+    /* margin-bottom: 20px; */
+}
+
+body{font-size:16px;}
+
+/*///////////////////////////////////////////////////////////////////////////////
+// LAYOUT
+////////////////////////////////////////////////////////////////////////////////*/
+
+
+#search {padding-top: 25px;padding-bottom: 120px;}
+#search span {background-color:#fafafa;padding: 13px;border: solid 2px hsla(0,6%,92%,1);/* min-width: 300px; */min-width: 57vw;display: inline-block;margin: 0 auto;border-radius: 4px;color: #928d8d;}
+
+#browse {display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-align:stretch;align-items:stretch;-ms-flex: 1 0 auto;flex: 1 0 auto;padding-bottom:30px;/* padding: 0 30px; */background: hsla(30,11%,92%,1);padding-top: 30px;border-top: solid 1px #ccc;}
+
+#browse div {-ms-flex-positive:1;flex-grow:1;background-color:#fafafa;margin-right:20px;border-radius:3px;padding: 20px 40px;padding-top: 15px;border: solid 1px #ccc;width: 100%;}
+
+#browse div:first-of-type { margin-left:20px}
+
+#browse ul  {padding:0;list-style: none;margin: 0;margin-top: 36px;color: #5b6267;}
+#browse ul a {text-decoration:none;color: #5b6267;}
+#browse ul li {margin-bottom:10px;border-bottom: solid 1px hsl(46, 6%, 92%);padding-bottom: 13px;}
+#browse ul li:last-of-type {margin-bottom:0px;border-bottom: none;}
+
+
+#main-wrapper {-ms-flex: 1 0 auto;flex: 1 1 auto;display: -ms-flexbox;display: flex;-ms-flex-direction: column;flex-direction: column;position: relative;/* need this to position inner content */overflow-y: auto;}
+#main-wrapper {background-color: #eaf2f6;}
+.index #main-wrapper{background-color: #fffadf;}
+@media (max-width: 690px) {
+  #browse { -ms-flex-direction:column; flex-direction:column; }
+  #browse div {margin:20px;width: inherit;}
+}
+
+
+
+	
+/*///////////////////////////////////////////////////////////////////////////////
+// PRIMARY NAV
+////////////////////////////////////////////////////////////////////////////////*/
+
+
+	#primary-nav a {font-size: 93%;margin-right: 17px;text-decoration:none;color: #564e1e;}
+	#primary-nav a:hover{text-decoration:underline;}
+	#primary-nav a:last-of-type {margin-right:0;}
+	 .bonsai-logo{height: 22px;}
+
+
+/*///////////////////////////////////////////////////////////////////////////////
+// TYPE
+////////////////////////////////////////////////////////////////////////////////*/
+	
+.p2{font-size: 135%;font-weight: 400;}	
+.welcome{font-size:200%;text-align:center;background-color: transparent;background: none;margin: 0;margin-top: 90px;}
+#browse ul li a:hover {color:#3bb94f;}	
+
+
+
+	
+/*///////////////////////////////////////////////////////////////////////////////
+// THE INCREADIBLE EDIBLE HAMBURGER NAV
+////////////////////////////////////////////////////////////////////////////////*/	
+	
+@charset "UTF-8";
+.navigation {
+  background: #a51919;
+}
+
+.brand {
+  padding-left: 20px;
+  /* float: left; */
+  /* display: inline-block; */
+  text-transform: uppercase;
+  font-size: 1.4em;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+.brand a,
+.brand a:visited {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.nav-container {
+  /* max-width: 1000px; */
+  /* margin: 0 auto; */
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+nav {
+  /* float: right; */
+  display: inline-block;
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+nav ul li {
+  float: left;
+  position: relative;
+}
+nav ul li a,
+nav ul li a:visited {
+  display: block;
+  padding: 0 20px;
+  /* background: #a51919; */
+  color: #ffffff;
+  text-decoration: none;
+}
+/*nav ul li a:hover,
+nav ul li a:visited:hover {
+  background: #2581DC;
+  color: #ffffff;
+}*/
+nav ul li a:not(:only-child):after,
+nav ul li a:visited:not(:only-child):after {
+  padding-left: 4px;
+  content: ' Ã¢â€“Â¾';
+}
+nav ul li ul li {
+  min-width: 190px;
+}
+nav ul li ul li a {
+  padding: 15px;
+  line-height: 20px;
+}
+
+.nav-dropdown {
+  position: absolute;
+  display: none;
+  z-index: 1;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile navigation */
+.nav-mobile {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* background: rgba(0, 0, 0, 0.17); */
+  height: 70px;
+  width: 70px;
+}
+
+@media only screen and (max-width: 800px) {
+  .nav-mobile {
+    display: block;
+  }
+
+  nav {
+    width: 100%;
+    /* padding: 70px 0 15px; */
+    /* margin-top: 10px; */
+  }
+  nav ul {
+    display: none;
+    margin-top: 30px;
+  }
+  nav ul li {
+    float: none;
+    text-align: center;
+  }
+  nav ul li a {
+    padding: 15px;
+    line-height: 20px;
+  }
+  nav ul li ul li a {
+    padding-left: 30px;
+  }
+
+  .nav-dropdown {
+    position: static;
+  }
+  
+  .brand {position: absolute;top: 19px;/* align-self: stretch; *//* display: block; */margin-left: -50%;left: 82%;/* align-self: initial; *//* margin-left: 36%; */padding-left: 0;}
+  
+  #primary-nav{padding-top: 50px;}
+  
+  .welcome {font-size: 140%;margin-top: 60px;}
+  
+  #search {padding-bottom:90px;}
+  
+  #search span {min-width: 77vw;}
+  
+  .bonsai-logo{height: 26px;}
+  
+  .nav-container {/* display: inline-block; *//* margin: 0 auto; */}
+  
+}
+@media screen and (min-width: 800px) {
+  .nav-list {
+    display: block !important;
+  }
+}
+#nav-toggle {
+  position: absolute;
+  left: 18px;
+  top: 22px;
+  cursor: pointer;
+  padding: 10px 35px 16px 0px;
+}
+#nav-toggle span,
+#nav-toggle span:before,
+#nav-toggle span:after {
+  cursor: pointer;
+  border-radius: 1px;
+  height: 3px;
+  width: 28px;
+  background: #2f9a41;
+  position: absolute;
+  display: block;
+  content: '';
+  transition: all 300ms ease-in-out;
+}
+#nav-toggle span:before {
+  top: -10px;
+}
+#nav-toggle span:after {
+  bottom: -10px;
+}
+#nav-toggle.active span {
+  background-color: transparent;
+}
+#nav-toggle.active span:before, #nav-toggle.active span:after {
+  top: 0;
+}
+#nav-toggle.active span:before {
+  transform: rotate(45deg);
+}
+#nav-toggle.active span:after {
+  transform: rotate(-45deg);
+}
+
+article {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+	
+/*	
+// The dark box is what gives the code samples their dark background.
+// It sits essentially under the actual content block, which has a
+// transparent background.
+// I know, it's hackish, but it's the simplist way to make the left
+// half of the content always this background color. */
+.dark-box {
+  width: 50%;
+  background-color: #393939;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 9999%;
+}
+	
