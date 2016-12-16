@@ -57,9 +57,9 @@ $nav-width: 230px !default; // width of the navbar
 $examples-width: 50% !default; // portion of the screen taken up by code examples
 $logo-margin: 20px !default; // margin between nav items and logo, ignored if search is active
 $main-padding: 28px !default; // padding to left and right of content & examples
-$nav-padding: 15px !default; // padding to left and right of navbar
+$nav-padding: 1.5em !default; // padding to left and right of navbar
 $nav-v-padding: 10px !default; // padding used vertically around search boxes and results
-$nav-indent: 10px !default; // extra padding for ToC subitems
+$nav-indent: 1em !default; // extra padding for ToC subitems
 $code-annotation-padding: 13px !default; // padding inside code annotations
 $h1-margin-bottom: 21px !default; // padding under the largest header tags
 $tablet-width: 930px !default; // min width before reverting to tablet size

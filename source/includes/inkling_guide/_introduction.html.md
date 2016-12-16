@@ -12,7 +12,7 @@ This guide contains the following sections to help you get started writing Inkli
 
 And don't forget to check out our other [documentation][10].
 
-[1]: #inkling-fundamentals
-[2]: #examples
+[1]: #introduction-to-artificial-intelligence
+[2]: #inkling-miscellany
 [3]: #under-the-hood
 [10]: .
