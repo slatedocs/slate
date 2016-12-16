@@ -2,7 +2,7 @@
 
 The Bonsai Command Line Interface (CLI) is a text based tool that enables you to configure and control the Bonsai Artificial Intelligence Engine. The CLI is especially useful for automation and connection to other tools. Currently, there are some actions that can only be performed using the CLI, such as loading your inkling file and connecting your simulator.  
 
-```
+```shell
 $ bonsai command --help
 ```
 
@@ -14,7 +14,7 @@ The Bonsai CLI is hierarchical.
 
 The Bonsai CLI command hierarchy.
 
-# Configure Command
+## Configure Command
 
 ```
 $ bonsai configure
@@ -22,9 +22,9 @@ $ bonsai configure
 
 **configure** sets up authentication between you, as a user, and the server. This enables the server to verify that you are allowed to write Inkling code to a specific BRAIN. You can find your access code in your account settings at .
 
-# Brain Group Commands
+## Brain Group Commands
 
-## Create
+###### Create
 
 ```
 $ bonsai brain create brainName
@@ -40,7 +40,7 @@ Brain names can include:
 
 It is case insensitive, but case aware.
 
-## Load
+###### Load
 
 ```
 $ bonsai brain load brainNameinklingFile.ink
@@ -48,9 +48,9 @@ $ bonsai brain load brainNameinklingFile.ink
 
 **load** loads an Inkling file (inklingFile.ink) to a specific BRAIN (brainName).
 
-# Train group commands
+## Train group commands
 
-## Start
+###### Start
 
 ```
 $ bonsai brain train start brainName
@@ -58,7 +58,7 @@ $ bonsai brain train start brainName
 
 **start** turns on/enables training mode for a specific BRAIN (brainName). The BRAIN trains whenever the simulator is connected. If the simulator is disconnected, the BRAIN remains in training mode, and it will train again where it left off when the simulator is reconnected.
 
-## Stop
+###### Stop
 
 ```
 $ bonsai brain train stop brainName
@@ -66,9 +66,9 @@ $ bonsai brain train stop brainName
 
 **stop** turns off training mode for a specific BRAIN (brainName).
 
-# Bonsai CLI --help output
+## Bonsai CLI --help output
 
-## `bonsai --help`
+###### `bonsai --help`
 
 ```
 bonsai --help
@@ -85,7 +85,7 @@ Commands:
   sims       Retrieve information about simulators
 ```
 
-## `bonsai configure --help`
+###### `bonsai configure --help`
 
 ```
 $ bonsai configure --help
@@ -97,7 +97,7 @@ Options:
   --help  Show this message and exit.
 ```
 
-## `bonsai brain --help`
+###### `bonsai brain --help`
 
 ```
 $ bonsai brain --help
@@ -115,7 +115,7 @@ Commands:
   train   Start and stop training on a BRAIN, as well...
 ```
 
-## `bonsai brain train --help`
+###### `bonsai brain train --help`
 
 ```
 $ bonsai brain train --help
@@ -133,7 +133,7 @@ Commands:
   stop    Stops training on the specified BRAIN.
 ```
 
-## `bonsai brain train status --help`
+###### `bonsai brain train status --help`
 
 ```
 $ bonsai brain train status --help
@@ -145,7 +145,7 @@ Options:
   --help  Show this message and exit.
 ```
 
-## `bonsai brain train start --help`
+###### `bonsai brain train start --help`
 
 ```
 $ bonsai brain train start --help
@@ -157,7 +157,7 @@ Options:
   --help  Show this message and exit.
 ```
 
-## `bonsai brain train stop --help`
+###### `bonsai brain train stop --help`
 
 ```
 $ bonsai brain train stop --help

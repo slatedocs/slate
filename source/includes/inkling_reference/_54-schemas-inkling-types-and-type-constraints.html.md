@@ -1,25 +1,20 @@
+## Schemas, Inkling Types, and Type Constraints
 
-[Source](http://docs.bons.ai/inkling-guide-pages/54-schemas-inkling-types-and-type-constraints "Permalink to (5.4) schemas - Bons.ai")
+Reference for the keyword **schema**. Also definitions and discussion of Inkling types and type constraints (which are both used in schema declarations).
 
-# schema
-
-## schemas, Inkling Types, and Type Constraints
-
-Reference for the keyword **schema.** Also definitions and discussion of Inkling types and type constraints (which are both used in schema declarations).
-
-## What is it?
+### What is it?
 
 **schema** (the keyword) describes a named record and its contained fields. Each field in a schema has a name and a type. A field may also have a type constraint that constrains the values that the datum described by this field will take.
 
-## Why do I use it?
+### Why do I use it?
 
 Schemas describe the structure of data in Inkling  streams, such as the predefined input and output streams. In addition many inkling statements (for example **concept** and **curriculum**) use schema references to describe the data that flows in and out of the construct.
 
-## How do I use it?
+### How do I use it?
 
 A sample schema declaration and use:
 
-```
+```inkling
 schema MySchema                   # declare
    UInt8  field1,
    UInt32 field2
@@ -33,40 +28,41 @@ concept MyConcept
 end
 ```
 ‍
-### Rules
+###### Schema Rules
 
 * Inkling statements can reference schemas by name. Above, _MyConcept_ uses _MySchema_ as its **predicts** schema.
 * Statements can use anonymous schemas. That means that a list of fields appears where a schema name could appear. Above, after **follows**, the predefined stream input has an anonymous schema with one field. This is useful in cases where you will only need that information once. In general, anywhere a schema name can appear, an anonymous schema can appear.
 * The set of types supported with schema fields consists of the set of Inkling primitive types and the set of Inkling structured types. These sets are listed below.
 * A schema field that has a primitive type can also have a type constraint that constrains the set of potential values for that field. Examples and syntax of type constraints are given below.
 
-## Schema Declaration Syntax
+### Schema Declaration Syntax
 
 > schemaStmt :=
 
-```
-schema
+```c
+schema <name>
     fieldDclnList
 end
 ```
 
 > fieldDclnList      :=
 
-```
+```c
 fieldDcln [',' fieldDcln  ]*
 ```
 
 > fieldDcln          :=
 
-```
+```c
 scalarDcln                          |
-  structureDcln # see structured types
+  structureDcln // see structured types
 ```
 
 > scalarDcln         :=
 
-```
-  primitiveType                                                typeConstraint?
+```c
+  primitiveType
+  typeConstraint?
   <name>
   [ '[' arraySizeLiteral ']' ]*
 ```
@@ -77,38 +73,39 @@ A named schema is referenced by its name. An anonymous schema is referenced by i
 
 >  schemaRef :=
 
-```
-    '('  ')'            # named schema ref
+```c
+    '(' <name> ')'   // named schema ref
   |
-    '('   ')'  # anonymous schema ref
+    '(' <fieldDclnList>  ')'  // anonymous schema ref
 ```
 
-## Inkling Primitive Types
+###### Inkling Primitive Types
 
 Inkling has a set of primitive types which are used in schema declarations. The integer suffix indicates the size in bits of the type.
 
 > primitiveType :=
 
-```
+```c
 Double | Float64 | Float32 | Int8 | Int16 | Int32 |
 Int64 | UInt8 | UInt16 | UInt32  | UInt64 | Bool | String
 ```
 
-## Inkling structured types
+###### Inkling Structured types
 
 Inkling supports the types Matrix and Luminance (more to come).
 
 > structureDcln      :=
 
-```
+```c
   ( Luminance | Matrix )
     structureInit
+    <name>
 ```
 
 
 > structureInit      :=
 
-```
+```c
 '('
 
   luminanceInit | matrixInit
@@ -118,7 +115,7 @@ Inkling supports the types Matrix and Luminance (more to come).
 
 > luminanceInit      :=
 
-```
+```c
 integerLiteral  ',' integerLiteral
 
  matrixInit         :=
@@ -133,14 +130,14 @@ integerLiteral  ',' integerLiteral
 
 This example shows a schema that has a field with a primitive type and a field with a structured type.
 
-```
+```inkling
 schema MNIST_training_data_schema
    UInt8 label,
    Luminance(28, 28) image
 end
 ```
 ‍
-## Constrained Types
+###### Constrained Type
 
 Constrained types are supported in schemas and also in [lessons][1]. They are constrained by means of a special type of expression called a range expression.
 
@@ -148,7 +145,7 @@ A range expression has the effect of constraining the values of the type to valu
 
 > Here are some examples of this syntax in a schema definition. Curly braces delineate the range expression.
 
-```
+```inkling
 schema MyOutput
     UInt8  {0,1,2,3,4}   label,    # a list of UInt8 values
     String {"a", "bc"}   category, # a list of Strings
@@ -158,27 +155,27 @@ end
 ```
 ‍
 
-### constrained type syntax
+###### constrained type syntax
 
 > constrainedType :=
 
-```
+```c
 numericType
   '{'
-    start ':' [ step':']? stop       # 1:2:10.   Called a 'colon range'. Specifies 'step' (default=1).
+    start ':' [ step':']? stop // 1:2:10.   Called a 'colon range'. Specifies 'step' (default=1).
     |
-    start '.' '.' stop ':' numSteps # 1..10:5  Called a 'dot range'. Specifies 'numsteps'.
+    start '.' '.' stop ':' numSteps //   1..10:5  Called a 'dot range'. Specifies 'numsteps'.
 
   '}'
 ```
 
 > numericType :=
 
-```
+```c
 Double | Float64 | Float32 | Int8 | Int16 | Int32 |  Int64 | UInt8 | UInt16 | UInt32  | UInt64
 ```
 
-### constrained type rules
+###### constrained type rules
 
 ###  For numeric ranges:
 
@@ -186,7 +183,7 @@ Double | Float64 | Float32 | Int8 | Int16 | Int32 |  Int64 | UInt8 | UInt16 | UI
 * For colon range, the step size can be negative only if stop < start.
 * For dot range, number of steps (numSteps) is a positive integer.
 
-###  Examples:
+### Schema Examples:
 
 * **Int64  { 0:4:1 }** is invalid. The step size is larger than the range.
 * **Int64  { 0..1:4 }** is invalid. Values generated are floating point not integer.

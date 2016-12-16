@@ -1,5 +1,5 @@
 ---
-title: Getting Started with Anaconda
+title: Getting Started with Anaconda - Bonsai
 
 language_tabs:
   - shell
@@ -20,7 +20,7 @@ search: true
 
 # Step 1. Install Prerequisites
 
-<aside class="warning">If you *do not* have Anaconda installed on your system, go to our <a href=http://docs.bons.ai/getting-started/lets-get-started>'Let's Get Started</a>! guide instead.</aside>
+If you *do not* have Anaconda installed on your system, go to our [Let's Get Started!][5] guide instead.
 
 <aside class="notice"> conda is a tool for installing and managing Python dependencies. For more information about pip, refer to <a href='https://pip.pypa.io/en/stable/'>the Pip documentation</a>.</aside>
 
@@ -131,3 +131,4 @@ python mountaincar_simulator.py --predict-brain=myMountainCarBrain --predict-ver
 [2]: http://docs.bons.ai/getting-started/lets-get-started
 [3]: https://gym.openai.com/envs/MountainCar-v0
 [4]: https://beta.bons.ai
+[5]: ./getting_started.html#let-39-s-get-started

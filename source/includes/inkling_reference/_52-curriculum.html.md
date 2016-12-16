@@ -1,20 +1,20 @@
-# curriculum
+## curriculum
 
 Reference for the keyword **curriculum**. Also, describes the keywords: **train**, **with**, **data**
 
-## What is it?
+### What is it?
 
 The **curriculum** (keyword) declares a set of lessons that are used to teach concepts. Each curriculum contains a lesson or set of lessons and trains a single concept.
 
-## Why do I use it?
+### Why do I use it?
 
 A curriculum is used to teach a concept. The curriculum defines what concept is being taught (see the train clause below). Every concept needs a corresponding curriculum to teach it. A curriculum defines a set of lessons used to train the concept.
 
-## How do I use it?
+### How do I use it?
 
 Here is the simple form of a curriculum statement:
 
-```
+```inkling
 curriculum curriculumName
     train conceptName
     with trainingSpecifier  #trainingSpecifier can be data, simulator, or generator
@@ -32,14 +32,14 @@ The **objective** specifies the termination condition for training.
 
 **Note:** When the trainingSpecifier is **data**, the objective must be either the keywords **equality** or **linear_distance.** When the training specifier is **simulator** or **generator**, the objective names a function which is specified in the associated simulator or generator. The use of simulators or generators requires an auxiliary clause, the **simulator** or **generator** clause respectively. The example below uses the game Mountain Car from OpenAI Gym to illustrate the simulator clause.  To explore this example more fully, refer to the examples in our Examples chapter.
 
-```
+```inkling
 simulator mountaincar_simulator(MountainCarConfig) #simulator clause
      state (GameState)
      control (Action)
 end
 ```
 
-```
+```inkling
 curriculum high_score_curriculum
     train high_score
     with simulator mountaincar_simulator # with simulator clause
@@ -59,7 +59,7 @@ The simulator clause declares the simulator name and two schemas. The first spec
 
 > Here is the schema declaration:
 
-```
+```inkling
 schema MountainCarConfig
    Int8 episode_length,
    Int8 num_episodes,
@@ -71,7 +71,7 @@ The names in this schema are the names referenced in the configure clause of les
 
 The second schema specified in the simulator clause is the state schema. It is specified after the **state** keyword in the simulator clause. This is the schema that defines what is sent to the lesson. Recall that a simulator has state. That means that input to the lesson will consist of the state of the game as a result of the previous lesson execution. For mountaincar this schema is called GameState and prior state consists of prior position. Here is its definition:
 
-```
+```inkling
 schema GameState
    Float32 x_position,
    Float32 x_velocity
@@ -84,7 +84,7 @@ Finally, note that high_score_curriculum trains a concept called high_score.  (I
 
 Here is the concept high_score, with its **predict** schema Action:
 
-```
+```inkling
 schema Action
    Int8{0, 1, 2} action # an enum whose values describe game moves
 end
@@ -101,59 +101,59 @@ The **predicts** schema Action also appears in the simulator clause discussed ab
 
 So far we have presented a simple version of the curriculum. Inkling supports multiple simulators and generators within a single curriculum. Here is the full syntax for the curriculum statement, which introduces a usingClause and a withClause (where **using** and **with** will specify simulators). These were not needed in our example above because we were using a single simulator.
 
-## Curriculum Statement Syntax
+###### Curriculum Statement Syntax
 
 > curriculumStmt :=
 
-```
-curriculum
-    train
+```inkling
+curriculum <name>
+    train <conceptName>
 [
-    withClause                             # with clause
+    withClause # with clause
 
 ]+[
-    using  [  | data ]      # using clause
+    using  [ <simulatorName> | data ] # using clause
     [
-         assignClause        # assignment for training and test data
-         lessonClause        # lesson set for this simulator
+         assignClause # assignment for training and test data
+         lessonClause # lesson set for this simulator
    ]+
 
-     end     # using
+     end # using
 ]+
-end         # curriculum
+end # curriculum
 ```
 
 > withClause :=
 
-```
+```inkling
 with data
-   objective
+   objective <objectiveFunctionName>
 
  | with simulator
-     objective
+     objective <objectiveFunctionName>
 
  | with generator
-   objective
+   objective <objectiveFunctionName>
 ```
 
 Any simulator or generator referenced in a curriculum must have an associated simulator or generator clause.
 
-## Simulator / Generator Clause Syntax
+###### Simulator / Generator Clause Syntax
 
-```
-simulator '('')' # simulator clause
-    state '('')'     # simulator state
-    control '('')' # training concept predicts schema
+```c
+simulator <simulatorName>'('<configurationSchema>')' // simulator clause
+    state '('<stateSchema>')' // simulator state
+    control '('<controlSchema>')' // training concept predicts schema
 end
 ```
 
-```
-generator '('')'  # generator clause
-    yield '('')'          # generator output (yield)
+```c
+generator <generatorName>'('<configurationSchema>')'  // generator clause
+    yield '('<outputSchema>')'    // generator output (yield)
 end
 ```
 
-### rules
+###### Curriculum Rules
 
 * One curriculum per concept. Also, every concept must have a curriculum.
 * You can train with **data**, **simulators**, or **generators**. These are the values allowed as training specifiers. Also, every simulator or generator must be declared with a simulator or generator clause, respectively.
@@ -164,11 +164,11 @@ end
 * If the usingClause is present (that is, if the simplified curriculum syntax is not being used), there must be one usingClause for every withClause.
 * The objective is always required but if the trainingSpecifier is **data**, the objective must be either equality or linear_distance.
 
-## Examples
+###### Curriculum Examples
 
 > Our curriculum is to train the get_high_score concept.
 
-```
+```inkling
 curriculum get_high_score_curriculum
    train get_high_score
    with simulator breakout_simulator
@@ -192,7 +192,7 @@ In this example:
 
 This curriculum trains the Digit concept. This example references the MNIST database which is used to train for recognition of handwritten digits.  This example shows the use of the **data** training specifier (which is not supported during private beta) for that data set. When training **with data** the labeled data set must be read in from a file and then prepared and split into training and test partitions. That is shown below.
 
-```
+```inkling
 from utils import split
 
 schema MNIST_schema
@@ -204,7 +204,7 @@ schema MNIST_schema
 
 > Here the MNIST labeled data set is brought into inkling:
 
-```
+```inkling
 datastore MNIST_data(MNIST_schema)
 copy "mnist-training.csv" into MNIST_data with format = "csv"
 

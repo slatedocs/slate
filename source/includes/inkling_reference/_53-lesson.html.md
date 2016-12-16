@@ -1,20 +1,20 @@
-# lesson
+## lesson
 
 Reference for the keyword **lesson**. Also, describes the keywords: **follows**, **configure**, **constrain**, **until**, **minimize**, **maximize**, **configure**, **with**, and **end.**
 
-## What is it?
+### What is it?
 
 The **lesson** (keyword) declares an individual lesson for the concept being trained by the curriculum.  Lessons are contained within curriculum statements. A curriculum can contain multiple lessons.
 
-## Why do I use it?
+### Why do I use it?
 
 Lessons give you control over the training of the mental model. They allow you to break down the training of the concept into phases where each phase is implemented by a lesson.
 
-## How do I use it?
+### How do I use it?
 
 > Below we show the clauses a lesson can contain.
 
-```
+```inkling
 lesson lessonName
   follows prevLessonName
   configureClause
@@ -25,7 +25,7 @@ untilClause
 
 Lessons allow the machine to learn the concept in stages rather than all at once. In the example below we show lessons that break into stages the task of  playing the game breakout. The first lesson, constant_breakout, trains the machine with a set of fixed values as configuration parameters. The second lesson, vary_breakout, which **follows** constant_breakout, trains the machine with a set of configuration parameters that vary according to specified type constraints.
 
-```
+```inkling
 schema BreakoutConfig   # configured in configureClause     UInt32 level,
     UInt8{1:4} paddle_width,
     Float32 bricks_percent
@@ -77,13 +77,13 @@ Note that the **constrain** name in the example above specifies a field in the c
 
 You can find more discussion of type constraint rules in the [schema][1] section. (Schema declarations can also use type constraints.)
 
-## Lesson Syntax
+###### Lesson Syntax
 
 > lessonStatement :=
 
-```
-lesson**
-    [follows ]?
+```inkling
+lesson <lessonName>
+    [follows <lessonName>]?
     configureClause?
     trainClause?
     untilClause?
@@ -91,59 +91,59 @@ lesson**
 ```
 ‍
 
-### Lesson Configure Clause Syntax
+###### Lesson Configure Clause Syntax
 
 > configureClause :=
 
-```
+```inkling
 configure
-       [constrain  with constrainedType]+
+       [constrain <configSchemaFieldName> with constrainedType]+
 ```
 
 >  constrainedType :=
 
-```
+```c
 numericType
 '{'
-    start ':' [ step':']? stop   # 1:2:10. Called a 'colon range'.
-                                # Specifies 'step' (default=1).
+    start ':' [ step':']? stop // 1:2:10. Called a 'colon range'.
+                               // Specifies 'step' (default=1).
 |
-    start '.' '.' stop ':' numSteps # 1..10:5  Called a 'dot range'.
-                                          # Specifies 'numsteps'.    '}'
+    start '.' '.' stop ':' numSteps // 1..10:5  Called a 'dot range'.
+                                    // Specifies 'numsteps'.    '}'
 ```
 
 > numericType :=
 
-```
+```c
 Double | Float64 | Float32 | Int8 | Int16 | Int32 |  Int64 | UInt8 | UInt16 | UInt32  | UInt64
 ```
 ‍
 
 The testClause and the trainClause have identical syntax except for their keyword (**train** or **test**).  However they both vary depending on the trainingSpecifier in the curriculum. The **expect** is only available in those cases that have known expected values, and that occurs when the trainingSpecifier is **data** or **generator**.
 
-## Lesson Train/Test Clause Syntax
+###### Lesson Train/Test Clause Syntax
 
 > trainClause :=
 
-```
+```inkling
 train
   fromClause
-    send
+    send <name>
     [expect <name>]?    # only valid for data or generator trainingSpecifer
 ```
 
 > testClause :=
 
-```
+```inkling
 test
   fromClause
-    send
+    send <name>
     [expect <name>]?    # only valid for data or generator trainingSpecifer
 ```
 ‍
 The fromClause in the test/train syntax is used to name and describe the training data that is sent by the system (either from a labeled data set, in the **data** case, or by the generator or simulator) to the lesson.  Here is an example where the fromClause is shown in a curricululm which trains the machine to recognize line segments in an image. The generator segments_generator sends an image and expects num_segments in return. The returned num_segments is expected to match the generator's num_segments value.
 
-```
+```inkling
 ‍generator segments_generator(UInt8 segmentCount)
     yield (segments_training_schema)     # training will yield data with this schema
 end
@@ -170,7 +170,7 @@ end
 ‍
 The untilClause in the lesson specifies the termination condition for training. The untilClause in our breakout example above was this:
 
-```
+```inkling
 until
   minimize ball_location_distance
 ```
@@ -179,15 +179,15 @@ This means train until the curriculum objective (ball_location_distance) is mini
 
 ‍
 
-## Lesson Until Clause Syntax
+###### Lesson Until Clause Syntax
 
 > untilClause :=
 
-```
+```inkling
 until
   (
 
-    [ minimize | maximize ]
+    [ minimize | maximize ] <objectiveFunctionName>
     |
     <objectiveFunctionName> relOp constantExpression               )
 ```
@@ -200,7 +200,7 @@ until
 
 The untilClause is only required if the curriculum trainingSpecifier is **simulator**.  If this curriculum has a trainingSpecifier of **data** or **generator**, the until clause is optional. If it is not present, a default with value minimize will be created.
 
-## Lesson Clauses Table
+###### Lesson Clauses Table
 
 Lesson clauses have defaults so if a clause is not specified the default will be assumed. Also in certain circumstances not all  clauses are available. This table specifies the rules. Recall that the trainingSpecifier appears after the keyword **with** in the curriculum.
 
@@ -208,7 +208,7 @@ Lesson clauses have defaults so if a clause is not specified the default will be
 
 Table for Lesson Clauses
 
-### Rules
+###### Lesson Rules
 
 * To summarize the table above, for a lesson associated with a trainingSpecifier of **data**: one or both of the lesson clauses **train** and **test** are required (and there are no default versions of these clauses).
 * Test clause is optional for any particular lesson. However if the last lesson has no test clause it is an error.

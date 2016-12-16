@@ -1,16 +1,16 @@
-# Example: Cart Pole
+## Example: Cart Pole
 
 In this example, we'll walk you through the various statements that are part of the cart pole inkling file. Each statement is followed by an explanation of the statement.
 
-## What is Cart Pole?
+###### What is Cart Pole?
 
 Cart Pole is a classic control problem. [OpenAI Gym][1] describes it as:
 
 _A pole is attached by an un-actuated joint to a cart, which moves along a frictionless track. The system is controlled by applying a force of +1 or -1 to the cart. The pendulum starts upright, and the goal is to prevent it from falling over. A reward of +1 is provided for every timestep that the pole remains upright. The episode ends when the pole is more than 15 degrees from vertical, or the cart moves more than 2.4 units from the center._
 
-## Schemas
+###### Schema: `GameState`, `Action`, and `CartPoleConfig`
 
-```
+```inkling
 schema GameState
    Float32 position,
    Float32 velocity,
@@ -19,9 +19,9 @@ schema GameState
 end
 ```
 
-The schema GameState names four records — position, velocity, angle, and rotation — and assigns a type to them. This information is input from the simulation.
+The schema `GameState` names four records — position, velocity, angle, and rotation — and assigns a type to them. This information is input from the simulation.
 
-```
+```inkling
 schema Action
    Int8{0,1} action
 end
@@ -29,7 +29,7 @@ end
 
 The schema Action names a record — action —  and assigns it a constrained type.
 
-```
+```inkling
 schema CartPoleConfig
    Int8 episode_length,
    Int8 num_episodes,
@@ -39,9 +39,9 @@ end
 
  The schema CartPoleConfig names three records — episode_length, num_episodes, and deque_size — and assigns each of them a type.
 
-## Concept `balance`
+###### Concept: `balance`
 
-```
+```inkling
 concept balance
    is classifier
    predicts Action
@@ -52,9 +52,9 @@ end
 
 The concept is named balance, and it takes input from the simulator. That input is the records in the schema GameState. The balance concept outputs the move the AI should make in the simulator. This output is the record in the Action schema.
 
-## Curriculum and Lesson
+###### Curriculum: `balance_curriculum`
 
-```
+```inkling
 simulator cartpole_simulator(CartPoleConfig)
   state (GameState)
 end

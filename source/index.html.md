@@ -28,13 +28,18 @@ I've set up a draft of the following pages to show off the new format. These are
 
 The listed endpoints reflect the site map available at [Coggle](https://coggle.it/diagram/V_RLZO99g4VT4gaT/e87816a3386a4dcf961fcd2df53621233acaf8c1f3c0e2c735189ae0b0d4c90c)
 
-"Everything" pages represent compilations of full sections; I'm gradually going through and correcting name collision. The pages listed below are likely a superset of the pages we would want to link, and we would then use deep-links with anchors to fill out the switchboard.
+"Classic" style pages reflect the original ordering. "New" style is the concatenated Details/Reference page.
 
-Page | Status | Style
--------------- | -------------- | --------------
+Name collision is almost totally resolved.
+
+| Page     | Status        | Style |
+|----------|---------------|-------|
 [Getting Started][1] | Second Draft | Modular
-[Inkling New][2] | Zeroth Draft | Modular
-[Inkling Classic][3] | Second Draft | Modular
+[Inkling New][3] | Second Draft | Modular
+-- [Overview][11] | Second Draft | Modular
+-- [Details][12] | Second Draft | Modular
+-- [References][13] | Second Draft | Modular
+-- [Miscellany][14] | Second Draft | Modular
 Mastermind | Absent | N/A
 [References][4] | Second Draft | Modular
 
@@ -42,21 +47,19 @@ Mastermind | Absent | N/A
 
 ## Where did the **Chapter/Section** numbers go?
 
-These are temporarily removed until the site tree settles down, and will likely be replaced.
-
-## Why are we splitting the [Everything Inkling][3] page?
-
-This body of work includes overlapping sections with similar names, which is confusing to the reader and breaks Slate functionality. In addition, we're conjoining a notional, concept-based approach with a concrete, lexicon-based approach.
-
-That said, the modular nature of this implementation allows us to continue to pursue this approach as long as we address name collision. Further, as they say in my neighborhood, _¿porque no dos?_ Using the modular approach, we can build topical as well as comprehensive Inkling pages out of the same bucket of [includes][6].
+These are temporarily removed until the site tree settles down, and ~will likely~ may be replaced. We have not yet worked out the implementation of numbering on re-usable sections.
 
 ## What are Modular pages?
 
 Slate supports the notion of [includes][6], which allow us to put the documentation into a database of sorts and rebuild it from parts. This works by holding the pages in the `includes` folder. A display page is made by adding an `includes` section to the front matter, and then listing the included pages in order.
 
+## How do I report issues?
+
+File an issue at https://bonsai.phacility.com and tag Documentation project
+
 ## What about headers/footers/toc_footers?
 
-These are still being designed. It seems like there's likely to be a full-width header including primary-nav to all sections.
+These are still being designed. There's likely to be a full-width header including primary-nav to all sections.
 
 ## How do I get back to the beginning?
 
@@ -64,7 +67,11 @@ There's a **Return Home** link in the footer of the table of contents.
 
 [1]: /getting_started.html "Getting Started"
 [2]: /inkling_classic.html "Classic Inkling"
-[3]: /inkling_everything.html "New Inkling"
-[4]: /reference_everything.html "Anaconda CLI instructions"
+[3]: /inkling.html "New Inkling"
+[4]: /reference.html "Reference"
 [5]: /cli_reference.html "CLI Reference"
 [6]: https://github.com/lord/slate/wiki/Using-Includes "Using Includes: Slate Documentation"
+[11]: /inkling.html#overview
+[12]: /inkling.html#details
+[13]: /inkling.html#inkling-reference
+[14]: /inkling.html#inkling-miscellany

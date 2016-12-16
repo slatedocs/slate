@@ -1,9 +1,6 @@
+## Inkling: A New Language
 
-[Source](http://docs.bons.ai/inkling-guide-pages/21-what-kind-of-lanuage-is-inkling "Permalink to (2.1) Inkling: A New Language - Bons.ai")
-
-# Inkling: A New Language
-
-## What kind of language is Inkling?
+###### What kind of language is Inkling?
 
 Inkling is a special purpose language for writing AI programs. The language has a blend of declarative and functional styles; it's modeled after ideas in SQL and python. We like to describe Inkling as the worlds first pedagogical programming language. What is Pedagogical Programming?
 

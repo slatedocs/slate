@@ -39,6 +39,42 @@ html, body {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+// SECTION NUMBERS
+////////////////////////////////////////////////////////////////////////////////
+
+body {counter-reset: section;}
+h1 {counter-reset: subsection;}
+h2 {counter-reset: subsubsection;}
+h1:before {
+  counter-increment: section;
+  content:counter(section) ". ";
+}
+h2:before {
+  counter-increment: subsection;
+  content:counter(section) "." counter(subsection) " ";
+}
+h6:before {
+  counter-increment: subsubsection;
+  content:counter(section) "." counter(subsection) "." counter(subsubsection) " ";
+}
+
+.tocify {counter-reset: toc-section;}
+.tocify-header {counter-reset: toc-subsection;}
+.tocify-subheader {counter-reset: toc-subsubsection;}
+.tocify-header > .tocify-item > a:before {
+  counter-increment: toc-section;
+  content:counter(toc-section) " ";
+}
+.tocify-header > .tocify-subheader > .tocify-item > a:before {
+  counter-increment: toc-subsection;
+  content:counter(toc-section) "." counter(toc-subsection) " ";
+}
+.tocify-header > .tocify-subheader > .tocify-subheader > .tocify-item > a:before {
+  counter-increment: toc-subsubsection;
+  content:counter(toc-section) "." counter(toc-subsection) "." counter(toc-subsubsection) " ";
+}
+
+////////////////////////////////////////////////////////////////////////////////
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -150,11 +186,10 @@ html, body {
 
 
   .tocify-item>a, .toc-footer li {
-    padding: 0 $nav-padding 0 $nav-padding;
+    padding: 5px $nav-padding 5px $nav-padding;
     display: block;
     overflow-x: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    white-space: normal;
   }
 
   // The Table of Contents is composed of multiple nested
@@ -164,7 +199,7 @@ html, body {
     list-style: none;
     margin: 0;
     padding: 0;
-    line-height: 28px;
+    line-height: 15px;
   }
 
   li {
@@ -188,14 +223,27 @@ html, body {
     background-color: $nav-subitem-bg;
     font-weight: 500;
     .tocify-item>a {
-      padding-left: $nav-padding + $nav-indent;
+      padding-left: $nav-padding + $nav-indent + 20px;
       font-size: 12px;
+      text-indent: -20px
     }
 
     // for embossed look:
     @include embossed-bg;
     &>li:last-child {
       box-shadow: none; // otherwise it'll overflow out of the subheader
+    }
+  }
+
+  // Sub-subheaders
+  .tocify-subheader .tocify-subheader {
+    display: none;
+    background-color: $nav-subsubitem-bg;
+    font-weight: 400;
+    .tocify-item>a {
+      padding-left: $nav-padding + $nav-indent * 2 + 30px;
+      text-indent: -30px;
+      font-size: 12px;
     }
   }
 
@@ -346,7 +394,7 @@ html, body {
 
   h1 {
     @extend %header-font;
-    font-size: 30px;
+    font-size: 200%;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     border-bottom: 1px solid #ccc;
@@ -363,7 +411,7 @@ html, body {
 
   h2 {
     @extend %header-font;
-    font-size: 20px;
+    font-size: 150%;
     margin-top: 4em;
     margin-bottom: 0;
     border-top: 1px solid #ccc;
@@ -379,17 +427,27 @@ html, body {
     border-top: none;
   }
 
-  h3, h4, h5, h6 {
+  h3, h4, h5 {
     @extend %header-font;
-    font-size: 15px;
+    font-size: 110%;
     margin-top: 2.5em;
     margin-bottom: 0.8em;
   }
 
-  h4, h5, h6 {
-    font-size: 10px;
+  h4, h5 {
+    font-size: 110%;
   }
 
+  h6 {
+    @extend %header-font;
+    font-size: 120%;
+    margin-top: 2em;
+    margin-bottom: 0;
+    border-top: 1px solid #ccc;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
+  }
   hr {
     margin: 2em 0;
     border-top: 2px solid $examples-bg;
