@@ -175,7 +175,7 @@ html, body {
   .tocify-focus {
     box-shadow: 0px 1px 0px $nav-active-shadow;
     //background-color: $nav-active-bg;
-    background-image: linear-gradient( to right, #1a5769, #1797a4 );
+    background-image: linear-gradient( to right, $nav-active-bg-gradient1, $nav-active-bg-gradient2 );
     color: $nav-active-text;
   }
 
