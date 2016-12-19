@@ -15,6 +15,7 @@ set :js_dir, 'javascripts'
 set :images_dir, 'images'
 set :fonts_dir, 'fonts'
 
+
 # Activate the syntax highlighter
 activate :syntax
 
@@ -40,5 +41,18 @@ configure :build do
 end
 
 # Deploy Configuration
+sftp_credentials = YAML::load_file(File.expand_path('~/.pt-api-sftp-credentials.yml'))
+
+activate :deploy do |deploy|
+  deploy.deploy_method   = :sftp
+  deploy.host            = sftp_credentials["host"]
+  deploy.port            = sftp_credentials["port"]
+  deploy.path            = sftp_credentials["path"]
+  # Optional Settings
+  deploy.user     = sftp_credentials["user"]
+  deploy.password = sftp_credentials["password"]
+end
+
+
 # If you want Middleman to listen on a different port, you can set that below
 set :port, 4567
