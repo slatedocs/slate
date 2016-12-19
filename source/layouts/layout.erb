@@ -22,6 +22,8 @@ under the License.
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><%= current_page.data.title || "API Documentation" %></title>
 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,500" rel="stylesheet">
+
     <style>
       <%= Rouge::Themes::Base16::Monokai.render(:scope => '.highlight') %>
     </style>
@@ -41,7 +43,7 @@ under the License.
         <%= image_tag('navbar.png') %>
       </span>
     </a>
-    <div class="tocify-wrapper">
+    <div class="tocify-wrapper logo">
       <%= image_tag "logo.png" %>
       <% if language_tabs %>
         <div class="lang-selector">

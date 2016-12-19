@@ -174,7 +174,8 @@ html, body {
   // This is the currently selected ToC entry
   .tocify-focus {
     box-shadow: 0px 1px 0px $nav-active-shadow;
-    background-color: $nav-active-bg;
+    //background-color: $nav-active-bg;
+    background-image: linear-gradient( to right, $nav-active-bg-gradient1, $nav-active-bg-gradient2 );
     color: $nav-active-text;
   }
 
@@ -624,4 +625,9 @@ html, body {
 
 .highlight, .highlight .w {
   background-color: $code-bg;
+}
+
+.logo img {
+    width: 70%;
+    margin: 15px 15%;
 }
