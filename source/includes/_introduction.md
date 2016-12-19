@@ -11,16 +11,6 @@ Bem-vindo ao guia de referências da API do Fast Notas! É através desta API qu
 
 Método | Endpoint | Descrição
 -------------- | -------------- | --------------
-GET | `/addresses` | Retorna todos endereços
-POST | `/addresses` | Cria um endereço
-GET | `/addresses/:id` | Retorna um endereço
-PUT | `/addresses/:id`  | Atualiza os parâmetros
-DELETE | `/addresses/:id` | Deleta um endereço
-GET | `/phones` | Retorna todos telefones
-POST | `/phones` | Cria um telefone
-GET | `/phones/:id` | Retorna um telefone
-PUT | `/phones/:id` | Atualiza os parâmetros
-DELETE | `/phones/:id` | Deleta um telefone
 GET | `/companies`| Retorna todas empresas
 GET | `/companies/:id`| Retorna uma empresa específica
 GET | `/customers` | Retorna todos clientes

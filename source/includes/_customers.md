@@ -34,8 +34,17 @@
     -d 'name=Carolina' \
     -d 'registry_code=11111111111' \
     -d 'email=exemplo@gmail.com' \
-    -d 'phone_id=bed01a89-2ff8-4ef2-8d0b-586a3bcbba3f' \
-    -d 'address_id=b7658863-988b-4e44-9632-a93a282dd41a'
+    -d 'address[street]= Rua Doutor Diogo de Faria' \
+    -d 'address[number]=775' \
+    -d 'address[additional_details]=Cj. 123' \
+    -d 'address[zipcode]=04037003' \
+    -d 'address[neighborhood]=Vila Mariana' \
+    -d 'address[city]=São Paulo' \
+    -d 'address[state]=SP' \
+    -d 'phone[phone_type]=landline' \
+    -d 'phone[number]=12345678' \
+    -d 'phone[area_code]=11' \
+    -d 'phone[country_code]=55'
  ```
 
   > Exemplo de retorno em JSON:
@@ -75,8 +84,20 @@
   **name**  <br> <p> obrigatório </p> | *Nome do cliente*
   **registry_code**  <br> <p> obrigatório </p> | *Documento do cliente (CPF ou CNPJ)*
   **email**  <br> <p> obrigatório </p> | *Email do cliente*
-  **address_id** <br> <p> obrigatório </p> |  *Id do endereço do cliente*
-  **phone_id** <br> |  *Id do telefone do cliente*
+  **address[zipcode]** <br>  <p> obrigatório </p> | *Código Postal do cliente*
+  **address[number]**  <p> obrigatório </p> |  *Número do endereço do cliente*
+  **address[country]** | *Código do país no formato ISO 3166-1 alpha-2. Exemplo: BR*
+  **address[state]** | *Código do estado no formato ISO 3166-2. Exemplo: SP*
+  **address[city]** | *Cidade do cliente*
+  **address[neighborhood]** | *Bairro do cliente*
+  **address[street]** | *Rua do cliente*
+  **address[additional_details]** | *Complemento do endereço do cliente*
+  **phone[phone_type]** | *Telefone residencial ou celular*
+  **phone[number]** | *Número do telefone do cliente sem separadores*
+  **phone[area_code]** | *Código de área do município*
+  **phone[country_code]**  | *Código do país*
+  **phone[extension]**  | *Ramal*
+
 
 <br> <br> <br> <br> <br> <br>
 ## Retornando um cliente
