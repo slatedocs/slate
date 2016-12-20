@@ -107,6 +107,7 @@ body{font-size:16px;}
   display: flex;
   -ms-flex-align: center;
   align-items: center;
+  background: inherit;
 }
 
 nav {
@@ -221,7 +222,7 @@ nav ul li ul li a {
   .nav-container{
   /* display: inline-block; */
   /* margin: 0 auto; */
-  background: inherit;
+  width: 20em;
   }
 }
 @media screen and (min-width: 800px) {
