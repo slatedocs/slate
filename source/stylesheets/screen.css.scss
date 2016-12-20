@@ -315,6 +315,9 @@ h6:before {
 // PAGE LAYOUT AND CODE SAMPLE BACKGROUND
 ////////////////////////////////////////////////////////////////////////////////
 
+#main-wrapper {
+  padding-top: 65px;
+}
 .page-wrapper {
   margin-left: $nav-width;
   position: relative;
@@ -324,7 +327,7 @@ h6:before {
 
   padding-bottom: 1px; // prevent margin overflow
 
-  
+
 
   .lang-selector {
     position: fixed;
@@ -694,13 +697,8 @@ h6:before {
 ////////////////////////////////////////////////////////////////////////////////
 // PRIMARY NAV
 ////////////////////////////////////////////////////////////////////////////////
- 
+
 //#primary-nav{display:flex; flex-direction:row; justify-content:flex-end; padding-top: 30px; padding-bottom:30px; align-items:center;}
- 
- 
+
+
 // #nav-links {flex-grow:1; text-align:-webkit-right;}
-
- 
-  
-  
-
