@@ -5,11 +5,11 @@
   left: 0;
   top: 0;
   right: 0;
-  z-index: 5000;
+  z-index: 11;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
   position: fixed!important;
-  width: 100%!important;
+  width: 100%;
   height: 30px;
   }
 #search {
@@ -161,7 +161,6 @@ nav ul li ul li a {
   position: absolute;
   top: 0;
   right: 0;
-  /* background: rgba(0, 0, 0, 0.17); */
   height: 70px;
   width: 70px;
 }
@@ -196,9 +195,20 @@ nav ul li ul li a {
     position: static;
   }
 
-  .brand {position: absolute;top: 19px;/* align-self: stretch; *//* display: block; */margin-left: -50%;left: 82%;/* align-self: initial; *//* margin-left: 36%; */padding-left: 0;}
+  .brand {
+    position: absolute;
+    top: 19px;
+    /* align-self: stretch; */
+    /* display: block; */
+    /*margin-left: -50%;*/
+    /*left: 82%;*/
+    /* align-self: initial; */
+    /* margin-left: 36%; */
+    padding-left: 0;}
 
-  #primary-nav{padding-top: 50px;}
+  #primary-nav{
+    width: inherit;
+  }
 
   .welcome {font-size: 140%;margin-top: 60px;}
 
@@ -208,8 +218,11 @@ nav ul li ul li a {
 
   .bonsai-logo{height: 26px;}
 
-  .nav-container {/* display: inline-block; *//* margin: 0 auto; */}
-
+  .nav-container{
+  /* display: inline-block; */
+  /* margin: 0 auto; */
+  background: inherit;
+  }
 }
 @media screen and (min-width: 800px) {
   .nav-list {
