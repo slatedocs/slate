@@ -24,13 +24,13 @@
   </head>
 
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
-	  
-  <div id="flex-container">	  
-	  
+
+  <div id="flex-container">
+
 	<%= partial "primary-nav-2" %>
-	
-	<div id="main-wrapper">  
-		
+
+	<div id="main-wrapper">
+
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -38,7 +38,7 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-   
+
       <% if language_tabs.any? %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
@@ -68,7 +68,7 @@
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
-      <div class="content">
+      <div id="content-block" class="content">
         <%= yield %>
         <% current_page.data.includes && current_page.data.includes.each do |include| %>
           <%= partial "includes/#{include}" %>
@@ -88,10 +88,17 @@
         <% end %>
       </div>
     </div>
-	
+
     </div>
-	
+
   </div>
-  
+  <!-- <script>
+  var h = document.getElementById("content-block").offsetHeight;
+  var boxen = document.getElementsByClassName("dark-box")
+  for (i = 0; i < boxen.length; i++) {
+    boxen[i].style.height = h + "px";
+  }
+  </script> -->
+
   </body>
 </html>
