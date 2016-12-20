@@ -1,5 +1,17 @@
 #flex-container{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;/* margin: 0 30px; */height:100vh;background-color:#ffffff;}
-#primary-nav {background-color: #fffadf;padding: 18px 30px;/* POSITION: FIXED; */Z-INDEX: 0;-ms-flex: 0 0 auto;flex: 0 0 auto;}
+#primary-nav {
+  background-color: #fffadf;
+  padding: 18px 30px;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 5000;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  position: fixed!important;
+  width: 100%!important;
+  height: 30px;
+  }
 #search {
     padding-top: 100px;
     padding-bottom: 100px;
@@ -31,7 +43,7 @@ body{font-size:16px;}
 #browse ul li:last-of-type {margin-bottom:0px;border-bottom: none;}
 
 
-#main-wrapper {-ms-flex: 1 0 auto;flex: 1 1 auto;display: -ms-flexbox;display: flex;-ms-flex-direction: column;flex-direction: column;position: relative;/* need this to position inner content */overflow-y: auto;}
+#main-wrapper {-ms-flex: 1 0 auto;flex: 1 1 auto;display: -ms-flexbox;display: flex;-ms-flex-direction: column;flex-direction: column;position: relative;/* need this to position inner content overflow-y: auto;*/}
 #main-wrapper {background-color: #eaf2f6;}
 .index #main-wrapper{background-color: #fffadf;}
 @media (max-width: 690px) {
@@ -41,7 +53,7 @@ body{font-size:16px;}
 
 
 
-	
+
 /*///////////////////////////////////////////////////////////////////////////////
 // PRIMARY NAV
 ////////////////////////////////////////////////////////////////////////////////*/
@@ -56,18 +68,18 @@ body{font-size:16px;}
 /*///////////////////////////////////////////////////////////////////////////////
 // TYPE
 ////////////////////////////////////////////////////////////////////////////////*/
-	
-.p2{font-size: 135%;font-weight: 400;}	
+
+.p2{font-size: 135%;font-weight: 400;}
 .welcome{font-size:200%;text-align:center;background-color: transparent;background: none;margin: 0;margin-top: 90px;}
-#browse ul li a:hover {color:#3bb94f;}	
+#browse ul li a:hover {color:#3bb94f;}
 
 
 
-	
+
 /*///////////////////////////////////////////////////////////////////////////////
 // THE INCREADIBLE EDIBLE HAMBURGER NAV
-////////////////////////////////////////////////////////////////////////////////*/	
-	
+////////////////////////////////////////////////////////////////////////////////*/
+
 @charset "UTF-8";
 .navigation {
   background: #a51919;
@@ -89,7 +101,7 @@ body{font-size:16px;}
 }
 
 .nav-container {
-  /* max-width: 1000px; */
+   max-width: 95%;
   /* margin: 0 auto; */
   display: -ms-flexbox;
   display: flex;
@@ -183,21 +195,21 @@ nav ul li ul li a {
   .nav-dropdown {
     position: static;
   }
-  
+
   .brand {position: absolute;top: 19px;/* align-self: stretch; *//* display: block; */margin-left: -50%;left: 82%;/* align-self: initial; *//* margin-left: 36%; */padding-left: 0;}
-  
+
   #primary-nav{padding-top: 50px;}
-  
+
   .welcome {font-size: 140%;margin-top: 60px;}
-  
+
   #search {padding-bottom:90px;}
-  
+
   #search span {min-width: 77vw;}
-  
+
   .bonsai-logo{height: 26px;}
-  
+
   .nav-container {/* display: inline-block; *//* margin: 0 auto; */}
-  
+
 }
 @media screen and (min-width: 800px) {
   .nav-list {
@@ -249,8 +261,8 @@ article {
   padding: 10px;
 }
 
-	
-/*	
+
+/*
 // The dark box is what gives the code samples their dark background.
 // It sits essentially under the actual content block, which has a
 // transparent background.
@@ -263,6 +275,5 @@ article {
   right: 0;
   top: 0;
   bottom: 0;
-  height: 9999%;
+  /*height: 9999%;*/
 }
-	

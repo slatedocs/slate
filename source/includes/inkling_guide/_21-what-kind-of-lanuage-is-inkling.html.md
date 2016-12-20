@@ -26,7 +26,9 @@ Inkling is a special purpose language, meaning that it is a language for writing
 
 ### Inkling is a Functional language
 
-In a functional programming language, a function defines a scope and can only modify what is in that scope. In Inkling, every concept takes data as input and sends data as output. Each concept is self contained, and there is no shared information between concepts unless you explicitly declare it. This means that no information is kept as state unless you specifically declare it. This makes Inkling a [functional programming][1] language. **For example:**
+In a functional programming language, a function defines a scope and can only modify what is in that scope. In Inkling, every concept takes data as input and sends data as output. Each concept is self contained, and there is no shared information between concepts unless you explicitly declare it. This means that no information is kept as state unless you specifically declare it. This makes Inkling a [functional programming][1] language.
+
+**For example:**
 
 * Python and Javascript can be programmed in a functional way, but they are not pure functional languages. F# is a pure functional programming language.
 * R, matlab, Java and prolog are not functional programming languages.

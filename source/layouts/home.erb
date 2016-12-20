@@ -24,58 +24,58 @@
   </head>
 
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
-	  
-  <div id="flex-container">	  
-	  
-	
+
+  <div id="flex-container">
+
+
 	<%= partial "primary-nav-2" %>
-	
-	<div id="main-wrapper">  
-		
-    
-    
+
+	<div id="main-wrapper">
+
+
+
 	<p class="welcome">Welcome to Bonsai Docs</p>
 	<div id="search"><span>Future home of the search bar 🔎</span></div>
-	
-	
-	
+
+
+
 	<div id="browse">
-		
-		<div> 
-			<p class="p2">Inkling Docs</p> 
+
+		<div>
+			<p class="p2">Inkling Docs</p>
 			<ul>
-				<li><% link_to '/inkling-guide/2-inkling-fundamentals.html' do %>Inkling Fundamentals<% end %></li>
-				<li><% link_to '/inkling_classic.html#under-the-hood' do %>Under the Hood<% end %></li>
-				<li><% link_to '/inkling_classic.html#curricula-and-lessons' do %>Curricula & Lessons<% end %></li>
+				<li><% link_to '/inkling.html#introduction-to-artificial-intelligence' do %>Inkling Fundamentals<% end %></li>
+				<li><% link_to '/inkling.html#under-the-hood' do %>Under the Hood<% end %></li>
+				<li><% link_to '/inkling.html#curricula-and-lessons' do %>Curricula & Lessons<% end %></li>
 			</ul>
 		</div>
-		
-		
-		<div> 
-			<p class="p2">References</p> 
+
+
+		<div>
+			<p class="p2">References</p>
 			<ul>
-				<li><% link_to '/reference_everything.html#http-api-reference' do %>HTTP API Reference<% end %></li>
-				<li><% link_to '/cli_reference.html' do %>Command Line Interface (CLI)<% end %></li>
-				<li><% link_to '/inkling_classic.html#curricula-and-lessons' do %>Curricula & Lessons<% end %></li>
+				<li><% link_to '/reference.html#http-api-reference' do %>HTTP API Reference<% end %></li>
+				<li><% link_to '/reference.html#cli-reference' do %>Command Line Interface (CLI)<% end %></li>
+				<li><% link_to '/reference.html#curriculum' do %>Curriculum<% end %></li>
 			</ul>
 		</div>
-		
-		
-		<div> 
-			<p class="p2">Examples</p> 
+
+
+		<div>
+			<p class="p2">Examples</p>
 			<ul>
-				<li><% link_to '/inkling_classic.html#example-cart-pole' do %>Cart Pole<% end %></li>
-				<li><% link_to '/inkling_classic.html#example-mountain-car' do %>Mountain Car<% end %></li>
-				<li><% link_to '/inkling_guide/25-curricula-and-lessons.html' do %>Curricula & Lessons<% end %></li>
+				<li><% link_to '/inkling.html#example-cart-pole' do %>Cart Pole<% end %></li>
+				<li><% link_to '/inkling.html#example-mountain-car' do %>Mountain Car<% end %></li>
+				<li><% link_to '/inkling.html#curricula-and-lessons' do %>Curricula & Lessons<% end %></li>
 			</ul>
 		</div>
-		
-		
+
+
 	</div>
-	
+
     </div>
-	
+
   </div>
-  
+
   </body>
 </html>

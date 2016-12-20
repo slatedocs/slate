@@ -12,10 +12,10 @@ _A pole is attached by an un-actuated joint to a cart, which moves along a frict
 
 ```inkling
 schema GameState
-   Float32 position,
-   Float32 velocity,
-   Float32 angle,
-   Float32 rotation
+  Float32 position,
+  Float32 velocity,
+  Float32 angle,
+  Float32 rotation
 end
 ```
 
@@ -23,7 +23,7 @@ The schema `GameState` names four records — position, velocity, angle, and rot
 
 ```inkling
 schema Action
-   Int8{0,1} action
+  Int8{0,1} action
 end
 ```
 
@@ -31,9 +31,9 @@ The schema Action names a record — action —  and assigns it a constrained ty
 
 ```inkling
 schema CartPoleConfig
-   Int8 episode_length,
-   Int8 num_episodes,
-   UInt8 deque_size
+  Int8 episode_length,
+  Int8 num_episodes,
+  UInt8 deque_size
 end
 ```
 
@@ -43,10 +43,10 @@ end
 
 ```inkling
 concept balance
-   is classifier
-   predicts Action
-   follows input(GameState)
-   feeds output
+  is classifier
+  predicts Action
+  follows input(GameState)
+  feeds output
 end
 ```
 
@@ -60,16 +60,16 @@ simulator cartpole_simulator(CartPoleConfig)
 end
 
 curriculum balance_curriculum
-   train balance
-   with simulator cartpole_simulator
-   objective up_time
-   lesson balancing
-       configure
-           constrain episode_length with Int8{-1}
-           constrain num_episodes with Int8{-1}
-           constrain deque_size with UInt9{1}
-       until
-            maximize up_time
+  train balance
+  with simulator cartpole_simulator
+  objective up_time
+  lesson balancing
+    configure
+      constrain episode_length with Int8{-1}
+      constrain num_episodes with Int8{-1}
+      constrain deque_size with UInt8{1}
+    until
+      maximize up_time
 end
 ```
 

@@ -16,56 +16,58 @@ Lessons give you control over the training of the mental model. They allow you t
 
 ```inkling
 lesson lessonName
-  follows prevLessonName
-  configureClause
-trainClause
-testClause
-untilClause
+    follows prevLessonName
+    configureClause
+  trainClause
+  testClause
+  untilClause
 ```
 
 Lessons allow the machine to learn the concept in stages rather than all at once. In the example below we show lessons that break into stages the task of  playing the game breakout. The first lesson, constant_breakout, trains the machine with a set of fixed values as configuration parameters. The second lesson, vary_breakout, which **follows** constant_breakout, trains the machine with a set of configuration parameters that vary according to specified type constraints.
 
 ```inkling
-schema BreakoutConfig   # configured in configureClause     UInt32 level,
-    UInt8{1:4} paddle_width,
-    Float32 bricks_percent
+schema BreakoutConfig   # configured in configureClause
+  UInt32 level,
+  UInt8{1:4} paddle_width,
+  Float32 bricks_percent
 end
 
 curriculum ball_location_curriculum
-    train ball_location
-    with simulator breakout_simulator
-    objective ball_location_distance
+  train ball_location
+  with simulator breakout_simulator
+  objective ball_location_distance
 
-        lesson constant_breakout
-            configure           # configure to constant values
-              constrain bricks_percent with Float32{0.5},
-              constrain level with UInt32{1},    # e.g. level = 1 constrain paddle_width with UInt8{4}
-            train
-              from frame in breakout_simulator
-              select frame
-              send frame
-            test
-              from frame in breakout_simulator
-              select frame
-              send frame
-            until
-              minimize ball_location_distance
+    lesson constant_breakout
+      configure           # configure to constant values
+        constrain bricks_percent with Float32{0.5},
+        constrain level with UInt32{1},    # e.g. level = 1
+        constrain paddle_width with UInt8{4}
+      train
+        from frame in breakout_simulator
+        select frame
+        send frame
+      test
+        from frame in breakout_simulator
+        select frame
+        send frame
+      until
+        minimize ball_location_distance
 
-        lesson vary_breakout follows constant_breakout
-            configure          # configure to type constraints
-              constrain bricks_percent with Float32{0.1:0.01:1.0},
-              constrain level with UInt32{1:100}, # e.g. level varies from 1..100
-              constrain paddle_width with UInt8{1:4}
-            train
-              from frame in breakout_simulator
-                select frame
-                send frame
-            test
-                from frame in breakout_simulator
-                select frame
-                send frame
-            until
-                minimize ball_location_distance
+    lesson vary_breakout follows constant_breakout
+      configure          # configure to type constraints
+      constrain bricks_percent with Float32{0.1:0.01:1.0},
+      constrain level with UInt32{1:100}, # e.g. level varies from 1..100
+      constrain paddle_width with UInt8{1:4}
+    train
+      from frame in breakout_simulator
+      select frame
+      send frame
+    test
+      from frame in breakout_simulator
+      select frame
+      send frame
+    until
+      minimize ball_location_distance
 end
 ```
 ‍
@@ -83,11 +85,11 @@ You can find more discussion of type constraint rules in the [schema][1] section
 
 ```inkling
 lesson <lessonName>
-    [follows <lessonName>]?
-    configureClause?
-    trainClause?
-    untilClause?
-    testClause?
+  [follows <lessonName>]?
+  configureClause?
+  trainClause?
+  untilClause?
+  testClause?
 ```
 ‍
 
@@ -97,7 +99,7 @@ lesson <lessonName>
 
 ```inkling
 configure
-       [constrain <configSchemaFieldName> with constrainedType]+
+  [constrain <configSchemaFieldName> with constrainedType]+
 ```
 
 >  constrainedType :=
@@ -105,11 +107,12 @@ configure
 ```c
 numericType
 '{'
-    start ':' [ step':']? stop // 1:2:10. Called a 'colon range'.
-                               // Specifies 'step' (default=1).
+  start ':' [ step':']? stop // 1:2:10. Called a 'colon range'.
+                             // Specifies 'step' (default=1).
 |
-    start '.' '.' stop ':' numSteps // 1..10:5  Called a 'dot range'.
-                                    // Specifies 'numsteps'.    '}'
+  start '.' '.' stop ':' numSteps // 1..10:5  Called a 'dot range'.
+                                  // Specifies 'numsteps'.
+'}'
 ```
 
 > numericType :=
@@ -128,8 +131,9 @@ The testClause and the trainClause have identical syntax except for their keywor
 ```inkling
 train
   fromClause
-    send <name>
-    [expect <name>]?    # only valid for data or generator trainingSpecifer
+  send <name>
+  [expect <name>]?    # only valid for data or generator
+trainingSpecifer
 ```
 
 > testClause :=
@@ -137,34 +141,35 @@ train
 ```inkling
 test
   fromClause
-    send <name>
-    [expect <name>]?    # only valid for data or generator trainingSpecifer
+  send <name>
+  [expect <name>]?    # only valid for data or generator
+trainingSpecifer
 ```
 ‍
 The fromClause in the test/train syntax is used to name and describe the training data that is sent by the system (either from a labeled data set, in the **data** case, or by the generator or simulator) to the lesson.  Here is an example where the fromClause is shown in a curricululm which trains the machine to recognize line segments in an image. The generator segments_generator sends an image and expects num_segments in return. The returned num_segments is expected to match the generator's num_segments value.
 
 ```inkling
 ‍generator segments_generator(UInt8 segmentCount)
-    yield (segments_training_schema)     # training will yield data with this schema
+  yield (segments_training_schema)     # training will yield data with this schema
 end
 
 schema segments_training_schema
-    UInt8{0:10} num_segments,
-    Luminance(28, 28) image
+  UInt8{0:10} num_segments,
+  Luminance(28, 28) image
 end
 
 curriculum segments_curriculum
-    train Segments
-    with generator segments_generator
-    objective segments_objective
-        lesson segments
-           configure
-               constrain segmentCount with UInt8{0:10}
-           train
-               from item in segments_generator # segments_generator's yield clause
-                   select item                 # specifies the appropriate schema.
-                   send item.image             # A field in segments_training_schema
-                   expect item.num_segments    # A field in segments_training_schema
+  train Segments
+  with generator segments_generator
+  objective segments_objective
+    lesson segments
+      configure
+        constrain segmentCount with UInt8{0:10}
+    train
+      from item in segments_generator # segments_generator's yield clause
+        select item                 # specifies the appropriate schema.
+        send item.image             # A field in segments_training_schema
+        expect item.num_segments    # A field in segments_training_schema
 end
 ```
 ‍
@@ -186,10 +191,10 @@ This means train until the curriculum objective (ball_location_distance) is mini
 ```inkling
 until
   (
-
     [ minimize | maximize ] <objectiveFunctionName>
     |
-    <objectiveFunctionName> relOp constantExpression               )
+    <objectiveFunctionName> relOp constantExpression
+  )
 ```
 
 > relOp :=
@@ -214,11 +219,11 @@ Table for Lesson Clauses
 * Test clause is optional for any particular lesson. However if the last lesson has no test clause it is an error.
 * The _follows_ clause on the lesson is optional. **Note:** If there is no _follows_ clause and the lessons are executed in parallel, training will be slower.
 * To summarize the table above: for a lesson associated with a trainingSpecifier of **generator** or **simulator**:
-    - if neither the **test** or **train** lesson clauses are present, defaults for       both clauses are generated. (See the above table for default details.)       Otherwise, no defaults are generated.
+    - if neither the **test** or **train** lesson clauses are present, defaults for both clauses are generated. (See the above table for default details.) Otherwise, no defaults are generated.
 * Lesson statements appear within curriculum statements.
 * Lesson statements may contain the following keywords: configure, train, test, and until.
 * Lessons appear after the objective clause in curriculums.
 * Lessons can be ordered, using the **follows** clause. Note that this ordering is a suggestion to the instructor, not a hard and fast rule.
 
-[1]: http://docs.bons.ai/inkling-guide-pages/54-schemas-inkling-types-and-type-constraints
+[1]: #schemas-inkling-types-and-type-constraints
 [2]: https://daks2k3a4ib2z.cloudfront.net/57bf257ce45825764c5cb54b/57e8edb6507ff363506fcb75_Screen%20Shot%202016-09-26%20at%2005.42.50.png

@@ -16,7 +16,7 @@ There are several factors you can use to determine what your objective should be
 
 ### Frequency
 
-Frequency matters in training. The time between the AI's decision making and whether or not the decision was good needs to be kept short.  For example, if you're teaching an AI to play Pacman, you want to choose an objective like _score_ instead of an objective like_ level_.
+Frequency matters in training. The time between the AI's decision making and whether or not the decision was good needs to be kept short.  For example, if you're teaching an AI to play Pacman, you want to choose an objective like _score_ instead of an objective like _level_.
 
 In Pacman, your score changes more often, probably many times during a level, but your level can only change 256 times. Your AI would have to beat an entire level to be rewarded. The length of time between a decision the AI makes and the reward should have a higher frequency and should scale with the as the AI learns.
 
@@ -34,11 +34,11 @@ In an Inkling program, your objective is going to be part of your curriculum sta
 
 ```inkling
 curriculum _curriculumName
-   train _conceptName
-   with _trainingSpecifier
-   objective _objectiveName
-   # lessons are specified here.
+    train _conceptName
+    with _trainingSpecifier
+  objective _objectiveName
+    # lessons are specified here.
 end
 ```
 
-[1]: http://docs.bons.ai/inkling-guide-pages/53-lesson
+[1]: #lesson
