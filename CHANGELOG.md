@@ -1,5 +1,18 @@
 # Changelog
 
+## Version 1.4.0
+
+*November 24, 2016*
+
+- Upgrade Middleman and Rouge gems, should hopefully solve a number of bugs
+- Update some links in README
+- Fix broken Vagrant startup script
+- Fix some problems with deploy.sh help message
+- Fix bug with language tabs not hiding properly if no error
+- Add `!default` to SASS variables
+- Fix bug with logo margin
+- Bump tested Ruby versions in .travis.yml
+
 ## Version 1.3.3
 
 *June 11, 2016*

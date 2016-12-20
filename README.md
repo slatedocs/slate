@@ -21,7 +21,7 @@ Features
 
 * **Write code samples in multiple languages** — If your API has bindings in multiple programming languages, you can easily put in tabs to switch between them. In your document, you'll distinguish different languages by specifying the language name at the top of each code block, just like with Github Flavored Markdown.
 
-* **Out-of-the-box syntax highlighting** for [almost 100 languages](http://rouge.jneen.net/), no configuration required.
+* **Out-of-the-box syntax highlighting** for [over 100 languages](https://github.com/jneen/rouge/wiki/List-of-supported-languages-and-lexers), no configuration required.
 
 * **Automatic, smoothly scrolling table of contents** on the far left of the page. As you scroll, it displays your current position in the document. It's fast, too. We're using Slate at TripIt to build documentation for our new API, where our table of contents has over 180 entries. We've made sure that the performance remains excellent, even for larger documents.
 
@@ -37,7 +37,7 @@ Getting Started with Slate
 You're going to need:
 
  - **Linux or OS X** — Windows may work, but is unsupported.
- - **Ruby, version 2.0 or newer**
+ - **Ruby, version 2.2.5 or newer**
  - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
 
 ### Getting Set Up
@@ -58,7 +58,7 @@ vagrant up
 
 You can now see the docs at http://localhost:4567. Whoa! That was fast!
 
-Now that Slate is all set up your machine, you'll probably want to learn more about [editing Slate markdown](https://github.com/lord/slate/wiki/Markdown-Syntax), or [how to publish your docs](https://github.com/lord/slate/wiki/Deploying-Slate).
+Now that Slate is all set up on your machine, you'll probably want to learn more about [editing Slate markdown](https://github.com/lord/slate/wiki/Markdown-Syntax), or [how to publish your docs](https://github.com/lord/slate/wiki/Deploying-Slate).
 
 If you'd prefer to use Docker, instructions are available [in the wiki](https://github.com/lord/slate/wiki/Docker).
 
@@ -66,9 +66,13 @@ Companies Using Slate
 ---------------------------------
 
 * [NASA](https://api.nasa.gov)
-* [IBM Cloudant](https://docs.cloudant.com/api.html)
-* [Travis-CI](https://docs.travis-ci.com/api/)
+* [IBM](https://docs.cloudant.com/api.html)
+* [Sony](http://developers.cimediacloud.com)
 * [Mozilla](http://mozilla.github.io/localForage/)
+* [Best Buy](https://bestbuyapis.github.io/api-documentation/)
+* [Travis-CI](https://docs.travis-ci.com/api/)
+* [Greenhouse](https://developers.greenhouse.io/harvest.html)
+* [Woocommerce](http://woocommerce.github.io/woocommerce-rest-api-docs/)
 * [Appium](http://appium.io/slate/en/master)
 * [Dwolla](https://docs.dwolla.com/)
 * [Clearbit](https://clearbit.com/docs)
