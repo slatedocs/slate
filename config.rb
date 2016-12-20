@@ -41,18 +41,20 @@ configure :build do
 end
 
 # Deploy Configuration
-sftp_credentials = YAML::load_file(File.expand_path('~/.pt-api-sftp-credentials.yml'))
+credentials_file_name = File.expand_path('~/.pt-api-sftp-credentials.yml')
+if File.exists?(credentials_file_name)
+  sftp_credentials = YAML::load_file(credentials_file_name)
 
-activate :deploy do |deploy|
-  deploy.deploy_method   = :sftp
-  deploy.host            = sftp_credentials["host"]
-  deploy.port            = sftp_credentials["port"]
-  deploy.path            = sftp_credentials["path"]
-  # Optional Settings
-  deploy.user     = sftp_credentials["user"]
-  deploy.password = sftp_credentials["password"]
+  activate :deploy do |deploy|
+    deploy.deploy_method   = :sftp
+    deploy.host            = sftp_credentials["host"]
+    deploy.port            = sftp_credentials["port"]
+    deploy.path            = sftp_credentials["path"]
+    # Optional Settings
+    deploy.user     = sftp_credentials["user"]
+    deploy.password = sftp_credentials["password"]
+  end
 end
-
 
 # If you want Middleman to listen on a different port, you can set that below
 set :port, 4567
