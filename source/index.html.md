@@ -17,6 +17,7 @@ includes:
   - pagination
   - projects
   - users
+  - custom_fields
   - kittens_example
   - errors
 
