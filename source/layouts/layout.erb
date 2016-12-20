@@ -68,7 +68,7 @@
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
-      <div id="content-block" class="content">
+      <div class="content">
         <%= yield %>
         <% current_page.data.includes && current_page.data.includes.each do |include| %>
           <%= partial "includes/#{include}" %>
@@ -92,13 +92,6 @@
     </div>
 
   </div>
-  <!-- <script>
-  var h = document.getElementById("content-block").offsetHeight;
-  var boxen = document.getElementsByClassName("dark-box")
-  for (i = 0; i < boxen.length; i++) {
-    boxen[i].style.height = h + "px";
-  }
-  </script> -->
 
   </body>
 </html>
