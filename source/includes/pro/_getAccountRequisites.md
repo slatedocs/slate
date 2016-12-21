@@ -28,6 +28,9 @@ bic | string | 0..1 | БИК
 beneficaryName | string | 0..1 | Наименование бенифициара
 taxpayerId | string | 0..1 | ИНН
 account | string | 0..1 | Идентификатор счёта
+bankswift | string | 0..1 | СВИФТ банка
+corbank | string | 0..1 | Банк-корреспондент
+corswift | string | 0..1 | СВИФТ Банк-корреспондента
 details | string | 0..1 | Дополнительная информация
 **Exception:** | | |
 BankClientNotExistsException | string | 0..1 | клиент с запрошенным bankClientId не существует
