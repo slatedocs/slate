@@ -34,6 +34,6 @@ Vagrant.configure(2) do |config|
       echo "Starting up middleman at http://localhost:4567"
       echo "If it does not come up, check the ~/middleman.log file for any error messages"
       cd /vagrant
-      bundle exec middleman server --force-polling -l 1 &> ~/middleman.log &
+      bundle exec middleman server --watcher-force-polling --watcher_latency=1 &> ~/middleman.log &
     SHELL
 end

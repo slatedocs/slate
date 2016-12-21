@@ -1,5 +1,5 @@
-Make sure you've checked off all these things before submitting:
+!!!!! STOP AND READ !!!!!
 
-- [ ] This pull request isn't for a company's fork, it's intended for the upstream Slate shared by everybody.
-- [ ] This pull request is submitted to the `dev` branch.
-- [ ] If it makes frontend changes, this pull request has been tested in the latest version of Firefox, Chrome, IE, and Safari.
+If the dropdown above says "base fork: lord/master", you are submitting your change to ALL USERS OF SLATE, not just your company. This is probably not what you want. Click "base fork" to change it to the right place.
+
+If you're actually trying to submit a change to upstream Slate, please submit to our dev branch, PRs sent to the master branch are generally rejected.
