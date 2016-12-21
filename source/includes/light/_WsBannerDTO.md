@@ -30,12 +30,6 @@ placement | [BannerPlacement](#bannerplacement) | 1..1 | область разм
 type | [BannerType](#bannertype) | 0..1 | тип активности баннера
 target | string | 0..1 | направление перехода
 
-**deprecated:**
-
- |||
---- | ---- | :----: | ---:
-landingURL | string | 0..1 | ссылка, открывающаяся по клику на баннере
-
 ### BannerType
 
 key | comment

@@ -11,5 +11,3 @@
 ### iPhone
 
 - **improved** support for iOS 10
-
-<aside class="warning">Раздел в разработке</aside>
