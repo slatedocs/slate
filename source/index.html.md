@@ -462,9 +462,205 @@ The operation object definition is as follows
 
 Parameter | Required | Description
 --------- | ------- | -----------
+<<<<<<< Updated upstream
 type | true | Can be `MUTATE_LOCK`, `ADD_USER`, `REMOVE_USER`
 locked | true (if type is `MUTATE_LOCK`) | Boolean indicating if the lock should be locked or unlocked
 duration | false (only if type is `MUTATE_LOCK` and `locked` is true) | Number of seconds the lock should be unlocked for
 user | true (if type is `ADD_USER`) | ID of user to add
 publicKey | true (if type is `ADD_USER`) | Public key of user to add
 users | true (if type is `REMOVE_USER`) | List of user IDs to remove
+=======
+type | true | Must be `MUTATE_LOCK`
+locked | true | Boolean indicating if the lock should be locked or unlocked
+duration | false | Number of seconds the lock should be unlocked for
+
+
+## Share A Lock
+
+```shell
+curl 'https://api.doordeck.com/auth/token/' \
+  -X POST \
+  -H 'content-type: application/json' \
+  --data-binary '{"email":"USERNAME","password":"PASSWORD"}' \
+  | jq -r .privateKey \
+  | base64 -D \
+  | openssl pkcs8 -nocrypt -inform DER -outform PEM -out privatekey.pem
+
+HEADER='{"alg":"RS256","typ":"JWT"}'
+BODY='{"iss":"USER_ID","sub":"00000000-0000-0000-0000-000000000000","nbf":1473083829,"iat":1473083829,"exp":1473083889,"operation":{"type":"ADD_USER","publicKey":PUBLIC_KEY,"user":"11111111-1111-1111-1111-111111111111"}}'
+HEADER_B64=`echo -n $HEADER | base64 | sed 's/+/-/g;s/\//_/g;s/=//g'`
+BODY_B64=`echo -n $BODY | base64  | sed 's/+/-/g;s/\//_/g;s/=//g'`
+SIGNATURE_B64=`echo -n $HEADER_B64.$BODY_B64 | openssl sha -sha256 -sign privatekey.pem | base64 | sed 's/+/-/g;s/\//_/g;s/=//g'`
+JWT=`echo -n $HEADER_B64.$BODY_B64.$SIGNATURE_B64`
+
+curl 'https://api.doordeck.com/device/00000000-0000-0000-0000-000000000000/execute'
+  -X POST
+  -H 'authorization: Bearer TOKEN'
+  -H 'content-type: application/json;charset=UTF-8'
+  --data-binary "$JWT"
+```
+
+> - Replace `00000000-0000-0000-0000-000000000000` with the lock's ID
+> - Replace `USER_ID` with the user's ID (obtained from decoding their auth token)
+> - Replace `PUBLIC_KEY` with the invitee's public key 
+> - Replace `11111111-1111-1111-1111-111111111111` with the invitee's user ID,
+> - Replace `USERNAME` and `PASSWORD` with the appropriate credentials
+
+This endpoint allows operations to be performed on a lock, such as lock, unlock, add/remove user. Requests to this endpoint must be signed and formed as a JSON web token.
+
+### HTTP Request
+
+`POST https://api.doordeck.com/device/LOCK_ID/execute`
+
+Replace `LOCK_ID` with the appropriate lock ID.
+
+<aside class="success">
+If a request expires within the next 60 seconds, a 200 is returned upon success, if a request expires in more than 60 seconds, a 202 is returned to indicate the request has been queued for the device.
+</aside>
+
+### Request Parameters
+
+The header is formed of the following fields.
+
+Parameter | Required | Description
+--------- | ------- | -----------
+alg | true | `RS256`, RSA signed with a 256 bit SHA hash
+typ | true | `JWT`, JSON web token
+
+The body is formed of the following fields.
+
+Parameter | Required | Description
+--------- | ------- | -----------
+iss | true | Issuer, this should be the user's ID
+sub | true | Subject, this should be the lock's ID
+nbf | true | Not before, a Unix timestamp indicating the earliest date the request is valid from
+iat | true | Issued at, the current Unix timestamp
+exp | true | Expires, a Unix timestamp indicating when the request should expire, requests to change the lock status should be valid for up to one minute, other requests can have a much longer expiry time
+jti | false (but highly recommended) | User generated, unique ID used for tracking the request status and preventing replay attacks. UUIDs are recommended here.
+operation | true | A JSON object containing the instructions of the lock
+
+The operation object definition is as follows
+
+Parameter | Required | Description
+--------- | ------- | -----------
+type | true | Must be `ADD_USER`
+user | true | ID of user to add
+publicKey | true | Public key of user to add
+
+## Get A User’s Public Key
+
+This endpoint allows the retrieval of a user's public key along with their ID. 
+
+```shell
+curl 'https://api.doordeck.com/share/invite/USER_EMAIL/00000000-0000-0000-0000-000000000000' \
+  -X POST \
+  -H 'authorization: Bearer TOKEN'
+  -H 'content-type: application/json' \
+```
+> - Replace `00000000-0000-0000-0000-000000000000` with the lock's ID
+> - Replace `USER_EMAIL` with the user's email
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id":"00000000-0000-0000-0000-000000000000",
+  "publicKey":"base 64 encoded public key"
+}  
+```
+
+## Revoke Access To A Lock 
+
+```shell
+curl 'https://api.doordeck.com/auth/token/' \
+  -X POST \
+  -H 'content-type: application/json' \
+  --data-binary '{"email":"USERNAME","password":"PASSWORD"}' \
+  | jq -r .privateKey \
+  | base64 -D \
+  | openssl pkcs8 -nocrypt -inform DER -outform PEM -out privatekey.pem
+
+HEADER='{"alg":"RS256","typ":"JWT"}'
+BODY='{"iss":"USER_ID","sub":"00000000-0000-0000-0000-000000000000","nbf":1473083829,"iat":1473083829,"exp":1473083889,"operation":{"type":"REMOVE_USER","users":["11111111-1111-1111-1111-111111111111"]}}'
+HEADER_B64=`echo -n $HEADER | base64 | sed 's/+/-/g;s/\//_/g;s/=//g'`
+BODY_B64=`echo -n $BODY | base64  | sed 's/+/-/g;s/\//_/g;s/=//g'`
+SIGNATURE_B64=`echo -n $HEADER_B64.$BODY_B64 | openssl sha -sha256 -sign privatekey.pem | base64 | sed 's/+/-/g;s/\//_/g;s/=//g'`
+JWT=`echo -n $HEADER_B64.$BODY_B64.$SIGNATURE_B64`
+
+curl 'https://api.doordeck.com/device/00000000-0000-0000-0000-000000000000/execute'
+  -X POST
+  -H 'authorization: Bearer TOKEN'
+  -H 'content-type: application/json;charset=UTF-8'
+  --data-binary "$JWT"
+```
+
+> - Replace `00000000-0000-0000-0000-000000000000` with the lock's ID
+> - Replace `USER_ID` with the user's ID (obtained from decoding their auth token)
+> - Replace `11111111-1111-1111-1111-111111111111` with the revoked user's ID,
+> - Replace `USERNAME` and `PASSWORD` with the appropriate credentials
+
+This endpoint allows multiple operations to be performed on locks. Requests to this endpoint must be signed and formed as a JSON web token. 
+This section explains how to revoke access to a lock, this can also be used to delete a lock from the current users account.
+
+### HTTP Request
+
+`POST https://api.doordeck.com/device/LOCK_ID/execute`
+
+Replace `LOCK_ID` with the appropriate lock ID.
+
+<aside class="success">
+If a request expires within the next 60 seconds, a 200 is returned upon success, if a request expires in more than 60 seconds, a 202 is returned to indicate the request has been queued for the device.
+</aside>
+
+### Request Parameters
+
+The header is formed of the following fields.
+
+Parameter | Required | Description
+--------- | ------- | -----------
+alg | true | `RS256`, RSA signed with a 256 bit SHA hash
+typ | true | `JWT`, JSON web token
+
+The body is formed of the following fields.
+
+Parameter | Required | Description
+--------- | ------- | -----------
+iss | true | Issuer, this should be the user's ID
+sub | true | Subject, this should be the lock's ID
+nbf | true | Not before, a Unix timestamp indicating the earliest date the request is valid from
+iat | true | Issued at, the current Unix timestamp
+exp | true | Expires, a Unix timestamp indicating when the request should expire, requests to change the lock status should be valid for up to one minute, other requests can have a much longer expiry time
+jti | false (but highly recommended) | User generated, unique ID used for tracking the request status and preventing replay attacks. UUIDs are recommended here.
+operation | true | A JSON object containing the instructions of the lock
+
+The operation object definition is as follows
+
+Parameter | Required | Description
+--------- | ------- | -----------
+type | true | Must be `REMOVE_USER`
+users | true | List of user IDs to remove
+
+## Monitor Real-time Lock State
+
+```shell
+curl "https://api.doordeck.com/device/events?device=00000000-0000-0000-0000-000000000000"
+  -H "Authorization: Bearer REFRESH_TOKEN"
+```
+
+> Replace `00000000-0000-0000-0000-000000000000` with the lock's ID
+
+This is a [Server-Sent Events](https://en.wikipedia.org/wiki/Server-sent_events) endpoint that takes multiple devices and returns a stream of events.
+
+<aside class="notice">
+This endpoint is experimental and may change without notice.
+</aside>
+
+### HTTP Request
+`GET https://api.doordeck.com/device/events?device=00000000-0000-0000-0000-000000000000`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+device | true | Device ID to monitor, multiple can specified as seperate query parameters
+>>>>>>> Stashed changes
