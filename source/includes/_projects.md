@@ -8,14 +8,15 @@ This endpoint retrieves all projects.
 
 `GET http://prod.practitest.com/api/v2/projects.json`
 
-### Query Parameters - [pagination](/#pagination)
+### Query Parameters
 
-Here's the examples of the JSON requests and responses that you may get when submitting a GET request
+Parameter | Default | Description
+--------- | ------- | -----------
+page[number] | 1 | the page number starting from 1
+page[size] | 100 | number of entities displayed per page
 
-[shell_example](/?shell#authentication)
+Note: The example query parameters above use unencoded [ and ] characters simply for readability. In practice, these characters must be percent-encoded as page%5Bnumber%5D and page%5Bsize%5D
 
-[ruby_example](/?ruby#authentication)
+[Here's](#authentication) the examples of the JSON requests and responses that you may get when submitting a GET request
 
-[python_example](/?python#authentication)
-
-[C#](/?csharp#authentication)
+Remember, you can see examples in the dark area to the right.
