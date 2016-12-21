@@ -491,6 +491,28 @@ locked | true | Boolean indicating if the lock should be locked or unlocked
 duration | false | Number of seconds the lock should be unlocked for
 
 
+## Get A User’s Public Key
+
+This endpoint allows the retrieval of a user's public key along with their ID.
+
+```shell
+curl 'https://api.doordeck.com/share/invite/USER_EMAIL' \
+  -X POST \
+  -H 'authorization: Bearer TOKEN' \
+  -H 'content-type: application/json' \
+```
+> - Replace `USER_EMAIL` with the user's email
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id":"00000000-0000-0000-0000-000000000000",
+  "publicKey":"base 64 encoded public key"
+}
+```
+
+
 ## Share A Lock
 
 ```shell
