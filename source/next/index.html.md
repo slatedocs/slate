@@ -21,7 +21,7 @@ The API is in beta. We would love to hear your thoughts about it.
 
 All API operations are done via POST requests to the following URL:
 
-`POST https://api.datil.co/sales`
+`POST https://api.datil.co/`
 
 # Authentication
 
