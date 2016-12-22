@@ -60,7 +60,12 @@ body{font-size:16px;}
 .p2{font-size: 135%;font-weight: 400;}	
 .welcome{font-size:200%;text-align:center;background-color: transparent;background: none;margin: 0;margin-top: 90px;}
 #browse ul li a:hover {color:#3bb94f;}	
-
+.content h3{
+    font-size: 142%;
+    margin-top: 2.5em;
+    margin-bottom: 0.8em;
+    font-weight: 400;
+}
 
 
 	
@@ -126,7 +131,7 @@ nav ul li a:visited:hover {
 nav ul li a:not(:only-child):after,
 nav ul li a:visited:not(:only-child):after {
   padding-left: 4px;
-  content: ' Ã¢â€“Â¾';
+  content: ' ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“Ãƒâ€šÃ‚Â¾';
 }
 nav ul li ul li {
   min-width: 190px;
@@ -265,4 +270,29 @@ article {
   bottom: 0;
   height: 9999%;
 }
+
+
+
+#gs_tti50 #gsc-i-id1 {background-image:none !important}
+.gsc-control-cse {background-color:transparent !important; border:none !important;}	
+.gsc-wrapper > div:first-of-type {display:none !important;}
+.gcsc-branding {display: none !important;}
+#___gcse_0{width: 60Vw;margin: 0 auto;padding: 10px 0;margin-bottom: 85px;margin-top: 16px;}
+.gsc-search-box-tools .gsc-search-box .gsc-input {padding-right:0 !important;/* height: 30px !important; */}
+.gsc-input-box {
+    height:45px !important;
+    border-radius:3px;
+    border:solid 2px #ccc !important;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-left: 10px;
+    }
 	
+	.gsc-search-button .gsc-search-button-v2  {background-color: hsl(0, 0%, 92%);padding: 0;margin-left: 0;box-sizing: border-box;padding: 10px;min-width: 73px;height: 49px !important;border-left: none;margin-left: -5px;}
+	svg path {fill: #fafafa !important;}
+	
+input.gsc-search-button {border:solid 2px #ccc !important;/* margin: 0 !important; */height: 45px !important;width: auto !important;margin-left: 0;}
+	
+

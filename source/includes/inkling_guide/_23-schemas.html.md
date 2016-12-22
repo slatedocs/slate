@@ -20,12 +20,12 @@ Inkling supports constrained types in schemas (as well as for configuration of l
 
 ```inkling
 schema MyOutput
-    UInt8  {0,1,2,3,4}   label,    # a list of UInt8 values
-    String {"a", "bc"}   category, # a list of Strings
-   Int64  { 0:5:100 }   x,        # start:step:stop, step= 5,0..100     Int64  { 0:100 }     y,        # start:stop, step= 1, 0..100
-   Int64  { 0..100:25 } z,        # start:stop, numsteps=25,
-                                    step= 4, 0..100
-   Float32 { 0..2:5}    a         # gives (0, .5., 1.0, 1.5, 2.0)
+  UInt8  {0,1,2,3,4}   label,    # a list of UInt8 values
+  String {"a", "bc"}   category, # a list of Strings
+  Int64  { 0:5:100 }   x,        # start:step:stop, step= 5,0..100
+  Int64  { 0:100 }     y,        # start:stop, step= 1, 0..100
+  Int64  { 0..100:25 } z,        # start:stop, numsteps=25, step= 4, 0..100
+  Float32 { 0..2:5}    a         # gives (0, .5., 1.0, 1.5, 2.0)
 end
 ```
 

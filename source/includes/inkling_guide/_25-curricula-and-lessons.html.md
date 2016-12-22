@@ -11,7 +11,6 @@ curriculum balance_curriculum
     train balance
     with simulator cartpole_simulator(CartPoleConfig) : (GameState)
     objective open_ai_gym_default_objective
-
       #lessons
 end
 ```
@@ -28,16 +27,16 @@ The configure clause uses the **constrain** keyword to create a set of condition
 
 ```inkling
 lesson get_high_score
-   configure
-       constrain episode_length with Int8{-1},
-       constrain num_episodes with Int8{-1},
-       constrain deque_size with UInt8{1}
-   until
-       maximize open_ai_gym_default_objective
+  configure
+    constrain episode_length with Int8{-1},
+    constrain num_episodes with Int8{-1},
+    constrain deque_size with UInt8{1}
+  until
+    maximize open_ai_gym_default_objective
 ```
 
 The configure clause supports placeholders as well. The placeholder name does not hold a specific value, but is a name of a range of values that the the Bonsai AI Engine inputs during training. The configure clause provides guidance to the Bonsai AI Engine on how the training for that lesson should be configured. It is not the same as an assignment in an imperative language, because it does not represent a unique value. The AI Engine has some degree of freedom in determining how to configure for training.
 
 For more information and examples, refer to the [curriculum reference][1].
 
-[1]: http://docs.bons.ai/inkling-guide-pages/52-curriculum
+[1]: #curriculum

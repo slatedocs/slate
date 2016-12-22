@@ -41,7 +41,7 @@ end
 
 ```c
 schema <name>
-    fieldDclnList
+  fieldDclnList
 end
 ```
 
@@ -61,10 +61,10 @@ scalarDcln                          |
 > scalarDcln         :=
 
 ```c
-  primitiveType
-  typeConstraint?
-  <name>
-  [ '[' arraySizeLiteral ']' ]*
+primitiveType
+typeConstraint?
+<name>
+[ '[' arraySizeLiteral ']' ]*
 ```
 ‍
 ### schema reference syntax
@@ -74,9 +74,9 @@ A named schema is referenced by its name. An anonymous schema is referenced by i
 >  schemaRef :=
 
 ```c
-    '(' <name> ')'   // named schema ref
-  |
-    '(' <fieldDclnList>  ')'  // anonymous schema ref
+  '(' <name> ')'   // named schema ref
+|
+  '(' <fieldDclnList>  ')'  // anonymous schema ref
 ```
 
 ###### Inkling Primitive Types
@@ -97,9 +97,9 @@ Inkling supports the types Matrix and Luminance (more to come).
 > structureDcln      :=
 
 ```c
-  ( Luminance | Matrix )
-    structureInit
-    <name>
+( Luminance | Matrix )
+  structureInit
+  <name>
 ```
 
 
@@ -108,7 +108,7 @@ Inkling supports the types Matrix and Luminance (more to come).
 ```c
 '('
 
-  luminanceInit | matrixInit
+luminanceInit | matrixInit
 
 ')'
 ```
@@ -118,7 +118,7 @@ Inkling supports the types Matrix and Luminance (more to come).
 ```c
 integerLiteral  ',' integerLiteral
 
- matrixInit         :=
+matrixInit         :=
  '(' concreteType
   [ ',' concretetype ]*
  ')'
@@ -132,8 +132,8 @@ This example shows a schema that has a field with a primitive type and a field w
 
 ```inkling
 schema MNIST_training_data_schema
-   UInt8 label,
-   Luminance(28, 28) image
+  UInt8 label,
+  Luminance(28, 28) image
 end
 ```
 ‍
@@ -147,10 +147,12 @@ A range expression has the effect of constraining the values of the type to valu
 
 ```inkling
 schema MyOutput
-    UInt8  {0,1,2,3,4}   label,    # a list of UInt8 values
-    String {"a", "bc"}   category, # a list of Strings
-    Int64  { 0:5:100 }   x,        # start:step:stop, step= 5,0..100     Int64  { 0:100 }     y,        # start:stop, step= 1, 0..100         Int64  { 0..100:25 } z,        # start:stop, numsteps=25, step= 4, 0..100
-    Float32 { 0..2:5}    a         # gives (0, .5., 1.0, 1.5, 2.0)
+  UInt8  {0,1,2,3,4}   label,    # a list of UInt8 values
+  String {"a", "bc"}   category, # a list of Strings
+  Int64  { 0:5:100 }   x,        # start:step:stop, step= 5,0..100
+  Int64  { 0:100 }     y,        # start:stop, step= 1, 0..100
+  Int64  { 0..100:25 } z,        # start:stop, numsteps=25, step= 4, 0..100
+  Float32 { 0..2:5}    a         # gives (0, .5., 1.0, 1.5, 2.0)
 end
 ```
 ‍
@@ -161,12 +163,11 @@ end
 
 ```c
 numericType
-  '{'
-    start ':' [ step':']? stop // 1:2:10.   Called a 'colon range'. Specifies 'step' (default=1).
-    |
-    start '.' '.' stop ':' numSteps //   1..10:5  Called a 'dot range'. Specifies 'numsteps'.
-
-  '}'
+'{'
+  start ':' [ step':']? stop // 1:2:10.   Called a 'colon range'. Specifies 'step' (default=1).
+  |
+  start '.' '.' stop ':' numSteps //   1..10:5  Called a 'dot range'. Specifies 'numsteps'.
+'}'
 ```
 
 > numericType :=
@@ -205,4 +206,4 @@ The range start is exact (to the maximum extent possible if the range expression
 
 ‍
 
-[1]: https://bonsai.quip.com/WzFXANdJfJvl
+[1]: #lesson
