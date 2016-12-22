@@ -38,7 +38,7 @@
 0. Дождаться пока в папке /tomcat/webapps появится папка с наименованием приложения (~ 15 секунд)
 0. Осуществить проверку работы приложения при помощи настроенного мобильного клиента
 
-**Эталонная wsdl**
+**Пример wsdl**
 
 pro server - [http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl](http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl)
 

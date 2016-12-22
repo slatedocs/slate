@@ -37,6 +37,6 @@
 0. Дождаться пока в папке /tomcat/webapps появится папка с наименованием приложения (~ 15 секунд)
 0. Осуществить проверку работы приложения при помощи настроенного мобильного клиента
 
-**Эталонная wsdl**
+**Пример wsdl**
 
 light server - [http://dev.idamob.ru/light/services/WsEndpointServiceFacade?wsdl](http://dev.idamob.ru/light/services/WsEndpointServiceFacade?wsdl)

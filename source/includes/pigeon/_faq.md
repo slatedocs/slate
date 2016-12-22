@@ -43,7 +43,7 @@
 0. Дождаться пока в папке /tomcat/webapps появится папка с наименованием приложения (~ 15 секунд)
 0. Осуществить проверку работы приложения при помощи настроенного мобильного клиента
 
-**Эталонная wsdl**
+**Пример wsdl**
 
 pigeon server - [http://dev.idamob.ru/pigeon/services/SBIInboundWebService?wsdl](http://dev.idamob.ru/pigeon/services/SBIInboundWebService?wsdl)
 
