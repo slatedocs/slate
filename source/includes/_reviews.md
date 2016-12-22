@@ -215,8 +215,6 @@ localDirectories.Add("google");
 localDirectories.Add("facebook");
 localDirectories.Add("yahoo");
 
-
-
 api Api = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 batchApi batchRequest = new batchApi(Api);
 
