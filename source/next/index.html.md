@@ -53,10 +53,12 @@ curl -v https://api.datil.co/sales/invoices \
 -H "Content-Type: application/json" \
 -H "X-Key: <your-legacy-api-key>" \
 -H "X-Api-Key: <your-api-key>" \
--d '{"country": "CO"
-     "type": "invoice",
-     "document": {
-       "properties": [
+-d '{
+      "country": "CO",
+      "number": "001-001-000000002",
+      "uuid": "12345-12345-12345-12345-12345",
+      "currency": "COP",
+      "properties": [
          {
            "key": "Contract Number",
            "value": "420420"
@@ -72,7 +74,7 @@ curl -v https://api.datil.co/sales/invoices \
          }
        ],
        "supplier": {
-         "tax_id_type": "ruc",
+         "tax_identification_type": "ruc",
          "properties": [
            {
              "key": "required_accounting",
@@ -86,25 +88,27 @@ curl -v https://api.datil.co/sales/invoices \
          "address": "Carrera 11 Calle 9",
          "email": "e@datil.co",
          "phone": "57122222222222",
-         "city": "Bogotá",
-         "tax_id": "091726282001",
-         "commercial_name": "Acmesa",
-         "legal_name": "Acme S.A.",
+         "locality": "Bogotá",
+         "sublocality": "Centro",
+         "tax_identification": "091726282001",
+         "business": {
+            "commercial_name": "Datil Technolgies S.A.S",
+            "legal_name": "Datil",
+         },
          "administrative_district_level_1": "Cundinamarca",
-         "administrative_district_level_2": "Bogota",
          "country": "CO"
       },
       "taxes": [
         {
           "amount": 0.11,
-          "type": "2",
-          "id": "3",
+          "tax_code": "2",
+          "rate_code": "3",
           "taxable_amount": 0.98
         }
       ],
       "issue_date": "2016-11-22 23:00:00",
       "customer": {
-        "tax_id_type": "ruc",
+        "tax_identification_type": "ruc",
         "properties": [
           {
             "key": "required_accounting",
@@ -118,20 +122,20 @@ curl -v https://api.datil.co/sales/invoices \
         "address": "Carrera 10 Calle 1",
         "email": "w@datil.co",
         "phone": "57122222222222",
-        "city": "Bogota DC",
-        "tax_id": "1050320-1",
-        "commercial_name": "Datil Technolgies S.A.S",
-        "legal_name": "Datil",
+        "locality": "Bogota DC",
+        "sublocality": "Centro",
+        "tax_identification": "1050320-1",
+        "business": {
+          "commercial_name": "Datil Technolgies S.A.S",
+          "legal_name": "Datil",
+        },
+        "person": "",
         "administrative_district_level_1": "Cundinamarca",
-        "administrative_district_level_2": "Bogota",
         "country": "CO"
       },
       "subtotal_amount": 0.98,
       "total_tax_amount": 0.17,
       "total_amount": 1.15,
-      "currency": "COP",
-      "id": "001-001-000000002",
-      "uuid": "12345-12345-12345-12345-12345",
       "items": [
         {
           "description": "Apple",
@@ -145,8 +149,8 @@ curl -v https://api.datil.co/sales/invoices \
             {
               "amount": 0.17,
               "rate": 0.17,
-              "type": "2",
-              "id": "3",
+              "rate_code": "2",
+              "tax_code": "3",
               "taxable_amount": 0.98
             }
           ],
@@ -158,6 +162,5 @@ curl -v https://api.datil.co/sales/invoices \
           "quantity": 1
         }
       ]
-  }
-}'
+  }'
 ```
