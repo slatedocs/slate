@@ -134,6 +134,11 @@ var success = request.Post("/v2/cb/create", parameters);
     "location_id": "Location with ID 0 not found or doesn't belong to this customer"
   }
 }
+```
+
+> Success (200 OK)
+
+```json
 {
   "error": false,
   "campaign-id": 280
@@ -345,7 +350,7 @@ parameters.Add("package_id", "cb15");
 var success = request.Post("/v2/cb/confirm-and-pay", parameters);
 ```
 
-> Success (200 OK)
+> Validation Failure
 
 ```json
 {
@@ -355,6 +360,10 @@ var success = request.Post("/v2/cb/confirm-and-pay", parameters);
     "invalid_package_id": "Invalid package id"
   }
 }
+```
+> Success (200 OK)
+```json
+//needs to be added
 ```
 
 Confirm and pay (using credits) for a CB campaign.
