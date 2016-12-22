@@ -8,7 +8,7 @@ This endpoint retrieves all users.
 
 `https://prod.practitest.com/api/v2/users.json`
 
-### Query Parameters - [pagination](/#pagination)
+### Query Parameters - [pagination](#pagination)
 
 Here's the examples of the JSON requests and response that you may get when submitting a GET request
 
