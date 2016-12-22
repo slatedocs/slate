@@ -4,7 +4,7 @@ Schemas describe a record and its fields. They contain a set of named data types
 
 Types (or [data types][2]) are representations of values of data. A type informs the system what the meaning of the data is, the possible values of that data is, what operations can be performed on that data, and the way the data can be stored. Types are the most basic building blocks of data manipulation.
 
-In Inkling, we need types, because the AI needs to understand the data it is sent. Also the AI needs to know how to represent the prediction it sends back to the program that you have deployed it with.
+In Inkling we need types, because the AI needs to understand the data it is sent. Also the AI needs to know how to represent the prediction it sends back to the program that you have deployed it with.
 
 Inkling is also a strongly-typed language, which means that you are will receive an error if values are not compatible with their expected type. This means you need to pay attention to what types you choose.
 
@@ -14,7 +14,7 @@ Inkling supports various types, including (but not limited to) primitive types, 
 
 Inkling supports constrained types in schemas (as well as for configuration of lessons). Constrained types use range expressions to constrain the values of the type to values defined by a range expression.
 
- A range expression has the effect of constraining the values of the type to values defined by the range expression. In a schema, this constrains the values in the field. In lessons, this constrains the values of the placeholder being configured. In both cases the syntax is the same.
+A range expression has the effect of constraining the values of the type to values defined by the range expression. In a schema, this constrains the values in the field. In lessons, this constrains the values of the placeholder being configured. In both cases the syntax is the same.
 
  Here are some examples of constrained types:
 
@@ -35,9 +35,10 @@ Examine the input, returned data, and output of your mental model when defining 
 
 ### How to pick types
 
-* If your input is an image, you will need the Luminance type.
-* If your output is yes/no, true/false, or another dual relationship, you should use the bool type.
-* Inkling supports signed and unsigned integers of various sizes as well as floating point (32 and 64 bit).
+* If your input is an image, you will need the `luminance` type.
+* If your output is yes/no, true/false, or another dual relationship, you should use the `bool` type.
+* Inkling supports signed and unsigned integers of various sizes as well as floating point (32 and 64 bit). More details can be found under [Inkling Primitive Types][3].
 
-[1]: http://docs.bons.ai/inkling-guide-pages/54-schemas-inkling-types-and-type-constraints
+[1]: #schemas
 [2]: https://en.wikipedia.org/wiki/Data_type
+[3]: #inkling-primitive-types

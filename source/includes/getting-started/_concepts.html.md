@@ -57,7 +57,7 @@ To learn more about connecting your own simulator, refer to our SDK.
 
 Training means teaching it to get a specific outcome on a simulator. The training involves using a specific set of concepts, a curriculum, and lessons, which are described in the Inkling file.
 
-## What is inkling?
+## What is Inkling?
 
 **Inkling** is a our programming language designed to express higher level abstractions related to teaching.
 
@@ -71,7 +71,7 @@ Inkling is designed to enable you to solve any AI problem whether learning to la
 
 ## What is the Bonsai Command Line Interface?
 
-The Bonsai Command Line Interface (CLI) is a command line tool that enables you to configure the Bonsai Artificial Intelligence Engine. The CLI is especially useful for automation and connection to other tools. Currently, there are some actions that can only be performed using the CLI, such as loading your inkling file and connecting your simulator.
+The Bonsai Command Line Interface (CLI) is a command line tool that enables you to configure the Bonsai Artificial Intelligence Engine. The CLI is especially useful for automation and connection to other tools. Currently, there are some actions that can only be performed using the CLI, such as loading your Inkling file and connecting your simulator.
 
 ## beta.bons.ai
 

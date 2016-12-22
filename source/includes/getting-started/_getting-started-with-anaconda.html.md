@@ -54,9 +54,9 @@ Create your BRAIN and give it a name. You can also create a BRAIN from your beta
 bonsai brain create myMountainCarBrain
 ```
 
-# Load sample inkling into your BRAIN
+# Load sample Inkling into your BRAIN
 
-Load our sample inkling file for the mountain car simulation.
+Load our sample Inkling file for the mountain car simulation.
 
 ```shell
 bonsai brain load myMountainCarBrain mountaincar.ink

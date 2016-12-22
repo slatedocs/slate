@@ -8,7 +8,7 @@ Then, we'll walk you through the steps to:
 
 * install the Bonsai CLI (one-time task)
 * create your first BRAIN
-* load an inkling file and connect a simulator
+* load an Inkling file and connect a simulator
 * train your BRAIN
 * use your BRAIN
 

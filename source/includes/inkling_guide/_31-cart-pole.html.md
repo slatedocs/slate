@@ -1,6 +1,6 @@
 ## Example: Cart Pole
 
-In this example, we'll walk you through the various statements that are part of the cart pole inkling file. Each statement is followed by an explanation of the statement.
+In this example, we'll walk you through the various statements that are part of the cart pole Inkling file. Each statement is followed by an explanation of the statement.
 
 ###### What is Cart Pole?
 
@@ -19,7 +19,7 @@ schema GameState
 end
 ```
 
-The schema `GameState` names four records — position, velocity, angle, and rotation — and assigns a type to them. This information is input from the simulation.
+The schema `GameState` names four records — `position`, `velocity`, `angle`, and `rotation` — and assigns a type to them. This information is input from the simulation.
 
 ```inkling
 schema Action
@@ -27,7 +27,7 @@ schema Action
 end
 ```
 
-The schema Action names a record — action —  and assigns it a constrained type.
+The schema `Action` names a record — `action` —  and assigns it a constrained type.
 
 ```inkling
 schema CartPoleConfig
@@ -37,7 +37,7 @@ schema CartPoleConfig
 end
 ```
 
- The schema CartPoleConfig names three records — episode_length, num_episodes, and deque_size — and assigns each of them a type.
+ The schema `CartPoleConfig` names three records — `episode_length`, `num_episodes`, and `deque_size` — and assigns each of them a type.
 
 ###### Concept: `balance`
 
@@ -50,7 +50,7 @@ concept balance
 end
 ```
 
-The concept is named balance, and it takes input from the simulator. That input is the records in the schema GameState. The balance concept outputs the move the AI should make in the simulator. This output is the record in the Action schema.
+The concept is named `balance`, and it takes input from the simulator. That input is the records in the schema `GameState`. The balance concept outputs the move the AI should make in the simulator. This output is the record in the `Action` schema.
 
 ###### Curriculum: `balance_curriculum`
 

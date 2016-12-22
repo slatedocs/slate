@@ -1,6 +1,6 @@
 # CLI Reference
 
-The Bonsai Command Line Interface (CLI) is a text based tool that enables you to configure and control the Bonsai Artificial Intelligence Engine. The CLI is especially useful for automation and connection to other tools. Currently, there are some actions that can only be performed using the CLI, such as loading your inkling file and connecting your simulator.  
+The Bonsai Command Line Interface (CLI) is a text based tool that enables you to configure and control the Bonsai Artificial Intelligence Engine. The CLI is especially useful for automation and connection to other tools. Currently, there are some actions that can only be performed using the CLI, such as loading your Inkling file and connecting your simulator.  
 
 ```shell
 $ bonsai command --help
@@ -43,7 +43,7 @@ It is case insensitive, but case aware.
 ###### Load
 
 ```
-$ bonsai brain load brainNameinklingFile.ink
+$ bonsai brain load brainName inklingFile.ink
 ```
 
 **load** loads an Inkling file (inklingFile.ink) to a specific BRAIN (brainName).
@@ -111,7 +111,7 @@ Options:
 Commands:
   create  Creates a BRAIN.
   list    Lists BRAINs owned by current user or by the...
-  load    Loads an inkling file into the specified...
+  load    Loads an Inkling file into the specified...
   train   Start and stop training on a BRAIN, as well...
 ```
 

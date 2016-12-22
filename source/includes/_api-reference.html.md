@@ -15,10 +15,10 @@ The Bonsai AI Engine provides programmers and data scientists with a new way of 
 requestMethod /v1/userName/assetName/assetVersion
 ```
 
-* **requestMethod:** The request method, such as GET, POST, or PUT.
+* **requestMethod:** The request method, such as `GET`, `POST`, or `PUT`.
 * **v1:** The API version number
 * **userNameOrOrg:** Your username or organization name.
-* **assetName:** Name of the asset. This could be a BRAIN (_brainName_), _dataset_ (_datasetName_), etc.
+* **assetName:** Name of the asset. This could be a BRAIN (`brainName`), `dataset` (`datasetName`), etc.
 * **assetVersion:** Version number of the asset.
 
 ## User and BRAIN status
@@ -70,7 +70,7 @@ Content-Type: text/javascript
 GET /v1/megan/myBrain HTTP/1.1
 ```
 
-Uses the GET request method to get information about a BRAIN (_brainName_) created by a user (_userName_).
+Uses the GET request method to get information about a BRAIN (`brainName`) created by a user (`userName`).
 
 ###### Example Response
 
@@ -101,7 +101,7 @@ Content‐Type: text/javascript
 GET /v1/megan/myBrain/brainVersion/ink HTTP/1.1
 ```
 
-Uses the GET request method to get the Inkling code for a version (_brainVersion_) of a BRAIN (_brainName_) created by a user (_userName_). The _brainVersion_ is a number.
+Uses the GET request method to get the Inkling code for a version (`brainVersion`) of a BRAIN (`brainName`) created by a user (`userName`). The `brainVersion` is a number.
 
 ###### Example Response
 
@@ -217,13 +217,13 @@ Location: http://api.bons.ai/v1/megan/mybrain/11
 * Loading a BRAIN results in a new version. You can think of this as the randomly initialized neural network before training.
 * Training a BRAIN results in a new version.
 * A version of a BRAIN in the training state blocks state transitions. No loads, no trains, no new versions of the BRAIN can be created. Training must be cancelled before doing more operations on the BRAIN.
-* The BRAIN begins in an uninitialized state (aka version 0) which it permanently leaves after the first inkling is uploaded. version 0 cannot make predictions (it has no schema).
+* The BRAIN begins in an uninitialized state (aka version 0) which it permanently leaves after the first Inkling is uploaded. version 0 cannot make predictions (it has no schema).
 * For private beta only the most recent version of a BRAIN may be used for prediction this version can be referred to with the special version latest
 
 ###### BRAIN Modes
 
 **BRAIN versions have the following modes:**
 
-* **ready_to_train:** After inkling is uploaded and successfully compiled, the BRAIN version number is incremented. That particular version is in the ready_to_train state. ready_to_train versions give predictions the same as or worse than random.
-* **training:** After the train command is given, the BRAIN version is incremented and that version is in the training state. In this state the user cannot load new inkling into the BRAIN or restart training. The user must cancel training to upload new inkling.
+* **ready_to_train:** After Inkling is uploaded and successfully compiled, the BRAIN version number is incremented. That particular version is in the ready_to_train state. ready_to_train versions give predictions the same as or worse than random.
+* **training:** After the train command is given, the BRAIN version is incremented and that version is in the training state. In this state the user cannot load new Inkling into the BRAIN or restart training. The user must cancel training to upload new Inkling.
 * **trained:** If training is cancelled or completes the BRAIN version is in the trained state. Trained BRAIN versions can give predictions or receive more training. version is NOT incremented upon training completion.
