@@ -58,21 +58,21 @@ curl -v https://api.datil.co/sales/invoices \
       "number": "001-001-000000002",
       "uuid": "12345-12345-12345-12345-12345",
       "issue_date": "2016-11-22 23:00:00",
-       "supplier": {
-         "tax_identification_type": "31",
-         "properties": [],
-         "address": "Carrera 11 Calle 9",
-         "email": "e@datil.co",
-         "phone": "57122222222222",
-         "locality": "Bogotá",
-         "sublocality": "Centro",
-         "tax_identification": "091726282001",
-         "tax_level_code": "2",
-         "business": {
-            "legal_name": "Datil Technolgies S.A.S",
-         },
-         "administrative_district_level_1": "Cundinamarca",
-         "country": "CO"
+      "supplier": {
+        "tax_identification_type": "31",
+        "properties": [],
+        "address": "Carrera 11 Calle 9",
+        "email": "e@datil.co",
+        "phone": "57122222222222",
+        "locality": "Bogotá",
+        "sublocality": "Centro",
+        "tax_identification": "091726282001",
+        "tax_level_code": "2",
+        "business": {
+           "legal_name": "Datil Technolgies S.A.S",
+        },
+        "administrative_district_level_1": "Cundinamarca",
+        "country": "CO"
       },
       "customer": {
         "tax_identification_type": "31",
@@ -92,16 +92,26 @@ curl -v https://api.datil.co/sales/invoices \
       },
       "taxes": [
         {
-          "amount": 0.11,
-          "tax_code": "2",
+          "amount": 419046.82,
+          "tax_code": "03",
+          "tax_rate": 4.14,
           "rate_code": "3",
-          "taxable_amount": 0.98
+          "taxable_amount": 10121904.00
+        },
+        {
+          "amount": 1619504.64,
+          "tax_code": "01",
+          "tax_rate": 16.00,
+          "rate_code": "3",
+          "taxable_amount": 10121904.00
         }
       ],
+      "totals": {
+        "subtotal_amount": 10121904.00,
+        "total_tax_amount": 2038551.46,
+        "total_amount": 12160455.46,
+      }
       "currency": "COP",
-      "subtotal_amount": 0.98,
-      "total_tax_amount": 0.17,
-      "total_amount": 1.15,
       "items": [
         {
           "description": "Apple",
@@ -111,21 +121,11 @@ curl -v https://api.datil.co/sales/invoices \
           },
           "unit_discount": 0.00,
           "unit_code": "units",
-          "taxes": [
-            {
-              "amount": 0.17,
-              "rate": 0.17,
-              "rate_code": "2",
-              "tax_code": "3",
-              "taxable_amount": 0.98
-            }
-          ],
-          "secondary_id": "123",
-          "unit_price": 0.99,
+          "unit_price": 43256.00,
           "id": "ABC",
-          "subtotal_amount": 0.98,
+          "subtotal_amount": 10121904.00,
           "total_amount": 1.15,
-          "quantity": 1
+          "quantity": 234
         }
       ],
       "properties": [
@@ -137,14 +137,19 @@ curl -v https://api.datil.co/sales/invoices \
        "payments": [
          {
            "properties": {
-             "bills": "109 pennies"
+             "account_number": "2223XXXX23",
+             "bank": "Bancolombia"
            },
            "amount": 1.09,
-           "method": "54"
+           "method": "42"
          }
        ],
   }'
 ```
+
+### Response
+
+"hi"
 
 # Enums
 ## Tax identification types
