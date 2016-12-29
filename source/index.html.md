@@ -2,14 +2,10 @@
 title: API Reference
 
 language_tabs:
-  - shell
-  - ruby
-  - python
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='https://invoicing.services'>Sign Up for a Developer Key</a>
 
 includes:
   - errors
@@ -19,171 +15,353 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to **invoicing.services** API documentation! 
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+You can use this API to create and store invoice PDF files online and get access from anywhere. 
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+When a new invoice is created, you will get a link to your invoice PDF file like  [https://s3-us-west-2.amazonaws.com/files.invoicing.services/9344079c-d891-404d-8997-d47cbbf3f297/dummies/2016/12/63226081-0eb4-4046-ab27-166261f70dc6.pdf](https://s3-us-west-2.amazonaws.com/files.invoicing.services/9344079c-d891-404d-8997-d47cbbf3f297/dummies/2016/12/63226081-0eb4-4046-ab27-166261f70dc6.pdf). 
+
+Use this link to save or share your invoice.
+
+<aside class="success">
+Invoice files will be available for at least 5 years.
+</aside>
+
+
+# API endpoint
+
+To call **invoicing.services** API methods, use **https://api.incoicing.services** API endpoint .
+
+For example, to create a new Invoice, you call the metod `https://api.invoicing.services/invoice/add`.
 
 # Authentication
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
+$.ajax({
+    method: 'POST',
+  	...
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Api-Key': 'my-api-key'
+    },
+   	...
+  });
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+**invoicing.services** uses API keys to allow access to the API methods. You can get an API key at our [website](https://invoicing.services).
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+We expect for the API key to be included in all API requests to the server in a header that looks like the following:
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`'X-Api-Key': 'my-api-key'`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>my-api-key</code> with your personal API key.
 </aside>
 
-# Kittens
+# Passing parameters
 
-## Get All Kittens
+Method call parameters must be passed in the Body part of the request message using [JSON](https://en.wikipedia.org/wiki/JSON) format.
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+The `Content-Type` header attribute must be set to `application/json`.
 
 ```javascript
-const kittn = require('kittn');
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+// How to set dates and numbers.
+
+{
+	
+	...
+	
+	"date" : "1482932562"
+	
+	...
+	
+	"total" : 19.99
+	
+	...
+	
+	"countryCode" : "FR"
+	
+	...
+	
+}
 ```
 
-> The above command returns JSON structured like this:
+### Invoice Dates Format
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
+When setting dates, use [Unix time format](https://en.wikipedia.org/wiki/Unix_time). 
 
-This endpoint retrieves all kittens.
+For example, `1482932562` date value translates to `Wednesday, 28-Dec-16 13:42:42 UTC`.
 
-### HTTP Request
+### Invoice Numbers Format
 
-`GET http://example.com/api/kittens`
+Invoice numbers must use the dot "." symbol as the decimal mark (f.ex. 20.99). This is due to [JSON format](http://www.json.org/) requirements.
 
-### Query Parameters
+If you need to display a diferent format (f.ex. 20,99) please check Invoice Country Code parameter.
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+### Invoice Country Code
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+Invoice country code (f.ex. `US`) is used to format currency values and also to get country related statistics. 
 
-## Get a Specific Kitten
+An example.
 
-```ruby
-require 'kittn'
+You may need to use the EUR currency code and display values using the French format (f.ex. 24,99 EUR). In that case you must set `countryCode` to `FR` value.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
 
-```python
-import kittn
+# Invoices
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
+## Create a new invoice.
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+$.ajax({
+    method: 'POST',
+    url: 'https://api.invoicing.services/invoice/add',
+    data: JSON.stringify(invoiceJson),
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Api-Key': 'ExV0d92KzQ8QgsTVnevddpbB8cUaAfPs7ntVF8g0'
+    },
+    dataType: 'json',
+    success: function (response) {
+      console.log(response); 
+    },
+    error: function (xhr, textStatus, errorThrown) {
+      console.log(xhr);
+    }
+  });
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+	"invoiceId": "2016_12_1",
+	"invoiceDate": "1482945673350",
+	"invoiceFileURL": "https://.../63226081-0eb4-4046-ab27-166261f70dc6.pdf"
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+Use this method to create a new invoice.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`POST https://api.invoicing.services/invoice/add`
 
-### URL Parameters
+### Invoice Ids
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+If you want your invoice id to be automatically generated by the system, do not include the `id` parameter on the request.
+
+
+<aside class="notice">
+Automatic invoice ids will be formatted as [year_month_number] where the last number is initialized every month and incremented automatically (f.ex. 2017_01_1, 2017_01_2, ..., 2017_02_1). 
+</aside>
+
+
+### Dummy Invoices
+
+To test how the API works you can use the `dummy` parameter. If set to `true`, your invoice will be saved on a separate folder and will not be counted.
+
+> Invoice JSON example.
+
+```json
+{
+	"dummy": "true",
+	"currencyCode": "USD",
+	"countryCode": "US", 
+	"seller": {
+		"id": "seller id",
+		"name": "seller name",
+		"line1": "Address line 1",
+		"line2": "Address line 2",
+		"line3": "some notes",
+		"taxIds": [
+			{
+			"name": "FC",
+			"value": "203/232/20202"
+			},
+			{
+			"name": "VA",
+			"value": "BEB75884746"
+			}
+		]
+	},
+	"buyer": {
+		"id": "buyer id",
+		"name": "buyer name",
+		"line1": "Address line 1",
+		"line2": "Address line 2",
+		"line3": "some notes"
+	},
+	"items": [
+		{
+		"name": "product name 1",
+		"description": "product 1 description",
+		"unitPrice": 1000,
+		"taxes": [
+			{
+			"taxRate": 20,
+			"taxName": "VAT"
+			}
+		],
+		"quantity": 2,
+		"itemSubTotalAmount": 2000.00,
+		"itemTotalAmount": 2400.00
+		},
+		{
+		"name": "product name 2",
+		"description": "product 2 description",
+		"unitPrice": 20,
+		"taxes": [
+			{
+			"taxRate": 10,
+			"taxName": "VAT"
+			}
+		],
+		"quantity": 2,
+		"itemSubTotalAmount": 40.00,
+		"itemTotalAmount": 44.00
+		}
+	],
+	"totals": {
+		"subTotal": 2040.00,
+		"taxTotals": [
+			{
+			"taxRate": "20",
+			"taxName": "VAT",
+			"taxTotal": 400.00
+			},
+			{
+			"taxRate": "10",
+			"taxName": "VAT",
+			"taxTotal": 4.00
+			}
+		],
+		"total": 2444.00
+	},
+	"notes": {
+		"line1": "This is an invoice note.",
+		"line2": "You can add 3 lines of notes.",
+		"line3": "That's all folks."
+	},
+	"labels": { 
+		"title": "INVOICE",
+		"sellerLabel": "From",
+		"SellerTaxIdsLabel": "Tax ID(s)",
+		"buyerLabel": "To",
+		"BuyerTaxIdsLabel": "Tax ID(s)",
+		"itemsListItem": "Item",
+		"itemsListPrice": "Price",
+		"itemsListQty": "Qty",
+		"itemsListSubtotal": "Subtotal",
+		"itemsListTotal": "Total",
+		"subtotal": "Subtotal",
+		"total": "Total"
+	}
+}
+```
+
+### Invoice Json Parameters
+
+Parameter | Type | Default | Description | Notes
+--------- | -------  | ----------- | ----------- | -------
+dummy | boolean | false | If set to true, invoice is not counted. | [optional]
+id | string | | Invoice Id. | [optional]
+date | timestamp | current date | Invoice date. | [optional]
+currencyCode | string | USD | [currency ISO code](https://en.wikipedia.org/wiki/ISO_4217) | [optional] 
+countryCode | string | US | [country ISO code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) | [optional]
+seller | array |  | Invoice actor (seller) attributes. |
+buyer | array |  | Invoice actor (buyer) attributes. |
+items | array | | Items list. |
+totals | array |  | Totals attributes.|
+notes | array | | Notes. | [optional].
+labels | array | | Labels texts. | [optional].
+
+
+
+### Actor (seller/buyer) Parameters
+
+Parameter | Type | Default | Description | Notes
+--------- | -------  | ----------- | ----------- | -------
+id | string | | Actor (seller/buyer) id. | [optional]
+name | string | | Name.
+line1 | string | | Used to describe seller/buyer. |  [optional]
+line2 | string | | Additional info. |  [optional]
+line3 | string | | Additional info. |  [optional]
+taxIds | array | | List of tax codes.  | [optional]
+
+### Actor (seller/buyer) Tax codes
+
+Parameter | Type | Default | Description 
+--------- | -------  | ----------- | ----------- 
+name | string | | Tax name (f.ex. VA). | 
+value | string | | Tax Value (f.ex. BEB75884746). | 
+
+### Invoice Item
+
+Parameter | Type | Default | Description | Notes
+--------- | -------  | ----------- | ----------- | -------
+name | string | | Product/Service name.  | 
+description | string | | Description. | [optional]
+unitPrice | number | | Unit price. | 
+taxes | array | | List of taxes for that item. | [optional]
+quantity | number | | Quantity. | 
+itemSubTotalAmount | number | | Item total before taxes. | 
+itemTotalAmount | number | | Item total including all taxes. | 
+
+### Item Taxes
+
+Parameter | Type | Default | Description 
+--------- | -------  | ----------- | ----------- 
+taxRate | number | | tax rate (f.ex. 20). 
+taxName | string | | tax name (f.ex. VAT). 
+
+### Invoice Totals
+
+Parameter | Type | Default | Description | Notes
+--------- | -------  | ----------- | ----------- | -------
+subtotal | number | | Invoice total without taxes.  | [optional]
+taxTotals | array | | Invoice total taxes list. | [optional]
+total | number | | Invoice Total.  | 
+
+### Invoice Total Taxes
+
+Parameter | Type | Default | Description 
+--------- | -------  | ----------- | ----------- 
+taxRate | number | | Tax rate.  | 
+taxName | string | | Tax name.  | 
+taxTotal | number | | Invoice related tax total.  | 
+
+### Invoice Notes
+
+Use invoice notes to add any extra text you want to include.
+
+Parameter | Type | Default | Description 
+--------- | -------  | ----------- | -----------
+line1 | string | | First line.  | 
+line2 | string | | Second line.  | 
+line3 | string | | Third line.  | 
+
+### Invoice Labels
+
+Use these parameters to change the default labels texts.
+
+Parameter | Type | Default | Description 
+--------- | -------  | ----------- | ----------- 
+title | string | INVOICE | 
+sellerLabel | string | From | 
+SellerTaxIdsLabel | string | Tax ID(s) | 
+buyerLabel | string | To | 
+BuyerTaxIdsLabel | string | Tax ID(s) | 
+itemsListItem | string | Item | 
+itemsListPrice | string | Price | 
+itemsListQty | string | Qty | 
+itemsListSubtotal | string | Subtotal | 
+itemsListTotal | string | Total | 
+subtotal | string | Subtotal | 
+total | string | Total | 
+
+
+
+
+
 
