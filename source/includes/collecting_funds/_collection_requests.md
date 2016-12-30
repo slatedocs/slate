@@ -56,6 +56,7 @@ curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token ab5
 -d currency=BXC \
 -d amount=3000 \
 -d metadata.my_id='123ASDAsd123'
+-d send_instructions=True
 ```
 
 ```ruby
@@ -66,7 +67,8 @@ collection = Beyonic::CollectionRequest.create(
     phonenumber: "+80000000001",
     amount: "100.2",
     currency: "BXC",
-    metadata: {"my_id": "123ASDAsd123"}
+    metadata: {"my_id": "123ASDAsd123"},
+    send_instructions: true
 )
 ```
 
@@ -79,7 +81,8 @@ Beyonic_Collection_Request::create(array(
   "phonenumber" => "+80000000001",
   "amount" => "100.2",
   "currency" => "BXC",
-  "metadata" => array("my_id"=>"123ASDAsd123")
+  "metadata" => array("my_id"=>"123ASDAsd123"),
+  "send_instructions" => True
 ));
 ?>
 ```
@@ -94,7 +97,8 @@ beyonic.CollectionRequest.create(phonenumber='+80000000001',
                        currency='BXC',
                        description='Per diem',
                        callback_url='https://my.website/payments/callback',
-                       metadata={'my_id': '123ASDAsd123'}
+                       metadata={'my_id': '123ASDAsd123'},
+                       send_instructions = True
                        )
 ```
 
@@ -117,7 +121,8 @@ public class CreateCollectionRequestExample {
     private static final String CURRENCY = "BXC";
     private static final String DESCRIPTION = "Per Diem";
     private static final String AMOUNT = "1200";
-    private static final String CALLBACK_URL = "https://my.website/payments/callback";;
+    private static final String CALLBACK_URL = "https://my.website/payments/callback";
+    private static final String SEND_INSTRUCTIONS = "True";
 
     public static void main(String[] args){
         URL url = null;
@@ -169,6 +174,7 @@ public class CreateCollectionRequestExample {
         collectionRequest.put("currency", CURRENCY);
         collectionRequest.put("description", DESCRIPTION);
         collectionRequest.put("callback_url", CALLBACK_URL);
+        collectionRequest.put("send_instructions", SEND_INSTRUCTIONS);
         return collectionRequest;
     }
 }
@@ -205,7 +211,7 @@ currency | Yes | String | BXC | 3 letter ISO currency code. No currency conversi
 reason | No | String | Transaction Fees | Internal description or reason for this collection request
 metadata | No | JSON String | "{'my_id': '123ASDAsd123'}" | Custom attributes to store with this object. See the Metadata section for more information.
 success_message | No | String (Max 140 characters) | "Thank you for your payment!" | *New in V2.* This message will be sent via SMS to the subscriber when they make a payment for this collection request. '-Powered by Beyonic' shall be appended to this message. If you leave this message out, a default message shall be sent by Beyonic. You can include {amount} and {customer} placeholders - these will be replaced with the amount and customer name or number details before the message is sent.
-send_instructions | No | Boolean | False | *New in V2.* Defaults to True. Indicates whether we should send payment instructions to the subscriber via SMS. This value may be ignored on some networks that have alternative ways of notifying the subscriber of pending payment requests.
+send_instructions | No | Boolean | False | *New in V2.* Defaults to False. Indicates whether we should send payment instructions to the subscriber via SMS. Note that this field defaults to False, so if you want the collection request to actually be sent out, you must set this field to True. Omitting the field will prevent collection requests from being sent out.
 instructions | No | String (Max 140 characters) | "Use #1234 as the reference" | *New in V2.* Allows overriding of the default instructions sent to the subscriber. This value may be ignored on some networks that have alternative ways of notifying the subscriber of pending payment requests.
 
 ## Retrieving a single Collection Request
