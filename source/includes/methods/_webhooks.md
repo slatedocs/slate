@@ -98,7 +98,7 @@ target | string | The URL that triggered events will be sent to
 			    "payment_type": "money",
 			    "metadata": {"id": 1234, "name": "Lucy"},
 			    "description": "Per diem payment",
-			    "phone_nos": ["+401000000001"],
+			    "phone_nos": ["+80000000001"],
 			    "state": "completed",
 			    "last_error": null,
 			    "rejected_reason": null,

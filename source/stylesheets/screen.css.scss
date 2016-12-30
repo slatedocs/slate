@@ -405,9 +405,7 @@ html, body {
     border-top: 1px solid #ccc;
     padding-top: 1em;
     padding-bottom: 1em;
-    @include background-image(
-      linear-gradient(top, rgba(#fff,0.4), rgba(#fff, 0))
-    );
+    background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
   }
 
   h4, h5, h6 {

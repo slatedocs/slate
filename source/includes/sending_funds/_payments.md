@@ -19,7 +19,7 @@ The payments api endpoint is:
     "payment_type": "money",
     "metadata": {"id": 1234, "name": "Lucy"},
     "description": "Per diem payment",
-    "phone_nos": ["+401000000001"],
+    "phone_nos": ["+80000000001"],
     "state": "new",
     "last_error": null,
     "rejected_reason": null,
@@ -67,7 +67,7 @@ updated_by | string | The ID of the user who last updated the payment
 
 ```shell
 curl https://app.beyonic.com/api/payments -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
--d phonenumber=+401000000001 \
+-d phonenumber=+80000000001 \
 -d first_name=Kennedy\
 -d last_name=Amani\
 -d currency=BXC \
@@ -83,7 +83,7 @@ require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 payment = Beyonic::Payment.create(
-    phonenumber: "+401000000001",
+    phonenumber: "+80000000001",
     first_name: "Kennedy",
     last_name: "Amani",
     amount: "100.2",
@@ -102,7 +102,7 @@ require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 Beyonic_Payment::create(array(
-  "phonenumber" => "+401000000001",
+  "phonenumber" => "+80000000001",
   "first_name" => "Kennedy",
   "last_name" => "Kennedy",
   "amount" => "100.2",
@@ -120,7 +120,7 @@ Beyonic_Payment::create(array(
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-beyonic.Payment.create(phonenumber='+401000000001',
+beyonic.Payment.create(phonenumber='+80000000001',
                        first_name='Kennedy',
                        last_name='Amani',
                        amount='1200',
@@ -146,7 +146,7 @@ public class CreatePayment {
     private static final String API_ENDPOINT = "https://app.beyonic.com/api/payments";
     private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
     private static final String CHARSET = "UTF-8";
-    private static final String PHONE_NUMBER = "+401000000001";
+    private static final String PHONE_NUMBER = "+80000000001";
     private static final String CURRENCY = "BXC";
     private static final String DESCRIPTION = "Per Diem";
     private static final String AMOUNT = "1200";
@@ -218,7 +218,7 @@ public class CreatePayment {
     "payment_type": "money",
     "metadata": {"id": 1234, "name": "Lucy"},
     "description": "Per diem payment",
-    "phone_nos": ["+401000000001"],
+    "phone_nos": ["+80000000001"],
     "state": "new",
     "last_error": null,
     "rejected_reason": null,
@@ -246,7 +246,7 @@ To create a new payment, make a POST to the end point above, with the attributes
 
 Parameter | Required | Type | Example | Notes
 --------- | -------- | ---- | ------- | -----
-phonenumber | Yes | String | +401000000001 | Must be in international format
+phonenumber | Yes | String | +80000000001 | Must be in international format
 payment_type | No | String | money | Options: money (default), airtime - use "airtime" to send an airtime payment instead of a mobile money payment
 amount | Yes | String, Integer or Decimal | 3000 | Do not include thousands separators
 currency | No | String | BXC | 3 letter ISO currency code. No currency conversion is done, so the currency must be valid for the selected phonenumber. You must have a funded Beyonic account in this currency. If your account for this currency has zero balance, your payment will fail. If you also provide an account parameter then the account's currency must match the currency parameter. **Note:**: BXC is the Beyonic Test Currency code. See the "Testing" section for more information. Supported currency codes are BXC (Testing), UGX (Uganda), KES (Kenya)
@@ -363,7 +363,7 @@ public class SinglePaymentExample {
     "payment_type": "money",
     "metadata": {"id": 1234, "name": "Lucy"},
     "description": "Per diem payment",
-    "phone_nos": ["+401000000001"],
+    "phone_nos": ["+80000000001"],
     "state": "new",
     "last_error": null,
     "rejected_reason": null,
@@ -486,7 +486,7 @@ public class ListAllPaymentsExample {
             "metadata": null,
             "description": "Test",
             "phone_nos": [
-                "+401000000001"
+                "+80000000001"
             ],
             "state": "approved",
             "last_error": null,
@@ -512,7 +512,7 @@ public class ListAllPaymentsExample {
             "metadata": null,
             "description": "Test2",
             "phone_nos": [
-                "+401000000001"
+                "+80000000001"
             ],
             "state": "scheduled",
             "last_error": null,

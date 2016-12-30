@@ -18,7 +18,7 @@ The contacts api endpoint is:
     "first_name": "Suzanne",
     "last_name": "Kwagala",
     "email": "suzanne@beyonic.com",
-    "phone_number": "+401000000001",
+    "phone_number": "+80000000001",
     "type": "employee",
     "status": "active",
     "metadata": null,
@@ -54,7 +54,7 @@ updated_by | string | The ID of the user who last updated the contact
 curl https://app.beyonic.com/api/contacts -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
 -d first_name='John' \
 -d last_name='Doe' \
--d phone_number='+401000000001' \
+-d phone_number='+80000000001' \
 -d email='john.doe@beyonic.com' \
 -d metadata.my_id='123ASDAsd123'
 ```
@@ -64,7 +64,7 @@ require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 contact = Beyonic::Contact.create(
-    phone_number: "+401000000001",
+    phone_number: "+80000000001",
     first_name: "John",
     last_name: "Doe",
     email: "john.doe@beyonic.com",
@@ -78,7 +78,7 @@ require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 Beyonic_Contact::create(array(
-  "phone_number" => "+401000000001",
+  "phone_number" => "+80000000001",
   "first_name" => "John",
   "last_name" => "Doe",
   "email" => "john.doe@beyonic.com",
@@ -91,7 +91,7 @@ Beyonic_Contact::create(array(
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-beyonic.Contact.create(phone_number='+401000000001',
+beyonic.Contact.create(phone_number='+80000000001',
                        first_name='John',
                        last_name='Doe',
                        email='john.doe@beyonic.com',
@@ -116,7 +116,7 @@ public class CreateContactExample {
     private static final String CHARSET = "UTF-8";
     private static final String FIRST_NAME = "John";
     private static final String LAST_NAME = "Doe";
-    private static final String PHONE_NUMBER = "+401000000001";
+    private static final String PHONE_NUMBER = "+80000000001";
     private static final String EMAIL = "john.doe@beyonic.com";
 
     public static void main(String[] args){
@@ -182,7 +182,7 @@ public class CreateContactExample {
     "first_name": "Suzanne",
     "last_name": "Kwagala",
     "email": "suzanne@beyonic.com",
-    "phone_number": "+401000000001",
+    "phone_number": "+80000000001",
     "type": "employee",
     "status": "active",
     "metadata": {
@@ -199,7 +199,7 @@ To create a new contact, make a POST to the endpoint above, with the attributes 
 
 Parameter | Required | Type | Example | Notes
 --------- | -------- | ---- | ------- | -----
-phone_number | Yes | String | +401000000001 | Must be in international format
+phone_number | Yes | String | +80000000001 | Must be in international format
 first_name | Yes | String | John | The contact's first name
 last_name | Yes | String | Doe | The contact's last name
 email | No | String | john.doe@beyonic.com | The contact's email address
@@ -296,7 +296,7 @@ public class SingleContactExample {
     "first_name":"John",
     "last_name":"Doe",
     "email":null,
-    "phone_number":"+401000000001",
+    "phone_number":"+80000000001",
     "type":"employee",
     "status":"active",
     "metadata":{},
@@ -525,4 +525,3 @@ You can search or filter contacts on the following fields. Simply add them to yo
 * last_name - the contact's last name
 * email - the contact's email
 * phone_number - the contact's phone number. Note that the phonenumber will be matched in international format, starting with a '+' sign. If the '+' sign isn't included in your request, it will be appended before attempting to match your request.
-

@@ -3,14 +3,14 @@
 Beyonic provides a few features to ease API testing. These features are described below.
 
 ## Test API token
-All the examples include a test API token that actually works. They can be run directly, which enables you to try them out as you read the documentation
+All the examples include a test API token that actually works. They can be run directly, so feel free to try them out as you read the documentation.
 
 ## Test Currency
 
 Beyonic provides a test currency, with the following parameters:
 
-* Country Code: +401
-* Currency Code: BXC
+* **Phone Format**: +800XXXXXXXX
+* **Currency Code**: BXC
 
 The BXC currency is used throughout the examples and you can also use it in your own testing. Payments made in the BXC currency will not affect your live currency accounts. Additionally, depending on the number you are paying, you can test various success and failure scenarios. See "Test Numbers" below
 
@@ -18,7 +18,7 @@ The BXC currency is used throughout the examples and you can also use it in your
 
 **Enabling or disabling the test currency**
 
-To enable or disable the test currency, once you're logged into Beyonic, go to this URL: 
+To enable or disable the test currency, once you're logged into Beyonic, go to this URL:
 
 <aside class="notice">https://app.beyonic.com/testing/</aside>
 
@@ -32,15 +32,17 @@ Beyonic provides test numbers that should be used in conjunction with the test c
 
 ### Sending Payments
 
-* +401000000000 - When you add a contact with this number, the cntact will always fail the mobile money registration checks, and therefore payments sent to this number will always fail.
-* +401XXXXXXXXX - All other numbers in the format +401XXXXXXXXX will pass the name checks only if the contact name is "John Doe". So, set the name to "John Doe" to test the effect of a successful name check, or set it to something else to test the effect of a failed name check.
-* Subsequently, all BXC payments to numbers with format +401XXXXXXXXX and name "John Doe", (except 401000000000) will succeed, if the amount is greater than or equal to 10 and less than or equal to 5,000,000 BXC.
+* **+80000000000** - When you add a contact with this number, the contact will always fail the mobile money registration checks, and therefore payments sent to this number will always fail.
+* **+800XXXXXXXX** - All other numbers in the format +800XXXXXXXX will pass the name checks only if the contact name is "John Doe". So, set the name to "John Doe" to test the effect of a successful name check, or set it to something else to test the effect of a failed name check.
+* Subsequently, all BXC payments to numbers with format +800XXXXXXXX and name "John Doe", (except +80000000000) will succeed, if the amount is greater than or equal to 10 and less than or equal to 5,000,000 BXC.
 
-### Recieving Payments
+**Note**: Make sure you have enough BXC credit on your account. Use [https://app.beyonic.com/testing/](https://app.beyonic.com/testing/) to update your BXC credit.
 
-* +401000000000 - If you request a payment from this number, it will always fail with the "Cancelled By User" error. Use this to simulate a user cancelling or rejecting your payment request.
-* +401000000001 - If you request a payment from this number, it will always expire. Use this to simulate a user ignoring your payment request by doing nothing and letting it expire.
-* +401XXXXXXXXX - All other numbers in this format will complete successfully. Use this to test successful payment request scenarios.
+### Receiving Payments
+
+* **+80000000000** - If you request a payment from this number, it will always fail with the "Cancelled By User" error. Use this to simulate a user cancelling or rejecting your payment request.
+* **+80000000009** - If you request a payment from this number, it will always expire. Use this to simulate a user ignoring your payment request by doing nothing and letting it expire.
+* **+800XXXXXXXX** - All other numbers in this format will complete successfully. Use this to test successful payment request scenarios.
 
 **Note**: Make sure you have enough BXC credit on your account. Use [https://app.beyonic.com/testing/](https://app.beyonic.com/testing/) to update your BXC credit.
 
@@ -84,4 +86,3 @@ Then use this for your callback URLs:
 Beyonic logs notificaiton requests and responses for at least 30 days. These can be viewed by logging into the web portal, and going to "Home" > Company Settings" > "Advanced Settings" > "Notification Endpoints"
 
 By clicking on "Recent Events", you will be able to see events and notification attempts, including the responses that Beyonic is getting from your notification server.
-
