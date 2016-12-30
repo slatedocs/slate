@@ -8,6 +8,7 @@ All the examples include a test API token that actually works. They can be run d
 ## Test Currency
 
 Beyonic provides a test currency, with the following parameters:
+
 * Country Code: +401
 * Currency Code: BXC
 
@@ -29,9 +30,17 @@ From that URL, you can enable the test currency, and also update the available t
 
 Beyonic provides test numbers that should be used in conjunction with the test currency. The following numbers are treated in special ways when used with the BXC currency:
 
-* +401000000000 - this number will always fail the mobile money registration checks, and therefore will not allow payment.
-* All numbers in the format +401XXXXXXXXX will pass the name checks only if the contact name is "John Doe".
+### Sending Payments
+
+* +401000000000 - When you add a contact with this number, the cntact will always fail the mobile money registration checks, and therefore payments sent to this number will always fail.
+* +401XXXXXXXXX - All other numbers in the format +401XXXXXXXXX will pass the name checks only if the contact name is "John Doe". So, set the name to "John Doe" to test the effect of a successful name check, or set it to something else to test the effect of a failed name check.
 * Subsequently, all BXC payments to numbers with format +401XXXXXXXXX and name "John Doe", (except 401000000000) will succeed, if the amount is greater than or equal to 10 and less than or equal to 5,000,000 BXC.
+
+### Recieving Payments
+
+* +401000000000 - If you request a payment from this number, it will always fail with the "Cancelled By User" error. Use this to simulate a user cancelling or rejecting your payment request.
+* +401000000001 - If you request a payment from this number, it will always expire. Use this to simulate a user ignoring your payment request by doing nothing and letting it expire.
+* +401XXXXXXXXX - All other numbers in this format will complete successfully. Use this to test successful payment request scenarios.
 
 **Note**: Make sure you have enough BXC credit on your account. Use [https://app.beyonic.com/testing/](https://app.beyonic.com/testing/) to update your BXC credit.
 
