@@ -53,7 +53,7 @@ var success = request.Post("/v2/lsrc/add", parameters);
 {
     "response":  {
         "status": "Report Added",
-        "location-id": "9907",
+        "campaign-id": "9907",
         "credits": 298
     }
 }
