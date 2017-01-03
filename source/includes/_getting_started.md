@@ -32,7 +32,9 @@ password.
 
 ## Sandbox Server
 
-Sendle provides access to a sandbox server at <a href="https://sandbox.sendle.com">https://sandbox.sendle.com.</a> You will need to create a new account for the sandbox server – just like you did for Sendle. Any orders created on the sandbox server will be created in the test mode, they will not result in actual consignments that can be used to send a parcel, nor will actual charges be created against your card.
+Sendle provides access to a sandbox server at <a href="https://sandbox.sendle.com">https://sandbox.sendle.com.</a> You will need to create a new account for the sandbox server – just like you did for Sendle and set up a <a href="https://stripe.com/docs/testing#cards"><strong>sandbox credit card</strong></a>.
+
+Any orders created on the sandbox server will be created in the test mode, they will not result in actual consignments that can be used to send a parcel. Using a valid credit card in Sandbox will not work, so please review Stripe's test credit card numbers <em>(below).</em>
 
 <aside class="notice">Stripe allows the use of <a href="https://stripe.com/docs/testing#cards"><strong>test credit card numbers</strong></a> which you can enter into the sandbox server to simulate credit card payments.</aside>
 
@@ -62,4 +64,3 @@ To use the Sendle API, during the beta period you need to attach a credit card t
 
 To create orders with the Sendle API you must accept the dangerous goods
 terms in your `Account Settings`, under the `Pickup` tab.
-
