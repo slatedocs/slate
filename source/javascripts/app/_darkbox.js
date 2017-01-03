@@ -1,3 +1,3 @@
 $(document).ready(function(){
-    $(".dark-box").height( $(".content").height() );
+    $(".dark-box").height( $(".content").height() + 66 );
 });
