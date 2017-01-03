@@ -12,7 +12,7 @@ A [ten-thousand foot view][1] of Inkling is described below, and includes a gene
 
 **Input** is a stream of information that is fed into your BRAIN (your AI). The Bonsai AI Engine uses this information to help train the BRAIN or make a prediction.
 
-In Inkling, **Output** is a stream of information returned as a prediction that your BRAIN sends back to an application. It could be sent back to a simulator, if training is in process, or it could be send back to your deployed application, where it might be used for control or optimization. The data in input and output streams are described by schemas. Schemas are declared in your Inkling program, and they contain information about the data types contained in the stream. For example, if you want to teach your AI,  to recognize the shape 'square', you might give it a picture of a shape. That picture would be an input. The BRAIN answers yes (this is a square) or no (this is not a square). That answer is the output. Your inkling file to teach your AI would contain one schema for describing the data type of the input (Luminance, an image type) and another for the output (Bool). For more information about schemas, refer to [schema][2] in the reference section.
+In Inkling, **Output** is a stream of information returned as a prediction that your BRAIN sends back to an application. It could be sent back to a simulator, if training is in process, or it could be send back to your deployed application, where it might be used for control or optimization. The data in input and output streams are described by schemas. Schemas are declared in your Inkling program, and they contain information about the data types contained in the stream. For example, if you want to teach your AI,  to recognize the shape 'square', you might give it a picture of a shape. That picture would be an input. The BRAIN answers yes (this is a square) or no (this is not a square). That answer is the output. Your Inkling file to teach your AI would contain one schema for describing the data type of the input (Luminance, an image type) and another for the output (Bool). For more information about schemas, refer to [schema][2] in the reference section.
 
 ### Mental Models and Concepts
 
@@ -30,8 +30,21 @@ Curricula contain the lesson plan for the lessons that you are using to train yo
 
 In our Fundamentals Chapter, we go into greater detail about the various Inkling components mentioned above. These are broken into the following topics:
 
+* [Inkling: A New Language][6]
+* [Mental Models][7]
+* [Schemas][8]
+* [Concepts][9]
+* [Curriculum and Lessons][10]
+* [Objectives][11]
+
 [1]: http://dictionary.cambridge.org/us/dictionary/english/10000-foot-view
 [2]: #schemas
 [3]: #concepts
 [4]: ./reference.html#concept-reference
 [5]: ./getting_started.html
+[6]: #inkling-a-new-language
+[7]: #mental-models
+[8]: #schemas
+[9]: #concepts
+[10]: #curricula-and-lessons
+[11]: #objectives

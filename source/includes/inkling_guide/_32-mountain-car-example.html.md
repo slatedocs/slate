@@ -1,6 +1,6 @@
-## Example: Mountain Car
+## Example: Mountain Car
 
-We've used pieces of code from this example in several places, but here we'll walk you through all the various statements that are part of the mountain car inkling file. Each statement is followed by an explanation of the statement.
+We've used pieces of code from this example in several places, but here we'll walk you through all the various statements that are part of the mountain car Inkling file. Each statement is followed by an explanation of the statement.
 
 Mountain car is a classic control problem. [OpenAI Gym][1] describes it as:
 
@@ -15,7 +15,7 @@ schema GameState
 end
 ```
 
-The GameState schema names two records — x_position and y_position — and assigns a type to them.
+The GameState schema names two records — `x_position` and `y_position` — and assigns a type to them.
 
 ```inkling
 schema Action
@@ -23,7 +23,7 @@ schema Action
 end
 ```
 
-The Action schema names a single record — action — and assigns a constrained type to it.
+The Action schema names a single record — `action` — and assigns a constrained type to it.
 
 ```inkling
 schema MountainCarConfig
@@ -33,7 +33,7 @@ schema MountainCarConfig
 end
 ```
 
-The MountainCarConfig schema names three records — episode_length, num_episodes, and deque_size — and assigns types to them.
+The `MountainCarConfig` schema names three records — `episode_length`, `num_episodes`, and `deque_size` — and assigns types to them.
 
 ###### Concept `high_score`
 
@@ -46,7 +46,7 @@ concept high_score
 end
 ```
 
-The concept is named high_score, and it takes input from the simulator about the state of the game (GameState schema). It outputs to the Action schema. This is the AI's next move in the game.
+The concept is named `high_score`, and it takes input from the simulator about the state of the game (`GameState` schema). It outputs to the `Action` schema. This is the AI's next move in the game.
 
 ###### Curriculum: `high_score_curriculum`
 
@@ -70,8 +70,8 @@ end
 ```
 
 * The curriculum is named high_score_curriculum, and it trains the high_score concept using the mountaincar_simulator.
-* The mountain_car simulator gets information from two schemas. The first (MountainCarConfig) specifies the schema for configuration of the simulation. The second schema contains the state of the simulator that is sent to the lesson.
-* This curriculum contains one lesson, called get_high_score. It configures the simulation, by setting a number of constraints for the state of the simulator.
+* The mountain_car simulator gets information from two schemas. The first (`MountainCarConfig`) specifies the schema for configuration of the simulation. The second schema contains the state of the simulator that is sent to the lesson.
+* This curriculum contains one lesson, called `get_high_score`. It configures the simulation, by setting a number of constraints for the state of the simulator.
 * The lesson trains until the AI has maximized the objective.
 
 [1]: https://gym.openai.com/envs/MountainCar-v0

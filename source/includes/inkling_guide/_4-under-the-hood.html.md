@@ -1,6 +1,3 @@
-
-[Source](http://docs.bons.ai/inkling-guide-pages/4-under-the-hood "Permalink to (4) Under the Hood - Bons.ai")
-
 ## Under the Hood
 
 This section describes some of how Bonsai AI's engine works under the hood using Inkling to teach BRAINs.
@@ -28,7 +25,7 @@ The learner component is responsible for carrying out the actual execution of th
 
 ### Transformer
 
-The transformer carries out any streaming data transformations that do not require learning. When authors create BRAIN models, some concepts do not require learning and code specifying explicitly how to calculate them can be specified. For example, if you want to use the concept of a moving average.  Rather than have the system learn how to calculate a moving average, you can easily specify how to calculate it explicitly. Such transformations take the form of "stream" statements in Inkling, which will be described in more detail below.  The transformer carries out the actual execution of such transformations when needed.
+The transformer carries out any streaming data transformations that do not require learning. When authors create BRAIN models, some concepts do not require learning; code specifying explicitly how to calculate them can be specified. For example, if you want to use the concept of a moving average.  Rather than have the system learn how to calculate a moving average, you can easily specify how to calculate it explicitly. Such transformations take the form of "stream" statements in Inkling, which will be described in more detail below.  The transformer carries out the actual execution of such transformations when needed.
 
 ### Predictor
 

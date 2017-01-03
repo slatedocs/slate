@@ -1,4 +1,4 @@
-## import
+## Import
 
 Reference for the keyword **import**. Also, describes the keywords: **from**
 

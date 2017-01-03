@@ -1,4 +1,4 @@
-## lesson
+## Lesson
 
 Reference for the keyword **lesson**. Also, describes the keywords: **follows**, **configure**, **constrain**, **until**, **minimize**, **maximize**, **configure**, **with**, and **end.**
 
@@ -23,7 +23,7 @@ lesson lessonName
   untilClause
 ```
 
-Lessons allow the machine to learn the concept in stages rather than all at once. In the example below we show lessons that break into stages the task of  playing the game breakout. The first lesson, constant_breakout, trains the machine with a set of fixed values as configuration parameters. The second lesson, vary_breakout, which **follows** constant_breakout, trains the machine with a set of configuration parameters that vary according to specified type constraints.
+Lessons allow the machine to learn the concept in stages rather than all at once. In the example we show lessons that break into stages the task of  playing the game breakout. The first lesson, `constant_breakout`, trains the machine with a set of fixed values as configuration parameters. The second lesson, `vary_breakout`, which **follows** constant_breakout, trains the machine with a set of configuration parameters that vary according to specified type constraints.
 
 ```inkling
 schema BreakoutConfig   # configured in configureClause
@@ -70,12 +70,12 @@ curriculum ball_location_curriculum
       minimize ball_location_distance
 end
 ```
-‍
-Lesson clauses have defaults so if a clause is not specified the default will be assumed. Also in certain circumstances not all  clauses are available. (The specific rules appear in the lesson clauses table below.)
 
-The two lessons above are different in their configure clause. The first sets the fields in the configuration schema to constant values and the second lesson, vary_breakout, generates sets of values constrained by the type constraint. The syntax diagram below for constrainedType shows the syntactic rules for type constraints.
+Lesson clauses have defaults so if a clause is not specified the default will be assumed. Also in certain circumstances not all clauses are available. (The specific rules appear in the lesson clauses table below.)
 
-Note that the **constrain** name in the example above specifies a field in the configuration schema for the simulator. These fields in the example are bricks_percent, level, and paddle_width. When such fields are initialized with values from a type constraint they are often called placeholders.  This means that the name is is not the name of a specific value but rather it is the name of a range of values which will be input during training.
+The two lessons above are different in their configure clause. The first sets the fields in the configuration schema to constant values and the second lesson, `vary_breakout`, generates sets of values constrained by the type constraint. The syntax diagram below for `constrainedType` shows the syntactic rules for type constraints.
+
+Note that the **constrain** name in the example above specifies a field in the configuration schema for the simulator. These fields in the example are `bricks_percent`, `level`, and `paddle_width`. When such fields are initialized with values from a type constraint they are often called placeholders.  This means that the name is is not the name of a specific value but rather it is the name of a range of values which will be input during training.
 
 You can find more discussion of type constraint rules in the [schema][1] section. (Schema declarations can also use type constraints.)
 
@@ -146,7 +146,7 @@ test
 trainingSpecifer
 ```
 ‍
-The fromClause in the test/train syntax is used to name and describe the training data that is sent by the system (either from a labeled data set, in the **data** case, or by the generator or simulator) to the lesson.  Here is an example where the fromClause is shown in a curricululm which trains the machine to recognize line segments in an image. The generator segments_generator sends an image and expects num_segments in return. The returned num_segments is expected to match the generator's num_segments value.
+The fromClause in the test/train syntax is used to name and describe the training data that is sent by the system (either from a labeled data set, in the **data** case, or by the generator or simulator) to the lesson.  Here is an example where the fromClause is shown in a curricululm which trains the machine to recognize line segments in an image. The generator `segments_generator` sends an image and expects `num_segments` in return. The returned `num_segments` is expected to match the generator's `num_segments` value.
 
 ```inkling
 ‍generator segments_generator(UInt8 segmentCount)
@@ -173,14 +173,14 @@ curriculum segments_curriculum
 end
 ```
 ‍
-The untilClause in the lesson specifies the termination condition for training. The untilClause in our breakout example above was this:
+The `until` Clause in the lesson specifies the termination condition for training. The `until` Clause in our breakout example above was this:
 
 ```inkling
 until
   minimize ball_location_distance
 ```
 ‍
-This means train until the curriculum objective (ball_location_distance) is minimized. Here is the syntax for the untilClause.
+This means train until the curriculum objective (ball_location_distance) is minimized. Here is the syntax for the `until` Clause.
 
 ‍
 
@@ -203,11 +203,11 @@ until
            '==' | '<' | '>' | '<=' | '>='
 ```
 
-The untilClause is only required if the curriculum trainingSpecifier is **simulator**.  If this curriculum has a trainingSpecifier of **data** or **generator**, the until clause is optional. If it is not present, a default with value minimize will be created.
+The `until` Clause is only required if the curriculum trainingSpecifier is **simulator**.  If this curriculum has a trainingSpecifier of **data** or **generator**, the until clause is optional. If it is not present, a default with value minimize will be created.
 
 ###### Lesson Clauses Table
 
-Lesson clauses have defaults so if a clause is not specified the default will be assumed. Also in certain circumstances not all  clauses are available. This table specifies the rules. Recall that the trainingSpecifier appears after the keyword **with** in the curriculum.
+Lesson clauses have defaults so if a clause is not specified the default will be assumed. Also in certain circumstances not all clauses are available. This table specifies the rules. Recall that the trainingSpecifier appears after the keyword **with** in the curriculum.
 
 ![][2]
 

@@ -8,7 +8,7 @@ Reference for the keyword **schema**. Also definitions and discussion of Inkling
 
 ### Why do I use it?
 
-Schemas describe the structure of data in Inkling  streams, such as the predefined input and output streams. In addition many inkling statements (for example **concept** and **curriculum**) use schema references to describe the data that flows in and out of the construct.
+Schemas describe the structure of data in Inkling  streams, such as the predefined input and output streams. In addition, many Inkling statements (for example `concept` and `curriculum` use schema references to describe the data that flows in and out of the construct.
 
 ### How do I use it?
 
@@ -30,8 +30,8 @@ end
 ‍
 ###### Schema Rules
 
-* Inkling statements can reference schemas by name. Above, _MyConcept_ uses _MySchema_ as its **predicts** schema.
-* Statements can use anonymous schemas. That means that a list of fields appears where a schema name could appear. Above, after **follows**, the predefined stream input has an anonymous schema with one field. This is useful in cases where you will only need that information once. In general, anywhere a schema name can appear, an anonymous schema can appear.
+* Inkling statements can reference schemas by name. Above, `MyConcept` uses `MySchema` as its `predicts` schema.
+* Statements can use anonymous schemas. That means that a list of fields appears where a schema name could appear. Above, after `follows`, the predefined stream input has an anonymous schema with one field. This is useful in cases where you will only need that information once. In general, anywhere a schema name can appear, an anonymous schema can appear.
 * The set of types supported with schema fields consists of the set of Inkling primitive types and the set of Inkling structured types. These sets are listed below.
 * A schema field that has a primitive type can also have a type constraint that constrains the set of potential values for that field. Examples and syntax of type constraints are given below.
 
@@ -67,7 +67,7 @@ typeConstraint?
 [ '[' arraySizeLiteral ']' ]*
 ```
 ‍
-### schema reference syntax
+### Schema Reference Syntax
 
 A named schema is referenced by its name. An anonymous schema is referenced by its list of fields.
 
@@ -157,7 +157,7 @@ end
 ```
 ‍
 
-###### constrained type syntax
+###### Constrained Type Syntax
 
 > constrainedType :=
 
@@ -176,7 +176,7 @@ numericType
 Double | Float64 | Float32 | Int8 | Int16 | Int32 |  Int64 | UInt8 | UInt16 | UInt32  | UInt64
 ```
 
-###### constrained type rules
+###### Constrained Type Rules
 
 ###  For numeric ranges:
 
