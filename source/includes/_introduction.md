@@ -8,7 +8,7 @@ You can use our Application Programming Interface (**API**) to book Sendle parce
 Our Application Programming Interface
   <ol>
     <li>
-      Sendle provides a number of services, such as quoting, booking and tracking, via its Application Programming Interface (API).
+      Sendle provides a number of services, such as quoting, booking and tracking, through an Application Programming Interface (API).
     </li>
     <li>
       Sendle is the owner of the API however we give you the right to use the API for your own purposes, explicitly for sending your own parcels.
