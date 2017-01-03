@@ -92,7 +92,7 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
-    redcarpet (3.3.4)
+    redcarpet (3.4.0)
     rouge (2.0.5)
     sass (3.4.22)
     servolux (0.12.0)
@@ -115,8 +115,8 @@ DEPENDENCIES
   middleman-autoprefixer (~> 2.7.0)
   middleman-sprockets (~> 4.0.0)
   middleman-syntax (~> 3.0.0)
-  redcarpet (~> 3.3.2)
+  redcarpet (~> 3.4.0)
   rouge (~> 2.0.5)
 
 BUNDLED WITH
-   1.12.5
+   1.13.6
