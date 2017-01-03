@@ -108,6 +108,7 @@ is_public | Publish reports on a white label URL. Y or N.
 
 ```json
 {
+  "success": false,
   "error": true,
   "errors": {
     "business_name": "Please enter business name",
@@ -127,6 +128,7 @@ is_public | Publish reports on a white label URL. Y or N.
 ```json
 {
   "error": false,
+  "success": true,
   "result": "Campaign updated"
 }
 ```
@@ -142,7 +144,7 @@ Parameter | Notes
 api-key	| <span class="label label-required">Required</span>	
 sig	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-campaign-id	| <span class="label label-required">Required</span>
+campaign_id	| <span class="label label-required">Required</span>
 location_id |		
 business_name | 	
 campaign_name | 	
