@@ -90,6 +90,28 @@ echo json_encode(array(
 ));
 ```
 
+```csharp
+var localDirectories = new List<dynamic>();
+localDirectories.Add(new
+{
+    yellowbot = new
+    {
+        url = "http://www.yellowbot.com/le-bernardin-new-york-ny.html",
+        include = true
+    },
+    yellowpages = new
+    {
+        url = "http://www.yellowpages.com/new-york-ny/mip/le-bernardin-9909153",
+        include = true
+    },
+    yelp = new
+    {
+        url = "",
+        include = true
+    }
+});
+```
+
 > Success (201 Created)
 
 ```json
@@ -232,6 +254,29 @@ echo json_encode(array(
    )
 ));
 ```
+
+```csharp
+var localDirectories = new List<dynamic>();
+localDirectories.Add(new
+{
+    yellowbot = new
+    {
+        url = "http://www.yellowbot.com/le-bernardin-new-york-ny.html",
+        include = true
+    },
+    yellowpages = new
+    {
+        url = "http://www.yellowpages.com/new-york-ny/mip/le-bernardin-9909153",
+        include = true
+    },
+    yelp = new
+    {
+        url = "",
+        include = true
+    }
+});
+```
+
 
 > Success (200 OK)
 
