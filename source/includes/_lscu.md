@@ -97,17 +97,17 @@ localDirectories.Add(new
     yellowbot = new
     {
         url = "http://www.yellowbot.com/le-bernardin-new-york-ny.html",
-        include = true
+        include = yes
     },
     yellowpages = new
     {
         url = "http://www.yellowpages.com/new-york-ny/mip/le-bernardin-9909153",
-        include = true
+        include = yes
     },
     yelp = new
     {
         url = "",
-        include = true
+        include = yes
     }
 });
 ```
@@ -262,17 +262,17 @@ localDirectories.Add(new
     yellowbot = new
     {
         url = "http://www.yellowbot.com/le-bernardin-new-york-ny.html",
-        include = true
+        include = yes
     },
     yellowpages = new
     {
         url = "http://www.yellowpages.com/new-york-ny/mip/le-bernardin-9909153",
-        include = true
+        include = yes
     },
     yelp = new
     {
         url = "",
-        include = true
+        include = yes
     }
 });
 ```
