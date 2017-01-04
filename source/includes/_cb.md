@@ -76,7 +76,7 @@ service_name_2 |
 service_name_3 |		
 service_name_4 |		
 service_name_5 |		
-working_hours_apply_to_all | <span class="label label-required">Required</span> If this field has a value of 1 you only need to specify working hours for Monday and these values are then also used for the other days of the week.
+working_hours_apply_to_all | <span class="label label-required">Required</span> If this field has a value of Y you only need to specify working hours for Monday and these values are then also used for the other days of the week.
 working_hours_mon_start	| <span class="label label-required">Required</span>	
 working_hours_mon_end | <span class="label label-required">Required</span>	
 working_hours_tue_start	| <span class="label label-required">Required</span>	
@@ -145,7 +145,6 @@ api-key	| <span class="label label-required">Required</span>
 sig	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 campaign_id	| <span class="label label-required">Required</span>
-location_id |		
 business_name | 	
 campaign_name | 	
 website_address	| 		
@@ -169,7 +168,7 @@ service_name_2 |
 service_name_3 |		
 service_name_4 |		
 service_name_5 |		
-working_hours_apply_to_all |  If this field has a value of 1 you only need to specify working hours for Monday and these values are then also used for the other days of the week.
+working_hours_apply_to_all |  If this field has a value of Y you only need to specify working hours for Monday and these values are then also used for the other days of the week.
 working_hours_mon_start	| 	
 working_hours_mon_end | 	
 working_hours_tue_start	| 	
