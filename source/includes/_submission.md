@@ -43,17 +43,17 @@ $fields_string ='';
 foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
 rtrim($fields_string, '&');
 
-$ch = curl_init();        
+$ch = curl_init();
 curl_setopt( $ch, CURLOPT_URL, $url );
 curl_setopt( $ch, CURLOPT_POST, true );
-curl_setopt( $ch, CURLOPT_POSTFIELDS, $fields_string );        
+curl_setopt( $ch, CURLOPT_POSTFIELDS, $fields_string );
 curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
 curl_setopt($ch, CURLOPT_HEADER, true);
 curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 curl_setopt( $ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)' );
 curl_setopt( $ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1 );
 
-$result = curl_exec( $ch );        
+$result = curl_exec( $ch );
 
 echo $result;
 
@@ -140,15 +140,15 @@ $fields = array(
       'ciclos'=> urlencode('12'),
       'trial'=> urlencode(true),
       'valor_rec'=> urlencode('30.00'),
-);    
+);
 $fields_string ='';
 foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
 rtrim($fields_string, '&');
 
-$ch = curl_init();      
+$ch = curl_init();
 curl_setopt( $ch, CURLOPT_URL, $url );
 curl_setopt( $ch, CURLOPT_POST, true );
-curl_setopt( $ch, CURLOPT_POSTFIELDS, $fields_string );     
+curl_setopt( $ch, CURLOPT_POSTFIELDS, $fields_string );
 curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
 curl_setopt( $ch, CURLOPT_HEADER, false);
 curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
@@ -172,13 +172,16 @@ frequencia | 2 | number | sim | Utilizado na criação de uma transação re
 intervalo | 5 | string | sim | Utilizado na criação de uma transação recorrente. Define a unidade de intervalo que será utilizada. ('day', 'week' ou 'month')
 inicio | 10 | date | sim | Utilizado na criação de uma transação recorrente. A primeira cobrança ocorre no dia da criação da recorrência. As próximas cobranças ocorrerão no dia especificado no inicio + (frequencia*intervalo). FORMATO: "DD/MM/YYYY"
 valor_rec | 12 | decimal | não | Valor que será cobrado no primeiro vencimento da recorrência. Não é obrigatório, caso não informado será utilizado o valor da transação (valor).
+ciclos | 2 | number | não | Define o número de ciclos de transações recorrentes que serão realizadas.
 trial | 1 | boolean | não | Se trial = 1 ou true então a primeira cobrança (valor da transação) será de R$1,00 afim de realizar uma transação de validação para geração do token.
-ciclos | 1 | number | não | Define o número de ciclos de transações recorrentes que serão realizadas.
+trial_ciclos | 2 | number | não | Define o número de ciclos de transações recorrentes em período trial.
+trial_frequencia | 2 | number | não | Define a frequencia em que cada ciclo da recorrêcia será executado. (Ex: A cada 1 mês, ou, a cada 6 meses).
+trial_valor | 12 | decimal | não | Define o valor que será cobrado durante o período trial.
 
 ### Observações
 A primeira cobrança ocorre no ato da criação da recorrência.
 
-Ex: Criação de uma recorrência mensal no dia 10/05/2016 e inicio = 01/06/2016.  
+Ex: Criação de uma recorrência mensal no dia 10/05/2016 e inicio = 01/06/2016.
 A primeira cobrança será feita no dia 10/05/2016 e a próxima cobrança ocorrerá no dia 01/07/2016.  01/06/2016 + 1 * month
 
 ### Exemplos de transações recorrentes
@@ -189,10 +192,37 @@ Será criada uma cobrança recorrente mensal, que terá início em 01/01/201
 **b)** frequencia = 3, intervalo = month, inicio = 01/01/2015
 Será criada uma cobrança recorrente trimestral, que terá início em 01/01/2015 e será cobrada por tempo indeterminado.
 
-**c)** Caso queira criar uma recorrência com período TRIAL, envie também o parâmetro trial = (1 ou true), neste caso é necessário informar o valor_rec, que será cobrado na data início.
+**c)** Caso queira criar uma recorrência com período TRIAL sendo a primeira cobrança com um valor de R$1,00 apenas autorizado (não debita do cartão do cliente), envie também o parâmetro trial = (1 ou true), neste caso é necessário informar o *valor_rec* que será cobrado na data início.
+
+**d)** Caso queira criar uma recorrência com período TRIAL com um valor especifico durante esse período, é obrigátorio o envio dos seguintes parâmetros: *trial_ciclos, trial_frequencia e trial_valor*.
+
+**Exemplo:** Cobrar R$10,00 de adesão, com um período de 3 meses promocional de R$5,00, e no 4 mês cobrar o valor normal de R$10,00. Envie o seguinte:
+
+intevalo = 'month'<br/>
+frequencia = 1<br/>
+valor = 10.00<br/>
+valor_rec = 10.00<br/>
+trial_ciclos = 4 (adesão + 3 meses trial)<br/>
+trial_frequencia = 1<br/>
+trial_valor = 5.00<br/>
+
+**Exemplo:** Cobrar R$1,00 no ato (trial = true), com um período de 3 meses promocional de R$5,00, e no 4 mês cobrar o valor normal de R$10,00. Envie o seguinte:
+
+intevalo = 'month'<br/>
+frequencia = 1<br/>
+trial = true<br/>
+valor = 1.00<br/>
+valor_rec = 10.00<br/>
+trial_ciclos = 4 (adesão + 3 meses trial)<br/>
+trial_frequencia = 1<br/>
+trial_valor = 5.00<br/>
 
 <aside class="warning">
 <b>Se definido como verdadeiro o parâmetro TRIAL, será realizado uma transação de R$1,00, somente como aprovada (Não gerará cobrança para o cliente). Essa transação é realizada para validar o cartão do cliente e criar o token de recorrência. Essa transação não deve ser capturada, mas pode, se desejar, ser cancelada via API ou Painel.</b>
+</aside>
+
+<aside class="info">
+O <b>trial_ciclos</b> é calculado da seguinte forma: <i>primeira cobrança + período desejado</i>, caso queira 3 ciclos de trial, informe trial_ciclos = 4.
 </aside>
 
 ### Importante
