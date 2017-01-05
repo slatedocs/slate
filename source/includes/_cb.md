@@ -135,7 +135,7 @@ is_public | Publish reports on a white label URL. Y or N.
 
 ### HTTP Request
 
-`PUT https://tools.brightlocal.com/seo-tools/api/v2/cb/update`
+`PUT https://tools.brightlocal.com/seo-tools/api/v2/cb/<campaignId>`
 
 ### Query Parameters
 
@@ -144,7 +144,6 @@ Parameter | Notes
 api-key	| <span class="label label-required">Required</span>	
 sig	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-campaign_id	| <span class="label label-required">Required</span>
 business_name | 	
 campaign_name | 	
 website_address	| 		
