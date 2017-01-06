@@ -129,10 +129,10 @@ you must supply an order object rather than relying on any order of the
 "metadata" object.
 
 
-It is possible to create arrays and derived arrays simulaneously in one request
-when creating the dataset along its metadata. The variable references inside the
-derivation expressions must point to declared aliases of variables or 
-subvariables. 
+It is possible to create arrays and []derived arrays](#Making-ad-hoc-arrays) 
+simulaneously in one request when creating the dataset along its metadata. The 
+variable references inside the derivation expressions must point to declared 
+aliases of variables or subvariables. 
 
 ```http
 POST /datasets/ HTTP/1.1
