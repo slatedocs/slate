@@ -128,8 +128,7 @@ object is explicitly unordered. If you wish the variables to have an order,
 you must supply an order object rather than relying on any order of the
 "metadata" object.
 
-
-It is possible to create arrays and []derived arrays](#Making-ad-hoc-arrays) 
+It is possible to create arrays and [derived arrays](#Making-ad-hoc-arrays) 
 simulaneously in one request when creating the dataset along its metadata. The 
 variable references inside the derivation expressions must point to declared 
 aliases of variables or subvariables. 
