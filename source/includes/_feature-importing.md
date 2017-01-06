@@ -187,7 +187,7 @@ Content-Length: 3294
             }
           },
           "MR1": {
-              "name": "mulriple response", 
+              "name": "multiple response", 
               "derivation": {
                 "function": "select_categories", 
                 "args": [
