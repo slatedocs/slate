@@ -228,7 +228,7 @@ package_id | <span class="label label-required">Required</span> CB package id co
 autoselect | String. Possible values 'N' or 'Y'. Default 'N'.
 citations | JSON Array. List of sites you require listings for. You can leave citations empty for auto selecting citations.
 remove-duplicates | String. Possible values 'N' or 'Y'. Default 'N'. Find and Remove Duplicate Listings
-aggregators | JSON Array. List of aggregators you require listings for. Possible values are 'factual', 'infogroup', 'neustar', 'axciom' for USA. The only possible value for all non USA countries is 'factual'.
+aggregators | JSON Array. List of aggregators you require listings for. Possible values are 'factual', 'infogroup', 'neustar', 'acxiom' for USA. The only possible value for all non USA countries is 'factual'.
 notes | Provide instructions to our submissions team with specifics about how you'd like your campaign handled.
 
 ## Get Campaigns
