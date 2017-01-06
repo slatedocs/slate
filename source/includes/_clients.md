@@ -82,6 +82,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->put('/v1/clients-and-locations/clients/', [
+    'client-id'            => 36447,
     'name'                 => 'Le Bernardin',               
     'company-url'          => 'le-bernardin.com',
     'business-category-id' =>  791    
@@ -94,6 +95,7 @@ curl -X PUT \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'client-id=36447' \
  -d 'name=Le Bernardin' \
  -d 'company-url=le-bernardin.com' \
  -d 'business-category-id=<INSERT_BUSINESS_CATEGORY_ID>' \
