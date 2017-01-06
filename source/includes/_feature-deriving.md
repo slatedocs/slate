@@ -305,6 +305,144 @@ The "case" function derives a variable using values from the first argument. Eac
 }
 ```
 
+### Making ad hoc arrays
+
+It is possible to create derived arrays reusing subvariables from other arrays 
+using the `array` function and indicating the reference for each of its 
+subvariables. 
+
+The subvariables of an array are specified using the `select` function, with its
+first `map` argument indicating the IDs for each of these virtual subvariables.
+These IDs are user defined and can be any string. They remain unique inside the
+parent variable so they can be reused between different arrays.
+The second argument of the `select` function indicates the order of the 
+subvariables in the array. They are referenced by the user defined IDs.
+
+Each of its variables must point to a variable expression, which can take an
+optional (but recommended) `references` attribute to specify a particular name and alias for
+the subvariable, if not specified, the same name from the original will be used
+and the alias will be padded to ensure uniqueness.
+
+```json
+{
+  "CA3": {
+    "name": "cat array 3", 
+    "derivation": {
+      "function": "array", 
+      "args": [
+        {
+          "function": "select", 
+          "args": [
+            {
+              "map": {
+                "var1": {
+                  "variable": "ca2-subvar-2", 
+                  "references": {
+                    "alias": "subvar2", 
+                    "name": "Subvar 2"
+                  }
+                }, 
+                "var0": {
+                  "variable": "ca1-subvar-1", 
+                  "references": {
+                    "alias": "subvar1", 
+                    "name": "Subvar 1"
+                  }
+                }
+              }
+            }, 
+            {
+              "value": [
+                "var1", 
+                "var0"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }, 
+  "CA2": {
+    "subvariables": [
+      {
+        "alias": "ca2-subvar-1", 
+        "name": "ca2-subvar-1"
+      }, 
+      {
+        "alias": "ca2-subvar-2", 
+        "name": "ca2-subvar-2"
+      }
+    ], 
+    "type": "categorical_array", 
+    "name": "cat array 2", 
+    "categories": [
+      {
+        "numeric_value": null, 
+        "missing": false, 
+        "id": 1, 
+        "name": "yes"
+      }, 
+      {
+        "numeric_value": null, 
+        "missing": false, 
+        "id": 2, 
+        "name": "no"
+      }, 
+      {
+        "numeric_value": null, 
+        "missing": true, 
+        "id": -1, 
+        "name": "No Data"
+      }
+    ]
+  }, 
+  "CA1": {
+    "subvariables": [
+      {
+        "alias": "ca1-subvar-1", 
+        "name": "ca1-subvar-1"
+      }, 
+      {
+        "alias": "ca1-subvar-2", 
+        "name": "ca1-subvar-2"
+      }, 
+      {
+        "alias": "ca1-subvar-3", 
+        "name": "ca1-subvar-3"
+      }
+    ], 
+    "type": "categorical_array", 
+    "name": "cat array 1", 
+    "categories": [
+      {
+        "numeric_value": null, 
+        "missing": false, 
+        "id": 1, 
+        "name": "yes"
+      }, 
+      {
+        "numeric_value": null, 
+        "missing": false, 
+        "id": 2, 
+        "name": "no"
+      }, 
+      {
+        "numeric_value": null, 
+        "missing": true, 
+        "id": -1, 
+        "name": "No Data"
+      }
+    ]
+  }
+}
+```
+
+On the above example, the array `CA3` uses the array function and uses 
+subvariables `ca1-subvar-1` and `ca2-subvar-2` from `CA1` and `CA2` respectively.
+The `references` attribute is used to indicate specific name/alias for these
+subvariables.
+
+
 ### Weights
 
 A numeric variable suitable for use as row weights can be constructed from one or more categorical variables and target proportions of their categories. The sample distribution is “raked” iteratively to each categorical marginal target to produce a set of joint values that can be used as weights. Note that available weight variables are shared by all; you may not create private weights. To create a weight variable, POST a JSON variable definition to the variables catalog describing the properties of the weight variable, with an "expr" member indicating to use the "rake" function, which takes a "targets" argument containing an array of Crunch Tables of targets:
@@ -525,7 +663,7 @@ Returns a shallow copy of the indicated variable maintaining type and data.
 
 ```json
 {
-    "function": "variable",
+    "function": "copy_variable",
     "args": [
         {"variable": "https://app.crunch.io/api/datasets/123/variables/abc/"}
     ]
