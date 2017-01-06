@@ -175,6 +175,17 @@ Content-Length: 3294
                 ]
               }
             },
+          "numeric": {
+            "name": "numeric variable",
+            "type": "numeric"
+          },
+          "numeric_copy": {
+            "name": "Copy of numeric",
+            "derivation": {
+                "function": "copy_variable",
+                "args": [{"variable": "numeric"}]
+            }
+          },
           "CA3": {
             "name": "cat array 3", 
             "derivation": {
