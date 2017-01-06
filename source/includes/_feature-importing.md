@@ -186,6 +186,22 @@ Content-Length: 3294
                 "args": [{"variable": "numeric"}]
             }
           },
+          "MR1": {
+              "name": "mulriple response", 
+              "derivation": {
+                "function": "select_categories", 
+                "args": [
+                  {
+                    "variable": "CA3"
+                  }, 
+                  {
+                    "value": [
+                      1
+                    ]
+                  }
+                ]
+              }
+            },
           "CA3": {
             "name": "cat array 3", 
             "derivation": {
@@ -301,6 +317,14 @@ Content-Length: 3294
 201 Created
 Location: /datasets/{dataset_id}/
 ```
+
+The example above does a number of things:
+
+* Creates variables `numeric` and arrays `CA1` and `CA2`.
+* Makes a shallow copy of variable `numeric` as `numeric_copy`.
+* Makes an ad hoc array `CA3` reusing subvariables from `CA1` and `CA2`.
+* Makes a multiple response view `MR1` selecting category 1 from categorical array `CA3`.
+
 
 ##### Validation rules
 
