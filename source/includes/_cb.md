@@ -20,8 +20,6 @@
     "campaign_state": "Please select state",
     "campaign_city": "Please select location",
     "address1": "Please enter street address",
-    "city": "Please enter name of the city / town",
-    "region": "Please enter state / county / region",
     "postcode": "Please enter zip / postal code",
     "website_address": "Please enter the website address for the business",
     "contact_email": "Please enter correct email address",
@@ -57,13 +55,12 @@ business_name | <span class="label label-required">Required</span>
 campaign_name | <span class="label label-required">Required</span>	
 website_address	| <span class="label label-required">Required</span>	
 campaign_country | <span class="label label-required">Required</span>	
+campaign_state | <span class="label label-required">Required</span>
 campaign_city | <span class="label label-required">Required</span>	
 business_category_id | <span class="label label-required">Required</span>	
 business_categories	| <span class="label label-required">Required</span>	
 address1 | <span class="label label-required">Required</span>	
-address2 |		
-city | <span class="label label-required">Required</span>	
-region | <span class="label label-required">Required</span>	
+address2 |			
 postcode | <span class="label label-required">Required</span>	
 contact_name | <span class="label label-required">Required</span>	
 contact_firstname | <span class="label label-required">Required</span>	
@@ -79,7 +76,7 @@ service_name_2 |
 service_name_3 |		
 service_name_4 |		
 service_name_5 |		
-working_hours_apply_to_all | <span class="label label-required">Required</span> If this field has a value of 1 you only need to specify working hours for Monday and these values are then also used for the other days of the week.
+working_hours_apply_to_all | <span class="label label-required">Required</span> If this field has a value of Y you only need to specify working hours for Monday and these values are then also used for the other days of the week.
 working_hours_mon_start	| <span class="label label-required">Required</span>	
 working_hours_mon_end | <span class="label label-required">Required</span>	
 working_hours_tue_start	| <span class="label label-required">Required</span>	
@@ -93,6 +90,97 @@ working_hours_sat_end | <span class="label label-required">Required</span>
 working_hours_sat_start | <span class="label label-required">Required</span>	
 working_hours_sun_end | <span class="label label-required">Required</span>	
 working_hours_sun_start	| <span class="label label-required">Required</span>	
+special_offer |		
+special_offer_description |		
+special_offer_expiry_date |		
+payment_methods	| <p>String with '&#124;' delimiter. E.g. cash&#124;visa&#124;mastercard&#124;amex&#124;cheque&#124;atm&#124;discover. Possible values - cash&#124;visa&#124;mastercard&#124;amex&#124;cheque&#124;invoice&#124;insurance&#124;atm&#124;travellers&#124;financing&#124;paypal&#124;discover</p>
+receive-email-alerts | 		
+alert-email-addresses | 		
+old_business_name |		
+old_lookup_data	| For e.g, old postcode
+is_public | Publish reports on a white label URL. Y or N.
+
+## Update Campaign
+
+<span class="label label-info">Account Method</span>
+
+> Validation Failure
+
+```json
+{
+  "success": false,
+  "error": true,
+  "errors": {
+    "business_name": "Please enter business name",
+    "campaign_name": "Please enter campaign name",
+    "contact_firstname": "Please enter contact first name",
+    "contact_name": "Please enter contact last name",
+    "business_categories": "Please enter at least one business category or tag",
+    "campaign_state": "Please select state",
+    "campaign_city": "Please select location",
+    "address1": "Please enter street address"  
+  }
+}
+```
+
+> Success (200 OK)
+
+```json
+{
+  "error": false,
+  "success": true,
+  "result": "Campaign updated"
+}
+```
+
+### HTTP Request
+
+`PUT https://tools.brightlocal.com/seo-tools/api/v2/cb/<campaignId>`
+
+### Query Parameters
+
+Parameter | Notes
+--------- | -----
+api-key	| <span class="label label-required">Required</span>	
+sig	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+business_name | 	
+campaign_name | 	
+website_address	| 		
+campaign_state |
+campaign_city | 		
+business_categories	| 	
+address1 | 	
+address2 |		 	
+postcode | 	
+contact_name | 	
+contact_firstname | 	
+contact_telephone | 	
+mobile_number |		
+fax_number |		
+brief_description | 	
+full_description | 	
+employees_number | 	
+start_year | 	
+service_name_1 |		
+service_name_2 |		
+service_name_3 |		
+service_name_4 |		
+service_name_5 |		
+working_hours_apply_to_all |  If this field has a value of Y you only need to specify working hours for Monday and these values are then also used for the other days of the week.
+working_hours_mon_start	| 	
+working_hours_mon_end | 	
+working_hours_tue_start	| 	
+working_hours_tue_end | 	
+working_hours_wed_start | 	
+working_hours_thu_end | 	
+working_hours_thu_start | 	
+working_hours_fri_end | 	
+working_hours_fri_start | 	
+working_hours_sat_end | 	
+working_hours_sat_start | 	
+working_hours_sun_end | 	
+working_hours_sun_start	| 	
 special_offer |		
 special_offer_description |		
 special_offer_expiry_date |		
