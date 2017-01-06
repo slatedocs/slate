@@ -38,15 +38,14 @@ curl -X POST \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-        parameters.Add("name", "Le Bernardin");
-        parameters.Add("schedule", "Adhoc");
-        parameters.Add("search-terms", "Restaurant\nfood+nyc\ndelivery+midtown+manhattan");
-        parameters.Add("website-addresses", "['le-bernardin.com', 'le-bernardin2.com']");
-        parameters.Add("search-engines", "google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local");
+parameters.Add("name", "Le Bernardin");
+parameters.Add("schedule", "Adhoc");
+parameters.Add("search-terms", "Restaurant\nfood+nyc\ndelivery+midtown+manhattan");
+parameters.Add("website-addresses", "['le-bernardin.com', 'le-bernardin2.com']");
+parameters.Add("search-engines", "google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local");
 
 var success = request.Post("/v2/lsrc/add", parameters);
 ```
-
 
 > Success (200 OK)
 
@@ -54,7 +53,7 @@ var success = request.Post("/v2/lsrc/add", parameters);
 {
     "response":  {
         "status": "Report Added",
-        "location-id": "9907",
+        "campaign-id": "9907",
         "credits": 298
     }
 }

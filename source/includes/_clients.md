@@ -160,7 +160,7 @@ if (!empty($result['success'])) {
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-       parameters.Add("client-id", "36447");
+parameters.Add("client-id", "36447");
 
 var success = request.Delete("/v1/clients-and-locations/clients/", parameters);
 ```
@@ -271,7 +271,7 @@ curl -X GET \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-        parameters.Add("q", "BrightLocal");      
+parameters.Add("q", "BrightLocal");      
 		         
 var success = request.Put("/v1/clients-and-locations/clients/search", parameters);
 ```
