@@ -319,7 +319,7 @@ The second argument of the `select` function indicates the order of the
 subvariables in the array. They are referenced by the user defined IDs.
 
 Each of its variables must point to a variable expression, which can take an
-optional `references` attribute to specify a particular name and alias for
+optional (but recommended) `references` attribute to specify a particular name and alias for
 the subvariable, if not specified, the same name from the original will be used
 and the alias will be padded to ensure uniqueness.
 

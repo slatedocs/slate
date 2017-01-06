@@ -128,10 +128,12 @@ object is explicitly unordered. If you wish the variables to have an order,
 you must supply an order object rather than relying on any order of the
 "metadata" object.
 
-It is possible to create arrays and [derived arrays](#Making-ad-hoc-arrays) 
-simulaneously in one request when creating the dataset along its metadata. The 
-variable references inside the derivation expressions must point to declared 
-aliases of variables or subvariables. 
+It is possible to create derived variables using any of the 
+[derivation functions available](#Deriving-Variables) simulaneously in one 
+request when creating the dataset along its metadata. The variable references 
+inside the derivation expressions must point to declared aliases of variables 
+or subvariables. 
+
 
 ```http
 POST /datasets/ HTTP/1.1
@@ -144,6 +146,35 @@ Content-Length: 3294
       "name": "Dataset with derived arrays",
       "table": {
         "metadata": {
+           "combined": {
+              "name": "combined CA", 
+              "derivation": {
+                "function": "combine_categories", 
+                "args": [
+                  {
+                    "variable": "CA1"
+                  }, 
+                  {
+                    "value": [
+                      {
+                        "combined_ids": [2], 
+                        "numeric_value": 2, 
+                        "missing": false, 
+                        "name": "even", 
+                        "id": 1
+                      }, 
+                      {
+                        "combined_ids": [1], 
+                        "numeric_value": 1, 
+                        "missing": false, 
+                        "name": "odd", 
+                        "id": 2
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
           "CA3": {
             "name": "cat array 3", 
             "derivation": {
