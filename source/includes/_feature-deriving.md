@@ -308,13 +308,15 @@ The "case" function derives a variable using values from the first argument. Eac
 ### Making ad hoc arrays
 
 It is possible to create derived arrays reusing subvariables from other arrays 
-using the "array" function and indicating the expression for each of its 
+using the `array` function and indicating the reference for each of its 
 subvariables. 
 
 The subvariables of an array are specified using the `select` function, with its
 first `map` argument indicating the IDs for each of these virtual subvariables.
 These IDs are user defined and can be any string. They remain unique inside the
 parent variable so they can be reused between different arrays.
+The second argument of the `select` function indicates the order of the 
+subvariables in the array. They are referenced by the user defined IDs.
 
 Each of its variables must point to a variable expression, which can take an
 optional `references` attribute to specify a particular name and alias for
