@@ -128,6 +128,139 @@ object is explicitly unordered. If you wish the variables to have an order,
 you must supply an order object rather than relying on any order of the
 "metadata" object.
 
+
+It is possible to create arrays and derived arrays simulaneously in one request
+when creating the dataset along its metadata. The variable references inside the
+derivation expressions must point to declared aliases of variables or 
+subvariables. 
+
+```http
+POST /datasets/ HTTP/1.1
+Content-Type: application/shoji
+Content-Length: 3294
+...
+{
+    "element": "shoji:entity",
+    "body": {
+      "name": "Dataset with derived arrays",
+      "table": {
+        "metadata": {
+          "CA3": {
+            "name": "cat array 3", 
+            "derivation": {
+              "function": "array", 
+              "args": [
+                {
+                  "function": "select", 
+                  "args": [
+                    {
+                      "map": {
+                        "var1": {
+                          "variable": "ca2-subvar-2", 
+                          "references": {
+                            "alias": "subvar2", 
+                            "name": "Subvar 2"
+                          }
+                        }, 
+                        "var0": {
+                          "variable": "ca1-subvar-1", 
+                          "references": {
+                            "alias": "subvar1", 
+                            "name": "Subvar 1"
+                          }
+                        }
+                      }
+                    }, 
+                    {
+                      "value": ["var1", "var0"]
+                    }
+                  ]
+                }
+              ]
+            }
+          }, 
+          "CA2": {
+            "subvariables": [
+              {
+                "alias": "ca2-subvar-1", 
+                "name": "ca2-subvar-1"
+              }, 
+              {
+                "alias": "ca2-subvar-2", 
+                "name": "ca2-subvar-2"
+              }
+            ], 
+            "type": "categorical_array", 
+            "name": "cat array 2", 
+            "categories": [
+              {
+                "numeric_value": null, 
+                "missing": false, 
+                "id": 1, 
+                "name": "yes"
+              }, 
+              {
+                "numeric_value": null, 
+                "missing": false, 
+                "id": 2, 
+                "name": "no"
+              }, 
+              {
+                "numeric_value": null, 
+                "missing": true, 
+                "id": -1, 
+                "name": "No Data"
+              }
+            ]
+          }, 
+          "CA1": {
+            "subvariables": [
+              {
+                "alias": "ca1-subvar-1", 
+                "name": "ca1-subvar-1"
+              }, 
+              {
+                "alias": "ca1-subvar-2", 
+                "name": "ca1-subvar-2"
+              }, 
+              {
+                "alias": "ca1-subvar-3", 
+                "name": "ca1-subvar-3"
+              }
+            ], 
+            "type": "categorical_array", 
+            "name": "cat array 1", 
+            "categories": [
+              {
+                "numeric_value": null, 
+                "missing": false, 
+                "id": 1, 
+                "name": "yes"
+              }, 
+              {
+                "numeric_value": null, 
+                "missing": false, 
+                "id": 2, 
+                "name": "no"
+              }, 
+              {
+                "numeric_value": null, 
+                "missing": true, 
+                "id": -1, 
+                "name": "No Data"
+              }
+            ]
+          }
+        }, 
+        "element": "crunch:table"
+      }
+    }
+ }
+--------
+201 Created
+Location: /datasets/{dataset_id}/
+```
+
 ##### Validation rules
 
 All variables mentioned in the metadata must contain a valid variable definition
