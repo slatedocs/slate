@@ -6,12 +6,61 @@
 
 > Create Campaign
 
+```php
+<?php
+use BrightLocal\Api;
+
+$briefDescription = 'Born in Paris in 1972 by sibling duo Maguy and Gilbert Le Coze, Le Bernardin only served fish: Fresh, simple and prepared with respect. After receiving its first Michelin star in 1976, and two more in 1980, the Le Coze’s set to open Le Bernardin in New York in 1986.';
+$fullDescription = 'The restaurant has held three stars from the Michelin Guide since its 2005 New York launch and currently ranks 24 on the World’s 50 Best Restaurants list. The New York Zagat Guide has recognized Le Bernardin as top rated in the category of “Best Food” for the last nine consecutive years, and in 2015 was rated by the guide as New York City’s top restaurant for food and service.  Le Bernardin has earned seven James Beard Awards since 1998 including “Outstanding Restaurant of the Year,” “Top Chef in New York City,” “Outstanding Service,” “Outstanding Chef in the United States,” “Outstanding Pastry Chef,” “Outstanding Wine Service,” and “Best Restaurant Design” in 2012. 
+Most recently, the Foundation named Maguy Le Coze as Outstanding.';
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->post('/v2/cb/create', [
+    'campaign_name'              => 'Le Bernardin CItation Burst',
+    'business_name'              => 'Le Bernardin',
+	'website_address'            => 'le-bernardin.com',
+	'campaign_country'           => 'USA',
+	'campaign_city'              => 'NY',
+	'business_category_id'       => 605,
+	'business_categories'        => '["restaurant", "cafe"]',
+	'address1'                   => '155 West 51st Street',
+	'address2'                   => '',
+	'city'                       => 'New York',
+	'region'                     => 'New York, USA',
+	'postcode'                   => '10019',
+	'contact_name'               => 'Hanane Moshe',
+	'contact_firstname'          => 'Hanane',
+	'contact_telephone'          => '+1 212-554-1515',
+	'contact_email'              => 'hananemo@gmail',
+	'brief_description'          => $briefDescription,
+	'full_description'           => $fullDescription,
+	'employees_number'           => 35,
+	'start_year'                 => 1976,
+	'working_hours_apply_to_all' => 0,
+	'working_hours_mon_start'    => 0800,
+	'working_hours_mon_end'      => 2200,
+	'working_hours_tue_start'    => 0800,
+	'working_hours_tue_end'      => 2200,
+	'working_hours_wed_start'    => 0800,
+	'working_hours_wed_end'      => 2200,
+	'working_hours_thu_start'    => 0800,
+	'working_hours_thu_end'      => 2200,
+	'working_hours_fri_start'    => 0800,
+	'working_hours_fri_end'      => 2200,
+	'working_hours_sat_start'    => 0800,
+	'working_hours_sat_end'      => 2200,
+	'working_hours_sun_start'    => 0800,
+	'working_hours_sun_end'      => 2200   
+]);
+print_r($success);
+```
+
 ```csharp
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 string brief_description = "Born in Paris in 1972 by sibling duo Maguy and Gilbert Le Coze, Le Bernardin only served fish: Fresh, simple and prepared with respect. After receiving its first Michelin star in 1976, and two more in 1980, the Le Coze’s set to open Le Bernardin in New York in 1986.";
 string full_description = "The restaurant has held three stars from the Michelin Guide since its 2005 New York launch and currently ranks 24 on the World’s 50 Best Restaurants list. The New York Zagat Guide has recognized Le Bernardin as top rated in the category of “Best Food” for the last nine consecutive years, and in 2015 was rated by the guide as New York City’s top restaurant for food and service.  Le Bernardin has earned seven James Beard Awards since 1998 including “Outstanding Restaurant of the Year,” “Top Chef in New York City,” “Outstanding Service,” “Outstanding Chef in the United States,” “Outstanding Pastry Chef,” “Outstanding Wine Service,” and “Best Restaurant Design” in 2012. 
-Most recently, the Foundation named Maguy Le Coze as Outstanding ";
+Most recently, the Foundation named Maguy Le Coze as Outstanding.";
 
 var parameters = new api.Parameters();
 parameters.Add("campaign_name", "Sample Citation Burst Campaign");
@@ -83,6 +132,11 @@ var success = request.Post("/v2/cb/create", parameters);
     "location_id": "Location with ID 0 not found or doesn't belong to this customer"
   }
 }
+```
+
+> Success (200 OK)
+
+```json
 {
   "error": false,
   "campaign-id": 280
@@ -278,6 +332,17 @@ http://tools.brightlocal.com/seo-tools/api/v2/cb/upload/5533/logo
 
 > Get Citations
 
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->get('/v2/cb/citations', [
+	'campaign_id' => 1 
+]);
+print_r($results);
+```
+
 ```csharp
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
@@ -350,18 +415,30 @@ campaign-id	| <span class="label label-required">Required</span>
 
 > Confirm &amp; Pay
 
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->post('/v2/cb/confirm-and-pay', [
+	'campaign_id' => 1,
+	'package_id'  => 'cb15'
+]);
+print_r($success);
+```
+
 ```csharp
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var campaignId = 1;
 var parameters = new api.Parameters();
-parameters.Add("campaign-id", campaignId);
-parameters.Add("package-id", "cb15");
+parameters.Add("campaign_id", campaignId);
+parameters.Add("package_id", "cb15");
 
 var success = request.Post("/v2/cb/confirm-and-pay", parameters);
 ```
 
-> Success (200 OK)
+> Validation Failure
 
 ```json
 {
@@ -371,6 +448,10 @@ var success = request.Post("/v2/cb/confirm-and-pay", parameters);
     "invalid_package_id": "Invalid package id"
   }
 }
+```
+> Success (200 OK)
+```json
+//needs to be added
 ```
 
 Confirm and pay (using credits) for a CB campaign.
@@ -399,6 +480,15 @@ notes | Provide instructions to our submissions team with specifics about how yo
 <span class="label label-info">Account Method</span>
 
 > Get Campaigns
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->post('/v2/cb/get-all');
+print_r($results);
+```
 
 ```csharp
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
@@ -484,6 +574,17 @@ location-id |
 
 > Get Campaign
 
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$campaign = $api->get('/v2/cb/get', [
+	'campaign_id' => 1
+]);
+print_r($campaign);
+```
+
 ```csharp
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
@@ -491,7 +592,7 @@ var campaignId = 1;
 var parameters = new api.Parameters();
 parameters.Add("campaign-id", campaignId);
 
-var campaigns = request.Get("/v2/cb/get", parameters);
+var campaign = request.Get("/v2/cb/get", parameters);
 ```
 
 > Success (200 OK)
