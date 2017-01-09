@@ -141,6 +141,7 @@ curl -X POST \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
+parameters.Add("report-id", 682);
 parameters.Add("report-name", "Sample Citation Tracking Report");
 parameters.Add("business-name", "Le Bernardin");
 parameters.Add("business-location", "NY, New York");
