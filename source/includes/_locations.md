@@ -197,17 +197,17 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-name | <span class="label label-required">Required</span> 50 characters max.
+name | 50 characters max.
 client-id |
-url | <span class="label label-required">Required</span> 150 characters max
-business-category-id | <span class="label label-required">Required</span> See here for a full list of valid business codes.
-country | <span class="label label-required">Required</span> ISO 3 country code.
-address1 | <span class="label label-required">Required</span> 50 characters max
+url | 150 characters max
+business-category-id | See here for a full list of valid business codes.
+country | ISO 3 country code.
+address1 | 50 characters max
 address2 | 50 characters max
-region | <span class="label label-required">Required</span> 20 characters max
-city | <span class="label label-required">Required</span> 20 characters max
-postcode | <span class="label label-required">Required</span> 20 characters max
-telephone | <span class="label label-required">Required</span> 20 characters max
+region | 20 characters max
+city | 20 characters max
+postcode | 20 characters max
+telephone | 20 characters max
 unique-reference | An arbitrary unique reference you can use to identify a location. This may correspond to a unique value used within your system and can be useful when importing or exporting data. 50 characters max.
 contact-first-name | 50 characters max
 contact-last-name | 50 characters max
