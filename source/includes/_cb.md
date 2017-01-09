@@ -208,6 +208,62 @@ is_public | Publish reports on a white label URL. Y or N.
 
 <span class="label label-info">Account Method</span>
 
+
+```php
+<?php
+use BrightLocal\Api;
+
+$campaignId = 1;
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->put('/v2/cb/' .$campaignId, [
+    'campaign_name'              => 'Le Bernardin CItation Burst',
+    'business_name'              => 'Le Bernardin',
+	'website_address'            => 'le-bernardin.com',
+	'campaign_country'           => 'USA',
+	'campaign_city'              => 'NY',
+	'business_category_id'       => 605,
+	'business_categories'        => '["restaurant", "cafe"]',
+	'address1'                   => '155 West 51st Street',
+	'address2'                   => '',
+	'city'                       => 'New York',
+	'region'                     => 'New York, USA',
+	'postcode'                   => '10019',
+	'contact_name'               => 'Hanane Moshe',
+	'contact_firstname'          => 'Hanane',
+	'contact_telephone'          => '+1 212-554-1515',
+	'contact_email'              => 'hananemo@gmail'	
+]);
+print_r($success);
+```
+
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var campaignId = 1;
+
+var parameters = new api.Parameters();
+parameters.Add("campaign_name", "Sample Citation Burst Campaign");
+parameters.Add("business_name", "Le Bernardin");
+parameters.Add("website_address", "le-bernardin.com");
+parameters.Add("campaign_country", "USA");
+parameters.Add("campaign_city", "New York");
+parameters.Add("campaign_state", "NY");
+parameters.Add("business_category_id", 605);
+parameters.Add("business_categories", "['restaurant', 'cafe']");
+parameters.Add("address1", "155 West 51st Street");
+parameters.Add("address2", "");
+parameters.Add("city", "New York");
+parameters.Add("region", "New York, USA");
+parameters.Add("postcode", "10019");
+parameters.Add("contact_name", "Hanane Moshe");
+parameters.Add("contact_firstname", "Hanane");
+parameters.Add("contact_telephone", "+1 212-554-1515";
+parameters.Add("contact_email", "hananemo@gmail.com");		
+
+var success = request.Put("/v2/cb/" + campaignId + "", parameters);
+```
+
 > Validation Failure
 
 ```json
