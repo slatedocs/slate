@@ -10,7 +10,7 @@ fxInterestRate | int | 1..1 | средства на продукте
 --- |||
 feeds | [FeedDTO](#feeddto) | 0..1 | элементы ленты событий, например графика платежей по кредиту или затраченные поездки на общественном транспорте
 tags | [MarkerDTO](#markerdto) | 0..1 | дополнительные поля
-mainCard | string | 0..1 | основная карта, привязанная к счету
+mainCardId | string | 0..1 | основная карта, привязанная к счету
 allCards | [CardDTO](#carddto) | 0..1 | список всех карт, привязанных к счету
 hasRequisites | bool | 0..1 | наличие реквизитов для отправки по смс или почте
 openingDate | [Date ISO 8601](https://ru.wikipedia.org/wiki/ISO_8601) | 1..1 | дата открытия
