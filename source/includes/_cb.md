@@ -299,12 +299,26 @@ is_public | Publish reports on a white label URL. Y or N.
 
 <span class="label label-info">Account Method</span>
 
+> Upload Campaign
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->post('/v2/cb/upload/<campaignId>/<imageType>', [
+    'file' => fopen('/path/to/image.jpg', 'r')
+]);
+print_r($success);
+```
+
 > Success (200 OK)
 
 ```json
 {
-  "error": false,
-  "result": "File companyLogo.jpg uploaded"
+  "success": true,
+  "error":   false,
+  "result":  "File companyLogo.jpg uploaded"
 }
 ```
 
