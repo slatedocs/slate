@@ -1,6 +1,6 @@
 ## Tab books
 
-The `tabbook` view of a multitable will generate an excel (.xlsx) workbook 
+The default `tabbook` view of a multitable will generate an excel (.xlsx) workbook 
 containing each variable in the dataset crosstabbed with a given multitable. 
 
 A POST request to `/datasets/{id}/multitables/{id}/tabbook/` will generate a download 
@@ -42,6 +42,14 @@ Location: https://s3-url/filename.xlsx
     "self": "https://app.crunch.io/api/datasets/a598c7/multitables/{id}/tabbook/",
     "value": "https://app.crunch.io/api/progress/5be83a/"
 }
+```
+
+Alternatively, you can request a json output for your tabbook.  To do this, simply
+add an accept header to your request as follows:
+
+```http
+POST /api/datasets/a598c7/multitables/45fd58/tabbook/ HTTP/1.1
+Accept: application/json
 ```
 
 #### Endpoint Parameters
