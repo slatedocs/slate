@@ -421,8 +421,13 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v2/cb/confirm-and-pay', [
-	'campaign_id' => 1,
-	'package_id'  => 'cb15'
+	'campaign_id'       => 1,
+	'package_id'        => 'cb15',
+	'autoselect'        => 'N',
+	'remove-duplicates' => 'Y',
+	'aggregators'       => '["factual"]',
+	'citations'         => '["brownbook.net", "bing.com", "manta.com", "yell.com", "accessplace.com", "bizfo.co.uk", "bizwiki.co.uk", "citylocal.co.uk", "cylex-uk.co.uk", "where2go.com", "yelp.co.uk", "scoot.co.uk", "restaurants.co.uk", "opendi.co.uk", "misterwhat.co.uk"]',
+	'notes'             => 'Some very important notes'
 ]);
 print_r($success);
 ```
@@ -434,6 +439,11 @@ var campaignId = 1;
 var parameters = new api.Parameters();
 parameters.Add("campaign_id", campaignId);
 parameters.Add("package_id", "cb15");
+parameters.Add("autoselect", "N");
+parameters.Add("remove-duplicates", "Y");
+parameters.Add("aggregators", "['factual']");
+parameters.Add("citations", "['brownbook.net', 'bing.com', 'manta.com', 'yell.com', 'accessplace.com', 'bizfo.co.uk', 'bizwiki.co.uk', 'citylocal.co.uk', 'cylex-uk.co.uk', 'where2go.com', 'yelp.co.uk', 'scoot.co.uk', 'restaurants.co.uk', 'opendi.co.uk', 'misterwhat.co.uk']");
+parameters.Add("notes", "Some very important notes");
 
 var success = request.Post("/v2/cb/confirm-and-pay", parameters);
 ```
