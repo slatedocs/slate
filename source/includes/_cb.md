@@ -445,13 +445,15 @@ var success = request.Post("/v2/cb/confirm-and-pay", parameters);
   "error": true,
   "errors": {
     "citations": "No citations supplied",
-    "invalid_package_id": "Invalid package id"
+    "package_id": "Invalid package id"
   }
 }
 ```
 > Success (200 OK)
 ```json
-//needs to be added
+{
+  "error": false
+}
 ```
 
 Confirm and pay (using credits) for a CB campaign.
