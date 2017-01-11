@@ -602,11 +602,125 @@ var campaign = request.Get("/v2/cb/get", parameters);
     "response":  {
         "results":  {
             "campaign_id": "5",
+            "location_id": 1,
+            "creation_date": "2016-08-17 14:30:34",
+            "package_id": null,
+            "selection_type": "auto",
+            "paid": "No",
+            "status": "Saved",
+            "submission_date": null,
             "purchase_date": "2012-07-12 16:14:27",
             "completion_date": "2012-07-26 16:14:27",
             "username": "",
             "email": "",
             "password": "",
+            "campaign_note": "",
+            "customer_note": "",
+            "white_label_profile_id": "78",
+            "num_citations": null,
+            "package_price": null,
+            "website_address": "www.duffyhairdressing.com.au",
+            "campaign_country": "AUS",
+            "campaign_state": "VIC",
+            "campaign_city": "Ascot Vale",
+            "business_category_id": "503",
+            "business_category_name": "Advertising",
+            "address": {
+                "street_address_1": "153 Union Road",
+                "street_address_2": null,
+                "city": "Ascot Vale",
+                "region": "Victoria",
+                "postcode": ""
+            },
+            "contact": {
+                "last_name": "",
+                "first_name": "",
+                "email": ",
+                "telephone": ""
+            },
+            "mobile_number": null,
+            "fax_number": null,
+            "descriptions": {
+                "brief": "",
+                "full": ""
+            },
+            "num_employees": "123",
+            "start_year": "1234",
+            "service_names": {
+                "1": null,
+                "2": null,
+                "3": null,
+                "4": null,
+                "5": null
+            },
+            "working_hours": {
+                "apply_to_all": null,
+                "days": {
+                    "mon": {
+                        "start": "1",
+                        "end": "2",
+                        "24_hours": null
+                    },
+                    "tue": {
+                        "start": null,
+                        "end": null,
+                        "24_hours": null
+                    },
+                    "wed": {
+                        "start": null,
+                        "end": null,
+                        "24_hours": null
+                    },
+                    "thu": {
+                        "start": null,
+                        "end": null,
+                        "24_hours": null
+                    },
+                    "fri": {
+                        "start": null,
+                        "end": null,
+                        "24_hours": null
+                    },
+                    "sat": {
+                        "start": null,
+                        "end": null,
+                        "24_hours": null
+                    },
+                    "sun": {
+                        "start": null,
+                        "end": null,
+                        "24_hours": null
+                    }
+                }
+            },
+            "payment_methods": {
+                "cash": "on"
+            },
+            "company_logo": null,
+            "photos": {
+                "1": null,
+                "2": null,
+                "3": null
+            },
+            "special_offer": {
+                "offer": null,
+                "description": null,
+                "expiry_date": null
+            },
+            "email_alerts": {
+                "enabled": "N",
+                "addresses": [
+                    "ed+80@brightlocal.com",
+                    "777karine777@gmail.com",
+                    "ed+300@brightlocal.com",
+                    "sam@webgang.co.uk",
+                    "nick.lavrik@gmail.com",
+                    "steven.lester@mac.com",
+                    "ed+90@brightlocal.com",
+                    "mike@brightlocal.com"
+                ]
+            },
+            "old_business_name": null,
             "stats":  [
                 {
                     "start_date": "2012-07-12 16:14:27",
@@ -653,8 +767,7 @@ var campaign = request.Get("/v2/cb/get", parameters);
 					"link": "",
 					"notes": ""
 				}
-			],            
-            "location_id": 1,
+			],
             "urls": {
                 "interactive_url": "https:\/\/tools.brightlocal.com\/seo-tools\/admin\/cb\/campaign\/view\/5",
                 "pdf_url": "https:\/\/tools.brightlocal.com\/seo-tools\/admin\/cb\/campaign\/pdf\/5",
