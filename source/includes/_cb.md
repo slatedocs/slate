@@ -951,3 +951,45 @@ api-key	| <span class="label label-required">Required</span>
 sig	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 campaign-id	| <span class="label label-required">Required</span>	
+
+## Get Credits Balance
+
+<span class="label label-info">Account Method</span>
+
+> Get Credits
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$results = $api->get('/v2/cb/credits');
+print_r($results);
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+var parameters = new api.Parameters();
+var results = request.Get("/v2/cb/credits", parameters);
+```
+
+> Success (200 OK)
+
+```json
+{
+    "success": true,
+    "credits": 9000
+}
+```
+
+### HTTP Request
+
+`GET https://tools.brightlocal.com/seo-tools/api/v2/cb/credits`
+
+### Query Parameters
+
+Parameter | Notes
+--------- | -----
+api-key	| <span class="label label-required">Required</span>	
+sig	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
