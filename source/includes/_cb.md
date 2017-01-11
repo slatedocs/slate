@@ -599,66 +599,340 @@ var campaign = request.Get("/v2/cb/get", parameters);
 
 ```json
 {
-    "response":  {
-        "results":  {
-            "campaign_id": "5",
-            "purchase_date": "2012-07-12 16:14:27",
-            "completion_date": "2012-07-26 16:14:27",
+    "response": {
+        "results": {
+            "campaign_id": "116225",
+            "location_id": 522411,
+            "campaign_name": "CUCINA urbana",
+            "creation_date": "2017-01-11 14:56:56",
+            "package_id": "1",
+            "selection_type": "manual",
+            "paid": "Yes",
+            "status": "Complete",
+            "submission_date": null,
+            "purchase_date": "2017-01-11 15:06:18",
+            "completion_date": "2017-01-25 00:00:00",
             "username": "",
             "email": "",
             "password": "",
-            "stats":  [
+            "campaign_note": "",
+            "customer_note": "",
+            "white_label_profile_id": "0",
+            "num_citations": null,
+            "package_price": "75",
+            "website_address": "http:\/\/www.cucinaurbana.com\/",
+            "campaign_country": "USA",
+            "campaign_state": "CA",
+            "campaign_city": "San Diego",
+            "business_category_id": "2291",
+            "business_category_name": "bar, liquor store, restaurant, food, store",
+            "address": {
+                "street_address_1": "505 Laurel Street",
+                "street_address_2": null,
+                "city": null,
+                "region": null,
+                "postcode": "92101"
+            },
+            "contact": {
+                "last_name": "name",
+                "first_name": "name",
+                "email": "<hidden>",
+                "telephone": "+1 619-239-2222"
+            },
+            "mobile_number": null,
+            "fax_number": null,
+            "descriptions": {
+                "brief": "",
+                "full": ""
+            },
+            "num_employees": "20",
+            "start_year": "2000",
+            "service_names": {
+                "1": null,
+                "2": null,
+                "3": null,
+                "4": null,
+                "5": null
+            },
+            "working_hours": {
+                "apply_to_all": "1",
+                "days": {
+                    "mon": {
+                        "start": null,
+                        "end": null,
+                        "24_hours": "1"
+                    },
+                    "tue": {
+                        "start": null,
+                        "end": null,
+                        "24_hours": "1"
+                    },
+                    "wed": {
+                        "start": null,
+                        "end": null,
+                        "24_hours": "1"
+                    },
+                    "thu": {
+                        "start": null,
+                        "end": null,
+                        "24_hours": "1"
+                    },
+                    "fri": {
+                        "start": null,
+                        "end": null,
+                        "24_hours": "1"
+                    },
+                    "sat": {
+                        "start": null,
+                        "end": null,
+                        "24_hours": "1"
+                    },
+                    "sun": {
+                        "start": null,
+                        "end": null,
+                        "24_hours": "1"
+                    }
+                }
+            },
+            "payment_methods": {
+                "cash": "on"
+            },
+            "company_logo": null,
+            "photos": {
+                "1": null,
+                "2": null,
+                "3": null
+            },
+            "email_alerts": {
+                "enabled": "N",
+                "addresses": [
+                    "<hidden>",
+                    "<hidden>",
+                    "<hidden>",
+                    "<hidden>",
+                    "<hidden>"
+                ]
+            },
+            "old_business_name": null,
+            "specialist_info": [],
+            "stats": [
                 {
-                    "start_date": "2012-07-12 16:14:27",
-                    "citations_count": 50,
-                    "scheduled": 50,
+                    "start_date": "2017-01-11 15:06:18",
+                    "citations_count": 25,
+                    "scheduled": 0,
                     "submitted": 0,
-                    "live": 0,
+                    "live": 25,
                     "updated": 0,
                     "replaced": 0
                 }
             ],
-            "citations":  [
+            "citations": [
                 {
-                    "site": "ezlocal.com",
-                    "type": "General Directory",
-                    "domain_authority": "< 10/100",
-                    "status": "To Do",
-                    "link": "",
-                    "notes": "Site issues a temporary password for accessing account - check email account post submission."
+                    "site": "google.com",
+                    "type": "Local Directory",
+                    "domain_authority": "100",
+                    "status": "Live",
+                    "link": "https:\/\/www.google.com\/search?q=CUCINA+urbana&npsic=0&gbv=2&gws_rd=cr&ludocid=1563397020059271303&hl=en&gl=us",
+                    "notes": ""
                 },
                 {
-                    "site": "insiderpages.com",
+                    "site": "mapsconnect.apple.com",
                     "type": "General Directory",
-                    "domain_authority": "< 10/100",
-                    "status": "To Do",
-                    "link": "",
+                    "domain_authority": "100",
+                    "status": "Live",
+                    "link": "mapsconnect.apple.com",
+                    "notes": "We can't give you a link to your live listing in Apple Maps. You can find your listing by using the Apple Maps app of any iOS device."
+                },
+                {
+                    "site": "bing.com",
+                    "type": "General Directory",
+                    "domain_authority": "99",
+                    "status": "Live",
+                    "link": "bing.com",
+                    "notes": "Bingplaces will send you verification PIN at your registered postal address."
+                },
+                {
+                    "site": "mapquest.com",
+                    "type": "Local Map Site",
+                    "domain_authority": "95",
+                    "status": "Live",
+                    "link": "https:\/\/www.mapquest.com\/us\/california\/italian-restaurants-san-diego\/cucina-urbana-265234833",
+                    "notes": "This site does not allow images to be uploaded and displays limited information on company profile."
+                },
+                {
+                    "site": "yellowpages.com",
+                    "type": "General Directory",
+                    "domain_authority": "92",
+                    "status": "Live",
+                    "link": "http:\/\/www.yellowpages.com\/san-diego-ca\/mip\/cucina-urbana-22866099",
+                    "notes": ""
+                },
+                {
+                    "site": "angieslist.com",
+                    "type": "General Directory",
+                    "domain_authority": "91",
+                    "status": "Live",
+                    "link": "angieslist.com",
+                    "notes": "The site supports a limited number of cities in Canada only (no problem with US located businesses). Please don't be surprise if we end up replacing this site in your order; it means your city is not supported."
+                },
+                {
+                    "site": "citysearch.com",
+                    "type": "Local Directory",
+                    "domain_authority": "90",
+                    "status": "Live",
+                    "link": "http:\/\/www.citysearch.com\/profile\/607571610\/san_diego_ca\/cucina_urbana.html",
+                    "notes": "We list your business here via Expressupdate.com; site does not accept Toll Free phone. It takes 2-3 months before your listing goes live here."
+                },
+                {
+                    "site": "superpages.com",
+                    "type": "General Directory",
+                    "domain_authority": "90",
+                    "status": "Live",
+                    "link": "http:\/\/www.superpages.com\/bp\/san-diego-ca\/cucina-urbana-L2129766314.htm",
+                    "notes": "We submit your listing to this site via Dexmedia.com"
+                },
+                {
+                    "site": "manta.com",
+                    "type": "General Directory",
+                    "domain_authority": "87",
+                    "status": "Live",
+                    "link": "http:\/\/www.manta.com\/c\/mtxfvs9\/cucina-urbana",
+                    "notes": ""
+                },
+                {
+                    "site": "switchboard.com",
+                    "type": "Local Directory",
+                    "domain_authority": "87",
+                    "status": "Live",
+                    "link": "switchboard.com",
+                    "notes": "We list your business here via Expressupdate.com; site does not accept Toll Free phone. It takes 2-3 months before your listing goes live here."
+                },
+                {
+                    "site": "tomtom.com",
+                    "type": "GPS Data Provider",
+                    "domain_authority": "85",
+                    "status": "Live",
+                    "link": "tomtom.com",
+                    "notes": "We submit data to Tomtom once every quarter, so your data will be submitted the next round during the next round of submissions to Tomtom."
+                },
+                {
+                    "site": "whowhere.com",
+                    "type": "General Directory",
+                    "domain_authority": "83",
+                    "status": "Live",
+                    "link": "whowhere.com",
+                    "notes": "We submit your listing to this site via Dexmedia.com"
+                },
+                {
+                    "site": "kudzu.com",
+                    "type": "General Directory",
+                    "domain_authority": "82",
+                    "status": "Live",
+                    "link": "http:\/\/www.kudzu.com\/m\/Cucina-Urbana-841435",
+                    "notes": ""
+                },
+                {
+                    "site": "local.com",
+                    "type": "General Directory",
+                    "domain_authority": "81",
+                    "status": "Live",
+                    "link": "local.com",
+                    "notes": "We create basic listing on this site (no images) & create a new account. Client\/agency respond to email to put listing live. See campaign email inbox."
+                },
+                {
+                    "site": "local.botw.org",
+                    "type": "Local Directory",
+                    "domain_authority": "80",
+                    "status": "Live",
+                    "link": "local.botw.org",
+                    "notes": "This site does not display URL in live listing."
+                },
+                {
+                    "site": "aboutus.com",
+                    "type": "General Directory",
+                    "domain_authority": "79",
+                    "status": "Live",
+                    "link": "aboutus.com",
+                    "notes": ""
+                },
+                {
+                    "site": "heraldtribune.com",
+                    "type": "News \/ Content Site",
+                    "domain_authority": "79",
+                    "status": "Live",
+                    "link": "heraldtribune.com",
+                    "notes": ""
+                },
+                {
+                    "site": "directory.wfaa.com",
+                    "type": "Local Directory",
+                    "domain_authority": "78",
+                    "status": "Live",
+                    "link": "directory.wfaa.com",
+                    "notes": "This site does not allow images to be uploaded and displays limited information on company profile."
+                },
+                {
+                    "site": "chamberofcommerce.com",
+                    "type": "General Directory",
+                    "domain_authority": "74",
+                    "status": "Live",
+                    "link": "https:\/\/chamberofcommerce.com\/san-diego-ca\/2736482-cucina-urbana",
+                    "notes": "We can only list your business name, address, and phone number here. Please be guided before ordering a listing from this site."
+                },
+                {
+                    "site": "hotfrog.com",
+                    "type": "General Directory",
+                    "domain_authority": "74",
+                    "status": "Live",
+                    "link": "hotfrog.com",
+                    "notes": ""
+                },
+                {
+                    "site": "411.com",
+                    "type": "Local Directory",
+                    "domain_authority": "72",
+                    "status": "Live",
+                    "link": "411.com",
+                    "notes": "We list your business here via Expressupdate.com; site does not accept Toll Free phone. It takes 2-3 months before your listing goes live here."
+                },
+                {
+                    "site": "tupalo.com",
+                    "type": "General Directory",
+                    "domain_authority": "70",
+                    "status": "Live",
+                    "link": "tupalo.com",
+                    "notes": "Tupalo is notorious on auto updating address: for example, Suite to Ste, or North to just \"N\"."
+                },
+                {
+                    "site": "brownbook.net",
+                    "type": "General Directory",
+                    "domain_authority": "64",
+                    "status": "Live",
+                    "link": "http:\/\/www.brownbook.net\/business\/11048772\/laurel-restaurant",
+                    "notes": "We cannot update the business name in this site after submission. Ensure that you get the business name provided is correct from the very beginning."
+                },
+                {
+                    "site": "citysquares.com",
+                    "type": "General Directory",
+                    "domain_authority": "57",
+                    "status": "Live",
+                    "link": "http:\/\/citysquares.com\/b\/cucina-urbana-19686169",
+                    "notes": "This site does not display URL, description for free listing. They are reserved to paid listing only."
+                },
+                {
+                    "site": "routeandgo.net",
+                    "type": "General Directory",
+                    "domain_authority": "22",
+                    "status": "Live",
+                    "link": "http:\/\/www.routeandgo.net\/place\/3118699\/united-states\/cucina-urbana",
                     "notes": ""
                 }
             ],
-            "aggregators":  [
-				{
-					"site": "infogroup",
-					"type": "Aggregator",
-					"domain_authority": "NA",
-					"status": "To Do",
-					"link": "www.dropbox.com/short-url",
-					"notes": "Site issues a temporary password for accessing account - check email account post submission."
-				},
-				{
-					"site": "factual",
-					"type": "Aggregator",
-					"domain_authority": "NA",
-					"status": "To Do",
-					"link": "",
-					"notes": ""
-				}
-			],            
-            "location_id": 1,
+            "aggregators": [],
             "urls": {
-                "interactive_url": "https:\/\/tools.brightlocal.com\/seo-tools\/admin\/cb\/campaign\/view\/5",
-                "pdf_url": "https:\/\/tools.brightlocal.com\/seo-tools\/admin\/cb\/campaign\/pdf\/5",
-                "csv_url": "https:\/\/tools.brightlocal.com\/seo-tools\/admin\/cb\/campaign\/csv\/5"
+                "interactive_url": "<hidden>",
+                "pdf_url": "<hidden>",
+                "csv_url": "<hidden>"
             }
         }
     }
