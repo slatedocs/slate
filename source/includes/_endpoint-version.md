@@ -6,7 +6,7 @@ Datasets have a collection of versions, points in time to which you can roll bac
 
 #### GET
 
-`GET /datasets/{dataset_id}/savepoints/?limit,skip`
+`GET /datasets/{dataset_id}/savepoints/?limit,offset`
 
 When authenticated, GET returns 200 status with a (paginated) Shoji Catalog of versions to which the dataset can be reverted. Catalog tuples contain the following attributes:
 
@@ -23,8 +23,8 @@ Query parameters:
 
 Name | Type | Default | Description
 ---- | ---- | ------- | -----------
-limit | integer | 10 | How many versions to include in the catalog response
-skip | integer | 0 | How many versions to skip before returning `limit` versions
+limit | integer | 1000 | How many versions to include in the catalog response
+offset | integer | 0 | How many versions to skip before returning `limit` versions
 
 For pagination purposes, catalog tuples are sorted from most to least recent. However, since JSON objects are unordered, you cannot rely on the order of the tuples within the payload you receive.
 
