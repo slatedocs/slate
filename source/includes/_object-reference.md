@@ -392,6 +392,7 @@ to compose an expression.
 ##### Builtin functions
 
    * `array` Return the given Frame materialized as an array.
+   * `as_selected` Return the given variable reduced to the [1, 0, -1] "selections" type.
    * `bin` Return column's values broken into equidistant bins.
    * `case` Evaluate the given conditions in order, selecting the corresponding choice.
    * `cast` Return a Column of column's values cast to the given type.
@@ -407,7 +408,9 @@ to compose an expression.
    * `row` Return a Numeric column with row indices.
    * `selected_array` Return a bool Array from the given categorical, plus None/__none__/__any__ .
    * `selected_depth` Return a numeric column containing the number of selected categories in each row of the given array.
+   * `selections` Return the given array, reduced to the [1, 0, -1] "selections" type, plus an `__any__` magic subvariable.
    * `subvariables` Return a Frame containing subvariables of the given array.
+   * `tiered` Return a variable formed by collapsing the given array's subvariables in the given category tiers.
    * `typeof` Return (a copy of) the Type of the given column.
    * `unmissing` Return the given column with user missing replaced by valid values.
 
