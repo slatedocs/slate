@@ -110,3 +110,4 @@ Com a rota `/operations/:id/transactions` é possível ver todas as transações
 Parâmetro | Descrição
  -------------- | --------------
   **:id** <br> <p>obrigatório</p> | *Id da operação criada*
+  **query** |  *Campos para filtro: status, created_at*

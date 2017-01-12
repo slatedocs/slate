@@ -78,6 +78,41 @@
  -------------- | --------------
 **:id** <br> <p>obrigatório</p> | *Id do esquema de documento.*
 
+## Retornando items de um tipo de documento
+
+
+> GET https://api.fastnotas.com/v1/document_schemas/{DOCUMENT_SCHEMA_ID}/items
+
+   ```shell
+    curl -X GET https://api.fastnotas.com/v1/document_schemas/{DOCUMENT_SCHEMA_ID}/items \
+    -u 'YOUR_API_KEY:'
+  ```
+  > Exemplo de retorno em JSON:
+
+```json
+  [
+    {
+      "id": "dac22e14-351d-49b9-bed3-18c50ba81adf",
+      "name": "emissão de nota fiscal",
+      "description": "teste",
+      "amount": 345.5,
+      "document_schema_id": "3f6fa6a9-6fe7-4464-aa7f-8ee302580537",
+      "setting": {
+        "taxes": {
+          "iss": "3.1"
+        },
+        "parameters": {
+          "service_code": "123"
+        }
+      }
+    }
+  ]
+```
+Com a rota `/document_schemas/:id/items` é possível ver todos os itens de um tipo de documento.
+
+  Parâmetro | Descrição
+ -------------- | --------------
+**:id** <br> <p>obrigatório</p> | *Id do esquema de documento.*
 
 <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 ## Atualizando um tipo de documento

@@ -21,6 +21,7 @@ DELETE  | `/customers/:id` | Deleta um cliente
 GET | `/document_schemas` | Retorna todos os document_schemas de uma empresa
 POST | `/document_schemas` |  Cria um document_schema
 GET | `/document_schemas/:id` | Retorna um document_schema
+GET | `/document_schemas/:id/items` | Retorna items de um document_schema
 PUT | `/document_schemas/:id` | Atualiza os parâmetros
 DELETE | `/document_schemas/:id` | Inativa o document_schema
 GET | `/items` | Retorna todos os items de uma empresa

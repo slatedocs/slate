@@ -12,6 +12,7 @@ includes:
   - introduction
   - authentication
   - pagination
+  - search
   - addresses
   - phones
   - companies

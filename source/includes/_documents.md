@@ -220,6 +220,10 @@ Quando um documento é criado, o status inicial é `pending` . Ele pode ter os s
 
   Retorna um array que contém objetos do documento.
 
+  Parâmetro |  Descrição
+-------------- | --------------
+**query** |  *Campos para filtro: amount, status, created_at*
+
   > GET https://api.fastnotas.com/v1/documents/
 
   ```shell
@@ -343,5 +347,4 @@ Com a rota `/documents/:id/operations` é possível ver todas as operações de 
 Parâmetro | Descrição
  -------------- | --------------
   **:id** <br> <p>obrigatório</p> | *Id do documento criado*
-
-
+  **query** |  *Campos para filtro: operation_type, created_at, status*

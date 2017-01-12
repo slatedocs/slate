@@ -113,6 +113,10 @@
 
   Retorna um array que contém objetos de item.
 
+  Parâmetro |  Descrição
+-------------- | --------------
+**query** |  *Campos para filtro: name, description, amount, created_at*
+
   > GET https://api.fastnotas.com/v1/items/
 
   ```shell

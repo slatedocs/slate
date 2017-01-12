@@ -154,6 +154,10 @@
 
   Retorna um array que contém objetos de clientes.
 
+  Parâmetro |  Descrição
+-------------- | --------------
+**query** |  *Campos para filtro: name, email, registry_code, status, created_at*
+
   > GET https://api.fastnotas.com/v1/customers/
 
   ```shell
