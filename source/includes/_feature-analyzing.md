@@ -33,13 +33,12 @@ Each dimension used in a cube query needs to be reduced to distinct values. For 
  * datetime: Roll up seconds into hours, days into months, or any other grouping via:
    * {"function": "rollup", "args": [{"variable": url}, {"value": variable.rollup_resolution}]}
  * categorical_array:
-   * One dimension for the categories: {"variable": url}
    * One dimension for the subvariables: {"each": url}
+   * One dimension for the categories: {"variable": url}
  * multiple response:
-   * One dimension for the selected categories, which means transforming the array from a set of categorical variables to a set of boolean (true/false) variables via:
-     * {"function": "selected_array", "args": [{"variable": url}]}
-     * Note that, because this input dimension is now a boolean, it will not add an output dimension. Instead, it will filter the calculation to only consider those entries (for each subvariable) which are true, which means they were selected categories. If you wish to have a separate output dimension including each distinct category (whether selected or not), do not apply the "selected_array" function; instead, just supply the variable reference as-is.
-One dimension for the subvariables: {"each": url}
+   * One dimension for the subvariables: {"each": url}
+   * One dimension for the selected-ness, which means transforming the array from a set of arbitrary categories to a standard "selected" set of categories (1, 0, -1) via:
+     * {"function": "selections", "args": [{"variable": url}]}
 
 ### Measures
 A set of named functions to populate each cell of the cube. You can request multiple functions over the same dimensions (such as “cube_mean” and “cube_stddev”) or more commonly just one (like “cube_count”). For example:
@@ -473,22 +472,13 @@ In a saved analysis the transforms are an array in `display_settings` with the s
     "query": {
         "dimensions": [
             {
-                "function": "selected_array",
-                "args": [
-                    {
-                        "variable": "../variables/398620f/"
-                    }
-                ]
+                "function": "selections",
+                "args": [{"variable": "../variables/398620f/"}]
             },
-            {
-                "variable": "../variables/398620f/"
-            }
+            {"variable": "../variables/398620f/"}
         ],
         "measures": {
-            "count": {
-                "function": "cube_count",
-                "args": []
-            }
+            "count": {"function": "cube_count", "args": []}
         }
     },
     "display_settings": {
@@ -523,14 +513,9 @@ In a multitable, the `transform` is part of each dimension definition object in 
         {
             "variable": "A",
             "query": [
-                {
-                    "variable": "A"
-                }
+                {"variable": "A"}
             ],
-            "transform": [
-                {},
-                {}
-            ]
+            "transform": [{}, {}]
         },
         {
             "variable": "B",
@@ -538,12 +523,8 @@ In a multitable, the `transform` is part of each dimension definition object in 
                 {
                     "function": "rollup",
                     "args": [
-                        {
-                            "value": "M"
-                        },
-                        {
-                            "variable": "B"
-                        }
+                        {"value": "M"},
+                        {"variable": "B"}
                     ]
                 }
             ]
