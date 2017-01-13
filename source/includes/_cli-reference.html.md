@@ -86,6 +86,7 @@ Commands:
 ```
 
 ###### `bonsai configure --help`
+###### `bonsai configure --help`
 
 ```
 $ bonsai configure --help
