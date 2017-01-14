@@ -132,7 +132,7 @@ A quirk of multiple response variables is that analyses of them often require kn
 
 ### Non-uniform basis
 
-As presented above, multiple response variables assume that subvariables have a consistent, uniform basis or number of rows in each subvariable. In some cases, the number of valid and missing entries may be wildly different from one subvariable to the next. In a survey example, a new response may be added to a longer-running series, or different responses may be presented to subsets of respondents in the context of an experiment. The boolean field `uniform_basis`, if `false`, provides a hint to users that rather than requesting the `selected_array` mask in an analysis query, they should instead request `each` subvariable and all categories, and calculate the basis per-subvariable by summing the valid nonmissing categories (typically something such as ‘selected’ and ‘not selected’ with other categories such as ‘not asked’ marked missing. The field’s default is `true`.
+As presented above, multiple response variables assume that subvariables have a consistent, uniform basis or number of rows in each subvariable. In some cases, the number of valid and missing entries may be wildly different from one subvariable to the next. In a survey example, a new response may be added to a longer-running series, or different responses may be presented to subsets of respondents in the context of an experiment. The boolean field `uniform_basis`, if `false`, provides a hint to users that, rather than using the `__any__` column (from the `selections` function output) in an analysis query, they should instead calculate the basis per subvariable by summing the ‘selected’ and ‘not selected’ categories. The field’s default is `true`.
 
 ### Adding new subvariables
 
