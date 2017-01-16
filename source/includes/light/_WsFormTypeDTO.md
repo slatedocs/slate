@@ -64,7 +64,7 @@ type | [FieldClass](#fieldclass) | 1..1 | тип поля формы, опред
 hint | string | 0..1 | подсказка
 isRequired | bool | 1..1 | признак обязательности поля
 ordinal | int | 0..1 | порядок для сортировки
-key | string | 0..1 | ключ для привязки к типу в emailBodyFormat
+key | string | 0..1 | ключ для привязки к типу в email
 
 ### FieldClass
 
