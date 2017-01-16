@@ -365,6 +365,39 @@ OWNER_ASSIGNED | The lock's owner has been updated
 DEVICE_CONNECTED | Lock has connected to Doordeck platform
 DEVICE_DISCONNECTED | Lock has disconected from Doordeck platform
 
+## Get users for a lock
+
+```shell
+curl 'https://api.doordeck.com/device/00000000-0000-0000-0000-000000000000/users'
+  -H "Authorization: Bearer TOKEN"
+```
+> Replace `00000000-0000-0000-0000-000000000000` with the lock's ID.
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "userId": "00000000-0000-0000-0000-000000000000",
+    "email": "developer@doordeck.com",
+    "displayName": null
+  },
+  {
+    "userId": "00000000-0000-0000-0000-000000000001",
+    "email": "billing@doordeck.com",
+    "displayName": "Billing"
+  }
+]
+```
+
+This endpoint retrieves all users associated with a particular lock.
+
+### HTTP Request
+
+`GET https://api.doordeck.com/device/LOCK_ID/users`
+
+Replace `LOCK_ID` with the appropriate lock ID.
+
 ## Update Lock Properties
 
 ```shell
@@ -512,6 +545,11 @@ curl 'https://api.doordeck.com/share/invite/USER_EMAIL' \
 }
 ```
 
+### HTTP Request
+
+`GET https://api.doordeck.com/share/invite/USER_EMAIL`
+
+Replace `USER_EMAIL` with the user's email
 
 ## Share A Lock
 
