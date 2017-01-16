@@ -5,11 +5,11 @@
     <emailBodyFormat>Request from ${name}, ${birth}. Phone: ${phone}</emailBodyFormat>
         <fields type="WsFieldDTO">
             <groupName nil="true"/>
-            <hint>i18n{"ru":"Формат номера +7 (ХХХ) ХХХ-ХХ-ХХ","en":"Contact phone format +7 (ХХХ) ХХХ-ХХ-ХХ"}</hint>
-            <id>UniMegaBank_call_request_1</id>
+            <hint>i18n{"ru":"Формат +7 (ХХХ) ХХХ-ХХ-ХХ","en":"Format +7 (ХХХ) ХХХ-ХХ-ХХ"}</hint>
+            <id>field_id</id>
             <isRequired>true</isRequired>
             <key>phone</key>
-            <name>i18n{"ru":"Контактный телефон","en":"Contact Phone","ka":"საკონტაქტო ტელეფონი"}</name>
+            <name>i18n{"ru":"Контактный телефон","en":"Contact Phone"}</name>
             <ordinal>1</ordinal>
             <placeholder nil="true"/>
             <type>PHONE</type>
@@ -18,7 +18,7 @@
             <id>field_id</id>
             <isRequired>true</isRequired>
             <key>name</key>
-            <name>i18n{"ru":"Полное имя","en":"Full name","ka":"სახელი"}</name>
+            <name>i18n{"ru":"Полное имя","en":"Full name"}</name>
             <ordinal>2</ordinal>
             <type>SINGLE_LINE_TEXT</type>
         </fields>
@@ -26,7 +26,7 @@
             <id>field_id</id>
             <isRequired>true</isRequired>
             <key>birth</key>
-            <name>i18n{"ru":"Дата рождения","en":"Date of birth","ka":"დაბადების თარიღი"}</name>
+            <name>i18n{"ru":"Дата рождения","en":"Date of birth"}</name>
             <ordinal>3</ordinal>
             <type>DATE</type>
         </fields>
