@@ -1,5 +1,41 @@
 ## WsFormTypeDTO
 
+```xml
+<formTypes type="WsFormTypeDTO">
+    <emailBodyFormat>Request from ${name}, ${birth}. Phone: ${phone}</emailBodyFormat>
+        <fields type="WsFieldDTO">
+            <groupName nil="true"/>
+            <hint>i18n{"ru":"Формат номера +7 (ХХХ) ХХХ-ХХ-ХХ","en":"Contact phone format +7 (ХХХ) ХХХ-ХХ-ХХ"}</hint>
+            <id>UniMegaBank_call_request_1</id>
+            <isRequired>true</isRequired>
+            <key>phone</key>
+            <name>i18n{"ru":"Контактный телефон","en":"Contact Phone","ka":"საკონტაქტო ტელეფონი"}</name>
+            <ordinal>1</ordinal>
+            <placeholder nil="true"/>
+            <type>PHONE</type>
+        </fields>
+        <fields type="WsFieldDTO">
+            <id>field_id</id>
+            <isRequired>true</isRequired>
+            <key>name</key>
+            <name>i18n{"ru":"Полное имя","en":"Full name","ka":"სახელი"}</name>
+            <ordinal>2</ordinal>
+            <type>SINGLE_LINE_TEXT</type>
+        </fields>
+        <fields type="WsFieldDTO">
+            <id>field_id</id>
+            <isRequired>true</isRequired>
+            <key>birth</key>
+            <name>i18n{"ru":"Дата рождения","en":"Date of birth","ka":"დაბადების თარიღი"}</name>
+            <ordinal>3</ordinal>
+            <type>DATE</type>
+        </fields>
+    <id>contact_form_type_id</id>
+    <name>Call request</name>
+    <position>CONTACTS</position>
+</formTypes>
+```
+
 Верхнеуровневый вид формы. Используется как шаблон-генератор на который должна ссылаться клиентская форма
 
 key | type | status | comment
@@ -23,9 +59,24 @@ HIDDEN | форма не видна в списках, но на нее возм
 key | type | status | comment
 --- | ---- | :----: | ---:
 id | string | 1..1 | идентификатор
-name | string | 0..1 | название
-type | string | 0..1 | тип
+name | string | 1..1 | название
+type | [FieldClass](#fieldclass) | 1..1 | тип поля формы, определяющий формат данных
 hint | string | 0..1 | подсказка
-isRequired | bool | 0..1 | признак обязательности поля
+isRequired | bool | 1..1 | признак обязательности поля
 ordinal | int | 0..1 | порядок для сортировки
-key | string | 0..1 | ключ для привязки к типу
+key | string | 0..1 | ключ для привязки к типу в emailBodyFormat
+
+### FieldClass
+
+key | type | comment
+--- | ---- | ---:
+SINGLE_LINE_TEXT | string | однострочный текст
+MULTI_LINE_TEXT | string | многострочный текст
+CHECK_BOX | bool | чекбокс {true, false}
+MONTH_YEAR | string | YYYY/MM (например 2012/11)
+DATE | int | UNIXTIME (например 1394582400)
+COMBO_BOX | string | список строк для comboBoxValues выбора 1..*
+PHONE | int | 99999999999
+PRINTED_TEXT | string | текст пояснение без возможности редактирования пользователем
+IMAGE | [LogoResource](#logoresource) | картинка
+MONEY | int | ddddd (умноженное на 100)
