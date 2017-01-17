@@ -70,7 +70,8 @@ Options for generating tab books
 Name | Type | Default | Description | Example
 ------ | ---- | ------- | ----------- | ------------- 
 display_settings | object | {} | a set of settings to define how the output should be displayed | See Below.
-weight | url | None| ""http://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/5f14133582f34b8b85b408830f4b4a9b/"
+weight | url | None| "http://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/5f14133582f34b8b85b408830f4b4a9b/"
+layout | string | "separate" | "separate" indicates each variable should hav it's own Sheet in the  xls spreadsheet.  "combined" indicates all output should be in the same sheet.| combined 
 
 
 ###### Display Settings
