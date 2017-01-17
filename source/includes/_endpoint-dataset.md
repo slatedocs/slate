@@ -852,18 +852,22 @@ The following rules apply for all formats:
 
 Some format-specific properties and options:
 
-Format    | Attribute        | Description                                                      | Example
---------- | ---------------- | ---------------------------------------------------------------- | --------------------------
-csv       | use_category_ids | instead of category names export the fields as their numeric ids | {"use_category_ids": true}
-spss      | var_label_field  | Use the variable's name/description as SPSS variable label       | {"var_label_field": "name"}
-all       | include_personal | Will include the user's personal variables on the exported file  | {"include_personal": true}
+Format    | Attribute        | Description                                                           | Example
+--------- | ---------------- | --------------------------------------------------------------------- | --------------------------
+csv       | use_category_ids | instead of category names export the fields as their numeric ids      | {"use_category_ids": true}
+spss      | var_label_field  | Use the variable's name/description as SPSS variable label            | {"var_label_field": "name"}
+spss      | flat_arrays      | When True, will only export subvariables and not group them as arrays | {"flat_arrays": true}
+all       | include_personal | Will include the user's personal variables on the exported file       | {"include_personal": true}
 
 For both types of responses, the "location" header is set to the location for the download, whether completed or not.  Besides
  looking for a 100 percent completion with progress requests, the user may also look for a non-404 response on this location.
 
 ###### SPSS
 
-Categorical-array and multiple-response variables will be exported as "mrsets", as supported by SPSS.
+Categorical-array and multiple-response variables will be exported as "mrsets", as supported by SPSS, unless
+the `flat_arrays` option is set to `true`, on this case only the subvariables will be exported. Their label
+will be prefixed with the parent's label.
+
 To pick which variable field to use on the `label` field on the SPSS variables, use the `var_label_field` in the
 `options` attribute in the POST body. The only valid fields are `description` and `name`.
 
