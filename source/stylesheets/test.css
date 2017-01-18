@@ -182,7 +182,7 @@ nav ul li ul li a {
 
 @media only screen and (max-width: 800px) {
 	
-	
+	#top {height: 340px;display: inline-block;}
 	#primary-nav #___gcse_0 .gsc-input .gsc-input-box {height: 48px !important;width: auto;}
 	#primary-nav #___gcse_0 .gsc-search-button .gsc-search-button-v2 {height:50px !important;padding: 16px;margin-right: 13px;}
 	
