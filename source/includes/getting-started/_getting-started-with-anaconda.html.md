@@ -51,7 +51,7 @@ pip install -r requirements.txt
 Create your BRAIN and give it a name. You can also create a BRAIN from your beta.bons.ai BRAIN Dashboard. You will view your BRAIN's progress on the BRAIN Details page.
 
 ```shell
-bonsai brain create myMountainCarBrain
+bonsai create myMountainCarBrain
 ```
 
 # Load sample Inkling into your BRAIN
@@ -59,7 +59,7 @@ bonsai brain create myMountainCarBrain
 Load our sample Inkling file for the mountain car simulation.
 
 ```shell
-bonsai brain load myMountainCarBrain mountaincar.ink
+bonsai load mountaincar.ink
 ```
 
 # Train
@@ -67,7 +67,7 @@ bonsai brain load myMountainCarBrain mountaincar.ink
 Start the training mode for your BRAIN.
 
 ```shell
-bonsai brain train start myMountainCarBrain
+bonsai train start
 ```
 ‍
 
@@ -96,7 +96,7 @@ Training mountain car takes about 45 minutes.
 Stop the training mode.
 
 ```shell
-bonsai brain train stop myMountainCarBrain
+bonsai train stop
 ```
 ‍
 # Use your BRAIN

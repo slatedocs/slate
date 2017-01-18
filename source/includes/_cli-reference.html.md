@@ -22,15 +22,16 @@ $ bonsai configure
 
 **configure** sets up authentication between you, as a user, and the server. This enables the server to verify that you are allowed to write Inkling code to a specific BRAIN. You can find your access code in your account settings at .
 
-## Brain Group Commands
+## Brain Commands
 
 ###### Create
 
 ```
-$ bonsai brain create brainName
+$ bonsai create brainName
 ```
 
-**create** generates a new brain and names it (brainName).
+**create** generates a new brain and names it (brainName).  It also
+sets the assumed brain name for later commands.
 
 Brain names can include:
 
@@ -43,28 +44,29 @@ It is case insensitive, but case aware.
 ###### Load
 
 ```
-$ bonsai brain load brainName inklingFile.ink
+$ bonsai load inklingFile.ink
 ```
 
-**load** loads an Inkling file (inklingFile.ink) to a specific BRAIN (brainName).
+**load** loads an Inkling file (inklingFile.ink) into the current
+brain.  You can specify --brain brainName, to use another brain.
 
 ## Train group commands
 
 ###### Start
 
 ```
-$ bonsai brain train start brainName
+$ bonsai train start
 ```
 
-**start** turns on/enables training mode for a specific BRAIN (brainName). The BRAIN trains whenever the simulator is connected. If the simulator is disconnected, the BRAIN remains in training mode, and it will train again where it left off when the simulator is reconnected.
+**start** turns on/enables training mode for the current BRAIN. The BRAIN trains whenever the simulator is connected. If the simulator is disconnected, the BRAIN remains in training mode, and it will train again where it left off when the simulator is reconnected.
 
 ###### Stop
 
 ```
-$ bonsai brain train stop brainName
+$ bonsai train stop
 ```
 
-**stop** turns off training mode for a specific BRAIN (brainName).
+**stop** turns off training mode for the current BRAIN.
 
 ## Bonsai CLI --help output
 
@@ -77,12 +79,17 @@ Usage: bonsai [OPTIONS] COMMAND [ARGS]...
   Command line interface for the Bonsai Artificial Intelligence Engine.
 
 Options:
-  --help  Show this message and exit.
+  --help     Show this message and exit.
+  --version  Show the version and exit.
 
 Commands:
-  brain      Create, load, train BRAINs.
+  brain      Create, delete BRAINs.
   configure  Authenticate with the BRAIN Server.
-  sims       Retrieve information about simulators
+  create     Create a BRAIN and set the default BRAIN.
+  list       List BRAINs owned by the current user.
+  load       Loads an inkling file into the given BRAIN.
+  sims       Retrieve information about simulators.
+  train      Start and stop training on a BRAIN.
 ```
 
 ###### `bonsai configure --help`
@@ -97,11 +104,11 @@ Options:
   --help  Show this message and exit.
 ```
 
-###### `bonsai brain --help`
+###### `bonsai --help`
 
 ```
-$ bonsai brain --help
-Usage: bonsai brain [OPTIONS] COMMAND [ARGS]...
+$ bonsai --help
+Usage: bonsai [OPTIONS] COMMAND [ARGS]...
 
   Create, load, train BRAINs.
 
@@ -115,11 +122,11 @@ Commands:
   train   Start and stop training on a BRAIN, as well...
 ```
 
-###### `bonsai brain train --help`
+###### `bonsai train --help`
 
 ```
-$ bonsai brain train --help
-Usage: bonsai brain train [OPTIONS] COMMAND [ARGS]...
+$ bonsai train --help
+Usage: bonsai train [OPTIONS] COMMAND [ARGS]...
 
   Start and stop training on a BRAIN, as well as get training status
   information.
@@ -133,40 +140,44 @@ Commands:
   stop    Stops training on the specified BRAIN.
 ```
 
-###### `bonsai brain train status --help`
+###### `bonsai train status --help`
 
 ```
-$ bonsai brain train status --help
-Usage: bonsai brain train status [OPTIONS] BRAIN_NAME
+$ bonsai train status --help
+Usage: bonsai train status [OPTIONS] BRAIN_NAME
 
   Gets training status on the specified BRAIN.
 
 Options:
-  --help  Show this message and exit.
+  --brain TEXT    Override to target another BRAIN.
+  --json          Output status as json.
+  --help          Show this message and exit.
 ```
 
-###### `bonsai brain train start --help`
+###### `bonsai train start --help`
 
 ```
-$ bonsai brain train start --help
-Usage: bonsai brain train start [OPTIONS] BRAIN_NAME
+$ bonsai train start --help
+Usage: bonsai train start [OPTIONS] BRAIN_NAME
 
   Trains the specified BRAIN.
 
 Options:
-  --help  Show this message and exit.
+  --brain TEXT    Override to target another BRAIN.
+  --help          Show this message and exit.
 ```
 
-###### `bonsai brain train stop --help`
+###### `bonsai train stop --help`
 
 ```
-$ bonsai brain train stop --help
-Usage: bonsai brain train stop [OPTIONS] BRAIN_NAME
+$ bonsai train stop --help
+Usage: bonsai train stop [OPTIONS] BRAIN_NAME
 
   Stops training on the specified BRAIN.
 
 Options:
-  --help  Show this message and exit.
+  --brain TEXT    Override to target another BRAIN.
+  --help          Show this message and exit.
 ‍```
 ```
 
