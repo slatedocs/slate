@@ -58,9 +58,10 @@ At the top level, the tab book endpoint can take filtering and variable limiting
 
 Name | Type | Default | Description | Example
 ------ | ---- | ------- | ----------- | ------------- 
-filter | object | None | Filter by Crunch Expression.  Variables used in the filter should be fully-expressed urls. | [{"filter":"https://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/filters/5f14133582f34b8b85b408830f4b4a9b/"}]
-where  | object | None | Crunch Expression signifying which variables to use |{<br>"function": "select",<br>"args": [<br>{<br>"map": {<br>"https://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/000004/": {<br>"variable": "https://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/000004/"<br>},<br>"https://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/000003/": {<br>"variable": "https://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/000003/"<br>}<br>}<br>}<br>]<br>}
+filter | object | null | Filter by Crunch Expression.  Variables used in the filter should be fully-expressed urls. | [{"filter":"https://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/filters/5f14133582f34b8b85b408830f4b4a9b/"}]
+where  | object | null | Crunch Expression signifying which variables to use |{<br>"function": "select",<br>"args": [<br>{<br>"map": {<br>"https://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/000004/": {<br>"variable": "https://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/000004/"<br>},<br>"https://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/000003/": {<br>"variable": "https://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/000003/"<br>}<br>}<br>}<br>]<br>}
 options| object | {}| further options defining the tabbook output.
+weight | url | null| Provide a weight for the tabbook generation, if the weight is omitted from the request, the currently selected weight is used. If "null" is provided, then the tabbook generation will be unweighted. | "http://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/5f14133582f34b8b85b408830f4b4a9b/"
 
 
 
@@ -70,7 +71,7 @@ Options for generating tab books
 Name | Type | Default | Description | Example
 ------ | ---- | ------- | ----------- | ------------- 
 display_settings | object | {} | a set of settings to define how the output should be displayed | See Below.
-weight | url | None| ""http://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/5f14133582f34b8b85b408830f4b4a9b/"
+layout | string | many_sheets | "many_sheets" indicates each variable should have its own Sheet in the  xls spreadsheet.  "single_sheet" indicates all output should be in the same sheet.| single_sheet 
 
 
 ###### Display Settings
