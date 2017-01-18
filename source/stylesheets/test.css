@@ -32,7 +32,7 @@ body{font-size:16px;}
 // LAYOUT
 ////////////////////////////////////////////////////////////////////////////////*/
 
-#top {display: -ms-flexbox;display: flex;padding: 40px 30px;-ms-flex-direction: column;flex-direction: column;-ms-flex-align: center;align-items: center;height: 40vh;justify-content: center;}
+#top {display: -ms-flexbox;display: flex;padding: 40px 30px;-ms-flex-direction: column;flex-direction: column;-ms-flex-align: center;align-items: center;height: 40vh;-ms-flex-pack: center;justify-content: center;}
 #search {padding-top: 25px;padding-bottom: 120px;}
 #search span {background-color:#fafafa;padding: 13px;border: solid 2px hsla(0,6%,92%,1);/* min-width: 300px; */min-width: 57vw;display: inline-block;margin: 0 auto;border-radius: 4px;color: #928d8d;}
 
@@ -340,7 +340,7 @@ article {
 
 #gs_tti50 #gsc-i-id1 {background-image:none !important}
 #gsc-i-id2 {background-image:none !important}
-.gsc-control-cse {background-color:transparent !important; border:none !important;}	
+.gsc-control-cse {background-color:transparent !important;border:none !important;max-width: 890px;}	
 .gsc-wrapper > div:first-of-type {display:none !important;}
 .gcsc-branding {display: none !important;}
 #___gcse_1{width: 60Vw;margin: 0 auto;padding: 10px 0;margin-bottom: 85px;margin-top: 16px;}
