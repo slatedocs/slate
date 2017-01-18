@@ -36,9 +36,9 @@ body{font-size:16px;}
 #search {padding-top: 25px;padding-bottom: 120px;}
 #search span {background-color:#fafafa;padding: 13px;border: solid 2px hsla(0,6%,92%,1);/* min-width: 300px; */min-width: 57vw;display: inline-block;margin: 0 auto;border-radius: 4px;color: #928d8d;}
 
-#browse {display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-align:stretch;align-items:stretch;-ms-flex: 1 0 auto;flex: 1 0 auto;padding-bottom:30px;/* padding: 0 30px; */background: hsla(30,11%,92%,1);padding-top: 30px;border-top: solid 1px #ccc;}
+#browse {display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-align:stretch;align-items: center;-ms-flex: 1 0 auto;flex: 1 0 auto;padding-bottom:30px;/* padding: 0 30px; */background: hsla(30,11%,92%,1);padding-top: 30px;border-top: solid 1px #ccc;-ms-flex-pack: center;justify-content: center;/* min-height: 30vh; */}
 
-#browse div {-ms-flex-positive:1;flex-grow:1;background-color:#fafafa;margin-right:20px;border-radius:3px;padding: 20px 40px;padding-top: 15px;border: solid 1px #ccc;width: 100%;}
+#browse div {-ms-flex-positive:1;flex-grow:1;background-color:#fafafa;margin-right:20px;border-radius:3px;padding: 20px 40px;padding-top: 15px;border: solid 1px #ccc;width: 100%;min-height: 300px;}
 
 #browse div:first-of-type { margin-left:20px}
 
@@ -52,8 +52,8 @@ body{font-size:16px;}
 #main-wrapper {background-color: #eaf2f6;}
 .index #main-wrapper{background-color: hsla(51, 198%, 97%, 1);}
 @media (max-width: 690px) {
-  #browse { -ms-flex-direction:column; flex-direction:column; }
-  #browse div {margin:20px;width: inherit;}
+  #browse {-ms-flex-direction:column;flex-direction:column;-ms-flex-align: stretch;align-items: stretch;}
+  #browse div {margin:20px;width: inherit;/* height: 50px !important; */min-height: inherit;}
   	#___gcse_1 {width: 90vw !important;}
 	.welcome {font-size: 170% !important;}
 }
@@ -78,7 +78,7 @@ body{font-size:16px;}
 ////////////////////////////////////////////////////////////////////////////////*/
 
 .p2{font-size: 135%;font-weight: 400;}
-.welcome{font-size:200%;text-align:center;background-color: transparent;background: none;margin: 0;/* margin-top: 90px; */}
+.welcome{font-size:200%;text-align:center;background-color: transparent;background: none;margin: 0;/* margin-top: 90px; */margin-bottom: 20px;}
 #browse ul li a:hover {color:#3bb94f;}	
 .content h3{
     font-size: 142%;
@@ -340,7 +340,7 @@ article {
 
 #gs_tti50 #gsc-i-id1 {background-image:none !important}
 #gsc-i-id2 {background-image:none !important}
-.gsc-control-cse {background-color:transparent !important;border:none !important;max-width: 890px;}	
+.gsc-control-cse {background-color:transparent !important;border:none !important;max-width: 730px;}	
 .gsc-wrapper > div:first-of-type {display:none !important;}
 .gcsc-branding {display: none !important;}
 #___gcse_1{width: 60Vw;margin: 0 auto;padding: 10px 0;margin-bottom: 85px;margin-top: 16px;}
