@@ -70,8 +70,8 @@ Options for generating tab books
 Name | Type | Default | Description | Example
 ------ | ---- | ------- | ----------- | ------------- 
 display_settings | object | {} | a set of settings to define how the output should be displayed | See Below.
-weight | url | None| "http://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/5f14133582f34b8b85b408830f4b4a9b/"
-layout | string | many_sheets | "many_sheets" indicates each variable should have its own Sheet in the  xls spreadsheet.  "single_sheet" indicates all output should be in the same sheet (this is the default if the option is missing).| single_sheet 
+weight | url | None| Provide a weight for the tabbook generation, if the weight is not provided, the currently selected weight is used.  If "null" is provided, then the tabbook generation will be unweighted. | "http://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/5f14133582f34b8b85b408830f4b4a9b/"
+layout | string | many_sheets | "many_sheets" indicates each variable should have its own Sheet in the  xls spreadsheet.  "single_sheet" indicates all output should be in the same sheet.| single_sheet 
 
 
 ###### Display Settings
