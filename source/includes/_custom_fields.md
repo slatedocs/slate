@@ -8,7 +8,7 @@ This endpoint retrieves all custom fields.
 
 `GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/custom_fields.json`
 
-### Query Parameters - [pagination](/#pagination)
+### Query Parameters - [pagination](#pagination)
 
 Here's the example of the JSON request and response that you may get when submitting a GET request
 
@@ -122,7 +122,7 @@ This endpoint updates a specific custom field.
 
 `PUT https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/custom_fields/YOUR_CUSTOM_FIELD_ID.json`
 
-### Query Parameters - [pagination](/#pagination)
+### Query Parameters - [pagination](#pagination)
 
 Parameter | Description |
 --------- | ------- |

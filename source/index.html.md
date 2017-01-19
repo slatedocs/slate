@@ -9,8 +9,7 @@ language_tabs:
 
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='https://www.practitest.com/help/account/account-api-tokens/' target="_blank">How to get an API Token</a>
 
 includes:
   - authentication
@@ -24,7 +23,7 @@ includes:
 search: true
 ---
 
-# PractiTest API V2
+# PractiTest API V2 (beta)
 
 ## Welcome to the PractiTest's REST API V2!
 
@@ -37,8 +36,18 @@ We have language bindings in Shell, Ruby, Python, Java and C#! You can view code
 All along this api we've embraced <a href="http://jsonapi.org/" target="blank">JSON API</a> standards, for share conventions and to save you (and us) precious time.
 
 ## A small note about API V2 vs V1
-We wrote this API V2 based on our experience from V1, trying to make it simpler and more rebust.
-Eventually, this V2 API will support all current V1 API, and later on V1 will be depreciated.
+We wrote this API V2 based on our experience from V1, trying to make it simpler and more robust.
+Eventually, this V2 API will support all current V1 API methods, and later on V1 will be depreciated.
+
+We changed many things from V1:
+
+* Different authentication - [read the Authentication section](#authentication).
+
+* All resources' ids of are what we used to call in V1 system_ids. The purpose is to eliminate the ambiguity in parameter names (author? author_id? author_system_id?), and to enable a more distinct definition
+
+* Json API - API standards have been evolved since V1 - [read more here](#json-api).
+
+* Better Documentation - a specific tool for API documentation (slate). We hope you can see the difference.
 
 If you're new to PractiTest and you're just starting to write API code, you should use this V2, and not the V1. If you need anything that is still missing, please email us to support, as we'd like to reduce the number of V1 users.
 
