@@ -34,12 +34,13 @@
     searchResults = $('.search-results');
 
     $('#input-search').on('keyup', search);
+	 document.getElementById('input-search').placeholder = 'Filter Content';
   }
 
   function search(event) {
     unhighlight();
     searchResults.addClass('visible');
-
+	
     // ESC clears the field
     if (event.keyCode === 27) this.value = '';
 

@@ -52,7 +52,7 @@ body{font-size:16px;}
 #main-wrapper {background-color: #eaf2f6;}
 .index #main-wrapper{background-color: hsla(51, 198%, 97%, 1);}
 @media (max-width: 690px) {
-  #browse {-ms-flex-direction:column;flex-direction:column;-ms-flex-align: stretch;align-items: stretch;}
+  #browse, #browse-divs {-ms-flex-direction:column;flex-direction:column;-ms-flex-align: stretch;align-items: stretch;}
   #browse div {margin:20px;width: inherit;/* height: 50px !important; */min-height: inherit;}
   	#___gcse_1 {width: 90vw !important;}
 	.welcome {font-size: 170% !important;}

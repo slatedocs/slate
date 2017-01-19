@@ -142,10 +142,12 @@ h6:before {
 
     &:before {
       position: absolute;
-      top: 17px;
-      left: $nav-padding;
+      top: 10px;
+      left: 1em;
       color: $nav-text;
-      @extend %icon-search;
+      /*@extend %icon-search;*/
+	  content:"⸪";
+	  font-size:140%;
     }
   }
 
