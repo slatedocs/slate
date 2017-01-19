@@ -6,7 +6,7 @@ This endpoint retrieves all projects.
 
 ### HTTP Request
 
-`GET http://prod.practitest.com/api/v2/projects.json`
+`GET http://api.practitest.com/api/v2/projects.json`
 
 ### Query Parameters
 

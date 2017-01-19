@@ -3,10 +3,10 @@
 ```shell
     curl -H "Content-Type: application/json" \
      -u YOUR_EMAIL:YOUR_TOKEN  \
-    https://prod.practitest.com/api/v2/projects.json
+    https://api.practitest.com/api/v2/projects.json
 # IS THE SAME AS:
     curl -H "Content-Type: application/json" \
-    https://prod.practitest.com/api/v2/projects.json?developer_email=YOUR_EMAIL&api_token=YOUR_TOKEN
+    https://api.practitest.com/api/v2/projects.json?developer_email=YOUR_EMAIL&api_token=YOUR_TOKEN
 ```
 
 
@@ -23,7 +23,7 @@ require 'net/https'
 require 'uri'
 require 'json'
 
-URL   = "https://prod.practitest.com"
+URL   = "https://api.practitest.com"
 TOKEN = "xxx"
 DEVELOPER_EMAIL= "my@mail.address"
 
@@ -41,12 +41,12 @@ puts res.body
 import httplib
 import requests
 from requests.auth import AuthBase
-res = requests.get('https://prod.practitest.com/api/v2/projects.json', auth=('user@pt.com', 'dd2d9ddee2e9cd4861b1f0353375de1b4444d49'))
+res = requests.get('https://api.practitest.com/api/v2/projects.json', auth=('user@pt.com', 'dd2d9ddee2e9cd4861b1f0353375de1b4444d49'))
 print res.status_code
 print res.text
 ```
 
-> This command: https://prod.practitest.com/api/v2/projects.json?api_token=xx&developer_email=admin%40pt.com&page[number]=1&page[size]=2", returns JSON structured like below:
+> This command: https://api.practitest.com/api/v2/projects.json?api_token=xx&developer_email=admin%40pt.com&page[number]=1&page[size]=2", returns JSON structured like below:
 
 
 ```json
@@ -76,9 +76,9 @@ print res.text
     }
   ],
   "links": {
-    "self": "https://prod.practitest.com/api/v2/projects.json?api_token=afb913899fc295e809255fbdb4fbc1fb37296250&developer_email=admin%40pt.com&page%5Bnumber%5D=1&page%5Bsize%5D=2",
-    "next": "https://prod.practitest.com/api/v2/projects.json?api_token=afb913899fc295e809255fbdb4fbc1fb37296250&developer_email=admin%40pt.com&page%5Bnumber%5D=2&page%5Bsize%5D=2",
-    "last": "https://prod.practitest.com/api/v2/projects.json?api_token=afb913899fc295e809255fbdb4fbc1fb37296250&developer_email=admin%40pt.com&page%5Bnumber%5D=3&page%5Bsize%5D=2"
+    "self": "https://api.practitest.com/api/v2/projects.json?api_token=afb913899fc295e809255fbdb4fbc1fb37296250&developer_email=admin%40pt.com&page%5Bnumber%5D=1&page%5Bsize%5D=2",
+    "next": "https://api.practitest.com/api/v2/projects.json?api_token=afb913899fc295e809255fbdb4fbc1fb37296250&developer_email=admin%40pt.com&page%5Bnumber%5D=2&page%5Bsize%5D=2",
+    "last": "https://api.practitest.com/api/v2/projects.json?api_token=afb913899fc295e809255fbdb4fbc1fb37296250&developer_email=admin%40pt.com&page%5Bnumber%5D=3&page%5Bsize%5D=2"
   },
   "meta": {
     "current-page": 1,

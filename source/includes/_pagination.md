@@ -4,7 +4,7 @@ Get all resources supports paginations, for example, to retrive projects:
 
 ### HTTP Request
 
-`GET http://prod.practitest.com/api/v2/projects.json`
+`GET http://api.practitest.com/api/v2/projects.json`
 
 ### Pagination Parameters
 

@@ -6,7 +6,7 @@ This endpoint retrieves all custom fields.
 
 ### HTTP Request
 
-`GET https://prod.practitest.com/api/v2/projects/YOUR_PROJECT_ID/custom_fields.json`
+`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/custom_fields.json`
 
 ### Query Parameters - [pagination](/#pagination)
 
@@ -17,10 +17,10 @@ Remember, you can see examples in the dark area to the right.
 ```shell
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
-https://prod.practitest.com/api/v2/projects/4566/custom_fields.json
+https://api.practitest.com/api/v2/projects/4566/custom_fields.json
 ```
 
-> This command: https://prod.practitest.com/api/v2/projects/4566/custom_fields.json?api_token=xx&developer_email=admin%40pt.com&page[number]=1&page[size]=2", returns JSON structured like below:
+> This command: https://api.practitest.com/api/v2/projects/4566/custom_fields.json?api_token=xx&developer_email=admin%40pt.com&page[number]=1&page[size]=2", returns JSON structured like below:
 
 ```json
 {
@@ -62,9 +62,9 @@ https://prod.practitest.com/api/v2/projects/4566/custom_fields.json
     }
   ],
   "links": {
-    "self": "https://prod.practitest.com/api/v2/projects/4566/custom_fields.json?api_token=a519a5d2ea4fad48e24ae929b03c753c68fb799c&developer_email=christine%40pt.com&page%5Bnumber%5D=1&page%5Bsize%5D=2",
-    "next": "https://prod.practitest.com/api/v2/projects/4566/custom_fields.json?api_token=a519a5d2ea4fad48e24ae929b03c753c68fb799c&developer_email=christine%40pt.com&page%5Bnumber%5D=2&page%5Bsize%5D=2",
-    "last": "https://prod.practitest.com/api/v2/projects/4566/custom_fields.json?api_token=a519a5d2ea4fad48e24ae929b03c753c68fb799c&developer_email=christine%40pt.com&page%5Bnumber%5D=19&page%5Bsize%5D=2"
+    "self": "https://api.practitest.com/api/v2/projects/4566/custom_fields.json?api_token=a519a5d2ea4fad48e24ae929b03c753c68fb799c&developer_email=christine%40pt.com&page%5Bnumber%5D=1&page%5Bsize%5D=2",
+    "next": "https://api.practitest.com/api/v2/projects/4566/custom_fields.json?api_token=a519a5d2ea4fad48e24ae929b03c753c68fb799c&developer_email=christine%40pt.com&page%5Bnumber%5D=2&page%5Bsize%5D=2",
+    "last": "https://api.practitest.com/api/v2/projects/4566/custom_fields.json?api_token=a519a5d2ea4fad48e24ae929b03c753c68fb799c&developer_email=christine%40pt.com&page%5Bnumber%5D=19&page%5Bsize%5D=2"
   },
   "meta": {
     "current-page": 1,
@@ -81,17 +81,17 @@ This endpoint retrieves a specific custom field.
 
 ### HTTP Request
 
-`GET https://prod.practitest.com/api/v2/projects/YOUR_PROJECT_ID/custom_fields/YOUR_CUSTOM_FIELD_ID.json`
+`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/custom_fields/YOUR_CUSTOM_FIELD_ID.json`
 
 Here's the example of the JSON request and response that you may get when submitting a GET request
 
 ```shell
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
-https://prod.practitest.com/api/v2/projects/4566/custom_fields/45893.json
+https://api.practitest.com/api/v2/projects/4566/custom_fields/45893.json
 ```
 
-> This command: https://prod.practitest.com/api/v2/projects/4566/custom_fields/45893.json?api_token=YOUR_TOKEN&developer_email=YOUR_EMAIL, returns JSON structured like below:
+> This command: https://api.practitest.com/api/v2/projects/4566/custom_fields/45893.json?api_token=YOUR_TOKEN&developer_email=YOUR_EMAIL, returns JSON structured like below:
 
 ```json
 {
@@ -120,7 +120,7 @@ This endpoint updates a specific custom field.
 
 ### HTTP Request
 
-`PUT https://prod.practitest.com/api/v2/projects/YOUR_PROJECT_ID/custom_fields/YOUR_CUSTOM_FIELD_ID.json`
+`PUT https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/custom_fields/YOUR_CUSTOM_FIELD_ID.json`
 
 ### Query Parameters - [pagination](/#pagination)
 
@@ -138,7 +138,7 @@ Remember, you can see examples in the dark area to the right.
 ```shell
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
--X PUT https://prod.practitest.com/api/v2/projects/4566/custom_fields/45893.json \
+-X PUT https://api.practitest.com/api/v2/projects/4566/custom_fields/45893.json \
 -d '{"data": { "type": "custom_fields", "attributes": {"name":"Test API3", "possible-values": ["one","six"]}  } }'
 ```
 > The above command returns JSON structured like below:

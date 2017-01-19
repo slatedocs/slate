@@ -6,7 +6,7 @@ This endpoint retrieves all users.
 
 ### HTTP Request
 
-`https://prod.practitest.com/api/v2/users.json`
+`https://api.practitest.com/api/v2/users.json`
 
 ### Query Parameters - [pagination](/#pagination)
 
@@ -17,13 +17,13 @@ Remember, you can see examples in the dark area to the right.
 ```shell
     curl -H "Content-Type: application/json" \
      -u YOUR_EMAIL:YOUR_TOKEN  \
-    https://prod.practitest.com/api/v2/users.json
+    https://api.practitest.com/api/v2/users.json
 # IS THE SAME AS:
     curl -H "Content-Type: application/json" \
-    https://prod.practitest.com/api/v2/users.json?developer_email=YOUR_EMAIL&api_token=YOUR_TOKEN
+    https://api.practitest.com/api/v2/users.json?developer_email=YOUR_EMAIL&api_token=YOUR_TOKEN
 ```
 
-> This command: https://prod.practitest.com/api/v2/users.json?api_token=YOUR_TOKEN&developer_email=YOUR_EMAIL, returns JSON structured like below:
+> This command: https://api.practitest.com/api/v2/users.json?api_token=YOUR_TOKEN&developer_email=YOUR_EMAIL, returns JSON structured like below:
 
 
 ```json
