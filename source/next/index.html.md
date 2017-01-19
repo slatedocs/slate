@@ -124,7 +124,6 @@ curl -v https://api.datil.co/sales/invoices \
           "unit_price": 43256.00,
           "id": "ABC",
           "subtotal_amount": 10121904.00,
-          "total_amount": 1.15,
           "quantity": 234
         }
       ],
