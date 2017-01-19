@@ -92,7 +92,7 @@ As Configurações de Cobrança do tipo **Boleto** (billet), pertencem as suas c
 | type         | string          | indica o tipo da configuração de cobrança. Nese caso 'payment_gateway'                                                |
 | name         | string          | nome que identifica esta configuração de cobrança                                                                     |
 | status       | string          | indica o status, ou etapa, de homologação em que configuração de cobrança está ('pending', 'production_tests', 'ok')  |
-| gateway_name | string          | nome do gateway de pagamento (cielo)                                                                                  |
+| gateway_name | string          | nome do gateway de pagamento ('cielo-ws15', 'cielo-api30')                                                            |
 | gateway_id   | string          | número de afiliação do contrato com o gateway de pagamento                                                            |
 | gateway_key  | string          | chave de acesso atribuída pelo gateway de pagamento                                                                   |
 | use_avs      | boolean         | define se será feita a solicitação e a confirmação do endereço de cobrança da fatura do cartão utilizado no pagamento |
@@ -282,11 +282,22 @@ Cria uma nova Configuração de Cobrança, retornando as informações da mesma 
 |--------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
 | type         | string  | **(requerido)** indica o tipo da configuração de cobrança. Neste caso deve ser informado "payment_gateway"                                            |
 | name         | string  | **(requerido)** nome que identifica esta configuração de cobrança                                                                                     |
-| gateway_name | string  | **(requerido)** nome do gateway de pagamento (cielo)                                                                                                  |
+| gateway_name | string  | **(requerido)** nome do gateway de pagamento ('cielo-ws15', 'cielo-api30')*                                                                           |
 | gateway_id   | string  | **(requerido)** número de afiliação do contrato com o gateway de pagamento                                                                            |
 | gateway_key  | string  | **(requerido)** chave de acesso atribuída pelo gateway de pagamento                                                                                   |
 | status       | string  | (opctional, default "pending") indica o status, ou etapa, de homologação em que configuração de cobrança está ('pending', 'production_tests', 'ok')   |
 | use_avs      | boolean | (opcional) define se será feita a solicitação e a confirmação do endereço de cobrança da fatura do cartão utilizado no pagamento (`false` por padrão) |
+
+<strong>*</strong> Os possíveis valores para o <code>gateway_name</code> são os seguintes:</p>
+
+<dl>
+  <dt>cielo-api30</dt>
+  <dd>Cielo API 3.0</dd>
+</dl>
+<dl>
+  <dt>cielo-ws15</dt>
+  <dd>Cielo Webservice 1.5</dd>
+</dl>
 
 ## Atualização de Configuração de Cobrança
 
@@ -370,7 +381,6 @@ Atualiza a Configuração de Cobrança determinada, retornando as informações 
 | Campo        | Tipo    | Comentário                                                                                                                                            |
 |--------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
 | name         | string  | **(requerido)** nome que identifica esta configuração de cobrança                                                                                     |
-| gateway_name | string  | **(requerido)** nome do gateway de pagamento (cielo)                                                                                                  |
 | gateway_id   | string  | **(requerido)** número de afiliação do contrato com o gateway de pagamento                                                                            |
 | gateway_key  | string  | **(requerido)** chave de acesso atribuída pelo gateway de pagamento                                                                                   |
 | use_avs      | boolean | (opcional) define se será feita a solicitação e a confirmação do endereço de cobrança da fatura do cartão utilizado no pagamento (`false` por padrão) |
