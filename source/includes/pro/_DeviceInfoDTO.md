@@ -27,4 +27,12 @@ VENDOR_ID | string | 1..1 | уникальный идентификатор ус
 LOCALE | string | 0..1 | локаль телефона
 MAC | string | 0..1 | приходит если доступно получение значения от устройства
 
-<aside class="warning">Apple: In iOS 7 and later, if you ask for the MAC address of an iOS device, the system returns the value 02:00:00:00:00:00. If you need to identify the device, use the identifierForVendor (VENDOR_ID)</aside>
+Уточнение по получению данных параметров:
+
+key | ios | android
+--- | :----: | :----:
+VENDOR_ID | [identifierForVendor](https://developer.apple.com/reference/uikit/uidevice/1620059-identifierforvendor) | [getDeviceId](https://developer.android.com/reference/android/telephony/TelephonyManager.html#getDeviceId) or [ANDROID_ID](https://developer.android.com/reference/android/provider/Settings.Secure.html#ANDROID_ID)
+IP | [NSHost](https://developer.apple.com/reference/foundation/host) | [getInetAddresses](https://developer.android.com/reference/java/net/NetworkInterface.html#getInetAddresses)
+MAC | [02:00:00:00:00:00](https://developer.apple.com/library/content/releasenotes/General/WhatsNewIniOS/Articles/iOS7.html#//apple_ref/doc/uid/TP40013162-SW1) | [getHardwareAddress](https://developer.android.com/reference/java/net/NetworkInterface.html#getHardwareAddress)
+
+<aside class="warning">Apple: In iOS 7 and later, if you ask for the MAC address of an iOS device, the system returns the value 02:00:00:00:00:00. If you need to identify the device, use the identifierForVendor (VENDOR_ID) property of UIDevice instead. (Apps that need an identifier for their own advertising purposes should consider using the advertisingIdentifier property of ASIdentifierManager instead.)</aside>
