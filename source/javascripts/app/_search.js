@@ -43,6 +43,17 @@
     // ESC clears the field
     if (event.keyCode === 27) this.value = '';
 
+    // Clears search results view when reset button is clicked
+    $('.reset-form').click(function() {
+      $('#input-search').val('');
+      if (searchResults.hasClass('visible')) {
+        searchResults.removeClass('visible');
+        unhighlight();
+      } else {
+        return false;
+      }
+    });
+
     if (this.value) {
       var results = index.search(this.value).filter(function(r) {
         return r.score > 0.0001;

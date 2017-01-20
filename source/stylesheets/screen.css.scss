@@ -95,18 +95,29 @@ html, body {
       padding: 6px 0 6px 20px;
       box-sizing: border-box;
       margin: $nav-v-padding $nav-padding;
-      width: $nav-width - 30;
+      width: $nav-width - 50;
       outline: none;
       color: $nav-text;
       border-radius: 0; /* ios has a default border radius */
     }
 
-    &:before {
+    &>form:before {
       position: absolute;
       top: 17px;
       left: $nav-padding;
       color: $nav-text;
       @extend %icon-search;
+    }
+
+    .reset-form{
+      margin-left: -30px;
+      background: transparent;
+      border: 0;
+      width: 30px;
+      height: 30px;
+    }
+    .search:not(:valid) ~ .reset-form {
+      display: none;
     }
   }
 
