@@ -2,6 +2,8 @@
 @import 'normalize';
 @import 'variables';
 @import 'icon-font';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 
 /*
 Copyright 2008-2013 Concur Technologies, Inc.
@@ -115,9 +117,16 @@ html, body {
       border: 0;
       width: 30px;
       height: 30px;
+      color: white;
+
     }
+
     .search:not(:valid) ~ .reset-form {
       display: none;
+    }
+
+    .fa-times {
+      color: $nav-text;
     }
   }
 
