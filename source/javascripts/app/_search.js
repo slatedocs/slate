@@ -35,6 +35,7 @@
 
     $('#input-search').on('keyup', search);
 	 document.getElementById('input-search').placeholder = 'Filter Content';
+	 
   }
 
   function search(event) {
