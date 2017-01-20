@@ -10,6 +10,7 @@
   **name**  <br> String | *Nome do cliente*
   **registry_code**  <br> String | *Documento do cliente (CPF ou CNPJ)*
   **email**  <br> String | *Email do cliente*
+  **external_code**  <br> String | *Referência opcional para controle do seu sistema*
   **address[country]** <br> String | *Código do país no formato ISO 3166-1 alpha-2. Exemplo: BR*
   **address[zipcode]** <br> String | *Código Postal do cliente*
   **address[state]** <br> String | *Código do estado no formato ISO 3166-2. Exemplo: SP*
@@ -34,6 +35,7 @@
     -d 'name=Carolina' \
     -d 'registry_code=11111111111' \
     -d 'email=exemplo@gmail.com' \
+    -d 'external_code=400' \
     -d 'address[street]= Rua Doutor Diogo de Faria' \
     -d 'address[number]=775' \
     -d 'address[additional_details]=Cj. 123' \
@@ -54,6 +56,7 @@
       "id": "c7538d37-3ed1-4ee2-bc2d-f89afecb08d1",
       "name": "Carolina",
       "email": "exemplo@gmail.com",
+      "external_code": "400",
       "registry_code": "11111111111",
       "status": "active",
       "phone": {
@@ -84,6 +87,7 @@
   **name**  <br> <p> obrigatório </p> | *Nome do cliente*
   **registry_code**  <br> <p> obrigatório </p> | *Documento do cliente (CPF ou CNPJ)*
   **email**  <br> <p> obrigatório </p> | *Email do cliente*
+  **external_code**  <br>  <p> obrigatório </p>| *Referência opcional para controle do seu sistema*
   **address[zipcode]** <br>  <p> obrigatório </p> | *Código Postal do cliente*
   **address[number]**  <p> obrigatório </p> |  *Número do endereço do cliente*
   **address[country]** | *Código do país no formato ISO 3166-1 alpha-2. Exemplo: BR*
@@ -116,6 +120,7 @@
       "name": "Carolina",
       "email": "exemplo@gmail.com",
       "registry_code": "11111111111",
+      "external_code": "400",
       "status": "active",
       "phone": {
         "id": "bed01a89-2ff8-4ef2-8d0b-586a3bcbba3f",
@@ -173,6 +178,7 @@
         "name": "Carolina",
         "email": "exemplo@gmail.com",
         "registry_code": "11111111111",
+        "external_code": "400",
         "status": "active",
         "phone": {
           "id": "bed01a89-2ff8-4ef2-8d0b-586a3bcbba3f",
@@ -221,6 +227,7 @@
       "name": "Carolina",
       "email": "novo_email@gmail.com",
       "registry_code": "11111111111",
+      "external_code": "400",
       "status": "active",
       "phone": {
         "id": "bed01a89-2ff8-4ef2-8d0b-586a3bcbba3f",

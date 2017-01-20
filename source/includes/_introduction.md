@@ -33,6 +33,7 @@ GET | `/documents` | Retorna todos os documentos de uma empresa
 POST | `/documents` | Cria um documento
 GET | `/documents/:id` | Retorna um documento
 GET | `/documents/:id/operations` | Retorna todas operações do documento
+DELETE  | `/documents/:id` | Cancela um documento
 GET | `/operations/:id` | Retorna uma operação
 GET | `operations/:id/transactions` | Retorna todas transações da operação
 GET | `transactions/:id` | Retorna uma transação

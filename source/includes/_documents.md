@@ -348,3 +348,17 @@ Parâmetro | Descrição
  -------------- | --------------
   **:id** <br> <p>obrigatório</p> | *Id do documento criado*
   **query** |  *Campos para filtro: operation_type, created_at, status*
+
+## Cancelando um documento
+Cancela o documento solicitado.
+
+Parâmetro | Descrição
+ -------------- | --------------
+  **:id** <br> <p>obrigatório</p> | *Id do documento criado*
+
+  > DELETE https://api.fastnotas.com/v1/documents/{DOCUMENT_ID}
+
+```shell
+  curl -X DELETE https://api.fastnotas.com/v1/documents/{DOCUMENT_ID} \
+  -u 'YOUR_API_KEY:'
+```
