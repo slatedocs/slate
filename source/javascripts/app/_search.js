@@ -33,9 +33,9 @@
     content = $('.content');
     searchResults = $('.search-results');
 
-    $('#input-search').on('keyup', search);
-	 document.getElementById('input-search').placeholder = 'Filter Content';
-	 
+	if (document.getElementById('input-search')) {
+	  $('#input-search').on('keyup', search); document.getElementById('input-search').placeholder = 'Filter Content';
+	}
   }
 
   function search(event) {
