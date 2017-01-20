@@ -9,8 +9,9 @@
   })();
       window.onload = function(){
       document.getElementById('gsc-i-id1').placeholder = 'Search Bonsai Docs';
+     // document.getElementById('gsc-i-id2').placeholder = 'Search Bonsai Docs';
 	  
-	 $("td.gsc-search-button").empty().html('<input type="image" src="https://dl.dropboxusercontent.com/s/l4e4aa6s5t9m4xx/search.svg?dl=0" class="gsc-search-button gsc-search-button-v2 svg" title="search">'); 
+	 $("td.gsc-search-button").empty().html('<input type="image" src="/images/search.svg" class="gsc-search-button gsc-search-button-v2 svg" title="search">'); 
 	  
     };
 	

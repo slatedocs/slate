@@ -27,7 +27,7 @@
 
   <div id="flex-container">
 
-	<%= partial "primary-nav-2" %>
+	<%= partial "partials/primary-nav-search" %>
 
 	<div id="main-wrapper">
 
@@ -59,11 +59,10 @@
       <div id="toc">
       </div>
       <% if current_page.data.toc_footers %>
-        <ul class="toc-footer">
-          <% current_page.data.toc_footers.each do |footer| %>
-            <li><%= footer %></li>
-          <% end %>
-        </ul>
+      
+			 <%= partial "partials/footer-links" %>
+          
+        
       <% end %>
     </div>
     <div class="page-wrapper">
