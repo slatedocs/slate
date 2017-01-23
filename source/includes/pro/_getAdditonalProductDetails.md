@@ -30,6 +30,7 @@
 key | type | status | comment
 --- | ---- | :----: | ---:
 **Request:** | | |
+bankClientId | string | 1..1 | идентификатор клиента
 productId | string | 1..1 | идентификатор продукта
 cardId | string | 0..1 | идентификатор карты
 **Response:** | | |
