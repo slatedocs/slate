@@ -652,7 +652,7 @@ actions | All actions executed on this dataset
 savepoints | Lists the saved versions for this dataset. See [Versions](#versions).
 weight_variables | Includes the available variables to be used as weight
 filters | Makes available the public and user-created filters. See [Filters](#filters).
-multitables | Similar to filters, displays all available multitables
+multitables | Similar to filters, displays all available multitables. See [Multitables](#mulitables)
 comparisons | Contains all available comparisons. See [Comparisons](#comparisons).
 forks | Returns all the forks created from this dataset
 decks | The list of all decks on this dataset for the authenticated user
@@ -738,13 +738,13 @@ All the URLs will refer to entities on the source dataset.
                 "alias": "Variable alias",
                 "owner_url": "https://app.crunch.io/users/qwe/",
                 "owner_name": "Angus MacGyver"
-            }, 
+            },
             "https://app.crunch.io/dataset/1234/variables/cde/": {
                 "name": "Variable name",
                 "alias": "Variable alias",
                 "owner_url": null,
                 "owner_name": null
-            }, 
+            },
         },
         "filters": {
             "https://app.crunch.io/filters/abcd/": {
@@ -869,7 +869,7 @@ To pick which variable field to use on the `label` field on the SPSS variables, 
 
 ###### CSV
 
-Categorical variable values will be exported as the category name by default. 
+Categorical variable values will be exported as the category name by default.
 To use the category ids as data values, include `"use_category_ids": true` in the `"options"` attribute of the POST body.
 
 ##### Summary

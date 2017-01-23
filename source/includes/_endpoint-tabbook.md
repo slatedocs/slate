@@ -1,28 +1,25 @@
-## Tab books
+### Tab books
 
-The default `tabbook` view of a multitable will generate an excel (.xlsx) workbook 
-containing each variable in the dataset crosstabbed with a given multitable. 
+`/datasets/{dataset_id}/multitables/{multitable_id}/tabbook/`
 
-A POST request to `/datasets/{id}/multitables/{id}/tabbook/` will generate a download 
-location to which the exporter will write this file when it is done computing 
-(it may take some time for large datasets). Clients should note the download url, 
-monitor progress, and when complete, GET the download location.
- 
-The server will return a 202 response indicating that the export job started with
-a Location header indicating where the final exported file will be available.
+The default `tabbook` view of a multitable will generate an excel (.xlsx) workbook
+containing each variable in the dataset crosstabbed with a given multitable.
 
-The response's body will contain the URL for the progress url where to query
-the state of the export job.
+#### POST
 
-Requesting the same job, if still in progress, will return the same 202 response 
+A successful POST request to `/datasets/{dataset_id}/multitables/{multitable_id}/tabbook/` will generate a download
+location to which the exporter will write this file when it is done computing
+(it may take some time for large datasets). The server will return a 202 response indicating that the export job started with
+a Location header indicating where the final exported file will be available. The response's body will contain the URL for the progress URL where to query
+the state of the export job. Clients should note the download URL,
+monitor progress, and when complete, GET the download location. See [Progress](#progress) for details.
+
+Requesting the same job, if still in progress, will return the same 202 response
 indicating the original progress to check. If the export is finished, the server
 will 302 redirect to the destination for download.
 
-If there have been changes on the dataset attributes, a new tabbook will be
+If there have been changes on the dataset attributes, a new tab book will be
 generated regardless of the status of any other pending exports.
- 
-
-#### POST
 
 ```http
 POST /api/datasets/a598c7/multitables/45fd58/tabbook/ HTTP/1.1
@@ -44,20 +41,19 @@ Location: https://s3-url/filename.xlsx
 }
 ```
 
-Alternatively, you can request a json output for your tabbook.  To do this, simply
-add an accept header to your request as follows:
+Alternatively, you can request a JSON output for your tab book by adding an Accept request header.
 
 ```http
 POST /api/datasets/a598c7/multitables/45fd58/tabbook/ HTTP/1.1
 Accept: application/json
 ```
 
-#### Endpoint Parameters
+#### POST body parameters
 
 At the top level, the tab book endpoint can take filtering and variable limiting parameters.
 
 Name | Type | Default | Description | Example
------- | ---- | ------- | ----------- | ------------- 
+------ | ---- | ------- | ----------- | -------------
 filter | object | null | Filter by Crunch Expression.  Variables used in the filter should be fully-expressed urls. | [{"filter":"https://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/filters/5f14133582f34b8b85b408830f4b4a9b/"}]
 where  | object | null | Crunch Expression signifying which variables to use |{<br>"function": "select",<br>"args": [<br>{<br>"map": {<br>"https://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/000004/": {<br>"variable": "https://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/000004/"<br>},<br>"https://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/000003/": {<br>"variable": "https://app.crunch.io/api/datasets/45fc0d5ca0a945dab7d05444efa3310a/variables/000003/"<br>}<br>}<br>}<br>]<br>}
 options| object | {}| further options defining the tabbook output.
@@ -69,9 +65,9 @@ weight | url | null| Provide a weight for the tabbook generation, if the weight 
 Options for generating tab books
 
 Name | Type | Default | Description | Example
------- | ---- | ------- | ----------- | ------------- 
+------ | ---- | ------- | ----------- | -------------
 display_settings | object | {} | a set of settings to define how the output should be displayed | See Below.
-layout | string | many_sheets | "many_sheets" indicates each variable should have its own Sheet in the  xls spreadsheet.  "single_sheet" indicates all output should be in the same sheet.| single_sheet 
+layout | string | many_sheets | "many_sheets" indicates each variable should have its own Sheet in the  xls spreadsheet.  "single_sheet" indicates all output should be in the same sheet.| single_sheet
 
 
 ###### Display Settings
@@ -79,7 +75,7 @@ layout | string | many_sheets | "many_sheets" indicates each variable should hav
 Further tab book viewing options.
 
 Name | Type | Default | Description | Example
------- | ---- | ------- | ----------- | ------------- 
+------ | ---- | ------- | ----------- | -------------
 decimalPlaces| object | 0 | number of decimal places to diaplay| {"value": 0}
 vizType| object |table|Visialization Type|{value:table},
 countsOrPercents| object |percent| use counts or percents|{value:percent}
