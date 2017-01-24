@@ -218,20 +218,20 @@ $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->put('/v2/cb/' .$campaignId, [
     'campaign_name'              => 'Le Bernardin CItation Burst',
     'business_name'              => 'Le Bernardin',
-	'website_address'            => 'le-bernardin.com',
-	'campaign_country'           => 'USA',
-	'campaign_city'              => 'NY',
-	'business_category_id'       => 605,
-	'business_categories'        => '["restaurant", "cafe"]',
-	'address1'                   => '155 West 51st Street',
-	'address2'                   => '',
-	'city'                       => 'New York',
-	'region'                     => 'New York, USA',
-	'postcode'                   => '10019',
-	'contact_name'               => 'Hanane Moshe',
-	'contact_firstname'          => 'Hanane',
-	'contact_telephone'          => '+1 212-554-1515',
-	'contact_email'              => 'hananemo@gmail'	
+    'website_address'            => 'le-bernardin.com',
+    'campaign_country'           => 'USA',
+    'campaign_city'              => 'NY',
+    'business_category_id'       => 605,
+    'business_categories'        => '["restaurant", "cafe"]',
+    'address1'                   => '155 West 51st Street',
+    'address2'                   => '',
+    'city'                       => 'New York',
+    'region'                     => 'New York, USA',
+    'postcode'                   => '10019',
+    'contact_name'               => 'Hanane Moshe',
+    'contact_firstname'          => 'Hanane',
+    'contact_telephone'          => '+1 212-554-1515',
+    'contact_email'              => 'hananemo@gmail'	
 ]);
 print_r($success);
 ```
