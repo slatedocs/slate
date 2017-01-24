@@ -46,9 +46,9 @@ username | true | The username of your account
 password | true | The password of your account
 
 <aside class="warning">
-To be noticed, the response consists of two parts, checksum and access token, which are separated by a <code>|</code>.
+The response consists of two parts, checksum and access token, which are separated by a <code>|</code>.
 
-You could drop the checksum part directly, only access token is required in the future requests.
+You could drop the checksum part directly, for only access token is required in the future requests.
 </aside>
 
 # Authentication
@@ -518,20 +518,20 @@ curl -H "X-Requested-With: XMLHttpRequest" \
 
 ```json
 {
-  data: [
+  "data": [
     {
-      id: 1,
-      name: "name",
-      publisher_id: 1,
-      url: "url",
-      description: "description",
-      universal_categories: {},
-      categories_data: [],
-      placements_count: 0
+      "id": 1,
+      "name": "name",
+      "publisher_id": 1,
+      "url": "url",
+      "description": "description",
+      "universal_categories": {},
+      "categories_data": [],
+      "placements_count": 0
     }
   ],
-  meta: {
-    total: 1
+  "meta": {
+    "total": 1
   }
 }
 ```
@@ -560,14 +560,14 @@ curl -H "X-Requested-With: XMLHttpRequest" \
 
 ```json
 {
-  id: 1,
-  name: "name",
-  publisher_id: 1,
-  url: "url",
-  description: "description",
-  universal_categories: {},
-  categories_data: [],
-  placements_count: 0
+  "id": 1,
+  "name": "name",
+  "publisher_id": 1,
+  "url": "url",
+  "description": "description",
+  "universal_categories": {},
+  "categories_data": [],
+  "placements_count": 0
 }
 ```
 
@@ -597,14 +597,14 @@ curl -H "X-Requested-With: XMLHttpRequest" \
 
 ```json
 {
-  id: 1,
-  name: "name",
-  publisher_id: 1,
-  url: "url",
-  description: "description",
-  universal_categories: {},
-  categories_data: [],
-  placements_count: 0
+  "id": 1,
+  "name": "name",
+  "publisher_id": 1,
+  "url": "url",
+  "description": "description",
+  "universal_categories": {},
+  "categories_data": [],
+  "placements_count": 0
 }
 ```
 
