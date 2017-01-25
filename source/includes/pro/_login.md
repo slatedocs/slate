@@ -21,5 +21,5 @@ key | comment
 OK | все в порядке и можно продолжать
 INVALID_CREDENTIALS | не верные данные логина/пароля
 ERROR | показывается сообщение из faultMessage
-PASSWORD_CHANGING_REQUIRED | необходимо обязательно сменить пароль, после установки нового пароля будет произведен login уже с ним
+PASSWORD_CHANGING_REQUIRED | необходимо обязательно сменить пароль [changePassword](#changepassword)
 VALIDATION_REQUIRED | двухфакторная аутентификация с ожиданием кода из СМС

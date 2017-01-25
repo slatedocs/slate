@@ -31,9 +31,13 @@ b->p: ok
 p->m: ok
 ```
 
-Запрос на смену пароля
+Запрос на смену пароля при логине. Фактически пользователь логинится под старым паролем (или временным), но банк принудительно заставляет его сменить пароль на новый.
 
 ![image](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=cGFydGljaXBhbnQgQmFuayBwcm94eSBhcyBiCgAQDGlEYSBQcm8gYXMgcAAMDU1vYmlsZSBhcyBtCgpub3RlIG92ZXIgcCxtLGI6IGNoYW5nZSBwYXNzd29yZAoKbS0-cDogCnAtPmI6IGxvZ2luIHsAAgYsAB0JIH0KYgAiBQAbBVJlc3VsdCB7IGJhbmtDbGllbnRJZCwgUEFTU1dPUkRfQ0hBTkdJTkdfUkVRVUlSRUQsIG1lc3NhZ2UgfQBhDgCBBwZQAF4IeyBuZXcABQkAbAhvawpwLT5tAAQFAIE-E1NNUyBmYWN0b3IAgQFbVkFMSURBVElPTgCBQBUAgRsFCmIAgSEFc2VuZCBTTVMAglMGAII6HiwgdmFsaWRhdGlvbkNvZGUAgh1LAIIrNg&s=default)
+
+Два варианта:
+1. Просто смена пароля без 2х факторного подтверждения смс
+2. Сммена пароля с 2х факторной процедурой
 
 key | type | status | comment
 --- | ---- | :----: | ---:

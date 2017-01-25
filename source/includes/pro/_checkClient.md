@@ -3,9 +3,9 @@
 ```text
 www.websequencediagrams.com
 
-participant Mobile as m
-participant iDa Pro as p
 participant Bank proxy as b
+participant iDa Pro as p
+participant Mobile as m
 
 note over p,m,b: use PIN code first time
 
@@ -31,7 +31,7 @@ p->b: checkClient { bankClientId }
 
 Запрос на проверку валидности клиента во время авторизации по ПИН-коду
 
-![image](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=cGFydGljaXBhbnQgTW9iaWxlIGFzIG0KAAwMaURhIFBybyBhcyBwAAwNQmFuayBwcm94eSBhcyBiCgpub3RlIG92ZXIgcCxtLGI6IHVzZSBQSU4gY29kZSBmaXJzdCB0aW1lCgptLT5wOiBsb2dpbldpdGhQYXNzd29yZCB7AA4GLCBwAAsHLCBkZXZpY2VJbmZvIH0KcC0-YgAxBwALIWIAXwViYW5rQ2xpZW50SWQKcC0-bTogc2Vzc2lvbklkAIEAB2lzUGluRXN0YWJsaXNoZWQgewBqCywAZwd9CgphbHQgTk8gUElOCgogICAgbS0-K3A6IGUAMghQAIEQBXAAKAUgICAgcC0tPj5wOiBQb3N0Z3JlU1FMIFsAgVcJaW4sAIB_CiBdACoHPi1tOiBPSwoKZW5kAIIwIHNlY29uZACCOhcAgQMIAIE4BwCCMhVjaGVjAIIVByB7AIIcDSB9Cg&s=default)
+![image](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=cGFydGljaXBhbnQgQmFuayBwcm94eSBhcyBiCgAQDGlEYSBQcm8gYXMgcAAMDU1vYmlsZSBhcyBtCgpub3RlIG92ZXIgcCxtLGI6IHVzZSBQSU4gY29kZSBmaXJzdCB0aW1lCgptLT5wOiAKcC0-YjogbG9naW4gewACBiwgcGFzc3dvcmQgfQpiACIFYmFua0NsaWVudElkCnAtPm06IHNlc3Npb25JZABDB2lzUGluRXN0YWJsaXNoZWQgeyBkZXZpY2VJbmZvLABbB30KCmFsdCBOTyBQSU4KCiAgICBtLT4rcDogZQAyCFAAgQQFcAAoBSAgICBwLS0-PnA6IFBvc3RncmVTUUwgWwCBHwlpbiwAgH8KIF0AKgc-LW06IE9LCgplbmQAgXMgc2Vjb25kAIIHDQCCCAVXaXQAgQEKAIE4BywAgUcLIH0AgjQHY2hlYwCCFQcgewCCHA0gfQ&s=default)
 
 **Краткое описание схемы**
 
