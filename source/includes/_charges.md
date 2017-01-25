@@ -28,7 +28,12 @@ EXEMPLO
     "received_at":"2015-01-30", # deprecated
     "paid_amount":"10.07",
     "paid_at":"2015-01-30",
+    "paid_discount":"4.56",
+    "paid_inretest":"0.50",
+    "paid_mulct":"3.56",
+    "paid_rebate":"0.30",
     "payment_tax":"2.5",
+    "paid_difference":"0",
     "processing_date":"2015-01-30",
     "for_homologation":true,
     "registrable": true,
@@ -89,7 +94,12 @@ Cada uma das cobranças criadas serão do mesmo tipo da configuração. Desta fo
 | received_at                    | datetime         | (DEPRECATED: use paid_at) date e horário em que a cobrança foi paga                                                                                 |
 | paid_amount                    | decimal          | valor pago                                                                                                                                          |
 | paid_at                        | datetime         | date e horário em que a cobrança foi paga                                                                                                           |
+| paid_discount                  | decimal          | valor do desconto no momento do pagamento                                                                                                           |
+| paid_inretest                  | decimal          | valor do juros no momento do pagamento                                                                                                              |
+| paid_mulct                     | decimal          | valor da multa no momento do pagamento                                                                                                              |
+| paid_rebate                    | decimal          | valor do abatimento no momento do pagamento                                                                                                         |
 | payment_tax                    | decimal          | valor taxa cobrada pela instituição financeira para o processamento da cobrança                                                                     |
+| paid_difference                | decimal          | diferença entre valor pago e valor cobrando                                                                                                         |
 | processing_date                | date             | data de geração do boleto                                                                                                                           |
 | for_homologation               | boolean          | indica se é uma cobrança que foi criada com o objetivo de homologar uma Configuração de cobrança                                                    |
 | registrable                    | boolean          | indica se a cobrança é registrável (do tipo que deve ser registrada no banco). Por padrão é o que está definido na Configuração de Cobrança         |
@@ -190,7 +200,12 @@ EXEMPLO DE CORPO DA RESPOSTA (BOLETO)
     "received_at":"2015-01-30", # deprecated
     "paid_amount":"10.07",
     "paid_at":"2015-01-30",
+    "paid_discount":"4.56",
+    "paid_inretest":"0.50",
+    "paid_mulct":"3.56",
+    "paid_rebate":"0.30",
     "payment_tax":"2.5",
+    "paid_difference":"0",
     "processing_date":"2015-01-30",
     "for_homologation":true,
     "registrable": true,
@@ -684,6 +699,10 @@ EXEMPLO DE REQUISIÇÃO
     -d '{
          "paid_at": "2015-02-06",
          "paid_amount": "9.57",
+         "paid_discount": "4.56",
+         "paid_inretest": "0.50",
+         "paid_mulct": "3.56",
+         "paid_rebate":  "0.30",
          "payment_tax": "2.5"
         }'
 
@@ -719,6 +738,10 @@ Marca determinada cobrança via Boleto como recebida, retornando JSON contendo a
 | received_at     | datetime | **(requerido)** (DEPRECATED: use paid_at) date e horário em que a cobrança foi paga        |
 | paid_amount     | decimal  | **(requerido)** valor pago                                                                 |
 | paid_at         | datetime | **(requerido)** date e horário em que a cobrança foi paga                                  |
+| paid_discount   | decimal  | (optional) valor do desconto                                                               |
+| paid_inretest   | decimal  | (optional) valor do juros                                                                  |
+| paid_mulct      | decimal  | (optional) valor da multa                                                                  |
+| paid_rebate     | decimal  | (optional) valor do abatimento                                                             |
 | payment_tax     | decimal  | (opcional) valor taxa cobrada pela instituição financeira para o processamento da cobrança |
 
 
