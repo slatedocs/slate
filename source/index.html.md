@@ -86,9 +86,61 @@ curl -H "X-Requested-With: XMLHttpRequest" \
 
 ```json
 {
-  "data": [],
-  "summary": "",
-  "meta": { "total": 0 }
+  "data": [
+    {
+      "publisher_state":0,
+      "impressions":0,
+      "publisher_revenue":0.0,
+      "ssp_platform_ecpm":null,
+      "placements_count":0,
+      "exchange_rate_markup":0.0,
+      "blank_impressions":0,
+      "publisher_ecpm":null,
+      "kept_impressions":0,
+      "resold_impressions":0,
+      "ssp_platform_profit":0.0,
+      "fill_rate":null,
+      "publisher_id":"20",
+      "trade_logs":0,
+      "amount":0.0,
+      "ssp_platform_revenue":0.0,
+      "default_impressions":0,
+      "interval":"2017-01-25T00:00:00.000+08:00/2017-01-25T11:00:00.000+08:00",
+      "start_at":1485273600000,
+      "clicks":0,
+      "created_at":1485310223117,
+      "ctr":null,
+      "publisher_name":"test publisher",
+      "seller_revenue_share":0.0,
+      "requests":0,
+      "ssp_platform_ecpc":null,
+      "end_at":1485313200000,
+      "publisher_ecpc":null
+    }
+  ],
+  "summary": {
+    "impressions":0,
+    "publisher_revenue": 0.0,
+    "ssp_platform_ecpm": null,
+    "exchange_rate_markup":0.0, 
+    "blank_impressions":0, 
+    "publisher_ecpm":null, 
+    "kept_impressions":0, 
+    "resold_impressions":0, 
+    "ssp_platform_profit":0.0, 
+    "fill_rate":null, 
+    "trade_logs":0, 
+    "amount":0.0, 
+    "ssp_platform_revenue":0.0, 
+    "default_impressions":0, 
+    "clicks":0, 
+    "ctr":null, 
+    "seller_revenue_share":0.0, 
+    "requests":0, 
+    "ssp_platform_ecpc":null, 
+    "publisher_ecpc":null
+  },
+  "meta": { "total": 1 }
 }
 ```
 
@@ -127,7 +179,28 @@ curl -H "X-Requested-With: XMLHttpRequest" \
 > Example Response:
 
 ```json
-{}
+{
+  "actives_count": 4,
+  "country_id": "China",
+  "cpc_deal": false,
+  "cpm_deal": true,
+  "currency": "TWD",
+  "email": "cloud.li@vpon.com",
+  "id": 7,
+  "name": "test publisher",
+  "payment_term": {
+    "apply_served": false,
+    "cpm_price": 3,
+    "id": 7,
+    "pricing_type": "cpm",
+    "publisher_id": 7,
+    "revenue_share_rate": null,
+    "revenue_share_rate_percentage": null
+  },
+  "placements_count": 4,
+  "state": "active",
+  "username": "testtest"
+}
 ```
 
 ### HTTP Request
@@ -253,9 +326,65 @@ curl -H "X-Requested-With: XMLHttpRequest" \
 
 ```json
 {
-  "data": [],
-  "summary": "",
-  "meta": { "total": 0 }
+  "data": [
+    {
+      "publisher_state":0,
+      "impressions":0,
+      "publisher_revenue":0.0,
+      "ssp_platform_ecpm":null,
+      "placements_count":4,
+      "exchange_rate_markup":0.0,
+      "blank_impressions":0,
+      "publisher_ecpm":null,
+      "kept_impressions":0,
+      "resold_impressions":0,
+      "ssp_platform_profit":0.0,
+      "fill_rate":null,
+      "publisher_id":"7",
+      "placement_group_id":"13",
+      "trade_logs":0,
+      "amount":0.0,
+      "ssp_platform_revenue":0.0,
+      "default_impressions":0,
+      "interval":"2017-01-24T16:00:00.000Z/2017-01-25T03:00:00.000Z",
+      "start_at":1485273600000,
+      "clicks":0,
+      "created_at":1477029059253,
+      "ctr":null,
+      "placement_state":0,
+      "publisher_name":"test 2",
+      "seller_revenue_share":0.0,
+      "requests":0,
+      "ssp_platform_ecpc":null,
+      "end_at":1485313200000,
+      "publisher_ecpc":null,
+      "placement_id":"63",
+      "placement_name":"test_placement"
+    }
+  ],
+  "summary": {
+    "impressions":0,
+    "publisher_revenue":0.0,
+    "ssp_platform_ecpm":null,
+    "exchange_rate_markup":0.0,
+    "blank_impressions":0,
+    "publisher_ecpm":null,
+    "kept_impressions":0,
+    "resold_impressions":0,
+    "ssp_platform_profit":0.0,
+    "fill_rate":null,
+    "trade_logs":0,
+    "amount":0.0,
+    "ssp_platform_revenue":0.0,
+    "default_impressions":0,
+    "clicks":0,
+    "ctr":null,
+    "seller_revenue_share":0.0,
+    "requests":0,
+    "ssp_platform_ecpc":null,
+    "publisher_ecpc":null
+  },
+  "meta": { "total": 1 }
 }
 ```
 
