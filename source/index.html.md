@@ -15,6 +15,8 @@ includes:
   - api/transaction
   - api/invoice
   - api/merchantsettings
+  - api/receipts
+  - api/batch
   - errors
 
 
