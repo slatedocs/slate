@@ -338,7 +338,12 @@ The result will be an array of output cubes:
                         "type": "etc."
                     }
                 ],
-                "measures": {...}
+                "measures": {
+                    "count": {
+                        "function": "cube_count",
+                        "args": []
+                    }
+                }
             }
         },
         {
@@ -355,7 +360,12 @@ The result will be an array of output cubes:
                         "type": "etc."
                     }
                 ],
-                "measures": {...}
+                "measures": {
+                    "count": {
+                        "function": "cube_count",
+                        "args": []
+                    }
+                }
             }
         },
         {
@@ -372,7 +382,12 @@ The result will be an array of output cubes:
                         "type": "etc."
                     }
                 ],
-                "measures": {...}
+                "measures": {
+                    "count": {
+                        "function": "cube_count",
+                        "args": []
+                    }
+                }
             }
         }
     ]
