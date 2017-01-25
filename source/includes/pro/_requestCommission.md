@@ -10,5 +10,6 @@ filledForm | [FilledFormDTO](#filledformdto) | 1..1 | заполненная ф�
 **Response:** | | |
 commission | int | 1..1 | размер комиссии
 currencyCode | string | 1..1 | текстовый код валюты по [ISO 4217](https://ru.wikipedia.org/wiki/ISO_4217)
+message | string | 0..1 | сообщение об ошибке или иное сообщение
 **Exception:** | | |
 BankClientNotExistsException | string | 0..1 | клиент с запрошенным bankClientId не существует
