@@ -30,7 +30,7 @@ This index contains two kinds of multitables: those that belong to the dataset, 
 
 #### POST
 
-POST a Shoji Entity to this catalog to create a new multitable definition. Entities must include a `name` and `template`; the template must contain a series of objects with keys `variable` and `query` and optionally `transform`. If omitted, `is_public` defaults to `false`. A successful POST yields a 201 response
+POST a Shoji Entity to this catalog to create a new multitable definition. Entities must include a `name` and `template`; the [template](#template-query) must contain a series of objects with keys `variable` and `query` and optionally [`transform`](#transforming-analyses-for-presentation). If omitted, `is_public` defaults to `false`. A successful POST yields a 201 response
 that will contain a Location header with the URL of the newly created multitable.
 
 All users with access to the dataset can create personal multitable definitions; however, only the current dataset editor can create public multitables (`is_public: true`) which everyone with access to the dataset can see. Attempting to create a public multitable when not the current dataset editor results in a 403 response.
