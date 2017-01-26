@@ -48,7 +48,7 @@ There are no elements of the catalog that can be changed via PATCH.
 ```json
 {
     "element": "shoji:entity",
-    "self": "datasets/123/multitables/fa1afe1/",
+    "self": "datasets/123/multitables/7ab1e/",
     "views": {
         "tabbook": "/datasets/123/multitables/7ab1e/tabbook/"
     },

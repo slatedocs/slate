@@ -22,7 +22,7 @@ If there have been changes on the dataset attributes, a new tab book will be
 generated regardless of the status of any other pending exports.
 
 ```http
-POST /api/datasets/a598c7/multitables/45fd58/tabbook/ HTTP/1.1
+POST /api/datasets/a598c7/multitables/7ab1e/tabbook/ HTTP/1.1
 ```
 
 ----
@@ -44,7 +44,7 @@ Location: https://s3-url/filename.xlsx
 Alternatively, you can request a JSON output for your tab book by adding an Accept request header.
 
 ```http
-POST /api/datasets/a598c7/multitables/45fd58/tabbook/ HTTP/1.1
+POST /api/datasets/a598c7/multitables/7ab1e/tabbook/ HTTP/1.1
 Accept: application/json
 ```
 
