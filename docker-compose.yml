@@ -1,0 +1,12 @@
+version: '2'
+# service configuration for our dockerized Rails app
+services:
+  app:
+    # use the Dockerfile next to this file
+    build: .
+
+    # expose the port middleman is bound to
+    ports:
+      - "4567"
+
+    command: "sh -c 'bundle exec middleman server'"
