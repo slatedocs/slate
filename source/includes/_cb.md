@@ -299,7 +299,7 @@ is_public | Publish reports on a white label URL. Y or N.
 
 <span class="label label-info">Account Method</span>
 
-> Upload Campaign
+> Upload Image
 
 ```php
 <?php
@@ -311,6 +311,16 @@ $success = $api->post('/v2/cb/upload/<campaignId>/<imageType>', [
 ]);
 print_r($success);
 ```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+var campaignId = 1;
+var imageType = ".jpg";
+var path = "/path/to/image.jpg";
+
+var success = request.PostImage("/v2/cb/upload/" + campaignId + "/" + imageType "", path);
+```
+
 
 > Success (200 OK)
 
