@@ -28,10 +28,10 @@ $success = $api->post('/v2/cb/create', [
     'city'                       => 'New York',
     'region'                     => 'New York, USA',
     'postcode'                   => '10019',
-    'contact_name'               => 'Hanane Moshe',
-    'contact_firstname'          => 'Hanane',
+    'contact_name'               => 'Bloggs',
+    'contact_firstname'          => 'Joe',
     'contact_telephone'          => '+1 212-554-1515',
-    'contact_email'              => 'hananemo@gmail',
+    'contact_email'              => 'joe.bloggs@test.com',
     'brief_description'          => $briefDescription,
     'full_description'           => $fullDescription,
     'employees_number'           => 35,
@@ -64,10 +64,10 @@ parameters.Add("address2", "");
 parameters.Add("city", "New York");
 parameters.Add("region", "New York, USA");
 parameters.Add("postcode", "10019");
-parameters.Add("contact_name", "Hanane Moshe");
-parameters.Add("contact_firstname", "Hanane");
+parameters.Add("contact_name", "Bloggs");
+parameters.Add("contact_firstname", "Joe");
 parameters.Add("contact_telephone", "+1 212-554-1515";
-parameters.Add("contact_email", "hananemo@gmail.com");		
+parameters.Add("contact_email", "joe.bloggs@test.com");		
 parameters.Add("brief_description", brief_description);
 parameters.Add("full_description", full_description);
 parameters.Add("employees_number", 35);
@@ -216,10 +216,10 @@ $success = $api->put('/v2/cb/' .$campaignId, [
     'city'                       => 'New York',
     'region'                     => 'New York, USA',
     'postcode'                   => '10019',
-    'contact_name'               => 'Hanane Moshe',
-    'contact_firstname'          => 'Hanane',
+    'contact_name'               => 'Bloggs',
+    'contact_firstname'          => 'Joe',
     'contact_telephone'          => '+1 212-554-1515',
-    'contact_email'              => 'hananemo@gmail'	
+    'contact_email'              => 'joe.bloggs@test.com'	
 ]);
 print_r($success);
 ```
@@ -244,10 +244,10 @@ parameters.Add("address2", "");
 parameters.Add("city", "New York");
 parameters.Add("region", "New York, USA");
 parameters.Add("postcode", "10019");
-parameters.Add("contact_name", "Hanane Moshe");
-parameters.Add("contact_firstname", "Hanane");
+parameters.Add("contact_name", "Bloggs");
+parameters.Add("contact_firstname", "Joe");
 parameters.Add("contact_telephone", "+1 212-554-1515";
-parameters.Add("contact_email", "hananemo@gmail.com");		
+parameters.Add("contact_email", "joe.bloggs@test.com");		
 
 var success = request.Put("/v2/cb/" + campaignId + "", parameters);
 ```
