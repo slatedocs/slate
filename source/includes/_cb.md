@@ -36,21 +36,9 @@ $success = $api->post('/v2/cb/create', [
     'full_description'           => $fullDescription,
     'employees_number'           => 35,
     'start_year'                 => 1976,
-    'working_hours_apply_to_all' => 0,
+    'working_hours_apply_to_all' => 1,
     'working_hours_mon_start'    => 0800,
-    'working_hours_mon_end'      => 2200,
-    'working_hours_tue_start'    => 0800,
-    'working_hours_tue_end'      => 2200,
-    'working_hours_wed_start'    => 0800,
-    'working_hours_wed_end'      => 2200,
-    'working_hours_thu_start'    => 0800,
-    'working_hours_thu_end'      => 2200,
-    'working_hours_fri_start'    => 0800,
-    'working_hours_fri_end'      => 2200,
-    'working_hours_sat_start'    => 0800,
-    'working_hours_sat_end'      => 2200,
-    'working_hours_sun_start'    => 0800,
-    'working_hours_sun_end'      => 2200   
+    'working_hours_mon_end'      => 2200,  
 ]);
 print_r($success);
 ```
