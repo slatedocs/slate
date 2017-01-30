@@ -962,6 +962,9 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
             }
           }
         },
+        "starred_keywords": {
+          "Alaska+Bar+Association": false
+        },
         "summary": {
           "all_search_engines": {
             "up": 0,
