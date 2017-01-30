@@ -18,39 +18,27 @@ $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v2/cb/create', [
     'campaign_name'              => 'Le Bernardin CItation Burst',
     'business_name'              => 'Le Bernardin',
-	'website_address'            => 'le-bernardin.com',
-	'campaign_country'           => 'USA',
-	'campaign_city'              => 'NY',
-	'business_category_id'       => 605,
-	'business_categories'        => '["restaurant", "cafe"]',
-	'address1'                   => '155 West 51st Street',
-	'address2'                   => '',
-	'city'                       => 'New York',
-	'region'                     => 'New York, USA',
-	'postcode'                   => '10019',
-	'contact_name'               => 'Hanane Moshe',
-	'contact_firstname'          => 'Hanane',
-	'contact_telephone'          => '+1 212-554-1515',
-	'contact_email'              => 'hananemo@gmail',
-	'brief_description'          => $briefDescription,
-	'full_description'           => $fullDescription,
-	'employees_number'           => 35,
-	'start_year'                 => 1976,
-	'working_hours_apply_to_all' => 0,
-	'working_hours_mon_start'    => 0800,
-	'working_hours_mon_end'      => 2200,
-	'working_hours_tue_start'    => 0800,
-	'working_hours_tue_end'      => 2200,
-	'working_hours_wed_start'    => 0800,
-	'working_hours_wed_end'      => 2200,
-	'working_hours_thu_start'    => 0800,
-	'working_hours_thu_end'      => 2200,
-	'working_hours_fri_start'    => 0800,
-	'working_hours_fri_end'      => 2200,
-	'working_hours_sat_start'    => 0800,
-	'working_hours_sat_end'      => 2200,
-	'working_hours_sun_start'    => 0800,
-	'working_hours_sun_end'      => 2200   
+    'website_address'            => 'le-bernardin.com',
+    'campaign_country'           => 'USA',
+    'campaign_city'              => 'NY',
+    'business_category_id'       => 605,
+    'business_categories'        => '["restaurant", "cafe"]',
+    'address1'                   => '155 West 51st Street',
+    'address2'                   => '',
+    'city'                       => 'New York',
+    'region'                     => 'New York, USA',
+    'postcode'                   => '10019',
+    'contact_name'               => 'Bloggs',
+    'contact_firstname'          => 'Joe',
+    'contact_telephone'          => '+1 212-554-1515',
+    'contact_email'              => 'joe.bloggs@test.com',
+    'brief_description'          => $briefDescription,
+    'full_description'           => $fullDescription,
+    'employees_number'           => 35,
+    'start_year'                 => 1976,
+    'working_hours_apply_to_all' => 1,
+    'working_hours_mon_start'    => 0800,
+    'working_hours_mon_end'      => 2200,  
 ]);
 print_r($success);
 ```
@@ -76,10 +64,10 @@ parameters.Add("address2", "");
 parameters.Add("city", "New York");
 parameters.Add("region", "New York, USA");
 parameters.Add("postcode", "10019");
-parameters.Add("contact_name", "Hanane Moshe");
-parameters.Add("contact_firstname", "Hanane");
+parameters.Add("contact_name", "Bloggs");
+parameters.Add("contact_firstname", "Joe");
 parameters.Add("contact_telephone", "+1 212-554-1515";
-parameters.Add("contact_email", "hananemo@gmail.com");		
+parameters.Add("contact_email", "joe.bloggs@test.com");		
 parameters.Add("brief_description", brief_description);
 parameters.Add("full_description", full_description);
 parameters.Add("employees_number", 35);
@@ -207,6 +195,62 @@ is_public | Publish reports on a white label URL. Y or N.
 ## Update Campaign
 
 <span class="label label-info">Account Method</span>
+
+
+```php
+<?php
+use BrightLocal\Api;
+
+$campaignId = 1;
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->put('/v2/cb/' .$campaignId, [
+    'campaign_name'              => 'Le Bernardin CItation Burst',
+    'business_name'              => 'Le Bernardin',
+    'website_address'            => 'le-bernardin.com',
+    'campaign_country'           => 'USA',
+    'campaign_city'              => 'NY',
+    'business_category_id'       => 605,
+    'business_categories'        => '["restaurant", "cafe"]',
+    'address1'                   => '155 West 51st Street',
+    'address2'                   => '',
+    'city'                       => 'New York',
+    'region'                     => 'New York, USA',
+    'postcode'                   => '10019',
+    'contact_name'               => 'Bloggs',
+    'contact_firstname'          => 'Joe',
+    'contact_telephone'          => '+1 212-554-1515',
+    'contact_email'              => 'joe.bloggs@test.com'	
+]);
+print_r($success);
+```
+
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var campaignId = 1;
+
+var parameters = new api.Parameters();
+parameters.Add("campaign_name", "Sample Citation Burst Campaign");
+parameters.Add("business_name", "Le Bernardin");
+parameters.Add("website_address", "le-bernardin.com");
+parameters.Add("campaign_country", "USA");
+parameters.Add("campaign_city", "New York");
+parameters.Add("campaign_state", "NY");
+parameters.Add("business_category_id", 605);
+parameters.Add("business_categories", "['restaurant', 'cafe']");
+parameters.Add("address1", "155 West 51st Street");
+parameters.Add("address2", "");
+parameters.Add("city", "New York");
+parameters.Add("region", "New York, USA");
+parameters.Add("postcode", "10019");
+parameters.Add("contact_name", "Bloggs");
+parameters.Add("contact_firstname", "Joe");
+parameters.Add("contact_telephone", "+1 212-554-1515";
+parameters.Add("contact_email", "joe.bloggs@test.com");		
+
+var success = request.Put("/v2/cb/" + campaignId + "", parameters);
+```
 
 > Validation Failure
 
