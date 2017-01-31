@@ -74,6 +74,8 @@ pigeon.url=http://dev.idamob.ru/pigeon
 pigeon.twoFactorAuth=false
 ```
 
+**Конфиг сервера**
+
 Все настройки сервиса задаются через файл конфигурирования, который расположен по адресу ``pro.war\WEB-INF\classes\config\bank.properties`` путём добавления следующих параметров:
 
 key | type | comment
@@ -106,8 +108,7 @@ pigeon.twoFactorAuth | bool | наличие процесса двухфакто
 <persistence version="1.0"
              xmlns="http://java.sun.com/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
-                http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
 
     <persistence-unit name="jpaUnit" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
@@ -124,8 +125,8 @@ pigeon.twoFactorAuth | bool | наличие процесса двухфакто
         <properties>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
             <property name="hibernate.connection.url" value="jdbc:postgresql://127.0.0.1/proproxytestbase" />
-            <property name="hibernate.connection.username" value="test" />
-            <property name="hibernate.connection.password" value="testpassword" />
+            <property name="hibernate.connection.username" value="username" />
+            <property name="hibernate.connection.password" value="password" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect" />
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="false"/>
@@ -133,6 +134,8 @@ pigeon.twoFactorAuth | bool | наличие процесса двухфакто
     </persistence-unit>
 </persistence>
 ```
+
+**Конфиг базы**
 
 Все настройки базы задаются через файл конфигурирования, который расположен по адресу ``pro.war/WEB-INF/classes/META-INF/persistence.xml`` путём добавления следующих параметров:
 
