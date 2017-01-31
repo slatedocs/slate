@@ -92,7 +92,7 @@ li.tocify-item {line-height:1.4em !important;}
 	#primary-nav a:hover{text-decoration:underline;}
 	#primary-nav a:last-of-type {margin-right:0;}
 	 .bonsai-logo{height: 22px;}
-	
+	/* #primary-nav .selected {    border-bottom: solid 4px #3bb94f; padding-bottom: 22px; margin-top: 22px;}*/
 
 
 /*///////////////////////////////////////////////////////////////////////////////
@@ -285,6 +285,7 @@ nav ul li ul li a {
 }
 @media screen and (min-width: 800px) {
 	
+	 #primary-nav .selected {    border-bottom: solid 4px #3bb94f; padding-bottom: 22px; margin-top: 22px;}
 
 	
   .nav-list {
