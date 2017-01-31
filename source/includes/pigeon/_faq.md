@@ -74,7 +74,7 @@ pigeon server - [http://dev.idamob.ru/pigeon/services/SBIInboundWebService?wsdl]
 <Environment name="caseInsensitiveIds" value="false" type="java.lang.Boolean"/>
 ```
 
-Все настройки сервиса PiGeon задаются через файл конфигурирования Apache Tomcat, который расположен по адресу ``$TOMCAT_HOME/conf/server.xml`` путём добавления в тэг <GlobalNamingResources> следующих параметров:
+Все настройки сервиса задаются через файл конфигурирования Apache Tomcat, который расположен по адресу ``$TOMCAT_HOME/conf/server.xml`` путём добавления в тэг <GlobalNamingResources> следующих параметров:
 
 key | comment
 --- | ---:
