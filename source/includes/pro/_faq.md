@@ -54,27 +54,90 @@ pro server - [http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl]
 
 ## Server config
 
+```xml
+smarttransactions.enabled=false
+proxy.timeout=60000
+proxy.login.case.insensitive=true
+
+proxy.wsdl=http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl
+proxy.service=IdaProServiceFacade
+proxy.endpoint=BasicHttpBinding_IdaMobProxyServiceFacadePortType
+
+security.password.hash=false
+security.password.encrypt=false
+security.verification.encrypt=false
+
+pro.banner.enabled=false
+
+pigeon.enabled=false
+pigeon.url=http://dev.idamob.ru/pigeon
+pigeon.twoFactorAuth=false
+```
+
+Все настройки сервиса задаются через файл конфигурирования, который расположен по адресу ``pro.war\WEB-INF\classes\config\bank.properties`` путём добавления следующих параметров:
+
 key | type | comment
 --- | --- | ---:
 smarttransactions.enabled | bool | наличие модуля SmartTransactions
 proxy.timeout | int | время ожидания отвера сервера из бэка, в милесекундах (должно быть так же установлено в мобильной апликации)
-proxy.login.case.insensitive | bool | признак caseSensitive для логина
+proxy.login.case.insensitive | bool | признак чуствительности к регистру для логина
 
- | | 
+ | | -
 --- | --- | ---:
-proxy.wsdl | string | ${bank.proxy.wsdl}
+proxy.wsdl | string | ``${bank.proxy.wsdl}``
 proxy.service | string | IdaMobProxyServiceFacade
 proxy.endpoint | string | IdaMobProxyServiceFacadeHttpSoap12Endpoint
 
- | | 
+ | | -
 --- | --- | ---:
 security.password.hash | bool | наличие запроса хэш пароля и алгоритм как он был получен. На сервере pro происходит проверка совпадают ли хеши полученные с клиента и с сервера банка
 security.password.encrypt | bool | пароль, зашифрованный по алгоритму Диффи-Хеллмана
 security.verification.encrypt | bool | верификационный код в запросе [confirmTransfer](#confirmTransfer) приходит в зашифрованном виде по алгоритму Диффи-Хеллмана
 security.incorrect_login_attempts | int | количество неверных попыток ввода ПИН кода
 
- | | 
+ | | -
 --- | --- | ---:
 pigeon.url | string | сервер пушей ``http://dev.idamob.ru/pigeon``
 pigeon.enabled | bool | наличие связки с сервером пуш сообщений PiGeon
 pigeon.twoFactorAuth | bool | наличие процесса двухфакторной аутентификации при подписке пользователя на пуш уведомления
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0"
+             xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+                http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+
+    <persistence-unit name="jpaUnit" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+        <class>com.idamobile.platform.pro.model.Session</class>
+        <class>com.idamobile.platform.pro.model.SecretKey</class>
+        <class>com.idamobile.platform.pro.model.PinCode</class>
+        <class>com.idamobile.platform.pro.model.User</class>
+        <class>com.idamobile.platform.pro.model.IncorrectLoginAttempt</class>
+        <class>com.idamobile.platform.pro.model.DeviceVerificationCode</class>
+        <class>com.idamobile.platform.pro.model.DeviceVerificationCodeSalt</class>
+
+        <!--POSTGRESQL-->
+        <properties>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
+            <property name="hibernate.connection.url" value="jdbc:postgresql://127.0.0.1/proproxytestbase" />
+            <property name="hibernate.connection.username" value="test" />
+            <property name="hibernate.connection.password" value="testpassword" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect" />
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="false"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+```
+
+Все настройки базы задаются через файл конфигурирования, который расположен по адресу ``pro.war/WEB-INF/classes/META-INF/persistence.xml`` путём добавления следующих параметров:
+
+key | type | comment
+--- | --- | ---:
+hibernate.connection.url | string | адрес расположения базы банных
+hibernate.connection.username | string | логин к базе
+hibernate.connection.password | string | пароль к базе
