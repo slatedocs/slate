@@ -21,9 +21,14 @@
     <% else %>
       <%= javascript_include_tag  "all_nosearch" %>
     <% end %>
+	
+		<%= partial "partials/google-gtm" %>
+	
   </head>
 
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
+
+<%= partial "partials/hide-gtm" %>
 
   <div id="flex-container">
 

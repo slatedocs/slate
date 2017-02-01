@@ -6,15 +6,14 @@
     <nav>
       <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
       <ul class="nav-list">
-        <li>
-         <%= link_to 'Getting Started', '/getting_started.html' %>
-        </li>
-        <li>
-         <%= link_to 'Inkling', '/inkling.html' %>  
-        </li>
-        <li>
-         <%= link_to 'References', '/reference.html' %>
-        </li>
+        
+		<li class="header_menu_item <%= is_page_selected("/getting_started.html") %>"> <%= link_to 'Getting Started', '/getting_started.html' %></li>
+		
+		<li class="header_menu_item <%= is_page_selected("/inkling.html") %>">    <%= link_to 'Inkling', '/inkling.html' %>  </li>
+		
+		<li class="header_menu_item <%= is_page_selected("/reference.html") %>">    <%= link_to 'References', '/reference.html' %>  </li>
+      
+        
        
 		<li><gcse:search></gcse:search></li>
 

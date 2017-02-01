@@ -1,4 +1,12 @@
-# Markdown
+
+#Helpers 
+helpers do
+  def is_page_selected(page)
+    current_page.url == page ? "selected" : ''
+  end
+end
+
+# # Markdown
 set :markdown_engine, :redcarpet
 set :markdown,
     fenced_code_blocks: true,
