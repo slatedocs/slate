@@ -183,7 +183,6 @@ POST datasets/{id}/multitables/ HTTP/1.1
         "name": "Geographical indicators",
         "template": [
             {
-                "variable": "../variables/de85b32/",
                 "query": [
                     {
                         "variable": "../variables/de85b32/"
@@ -191,7 +190,6 @@ POST datasets/{id}/multitables/ HTTP/1.1
                 ]
             },
             {
-                "variable": "../variables/398620f/",
                 "query": [
                     {
                         "variable": "../variables/398620f/"
@@ -199,7 +197,6 @@ POST datasets/{id}/multitables/ HTTP/1.1
                 ]
             },
             {
-                "variable": "../variables/c116a77/",
                 "query": [
                     {
                         "function": "bin",
@@ -231,7 +228,6 @@ GET datasets/{id}/multitable/3/ HTTP/1.1
         "name": "Geographical indicators",
         "template": [
             {
-                "variable": "../variables/de85b32/",
                 "query": [
                     {
                         "variable": "../variables/de85b32/"
@@ -239,7 +235,6 @@ GET datasets/{id}/multitable/3/ HTTP/1.1
                 ]
             },
             {
-                "variable": "../variables/398620f/",
                 "query": [
                     {
                         "variable": "../variables/398620f/"
@@ -247,7 +242,6 @@ GET datasets/{id}/multitable/3/ HTTP/1.1
                 ]
             },
             {
-                "variable": "../variables/c116a77/",
                 "query": [
                     {
                         "function": "bin",
@@ -453,12 +447,14 @@ A `transform` with object members can do lots of things. Suppose we want to put 
 hide the _Don’t know_, and more compactly represent the result as just _C, A, B_:
 
 ```json
-transform: {"categories": [
-    {"id": 2, "name": "C"},
-    {"id": 0, "name": "A"},
-    {"id": 1, "name": "B"},
-    {"id": 3, "hide": true}
-]}
+{
+    "transform": {"categories": [
+        {"id": 2, "name": "C"},
+        {"id": 0, "name": "A"},
+        {"id": 1, "name": "B"},
+        {"id": 3, "hide": true}
+    ]}
+}
 ```
 
 
@@ -511,14 +507,12 @@ In a multitable, the `transform` is part of each dimension definition object in 
 {
     "template": [
         {
-            "variable": "A",
             "query": [
                 {"variable": "A"}
             ],
             "transform": [{}, {}]
         },
         {
-            "variable": "B",
             "query": [
                 {
                     "function": "rollup",
