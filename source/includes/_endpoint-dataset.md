@@ -142,25 +142,24 @@ is_published | boolean | true | Indicates if the dataset is published to viewers
 #### Search
 
 You can perform a cross-dataset search of dataset metadata (including variables) via the search endpoint.
-This search will return associated variables, groups, and dataset metadata.  A query string, along with filtering
+This search will return associated variables and dataset metadata.  A query string, along with filtering
 properties can be provided to the search endpoint in order to refine the results.  The query string provided is only
 used in plain-text format, any non-text or numeric characters are ignored at this time.
 
 Results are limited only to those
 datasets the user has access to.  Offset and limit parameters are also provided in order to provide performance-chunking
-options.  Variable metadata is returned with these limits based on crunch's internal index (pre-filter), but are filtered to include
-only variable results that match the given search term (post-index-filter).
-This means that there may be less variable search results provided than the limit provided by the user.
+options.  The limit and offset are returned in relationship to datasets related to the search.  You have reached
+  the limit of available search entries when there are no longer records in the dataset field.
 
 Here are the parameters that can be passed to the search endpoint.
 
-Parameter             | Type        | Description
-----------------------|-------------|------------------------------------------------
-q                     | string      | query string
-f                     | json Object | used to filter the output of the search (see below)
-limit                 | integer     | limit the number of results returned by the api to less than this amount (default 1000)
-offset                | integer     | offset into the search index to start gathering results from pre-filter
-group_variables_limit | integer     | number of non-matching variable results inside matching group names to return (default 10)
+Parameter                  | Type        | Description
+---------------------------|-------------|------------------------------------------------
+q                          | string      | query string
+f                          | json Object | used to filter the output of the search (see below)
+limit                      | integer     | limit the number of dataset results returned by the api to less than this amount (default: 10)
+offset                     | integer     | offset into the search index to start gathering results from pre-filter
+max_variables_per_dataset  | integer     | limit the number of variables that match to this number (default: 1000, max: 1000)
 
 Allowable filter parameters:
 
@@ -197,12 +196,6 @@ dataset_users     | List of Strings | User IDs having read-access to the dataset
 dataset_teams     | List of Strings | Team IDs having read-access to the dataset associated with the variable | no
 dataset_projects  | List of Strings | Project IDs having read-access to the dataset associated with the variable | no
 
-<aside class="notice">
-Post-filter indicates whether post-index results are filtered by the field noted.  If the given query string does not
-match at least one of the Post-filter fields, then it will be eliminated from the results, which limits the results to a
-reasonable number when the dataset attributes match but no variable attributes match.
-</aside>
-
 
 ```http
 GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_variables_list={group_variables_list}  HTTP/1.1
@@ -221,62 +214,6 @@ GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_v
                     "https://app.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/": {
                         "labels": [],
                         "name": "econ_few_columns_0",
-                        "groups": {
-                            "blue": {
-                                "https://app.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/variables/000004/": {
-                                    "dataset_labels": [],
-                                    "users": [
-                                        "00004",
-                                        "00002"
-                                    ],
-                                    "alias": "Gender",
-                                    "dataset_end_date": null,
-                                    "category_names": [
-                                        "Male",
-                                        "Female",
-                                        "Skipped",
-                                        "Not Asked",
-                                        "No Data"
-                                    ],
-                                    "dataset_start_date": null,
-                                    "name": "Gender",
-                                    "dataset_description": "",
-                                    "dataset_archived": false,
-                                    "group_names": [
-                                        "blue"
-                                    ],
-                                    "dataset": "https://app.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/",
-                                    "dataset_id": "173b4eec13f542588b9b0a9cbcd764c9",
-                                    "dataset_created_time": null,
-                                    "subvar_names": [],
-                                    "dataset_name": "econ_few_columns_0",
-                                    "description": "Are you male or female?"
-                                },
-                                "https://app.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/variables/000003/": {
-                                    "dataset_labels": [],
-                                    "users": [
-                                        "00004",
-                                        "00002"
-                                    ],
-                                    "alias": "BirthYear",
-                                    "dataset_end_date": null,
-                                    "category_names": [],
-                                    "dataset_start_date": null,
-                                    "name": "BirthYear",
-                                    "dataset_description": "",
-                                    "dataset_archived": false,
-                                    "group_names": [
-                                        "blue"
-                                    ],
-                                    "dataset": "https://app.crunch.io/api/datasets/173b4eec13f542588b9b0a9cbcd764c9/",
-                                    "dataset_id": "173b4eec13f542588b9b0a9cbcd764c9",
-                                    "dataset_created_time": null,
-                                    "subvar_names": [],
-                                    "dataset_name": "econ_few_columns_0",
-                                    "description": "In what year were you born?"
-                                }
-                            }
-                        },
                         "description": ""
                     },
                     "https://app.crunch.io/api/datasets/4473ab4ee84b40b2a7cd5cab4548d584/": {
@@ -325,18 +262,8 @@ GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_v
     }
 }
 ```
+Search results are limited to 1000 variables per dataset.
 
-The variables grouping displays metadata for all of the variables that matched.
-The Datasets grouping displays metadata for all of the datasets where a variable or the dataset it self matched.  The "groups"
-parameter of the dataset indicates any variable groups that matched, along with variables that did not match the search but are contained
-within the variable grouping.  The group names that are indexed come from the variable ordering endpoint.
-
-Use the `group_variables_limit` parameter to define how many group variables to expose in this parameter.
-variable_count is the total number of variables that matched the crunch's search index.  This number can be used when considering
-limit and offset parameters.  (limit + offset higher than variable_count will always return no results)
-Totals group defines the number of variables and datasets that matched post-index-filtering.  This parameter is useful in order to limit
-the amount of output of group names, since some groups may have thousands of variables, who's information is less relevent
-since those variables do not match in this context.
 
 #### Drafts
 
