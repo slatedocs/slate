@@ -31,13 +31,13 @@ Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie co
 
 Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
 
-# Service layer
-[Service layer wiki (will be a part of this documentation in the future)](https://github.com/adaptdk/sportmaster_service/wiki)
-
+# Service layer 2.0
 ## Branching strategy
 + PR's: Make pull requests against release branch.
 + Deploy to test: Merge release branch into test.
 + Deploy to prod: Merge release into prod and create new version tag.
+
+# Service layer 1.0
 
 ## Architecture and process models
 
