@@ -8,6 +8,7 @@
             <hint>i18n{"ru":"Формат +7 (ХХХ) ХХХ-ХХ-ХХ","en":"Format +7 (ХХХ) ХХХ-ХХ-ХХ"}</hint>
             <id>field_id</id>
             <isRequired>true</isRequired>
+            <ordinal>1</ordinal>
             <key>phone</key>
             <name>i18n{"ru":"Контактный телефон","en":"Contact Phone"}</name>
             <ordinal>1</ordinal>
@@ -60,9 +61,10 @@ key | type | status | comment
 --- | ---- | :----: | ---:
 id | string | 1..1 | идентификатор
 name | string | 1..1 | название
+ordinal | int | 1..1 | порядковый номер поля в форме
+isRequired | bool | 1..1 | признак обязательности поля
 type | [FieldClass](#fieldclass) | 1..1 | тип поля формы, определяющий формат данных
 hint | string | 0..1 | подсказка
-isRequired | bool | 1..1 | признак обязательности поля
 ordinal | int | 0..1 | порядок для сортировки
 key | string | 0..1 | ключ для привязки к типу в email
 
