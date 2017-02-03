@@ -9,7 +9,3 @@ rvm:
 
 cache: bundler
 script: bundle exec middleman build
-
-matrix:
-  allow_failures:
-  - rvm: 2.4.0
