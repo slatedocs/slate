@@ -1,189 +1,241 @@
 ---
-title: API Reference
+title: Nebeus API Reference
 
 language_tabs:
-  - shell
-  - ruby
-  - python
-  - javascript
+  - json
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
+  - making_requests
 
 search: true
 ---
 
-# Introduction
+# Login
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+> `POST https://domain.com/signin/1.0/json`
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+```
+Successful login response
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
+```json
+[
+  {
+    "id": null,
+    "jsonrpc": "2.0",
+    "result": {
+      "company_id": 1,
+      "db": "nebeus",
+      "session_id": "95gdjkhksdhfjwehwlew",
+      "uid": 154,
+      "name": "Igor",
+      "surname": "Igor",
+      "user_context": {
+        "lang": "en_US",
+        "tz": "Europe/Madrid",
+        "uid": 154
+      },
+      "username": "Igor"
+    }
+  }
+]
 ```
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+```
+Unsuccessful login response
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
+```
+{
+  "id": null,
+  "jsonrpc": "2.0",
+  "result": {
+    "status": "error",
+    "message": "Login or password is incorrect"
+  }
+}
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+### HTTP Request
+`POST https://domain.com/signin/1.0/json`
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+### Arguments
 
-`Authorization: meowmeowmeow`
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+login | string | Required | User's email
+password | string | Required | User's password
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+# Logout
 
-# Kittens
+> `POST https://domain.com/logout/1.0/json`
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+```
+Successful logout response
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+```json
+[
+  {
+    "id": null,
+    "jsonrpc": "2.0",
+    "result": {
+      "status": "success"
+    }
+  }
+]
 ```
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+### HTTP Request
+
+`POST http://domain.com/logout/1.0/json`
+
+# Reset password
+> `POST https://domain.com/logout/1.0/json`
+
+```
+Successful response
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+```json
+[
+  {
+    "id": null,
+    "jsonrpc": "2.0",
+    "result": {
+      "status": "success"
+    }
+  }
+]
 ```
 
-> The above command returns JSON structured like this:
+```
+Unsuccessful response
+```
+
+```json
+[
+  {
+    "id": null,
+    "jsonrpc": "2.0",
+    "result": {
+      "status": "error",
+      "message": "..."
+    }
+  }
+]
+```
+
+### HTTP Request
+`POST https://domain.com/reset_password/1.0/json`
+
+### Arguments
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+login | string | Required | User's email
+
+# Signup
+> `POST https://domain.com/signup/1.0/json`
+
+```
+Successful response
+```
+
+```json
+[
+  {
+    "id": null,
+    "jsonrpc": "2.0",
+    "result": {
+      "status": "success"
+    }
+  }
+]
+```
+
+```
+Unsuccessful response
+```
+
+```json
+[
+  {
+    "id": null,
+    "jsonrpc": "2.0",
+    "result": {
+      "status": "error",
+      "errors": {
+        "email": {
+          "field": "email",
+          "message": "..."
+        },
+        "country": {
+          "field": "country",
+          "message": "..."
+        },
+        "password": {
+          "field": "password",
+          "message": "..."
+        }
+      }
+    }
+  }
+]
+```
+### HTTP Request
+
+`POST http://nebeus.com/signup/1.0/json`
+
+### Arguments
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+login | string | Required | User's email
+name | string | Required | User's name 
+surname | string | Required | User's surname
+password | string | Required | Password 
+confirm_password | string | Required | Password confirmation
+country_id | number | Required | Country id
+device_type | number | Optional | Device type
+identifier | string | Optional | Push notification identifier from Google or Apple
+language | string | Optional | Language code
+timezone | number | Optional | Number of seconds away from UTC
+app_version | string | Optional | Application version
+device_model | string | Optional | Device make and model
+device_os | string | Optional | Device operating system version
+
+Specification for device properties are related to [OneSignal API](https://documentation.onesignal.com/reference#add-a-device)
+
+# Get active countries
+
+> `GET http://domain.com/get_countries/1.0/json` 
+
+```
+Example response
+```
 
 ```json
 [
   {
     "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+    "name": "Russia",
+    "code": "RU",
+    "phone_code": "+7"
   },
   {
     "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "name": "Spain",
+    "code": "ES",
+    "phone_code": "+34"
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
-
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
+`POST http://nebeus.com/signup/1.0/json`
