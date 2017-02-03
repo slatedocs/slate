@@ -6,7 +6,7 @@ language_tabs:
 - ruby
 
 toc_footers:
-- <a href='mailto:developers@redii.com?subject=New Developer Key'>Sign Up for a Developer Key</a>
+- <a href='mailto:developers@redii.com?subject=Development questions about Recognition API'>Development support</a>
 - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -19,8 +19,7 @@ search: true
 
 Welcome to the Redii API! You can use our API to access Redii API endpoints, currently limited to a list of recent notifications for your Program.
 
-We have language bindings in Shell and Ruby! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
+We have language bindings in Shell and Ruby!
 
 # Authentication
 
@@ -41,7 +40,7 @@ https://<your_program_subdomain>.redii.com/api/recognition/v1/moments
 
 > Make sure to replace `your_program_token` and `your_program_subdomain` with your relevent key and subdomain.
 
-Redii uses API keys to allow access to the API. You can register a new API key by contacting us @ [developers@redii.com](mailto:developers@redii.com?subject=New Developer Key).
+Redii uses API keys(your_program_token) to allow access to the API. You can register a new API key by clicking ‘Create a new key' button in the AdminHub(Under setting tab, api sideBar), you can 'click and copy' the token, disable, activate or delete the token. you can generate multiple tokens for you program, only active status token would work for the Api.
 
 Redii expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
@@ -81,9 +80,33 @@ https://<your_program_subdomain>.redii.com/api/recognition/v1/moments?limit=2
       "award_text": "Repellendus sed labore tempore incidunt facere sed ab iure qui eos alias.",
       "manager_names": "Bruce Yost",
       "user_names": "Wilmer Metz",
+      "likes_count": 0,
+      "comments_count": 0,
+      "links" :
+        { "likes": "http://XXXX.redii.com/api/recognition/v1/moments/87940/likes"
+        },
       "by_user_id": 6,
-      "award_id": 4
-  },
+      "award_id": 4,
+      "by_user": 
+        {
+          "id": 22732,
+          "name“: "Alic Doe",
+          "staff_id": 22730
+          
+        },
+      "users": 
+        {
+          "id": 22734,
+          "name“: "Bob Doe",
+          "staff_id": 22732
+        },
+      "award": 
+        {
+          "id": 1,
+          "name“: "Safety Leader",
+          "description": "Noticed someone demonstrating they take safety seriously?"
+        }  
+    },
   {
     "state": "approved",
     "created_at": "2015-12-07T16:36:57.815+11:00",
@@ -92,8 +115,32 @@ https://<your_program_subdomain>.redii.com/api/recognition/v1/moments?limit=2
     "award_text": "Architecto quisquam laboriosam quae dolor libero iure.",
     "manager_names": "",
     "user_names": "Eldred Ullrich",
+    "likes_count": 0,
+    "comments_count": 0,
+    "links" :
+      { "likes": "http://XXXX.redii.com/api/recognition/v1/moments/87902/likes"
+      }
     "by_user_id": 10,
-    "award_id": 3
+    "award_id": 3,
+    "by_user": 
+        {
+          "id": 22722,
+          "name“: "Alic Doe",
+          "staff_id": 22712
+          
+        },
+      "users": 
+        {
+          "id": 22111,
+          "name“: "Bob Doe",
+          "staff_id": 23231
+        },
+      "award": 
+        {
+          "id": 1,
+          "name“: "Safety Leader",
+          "description": "Noticed someone demonstrating they take safety seriously?"
+        }  
   }
   ]
 }
