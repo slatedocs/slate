@@ -11,7 +11,6 @@
             <ordinal>1</ordinal>
             <key>phone</key>
             <name>i18n{"ru":"Контактный телефон","en":"Contact Phone"}</name>
-            <ordinal>1</ordinal>
             <placeholder nil="true"/>
             <type>PHONE</type>
         </fields>
@@ -65,7 +64,6 @@ ordinal | int | 1..1 | порядковый номер поля в форме
 isRequired | bool | 1..1 | признак обязательности поля
 type | [FieldClass](#fieldclass) | 1..1 | тип поля формы, определяющий формат данных
 hint | string | 0..1 | подсказка
-ordinal | int | 0..1 | порядок для сортировки
 key | string | 0..1 | ключ для привязки к типу в email
 
 ### FieldClass
