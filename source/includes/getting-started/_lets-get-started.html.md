@@ -63,7 +63,7 @@ bonsai create myMountainCarBrain
 Load our sample Inkling file for the mountain car simulation.
 
 ```shell
-bonsai load mountaincar.ink
+bonsai load
 ```
 
 ## Train
