@@ -22,8 +22,8 @@
   <groupName nil="true" />
   <hint nil="true" />
   <mandatory>true</mandatory>
-  <maxLimit>0</maxLimit>
-  <minLimit>0</minLimit>
+  <maxLimit nil="true" />
+  <minLimit nil="true" />
   <name>Счет списания</name>
   <readOnly>false</readOnly>
   <regExp nil="true" />
@@ -50,8 +50,8 @@ key | type | status | comment
 id | string | 1..1 | идентификатор поля
 name | string | 0..1 | название поля
 formOrder | int | 1..1 | порядковый номер поля в форме
-minLimit | int | 1..1 | в зависимости от типа поля это ограничения на значение поля формы
-maxLimit | int | 1..1 | в зависимости от типа поля это ограничения на значение поля формы
+minLimit | int | 0..1 | в зависимости от типа поля это ограничения на значение поля формы
+maxLimit | int | 0..1 | в зависимости от типа поля это ограничения на значение поля формы
 regExp | string | 0..1 | регулярное выражение, которому должно соответствовать значение поля и в случае несоответствия показывается errorMessage
 defaultValue | string | 0..1 | значение поля по умолчанию
 mandatory | bool | 1..1 | обязательность поле формы

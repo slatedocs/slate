@@ -51,8 +51,16 @@ bankClientId | string | 1..1 | идентификатор клиента
 login | string | 1..1 | логин клиента
 deviceInfo | [DeviceInfoDTO](#deviceinfodto) | 1..1 | дополнительная информация об устройстве
 **Response:** | | |
-result | string | 1..1 | результат выполнения команды {OK, ERROR, PASSWORD_CHANGING_REQUIRED}
+result | [resultcheckClientKey](#resultcheckclientkey) | 1..1 | результат проверки
 correctClient | bool | 0..1 | флаг, отвечающий за разрешение или запрет авторизации по корректному ПИН-коду в текущий момент
 faultMessage | string | 0..1 | расширенное сообщение об ошибке
 **Exception:** | | |
 BankClientNotExistsException | string | 0..1 | клиент с запрошенным bankClientId не существует
+
+### resultcheckClientKey
+
+key | comment
+--- | ---:
+OK | все в порядке и можно продолжать
+ERROR | показывается сообщение из faultMessage
+PASSWORD_CHANGING_REQUIRED | необходимо обязательно сменить пароль [changePassword](#changepassword)
