@@ -158,6 +158,28 @@ Parameter | Default | Description
 --------- | ------- | -----------
 limit | 10 | The number of results to return.
 
+# Likes
+
+## Get All likes for the specific moment
+
+you can get the like rescourse from the moments response
+"http://XXXX.redii.com/api/recognition/v1/moments/87902/likes"
+
+As abov command
+```
+> The above command returns JSON structured like this:
+```json
+{ "likes": [
+    { "id": 186412,
+       "user":
+        {"id": 22732,
+         "name":"Lisa J",
+         "staff_id": 1232
+         }
+     }
+   ]
+ }
+```
 <aside class="success">
 Remember — replace `your_program_subdomain` with your programs subdomain!
 </aside>
