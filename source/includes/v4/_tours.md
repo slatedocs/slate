@@ -294,7 +294,9 @@ The json response contains a list of tours as an array and a meta block.
 - id (integer), the unique database id of the tour
 - title (string), the name of the tour
 - sub_title (string), the sub title of the tour
-- featured, boolean flag of whether the exhibition is featured or not
+- featured, boolean flag of whether the tour is featured or not
+- bookable, boolean flag of whether the tour is bookable in the current scope or not
+- registerable, boolean flag of whether the tour is public registerable or not
 
 plus blocks of attributes for category, picture, location and audiences.
 
@@ -308,7 +310,8 @@ curl "https://demo.gomus.de/api/v4/tours/1"
 
 The information is the same as that of the tours list response, but with the addition of the description 
 key and some other attributes like the dynamic content attributes
-
+If tour is registerable and an authenticatable user has the permission, this attribute contains a link to the public
+registration form.
 
 ## Prices for a tour
 
