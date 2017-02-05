@@ -95,7 +95,7 @@ sm-chdr-rezet RZSLA-182
 ## Other commands.
 Other commands available in the docker suite is listed here.
 
-> Start/stop docker setup (use --background in sm-docker-up if you couldn't be bother about the log output):
+> Start/stop docker setup (use --background in sm-docker-up if you dont want the log output):
 
 ```shell
 sm-docker-up
