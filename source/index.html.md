@@ -2,7 +2,8 @@
 title: Sportmaster Documentation
 
 toc_footers:
-  - <a href='https://adapt.dk'>Developed by Adapt A/S</a>
+  - <a href='https://github.com/lord/slate/wiki/Markdown-Syntax'>Updating docs? Read this!</a>
+  - <a href='https://adapt.dk'>Powered by Adapt A/S</a>
 
 includes:
   - sportmaster-suite-docker
