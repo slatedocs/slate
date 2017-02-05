@@ -140,5 +140,3 @@ Sportmaster Hub | @sh | [http://sportmaster_hub.dev](http://sportmaster_hub.dev)
 + [Elastic search](http://localhost:9200/_plugin/inquisitor/#/)
 + [Mail catcher](http://localhost:1080)
 + [phpMyAdmin](http://localhost:8081)
-
-Enjoy.
