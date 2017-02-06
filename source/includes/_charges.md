@@ -680,13 +680,13 @@ Uma cobrança poderá ser excluída nos seguintes casos:
 
 ### Gateway de Pagamento
 
-Somente quando a cobrança estiver com erro de autorização.
+Somente quando a cobrança estiver com erro de autorização (`payment_gateway_status` tiver o valor "authorize_error").
 
 ### Boleto
 
-Para boletos sem registro a cobrança pode ser escluída enquanto não tiver sido recebida.
+Para boletos **sem registro** a cobrança pode ser excluída enquanto não tiver sido recebida.
 
-Para boletos com registro, por sua vez, somente enquanto não tiver sido registrada.
+Para boletos **com registro**, por sua vez, enquanto não tiver sido recebida e enquanto não tiver sido registrada (`registration_status` diferente de "registered").
 
 ## Recebimento de Cobrança (Boleto)
 
@@ -983,19 +983,19 @@ Uma cobrança poderá ser cancelada nos seguintes casos:
 
 ### Gateway de Pagamento
 
-Somente quando a cobrança estiver com erro de autorização.
+Somente quando o a cobrança tiver sido autorizada, capturada ou com erro no cancelamento (`payment_gateway_status` tiver um dos seguintes valores: "authorized", "captured", ou "cancel_error").
 
 ### Boleto
 
-Para boletos sem registro a cobrança pode ser escluída enquanto não tiver sido recebida.
+Para boletos **sem registro** a cobrança pode ser cancelada enquanto não tiver sido recebida.
 
-Para boletos com registro, por sua vez, somente enquanto não tiver sido registrada.
+Para boletos **com registro**, por sua vez, enquanto não tiver sido recebida e tiver sido registrada ou não tiver arquivo de remessa (`registration_status` com um dos valores: "registered" ou "without_remittance").
 
 
-## Destruir ou cancelar Cobrança
+## Revogar Cobrança
 
 ```shell
-Destruir ou cancela Cobrança
+Revogar Cobrança
 
 DEFINIÇÃO
 
@@ -1035,4 +1035,4 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 ```
 
-Verifica se a cobrança pode ser excluída. Se puder a cobrança será excluída, caso contrário será cancelada.
+Primeiro tenta excluir a cobrança. Caso não seja possível, tenta cancelá-la. Caso também não seja possível, retorna a resposta de insucesso.
