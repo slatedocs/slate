@@ -711,6 +711,9 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
         },
         "starred_keywords": {
           "Alaska Bar Association": true
+        },  
+        "extra_results": {
+          "Alaska Bar Association": ["local", "video"]
         },
         "search_engines": [
           "google",
@@ -961,9 +964,6 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
               "search_engine": "bing-local"
             }
           }
-        },
-        "starred_keywords": {
-          "Alaska+Bar+Association": false
         },
         "summary": {
           "all_search_engines": {
