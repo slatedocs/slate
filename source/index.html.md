@@ -275,8 +275,8 @@ Query parameters are the same as for individual requests
       "success": [
         {
           "code": 1020,
-        "message": "Address created."
-        "description": "postal_code missing."
+          "message": "Address created.",
+          "description": "postal_code missing."
         }
       ]
     }
