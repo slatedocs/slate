@@ -13,8 +13,8 @@
   **type**  <br> String | *Tipo de documento que deve ser emitido/arquivado* <br> **Tipos:** `Invoice::Nfse`
   **status** <br> Default: active | *Define se o esquema de documento está ativado ou não na API*
   **sequence**  <br> Int | *Número sequencial do último documento emitido/armazenado desse tipo*
-  **credentials** <br>[`attributes`]<br> Hash | *Consulte a [tabela](#credenciais) de refêrencia para cada tipo de <br>`document_schema`*
-  **parameters** <br>[`attributes`]<br> Hash | *Consulte a [tabela](#par-metros) de refêrencia para cada tipo de <br>`document_schema`*
+  **credentials** <br>[`attributes`]<br> Hash | *Consulte a [seção](https://atendimento.fastnotas.com/hc/pt-br/categories/115000135067-Configura%C3%A7%C3%B5es-da-NFS-e) de configurações para cada tipo de <br>`document_schema`*
+  **parameters** <br>[`attributes`]<br> Hash |*Consulte a [seção de configurações](https://atendimento.fastnotas.com/hc/pt-br/categories/115000135067-Configura%C3%A7%C3%B5es-da-NFS-e) de configurações para cada tipo de <br>`document_schema`*
 
 
 ## Criando um esquema de documento
@@ -38,8 +38,8 @@
   **name**  <br> <p>obrigatório</p>  | *Nome do documento*
   **code**  <br> <p>obrigatório</p>  | *Código para identificação (Por exemplo:"NFS-e")*
   **type**  <br> <p>obrigatório</p>  | *Aceita o tipo do esquema do documento* <br> **Tipos:** `Invoice::Nfse`
-  **credentials<br>[`attributes`]** <br> <p>obrigatório</p> | *Consulte a [tabela](#credenciais) de refêrencia para cada tipo de <br>`document_schema`*
-  **parameters** <br>[`attributes`]<br> Hash | *Consulte a [tabela](#par-metros) de refêrencia para cada tipo de <br>`document_schema`*
+  **credentials<br>[`attributes`]** <br> <p>obrigatório</p> | *Consulte a [seção](https://atendimento.fastnotas.com/hc/pt-br/categories/115000135067-Configura%C3%A7%C3%B5es-da-NFS-e) de configurações para cada tipo de <br>`document_schema`*
+  **parameters** <br>[`attributes`]<br> Hash | *Consulte a [seção](https://atendimento.fastnotas.com/hc/pt-br/categories/115000135067-Configura%C3%A7%C3%B5es-da-NFS-e) de configurações para cada tipo de <br>`document_schema`*
 
 
 <br> <br> <br> <br> <br> <br>
@@ -155,26 +155,6 @@ Parâmetro | Descrição
  -------------- | --------------
 **:id** <br> <p>obrigatório</p> | *Id do esquema de documento.*
 
-## Credenciais
-
-### Notas Fiscais de Serviço (NFS-e)
-
-  As credenciais de NFS-e variam de acordo com o munícipio. A tabela abaixo descreve os dados necessários para cada município que o Fast Notas possui integração:
-
-  Estado | Município | Credenciais
- -------------- | -------------- | --------------
-  SP | São Paulo | `certificate`: Arquivo contendo o certificado A1 (.p12 ou .pfx) <br> `password`: Senha do certificado
-  RJ | Rio de Janeiro | `certificate`: Arquivo contendo o certificado A1 (.p12 ou .pfx) <br> `password`: Senha do certificado
-
-## Parâmetros
-
-### Notas Fiscais de Serviço (NFS-e)
-
-  Os parâmetros de NFS-e variam de acordo com o munícipio. A tabela abaixo descreve os dados necessários para cada município que o Fast Notas possui integração:
-
-  Estado | Município | Parâmetros
- -------------- | -------------- | --------------
-  SP | São Paulo | `municipal_registration`: Inscrição municipal
 
 ## Deletando um esquema de documento
   Deleta o esquema de documento solicitado.

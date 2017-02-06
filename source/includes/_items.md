@@ -5,7 +5,7 @@
   Através do endpoint `/items`, é possível listar, exibir, criar, atualizar e deletar itens.
 
 
-  __*Obs.: Os parâmetros `settings` utilizados em todos os exemplos são referentes a NFS-e emitidas em São Paulo(SP), consulte a [tabela](#configura-es-do-item) para visualizar quais os atributos são necessários para o documento
+  __*Obs.: Os parâmetros `settings` utilizados em todos os exemplos são referentes a NFS-e emitidas em São Paulo(SP), consulte a [seção de configurações](https://atendimento.fastnotas.com/hc/pt-br/categories/115000135067-Configura%C3%A7%C3%B5es-da-NFS-e) para visualizar quais os atributos são necessários para o documento
   que você vai emitir.*__
 
 <br> <br>
@@ -19,7 +19,7 @@
   **status** <br> Default: active | *Define se o item está ativado ou não na API*
   **amount** <br>Float | *Valor do produto/serviço*
   **document_schema**  <br> Hash | *Representação da entidade [document_schema](#document-schemas)*
-  **settings[]** <br>[`attributes`]<br> Hash | *Consulte a [tabela](#configura-es-do-item) de refêrencia para cada tipo de `item`*
+  **settings[]** <br>[`attributes`]<br> Hash | *Consulte a [seção](https://atendimento.fastnotas.com/hc/pt-br/categories/115000135067-Configura%C3%A7%C3%B5es-da-NFS-e) de configurações para cada <br>`item`*
 
 ## Criando um item
 
@@ -66,7 +66,7 @@
   **description** <br> <p> obrigatório </p> | *Descrição do produto/serviço*
   **amount** <br>Float | *Valor do produto/serviço*
   **document_schema_id**  <br> <p> obrigatório </p> | *Id do esquema de documento*
-  **settings[`attributes`]** <br> <p> obrigatório </p>| *Consulte a [tabela](#configura-es-do-item) de refêrencia para cada tipo de `item`*
+  **settings[`attributes`]** <br> <p> obrigatório </p>| *Consulte a [seção](https://atendimento.fastnotas.com/hc/pt-br/categories/115000135067-Configura%C3%A7%C3%B5es-da-NFS-e) de configurações para cada `item`*
 
 
   <br> <br> <br> <br> <br>
@@ -195,38 +195,3 @@ Deleta o item solicitado.
     curl -X DELETE https://api.fastnotas.com/v1/items/{ITEM_ID} \
     -u 'YOUR_API_KEY:'
   ```
-
-## Configurações do item
-
-### Notas Fiscais de Serviço (NFS-e)
-
-  As configurações da NFS-e variam de acordo com o munícipio. As tabelas abaixo descrevem os dados necessários para cada município que o Fast Notas possui integração:
-
-  Cada tabela refere-se a um atributo `settings`, contendo na terceira coluna seus respectivos parâmetros.
-
-
-  > Ex: Para emitir uma nota fiscal de serviço (SP/São Paulo) são necessários os seguintes atributos:
-
-  ```shell
-    ...
-    "setting": {
-      "taxes": {
-        "iss":"3.1"
-      },
-      "parameters": {
-        "service_code":"123"
-      }
-    }
-    ...
-  ```
-
-  Estado | Município | Tipo | Atributo: `taxes`
- -------------- | -------------- | -------------- | --------------
-  SP | São Paulo      | Float | `ISS`: Imposto sobre serviço <p> obrigatório </p>
-  RJ | Rio de Janeiro |   NA  | ###
-
-  Estado | Município | Tipo | Atributo: `parameters`
-  -------------- | -------------- | -------------- | --------------
-  SP | São Paulo      | Integer | `service_code`: Código do serviço <p> obrigatório </p>
-  RJ | Rio de Janeiro |    NA   | ###
-
