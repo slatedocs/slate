@@ -333,17 +333,17 @@ curl 'https://api.doordeck.com/device/00000000-0000-0000-0000-000000000000/log'
     "timestamp":1473061669.000000000,
     "type":"DOOR_LOCK",
     "user":null,
+    "message":"Door locked",
     "email":"conor@doordeck.com",
-    "displayName":null,
-    "message":"Door locked"
+    "displayName":null
   },
   {
     "timestamp":1473061664.000000000,
     "type":"DOOR_UNLOCK",
     "user":null,
+    "message":"Door unlocked",
     "email":"michael@doordeck.com",
-    "displayName":"Michael",
-    "message":"Door unlocked"
+    "displayName":"Michael"
   }
 ]
 ```
