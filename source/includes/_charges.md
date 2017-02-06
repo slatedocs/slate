@@ -676,6 +676,17 @@ EXEMPLO DE ESTADO DA RESPOSTA COM COBRANÇA INEXISTENTE
 
 Exclui determinada cobrança. As mudanças são irreversíveis, e não será mais possível receber o boleto da cobrança excluída!
 
+Uma cobrança poderá ser excluída nos seguintes casos:
+
+### Gateway de Pagamento
+
+Somente quando a cobrança estiver com erro de autorização.
+
+### Boleto
+
+Para boletos sem registro a cobrança pode ser escluída enquanto não tiver sido recebida.
+
+Para boletos com registro, por sua vez, somente enquanto não tiver sido registrada.
 
 ## Recebimento de Cobrança (Boleto)
 
@@ -946,7 +957,7 @@ EXEMPLO DE REQUISIÇÃO
 
 EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
-    204 No Content
+    200 Ok
 
 EXEMPLO DE ESTADO DA RESPOSTA COM COBRANÇA INEXISTENTE
 
@@ -967,3 +978,61 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 ```
 
 Enfileira uma determinada cobrança para cancelamento.
+
+Uma cobrança poderá ser cancelada nos seguintes casos:
+
+### Gateway de Pagamento
+
+Somente quando a cobrança estiver com erro de autorização.
+
+### Boleto
+
+Para boletos sem registro a cobrança pode ser escluída enquanto não tiver sido recebida.
+
+Para boletos com registro, por sua vez, somente enquanto não tiver sido registrada.
+
+
+## Destruir ou cancelar Cobrança
+
+```shell
+Destruir ou cancela Cobrança
+
+DEFINIÇÃO
+
+  POST https://app.cobrato.com/api/v1/charges/:charge_id/destroy_or_cancel
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X POST https://app.cobrato.com/api/v1/charges/:charge_id/destroy_or_cancel
+
+EXEMPLO DE ESTADO DA RESPOSTA EXCLUÍDA COM SUCESSO
+
+    204 No Content
+
+EXEMPLO DE ESTADO DA RESPOSTA CANCELADA COM SUCESSO
+
+    200 Ok
+
+EXEMPLO DE ESTADO DA RESPOSTA COM COBRANÇA INEXISTENTE
+
+    404 Not Found
+
+EXEMPLO DE ESTADO DA RESPOSTA COM INSUCESSO
+
+    422 Unprocessable Entity
+
+EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
+
+  {
+    "errors": {
+      "message": "Esta Cobrança não pode ser excluída nem cancelada"
+    }
+  }
+
+```
+
+Verifica se a cobrança pode ser excluída. Se puder a cobrança será excluída, caso contrário será cancelada.
