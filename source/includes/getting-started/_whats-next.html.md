@@ -14,9 +14,11 @@ And we have these other resources that will enable you to maximize your AI devel
 
 * [CLI Reference][2]
 * [HTTP API Reference][3]
-* [Blog][4]
+* [Bonsai Blog][4]
+* [Bonsai Forums][5]
 
 [1]: ./inkling.html
 [2]: ./reference.html#cli-reference
 [3]: ./reference.html#http-api-reference
 [4]: https://bons.ai/blog
+[5]: http://forums.bons.ai/
