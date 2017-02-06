@@ -39,6 +39,21 @@ Example
 
 In this document `{version}` is used as a palceholder for selected version.
 
+## Namespaces
+
+Namespace is added after `{version}` (latest version 2).
+
+* **CLIENT USER** `/client`  
+* **PRO USER** `/unit`
+* **GLOBAL FOR SYSTEM** `/shared`
+
+Example
+
+`api.fantasticservices.com/v2/client/`
+
+In this document namespace is included in examples.
+
+
 ## Applications identifying tokens
 
 To access API all request must include identifying token header field
@@ -68,7 +83,7 @@ You must replace <code>token</code> with your personal authorization token.
 
 ```shell
 curl --request GET \
---url https://api.fantasticservices.com/v2/services/1 \
+--url https://api.fantasticservices.com/v2/client/services/1 \
 --header 'x-client-token: YOUR_API_TOKEN'
 ```
 
@@ -101,14 +116,14 @@ curl --request GET \
 
 Get data by requesting it by resource name. Add id for specific object.
 
-`GET https://{base URL}/{version}/services/1`
+`GET https://{base URL}/{version}/client/services/1`
 
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-`expand` | *none* | Attributes to be returned as full objects
+`expand` | *none* | Attributes to return as full objects. Names can be listed separated by a comma.<br><br> Keywords:<br><br>all - *expands all first level attributes*<br>all.all - *expands all second level attributes*<br>attribute.all - *expands all attributes child elements*
 `fields` | *all* | Attributes to receive in response
 `exclude_fields` | *none* | Attributes to exclude from response
 
@@ -118,7 +133,7 @@ Parameter | Default | Description
 
 ```shell
 curl --request POST \
---url https://api.fantasticservices.com/v2/addresses \
+--url https://api.fantasticservices.com/v2/client/addresses \
 --header 'x-client-token: YOUR_API_TOKEN' \
 --header 'authorization: YOUR_AUTH_TOKEN' \
   --data '{"address_line_1":"9 Apt.","address_line_2":"24 Red Lion Street","postcode":"SW12 2TN","lat":51.604903,"lng":-0.457022}'
@@ -146,7 +161,7 @@ curl --request POST \
 
 Create objects by posting data to the resource name. Add id to update existing objects
 
-`POST https://{base URL}/{version}/addresses`
+`POST https://{base URL}/{version}/client/addresses`
 
 If operation is successful created/updated object id is returned.
 
@@ -154,7 +169,7 @@ If operation is successful created/updated object id is returned.
 
 ```shell
 curl --request DELETE \
---url https://api.fantasticservices.com/v2/addresses/2 \
+--url https://api.fantasticservices.com/v2/client/addresses/2 \
 --header 'x-client-token: YOUR_API_TOKEN' \
 --header 'authorization: YOUR_AUTH_TOKEN'
 ```
@@ -169,7 +184,7 @@ curl --request DELETE \
 
 Delete objects by sending delete request with the resource name and object id
 
-`DELETE https://{base URL}/{version}/addresses/2`
+`DELETE https://{base URL}/{version}/client/addresses/2`
 
 If object is deleted successfully it's id is returned.
 
@@ -177,7 +192,7 @@ If object is deleted successfully it's id is returned.
 
 ```shell
 curl --request POST \
---url https://api.fantasticservices.com/v2/addresses \
+--url https://api.fantasticservices.com/v2/client/addresses \
 --header 'x-client-token: YOUR_API_TOKEN' \
 --header 'authorization: YOUR_AUTH_TOKEN' \
 --data '{"requests":[{"method":"POST","path":"addresses","object":{"address_line_1":"7 Apt.","address_line_2":"27 Red Lion Street","postal":"SW14 8PT","lat":51.604903,"lng":-0.457022}},{"method":"POST","path":"addresses/27","object":{"address_line_1":"7 Apt.","address_line_2":"27 Red Lion Street"}}]}'
@@ -190,7 +205,8 @@ curl --request POST \
   "requests": [
     {
       "method": "POST",
-      "path": "addresses",
+      "path": "addresses?expand=all",
+      "expand": "all",
       "object": {
         "address_line_1": "7 Apt.",
         "address_line_2": "27 Red Lion Street",
@@ -202,6 +218,7 @@ curl --request POST \
     {
       "method": "POST",
       "path": "addresses/27",
+      "expand": "all",
       "object": {
         "address_line_1": "7 Apt.",
         "address_line_2": "27 Red Lion Street"
@@ -226,7 +243,7 @@ curl --request POST \
 
 Requests can be combined by sending array of request objects.
 
-`POST https://{base URL}/{version}/resources`
+`POST https://{base URL}/{version}/shared/resources`
 
 ### Post Parameters
 
@@ -258,7 +275,8 @@ Query parameters are the same as for individual requests
       "success": [
         {
           "code": 1020,
-          "message": "Address created."
+        "message": "Address created."
+        "description": "postal_code missing."
         }
       ]
     }
@@ -271,7 +289,7 @@ Query parameters are the same as for individual requests
 
 Requests can be combined by sending array of request objects.
 
-`POST https://{base URL}/{version}/resources`
+`POST https://{base URL}/{version}/shared/resources`
 
 ### Response attributes
 
