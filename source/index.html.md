@@ -6,6 +6,7 @@ toc_footers:
   - <a href='https://adapt.dk'>Powered by Adapt A/S</a>
 
 includes:
+  - sportmaster-fe
   - sportmaster-suite-docker
 
 language_tabs:
