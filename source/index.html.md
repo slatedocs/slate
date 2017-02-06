@@ -213,7 +213,7 @@ Specification for device properties are related to [OneSignal API](https://docum
 
 # Get active countries
 
-> `GET http://domain.com/get_countries/1.0/json` 
+> `POST http://domain.com/get_countries/1.0/json` 
 
 ```
 Example response
