@@ -44,11 +44,13 @@ It is case insensitive, but case aware.
 ###### Load
 
 ```
-$ bonsai load inklingFile.ink
+$ bonsai load
 ```
 
-**load** loads an Inkling file (inklingFile.ink) into the current
-brain.  You can specify --brain brainName, to use another brain.
+**load** loads an Inkling file into the current brain.  The project
+file in the current directory (`bonsai_brain.bproj`) determines which
+inkling file to load.  You can specify --brain brainName, or --project
+/brain/project to use another brain.
 
 ## Train group commands
 
@@ -104,22 +106,30 @@ Options:
   --help  Show this message and exit.
 ```
 
-###### `bonsai --help`
+###### `bonsai configure --help`
 
 ```
-$ bonsai --help
-Usage: bonsai [OPTIONS] COMMAND [ARGS]...
+$ bonsai configure --help
+Usage: bonsai configure [OPTIONS]
 
-  Create, load, train BRAINs.
+  Authenticate with the BRAIN Server.
 
 Options:
-  --help  Show this message and exit.
+  --key TEXT  Provide an access key.
+  --help      Show this message and exit.
+```
 
-Commands:
-  create  Creates a BRAIN.
-  list    Lists BRAINs owned by current user or by the...
-  load    Loads an Inkling file into the specified...
-  train   Start and stop training on a BRAIN, as well...
+###### `bonsai create --help`
+
+```
+$ bonsai create --help
+Usage: bonsai create [OPTIONS] BRAIN_NAME
+
+  Creates a BRAIN and sets the default BRAIN for future commands.
+
+Options:
+  --project TEXT  Override to target another project directory.
+  --help          Show this message and exit.
 ```
 
 ###### `bonsai train --help`
@@ -151,6 +161,7 @@ Usage: bonsai train status [OPTIONS] BRAIN_NAME
 Options:
   --brain TEXT    Override to target another BRAIN.
   --json          Output status as json.
+  --project TEXT  Override to target another project directory.
   --help          Show this message and exit.
 ```
 
@@ -164,6 +175,7 @@ Usage: bonsai train start [OPTIONS] BRAIN_NAME
 
 Options:
   --brain TEXT    Override to target another BRAIN.
+  --project TEXT  Override to target another project directory.
   --help          Show this message and exit.
 ```
 
@@ -177,6 +189,7 @@ Usage: bonsai train stop [OPTIONS] BRAIN_NAME
 
 Options:
   --brain TEXT    Override to target another BRAIN.
+  --project TEXT  Override to target another project directory.
   --help          Show this message and exit.
 ‍```
 ```
