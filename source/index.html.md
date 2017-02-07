@@ -95,7 +95,7 @@ Successful logout response
 `POST http://domain.com/logout/1.0/json`
 
 # Reset password
-> `POST https://domain.com/logout/1.0/json`
+> `POST https://domain.com/reset_password/1.0/json`
 
 ```
 Successful response
