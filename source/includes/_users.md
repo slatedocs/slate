@@ -23,6 +23,21 @@ Remember, you can see examples in the dark area to the right.
     https://api.practitest.com/api/v2/users.json?developer_email=YOUR_EMAIL&api_token=YOUR_TOKEN
 ```
 
+```csharp
+string token = "xxx";
+string developerEmail = "my@email.address";
+
+var request = WebRequest.Create("https://api.practitest.com/api/v2/users.json");
+//request.PreAuthenticate = true;
+string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(developerEmail + ":" + token));
+String encoded = System.Convert.ToBase64String(Encoding.Default.GetBytes(developerEmail + ":" + token));
+request.Headers["Authorization"] = "Basic " + encoded;
+
+var response = request.GetResponse();
+Console.WriteLine(response.Headers);
+```
+
+
 > This command: https://api.practitest.com/api/v2/users.json?api_token=YOUR_TOKEN&developer_email=YOUR_EMAIL, returns JSON structured like below:
 
 

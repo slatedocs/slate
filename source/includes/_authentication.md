@@ -11,10 +11,17 @@
 
 
 ```csharp
-TOKEN = "YOUR_TOKEN";
-DEVELOPER_EMAIL = "YOUR_EMAIL";
-String encoded =System.Convert.ToBase64String(System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(username + ":" + password));
-httpWebRequest.Headers.Add("Authorization", "Basic " + encoded);
+string token = "xxx";
+string developerEmail = "my@email.address";
+
+var request = WebRequest.Create("https://api.practitest.com/api/v2/projects.json");
+//request.PreAuthenticate = true;
+string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(developerEmail + ":" + token));
+String encoded = System.Convert.ToBase64String(Encoding.Default.GetBytes(developerEmail + ":" + token));
+request.Headers["Authorization"] = "Basic " + encoded;
+
+var response = request.GetResponse();
+Console.WriteLine(response.Headers);
 ```
 
 ```ruby
