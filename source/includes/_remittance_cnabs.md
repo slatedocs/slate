@@ -156,7 +156,7 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 Cria novo(s) Arquivo(s) CNAB de Remessa, retornando as informações do mesmo caso haja sucesso. Se houverem erros, eles serão informados no corpo da resposta. Pode ser gerado a partir de uma ou mais Cobranças. Se forem enviadas Cobranças de Configurações de Cobranças diferentes, será gerado um CNAB de remessa para cada Configuração de Cobrança.
 
-Os Arquivos CNAB de Remessa podem ser criados a partir de uma ou mais cobraças que ainda não possuem boleto ou outro arquivo de remessa associado. Eles pode também ser criados a partir de uma ou mais configurações de cobrança. Nesse caso, os arquivos serão criados para todas as cobranças passíveis de remessa, seja para registrar a entrada da cobrança, cancelamento ou alteração.
+Os Arquivos CNAB de Remessa podem ser criados a partir de uma ou mais cobraças que ainda não possuem boleto ou outro arquivo de remessa associado. Eles podem também ser criados a partir de uma ou mais configurações de cobrança. Nesse caso, os arquivos serão criados para todas as cobranças passíveis de remessa, seja para registrar a entrada da cobrança, cancelamento ou alteração.
 
 **Parâmetros**
 
