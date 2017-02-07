@@ -957,65 +957,7 @@ EXEMPLO DE REQUISIÇÃO
 
 EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
-    200 Ok
-
-EXEMPLO DE CORPO DA RESPOSTA (BOLETO)
-
-  {
-    "id":1,
-    "type":"billet",
-    "charge_config_id": 1,
-    "due_date":"2015-02-14",
-    "document_kind":"DV",
-    "document_date":null,
-    "document_number":null,
-    "custom_our_number": "true",
-    "our_number":"0",
-    "our_number_digit":null,
-    "charged_amount":"10.07",
-    "interest_amount_per_month": "1.02",
-    "mulct_type": "percentage",
-    "mulct_value": "10.12",
-    "instructions":"Pagável em qualquer agência até data do vencimento.",
-    "demonstrative":"Não receber após o vencimento.",
-    "notification_emails":["myemail@gmail.com"],
-    "received":true, # deprecated
-    "received_amount":"10.07", # deprecated
-    "received_at":"2015-01-30", # deprecated
-    "paid_amount":"10.07",
-    "paid_at":"2015-01-30",
-    "paid_discount":"4.56",
-    "paid_additions":"0.50",
-    "paid_rebate":"0.30",
-    "payment_tax":"2.5",
-    "paid_difference":"0",
-    "processing_date":"2015-01-30",
-    "for_homologation":true,
-    "registrable": true,
-    "payer_national_identifier_type": "cpf",
-    "payer_national_identifier": "12345678909",
-    "payer_name": "Jonh Doe",
-    "payer_number": "43",
-    "payer_complement": "8 andar",
-    "payer_street": "Rua do Carmo",
-    "payer_neighbourhood": "Centro",
-    "payer_zipcode": "22230062",
-    "payer_city": "Rio de Janeiro",
-    "payer_state": "RJ",
-    "registration_status": "without_remittance",
-    "canceled_at": "2015-01-31T17:46:01.253Z",
-    "_links":
-      [
-        {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/charges/1"},
-        {"rel":"update","method":"PUT","href":"https://app.cobrato.com/api/v1/charges/1"},
-        {"rel":"destroy","method":"DELETE","href":"https://app.cobrato.com/api/v1/charges/1"},
-        {"rel":"receive","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/receive"},
-        {"rel":"deliver","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/deliver_billet"},
-        {"rel":"charge_config","method":"GET","href":"https://app.cobrato.com/api/v1/charge_configs/1"},
-        {"rel":"billet","method":"GET","href":"https://app.cobrato.com/api/v1/charges/1/billet"},
-        {"rel":"cancel","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/cancel"}
-      ]
-  }
+    200 OK
 
 EXEMPLO DE ESTADO DA RESPOSTA COM COBRANÇA INEXISTENTE
 
@@ -1074,65 +1016,7 @@ EXEMPLO DE ESTADO DA RESPOSTA EXCLUÍDA COM SUCESSO
 
 EXEMPLO DE ESTADO DA RESPOSTA CANCELADA COM SUCESSO
 
-    200 Ok
-
-EXEMPLO DE CORPO DA RESPOSTA CANCELADA COM SUCESSO
-
-  {
-    "id":1,
-    "type":"billet",
-    "charge_config_id": 1,
-    "due_date":"2015-02-14",
-    "document_kind":"DV",
-    "document_date":null,
-    "document_number":null,
-    "custom_our_number": "true",
-    "our_number":"0",
-    "our_number_digit":null,
-    "charged_amount":"10.07",
-    "interest_amount_per_month": "1.02",
-    "mulct_type": "percentage",
-    "mulct_value": "10.12",
-    "instructions":"Pagável em qualquer agência até data do vencimento.",
-    "demonstrative":"Não receber após o vencimento.",
-    "notification_emails":["myemail@gmail.com"],
-    "received":true, # deprecated
-    "received_amount":"10.07", # deprecated
-    "received_at":"2015-01-30", # deprecated
-    "paid_amount":"10.07",
-    "paid_at":"2015-01-30",
-    "paid_discount":"4.56",
-    "paid_additions":"0.50",
-    "paid_rebate":"0.30",
-    "payment_tax":"2.5",
-    "paid_difference":"0",
-    "processing_date":"2015-01-30",
-    "for_homologation":true,
-    "registrable": true,
-    "payer_national_identifier_type": "cpf",
-    "payer_national_identifier": "12345678909",
-    "payer_name": "Jonh Doe",
-    "payer_number": "43",
-    "payer_complement": "8 andar",
-    "payer_street": "Rua do Carmo",
-    "payer_neighbourhood": "Centro",
-    "payer_zipcode": "22230062",
-    "payer_city": "Rio de Janeiro",
-    "payer_state": "RJ",
-    "registration_status": "without_remittance",
-    "canceled_at": "2015-01-31T17:46:01.253Z",
-    "_links":
-      [
-        {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/charges/1"},
-        {"rel":"update","method":"PUT","href":"https://app.cobrato.com/api/v1/charges/1"},
-        {"rel":"destroy","method":"DELETE","href":"https://app.cobrato.com/api/v1/charges/1"},
-        {"rel":"receive","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/receive"},
-        {"rel":"deliver","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/deliver_billet"},
-        {"rel":"charge_config","method":"GET","href":"https://app.cobrato.com/api/v1/charge_configs/1"},
-        {"rel":"billet","method":"GET","href":"https://app.cobrato.com/api/v1/charges/1/billet"},
-        {"rel":"cancel","method":"POST","href":"https://app.cobrato.com/api/v1/charges/1/cancel"}
-      ]
-  }
+    200 OK
 
 EXEMPLO DE ESTADO DA RESPOSTA COM COBRANÇA INEXISTENTE
 
