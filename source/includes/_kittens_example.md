@@ -1,3 +1,4 @@
+<!--
 # Kittens
 
 ## Get All Kittens
@@ -105,3 +106,5 @@ This endpoint retrieves a specific kitten.
 Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to retrieve
+
+-->
