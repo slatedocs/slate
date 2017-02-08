@@ -1000,7 +1000,7 @@ Revogar Cobrança
 
 DEFINIÇÃO
 
-  POST https://app.cobrato.com/api/v1/charges/:charge_id/destroy_or_cancel
+  POST https://app.cobrato.com/api/v1/charges/:charge_id/revoke
 
 EXEMPLO DE REQUISIÇÃO
 
@@ -1008,7 +1008,7 @@ EXEMPLO DE REQUISIÇÃO
     -H 'User-Agent: My App 1.0' \
     -H 'Accept: application/json' \
     -H 'Content-type: application/json' \
-    -X POST https://app.cobrato.com/api/v1/charges/:charge_id/destroy_or_cancel
+    -X POST https://app.cobrato.com/api/v1/charges/:charge_id/revoke
 
 EXEMPLO DE ESTADO DA RESPOSTA EXCLUÍDA COM SUCESSO
 
