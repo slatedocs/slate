@@ -1,0 +1,85 @@
+# Accern API
+
+## Authentication
+
+```shell
+curl "http://feed.accern.com/v3/alphas?token=TOKEN"
+```
+
+```ruby
+require 'uri'
+require 'net/http'
+
+url = URI("http://feed.accern.com/v3/alphas?token=TOKEN")
+http = Net::HTTP.new(url.host, url.port)
+request = Net::HTTP::Get.new(url)
+response = http.request(request)
+puts response.read_body
+```
+> Make sure to replace TOKEN above
+
+To authenticate provide your authentication token in the url. We provide the authentication token in your welcome email.
+
+## Feed
+```shell
+curl "http://feed.accern.com/v3/alphas?token=TOKEN"
+```
+
+> The above code returns the most recent 100 documents.
+
+```json
+<%= partial 'includes/feed/regular_response.json' %>
+```
+`GET http://feed.accern.com/v3/alphas?token=TOKEN`
+
+By default this request will return the most recent 100 documents.
+
+## Filtering
+
+> Filter by last_id
+
+```shell
+curl "http://feed.accern.com/v3/alphas?last_id=1774184&token=TOKEN"
+```
+
+> Filter by index
+
+```shell
+curl "http://feed.accern.com/v3/alphas?index=sp500&token=TOKEN"
+```
+
+> Filter by ticker
+
+```shell
+curl "http://feed.accern.com/v3/alphas?ticker=aapl,amzn&token=TOKEN"
+```
+
+Parameter | Description 
+-----------| ------------
+last_id	      | Returns the latest 100 documents that came after the provided id.  Used to prevent duplicates while keeping in sync (see **polling** section).
+index         | Filters documents by the index, see below table for supported indexes.
+ticker         | Filters documents by ticker
+
+### Allowed index values
+
+index					 | expected query string value
+-----------------|----------------------
+S&P 500				| sp500
+Russell 1000		| russell1000
+Russell 3000		| russell3000
+Wilshire 5000		| wilshire5000
+Barron's 400		| barrons400
+DOW 30				| dow30
+
+<aside class="notice">
+You can provide multiple values to index and ticker parameters by passing a comma separated list.
+</aside>
+
+## Polling
+
+To stay in sync with the API you make a request with `last_id=[lastest document id]` then grab the id of the latest document that comes back and repeat. We packaged this logic up in a API client gem (coming soon).
+
+
+## Backfill
+
+The API allows you to access data going back 30 days, anything older we provide via other means. To start from 30 days ago and move forward you have to provide `last_id=0`. Then continue to hit the API while setting the `last_id` field.
