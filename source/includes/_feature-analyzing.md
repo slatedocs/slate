@@ -177,7 +177,6 @@ POST datasets/{id}/multitables/ HTTP/1.1
         "name": "Geographical indicators",
         "template": [
             {
-                "variable": "../variables/de85b32/",
                 "query": [
                     {
                         "variable": "../variables/de85b32/"
@@ -185,7 +184,6 @@ POST datasets/{id}/multitables/ HTTP/1.1
                 ]
             },
             {
-                "variable": "../variables/398620f/",
                 "query": [
                     {
                         "variable": "../variables/398620f/"
@@ -193,7 +191,6 @@ POST datasets/{id}/multitables/ HTTP/1.1
                 ]
             },
             {
-                "variable": "../variables/c116a77/",
                 "query": [
                     {
                         "function": "bin",
@@ -240,7 +237,6 @@ GET datasets/{id}/multitable/3/ HTTP/1.1
         "name": "Geographical indicators",
         "template": [
             {
-                "variable": "../variables/de85b32/",
                 "query": [
                     {
                         "variable": "../variables/de85b32/"
@@ -248,7 +244,6 @@ GET datasets/{id}/multitable/3/ HTTP/1.1
                 ]
             },
             {
-                "variable": "../variables/398620f/",
                 "query": [
                     {
                         "variable": "../variables/398620f/"
@@ -256,7 +251,6 @@ GET datasets/{id}/multitable/3/ HTTP/1.1
                 ]
             },
             {
-                "variable": "../variables/c116a77/",
                 "query": [
                     {
                         "function": "bin",
@@ -410,14 +404,12 @@ In a multitable, the `transform` is part of each dimension definition object in 
 {
     "template": [
         {
-            "variable": "A",
             "query": [
                 {"variable": "A"}
             ],
             "transform": [{}, {}]
         },
         {
-            "variable": "B",
             "query": [
                 {
                     "function": "rollup",
