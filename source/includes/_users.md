@@ -30,8 +30,7 @@ string developerEmail = "my@email.address";
 var request = WebRequest.Create("https://api.practitest.com/api/v2/users.json");
 //request.PreAuthenticate = true;
 string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(developerEmail + ":" + token));
-String encoded = System.Convert.ToBase64String(Encoding.Default.GetBytes(developerEmail + ":" + token));
-request.Headers["Authorization"] = "Basic " + encoded;
+request.Headers["Authorization"] = "Basic " + authInfo;
 
 var response = request.GetResponse();
 Console.WriteLine(response.Headers);
