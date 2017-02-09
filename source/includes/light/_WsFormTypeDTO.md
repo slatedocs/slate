@@ -60,7 +60,7 @@ key | type | status | comment
 --- | ---- | :----: | ---:
 id | string | 1..1 | идентификатор
 name | string | 1..1 | название
-ordinal | int | 1..1 | порядковый номер поля в форме
+ordinal | int | 0..1 | порядковый номер поля в форме
 isRequired | bool | 1..1 | признак обязательности поля
 type | [FieldClass](#fieldclass) | 1..1 | тип поля формы, определяющий формат данных
 hint | string | 0..1 | подсказка

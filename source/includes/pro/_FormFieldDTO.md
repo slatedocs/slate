@@ -5,13 +5,13 @@
   <id>field_id</id>
   <comboBoxValues>
     <id>val_1_id</id>
-    <name>40817810200005239000</name>
+    <name>product_1_id</name>
     <order>1</order>
     <value>40817810200005239000</value>
   </comboBoxValues>
   <comboBoxValues>
     <id>val_2_id</id>
-    <name>40817810500005239001</name>
+    <name>product_2_id</name>
     <order>2</order>
     <value>40817810500005239001</value>
   </comboBoxValues>
@@ -70,8 +70,8 @@ readOnly | bool | 0..1 | признак редактируемости
 
 key | type | comment
 --- | ---- | ---:
-SOURCE_ACCOUNT | string | список продуктов в comboBoxValues выбора 1..*
-TARGET_ACCOUNT | string | список продуктов в comboBoxValues выбора 1..*
+SOURCE_ACCOUNT | string | список идентификаторов продуктов в виде [ComboBoxValueDTO](#comboboxvaluedto) выбора 1..*
+TARGET_ACCOUNT | string | список идентификаторов продуктов в виде [ComboBoxValueDTO](#comboboxvaluedto) выбора 1..*
 SINGLE_LINE_TEXT | string | однострочный текст
 MULTI_LINE_TEXT | string | многострочный текст
 CHECK_BOX | bool | чекбокс {true, false}
@@ -79,16 +79,16 @@ PASSWORD | string | однострочный текст маскированны
 MONTH_YEAR | string | YYYY/MM (например 2012/11)
 DATE | int | UNIXTIME (например 1394582400)
 COMBO_BOX | string | список строк для comboBoxValues выбора 1..*
-MONEY | int | ddddd (умноженное на 100)
-PHONE | int | 99999999999
-AMOUNT | int | ddddd (умноженное на 100)
+AMOUNT | int | ddddd (умноженное на 100) с валютой  и проверкой на остаток средств из ``SOURCE_ACCOUNT``
+MONEY | int | ddddd (умноженное на 100) с валютой из ``SOURCE_ACCOUNT``
+PHONE | int | номер телефона (например 99999999999)
 PRINTED_TEXT | string | текст пояснение без возможности редактирования пользователем
 PHOTO_CARD | string | ввода номера карты с элементом фотографирования карты библиотекой [card.io](http://www.card.io) и маской <code>**** **** **** ****</code>
 PHOTO_QRCODE | string | информация, зашифрованную в QR-коде
 IMAGE | [LogoResource](#logoresource) | картинка
 HIDDEN | string | скрытое поле для технического применения
-NUMERIC | int | чесло без дроби
-DECIMAL | int | число с дробной частью
+NUMERIC | int | чесло без дроби (например 1394582400)
+DECIMAL | int | число с дробной частью (например 1394582400.93)
 DYNAMIC | string | поле при вводе 2х символов делает запрос [getDynamicFieldValues](#getdynamicfieldvalues) и в случае признака необходимости обновления текущей формы делает запрос [getCurrentForm](#getcurrentform)
 
 <aside class="warning">PHOTO_CHECK - эксперементальный ключ для фотографирования дорожных чеков</aside>
