@@ -1,7 +1,5 @@
 #The Bonsai Platform Documentation
 
-**Our documentation was created with [Slate](lord.github.io/slate).**
-
 This project is the public home for the source code for the Bonsai Platform documentation. You can find our documentation at http://docs.bons.ai/.
 
 Our hope is that open-sourcing our documentation on GitHub helps our docs stay a living, breathing, constantly evolving project that users feel empowered to contribute to. If any documentation is unclear/missing we invite you to submit an issue or a pull request. But if you’d just rather give us feedback directly, [send us an email](mailto:support@bons.ai).
