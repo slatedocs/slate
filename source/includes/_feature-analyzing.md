@@ -224,8 +224,7 @@ Crunch provides a separate catalog where you can define and manage these common 
 A multitable is a set of queries that form groups of ‘columns’ for different later chosen ‘row’ variables.
 It is defined by a **name** and a **template**. At minimum the template must contain a `query` fragment:
 this will be later inserted after some function of a row variable to form the [dimension](#dimensions)
-of a result. It is also required to indicate the variable involved in the query; each element of the template
-can currently only be a function of one variable.
+of a result. Each template dimension can currently only be a function of one variable.
 
 
 ```http
