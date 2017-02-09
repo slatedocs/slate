@@ -27,6 +27,7 @@ includes:
   - endpoint-variable
   - endpoint-filter
   - endpoint-deck
+  - endpoint-multitable
   - endpoint-tabbook
   - endpoint-xlsx
   - endpoint-boxdata
