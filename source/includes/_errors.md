@@ -13,6 +13,7 @@ Error Code | Meaning
 404 | Not Found -- The specified resource could not be found - please check your project_id
 405 | Method Not Allowed -- You tried to access a resource with an invalid method
 406 | Not Acceptable -- You requested a format that isn't json
+422 | Unprocessable Entity - Your parameter values are wrong or missing.
 429 | Too Many Requests -- You're requesting too many resources! Slow down!
 500 | Internal Server Error -- We had a problem with our server. Try again later.
 503 | Service Unavailable -- We're temporarially offline for maintenance. Please try again later.

@@ -17,11 +17,16 @@ includes:
   - projects
   - users
   - custom_fields
-  - kittens_example
+  - instances
   - errors
 
 search: true
 ---
+
+<!--
+- kittens_example
+
+-->
 
 # PractiTest API V2 (beta)
 
