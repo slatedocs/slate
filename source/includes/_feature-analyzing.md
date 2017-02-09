@@ -345,12 +345,14 @@ A `transform` with object members can do lots of things. Suppose we want to put 
 hide the _Don’t know_, and more compactly represent the result as just _C, A, B_:
 
 ```json
-transform: {"categories": [
-    {"id": 2, "name": "C"},
-    {"id": 0, "name": "A"},
-    {"id": 1, "name": "B"},
-    {"id": 3, "hide": true}
-]}
+{
+    "transform": {"categories": [
+        {"id": 2, "name": "C"},
+        {"id": 0, "name": "A"},
+        {"id": 1, "name": "B"},
+        {"id": 3, "hide": true}
+    ]}
+}
 ```
 
 
