@@ -125,12 +125,12 @@ business_names | <span class="label label-required">Required</span> Supply one b
 schedule | <span class="label label-required">Required</span> One of Adhoc or Monthly
 day_of_month | <span class="label label-required">Required</span> One of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, -1 (last day of month).
 report_type | <span class="label label-required">Required</span> One of with or without. 'with' - the business has a Google Local profile. 'without' - Ignore this business, just display competitor information. Defaults to with.
-address1 | <span class="label label-required">Required</span> Optional for report_type=without
-address2 |
-profile_url |
+address1 | <span class="label label-required">Required</span> 80 characters max.  Optional for report_type=without
+address2 | 80 characters max. 
+profile_url | 256 characters max. 
 city | <span class="label label-required">Required</span> Optional for report_type=without
 state_code | <span class="label label-required">Required</span> (USA, CAN:EN and AUS)
-postcode | <span class="label label-required">Required</span> A valid postcode or ZIP. Optional for report_type=without
+postcode | <span class="label label-required">Required</span> A valid postcode or ZIP. 80 characters max. Optional for report_type=without
 phone_number | <span class="label label-required">Required</span> Optional for report_type=without
 country | <span class="label label-required">Required</span> One of USA, CAN:EN, GBR or AUS.
 search_terms | <span class="label label-required">Required</span> Supply one or more search terms (max 5) as a JSON string. For example, ["restaurant san francisco","cafe san francisco"].
@@ -232,12 +232,12 @@ business_names |  Supply one business name. For example, Greens Restaurant.
 schedule |  One of Adhoc or Monthly
 day_of_month |  One of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, -1 (last day of month).
 report_type | One of with or without. 'with' - the business has a Google Local profile. 'without' - Ignore this business, just display competitor information. Defaults to with.
-address1 |
-address2 |
-profile_url |
+address1 | 80 characters max. 
+address2 | 80 characters max. 
+profile_url | 256 characters max. 
 city |
 state_code | (USA, CAN:EN and AUS)
-postcode | A valid postcode or ZIP.
+postcode | A valid postcode or ZIP. 80 characters max. 
 phone_number |
 country | One of USA, CAN:EN, GBR or AUS.
 search_terms | Supply one or more search terms (max 5) as a JSON string. For example, ["restaurant san francisco","cafe san francisco"].

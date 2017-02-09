@@ -18,10 +18,12 @@ $success = $api->post('/v1/clients-and-locations/locations/', [
 	'country'              => 'USA', // 3 letter iso code
 	'address1'             => '155 West 51st Street',
     'address2'             => '',
-	'region'               => 'NY' // State or Region
+	'region'               => 'NY', // State or Region
 	'city'                 => 'New York',
 	'postcode'             => '10019',
-    'telephone'            => '+1 212-554-1515'
+    'telephone'            => '+1 212-554-1515', 
+    'email_addresses' 	   => ['test@lebernardin.com'], 
+    'email_addresses_for_changes' => [],
 ]);
 print_r($success);
 ```
@@ -41,6 +43,8 @@ curl -X POST \
  -d 'city=New York' \
  -d 'postcode=10019' \
  -d 'telephone=+1 212-554-1515' \
+ -d 'email_addresses=["test@lebernardin.com"]' \
+ -d 'email_addresses_for_changes=[]' \
  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/
 ```
 
@@ -58,6 +62,8 @@ parameters.Add("region", "NY"); // State or Region
 parameters.Add("city", "New York");
 parameters.Add("postcode", "10019");
 parameters.Add("telephone", "+1 212-554-1515");
+parameters.Add("email_addresses", ["test@lebernardin.com"]);
+parameters.Add("email_addresses_for_changes", []);
 
 var success = request.Post("/v1/clients-and-locations/locations/", parameters);
 ```
@@ -86,14 +92,16 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 name | <span class="label label-required">Required</span> 50 characters max.
 client-id | 
-url | <span class="label label-required">Required</span> 150 characters max
+url | 256 characters max
 business-category-id | <span class="label label-required">Required</span> [See here for a full list of valid business codes.](#appendix)
 country | <span class="label label-required">Required</span> ISO 3 country code.
-address1 | <span class="label label-required">Required</span> 50 characters max
-address2 | 50 characters max
+address1 | <span class="label label-required">Required</span> 80 characters max
+address2 | 80 characters max
 region | <span class="label label-required">Required</span> 20 characters max
 city | <span class="label label-required">Required</span> 20 characters max
-postcode | <span class="label label-required">Required</span> 20 characters max
+postcode | <span class="label label-required">Required</span> 80 characters max
+email_addresses | <span class="label label-required">Required</span> JSON array
+email_addresses_for_changes | <span class="label label-required">Required</span> JSON array
 telephone | <span class="label label-required">Required</span> 20 characters max
 unique-reference | An arbitrary unique reference you can use to identify a location. This may correspond to a unique value used within your system and can be useful when importing or exporting data. 50 characters max.
 contact-first-name | 50 characters max
@@ -126,16 +134,18 @@ use BrightLocal\Api;
 $locationId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->put('/v1/clients-and-locations/locations/' .$locationId, [
-    'name'                 => 'Le Bernardin',
-    'url'                  => 'le-bernardin.com',
-	'business-category-id' =>  605,
-	'country'              => 'USA', // 3 letter iso code
-	'address1'             => '155 West 51st Street',
-    'address2'             => '',
-	'region'               => 'NY', // State or Region
-	'city'                 => 'New York',
-	'postcode'             => '10019',
-    'telephone'            => '+1 212-554-1515'
+    'name'                	 		=> 'Le Bernardin',
+    'url'                  			=> 'le-bernardin.com',
+	'business-category-id' 			=>  605,
+	'country'              			=> 'USA', // 3 letter iso code
+	'address1'             			=> '155 West 51st Street',
+    'address2'             			=> '',
+	'region'               			=> 'NY', // State or Region
+	'city'                 			=> 'New York',
+	'postcode'             			=> '10019',
+    'telephone'            			=> '+1 212-554-1515',
+    'email_addresses' 	   			=> ['test@lebernardin.com'], 
+    'email_addresses_for_changes' 	=> [],
 ]);
 print_r($success);
 ```
@@ -155,6 +165,8 @@ curl -X PUT \
  -d 'city=New York' \
  -d 'postcode=10019' \
  -d 'telephone=+1 212-554-1515' \
+ -d 'email_addresses=["test@lebernardin.com"]' \
+ -d 'email_addresses_for_changes=[]' \
  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/1
 ```
 
@@ -173,6 +185,8 @@ parameters.Add("region", "NY"); // State or Region
 parameters.Add("city", "New York");
 parameters.Add("postcode", "10019");
 parameters.Add("telephone", "+1 212-554-1515");
+parameters.Add("email_addresses", ["test@lebernardin.com"]);
+parameters.Add("email_addresses_for_changes", []);
 
 var success = request.Put("/v1/clients-and-locations/locations/" + locationId + "", parameters);
 ```
@@ -199,17 +213,19 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 name | 50 characters max.
 client-id |
-url | 150 characters max
+url | 256 characters max
 business-category-id | See here for a full list of valid business codes.
 country | ISO 3 country code.
-address1 | 50 characters max
-address2 | 50 characters max
+address1 | 80 characters max
+address2 | 80 characters max
 region | 20 characters max
 city | 20 characters max
-postcode | 20 characters max
+postcode | 80 characters max
 telephone | 20 characters max
 unique-reference | An arbitrary unique reference you can use to identify a location. This may correspond to a unique value used within your system and can be useful when importing or exporting data. 50 characters max.
-contact-first-name | 50 characters max
+contact-first-name | 50 cha8acters max
+email_addresses | <span class="label label-required">Required</span> JSON array
+email_addresses_for_changes | <span class="label label-required">Required</span> JSON array
 contact-last-name | 50 characters max
 contact-mobile | 20 characters max
 contact-telephone | 20 characters max

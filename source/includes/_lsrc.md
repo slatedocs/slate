@@ -86,7 +86,7 @@ country	| One of USA, GBR, AUS, CAN:EN, CAN:FR. Defaults to USA.
 google-location	| Specify a location to perform search from. When set search keywords do not need to include a location.
 bing-location | Specify a location to perform search from. When set search keywords do not need to include a location.
 business-names | Newline (\n) separated list of business names
-postcode |	
+postcode |	80 characters max. 
 telephone |	
 search-engines | Comma separated list of search engines. Options are google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local. Defaults to all search engines.
 include-local-directory-results	| Yes or No. Defaults to Yes.
@@ -185,7 +185,7 @@ country	| One of USA, GBR, AUS, CAN:EN, CAN:FR.
 google-location	| Specify a location to perform search from. When set search keywords do not need to include a location.
 bing-location | Specify a location to perform search from. When set search keywords do not need to include a location.
 business-names | Newline (\n) separated list of business names
-postcode |	
+postcode |	80 characters max. 
 telephone |	
 search-engines | Comma separated list of search engines. Options are google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local.
 include-local-directory-results	| Yes or No
