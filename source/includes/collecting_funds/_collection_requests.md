@@ -63,7 +63,7 @@ curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token ab5
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-collection = Beyonic::CollectionRequest.create(
+collection_request = Beyonic::CollectionRequest.create(
     phonenumber: "+80000000001",
     amount: "100.2",
     currency: "BXC",
@@ -77,7 +77,7 @@ collection = Beyonic::CollectionRequest.create(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-Beyonic_Collection_Request::create(array(
+$collection_request = Beyonic_Collection_Request::create(array(
   "phonenumber" => "+80000000001",
   "amount" => "100.2",
   "currency" => "BXC",
@@ -92,7 +92,7 @@ import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 
-beyonic.CollectionRequest.create(phonenumber='+80000000001',
+collection_request = beyonic.CollectionRequest.create(phonenumber='+80000000001',
                        amount='1200',
                        currency='BXC',
                        description='Per diem',
