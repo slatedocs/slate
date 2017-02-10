@@ -542,4 +542,4 @@ You can search or filter collection requests on the following fields. Simply add
 * currency - the currency code
 * collection - the ID of the collection that fulfilled or matched this collection request
 * phonenumber - the phonenumber that the collection request was intended for. Note that the phonenumber will be matched in international format, starting with a '+' sign. If the '+' sign isn't included in your request, it will be appended before attempting to match your request.
-* remote_transaction_id - the transation id or transaction reference of the collection on the mobile network operator's side
+* remote_transaction_id - the transaction id or transaction reference of the collection on the mobile network operator's side
