@@ -1,5 +1,5 @@
 # Setup
 
-**Base URI**: `https://api.slycepay.com/v1/`
+**Base URI**: `https://api.slycepay.com/v2/`
 
-**Current Version**: `1.0`
+**Current Version**: `2.0`

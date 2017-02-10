@@ -10,17 +10,8 @@ includes:
   - modules/introduction
   - modules/setup
   - modules/authentication
-  - api/payplan
-  - api/customer
   - api/transaction
-  - api/invoice
-  - api/merchantsettings
-  - api/receipts
-  - api/batch
   - errors
-
-
-
 
 search: true
 ---
