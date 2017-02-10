@@ -349,7 +349,7 @@ derived | boolean | Whether the variable is a function of another; default: fals
 type | string | The string type name
 categories | array | If "type" is "categorical", "multiple_response", or "categorical_array", an array of category definitions (see below). Other types have an empty array
 subvariables | array of URLs | For array variables, an ordered array of subvariable ids
-subreferences | array of objects | For array variables, an ordered array of {"name": ..., "alias": ..., ...} objects, one per subvariable
+subreferences | object of objects | For array variables, an object of {"name": ..., "alias": ..., ...} objects keyed by subvariable
 resolution | string | For datetime variables, a string, such as "Y", "M", "D", "h", "m", "s", "ms", that indicates the unit size of the datetime data.
 derivation | object | For derived variables, a Crunch expression which was used to derive this variable; or null
 format | object | An object with various members to control the display of Variable data (see below)
@@ -598,7 +598,8 @@ On PATCH, this endpoint allows modification to the variables attributes exposed
 It is possible to add new subvariables to the array variable in question. To do
 so include the URL of another variable (currently existing on the dataset) on
 the payload with an empty tuple and such variable will be converted into a
-subvariable and added at the end.
+subvariable and added at the end.  It is also possible to include only a subset
+subreferences objects for the variables whose attributes you want to modify.
 
 #### Values
 
