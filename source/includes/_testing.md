@@ -32,7 +32,7 @@ Beyonic provides test numbers that should be used in conjunction with the test c
 
 ### Sending Payments
 
-* **+80000000000** - When you add a contact with this number, the contact will always fail the mobile money registration checks, and therefore payments sent to this number will always fail.
+* **+80000000001** - When you add a contact with this number, the contact will always fail the mobile money registration checks, and therefore payments sent to this number will always fail.
 * **+800XXXXXXXX** - All other numbers in the format +800XXXXXXXX will pass the name checks only if the contact name is "John Doe". So, set the name to "John Doe" to test the effect of a successful name check, or set it to something else to test the effect of a failed name check.
 * Subsequently, all BXC payments to numbers with format +800XXXXXXXX and name "John Doe", (except +80000000000) will succeed, if the amount is greater than or equal to 10 and less than or equal to 5,000,000 BXC.
 
@@ -40,7 +40,7 @@ Beyonic provides test numbers that should be used in conjunction with the test c
 
 ### Receiving Payments
 
-* **+80000000000** - If you request a payment from this number, it will always fail with the "Cancelled By User" error. Use this to simulate a user cancelling or rejecting your payment request.
+* **+80000000001** - If you request a payment from this number, it will always fail with the "Cancelled By User" error. Use this to simulate a user cancelling or rejecting your payment request.
 * **+80000000009** - If you request a payment from this number, it will always expire. Use this to simulate a user ignoring your payment request by doing nothing and letting it expire.
 * **+800XXXXXXXX** - All other numbers in this format will complete successfully. Use this to test successful payment request scenarios.
 
