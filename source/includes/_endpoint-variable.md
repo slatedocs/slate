@@ -414,6 +414,35 @@ Actions that are best or only achieved elsewhere include:
 
 Variable "id" and "dataset_id" are immutable.
 
+Example:
+
+```json
+{
+  "subvariables": [
+    "http://app.crunch.io/api/datasets/d4db9831e08a4922b054e49b47a0045c/variables/00000c/subvariables/0008/",
+    "http://app.crunch.io/api/datasets/d4db9831e08a4922b054e49b47a0045c/variables/00000c/subvariables/0007/",
+    "http://app.crunch.io/api/datasets/d4db9831e08a4922b054e49b47a0045c/variables/00000c/subvariables/0009/"
+  ],
+  "subreferences": {
+    "http://app.crunch.io/api/datasets/d4db9831e08a4922b054e49b47a0045c/variables/00000c/subvariables/0008/": {
+      "alias": "subvar_2",
+      "name": "v2_new_name",
+      "description": null
+    },
+    "http://app.crunch.io/api/datasets/d4db9831e08a4922b054e49b47a0045c/variables/00000c/subvariables/0007/": {
+      "alias": "subvar_1_new_name",
+      "name": "v1_new_name",
+      "description": null
+    },
+    "http://app.crunch.io/api/datasets/d4db9831e08a4922b054e49b47a0045c/variables/00000c/subvariables/0009/": {
+      "alias": "subvar_3",
+      "name": "subvar_3",
+      "description": "new description"
+    }
+  }
+}
+```
+
 #### POST
 
 Calling POST on an array resource will "unbind" the variable. On success, `POST`
@@ -598,8 +627,7 @@ On PATCH, this endpoint allows modification to the variables attributes exposed
 It is possible to add new subvariables to the array variable in question. To do
 so include the URL of another variable (currently existing on the dataset) on
 the payload with an empty tuple and such variable will be converted into a
-subvariable and added at the end.  It is also possible to include only a subset
-subreferences objects for the variables whose attributes you want to modify.
+subvariable and added at the end.
 
 #### Values
 
