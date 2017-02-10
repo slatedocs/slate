@@ -26,7 +26,7 @@ name | string | 0..1 | наименование
 type | [ContactTypeKey](#contacttypekey) | 1..1 | тип
 value | string | 0..1 | значение
 logoResourceURL | [LogoResource](https://doc.idamob.ru/pro#logoresource) | 0..1 | url для доступа к логотипу
-position | [FormPosition](#formposition) | 0..1 | расположение формы для ряда уникальных кейсов
+position | [ContactPosition](#contactposition) | 0..1 | расположение формы для ряда уникальных кейсов
 
 ### ContactTypeKey
 key | comment
@@ -35,7 +35,7 @@ PHONE | номер телефона
 URL | ссылка
 TEXT | текстовый блок
 
-### FormPosition
+### ContactPosition
 key | comment
 --- | ---:
 CONTACTS | форма в списке контактов
