@@ -226,7 +226,7 @@ curl https://app.beyonic.com/api/collectionrequests/230 -H "Authorization: Token
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-collection = Beyonic::CollectionRequest.get(23)
+collection_request = Beyonic::CollectionRequest.get(23)
 ```
 
 ```php
@@ -234,7 +234,7 @@ collection = Beyonic::CollectionRequest.get(23)
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$collection = Beyonic_Collection_Request::get(23);
+$collection_request = Beyonic_Collection_Request::get(23);
 ?>
 ```
 
@@ -242,7 +242,7 @@ $collection = Beyonic_Collection_Request::get(23);
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-collection = beyonic.CollectionRequest.get(23)
+collection_request = beyonic.CollectionRequest.get(23)
 
 ```
 
@@ -330,7 +330,7 @@ curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token ab5
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-collection = Beyonic::CollectionRequest.list
+collection_requests = Beyonic::CollectionRequest.list
 ```
 
 ```php
@@ -338,7 +338,7 @@ collection = Beyonic::CollectionRequest.list
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$collection = Beyonic_Collection_Request::getAll();
+$collection_requests = Beyonic_Collection_Request::getAll();
 ?>
 ```
 
@@ -346,7 +346,7 @@ $collection = Beyonic_Collection_Request::getAll();
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-collection = beyonic.CollectionRequest.list()
+collection_requests = beyonic.CollectionRequest.list()
 
 ```
 
@@ -461,7 +461,7 @@ curl https://app.beyonic.com/api/collectionrequests?remote_transaction_id=12345&
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-collection = Beyonic::CollectionRequest.list(
+collection_requests = Beyonic::CollectionRequest.list(
   remote_transaction_id: '12345',
   amount: 500
 )
@@ -472,7 +472,7 @@ collection = Beyonic::CollectionRequest.list(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$collection = Beyonic_Collection_Request::getAll(array(
+$collection_requests = Beyonic_Collection_Request::getAll(array(
   "remote_transaction_id" => "12345",
   "amount" => 500
 ));
@@ -483,7 +483,7 @@ $collection = Beyonic_Collection_Request::getAll(array(
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-collection = beyonic.CollectionRequest.list(remote_transaction_id='12345', amount=500)
+collection_requests = beyonic.CollectionRequest.list(remote_transaction_id='12345', amount=500)
 
 ```
 
