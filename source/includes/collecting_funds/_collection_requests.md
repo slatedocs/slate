@@ -70,6 +70,8 @@ collection_request = Beyonic::CollectionRequest.create(
     metadata: {"my_id": "123ASDAsd123"},
     send_instructions: true
 )
+
+p collection_request  # Examine the returned object
 ```
 
 ```php
@@ -84,6 +86,8 @@ $collection_request = Beyonic_Collection_Request::create(array(
   "metadata" => array("my_id"=>"123ASDAsd123"),
   "send_instructions" => True
 ));
+
+print_r($collection_request);  // Examine the returned object
 ?>
 ```
 
@@ -100,6 +104,8 @@ collection_request = beyonic.CollectionRequest.create(phonenumber='+80000000001'
                        metadata={'my_id': '123ASDAsd123'},
                        send_instructions = True
                        )
+
+print collection_request  # Examine the returned object
 ```
 
 ```java
@@ -227,6 +233,8 @@ require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 collection_request = Beyonic::CollectionRequest.get(23)
+
+p collection_request  # Examine the returned object
 ```
 
 ```php
@@ -235,6 +243,8 @@ require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 $collection_request = Beyonic_Collection_Request::get(23);
+
+print_r($collection_request);  // Examine the returned object
 ?>
 ```
 
@@ -244,6 +254,7 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 collection_request = beyonic.CollectionRequest.get(23)
 
+print collection_request  # Examine the returned object
 ```
 
 ```java
@@ -331,6 +342,8 @@ require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 collection_requests = Beyonic::CollectionRequest.list
+
+p collection_requests  # Examine the returned objects
 ```
 
 ```php
@@ -339,6 +352,8 @@ require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 $collection_requests = Beyonic_Collection_Request::getAll();
+
+print_r($collection_requests);  // Examine the returned objects
 ?>
 ```
 
@@ -348,6 +363,7 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 collection_requests = beyonic.CollectionRequest.list()
 
+print collection_requests  # Examine the returned objects
 ```
 
 ```java
@@ -465,6 +481,8 @@ collection_requests = Beyonic::CollectionRequest.list(
   remote_transaction_id: '12345',
   amount: 500
 )
+
+p collection_requests  # Examine the returned objects
 ```
 
 ```php
@@ -476,6 +494,8 @@ $collection_requests = Beyonic_Collection_Request::getAll(array(
   "remote_transaction_id" => "12345",
   "amount" => 500
 ));
+
+print_r($collection_requests);  // Examine the returned objects
 ?>
 ```
 
@@ -485,6 +505,7 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 collection_requests = beyonic.CollectionRequest.list(remote_transaction_id='12345', amount=500)
 
+print collection_requests  # Examine the returned objects
 ```
 
 ```java
