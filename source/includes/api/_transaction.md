@@ -288,14 +288,19 @@ This method lets you refund a transaction
 
 ### HTTP Request
 
-`POST transactions/<REFNUM>/<AMOUNT>/refund`
+`POST transactions/<REFNUM>/refund`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
 REFNUM | Transaction reference number
-AMOUNT | Amount for refund.
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+amount* |  | Amount of the transaction
 
 ## Void Transaction
 
