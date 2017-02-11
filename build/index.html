@@ -564,7 +564,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST transactions/&lt;REFNUM&gt;/&lt;AMOUNT&gt;/refund</code></p>
+<p><code class="prettyprint">POST transactions/&lt;REFNUM&gt;/refund</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -578,9 +578,21 @@ You must replace <code>THEAPIKEY</code> with your own API key.
 <td>REFNUM</td>
 <td>Transaction reference number</td>
 </tr>
+</tbody></table>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
 <tr>
-<td>AMOUNT</td>
-<td>Amount for refund.</td>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount*</td>
+<td></td>
+<td>Amount of the transaction</td>
 </tr>
 </tbody></table>
 
