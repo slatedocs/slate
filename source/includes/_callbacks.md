@@ -65,8 +65,8 @@ Augur API methods that submit transactions to the network (using the `eth_sendTr
 - onSuccess: fires when the transaction has been successfully incorporated into a block.
 - onFailed: fires if the RPC request returns an error.
 
-The `onSent` callback is required; `onSuccess` and `onFailed` are both optional.  If the `onSuccess` callback is supplied, augur.js will poll the network every 12 seconds with `eth_getTransaction`, until the transaction record contains a non-null `blockHash` value, or a maximum of 12 requests have been made.
+The `onSent`, `onSuccess`, and `onFailed` callbacks are optional.  If `onSent` is not included, then the transaction will run in synchronous (blocking) mode; if it is included, then the transaction will be run in asynchronous mode.  If the `onSuccess` callback is supplied, augur.js will issue an `eth_getTransaction` request upon receipt of every new block, until the transaction record contains a non-null `blockHash` value, or the transaction record itself returns `null` (indicating that the transaction has failed).
 
-Augur API methods that perform RPC requests that do not submit transactions to the network (using the `eth_call` RPC) take a single optional callback as their last parameter.  Unlike transaction RPCs, call RPCs can be synchronous.  If a callback is supplied, the RPC request will be asynchronous; otherwise, it will be synchronous.
+Augur API methods that perform read-only RPC requests that do not submit transactions to the network (using the `eth_call` RPC) take a single optional callback as their last parameter.  Like `sendTransaction` requests, call requests can be synchronous or asynchronous: if a callback is supplied, the request will be made asynchronously.
 
-<aside class="notice">Synchronous HTTP RPC is generally not recommended, especially if augur.js is running in the browser.  Synchronous RPC requests block the main JavaScript thread, which essentially freezes the browser!</aside>
+<aside class="warning">Synchronous HTTP RPC is generally not recommended, especially if augur.js is running in the browser.  Synchronous RPC requests block the main JavaScript thread, which essentially freezes the browser!</aside>
