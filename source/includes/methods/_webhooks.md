@@ -21,11 +21,11 @@ The webhooks api endpoint is:
 
 **5 second timeout**
 
-Beyonic implements a 5 second timeout. We wait 5 seconds for a response to each request, and if there isn't one, or there is an error, we will retry the request a total of 10 times, with an increasing wait period between each attempt. 
+Beyonic implements a 5 second timeout. We wait 5 seconds for a response to each request, and if there isn't one, or there is an error, we will retry the request a total of 10 times, with an increasing wait period between each attempt.
 
-Because of this timeout, we recommend that your webhook responds immediately with a 200 response, and then you continue processing the request. For example, you could store the event information, respond and then continue with your tasks. 
+Because of this timeout, we recommend that your webhook responds immediately with a 200 response, and then you continue processing the request. For example, you could store the event information, respond and then continue with your tasks.
 
-Depending on the server and language you are using, there are various mechanisms for achieving this, including flushing() the output in PHP or using a message queue and background tasks in other languages. 
+Depending on the server and language you are using, there are various mechanisms for achieving this, including flushing() the output in PHP or using a message queue and background tasks in other languages.
 
 ## Supported Event types
 
@@ -148,7 +148,7 @@ hook = Beyonic::Webhook.create(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-Beyonic_Webhook::create(array(
+$hook = Beyonic_Webhook::create(array(
   "event" => "payment.status.changed",
   "target" => "https://my.callback.url/"
 ));

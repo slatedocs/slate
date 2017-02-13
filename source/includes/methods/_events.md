@@ -75,7 +75,7 @@ curl https://app.beyonic.com/api/events/12 -H "Authorization: Token ab594c149866
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-contact = Beyonic::Event.get(12)
+event = Beyonic::Event.get(12)
 ```
 
 ```php
@@ -83,7 +83,7 @@ contact = Beyonic::Event.get(12)
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$contact = Beyonic_Event::get(12);
+$event = Beyonic_Event::get(12);
 ?>
 ```
 
@@ -91,7 +91,7 @@ $contact = Beyonic_Event::get(12);
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-contact = beyonic.Event.get(12)
+event = beyonic.Event.get(12)
 
 ```
 
@@ -192,7 +192,7 @@ curl https://app.beyonic.com/api/events -H "Authorization: Token ab594c14986612f
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-accounts = Beyonic::Event.list
+events = Beyonic::Event.list
 ```
 
 ```php
@@ -200,7 +200,7 @@ accounts = Beyonic::Event.list
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$accounts = Beyonic_Event::getAll();
+$events = Beyonic_Event::getAll();
 ?>
 ```
 
@@ -208,7 +208,7 @@ $accounts = Beyonic_Event::getAll();
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-accounts = beyonic.Event.list()
+events = beyonic.Event.list()
 
 ```
 
@@ -307,7 +307,7 @@ curl https://app.beyonic.com/api/events?type=contact.created -H "Authorization: 
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-accounts = Beyonic::Event.list(
+events = Beyonic::Event.list(
   type: "contact.created"
 )
 ```
@@ -317,7 +317,7 @@ accounts = Beyonic::Event.list(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$accounts = Beyonic_Event::getAll(array(
+$events = Beyonic_Event::getAll(array(
   "type" => "contact.created"
 ));
 ?>
@@ -327,7 +327,7 @@ $accounts = Beyonic_Event::getAll(array(
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-accounts = beyonic.Event.list(type='contact.created')
+events = beyonic.Event.list(type='contact.created')
 
 ```
 

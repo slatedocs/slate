@@ -77,7 +77,7 @@ contact = Beyonic::Contact.create(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-Beyonic_Contact::create(array(
+$contact = Beyonic_Contact::create(array(
   "phone_number" => "+80000000001",
   "first_name" => "John",
   "last_name" => "Doe",
@@ -91,7 +91,7 @@ Beyonic_Contact::create(array(
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-beyonic.Contact.create(phone_number='+80000000001',
+contact = beyonic.Contact.create(phone_number='+80000000001',
                        first_name='John',
                        last_name='Doe',
                        email='john.doe@beyonic.com',
@@ -325,7 +325,7 @@ curl https://app.beyonic.com/api/contacts -H "Authorization: Token ab594c1498661
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-contact = Beyonic::Contact.list
+contacts = Beyonic::Contact.list
 ```
 
 ```php
@@ -333,7 +333,7 @@ contact = Beyonic::Contact.list
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$contact = Beyonic_Contact::getAll();
+$contacts = Beyonic_Contact::getAll();
 ?>
 ```
 
@@ -341,7 +341,7 @@ $contact = Beyonic_Contact::getAll();
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-contact = beyonic.Contact.list()
+contacts = beyonic.Contact.list()
 
 ```
 
@@ -448,7 +448,7 @@ curl https://app.beyonic.com/api/contacts?first_name=luke -H "Authorization: Tok
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-contact = Beyonic::Contact.list(
+contacts = Beyonic::Contact.list(
   first_name: "luke"
 )
 ```
@@ -458,7 +458,7 @@ contact = Beyonic::Contact.list(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$contact = Beyonic_Contact::getAll(array(
+$contacts = Beyonic_Contact::getAll(array(
   "first_name" => "luke"
 ));
 ?>
@@ -468,7 +468,7 @@ $contact = Beyonic_Contact::getAll(array(
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-contact = beyonic.Contact.list(first_name='luke')
+contacts = beyonic.Contact.list(first_name='luke')
 
 ```
 

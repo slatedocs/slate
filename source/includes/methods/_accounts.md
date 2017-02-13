@@ -4,7 +4,7 @@
 
 Accounts hold your funds. The accounts api method allows you to list your accounts and view balances for each account. When you sign up for Beyonic, at least one account in your primary currency is created for your organization. You can request additional accounts if needed.
 
-The accounts api endpoint is: 
+The accounts api endpoint is:
 
     <aside class="notice">https://app.beyonic.com/api/accounts</aside>
 
@@ -50,7 +50,7 @@ curl https://app.beyonic.com/api/accounts/12 -H "Authorization: Token ab594c1498
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-contact = Beyonic::Account.get(12)
+account = Beyonic::Account.get(12)
 ```
 
 ```php
@@ -58,7 +58,7 @@ contact = Beyonic::Account.get(12)
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$contact = Beyonic_Account::get(12);
+$account = Beyonic_Account::get(12);
 ?>
 ```
 
@@ -66,7 +66,7 @@ $contact = Beyonic_Account::get(12);
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-contact = beyonic.Account.get(12)
+account = beyonic.Account.get(12)
 ```
 
 ```java

@@ -32,7 +32,8 @@ The payments api endpoint is:
     "author": 15,
     "modified": "2014-11-22T20:57:04.018Z",
     "updated_by": null,
-    "start_date": "2014-11-22T20:57:04.018Z"
+    "start_date": "2014-11-22T20:57:04.018Z",
+    "remote_transaction_id": null
 }
 ```
 
@@ -60,6 +61,7 @@ created | string | The date that the payment was created, in the UTC timezone. F
 author | long integer | The ID of the user who created the payment
 modified | string | The date that the payment was last modified, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
 updated_by | string | The ID of the user who last updated the payment
+remote_transaction_id | string | The transaction id provided by the mobile network operator. This will only be available once the payment is completed.
 
 ## Creating a new Payment
 
@@ -94,6 +96,8 @@ payment = Beyonic::Payment.create(
     callback_url: "https://my.website/payments/callback",
     metadata: {"id": "1234", "name": "Lucy"}
 )
+
+p payment  # Examine the returned object
 ```
 
 ```php
@@ -101,7 +105,7 @@ payment = Beyonic::Payment.create(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-Beyonic_Payment::create(array(
+$payment = Beyonic_Payment::create(array(
   "phonenumber" => "+80000000001",
   "first_name" => "Kennedy",
   "last_name" => "Kennedy",
@@ -113,6 +117,8 @@ Beyonic_Payment::create(array(
   "callback_url" => "https://my.website/payments/callback",
   "metadata" => array("id"=>"1234", "name"=>"Lucy")
 ));
+
+print_r($payment);  // Examine the returned object
 ?>
 ```
 
@@ -120,7 +126,7 @@ Beyonic_Payment::create(array(
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-beyonic.Payment.create(phonenumber='+80000000001',
+payment = beyonic.Payment.create(phonenumber='+80000000001',
                        first_name='Kennedy',
                        last_name='Amani',
                        amount='1200',
@@ -130,6 +136,8 @@ beyonic.Payment.create(phonenumber='+80000000001',
                        callback_url='https://my.website/payments/callback',
                        metadata={'id': '1234', 'name': 'Lucy'}
                        )
+
+print payment  # Examine the returned object
 ```
 
 ```java
@@ -231,7 +239,8 @@ public class CreatePayment {
     "author": 15,
     "modified": "2014-11-22T20:57:04.018Z",
     "updated_by": null,
-    "start_date": "2014-11-22T20:57:04.018Z"
+    "start_date": "2014-11-22T20:57:04.018Z",
+    "remote_transaction_id": null
 }
 ```
 
@@ -282,6 +291,8 @@ require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 payment = Beyonic::Payment.get(22744)
+
+p payment  # Examine the returned object
 ```
 
 ```php
@@ -290,6 +301,8 @@ require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 $payment = Beyonic_Payment::get(22744);
+
+print_r($payment);  // Examine the returned object
 ?>
 ```
 
@@ -299,6 +312,7 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 payment = beyonic.Payment.get(22744)
 
+print payment  # Examine the returned object
 ```
 
 ```java
@@ -399,6 +413,8 @@ require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 payments = Beyonic::Payment.list
+
+p payments  # Examine the returned objects
 ```
 
 ```php
@@ -407,6 +423,8 @@ require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 $payments = Beyonic_Payment::getAll();
+
+print_r($payments);  // Examine the returned objects
 ?>
 ```
 
@@ -416,6 +434,7 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 payments = beyonic.Payment.list()
 
+print payments  # Examine the returned objects
 ```
 
 ```java
@@ -549,6 +568,8 @@ Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 payments = Beyonic::Payment.list(
   amount: 500
 )
+
+p payments  # Examine the returned objects
 ```
 
 ```php
@@ -559,6 +580,8 @@ Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 $payments = Beyonic_Payment::getAll(array(
   "amount" => 500
 ));
+
+print_r($payments);  // Examine the returned objects
 ?>
 ```
 
@@ -568,6 +591,7 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 payments = beyonic.Payment.list(amount=500)
 
+print payments  # Examine the returned objects
 ```
 
 ```java

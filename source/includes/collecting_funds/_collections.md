@@ -328,7 +328,7 @@ curl https://app.beyonic.com/api/collections?phonenumber=+80000000001&remote_tra
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-collection = Beyonic::Collection.list(
+collections = Beyonic::Collection.list(
   phonenumber: "+80000000001",
   remote_transaction_id: "SS12312"
 )
@@ -339,7 +339,7 @@ collection = Beyonic::Collection.list(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$collection = Beyonic_Collection::getAll(array(
+$collections = Beyonic_Collection::getAll(array(
   "phonenumber" => "+80000000001",
   "remote_transaction_id" => "SS12312"
 ));
@@ -350,7 +350,7 @@ $collection = Beyonic_Collection::getAll(array(
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-collection = beyonic.Collection.list(phonenumber='+80000000001',
+collections = beyonic.Collection.list(phonenumber='+80000000001',
                                      remote_transaction_id='SS12312')
 
 
@@ -448,7 +448,7 @@ curl https://app.beyonic.com/api/collections?phonenumber=+80000000001&remote_tra
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-collection = Beyonic::Collection.list(
+collections = Beyonic::Collection.list(
   phonenumber: "+80000000001",
   remote_transaction_id: "SS12312",
   claim: true,
@@ -461,7 +461,7 @@ collection = Beyonic::Collection.list(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$collection = Beyonic_Collection::getAll(array(
+$collections = Beyonic_Collection::getAll(array(
   "phonenumber" => "+80000000001",
   "remote_transaction_id" => "SS12312",
   "claim" => "True",
@@ -474,7 +474,7 @@ $collection = Beyonic_Collection::getAll(array(
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-collection = beyonic.Collection.list(phonenumber='+80000000001',
+collections = beyonic.Collection.list(phonenumber='+80000000001',
                                      remote_transaction_id='SS12312',
                                      claim=True,
                                      amount='200')
