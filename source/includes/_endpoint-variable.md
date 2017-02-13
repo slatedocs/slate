@@ -302,21 +302,23 @@ Behaves sames as PATCH.
 
 `/datasets/{id}/variables/weights/`
 
-GET a "groups" view with a single group named `weight_variables` that contains
-the urls of the variables that have been designated as possible weight variables.
+GET a `shoji:order` that contains the urls of the variables that have been 
+designated as possible weight variables.
 
-PATCH the `value` with a "groups" body. The URLs on the payload (that aren't
-weight variables already) will be appended to the existing list of weight variables.
+PATCH the `graph` with a list of the desired list of weight variables. The
+list will always be overwritten with the new values.
 
-PUT the `value` with a "groups" view. The value will overwrite the current
-weight variables with the incoming ones. Use this to delete weight variables.
+If the dataset has a default weight variable configured, it will always
+be present on the response even if it wasn't included on a PATCH request.
+
+Removing variables from this list will have the side effect of changing any 
+user's preference that had such variables set as their weight to the current
+dataset's default weight.
+
 
 ```json
 {
-  "groups": [{
-    "group": "weight_variables",
-    "entities": ["https://app.crunch.io/api/datasets/42d0a3/variables/42229f"]
-  }]
+  "graph": ["https://app.crunch.io/api/datasets/42d0a3/variables/42229f"]
 }
 ```
 
