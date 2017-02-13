@@ -239,3 +239,142 @@ Example response
 ### HTTP Request
 
 `POST http://nebeus.com/signup/1.0/json`
+
+# Dashboard
+
+> `POST http://domain.com/partner/dashboard`
+
+```
+Example response
+```
+
+```json
+{
+  "name": "User",
+  "surname": "Anonymous",
+  "city": "Barcelona",
+  "country_name": "Spain",
+  "country_code": "ES",
+  "rating": 5,
+  "credit_rank": 3,
+  "verification": {
+    "address": {
+      "status": "verified",
+      "points": 5
+    },
+    "identity": {
+      "status": "verified",
+      "points": 5
+    },
+    "phone": {
+      "status": true,
+      "points": 5
+    }
+  },
+  "social_networks": [
+    {
+      "name": "Facebook Graph",
+      "connected": false,
+      "auth_link": "..."
+    },
+    {
+      "name": "Google OAuth2",
+      "connected": false,
+      "auth_link": "..."
+    },
+    {
+      "name": "LinkedIn",
+      "connected": false,
+      "auth_link": "..."
+    },
+    {
+      "name": "PayPal",
+      "connected": true,
+      "auth_link": "..."
+    }
+  ],
+  "default_currency": {
+    "rate": 1,
+    "name": "EUR"
+  },
+  "accounts": [
+    {
+      "acc_number": "1Bhrfsdljaflkiudsf",
+      "currency": {
+        "rate": 0.001163,
+        "name": "BTC"
+      },
+      "sum": 0.001
+    } 
+    {
+      "acc_number": "1Bhrfsdljaflkiudsf",
+      "currency": {
+        "rate": 1,
+        "name": "EUR"
+      },
+      "sum": 14.56
+    } 
+  ],
+  "transactions": [
+    {
+      "credit": 0,
+      "currency": "BTC",
+      "date": "2016-12-03 10:13:53",
+      "debit": 0.001,
+      "id": "dfb932fg",
+      "partner": {
+        "surname": "Transfer",
+        "name": "Internal"
+      },
+      "type": "Disbursement of a loan"
+    },
+    {
+      "credit": 0.001,
+      "currency": "BTC",
+      "date": "2016-12-03 14:30:56",
+      "debit": 0.0,
+      "id": "af32dffg",
+      "partner": {
+        "surname": "Anonymous",
+        "name": "User",
+        "id": 134,
+        "country_code": "ES"
+      },
+      "type": "Disbursement of a loan"
+    }
+  ],
+  "nearest_operations": [{
+    "amount": 0,
+    "date": "2016-12-08 10:13:45",
+    "description": "Loan repayment",
+    "id": "db8fa412d",
+    "type": "credit"
+  }]
+}
+```
+
+### HTTP Request
+
+`POST http://domain.com/partner/dashboard`
+
+# Get partner profile image
+
+> `GET http://domain.com/partner/${uid}/profile_image/big`
+
+### HTTP Request
+
+Big image (150x150px)
+
+`GET http://domain.com/partner/${uid}/profile_image/big`
+
+Small image (64x64px)
+
+`GET http://domain.com/partner/${uid}/profile_image`
+
+# Get country flag
+
+> `GET http://domain.com/assets/svg/i_country-${country_code}.svg`
+
+### HTTP Request
+
+`GET http://domain.com/assets/svg/i_country-${country_code}.svg`
