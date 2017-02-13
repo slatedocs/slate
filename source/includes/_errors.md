@@ -1,20 +1,5 @@
 # Errors
 
-Beyonic uses HTTP response status codes to indicate success or failure. When a request to our API is successful, Beyonic returns an HTTP response code in the 2XX range.
-And when a request fails, Beyonic returns an HTTP response code in the _4XX_ or _5XX_ range.
-
-In summary:
-
-* Codes in the _2XX_ range mean that the request was processed successfully
-* Codes in the _4XX_ range mean that something was wrong with the data that you sent. For example, you might have missed some required parameters, or you might be using a wrong API token.
-* Codes in the _5XX_ range mean that something went wrong within Beyonic's servers.
-
-In all cases, the response will include an appropriate status code and content-type. The body of the response will include any additional details regarding the nature of the error.
-
-Most error responses will include a "detail" key in the body of the response, but some may include additional information, for example, they may include information about missing fields.
-
-The examples to the right show some of the errors that might occur, including the status code and content-type in the response header, and the json-formatted details in the response body.
-
 > 401 Unauthorized error response due to using a wrong token.
 
 ```text
@@ -35,6 +20,21 @@ Content-Length: 94
 {"amount": ["A valid integer is required."], "description": ["This field may not be blank."]}
 ```
 
+Beyonic uses HTTP response status codes to indicate success or failure. When a request to our API is successful, Beyonic returns an HTTP response code in the 2XX range.
+And when a request fails, Beyonic returns an HTTP response code in the _4XX_ or _5XX_ range.
+
+In summary:
+
+* Codes in the _2XX_ range mean that the request was processed successfully
+* Codes in the _4XX_ range mean that something was wrong with the data that you sent. For example, you might have missed some required parameters, or you might be using a wrong API token.
+* Codes in the _5XX_ range mean that something went wrong within Beyonic's servers.
+
+In all cases, the response will include an appropriate status code and content-type. The body of the response will include any additional details regarding the nature of the error.
+
+Most error responses will include a "detail" key in the body of the response, but some may include additional information, for example, they may include information about missing fields.
+
+The examples to the right show some of the errors that might occur, including the status code and content-type in the response header, and the json-formatted details in the response body.
+
 ## Common Error Codes
 
 Error Code | Meaning
@@ -53,11 +53,6 @@ Error Code | Meaning
 *Note*: always check the response body for details about the error.
 
 ## Handling errors
-
-Your code should handle errors gracefully.
-
-Beyonic's API libraries will raise an exception when an error occurs. So you should add exception handling to your requests as shown in the examples to the right.
-
 
 ```php
 <?php
@@ -96,3 +91,7 @@ rescue RestClient::ExceptionWithResponse => e   # You probably want to use more 
   p e  # Print out the error
 end
 ```
+
+Your code should handle errors gracefully.
+
+Beyonic's API libraries will raise an exception when an error occurs. So you should add exception handling to your requests as shown in the examples to the right.
