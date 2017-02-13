@@ -200,7 +200,7 @@ name | string | Required | User's name
 surname | string | Required | User's surname
 password | string | Required | Password 
 confirm_password | string | Required | Password confirmation
-country_id | number | Required | Country id
+country | number | Required | Country id
 device_type | number | Optional | Device type
 identifier | string | Optional | Push notification identifier from Google or Apple
 language | string | Optional | Language code
