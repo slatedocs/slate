@@ -302,11 +302,16 @@ Behaves sames as PATCH.
 
 `/datasets/{id}/variables/weights/`
 
+#### GET
+
 GET a `shoji:order` that contains the urls of the variables that have been 
 designated as possible weight variables.
 
+#### PATCH 
+
 PATCH the `graph` with a list of the desired list of weight variables. The
-list will always be overwritten with the new values.
+list will always be overwritten with the new values. This order can only
+be a flat list of URLs, any nesting will be rejected with a 400 response.
 
 If the dataset has a default weight variable configured, it will always
 be present on the response even if it wasn't included on a PATCH request.
@@ -314,6 +319,10 @@ be present on the response even if it wasn't included on a PATCH request.
 Removing variables from this list will have the side effect of changing any 
 user's preference that had such variables set as their weight to the current
 dataset's default weight.
+
+Only numeric variables are allowed to be used as weight. If a variable of 
+another type is included in the list, the server will abort and return a 409 
+response.
 
 
 ```json
@@ -326,6 +335,10 @@ dataset's default weight.
 It is only possible to submit variables that belong to the main dataset. That
 is, variables from joined datasets cannot be set as weight.
 </aside>
+
+#### PUT
+
+Behaves sames as PATCH.
 
 ### Entity
 
