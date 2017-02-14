@@ -357,6 +357,8 @@ Example response
 
 `POST http://domain.com/partner/dashboard`
 
+Possible verification statuses for identity and residency address: not_verified, pending, verified, rejected.
+
 # Get partner profile image
 
 > `GET http://domain.com/partner/${uid}/profile_image/big`
@@ -378,3 +380,64 @@ Small image (64x64px)
 ### HTTP Request
 
 `GET http://domain.com/assets/svg/i_country-${country_code}.svg`
+
+# Submit support ticket
+
+> `POST http://domain.com/helpdesk/message`
+
+```
+Successful ticket submission response
+```
+
+```json
+[
+  {
+    "id": null,
+    "jsonrpc": "2.0",
+    "result": {
+      "status": "success"
+    }
+  }
+]
+```
+
+```
+Unsuccessful ticket submission response
+```
+
+```
+{
+  "id": null,
+  "jsonrpc": "2.0",
+  "result": {
+    "status": "error",
+    "field": "email",
+    "message": "Email should be specified"
+  }
+}
+```
+
+
+### HTTP Request
+
+`POST http://domain.com/helpdesk/message`
+
+### Arguments
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+login | string | Required | string with user's email
+name | string | Required | string with user's name
+message | string | Required | string with message
+
+### Returns
+
+Dictionary with status of creating ticket in helpdesk and zendesk.
+
+Contains fields:
+
+Parameter | Description | Possible values 
+--------- | ----------- | -----------
+status | status of creating process | 'success' or 'error'
+field | field, which contains error | *
+message | error message | *
