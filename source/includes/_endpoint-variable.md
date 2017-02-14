@@ -349,7 +349,7 @@ derived | boolean | Whether the variable is a function of another; default: fals
 type | string | The string type name
 categories | array | If "type" is "categorical", "multiple_response", or "categorical_array", an array of category definitions (see below). Other types have an empty array
 subvariables | array of URLs | For array variables, an ordered array of subvariable ids
-subreferences | array of objects | For array variables, an ordered array of {"name": ..., "alias": ..., ...} objects, one per subvariable
+subreferences | object of objects | For array variables, an object of {"name": ..., "alias": ..., ...} objects keyed by subvariable
 resolution | string | For datetime variables, a string, such as "Y", "M", "D", "h", "m", "s", "ms", that indicates the unit size of the datetime data.
 derivation | object | For derived variables, a Crunch expression which was used to derive this variable; or null
 format | object | An object with various members to control the display of Variable data (see below)
@@ -413,6 +413,35 @@ Actions that are best or only achieved elsewhere include:
 * altering missing rules.
 
 Variable "id" and "dataset_id" are immutable.
+
+Example:
+
+```json
+{
+  "subvariables": [
+    "http://app.crunch.io/api/datasets/d4db9831e08a4922b054e49b47a0045c/variables/00000c/subvariables/0008/",
+    "http://app.crunch.io/api/datasets/d4db9831e08a4922b054e49b47a0045c/variables/00000c/subvariables/0007/",
+    "http://app.crunch.io/api/datasets/d4db9831e08a4922b054e49b47a0045c/variables/00000c/subvariables/0009/"
+  ],
+  "subreferences": {
+    "http://app.crunch.io/api/datasets/d4db9831e08a4922b054e49b47a0045c/variables/00000c/subvariables/0008/": {
+      "alias": "subvar_2",
+      "name": "v2_new_name",
+      "description": null
+    },
+    "http://app.crunch.io/api/datasets/d4db9831e08a4922b054e49b47a0045c/variables/00000c/subvariables/0007/": {
+      "alias": "subvar_1_new_name",
+      "name": "v1_new_name",
+      "description": null
+    },
+    "http://app.crunch.io/api/datasets/d4db9831e08a4922b054e49b47a0045c/variables/00000c/subvariables/0009/": {
+      "alias": "subvar_3",
+      "name": "subvar_3",
+      "description": "new description"
+    }
+  }
+}
+```
 
 #### POST
 
