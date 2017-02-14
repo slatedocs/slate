@@ -893,6 +893,18 @@ EXEMPLO DE CORPO DA RESPOSTA COM SUCESSO
   {
     "url":"https://cobrato-uploads.s3.amazonaws.com/billets/1/6186_08033_1445001056.pdf?Expires=1445034829"
   }
+
+EXEMPLO DE ESTADO DA RESPOSTA COM INSUCESSO
+
+    422 Unprocessable Entity
+
+EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
+
+  {
+    "errors": {
+      "message": "O boleto bancário para esta cobrança ainda não está disponível. Se sua cobrança é registrada você precisa registrar essa cobrança enviando o arquivo de remessa para seu banco."
+    }
+  }
 ```
 
 Mostra o link da url do boleto de determinada cobrança via Boleto
