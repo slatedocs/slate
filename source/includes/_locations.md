@@ -21,9 +21,7 @@ $success = $api->post('/v1/clients-and-locations/locations/', [
     'region'               => 'NY', // State or Region
     'city'                 => 'New York',
     'postcode'             => '10019',
-    'telephone'            => '+1 212-554-1515', 
-    'email_addresses' 	   => ['test@lebernardin.com'], 
-    'email_addresses_for_changes' => [],
+    'telephone'            => '+1 212-554-1515',
 ]);
 print_r($success);
 ```
@@ -43,8 +41,6 @@ curl -X POST \
  -d 'city=New York' \
  -d 'postcode=10019' \
  -d 'telephone=+1 212-554-1515' \
- -d 'email_addresses=["test@lebernardin.com"]' \
- -d 'email_addresses_for_changes=[]' \
  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/
 ```
 
@@ -62,8 +58,6 @@ parameters.Add("region", "NY"); // State or Region
 parameters.Add("city", "New York");
 parameters.Add("postcode", "10019");
 parameters.Add("telephone", "+1 212-554-1515");
-parameters.Add("email_addresses", ["test@lebernardin.com"]);
-parameters.Add("email_addresses_for_changes", []);
 
 var success = request.Post("/v1/clients-and-locations/locations/", parameters);
 ```
@@ -100,8 +94,6 @@ address2 | 80 characters max
 region | <span class="label label-required">Required</span> 20 characters max
 city | <span class="label label-required">Required</span> 20 characters max
 postcode | <span class="label label-required">Required</span> 80 characters max
-email_addresses | <span class="label label-required">Required</span> JSON array
-email_addresses_for_changes | <span class="label label-required">Required</span> JSON array
 telephone | <span class="label label-required">Required</span> 20 characters max
 unique-reference | An arbitrary unique reference you can use to identify a location. This may correspond to a unique value used within your system and can be useful when importing or exporting data. 50 characters max.
 contact-first-name | 50 characters max
@@ -144,8 +136,6 @@ $success = $api->put('/v1/clients-and-locations/locations/' .$locationId, [
     'city'                 			=> 'New York',
     'postcode'             			=> '10019',
     'telephone'            			=> '+1 212-554-1515',
-    'email_addresses' 	   			=> ['test@lebernardin.com'], 
-    'email_addresses_for_changes' 	=> [],
 ]);
 print_r($success);
 ```
@@ -165,8 +155,6 @@ curl -X PUT \
  -d 'city=New York' \
  -d 'postcode=10019' \
  -d 'telephone=+1 212-554-1515' \
- -d 'email_addresses=["test@lebernardin.com"]' \
- -d 'email_addresses_for_changes=[]' \
  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/1
 ```
 
@@ -185,8 +173,6 @@ parameters.Add("region", "NY"); // State or Region
 parameters.Add("city", "New York");
 parameters.Add("postcode", "10019");
 parameters.Add("telephone", "+1 212-554-1515");
-parameters.Add("email_addresses", ["test@lebernardin.com"]);
-parameters.Add("email_addresses_for_changes", []);
 
 var success = request.Put("/v1/clients-and-locations/locations/" + locationId + "", parameters);
 ```
@@ -224,8 +210,6 @@ postcode | 80 characters max
 telephone | 20 characters max
 unique-reference | An arbitrary unique reference you can use to identify a location. This may correspond to a unique value used within your system and can be useful when importing or exporting data. 50 characters max.
 contact-first-name | 50 cha8acters max
-email_addresses | <span class="label label-required">Required</span> JSON array
-email_addresses_for_changes | <span class="label label-required">Required</span> JSON array
 contact-last-name | 50 characters max
 contact-mobile | 20 characters max
 contact-telephone | 20 characters max
