@@ -54,9 +54,7 @@ With the relative flag enabled, the variable catalog looks something like this:
     "self": "https://app.crunch.io/api/datasets/5ee0a0/variables/",
     "orders": {
         "hier": "https://app.crunch.io/api/datasets/5330a0/variables/hier/",
-        "personal": "https://app.crunch.io/api/datasets/5330a0/variables/personal/"
-    },
-    "views": {
+        "personal": "https://app.crunch.io/api/datasets/5330a0/variables/personal/",
         "weights": "https://app.crunch.io/api/datasets/5ee0a0/variables/weights/"
     },
     "specification": "https://app.crunch.io/api/specifications/variables/",
@@ -153,9 +151,8 @@ line 24.
     "element": "shoji:catalog",
     "self": "https://app.crunch.io/api/datasets/5ee0a0/variables/",
     "orders": {
-        "hier": "https://app.crunch.io/api/datasets/5330a0/variables/hier/"
-    },
-    "views": {
+        "hier": "https://app.crunch.io/api/datasets/5330a0/variables/hier/",
+        "personal": "https://app.crunch.io/api/datasets/5330a0/variables/personal/",
         "weights": "https://app.crunch.io/api/datasets/5ee0a0/variables/weights/"
     },
     "specification": "https://app.crunch.io/api/specifications/variables/",
