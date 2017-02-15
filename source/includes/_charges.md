@@ -114,6 +114,7 @@ Cada uma das cobranças criadas serão do mesmo tipo da configuração. Desta fo
 | payer_state                    | string           | sigla do estado do endereço do pagador ("RJ" por exemplo)                                                                                           |
 | registration_status            | string           | status de registro em que a cobrança se encontra (without_remittance, remitted, registered, registered_with_error, cancelation_started, canceled)   |
 | canceled_at                    | datetime         | data e horário em que a cobrança foi cancelada, se for o caso                                                                                       |
+| available_billet               | boolean          | indica se o boleto está disponível para download                                                                                                    |
 | _links                         | array of object  | links relacionados à cobrança                                                                                                                       |
 
 ### Gateway de Pagamento
@@ -218,6 +219,7 @@ EXEMPLO DE CORPO DA RESPOSTA (BOLETO)
     "payer_state": "RJ",
     "registration_status": "without_remittance",
     "canceled_at": "2015-01-31T17:46:01.253Z",
+    "available_billet": "false",
     "_links":
       [
         {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/charges/1"},
