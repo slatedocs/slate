@@ -14,13 +14,13 @@ $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v1/clients-and-locations/locations/', [
     'name'                 => 'Le Bernardin',
     'url'                  => 'le-bernardin.com',
-	'business-category-id' =>  605,
-	'country'              => 'USA', // 3 letter iso code
-	'address1'             => '155 West 51st Street',
+    'business-category-id' =>  605,
+    'country'              => 'USA', // 3 letter iso code
+    'address1'             => '155 West 51st Street',
     'address2'             => '',
-	'region'               => 'NY', // State or Region
-	'city'                 => 'New York',
-	'postcode'             => '10019',
+    'region'               => 'NY', // State or Region
+    'city'                 => 'New York',
+    'postcode'             => '10019',
     'telephone'            => '+1 212-554-1515', 
     'email_addresses' 	   => ['test@lebernardin.com'], 
     'email_addresses_for_changes' => [],
@@ -136,13 +136,13 @@ $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->put('/v1/clients-and-locations/locations/' .$locationId, [
     'name'                	 		=> 'Le Bernardin',
     'url'                  			=> 'le-bernardin.com',
-	'business-category-id' 			=>  605,
-	'country'              			=> 'USA', // 3 letter iso code
-	'address1'             			=> '155 West 51st Street',
+    'business-category-id' 			=>  605,
+    'country'              			=> 'USA', // 3 letter iso code
+    'address1'             			=> '155 West 51st Street',
     'address2'             			=> '',
-	'region'               			=> 'NY', // State or Region
-	'city'                 			=> 'New York',
-	'postcode'             			=> '10019',
+    'region'               			=> 'NY', // State or Region
+    'city'                 			=> 'New York',
+    'postcode'             			=> '10019',
     'telephone'            			=> '+1 212-554-1515',
     'email_addresses' 	   			=> ['test@lebernardin.com'], 
     'email_addresses_for_changes' 	=> [],
@@ -402,10 +402,8 @@ curl -X GET \
 
 ```csharp
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
 var parameters = new api.Parameters();
-       parameters.Add("q", "BrightLocal");
-
+parameters.Add("q", "BrightLocal");
 var success = request.Get("/v1/clients-and-locations/locations/search", parameters);
 ```
 
@@ -416,17 +414,17 @@ var success = request.Get("/v1/clients-and-locations/locations/search", paramete
     "success": true,
     "locations":  [
         {
-			"location-id": 1,
-			"location-name":"BrightLocal HQ",
-			"client-id":1,
-			"location-reference":"BL1"
-	   },
-	    {
-			"location-id": 2,
-			"location-name":"Talking Elephant",
-			"client-id":12,
-			"location-reference":"TE12"
-	   }
+	    "location-id": 1,
+            "location-name":"BrightLocal HQ",
+            "client-id":1,
+	    "location-reference":"BL1"
+	},
+	{
+            "location-id": 2,
+            "location-name":"Talking Elephant",
+            "client-id":12,
+            "location-reference":"TE12"
+	}
     ]
 }
 ```
