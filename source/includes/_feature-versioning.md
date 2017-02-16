@@ -17,9 +17,6 @@ Two endpoints are provided to do so, the `dataset/{id}/actions/since_forking` an
 The `dataset/{id}/actions/since_forking` endpoint will return the state of the fork and the upstream and the
 the list of actions that were performed on the fork since the two diverged.
 
-The `dataset/{id}/actions/upstream_delta` endpoint, together with the state of the two,
-will instead return the list of actions that were performed on the upstream since the two diverged.
-
 ```python
 >>> forkds.actions.since_forking
 pycrunch.shoji.View(**{
@@ -69,7 +66,7 @@ pycrunch.shoji.View(**{
             "modification_time": "2017-02-16T11:01:40.131000+00:00",
             "revision": "58a586940183667486130efc",
             "id": "2730c0744cba4d7c9acc9f3551380e49",
-            "name": "My fork"
+            "name": "My Dataset"
         }
     },
     "element": "shoji:view"
@@ -77,10 +74,10 @@ pycrunch.shoji.View(**{
 ```
 
 ```http
-POST /api/datasets/5de96a/actions/ HTTP/1.1
+GET /api/datasets/5de96a/actions/since_forking HTTP/1.1
 Host: app.crunch.io
 Content-Type: application/json
-Content-Length: 231
+Content-Length: 1769
 
 {
     "element": "shoji:view",
@@ -129,11 +126,15 @@ Content-Length: 231
             "modification_time": "2017-02-16T11:01:40.131000+00:00",
             "revision": "58a586940183667486130efc",
             "id": "2730c0744cba4d7c9acc9f3551380e49",
-            "name": "My fork"
+            "name": "My Dataset"
         }
     }
 }
 ```
+
+The `dataset/{id}/actions/upstream_delta` endpoint usage and response matches the one of
+the other endpoint, but the returned actions are instead the ones that were performed
+on the upstream since the two diverged.
 
 ### Savepoints
 
