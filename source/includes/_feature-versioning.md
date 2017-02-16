@@ -8,20 +8,147 @@ All Crunch datasets keep track of the changes you make to them, from the initial
 
 The list of changes are available in the `dataset/{id}/actions/` catalog. GET it and sort/filter by the "datetime" and/or "user" members as desired. Follow the links to an individual action entity to get exact details about what changed.
 
+#### Viewing Changes Diff
+
+Through the actions catalog it's possible to retrieve the differences of a "fork" dataset from its "upstream" dataset.
+
+Two endpoints are provided to do so, the `dataset/{id}/actions/since_forking` and the `dataset/{id}/actions/upstream_delta` endpoints.
+
+The `dataset/{id}/actions/since_forking` endpoint will return the state of the fork and the upstream and the
+the list of actions that were performed on the fork since the two diverged.
+
+The `dataset/{id}/actions/upstream_delta` endpoint, together with the state of the two,
+will instead return the list of actions that were performed on the upstream since the two diverged.
+
+```python
+>>> forkds.actions.since_forking
+pycrunch.shoji.View(**{
+    "self": "https://app.crunch.io/api/datasets/051ebb979db44523822ffe29236a6670/actions/since_forking/",
+    "value": {
+        "dataset": {
+            "modification_time": "2017-02-16T11:01:41.807000+00:00",
+            "revision": "58a586950183667486130f0c",
+            "id": "051ebb979db44523822ffe29236a6670",
+            "name": "My fork"
+        },
+        "actions": [
+            {
+                "hash": "2a863871-c809-4cad-a20c-9fea86b9e763",
+                "state": {
+                    "failed": false,
+                    "completed": true,
+                    "played": true
+                },
+                "params": {
+                    "variable": "fab0c81d16b442089cc50019cf610961",
+                    "definition": {
+                        "alias": "var1",
+                        "type": "text",
+                        "name": "var1",
+                        "id": "fab0c81d16b442089cc50019cf610961"
+                    },
+                    "dataset": {
+                        "id": "051ebb979db44523822ffe29236a6670",
+                        "branch": "master"
+                    },
+                    "values": [
+                        "sample sentence",
+                        "sample sentence",
+                        "sample sentence",
+                        "sample sentence",
+                        "sample sentence",
+                        "sample sentence",
+                        "sample sentence"
+                    ],
+                    "owner_id": null
+                },
+                "key": "Variable.create"
+            }
+        ],
+        "upstream": {
+            "modification_time": "2017-02-16T11:01:40.131000+00:00",
+            "revision": "58a586940183667486130efc",
+            "id": "2730c0744cba4d7c9acc9f3551380e49",
+            "name": "My fork"
+        }
+    },
+    "element": "shoji:view"
+})
+```
+
+```http
+POST /api/datasets/5de96a/actions/ HTTP/1.1
+Host: app.crunch.io
+Content-Type: application/json
+Content-Length: 231
+
+{
+    "element": "shoji:view",
+    "value": {
+        "dataset": {
+            "modification_time": "2017-02-16T11:01:41.807000+00:00",
+            "revision": "58a586950183667486130f0c",
+            "id": "051ebb979db44523822ffe29236a6670",
+            "name": "My fork"
+        },
+        "actions": [
+            {
+                "hash": "2a863871-c809-4cad-a20c-9fea86b9e763",
+                "state": {
+                    "failed": false,
+                    "completed": true,
+                    "played": true
+                },
+                "params": {
+                    "variable": "fab0c81d16b442089cc50019cf610961",
+                    "definition": {
+                        "alias": "var1",
+                        "type": "text",
+                        "name": "var1",
+                        "id": "fab0c81d16b442089cc50019cf610961"
+                    },
+                    "dataset": {
+                        "id": "051ebb979db44523822ffe29236a6670",
+                        "branch": "master"
+                    },
+                    "values": [
+                        "sample sentence",
+                        "sample sentence",
+                        "sample sentence",
+                        "sample sentence",
+                        "sample sentence",
+                        "sample sentence",
+                        "sample sentence"
+                    ],
+                    "owner_id": null
+                },
+                "key": "Variable.create"
+            }
+        ],
+        "upstream": {
+            "modification_time": "2017-02-16T11:01:40.131000+00:00",
+            "revision": "58a586940183667486130efc",
+            "id": "2730c0744cba4d7c9acc9f3551380e49",
+            "name": "My fork"
+        }
+    }
+}
+```
+
 ### Savepoints
 
-You can snapshot the current state of the dataset at any time with a POST to 
-`datasets/{id}/savepoints/`. This marks the current point in the actions 
-history, allowing you to provide a description of your progress. 
+You can snapshot the current state of the dataset at any time with a POST to
+`datasets/{id}/savepoints/`. This marks the current point in the actions
+history, allowing you to provide a description of your progress.
 
 The 201 response will contain a Location header to the new version created.
 
 #### Reverting savepoints
 
-You can revert to any savepoint version (throwing away any changes since that 
+You can revert to any savepoint version (throwing away any changes since that
 time) with a POST to `/datasets/{dataset_id}/savepoints/{version_id}/revert/`.
 
-It will return a 202 response with a Shoji:view containing a progress URL on 
+It will return a 202 response with a Shoji:view containing a progress URL on
 its value where the asynchronous job's status can be observed.
 
 ### Forking and Merging
@@ -97,19 +224,19 @@ HTTP/1.1 202 Accepted
 }
 ```
 
-The POST to the actions catalog tells the original dataset to replay a set of 
-actions; since we specify a "dataset" url, we are telling it to replay all 
-actions from the forked dataset. Crunch keeps track of which actions are 
-already common between the two datasets, and won't try to replay those. You can 
+The POST to the actions catalog tells the original dataset to replay a set of
+actions; since we specify a "dataset" url, we are telling it to replay all
+actions from the forked dataset. Crunch keeps track of which actions are
+already common between the two datasets, and won't try to replay those. You can
 even make further changes to the forked dataset and merge again and again.
 
-Use the "autorollback" member to tell Crunch how to handle merge conflicts. If 
+Use the "autorollback" member to tell Crunch how to handle merge conflicts. If
 an action cannot be replayed on the original dataset (typically because it has
- had conflicting changes or has been rolled back), then if "autorollback" is 
- true (the default), the original dataset will be reverted to the previous 
- state before any of the new changes were applied. If "autorollback" is false, 
+ had conflicting changes or has been rolled back), then if "autorollback" is
+ true (the default), the original dataset will be reverted to the previous
+ state before any of the new changes were applied. If "autorollback" is false,
  the dataset is left in the half-merged state, which allows you to investigate
-  the problem, repair it if possible (in either dataset as needed), and then 
+  the problem, repair it if possible (in either dataset as needed), and then
   POST again to continue the merge.
 
 Per-user settings (filters, decks and slides, variable permissions etc) are copied to the new dataset when you fork. However, changes to them are not merged back at this time. Please reach out to us as you experiment so we can fine-tune which details to fork and merge as we discover use cases.
