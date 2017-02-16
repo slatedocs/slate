@@ -299,7 +299,9 @@ The json response contains a list of events as an array and a meta block.
 - id (integer), the unique database id of the event
 - title (string), the name of the event
 - sub_title (string), the sub title of the event
-- featured, boolean flag of whether the exhibition is featured or not
+- featured, boolean flag of whether the event is featured or not
+- bookable, boolean flag of whether the event is bookable in the current scope or not
+- registerable, boolean flag of whether the event is public registerable or not
 
 plus blocks of attributes for category, picture, location and audiences.
 
@@ -312,6 +314,8 @@ curl "https://demo.gomus.de/api/v4/events/1"
 ```
 
 The information is the same as that of the events list response, but with the addition of the description key and dynamic contents.
+If event is registerable and an authenticatable user has the permission, this attribute contains a link to the public
+registration form.
 
 ## Calendar for a single event
 
@@ -450,6 +454,7 @@ The json response contains a list of dates as an array and a meta block.
 - sub_title (string), the sub title of the date
 - start_time (iso8601), the date's timestamp
 - language, with id and name
+- registerable, boolean flag of whether the date is public registerable or not
 
 ## Details for a single date
 
@@ -510,7 +515,8 @@ curl "https://demo.gomus.de/api/v4/events/1/dates/1"
 ```
 
 The detailed view for a single date provides all information needed to create for example an event date booking via the reseller API.
-
+If date is registerable and an authenticatable user has the permission, this attribute contains a link to the public
+registration form.
 
 ### Response
 
