@@ -151,6 +151,8 @@ These are available to download if the order `is_valid` and if there is a `token
 
 Some orders may have an invoice available (indicated by the `invoice` attribute in the order).
 
+Some orders may have passbooks for tickets available (indicated by the `passbooks` attribute in the ticket sale in order).
+
 Due to the token confirmation, authentication via header request is not needed for the document requests.
 
 ### Tickets
@@ -158,6 +160,13 @@ Due to the token confirmation, authentication via header request is not needed f
 `GET https://demo.gomus.de/api/v4/orders/:order_id/tickets/:ticket_id.pdf?token=:token`
 
 - ticket_id means the uniq ticket sale id (order -> order item -> ticket sale)
+
+### Passbooks
+
+`GET https://demo.gomus.de/api/v4/orders/:order_id/tickets/:ticket_id/passbooks/:barcode.pkpass?token=:token`
+
+- ticket_id means the uniq ticket sale id (order -> order item -> ticket sale)
+- barcode means the uniq barcode for each item within a ticket sale (order -> order item -> ticket sale -> barcodes)
 
 ### Events
 
