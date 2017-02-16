@@ -48,7 +48,19 @@ curl "http://feed.accern.com/v3/alphas?last_id=1774184&token=TOKEN"
 curl "http://feed.accern.com/v3/alphas?index=sp500&token=TOKEN"
 ```
 
+> Filter by multiple indexes
+
+```shell
+curl "http://feed.accern.com/v3/alphas?index=sp500,dow30&token=TOKEN"
+```
+
 > Filter by ticker
+
+```shell
+curl "http://feed.accern.com/v3/alphas?ticker=amzn&token=TOKEN"
+```
+
+> Filter by multiple tickers
 
 ```shell
 curl "http://feed.accern.com/v3/alphas?ticker=aapl,amzn&token=TOKEN"
@@ -56,9 +68,9 @@ curl "http://feed.accern.com/v3/alphas?ticker=aapl,amzn&token=TOKEN"
 
 Parameter | Description 
 -----------| ------------
-last_id	      | Returns the latest 100 documents that came after the provided id.  Used to prevent duplicates while keeping in sync (see **polling** section).
-index         | Filters documents by the index, see below table for supported indexes.
-ticker         | Filters documents by ticker
+last_id	      | Returns the latest 100 documents that came after the provided id.  Used to prevent duplicates while keeping in sync (see **streaming** section).
+index         | Filters documents by the index, see below table for supported indexes. To filter by multiple indexes pass a comma separated list of indexes.
+ticker         | Filters documents by ticker. To filter by multiple tickers pass a comma separated list of tickers. 
 
 ### Allowed index values
 
@@ -71,15 +83,10 @@ Wilshire 5000		| wilshire5000
 Barron's 400		| barrons400
 DOW 30				| dow30
 
-<aside class="notice">
-You can provide multiple values to index and ticker parameters by passing a comma separated list.
-</aside>
+## Streaming
 
-## Polling
-
-To stay in sync with the API you make a request with `last_id=[lastest document id]` then grab the id of the latest document that comes back and repeat. We packaged this logic up in a API client gem (coming soon).
-
+To stay in sync with the API you make a request with `last_id=[lastest document id]` then grab the id of the latest document that comes back and repeat. We packaged this logic up in our Accern gem, to install follow the instructions on the [repo](https://github.com/accern/accern).
 
 ## Backfill
 
-The API allows you to access data going back 30 days, anything older we provide via other means. To start from 30 days ago and move forward you have to provide `last_id=0`. Then continue to hit the API while setting the `last_id` field.
+The API allows you to access data going back 30 days, anything older we provide via other means. To start from 30 days ago and move forward you have to provide `last_id=0`. Then continue to hit the API while setting the `last_id` query string parameter.
