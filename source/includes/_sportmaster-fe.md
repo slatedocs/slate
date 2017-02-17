@@ -1,19 +1,9 @@
-# Sportmaster rendering layer
-## Introduction
+#Sportmaster rendering layer
+##Introduction
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-It contains:
-*     webpack with webpack-dev-server, html-webpack-plugin and style-loader
-*     Babel with ES6 and extensions used by Facebook (JSX, object spread, class properties)
-*     Autoprefixer
-*     ESLint
-*     Jest
-*     and others.
-
-**Be aware:** package.json do not contain these dependencies, they will appear after running `npm run eject` as well as webpack/babel settings and build scripts. Read more [here](../Available-Scripts). 
-
-## Available scripts
+##Available scripts
 
 In the project directory, you can run:
 
@@ -25,17 +15,19 @@ Open http://localhost:3000 to view it in the browser.
 The page will reload if you make edits.
 You will also see any lint errors in the console.
 
-`npm run eject`
+`npm run flow`
 
-Note: this is a one-way operation. Once you eject, you can’t go back!
+Typecheck a project without a persistent process. [Read more](##Flowtype).
 
-If you aren’t satisfied with the build tool and configuration choices, you can eject at any time. This command will remove the single build dependency from your project.
+`npm run styleguide-server`
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except eject will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Runs dev  server for **React Styleguidist** library. [Read more](##React Styleguidis).
+ 
+`pm run styleguide-build`
 
-You don’t have to ever use eject. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Generate a static HTML style guide for **React Styleguidist** library.
 
-## Folder structure
+##Folder structure
 
 > Default folder structure:
 
@@ -44,21 +36,32 @@ You don’t have to ever use eject. The curated feature set is suitable for smal
       README.md
       node_modules/
       package.json
+      .flowconfig
       .gitignore
     public/
       index.html
       favicon.ico
+    flow-typed/
     src/
       actions/
+      assets/
+        styles/
+          animations/
+          base/
+          mixins/
+          partials/
+        main.scss
       components/
       constants/
       containers/
         App.js
-        Root.js
+        DynamicRoute.js
+      environments/
       reducers/
         Root.js
       routes/
         Root.js
+      utilities/
       configureStore.js
       index.js
 ```
@@ -72,7 +75,19 @@ For the project to build, these files must exist with exact filenames:
 
     Contains action creators for both API and internal requests.
 
-Read more [here](../Action-creators).
+Read more [here](##Action creators).
+
+**scr/assets:**
+
+    Contains all files for external usage.
+    
+**scr/assets/styles:**
+
+    Directory dedicated for style style sheets.
+    
+**scr/assets/styles/main.scss:**
+
+    Main style sheet entry point. This file must contain all accessible style sheets, otherwise react not gonna see it. 
 
 **src/components:**
 
@@ -101,9 +116,9 @@ Read more [here](../Action-creators).
 
     src/routes/Root.js - combine children routes to one object.
 
-## Action creators
+##Action creators
 
-### Library: Redux Thunk
+###Library: Redux Thunk
 
 [redux-trunk](https://github.com/gaearon/redux-thunk)
 
@@ -119,7 +134,7 @@ export const actionName = payload => (dispatch, getState) => {
 
 Also this enable to dispatch more then one action or chain events. 
 
-### Library: Redux API Middleware
+###Library: Redux API Middleware
 
 [redux-api-middleware](https://github.com/agraboso/redux-api-middleware)
 
@@ -140,3 +155,74 @@ export const apiActionName = payload => (dispatch, getState) => (dispatch({
 ```
 
 Events `['REQUEST', 'SUCCESS', 'FAILURE']` are dispatched during request.
+
+For reducer's action handles it is optional to use `BasicApiProcessor`, which supports defaul error handling and initial state.
+ 
+> Usage example:
+
+```Javascript
+import { basicApiInitialState, basicApiProcessor } from '../utilities/BasicApiProcessor';
+import { REQUEST, SUCCESS, FAILURE } from '../constants/Api';
+// Have no idea how to make space...
+const initialState = {
+  ...basicApiInitialState,
+  field: [],
+};
+const reducer = handleActions({
+    [REDUCER_NAME_REQUEST]: (state, action) => ({
+      ...state,
+      ...basicApiProcessor(action, REQUEST),
+      active: undefined,
+    }),
+    initialState
+);
+
+```
+
+##Flowtype
+
+Flow is a static type checker that helps you write code with fewer bugs. Check out this [introduction to using static types in JavaScript](https://medium.freecodecamp.com/why-use-static-types-in-javascript-part-1-8382da1e0adb#.ujt814w5o)
+ if you are new to this concept.
+ 
+To enable static type checking for file - add  `// @flow` at the first line of document. To define variable/function static type add `:` after it's name declaration.
+
+> Usage example:
+
+````Javascript
+const foo = (x: string, y: number): number => ({
+  x.length * y;
+});
+````
+
+In case of ES6 `destructuring` parameters usage:
+
+```Javascript
+const foo = ({ x, y }: {x: string, y: number}): number => ({
+    x.length * y;
+});
+```
+
+To run assertations: `npm run flow`
+
+Configuration file can be found in project root under name `.flowconfig` which enable include/exclude scpecific path or files, libs to add declarations and extra options. 
+Custom types should all be declared in `flow-typed/types.js` and included by `import type { typeName } from 'sm-flow-types'
+
+To learn more about Flow, check out [its documentation](https://flowtype.org/).
+
+##React Styleguidis
+
+All components should fallow this file structure:
+
+```
+    ComponentName/
+        ComponentName.js
+        index.js
+        Readme.md
+```
+
+Where each component has its own folder which contains component declaration, universal export and style guide's markup. The `index.js` should contain 
+`export { default } from './ComponentName.js';` and nothing more. The `Readme.md` supports markup and JSX element.
+
+To create style guide simply run `npm run styleguide-server` and to build static html for it run `pm run styleguide-build`.
+
+To learn more about Flow, check out [its documentation](https://github.com/styleguidist/react-styleguidist)
