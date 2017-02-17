@@ -161,13 +161,13 @@ report-name | <span class="label label-required">Required</span>
 location-id | Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
 white-label-profile-id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
 business-names | <span class="label label-required">Required</span> Supply one or more busines names (max 5) as a JSON string. For example, ["Greens Restaurant","Greens"].
-website-address | <span class="label label-required">Required</span> The address for your business website.
-address1 | <span class="label label-required">Required</span>
-address2 |
+website-address | <span class="label label-required">Required</span> The address for your business website. 256 characters max. 
+address1 | <span class="label label-required">Required</span> 80 characters max. 
+address2 | 80 characters max. 
 area | The neighborhood or district for the business. For example, Charleston or Fulham.
 city | <span class="label label-required">Required</span>
 state-code | <span class="label label-required">Required</span> (USA, CAN:EN and AUS)
-postcode | <span class="label label-required">Required</span> A valid postcode or ZIP.
+postcode | <span class="label label-required">Required</span> A valid postcode or ZIP. 80 characters max. 
 telephone | <span class="label label-required">Required</span>
 country | <span class="label label-required">Required</span> One of USA, CAN:EN, GBR or AUS.
 business-category | <span class="label label-required">Required</span> The type of business - for example, Plumber (not Plumbing &amp; Heating Services).
@@ -324,13 +324,13 @@ report-name |
 location-id | Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
 white-label-profile-id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
 business-names | Supply one or more busines names (max 5) as a JSON string. For example, ["Greens Restaurant","Greens"].
-website-address | The address for your business website.
-address1 |
-address2 |
+website-address | The address for your business website. 256 characters max. 
+address1 | 80 characters max. 
+address2 | 80 characters max. 
 area | The neighborhood or district for the business. For example, Charleston or Fulham.
 city |
 state-code | (USA, CAN:EN and AUS)
-postcode | A valid postcode or ZIP.
+postcode | A valid postcode or ZIP. 80 characters max. 
 telephone |
 country | One of USA, CAN:EN, GBR or AUS.
 business-category | The type of business - for example, Plumber (not Plumbing &amp; Heating Services).

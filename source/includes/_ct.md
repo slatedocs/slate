@@ -81,12 +81,12 @@ business-name | <span class="label label-required">Required</span>
 business-location | <span class="label label-required">Required</span> Town or city name in which business is located.
 old-business-name-1	|
 old-business-name-2	|
-postcode |	
+postcode |	80 characters max. 
 old-postcode-1 |	
 old-postcode-2 |	
 country | One of USA, GBR, CAN, AUS. Defaults to USA.
 phone | <span class="label label-required">Required</span>	
-website | <span class="label label-required">Required</span> Link to the website of your business.
+website | <span class="label label-required">Required</span> Link to the website of your business. 256 characters max. 
 business-type | <span class="label label-required">Required</span> Business type (e.g. Hotel) NOT a business category (e.g. Hotels & Guest houses).
 state-code | <span class="label label-required">Required</span> (USA only). 2-letter state code (USA only).
 monthly-run | One of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31. Defaults to 0 (none).
@@ -181,12 +181,12 @@ business-name |
 business-location | Town or city name in which business is located.
 old-business-name-1	|
 old-business-name-2	|
-postcode |	
+postcode |	80 characters max. 
 old-postcode-1 |	
 old-postcode-2 |	
 country	| One of USA, GBR, CAN, AUS. Defaults to USA.
 phone |	
-website	| Link to the website of your business.
+website	| Link to the website of your business. 256 characters max. 
 business-type |	Business type (e.g. Hotel) NOT a business category (e.g. Hotels & Guest houses).
 location |	
 state-code | 2-letter state code (USA only).
