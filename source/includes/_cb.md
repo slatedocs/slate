@@ -169,13 +169,13 @@ service_name_3 |
 service_name_4 |		
 service_name_5 |		
 working_hours_apply_to_all | <span class="label label-required">Required</span> If this field has a value of Y you only need to specify working hours for Monday and these values are then also used for the other days of the week.
-working_hours_mon_24hrs | Yes or No. Defaults to No. If this filed has a value of Y it may be used in place of start and end parameters below.
-working_hours_tue_24hrs | Yes or No. Defaults to No. If this filed has a value of Y it may be used in place of start and end parameters below.
-working_hours_wed_24hrs | Yes or No. Defaults to No. If this filed has a value of Y it may be used in place of start and end parameters below.
-working_hours_thu_24hrs | Yes or No. Defaults to No. If this filed has a value of Y it may be used in place of start and end parameters below.
-working_hours_fri_24hrs | Yes or No. Defaults to No. If this filed has a value of Y it may be used in place of start and end parameters below.
-working_hours_sat_24hrs | Yes or No. Defaults to No. If this filed has a value of Y it may be used in place of start and end parameters below.
-working_hours_sun_24hrs | Yes or No. Defaults to No. If this filed has a value of Y it may be used in place of start and end parameters below.
+working_hours_mon_24hrs | Y or N. Defaults to N. This can be used in place of working_hours_mon_start and working_hours_mon_end.
+working_hours_tue_24hrs | Y or N. Defaults to N. This can be used in place of working_hours_tue_start and working_hours_tue_end.
+working_hours_wed_24hrs | Y or N. Defaults to N. This can be used in place of working_hours_wed_start and working_hours_wed_end.
+working_hours_thu_24hrs | Y or N. Defaults to N. This can be used in place of working_hours_thu_start and working_hours_thu_end.
+working_hours_fri_24hrs | Y or N. Defaults to N. This can be used in place of working_hours_fri_start and working_hours_fri_end.
+working_hours_sat_24hrs | Y or N. Defaults to N. This can be used in place of working_hours_sat_start and working_hours_sat_end.
+working_hours_sun_24hrs | Y or N. Defaults to N. This can be used in place of working_hours_sun_start and working_hours_sun_end.
 working_hours_mon_start	| <span class="label label-required">Required</span>	
 working_hours_mon_end | <span class="label label-required">Required</span>	
 working_hours_tue_start	| <span class="label label-required">Required</span>	
@@ -323,13 +323,13 @@ service_name_3 |
 service_name_4 |		
 service_name_5 |		
 working_hours_apply_to_all |  If this field has a value of Y you only need to specify working hours for Monday and these values are then also used for the other days of the week.
-working_hours_mon_24hrs | Yes or No. Defaults to No. If this filed has a value of Y it may be used in place of start and end parameters below.
-working_hours_tue_24hrs | Yes or No. Defaults to No. If this filed has a value of Y it may be used in place of start and end parameters below.
-working_hours_wed_24hrs | Yes or No. Defaults to No. If this filed has a value of Y it may be used in place of start and end parameters below.
-working_hours_thu_24hrs | Yes or No. Defaults to No. If this filed has a value of Y it may be used in place of start and end parameters below.
-working_hours_fri_24hrs | Yes or No. Defaults to No. If this filed has a value of Y it may be used in place of start and end parameters below.
-working_hours_sat_24hrs | Yes or No. Defaults to No. If this filed has a value of Y it may be used in place of start and end parameters below.
-working_hours_sun_24hrs | Yes or No. Defaults to No. If this filed has a value of Y it may be used in place of start and end parameters below.
+working_hours_mon_24hrs | Y or N. Defaults to N. This can be used in place of working_hours_mon_start and working_hours_mon_end.
+working_hours_tue_24hrs | Y or N. Defaults to N. This can be used in place of working_hours_tue_start and working_hours_tue_end.
+working_hours_wed_24hrs | Y or N. Defaults to N. This can be used in place of working_hours_wed_start and working_hours_wed_end.
+working_hours_thu_24hrs | Y or N. Defaults to N. This can be used in place of working_hours_thu_start and working_hours_thu_end.
+working_hours_fri_24hrs | Y or N. Defaults to N. This can be used in place of working_hours_fri_start and working_hours_fri_end.
+working_hours_sat_24hrs | Y or N. Defaults to N. This can be used in place of working_hours_sat_start and working_hours_sat_end.
+working_hours_sun_24hrs | Y or N. Defaults to N. This can be used in place of working_hours_sun_start and working_hours_sun_end.
 working_hours_mon_start	| 	
 working_hours_mon_end | 	
 working_hours_tue_start	| 	
