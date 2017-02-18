@@ -62,6 +62,10 @@ Now that Slate is all set up on your machine, you'll probably want to learn more
 
 If you'd prefer to use Docker, instructions are available [in the wiki](https://github.com/lord/slate/wiki/Docker).
 
+### Configuration Options
+
+Check out **config.rb** for more configuration options and the Project's Wiki.
+
 Companies Using Slate
 ---------------------------------
 
@@ -79,6 +83,7 @@ Companies Using Slate
 * [Coinbase](https://developers.coinbase.com/api)
 * [Parrot Drones](http://developer.parrot.com/docs/bebop/)
 * [Fidor Bank](http://docs.fidor.de/)
+* [Moesif API](https://www.moesif.com/docs/api)
 
 You can view more in [the list on the wiki](https://github.com/lord/slate/wiki/Slate-in-the-Wild).
 

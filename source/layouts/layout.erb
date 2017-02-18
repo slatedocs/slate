@@ -32,6 +32,112 @@ under the License.
     <% else %>
       <%= javascript_include_tag  "all_nosearch" %>
     <% end %>
+
+    <!-- begin SEO -->
+    <% seo_title = current_page.data.title || "API Documentation" %>
+    <% seo_description = current_page.data.description || "API Reference Documentation" %>
+    <% if config[:host] && config[:base_path] %>
+      <% canonical_url = config[:host].chomp('/') + config[:base_path].chomp('/') + current_page.url.chomp('/') %>
+    <% end %>
+    <% if config[:host] && config[:base_path] && config[:social_image] && !(config[:social_image].include?("://")) %>
+      <% social_image = config[:host].chomp('/') + config[:base_path].chomp('/') + '/' + config[:social_image].chomp('/') %>
+    <% else %>
+      <% social_image = config[:social_image] %>
+    <% end %>
+    <% if seo_description %>
+      <meta name="description" content="<%=seo_description%>">
+    <% end %>
+    <% if config[:locale] %>
+      <meta property="og:locale" content="<%=config[:locale]%>">
+    <% end %>
+    <meta property="og:site_name" content="<%=seo_title%>">
+    <meta property="og:title" content="<%=seo_title%>">
+    <meta name="twitter:title" content="<%=seo_title%>">
+    <% if canonical_url %>
+      <link rel="canonical" href="<%=canonical_url%>">
+      <meta property="og:url" content="<%=canonical_url%>">
+      <meta name="twitter:url" content="<%=canonical_url%>">
+    <% end %>
+    <% if config[:description] %>
+      <meta property="og:description" content="<%=seo_description%>">
+      <meta name="description" cotent="<%=seo_description%>"/>
+      <meta name="twitter:description" content="<%=seo_description%>">
+    <% end %>
+    <% if config[:twitter_username] %>
+      <meta name="twitter:site" content="<%= config[:twitter_username] %>">
+      <% if social_image %>
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="<%=social_image%>">
+      <% end %>
+    <% end %>
+    <% if config[:facebook_app_id] %>
+        <meta property="fb:app_id" content="<%=config[:facebook_app_id]%>">
+    <% end %>
+    <% if social_image %>
+      <meta property="og:image" content="<%=social_image%>">
+    <% end %>
+
+    <% if config[:seo] %>
+      <script type="application/ld+json">
+        {
+          "@context": "http://schema.org",
+          "@type": "Organization",
+          "name" : "<%=seo_title%>",
+          <% if config[:host] %>
+            "url": "<%=config[:host]%>",
+          <% end %>
+          "description": "<%=seo_description%>",
+          "email": "<%=config[:seo][:email]%>",
+          "legalName" : "<%=config[:seo][:legal_name]%>",
+          <% if config[:seo][:contact_point] %>
+            "contactPoint": [{
+              "@type": "ContactPoint",
+              "email": "<%=config[:seo][:contact_point][:email]%>",
+              "contactType": "customer service",
+              "telephone": "<%=config[:seo][:contact_point][:telephone]%>"
+            }],
+          <% end %>
+          <% if social_image %>
+            "logo": "<%=social_image%>",
+          <% end %>
+          "sameAs": [
+            <% if config[:facebook_username]  %>
+              "https://facebook.com/<%=config[:facebook_username]%>",
+            <% end %>
+            <% if config[:github_username] %>
+              "https://github.com/<%=config[:github_username]%>",
+            <% end %>
+            <% if config[:twitter_username] %>
+              "https://twitter.com/<%=config[:twitter_username]%>"
+            <% end %>
+          ],
+          <% if config[:seo][:address] %>
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "<%=config[:seo][:address][:street_address]%>",
+              "addressLocality": "<%=config[:seo][:address][:address_locality]%>",
+              "addressRegion": "<%=config[:seo][:address][:address_region]%>",
+              "postOfficeBoxNumber": <%= config[:seo][:address][:post_office_box_number] %>
+            }
+          <% end %>
+        }
+      </script>
+    <% end %>
+    <!-- end SEO -->
+
+    <% if config[:google_analytics_id] %>
+      <!-- begin Google Universal Analytics -->
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', '<%=config[:google_analytics_id]%>', 'auto');
+        ga('send', 'pageview');
+      </script>
+      <!-- end Google Universal Analytics-->
+    <% end %>
   </head>
 
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
@@ -42,7 +148,13 @@ under the License.
       </span>
     </a>
     <div class="tocify-wrapper">
-      <%= image_tag "logo.png" %>
+      <% if config[:navbar_url] %>
+        <% link_to config[:navbar_url] do %>
+          <%= image_tag 'logo.png', :class => 'tocify-wrapper--img' %>
+        <% end %>
+      <% else %>
+        <%= image_tag "logo.png", :class => 'tocify-wrapper--img'  %>
+      <% end %>
       <% if language_tabs.any? %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
