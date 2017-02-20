@@ -1,189 +1,77 @@
 ---
-title: API Reference
+title: Bonsai Documentation
 
-language_tabs:
-  - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
 
 search: true
+
+layout: home
+
 ---
 
-# Introduction
+# Bonsai Documentation
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+Welcome to the sandbox for the future Slate-powered Bonsai documentation site!
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+This is a temporary landing page.
 </aside>
 
-# Kittens
+## Draft Sections:
 
-## Get All Kittens
+I've set up a draft of the following pages to show off the new format. These are early drafts, and subject to change.
 
-```ruby
-require 'kittn'
+The listed endpoints reflect the site map available at [Coggle](https://coggle.it/diagram/V_RLZO99g4VT4gaT/e87816a3386a4dcf961fcd2df53621233acaf8c1f3c0e2c735189ae0b0d4c90c)
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+"Classic" style pages reflect the original ordering. "New" style is the concatenated Details/Reference page.
 
-```python
-import kittn
+Name collision is almost totally resolved.
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+| Page     | Status        | Style |
+|----------|---------------|-------|
+[Getting Started][1] | Second Draft | Modular
+[Inkling New][3] | Second Draft | Modular
+-- [Overview][11] | Second Draft | Modular
+-- [Details][12] | Second Draft | Modular
+-- [References][13] | Second Draft | Modular
+-- [Miscellany][14] | Second Draft | Modular
+Mastermind | Absent | N/A
+[References][4] | Second Draft | Modular
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+# FAQ:
 
-```javascript
-const kittn = require('kittn');
+## Where did the **Chapter/Section** numbers go?
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
+These are temporarily removed until the site tree settles down, and ~will likely~ may be replaced. We have not yet worked out the implementation of numbering on re-usable sections.
 
-> The above command returns JSON structured like this:
+## What are Modular pages?
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
+Slate supports the notion of [includes][6], which allow us to put the documentation into a database of sorts and rebuild it from parts. This works by holding the pages in the `includes` folder. A display page is made by adding an `includes` section to the front matter, and then listing the included pages in order.
 
-This endpoint retrieves all kittens.
+## How do I report issues?
 
-### HTTP Request
+File an issue at https://bonsai.phacility.com and tag Documentation project
 
-`GET http://example.com/api/kittens`
+## What about headers/footers/toc_footers?
 
-### Query Parameters
+These are still being designed. There's likely to be a full-width header including primary-nav to all sections.
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+## How do I get back to the beginning?
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+There's a **Return Home** link in the footer of the table of contents.
 
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
+[1]: /getting_started.html "Getting Started"
+[2]: /inkling_classic.html "Classic Inkling"
+[3]: /inkling.html "New Inkling"
+[4]: /reference.html "Reference"
+[5]: /cli_reference.html "CLI Reference"
+[6]: https://github.com/lord/slate/wiki/Using-Includes "Using Includes: Slate Documentation"
+[11]: /inkling.html#overview
+[12]: /inkling.html#details
+[13]: /inkling.html#inkling-reference
+[14]: /inkling.html#inkling-miscellany

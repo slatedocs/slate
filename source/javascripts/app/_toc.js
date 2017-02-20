@@ -12,15 +12,15 @@
 
   var makeToc = function() {
     global.toc = $("#toc").tocify({
-      selectors: 'h1, h2',
+      selectors: 'h1, h2, h6',
       extendPage: false,
       theme: 'none',
       smoothScroll: false,
       showEffectSpeed: 0,
       hideEffectSpeed: 180,
       ignoreSelector: '.toc-ignore',
-      highlightOffset: 60,
-      scrollTo: -1,
+      highlightOffset: 70,
+      scrollTo: 60,
       scrollHistory: true,
       hashGenerator: function (text, element) {
         return element.prop('id');
@@ -54,4 +54,3 @@
     });
   });
 })(window);
-

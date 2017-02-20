@@ -19,6 +19,9 @@ License for the specific language governing permissions and limitations
 under the License.
 */
 
+
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // GENERAL STUFF
 ////////////////////////////////////////////////////////////////////////////////
@@ -33,6 +36,42 @@ html, body {
   background-color: $main-bg;
   height: 100%;
   -webkit-text-size-adjust: none; /* Never autoresize text */
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// SECTION NUMBERS
+////////////////////////////////////////////////////////////////////////////////
+
+body {counter-reset: section;}
+h1 {counter-reset: subsection;}
+h2 {counter-reset: subsubsection;}
+h1:before {
+  counter-increment: section;
+  content:counter(section) ". ";
+}
+h2:before {
+  counter-increment: subsection;
+  content:counter(section) "." counter(subsection) " ";
+}
+h6:before {
+  counter-increment: subsubsection;
+  content:counter(section) "." counter(subsection) "." counter(subsubsection) " ";
+}
+
+.tocify {counter-reset: toc-section;}
+.tocify-header {counter-reset: toc-subsection;}
+.tocify-subheader {counter-reset: toc-subsubsection;}
+.tocify-header > .tocify-item > a:before {
+  counter-increment: toc-section;
+  content:counter(toc-section) " ";
+}
+.tocify-header > .tocify-subheader > .tocify-item > a:before {
+  counter-increment: toc-subsection;
+  content:counter(toc-section) "." counter(toc-subsection) " ";
+}
+.tocify-header > .tocify-subheader > .tocify-subheader > .tocify-item > a:before {
+  counter-increment: toc-subsubsection;
+  content:counter(toc-section) "." counter(toc-subsection) "." counter(toc-subsubsection) " ";
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -147,11 +186,10 @@ html, body {
 
 
   .tocify-item>a, .toc-footer li {
-    padding: 0 $nav-padding 0 $nav-padding;
+    padding: .3em $nav-padding .3em $nav-padding;
     display: block;
     overflow-x: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    white-space: normal;
   }
 
   // The Table of Contents is composed of multiple nested
@@ -161,7 +199,7 @@ html, body {
     list-style: none;
     margin: 0;
     padding: 0;
-    line-height: 28px;
+    line-height: 1.1em;
   }
 
   li {
@@ -178,6 +216,13 @@ html, body {
     color: $nav-active-text;
   }
 
+  // Headers are headers.
+  .tocify-header {
+    .tocify-item>a {
+      padding-left: $nav-padding + 0.8em;
+      text-indent: -0.8em;
+    }
+  }
   // Subheaders are the submenus that slide open
   // in the table of contents.
   .tocify-subheader {
@@ -185,14 +230,27 @@ html, body {
     background-color: $nav-subitem-bg;
     font-weight: 500;
     .tocify-item>a {
-      padding-left: $nav-padding + $nav-indent;
+      padding-left: $nav-padding + $nav-indent + 1.65em;
       font-size: 12px;
+      text-indent: -1.65em
     }
 
     // for embossed look:
     @include embossed-bg;
     &>li:last-child {
       box-shadow: none; // otherwise it'll overflow out of the subheader
+    }
+  }
+
+  // Sub-subheaders
+  .tocify-subheader .tocify-subheader {
+    display: none;
+    background-color: $nav-subsubitem-bg;
+    font-weight: 400;
+    .tocify-item>a {
+      padding-left: $nav-padding + $nav-indent * 2 + 2.5em;
+      text-indent: -2.5em;
+      font-size: 12px;
     }
   }
 
@@ -257,6 +315,9 @@ html, body {
 // PAGE LAYOUT AND CODE SAMPLE BACKGROUND
 ////////////////////////////////////////////////////////////////////////////////
 
+#main-wrapper {
+  padding-top: 65px;
+}
 .page-wrapper {
   margin-left: $nav-width;
   position: relative;
@@ -266,19 +327,7 @@ html, body {
 
   padding-bottom: 1px; // prevent margin overflow
 
-  // The dark box is what gives the code samples their dark background.
-  // It sits essentially under the actual content block, which has a
-  // transparent background.
-  // I know, it's hackish, but it's the simplist way to make the left
-  // half of the content always this background color.
-  .dark-box {
-    width: $examples-width;
-    background-color: $examples-bg;
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-  }
+
 
   .lang-selector {
     position: fixed;
@@ -355,7 +404,7 @@ html, body {
 
   h1 {
     @extend %header-font;
-    font-size: 30px;
+    font-size: 200%;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     border-bottom: 1px solid #ccc;
@@ -372,7 +421,7 @@ html, body {
 
   h2 {
     @extend %header-font;
-    font-size: 20px;
+    font-size: 150%;
     margin-top: 4em;
     margin-bottom: 0;
     border-top: 1px solid #ccc;
@@ -388,17 +437,27 @@ html, body {
     border-top: none;
   }
 
-  h3, h4, h5, h6 {
+  h3, h4, h5 {
     @extend %header-font;
-    font-size: 15px;
+    font-size: 110%;
     margin-top: 2.5em;
     margin-bottom: 0.8em;
   }
 
-  h4, h5, h6 {
-    font-size: 10px;
+  h4, h5 {
+    font-size: 110%;
   }
 
+  h6 {
+    @extend %header-font;
+    font-size: 120%;
+    margin-top: 2em;
+    margin-bottom: 0;
+    border-top: 1px solid #ccc;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
+  }
   hr {
     margin: 2em 0;
     border-top: 2px solid $examples-bg;
@@ -625,3 +684,21 @@ html, body {
 .highlight, .highlight .w {
   background-color: $code-bg;
 }
+
+
+////////////////////////////////////////////////////////////////////////////////
+// CUSTOM
+////////////////////////////////////////////////////////////////////////////////
+
+#flex-container{display:flex; flex-direction:column;  height:100vh;}
+.tocify-wrapper{top:inherit !important; bottom:inherit !important; height:100vh !important;}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// PRIMARY NAV
+////////////////////////////////////////////////////////////////////////////////
+
+//#primary-nav{display:flex; flex-direction:row; justify-content:flex-end; padding-top: 30px; padding-bottom:30px; align-items:center;}
+
+
+// #nav-links {flex-grow:1; text-align:-webkit-right;}

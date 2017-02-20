@@ -1,0 +1,1 @@
+FROM tutum/slate
