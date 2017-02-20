@@ -5,13 +5,13 @@
   <id>field_id</id>
   <comboBoxValues>
     <id>val_1_id</id>
-    <name>product_1_id</name>
+    <name>product_1</name>
     <order>1</order>
     <value>40817810200005239000</value>
   </comboBoxValues>
   <comboBoxValues>
     <id>val_2_id</id>
-    <name>product_2_id</name>
+    <name>product_2</name>
     <order>2</order>
     <value>40817810500005239001</value>
   </comboBoxValues>
@@ -64,7 +64,7 @@ readOnly | bool | 0..1 | признак редактируемости
 
 <aside class="notice">для платежных форм валюта поля AMOUNT будет привязана к валюте в выбранном счете поля SOURCE_ACCOUNT</aside>
 
-<aside class="notice">если тип поля – SOURCE_ACCOUNT и TARGET_ACCOUNT, comboBoxValues это список пар {номер счета, идентификатор счета} для всех допустимых счетов</aside>
+<aside class="notice">если тип поля – SOURCE_ACCOUNT и TARGET_ACCOUNT, comboBoxValues это список для всех допустимых счетов</aside>
 
 ### FieldClass
 
@@ -81,9 +81,9 @@ DATE | int | UNIXTIME (например 1394582400)
 COMBO_BOX | string | список строк для comboBoxValues выбора 1..*
 AMOUNT | int | ddddd (умноженное на 100) с валютой  и проверкой на остаток средств из ``SOURCE_ACCOUNT``
 MONEY | int | ddddd (умноженное на 100) с валютой из ``SOURCE_ACCOUNT``
-PHONE | int | номер телефона (например 99999999999)
+PHONE | int | номер телефона (например 71231231212)
 PRINTED_TEXT | string | текст пояснение без возможности редактирования пользователем
-PHOTO_CARD | string | ввода номера карты с элементом фотографирования карты библиотекой [card.io](http://www.card.io) и маской <code>**** **** **** ****</code>
+PHOTO_CARD | string | ввода номера карты с элементом фотографирования карты библиотекой [card.io](http://www.card.io) и маской ``**** **** **** ****``
 PHOTO_QRCODE | string | информация, зашифрованную в QR-коде
 IMAGE | [LogoResource](#logoresource) | картинка
 HIDDEN | string | скрытое поле для технического применения
