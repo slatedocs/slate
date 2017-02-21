@@ -2,6 +2,8 @@
 title: Getting Started - Bonsai
 
 language_tabs:
+    - powershell: Windows
+    - shell: macOS
 
 toc_footers:
   - <a href='https://bons.ai/sign-up'>Sign Up for our Private Beta!</a>
@@ -11,9 +13,8 @@ toc_footers:
 
 
 includes:
-  - getting-started/introduction.html.md
-  - getting-started/concepts.html.md
-  - getting-started/lets-get-started.html.md
-  - getting-started/whats-next.html.md
+  - getting-started/overview-and-faq.html.md
+  - getting-started/install.html.md
+  - getting-started/next-steps.html.md
 search: true
 ---

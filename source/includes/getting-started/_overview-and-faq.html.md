@@ -1,8 +1,16 @@
-# Background FAQ
+# Overview and FAQ
 
 [//]: # (If any commented statements become false, change prior text)
 
-There are some things you might want to know before you get started. In this section, we're going to walk you through the Bonsai Platform components and some of the fundamental ideas of the Bonsai Platform that are frequently asked questions. Let's jump right in!
+Hello new Bonsai developer!
+
+There are some things you might want to know before you get started. In this section, we're going to walk you through the Bonsai Platform components and some of the fundamental ideas of the Bonsai Platform that are frequently asked questions. Next, we'll guide you through installing the necessary tools, connecting a simulator, training your BRAIN, and finally using your BRAIN!
+
+At the end of this guide we'll link you to resources that give you the tools to keep going, like our [Inkling Guide][2] and [CLI Reference][3]. You can also check out our [examples][7] and tutorials (coming soon!).
+
+[//]: # (You can only link to one specific example, there are no tutorials)
+
+**If you're not interested in the background, and want to jump right into the action, you can skip down to our [Install Prerequisites][6] section.**
 
 ## What are the components of the Bonsai Platform?
 
@@ -18,7 +26,9 @@ This image displays all the components of Bonsai's Platform. The Platform enable
 * **Generators:** are a training source. They produce labeled data programmatically. This data is effectively infinite. A generator could, for example, produce a random (but known) integer, set of line segments, etc.
 * **Data:** is also a training source. It is information related to the scenario being trained and can also be used to test and evaluate how well the training is implemented. Data could be a collection of images and labels or the rows of a spreadsheet. An example of a data set you could train with is the [MNIST database][5], which is a collection of handwritten digits used for training image processing systems and other machine learning systems.
 
-**Note:** Currently, during our private beta, you can only use simulators as your training source.
+<aside class="notice">
+Currently, during our private beta, you can only use simulators as your training source.
+</aside> 
 
 [//]: # (Simulators are the only training source, beta.bons.ai is current website instead of brains.bons.ai)
 
@@ -95,8 +105,10 @@ Your BRAIN Dashboard contains all of your BRAINs. The BRAIN Dashboard is also wh
 
 There is a BRAIN Details page for each of your BRAINs. Each page shows that BRAIN's status, training graph, and commands you can use in the CLI specifically for this BRAIN.
 
-[1]: https://daks2k3a4ib2z.cloudfront.net/57bf257ce45825764c5cb54b/57e5bb2cab226c7d49d033f5_bonsai_infographic_2x_1024.png
+[1]: ../images/bonsai_infographic_1024.png
 [2]: ./inkling.html
 [3]: ./reference.html#cli-reference
 [4]: https://beta.bons.ai
 [5]: http://yann.lecun.com/exdb/mnist/
+[6]: ./getting_started.html#install-prerequisites
+[7]: ./inkling.html#example-cart-pole
