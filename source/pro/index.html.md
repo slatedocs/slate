@@ -60,7 +60,6 @@ includes:
   - pro/PersonalNewsDTO
   - pro/AmountDTO
   - pro/FilledFormDTO
-  - pro/FieldValueDTO
   - pro/ComboBoxValueDTO
   - pro/MarkerDTO
   - pro/FeedDTO

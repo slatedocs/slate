@@ -33,7 +33,7 @@ executionDate | [Date ISO 8601](https://ru.wikipedia.org/wiki/ISO_8601) | 0..1 |
 description | string | 1..1 | детали операции
 status | [TransactionStatus](#transactionstatus) | 1..1 | текущий статус транзакции
 isOutgoing | bool | 0..1 | операция переводит деньги СО счета
-filledFormId | string | 0..1 | идентификатор соответствующей заполненной формы
+filledFormId | string | 0..1 | идентификатор соответствующей заполненной формы возвращаемый на запрос [getPaymentForm](#getpaymentform)
 tags | [MarkerDTO](#markerdto) | 0..1 | дополнительные поля
 authorization | bool | 1..1 | операция авторизации
 cardId | string | 0..1 | ID карты, с которой связана данная транзакция
