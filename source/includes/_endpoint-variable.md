@@ -284,6 +284,11 @@ will not be shared with other users.
 The personal variable order defaults to an empty Shoji order until each user
 makes changes to it.
 
+The allowed variables on this order are:
+ * Any public variable available on the variable catalog
+ * Any personal variable or subvariable for the logged user
+ * Any subvariable of an array variable on the variable catalog
+
 #### GET
 
 Returns a Shoji Order for this user.
