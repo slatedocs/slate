@@ -64,6 +64,17 @@ To access API all request must include identifying token header field
 You must replace <code>token</code> with your personal API token.
 </aside>
 
+## Profile identifying tokens
+
+To access profile specific data request must include identifying token header field
+
+`X-Client-Profile: id`
+
+<aside class="notice">
+You must replace <code>id</code> with your personal profile id.
+</aside>
+
+
 ## Authentication
 
 To access user specific data request should include header field
@@ -79,236 +90,367 @@ You must replace <code>token</code> with your personal authorization token.
 
 # Communication Protocol
 
-## Read
-
-```shell
-curl --request GET \
---url https://api.fantasticservices.com/v2/client/services/1 \
---header 'x-client-token: YOUR_API_TOKEN'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 1,
-  "sort": 100,
-  "title": "Cleaning",
-  "description": "Free up more time for you and your family. The skilled cleaning experts will take care of your home.",
-  "short_description": "One-off cleaning",
-  "keywords": [
-    "clean",
-    "one-off",
-    "fantastic"
-  ],
-  "list_image": null,
-  "phone": "02034044444",
-  "choice_views": [
-    338,
-    339,
-    340,
-    341,
-    342
-  ],
-  "updated_at": 1459492785
-}
-```
-
-Get data by requesting it by resource name. Add id for specific object.
-
-`GET https://{base URL}/{version}/client/services/1`
-
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-`expand` | *none* | Attributes to return as full objects. Names can be listed separated by a comma.<br><br> Keywords:<br><br>all - *expands all first level attributes*<br>all.all - *expands all second level attributes*<br>attribute.all - *expands all attributes child elements*
-`fields` | *all* | Attributes to receive in response
-`exclude_fields` | *none* | Attributes to exclude from response
-
-
-
-## Create/Update
+## Request
 
 ```shell
 curl --request POST \
---url https://api.fantasticservices.com/v2/client/addresses \
---header 'x-client-token: YOUR_API_TOKEN' \
---header 'authorization: YOUR_AUTH_TOKEN' \
-  --data '{"address_line_1":"9 Apt.","address_line_2":"24 Red Lion Street","postcode":"SW12 2TN","lat":51.604903,"lng":-0.457022}'
-```
-
-> The above command posts JSON structured like this:
-
-```json
-{
-  "address_line_1": "9 Apt.",
-  "address_line_2": "24 Red Lion Street",
-  "postcode": "SW12 2TN",
-  "lat": 51.604903,
-  "lng": -0.457022
-}
-```
-
-> The above request success response is:
-
-```json
-{
-  "id": 2
-}
-```
-
-Create objects by posting data to the resource name. Add id to update existing objects
-
-`POST https://{base URL}/{version}/client/addresses`
-
-If operation is successful created/updated object id is returned.
-
-## Delete
-
-```shell
-curl --request DELETE \
---url https://api.fantasticservices.com/v2/client/addresses/2 \
---header 'x-client-token: YOUR_API_TOKEN' \
---header 'authorization: YOUR_AUTH_TOKEN'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2
-}
-```
-
-Delete objects by sending delete request with the resource name and object id
-
-`DELETE https://{base URL}/{version}/client/addresses/2`
-
-If object is deleted successfully it's id is returned.
-
-## Batching requests
-
-```shell
-curl --request POST \
---url https://api.fantasticservices.com/v2/client/addresses \
---header 'x-client-token: YOUR_API_TOKEN' \
---header 'authorization: YOUR_AUTH_TOKEN' \
---data '{"requests":[{"method":"POST","path":"addresses","object":{"address_line_1":"7 Apt.","address_line_2":"27 Red Lion Street","postal":"SW14 8PT","lat":51.604903,"lng":-0.457022}},{"method":"POST","path":"addresses/27","object":{"address_line_1":"7 Apt.","address_line_2":"27 Red Lion Street"}}]}'
-```
-
-> The above command posts JSON structured like this:
-
-```json
+  --url https://api.fantasticservices.com/v2/client/resources \
+  --header 'content-type: application/json' \
+  --header 'Authorization: YOUR_AUTH_TOKEN_HERE' \
+  --header 'X-Profile: YOUR_PROFILE_ID_HERE' \
+  --header 'X-Application: YOUR_APP_TOKEN_HERE' \
+  --data '
 {
   "requests": [
     {
-      "method": "POST",
-      "path": "addresses?expand=all",
-      "expand": "all",
-      "object": {
-        "address_line_1": "7 Apt.",
-        "address_line_2": "27 Red Lion Street",
-        "postal": "SW14 8PT",
-        "lat": 51.604903,
-        "lng": -0.457022
-      }
-    },
-    {
-      "method": "POST",
-      "path": "addresses/27",
-      "expand": "all",
-      "object": {
-        "address_line_1": "7 Apt.",
-        "address_line_2": "27 Red Lion Street"
-      }
+      "method": "GET",
+      "path": "addresses",
+      "params": null,
+      "data": null
     }
   ]
 }
+'
 ```
 
-> The above request success response is:
 
-```json
-[
-  {
-    "id": 28
-  },
-  {
-    "id": 27
-  }
-]
-```
+All requests to the API are POST `https://{base URL}/{version}/{namespace}/resources` endpoint and contain field `requests` holding array of request objects.
 
-Requests can be combined by sending array of request objects.
-
-`POST https://{base URL}/{version}/shared/resources`
-
-### Post Parameters
+### Request object parameters
 
 Parameter | Type | Description
---------- | ---- | -----------
-`method` | *string* | HTTP method of combined request
-`path` | *string* | Resource path of combined request. It countains all query parameters as well.
-`object` | *object* | Body of combined request
+-------- | ----- | -------
+`method` | *string* | Request type.<br><br>*<b>POST</b> - write data to server (create/update)*<br>*<b>GET</b> - read data from server*<br>*<b>DELETE</b> - delete data on server*
+`path` | *string* | Path to resource to access
+`params` | *object* | Paramaters for the request
+`data` | *object* | Data to post to server
 
-<aside class="notice">
-Query parameters are the same as for individual requests
-</aside>
+### `params`
+
+Parameter | Type   | Default | Description
+-------- | ---------- | ---- | -------
+`expand` | *string* | *none* | Attributes to return as full objects. Names can be listed separated by a comma.<br><br> Keywords:<br><br>all - *expands all first level attributes*<br>all.all - *expands all second level attributes*<br>attribute.all - *expands all attributes child elements*
+`fields` | *array* | *all* | Attributes to receive in response
+`exclude_fields` | *array* | *none* | Attributes to exclude from response
 
 
-## Response structure
+## Response
 
 
 > JSON response structured
 
 ```json
 {
-  "data": [
+  "responses": [
     {
-      "objects": [
-        {
-          "id": 27
-        }
-      ],
+      "data": [],
       "success": [
         {
           "code": 1020,
           "message": "Address created.",
-          "description": "postal_code missing."
+          "debug_message": "postal_code missing."
         }
       ]
     }
   ],
   "meta": {
-    "DBVersion": 25
+    "db_version": 25,
+    "latest_build": 27
   }
 }
 ```
 
-Requests can be combined by sending array of request objects.
+Contains field `responses` holding array of response objects.
 
-`POST https://{base URL}/{version}/shared/resources`
 
-### Response attributes
+### Response object parameters
 
 Parameter | Type | Description
 --------- | ---- | -----------
-`data` | *array* | Array of responses of requests (one or more if batched).
-`meta` | *object* | Attributes containing information for the system.
-`objects` | *array* | Response data for the request
+`data` | *array* | Array of data objects returned in the result of the request
 `success`, `warning`, `error` | *array* | Messages with information for the request
-
-<aside class="notice">
-Single and batched requests return the same response format.
-</aside>
+`meta` | *object* | Parametercontaining information for the system.
 
 
+Also has field `meta` containing system information
+
+### `meta`
+
+Parameter | Type | Description
+--------- | ---- | -----------
+`db_version` | *integer* | Version of database model
+`latest_build` | *integer* | Latest application build release
 
 
+## Read
+
+```shell
+curl --request POST \
+  --url https://api.fantasticservices.com/v2/client/resources \
+  --header 'content-type: application/json' \
+  --header 'X-Profile: YOUR_PROFILE_ID_HERE' \
+  --header 'X-Application: YOUR_APP_TOKEN_HERE' \
+  --data '
+{
+  "requests": [
+    {
+      "method": "GET",
+      "path": "services/1"
+    }
+  ]
+}
+'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "responses": [
+    {
+      "data": [
+        {
+          "id": 1,
+          "sort": 100,
+          "title": "Cleaning",
+          "description": "Free up more time for you and your family. The skilled cleaning experts will take care of your home.",
+          "short_description": "One-off cleaning",
+          "keywords": [
+            "clean",
+            "one-off",
+            "fantastic"
+          ],
+          "list_image": null,
+          "phone": "02034044444",
+          "choice_views": [
+            338,
+            339,
+            340,
+            341,
+            342
+          ],
+          "updated_at": 1459492785
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "db_version": 25,
+    "latest_build": 27
+  }
+}
+```
+
+Read data by using `metohd: GET` and specifying `path` to resource you want to access. Get object by id with suffix `/{id}`
+
+`"path": "services"`
 
 
+## Create/Update
+
+```shell
+curl --request POST \
+  --url https://api.fantasticservices.com/v2/client/resources \
+  --header 'content-type: application/json' \
+  --header 'Authorization: YOUR_AUTH_TOKEN_HERE' \
+  --header 'X-Profile: YOUR_PROFILE_ID_HERE' \
+  --header 'X-Application: YOUR_APP_TOKEN_HERE' \
+  --data '
+{
+  "requests": [
+    {
+      "method": "POST",
+      "path": "addresses",
+      "data": {
+        "address_line_1": "9 Apt.",
+        "address_line_2": "24 Red Lion Street",
+        "postcode": "SW12 2TN",
+        "lat": 51.604903,
+        "lng": -0.457022
+      }
+    }
+  ]
+}
+'
+```
+
+> The above request success response is:
+
+```json
+{
+  "responses": [
+    {
+      "data": [
+        {
+          "id": 255,
+          "address_line_1": "9 Apt.",
+          "address_line_2": "24 Red Lion Street",
+          "postcode": "SW12 2TN",
+          "lat": 51.604903,
+          "lng": -0.457022
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "db_version": 25,
+    "latest_build": 27
+  }
+}
+```
+
+
+Create objects by using `metohd: POST` and specifying `path` to resource you want to create. Add suffix `/{id}` to update existing objects.
+
+`"path": "addresses"`
+
+If operation is successful created/updated object is returned.
+
+## Delete
+
+```shell
+curl --request POST \
+  --url https://api.fantasticservices.com/v2/client/resources \
+  --header 'content-type: application/json' \
+  --header 'Authorization: YOUR_AUTH_TOKEN_HERE' \
+  --header 'X-Profile: YOUR_PROFILE_ID_HERE' \
+  --header 'X-Application: YOUR_APP_TOKEN_HERE' \
+  --data '
+{
+  "requests": [
+    {
+      "method": "DELETE",
+      "path": "addresses/255"
+    }
+  ]
+}
+'
+```
+
+> The above request success response is:
+
+```json
+{
+  "responses": [
+    {
+      "sucess": [
+        {
+          "code": 1021,
+          "message": "Address deleted.",
+          "debug_message": null
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "db_version": 25,
+    "latest_build": 27
+  }
+}
+```
+
+Delete objects by using `metohd: DELETE` and specifying `path` and `/{id}` suffix for object to delete.
+
+`"path": "addresses"`
+
+If object is deleted successfully `"succuess"` is returned.
+
+# Account
+
+## Register
+
+```shell
+curl --request POST \
+  --url https://api.fantasticservices.com/v2/client/resources \
+  --header 'content-type: application/json' \
+  --header 'X-Profile: YOUR_PROFILE_ID_HERE' \
+  --header 'X-Application: YOUR_APP_TOKEN_HERE' \
+  --data '
+{
+  "requests": [
+    {
+      "method": "POST",
+      "path": "register",
+      "data": {
+        "title_id": 1,
+        "first_name": "Nikolay",
+        "last_name": "Georgiev",
+        "phone_number": "072313123123",
+        "email": "test@test.com",
+        "password": "1234",
+        "referal_code": "JOHND1234B",
+        "oauth_id": "EAAEo0IpvAQcBAK1gy3VjCJPZCp6vidasdvEvEtxmO0gjFFjtz3jd8omEuhVhg3Y3ZAzIjSLQVMMZBaWwIZBRY9U8B7XZCFvGpledf38DPUTfeHNA2PCZALtPFTjXYFD1aPeB6IK4oo8dJWAIMAcpKPmFATTtXABljEA02jIDExTAp5brMUuNLMQlQr48ISRhbNy4hbKyI6plbO6ZCd1iHJ9kxd09PfpiwcZD",
+        "profile_id": 911980962150668,
+        "social_login_provider_id": 1,
+        "type_id": 1
+      }
+    }
+  ]
+}
+'
+```
+
+> The above request success response is:
+
+```json
+{
+  "responses": [
+    {
+      "data": [
+        {
+          "login": {
+            "token": "1cjkidhfqoihoufu18j0ncoy0jl7eu0d4ge1kslggp4outkh",
+            "create_time": 1429863734,
+            "expire_time": 1429906934
+          }
+        }
+      ],
+      "success": [
+        {
+          "code": 2010,
+          "message": "Succesful register",
+          "debug_message": "no errors"
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "db_version": 25,
+    "latest_build": 27
+  }
+}
+```
+
+To create account all required fields must be sent (except anymous accounts which need only the right `type_id`). For social sign in set the correct `type_id` and `social_login_provider_id`, pass the needed additional parameters for the social provider as `oauth_id`, `profile_id` etc. Missing details from social sign in must be collected from user to satisfy required fields.
+
+`"path": "register"`
+
+### Request parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`title_id`<br>*required* | *integer* | Selected title `id` from `user_titles`
+`first_name`<br>*required* | *string* | User's first name (no special characters allowed)
+`last_name`<br>*required* | *string* | User's last name (no special characters allowed)
+`phone_number`<br>*required* | *integer* | User's phone number validated for the region (UK/AUS/USA etc.)
+`email`<br>*required* | *string* | User's email with validated structure (e.g. xxxx@xxx.xxx)
+`referal_code`<br>*optional* | *string* | Referal code from another user
+`oauth_id`<br>*optional* | *string* | Facebook oauth string for sign in
+`profile_id`<br>*optional* | *string* | Facebook profile id
+`social_login_provider`<br>*optional* | *integer* | Social login provider `id`.<br><br>*<b>1</b> - Facebook*
+`type_id`<br>*optional* | *integer* | Type of registration`id`.<br><br>*<b>1</b> - Generic (register form)*<br>*<b>2</b> - Social (Facebook)*<br>*<b>3</b> - Anonymous*
+
+### `params`
+
+Parameter | Type | Description
+-------- | ----- | -------
+`return_user`<br>*optional, default <b>false</b>* | *boolean* | Request type.<br><br>`POST` - *write data to server (create/update)*<br>`GET` - *read data from server*<br>`DELETE` - *delete data on server*
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`token `<br>*required* | *integer* | Your session id. Use for `Authorization` header.
 
 
 # Checklists
