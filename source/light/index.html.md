@@ -39,6 +39,7 @@ includes:
   - light/removeForm
   - light/removeContact
   - light/removeBanner
+  - light/removeLocation
   - light/removeCurrencyRate
   - light/removeLocationStatus
   - light/removeLocationType
