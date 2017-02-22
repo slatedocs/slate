@@ -172,7 +172,7 @@ Contains field `responses` holding array of response objects.
 Parameter | Type | Description
 --------- | ---- | -----------
 `data` | *array* | Array of data objects returned in the result of the request
-`success`, `warning`, `error` | *array* | Messages with information for the request
+`success`, `warning`, `error` | *array* | Messages with information for the request. More than one type of message can be returned in a response. `success` and `error` can't come in the same response. `warning` can be combined with `success` or `error`.
 `meta` | *object* | Parametercontaining information for the system.
 
 
