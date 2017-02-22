@@ -23,9 +23,9 @@ Welcome to XRM/MP API.
 
 ## Environments
 
-* **LIVE** `api.fantasticservices.com`  
-* **STAGE** `middlepoint-dev.1dxr.com`
-* **DEV** `middlepoint-dev.1dxr.com`
+* *LIVE - <b>api.fantasticservices.com*</b>
+* *STAGE - <b>middlepoint-dev.1dxr.com*</b>
+* *DEV - <b>middlepoint-dev.1dxr.com*</b>
 
 In this document `{base URL}` is used as a palceholder for current environment.
 
@@ -43,13 +43,13 @@ In this document `{version}` is used as a palceholder for selected version.
 
 Namespace is added after `{version}` (latest version 2).
 
-* **CLIENT USER** `/client`  
-* **PRO USER** `/unit`
-* **GLOBAL FOR SYSTEM** `/shared`
+* *CLIENT USER - <b>/client</b>*
+* *PRO USER - <b>/unit</b>*
+* *GLOBAL FOR SYSTEM - <b>/shared</b>*
 
 Example
 
-`api.fantasticservices.com/v2/client/`
+<b>*api.fantasticservices.com/v2/client/*</b>
 
 In this document namespace is included in examples.
 
@@ -120,10 +120,10 @@ All requests to the API are POST `https://{base URL}/{version}/{namespace}/resou
 
 Parameter | Type | Description
 -------- | ----- | -------
-`method` | *string* | Request type.<br><br>*<b>POST</b> - write data to server (create/update)*<br>*<b>GET</b> - read data from server*<br>*<b>DELETE</b> - delete data on server*
-`path` | *string* | Path to resource to access
-`params` | *object* | Paramaters for the request
-`data` | *object* | Data to post to server
+`method`<br>*required* | *string* | Request type.<br><br>*<b>POST</b> - write data to server (create/update)*<br>*<b>GET</b> - read data from server*<br>*<b>DELETE</b> - delete data on server*
+`path`<br>*required* | *string* | Path to resource to access
+`params`<br>*optional* | *object* | Paramaters for the request
+`data`<br>*optional* | *object* | Data to post to server
 
 ### `params`
 
@@ -148,7 +148,8 @@ Parameter | Type   | Default | Description
         {
           "code": 1020,
           "message": "Address created.",
-          "debug_message": "postal_code missing."
+          "debug_message": "postal_code missing.",
+          "debug_id": 213124
         }
       ]
     }
@@ -337,7 +338,8 @@ curl --request POST \
         {
           "code": 1021,
           "message": "Address deleted.",
-          "debug_message": null
+          "debug_message": null,
+          "debug_id": 213124
         }
       ]
     }
@@ -409,7 +411,8 @@ curl --request POST \
         {
           "code": 2010,
           "message": "Succesful register",
-          "debug_message": "no errors"
+          "debug_message": null,
+          "debug_id": null
         }
       ]
     }
@@ -444,13 +447,24 @@ Parameter | Type | Description
 
 Parameter | Type | Description
 -------- | ----- | -------
-`return_user`<br>*optional, default <b>false</b>* | *boolean* | Request type.<br><br>`POST` - *write data to server (create/update)*<br>`GET` - *read data from server*<br>`DELETE` - *delete data on server*
+`return_user`<br>*optional, default <b>false</b>* | *boolean* | Return user object with phone object.
 
 ### Response parameters
 
 Parameter | Type | Description
 -------- | ----- | -------
 `token `<br>*required* | *integer* | Your session id. Use for `Authorization` header.
+
+
+<aside class="success">
+Code for successful registration: 2010.
+</aside>
+
+<aside class="warning">
+Error codes for registration: 4010 - 4020.
+</aside>
+
+
 
 
 # Checklists
