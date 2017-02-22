@@ -16,8 +16,8 @@
          # pushContent
          #
       </pushContent>
-      <recipients>login_1</recipients>
-      <recipients>login_2</recipients>
+      <recipients>id_user_1</recipients>
+      <recipients>id_user_2</recipients>
       <timeout>1000</timeout>
    </notification>
 </sendNotification>
@@ -31,11 +31,11 @@
       <status>OK</status>
       <deliveryStatus>
          <entry>
-            <key>login_1</key>
+            <key>id_user_1</key>
             <value>QUEUED</value>
          </entry>
          <entry>
-            <key>login_2</key>
+            <key>id_user_1</key>
             <value>INVALID_SUBSCRIPTION</value>
          </entry>
       </deliveryStatus>
@@ -49,7 +49,7 @@ key | type | status | comment
 --- | --- | :---: | ---:
 **Request:** | | |
 id | string | 1..1 | уникальный идентификатор
-recipients | string | 1..1 | получатели сообщения
+recipients | string | 1..1 | bankClientId получателя сообщения
 timeout | int | 1..1 | время жизни сообщения в секундах
 pushContent | [pushContent](#pushcontent) | 1..1 | обязательная часть пуш сообщения
 pushDetails | [pushDetails](#pushdetails) | 0..1 | дополнительные детали запрашиваемые мобильным устройством по необходимости
