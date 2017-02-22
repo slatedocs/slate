@@ -10,6 +10,8 @@ toc_footers:
 
 includes:
   - errors
+  - warnings
+  - successes
 
 search: true
 ---
@@ -24,7 +26,7 @@ Welcome to XRM/MP API.
 ## Environments
 
 * *LIVE - <b>api.fantasticservices.com*</b>
-* *STAGE - <b>middlepoint-dev.1dxr.com*</b>
+* *STAGE - <b>middlepoint-stg.1dxr.com*</b>
 * *DEV - <b>middlepoint-dev.1dxr.com*</b>
 
 In this document `{base URL}` is used as a palceholder for current environment.
@@ -33,42 +35,42 @@ In this document `{base URL}` is used as a palceholder for current environment.
 
 Version is added after `{base URL}` (latest version 2).
 
-Example
+Example:
 
-`api.fantasticservices.com/v2`  
+<b>*api.fantasticservices.com/v2*</b>
 
 In this document `{version}` is used as a palceholder for selected version.
 
 ## Namespaces
 
-Namespace is added after `{version}` (latest version 2).
+Namespace is added after `{version}`.
 
 * *CLIENT USER - <b>/client</b>*
 * *PRO USER - <b>/unit</b>*
 * *GLOBAL FOR SYSTEM - <b>/shared</b>*
 
-Example
+Example:
 
-<b>*api.fantasticservices.com/v2/client/*</b>
+<b>*api.fantasticservices.com/v2/client*</b>
 
 In this document namespace is included in examples.
 
 
 ## Applications identifying tokens
 
-To access API all request must include identifying token header field
+To access API all request must include identifying token header field.
 
-`X-Client-Token: token`
+`X-Application: token`
 
 <aside class="notice">
-You must replace <code>token</code> with your personal API token.
+You must replace <code>token</code> with your personal APP token.
 </aside>
 
 ## Profile identifying tokens
 
-To access profile specific data request must include identifying token header field
+To access profile specific data request should include identifying profile header field.
 
-`X-Client-Profile: id`
+`X-Profile: id`
 
 <aside class="notice">
 You must replace <code>id</code> with your personal profile id.
@@ -77,9 +79,9 @@ You must replace <code>id</code> with your personal profile id.
 
 ## Authentication
 
-To access user specific data request should include header field
+To access user specific data request should include authorization header field.
 
-`Authorization: Bearer token`
+`Authorization: token`
 
 <aside class="notice">
 You must replace <code>token</code> with your personal authorization token.
@@ -132,6 +134,7 @@ Parameter | Type   | Default | Description
 `expand` | *string* | *none* | Attributes to return as full objects. Names can be listed separated by a comma.<br><br> Keywords:<br><br>all - *expands all first level attributes*<br>all.all - *expands all second level attributes*<br>attribute.all - *expands all attributes child elements*
 `fields` | *array* | *all* | Attributes to receive in response
 `exclude_fields` | *array* | *none* | Attributes to exclude from response
+`include_fields` | *array* | *none* | Attributes to add to response which are not returned by default
 
 
 ## Response
@@ -377,13 +380,15 @@ curl --request POST \
         "title_id": 1,
         "first_name": "Nikolay",
         "last_name": "Georgiev",
-        "phone_number": "072313123123",
+        "phone": "072313123123",
         "email": "test@test.com",
         "password": "1234",
         "referal_code": "JOHND1234B",
-        "oauth_id": "EAAEo0IpvAQcBAK1gy3VjCJPZCp6vidasdvEvEtxmO0gjFFjtz3jd8omEuhVhg3Y3ZAzIjSLQVMMZBaWwIZBRY9U8B7XZCFvGpledf38DPUTfeHNA2PCZALtPFTjXYFD1aPeB6IK4oo8dJWAIMAcpKPmFATTtXABljEA02jIDExTAp5brMUuNLMQlQr48ISRhbNy4hbKyI6plbO6ZCd1iHJ9kxd09PfpiwcZD",
-        "profile_id": 911980962150668,
-        "social_login_provider_id": 1,
+        "social": {
+          "oauth_id": "EAAEo0IpvAQcBAK1gy3VjCJPZCp6vidasdvEvEtxmO0gjFFjtz3jd8omEuhVhg3Y3ZAzIjSLQVMMZBaWwIZBRY9U8B7XZCFvGpledf38DPUTfeHNA2PCZALtPFTjXYFD1aPeB6IK4oo8dJWAIMAcpKPmFATTtXABljEA02jIDExTAp5brMUuNLMQlQr48ISRhbNy4hbKyI6plbO6ZCd1iHJ9kxd09PfpiwcZD",
+          "profile_id": 911980962150668,
+          "social_provider_id": 1
+        },
         "type_id": 1
       }
     }
@@ -401,7 +406,7 @@ curl --request POST \
       "data": [
         {
           "login": {
-            "token": "1cjkidhfqoihoufu18j0ncoy0jl7eu0d4ge1kslggp4outkh",
+            "sid": "1cjkidhfqoihoufu18j0ncoy0jl7eu0d4ge1kslggp4outkh",
             "create_time": 1429863734,
             "expire_time": 1429906934
           }
@@ -424,7 +429,7 @@ curl --request POST \
 }
 ```
 
-To create account all required fields must be sent (except anymous accounts which need only the right `type_id`). For social sign in set the correct `type_id` and `social_login_provider_id`, pass the needed additional parameters for the social provider as `oauth_id`, `profile_id` etc. Missing details from social sign in must be collected from user to satisfy required fields.
+To create account all required fields must be sent (except anonymous accounts which need only the right `type_id`). For social sign in set the correct `type_id` and fields in `social` object (they vary for different social medias). Missing details from social sign in must be collected from user to satisfy required fields.
 
 `"path": "register"`
 
@@ -435,12 +440,12 @@ Parameter | Type | Description
 `title_id`<br>*required* | *integer* | Selected title `id` from `user_titles`
 `first_name`<br>*required* | *string* | User's first name (no special characters allowed)
 `last_name`<br>*required* | *string* | User's last name (no special characters allowed)
-`phone_number`<br>*required* | *integer* | User's phone number validated for the region (UK/AUS/USA etc.)
+`phone`<br>*required* | *integer* | User's phone number validated for the region (UK/AUS/USA etc.)
 `email`<br>*required* | *string* | User's email with validated structure (e.g. xxxx@xxx.xxx)
 `referal_code`<br>*optional* | *string* | Referal code from another user
-`oauth_id`<br>*optional* | *string* | Facebook oauth string for sign in
-`profile_id`<br>*optional* | *string* | Facebook profile id
-`social_login_provider`<br>*optional* | *integer* | Social login provider `id`.<br><br>*<b>1</b> - Facebook*
+`social.oauth_id`<br>*optional* | *string* | Facebook oauth string for sign in
+`social.profile_id`<br>*optional* | *string* | Facebook profile id
+`social.social_provider_id`<br>*optional* | *integer* | Social login provider `id`.<br><br>*<b>1</b> - Facebook*
 `type_id`<br>*optional* | *integer* | Type of registration`id`.<br><br>*<b>1</b> - Generic (register form)*<br>*<b>2</b> - Social (Facebook)*<br>*<b>3</b> - Anonymous*
 
 ### `params`
@@ -453,7 +458,7 @@ Parameter | Type | Description
 
 Parameter | Type | Description
 -------- | ----- | -------
-`token `<br>*required* | *integer* | Your session id. Use for `Authorization` header.
+`login.sid `<br>*required* | *integer* | Your session id. Use for `Authorization` header.
 
 
 <aside class="success">
@@ -463,258 +468,3 @@ Code for successful registration: 2010.
 <aside class="warning">
 Error codes for registration: 4010 - 4020.
 </aside>
-
-
-
-
-# Checklists
-
-```shell
-curl --request GET \
---url https://api.fantasticservices.com/v2/checklists/1?expand=all \
---header 'x-client-token: YOUR_API_TOKEN' \
---header 'authorization: YOUR_AUTH_TOKEN'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 1,
-  "display_location": 1,
-  "required": true,
-  "categories": [
-    {
-      "id": 25,
-      "checklist_id": 1,
-      "sort": 100,
-      "title": "Client specific requirements",
-      "items": [
-        {
-          "id": 15,
-          "category_id": 25,
-          "sort": 100,
-          "group": 1,
-          "title": "Clean your car",
-          "required": true
-        }
-      ]
-    }
-  ],
-  "answers": [
-    {
-      "id": 3,
-      "checklist_id": 1,
-      "item_id": 26,
-      "answer": 1,
-      "note": null
-    }
-  ]
-}
-```
-
-This endpoint retrieves full checklist object.
-
-### HTTP Request
-
-`GET https://{base URL}/{version}/checklists/{checklist_id}?expand=all`
-
-### Object attributes
-
-Attribute | Type | Description
---------- | -----| -------------------
-`id` | *integer* | Object identifier
-`display_location` | *integer* | Points where checklist will be used<br><br>1 - *start of the day*<br>2 - *before checkin*<br>3 - *after checkout*
-`required` | *boolean* | Is the item required to be answered
-`categories` | [*<a href="#checklists-categories">object</a>*] | Groups checklist questions into sections
-`categories.id` | *integer* | Object identifier
-`categories.checklist_id` | *integer* | Parent object identifier
-`categories.sort` | *integer* | Determines sort position
-`categories.title` | *string* | Display title of section for the category
-`categories.items` | [*<a href="#checklists-categories-items">object</a>*] | The questions for the category
-`categories.item.id` | *integer* | Object identifier
-`categories.item.category_id` | *integer* | Parent object identifier
-`categories.item.sort` | *integer* | Determines sort position
-`categories.item.group` | *integer* | Items can be part of a group. Answers apply to the whole group.
-`categories.item.title` | *string* | Display title of question item.
-`categories.item.required ` | *boolean* | Is user required to anaswer this question.
-`answers` | [*<a href="#checklists-answers">object</a>*] | Checklist answer
-`answers.id` | *integer* | Object identifier
-`answers.checklist_id` | *integer* | Parent object identifier
-`answers.item_id` | *integer* | Checklist question item for this answer.
-`answers.answer ` | *integer* | User answer to the question<br><br>0 - *no answer*<br>1 - *confirmed*<br>2 - *declined*
-`answers.note ` | *string* | Note for decline.
-
-<aside class="success">
-Checklists may be global or related to a job.
-</aside>
-
-
-## /checklists
-
-```shell
-curl --request GET \
---url https://api.fantasticservices.com/v2/checklists/1 \
---header 'x-client-token: YOUR_API_TOKEN' \
---header 'authorization: YOUR_AUTH_TOKEN'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 1,
-  "display_location": 1,
-  "required": true,
-  "categories": [
-    25,
-    28,
-    29
-  ],
-  "answers": [
-    3,
-    6
-  ]
-}
-```
-
-This endpoint retrieves checklist object.
-
-### HTTP Request
-
-`GET https://{base URL}/{version}/checklists/{checklist_id}`
-
-### Object attributes
-
-Attribute | Type | Description
---------- | -----| -------------------
-`id` | *integer* | Object identifier
-`checklist_id` | *integer* | Parent object identifier
-`display_location` | *integer* | Points where checklist will be used<br><br>1 - *start of the day*<br>2 - *before checkin*<br>3 - *after checkout*
-`required` | *boolean* | Is the item required to be answered
-`categories` | [*<a href="#checklists-categories">object</a>*] | Groups checklist questions into sections
-`answers` | [*<a href="#checklists-answers">object</a>*] | Checklist answer
-
-<aside class="success">
-Checklists may be global or related to a job.
-</aside>
-
-## /checklists/categories
-
-
-```shell
-curl --request GET \
---url https://api.fantasticservices.com/v2/checklists/1/categories/25 \
---header 'x-client-token: YOUR_API_TOKEN' \
---header 'authorization: YOUR_AUTH_TOKEN'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 25,
-  "checklist_id": 1,
-  "sort": 100,
-  "title": "Client specific requirements",
-  "items": [
-    1,
-    2,
-    9
-  ]
-}
-```
-
-This endpoint retrieves checklist category object.
-
-### HTTP Request
-
-`GET https://{base URL}/{version}/checklists/{checklist_id}/categories/{category_id}`
-
-### Object attributes
-
-Attribute | Type | Description
---------- | -----| -------------------
-`id` | *integer* | Object identifier
-`checklist_id` | *integer* | Parent object identifier
-`sort` | *integer* | Determines sort position
-`title` | *string* | Display title of section for the category
-`items` | [*<a href="#checklists-categories-items">object</a>*] | The questions for the category
-
-## /checklists/categories/items
-
-
-```shell
-curl --request GET \
---url https://api.fantasticservices.com/v2/checklists/1/categories/25/items/15 \
---header 'x-client-token: YOUR_API_TOKEN' \
---header 'authorization: YOUR_AUTH_TOKEN'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 15,
-  "category_id": 25,
-  "sort": 100,
-  "group": 1,
-  "title": "Clean your car",
-  "required": true
-}
-```
-
-This endpoint retrieves checklist category item object.
-
-### HTTP Request
-
-`GET https://{base URL}/{version}/checklists/{checklist_id}/categories/{category_id}/items/{item_id}`
-
-### Object attributes
-
-Attribute | Type | Description
---------- | -----| -------------------
-`id` | *integer* | Object identifier
-`category_id` | *integer* | Parent object identifier
-`sort` | *integer* | Determines sort position
-`group` | *integer* | Items can be part of a group. Answers apply to the whole group.
-`title` | *string* | Display title of question item.
-`required ` | *boolean* | Is user required to anaswer this question.
-
-## /checklists/answers
-
-
-```shell
-curl --request GET \
---url https://api.fantasticservices.com/v2/checklists/1/answers/3 \
---header 'x-client-token: YOUR_API_TOKEN' \
---header 'authorization: YOUR_AUTH_TOKEN'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 3,
-  "checklist_id": 1,
-  "item_id": 26,
-  "answer": 1,
-  "note": null
-}
-```
-
-This endpoint retrieves checklist answer object.
-
-### HTTP Request
-
-`GET https://{base URL}/{version}/checklists/{checklist_id}/answers/{answer_id}`
-
-### Object attributes
-
-Attribute | Type | Description
---------- | -----| -------------------
-`id` | *integer* | Object identifier
-`checklist_id` | *integer* | Parent object identifier
-`item_id` | *integer* | Checklist question item for this answer.
-`answer ` | *integer* | User answer to the question<br><br>0 - *no answer*<br>1 - *confirmed*<br>2 - *declined*
-`note ` | *string* | Note for decline.
