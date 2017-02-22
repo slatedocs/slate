@@ -8,6 +8,7 @@ toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
+  - card_to_card
   - making_requests
 
 search: true
