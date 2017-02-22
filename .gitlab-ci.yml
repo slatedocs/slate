@@ -1,0 +1,14 @@
+image: ruby:2.3
+
+pages:
+  script:
+  - apt-get update -yqqq
+  - apt-get install -y nodejs
+  - bundle install
+  - bundle exec middleman build --clean
+  - mv build public
+  artifacts:
+    paths:
+    - public
+  only:
+  - master        
