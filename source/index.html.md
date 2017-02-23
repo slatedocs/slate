@@ -656,34 +656,32 @@ curl -i https://rubiconmd.com/api/v1/members?access_token=AAAAAA&client_organiza
 > The above command returns JSON structured like this:
 
 ```json
-{
-  [
-    {
-      "uid":"1231231",
-      "first_name":"Franklin",
-      "last_name":"McAwesome",
-      "gender":"male",
-      "date_of_birth":"12/12/1959",
-      "email":"email@domain.com",
-      "race":"asian",
-      "phone_number":"555-18000-YEAH",
-      "insurance":"insurance info",
-      "location":"with waldo"
-    },
-    {
-      "uid":"21231231",
-      "first_name":"Jenny",
-      "last_name":"McDoe",
-      "gender":"female",
-      "date_of_birth":"1/12/1987",
-      "email":"another_email@domain.com",
-      "race":"caucasian",
-      "phone_number":"555-1800-HOWDY",
-      "insurance":"insurance info",
-      "location":"with waldo"
-    }
-  ]
-}
+[
+  {
+    "uid":"1231231",
+    "first_name":"Franklin",
+    "last_name":"McAwesome",
+    "gender":"male",
+    "date_of_birth":"12/12/1959",
+    "email":"email@domain.com",
+    "race":"asian",
+    "phone_number":"555-18000-YEAH",
+    "insurance":"insurance info",
+    "location":"with waldo"
+  },
+  {
+    "uid":"21231231",
+    "first_name":"Jenny",
+    "last_name":"McDoe",
+    "gender":"female",
+    "date_of_birth":"1/12/1987",
+    "email":"another_email@domain.com",
+    "race":"caucasian",
+    "phone_number":"555-1800-HOWDY",
+    "insurance":"insurance info",
+    "location":"with waldo"
+  }
+]
 ```
 
 ## Show
