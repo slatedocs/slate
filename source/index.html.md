@@ -5,7 +5,8 @@ language_tabs:
   - shell
   - ruby
   - python
-  - javascript
+  - javascript--browser: Browser!
+  - javascript--node: Node!
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -47,10 +48,14 @@ curl "api_endpoint_here"
   -H "Authorization: meowmeowmeow"
 ```
 
-```javascript
+```javascript--browser
 const kittn = require('kittn');
 
 let api = kittn.authorize('meowmeowmeow');
+```
+
+```javascript--node
+// node code here!
 ```
 
 > Make sure to replace `meowmeowmeow` with your API key.
@@ -88,11 +93,15 @@ curl "http://example.com/api/kittens"
   -H "Authorization: meowmeowmeow"
 ```
 
-```javascript
+```javascript--browser
 const kittn = require('kittn');
 
 let api = kittn.authorize('meowmeowmeow');
 let kittens = api.kittens.get();
+```
+
+```javascript--node
+// node code here!
 ```
 
 > The above command returns JSON structured like this:
@@ -154,11 +163,15 @@ curl "http://example.com/api/kittens/2"
   -H "Authorization: meowmeowmeow"
 ```
 
-```javascript
+```javascript--browser
 const kittn = require('kittn');
 
 let api = kittn.authorize('meowmeowmeow');
 let max = api.kittens.get(2);
+```
+
+```javascript--node
+// node code here!
 ```
 
 > The above command returns JSON structured like this:
