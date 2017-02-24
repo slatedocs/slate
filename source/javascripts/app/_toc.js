@@ -1,57 +1,80 @@
 //= require ../lib/_jquery
-//= require ../lib/_jquery_ui
-//= require ../lib/_jquery.tocify
 //= require ../lib/_imagesloaded.min
-(function (global) {
+;(function () {
   'use strict';
 
-  var closeToc = function() {
-    $(".tocify-wrapper").removeClass('open');
-    $("#nav-button").removeClass('open');
-  };
-
-  var makeToc = function() {
-    global.toc = $("#toc").tocify({
-      selectors: 'h1, h2',
-      extendPage: false,
-      theme: 'none',
-      smoothScroll: false,
-      showEffectSpeed: 0,
-      hideEffectSpeed: 180,
-      ignoreSelector: '.toc-ignore',
-      highlightOffset: 60,
-      scrollTo: -1,
-      scrollHistory: true,
-      hashGenerator: function (text, element) {
-        return element.prop('id');
+  var debounce = function(func, waitTime) {
+    var timeout = false;
+    return function() {
+      if (timeout === false) {
+        setTimeout(function() {
+          func();
+          timeout = false;
+        }, waitTime);
+        timeout = true;
       }
-    }).data('toc-tocify');
-
-    $("#nav-button").click(function() {
-      $(".tocify-wrapper").toggleClass('open');
-      $("#nav-button").toggleClass('open');
-      return false;
-    });
-
-    $(".page-wrapper").click(closeToc);
-    $(".tocify-item").click(closeToc);
+    };
   };
 
-  // Hack to make already open sections to start opened,
-  // instead of displaying an ugly animation
-  function animate() {
-    setTimeout(function() {
-      toc.setOption('showEffectSpeed', 180);
-    }, 50);
+  function loadToc($toc, tocLinkSelector, scrollOffset) {
+    var headerHeights = {};
+
+    var recacheHeights = function() {
+      headerHeights = {};
+
+      $toc.find(tocLinkSelector).each(function() {
+        var targetId = $(this).attr('href');
+        if (targetId[0] === "#") {
+          headerHeights[targetId] = $(targetId).offset().top;
+        }
+      });
+    };
+
+    var refreshToc = function() {
+      var currentTop = $(document).scrollTop() + scrollOffset;
+
+      var best = null;
+      for (var name in headerHeights) {
+        if ((headerHeights[name] < currentTop && headerHeights[name] > headerHeights[best]) || best === null) {
+          best = name;
+        }
+      }
+
+      var $best = $toc.find("[href='" + best + "']").first();
+      if (!$best.hasClass("active")) {
+        $toc.find(".active").removeClass("active");
+        $best.addClass("active");
+        if (window.history.pushState) {
+          window.history.pushState(null, "", best);
+        }
+      }
+    };
+
+    var makeToc = function() {
+      recacheHeights();
+      refreshToc();
+
+      // reload immediately after scrolling on toc click
+      $toc.find(tocLinkSelector).click(function() {
+        setTimeout(function() {
+          refreshToc();
+        }, 0);
+      });
+
+      $(window).scroll(debounce(refreshToc, 200));
+      $(window).resize(debounce(recacheHeights, 200));
+    };
+
+    makeToc();
+
+    window.recacheHeights = recacheHeights;
   }
 
   $(function() {
-    makeToc();
-    animate();
+    loadToc($('#toc'), '.toc-link', 10);
     setupLanguages($('body').data('languages'));
     $('.content').imagesLoaded( function() {
-      global.toc.calculateHeights();
+      window.recacheHeights();
     });
-  });
-})(window);
-
+  })
+})();

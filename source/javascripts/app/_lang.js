@@ -15,13 +15,13 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations
 under the License.
 */
-(function (global) {
+;(function () {
   'use strict';
 
   var languages = [];
 
-  global.setupLanguages = setupLanguages;
-  global.activateLanguage = activateLanguage;
+  window.setupLanguages = setupLanguages;
+  window.activateLanguage = activateLanguage;
 
   function activateLanguage(language) {
     if (!language) return;
@@ -36,7 +36,8 @@ under the License.
     $(".highlight.tab-" + language).show();
     $(".lang-specific." + language).show();
 
-    global.toc.calculateHeights();
+    window.recacheHeights();
+    console.log(language);
 
     // scroll to the new location of the position
     if ($(window.location.hash).get(0)) {
@@ -140,12 +141,15 @@ under the License.
     if (presetLanguage) {
       // the language is in the URL, so use that language!
       activateLanguage(presetLanguage);
+      console.log(1);
 
       localStorage.setItem("language", presetLanguage);
     } else if ((defaultLanguage !== null) && (jQuery.inArray(defaultLanguage, languages) != -1)) {
+      console.log(2);
       // the language was the last selected one saved in localstorage, so use that language!
       activateLanguage(defaultLanguage);
     } else {
+      console.log(3);
       // no language selected, so use the default
       activateLanguage(languages[0]);
     }
@@ -163,4 +167,4 @@ under the License.
       activateLanguage(getLanguageFromQueryString());
     };
   });
-})(window);
+})();
