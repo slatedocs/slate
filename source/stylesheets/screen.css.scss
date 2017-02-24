@@ -55,7 +55,7 @@ html, body {
     $nav-subitem-bg;
 }
 
-.tocify-wrapper {
+.toc-wrapper {
   transition: left 0.3s ease-in-out;
 
   overflow-y: auto;
@@ -110,8 +110,8 @@ html, body {
     }
   }
 
-  img+.tocify, .lang-selector+.tocify {
-    margin-top: $logo-margin;
+  .logo {
+    margin-bottom: $logo-margin;
   }
 
   .search-results {
@@ -146,14 +146,6 @@ html, body {
   }
 
 
-  .tocify-item>a, .toc-footer li {
-    padding: 0 $nav-padding 0 $nav-padding;
-    display: block;
-    overflow-x: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
   // The Table of Contents is composed of multiple nested
   // unordered lists.  These styles remove the default
   // styling of an unordered list because it is ugly.
@@ -164,36 +156,28 @@ html, body {
     line-height: 28px;
   }
 
-  li {
-    color: $nav-text;
-    transition-property: background;
-    transition-timing-function: linear;
-    transition-duration: 230ms;
-  }
-
   // This is the currently selected ToC entry
-  .tocify-focus {
+  .toc-link.active {
     box-shadow: 0px 1px 0px $nav-active-shadow;
     background-color: $nav-active-bg;
     color: $nav-active-text;
   }
 
-  // Subheaders are the submenus that slide open
-  // in the table of contents.
-  .tocify-subheader {
-    display: none; // tocify will override this when needed
+  .toc-list-h2 {
+    display: none;
     background-color: $nav-subitem-bg;
     font-weight: 500;
-    .tocify-item>a {
-      padding-left: $nav-padding + $nav-indent;
-      font-size: 12px;
-    }
 
     // for embossed look:
     @include embossed-bg;
     &>li:last-child {
       box-shadow: none; // otherwise it'll overflow out of the subheader
     }
+  }
+
+  .toc-h2 {
+    padding-left: $nav-padding + $nav-indent;
+    font-size: 12px;
   }
 
   .toc-footer {
@@ -216,7 +200,19 @@ html, body {
       text-decoration: none;
     }
   }
+}
 
+.toc-link, .toc-footer li {
+  padding: 0 $nav-padding 0 $nav-padding;
+  display: block;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  color: #fff;
+  transition-property: background;
+  transition-timing-function: linear;
+  transition-duration: 130ms;
 }
 
 // button to show navigation on mobile devices
@@ -324,6 +320,8 @@ html, body {
 // This is all the stuff with the light background in the left half of the page
 
 .content {
+  // fixes webkit rendering bug for some: see #538
+  -webkit-transform: translateZ(0);
   // to place content above the dark box
   position: relative;
   z-index: 30;
@@ -569,7 +567,7 @@ html, body {
 // There are also a couple styles disperesed
 
 @media (max-width: $tablet-width) {
-  .tocify-wrapper {
+  .toc-wrapper {
     left: -$nav-width;
 
     &.open {
@@ -585,7 +583,7 @@ html, body {
     display: block;
   }
 
-  .tocify-wrapper .tocify-item > a {
+  .toc-link {
     padding-top: 0.3em;
     padding-bottom: 0.3em;
   }
@@ -600,7 +598,7 @@ html, body {
     margin-right: 0;
   }
 
-  .tocify-wrapper .lang-selector {
+  .toc-wrapper .lang-selector {
     display: block;
   }
 
