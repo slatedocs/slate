@@ -14,7 +14,6 @@ def toc_data(page_content)
     })
   end
 
-  puts headers.inspect
   [3,2].each do |header_level|
     header_to_nest = nil
     headers = headers.reject do |header|

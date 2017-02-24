@@ -22,6 +22,7 @@ under the License.
 
   window.setupLanguages = setupLanguages;
   window.activateLanguage = activateLanguage;
+  window.getLanguageFromQueryString = getLanguageFromQueryString;
 
   function activateLanguage(language) {
     if (!language) return;
@@ -37,7 +38,6 @@ under the License.
     $(".lang-specific." + language).show();
 
     window.recacheHeights();
-    console.log(language);
 
     // scroll to the new location of the position
     if ($(window.location.hash).get(0)) {
@@ -141,15 +141,12 @@ under the License.
     if (presetLanguage) {
       // the language is in the URL, so use that language!
       activateLanguage(presetLanguage);
-      console.log(1);
 
       localStorage.setItem("language", presetLanguage);
     } else if ((defaultLanguage !== null) && (jQuery.inArray(defaultLanguage, languages) != -1)) {
-      console.log(2);
       // the language was the last selected one saved in localstorage, so use that language!
       activateLanguage(defaultLanguage);
     } else {
-      console.log(3);
       // no language selected, so use the default
       activateLanguage(languages[0]);
     }
@@ -163,8 +160,5 @@ under the License.
       activateLanguage(language);
       return false;
     });
-    window.onpopstate = function() {
-      activateLanguage(getLanguageFromQueryString());
-    };
   });
 })();

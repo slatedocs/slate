@@ -20,6 +20,7 @@
     var headerHeights = {};
     var pageHeight = 0;
     var windowHeight = 0;
+    var originalTitle = document.title;
 
     var recacheHeights = function() {
       headerHeights = {};
@@ -60,6 +61,8 @@
         if (window.history.pushState) {
           window.history.pushState(null, "", best);
         }
+        // TODO remove classnames
+        document.title = $best.data("title") + " – " + originalTitle;
       }
     };
 
@@ -81,13 +84,8 @@
     makeToc();
 
     window.recacheHeights = recacheHeights;
+    window.refreshToc = refreshToc;
   }
 
-  $(function() {
-    loadToc($('#toc'), '.toc-link', '.toc-list-h2', 10);
-    setupLanguages($('body').data('languages'));
-    $('.content').imagesLoaded( function() {
-      window.recacheHeights();
-    });
-  })
+  window.loadToc = loadToc;
 })();
