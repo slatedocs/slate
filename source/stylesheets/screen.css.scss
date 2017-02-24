@@ -146,12 +146,17 @@ html, body {
   }
 
 
-  .toc-h1, .toc-h2, .toc-footer li {
+  .toc-link, .toc-footer li {
     padding: 0 $nav-padding 0 $nav-padding;
     display: block;
     overflow-x: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-decoration: none;
+    color: #fff;
+    transition-property: background;
+    transition-timing-function: linear;
+    transition-duration: 130ms;
   }
 
   // The Table of Contents is composed of multiple nested
@@ -164,26 +169,21 @@ html, body {
     line-height: 28px;
   }
 
-  li {
-    color: $nav-text;
-    transition-property: background;
-    transition-timing-function: linear;
-    transition-duration: 230ms;
-  }
-
   // This is the currently selected ToC entry
-  .toc-h1.active, .toc-h2.active {
+  .toc-link.active {
     box-shadow: 0px 1px 0px $nav-active-shadow;
     background-color: $nav-active-bg;
     color: $nav-active-text;
   }
 
-  // Subheaders are the submenus that slide open
-  // in the table of contents.
-  .tocify-subheader {
-    display: none; // tocify will override this when needed
+  .toc-list-h2 {
+    display: none;
     background-color: $nav-subitem-bg;
     font-weight: 500;
+
+    &.active {
+      display: block;
+    }
 
     // for embossed look:
     @include embossed-bg;

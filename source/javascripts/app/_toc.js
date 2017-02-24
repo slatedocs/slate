@@ -16,7 +16,7 @@
     };
   };
 
-  function loadToc($toc, tocLinkSelector, scrollOffset) {
+  function loadToc($toc, tocLinkSelector, tocListSelector, scrollOffset) {
     var headerHeights = {};
 
     var recacheHeights = function() {
@@ -44,6 +44,8 @@
       if (!$best.hasClass("active")) {
         $toc.find(".active").removeClass("active");
         $best.addClass("active");
+        $best.parents(tocListSelector).addClass("active");
+        $best.siblings(tocListSelector).addClass("active");
         if (window.history.pushState) {
           window.history.pushState(null, "", best);
         }
@@ -71,7 +73,7 @@
   }
 
   $(function() {
-    loadToc($('#toc'), '.toc-link', 10);
+    loadToc($('#toc'), '.toc-link', '.toc-list-h2', 10);
     setupLanguages($('body').data('languages'));
     $('.content').imagesLoaded( function() {
       window.recacheHeights();
