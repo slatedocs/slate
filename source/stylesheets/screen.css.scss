@@ -168,10 +168,6 @@ html, body {
     background-color: $nav-subitem-bg;
     font-weight: 500;
 
-    &.active {
-      display: block;
-    }
-
     // for embossed look:
     @include embossed-bg;
     &>li:last-child {

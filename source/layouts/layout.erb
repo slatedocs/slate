@@ -73,13 +73,15 @@ under the License.
         <% toc_data(page_content).each do |h1| %>
           <li>
             <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:content] %>"><%= h1[:content] %></a>
-            <ul class="toc-list-h2">
-              <% h1[:children].each do |h2| %>
-                <li>
-                  <a href="#<%= h2[:id] %>" class="toc-h2 toc-link" data-title="<%= h1[:content] %>"><%= h2[:content] %></a>
-                </li>
-              <% end %>
-            </ul>
+            <% if h1[:children].length > 0 %>
+              <ul class="toc-list-h2">
+                <% h1[:children].each do |h2| %>
+                  <li>
+                    <a href="#<%= h2[:id] %>" class="toc-h2 toc-link" data-title="<%= h1[:content] %>"><%= h2[:content] %></a>
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
           </li>
         <% end %>
       </div>
