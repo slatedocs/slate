@@ -18,9 +18,13 @@
 
   function loadToc($toc, tocLinkSelector, tocListSelector, scrollOffset) {
     var headerHeights = {};
+    var pageHeight = 0;
+    var windowHeight = 0;
 
     var recacheHeights = function() {
       headerHeights = {};
+      pageHeight = $(document).height();
+      windowHeight = $(window).height();
 
       $toc.find(tocLinkSelector).each(function() {
         var targetId = $(this).attr('href');
@@ -32,6 +36,13 @@
 
     var refreshToc = function() {
       var currentTop = $(document).scrollTop() + scrollOffset;
+
+      if (currentTop + windowHeight >= pageHeight) {
+        // at bottom of page, so just select last header by making currentTop very large
+        // this fixes the problem where the last header won't ever show as active if its content
+        // is shorter than the window height
+        currentTop = pageHeight + 1000;
+      }
 
       var best = null;
       for (var name in headerHeights) {
