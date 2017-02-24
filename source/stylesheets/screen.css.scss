@@ -184,6 +184,26 @@ html, body {
     font-size: 12px;
   }
 
+  .toc-footer {
+    padding: 1em 0;
+    margin-top: 1em;
+    border-top: 1px dashed $nav-footer-border-color;
+
+    li,a {
+      color: $nav-text;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    li {
+      font-size: 0.8em;
+      line-height: 1.7;
+      text-decoration: none;
+    }
+  }
 }
 
 .toc-link, .toc-footer li {
@@ -198,28 +218,6 @@ html, body {
   transition-timing-function: linear;
   transition-duration: 130ms;
 }
-
-.toc-footer {
-  padding: 1em 0;
-  margin-top: 1em;
-  border-top: 1px dashed $nav-footer-border-color;
-
-  li,a {
-    color: $nav-text;
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  li {
-    font-size: 0.8em;
-    line-height: 1.7;
-    text-decoration: none;
-  }
-}
-
 
 // button to show navigation on mobile devices
 #nav-button {
