@@ -54,9 +54,7 @@ With the relative flag enabled, the variable catalog looks something like this:
     "self": "https://app.crunch.io/api/datasets/5ee0a0/variables/",
     "orders": {
         "hier": "https://app.crunch.io/api/datasets/5330a0/variables/hier/",
-        "personal": "https://app.crunch.io/api/datasets/5330a0/variables/personal/"
-    },
-    "views": {
+        "personal": "https://app.crunch.io/api/datasets/5330a0/variables/personal/",
         "weights": "https://app.crunch.io/api/datasets/5ee0a0/variables/weights/"
     },
     "specification": "https://app.crunch.io/api/specifications/variables/",
@@ -153,9 +151,8 @@ line 24.
     "element": "shoji:catalog",
     "self": "https://app.crunch.io/api/datasets/5ee0a0/variables/",
     "orders": {
-        "hier": "https://app.crunch.io/api/datasets/5330a0/variables/hier/"
-    },
-    "views": {
+        "hier": "https://app.crunch.io/api/datasets/5330a0/variables/hier/",
+        "personal": "https://app.crunch.io/api/datasets/5330a0/variables/personal/",
         "weights": "https://app.crunch.io/api/datasets/5ee0a0/variables/weights/"
     },
     "specification": "https://app.crunch.io/api/specifications/variables/",
@@ -307,21 +304,32 @@ Behaves sames as PATCH.
 
 `/datasets/{id}/variables/weights/`
 
-GET a "groups" view with a single group named `weight_variables` that contains
-the urls of the variables that have been designated as possible weight variables.
+#### GET
 
-PATCH the `value` with a "groups" body. The URLs on the payload (that aren't
-weight variables already) will be appended to the existing list of weight variables.
+GET a `shoji:order` that contains the urls of the variables that have been 
+designated as possible weight variables.
 
-PUT the `value` with a "groups" view. The value will overwrite the current
-weight variables with the incoming ones. Use this to delete weight variables.
+#### PATCH 
+
+PATCH the `graph` with a list of the desired list of weight variables. The
+list will always be overwritten with the new values. This order can only
+be a flat list of URLs, any nesting will be rejected with a 400 response.
+
+If the dataset has a default weight variable configured, it will always
+be present on the response even if it wasn't included on a PATCH request.
+
+Removing variables from this list will have the side effect of changing any 
+user's preference that had such variables set as their weight to the current
+dataset's default weight.
+
+Only numeric variables are allowed to be used as weight. If a variable of 
+another type is included in the list, the server will abort and return a 409 
+response.
+
 
 ```json
 {
-  "groups": [{
-    "group": "weight_variables",
-    "entities": ["https://app.crunch.io/api/datasets/42d0a3/variables/42229f"]
-  }]
+  "graph": ["https://app.crunch.io/api/datasets/42d0a3/variables/42229f"]
 }
 ```
 
@@ -329,6 +337,10 @@ weight variables with the incoming ones. Use this to delete weight variables.
 It is only possible to submit variables that belong to the main dataset. That
 is, variables from joined datasets cannot be set as weight.
 </aside>
+
+#### PUT
+
+Behaves sames as PATCH.
 
 ### Entity
 
