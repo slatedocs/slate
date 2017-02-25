@@ -1,189 +1,145 @@
 ---
-title: API Reference
+title: مستندات وب سرویس ژاکِت
 
 language_tabs:
-  - shell
-  - ruby
-  - python
-  - javascript
+  - php
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='http://zhaket.com/guard/' target='_blank'>برای دریافت کلید API عضو شوید</a>
 
 includes:
-  - errors
 
-search: true
+search: false
 ---
 
-# Introduction
+# معرفی
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+به صفحه مستندات وب سرویس ژاکِت خوش آمدید.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+وب سرویس ژاکِت قابلیت ویژه‌ای است که در اختیار فروشندگان ژاکِت قرار گرفته است. با استفاده از این وب سرویس  قادر خواهید بود برای محصولات خود در ژاکِت لایسنس تعریف کرده و از کپی شدن آن‌ها و نصب‌های متعدد بر روی وبسایت‌های مختلف جلوگیری نمایید.
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+برای استفاده از این وب‌سرویس ابتدا کلاس PHP وب سرویس را از <a href="https://github.com/Zhaket/api">گیت‌هاب</a> دانلود نمایید و با استفاده از متدهایی که در ادامه معرفی شده اند لایسنس را در افزونه یا قالب وردپرسی خود فعال نمایید.
 
-# Authentication
 
-> To authorize, use this code:
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+
+
+
+
+
+
+
+
+# نصب لایسنس 
+
+> برای نصب و فعال سازی لایسنس از متد زیر استفاده می‌کنیم:
+
+
+```php
+<?php
+    require 'zhaket-api.class.php';
+    
+    $license_token = 'LICENSE_TOKEN'; // Your license token
+    $produc_token = 'PRODUCT_TOKEN'; // Your product token
+    
+    /*
+    	@param1 : license_token
+    	@param2 : product_token
+    	replace it with your own license token and product token :)
+    */
+    $result = Zhaket_License::install($license_token, $produc_token);
+    
+    if ($result->status=='successful') {
+        echo $result->message; // License installed successful
+    } else {
+        // License not installed / show message
+        if (!is_object($result->message)) {// License is Invalid
+            echo $result->message;
+        } else {
+            foreach ($result->message as $message) {
+                foreach ($message as $msg) {
+                    echo $msg.'<br>';
+                }
+            }
+        }
+    }
+?>
 ```
 
-```python
-import kittn
 
-api = kittn.authorize('meowmeowmeow')
+> توجه داشته باشید که در کدهای بالا حتما مقادیر `LICENSE_TOKEN` و `PRODUCT_TOKEN` را با توکن‌های محصول و لایسنس خود جایگزین کنید.
+
+عملیات نصب لایسنس باید پس از نصب قالب یا افزونه توسط کاربر به صورت خود کار انجام شود. برای این کار توصیه می کنیم یک قسمت به داشبورد وردپرس و تنظیمات افزونه یا قالب خود اضافه کنید و کد لایسنس را از کاربر دریافت کنید.
+
+پس از دریافت کد لایسنس با استفاده از متد `install` اقدام به فعال‌سازی لایسنس نمایید. 
+
+توجه داشته باشید که هر لایسنس تنها یک بار مجاز به نصب بوده و در صورتی که کاربری مایل به نصب محصول شما بر روی چند سایت باشد باید برای هر وبسایت به صورت مجزا لایسنس تهیه کند.
+
+از قسمت سمت راست می‌توانید نمونه کدی که با متد `install` نوشته شده است را مشاهده نمایید. 
+
+بدیهی است که کد نمونه به ساده ترین شکل ممکن نوشته شده است و برای هماهنگی کامل با محصول شما می‌بایست متناسب با ساختار محصول شما و چگونگی فرآیند فعال‌سازی در آن، کد نمونه تغییر کند.
+
+توصیه می‌کنیم در صورت موفق بودن نصب لایسنس، به منظور بررسی وضعیت لایسنس در آینده حتما  توکن لایسنس را داخل دیتابیس کاربر ذخیره نمایید.
+
+# بررسی وضعیت لایسنس
+
+> برای بررسی وضعیت لایسنس از نمونه کد زیر استفاده نمایید:
+
+
+```php
+<?php
+    require 'zhaket-api.class.php';
+    
+    $license_token = 'LICENSE_TOKEN'; // Your license token
+    
+    /*
+     * @param : license token
+     * replace it with your own license token :)
+     */
+    $result = Zhaket_License::isValid($license_token);
+    
+    if ($result->status=='successful') {
+        echo $result->message; // License is valid
+    } else {
+        // License not valid / show message
+        if (!is_object($result->message)) { // License is Invalid
+            echo $result->message;
+        } else {
+            foreach ($result->message as $message) {
+                foreach ($message as $msg) {
+                    echo $msg.'<br>';
+                }
+            }
+        }
+    }
+?>
 ```
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+> در کد بالا باید به جای `LICENSE_TOKEN` توکن لایسنس کاربر را وارد نمایید.
 
-```javascript
-const kittn = require('kittn');
+متد `isValid` به شما این قابلیت را خواهد داد تا وضعیت لایسنس فعال شده بر روی محصول خود را مرتبا بررسی نمایید.
 
-let api = kittn.authorize('meowmeowmeow');
-```
+برای این منظور کافی است متد `isValid` را در زمان‌های مورد نظر بررسی کنید و در صورت فعال بودن لایسنس عملیات‌های خود را انجام دهید.
 
-> Make sure to replace `meowmeowmeow` with your API key.
+توصیه می‌کنیم وضعیت لایسنس خود را هر 24 ساعت از طریق وب سرویس بررسی کرده و نتیجه را داخل دیتابیس ذخیره کنید و در بقیه مواردی که لازم به بررسی وضعیت لایسنس هستید حتما وضعیت را از دیتابیس بخوانید.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+
+
+
+
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+توجه داشته باشید که قبل از چک کردن وضعیت لایسنس حتما ابتدا باید لایسنس را نصب کرده باشید. در غیر این صورت با پیغام `لایسنس نا معتبر میباشد.`  مواجه خواهید شد.
 </aside>
 
-# Kittens
 
-## Get All Kittens
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
 
-```python
-import kittn
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
 
