@@ -632,7 +632,6 @@ dataset Shoji entity.
   "variables": "http://app.crunch.io/api/datasets/c5d751/variables/",
   "actions": "http://app.crunch.io/api/datasets/c5d751/actions/",
   "savepoints": "http://app.crunch.io/api/datasets/c5d751/savepoints/",
-  "weight_variables": "http://app.crunch.io/api/datasets/c5d751/weight_variables/",
   "filters": "http://app.crunch.io/api/datasets/c5d751/filters/",
   "multitables": "http://app.crunch.io/api/datasets/c5d751/multitables/",
   "comparisons": "http://app.crunch.io/api/datasets/c5d751/comparisons/",
@@ -650,7 +649,6 @@ parent | Indicates the catalog where this dataset is found (project or main data
 variables | Catalog of all public variables of this dataset. See [Variables](#variables).
 actions | All actions executed on this dataset
 savepoints | Lists the saved versions for this dataset. See [Versions](#versions).
-weight_variables | Includes the available variables to be used as weight
 filters | Makes available the public and user-created filters. See [Filters](#filters).
 multitables | Similar to filters, displays all available multitables. See [Multitables](#mulitables)
 comparisons | Contains all available comparisons. See [Comparisons](#comparisons).
