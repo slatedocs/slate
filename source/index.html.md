@@ -8,6 +8,7 @@ toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
+  - credits
   - card_to_card
   - making_requests
 
@@ -350,7 +351,11 @@ Example response
     "description": "Loan repayment",
     "id": "db8fa412d",
     "type": "credit"
-  }]
+  }],
+  "reserved_money": {
+    "credit": 10,
+    "debit": 0.5
+  }
 }
 ```
 
