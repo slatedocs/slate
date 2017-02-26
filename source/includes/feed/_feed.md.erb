@@ -16,6 +16,19 @@ request = Net::HTTP::Get.new(url)
 response = http.request(request)
 puts response.read_body
 ```
+
+```python
+import requests
+
+url = "http://feed.accern.com/v3/alphas?token=TOKEN"
+req = requests.get(url)
+text_response = req.text # read response as Text
+print(text_response)
+
+json_response = req.json() # read response as JSON
+print(json_response)
+```
+
 > Make sure to replace TOKEN above
 
 To authenticate provide your authentication token in the url. We provide the authentication token in your welcome email.
@@ -23,6 +36,14 @@ To authenticate provide your authentication token in the url. We provide the aut
 ## Feed
 ```shell
 curl "http://feed.accern.com/v3/alphas?token=TOKEN"
+```
+
+```ruby
+url = URI("http://feed.accern.com/v3/alphas?token=TOKEN")
+```
+
+```python
+url = "http://feed.accern.com/v3/alphas?token=TOKEN"
 ```
 
 > The above code returns the most recent 100 documents.
@@ -42,10 +63,26 @@ By default this request will return the most recent 100 documents.
 curl "http://feed.accern.com/v3/alphas?last_id=1774184&token=TOKEN"
 ```
 
+```ruby
+url = URI("http://feed.accern.com/v3/alphas?last_id=1774184&token=TOKEN")
+```
+
+```python
+url = "http://feed.accern.com/v3/alphas?last_id=1774184&token=TOKEN"
+```
+
 > Filter by index
 
 ```shell
 curl "http://feed.accern.com/v3/alphas?index=sp500&token=TOKEN"
+```
+
+```ruby
+url = URI("http://feed.accern.com/v3/alphas?index=sp500&token=TOKEN")
+```
+
+```python
+url = "http://feed.accern.com/v3/alphas?index=sp500&token=TOKEN"
 ```
 
 > Filter by multiple indexes
@@ -54,16 +91,41 @@ curl "http://feed.accern.com/v3/alphas?index=sp500&token=TOKEN"
 curl "http://feed.accern.com/v3/alphas?index=sp500,dow30&token=TOKEN"
 ```
 
+```ruby
+url = URI("http://feed.accern.com/v3/alphas?index=sp500,dow30&token=TOKEN")
+```
+
+```python
+url = "http://feed.accern.com/v3/alphas?index=sp500,dow30&token=TOKEN"
+```
+
 > Filter by ticker
 
 ```shell
 curl "http://feed.accern.com/v3/alphas?ticker=amzn&token=TOKEN"
 ```
 
+```ruby
+url = URI("http://feed.accern.com/v3/alphas?ticker=amzn&token=TOKEN")
+```
+
+```python
+url = "http://feed.accern.com/v3/alphas?ticker=amzn&token=TOKEN"
+```
+
+
 > Filter by multiple tickers
 
 ```shell
 curl "http://feed.accern.com/v3/alphas?ticker=aapl,amzn&token=TOKEN"
+```
+
+```ruby
+url = URI("http://feed.accern.com/v3/alphas?ticker=aapl,amzn&token=TOKEN")
+```
+
+```python
+url = "http://feed.accern.com/v3/alphas?ticker=aapl,amzn&token=TOKEN"
 ```
 
 Parameter | Description 
