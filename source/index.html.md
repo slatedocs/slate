@@ -367,17 +367,17 @@ Possible verification statuses for identity and residency address: not_verified,
 
 # Get partner profile image
 
-> `GET http://domain.com/partner/${uid}/profile_image/big`
+> `GET http://domain.com/partner/${partner_id}/profile_image/big`
 
 ### HTTP Request
 
 Big image (150x150px)
 
-`GET http://domain.com/partner/${uid}/profile_image/big`
+`GET http://domain.com/partner/${partner_id}/profile_image/big`
 
 Small image (64x64px)
 
-`GET http://domain.com/partner/${uid}/profile_image`
+`GET http://domain.com/partner/${partner_id}/profile_image`
 
 # Get country flag
 
