@@ -41,7 +41,7 @@ In our Fundamentals Chapter, we go into greater detail about the various Inkling
 [2]: #schemas
 [3]: #concepts
 [4]: ./reference.html#concept-reference
-[5]: ./getting_started.html
+[5]: ./getting-started.html
 [6]: #inkling-a-new-language
 [7]: #mental-models
 [8]: #schemas
