@@ -65,7 +65,7 @@ These are still being designed. There's likely to be a full-width header includi
 
 There's a **Return Home** link in the footer of the table of contents.
 
-[1]: /getting_started.html "Getting Started"
+[1]: /getting-started.html "Getting Started"
 [2]: /inkling_classic.html "Classic Inkling"
 [3]: /inkling.html "New Inkling"
 [4]: /reference.html "Reference"

@@ -110,5 +110,5 @@ There is a BRAIN Details page for each of your BRAINs. Each page shows that BRAI
 [3]: ./reference.html#cli-reference
 [4]: https://beta.bons.ai
 [5]: http://yann.lecun.com/exdb/mnist/
-[6]: ./getting_started.html#install-prerequisites
+[6]: #install-prerequisites
 [7]: ./inkling.html#example-cart-pole
