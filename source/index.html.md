@@ -34,6 +34,7 @@ Successful login response
       "uid": 154,
       "name": "Igor",
       "surname": "Igor",
+      "partner_id": 169,
       "user_context": {
         "lang": "en_US",
         "tz": "Europe/Madrid",
