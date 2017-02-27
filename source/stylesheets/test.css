@@ -13,6 +13,8 @@
   height: 30px;
   box-shadow: 0px 4px 5px -1px rgba(87, 87, 87, 0.25);
   z-index: 40;
+  display: -ms-flexbox;
+  display: flex;
   }
   
 body.index #primary-nav {box-shadow:none;}  
@@ -88,12 +90,15 @@ li.tocify-item {line-height:1.4em !important;}
 ////////////////////////////////////////////////////////////////////////////////*/
 
 
-	#primary-nav a {font-size: 93%;margin-right: 17px;text-decoration:none;color: #564e1e;}
+	#primary-nav a {font-size: 101%;margin-right: 35px !important;text-decoration:none;color: #564e1e;}
 	#primary-nav a:hover{text-decoration:underline;}
 	#primary-nav a:last-of-type {margin-right:0;}
 	 .bonsai-logo{height: 22px;}
 	/* #primary-nav .selected {    border-bottom: solid 4px #3bb94f; padding-bottom: 22px; margin-top: 22px;}*/
-	li.selected a {color:#288136 !important}
+	li.selected + a {color:#288136 !important}
+	#references li.selected a {color:#288136 !important}
+	
+	
 	li a:hover {color:#288136 !important; text-decoration:none !important;}
 
 /*///////////////////////////////////////////////////////////////////////////////
@@ -109,6 +114,12 @@ li.tocify-item {line-height:1.4em !important;}
     margin-bottom: 0.8em;
     font-weight: 400;
 }
+
+
+
+
+
+
 
 
 	
@@ -165,9 +176,9 @@ nav ul li {
 nav ul li a,
 nav ul li a:visited {
   display: block;
-  padding: 0 20px;
-  /* background: #a51919; */
-  color: #ffffff;
+  /* padding: 0 20px; */
+  background: #fffdf0;
+  /* color: #ffffff; */
   text-decoration: none;
 }
 /*nav ul li a:hover,
@@ -178,13 +189,14 @@ nav ul li a:visited:hover {
 nav ul li a:not(:only-child):after,
 nav ul li a:visited:not(:only-child):after {
   padding-left: 4px;
-  content: ' ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¾';
+  content: ' + ';
 }
 nav ul li ul li {
   min-width: 190px;
+  padding: 0 !important;
 }
 nav ul li ul li a {
-  padding: 15px;
+  padding: 25px;
   line-height: 20px;
 }
 
@@ -205,14 +217,20 @@ nav ul li ul li a {
   width: 70px;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 870px) {
+	
+	
+	nav ul li ul li a {
+	  padding: 15px;
+	  line-height: 20px;
+	}
 	
 	#top {height: 340px;display: inline-block;}
 	#primary-nav #___gcse_0 .gsc-input .gsc-input-box {height: 48px !important;width: auto;}
-	#primary-nav #___gcse_0 .gsc-search-button .gsc-search-button-v2 {height:50px !important;padding: 16px;margin-right: 13px;}
+	#primary-nav #___gcse_0 .gsc-search-button .gsc-search-button-v2 {height:50px !important;padding: 16px;/* margin-right: 13px; */}
 	
 	
-	#primary-nav #___gcse_0 {width:auto !important;margin-left: 0 !important;/* padding-top: 5px !important; *//* padding-bottom: 5px !important; *//* margin-top: 17px !important; */margin-bottom: 40px !important;}
+	#primary-nav #___gcse_0 {width:auto !important;margin-left: 0 !important;/* padding-top: 5px !important; */padding-bottom: 9px !important;/* margin-top: 17px !important; *//* margin-bottom: 40px !important; */margin-bottom: -3px !important;background-color: #fffdf0;}
   .nav-mobile {
     display: block;
   }
@@ -226,18 +244,20 @@ nav ul li ul li a {
     margin-top: 54px;
     /* margin: 0 auto; */
     margin: 0 auto;
-    width: 100vw;
-    padding-top: 50px;
+    /* width: 100vw; */
+    /* padding-top: 50px; */
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: column;
     flex-direction: column;
     display: none;
-    padding-bottom: 55px;
+    padding-bottom: 28px;
+    background-color: #fffdf0;
   }
   nav ul li {
     float: none;
     text-align: center;
+    padding: 18px 0;
   }
   
     ul.nav-list li {-ms-flex-order: 2;order: 2;}
@@ -245,11 +265,11 @@ nav ul li ul li a {
   ul.nav-list li:last-of-type {-ms-flex-order: 1;order: 1;/* margin-bottom: 30px; */}
   
   nav ul li a {
-    padding: 15px;
+    /* padding: 15px; */
     line-height: 20px;
   }
   nav ul li ul li a {
-    padding-left: 30px;
+    /* padding-left: 30px; */
   }
 
   .nav-dropdown {
@@ -267,6 +287,11 @@ nav ul li ul li a {
     width: inherit;
     padding-left: 0 !important;
     padding-right: 0 !important;
+    -ms-flex-direction: column;
+    /* flex-direction: column; */
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    line-height: 18px !important;
   }
 
   /*.welcome {font-size: 140%;margin-top: 60px;}*/
@@ -284,10 +309,12 @@ nav ul li ul li a {
   height: initial;
   }
 }
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 870px) {
 	
-	 #primary-nav .selected {border-bottom: solid 4px #3bb94f;padding-bottom: 22px;margin-top: 22px;}
+	 #primary-nav .selected a {border-bottom: solid 4px #3bb94f;padding-bottom: 12px;margin-top: 18px;}
 
+	 #references a {padding-top:0; margin-top:0!important;}
+	
 	
   .nav-list {
     /* display: block !important; */
@@ -364,9 +391,9 @@ article {
 
 /* SEARCH */
 
-#gs_tti50 #gsc-i-id1 {background-image:none !important}
-#gsc-i-id2 {background-image:none !important}
-.gsc-control-cse {background-color:transparent !important;border:none !important;max-width: 730px;}	
+#gs_tti50 #gsc-i-id1 {background-image:none !important;text-indent: 0 !important;}
+#gsc-i-id2 {background-image:none !important;text-indent: 0 !important;}
+.gsc-control-cse {background-color:transparent !important;border:none !important;/* max-width: 730px; */}	
 .gsc-wrapper > div:first-of-type {display:none !important;}
 .gcsc-branding {display: none !important;}
 #___gcse_1{width: 60Vw;margin: 0 auto;padding: 10px 0;margin-bottom: 85px;margin-top: 16px;}
@@ -398,11 +425,11 @@ input.gsc-search-button {border:solid 2px #ccc !important;/* margin: 0 !importan
     height: 34px !important;
     border-radius:3px;
     border:solid 1px #e3e3e3 !important;
-	border-right:none !important;
+    border-right:none !important;
     -ms-flex-align: center;
     align-items: center;
     padding-left: 10px;
-    width: 100px;
+    /* width: 100px; */
     margin-bottom: 0;
     }
 	
@@ -412,7 +439,7 @@ input.gsc-search-button {border:solid 2px #ccc !important;/* margin: 0 !importan
 }
 
 
- #primary-nav #___gcse_0 {width: 180px;margin:0;padding:0;margin-left: 11px;}
+ #primary-nav #___gcse_0 {width: 225px;margin:0;padding:0;margin-left: 11px;line-height: initial;}
  
 
 
@@ -430,5 +457,306 @@ input.gsc-search-button {border:solid 2px #ccc !important;/* margin: 0 !importan
 	/* box-shadow: inset 0px 4px 5px -1px rgba(87,87,87,0.7); */
 }
 
+
+
+/*///////////////////////////////////////////////////////////////////////////////
+// new nav
+////////////////////////////////////////////////////////////////////////////////*/
+
+/* CSS Document */
+
+
+
+body {
+	background: #212121;
+	/* line-height: 32px; */
+	margin: 0;
+	padding: 0;
+	word-wrap:break-word !important;
+	}
+
+
+
+#primary-nav{line-height: 32px;}
+
+#container {
+	margin: 0 auto;
+	max-width: 890px;
+}
+
+
+
+.toggle,
+[id^=drop] {
+	display: none;
+}
+
+/* Giving a background-color to the nav container. */
+nav {
+	margin:0;
+	padding: 0;
+	background-color: #254441;
+	position: fixed;
+	z-index: 40;
+	/* display: flex; */
+	/* width: 100%; */
+}
+
+#logo {
+	/* display: block; */
+	/* padding: 0 30px; */
+	float: left;
+	/* font-size:20px; */
+	/* line-height: 60px; */
+	-ms-flex: 1;
+	flex: 1;
+}
+
+/* Since we'll have the "ul li" "float:left"
+ * we need to add a clear after the container. */
+
+nav:after {
+	content:"";
+	display:table;
+	clear:both;
+}
+
+/* Removing padding, margin and "list-style" from the "ul",
+ * and adding "position:reltive" */
+nav ul {
+	float: right;
+	/* padding:0; */
+	/* margin:0; */
+	/* list-style: none; */
+	/* position: relative; */
+	-ms-flex-align: center;
+	align-items: center;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex:;
+	flex:;
+	}
+	
+/* Positioning the navigation items inline */
+nav ul li {
+	margin: 0px;
+	display:inline-block;
+	/* float: left; */
+	/* background-color: #254441; */
+	}
+
+/* Styling the links */
+nav a {
+	/* display:block; */
+	/* padding:14px 20px; */
+	color:#FFF;
+	font-size:17px;
+	text-decoration:none;
+}
+
+#primary-nav  ul li ul li a {margin-right:0!important;}
+
+nav ul li ul li:hover {/* background: #000000; */}
+
+/* Background color change on Hover */
+nav a:hover {
+	background-color: #fffdf0;
+}
+
+/* Hide Dropdowns by Default
+ * and giving it a position of absolute */
+nav ul ul {
+	display: none;
+	position: absolute; 
+	/* has to be the same number as the "line-height" of "nav a" */
+	/* top: 48px; */
+	padding-top: 20px;
+	/* box-sizing: border-box; */
+	background-color: #fffdf0;
+}
+	
+/* Display Dropdowns on Hover */
+nav ul li:hover > ul {
+	display:inherit;
+}
+	
+/* Fisrt Tier Dropdown */
+nav ul ul li {
+	width: 176px;
+	float:none;
+	display:list-item;
+	position: relative;
+}
+
+/* Second, Third and more Tiers	
+ * We move the 2nd and 3rd etc tier dropdowns to the left
+ * by the amount of the width of the first tier.
+*/
+nav ul ul ul li {
+	position: relative;
+	top:-32px;
+	/* has to be the same number as the "width" of "nav ul ul li" */ 
+	left:170px; 
+}
+
+
+#references a {border:none!important;}
+
+	
+/* Change ' +' in order to change the Dropdown symbol */
+li > a:after {content:  ' +';}
+li > a:only-child:after {content: '';}
+
+
+/* Media Queries
+--------------------------------------------- */
+
+@media all and (max-width : 870px) {
+
+	.menu-ham {width:26px;padding-right: 20px;}
+#primary-nav  ul li ul li a {margin-right:0!important;background-color: hsl(52, 48%, 94%);}
+#references  li:last-of-type a  {box-shadow: inset 0px 2px 5px -2px rgba(179,179,179,1);} 
+
+	#logo {
+		/* display: block; */
+		padding: 0;
+		width: 50%;
+		text-align: center;
+		float: none;
+		/* line-height: 0 !important; */
+	}
+	
+	#primary-nav #logo a {margin-right:0 !important;}
+	
+
+	nav {
+		margin: 0;
+	}
+
+	/* Hide the navigation menu by default */
+	/* Also hide the  */
+	.toggle + a,
+	.menu {
+		display: none;
+	}
+
+	/* Stylinf the toggle lable */
+	.toggle {
+		display: block;
+		background-color: #fffdf0;
+		/* padding: 6px 20px; */
+		/* color:#FFF; */
+		font-size:17px;
+		text-decoration:none;
+		border:none;
+		/* padding-right: 20px; */
+	}
+
+	.toggle:hover {
+		/* background-color: #000000; */
+	}
+
+	/* Display Dropdown when clicked on Parent Lable */
+	[id^=drop]:checked + ul {
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-direction: column-reverse;
+		flex-direction: column-reverse;
+		margin-top: 16px;
+	}
+
+	/* Change menu item's width to 100% */
+	nav ul li {
+		display: block;
+		width: 100%;
+		}
+
+	#primary-nav  ul li a {
+			margin-right:0 !important;
+			background-color: #fffdf0;
+			}
+
+
+
+	nav ul ul .toggle,
+	nav ul ul a {
+		padding: 0 40px;
+	}
+
+	nav ul ul ul a {
+		padding: 0 80px;
+	}
+
+	nav a:hover,
+ 	nav ul ul ul a {
+		/* background-color: #000000; */
+	}
+  
+	nav ul li ul li .toggle,
+	nav ul ul a,
+  nav ul ul ul a{
+		padding:14px 20px;	
+		color:#FFF;
+		font-size:17px; 
+	}
+  
+  
+	nav ul li ul li .toggle,
+	nav ul ul a {
+		background-color: #212121; 
+	}
+
+	/* Hide Dropdowns by Default */
+	nav ul ul {
+		float: none;
+		position:static;
+		color: #ffffff;
+		/* has to be the same number as the "line-height" of "nav a" */
+		margin-top: 0 !important;
+		padding-bottom: 0;
+	}
+		
+	/* Hide menus on hover */
+	nav ul ul li:hover > ul,
+	nav ul li:hover > ul {
+		display: none;
+	}
+		
+	/* Fisrt Tier Dropdown */
+	nav ul ul li {
+		display: block;
+		width: 100%;
+		/* padding: 0 !important; */
+	}
+
+	nav ul ul ul li {
+		position: static;
+		/* has to be the same number as the "width" of "nav ul ul li" */ 
+
+	}
+
+}
+
+@media all and (max-width : 330px) {
+
+	nav ul li {
+		display:block;
+		width: 94%;
+	}
+
+}
+
+
+/*mobile slider*/
+
+@media screen and (max-width: 870px) {
+
+	.tocify-wrapper.open {
+	    top: 0 !important;
+		z-index: 99999;
+		
+	}
+
+}
 
 

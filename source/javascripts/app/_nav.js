@@ -24,5 +24,14 @@
     $('#nav-toggle').on('click', function() {
       this.classList.toggle('active');
     });
+	
+	//css
+	
+  $( ".selected" )
+    .parents( "li" )
+    .addClass( "selected");
+
+	
+	
   }); // end DOM ready
-})(jQuery); // end jQuery
+})(jQuery); // end jQuery ; 

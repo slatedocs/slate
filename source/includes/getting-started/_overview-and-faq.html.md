@@ -107,7 +107,7 @@ There is a BRAIN Details page for each of your BRAINs. Each page shows that BRAI
 
 [1]: ../images/bonsai_infographic_1024.png
 [2]: ./inkling.html
-[3]: ./reference.html#cli-reference
+[3]: ./cli-reference.html
 [4]: https://beta.bons.ai
 [5]: http://yann.lecun.com/exdb/mnist/
 [6]: #install-prerequisites

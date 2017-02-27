@@ -1,4 +1,4 @@
-## Import
+# Import
 
 Reference for the keyword **import**. Also, describes the keywords: **from**
 
@@ -21,7 +21,7 @@ from libraryName import importName1
 import importName2
 ```
 
-###### Examples
+## Examples
 
 ```inkling
 from utils import split

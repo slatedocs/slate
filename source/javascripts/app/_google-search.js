@@ -7,13 +7,7 @@
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(gcse, s);
   })();
-      window.onload = function(){
-      document.getElementById('gsc-i-id1').placeholder = 'Search Bonsai Docs';
-     // document.getElementById('gsc-i-id2').placeholder = 'Search Bonsai Docs';
-	  
-	 $("td.gsc-search-button").empty().html('<input type="image" src="./images/search.svg" class="gsc-search-button gsc-search-button-v2 svg" title="search">'); 
-	  
-    };
+      
 	
 	$(function(){
 	    jQuery('img.svg').each(function(){
@@ -49,5 +43,18 @@
 	        }, 'xml');
     
 	    });
+		
+        window.onload = function(){
+			
+			$("td.gsc-search-button").empty().html('<input type="image" src="./images/search.svg" class="gsc-search-button gsc-search-button-v2 svg" title="search">');
+      
+  	  document.getElementById('gsc-i-id1').placeholder = 'Search Bonsai Docs';
+    
+        document.getElementById('gsc-i-id2').placeholder = 'Search Bonsai Docs';
+	  
+  	  
+	  
+      };
+		
 	});
 	

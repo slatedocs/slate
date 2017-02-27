@@ -1,4 +1,4 @@
-## Schemas, Inkling Types, and Type Constraints
+# Schema
 
 Reference for the keyword **schema**. Also definitions and discussion of Inkling types and type constraints (which are both used in schema declarations).
 
@@ -12,7 +12,7 @@ Schemas describe the structure of data in Inkling  streams, such as the predefin
 
 ### How do I use it?
 
-A sample schema declaration and use:
+A sample schema declaration and use is shown to the right.
 
 ```inkling
 schema MySchema                   # declare
@@ -28,14 +28,14 @@ concept MyConcept
 end
 ```
 ‍
-###### Schema Rules
+## Schema Rules
 
 * Inkling statements can reference schemas by name. Above, `MyConcept` uses `MySchema` as its `predicts` schema.
 * Statements can use anonymous schemas. That means that a list of fields appears where a schema name could appear. Above, after `follows`, the predefined stream input has an anonymous schema with one field. This is useful in cases where you will only need that information once. In general, anywhere a schema name can appear, an anonymous schema can appear.
 * The set of types supported with schema fields consists of the set of Inkling primitive types and the set of Inkling structured types. These sets are listed below.
 * A schema field that has a primitive type can also have a type constraint that constrains the set of potential values for that field. Examples and syntax of type constraints are given below.
 
-### Schema Declaration Syntax
+## Schema Declaration Syntax
 
 > schemaStmt :=
 
@@ -67,7 +67,7 @@ typeConstraint?
 [ '[' arraySizeLiteral ']' ]*
 ```
 ‍
-### Schema Reference Syntax
+## Schema Reference Syntax
 
 A named schema is referenced by its name. An anonymous schema is referenced by its list of fields.
 
@@ -79,7 +79,38 @@ A named schema is referenced by its name. An anonymous schema is referenced by i
   '(' <fieldDclnList>  ')'  // anonymous schema ref
 ```
 
-###### Inkling Primitive Types
+## Schema Examples
+
+* **Int64  { 0:4:1 }** is invalid. The step size is larger than the range.
+* **Int64  { 0..1:4 }** is invalid. Values generated are floating point not integer.
+* **Float32{-1..1:10 }** is valid. Negative bounds allowed.
+* **Int8 {0:-4:-100}** is valid. stop  < start is valid if and only if step is negative.
+* **UInt32 {-10:10}** is invalid. Unsigned integer range contains signed values.
+
+For numeric ranges the start point is inclusive (it is included in the values of the range) and fixed. The end point may or may not be included in the values of the range. If you land on it exactly it is in the range. If you don't land on it exactly it is not in the range.
+
+For example:
+
+> Int8 { 0:3:10} gives you (0, 3, 6, 9).
+
+Note that the specification of 10 as the stop is not an error (because it is a limit, not necessarily an endpoint).
+
+The range stop must be reachable from the range start by applying the step. (The range must be bounded.) The step is optional. If it is not specified the default value is 1. The step can be negative.
+
+The range start is exact (to the maximum extent possible if the range expression type is floating point). The range end is a limit. That means that if applying the step results in landing exactly on the end point, then the end point is part of the range. Otherwise the highest value landed on that is less than the end point is the final value in the range.
+
+This example shows a schema that has a field with a primitive type and a field with a structured type.
+
+```inkling
+schema MNIST_training_data_schema
+  UInt8 label,
+  Luminance(28, 28) image
+end
+```
+
+## Inkling Types
+
+###### Primitive Types
 
 Inkling has a set of primitive types which are used in schema declarations. The integer suffix indicates the size in bits of the type.
 
@@ -90,7 +121,7 @@ Double | Float64 | Float32 | Int8 | Int16 | Int32 |
 Int64 | UInt8 | UInt16 | UInt32  | UInt64 | Bool | String
 ```
 
-###### Inkling Structured types
+###### Structured Types
 
 Inkling supports the types Matrix and Luminance (more to come).
 
@@ -125,19 +156,8 @@ matrixInit         :=
 
 ',' integerLiteral [ ',' integerLiteral]*
 ```
-
-### Schema Example
-
-This example shows a schema that has a field with a primitive type and a field with a structured type.
-
-```inkling
-schema MNIST_training_data_schema
-  UInt8 label,
-  Luminance(28, 28) image
-end
-```
 ‍
-###### Constrained Type
+###### Constrained Types
 
 Constrained types are supported in schemas and also in [lessons][1]. They are constrained by means of a special type of expression called a range expression.
 
@@ -157,7 +177,15 @@ end
 ```
 ‍
 
-###### Constrained Type Syntax
+### Constrained Type Rules
+
+For numeric ranges:
+
+* For colon range, step can be  a floating point number.
+* For colon range, the step size can be negative only if stop < start.
+* For dot range, number of steps (numSteps) is a positive integer.
+
+### Constrained Type Syntax
 
 > constrainedType :=
 
@@ -175,34 +203,6 @@ numericType
 ```c
 Double | Float64 | Float32 | Int8 | Int16 | Int32 |  Int64 | UInt8 | UInt16 | UInt32  | UInt64
 ```
-
-###### Constrained Type Rules
-
-###  For numeric ranges:
-
-* For colon range, step can be  a floating point number.
-* For colon range, the step size can be negative only if stop < start.
-* For dot range, number of steps (numSteps) is a positive integer.
-
-### Schema Examples:
-
-* **Int64  { 0:4:1 }** is invalid. The step size is larger than the range.
-* **Int64  { 0..1:4 }** is invalid. Values generated are floating point not integer.
-* **Float32{-1..1:10 }** is valid. Negative bounds allowed.
-* **Int8 {0:-4:-100}** is valid. stop  < start is valid if and only if step is negative.
-* **UInt32 {-10:10}** is invalid. Unsigned integer range contains signed values.
-
-For numeric ranges the start point is inclusive (it is included in the values of the range) and fixed. The end point may or may not be included in the values of the range. If you land on it exactly it is in the range. If you don't land on it exactly it is not in the range.
-
-For example:
-
-> Int8 { 0:3:10} gives you (0, 3, 6, 9).
-
-Note that the specification of 10 as the stop is not an error (because it is a limit, not necessarily an endpoint).
-
-The range stop must be reachable from the range start by applying the step. (The range must be bounded.) The step is optional. If it is not specified the default value is 1. The step can be negative.
-
-The range start is exact (to the maximum extent possible if the range expression type is floating point). The range end is a limit. That means that if applying the step results in landing exactly on the end point, then the end point is part of the range. Otherwise the highest value landed on that is less than the end point is the final value in the range.
 
 ‍
 
