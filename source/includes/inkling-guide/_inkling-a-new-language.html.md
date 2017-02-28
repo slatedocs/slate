@@ -1,10 +1,10 @@
-## Inkling: A New Language
+## Inkling: A New Language
 
 ### What kind of language is Inkling?
 
 Inkling is a special purpose language for writing AI programs. The language has a blend of declarative and functional styles; it's modeled after ideas in SQL and python. We like to describe Inkling as the world's first pedagogical programming language.  
 
-###What is Pedagogical Programming?
+### What is Pedagogical Programming?
 
 ###### Pedagogical Programming
 
@@ -32,7 +32,8 @@ In a functional programming language, a function defines a scope and can only mo
 
 **For example:**
 
-* Python and Javascript can be programmed in a functional way, but they are not pure functional languages. F# is a pure functional programming language.
+* Python and Javascript can be programmed in a functional way, but they are not pure functional languages.
+* F# is a pure functional programming language.
 * R, matlab, Java and prolog are not functional programming languages.
 
 ###### White Space Insensitive

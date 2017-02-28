@@ -1,8 +1,10 @@
-## Mental Models
+# Mental Models
 
-Mental models are a way of organizing concepts so that you can structure your data flow. Concepts are the ideas that you want to teach your BRAIN.
+Mental models are a way of organizing concepts so that you can structure a solution to your AI problem as a workflow. Concepts are the ideas that you want to teach your BRAIN. When you create your concepts, you're going to start with the final concept that you want to teach your BRAIN and support it with other fact and strategy concepts. These additional concepts appear upstream of your main concept because the information output from those concepts helps the Bonsai AI Engine teach your main concept to your BRAIN. Mental Models enable you to determine and plan the concepts that are taught to your BRAIN.
 
-###### Determining Mental Models
+For more information about Concepts, refer below to [Concepts][2] and the [Concept Reference][3].
+
+## Determining Mental Models
 
 Your mental models should help you plan the concepts you're going to write in your Inkling file. Therefore, when you're determining your mental models, we suggest that you think about the condition that means the AI has successfully learned what you wanted it to learn. This could be:
 
@@ -20,7 +22,7 @@ For each concept, you will need to determine what the AI needs to take in to mak
 
 Your mental model can be mapped from left to right, starting with your input. Your other concepts come next, followed by your final concept, and finally, to the right, is your output. Your output is fed back through the Bonsai AI Engine to the application. You can draw arrows between the various nodes to represent data flow. Your concepts are trained in order. To visualize this more clearly, see our expanded example below.
 
-###### Examples
+## Examples
 
 ### Example: Breakout
 
@@ -67,4 +69,6 @@ In this example, we've added two extra concepts that support our final concept a
 
 The input remains the same as above. The AI has two additional concepts to train. When it is training the ball_location concept, it takes in the input and returns the coordinates of the ball. On the `keep_paddle_under_ball` concept, it takes in the input and the ball coordinates from ball_location. Then, that concept returns the best move to attempt to keep the paddle underneath the ball. The final concept, `get_high_score`, takes in the input and the move returned from `keep_paddle_under_ball` and returns the move it wants, which is the output sent to the simulator through the Bonsai AI Engine. Each of these concepts are trained from input to output.
 
-[1]: https://daks2k3a4ib2z.cloudfront.net/57bf257ce45825764c5cb54b/57e8306180de1910630554d7_Screen%20Shot%202016-09-12%20at%2005.58.28.png
+[1]: ../images/mental-model.png
+[2]: #concepts
+[3]: ./inkling-reference.html#concept

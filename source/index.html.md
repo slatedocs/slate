@@ -67,11 +67,11 @@ There's a **Return Home** link in the footer of the table of contents.
 
 [1]: /getting-started.html "Getting Started"
 [2]: /inkling_classic.html "Classic Inkling"
-[3]: /inkling.html "New Inkling"
+[3]: /inkling-guide.html "New Inkling"
 [4]: /reference.html "Reference"
 [5]: /cli_reference.html "CLI Reference"
 [6]: https://github.com/lord/slate/wiki/Using-Includes "Using Includes: Slate Documentation"
-[11]: /inkling.html#overview
-[12]: /inkling.html#details
-[13]: /inkling.html#inkling-reference
-[14]: /inkling.html#inkling-miscellany
+[11]: /inkling-guide.html#overview
+[12]: /inkling-guide.html#details
+[13]: /inkling-guide.html#inkling-reference
+[14]: /inkling-guide.html#inkling-miscellany
