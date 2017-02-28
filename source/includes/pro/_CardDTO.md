@@ -19,7 +19,7 @@
 
 key | type | status | comment
 --- | ---- | :----: | ---:
-id | string | 1..1 | идентификатор
+id | string | 1..1 | уникальный идентификатор
 maskedCardNumber | string | 1..1 | частично маскированный номер карты, например <code>1111 1111 **** 1111</code>
 expirationMonth | int | 1..1 | месяц истечения срока
 expirationYear | int | 1..1 | год истечения срока

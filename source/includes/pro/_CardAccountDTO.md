@@ -2,7 +2,7 @@
 
 key | type | status | comment
 --- | ---- | :----: | ---:
-id | string | 1..1 | идентификатор продукта
+id | string | 1..1 | уникальный идентификатор
 currency | string | 1..1 | текстовый код валюты по [ISO 4217](https://ru.wikipedia.org/wiki/ISO_4217)
 runningBalance | [AmountDTO](#amountdto) | 1..1 | доступные средства продукта
 --- |||
