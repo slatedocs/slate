@@ -169,10 +169,6 @@ DevTrace is our development profiler: it's included with the `scout_apm` gem and
 
 DevTrace is a BETA feature. To enable:
 
-1. Ensure you are on the latest version of `scout_apm`. See our [upgrade instructions](#updating-to-the-newest-version).
-2. Add `dev_trace: true` to the `development` section of your `scout_apm.yml` config file or start your local Rails server with:
-`SCOUT_DEV_TRACE=true rails server`.
-
 <table class="help install">
   <tbody>
     <tr>
@@ -189,6 +185,15 @@ DevTrace is a BETA feature. To enable:
       <td><span class="step">2</span></td>
       <td><p style="line-height: 170%">Add <code>dev_trace: true</code> to the <code>development</code> section of your <code>scout_apm.yml</code> config file or start your local Rails server with:
 <code>SCOUT_DEV_TRACE=true rails server</code>.</p></td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">3</span>
+      </td>
+      <td>
+        <p>Refresh your browser window and look for the speed badge.
+        </p>
+      </td>
     </tr>
   </tbody>
 </table>
