@@ -533,8 +533,8 @@ nav ul {
 	align-items: center;
 	display: -ms-flexbox;
 	display: flex;
-	-ms-flex:;
-	flex:;
+	/*-ms-flex:;
+	flex:;*/
 	}
 	
 /* Positioning the navigation items inline */
