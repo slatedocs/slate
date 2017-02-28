@@ -44,8 +44,8 @@ bonusPointsAmount | [AmountDTO](#amountdto) | 0..1 | сумма бонусов
 
 key | comment
 --- | ---:
-POSTED | 
-ACCEPTED | 
-HOLD | 
-REJECTED | 
-COMPLETE | 
+POSTED | нет
+ACCEPTED | серый
+HOLD | желтый
+REJECTED | красный
+COMPLETE | зеленый
