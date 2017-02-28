@@ -9,65 +9,42 @@ Recurring handles all types of recurring plans.
 ```json
 {
   "data": {
-    "id": 1,
-    "customer": "123456",
-    "method": {
-      "id": 10,
-      "method": "cc",
-      "reference": "XXXX-XXXX-XXXX-b8wn",
-      "number": "XXXX-XXXX-XXXX-2224",
-      "type": "Visa"
+    "customer": {
+      "custID": "tokenex-0010",
+      "name": "CMS Test"
     },
-    "type": "subscription",
-    "scheme": "monthly",
-    "balance": "54.00",
-    "total": "0.00",
-    "start_date": "2015-11-11",
-    "next_due": {
-      "date": "2016-02-11",
-      "amount": "54.00",
-      "fees": [
-        {
-          "id": 5,
-          "payplan_id": 1,
-          "sku": "",
-          "amount": "67.00",
-          "description": "Another sample fee",
-          "completed": 0
-        },
-        {
-          "id": 6,
-          "payplan_id": 1,
-          "sku": "332",
-          "amount": "14.00",
-          "description": "",
-          "completed": 0
-        }
-      ]
+    "paymentDetails": {
+      "payID": 51,
+      "method": "card",
+      "lastfour": "XXXXXXXXXXXX2223",
+      "token": "6e7c016b-ce56-4c2b-8151-f7a12ec4b670",
+      "cardType": "visa",
+      "source": "tokenex"
     },
-    "paid_count": 3,
-    "status": "ongoing",
-    "status_code": 1,
-    "completed": false,
-    "created": 1447299415,
-    "updated": 1447301838,
-    "config": {
-      "initial_fee": "65.00",
-      "duration": 2,
-      "options": null,
-      "payload": null,
-      "callback_url": "http://www.sample.com/webhook.php"
+    "recurring": {
+      "id": 83,
+      "status": "ongoing",
+      "type": "subscription",
+      "scheme": "monthly",
+      "amount": "5.33",
+      "total": "0.00",
+      "duration": 0,
+      "startDate": "2016-12-10",
+      "completedDate": "",
+      "nextDueDate": "2016-12-10",
+      "paidCount": 0
     },
-    "logs": [
-      {
-        "id": 5,
-        "payplan_id": 1,
-        "sku": "",
-        "amount": "67.00",
-        "description": "Another sample fee",
-        "completed": 0
-      },
-    ]
+    "info": {
+      "gatewayID": 1,
+      "name": "usaepay",
+      "referrer": null,
+      "clientIP": "127.0.0.1",
+      "mid": "513485000208199",
+      "userID": 18,
+      "userKey": "slicelocal",
+      "proccessTime": 0,
+      "tranToken": null
+    }
   }
 }
 ```
@@ -92,120 +69,133 @@ PLANID | The ID of the recurring plan to retrieve.
 {
   "data": [
     {
-      "id": 1,
-      "customer": "123456",
-      "method": {
-        "id": 10,
-        "method": "cc",
-        "reference": "XXXX-XXXX-XXXX-b8wn",
-        "number": "XXXX-XXXX-XXXX-2224",
-        "type": "Visa"
+      "customer": {
+        "custID": "tokenex-0016",
+        "name": "CMS Test"
       },
-      "type": "subscription",
-      "scheme": "monthly",
-      "balance": "54.00",
-      "total": "0.00",
-      "start_date": "2015-11-11",
-      "next_due": {
-        "date": "2016-02-11",
-        "amount": "54.00",
-        "fees": [
-          {
-            "id": 5,
-            "payplan_id": 1,
-            "sku": "",
-            "amount": "67.00",
-            "description": "Another sample fee",
-            "completed": 0
-          },
-          {
-            "id": 6,
-            "payplan_id": 1,
-            "sku": "332",
-            "amount": "14.00",
-            "description": "",
-            "completed": 0
-          }
-        ]
+      "paymentDetails": {
+        "payID": 79,
+        "method": "card",
+        "lastfour": "XXXXXXXXXXXX2224",
+        "token": "1m7q-46i2-qr7k-lstu",
+        "cardType": "visa",
+        "source": "usaepay"
       },
-      "paid_count": 3,
-      "status": "ongoing",
-      "status_code": 1,
-      "completed": false,
-      "created": 1447299415,
-      "updated": 1447301838,
-      "config": {
-        "initial_fee": "65.00",
-        "duration": 2,
-        "options": null,
-        "payload": null,
-        "callback_url": "http://www.sample.com/webhook.php"
+      "recurring": {
+        "id": 539,
+        "status": "ongoing",
+        "type": "payplan",
+        "scheme": "monthly",
+        "amount": "0.17",
+        "total": "1.00",
+        "duration": 6,
+        "startDate": "2017-02-17",
+        "completedDate": "",
+        "nextDueDate": "2017-02-17",
+        "paidCount": 0
       },
-      "logs": [
-        {
-          "id": 5,
-          "payplan_id": 1,
-          "sku": "",
-          "amount": "67.00",
-          "description": "Another sample fee",
-          "completed": 0
-        },
-      ]
+      "info": {
+        "gatewayID": 1,
+        "name": "usaepay",
+        "referrer": null,
+        "clientIP": "127.0.0.1",
+        "mid": "513485000208199",
+        "userID": 18,
+        "userKey": "slicelocal",
+        "proccessTime": 0,
+        "tranToken": null
+      }
     },
     {
-      "id": 2,
-      "customer": "2015-001",
-      "method": {
-        "id": 111,
-        "method": "cc",
-        "reference": "XXXX-XXXX-XXXX-bd5p",
-        "number": "XXXX-XXXX-XXXX-2222",
-        "type": "Visa"
+      "customer": {
+        "custID": "tokenex-0016",
+        "name": "CMS Test"
       },
-      "type": "subscription",
-      "scheme": "monthly",
-      "balance": "10.00",
-      "total": "0.00",
-      "start_date": "2015-11-11",
-      "next_due": {
-        "date": "2015-11-11",
-        "amount": "10.00",
-        "fees": []
+      "paymentDetails": {
+        "payID": 80,
+        "method": "card",
+        "lastfour": "XXXXXXXXXXXX2224",
+        "token": "deed1544-84c7-4ba5-8d2a-a24ef5c5407e",
+        "cardType": "visa",
+        "source": "tokenex"
       },
-      "paid_count": 0,
-      "status": "ongoing",
-      "status_code": 1,
-      "completed": false,
-      "created": 1447306716,
-      "updated": 1447306716,
-      "config": {
-        "initial_fee": "0.00",
+      "recurring": {
+        "id": 538,
+        "status": "ongoing",
+        "type": "subscription",
+        "scheme": "monthly",
+        "amount": "1.00",
+        "total": "0.00",
         "duration": 0,
-        "options": null,
-        "payload": null,
-        "callback_url": "http://www.sample.com/webhook.php"
+        "startDate": "2017-02-14",
+        "completedDate": "",
+        "nextDueDate": "2017-03-14",
+        "paidCount": 1
       },
-      "logs": [
-        {
-          "id": 5,
-          "payplan_id": 1,
-          "sku": "",
-          "amount": "67.00",
-          "description": "Another sample fee",
-          "completed": 0
+      "info": {
+        "gatewayID": 1,
+        "name": "usaepay",
+        "referrer": null,
+        "clientIP": "127.0.0.1",
+        "mid": "513485000208199",
+        "userID": 18,
+        "userKey": "slicelocal",
+        "proccessTime": 0,
+        "tranToken": null
+      }
+    },
+    {
+      "customer": {
+        "custID": "tokenex-0016",
+        "name": "CMS Test"
+      },
+      "paymentDetails": {
+        "payID": 79,
+        "method": "card",
+        "lastfour": "XXXXXXXXXXXX2224",
+        "token": "1m7q-46i2-qr7k-lstu",
+        "cardType": "visa",
+        "source": "usaepay"
+      },
+      "recurring": {
+        "id": 520,
+        "status": "completed",
+        "type": "payplan",
+        "scheme": "monthly",
+        "amount": "3.12",
+        "total": "-2.12",
+        "duration": 6,
+        "startDate": "2017-02-14",
+        "completedDate": {
+          "date": "2017-02-14 20:29:09.000000",
+          "timezone_type": 3,
+          "timezone": "America/Los_Angeles"
         },
-      ]     
+        "nextDueDate": "2017-02-14",
+        "paidCount": 1
+      },
+      "info": {
+        "gatewayID": 1,
+        "name": "usaepay",
+        "referrer": null,
+        "clientIP": "127.0.0.1",
+        "mid": "513485000208199",
+        "userID": 18,
+        "userKey": "slicelocal",
+        "proccessTime": 0,
+        "tranToken": null
+      }
     }
   ],
   "meta": {
     "pagination": {
-      "total": 23,
-      "count": 2,
-      "per_page": 2,
+      "total": 539,
+      "count": 3,
+      "per_page": 3,
       "current_page": 1,
-      "total_pages": 12,
+      "total_pages": 27,
       "links": {
-        "next": "https://www.sample.com/v1/recurring/?limit=2&page=2"
+        "next": "https://sliceapilocal.cmsonline.com/v2/recurring?page=2"
       }
     }
   }
@@ -235,48 +225,42 @@ page | 1 | Page number.
 ```json
 {
   "data": {
-    "id": 25,
-    "customer": "123456",
-    "method": {
-      "id": 22,
-      "method": "cc",
-      "reference": "XXXX-XXXX-XXXX-dr2e",
-      "number": "XXXX-XXXX-XXXX-2224",
-      "type": "Visa"
+    "customer": {
+      "custID": "tokenex-0016",
+      "name": "CMS Test"
     },
-    "type": "subscription",
-    "scheme": "monthly",
-    "balance": "54.00",
-    "total": "0.00",
-    "start_date": "2015-11-21",
-    "next_due": {
-      "date": "2015-11-21",
-      "amount": "54.00",
-      "fees": []
+    "paymentDetails": {
+      "payID": 72,
+      "method": "card",
+      "lastfour": "XXXXXXXXXXXX2224",
+      "token": "78631c9b-a28c-4d69-af09-313b439783c7",
+      "cardType": "visa",
+      "source": "tokenex"
     },
-    "paid_count": 0,
-    "status": "ongoing",
-    "status_code": 1,
-    "completed": false,
-    "created": 1448004054,
-    "updated": 1448004054,
-    "config": {
-      "initial_fee": "65.00",
-      "duration": 2,
-      "options": null,
-      "payload": null,
-      "callback_url": "http://www.sample.com/webhook.php"
+    "recurring": {
+      "id": 540,
+      "status": "ongoing",
+      "type": "payplan",
+      "scheme": "monthly",
+      "amount": "1.00",
+      "total": "1.00",
+      "duration": 6,
+      "startDate": "2017-03-01",
+      "completedDate": "",
+      "nextDueDate": "2017-03-01",
+      "paidCount": 0
     },
-    "logs": [
-      {
-        "id": 5,
-        "payplan_id": 1,
-        "sku": "",
-        "amount": "67.00",
-        "description": "Another sample fee",
-        "completed": 0
-      },
-    ]
+    "info": {
+      "gatewayID": 4,
+      "name": "acapture",
+      "referrer": null,
+      "clientIP": "127.0.0.1",
+      "mid": "513485000208199",
+      "userID": 32,
+      "userKey": "slicelocal_acapture",
+      "proccessTime": 0,
+      "tranToken": null
+    }
   }
 }
 ```
@@ -311,48 +295,42 @@ total | Total amount that will be charge for the entire plan period. Applies onl
 ```json
 {
   "data": {
-    "id": 25,
-    "customer": "123456",
-    "method": {
-      "id": 22,
-      "method": "cc",
-      "reference": "XXXX-XXXX-XXXX-dr2e",
-      "number": "XXXX-XXXX-XXXX-2224",
-      "type": "Visa"
+    "customer": {
+      "custID": "tokenex-0016",
+      "name": "CMS Test"
     },
-    "type": "subscription",
-    "scheme": "monthly",
-    "balance": "54.00",
-    "total": "0.00",
-    "start_date": "2015-11-21",
-    "next_due": {
-      "date": "2015-11-21",
-      "amount": "54.00",
-      "fees": []
+    "paymentDetails": {
+      "payID": 72,
+      "method": "card",
+      "lastfour": "XXXXXXXXXXXX2224",
+      "token": "78631c9b-a28c-4d69-af09-313b439783c7",
+      "cardType": "visa",
+      "source": "tokenex"
     },
-    "paid_count": 0,
-    "status": "ongoing",
-    "status_code": 1,
-    "completed": false,
-    "created": 1448004054,
-    "updated": 1448004054,
-    "config": {
-      "initial_fee": "65.00",
-      "duration": 2,
-      "options": null,
-      "payload": null,
-      "callback_url": "https://someurl.com"
+    "recurring": {
+      "id": 540,
+      "status": "ongoing",
+      "type": "payplan",
+      "scheme": "monthly",
+      "amount": "1.00",
+      "total": "1.00",
+      "duration": 6,
+      "startDate": "2017-03-01",
+      "completedDate": "",
+      "nextDueDate": "2017-03-01",
+      "paidCount": 0
     },
-    "logs": [
-      {
-        "id": 5,
-        "payplan_id": 1,
-        "sku": "",
-        "amount": "67.00",
-        "description": "Another sample fee",
-        "completed": 0
-      },
-    ]
+    "info": {
+      "gatewayID": 4,
+      "name": "acapture",
+      "referrer": null,
+      "clientIP": "127.0.0.1",
+      "mid": "513485000208199",
+      "userID": 32,
+      "userKey": "slicelocal_acapture",
+      "proccessTime": 0,
+      "tranToken": null
+    }
   }
 }
 ```
