@@ -28,7 +28,7 @@ search: true
 
 -->
 
-# PractiTest API V2 (beta)
+# PractiTest API V2
 
 ## Welcome to the PractiTest's REST API V2!
 

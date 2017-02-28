@@ -18,6 +18,7 @@ test_id | filter instances that are related to a certain test_id (NOT display_id
 set_ids | filter by TestSets ids, separated by comma (NOT display_id) |
 name_exact | filter by instance name exact match; case sensitive! |
 name_like | filter by instance name: case insensitive, phrase can be inside the name |
+display_id | filter instances based on an instance display_id (can be used to convert display to system id) |
 
 * non of the parameters are required. If you combine multiple parameters, it will do AND
 You can see examples in the dark area to the right.
