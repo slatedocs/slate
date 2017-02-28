@@ -216,7 +216,7 @@ This endpoint retrieves all recurring plans.
 
 ### HTTP Request
 
-`GET recurring plans`
+`GET recurring`
 
 ### Query Parameters
 
@@ -285,7 +285,7 @@ This method lets you create new recurring plan.
 
 ### HTTP Request
 
-`POST recurring plan`
+`POST recurring`
 
 ### Query Parameters
 
@@ -583,7 +583,7 @@ This method lets you remove the unpaid fees identified by an SKU.
 
 #### HTTP Request
 
-`POST recurring/<PLANID>/fees/<SKU>`
+`DELETE recurring/<PLANID>/fees/<SKU>`
 
 #### URL Parameters
 

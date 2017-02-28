@@ -10,6 +10,7 @@ includes:
   - modules/introduction
   - modules/setup
   - modules/authentication
+  - api/payplan
   - api/transaction
   - errors
 
