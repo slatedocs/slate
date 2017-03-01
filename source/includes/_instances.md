@@ -187,7 +187,21 @@ You can find at the right area an example of the JSON request and response
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 -X PUT https://api.practitest.com/api/v2/projects/4566/instances/45893.json \
--d '{"data": { "type": "instances", "attributes": {"planned-execution":"2017-03-01T12:43:31Z", "priority": "version1", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
+-d '{"data": { "type": "instances", "attributes": {"planned-execution":"2017-03-01T12:43:31Z", "priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
+
+# some more examples:
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN  \
+-X PUT https://api.practitest.com/api/v2/projects/4566/instances/98019.json \
+-d '{"data": { "type": "instances", "attributes": {"planned-execution":"2017-03-05T12:43:31Z", "priority": "2-high", "version": "1.5", "custom-fields": { "---f-45510": "5381"}}  } }'
+
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN  \
+-X PUT https://api.practitest.com/api/v2/projects/4566/instances/98019.json \
+-d '{"data": { "type": "instances", "attributes": {"version": "1.5", "custom-fields": { "---f-45390": "Chrome"}}  } }'
+
+
+
 
 ```
 
@@ -200,7 +214,7 @@ curl -H "Content-Type:application/json" \
     "attributes": {
       ...
       "planned-execution": "2017-03-01T12:43:31Z",
-      "priority": "version1",
+      "priority": "highest",
       "custom-fields": {
         "---f-22":"my text one",
         "---f-24": ["ClientA", ["ClientB"]]
@@ -211,4 +225,21 @@ curl -H "Content-Type:application/json" \
     }
   }
 }
+```
+
+## Delete a specific instance
+
+This endpoint deletes a specific instance.
+
+### HTTP Request
+
+`DELETE https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/instances/YOUR_INSTANCE_ID.json`
+
+
+You can find at the right area an example of the JSON request and response
+
+```shell
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X DELETE https://api.practitest.com/api/v2/projects/4566/instances/45893.json
 ```
