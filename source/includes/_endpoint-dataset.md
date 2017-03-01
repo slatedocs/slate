@@ -780,7 +780,7 @@ Some format-specific properties and options:
 Format    | Attribute           | Description                                                                         | Default
 --------- | --------------------| ----------------------------------------------------------------------------------- | --------------------------
 csv       | use_category_ids    | Instead of category names export the fields as their numeric ids                    | {"use_category_ids": false}
-csv       | missing_values      | If present, will use such string as for missing values. Else will use the reasons   | _ommited_
+csv       | missing_values      | If present, will use such string as for missing values. Else will use the reasons   | _omitted_
 spss      | var_label_field     | Use the variable's name/description as SPSS variable label                          | {"var_label_field": "description"}
 spss      | prefix_subvariables | When True, subvariables names will have the parent array's name prefixed            | {"prefix_subvariables": false}
 all       | include_personal    | Will include the user's personal variables on the exported file                     | {"include_personal": false}
