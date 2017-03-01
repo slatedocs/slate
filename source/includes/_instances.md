@@ -20,7 +20,7 @@ name_exact | filter by instance name exact match; case sensitive! |
 name_like | filter by instance name: case insensitive, phrase can be inside the name |
 display_id | filter instances based on an instance display_id (can be used to convert display to system id) |
 
-* non of the parameters are required. If you combine multiple parameters, it will do AND
+* none of the parameters are required. If you combine multiple parameters, it will do AND
 You can see examples in the dark area to the right.
 
 ```shell
@@ -58,7 +58,10 @@ https://api.practitest.com/api/v2/projects/4566/instances.json?test_id=1111&set_
         "set-display-id": 117,
         "test-id": 369093,
         "test-display-id": 2372,
-        "custom-fields": {},
+        "custom-fields": {
+          "---f-2640": "my text one",
+          "---f-2641": ["foo0"]
+        },
         "display-id": "117:19",
         "tester-id": 4825,
         "priority": null,
@@ -151,6 +154,58 @@ https://api.practitest.com/api/v2/projects/4566/instances/45893.json
       "planned-execution": null,
       "version": null,
       "assigned-to-id": null,
+      "created-at": "2015-11-17T09:29:22+00:00",
+      "updated-at": "2015-11-17T09:29:22+00:00"
+    }
+  }
+}
+```
+
+
+## Update a specific instance
+
+This endpoint retrieves a specific instance.
+
+### HTTP Request
+
+`PUT https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/instances/YOUR_INSTANCE_ID.json`
+
+### Query Parameters - [pagination](#pagination)
+
+Optional parameters | Description |
+--------- | ------- |
+planned-execution | date field of planned-execution |
+version | string of instance version |
+priority | string of instance priority |
+assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  |
+custom-fields | a hash of custom-fields with thier value |
+
+
+Here's the example of the JSON request and response that you may use
+
+```shell
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X PUT https://api.practitest.com/api/v2/projects/4566/instances/45893.json \
+-d '{"data": { "type": "instances", "attributes": {"planned-execution":"2017-03-01T12:43:31Z", "priority": "version1", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
+
+```
+
+
+```json
+{
+  "data": {
+    "id": "45893",
+    "type": "instances",
+    "attributes": {
+      ...
+      "planned-execution": "2017-03-01T12:43:31Z",
+      "priority": "version1",
+      "custom-fields": {
+        "---f-22":"my text one",
+        "---f-24": ["ClientA", ["ClientB"]]
+      },
+      ...
       "created-at": "2015-11-17T09:29:22+00:00",
       "updated-at": "2015-11-17T09:29:22+00:00"
     }
