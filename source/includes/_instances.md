@@ -122,7 +122,7 @@ This endpoint retrieves a specific instance.
 
 `GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/instances/YOUR_INSTANCE_ID.json`
 
-Here's the example of the JSON request and response that you may get when submitting a GET request
+Here's the example of the JSON request and response
 
 ```shell
 curl -H "Content-Type:application/json" \
@@ -170,9 +170,9 @@ This endpoint retrieves a specific instance.
 
 `PUT https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/instances/YOUR_INSTANCE_ID.json`
 
-### Query Parameters - [pagination](#pagination)
+### Parameters
 
-Optional parameters | Description |
+Available parameters | Description |
 --------- | ------- |
 planned-execution | date field of planned-execution |
 version | string of instance version |
@@ -181,7 +181,7 @@ assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  |
 custom-fields | a hash of custom-fields with thier value |
 
 
-Here's the example of the JSON request and response that you may use
+You can find at the right area an example of the JSON request and response
 
 ```shell
 curl -H "Content-Type:application/json" \
