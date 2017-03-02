@@ -114,9 +114,43 @@ https://api.practitest.com/api/v2/projects/4566/instances.json?test_id=1111&set_
   }
 }
 ```
-## GET a specific instance in your project
 
-This endpoint retrieves a specific instance.
+
+## Create an instance
+
+This endpoint creates an instance in your project.
+
+### HTTP Request
+
+`POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/instances.json`
+
+### Parameters
+
+Parameters | Description | required? |
+--------- | ------- |------- |
+set-id | TestSet id (not display id) | true |
+test-id | Test id (not display id) | true |
+planned-execution | date field of planned-execution | false |
+version | string of instance version | false |
+priority | string of instance priority | false |
+assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  | false |
+custom-fields | a hash of custom-fields with thier value | false |
+
+
+You can find at the [right area](#create-an-instance) (shell) an example of the request
+
+```shell
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/instances.json \
+-d '{"data": { "type": "instances", "attributes": {"test-id": 233, "set-id": 33, "priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
+```
+
+
+
+## Show a specific instance
+
+This endpoint shows a specific instance in your project.
 
 ### HTTP Request
 
@@ -199,7 +233,6 @@ curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN  \
 -X PUT https://api.practitest.com/api/v2/projects/4566/instances/98019.json \
 -d '{"data": { "type": "instances", "attributes": {"version": "1.5", "custom-fields": { "---f-45390": "Chrome"}}  } }'
-
 
 
 
