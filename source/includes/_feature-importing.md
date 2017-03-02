@@ -518,10 +518,12 @@ data. Do this for all columns in your dataset.
 If the `values` attribute is not present, the new column will be filled with
 "No Data" in all rows.
 
-The data passed in `values` can be either a list or a single value. If it is
- a list and its length does not match the current dataset length, the server
- will raise an error. In the case of passing a single value, the entire column
-  will contain this value.
+The data passed in `values` can correspond to either the full data column for
+the new variable or a single value, in which case it will be used to fill
+up the column.
+
+In the case of arrays, the single value should be a list containing the correct
+categorical values.
 
 If the type of the values passed in does not correspond with the variable's
 type, the server will return a 400 response indicating the error and the
