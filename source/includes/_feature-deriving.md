@@ -442,6 +442,15 @@ subvariables `ca1-subvar-1` and `ca2-subvar-2` from `CA1` and `CA2` respectively
 The `references` attribute is used to indicate specific name/alias for these
 subvariables.
 
+<aside class="warning">
+Note that when making an array with this method its subvariables catalog
+and subvariables will return 405 on PATCH attempts. The correct way to make
+modifications to them (add/remove subvariable, edit subvariable attributes) is
+to update the new array variable's entity `derivation` attribute with the 
+updated expression indicating the desired subvariable modifications.
+</aside>
+
+
 
 ### Weights
 
