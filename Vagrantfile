@@ -6,9 +6,8 @@ Vagrant.configure(2) do |config|
     type: "shell",
     inline: <<-SHELL
       sudo apt-get update
-      sudo apt-get install -yq ruby2.0 ruby2.0-dev pkg-config build-essential nodejs git libxml2-dev libxslt-dev
+      sudo apt-get install -yq gnupg2 pkg-config build-essential nodejs git libxml2-dev libxslt-dev
       sudo apt-get autoremove -yq
-      gem2.0 install --no-ri --no-rdoc bundler
     SHELL
 
   # add the local user git config to the vm
@@ -20,6 +19,10 @@ Vagrant.configure(2) do |config|
     inline: <<-SHELL
       echo "=============================================="
       echo "Installing app dependencies"
+      gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+      curl -sSL https://get.rvm.io | bash -s stable --ruby
+      source ~/.rvm/scripts/rvm
+      gem install --no-ri --no-rdoc bundler
       cd /vagrant
       bundle config build.nokogiri --use-system-libraries
       bundle install
@@ -34,6 +37,6 @@ Vagrant.configure(2) do |config|
       echo "Starting up middleman at http://localhost:4567"
       echo "If it does not come up, check the ~/middleman.log file for any error messages"
       cd /vagrant
-      bundle exec middleman server --force-polling --latency=1 &> ~/middleman.log &
+      bundle exec middleman server --watcher-force-polling --watcher-latency=1 &> ~/middleman.log &
     SHELL
 end
