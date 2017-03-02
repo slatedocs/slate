@@ -76,8 +76,8 @@ SINGLE_LINE_TEXT | string | однострочный текст
 MULTI_LINE_TEXT | string | многострочный текст
 CHECK_BOX | bool | чекбокс {true, false}
 PASSWORD | string | однострочный текст маскированный при вводе
-MONTH_YEAR | string | YYYY/MM (например 2012/11)
-DATE | int | UNIXTIME (например 1394582400)
+MONTH_YEAR | string | UNIXTIME в милисекундах
+DATE | int | UNIXTIME в милисекундах (например 1394582400000)
 COMBO_BOX | string | список строк для comboBoxValues выбора 1..*
 AMOUNT | int | ddddd (умноженное на 100) с валютой  и проверкой на остаток средств из ``SOURCE_ACCOUNT``
 MONEY | int | ddddd (умноженное на 100) с валютой из ``SOURCE_ACCOUNT``
