@@ -47,6 +47,8 @@ body{font-size:16px;}
 
 #browse div {-ms-flex-positive:1;flex-grow:1;background-color:#fafafa;margin-right:20px;border-radius:3px;padding: 20px 40px;padding-top: 15px;border: solid 1px #ccc;width: 100%;min-height: 300px;}
 
+.light-background {background-color:#fafafa;}
+
 #browse div:first-of-type {margin-left:20px;}
 
 #browse ul  {padding:0;list-style: none;margin: 0;margin-top: 36px;color: #5b6267;}

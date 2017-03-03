@@ -46,7 +46,7 @@
 		
         window.onload = function(){
 			
-			$("td.gsc-search-button").empty().html('<input type="image" src="./images/search.svg" class="gsc-search-button gsc-search-button-v2 svg" title="search">');
+			$("td.gsc-search-button").empty().html('<input type="image" src="/images/search.svg" class="gsc-search-button gsc-search-button-v2 svg" title="search">');
       
   	  document.getElementById('gsc-i-id1').placeholder = 'Search Bonsai Docs';
     
