@@ -511,6 +511,26 @@ gen <- factor(gender.names[c(1, 3, 1, 2, 2, 1, 1, 1, 1, 2, 3, 1)],
 ds$gender <- gen
 ```
 
-POST a Variable Entity to the newly created dataset's variables catalog, and include with that Entity definition a "values" key that contains the column of data. Do this for all columns in your dataset.
+POST a Variable Entity to the newly created dataset's variables catalog, and 
+include with that Entity definition a "values" key that contains the column of 
+data. Do this for all columns in your dataset.
 
-<aside class="notice">Note that the lengths of the columns of data you include in the "values" key must be the same for all variables, though if you're importing from a normal, rectangular data store, this should already be the case.</aside>
+If the `values` attribute is not present, the new column will be filled with
+"No Data" in all rows.
+
+The data passed in `values` can correspond to either the full data column for
+the new variable or a single value, in which case it will be used to fill
+up the column.
+
+In the case of arrays, the single value should be a list containing the correct
+categorical values.
+
+If the type of the values passed in does not correspond with the variable's
+type, the server will return a 400 response indicating the error and the
+variable will not be created.
+
+<aside class="notice">
+Note that the lengths of the columns of data you include in the "values" key 
+must be the same for all variables, though if you're importing from a normal, 
+rectangular data store, this should already be the case.
+</aside>
