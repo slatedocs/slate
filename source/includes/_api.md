@@ -30,8 +30,8 @@ To use the Augur API, augur.js must connect to an Ethereum node, which can be ei
 
 <aside class="notice"><code>augur.connect</code> also accepts a second argument specifying the path to geth's IPC (inter-process communication) file.  IPC creates a persistent connection using a Unix domain socket (or a named pipe on Windows).  While it is significantly faster than HTTP RPC, it cannot be used from the browser.</aside>
 
-Market making
--------------
+Market creation
+---------------
 ```javascript
 var marketID = "0x34e104a15ab3eb2a0c26f1138c278416424ef7f8425799a76127e9b427fac74d";
 var params = {
@@ -50,7 +50,7 @@ augur.generateOrderBook(params, {
   onFailed: function (err) { /* ... */ }
 });
 
-params.isSimulation = true;
+params.isSimulationOnly = true;
 augur.generateOrderBook(params, {
   onSimulate: function (simulation) { /* ... */ }
 })
@@ -126,7 +126,7 @@ $$
 
 The initial order book is now fully specified.
 
-`augur.generateOrderBook` also accepts an optional parameter, `isSimulation`, which if set to `true`, returns information about what the method will do (see code example).  `shares` is the number of complete sets of shares to purchased, `numBuyOrders` is the number of buy orders that will be created, `numSellOrders` is the number of sell orders that will be created, and `numTransactions` is the total number of Ethereum transactions needed to set up the order book.
+`augur.generateOrderBook` also accepts an optional parameter, `isSimulationOnly`, which if set to `true`, returns information about what the method will do (see code example).  `shares` is the number of complete sets of shares to purchased, `numBuyOrders` is the number of buy orders that will be created, `numSellOrders` is the number of sell orders that will be created, and `numTransactions` is the total number of Ethereum transactions needed to set up the order book.
 
 Trading
 -------
@@ -152,6 +152,15 @@ When someone enters an order in the UI the following happens:
 - If `> max` or `< min` don't show order
 
 Pending transactions and what orders have already been picked up in pending broadcasted transactions are shown in the book.  These orders are removed if the other side has already been taken in the transaction pool (those orders get executed first on Ethereum anyway based on time precedence and default gas price).  If not processed / taken up, those orders are placed back on the book.  If two orders at same price are placed on the book, the one placed first is executed first.
+
+Reporting
+---------
+
+<a href="images/reporting_cycle.svg"><img src="images/reporting_cycle.svg" onerror="this.src='images/reporting_cycle.png'"></a>
+
+This diagram shows the Reporting cycle for an event (and its associated market) which was created during some previous cycle (off the diagram to the left) and which expires sometime during the cycle marked as "Reporting cycle 1".  Each cycle takes 60 days to complete.  Including the steps needed to fully complete all payouts and Reputation redistribution, resolving an event takes three full Reporting cycles.
+
+<aside class="notice">In Augur, the terms "Reporting period" and "Reporting cycle" are used interchangeably throughout the codebase.</aside>
 
 Initial market loading
 ----------------------
@@ -181,9 +190,7 @@ compositeMarketsHash = sha3(compositeMarketsHash + marketID4)
 
 To load the basic market info for all markets, first call `augur.getMarketsInfo({branch, offset, numMarketsToLoad, callback})`.  You will likely need to chunk the results so that the request does not time out.  More detailed market info (including prices) for each market in each chunk (page) is then loaded using `augur.getMarketInfo(marketID)`.  `getMarketInfo` does not return the full order book; to get the order book for a market, call `augur.getOrderBook(marketID)`.
 
-<aside class="notice">Cache nodes regularly call <code>augur.getMarketsInfo({branch, offset, numMarketsToLoad, callback})</code>.  The first time <code>getMarketsInfo</code> is called, all markets should be loaded.  Subsequent <code>getMarketsInfo</code> calls should only load markets created since the previous call.
-
-If data is loaded from a cache node (rather than directly from the Ethereum blockchain), then its integrity should be verified to ensure the cache node has not tampered with the data.  Verification of a cache node's markets data can be done by calling <code>augur.getMarketsHash(branch)</code>, then checking that the `getMarketsHash` return value matches a hash locally calculated from a combined hash of each market's static data (see Serpent code sample).</aside>
+<aside class="notice">Cache nodes regularly call <code>augur.getMarketsInfo({branch, offset, numMarketsToLoad, callback})</code>.  The first time <code>getMarketsInfo</code> is called, all markets should be loaded.  Subsequent <code>getMarketsInfo</code> calls should only load markets created since the previous call.</aside>
 
 Reporting outcomes
 ------------------
