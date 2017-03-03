@@ -102,7 +102,7 @@ active-only | Flag to fetch only active citations. One of Yes, No. Defaults to N
 notify | One of yes or no. If set to yes we will send report alerts to all email addresses specified (see field below). If you include customer email addresses when setting up your report we'll also email them the alerts so please be sure this is what you want before adding their addresses. Default is no.
 email-addresses | Supply one or more (max 5) email addresses for us to send report alerts to. Emails should be passed as a JSON encoded array. This only takes effect if notify is set to yes.
 is-public | Publish reports on a white label URL. Yes or No.
-primary-location | <span class="label label-required">Required</span> We use ‘Location’ to identify your top 10 ‘Google+ Local’ competitors. Please enter your city/town name or zip/postcode. Note: for US businesses we strongly recommend to use only 5 digit zip (99750, NOT 99750-0077) as too specific zip can result in not finding any competitors.
+primary-location | <span class="label label-required">Required</span> We use ‘Location’ to identify your top 10 ‘Google+ Local’ competitors. Please enter your city/town name or zip/postcode. Note: for US businesses we strongly recommend that you use only 5 digit zips (99750, NOT 99750-0077) as using the longer format can make it harder for us to find competitors.
 
 ## Update Report
 
