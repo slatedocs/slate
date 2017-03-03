@@ -513,3 +513,538 @@ Parameter | Description | Possible values
 status | status of creating process | 'success' or 'error'
 field | field, which contains error | *
 message | error message | *
+
+
+# Get or create session
+
+> `POST http://domain.com/im_chat/api/get_or_create_session`
+
+```
+Example response
+```
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": null,
+    "result": {
+        "create_date": "2017-02-02 07:56:00",
+        "uuid": "91e03d34-1929-4a02-9486-4c3e708686b3",
+        "with_documents:": true,
+        "state": "open",
+        "is_group": false,
+        "groups": [],
+        "docs:":
+        [
+            {
+                "doc_model": "res.partner",
+                "doc_id": 25,
+                "id": 9
+            }
+        ],
+        "users":
+        [
+            {
+                "im_status": "away",
+                "id": 5,
+                "name": "Lucid Lynx"
+            },
+            {
+                "im_status": "away",
+                "id": 6,
+                "name": "Oneiric Ocelot"
+            }
+        ]
+    }
+}
+```
+
+### HTTP Request
+
+`POST http://domain.com/im_chat/api/get_or_create_session`
+
+### Arguments
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+user_to | number | Required | ID of user
+doc_id | string | Optional | ID of document
+doc_model | string | Optional | document's model
+
+### Returns
+Dictionary with data about session.
+
+Contains fields:
+
+Parameter | Description | Possible values 
+--------- | ----------- | -----------
+uuid | session uuid | *
+create_date | date of session creating | *
+users | list of users | *
+state | state of session | 'open', 'folded' or 'closed'
+
+
+# Get or create session with group
+
+> `POST http://domain.com/im_chat/api/get_or_create_session_group`
+
+```
+Example response
+```
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": null,
+    "result":
+    {
+        "create_date": "2017-02-02 07:56:00",
+        "uuid": "91e03d34-1929-4a02-9486-4c3e708686b3",
+        "with_documents": true,
+        "state": "open",
+        "is_group": true,
+        "groups":
+        [
+            {
+                "id": 3,
+                "name": "News"
+            }
+        ],
+        "docs:":
+        [
+            {
+                "doc_model": "res.partner",
+                "doc_id": 25,
+                "id": 9
+            }
+        ],
+        "users":
+        [
+            {
+                "im_status": "away",
+                "id": 5,
+                "name": "Lucid Lynx"
+            },
+            {
+                "im_status": "away",
+                "id": 6,
+                "name": "Oneiric Ocelot"
+            }
+        ]
+    }
+}
+```
+
+### HTTP Request
+
+`POST http://domain.com/im_chat/api/get_or_create_session_group`
+
+### Arguments
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+group | number | Required | ID of group
+doc_id | string | Optional | ID of document
+doc_model | string | Optional | document's model
+
+### Returns
+Dictionary with data about session.
+
+Contains fields:
+
+Parameter | Description | Possible values 
+--------- | ----------- | -----------
+uuid | session uuid | *
+create_date | date of session creating | *
+users | list of users | *
+state | state of session | 'open', 'folded' or 'closed'
+
+# Get sessions
+
+> `POST http://domain.com/im_chat/api/get_sessions`
+
+```
+Example response
+```
+
+```json
+[
+    {
+        "create_date": "2017-02-02 07:56:00",
+        "uuid": "91e03d34-1929-4a02-9486-4c3e708686b3",
+        "with_documents": true,
+        "state": "open",
+        "is_group": false,
+        "groups": [],
+        "docs:":
+        [
+            {
+                "doc_model": "res.partner",
+                "doc_id": 25,
+                "id": 9
+            }
+        ],
+        "users":
+        [
+            {
+                "im_status": "away",
+                "id": 5,
+                "name": "Lucid Lynx"
+            },
+            {
+                "im_status": "away",
+                "id": 6,
+                "name": "Oneiric Ocelot"
+            }
+        ]
+    }
+]
+```
+
+### HTTP Request
+
+`POST http://domain.com/im_chat/api/get_sessions`
+
+### Arguments
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+user_to | number | Optional | ID of user
+doc_id | string | Optional | ID of document
+doc_model | string | Optional | document's model
+state | string | Optional | state of session
+
+### Returns
+List with dictionaries with data about sessions.
+
+Contains fields:
+
+Parameter | Description | Possible values 
+--------- | ----------- | -----------
+uuid | session uuid | *
+create_date | date of session creating | *
+users | list of users | *
+state | state of session | 'open', 'folded' or 'closed'
+
+# Get sessions with group
+
+> `POST http://domain.com/im_chat/api/get_sessions_group`
+
+```
+Example response
+```
+
+```json
+[
+    {
+        "create_date": "2017-02-02 07:56:00",
+        "uuid": "91e03d34-1929-4a02-9486-4c3e708686b3",
+        "with_documents": true,
+        "state": "open",
+        "is_group": true,
+        "groups": 
+        [
+            {
+                "id": 3,
+                "name": "News"
+            }
+        ],
+        "docs:":
+        [
+            {
+                "doc_model": "res.partner",
+                "doc_id": 25,
+                "id": 9
+            }
+        ],
+        "users":
+        [
+            {
+                "im_status": "away",
+                "id": 5,
+                "name": "Lucid Lynx"
+            },
+            {
+                "im_status": "away",
+                "id": 6,
+                "name": "Oneiric Ocelot"
+            }
+        ]
+    }
+]
+```
+
+### HTTP Request
+
+`POST http://domain.com/im_chat/api/get_sessions_group`
+
+### Arguments
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+group | number | Optional | ID of group
+doc_id | string | Optional | ID of document
+doc_model | string | Optional | document's model
+state | string | Optional | state of session
+
+### Returns
+List with dictionaries with data about sessions.
+
+Contains fields:
+
+Parameter | Description | Possible values 
+--------- | ----------- | -----------
+uuid | session uuid | *
+create_date | date of session creating | *
+users | list of users | *
+state | state of session | 'open', 'folded' or 'closed'
+
+# Get all users
+
+> `POST http://domain.com/im_chat/api/user_chat_ab/get_all_users`
+
+```
+Example response
+```
+
+```json
+[
+    {
+        "im_status": "offline", 
+        "id": 5, 
+        "name": "odoo"
+    },
+    {
+        "im_status": "offline", 
+        "id": 239, 
+        "name": "Ivan"
+    },
+    {
+        "im_status": "offline", 
+        "id": 330, 
+        "name": "Test1"
+    }
+]
+```
+
+### HTTP Request
+
+`POST http://domain.com/im_chat/api/user_chat_ab/get_all_users`
+
+Get all users without users from address book of current user
+
+### Returns
+List with dictionaries with data about users.
+
+Contains fields:
+
+Parameter | Description | Possible values 
+--------- | ----------- | -----------
+im_status | chat status | 'online', 'offline' or 'away'
+id | user id | *
+name | user name | *
+
+# Get users from book
+
+> `POST http://domain.com/im_chat/api/user_chat_ab/get_users_from_book`
+
+```
+Example response
+```
+
+```json
+[
+    {
+        "im_status": "offline", 
+        "id": 5, 
+        "name": "odoo"
+    }
+]
+```
+
+### HTTP Request
+
+`POST http://domain.com/im_chat/api/user_chat_ab/get_users_from_book`
+
+Get all users from address book of current user
+
+### Returns
+List with dictionaries with data about users.
+
+Contains fields:
+
+Parameter | Description | Possible values 
+--------- | ----------- | -----------
+im_status | chat status | 'online', 'offline' or 'away'
+id | user id | *
+name | user name | *
+
+# Add users in book
+
+> `POST http://domain.com/im_chat/api/user_chat_ab/add_users`
+
+```
+Successful response
+```
+
+```json
+{
+    "jsonrpc": "2.0", 
+    "id": null, 
+    "result": 
+    {
+        "status": "success"
+    }
+}
+```
+
+```
+Unsuccessful response
+```
+
+```json
+{
+    "jsonrpc": "2.0", 
+    "id": null, 
+    "result": 
+    {
+        "status": "error",
+        "message": "user_ids is not list"
+    }
+}
+```
+
+### HTTP Request
+
+`POST http://domain.com/im_chat/api/user_chat_ab/add_users`
+
+Add user in address book of current user
+
+### Arguments
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+user_ids | list of user ids | Required | User IDs
+
+### Returns
+Dictionary with status of operation.
+
+Contains fields:
+
+Parameter | Description | Possible values 
+--------- | ----------- | -----------
+result | status and optional error message | *
+
+# Remove users from book
+
+> `POST http://domain.com/im_chat/api/user_chat_ab/remove_users`
+
+```
+Successful response
+```
+
+```json
+{
+    "jsonrpc": "2.0", 
+    "id": null, 
+    "result": 
+    {
+        "status": "success"
+    }
+}
+```
+
+```
+Unsuccessful response
+```
+
+```json
+{
+    "jsonrpc": "2.0", 
+    "id": null, 
+    "result": 
+    {
+        "status": "error",
+        "message": "user_ids is not list"
+    }
+}
+```
+
+### HTTP Request
+
+`POST http://domain.com/im_chat/api/user_chat_ab/remove_users`
+
+Remove user from address book of current user
+
+### Arguments
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+user_ids | list of user ids | Required | User IDs
+
+### Returns
+Dictionary with status of operation.
+
+Contains fields:
+
+Parameter | Description | Possible values 
+--------- | ----------- | -----------
+result | status and optional error message | *
+
+# Add partner in book
+
+> `POST http://domain.com/im_chat/api/user_chat_ab/add_partner`
+
+```
+Successful response
+```
+
+```json
+{
+    "jsonrpc": "2.0", 
+    "id": null, 
+    "result": 
+    {
+        "status": "success"
+    }
+}
+```
+
+```
+Unsuccessful response
+```
+
+```json
+{
+    "jsonrpc": "2.0", 
+    "id": null, 
+    "result": 
+    {
+        "status": "error",
+        "message": "input parameters are not valid"
+    }
+}
+```
+
+### HTTP Request
+
+`POST http://domain.com/im_chat/api/user_chat_ab/add_partner`
+
+Add partner in address book of current partner
+
+### Arguments
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+parent_partner_id | number | Required | ID of owner of address book 
+child_partner_id | number | Required | Added partner ID in book
+
+### Returns
+Dictionary with status of operation.
+
+Contains fields:
+
+Parameter | Description | Possible values 
+--------- | ----------- | -----------
+result | status and optional error message | *
+
