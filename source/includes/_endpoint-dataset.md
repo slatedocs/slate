@@ -58,8 +58,6 @@ crGET("https://app.crunch.io/api/datasets/")
             "permissions": {
                 "edit": false,
                 "change_permissions": false,
-                "add_users": false,
-                "change_weight": false,
                 "view": true
             },
             "size": {
@@ -84,8 +82,6 @@ crGET("https://app.crunch.io/api/datasets/")
             "permissions": {
                 "edit": true,
                 "change_permissions": true,
-                "add_users": true,
-                "change_weight":true,
                 "view": true
             },
             "size": {
@@ -881,6 +877,7 @@ can have.
     "body": {
         "viewers_can_export": false,
         "viewers_can_change_weight": false,
+        "viewers_can_share": true,
         "weight": "https://app.crunch.io/api/datasets/223fd4/variables/123456/"
     }
 }
@@ -895,6 +892,7 @@ Setting | Description
 --------|------------
 viewers_can_export | When false, only editor can export; else, all users with view access can export the data
 viewers_can_change_weight | When true, all users with access can set their own personal weight; else, the editor configured `weight` will be applied to all without option to change
+viewers_can_share | When true, all users with access can share the dataset with other users or teams; Defaults to `True`
 weight | Default initial weight for all new users on this dataset, and when `viewers_can_change_weight` is false, this variable will be the always-applied weight for all viewers of the dataset.
 
 
