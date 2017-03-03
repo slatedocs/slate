@@ -801,7 +801,7 @@ li > a:only-child:after {content: '';}
 .more-help-links a:hover {color:#3A8A3B;}
 .more-help-links a:hover > img {transform: scale(1.1);}
 
-.footer-links-home a:last-of-type {-ms-flex-positive:5;flex-grow:5;/* text-align:right; */justify-content: flex-end;align-;/* align-content: center; */}
+.footer-links-home a:last-of-type {-ms-flex-positive:5;flex-grow:5;text-align:right; justify-content: flex-end; align-content: center;}
 
 .footer-links-home a {color:#327833;text-decoration:none;padding-right: 15px;padding-left: 15px;}
 
