@@ -1,6 +1,6 @@
-## Schemas
+# Schemas
 
-Schemas describe a record and its fields. They contain a set of named data types that can be used throughout the system. They can include the common basic data types and native data types for working with common media formats (images, audio recordings). You add schemas in Inkling using the **schema** [keyword][1].
+Schemas describe a record and its fields. They contain a set of named data types that can be used throughout the system. They can include the common basic data types and native data types for working with common media formats (images, audio recordings). You add schemas in Inkling using the `schema` keyword.
 
 Types (or [data types][2]) are representations of values of data. A type informs the system what the meaning of the data is, the possible values of that data is, what operations can be performed on that data, and the way the data can be stored. Types are the most basic building blocks of data manipulation.
 
@@ -10,13 +10,13 @@ Inkling is also a strongly-typed language, which means that you are will receive
 
 Inkling supports various types, including (but not limited to) primitive types, which include types for integers, floats,  bytes and strings, as well as types commonly used with machine learning (for example, Luminance). See the section on schemas and Inkling types for more information.
 
-###### Constrained Types
+## Constrained Types
 
-Inkling supports constrained types in schemas (as well as for configuration of lessons). Constrained types use range expressions to constrain the values of the type to values defined by a range expression.
+Inkling supports [constrained types][4] in schemas (as well as for configuration of lessons). Constrained types use range expressions to constrain the values of the type to values defined by a range expression.
 
 A range expression has the effect of constraining the values of the type to values defined by the range expression. In a schema, this constrains the values in the field. In lessons, this constrains the values of the placeholder being configured. In both cases the syntax is the same.
 
- Here are some examples of constrained types:
+Here are some examples of constrained types:
 
 ```inkling
 schema MyOutput
@@ -29,16 +29,23 @@ schema MyOutput
 end
 ```
 
-###### Defining Schemas
+## Defining Schemas
 
 Examine the input, returned data, and output of your mental model when defining your schemas. You need to match these requirements to Inkling types.
+
+### Inputs and Outputs
+
+**Input** is a stream of information that is fed into your BRAIN (your AI). The Bonsai AI Engine uses this information to help train the BRAIN or make a prediction.
+
+In Inkling, **Output** is a stream of information returned as a prediction that your BRAIN sends back to an application. It could be sent back to a simulator, if training is in process, or it could be send back to your deployed application, where it might be used for control or optimization. The data in input and output streams are described by schemas. Schemas are declared in your Inkling program, and they contain information about the data types contained in the stream. For example, if you want to teach your AI,  to recognize the shape 'square', you might give it a picture of a shape. That picture would be an input. The BRAIN answers yes (this is a square) or no (this is not a square). That answer is the output. Your Inkling file to teach your AI would contain one schema for describing the data type of the input (Luminance, an image type) and another for the output (Bool). For more information about schemas, refer to the [Schema Reference][1].
 
 ### How to pick types
 
 * If your input is an image, you will need the `luminance` type.
 * If your output is yes/no, true/false, or another dual relationship, you should use the `bool` type.
-* Inkling supports signed and unsigned integers of various sizes as well as floating point (32 and 64 bit). More details can be found under [Inkling Primitive Types][3].
+* Inkling supports signed and unsigned integers of various sizes as well as floating point (32 and 64 bit). More details can be found under [Inkling Types][3].
 
-[1]: #schemas
+[1]: ./inkling-reference.html#schema
 [2]: https://en.wikipedia.org/wiki/Data_type
-[3]: #inkling-primitive-types
+[3]: ./inkling-reference.html#inkling-types
+[4]: ./inkling-reference.html#constrained-types

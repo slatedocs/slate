@@ -17,7 +17,7 @@ And we have these other resources that will enable you to maximize your AI devel
 * [Bonsai Blog][4]
 * [Bonsai Forums][5]
 
-[1]: ./inkling.html
+[1]: ./inkling-guide.html
 [2]: ./cli-reference.html
 [3]: ./api-reference.html
 [4]: https://bons.ai/blog
