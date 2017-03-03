@@ -365,6 +365,72 @@ Example response
 
 Possible verification statuses for identity and residency address: not_verified, pending, verified, rejected.
 
+# Get dashboard graphic details
+
+> `POST http://domain.com/dashboard/graphic`
+
+```
+{
+  "all_time": {
+    "credit": 0.232996,
+    "debit": 0.225304
+  },
+  "days": {
+    "2017-02-24": {
+      "credit": 0,
+      "debit": 0
+    },
+    "2017-02-25": {
+      "credit": 0,
+      "debit": 0
+    },
+    "2017-02-26": {
+      "credit": 0,
+      "debit": 0
+    },
+    "2017-02-27": {
+      "credit": 0,
+      "debit": 0
+    },
+    "2017-02-28": {
+      "credit": 0.000101,
+      "debit": 0
+    },
+    "2017-03-01": {
+      "credit": 0,
+      "debit": 0
+    },
+    "2017-03-02": {
+      "credit": 0,
+      "debit": 0
+    },
+    "2017-03-03": {
+      "credit": 0,
+      "debit": 0
+    }
+  },
+  "month": {
+    "credit": 0,
+    "debit": 0
+  },
+  "week": {
+    "credit": 0.000101,
+    "debit": 0
+  },
+  "year": {
+    "credit": 0.02455,
+    "debit": 0.002163
+  }
+}
+```
+
+### HTTP Request
+
+`POST http://domain.com/dashboard/graphic`
+
+Returns data to create graphics.
+Includes debit/credit values for overall time, week, month, year and for the last days
+
 # Get partner profile image
 
 > `GET http://domain.com/partner/${partner_id}/profile_image/big`
