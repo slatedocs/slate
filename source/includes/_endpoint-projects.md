@@ -408,9 +408,7 @@ GET /projects/6c01/datasets/ HTTP/1.1
         "archived": false,
         "permissions": {
             "edit": false,
-            "change_permissions":,
-            "add_users":,
-            "change_weight":,
+            "change_permissions": false,
             "view": true
         },
         "size": {
@@ -433,9 +431,7 @@ GET /projects/6c01/datasets/ HTTP/1.1
         "archived": false,
         "permissions": {
             "edit": true,
-            "change_permissions":,
-            "add_users":,
-            "change_weight":,
+            "change_permissions": true,
             "view": true
         },
         "size": {
