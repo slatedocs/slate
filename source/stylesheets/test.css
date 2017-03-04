@@ -67,7 +67,8 @@ body{font-size:16px;}
 	.welcome {font-size: 170% !important;}
 	
 	.flex-desktop-center-rows {flex-direction: column !important;}
-}
+	.flex-desktop-center-rows a {margin:0 auto;border-right:none !important;border-bottom:solid 1px #edebe8;padding-right: 0 !important;}
+}.flex-desktop-center-rows a:last-of-type {border:none;}
 
 
 /*///////////////////////////////////////////////////////////////////////////////
@@ -229,7 +230,8 @@ nav ul li ul li a {
 	  line-height: 20px;
 	}
 	
-	#top {/* height: 340px; *//* display: inline-block; *//* padding-top: 25px; *//* height: inherit; *//* min-height: inherit; *//* padding-bottom: 60px; */}
+	
+	
 	#primary-nav #___gcse_0 .gsc-input .gsc-input-box {height: 48px !important;width: auto;}
 	#primary-nav #___gcse_0 .gsc-search-button .gsc-search-button-v2 {height:50px !important;padding: 16px;/* margin-right: 13px; */}
 	
@@ -618,7 +620,7 @@ li > a:only-child:after {content: '';}
 @media all and (max-width : 1000px) {
 	
 	
-	
+	.flex-desktop-center-rows a {margin:0 auto; }
 	
 	.cc {display:none;}
 	.footer-links-home a:last-of-type {flex-grow: 0 !important;/* justify-content: flex-start !important; */}
@@ -788,7 +790,7 @@ a {}
 	flex-direction: row;
 	-ms-flex-pack: center;
 	justify-content: space-around;
-	/* align-items: center; */
+	align-items: center;
 	-ms-flex-line-pack: center;
 	align-content: center;
 	margin: 0 auto;
@@ -827,10 +829,10 @@ a {}
 .margin-top-1 {margin-top: 45px;}
 
 .more-help-padding {/* padding: 30px; */}
-.more-help-links {margin-top: 40px !important;}
+.more-help-links {margin-top: 40px !important;max-width: 730px;}
 .more-help-links img { display:block; margin: 0 auto; padding-bottom:10px;}
 
-.more-help-links a {color: #3B453B;text-decoration: none;border-right: solid 1px #EDEBE8;padding-right: 60px;padding-top: 30px;padding-bottom: 30px;}
+.more-help-links a {color: #3B453B;text-decoration: none;border-right: solid 1px #edebe8;padding-right: 60px;padding-top: 30px;padding-bottom: 30px;}
 .more-help-links a:last-of-type {border-right:none;}
 .more-help-links a:hover {color:#3A8A3B;transition: all 0.3s ease 0s;}
 .more-help-links a:hover > img {transform: scale(1.1);transition: all 0.3s ease 0s;}
@@ -849,6 +851,4 @@ a {}
 .green-button {padding: 15px;background-color: #47AB48;border-radius: 3px;width: 150px;text-align: center;color: #fff;text-decoration: none;font-size: 120%;font-weight: 500;letter-spacing: 0.03em;transition: all 0.3s ease 0s;}
 
 .green-button:hover {background-color: #3A8A3B;}
-
-.cc {margin-left:10px;}
 
