@@ -773,12 +773,13 @@ The following rules apply for all formats:
 
 Some format-specific properties and options:
 
-Format    | Attribute           | Description                                                           | Example
---------- | --------------------| --------------------------------------------------------------------- | --------------------------
-csv       | use_category_ids    | instead of category names export the fields as their numeric ids      | {"use_category_ids": true}
-spss      | var_label_field     | Use the variable's name/description as SPSS variable label            | {"var_label_field": "name"}
-spss      | prefix_subvariables | When True, will only export subvariables and not group them as arrays | {"prefix_subvariables": true}
-all       | include_personal    | Will include the user's personal variables on the exported file       | {"include_personal": true}
+Format    | Attribute           | Description                                                                         | Default
+--------- | --------------------| ----------------------------------------------------------------------------------- | --------------------------
+csv       | use_category_ids    | Instead of category names export the fields as their numeric ids                    | {"use_category_ids": false}
+csv       | missing_values      | If present, will use such string as for missing values. Else will use the reasons   | _omitted_
+spss      | var_label_field     | Use the variable's name/description as SPSS variable label                          | {"var_label_field": "description"}
+spss      | prefix_subvariables | When True, subvariables names will have the parent array's name prefixed            | {"prefix_subvariables": false}
+all       | include_personal    | Will include the user's personal variables on the exported file                     | {"include_personal": false}
 
 For both types of responses, the "location" header is set to the location for the download, whether completed or not.  Besides
  looking for a 100 percent completion with progress requests, the user may also look for a non-404 response on this location.
@@ -794,8 +795,14 @@ To pick which variable field to use on the `label` field on the SPSS variables, 
 
 ###### CSV
 
-Categorical variable values will be exported as the category name by default.
-To use the category ids as data values, include `"use_category_ids": true` in the `"options"` attribute of the POST body.
+By default, categorical variable values will be exported using the category name 
+and missing values will use their corresponding reason string for all variables.
+
+The missing values will be exported with their configured missing reason in
+the CSV file. If specified on the `missing_values` export option, then all
+missing values on all columns will use such string instead of the reason.
+
+Refer to the options described on the table above for the `csv` format to change this behavior.
 
 ##### Summary
 
