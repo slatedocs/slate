@@ -293,6 +293,8 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 Retorna uma lista em JSON contendo todos as cobranças que pertencem a sua Conta de Serviço.
 
+É possível filtrar a lista através dos parâmetros: `type`, `charge_config_ids`, `payee_ids`, `payee_national_identifiers`.
+
 ## Criação de Cobrança
 
 ```shell
