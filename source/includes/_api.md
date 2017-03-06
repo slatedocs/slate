@@ -588,35 +588,35 @@ augur.getBranchByNum(0, function (branch) { /* ... */ })
 branch = "0xf69b5"
 ```
 ### [branches contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/branches.se)
-#### augur.getNumBranches([callback])
+#### getNumBranches([callback])
 
 Looks up the total number of branches that exist on the current network.
 
-#### augur.getBranches([callback])
+#### getBranches([callback])
 
 Gets an array of all branch IDs on the current network.
 
-#### augur.getMarkets(branch[, callback])
+#### getMarkets(branch[, callback])
 
 Gets an array of all markets on the specified branch ID `branch`.
 
-#### augur.getPeriodLength(branch[, callback])
+#### getPeriodLength(branch[, callback])
 
 Gets the period length for the specified branch ID `branch`.
 
-#### augur.getVotePeriod(branch[, callback])
+#### getVotePeriod(branch[, callback])
 
 Looks up the number of the current vote period on the specified branch ID `branch`.
 
-#### augur.getNumMarkets(branch[, callback])
+#### getNumMarkets(branch[, callback])
 
 Gets the number of markets on the specified branch ID `branch`.
 
-#### augur.getMinTradingFee(branch[, callback])
+#### getMinTradingFee(branch[, callback])
 
 Gets the minimum trading fee allowed on the specified branch ID `branch`.
 
-#### augur.getBranchByNum(branchNumber[, callback])
+#### getBranchByNum(branchNumber[, callback])
 
 Gets branch ID for the branch with index `branchNumber`.  (Branches are stored as an "array" on-contract; `branchNumber` is the index of the branch within this array.)
 
@@ -1637,7 +1637,9 @@ Invoke
 ------
 
 In some cases, you may need more flexibility beyond simply mix-and-matching the Augur API methods.  To do this, use [ethrpc](https://github.com/AugurProject/ethrpc)'s lower-level `invoke` method (`augur.rpc.invoke`).  First, build a transaction object manually, then execute it using `invoke`.  The `invoke` method executes a method in a contract already on the network.  It can broadcast transactions to the network and/or capture return values by calling the contract method(s) locally.
+
 ```javascript
+// Invoke:
 // The method called here doubles its input argument.
 augur.rpc.invoke({
    to: "0x5204f18c652d1c31c6a5968cb65e011915285a50",
