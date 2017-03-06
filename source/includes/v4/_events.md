@@ -668,6 +668,7 @@ The global calender provides a nice way to check wether dates are available for 
 - by_proposal_category_ids (Array of proposal category ids), filter by proposal category, see proposal categories section
 - by_language_ids (Array of language ids), filter by language, see languages section
 - by_categories (Array of category names), filter by categories, see categories section
+- by_bookable (Boolean, true|false, default: all), filter for bookable dates only
 
 ### Available parameters:
 
