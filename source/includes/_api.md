@@ -59,7 +59,7 @@ simulation = {
   shares: "4007",
   numBuyOrders: [ 10, 7 ],
   numSellOrders: [ 4, 7 ],
-  buyPrices: 
+  buyPrices:
    [ [ "0.61834939840463451",
        "0.55853753243153362626",
        "0.49872566645843274252",
@@ -77,7 +77,7 @@ simulation = {
        "0.23052840055187387504",
        "0.1707165345787729913",
        "0.11090466860567210756" ] ],
-  sellPrices: 
+  sellPrices:
    [ [ "0.70532476696158349",
        "0.76513663293468437374",
        "0.82494849890778525748",
@@ -142,12 +142,12 @@ Traders submit bids and asks.  Orders are executed if another trader will match/
 
 When someone enters an order in the UI the following happens:
 
-- Find all orders on the book that can fill that order, so price is <= if buying and >= if selling 
-- Call `trade(max_value, max_amount, trade_ids:arr)` which will return the amount of money that still isn't filled at the end of trading 
+- Find all orders on the book that can fill that order, so price is <= if buying and >= if selling
+- Call `trade(max_value, max_amount, trade_ids:arr)` which will return the amount of money that still isn't filled at the end of trading
 - If it returns 0 for the max value and amounts the UI is done
 - If it returns a positive number, place a buy or sell order on the book for the amount it returns using `buy(amount, price, market_id, outcome)` or `sell(amount, price, market_id, outcome)`
 - This will then `log(type=log_add_tx, $market_id, msg.sender, $type, $price, $amount, $outcome, trade_id)` where type is either `BID` or `ASK`, rest is self explanatory
-- The UI calls `get_trade_ids(market_id)` to get a list of all open orders on the book 
+- The UI calls `get_trade_ids(market_id)` to get a list of all open orders on the book
 - Then to populate the order books for each outcome in the UI: `get_trade(id)`
 - If `> max` or `< min` don't show order
 
@@ -222,7 +222,7 @@ var marketId = "0x45c545745a80121b14c879bf9542dd838559f7acc90f1e1774f4268c332a51
 
 augur.getOrderBook(marketId, function (orderBook) { /* ... */ });
 // example output:
-{ sell: 
+{ sell:
    [ { id: '-0xc764b37f2eebb389040025b33668470bf017ce00e3d7c3725d2c33da04cc0bc5',
        type: 'sell',
        market: '0x45c545745a80121b14c879bf9542dd838559f7acc90f1e1774f4268c332a519',
@@ -255,7 +255,7 @@ augur.getOrderBook(marketId, function (orderBook) { /* ... */ });
        owner: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
        block: 8375,
        outcome: '1' } ],
-  buy: 
+  buy:
    [ { id: '-0x753a368b0cd164302041448c61c57a868dccf8fceb538fb2e0a60356f793d720',
        type: 'buy',
        market: '0x45c545745a80121b14c879bf9542dd838559f7acc90f1e1774f4268c332a519',
@@ -311,13 +311,13 @@ augur.getMarketInfo(marketId, function (marketInfo) { /* ... */ })
   endDate: 1609574400000,
   winningOutcomes: [ '0', '0', '0', '0', '0', '0', '0', '0' ],
   description: 'How much will it cost (in USD) to move a pound of inert cargo from Earth\'s surface to Low Earth Orbit by January 1, 2021?',
-  outcomes: 
+  outcomes:
    [ { shares: {},
        id: 1,
        outstandingShares: '0.5',
        price: '0.51999999999999999998' },
      { shares: {}, id: 2, outstandingShares: '0.5', price: '0' } ],
-  events: 
+  events:
    [ { id: '-0x9d869b3088e7c963e21d295bec13b57342aa70510252fa97388ded77df03d483',
        endDate: 1609574400000,
        outcome: '0',
@@ -464,7 +464,7 @@ var options = {
 };
 augur.getMarketsInfo(options, function (marketsInfo) { /* ... */ })
 // example output:
-{ '0xf41e2f1827142a95cc14b5333f3d3493588342ef8bc9214e96e0c894dff27fc5': 
+{ '0xf41e2f1827142a95cc14b5333f3d3493588342ef8bc9214e96e0c894dff27fc5':
    { _id: '0xf41e2f1827142a95cc14b5333f3d3493588342ef8bc9214e96e0c894dff27fc5',
      sortOrder: 0,
      tradingPeriod: 206104,
@@ -474,7 +474,7 @@ augur.getMarketsInfo(options, function (marketsInfo) { /* ... */ })
      tags: [ 'weather', 'temperature', 'climate change' ],
      endDate: 1483948800,
      description: 'Will the average temperature on Earth in 2016 be Higher, Lower, or Unchanged from the average temperature on Earth in 2015? Choices: Higher, Lower, Unchanged' },
-  '0x9b8e45cdf9d35ab66b939d5eb5b48bf10de3c39b7f6fa2d38fe518a869502e8': 
+  '0x9b8e45cdf9d35ab66b939d5eb5b48bf10de3c39b7f6fa2d38fe518a869502e8':
    { _id: '0x9b8e45cdf9d35ab66b939d5eb5b48bf10de3c39b7f6fa2d38fe518a869502e8',
      sortOrder: 1,
      tradingPeriod: 206104,
@@ -502,7 +502,7 @@ Call API
 
 Augur's Call API is made up of "getter" methods that retrieve information from the blockchain (using Ethereum's `eth_call` RPC) but do not write information to the blockchain.
 
-```javascript
+<!-- ```javascript
 // cash contract
 var address = "0x639b41c4d3d399894f2a57894278e1653e7cd24c";
 augur.getCashBalance(address, function (cashBalance) { /* ... */ });
@@ -512,7 +512,7 @@ cashBalance = "93016.83621687256922549981"
 ### [cash contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/cash.se)
 #### getCashBalance(address[, callback])
 
-Gets the play money (CASH) balance of the user account `address`.
+Gets the play money (CASH) balance of the user account `address`. -->
 
 ```javascript
 // info contract
@@ -1128,61 +1128,6 @@ Sets the Reputation balance of the sending account to 47.  (Only available durin
 
 ```javascript
 // cash contract
-augur.sendCash({
-  to: "0x639b41c4d3d399894f2a57894278e1653e7cd24c",
-  value: 1,
-  onSent: function (sentResponse) { /* ... */ },
-  onSuccess: function (successResponse) { /* ... */ },
-  onFailed: function (failedResponse) { /* ... */ }
-});
-// example outputs:
-sentResponse = {
-  txHash: '0xff5ad9bdfc9e1ffce3f1014ead5feea6ce4ff15b4a4aaa8734ef4e18338a7bfb',
-  callReturn: '1'
-}
-successResponse = {
-  nonce: '0x4e6',
-  blockHash: '0xc1fd7a7897560f153cd37053389ac079942661c11f6b9296928481188e4b2b5d',
-  blockNumber: '0x6ade',
-  transactionIndex: '0x0',
-  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
-  to: '0xe4714fcbdcdba49629bc408183ef40d120700b8d',
-  value: '0x0',
-  gas: '0x2fd618',
-  gasPrice: '0xba43b7400',
-  input: '0x693200ce000000000000000000000000639b41c4d3d399894f2a57894278e1653e7cd24c0000000000000000000000000000000000000000000000010000000000000000',
-  callReturn: '1',
-  txHash: '0xff5ad9bdfc9e1ffce3f1014ead5feea6ce4ff15b4a4aaa8734ef4e18338a7bfb'
-}
-
-augur.sendCashFrom({
-  to: to,
-  value: value,
-  from: from,
-  onSent: function (sentResponse) { /* ... */ },
-  onSuccess: function (successResponse) { /* ... */ },
-  onFailed: function (failedResponse) { /* ... */ }
-});
-// example outputs:
-sentResponse = {
-  txHash: '0xb2dc04cb4b5f3bb4b0a1dec50d539f31cf048918f62da6bfd202a0a546a32b62',
-  callReturn: '1'
-}
-successResponse = {
-  nonce: '0x4e7',
-  blockHash: '0x220870218f6e62037139c4d86ba21fad96497ec8bcc3735999dc81e0bc099b21',
-  blockNumber: '0x6ae4',
-  transactionIndex: '0x0',
-  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
-  to: '0xe4714fcbdcdba49629bc408183ef40d120700b8d',
-  value: '0x0',
-  gas: '0x2fd618',
-  gasPrice: '0xba43b7400',
-  input: '0x80b97fc0000000000000000000000000639b41c4d3d399894f2a57894278e1653e7cd24c000000000000000000000000000000000000000000000001000000000000000000000000000000000000000005ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
-  callReturn: '1',
-  txHash: '0xb2dc04cb4b5f3bb4b0a1dec50d539f31cf048918f62da6bfd202a0a546a32b62'
-}
-
 augur.depositEther({
   value: 2,
   onSent: function (sentResponse) { /* ... */ },
@@ -1210,7 +1155,7 @@ successResponse = {
 }
 
 augur.withdrawEther({
-  to: "0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b,
+  to: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
   value: 2,
   onSent: function (sentResponse) { /* ... */ },
   onSuccess: function (successResponse) { /* ... */ },
@@ -1237,14 +1182,6 @@ successResponse = {
 }
 ```
 ### [cash contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/cash.se)
-#### sendCash(to, value[, onSent, onSuccess, onFailed])
-
-Sends `value` units of CASH to address `to`.  Returns the value sent if successful.
-
-#### sendCashFrom(to, value, from[, onSent, onSuccess, onFailed])
-
-Sends `value` units of CASH to address `to` from address `from`.  Returns the value sent if successful.
-
 #### depositEther(value[, onSent, onSuccess, onFailed])
 
 Exchange `value` units of Ether for an equivalent number of CASH tokens.  Returns the amount sent (in Wei).
@@ -1414,7 +1351,7 @@ successResponse = {
   transactionIndex: '0x1',
   value: '0x0',
   callReturn: '1',
-  txHash: '0x536411add36fc39a8bb8cf310d4f26468f78fde7901721e0aea5b392f59661fe' 
+  txHash: '0x536411add36fc39a8bb8cf310d4f26468f78fde7901721e0aea5b392f59661fe'
 }
 
 augur.sellCompleteSets({
@@ -1541,7 +1478,7 @@ augur.report({
   onFailed: function (failedResponse) { /* ... */ }
 });
 // example outputs:
-sentResponse = 
+sentResponse =
 
 augur.submitReportHash({
   branchId: branchId,
@@ -1553,7 +1490,7 @@ augur.submitReportHash({
   onFailed: function (failedResponse) { /* ... */ }
 });
 // example outputs:
-sentResponse = 
+sentResponse =
 
 augur.slashRep({
   branchId: branchId,
@@ -1566,7 +1503,7 @@ augur.slashRep({
   onFailed: function (failedResponse) { /* ... */ }
 });
 // example outputs:
-sentResponse = 
+sentResponse =
 
 ```
 ### [makeReports contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/makeReports.se)
