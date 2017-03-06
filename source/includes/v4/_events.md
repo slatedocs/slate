@@ -357,6 +357,7 @@ curl "https://demo.gomus.de/api/v4/events/1/calendar"
                 "sub_title": null,
                 "start_time": "2016-07-10T16:00:00+02:00",
                 "seats": {
+                    "min": 1,
                     "max": 20,
                     "booked": 0,
                     "available": 20
