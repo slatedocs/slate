@@ -357,9 +357,11 @@ curl "https://demo.gomus.de/api/v4/events/1/calendar"
                 "sub_title": null,
                 "start_time": "2016-07-10T16:00:00+02:00",
                 "seats": {
+                    "min": 1,
                     "max": 20,
                     "booked": 0,
-                    "available": 20
+                    "available": 20,
+                    "max_per_registration": null
                 }
             }
         }
@@ -488,7 +490,8 @@ curl "https://demo.gomus.de/api/v4/events/1/dates/1"
             "min": 1,
             "max": 20,
             "booked": 0,
-            "available": 20
+            "available": 20,
+            "max_per_registration": null
         },
         "location": {
             "name": "Gemäldegalerie",
@@ -535,6 +538,7 @@ The seats block contains four attributes:
 - max (integer), maximum number of seats to book
 - booked (integer), number of seats already booked
 - available (integer), number of seats still available to book
+- max_per_registration (integer or null), if not null, number of seats max allowed to book per order
 
 ### Location
 
