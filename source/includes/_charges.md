@@ -293,7 +293,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 Retorna uma lista em JSON contendo todos as cobranças que pertencem a sua Conta de Serviço.
 
-É possível filtrar a lista através dos parâmetros: `type`, `charge_config_ids`, `payee_ids`, `payee_national_identifiers`.
+É possível filtrar a lista através dos parâmetros: `type`, `charge_config_ids`, `payee_ids`, `payee_national_identifiers`. Os três últimos são parâmetros do tipo "lista" e devem ser enviados da seguinte forma: `url?charge_config_ids[]=15&charge_config_ids[]=42`.
 
 ## Criação de Cobrança
 
