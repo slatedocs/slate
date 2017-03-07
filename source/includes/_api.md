@@ -502,18 +502,6 @@ Call API
 
 Augur's Call API is made up of "getter" methods that retrieve information from the blockchain (using Ethereum's `eth_call` RPC) but do not write information to the blockchain.
 
-<!-- ```javascript
-// cash contract
-var address = "0x639b41c4d3d399894f2a57894278e1653e7cd24c";
-augur.getCashBalance(address, function (cashBalance) { /* ... */ });
-// example output:
-cashBalance = "93016.83621687256922549981"
-```
-### [cash contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/cash.se)
-#### getCashBalance(address[, callback])
-
-Gets the play money (CASH) balance of the user account `address`. -->
-
 ```javascript
 // info contract
 var marketId = "0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42d736197278acab402980fd4";
@@ -553,38 +541,21 @@ Gets the length of description as a JS Number of `item` (a market or event ID).
 ```javascript
 // branches contract
 var branchId = augur.branches.dev;
-augur.getNumBranches(function (numBranches) { /* ... */ });
+augur.getBaseReporters(branchId, function (numBaseReporters) { /* ... */ })
 // example output:
-
-
-augur.getBranches(function (branches) { /* ... */ });
-// example output:
-branches = ["0xf69b5"]
-
-
-augur.getPeriodLength(branchId, function (periodLength) { /* ... */ })
-// example output:
-periodLength = "1800"
-
-augur.getVotePeriod(branchId, function (reportPeriod) { /* ... */ })
-// example output:
-reportPeriod = "397"
-
-augur.getNumMarkets(branchId, function (numMarkets) { /* ... */ })
-// example output:
-numMarkets = "45"
-
-augur.getMinTradingFee(branchId, function (minTradingFee) { /* ... */ })
-// example output:
-minTradingFee = "0.0078125"
+numBaseReporters = "6"
 
 augur.getBranchByNum(0, function (branch) { /* ... */ })
 // example output:
 branch = "0xf69b5"
 
-augur.getBaseReporters(branchId, function (numBaseReporters) { /* ... */ })
+augur.getBranches(function (branches) { /* ... */ });
 // example output:
-numBaseReporters = "6"
+branches = ["0xf69b5"]
+
+augur.getCreationDate(branchId, function (creationDate) { /* ... */ })
+// example output:
+creationDate = "0x3134383839303932373436343500000000000000000000000000000000000000"
 
 augur.getEventForkedOver(branchId, function (eventID) { /* ... */ })
 // example output:
@@ -594,43 +565,67 @@ augur.getForkPeriod(branchId, function (forkPeriod) { /* ... */ })
 // example output:
 forkPeriod = "0x3091273716303831265436342500000000000000000000000000000000000000"
 
-augur.getCreationDate(branchId, function (creationDate) { /* ... */ })
+augur.getInitialBalance(branchId, 8615, "eth", function(balance) { /* ... */ })
 // example output:
-creationDate = "0x3134383839303932373436343500000000000000000000000000000000000000"
+balance = "0x0000000000000000000000000000000000000000000000380ac240b094e18ce5"
+
+augur.getMarketIDsInBranch(branchId, 10, 15, function(markets) { /* ... */ })
+// example output:
+markets = ["0x519bcdaa60e7259143402153efb9825fc37a5c3d8eee0445b987453d2a23919c",
+           "0xacfe5fbc7654fee0b8873e2db464f5c189a1fa9e6e0ea5f5fa44bf6a08832f7a",
+           "0xb73f41b31a160852d059c870d1c4d205da9b72db6c53588d4426ffe261ccc745",
+           "0x40189b8366a578e807f1381088de10bb4660505ff37d9cfa4be8d2a4eb39c74a",
+           "0x5a2d3e163636f0f35ff25bfe9a87d62185228c970acaae71eb1a469132631406"]
+
+augur.getMinTradingFee(branchId, function (minTradingFee) { /* ... */ })
+// example output:
+minTradingFee = "0.0078125"
+
+augur.getNumBranches(function (numBranches) { /* ... */ });
+// example output:
+numBranches = "1"
+
+augur.getNumMarketsBranch(branchId, function (numMarkets) { /* ... */ })
+// example output:
+numMarkets = "119"
+
+augur.getOracleOnly(branchId, function(oracleOnly) { /* ... */ })
+// example output:
+oracleOnly = "0x0000000000000000000000000000000000000000000000000000000000000000"
+
+augur.getParent(branchId, function(parent) { /* ... */ })
+// example output:
+parent = "0xf69b4"
+
+augur.getParentPeriod(branchId, function (parentPeriod) { /* ... */ })
+// example output:
+parentPeriod = "345"
+
+augur.getPeriodLength(branchId, function (periodLength) { /* ... */ })
+// example output:
+periodLength = "1800"
+
+augur.getVotePeriod(branchId, function (reportPeriod) { /* ... */ })
+// example output:
+reportPeriod = "397"
 
 ```
 ### [branches contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/branches.se)
-#### getNumBranches([callback])
+#### getBaseReporters(branch[, callback])
 
-Looks up the total number of branches that exist on the current network.
-
-#### getBranches([callback])
-
-Gets an array of all branch IDs on the current network.
-
-#### getPeriodLength(branch[, callback])
-
-Gets the period length for the specified branch ID `branch`.
-
-#### getVotePeriod(branch[, callback])
-
-Looks up the number of the current vote period on the specified branch ID `branch`.
-
-#### getNumMarkets(branch[, callback])
-
-Gets the number of markets on the specified branch ID `branch`.
-
-#### getMinTradingFee(branch[, callback])
-
-Gets the minimum trading fee allowed on the specified branch ID `branch`.
+Gets the base number of reporters for the specified branch ID `branch`.
 
 #### getBranchByNum(branchNumber[, callback])
 
 Gets branch ID for the branch with index `branchNumber`.  (Branches are stored as an "array" on-contract; `branchNumber` is the index of the branch within this array.)
 
-#### getBaseReporters(branch[, callback])
+#### getBranches([callback])
 
-Gets the base number of reporters for the specified branch ID `branch`.
+Gets an array of all branch IDs on the current network.
+
+#### getCreationDate(branch[, callback])
+
+Gets the date of creation for the specified branch ID `branch`.
 
 #### getEventForkedOver(branch[, callback])
 
@@ -640,9 +635,45 @@ Gets the event ID that caused the fork on the specified branch ID `branch`.
 
 Gets the most recent period in which the specified branch ID `branch` was forked.
 
-#### getCreationDate(branch[, callback])
+#### getInitialBalance(branch, period, currency[, callback])
 
-Gets the date of creation for the specified branch ID `branch`.
+Gets the initial balance of a branch given a specified branch ID `branch`, a specified period `period`, and a specified currency `currency`.
+
+#### getMarketIDsInBranch(branch, initial, last[, callback])
+
+Gets an array of market IDs for the specified branch ID `branch` from the specified initial position `initial` to the specified last position `last`.
+
+#### getMinTradingFee(branch[, callback])
+
+Gets the minimum trading fee allowed on the specified branch ID `branch`.
+
+#### getNumBranches([callback])
+
+Looks up the total number of branches that exist on the current network.
+
+#### getNumMarketsBranch(branch[, callback])
+
+Gets the number of markets for the specified branch ID `branch`.
+
+#### getOracleOnly(branch[, callback])
+
+Gets oracleOnly boolean value for the specified branch ID `branch`.
+
+#### getParent(branch[, callback])
+
+Gets the parent branch for the specified branch ID `branch`.
+
+#### getParentPeriod(branch[, callback])
+
+Gets the period of the parent branch for the specified branch ID `branch`.
+
+#### getPeriodLength(branch[, callback])
+
+Gets the period length for the specified branch ID `branch`.
+
+#### getVotePeriod(branch[, callback])
+
+Looks up the number of the current vote period on the specified branch ID `branch`.
 
 ```javascript
 // events contract
@@ -685,6 +716,10 @@ markets = ["0x519bcdaa60e7259143402153efb9825fc37a5c3d8eee0445b987453d2a23919c",
            "0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42d736197278acab402980fd4",
            "0x679b4b3112994a7c034ae7f6fb4b5e7bcb4a6923e969c24696ee823fbe4e5524"]
 
+ augur.getNumMarkets(eventId, function (numMarkets) { /* ... */ })
+ // example output:
+ numMarkets = "45"
+
 augur.getNumOutcomes(eventId, function (numOutcomes) { /* ... */ });
 // example output:
 numOutcomes = "2"
@@ -717,6 +752,10 @@ The minimum possible value for event `eventId`.  For binary (yes/no) events, the
 #### getMarkets(eventId[, callback])
 
 Gets an array of all markets on the specified event ID `eventId`.
+
+#### getNumMarkets(eventId[, callback])
+
+Gets the number of markets associated with the specified event ID `eventId`.
 
 #### getNumOutcomes(eventId[, callback])
 
