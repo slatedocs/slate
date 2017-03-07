@@ -429,7 +429,7 @@ article {
 	#primary-nav .gsc-search-button .gsc-search-button-v2  {background-color: hsl(0, 0%, 92%);padding: 0;margin-left: 0;box-sizing: border-box;padding: 10px;min-width: 73px;height: 49px !important;border-left: none;margin-left: -5px;}
 	svg path {fill: #fafafa !important;}
 	
-input.gsc-search-button {border:solid 2px #ccc !important;/* margin: 0 !important; */height: 45px !important;width: auto !important;margin-left: 0;}
+input.gsc-search-button {border:solid 2px #ccc !important;height: 45px !important;width: auto !important;margin-left: 0;}
 	
 
 
@@ -457,7 +457,7 @@ input.gsc-search-button {border:solid 2px #ccc !important;/* margin: 0 !importan
  
 
 
- #primary-nav .gsc-search-button .gsc-search-button-v2 {height: 36px !important;padding: 10px;background: none;border-left: none !important;background: rgba(255,255,255,.7);border:none !important;}
+ #primary-nav .gsc-search-button .gsc-search-button-v2 {height: 36px !important;padding: 10px;background: none;background: rgba(255,255,255,.7);border:solid 1px #ddd !important;border-left: none !important;}
 
  #primary-nav .gsc-control-cse {padding:0;}
  
