@@ -528,6 +528,10 @@ creationFee = "16"
 augur.getDescription(marketId, function (description) { /* ... */ });
 // example output:
 description = "Will the Sun turn into a red giant and engulf the Earth by the end of 2016?"
+
+augur.getDescriptionLength(marketId, function (descriptionLength) { /* ... */ });
+// example output:
+descriptionLength = 75
 ```
 ### [info contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/info.se)
 #### getCreator(id[, callback])
@@ -542,6 +546,10 @@ Gets the fee paid by the creator of `id` (a market or event ID).
 
 Gets the plaintext (UTF-8) description of `item` (a market or event ID).
 
+#### getDescriptionLength(item[, callback])
+
+Gets the length of description as a JS Number of `item` (a market or event ID).
+
 ```javascript
 // branches contract
 var branchId = augur.branches.dev;
@@ -553,19 +561,6 @@ augur.getBranches(function (branches) { /* ... */ });
 // example output:
 branches = ["0xf69b5"]
 
-augur.getMarkets(branchId, function (markets) { /* ... */ })
-// example output:
-markets = ["-0x519bcdaa60e7259143402153efb9825fc37a5c3d8eee0445b987453d2a23919c",
-           "-0xacfe5fbc7654fee0b8873e2db464f5c189a1fa9e6e0ea5f5fa44bf6a08832f7a",
-           "-0xb73f41b31a160852d059c870d1c4d205da9b72db6c53588d4426ffe261ccc745",
-           "-0x40189b8366a578e807f1381088de10bb4660505ff37d9cfa4be8d2a4eb39c74a",
-           "-0x5a2d3e163636f0f35ff25bfe9a87d62185228c970acaae71eb1a469132631406",
-           "-0xd7850ae02e616824cfaa2dfbe6129303752e31a7fdbd559f6c4466ec1594f7c6",
-           "-0xb52debd79c5baaeec50ef7fa85e9f7b7fca6ddecba38810b070aa4bb8ef06952",
-           "-0x5680dadb064bd5942e827dc70b389d2d24a63bd186279c0bea6e2ab46444c4a",
-           "-0x98e1eb72b4c1a5973ab2a443ad2ca0b7a90107c2dc2594c33daea307ec39aa1c",
-           "0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42d736197278acab402980fd4",
-           "-0x679b4b3112994a7c034ae7f6fb4b5e7bcb4a6923e969c24696ee823fbe4e5524"]
 
 augur.getPeriodLength(branchId, function (periodLength) { /* ... */ })
 // example output:
@@ -586,6 +581,23 @@ minTradingFee = "0.0078125"
 augur.getBranchByNum(0, function (branch) { /* ... */ })
 // example output:
 branch = "0xf69b5"
+
+augur.getBaseReporters(branchId, function (numBaseReporters) { /* ... */ })
+// example output:
+numBaseReporters = "6"
+
+augur.getEventForkedOver(branchId, function (eventID) { /* ... */ })
+// example output:
+eventID = "0x7cbcc157062d19bf53daac10c98516c587925f0b4848240f690cc4e43ef5dcac"
+
+augur.getForkPeriod(branchId, function (forkPeriod) { /* ... */ })
+// example output:
+forkPeriod = "0x3091273716303831265436342500000000000000000000000000000000000000"
+
+augur.getCreationDate(branchId, function (creationDate) { /* ... */ })
+// example output:
+creationDate = "0x3134383839303932373436343500000000000000000000000000000000000000"
+
 ```
 ### [branches contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/branches.se)
 #### getNumBranches([callback])
@@ -595,10 +607,6 @@ Looks up the total number of branches that exist on the current network.
 #### getBranches([callback])
 
 Gets an array of all branch IDs on the current network.
-
-#### getMarkets(branch[, callback])
-
-Gets an array of all markets on the specified branch ID `branch`.
 
 #### getPeriodLength(branch[, callback])
 
@@ -619,6 +627,22 @@ Gets the minimum trading fee allowed on the specified branch ID `branch`.
 #### getBranchByNum(branchNumber[, callback])
 
 Gets branch ID for the branch with index `branchNumber`.  (Branches are stored as an "array" on-contract; `branchNumber` is the index of the branch within this array.)
+
+#### getBaseReporters(branch[, callback])
+
+Gets the base number of reporters for the specified branch ID `branch`.
+
+#### getEventForkedOver(branch[, callback])
+
+Gets the event ID that caused the fork on the specified branch ID `branch`.
+
+#### getForkPeriod(branch[, callback])
+
+Gets the most recent period in which the specified branch ID `branch` was forked.
+
+#### getCreationDate(branch[, callback])
+
+Gets the date of creation for the specified branch ID `branch`.
 
 ```javascript
 // events contract
@@ -646,6 +670,20 @@ minValue = "1"
 augur.getMaxValue(eventId, function (maxValue) { /* ... */ });
 // example output:
 maxValue = "2"
+
+augur.getMarkets(eventId, function (markets) { /* ... */ })
+// example output:
+markets = ["0x519bcdaa60e7259143402153efb9825fc37a5c3d8eee0445b987453d2a23919c",
+           "0xacfe5fbc7654fee0b8873e2db464f5c189a1fa9e6e0ea5f5fa44bf6a08832f7a",
+           "0xb73f41b31a160852d059c870d1c4d205da9b72db6c53588d4426ffe261ccc745",
+           "0x40189b8366a578e807f1381088de10bb4660505ff37d9cfa4be8d2a4eb39c74a",
+           "0x5a2d3e163636f0f35ff25bfe9a87d62185228c970acaae71eb1a469132631406",
+           "0xd7850ae02e616824cfaa2dfbe6129303752e31a7fdbd559f6c4466ec1594f7c6",
+           "0xb52debd79c5baaeec50ef7fa85e9f7b7fca6ddecba38810b070aa4bb8ef06952",
+           "0x5680dadb064bd5942e827dc70b389d2d24a63bd186279c0bea6e2ab46444c4a",
+           "0x98e1eb72b4c1a5973ab2a443ad2ca0b7a90107c2dc2594c33daea307ec39aa1c",
+           "0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42d736197278acab402980fd4",
+           "0x679b4b3112994a7c034ae7f6fb4b5e7bcb4a6923e969c24696ee823fbe4e5524"]
 
 augur.getNumOutcomes(eventId, function (numOutcomes) { /* ... */ });
 // example output:
@@ -675,6 +713,10 @@ The minimum possible value for event `eventId`.  For binary (yes/no) events, the
 #### getMaxValue(eventId[, callback])
 
 The minimum possible value for event `eventId`.  For binary (yes/no) events, the maximum value is `2`.
+
+#### getMarkets(eventId[, callback])
+
+Gets an array of all markets on the specified event ID `eventId`.
 
 #### getNumOutcomes(eventId[, callback])
 
