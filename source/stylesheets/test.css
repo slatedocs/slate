@@ -457,7 +457,7 @@ input.gsc-search-button {border:solid 2px #ccc !important;/* margin: 0 !importan
  
 
 
- #primary-nav .gsc-search-button .gsc-search-button-v2 {height: 36px !important;padding: 10px;background: none;border-left: none !important;background: rgba(255,255,255,.7);border: solid #e3e3e3 1px !important;border-left: none !important;}
+ #primary-nav .gsc-search-button .gsc-search-button-v2 {height: 36px !important;padding: 10px;background: none;border-left: none !important;background: rgba(255,255,255,.7);border:none !important;}
 
  #primary-nav .gsc-control-cse {padding:0;}
  
@@ -883,3 +883,11 @@ a {}
 	.footer-links-home a:nth-child(-n+2) {border:none !important;}
 	
 }
+
+
+
+#gsc-i-id1 {background-image:none !important; text-indent:15px !important;height:40px;width:100% !important;border:none !important;}
+.gsc-branding, .gcsc-branding {display:none !important;}
+.gsc-clear-button {display:none;}
+.gsc-search-box tr {border:solid 1px #ddd; background-color:#fff !important;}
+
