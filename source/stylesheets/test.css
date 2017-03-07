@@ -110,7 +110,7 @@ li.tocify-item {line-height:1.4em !important;}
 	/* #primary-nav .selected {    border-bottom: solid 4px #3bb94f; padding-bottom: 22px; margin-top: 22px;}*/
 	li.selected + a {color:#288136 !important}
 	#references li.selected a {color:#288136 !important}
-	
+	#guides li.selected a {color:#288136 !important}
 	
 	li a:hover {color:#288136 !important; text-decoration:none !important;}
 
@@ -328,7 +328,7 @@ nav ul li ul li a {
 	 #primary-nav .selected a {border-bottom: solid 4px #3bb94f;padding-bottom: 12px;margin-top: 18px;}
 
 	 #references a {padding-top:0; margin-top:0!important;}
-	
+	#guides a {padding-top:0; margin-top:0!important;}
 	
   .nav-list {
     /* display: block !important; */
@@ -615,7 +615,7 @@ nav ul ul ul li {
 
 
 #references a {border:none!important;}
-
+#guides a {border:none!important;}
 	
 /* Change ' +' in order to change the Dropdown symbol */
 li > a:after {content:  ' +';}

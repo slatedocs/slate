@@ -2,14 +2,14 @@
 
 
 
-	<div id="logo"> <% link_to '.' do %><img class="bonsai-logo" src="/images/bonsai-logo.svg"><% end %></div>
+	<div id="logo"> <% link_to '/index.html' do %><img class="bonsai-logo" src="/images/bonsai-logo.svg"><% end %></div>
 
 	<label for="drop" class="toggle"><img class="menu-ham" src="images/menu.svg"></label>
 	<input type="checkbox" id="drop" />
 
 	<ul class="menu">
 
-		<li class="header_menu_item <%= is_page_selected("/getting-started.html") %>"> <%= link_to 'Getting Started', '/getting-started.html' %></li>
+		<li class="header_menu_item <%= is_page_selected("/guides/getting-started.html") %>"> <%= link_to 'Getting Started', '/guides/getting-started.html' %></li>
 
 	
 		<li class="header_menu_item"> <!-- First Tier Drop Down --> <label for="drop-1" class="toggle">Guides +</label><a  href="#">Guides</a>			
