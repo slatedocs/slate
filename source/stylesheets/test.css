@@ -634,7 +634,7 @@ li > a:only-child:after {content: '';}
 	.footer-links-home a:last-of-type {-ms-flex-positive: 0 !important;flex-grow: 0 !important;/* justify-content: flex-start !important; */}
 
 	.stretched {-ms-flex-pack: justify !important;justify-content: space-between !important;-ms-flex-align: inherit;align-items: inherit;}
-.footer-links-home a {width: 40%;padding bottom:;padding-bottom: 20px;}
+.footer-links-home a {width: 40%; padding-bottom: 20px;}
 
 
 a {}
