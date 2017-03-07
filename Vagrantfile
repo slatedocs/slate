@@ -1,14 +1,16 @@
 Vagrant.configure(2) do |config|
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box =  "puphpet/ubuntu1404-x64"  # "ubuntu/trusty64"
   config.vm.network :forwarded_port, guest: 4567, host: 4567
 
   config.vm.provision "bootstrap",
     type: "shell",
     inline: <<-SHELL
+      sudo apt-add-repository ppa:brightbox/ruby-ng
       sudo apt-get update
-      sudo apt-get install -yq ruby2.0 ruby2.0-dev pkg-config build-essential nodejs git libxml2-dev libxslt-dev
+
+      sudo apt-get install -yq ruby2.3 ruby2.3-dev pkg-config build-essential nodejs git libxml2-dev libxslt-dev
       sudo apt-get autoremove -yq
-      gem2.0 install --no-ri --no-rdoc bundler
+      gem2.3 install --no-ri --no-rdoc bundler
     SHELL
 
   # add the local user git config to the vm
