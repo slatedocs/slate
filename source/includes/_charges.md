@@ -293,7 +293,15 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 Retorna uma lista em JSON contendo todos as cobranças que pertencem a sua Conta de Serviço.
 
-É possível filtrar a lista através dos parâmetros: `type`, `charge_config_ids`, `payee_ids`, `payee_national_identifiers`. Os três últimos são parâmetros do tipo "lista" e devem ser enviados da seguinte forma: `url?charge_config_ids[]=15&charge_config_ids[]=42`.
+É possível filtrar a lista através dos seguintes parâmetros:
+
+- `type`: Filtra pelo tipo de cobrança. O valor a ser informado é string com um dos tipos existentes de cobrança.
+- `remittable`: Filtra as cobranças remessáveis, ou seja, passíveis de geração de arquivo de remessa. É necessária apenas a presença do parâmetro, não importando seu valor.
+- `charge_config_ids`: Filtra pelas configurações de cobrança informadas. O valor informado é uma **lista\*** de ids das configurações de cobrança.
+- `payee_ids`: Filtra pelos beneficiários informados. O valor informado é uma **lista\*** de ids dos beneficiários.
+- `payee_national_identifiers`: Filtra pelos beneficiários informados. O valor informado é uma **lista\*** de número de documentos dos beneficiários.
+
+**lista\*** Os valores em "lista" devem ser enviados da seguinte forma: `url?charge_config_ids[]=15&charge_config_ids[]=42`.
 
 ## Criação de Cobrança
 
