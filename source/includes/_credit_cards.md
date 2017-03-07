@@ -253,6 +253,77 @@ Caso exista um Pagador (Payer) com o mesmo <code>national_identifier</code>, nã
 | city                     | string | (opcional) cidade do endereço do pagador                             |
 | state                    | string | (opcional) sigla do estado do endereço do pagador ("RJ" por exemplo) |
 
+## Atualização de Cartão de Crédito
+
+```shell
+Atualizar Cartão de Crédito
+
+DEFINIÇÃO
+
+  PUT https://app.cobrato.com/api/v1/credit_cards/:credit_card_id
+  PATCH https://app.cobrato.com/api/v1/credit_cards/:credit_card_id
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X PATCH https://app.cobrato.com/api/v1/credit_cards/1 \
+    -d '{
+        "payer_id": 5
+      }'
+
+EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
+
+    200 OK
+
+EXEMPLO DE ESTADO DA RESPOSTA COM BENEFICIÁRIO INEXISTENTE
+
+    404 Not Found
+
+EXEMPLO DE ESTADO DA RESPOSTA COM INSUCESSO
+
+    422 Unprocessable Entity
+
+EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
+
+    {
+      "errors": {
+        "payer_id": ["não existe para a sua conta"]
+      }
+    }
+
+```
+
+Atualiza um determinado Cartão de Crédito, retornado as informações do mesmo caso haja sucesso. Se houverem erros, eles serão informados no corpo da resposta.
+
+**Parâmetros**
+
+| Campo             | Tipo    | Comentário                                                                                                                                                               |
+|-------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| payer_id          | integer | **(requerido, se não enviar payer_attributes )** identificador do pagador ao qual este cartão pertence (caso seja fornecido, o parâmetro payer_attributes será ignorado) |
+| payer_attributes* | object  | **(requerido, se não enviar payer_id )** atributos para a criação de um novo pagador ou atualização de um pagador existente com o mesmo documento (national_identifier)  |
+
+**payer_attributes**
+
+<aside class="notice">
+Caso exista um Pagador (Payer) com o mesmo <code>national_identifier</code>, não será criado um novo, mas sim atualizado o existente.
+</aside>
+
+| Campo                    | Tipo   | Comentário                                                           |
+|--------------------------|--------|----------------------------------------------------------------------|
+| national_identifier_type | string | **(requerido)** tipo do documento do pagador (cpf ou cnpj)           |
+| national_identifier      | string | **(requerido)** documento do pagador                                 |
+| name                     | string | **(requerido)** nome do pagador                                      |
+| number                   | string | (opcional) número do endereço do pagador                             |
+| complement               | string | (opcional) complemento do endereço do pagador                        |
+| street                   | string | (opcional) rua do endereço do pagador                                |
+| neighbourhood            | string | (opcional) bairro do endereço do pagador                             |
+| zipcode                  | string | (opcional) cep do endereço do pagador                                |
+| city                     | string | (opcional) cidade do endereço do pagador                             |
+| state                    | string | (opcional) sigla do estado do endereço do pagador ("RJ" por exemplo) |
+
 
 ## Lista de Todas as cobranças feitas com o cartão de crédito
 
