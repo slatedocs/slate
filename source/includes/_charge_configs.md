@@ -198,6 +198,14 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 Retorna uma lista em JSON contendo todas as Configurações de Cobrança que pertencem a sua Conta de Serviço.
 
+É possível filtrar a lista através dos seguintes parâmetros:
+
+- `type`: Filtra pelo tipo de configuração de cobrança. O valor a ser informado é string com um dos tipos existentes de configuração de cobrança.
+- `payee_ids`: Filtra pelos beneficiários informados. O valor informado é uma **lista\*** de ids dos beneficiários.
+- `payee_national_identifiers`: Filtra pelos beneficiários informados. O valor informado é uma **lista\*** de número de documentos dos beneficiários.
+
+**lista\*** Os valores em "lista" devem ser enviados da seguinte forma: `url?payee_ids[]=15&payee_ids[]=42`.
+
 ## Criação de Configuração de Cobrança
 
 ```shell
