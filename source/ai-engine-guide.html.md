@@ -1,5 +1,5 @@
 ---
-title: Examples - Bonsai
+title: AI Engine Guide - Bonsai
 
 language_tabs:
 
@@ -10,9 +10,7 @@ toc_footers:
 
 includes:
 
-- examples/cart-pole.html.md
-- examples/find-the-center.html.md
-- examples/mountain-car.html.md
+- under-the-hood.html.md
 
 search: true
 ---

@@ -1,6 +1,8 @@
 # Mental Models
 
-Mental models are a way of organizing concepts so that you can structure a solution to your AI problem as a workflow. Concepts are the ideas that you want to teach your BRAIN. When you create your concepts, you're going to start with the final concept that you want to teach your BRAIN and support it with other fact and strategy concepts. These additional concepts appear upstream of your main concept because the information output from those concepts helps the Bonsai AI Engine teach your main concept to your BRAIN. Mental Models enable you to determine and plan the concepts that are taught to your BRAIN.
+
+Mental models are a way of organizing concepts so that you can structure a solution to your AI problem as a workflow. Concepts are the ideas that you want to teach your BRAIN. When you create your concepts, you're going to start with the final concept that you want to teach your BRAIN and support it with other feature and skill concepts. These additional concepts appear upstream of your main concept because the information output from those concepts helps the Bonsai AI Engine teach your main concept to your BRAIN. Mental Models enable you to determine and plan the concepts that are taught to your BRAIN.
+
 
 For more information about Concepts, refer below to [Concepts][2] and the [Concept Reference][3].
 
