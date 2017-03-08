@@ -519,7 +519,7 @@ description = "Will the Sun turn into a red giant and engulf the Earth by the en
 
 augur.getDescriptionLength(marketId, function (descriptionLength) { /* ... */ });
 // example output:
-descriptionLength = 75
+descriptionLength = "75"
 ```
 ### [info contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/info.se)
 #### getCreator(id[, callback])
@@ -536,7 +536,7 @@ Gets the plaintext (UTF-8) description of `item` (a market or event ID).
 
 #### getDescriptionLength(item[, callback])
 
-Gets the length of description as a JS Number of `item` (a market or event ID).
+Gets the length of description of the specified `item` (item is a market ID or event ID).
 
 ```javascript
 // branches contract
@@ -698,6 +698,22 @@ augur.getExpiration(eventId, function (expiration) { /* ... */ })
 // example output:
 expiration = "13801186"
 
+augur.getForkEthicality(eventId, function(forkEthicality) { /* ... */ })
+// example output:
+forkEthicality = "0x0000000000000000000000000000000000000000000000000000000000000001"
+
+augur.getForkOutcome(eventId, function(forkOutcome) { /* ... */ })
+// example output:
+forkOutcome = "0x0000000000000000000000000000000000000000000000000000000000000001"
+
+augur.getForked(eventId, function(forked) { /* ... */ })
+// example output:
+forked = "0x0000000000000000000000000000000000000000000000000000000000000001"
+
+augur.getForkDone(eventId, function(forkDone) { /* ... */ })
+// example output:
+forkDone = "0x0000000000000000000000000000000000000000000000000000000000000001"
+
 augur.getMarket(eventId, 0, function (markets) { /* ... */ })
 // example output:
 market = "0x519bcdaa60e7259143402153efb9825fc37a5c3d8eee0445b987453d2a23919c"
@@ -743,6 +759,18 @@ outcome = "0"
 augur.getPast24(8615, function (eventsCreated) { /* ... */ })
 // example output:
 eventsCreated = "10"
+
+augur.getRejected(eventId, function (rejected) { /* ... */ })
+// example output:
+rejected = "1"
+
+augur.getRejectedPeriod(eventId, function (rejected) { /* ... */ })
+// example output:
+rejectedPeriod = "8612"
+
+augur.getResolutionAddress(eventId, function(resolutionAddress) { /* ... */ })
+// example output:
+resolutionAddress = "0x15e140e00231a1de6f8b902f5ff91dd1a5931679"
 ```
 ### [events contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/events.se)
 #### getBond(eventId[, callback])
@@ -765,7 +793,23 @@ Fetches an array of basic information about event `eventId`: branch ID, expirati
 
 Gets the expiration block number of event `eventId`.
 
-### getMarket(eventId, marketIndex[, callback])
+#### getForkEthicality(eventId[, callback])
+
+Gets the ethicality of the event ID `eventId` that caused a fork.
+
+#### getForkOutcome(eventId[, callback])
+
+Gets the outcome of the event `eventId` that caused a fork.
+
+#### getForked(eventId[, callback])
+
+Returns wether the specified event ID `eventId` caused a fork or not.
+
+#### getForkDone(eventId[, callback])
+
+Returns wether the specified event ID `eventId` that caused a fork has been resolved or not.
+
+#### getMarket(eventId, marketIndex[, callback])
 
 Gets a specific markets info given a specified event ID `eventId` and the index of the market `marketIndex` associated with the specified event.
 
@@ -800,6 +844,18 @@ Gets the outcome (`"0"` if the event is not yet resolved) of event `eventId`.
 #### getPast24(period[, callback])
 
 Gets the number of events created in the past 24 hours given the specified period `period`.
+
+#### getRejected(eventId[, callback])
+
+Gets the rejection status of the specified event ID `eventId`.
+
+#### getRejectedPeriod(eventId[, callback])
+
+Gets the period during which the specified event ID `eventId` was rejected.
+
+#### getResolutionAddress(eventId[, callback])
+
+Gets the address of the first person who reports on a specified event `eventId`.
 
 ```javascript
 // expiringEvents contract
