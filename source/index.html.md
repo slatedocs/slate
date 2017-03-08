@@ -5,7 +5,7 @@ language_tabs:
   - json
 
 toc_footers:
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - © Nebeus 2017
 
 includes:
   - accounts
