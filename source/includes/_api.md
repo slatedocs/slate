@@ -678,29 +678,29 @@ Looks up the number of the current vote period on the specified branch ID `branc
 ```javascript
 // events contract
 var eventId = "-0x5fa67764c533d97e33ef2cbdc37cd11eb5f187b47c89c88d3d81250ba834cb3";
-augur.getEventInfo(eventId, function (eventInfo) { /* ... */ });
+augur.getBond(eventId, function(bond) { /* ... */ })
+// example output:
+bond = "0x0000000000000000000000000000000000000000000000001f399b1438a10000"
+
+augur.getEthics(eventId, function(ethical) { /* ... */ })
+// example output:
+ethical = "0x0000000000000000000000000000000000000000000000000000000000000001"
+
+augur.getEventBranch(eventId, function(branch) { /* ... */ })
+// example output:
+branch = "0xf69b5"
+
+augur.getEventInfo(eventId, function (eventInfo) { /* ... */ })
 // example output:
 eventInfo = ["0xf69b5", "13801186", "0", "1", "2", "2"]
 
-augur.getEventBranch(eventId, function (eventBranch) { /* ... */ });
-// example output:
-eventBranch = "0xf69b5"
-
-augur.getExpiration(eventId, function (expiration) { /* ... */ });
+augur.getExpiration(eventId, function (expiration) { /* ... */ })
 // example output:
 expiration = "13801186"
 
-augur.getOutcome(eventId, function (outcome) { /* ... */ });
+augur.getMarket(eventId, 0, function (markets) { /* ... */ })
 // example output:
-outcome = "0"
-
-augur.getMinValue(eventId, function (minValue) { /* ... */ });
-// example output:
-minValue = "1"
-
-augur.getMaxValue(eventId, function (maxValue) { /* ... */ });
-// example output:
-maxValue = "2"
+market = "0x519bcdaa60e7259143402153efb9825fc37a5c3d8eee0445b987453d2a23919c"
 
 augur.getMarkets(eventId, function (markets) { /* ... */ })
 // example output:
@@ -716,42 +716,70 @@ markets = ["0x519bcdaa60e7259143402153efb9825fc37a5c3d8eee0445b987453d2a23919c",
            "0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42d736197278acab402980fd4",
            "0x679b4b3112994a7c034ae7f6fb4b5e7bcb4a6923e969c24696ee823fbe4e5524"]
 
- augur.getNumMarkets(eventId, function (numMarkets) { /* ... */ })
- // example output:
- numMarkets = "45"
+augur.getMaxValue(eventId, function (maxValue) { /* ... */ })
+// example output:
+maxValue = "2"
 
-augur.getNumOutcomes(eventId, function (numOutcomes) { /* ... */ });
+augur.getMinValue(eventId, function (minValue) { /* ... */ })
+// example output:
+minValue = "1"
+
+augur.getNumMarkets(eventId, function (numMarkets) { /* ... */ })
+// example output:
+numMarkets = "45"
+
+augur.getNumOutcomes(eventId, function (numOutcomes) { /* ... */ })
 // example output:
 numOutcomes = "2"
+
+augur.getOriginalExpiration(eventId, function(orgExpiration) { /* ... */ })
+// example output:
+orgExpiration = "0x000000000000000000000000000000000000000000000000000000005a47fe50"
+
+augur.getOutcome(eventId, function (outcome) { /* ... */ })
+// example output:
+outcome = "0"
+
+augur.getPast24(8615, function (eventsCreated) { /* ... */ })
+// example output:
+eventsCreated = "10"
 ```
 ### [events contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/events.se)
-#### getEventInfo(eventId[, callback])
+#### getBond(eventId[, callback])
 
-Fetches an array of basic information about event `eventId`: branch ID, expiration block number, outcome (`"0"` if not yet resolved), minimum value, maximum value, and number of outcomes.
+Returns the bond amount for the event ID `eventId` specified.
+
+#### getEthics(eventId[, callback])
+
+Gets the value of ethical for the event ID `eventId` specified.
 
 #### getEventBranch(eventId[, callback])
 
 Gets the branch ID of event `eventId`.
 
+#### getEventInfo(eventId[, callback])
+
+Fetches an array of basic information about event `eventId`: branch ID, expiration block number, outcome (`"0"` if not yet resolved), minimum value, maximum value, and number of outcomes.
+
 #### getExpiration(eventId[, callback])
 
 Gets the expiration block number of event `eventId`.
 
-#### getOutcome(eventId[, callback])
+### getMarket(eventId, marketIndex[, callback])
 
-Gets the outcome (`"0"` if the event is not yet resolved) of event `eventId`.
+Gets a specific markets info given a specified event ID `eventId` and the index of the market `marketIndex` associated with the specified event.
 
-#### getMinValue(eventId[, callback])
+#### getMarkets(eventId[, callback])
 
-The minimum possible value for event `eventId`.  For binary (yes/no) events, the minimum value is `1`.
+Gets an array of all markets on the specified event ID `eventId`.
 
 #### getMaxValue(eventId[, callback])
 
 The minimum possible value for event `eventId`.  For binary (yes/no) events, the maximum value is `2`.
 
-#### getMarkets(eventId[, callback])
+#### getMinValue(eventId[, callback])
 
-Gets an array of all markets on the specified event ID `eventId`.
+The minimum possible value for event `eventId`.  For binary (yes/no) events, the minimum value is `1`.
 
 #### getNumMarkets(eventId[, callback])
 
@@ -760,6 +788,18 @@ Gets the number of markets associated with the specified event ID `eventId`.
 #### getNumOutcomes(eventId[, callback])
 
 The total number of outcomes for this event.  Binary (yes/no) and scalar (numerical) events always have 2 outcomes; categorical events have more than 2 outcomes.
+
+#### getOriginalExpiration(eventId[, callback])
+
+Gets the original expiration date set for the specified event ID `eventId`.
+
+#### getOutcome(eventId[, callback])
+
+Gets the outcome (`"0"` if the event is not yet resolved) of event `eventId`.
+
+#### getPast24(period[, callback])
+
+Gets the number of events created in the past 24 hours given the specified period `period`.
 
 ```javascript
 // expiringEvents contract
