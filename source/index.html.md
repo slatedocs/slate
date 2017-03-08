@@ -421,7 +421,8 @@ Possible verification statuses for identity and residency address: not_verified,
   "year": {
     "credit": 0.02455,
     "debit": 0.002163
-  }
+  },
+  "currency_name": 'BTC'
 }
 ```
 
