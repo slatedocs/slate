@@ -2,10 +2,7 @@
 title: PractiTest's REST API
 
 language_tabs:
-  - shell
-  - ruby
-  - python
-  - csharp
+  - curl examples - see 'Code examples' to your left
 
 
 toc_footers:
@@ -58,3 +55,22 @@ If you're new to PractiTest and you're just starting to write API code, you shou
 
 ### Current API V1 users
 If you already have V1 code, then you must change /api/resource_name to /api/v1/resource_name. Also, when you write new code, try to use V2, since V1 will depreciate.
+
+
+# Code examples
+We've put popular languages code examples under Github. Please feel free to view, and pull request if you have any updates:
+<a href="https://github.com/PractiTest/pt-api-examples/" target="blank">PractiTest Api Code Examples in Github</a>
+
+
+## Python
+
+link to the ptyhng
+
+## Ruby
+See here<a href="https://github.com/PractiTest/pt-api-examples/" target="blank">here</a>
+
+## C sharp (.Net)
+bla
+
+## Java
+bla bla java
