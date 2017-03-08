@@ -354,7 +354,8 @@ Example response
   }],
   "reserved_money": {
     "credit": 10,
-    "debit": 0.5
+    "debit": 0.5,
+    "currency_name": 'BTC'
   }
 }
 ```
