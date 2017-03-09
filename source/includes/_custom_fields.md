@@ -126,10 +126,10 @@ This endpoint updates a specific custom field.
 
 Parameter | Description |
 --------- | ------- |
-name | the name of a custom field |
-possible-values | values that can be set for a custom field |
-parent-list-id | the id of a parent list that can be set for a "linked list" custom field
-possible-values-parent-cf-id | the id of an existing list where you can take values for a custom field
+data/attributes/name | the name of a custom field |
+data/attributes/possible-values | values that can be set for a custom field |
+data/attributes/parent-list-id | the id of a parent list that can be set for a "linked list" custom field
+data/attributes/possible-values-parent-cf-id | the id of an existing list where you can take values for a custom field
 
 Here's the example of the JSON request and response that you may get when submitting a PUT request
 

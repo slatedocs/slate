@@ -128,13 +128,13 @@ This endpoint creates an instance in your project.
 
 Parameters | Description | required? |
 --------- | ------- |------- |
-set-id | TestSet id (not display id) | true |
-test-id | Test id (not display id) | true |
-planned-execution | date field of planned-execution | false |
-version | string of instance version | false |
-priority | string of instance priority | false |
-assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  | false |
-custom-fields | a hash of custom-fields with thier value | false |
+data/attributes/set-id | TestSet id (not display id) | true |
+data/attributes/test-id | Test id (not display id) | true |
+data/attributes/planned-execution | date field of planned-execution | false |
+data/attributes/version | string of instance version | false |
+data/attributes/priority | string of instance priority | false |
+data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  | false |
+data/attributes/custom-fields | a hash of custom-fields with thier value | false |
 
 
 You can find at the [right area](#create-an-instance) (shell) an example of the request
@@ -208,11 +208,11 @@ This endpoint retrieves a specific instance.
 
 Available parameters | Description |
 --------- | ------- |
-planned-execution | date field of planned-execution |
-version | string of instance version |
-priority | string of instance priority |
-assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  |
-custom-fields | a hash of custom-fields with thier value |
+data/attributes/planned-execution | date field of planned-execution |
+data/attributes/version | string of instance version |
+data/attributes/priority | string of instance priority |
+data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  |
+data/attributes/custom-fields | a hash of custom-fields with thier value |
 
 
 You can find at the right area an example of the JSON request and response

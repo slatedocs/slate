@@ -14,7 +14,8 @@ includes:
   - projects
   - users
   - custom_fields
-  - instances
+  - instance
+  - runs
   - errors
 
 search: true
@@ -64,13 +65,25 @@ We've put popular languages code examples under Github. Please feel free to view
 
 ## Python
 
-link to the ptyhng
+<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/get_request.py" target="blank">GET example</a> for retrieving all projects
+<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/post_request.py" target="blank">POST example</a> for creating a new instance
+<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/put_request.py" target="blank">PUT example</a> for updating a specific instance
+<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/delete_request.py" target="blank">DELETE example</a> for deleting a specific instance
+
+
 
 ## Ruby
-See here<a href="https://github.com/PractiTest/pt-api-examples/" target="blank">here</a>
+
+<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/get_request.rb" target="blank">GET example</a> for retrieving all projects
+<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/post_request.rb" target="blank">POST example</a> for creating a new instance
+<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/put_request.rb" target="blank">PUT example</a> for updating a specific instance
+<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/delete_request.rb" target="blank">DELETE example</a> for deleting a specific instance
+
 
 ## C sharp (.Net)
-bla
+
+need to add examples
 
 ## Java
-bla bla java
+
+need to add examples
