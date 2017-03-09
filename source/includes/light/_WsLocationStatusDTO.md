@@ -24,4 +24,4 @@ key | type | comment
 --- | ---- | ---:
 OPEN | bool | признак открыто/закрыто
 DESCRIPTION | string | описание в виде текстового блока
-CURRENCY.n | string | текстовый код валюты по [ISO 4217](https://ru.wikipedia.org/wiki/ISO_4217)
+CURRENCY.n | string | валюта с текстовым код валюты по [ISO 4217](https://ru.wikipedia.org/wiki/ISO_4217) и признаком изменения {UP;NEUTRAL;DOWN}
