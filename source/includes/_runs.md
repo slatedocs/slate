@@ -12,7 +12,6 @@ This endpoint retrieves all runs.
 
 Parameters* | Description |
 --------- | ------- |
-
 test-ids | filters runs that are related to a certain test_id/ids, separated by comma (NOT display-id!) |
 set-ids | filter by TestSets ids, separated by comma (NOT display-id) |
 instance-ids | filter by Instances ids, separated by comma (NOT display-id) |
@@ -98,9 +97,11 @@ https://api.practitest.com/api/v2/projects/4566/runs.json?test-ids=80895
 }
 ```
 
-## Upload test results
+## Create a run (Automated Test)
 
-This endpoint uploads test results to your project.
+This endpoint upload new run results to your project.
+
+<aside class="notice">This method is for uploading automated Tests results from your CI / Automated Test scripts. It replaces the previous api/v1/automated_tests/upload_test_results.</aside>
 
 ### HTTP Request
 
@@ -116,15 +117,18 @@ data/attributes/run-duration | with name and value (HH:MM:SS), to update the run
 data/attributes/automation-execution-output | text output string that will be shown in ‘Execution output’ field (up to 255 characters) | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
 data/steps/data* | an array of steps override the exit code | false |
-data/files/data | an array of files  | false |
+data/files/data** | an array of files  | false |
 
-* data => steps: data: [{name: 'step one', expected-resuts}, {name: step2} ] - this is a structure of writing steps in your request
+
+* Steps array includes steps json hash, with these attributes: name, description, expected-results, actual-results, status.
+Status can be one of the following: PASSED, FAILED, BLOCKED, NOT COMPLETED, N/A
+When using steps, the exit-code is ignored, and it calculates it according to the steps status.
+
+** files would be as an attachments in your automated tests. It's a json hash that has two attributes: filename, and content_encoded.
+We expect to get the file content encoded as BASE64. See code examples: shell with curl to your right, <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/runs.rb" target="blank">ruby example here</a>.
 
 ```shell
-# Some request examples:
-
-# Upload res of project #4566:
-
+# upload test results with a file attachment
 curl -H "Content-Type:application/json" \
    -u test@pt.com:YOUR TOKEN \
    -X POST https://api.practitest.com/api/v2/projects/1/runs.json \
