@@ -971,6 +971,34 @@ augur.getReportHash(branchId, reportPeriod, reporter, eventId, function (reportH
 // example output:
 reportHash = "-0x4480ed40f94e2cb2ca244eb862df2d350300904a96039eb53cba0e34b8ace90a"
 
+augur.getReportsCommitted(branchId, reportPeriod, eventId, function (numReportsCommitted) { /* ... */ })
+// example output:
+numReportsCommitted = "10"
+
+augur.getRequired(eventId, reportPeriod, branch, function (required) { /* ... */ })
+// example output:
+required = "0x0000000000000000000000000000000000000000000000000000000000000001"
+
+augur.getEventIndex(branch, reportPeriod, eventId, function (eventIndex) { /* ... */ })
+// example output:
+eventIndex = '3'
+
+augur.getEthicReport(branch, reportPeriod, eventId, reporter, function (reportEthicality) { /* ... */ })
+// example output:
+reportEthicality = '0x0000000000000000000000000000000000000000000000000000000000000001'
+
+augur.getNumActiveReporters(branch, reportPeriod, function (numReporters) { /* ... */ })
+// example output:
+numReporters = "6"
+
+augur.getNumEventsToReportOn(branch, reportPeriod, function (numEvents) { /* ... */ })
+// example output:
+numEvents = "54"
+
+augur.getNumRequired(branch, reportPeriod, function (numRequired) { /* ... */ })
+// example output:
+numRequired = "2"
+
 ```
 ### [expiringEvents contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/expiringEvents.se)
 #### getEvents(branch, reportPeriod[, callback])
@@ -992,6 +1020,34 @@ The report for reporting event ID `eventId` submitted for `reportPeriod` by addr
 #### getReportHash(branch, reportPeriod, reporter, eventId[, callback])
 
 The report hash submitted for `reportPeriod` by address `reporter` for specified event ID `eventId`.
+
+#### getReportsCommitted(branch, reportPeriod, eventId[, callback])
+
+Gets the number of reports commited for the specified event ID `eventId`.
+
+#### getRequired(eventId, reportPeriod, branch[, callback])
+
+Returns if the specified event ID `eventId` is required to be reported on or not.
+
+#### getEventIndex(branch, reportPeriod, eventId[, callback])
+
+Gets the index of the specified event `eventId`.
+
+#### getEthicReport(branch, reportPeriod, eventId, reporter[, callback])
+
+Returns the ethicality of the report given the specified event ID `eventId` and specified reporter `reporter`.
+
+#### getNumActiveReporters(branch, reportPeriod[, callback])
+
+Returns the number of active reporters available to report for a specified `reportPeriod`.
+
+#### getNumEventsToReportOn(branch, reportPeriod[, callback])
+
+Returns the number of available events to report on, not counting required events for a specified `reportPeriod`.
+
+#### getNumRequired(branch, reportPeriod[, callback])
+
+Returns the number of events that will be required to be reported on given a specified `reportPeriod`.
 
 ```javascript
 // trades contract
