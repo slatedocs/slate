@@ -59,9 +59,10 @@ If you already have V1 code, then you must change /api/resource_name to /api/v1/
 
 
 # Code examples
-We've put popular languages code examples under Github. Please feel free to view, and pull request if you have any updates:
-<a href="https://github.com/PractiTest/pt-api-examples/" target="blank">PractiTest Api Code Examples in Github</a>
+We put popular languages code examples under Github. Please feel free to view, and pull request if you have any updates:
+<a href="https://github.com/PractiTest/pt-api-examples/" target="blank">PractiTest Api Code Examples in Github</a>.
 
+More examples will be available soon.
 
 ## Python
 
@@ -80,10 +81,12 @@ We've put popular languages code examples under Github. Please feel free to view
 <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/delete_request.rb" target="blank">DELETE example</a> for deleting a specific instance
 
 
-## C sharp (.Net)
-
-need to add examples
-
 ## Java
 
-need to add examples
+<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/java/" target="blank">GET example</a> for retrieving all projects.
+
+
+## C sharp (.Net)
+
+<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/csharp/get_request.cs/" target="blank">GET example</a> for retrieving all projects
+will be added soon.
