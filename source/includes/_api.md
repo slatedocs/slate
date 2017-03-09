@@ -961,26 +961,15 @@ augur.getEvent(branchId, reportPeriod, eventIndex, function (event) { /* ... */ 
 // example output:
 event = "-0xd0dbd235c8de8cccd7d8ef96b460c7dc2d19539fb45778f7897c412d4c0a3683"
 
-augur.getTotalRepReported(branchId, reportPeriod, function (totalRepReported) { /* ... */ });
-// example output:
-totalRepReported = "76"
-
-augur.getReporterBallot(branchId, reportPeriod, reporterID, function (reporterBallot) { /* ... */ });
-// example output:
-reporterBallot = ["1", "2", "1", "1.5", "1", "1.5", "2", "1", "1", "1.5", "1", "1"]
-
-var reportNum = "0";
-augur.getReport(branchId, reportPeriod, reporter, reportNum, function (report) { /* ... */ });
+var eventId = "-0xd0dbd235c8de8cccd7d8ef96b460c7dc2d19539fb45778f7897c412d4c0a3683";
+var reporter = "0x639b41c4d3d399894f2a57894278e1653e7cd24c";
+augur.getReport(branchId, reportPeriod, eventId, reporter, function (report) { /* ... */ });
 // example output:
 report = "1"
 
-augur.getReportHash(branchId, reportPeriod, reporter, function (reportHash) { /* ... */ });
+augur.getReportHash(branchId, reportPeriod, reporter, eventId, function (reportHash) { /* ... */ });
 // example output:
 reportHash = "-0x4480ed40f94e2cb2ca244eb862df2d350300904a96039eb53cba0e34b8ace90a"
-
-augur.getTotalReputation(branchId, reportPeriod, function (totalReputation) { /* ... */ });
-// example output:
-totalReputation = "282"
 
 ```
 ### [expiringEvents contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/expiringEvents.se)
@@ -996,25 +985,13 @@ The total number of events scheduled to be reported on during `reportPeriod`.
 
 Looks up the event ID that has index `eventIndex`.
 
-#### getTotalRepReported(branch, reportPeriod[, callback])
+#### getReport(branch, reportPeriod, eventId, reporter[, callback])
 
-Gets the total amount of Reputation reporting during `reportPeriod`.
+The report for reporting event ID `eventId` submitted for `reportPeriod` by address `reporter`.
 
-#### getReporterBallot(branch, reportPeriod, reporterID[, callback])
+#### getReportHash(branch, reportPeriod, reporter, eventId[, callback])
 
-Fetches the ballot submitted for `reportPeriod` by address `reporterID`.
-
-#### getReport(branch, reportPeriod, reporter, reportNum[, callback])
-
-The report for reporting event number `reportNum` submitted for `reportPeriod` by address `reporter`.
-
-#### getReportHash(branch, reportPeriod, reporter[, callback])
-
-The report hash submitted for `reportPeriod` by address `reporter`.
-
-#### getTotalReputation(branch, reportPeriod[, callback])
-
-Gets the total amount of Reputation issued on branch `branch` by `reportPeriod`.  (In the live release Reputation is neither created nor destroyed, so this will be a constant value of `11000000`.)
+The report hash submitted for `reportPeriod` by address `reporter` for specified event ID `eventId`.
 
 ```javascript
 // trades contract
