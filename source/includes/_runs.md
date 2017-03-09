@@ -98,9 +98,11 @@ https://api.practitest.com/api/v2/projects/4566/runs.json?test-ids=80895
 }
 ```
 
-## Upload test results
+## Create a run (Automated Test)
 
-This endpoint uploads test results to your project.
+This endpoint upload new run results to your project.
+
+<aside class="notice">This method is for uploading automated Tests results from your CI / Automated Test scripts. It replaces the previous api/v1/automated_tests/upload_test_results.</aside>
 
 ### HTTP Request
 
@@ -115,10 +117,20 @@ data/attributes/exit-code | 0 for passed, otherwise failed | false |
 data/attributes/run-duration | with name and value (HH:MM:SS), to update the run duration of a specific instance | false |
 data/attributes/automation-execution-output | text output string that will be shown in ‘Execution output’ field (up to 255 characters) | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
-data/steps/data | an array of steps override the exit code | false |
-data/files/data |  | false |
+data/steps/data | an array of steps override the exit code* | false |
+data/files/data | an array of files ** | false |
 
 
+* Steps array includes steps json hash, with these attributes: name, description, expected-results, actual-results, status.
+Status can be one of the following: PASSED, FAILED, BLOCKED, NOT COMPLETED, N/A
+When using steps, the exit-code is ignored, and it calculates it according to the steps status.
+
+** files would be as an attachments in your automated tests. It's a json hash that has two attributes: filename, and content_encoded.
+We expect to get the file content encoded as BASE64. See code examples: shell with curl to your right, <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/runs.rb" target="blank">ruby example here</a>.
 
 ```shell
+# upload test results with a file attachment
 curl -H "Content-Type:application/json" \
+   -u test@pt.com:YOUR TOKEN \
+   -X POST https://api.practitest.com/api/v2/projects/1/runs.json \
+   -d '{"data": { "type": "instances", "attributes": {"instance-id": 3254471, "exit-code": 0 }, "files": {"data": [{"filename": "one.log", "content_encoded": "'"$( base64 /tmp/log_12:04:34.log)"'" }, {"filename": "two.log", "content_encoded": "'"$( base64 /tmp/log_17:07:13.log)"'" }]} }  }'
