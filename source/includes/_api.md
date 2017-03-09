@@ -682,6 +682,14 @@ augur.getBond(eventId, function(bond) { /* ... */ })
 // example output:
 bond = "0x0000000000000000000000000000000000000000000000001f399b1438a10000"
 
+augur.getChallenged(eventId, function(challenged) { /* ... */ })
+// example output:
+challenged = "0x0000000000000000000000000000000000000000000000000000000000000001"
+
+augur.getEarlyResolutionBond(eventId, function(resolutionBond) { /* ... */ })
+// example output:
+resolutionBond = "0x00000000000000000000000000000000000000000000000021282a48ffb20000"
+
 augur.getEthics(eventId, function(ethical) { /* ... */ })
 // example output:
 ethical = "0x0000000000000000000000000000000000000000000000000000000000000001"
@@ -694,9 +702,25 @@ augur.getEventInfo(eventId, function (eventInfo) { /* ... */ })
 // example output:
 eventInfo = ["0xf69b5", "13801186", "0", "1", "2", "2"]
 
+augur.getEventPushedUp(eventId, function(eventPushed) { /* ... */ })
+// example output:
+eventPushed = "0x0000000000000000000000000000000000000000000000000000000000000001"
+
+augur.getEventResolution(eventId, function(resolution) { /* ... */ })
+// example output:
+resolution = "https://www.google.com"
+
 augur.getExpiration(eventId, function (expiration) { /* ... */ })
 // example output:
 expiration = "13801186"
+
+augur.getExtraBond(eventId, function (extraBond) { /* ... */ })
+// example output:
+extraBond = "0x0000000000000000000000000000000000000000000000003f11bac901df2000"
+
+augur.getFirstPreliminaryOutcome(eventId, function (preliminaryOutcome) { /* ... */ })
+// example output:
+preliminaryOutcome = "0x0000000000000000000000000000000000000000000000000000000000000002"
 
 augur.getForkEthicality(eventId, function(forkEthicality) { /* ... */ })
 // example output:
@@ -768,14 +792,38 @@ augur.getRejectedPeriod(eventId, function (rejected) { /* ... */ })
 // example output:
 rejectedPeriod = "8612"
 
+augur.getReportersPaidSoFar(eventId, function (reportersPaid) { /* ... */ })
+// example output:
+reportersPaid = "6"
+
+augur.getReportingThreshold(eventId, function (reporterThreshold) { /* ... */ })
+// example output:
+reporterThreshold = "0x6277101735386680763835789423207666416102355444464034512896000000"
+
 augur.getResolutionAddress(eventId, function(resolutionAddress) { /* ... */ })
 // example output:
 resolutionAddress = "0x15e140e00231a1de6f8b902f5ff91dd1a5931679"
+
+augur.getResolutionLength(eventId, function(resolutionLength) { /* ... */ })
+// example output:
+resolutionLength = "22"
+
+augur.getResolveBondPoster(eventId, function(bondPoster) { /* ... */ })
+// example output:
+bondPoster = "0x27a231cdd19292de6f8b902f5ff91dd1a5931fad"
 ```
 ### [events contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/events.se)
 #### getBond(eventId[, callback])
 
 Returns the bond amount for the event ID `eventId` specified.
+
+#### getChallenged(eventId[, callback])
+
+Returns wether the specified event ID `eventId` has been challenged already.
+
+#### getEarlyResolutionBond(eventId[, callback])
+
+Gets the bond amount paid for early resoultion for the specified event ID `eventId`.
 
 #### getEthics(eventId[, callback])
 
@@ -789,9 +837,21 @@ Gets the branch ID of event `eventId`.
 
 Fetches an array of basic information about event `eventId`: branch ID, expiration block number, outcome (`"0"` if not yet resolved), minimum value, maximum value, and number of outcomes.
 
+#### getEventPushedUp(eventId[, callback])
+
+Returns whether an specified event ID `eventId` has been pushed up.
+
+#### getEventResolution(eventId[, callback])
+
+Gets a resolution string which represents the recommended source to resolve a specified event `eventId`.
+
 #### getExpiration(eventId[, callback])
 
 Gets the expiration block number of event `eventId`.
+
+#### getFirstPreliminaryOutcome(eventId[, callback])
+
+Returns the outcome submitted by the Resolution Address given a specified event ID `eventId`.
 
 #### getForkEthicality(eventId[, callback])
 
@@ -853,9 +913,25 @@ Gets the rejection status of the specified event ID `eventId`.
 
 Gets the period during which the specified event ID `eventId` was rejected.
 
+#### getReportersPaidSoFar(eventId[, callback])
+
+Gets the number of reporters who have been paid so far given a specified event ID `eventId`.
+
+#### getReportingThreshold(eventId[, callback])
+
+Gets the reporting threshold for a specified event ID `eventId`.
+
 #### getResolutionAddress(eventId[, callback])
 
 Gets the address of the first person who reports on a specified event `eventId`.
+
+#### getResolutionLength(eventId[, callback])
+
+Returns the length of the resolution string for the specified event ID `eventId`.
+
+#### getResolveBondPoster(eventId[, callback])
+
+Returns the address of the person who posted the bond for the first resolution period of the specified event ID `eventId`.
 
 ```javascript
 // expiringEvents contract
