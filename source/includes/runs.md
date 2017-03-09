@@ -115,10 +115,17 @@ data/attributes/exit-code | 0 for passed, otherwise failed | false |
 data/attributes/run-duration | with name and value (HH:MM:SS), to update the run duration of a specific instance | false |
 data/attributes/automation-execution-output | text output string that will be shown in ‘Execution output’ field (up to 255 characters) | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
-data/steps/data | an array of steps override the exit code | false |
-data/files/data |  | false |
+data/steps/data* | an array of steps override the exit code | false |
+data/files/data | an array of files  | false |
 
-
+* data => steps: data: [{name: 'step one', expected-resuts}, {name: step2} ] - this is a structure of writing steps in your request
 
 ```shell
+# Some request examples:
+
+# Upload res of project #4566:
+
 curl -H "Content-Type:application/json" \
+   -u test@pt.com:YOUR TOKEN \
+   -X POST https://api.practitest.com/api/v2/projects/1/runs.json \
+   -d '{"data": { "type": "instances", "attributes": {"instance-id": 3254471, "exit-code": 0 }, "files": {"data": [{"filename": "one.log", "content_encoded": "'"$( base64 /tmp/log_12:04:34.log)"'" }, {"filename": "two.log", "content_encoded": "'"$( base64 /tmp/log_17:07:13.log)"'" }]} }  }'
