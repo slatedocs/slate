@@ -79,6 +79,8 @@ More examples will be available soon.
 <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/post_request.rb" target="blank">POST example</a> for creating a new instance
 <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/put_request.rb" target="blank">PUT example</a> for updating a specific instance
 <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/delete_request.rb" target="blank">DELETE example</a> for deleting a specific instance
+<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/runs.rb" target="blank">POST example (with attachments)</a> for uploading test results to PractiTest with files
+
 
 
 ## Java
