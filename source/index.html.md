@@ -14,7 +14,7 @@ includes:
   - projects
   - users
   - custom_fields
-  - instance
+  - instances
   - runs
   - errors
 
