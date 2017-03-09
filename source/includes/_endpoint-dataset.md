@@ -777,6 +777,7 @@ Format    | Attribute           | Description                                   
 --------- | --------------------| ----------------------------------------------------------------------------------- | --------------------------
 csv       | use_category_ids    | Instead of category names export the fields as their numeric ids                    | {"use_category_ids": false}
 csv       | missing_values      | If present, will use such string as for missing values. Else will use the reasons   | _omitted_
+csv       | header_field        | If present, will use the given field as CSV header, null to remove headers          | _omitted_
 spss      | var_label_field     | Use the variable's name/description as SPSS variable label                          | {"var_label_field": "description"}
 spss      | prefix_subvariables | When True, subvariables names will have the parent array's name prefixed            | {"prefix_subvariables": false}
 all       | include_personal    | Will include the user's personal variables on the exported file                     | {"include_personal": false}
@@ -801,6 +802,14 @@ and missing values will use their corresponding reason string for all variables.
 The missing values will be exported with their configured missing reason in
 the CSV file. If specified on the `missing_values` export option, then all
 missing values on all columns will use such string instead of the reason.
+
+To control the output of the header row use the `header_field` option, if omitted
+will default to using the variable's alias. Else will use the specified field.
+It is only possible to use the following values:
+ * alias
+ * name
+ * description
+ * `null` - Sending `null` will make the resulting CSV not to have a header row.
 
 Refer to the options described on the table above for the `csv` format to change this behavior.
 
