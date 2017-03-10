@@ -1,4 +1,4 @@
-API
+specifiedAPI
 ===
 ```javascript
 // After installing, just require augur.js to use it.
@@ -823,7 +823,7 @@ Returns wether the specified event ID `eventId` has been challenged already.
 
 #### getEarlyResolutionBond(eventId[, callback])
 
-Gets the bond amount paid for early resoultion for the specified event ID `eventId`.
+Gets the bond amount paid for early resolution for the specified event ID `eventId`.
 
 #### getEthics(eventId[, callback])
 
@@ -976,8 +976,20 @@ augur.getEvent(branchId, reportPeriod, eventIndex, function (event) { /* ... */ 
 // example output:
 event = "-0xd0dbd235c8de8cccd7d8ef96b460c7dc2d19539fb45778f7897c412d4c0a3683"
 
-var eventId = "-0xd0dbd235c8de8cccd7d8ef96b460c7dc2d19539fb45778f7897c412d4c0a3683";
 var reporter = "0x639b41c4d3d399894f2a57894278e1653e7cd24c";
+augur.getAfterRep(branchId, reportPeriod, reporter, function (afterRep) { /* ... */ })
+// example output:
+afterRep = "0x2b5e3af16b1880000"
+
+augur.getBeforeRep(branchId, reportPeriod, reporter, function (beforeRep) { /* ... */ })
+// example output:
+beforeRep = "0x2c3c465ca58ec0000"
+
+var eventId = "-0xd0dbd235c8de8cccd7d8ef96b460c7dc2d19539fb45778f7897c412d4c0a3683";
+augur.getEventWeight(branchId, reportPeriod, eventId, function (eventWeight) { /* ... */ })
+// example output:
+eventWeight = "0x29a2241af62c0000"
+
 augur.getReport(branchId, reportPeriod, eventId, reporter, function (report) { /* ... */ });
 // example output:
 report = "1"
@@ -1014,9 +1026,21 @@ augur.getNumReportsSubmitted(branch, reporterPeriod, reporter, function (numRepo
 // example output:
 numReports = "5"
 
+augur.getNumRemoved(branch, reportPeriod, function (numRemoved) { /* ... */ })
+// example output:
+numRemoved = "3"
+
 augur.getNumRequired(branch, reportPeriod, function (numRequired) { /* ... */ })
 // example output:
 numRequired = "2"
+
+augur.getNumRoundTwo(branch, reportPeriod, function (numRoundTwo) { /* ... */ })
+// example output:
+numRoundTwo = "1"
+
+augur.getLesserReportNum(branch, reportPeriod, eventId, function (reportNum) { /* ... */ })
+// example output:
+reportNum = "0xb469471f80140000"
 
 augur.getPeriodDormantRep(branch, reportPeriod, reporter, function(dormantRep) { /* ... */ })
 // example output:
@@ -1025,6 +1049,11 @@ dormantRep = "0x8ac7230489e80000"
 augur.getPeriodRepWeight(branch, reportPeriod, reporter, function (repWeight) { /* ... */ })
 // example output:
 repWeight = "0x291e8f2fb9cfc00"
+
+var report = '.74';
+augur.getWeightOfReport(reportPeriod, eventId, report, function (reportWeight) { /* ... */ })
+// example output:
+reportWeight = "0x29a2241af62c0000"
 
 ```
 ### [expiringEvents contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/expiringEvents.se)
@@ -1048,6 +1077,18 @@ The total number of events scheduled to be reported on during `reportPeriod`.
 
 Looks up the event ID that has index `eventIndex`.
 
+#### getAfterRep(branch, reportPeriod, reporter[, callback])
+
+Gets the amount of active REP for a specified reporter `reporter` after all modifications to REP for the reporting cycle are complete. Initially this is equal to the `beforeRep` value.
+
+#### getBeforeRep(branch, reportPeriod, reporter[, callback])
+
+Gets the amount of active REP for a specified reporter `reporter` before any penalization for incorrectly reporting.
+
+#### getEventWeight(branch, reportPeriod, eventId[, callback])
+
+Returns the weight of the specified event `eventId` for the specified reporting period `reportPeriod`.
+
 #### getReport(branch, reportPeriod, eventId, reporter[, callback])
 
 The report for reporting event ID `eventId` submitted for `reportPeriod` by address `reporter`.
@@ -1058,7 +1099,7 @@ The report hash submitted for `reportPeriod` by address `reporter` for specified
 
 #### getReportsCommitted(branch, reportPeriod, eventId[, callback])
 
-Gets the number of reports commited for the specified event ID `eventId`.
+Gets the number of reports committed for the specified event ID `eventId`.
 
 #### getRequired(eventId, reportPeriod, branch[, callback])
 
@@ -1084,17 +1125,33 @@ Returns the number of available events to report on, not counting required event
 
 Returns the number of reports submitted by the specified reporter `reporter`.
 
+#### getNumRemoved(branch, reportPeriod[, callback])
+
+Returns the number of events that no longer need to be reported on from the specified reporting period `reportPeriod`. This can be caused by an event being resolved early successfully as an example.
+
 #### getNumRequired(branch, reportPeriod[, callback])
 
 Returns the number of events that will be required to be reported on given a specified `reportPeriod`.
 
+#### getNumRoundTwo(branch, reportPeriod[, callback])
+
+Returns the number of round 2 events in the specified reporting period `reportPeriod`.
+
+#### getLesserReportNum(branch, reportPeriod, eventId[, callback])
+
+Returns the number of reports an specified event `eventId` should have.
+
 #### getPeriodDormantRep(branch, reportPeriod, reporter[, callback])
 
-Returns the amount of dormant REP for a sepcified reporter `reporter` and report period `reportPeriod`.
+Returns the amount of dormant REP for a specified reporter `reporter` and report period `reportPeriod`.
 
 #### getPeriodRepWeight(branch, reportPeriod, reporter[, callback])
 
 Returns the rep weight value for the specified reporter `reporter` in a specified report period `reportPeriod`.
+
+#### getWeightOfReport(reportPeriod, eventId, report[, callback])
+
+Returns the amount of reports an event `eventId` has for a specified report value `report`. In the case of a backstop then this will return the amount of REP that has reported on the report value `report`.
 
 ```javascript
 // trades contract
