@@ -937,6 +937,14 @@ Returns the address of the person who posted the bond for the first resolution p
 // expiringEvents contract
 var branchId = augur.branches.dev;
 var reportPeriod = 397;
+augur.getActiveReporters(branchId, reportPeriod, 0, 5, function(activeReporters) { /* ... */ })
+// example output:
+activeReporters = [ "0x61badf138090eb57cac69a595374090ef7b76f86",
+                    "0x6964753be3e3f94b276d2fcb77186ab1422f5a31",
+                    "0x15e140e00231a1de6f8b902f5ff91dd1a5931679",
+                    "0x5d8591daaac13717e12c25fead00406c0f594394",
+                    "0x591c4545f370f48d56df8721321e499f980c6e4d" ]
+
 augur.getEvents(branchId, reportPeriod, function (events) { /* ... */ });
 // example output:
 events = ["-0xc6481ca18bec443c7831578e5f2de02594041041e0abbf0e8ecafd70197fd1a5",
@@ -951,6 +959,13 @@ events = ["-0xc6481ca18bec443c7831578e5f2de02594041041e0abbf0e8ecafd70197fd1a5",
           "-0xd5cbab9a85c1dd2ae692b87f98faa1e4841933d604d78622bb6dbe03d8acde36",
           "-0x7a2c24bec3f16f5edfa06ed6941569f9de70cbe33c768b02617ed89b16be8d8f",
           "-0x399c15976085e8dcf8cb57317c1001013ce8ee5472868b1faa8657edcd1336bd" ]
+
+augur.getEventsRange(branchId, reportPeriod, 1, 4, function (eventsRange) { /* ... */ });
+// example output:
+eventsRange = [ "-0xea03728786ca7ddcb91ec3303723ac794b7bcbcb9b3ad48943e797885c6d05ab",
+           "-0xdb633b6cdbfbd00c85ca1f093764dcb2b2f0b5284c2324baa6008a3d73e0a1c",
+           "-0xd0dbd235c8de8cccd7d8ef96b460c7dc2d19539fb45778f7897c412d4c0a3683",
+           "-0x16fe3cb92062b9f43ef9988eb871f346960ff23b5c16222c1ebe5a5e2fc908c6" ]
 
 augur.getNumberEvents(branchId, reportPeriod, function (numberEvents) { /* ... */ });
 // example output:
@@ -995,15 +1010,35 @@ augur.getNumEventsToReportOn(branch, reportPeriod, function (numEvents) { /* ...
 // example output:
 numEvents = "54"
 
+augur.getNumReportsSubmitted(branch, reporterPeriod, reporter, function (numReports) { /* ... */ })
+// example output:
+numReports = "5"
+
 augur.getNumRequired(branch, reportPeriod, function (numRequired) { /* ... */ })
 // example output:
 numRequired = "2"
 
+augur.getPeriodDormantRep(branch, reportPeriod, reporter, function(dormantRep) { /* ... */ })
+// example output:
+dormantRep = "0x8ac7230489e80000"
+
+augur.getPeriodRepWeight(branch, reportPeriod, reporter, function (repWeight) { /* ... */ })
+// example output:
+repWeight = "0x291e8f2fb9cfc00"
+
 ```
 ### [expiringEvents contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/expiringEvents.se)
+#### getActiveReporters(branch, reportPeriod, from, to[, callback])
+
+Fetches an array of reporter addresses from the reporters pool given a start `from` and end `to` point and a specified `reportPeriod`.
+
 #### getEvents(branch, reportPeriod[, callback])
 
 Fetches an array of event IDs that are scheduled to be reported on during `reportPeriod`.
+
+#### getEventsRange(branch, reportPeriod, start, end[, callback])
+
+Fetches an array of event IDs that are scheduled to be reported on during `reportPeriod` with a range specified by the `start` and `end` values.
 
 #### getNumberEvents(branch, reportPeriod[, callback])
 
@@ -1045,9 +1080,21 @@ Returns the number of active reporters available to report for a specified `repo
 
 Returns the number of available events to report on, not counting required events for a specified `reportPeriod`.
 
+#### getNumReportsSubmitted(branch, reportPeriod, reporter[, callback])
+
+Returns the number of reports submitted by the specified reporter `reporter`.
+
 #### getNumRequired(branch, reportPeriod[, callback])
 
 Returns the number of events that will be required to be reported on given a specified `reportPeriod`.
+
+#### getPeriodDormantRep(branch, reportPeriod, reporter[, callback])
+
+Returns the amount of dormant REP for a sepcified reporter `reporter` and report period `reportPeriod`.
+
+#### getPeriodRepWeight(branch, reportPeriod, reporter[, callback])
+
+Returns the rep weight value for the specified reporter `reporter` in a specified report period `reportPeriod`.
 
 ```javascript
 // trades contract
