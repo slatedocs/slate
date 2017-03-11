@@ -1,4 +1,4 @@
-specifiedAPI
+API
 ===
 ```javascript
 // After installing, just require augur.js to use it.
