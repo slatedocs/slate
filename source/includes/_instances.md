@@ -16,8 +16,8 @@ set-filter-id | the testSet's filter id -> showing instances of TestSets which a
 set-filter-user-id | if filter uses current_user criteria in it, you should provide which is the this user ([list of user ids](#users)) |
 test-ids | filter instances that are related to a certain test_id (NOT display-id!) |
 set-ids | filter by TestSets ids, separated by comma (NOT display-id) |
-name-exact | filter by instance name exact match; case sensitive! |
-name-like | filter by instance name: case insensitive, phrase can be inside the name |
+name_exact | filter by instance name exact match; case sensitive! |
+name_like | filter by instance name: case insensitive, phrase can be inside the name |
 display-id | filter instances based on an instance display-id (can be used to convert display to system id) |
 
 * none of the parameters are required. If you combine multiple parameters, it will do AND
