@@ -1170,6 +1170,7 @@ trade = {
   outcome: '1'
 }
 ```
+
 ### [trades contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/trades.se)
 #### get_trade(trade_id[, callback])
 
@@ -1180,18 +1181,31 @@ Gets the details of trade `trade_id`.  (To get the `trade_id`s for a given marke
 var marketId = "0x45c545745a80121b14c879bf9542dd838559f7acc90f1e1774f4268c332a519";
 var outcomeId = 5; // 8-outcome categorical market
 var amount = 4;
+var branchId = augur.branches.dev;
+
+augur.getLastExpDate(marketId, function (lastExpiration) { /* ... */ })
+// example output:
+lastExpiration = "1608876000000"
+
+augur.getLastOutcomePrice(marketId, outcomeId, function (lastPrice) { /* ... */ })
+// example output:
+lastPrice = "0x4c9afac0f828000"
 
 augur.getMarketEvents(marketId, function (marketEvents) { /* ... */ });
 // example output:
 marketEvents = ["-0xa65427afe1fc912e973d8dac2a83487aea5f5707a74c3168afb56e5a95b760ea"]
 
-augur.getNumEvents(marketId, function (numEvents) { /* ... */ });
-// example output:
-numEvents = "1"
-
 augur.getMarketNumOutcomes(marketId, function (marketNumOutcomes) { /* ... */ });
 // example output:
 marketNumOutcomes = "9"
+
+augur.getMarketsHash(branchId, function (marketsHash) { /* ... */ })
+// example output:
+marketsHash = "178816a401f9441f1b375285a405d2d29902bad1da499dc154f6dfc946f08ce5"
+
+augur.getNumEvents(marketId, function (numEvents) { /* ... */ });
+// example output:
+numEvents = "1"
 
 var trader = "0x61badf138090eb57cac69a595374090ef7b76f86";
 augur.getParticipantSharesPurchased(marketId, trader, outcomeId, function (participantSharesPurchased) { /* ... */ });
@@ -1202,31 +1216,44 @@ augur.getSharesPurchased(marketId, outcomeId, function (sharesPurchased) { /* ..
 // example output:
 sharesPurchased = "32.24854252438022522758"
 
-augur.getWinningOutcomes(marketId, function (winningOutcomes) { /* ... */ });
+augur.getTradingFee(marketId, function (tradingFee) { /* ... */ });
 // example output:
-winningOutcomes = ["0", "0", "0", "0", "0", "0", "0", "0", "0"]
+tradingFee = "0.00999999999999999999"
 
 augur.getTradingPeriod(marketId, function (tradingPeriod) { /* ... */ });
 // example output:
 tradingPeriod = "1075"
 
-augur.getTradingFee(marketId, function (tradingFee) { /* ... */ });
+augur.getWinningOutcomes(marketId, function (winningOutcomes) { /* ... */ });
 // example output:
-tradingFee = "0.00999999999999999999"
+winningOutcomes = ["0", "0", "0", "0", "0", "0", "0", "0", "0"]
+
 ```
 ### [markets contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/markets.se)
+
+#### getLastExpDate(market[, callback])
+
+Gets the date of expiration of the specified `market`'s last event.
+
+#### getLastOutcomePrice(market, outcome[, callback])
+
+Returns the last traded price of a specified `outcome` in a `market`.
 
 #### getMarketEvents(market[, callback])
 
 Gets an array of event IDs included in `market`.  (Note: only combinatorial markets have more than one event.)
 
-#### getNumEvents(market[, callback])
-
-Get the number of events included in `market`.  (Note: only combinatorial markets have more than one event.)
-
 #### getMarketNumOutcomes(market[, callback])
 
 Gets the total number of outcomes for `market`.  For binary and scalar markets, this is 2.  For categorical markets, this is equal to the number of categories (choices).  For combinatorial markets, this is the number of possible outcome combinations.
+
+#### getMarketsHash(branch[, callback])
+
+Returns the marketsHash of the specified branch ID `branch`. marketsHash is a composite hash of all markets.
+
+#### getNumEvents(market[, callback])
+
+Get the number of events included in `market`.  (Note: only combinatorial markets have more than one event.)
 
 #### getParticipantSharesPurchased(market, trader, outcome[, callback])
 
@@ -1236,17 +1263,17 @@ The number of shares of `outcome` in `market` purchased by the address of the sp
 
 The total number of shares purchased (by all traders) of `outcome` in `market`.
 
-#### getWinningOutcomes(market[, callback])
+#### getTradingFee(market[, callback])
 
-Gets an array of outcomes showing the winning/correct outcome, or an array of all zeros if `market` has not yet been resolved.
+Gets the trading fee for `market`, expressed as a proportion.
 
 #### getTradingPeriod(market[, callback])
 
 Gets the trading period for `market`.
 
-#### getTradingFee(market[, callback])
+#### getWinningOutcomes(market[, callback])
 
-Gets the trading fee for `market`, expressed as a proportion.
+Gets an array of outcomes showing the winning/correct outcome, or an array of all zeros if `market` has not yet been resolved.
 
 ```javascript
 // reporting contract
