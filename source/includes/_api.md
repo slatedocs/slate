@@ -1178,16 +1178,6 @@ Gets the details of trade `trade_id`.  (To get the `trade_id`s for a given marke
 ```javascript
 // markets contract
 var marketId = "0x45c545745a80121b14c879bf9542dd838559f7acc90f1e1774f4268c332a519";
-
-augur.get_trade_ids(marketId, function(trade_ids) { /* ... */ });
-// example output:
-trade_ids = [
-  '-0xd2cbbef4aa237c97c7c412885b283a0fa517cc7a58f37e981f0cc2e01338bbbf',
-  '-0xec12b8e92e92b83534ba5948c0ea22752f6975e5eef96b46e4f6d558314347a7',
-  '-0xef272ceaabdc90b0c99248caaf34198e2d88d973e30a485118ab30598a95097e',
-  '-0x22daf7fdff22ff716fd8108c011d1c0e69a7ab4a2b087f65dda2fc77ea044ba1'
-]
-
 var outcomeId = 5; // 8-outcome categorical market
 var amount = 4;
 
@@ -1199,20 +1189,12 @@ augur.getNumEvents(marketId, function (numEvents) { /* ... */ });
 // example output:
 numEvents = "1"
 
-augur.getBranchID(marketId, function (branchID) { /* ... */ });
-// example output:
-branchID = "0xf69b5"
-
-augur.getCurrentParticipantNumber(marketId, function (currentParticipantNumber) { /* ... */ });
-// example output:
-currentParticipantNumber = "1"
-
 augur.getMarketNumOutcomes(marketId, function (marketNumOutcomes) { /* ... */ });
 // example output:
 marketNumOutcomes = "9"
 
-var participantNumber = "0";
-augur.getParticipantSharesPurchased(marketId, participantNumber, outcomeId, function (participantSharesPurchased) { /* ... */ });
+var trader = "0x61badf138090eb57cac69a595374090ef7b76f86";
+augur.getParticipantSharesPurchased(marketId, trader, outcomeId, function (participantSharesPurchased) { /* ... */ });
 // example output:
 participantSharesPurchased = "4"
 
@@ -1224,19 +1206,6 @@ augur.getWinningOutcomes(marketId, function (winningOutcomes) { /* ... */ });
 // example output:
 winningOutcomes = ["0", "0", "0", "0", "0", "0", "0", "0", "0"]
 
-var address = "0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b";
-augur.getParticipantNumber(marketId, address, function (participantNumber) { /* ... */ });
-// example output:
-participantNumber = "0"
-
-augur.getParticipantID(marketId, participantNumber, function (participantID) { /* ... */ });
-// example output:
-participantID = "0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b"
-
-augur.getCumScale(marketId, function (cumScale) { /* ... */ });
-// example output:
-cumScale = "0.00000000000000000005"
-
 augur.getTradingPeriod(marketId, function (tradingPeriod) { /* ... */ });
 // example output:
 tradingPeriod = "1075"
@@ -1246,9 +1215,6 @@ augur.getTradingFee(marketId, function (tradingFee) { /* ... */ });
 tradingFee = "0.00999999999999999999"
 ```
 ### [markets contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/markets.se)
-#### get_trade_ids(market[, callback])
-
-Gets an array of trade IDs.  Each trade ID represents a buy or sell order that is sitting on `market`'s order book (i.e., has not yet been matched).  To get detailed information about the trade, call `augur.get_trade(trade_id)`.
 
 #### getMarketEvents(market[, callback])
 
@@ -1258,21 +1224,13 @@ Gets an array of event IDs included in `market`.  (Note: only combinatorial mark
 
 Get the number of events included in `market`.  (Note: only combinatorial markets have more than one event.)
 
-#### getBranchID(market[, callback])
-
-Gets the branch ID of `market`.
-
-#### getCurrentParticipantNumber(market[, callback])
-
-Gets the current number of participants (traders) in `market`, starting from 0.  (i.e., if there is a single trader, then he is assigned participant number 0, and the "current participant number" is 1.)
-
 #### getMarketNumOutcomes(market[, callback])
 
 Gets the total number of outcomes for `market`.  For binary and scalar markets, this is 2.  For categorical markets, this is equal to the number of categories (choices).  For combinatorial markets, this is the number of possible outcome combinations.
 
-#### getParticipantSharesPurchased(market, participantNumber, outcome[, callback])
+#### getParticipantSharesPurchased(market, trader, outcome[, callback])
 
-The number of shares of `outcome` in `market` purchased by trader number `participantNumber`.  (Note: you can look up `participantNumber` using `augur.getParticipantNumber`.)
+The number of shares of `outcome` in `market` purchased by the address of the specified `trader`.
 
 #### getSharesPurchased(market, outcome[, callback])
 
@@ -1281,18 +1239,6 @@ The total number of shares purchased (by all traders) of `outcome` in `market`.
 #### getWinningOutcomes(market[, callback])
 
 Gets an array of outcomes showing the winning/correct outcome, or an array of all zeros if `market` has not yet been resolved.
-
-#### getParticipantNumber(market, address[, callback])
-
-Looks up the participant number for account `address`.
-
-#### getParticipantID(market, participantNumber[, callback])
-
-Looks up the account address for `participantNumber`.
-
-#### getCumScale(market[, callback])
-
-Gets the cumulative scale for `market`.
 
 #### getTradingPeriod(market[, callback])
 
