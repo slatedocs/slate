@@ -10,7 +10,7 @@
 
 ## URL Parameters Details
 ```
-https://www.sendle.com/dashboard/prepare_form?pickup_date=2017%2D04%2D03&customer_reference=flower+delivery&kilogram_weight=1&cubic_metre_volume=1&receiver_name=Oscar+Wilde&delivery_address_line1=2+Smith+Lane&delivery_address_suburb=sydney&delivery_address_state_name=nsw&delivery_address_postcode=2000
+https://www.sendle.com/dashboard/prepare_form?pickup_date=2017%2D04%2D03&customer_reference=Flower+Delivery&kilogram_weight=1&cubic_metre_volume=1&receiver_name=Oscar+Wilde&delivery_address_line1=2+Smith+Lane&delivery_address_suburb=Sydney&delivery_address_state_name=NSW&delivery_address_postcode=2000
 ```
 
 | Data Field | Attributes |
