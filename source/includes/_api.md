@@ -1183,6 +1183,10 @@ var outcomeId = 5; // 8-outcome categorical market
 var amount = 4;
 var branchId = augur.branches.dev;
 
+augur.getBondsMan(marketId, function (bondsMan) { /* ... */ })
+// example output: (this market hasn't been moved, no bondsMan set.)
+bondsMan = "0x0000000000000000000000000000000000000000000000000000000000000000"
+
 augur.getBranch(marketId, function (branch) { /* ... */ })
 // example output:
 branch = "0xf69b5"
@@ -1210,6 +1214,10 @@ gasSubsidy = "0x22b1c8c1227a0000"
 augur.getLastExpDate(marketId, function (lastExpiration) { /* ... */ })
 // example output:
 lastExpiration = "1608876000000"
+
+augur.getLastOrder(marketId, function (lastOrder) { /* ... */ })
+// example output:
+lastOrder = "0x9344a62a43eba907fffeaf54e944070f11d65af62d188cb561823ad540c10314"
 
 augur.getLastOutcomePrice(marketId, outcomeId, function (lastPrice) { /* ... */ })
 // example output:
@@ -1247,6 +1255,10 @@ augur.getNumEvents(marketId, function (numEvents) { /* ... */ })
 // example output:
 numEvents = "1"
 
+augur.getOneWinningOutcome(marketId, outcomeId, function (outcome) { /* ... */ })
+// example output:
+outcome = "0x0000000000000000000000000000000000000000000000000000000000000000"
+
 augur.getOrderIDs(marketId, function (orderIds) { /* ... */ })
 // example output:
 orderIds = ["69dded28702e791fad4f5614a182e7e432e61f3709eb52162792651703607dc9"]
@@ -1260,6 +1272,15 @@ augur.getParticipantSharesPurchased(marketId, trader, outcomeId, function (parti
 // example output:
 participantSharesPurchased = "4"
 
+var order = "0x9344a62a43eba907fffeaf54e944070f11d65af62d188cb561823ad540c10314"
+augur.getPrevID(marketId, order, function (previousID) { /* ... */ })
+// example output:
+previousID = "0x23acb23dddeba907fffeaf54e932800a11d73af62d188cb561823ad540c10442"
+
+augur.getPushedForward(marketId, function (isPushedForward) { /* ... */ })
+// example output:
+isPushedForward = "0x0000000000000000000000000000000000000000000000000000000000000000"
+
 augur.getSharesPurchased(marketId, outcomeId, function (sharesPurchased) { /* ... */ });
 // example output:
 sharesPurchased = "32.24854252438022522758"
@@ -1267,6 +1288,10 @@ sharesPurchased = "32.24854252438022522758"
 augur.getSharesValue(marketId, function (sharesValues) { /* ... */ })
 // example output:
 sharesValues = "0x24dce54d34a1a00000"
+
+augur.getTotalOrders(marketId, function (totalOrders) { /* ... */ })
+// example output:
+totalOrders = "42"
 
 augur.getTotalSharesPurchased(marketId, function (totalSharesPurchased) { /* ... */ })
 // example output:
@@ -1290,6 +1315,10 @@ winningOutcomes = ["0", "0", "0", "0", "0", "0", "0", "0", "0"]
 
 ```
 ### [markets contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/markets.se)
+
+#### getBondsMan(market[, callback])
+
+Gets the address of the person who posted the bond to push the specified market ID `market` up. If no bond has been posted then this returns false.
 
 #### getBranch(market[, callback])
 
@@ -1319,6 +1348,10 @@ Gets the gas subsidy of the specified market ID `market`.
 
 Gets the date of expiration of the specified `market`'s last event.
 
+#### getLastOrder(market[, callback])
+
+Returns the last order placed on the specified market ID `market`.
+
 #### getLastOutcomePrice(market, outcome[, callback])
 
 Returns the last traded price of a specified `outcome` in a `market`.
@@ -1347,6 +1380,10 @@ Returns the marketsHash of the specified branch ID `branch`. marketsHash is a co
 
 Get the number of events included in `market`.  (Note: only combinatorial markets have more than one event.)
 
+#### getOneWinningOutcome(market, outcome[, callback])
+
+Get the winning outcome value for a specified market ID `market` and a specific outcome `outcome`.
+
 #### getOrderIDs(market[, callback])
 
 Gets an array of Order IDs for a specified market ID `market`.
@@ -1359,6 +1396,14 @@ Gets the original trading period of the specified market ID `market`.
 
 The number of shares of `outcome` in `market` purchased by the address of the specified `trader`.
 
+#### getPrevID(market, order[, callback])
+
+Gets the order placed before the specified `order` in the selected market ID `market`.
+
+#### getPushedForward(market[, callback])
+
+Returns wether the specified market `market` is pushed forward or not.
+
 #### getSharesPurchased(market, outcome[, callback])
 
 The total number of shares purchased (by all traders) of `outcome` in `market`.
@@ -1366,6 +1411,10 @@ The total number of shares purchased (by all traders) of `outcome` in `market`.
 #### getSharesValue(market[, callback])
 
 Gets the value of all shares traded on the specified `market`.
+
+#### getTotalOrders(market[, callback])
+
+Gets a count of the total amount of orders placed on a specified market ID `market`.
 
 #### getTotalSharesPurchased(market[, callback])
 
