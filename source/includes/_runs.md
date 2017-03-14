@@ -133,3 +133,21 @@ curl -H "Content-Type:application/json" \
    -u test@pt.com:YOUR TOKEN \
    -X POST https://api.practitest.com/api/v2/projects/1/runs.json \
    -d '{"data": { "type": "instances", "attributes": {"instance-id": 3254471, "exit-code": 0 }, "files": {"data": [{"filename": "one.log", "content_encoded": "'"$( base64 /tmp/log_12:04:34.log)"'" }, {"filename": "two.log", "content_encoded": "'"$( base64 /tmp/log_17:07:13.log)"'" }]} }  }'
+
+# upload test results with the automated-execution-output
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/runs.json \
+-d '{"data": { "type": "instances", "attributes": {"instance-id": 98142, "exit-code": 0, "automated-execution-output": "THIS IS MY OUTPUT" }}} '
+
+# example with steps
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/runs.json \
+-d '{"data": {"type": "instances", "attributes": {"instance-id": 98142}, "steps": {"data": [{"name": "step one", "expected-results": "result", "status": "FAILED"}, {"name": "step two", "expected-results": "result2", "status": "PASSED"}] }}}'
+
+# example with custom-fields
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN  \
+-X POST https://api.practitest.com/api/v2/projects/4566/runs.json \
+-d '{"data": { "type": "instances", "attributes": {"instance-id": 98142, "exit-code": 0, "custom-fields": { "---f-45293": "Win" }}}} '
