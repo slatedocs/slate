@@ -29,6 +29,7 @@ footer | footer information for the CrunchBox
 dataset | URL of the dataset associated with the CrunchBox
 filters | A Crunch expression indicating which filters to include in the CrunchBox
 where | A Crunch expression indicating which variables to include in the CrunchBox
+creation_time | string | A timestamp of the date when this CrunchBox was created
 
 
 ```json
@@ -43,6 +44,7 @@ where | A Crunch expression indicating which variables to include in the CrunchB
             "title": "z and str",
             "dataset": "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/",
             "header": "This is for the header",
+            "creation_time": "2017-03-14T00:13:42.024000+00:00",
             "filters": {
                 "function": "identify",
                 "args": [
@@ -72,6 +74,7 @@ where | A Crunch expression indicating which variables to include in the CrunchB
             "title": "xz",
             "dataset": "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/",
             "filters": null,
+            "creation_time": "2017-03-14T00:13:42.024000+00:00",
             "where": {
                 "function": "identify",
                 "args": [
