@@ -1183,6 +1183,22 @@ var outcomeId = 5; // 8-outcome categorical market
 var amount = 4;
 var branchId = augur.branches.dev;
 
+augur.getBranch(marketId, function (branch) { /* ... */ })
+// example output:
+branch = "0xf69b5"
+
+augur.getCumulativeScale(marketId, function (cumulativeScale) { /* ... */ })
+// example output:
+cumulativeScale = "1"
+
+augur.getExtraInfo(marketId, function (extraInfo) { /* ... */ })
+// example output:
+extraInfo = "https://www.google.com/"
+
+augur.getExtraInfoLength(marketId, function (extraInfoLength) { /* ... */ })
+// example output:
+extraInfoLength = "23"
+
 augur.getFees(marketId, function (fees) { /* ... */ })
 // example output:
 fees = "0xf4dba088b49b05fd4380c9c00000000"
@@ -1212,13 +1228,32 @@ augur.getMarketNumOutcomes(marketId, function (marketNumOutcomes) { /* ... */ })
 // example output:
 marketNumOutcomes = "9"
 
+augur.getMarketShareContracts(marketId, function (marketShareContracts) { /* ... */ })
+// example output:
+marketShareContracts = ["0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b",
+                        "0x2df941084bacae336391f5e9a078b19113ae642b",
+                        "0x265a416766e1525867f72756ed8fd16e18044d97",
+                        "0xc72fa3dda5c2f739158ae03d1df4bfd9efcc6fba",
+                        "0x72ba02adc3c8c4aa67cd92fecf77a2cdf79eb34d",
+                        "0xd23ea7f78115804562278d456cbb1d8b533995fc",
+                        "0xee0b0b53a7794f329e81423e92dd00a5512cfad7",
+                        "0xb0368caf8e89da60d9c9a23592d3508f562a88ab"]
+
 augur.getMarketsHash(branchId, function (marketsHash) { /* ... */ })
 // example output:
 marketsHash = "178816a401f9441f1b375285a405d2d29902bad1da499dc154f6dfc946f08ce5"
 
-augur.getNumEvents(marketId, function (numEvents) { /* ... */ });
+augur.getNumEvents(marketId, function (numEvents) { /* ... */ })
 // example output:
 numEvents = "1"
+
+augur.getOrderIDs(marketId, function (orderIds) { /* ... */ })
+// example output:
+orderIds = ["69dded28702e791fad4f5614a182e7e432e61f3709eb52162792651703607dc9"]
+
+augur.getOriginalTradingPeriod(marketId, function(originalPeriod) { /* ... */ })
+// example output:
+originalPeriod = "8766"
 
 var trader = "0x61badf138090eb57cac69a595374090ef7b76f86";
 augur.getParticipantSharesPurchased(marketId, trader, outcomeId, function (participantSharesPurchased) { /* ... */ });
@@ -1245,6 +1280,10 @@ augur.getTradingPeriod(marketId, function (tradingPeriod) { /* ... */ });
 // example output:
 tradingPeriod = "1075"
 
+augur.getVolume(marketId, function (marketVolume) { /* ... */ })
+// example output:
+marketVolume = "5315"
+
 augur.getWinningOutcomes(marketId, function (winningOutcomes) { /* ... */ });
 // example output:
 winningOutcomes = ["0", "0", "0", "0", "0", "0", "0", "0", "0"]
@@ -1252,13 +1291,29 @@ winningOutcomes = ["0", "0", "0", "0", "0", "0", "0", "0", "0"]
 ```
 ### [markets contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/markets.se)
 
+#### getBranch(market[, callback])
+
+Gets the branch of the specified market ID `market`.
+
+#### getCumulativeScale(market[, callback])
+
+Gets the cumulative scale of the specified market ID `market`.
+
+#### getExtraInfo(market[, callback])
+
+Gets the Extra Info string for the specified market ID `market`.
+
+#### getExtraInfoLength(market[, callback])
+
+Gets the Extra Info string length for the specified market ID `market`.
+
 #### getFees(market[, callback])
 
-Gets the total fees paid in Wei to the branch by a specified `market`.
+Gets the total fees paid in Wei to the branch by a specified market ID `market`.
 
 #### getGasSubsidy(market[, callback])
 
-Gets the gas subsidy of the specified `market`.
+Gets the gas subsidy of the specified market ID `market`.
 
 #### getLastExpDate(market[, callback])
 
@@ -1280,6 +1335,10 @@ Gets an array of event IDs included in `market`.  (Note: only combinatorial mark
 
 Gets the total number of outcomes for `market`.  For binary and scalar markets, this is 2.  For categorical markets, this is equal to the number of categories (choices).  For combinatorial markets, this is the number of possible outcome combinations.
 
+#### getMarketShareContracts(market[, callback])
+
+Returns an array of share contract address for each outcome in the specified `market`.
+
 #### getMarketsHash(branch[, callback])
 
 Returns the marketsHash of the specified branch ID `branch`. marketsHash is a composite hash of all markets.
@@ -1287,6 +1346,14 @@ Returns the marketsHash of the specified branch ID `branch`. marketsHash is a co
 #### getNumEvents(market[, callback])
 
 Get the number of events included in `market`.  (Note: only combinatorial markets have more than one event.)
+
+#### getOrderIDs(market[, callback])
+
+Gets an array of Order IDs for a specified market ID `market`.
+
+#### getOriginalTradingPeriod(market[, callback])
+
+Gets the original trading period of the specified market ID `market`.
 
 #### getParticipantSharesPurchased(market, trader, outcome[, callback])
 
@@ -1311,6 +1378,10 @@ Gets the trading fee for `market`, expressed as a proportion.
 #### getTradingPeriod(market[, callback])
 
 Gets the trading period for `market`.
+
+#### getVolume(market[, callback])
+
+Gets the volume of the specified market id `market`.
 
 #### getWinningOutcomes(market[, callback])
 
