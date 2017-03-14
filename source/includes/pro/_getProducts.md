@@ -7,7 +7,6 @@ key | type | status | comment
 **Request:** | | |
 bankClientId | string | 1..1 | идентификатор клиента
 **Response:** | | |
-card | [CardDTO](#carddto) | 0..1 | массив объектов с информацией о пластиковых картах
 deposits | [DepositDTO](#depositdto) | 0..1 | массив объектов с информацией о депозитах
 creditAccounts | [CreditAccountDTO](#creditaccountdto) | 0..1 | массив объектов с информацией о счетах кредитных карт
 currentAccounts | [CurrentAccountDTO](#currentaccountdto) | 0..1 | массив объектов с информацией о текущих счетах

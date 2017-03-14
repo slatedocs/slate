@@ -8,6 +8,7 @@ key | type | status | comment
 bankClientId | string | 1..1 | идентификатор клиента
 transferCode | string | 1..1 | код перевода
 confirmCode | string | 1..1 | код подтверждения
+filledForm | [FilledFormDTO](#filledformdto) | 1..1 | заполненная форма с данными
 **Response:** | | |
 result | [resultConfirmTransferType](#resultconfirmtransfertype) | 1..1 | результат операции
 message | string | 0..1 | сообщение об ошибке или иное сообщение
