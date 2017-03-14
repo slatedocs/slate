@@ -1183,6 +1183,14 @@ var outcomeId = 5; // 8-outcome categorical market
 var amount = 4;
 var branchId = augur.branches.dev;
 
+augur.getFees(marketId, function (fees) { /* ... */ })
+// example output:
+fees = "0xf4dba088b49b05fd4380c9c00000000"
+
+augur.getGasSubsidy(marketId, function (gasSubsidy) { /* ... */ })
+// example output:
+gasSubsidy = "0x22b1c8c1227a0000"
+
 augur.getLastExpDate(marketId, function (lastExpiration) { /* ... */ })
 // example output:
 lastExpiration = "1608876000000"
@@ -1190,6 +1198,11 @@ lastExpiration = "1608876000000"
 augur.getLastOutcomePrice(marketId, outcomeId, function (lastPrice) { /* ... */ })
 // example output:
 lastPrice = "0x4c9afac0f828000"
+
+var eventIndex = 0;
+augur.getMarketEvent(marketId, eventIndex, function (eventId) { /* ... */ })
+// example output:
+eventId = "-0xa65427afe1fc912e973d8dac2a83487aea5f5707a74c3168afb56e5a95b760ea"
 
 augur.getMarketEvents(marketId, function (marketEvents) { /* ... */ });
 // example output:
@@ -1216,6 +1229,14 @@ augur.getSharesPurchased(marketId, outcomeId, function (sharesPurchased) { /* ..
 // example output:
 sharesPurchased = "32.24854252438022522758"
 
+augur.getSharesValue(marketId, function (sharesValues) { /* ... */ })
+// example output:
+sharesValues = "0x24dce54d34a1a00000"
+
+augur.getTotalSharesPurchased(marketId, function (totalSharesPurchased) { /* ... */ })
+// example output:
+totalSharesPurchased = "2720"
+
 augur.getTradingFee(marketId, function (tradingFee) { /* ... */ });
 // example output:
 tradingFee = "0.00999999999999999999"
@@ -1231,6 +1252,14 @@ winningOutcomes = ["0", "0", "0", "0", "0", "0", "0", "0", "0"]
 ```
 ### [markets contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/markets.se)
 
+#### getFees(market[, callback])
+
+Gets the total fees paid in Wei to the branch by a specified `market`.
+
+#### getGasSubsidy(market[, callback])
+
+Gets the gas subsidy of the specified `market`.
+
 #### getLastExpDate(market[, callback])
 
 Gets the date of expiration of the specified `market`'s last event.
@@ -1238,6 +1267,10 @@ Gets the date of expiration of the specified `market`'s last event.
 #### getLastOutcomePrice(market, outcome[, callback])
 
 Returns the last traded price of a specified `outcome` in a `market`.
+
+#### getMarketEvent(market, eventIndex[, callback])
+
+Returns the event ID for a specified market ID `market` and the index `eventIndex` of the events array for the specified market.
 
 #### getMarketEvents(market[, callback])
 
@@ -1262,6 +1295,14 @@ The number of shares of `outcome` in `market` purchased by the address of the sp
 #### getSharesPurchased(market, outcome[, callback])
 
 The total number of shares purchased (by all traders) of `outcome` in `market`.
+
+#### getSharesValue(market[, callback])
+
+Gets the value of all shares traded on the specified `market`.
+
+#### getTotalSharesPurchased(market[, callback])
+
+Gets the total amount of shares purchased across all outcomes in a specified `market`.
 
 #### getTradingFee(market[, callback])
 
