@@ -96,7 +96,7 @@ You must replace <code>token</code> with your personal authorization token.
 
 ```shell
 curl --request POST \
-  --url https://api.fantasticservices.com/v2/client/resources \
+  --url https://api.fantasticservices.com/v2/client \
   --header 'content-type: application/json' \
   --header 'Authorization: YOUR_AUTH_TOKEN_HERE' \
   --header 'X-Profile: YOUR_PROFILE_ID_HERE' \
@@ -116,7 +116,7 @@ curl --request POST \
 ```
 
 
-All requests to the API are POST `https://{base URL}/{version}/{namespace}/resources` endpoint and contain field `requests` holding array of request objects.
+All requests to the API are POST `https://{base URL}/{version}/{namespace}` endpoint and contain field `requests` holding array of request objects.
 
 ### Request object parameters
 
@@ -190,7 +190,7 @@ Parameter | Type | Description
 
 ```shell
 curl --request POST \
-  --url https://api.fantasticservices.com/v2/client/resources \
+  --url https://api.fantasticservices.com/v2/client \
   --header 'content-type: application/json' \
   --header 'X-Profile: YOUR_PROFILE_ID_HERE' \
   --header 'X-Application: YOUR_APP_TOKEN_HERE' \
@@ -254,7 +254,7 @@ Read data by using `metohd: GET` and specifying `path` to resource you want to a
 
 ```shell
 curl --request POST \
-  --url https://api.fantasticservices.com/v2/client/resources \
+  --url https://api.fantasticservices.com/v2/client \
   --header 'content-type: application/json' \
   --header 'Authorization: YOUR_AUTH_TOKEN_HERE' \
   --header 'X-Profile: YOUR_PROFILE_ID_HERE' \
@@ -314,7 +314,7 @@ If operation is successful created/updated object is returned.
 
 ```shell
 curl --request POST \
-  --url https://api.fantasticservices.com/v2/client/resources \
+  --url https://api.fantasticservices.com/v2/client \
   --header 'content-type: application/json' \
   --header 'Authorization: YOUR_AUTH_TOKEN_HERE' \
   --header 'X-Profile: YOUR_PROFILE_ID_HERE' \
@@ -366,7 +366,7 @@ If object is deleted successfully `"succuess"` is returned.
 
 ```shell
 curl --request POST \
-  --url https://api.fantasticservices.com/v2/client/resources \
+  --url https://api.fantasticservices.com/v2/client \
   --header 'content-type: application/json' \
   --header 'X-Profile: YOUR_PROFILE_ID_HERE' \
   --header 'X-Application: YOUR_APP_TOKEN_HERE' \
