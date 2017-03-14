@@ -1,7 +1,8 @@
 ---
-title: Getting Started - Bonsai
+title: Library Reference - Bonsai
 
 language_tabs:
+  - python
 
 toc_footers:
   - <a href='https://bons.ai/sign-up'>Sign Up for our Private Beta!</a>
@@ -11,7 +12,7 @@ toc_footers:
 
 
 includes:
-  - lib-reference.html.md
+  - library-reference/library-reference.html.md
   
 search: true
 ---
