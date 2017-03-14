@@ -5,7 +5,7 @@
 
 
 <aside class="success">
-  All parameter arguments with white spaces should be escaped with either `+` or `%20` any other non alphanumeric characters or spaces should be escaped according to standard ASCII encoding conventions <a href="https://www.w3schools.com/tags/ref_urlencode.asp">URL Encoding Reference</a>
+  All parameter arguments with white spaces should be encoded with either `+` or `%20` any other non alphanumeric characters or spaces should be encoded according to standard ASCII encoding conventions <a href="https://www.w3schools.com/tags/ref_urlencode.asp">URL Encoding Reference</a>
 </aside>
 
 ## URL Parameters Details
