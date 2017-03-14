@@ -1465,11 +1465,6 @@ augur.getTotalRep(branchId, function (totalRep) { /* ... */ });
 // example output:
 totalRep = "1796"
 
-var ballot = ["1", "2", "1", "1.5", "1", "1.5", "2", "1", "1", "1.5", "1", "1"];
-var salt = "0xbd352b6e2858ba27d8b7639afd2e34954803338e0e54cae7dcdf93f97f315225";
-hashReport(ballot, salt, function (reportHash) { /* ... */ });
-// example output:
-reportHash = "-0x4480ed40f94e2cb2ca244eb862df2d350300904a96039eb53cba0e34b8ace90a"
 ```
 ### [reporting contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/reporting.se)
 #### getRepBalance(branch, address[, callback])
