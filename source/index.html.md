@@ -74,6 +74,8 @@ More examples will be available soon.
 
 <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/delete_request.py" target="blank">DELETE example</a> for deleting a specific instance
 
+<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/create_run_attachmnets.py" target="blank">POST example (with attachments)</a> for uploading test results to PractiTest with files
+
 
 
 ## Ruby
@@ -100,6 +102,7 @@ More examples will be available soon.
 
 <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/java/src/main/java/com/practitest/examples/DeleteRequest.java" target="blank">DELETE example</a> for deleting a specific instance
 
+<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/java/src/main/java/com/practitest/examples/RunWithAttachments.java" target="blank">POST example (with attachments)</a> for uploading test results to PractiTest with files
 
 
 ## C sharp (.Net)
