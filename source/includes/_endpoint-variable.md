@@ -646,6 +646,12 @@ so include the URL of another variable (currently existing on the dataset) on
 the payload with an empty tuple and such variable will be converted into a
 subvariable and added at the end.
 
+In the case of derived arrays, an attempt to PATCH this catalog will return a
+405 response. This is because the list of subvariables for this array is
+a function of its derivation expression. The correct way to make modifications
+to derived arrays' subvariables is by editing its `derivation` attribute with 
+the desired expressions for each of them.
+
 #### Values
 
 `/datasets/{id}/variables/{id}/values/{?start,total,filter}`
