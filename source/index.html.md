@@ -1,5 +1,5 @@
 ---
-title: PractiTest's REST API
+title: PractiTest API V2
 
 language_tabs:
   - curl examples - see 'Code examples' to your left
