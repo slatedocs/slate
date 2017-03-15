@@ -10,7 +10,7 @@
 
 ## URL Parameters Details
 ```
-https://www.sendle.com/dashboard/prepare_form?pickup_date=2017%2D04%2D03&customer_reference=Flower+Delivery&kilogram_weight=1&cubic_metre_volume=1&receiver_name=Oscar+Wilde&delivery_address_line1=2+Smith+Lane&delivery_address_suburb=Sydney&delivery_address_state_name=NSW&delivery_address_postcode=2000
+https://www.sendle.com/dashboard/prepare_form?pickup_date=2017%2D04%2D03&customer_reference=Flower+Delivery&kilogram_weight=1&cubic_metre_volume=1&receiver_name=Oscar+Wilde&delivery_address_line1=2+Smith+Lane&delivery_address_suburb=Sydney&delivery_address_state=NSW&delivery_address_postcode=2000
 ```
 
 | Data Field | Attributes |
@@ -38,7 +38,7 @@ https://www.sendle.com/dashboard/prepare_form?pickup_date=2017%2D04%2D03&custome
 **delivery_address_line2** <div class="optional">optional</div> | Second line of the street address for the delivery location.
 **delivery_address_suburb** <div class="optional">optional</div> | Suburb or town where the parcel is to be delivered.
 **delivery_address_postcode** <div class="optional">optional</div> | Postcode of destination location.  It must be a four digits.
-**delivery_address_state_name** <div class="optional">optional</div> | Must be the destination location's state or territory.  Valid options include: ACT, NSW, NT, QLD, SA, TAS, VIC, WA.  Long-form (i.e. "Northern Territory") is also accepted.
+**delivery_address_state** <div class="optional">optional</div> | Must be the destination location's state or territory.  Valid options include: ACT, NSW, NT, QLD, SA, TAS, VIC, WA.  Long-form (i.e. "Northern Territory") is also accepted.
 **delivery_address_country** <div class="optional">optional</div> | Sendle only works within Australia. If absent, Sendle assumes orders are in Australia. It must be under 255 characters in length.  If included, must read "Australia"
 
 <aside class="success">For more information about <strong>kilogram weight</strong> and <strong>cubic metre volume</strong> check out <a href="#weights-and-dimensions"><strong>Weights and Dimensions.</strong></a></aside>
