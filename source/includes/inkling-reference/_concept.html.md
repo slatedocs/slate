@@ -17,33 +17,36 @@ A concept statement describes what the computer will learn. It can be a feature 
 
 ### How Do I Use It?
 
-A typical concept statement is shown to the right:
+A typical concept statement is shown to the right. Its structure and keywords
+are explained below.
 
 ```inkling
 concept conceptName
-  is (classifier | estimator)
+  is classifier                 # or 'is estimator'
   predicts (outputSchema)
   follows preceedingConcept1, input(schemaName)
   feeds output, subsequentconcept
 end
 ```
-
 ## Concept Rules
 
 * The concept must be named after the `concept` keyword.
 * The `is` keyword specifies the kind of prediction the trained concept will produce. For example, a concept can specify is classifier. This means that the trained concept will categorize its input. Email, for example, can be classified as spam or not spam. Another option with this keyword is estimator.
 * The concept must declare an output schema after `predicts`. The output schema describes the data produced by the trained concept. For example if this concept classifies email into spam and not spam, the output schema for the concept would be a Bool. The output schema can be a named schema, where the name refers to a full schema definition elsewhere, or it can be anonymous, which is a parenthesized list of name, type pairs. See the section on schema declarations for more information.
 * A trained concept gets input from streams or (if multiple concepts are used) from another concept. Input (the keyword) refers to the stream that is the original input to the system. All data flowing through the system has a schema associated with it. In some cases this is calculated rather than explicit.
-* If the input keyword appears in the `follows` list, it means that the input stream flowing into this concept comes from outside the BRAIN. The input keyword must always be accompanied by a schema (named or anonymous) because the data stream originates outside the Brain; if no schema was present, data types and formats being input would be unknown.
+* If the `input` keyword appears in the `follows` list, it means that the input stream flowing into this concept comes from outside the BRAIN. The `input` keyword must always be accompanied by a schema (named or anonymous) because the data stream originates outside the Brain; if no schema was present, data types and formats being input would be unknown.
 * The `feeds` list is a list of concepts and streams (including the predefined output stream) for which this concept's output is a source.
-* The input keyword cannot not appear in the feeds list and the output keyword cannot appear in the follows list.
+* The `input` keyword cannot not appear in the feeds list and the `output` keyword cannot appear in the follows list.
 * The concept statement is terminated by the `end` keyword.
 
 ## Concept Statement Syntax
 
-> conceptStmt :=
+Click the Syntax tab to show syntax for the concept statement and its input
+sources and output targets.
 
-```c
+
+```plaintext
+conceptStatement :=
 concept
   is [ classifier | estimator ]
   predicts ( schemaRef )
@@ -57,23 +60,23 @@ concept
 
   ]?
 end
-```
 
-> inputSrc :=
+inputSource ::=
+    input '(' schemaRef? ')'
+  | <name>       # name of a concept or stream
 
-```c
-  input '(' schemaRef? ')' |  <name> // concept or stream name
-```
-
-> outputTarget :=
-
-```c
-  output | <name>                    // concept or stream name
+outputTarget ::=
+    output
+ |  <name>       # name of a concept or stream
 ```
 
 ## Concept Examples
 
-> Concept get_high_score:
+We show Inkling for the concepts get_high_score, Digit, Curvature, and Segments. 
+
+Click the Inkling tab to display the Inklng source. 
+
+### get_high_score
 
 ```inkling
 concept get_high_score
@@ -84,21 +87,17 @@ concept get_high_score
 end
 ```
 
-### Get High Score
 
 In this example:
 
 * `conceptName`: get_high_score
 * `class`: classifier
-* `outputSchema`: PlayerMove
+* `predicts`: PlayerMove
 * `input(schemaName)`: input(GameState)
 * `dependent`: output
 
+
 ### Digit
-
-Our concepts are Digit, Curvature, and Segments. In this example:
-
-> Concept Digit:
 
 ```inkling
 concept Digit
@@ -108,17 +107,19 @@ concept Digit
 end
 ```
 
-### Digit
+In this example:
+
 * `conceptName`: Digit
 * `kind`: classifier
 * `predicts`: MNIST_output
 * `follows`
 * `Curvature`: a concept
 * `Segments`: another concept
-* `input(MNIST_input)`: The input keyword indicates the predefined input    stream with data formats defined by schema MNIST_input.
+* `input(MNIST_input)`: The `input` keyword indicates the predefined input    stream with data formats defined by schema MNIST_input.
 * `feeds:` output
 
-> Concept Curvature:
+
+### Curvature
 
 ```inkling
 concept Curvature
@@ -128,14 +129,15 @@ concept Curvature
 end
 ```
 
-### Curvature
+In this example:
+
 * `conceptName`: Curvature
 * `kind`: classifier
 * `predicts`: curve_output
 * `follows`:
-* `input(MNIST_input)`: The input keyword indicates the predefined input    stream with data formats defined by schema MNIST_input.
+* `input(MNIST_input)`: The `input` keyword indicates the predefined input    stream with data formats defined by schema MNIST_input.
 
-> Concept Segments
+### Segments
 
 ```inkling
 concept Segments
@@ -145,9 +147,8 @@ concept Segments
 end
 ```
 
-### Segments
 * `conceptName`: Segments
 * `kind`: classifier
 * `predicts`: segments_output
 * `follows`:
-* `input(MNIST_input)`: The input keyword indicates the predefined input    stream with data formats defined by schema MNIST_input.
+* `input(MNIST_input)`: The `input` keyword indicates the predefined input    stream with data formats defined by schema MNIST_input.

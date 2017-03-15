@@ -1,18 +1,23 @@
 # Schema
 
-Reference for the keyword **schema**. Also definitions and discussion of Inkling types and type constraints (which are both used in schema declarations).
+This is the reference for the keyword **schema**. Also covered are the
+definitions and uses of Inkling types, including type constraints.  These are used in schema declarations.
 
 ### What is it?
 
-**schema** (the keyword) describes a named record and its contained fields. Each field in a schema has a name and a type. A field may also have a type constraint that constrains the values that the datum described by this field will take.
+In Inkling a **schema** describes a named record and its contained fields. Each field in a schema has a name and a type. A field may also have a type constraint that constrains the values that the datum described by this field will take.
 
 ### Why do I use it?
 
-Schemas describe the structure of data in Inkling  streams, such as the predefined input and output streams. In addition, many Inkling statements (for example `concept` and `curriculum` use schema references to describe the data that flows in and out of the construct.
+Schemas describe the structure of data in Inkling  streams, such as the
+predefined input and output streams. In addition, many Inkling statements (for
+example `concept` and `curriculum`) use schema references to describe the data that flows in and out of the construct.
 
 ### How do I use it?
 
-A sample schema declaration and use is shown to the right.
+A sample schema declaration and an example of its use is shown to the right.
+Note that a schema reference can be anonymous. That means a list of name, type
+pairs appears where a schema name could appear.
 
 ```inkling
 schema MySchema                   # declare
@@ -37,69 +42,72 @@ end
 
 ## Schema Declaration Syntax
 
-> schemaStmt :=
+The schema declaration syntax appears to the right.
 
-```c
-schema <name>
-  fieldDclnList
-end
-```
+In the syntax you will see references to Inkling primitive types and structure types
+(Luminance, Matrix). These are discussed in in the Inkling Types section below. 
 
-> fieldDclnList      :=
+```plaintext
+schemaStatement ::=
+  schema <schemaName>
+    fieldDeclarationList
+  end
 
-```c
-fieldDcln [',' fieldDcln  ]*
-```
+fieldDeclarationList ::=
+   fieldDeclaration 
+   [',' fieldDeclaration  ]*
 
-> fieldDcln          :=
+fieldDeclaration  ::=  
+  scalarDeclaration   
+  | 
+  structureDeclaration 
 
-```c
-scalarDcln                          |
-  structureDcln // see structured types
-```
+scalarDeclaration  ::=   
+  concreteType rangeExpression?  
+    <name> [ '[' arraySizeLiteral ']' ]* 
 
-> scalarDcln         :=
+structureDeclaration ::= 
+  structure_type structure_init 
+    <name> [ '[' arraySizeLiteral ']' ]*
 
-```c
-primitiveType
-typeConstraint?
-<name>
-[ '[' arraySizeLiteral ']' ]*
+structure_type ::= 
+  Luminance | Matrix
+
+structure_init:= 
+  '(' 
+      luminance_init 
+   | 
+      matrix_init 
+  ')'
+
+luminance_init ::=  
+  integerLiteral ',' integerLiteral 
+
+matrix_init ::= 
+  '(' concreteType 
+      [ ',' concretetype ]* 
+   ')' 
+
+scalarDeclaration ::=
+  primitiveType typeConstraint?
+    <name> [ '[' arraySizeLiteral ']' ]*
 ```
 ‍
 ## Schema Reference Syntax
 
 A named schema is referenced by its name. An anonymous schema is referenced by its list of fields.
 
->  schemaRef :=
 
-```c
-  '(' <name> ')'   // named schema ref
-|
-  '(' <fieldDclnList>  ')'  // anonymous schema ref
+```plaintext
+schemaReference ::=
+  '(' <name> ')'                  # named reference
+  | 
+  '(' <fieldDeclarationList> ')'  # anonymous reference
 ```
 
-## Schema Examples
+## Schema Example
 
-* **Int64  { 0:4:1 }** is invalid. The step size is larger than the range.
-* **Int64  { 0..1:4 }** is invalid. Values generated are floating point not integer.
-* **Float32{-1..1:10 }** is valid. Negative bounds allowed.
-* **Int8 {0:-4:-100}** is valid. stop  < start is valid if and only if step is negative.
-* **UInt32 {-10:10}** is invalid. Unsigned integer range contains signed values.
-
-For numeric ranges the start point is inclusive (it is included in the values of the range) and fixed. The end point may or may not be included in the values of the range. If you land on it exactly it is in the range. If you don't land on it exactly it is not in the range.
-
-For example:
-
-> Int8 { 0:3:10} gives you (0, 3, 6, 9).
-
-Note that the specification of 10 as the stop is not an error (because it is a limit, not necessarily an endpoint).
-
-The range stop must be reachable from the range start by applying the step. (The range must be bounded.) The step is optional. If it is not specified the default value is 1. The step can be negative.
-
-The range start is exact (to the maximum extent possible if the range expression type is floating point). The range end is a limit. That means that if applying the step results in landing exactly on the end point, then the end point is part of the range. Otherwise the highest value landed on that is less than the end point is the final value in the range.
-
-This example shows a schema that has a field with a primitive type and a field with a structured type.
+Click the Inkling tab to show a schema that has a field with a primitive type and a field with a structured type.
 
 ```inkling
 schema MNIST_training_data_schema
@@ -112,97 +120,140 @@ end
 
 ###### Primitive Types
 
-Inkling has a set of primitive types which are used in schema declarations. The integer suffix indicates the size in bits of the type.
+Click the syntax tab to show the Inkling set of primitive types which are used in schema declarations. The
+integer suffix indicates the size in bits of the type. Integer types beginning
+with 'U' are unsigned. 
 
-> primitiveType :=
 
-```c
-Double | Float64 | Float32 | Int8 | Int16 | Int32 |
-Int64 | UInt8 | UInt16 | UInt32  | UInt64 | Bool | String
+```plaintext
+primitiveType ::=
+  Double | Float64 | Float32 | Int8 | Int16 | Int32 |
+  Int64 | UInt8 | UInt16 | UInt32  | UInt64 | Bool | String
 ```
 
 ###### Structured Types
 
-Inkling supports the types Matrix and Luminance (more to come).
+Inkling currently supports the types Matrix and Luminance. This list will be
+expanded.
 
-> structureDcln      :=
+See the schema declaration syntax for the complete syntax of declaration.
 
-```c
-( Luminance | Matrix )
-  structureInit
-  <name>
-```
-
-
-> structureInit      :=
-
-```c
-'('
-
-luminanceInit | matrixInit
-
-')'
-```
-
-> luminanceInit      :=
-
-```c
-integerLiteral  ',' integerLiteral
-
-matrixInit         :=
- '(' concreteType
-  [ ',' concretetype ]*
- ')'
-
-',' integerLiteral [ ',' integerLiteral]*
+```plaintext
+structure_type ::= 
+  Luminance | Matrix
 ```
 ‍
 ###### Constrained Types
 
 Constrained types are supported in schemas and also in [lessons][1]. They are constrained by means of a special type of expression called a range expression.
 
+```inkling
+  # Example: Range expression
+
+  schema Schema1
+    Int8 {0:3:10} field   # start:step:stop
+  end
+ 
+ # Curly braces delineate the range expression.
+ # The values in this range are: (0, 3, 6, 9).
+ # Note that the specification of 10 as the stop does not mean
+ # 10 must be in the range (because it is a limit, not 
+ # necessarily an endpoint).
+```
+
 A range expression has the effect of constraining the values of the type to values defined by the range expression. In a schema this constrains the values in the field. In lessons this constrains the values of the placeholder being configured. In both cases the syntax is the same.
 
-> Here are some examples of this syntax in a schema definition. Curly braces delineate the range expression.
-
-```inkling
-schema MyOutput
-  UInt8  {0,1,2,3,4}   label,    # a list of UInt8 values
-  String {"a", "bc"}   category, # a list of Strings
-  Int64  { 0:5:100 }   x,        # start:step:stop, step= 5,0..100
-  Int64  { 0:100 }     y,        # start:stop, step= 1, 0..100
-  Int64  { 0..100:25 } z,        # start:stop, numsteps=25, step= 4, 0..100
-  Float32 { 0..2:5}    a         # gives (0, .5., 1.0, 1.5, 2.0)
-end
-```
-‍
-
-### Constrained Type Rules
-
-For numeric ranges:
-
-* For colon range, step can be  a floating point number.
-* For colon range, the step size can be negative only if stop < start.
-* For dot range, number of steps (numSteps) is a positive integer.
+Select the Inkling tab to see an example of a constrained type in a schema definition. 
 
 ### Constrained Type Syntax
 
-> constrainedType :=
+Select the Syntax tab to view the constrained type syntax.
 
-```c
-numericType
+```plaintext
+constrainedType ::=
+primitiveType
 '{'
-  start ':' [ step':']? stop // 1:2:10.   Called a 'colon range'. Specifies 'step' (default=1).
+  start ':' [ step':']? stop      # A 'colon range'. Specifies 'step' 
   |
-  start '.' '.' stop ':' numSteps //   1..10:5  Called a 'dot range'. Specifies 'numsteps'.
+  start '.' '.' stop ':' numSteps # A 'dot range'. Specifies 'numsteps'.
 '}'
 ```
 
-> numericType :=
+‍
 
-```c
-Double | Float64 | Float32 | Int8 | Int16 | Int32 |  Int64 | UInt8 | UInt16 | UInt32  | UInt64
+###### Range Expression Rules
+
+There are three forms of range expressions which Inkling supports. 
+Select the Inkling tab to see an examples of each type.
+
+* **Value list range expression**
+
+```inkling
+# Example: Value list range expression
+
+schema Schema2
+  UInt8  {0,1,2,3,4}   num, # a set of UInt8 values
+  String {"a", "bc"}   cat  # a set of Strings
+end
 ```
+
+A value list range expression is simply a list of values.
+These range expressions specify sets of values in 
+which each value is explicitly listed.
+
+* **Colon range expression**
+
+```inkling
+# Example: Range expression, colon range type
+schema Schema3
+  Int64  { 0:5:100 }   x,   # start:step:stop, step= 5,0..100
+  Int64  { 0:100 }     y    # start:stop, step= 1, 0..100
+end
+```
+
+Colon range expressions specify values for the start, 
+the step, and the stop. 
+
+* If the step value is missing, 1 is the default. 
+* Step can be  a floating point number.
+* The step size can be negative only if stop < start.
+
+* **Dot range expression**
+
+```inkling
+# Example: Range expression, dot range type
+schema Schema4
+  Int64  { 0..100:25 } z,   # start:stop, numsteps=25
+  Float32 { 0..2:5}    a    # yields (0, .5., 1.0, 1.5, 2.0)
+end
+```
+
+Dot range expressions specify values for start, stop, and number of steps. 
+
+* The number of steps (numSteps) must be a positive integer.
+
+* **Numeric Range Expression Start Point**
+
+The start point of a numeric range is inclusive (it is included in the values of the range) and fixed. 
+The range start point is exact (to the maximum extent possible if the range expression type is floating point). 
+
+* **Numeric Range Expression End Point**
+
+The end point specified in the range expression may or may not be included in the values of the range. 
+The range end is a limit. That means that if applying the step results in landing exactly on the end point, then the end point is part of the range. Otherwise the highest value landed on that is less than the end point is the final value in the range.
+
+Select the Inkling tab to view some examples of valid and invalid ranges.
+
+```inkling
+ # Valid and Invalid Range Expressions.
+
+ Int64  { 0:4:1 }  field1,  # INVALID. step size > range.
+ Int64  { 0..1:4 } field2,  # INVALID. Values are floating point not integer.
+ Float32{-1..1:10 } field3, # VALID.   Negative bounds allowed.
+ Int8 {0:-4:-100} field4,   # VALID.   stop  < start is valid if step is negative.
+ UInt32 {-10:10}  field4    # INVALID. Unsigned integer range contains signed values.
+```
+
 
 ‍
 

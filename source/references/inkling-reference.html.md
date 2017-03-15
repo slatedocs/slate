@@ -2,6 +2,8 @@
 title: Inkling Reference - Bonsai
 
 language_tabs:
+  - inkling: Inkling
+  - plaintext: Syntax
 
 toc_footers:
   - <a href='https://bons.ai/sign-up'>Sign Up for our Private Beta!</a>
