@@ -58,8 +58,6 @@ crGET("https://app.crunch.io/api/datasets/")
             "permissions": {
                 "edit": false,
                 "change_permissions": false,
-                "add_users": false,
-                "change_weight": false,
                 "view": true
             },
             "size": {
@@ -84,8 +82,6 @@ crGET("https://app.crunch.io/api/datasets/")
             "permissions": {
                 "edit": true,
                 "change_permissions": true,
-                "add_users": true,
-                "change_weight":true,
                 "view": true
             },
             "size": {
@@ -723,9 +719,7 @@ GET returns a Shoji View of available dataset export formats.
 }
 ```
 
-A POST request on any of the export views will return 202 status with a `shoji:view`,
-containing an attribute `url` pointing to the location of the exported file to
-be downloaded; GET that URL to download the file.
+A POST request on any of the export views will return 202 status with a Progress response in the body and a Location header pointing to the location of the exported file to be downloaded. Poll the progress URL for status on the completion of the export. When complete, GET the Location URL from the original response to download the file.
 
 
 ```http
@@ -777,15 +771,14 @@ The following rules apply for all formats:
 
 Some format-specific properties and options:
 
-Format    | Attribute           | Description                                                           | Example
---------- | --------------------| --------------------------------------------------------------------- | --------------------------
-csv       | use_category_ids    | instead of category names export the fields as their numeric ids      | {"use_category_ids": true}
-spss      | var_label_field     | Use the variable's name/description as SPSS variable label            | {"var_label_field": "name"}
-spss      | prefix_subvariables | When True, will only export subvariables and not group them as arrays | {"prefix_subvariables": true}
-all       | include_personal    | Will include the user's personal variables on the exported file       | {"include_personal": true}
-
-For both types of responses, the "location" header is set to the location for the download, whether completed or not.  Besides
- looking for a 100 percent completion with progress requests, the user may also look for a non-404 response on this location.
+Format    | Attribute           | Description                                                                         | Default
+--------- | --------------------| ----------------------------------------------------------------------------------- | --------------------------
+csv       | use_category_ids    | Export categorical data as its numeric IDs instead of category names?                    | false
+csv       | missing_values      | If present, will use the specified string to indicate missing values. If omitted, will use the missing reason strings   | _omitted_
+csv       | header_field        | Use the variable's alias/name/description in the CSV header row,  or `null` for no header row          | "alias"
+spss      | var_label_field     | Use the variable's name/description as SPSS variable label                          | "description"
+spss      | prefix_subvariables | Prefix subvariable labels with the parent array variable's label?            | false
+all       | include_personal    | Include the user's personal variables in the exported file?                     | false
 
 ###### SPSS
 
@@ -798,8 +791,21 @@ To pick which variable field to use on the `label` field on the SPSS variables, 
 
 ###### CSV
 
-Categorical variable values will be exported as the category name by default.
-To use the category ids as data values, include `"use_category_ids": true` in the `"options"` attribute of the POST body.
+By default, categorical variable values will be exported using the category name 
+and missing values will use their corresponding reason string for all variables.
+
+The missing values will be exported with their configured missing reason in
+the CSV file. If specified on the `missing_values` export option, then all
+missing values on all columns will use such string instead of the reason.
+
+To control the output of the header row, use the `header_field` option. Valid values for this option are:
+
+ * alias (default)
+ * name
+ * description
+ * `null` - Sending `null` will make the resulting CSV without a header row.
+
+Refer to the options described on the table above for the `csv` format to change this behavior.
 
 ##### Summary
 
@@ -881,6 +887,7 @@ can have.
     "body": {
         "viewers_can_export": false,
         "viewers_can_change_weight": false,
+        "viewers_can_share": true,
         "weight": "https://app.crunch.io/api/datasets/223fd4/variables/123456/"
     }
 }
@@ -895,6 +902,7 @@ Setting | Description
 --------|------------
 viewers_can_export | When false, only editor can export; else, all users with view access can export the data
 viewers_can_change_weight | When true, all users with access can set their own personal weight; else, the editor configured `weight` will be applied to all without option to change
+viewers_can_share | When true, all users with access can share the dataset with other users or teams; Defaults to `True`
 weight | Default initial weight for all new users on this dataset, and when `viewers_can_change_weight` is false, this variable will be the always-applied weight for all viewers of the dataset.
 
 

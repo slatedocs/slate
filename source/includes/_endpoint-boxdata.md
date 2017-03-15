@@ -115,18 +115,17 @@ where | A Crunch expression indicating which variables to include in the CrunchB
     "body": {
         "where": {
             "function": "select",
-            "args": [{"map": {"000002": 
-                        {"variable": "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/variables/000002/"},
-                              "000003":
-                        {"variable": "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/variables/000003/"}
-                        }
-                    }]
+            "args": [{
+                "map": {
+                  "000002": {"variable": "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/variables/000002/"},
+                  "000003": {"variable": "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/variables/000003/"}
                 }
-            ]
+            }]
         },
-        "filters": [{"filter": "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/filters/da9d86e43381443d9d708dc29c0c6308/"},
-                    {"filter": "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/filters/80638457c8bd4731990eebdc3baee839/"}
-                    ],
+        "filters": [
+          {"filter": "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/filters/da9d86e43381443d9d708dc29c0c6308/"},
+          {"filter": "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/filters/80638457c8bd4731990eebdc3baee839/"}
+        ],
         "force": false,
         "title": "z and str",
         "notes": "just a couple of variables",
@@ -134,3 +133,56 @@ where | A Crunch expression indicating which variables to include in the CrunchB
         "footer": "This is for the footer"
     }
 }
+```
+
+### Entity
+
+`/datasets/{id}/boxdata/{id}/`
+
+This endpoint represents each of the boxdata entities listed in the catalog.
+
+The body of any of the entities is the same as the catalog's tuple:
+
+#### GET
+
+Returns the body of the boxdata entity
+
+```json
+{
+    "user_id": "00002",
+    "footer": "This is for the footer",
+    "notes": "just a couple of variables",
+    "title": "z and str",
+    "dataset": "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/",
+    "header": "This is for the header",
+    "filters": {
+        "function": "identify",
+        "args": [
+            {
+                "filter": [
+                    "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/filters/da9d86e43381443d9d708dc29c0c6308/",
+                    "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/filters/80638457c8bd4731990eebdc3baee839/"
+                ]
+            }
+        ]
+    },
+    "where": {
+        "function": "identify",
+        "args": [
+            {
+                "id": [
+                    "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/variables/000002/",
+                    "https://beta.crunch.io/api/datasets/e7834a8b5aa84c50bcb868fc3b44fd22/variables/000003/"
+                ]
+            }
+        ]
+    },
+    "id": "44a4d477d70c85da4b8298677e527ad8"
+}
+```
+
+#### DELETE
+
+Deletes the boxdata entity. Returns 204.
+
+

@@ -18,7 +18,6 @@ The permissions catalog is a Shoji Catalog that collects (not contains) Users. T
             "dataset_permissions": {
                 "edit": true,
                 "change_permissions": true,
-                "add_users": true,
                 "view": true
             },
             "is_owner": true,
@@ -44,7 +43,6 @@ Supported `dataset_permissions`, all boolean, are:
 
 * **view**: Whether the user can view the dataset. Note that "viewing" is not limited to just GET requests, for dataset viewers may create filters, private variables, and saved analyses, for example.
 * **edit**: Whether the user can edit the dataset. When editing, users with this permission may modify the common data of a dataset, including things like public filters available to all viewers of the dataset.
-* **add_users**: Whether the user may share this dataset with others. Specifically, they may PATCH the catalog with references to users not already included in the catalog.
 * **change_permissions**: Whether the user may alter other users' authorization on this dataset, i.e., PATCH tuples for users that already exist on the catalog.
 
 ### PATCH Catalog
@@ -138,7 +136,7 @@ It is possible to share a dataset with people that are not users of Crunch yet. 
             "view": true
         },
         "profile": {
-            "weight":, 
+            "weight": null, 
             "applied_filters": []
         }
     },
