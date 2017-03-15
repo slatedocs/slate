@@ -12,10 +12,13 @@ process is repeated until training stops.  At any time the AI engine may stop,
 reconfigure and reset the simulator.  After doing so it will either restart
 this training loop or stop training.
 
+
 ## Simulator
 
 This class provides an interface for the event handling and responses required
-to connect a simulator with the AI Engine.
+to connect a simulator with the AI Engine.  Any methods added to classes that
+inherit from `bonsai.Simulator` that are not specified below are eligible
+objectives (i.e. reward functions).
 
 
 ### start()
@@ -63,6 +66,14 @@ defined in an Inkling `simulator` statement within an inkling program.
 is_terminal is only true when the simulator is in a "game over" state. Any
 cleanup of the is_terminal state should be handled by advance or get_state.
 
+
+### objectives (reward functions)
+
+Any methods added to this class that are not named with one of the above
+method names are eligible to be called as a reward function.  To be called,
+the name of the function specified in an Inkling `lesson` must match the name
+of the method.  Reward functions specified in Inkling but not implemented on a
+`Simulator` class will result in an error.
 
 ## SimState
 
