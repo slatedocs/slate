@@ -1454,7 +1454,7 @@ augur.getDormantRepByIndex(branchId, repIndex, function (dormantRep) { /* ... */
 dormantRep = "0"
 
 augur.getFork(branchId, function (fork) { /* ... */ })
-// exmaple output:
+// example output:
 fork = "0xe58a0"
 
 augur.getRepBalance(branchId, address, function (repBalance) { /* ... */ });
@@ -1552,6 +1552,84 @@ isValid = "1"
 #### checkReportValidity(branch, report, reportPeriod[, callback])
 
 Validates `report` made on `branch` for `reportPeriod`.  A valid report is the correct length, is made before 2 reporting periods have elapsed, and is created by a valid reporting address.  Returns 1 if valid, -1 if invalid because the report is the wrong length (i.e., doesn't match the number of events being reported on), or -2 if invalid for another reason.
+
+```javascript
+// backstops contract
+var branchId = augur.branches.dev;
+var eventId = "-0xd0dbd235c8de8cccd7d8ef96b460c7dc2d19539fb45778f7897c412d4c0a3683";
+augur.getBondAmount(eventId, function (bondAmount) { /* ... */ })
+// example output:
+bondAmount = "0x214e8348c4f00000"
+
+augur.getBondPaid(eventId, function (bondPaid) { /* ... */ })
+// example output:
+bondPaid = "0x214e8348c4f00000"
+
+augur.getBondPoster(eventId, function (bondPoster) { /* ... */ })
+// example output:
+bondPoster = "0x72ba02adc3c8c4aa67cd92fecf77a2cdf79eb34d"
+
+augur.getBondReturned(eventId, function (bondReturned) { /* ... */ })
+// example output:
+bondReturned = "0x0000000000000000000000000000000000000000000000000000000000000001"
+
+augur.getDisputedOverEthics(eventId, function (disputedOverEthics) { /* ... */ })
+// example output:
+disputedOverEthics = "0x0000000000000000000000000000000000000000000000000000000000000001"
+
+augur.getFinal(eventId, function (isFinal) { /* ... */ })
+// example output:
+isFinal = "0x0000000000000000000000000000000000000000000000000000000000000001"
+
+augur.getForkBondPaid(eventId, function (forkBondPaid) { /* ... */ })
+// example output:
+forkBondPaid = "0x24150e3980040000"
+
+augur.getForkBondPoster(eventId, function (forkBondPoster) { /* ... */ })
+// example output:
+forkBondPoster = "0xb0368caf8e89da60d9c9a23592d3508f562a88ab"
+
+augur.getForkedOverEthicality(eventId, function (forkedOverEthics) { /* ... */ })
+// example output:
+forkedOverEthics = "0x0000000000000000000000000000000000000000000000000000000000000001"
+
+```
+### [backstops contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/backstops.se)
+#### getBondAmount(event[, callback])
+
+Returns the amount of the bond for a specified event ID `event`.
+
+#### getBondPaid(event[, callback])
+
+Gets the amount of the bond that has been paid back for a specified event ID `event`.
+
+#### getBondPoster(event[, callback])
+
+Gets the address of the poster of the bond for a specified event ID `event`.
+
+#### getBondReturned(event[, callback])
+
+Gets wether a round 2 bond has been returned or not given a specified event ID `event`.
+
+#### getDisputedOverEthics(event[, callback])
+
+Gets wether a specified event ID `event` was disputed over ethicality.
+
+#### getFinal(event[, callback])
+
+Gets wether the specified event ID `event` is final.
+
+#### getForkBondPaid(eventId[, callback])
+
+Gets the amount of the bond paid to fork on the specified event ID `event`.
+
+#### getForkBondPoster(eventId[, callback])
+
+Gets the address of the poster of the fork bond given a specified event ID `event`.
+
+#### getForkedOverEthicality(eventId[, callback])
+
+Gets wether a specified event ID `event` was forked over ethicality.
 
 Transaction API
 ---------------
