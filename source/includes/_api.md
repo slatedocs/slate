@@ -1593,6 +1593,35 @@ augur.getForkedOverEthicality(eventId, function (forkedOverEthics) { /* ... */ }
 // example output:
 forkedOverEthics = "0x0000000000000000000000000000000000000000000000000000000000000001"
 
+augur.getMoved(eventId, function (moved) { /* ... */ })
+// example output:
+moved = "0x0000000000000000000000000000000000000000000000000000000000000000"
+
+augur.getOriginalBranch(eventId, function (originalBranch) { /* ... */ })
+// example output:
+originalBranch = "0xf59b5"
+
+augur.getOriginalEthicality(eventId, function (originalEthicality) { /* ... */ })
+// example output:
+originalEthicality = "0x0000000000000000000000000000000000000000000000000000000000000001"
+
+augur.getOriginalOutcome(eventId, function (originalOutcome) { /* ... */ })
+// example output:
+originalOutcome = "1"
+
+augur.getOriginalVotePeriod(eventId, function (originalVotePeriod) { /* ... */ })
+// example output:
+originalVotePeriod = "8766"
+
+var forkPeriod = 8766;
+augur.getResolved(branchId, forkPeriod, function (resolved) { /* ... */ })
+// example output:
+resolved = "0xf59b5"
+
+augur.getRoundTwo(eventId, function (roundTwo) { /* ... */ })
+// example output:
+roundTwo = "0x0000000000000000000000000000000000000000000000000000000000000001"
+
 ```
 ### [backstops contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/backstops.se)
 #### getBondAmount(event[, callback])
@@ -1630,6 +1659,34 @@ Gets the address of the poster of the fork bond given a specified event ID `even
 #### getForkedOverEthicality(eventId[, callback])
 
 Gets wether a specified event ID `event` was forked over ethicality.
+
+#### getMoved(eventId[, callback])
+
+Returns wether the event ID `event` has been moved or not.
+
+#### getOriginalBranch(eventId[, callback])
+
+Returns the original branch of the specified event ID `event`.
+
+#### getOriginalEthicality(eventId[, callback])
+
+Gets the original ethicality of the specified event ID `event`.
+
+#### getOriginalOutcome(eventId[, callback])
+
+Gets the original outcome of the specified event ID `event`.
+
+#### getOriginalVotePeriod(eventId[, callback])
+
+Gets the original vote period of the specified event ID `event`.
+
+#### getResolved(branchId, forkPeriod[, callback])
+
+Gets the resolved branch given a specified `branchId` and `forkPeriod`.
+
+#### getRoundTwo(eventId[, callback])
+
+Gets wether the event ID `event` is a round two event or not.
 
 Transaction API
 ---------------
