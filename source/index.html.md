@@ -534,7 +534,7 @@ Parameter | Type | Description
 `phone`<br>*required* | *integer* | User's phone number validated for the region (UK/AUS/USA etc.)
 `email`<br>*required* | *string* | User's email with validated structure (e.g. xxxx@xxx.xxx)
 `referral_code`<br>*optional* | *string* | Referral code from another user
-`social`<br>*optional* | *[object](#login)* | Social login attributes. Same are used for login.
+`social`<br>*optional* | *[object](#login)* | Social login attributes. Same are used for login (check <b>Facebook login request parameters</b>).
 `type_id`<br>*optional* | *integer* | Type of registration`id`.<br><br>*<b>1</b> - Generic (register form)*<br>*<b>2</b> - Social (Facebook)*<br>*<b>3</b> - Anonymous*
 
 
