@@ -362,6 +362,97 @@ If object is deleted successfully `"succuess"` is returned.
 
 # Account
 
+## Login
+
+
+```shell
+curl --request POST \
+  --url https://api.fantasticservices.com/v2/client \
+  --header 'content-type: application/json' \
+  --header 'X-Profile: YOUR_PROFILE_ID_HERE' \
+  --header 'X-Application: YOUR_APP_TOKEN_HERE' \
+  --data '
+{
+  "requests": [
+    {
+      "method": "POST",
+      "path": "login",
+      "data": {
+        "username": "test@test.com",
+        "password": "1234"
+      }
+    }
+  ]
+}
+'
+```
+
+> The above request success response is:
+
+```json
+{
+  "responses": [
+    {
+      "data": [
+        {
+          "login": {
+            "sid": "1cjkidhfqoihoufu18j0ncoy0jl7eu0d4ge1kslggp4outkh",
+            "create_time": 1429863734,
+            "expire_time": 1429906934
+          }
+        }
+      ],
+      "success": [
+        {
+          "code": 2000,
+          "message": "Succes",
+          "debug_message": null,
+          "debug_id": null
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "db_version": 25,
+    "latest_build": 27
+  }
+}
+```
+
+
+To login you can use username and password or social login. For each social network there are specific attributes.
+
+`"path": "login"`
+
+### Username and password login request parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`username`<br>*required* | *string* | Username of the account to login
+`password`<br>*required* | *string* | Password of the account to login
+
+### Facebook login request parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`social.oauth_id`<br>*required* | *string* | Obtained facebook user access token 
+`social.profile_id `<br>*required* | *string* | Obtained Facebook ID of a user
+`social.social_provider_id`<br>*optional* | *integer* | Social login provider `id`.<br><br>*<b>1</b> - Facebook*
+
+### `params`
+
+Parameter | Type | Description
+-------- | ----- | -------
+`return_user`<br>*optional, default <b>false</b>* | *boolean* | Return user object with expanded avatar, phones, addresses, payment details and last 10 bookings.
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`login.sid` | *string* | Your session id. Use for `Authorization` header.
+`user` | *object* | Logged in user with expanded avatar, phones, addresses, payment details and last 10 bookings.
+
+
 ## Register
 
 ```shell
@@ -443,22 +534,22 @@ Parameter | Type | Description
 `phone`<br>*required* | *integer* | User's phone number validated for the region (UK/AUS/USA etc.)
 `email`<br>*required* | *string* | User's email with validated structure (e.g. xxxx@xxx.xxx)
 `referral_code`<br>*optional* | *string* | Referral code from another user
-`social.oauth_id`<br>*optional* | *string* | Facebook oauth string for sign in
-`social.profile_id`<br>*optional* | *string* | Facebook profile id
-`social.social_provider_id`<br>*optional* | *integer* | Social login provider `id`.<br><br>*<b>1</b> - Facebook*
+`social`<br>*optional* | *[object](#login)* | Social login attributes. Same are used for login.
 `type_id`<br>*optional* | *integer* | Type of registration`id`.<br><br>*<b>1</b> - Generic (register form)*<br>*<b>2</b> - Social (Facebook)*<br>*<b>3</b> - Anonymous*
+
 
 ### `params`
 
 Parameter | Type | Description
 -------- | ----- | -------
-`return_user`<br>*optional, default <b>false</b>* | *boolean* | Return user object with phone object.
+`return_user`<br>*optional, default <b>false</b>* | *boolean* | Return user object with expanded phones objects.
 
 ### Response parameters
 
 Parameter | Type | Description
 -------- | ----- | -------
-`login.sid `<br>*required* | *integer* | Your session id. Use for `Authorization` header.
+`login` | *[object](#login)* | Object containing session information. Same is returned on login.
+`user` | *object* | Created user after registration
 
 
 <aside class="success">
