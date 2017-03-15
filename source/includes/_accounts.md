@@ -91,3 +91,31 @@ Parameter | Type | Required | Description
 date_from | string | Optional | Datetime moment including timezone, ex: 2016-03-11T10:14:00.190Z
 date_to | string | Optional | Datetime moment including timezone, ex: 2016-03-11T10:14:00.190Z
 
+# Get user cards
+> `POST https://domain.com/user/get_cards/1.0/json`
+
+Get user saved cards
+
+### HTTP Request
+`POST /user/get_cards/1.0/json`
+
+```
+Response example
+```
+
+
+```json
+{
+    "id": null,
+    "jsonrpc": "2.0",
+    "result": [
+        {
+            "code": 4,
+            "expiration_date": "2019-10-31 23:59:59",
+            "pan_number": "42424242",
+            "payment_system": "Visa"
+        }
+    ]
+}
+```
+
