@@ -1014,6 +1014,10 @@ augur.getEthicReport(branch, reportPeriod, eventId, reporter, function (reportEt
 // example output:
 reportEthicality = '0x0000000000000000000000000000000000000000000000000000000000000001'
 
+augur.getFeeValue(branch, reportPeriod, function (feeValue) { /* ... */ })
+// example output:
+feeValue = "0xb3cdb9c590ad9d4263997ff000000000"
+
 augur.getNumActiveReporters(branch, reportPeriod, function (numReporters) { /* ... */ })
 // example output:
 numReporters = "6"
@@ -1112,6 +1116,10 @@ Gets the index of the specified event `eventId`.
 #### getEthicReport(branch, reportPeriod, eventId, reporter[, callback])
 
 Returns the ethicality of the report given the specified event ID `eventId` and specified reporter `reporter`.
+
+#### getFeeValue(branch, period[, callback])
+
+Gets all the fees for all markets in Wei for the specified `period`.
 
 #### getNumActiveReporters(branch, reportPeriod[, callback])
 
