@@ -1,12 +1,20 @@
 <p align="center">
+  <a href="https://www.practitest.com/api-v2/"><img src="https://www.practitest.com/wp-content/uploads/2012/07/PractiTest-Logo-small-300x68.png" alt="PractiTest API V2 Documentation"></a>
+</p>
+
+<p align="center" style="padding-bottom:30px;"><em>Checkout the full <a href="https://www.practitest.com/api-v2/">PractiTest API Documentation here</a>.</em></p>
+
+<hr/>
+
+<p align="center">Slate helps you create beautiful, intelligent, responsive API documentation.</p>
+
+<p align="center">
   <img src="https://raw.githubusercontent.com/lord/img/master/logo-slate.png" alt="Slate: API Documentation Generator" width="226">
   <br>
   <a href="https://travis-ci.org/lord/slate"><img src="https://travis-ci.org/lord/slate.svg?branch=master" alt="Build Status"></a>
 </p>
 
 <p align="center">Slate helps you create beautiful, intelligent, responsive API documentation.</p>
-
-<p align="center"><img src="https://dl.dropboxusercontent.com/u/95847291/github%20images/slate/slate_screenshot_new.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
 
 <p align="center"><em>The example above was created with Slate. Check it out at <a href="https://lord.github.io/slate">lord.github.io/slate</a>.</em></p>
 
