@@ -1688,6 +1688,72 @@ Gets the resolved branch given a specified `branchId` and `forkPeriod`.
 
 Gets wether the event ID `event` is a round two event or not.
 
+```javascript
+// consensusData contract
+var branchId = augur.branches.dev;
+var period = 397;
+var reporter = "0x72ba02adc3c8c4aa67cd92fecf77a2cdf79eb34d";
+augur.getBaseReportersLastPeriod(branchId, function (baseReporters) { /* ... */ })
+// example output:
+baseReporters = "120"
+
+augur.getDenominator(branch, period, function (denominator) { /* ... */ })
+// example output:
+denominator = "0x1b1ae4d6e2ef500000"
+
+var address = "0xee0b0b53a7794f329e81423e92dd00a5512cfad7";
+augur.getFeesCollected(branch, address, period, currency, function (feesCollected) { /* ... */ })
+// example output:
+feesCollected = "0x0000000000000000000000000000000000000000000000000000000000000001"
+
+augur.getFeeFirst(branch, period, function (firstFeeClaimed) { /* ... */ })
+// example output:
+firstFeeClaimed = "1"
+
+augur.getNotEnoughPenalized(branch, address, period, function (notEnough) { /* ... */ })
+// example output:
+notEnough = "1"
+
+var eventId = "0x7cbcc157062d19bf53daac10c98516c587925f0b4848240f690cc4e43ef5dcac";
+augur.getPenalized(branch, period, address, eventId, function (penalized) { /* ... */ })
+// example output:
+penalized = "1"
+
+augur.getSlashed(branchId, period, reporter, function (isSlashed) { /* ... */ });
+// example output:
+isSlashed = "1"
+
+```
+### [consensusData contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/consensusData.se)
+#### getBaseReportersLastPeriod(branch[, callback])
+
+Gets the amount of base reporters for the previous period on the specified `branch`.
+
+#### getDenominator(branch, period[, callback])
+
+Returns the value of the denominator used to calculate fees to pay out reporters for reporting given a specified `branch` and `period`.
+
+#### getFeesCollected(branch, address, period, currency[, callback])
+
+Returns wether the specified `address` has collected fees or not.
+
+#### getFeeFirst(branch, period[, callback])
+
+Returns wether the first fee has been claimed by a reporter yet for the specified `branch` and `period`.
+
+#### getNotEnoughPenalized(branch, address, period[, callback])
+
+Returns wether the specified `address` has been penalized for not reporting on enough reports in the specified `period`.
+
+#### getPenalized(branch, period, address, eventId[, callback])
+
+Returns wether the specified `address` was penalized for a specified event ID `eventId`.
+
+#### getSlashed(branch, period, reporter[, callback])
+
+Returns wether the specified reporter `reporter` has been penalized for collusion while reporting.
+
+
 Transaction API
 ---------------
 
