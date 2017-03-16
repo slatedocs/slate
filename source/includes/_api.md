@@ -1719,6 +1719,26 @@ augur.getPenalized(branch, period, address, eventId, function (penalized) { /* .
 // example output:
 penalized = "1"
 
+augur.getPenalizedNum(branch, period, address, function (penalizedNum) { /* ... */ })
+// example output:
+penalizedNum = "6"
+
+augur.getPenalizedUpTo(branch, address, function (lastPenalizedPeriod) { /* ... */ })
+// example output:
+lastPenalizedPeriod = "390"
+
+augur.getPeriodBalance(branch, period, function (periodBalance) { /* ... */ })
+// example output:
+periodBalance = "7240"
+
+augur.getRepCollected(branch, address, period, function (repCollected) { /* ... */ })
+// example output:
+repCollected = "0x0000000000000000000000000000000000000000000000000000000000000001"
+
+augur.getRepRedistributionDone(branch, reporter, function (repRedistributionDone) { /* ... */ })
+// example output:
+repRedistributionDone = "1"
+
 augur.getSlashed(branchId, period, reporter, function (isSlashed) { /* ... */ });
 // example output:
 isSlashed = "1"
@@ -1748,6 +1768,26 @@ Returns wether the specified `address` has been penalized for not reporting on e
 #### getPenalized(branch, period, address, eventId[, callback])
 
 Returns wether the specified `address` was penalized for a specified event ID `eventId`.
+
+#### getPenalizedNum(branch, period, address[, callback])
+
+Returns the number of times a specified `address` has been penalized.
+
+#### getPenalizedUpTo(branch, address[, callback])
+
+Gets the period that the specified `address` has been penalized up to so far.
+
+#### getPeriodBalance(branch, period[, callback])
+
+Returns the total balance of the specified `period`.
+
+#### getRepCollected(branch, address, period[, callback])
+
+Returns wether the specified `address` has collected Rep in the specified `period`.
+
+#### getRepRedistributionDone(branch, reporter[, callback])
+
+Returns wether the Rep redistribution is complete for the specified `reporter`.
 
 #### getSlashed(branch, period, reporter[, callback])
 
