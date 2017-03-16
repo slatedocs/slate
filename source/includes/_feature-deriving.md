@@ -93,7 +93,7 @@ POST'ing to the private variables catalog a Shoji Entity containing a ZCL functi
         "name": "Education (3 category)",
         "description": "Combined from six-category education",
         "alias": "educ3",
-        "expr": {
+        "derivation": {
             "function": "combine_categories",
             "args": [
                 {
@@ -217,7 +217,7 @@ POSTing to the variables catalog a Shoji Entity containing a ZCL function like:
         "name": "Aided awareness by region",
         "description": "Combined from aided brand awareness",
         "alias": "aided_region",
-        "expr": {
+        "derivation": {
             "function": "combine_responses",
             "args": [
                 {
@@ -267,7 +267,7 @@ The "case" function derives a variable using values from the first argument. Eac
         "name": "Market segmentation",
         "description": "Super-scientific classification of people",
         "alias": "segments",
-        "expr": {
+        "derivation": {
             "function": "case",
             "args": [
                 {
@@ -442,10 +442,27 @@ subvariables `ca1-subvar-1` and `ca2-subvar-2` from `CA1` and `CA2` respectively
 The `references` attribute is used to indicate specific name/alias for these
 subvariables.
 
+<aside class="warning">
+Note that when making an array with this method its subvariables catalog
+and subvariables will return 405 on PATCH attempts. The correct way to make
+modifications to them (add/remove subvariable, edit subvariable attributes) is
+to update the new array variable's entity `derivation` attribute with the 
+updated expression indicating the desired subvariable modifications.
+</aside>
+
+
 
 ### Weights
 
-A numeric variable suitable for use as row weights can be constructed from one or more categorical variables and target proportions of their categories. The sample distribution is “raked” iteratively to each categorical marginal target to produce a set of joint values that can be used as weights. Note that available weight variables are shared by all; you may not create private weights. To create a weight variable, POST a JSON variable definition to the variables catalog describing the properties of the weight variable, with an "expr" member indicating to use the "rake" function, which takes a "targets" argument containing an array of Crunch Tables of targets:
+A numeric variable suitable for use as row weights can be constructed from one 
+or more categorical variables and target proportions of their categories. The 
+sample distribution is “raked” iteratively to each categorical marginal target 
+to produce a set of joint values that can be used as weights. Note that 
+available weight variables are shared by all; you may not create private 
+weights. To create a weight variable, POST a JSON variable definition to the 
+variables catalog describing the properties of the weight variable, with an 
+"derivation" member indicating to use the "rake" function, which takes a 
+"targets" argument containing an array of Crunch Tables of targets:
 
 ```shell
 POST /api/datasets/{datasetid}/variables/ HTTP/1.1
@@ -454,7 +471,7 @@ Content-Length: 739
 {
     "name": "weight",
     "description": "my raked weight",
-    "expr": {
+    "derivation": {
         "function": "rake",
         "args": {
             "targets": [
@@ -517,7 +534,7 @@ POST'ing to the private variables catalog a Shoji Entity containing a ZCL functi
         "name": "Cola likes",
         "description": "Cola preferences",
         "alias": "cola_likes",
-        "expr": {
+        "derivation": {
             "function": "select_categories",
             "args": [
                 {"variable": "https://app.crunch.io/api/datasets/3ad42c/variables/0000f5/"},
