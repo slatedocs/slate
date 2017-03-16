@@ -5,12 +5,24 @@ your user directory, a project file in the directory containing the Inkling
 files and simulator configuration for a BRAIN, and a `.brains` file that links
 a project file to a BRAIN in the same directory as the project file.
 
-## `.bonsai`
+## .bonsai file
 
-The `.bonsai` file stores your username and an access token for access to the
+```ini
+[DEFAULT]
+port = 443
+username = bonsaiuser
+accesskey = 55555555-5555-5555-5555-555555555555
+webport = 443
+webhost = beta.bons.ai
+host = api.bons.ai
+usessl = True
+```
+
+The `.bonsai`, located in your user directory, file stores your username and an access token for access to the
 Bonsai servers.
 
-## BRAIN Projects
+
+## .bproj file
 
 ```json
 {
@@ -37,7 +49,7 @@ There must be at least one valid path in the `files` list.
 points to a pre-configured simulation container inside the platform. The
 `command` field describes the command to run to start the simulator.
 
-## `.brains`
+## .brains file
 
 ```json
 {
@@ -54,7 +66,7 @@ project to many BRAINs.  The file is located in the same directory as a
 project file.
 
 
- * `name` is a name of of one of this user's BRAINs.
+ * `name` is a name of one of this user's BRAINs.
 
  * `default` marks a named BRAIN as the default BRAIN to use with command
    operations.
