@@ -1540,20 +1540,6 @@ The total amount of Reputation on `branch`.
 Returns the amount of dormant rep on a specified `branch`.
 
 ```javascript
-// makeReports contract
-var branchId = augur.branches.dev;
-var report = ["1", "2", "1", "1.5", "1", "1.5", "2", "1", "1", "1.5", "1", "1"];
-var reportPeriod = 397;
-augur.checkReportValidity(branchId, report, reportPeriod, function (isValid) { /* ... */ });
-// example output:
-isValid = "1"
-```
-### [makeReports contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/makeReports.se)
-#### checkReportValidity(branch, report, reportPeriod[, callback])
-
-Validates `report` made on `branch` for `reportPeriod`.  A valid report is the correct length, is made before 2 reporting periods have elapsed, and is created by a valid reporting address.  Returns 1 if valid, -1 if invalid because the report is the wrong length (i.e., doesn't match the number of events being reported on), or -2 if invalid for another reason.
-
-```javascript
 // backstops contract
 var branchId = augur.branches.dev;
 var eventId = "-0xd0dbd235c8de8cccd7d8ef96b460c7dc2d19539fb45778f7897c412d4c0a3683";
