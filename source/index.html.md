@@ -29,7 +29,7 @@ Welcome to XRM/MP API.
 * *STAGE - <b>middlepoint-stg.1dxr.com*</b>
 * *DEV - <b>middlepoint-dev.1dxr.com*</b>
 
-In this document `{{BASE_URL}}` is used as a palceholder for current environment.
+In this document `{{BASE_URL}}` is used as a placeholder for current environment.
 
 ## Namespaces
 
@@ -60,10 +60,10 @@ You must replace <code>{{APPLICATION_TOKEN}}</code> with your personal APP token
 
 To access profile specific data request should include identifying profile header field.
 
-`X-Profile: {{PROFILE_KEYWORD}}`
+`X-Profile: {{PROFILE_ID}}`
 
 <aside class="notice">
-You must replace <code>{{PROFILE_KEYWORD}}</code> with your personal profile id.
+You must replace <code>{{PROFILE_ID}}</code> with your personal profile id.
 </aside>
 
 
@@ -136,7 +136,7 @@ Parameter | Type | Description
 --------- | ---- | -----------
 `data` | *array* | Array of data objects returned in the result of the request
 `success`, `warning`, `error` | *array* | Messages with information for the request. More than one type of message can be returned in a response. `success` and `error` can't come in the same response. `warning` can be combined with `success` or `error`.
-`meta` | *object* | Parametercontaining information for the system.
+`meta` | *object* | Parameter containing information for the system.
 
 
 ### `meta`
@@ -153,7 +153,7 @@ Parameter | Type | Description
 curl\
  -X GET\
  -H "Content-Type: application/json"\
- -H "X-Profile: {{PROFILE_KEYWORD}}"\
+ -H "X-Profile: {{PROFILE_ID}}"\
  -H "X-Application: {{APPLICATION_TOKEN}}"\
 "https://{{BASE_URL}}/v2/client/services/1"
 ```
@@ -193,7 +193,7 @@ curl\
 }
 ```
 
-Read data by using `metohd: GET` and specifying `path` to resource you want to access. Get object by id with suffix `/{{id}}`
+Read data by using `method: GET` and specifying `path` to resource you want to access. Get object by id with suffix `/{{id}}`
 
 `"path": "services"`
 
@@ -204,7 +204,7 @@ Read data by using `metohd: GET` and specifying `path` to resource you want to a
 curl\
  -X POST\
  -H "Content-Type: application/json"\
- -H "X-Profile: {{PROFILE_KEYWORD}}"\
+ -H "X-Profile: {{PROFILE_ID}}"\
  -H "X-Application: {{APPLICATION_TOKEN}}"\
  -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
  -d '{
@@ -239,7 +239,7 @@ curl\
 ```
 
 
-Create objects by using `metohd: POST` and specifying `path` to resource you want to create. Add suffix `/{{id}}` to update existing objects.
+Create objects by using `method: POST` and specifying `path` to resource you want to create. Add suffix `/{{id}}` to update existing objects.
 
 `"path": "addresses"`
 
@@ -251,7 +251,7 @@ If operation is successful created/updated object is returned.
 curl\
  -X DELETE\
  -H "Content-Type: application/json"\
- -H "X-Profile: {{PROFILE_KEYWORD}}"\
+ -H "X-Profile: {{PROFILE_ID}}"\
  -H "X-Application: {{APPLICATION_TOKEN}}"\
  -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
  -d ''\
@@ -262,7 +262,7 @@ curl\
 
 ```json
 {
-  "sucess": [
+  "success": [
     {
       "code": 1021,
       "message": "Address deleted.",
@@ -277,11 +277,11 @@ curl\
 }
 ```
 
-Delete objects by using `metohd: DELETE` and specifying `path` and `/{{id}}` suffix for object to delete.
+Delete objects by using `method: DELETE` and specifying `path` and `/{{id}}` suffix for object to delete.
 
 `"path": "addresses"`
 
-If object is deleted successfully `"succuess"` is returned.
+If object is deleted successfully `"success"` is returned.
 
 
 ## Batched requests
@@ -290,7 +290,7 @@ If object is deleted successfully `"succuess"` is returned.
 curl\
  -X POST\
  -H "Content-Type: application/json"\
- -H "X-Profile: {{PROFILE_KEYWORD}}"\
+ -H "X-Profile: {{PROFILE_ID}}"\
  -H "X-Application: {{APPLICATION_TOKEN}}"\
  -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
  -d '{
@@ -316,7 +316,7 @@ Parameter | Type | Description
 -------- | ----- | -------
 `method`<br>*required* | *string* | Request type.<br><br>*<b>POST</b> - write data to server (create/update)*<br>*<b>GET</b> - read data from server*<br>*<b>DELETE</b> - delete data on server*
 `path`<br>*required* | *string* | Path to resource to access
-`params`<br>*optional* | *object* | Paramaters for the request
+`params`<br>*optional* | *object* | Parameters for the request
 `data`<br>*optional* | *object* | Data to post to server
 
 
@@ -356,7 +356,7 @@ Parameter | Type | Description
 --------- | ---- | -----------
 `data` | *array* | Array of data objects returned in the result of the request
 `success`, `warning`, `error` | *array* | Messages with information for the request. More than one type of message can be returned in a response. `success` and `error` can't come in the same response. `warning` can be combined with `success` or `error`.
-`meta` | *object* | Parametercontaining information for the system.
+`meta` | *object* | Parameter containing information for the system.
 
 In batched responses `meta` is returned once at the end.
 
@@ -370,7 +370,7 @@ In batched responses `meta` is returned once at the end.
 curl\
  -X POST\
  -H "Content-Type: application/json"\
- -H "X-Profile: {{PROFILE_KEYWORD}}"\
+ -H "X-Profile: {{PROFILE_ID}}"\
  -H "X-Application: {{APPLICATION_TOKEN}}"\
  -d '{
         "username": "test@test.com",
@@ -395,7 +395,7 @@ curl\
   "success": [
     {
       "code": 2000,
-      "message": "Succes",
+      "message": "Success",
       "debug_message": null,
       "debug_id": null
     }
@@ -447,7 +447,7 @@ Parameter | Type | Description
 curl\
  -X POST\
  -H "Content-Type: application/json"\
- -H "X-Profile: {{PROFILE_KEYWORD}}"\
+ -H "X-Profile: {{PROFILE_ID}}"\
  -H "X-Application: {{APPLICATION_TOKEN}}"\
  -d '{
         "title_id": 1,
@@ -484,7 +484,7 @@ curl\
   "success": [
     {
       "code": 2010,
-      "message": "Succesful register",
+      "message": "Successful register",
       "debug_message": null,
       "debug_id": null
     }
