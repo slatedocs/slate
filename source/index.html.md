@@ -44,7 +44,7 @@ https://clients.intelex.com/Login/YourCompanyName/api/v2/
 
 # Authentication
 
-> To authorize, use this code:
+> To authorize your requests, use this code:
 
 ```javascript
 var request = require("request");
@@ -72,9 +72,9 @@ Exception Type | Exception Message
 1004|Password doesn't match current account policy. Please change the password
 1005|Your password is expired
 
-# Object Data Service
+# Requesting Object Data
 
-> **API Endpoint**
+> **Object Service Base Path**
 
 ```
 https://intelex_url/api/v2/object
@@ -123,7 +123,12 @@ Property | Description
 
 We've provided a convenient way to access more data in any request for sequential data where the number of records exceeds 500. Simply call the url in the nextLink parameter and we'll respond with the next set of data.
 
-## Request records
+### Relational Data
+
+Objects can be configured with relations to other objects. These relations are configured as relation field.  Relation fields are accessible via the API as navigation properties. 
+Every record will have navigation properties that can be used to access related data.  You'll need to use the system name of the relation field to access related data.  You can access related data a number of ways - by using system query options or navigating to related records through the URL path.
+
+## Requesting records
 
 ```javascript
 var request = require("request");
@@ -175,7 +180,7 @@ Parameter | Description
 --------- | -----------
 intelex_object | The Intelex system name of the object being requested eg. IncidentsObject
 
-## Request a specific record
+## Requesting a specific record
 
 ```javascript
 var request = require("request");
@@ -225,7 +230,7 @@ intelex_object | The Intelex system name of the object being requested eg. Incid
 id | The Intelex UID of the record being requested
 
 
-## Request related records
+## Requesting related records
 
 ```javascript
 var request = require("request");
@@ -280,7 +285,7 @@ intelex_object | The Intelex system name of the object being requested eg. Incid
 id | The Intelex UID of the record being requested
 navigation_property|The Intelex system name of the relation type or lookup type field
 
-## Request a specific related record
+## Requesting a specific related record
 
 ```javascript
 var request = require("request");
@@ -327,8 +332,10 @@ Navigating to related records allows clients to request only the relational data
 Parameter | Description
 --------- | -----------
 intelex_object | The Intelex system name of the object being requested eg. IncidentsObject
-id | The Intelex UID of the record being requested
+id | The Intelex UID of the record or related record being requested
 navigation_property|The Intelex system name of the relation type or lookup type field
+
+# Querying Object Data
 
 ## Query option: $select
 
@@ -630,7 +637,7 @@ filter_expression | Filter expression used to query data
 |Name|Description|Example Values|
 |---|---|---|
 |eq|Equal|Severity/Value eq 'Moderate'
-|ne|Not equal|Workflow/PersonResponsible/Name ne 'AC Slater'
+|ne|Not equal|Description ne null
 |gt|Greater than|IncidentNo gt 1000
 |ge|Greater than or equal|DateCreated ge 2017-01-01
 |lt|Less than|IncidentNo lt 1000
@@ -671,8 +678,6 @@ filter_expression | Filter expression used to query data
 |Description|Example Values|
 |---|---|
 |Filter where you are the person responsible|$filter=Workflow/PersonResponsible eq @me|
-
-
 
 ## Query option: $expand
 
@@ -754,6 +759,8 @@ intelex_object | The Intelex system name of the object being requested eg. Incid
 Parameter | Description
 --------- | -----------
 relation_field | Relation field used to request related object data
+
+# Modifying Object Data
 
 ## Create a record
 
@@ -854,12 +861,17 @@ ActionToExecute | UID of the workflow stage action|No|Id=797bbb3b-b485-4e73-a21c
 }
 ```
 
-> Creating a record and setting person responsible:
+> Creating a record and set workflow recurrence or person responsible:
 
 ```json
 {
 	"Workflow": {
-		"PersonResponsible@odata.bind": "https://intelex_url/api/v2/object/SysEmployeeEntity(Id)"
+		"PersonResponsible@odata.bind": "https://intelex_url/api/v2/object/SysEmployeeEntity(UID)",
+		"RecurringSeries": {
+			"Frequency": "RRULE:FREQ=HOURLY",
+			"StartDate": "2017-06-06T02:30:00-05:00",
+			"EndDate": "2017-07-07T02:30:00-05:00"
+		}
 	}
 }
 ```
@@ -1060,7 +1072,16 @@ id|The Intelex UID of the record being updated
 ## Delete a sub-record
 
 ```javascript
+var request = require("request");
 
+var options = { method: 'DELETE',
+  url: 'https://intelex_url/api/v2/object/IncidentsObject(UID)/SubIncidents(UID)' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
 ```
 
 ```csharp
@@ -1069,7 +1090,7 @@ var request = new RestRequest(Method.DELETE);
 IRestResponse response = client.Execute(request);
 ```
 
-Deletes an individual record in the Intelex object specified in the path. If SoftDelete is enabled for the object then the record will be archived instead.
+Deletes an individual sub-record in the Intelex object specified in the path. If SoftDelete is enabled for the object then the record will be archived instead.
 
 ### DELETE /object/{intelex_object}({id})/{navigation_property}({id})
 
@@ -1078,11 +1099,697 @@ Deletes an individual record in the Intelex object specified in the path. If Sof
 Parameter | Description
 --------- | -----------
 intelex_object | The Intelex system name of the object being requested eg. IncidentsObject
-id|The Intelex UID of the record being accessed
+id|The Intelex UID of the record or related record being accessed
 navigation_property|The Intelex system name of the relation type field
 
+## Removing a single value reference
 
+```javascript
+var request = require("request");
 
+var options = { method: 'DELETE',
+  url: 'https://intelex_url/api/v2/object/IncidentsObject(UID)/Severity/$ref' };
 
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
 
+  console.log(body);
+});
+```
 
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject(UID)/Severity/$ref");
+var request = new RestRequest(Method.DELETE);
+IRestResponse response = client.Execute(request);
+```
+
+Sets the value in a drop-down to null. This call is useful if you need to remove a value that's been set for a record.
+
+### DELETE /object/{intelex_object}({id})/{navigation_property}/$ref
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+intelex_object | The Intelex system name of the object eg. IncidentsObject
+id|The Intelex UID of the record
+navigation_property|The Intelex system name of the relation type field - must be a drop-down relation type field
+
+## Removing a multi-value reference
+
+```javascript
+var request = require("request");
+
+var options = { method: 'DELETE',
+  url: 'https://intelex_url/api/v2/object/IncidentsObject(UID)/RelatedIncidents(UID)/$ref' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject(UID)/RelatedIncidents(UID)/$ref");
+var request = new RestRequest(Method.DELETE);
+IRestResponse response = client.Execute(request);
+```
+
+This request detaches a related records. It deletes the relationship, but does not delete the related record itself. 
+
+### DELETE /object/{intelex_object}({id})/{navigation_property}({id})/$ref
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+intelex_object | The Intelex system name of the object eg. IncidentsObject
+id|The Intelex UID of the record or related record
+navigation_property|The Intelex system name of the relation type field - must be references associated relation type field
+
+# Object Workflow Data
+
+## Requesting Workflow Data
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://intelex_url/api/v2/object/IncidentsObject(UID)/Workflow' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject(UID)/Workflow");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"@odata.context": "string",
+	"@odata.type": "string",
+	"@odata.id": "string",
+	"Id": "string",
+	"DateModified": "2016-07-14T14:32:05.44-04:00",
+	"DateCreated": "2016-04-25T12:54:18.563-04:00",
+	"DateNotRequired": null,
+	"DueDate": null,
+	"DueDateType": "string",
+	"EntityId": "string",
+	"EntityName": "",
+	"IsVirtual": false,
+	"LocationId": "string",
+	"ObjectId": "string",
+	"WorkflowStatus": "string"
+}
+```
+
+This request allows you to retreive the workflow information for a given record.  
+
+### GET /object/{intelex_object}({id})/Workflow
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+intelex_object | The Intelex system name of the object eg. IncidentsObject
+id|The Intelex UID of the record being accessed
+
+## Requesting Status
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://intelex_url/api/v2/object/IncidentsObject(UID)/Workflow/Status' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject(UID)/Workflow/Status");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"@odata.context": "string",
+	"@odata.type": "string"
+	"@odata.id": "string",
+	"Id": "string",
+	"DateCreated": "2017-03-08T11:52:49.723-05:00",
+	"DateModified": "2017-03-08T11:52:49.723-05:00",
+	"Description": "Draft",
+	"DueDateExpression": null,
+	"DueDateLengthType": null,
+	"DueDateLengthValue": null,
+	"InheritedPermission": true,
+	"IsFirstStage": true,
+	"IsStandardPermission": true,
+	"Name": "Draft",
+	"RecipientExpression": null,
+	"RecipientType": "string",
+	"StageAction": null,
+	"StayInEditMode": false,
+	"SystemName": "Draft",
+	"TaskType": "Action"
+}
+```
+
+This request allows you to retreive the information about the workflow status that the record is currently in.
+
+### GET /object/{intelex_object}({id})/Workflow/Status
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+intelex_object | The Intelex system name of the object eg. IncidentsObject
+id|The Intelex UID of the record being accessed
+
+## Requesting Current Stage
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://intelex_url/api/v2/object/IncidentsObject(UID)/Workflow/CurrentStage' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject(UID)/Workflow/CurrentStage");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"@odata.context": "string",
+	"@odata.type": "string",
+	"@odata.id": "string",
+	"Id": "string",
+	"DateCreated": "2017-03-08T11:52:49.723-05:00",
+	"DateModified": "2017-03-08T11:52:49.723-05:00",
+	"Description": "Draft",
+	"DueDateExpression": null,
+	"DueDateLengthType": null,
+	"DueDateLengthValue": null,
+	"InheritedPermission": true,
+	"IsFirstStage": true,
+	"IsStandardPermission": true,
+	"Name": "Draft",
+	"RecipientExpression": null,
+	"RecipientType": "string",
+	"StageAction": null,
+	"StayInEditMode": false,
+	"SystemName": "Draft",
+	"TaskType": "Action"
+}
+```
+
+This request allows you to retreive the information about the workflow stage that the record is currently in.
+
+### GET /object/{intelex_object}({id})/Workflow/CurrentStage
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+intelex_object | The Intelex system name of the object eg. IncidentsObject
+id|The Intelex UID of the record being accessed
+
+## Requesting Stage Actions
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://intelex_url/api/v2/object/IncidentsObject(UID)/Workflow/CurrentStage/Actions' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject(UID)/Workflow/CurrentStage/Actions");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "@odata.context": "string",
+  "value": [
+    {
+		"@odata.type": "string",
+		"@odata.id": "string",
+		"Id": "string",
+		"DateModified": "2017-03-08T11:52:49.927-05:00",
+		"DateCreated": "2017-03-08T11:52:49.927-05:00",
+		"Confirmation": "string",
+		"FlowDefinition": "string",
+		"IsHidden": false,
+		"MobileCaption": null,
+		"Name": "string",
+		"NavigateBackEnabled": true,
+		"Order": 1,
+		"RequireSignature": true,
+		"SystemName": "string",
+		"Tooltip": null,
+		"TriggerCondition": "",
+		"UrlIcon": "",
+		"UserActionsRequired": true
+    }
+  ]
+}
+```
+
+This request allows you to retreive the information about the workflow stage actions available for a record in the current stage. Note: When a workflow is published, the action IDs are created. If someone updates a workflow, they have to re-publish it for the changes to take effect, and all the action IDs change. Typically, you don't need to worry about this, but if your action IDs stop working, you should check them by running a dummy record through the workflow.
+
+### GET /object/{intelex_object}({id})/Workflow/CurrentStage/Actions
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+intelex_object | The Intelex system name of the object eg. IncidentsObject
+id|The Intelex UID of the record being accessed
+
+## Requesting Person Responsible
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://intelex_url/api/v2/object/IncidentsObject(UID)/Workflow/PersonResponsible' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject(UID)/Workflow/PersonResponsible");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"@odata.context": "string",
+	"@odata.type": "string"
+	"@odata.id": "string",
+	"Id": "string",
+	"DateCreated": "2010-06-20T20:00:00-04:00",
+	"DateModified": "2015-06-17T15:21:51.813-04:00",
+	"CustomField": null,
+	"IsSystem": false,
+	"Name": "string"
+}
+```
+
+This request allows you to retreive the individual assigned to the workflow stage of the record. **Workflow** and **PersonResponsible** are  navigation properties that can be accessed using the $expand system query option as well.
+
+### GET /object/{intelex_object}({id})/Workflow/PersonResponsible
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+intelex_object | The Intelex system name of the object eg. IncidentsObject
+id|The Intelex UID of the record being accessed
+
+## Requesting Frequency
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://intelex_url/api/v2/object/IncidentsObject(UID)/Workflow/RecurringSeries' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject(UID)/Workflow/RecurringSeries");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"@odata.context": "string",
+	"@odata.type": "string"
+	"@odata.id": "string",
+	"Id": "string",
+	"DateCompleted": null,
+	"EndDate": "2017-07-07T03:30:00-04:00",
+	"EntityId": "string",
+	"Frequency": "RRULE:FREQ=HOURLY",
+	"GracePeriod": 0,
+	"IsActive": true,
+	"NextScheduledDate": "2017-06-06T04:30:00-04:00",
+	"OriginalStartDate": "2017-06-06T03:30:00-04:00",
+	"StartDate": "2017-06-06T03:30:00-04:00"
+}
+```
+
+This request allows you to retreive the workflow frequency applied to the record.  The frequency property value is in iCal format.
+
+### GET /object/{intelex_object}({id})/Workflow/RecurringSeries
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+intelex_object | The Intelex system name of the object eg. IncidentsObject
+id|The Intelex UID of the record being accessed
+
+## Executing a Stage Action
+
+```javascript
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://intelex_url/api/v2/object/IncidentsObject(UID)/Workflow/CurrentStage/Actions(UID)/Action.ExecuteStageAction' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject(UID)/Workflow/CurrentStage/Actions(UID)/Action.ExecuteStageAction");
+var request = new RestRequest(Method.POST);
+IRestResponse response = client.Execute(request);
+```
+
+This request allows you to push a record through its workflow stages. Note: When a workflow is published, the action IDs are created. If someone updates a workflow, they have to re-publish it for the changes to take effect, and all the action IDs change. Typically, you don't need to worry about this, but if your action IDs stop working, you should check them by running a dummy record through the workflow.
+
+### POST /object/{intelex_object}({id})/Workflow/CurrentStage/Actions(id)/Action.ExecuteStageAction
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+intelex_object | The Intelex system name of the object eg. IncidentsObject
+id|The Intelex UID of the record or action being accessed 
+
+## Updating Frequency
+
+```javascript
+var request = require("request");
+
+var options = { method: 'PATCH',
+  url: 'https://intelex_url/api/v2/object/IncidentsObject%28UID%29/Workflow/RecurringSeries',
+  headers: { 'content-type': 'application/json' },
+  body: 
+   { Frequency: 'RRULE:FREQ=HOURLY',
+     StartDate: '2017-06-06T03:30:00-04:00' },
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject%28UID%29/Workflow/RecurringSeries");
+var request = new RestRequest(Method.PATCH);
+request.AddHeader("content-type", "application/json");
+request.AddParameter("application/json", "{\n  \"Frequency\": \"RRULE:FREQ=HOURLY\",\n  \"StartDate\": \"2017-06-06T03:30:00-04:00\"\n}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+```
+> Example request
+
+```json
+{
+	"Frequency": "RRULE:FREQ=HOURLY",
+	"StartDate": "2017-06-06T03:30:00-04:00"
+}
+```
+This request allows you to modify the workflow frequency for a given record.  The Frequency property will only accept iCal formatted strings.
+
+### PATCH /object/{intelex_object}({id})/Workflow/RecurringSeries
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+intelex_object | The Intelex system name of the object eg. IncidentsObject
+id|The Intelex UID of the record or action being accessed 
+
+# Object Document Attachments
+
+## Requesting Private Document Attachments
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://intelex_url/api/v2/object/IncidentsObject%28UID%29/ILX.Attachments' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject%28UID%29/ILX.Attachments");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"value": [
+	  {
+		  "@odata.id": "string",
+		  "@odata.mediaContentType": "string",
+		  "Id": "string",
+		  "AttachmentName": "string",
+		  "Bytes": 0,
+		  "IsDraft": true,
+		  "ObjectRecordId": "string",
+		  "Uri": "string",
+		  "Attachment@odata.mediaReadLink": "string"
+	  }
+	]
+}
+```
+
+This request returns a list of all private document attachments belonging to a given record. ILX.Attachments is a system reserved property for working with private document attachments. Any object that has private document attachments enabled will be able to access this property and request the private documents that belong to a record.
+
+### GET /object/{intelex_object}({id})/ILX.Attachments
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+intelex_object | The Intelex system name of the object eg. IncidentsObject
+id|The Intelex UID of the record being accessed 
+
+## Downloading Attachments
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://intelex_url/api/v2/object/IncidentsObject(UID)/ILX.Attachments(UID)',
+  headers: 
+   { prefer: 'attachment=thumbnail',
+     accept: 'application/octet-stream' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject%28UID%29/ILX.Attachments(UID)");
+var request = new RestRequest(Method.GET);
+request.AddHeader("prefer", "attachment=thumbnail");
+request.AddHeader("accept", "application/octet-stream");
+IRestResponse response = client.Execute(request);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"@odata.id": "string",
+	"@odata.mediaContentType": "string",
+	"Id": "string",
+	"AttachmentName": "string",
+	"Bytes": 0,
+	"IsDraft": true,
+	"ObjectRecordId": "string",
+	"Uri": "string",
+	"Attachment@odata.mediaReadLink": "string"
+}
+```
+
+By default, this request returns the metadata of a specific private document attachment. When you provide the Accept header value of octet-stream, then the file will be downloaded instead.  If it is an image, you also have the ability to request it in a thumbnail size.
+
+### GET /object/{intelex_object}({id})/ILX.Attachments({id})
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+intelex_object | The Intelex system name of the object eg. IncidentsObject
+id|The Intelex UID of the record or document being accessed
+
+### Header Parameters
+
+Parameter | Description | Example Value
+--------- | ------------| -----------
+Accept|Provide the content type in order to download the file|application/octet-stream
+Prefer|Used to request a thumbnail version of an image file|attachment=thumbnail
+
+## Attaching Files
+
+```javascript
+var fs = require("fs");
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://intelex_url/api/v2/object/IncidentsObject(UID)/ILX.Attachments',
+  headers: { 'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
+  formData: 
+   { '': 
+      { value: 'fs.createReadStream("C:\\Document.docx")',
+        options: 
+         { filename: 'C:\\Document.docx',
+           contentType: null } } } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject(UID)/ILX.Attachments");
+var request = new RestRequest(Method.POST);
+request.AddHeader("content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW");
+request.AddParameter("multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW", "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"\"; filename=\"C:\\Document.docx\"\r\nContent-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document\r\n\r\n\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"@odata.id": "string",
+	"@odata.mediaContentType": "string",
+	"Id": "string",
+	"AttachmentName": "string",
+	"Bytes": 0,
+	"IsDraft": true,
+	"ObjectRecordId": "string",
+	"Uri": "string",
+	"Attachment@odata.mediaReadLink": "string"
+}
+```
+
+This request attaches a private document to a record.  The file must be attached to the request as form-data. Files that exceed 10MB will not be attached. If the UID of the record does not exist, the file will be attached in draft mode.  Once a record is created with the same record UID in the attach request, then the attachment will be associated to the record and will no longer be in draft mode.
+
+### POST /object/{intelex_object}({id})/ILX.Attachments
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+intelex_object | The Intelex system name of the object eg. IncidentsObject
+id|The Intelex UID of the record being accessed 
+
+### Body Parameters
+
+Parameter | Type |
+--------- | -----------
+formData | file | 
+
+## Detaching Documents
+
+```javascript
+var request = require("request");
+
+var options = { method: 'DELETE',
+  url: 'https://intelex_url/api/v2/object/IncidentsObject(UID)/ILX.Attachments(UID)' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject(UID)/ILX.Attachments(UID)");
+var request = new RestRequest(Method.DELETE);
+IRestResponse response = client.Execute(request);
+```
+
+This request deletes the specified document attached to a given record. ILX.Attachments is a system reserved property for working with private document attachments. Any object that has private document attachments enabled will be able to access this property and request the private documents that belong to a record.
+
+### DELETE /object/{intelex_object}({id})/ILX.Attachments({id})
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+intelex_object | The Intelex system name of the object eg. IncidentsObject
+id|The Intelex UID of the record or document being accessed
