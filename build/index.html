@@ -883,6 +883,952 @@ You must replace <code>THEAPIKEY</code> with your own API key.
 </tr>
 </tbody></table>
 
+          <h1 id="customers">Customers</h1>
+
+<h2 id="view">View</h2>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokenex-0016"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CMS Test"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"last name"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@yahoo.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zylun PH"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-1234-123"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-1234-123"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cebu"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Andresasdfsdfsd Abellana St."</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Andres Abellana St."</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cebu"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Philippines"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6000"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1486093551</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated"</span><span class="p">:</span><span class="w"> </span><span class="mi">1486093551</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"paymentDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"payID"</span><span class="p">:</span><span class="w"> </span><span class="mi">72</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"lastfour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXXXXXXXXXX2224"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"78631c9b-a28c-4d69-af09-313b439783c7"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"cardType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visa"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokenex"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"payID"</span><span class="p">:</span><span class="w"> </span><span class="mi">73</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"lastfour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXXXXXXXXXX2224"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7b11f685-8aa9-46ba-b7fc-6629457f2e4e"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"cardType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visa"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokenex"</span><span class="w">
+      </span><span class="p">}</span><span class="w">      
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves specific customer.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET customers/&lt;CUSTID&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>The ID of the customer to retrieve.</td>
+</tr>
+</tbody></table>
+
+<h2 id="view-all">View All</h2>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUST-199x"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kimmy Inc."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bond"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wilsone@zylun.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zylun PH"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-1234-123"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-1234-123"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cebu"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Andres Abellana St."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"street2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Andres Abellana St."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cebu"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Philippines"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6000"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1458284184</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"updated"</span><span class="p">:</span><span class="w"> </span><span class="mi">1458284184</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"paymentDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"payID"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"lastfour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXXXXXXXXXX2220"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"y6zf-cmq0-s4jk-eabo"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"cardType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usaepay"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ach"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXX-X678-9"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"routing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXX-X678-9"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checking"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test-235"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CMS Test"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bond"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wilsone@zylun.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zylun PH"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-1234-123"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-1234-123"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cebu"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compostela"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"street2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compostela"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cebu"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Philippines"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6003"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1477455361</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"updated"</span><span class="p">:</span><span class="w"> </span><span class="mi">1477455361</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"paymentDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TESTAGAIN"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vault Test"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bond"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wilsone@zylun.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zylun PH"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-1234-123"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-1234-123"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cebu"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compostela"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"street2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compostela"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cebu"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Philippines"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6003"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1477458149</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"updated"</span><span class="p">:</span><span class="w"> </span><span class="mi">1477458149</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"paymentDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://sliceapilocal.cmsonline.com/v2/customers?page=2"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves all customers.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET customers</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>20</td>
+<td>Number of items to show per page.</td>
+</tr>
+<tr>
+<td>page</td>
+<td>1</td>
+<td>Page number.</td>
+</tr>
+</tbody></table>
+
+<h2 id="create">Create</h2>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cust-212"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"erwin"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zylun"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"erwins@zylun.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CMS"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234-1234-1234"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234-1234-1234"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cebu"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"it park"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"it park"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cebu"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Philippines"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6000"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489733229</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489733229</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"paymentDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint creates new customer.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST customers</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>custid*</td>
+<td></td>
+<td>Customer ID.</td>
+</tr>
+<tr>
+<td>firstname*</td>
+<td></td>
+<td>First name.</td>
+</tr>
+<tr>
+<td>lastname*</td>
+<td></td>
+<td>Last name.</td>
+</tr>
+<tr>
+<td>email*</td>
+<td></td>
+<td>The email address.</td>
+</tr>
+<tr>
+<td>company</td>
+<td></td>
+<td>Company name if applicable.</td>
+</tr>
+<tr>
+<td>phone</td>
+<td></td>
+<td>The phone number.</td>
+</tr>
+<tr>
+<td>fax</td>
+<td></td>
+<td>The fax number.</td>
+</tr>
+<tr>
+<td>city</td>
+<td></td>
+<td>City address.</td>
+</tr>
+<tr>
+<td>street</td>
+<td></td>
+<td>Address.</td>
+</tr>
+<tr>
+<td>street2</td>
+<td></td>
+<td>Alternate address.</td>
+</tr>
+<tr>
+<td>state</td>
+<td></td>
+<td>State address.</td>
+</tr>
+<tr>
+<td>country</td>
+<td></td>
+<td>Country.</td>
+</tr>
+<tr>
+<td>zip</td>
+<td></td>
+<td>Zip/Postal code.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">* = Required.</aside>
+
+<h2 id="update">Update</h2>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cust-212"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"marlonx7"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gallego"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"suicoerw@gmail.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zylun PH"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-1234-123"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-1234-123"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mandaue2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"upper tabok, pc suico st."</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"it park"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cebu"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"philippines"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6014"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489733229</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489733272</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"paymentDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint updates existing customer.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT customers/&lt;ID&gt;</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>firstname</td>
+<td></td>
+<td>First name.</td>
+</tr>
+<tr>
+<td>lastname</td>
+<td></td>
+<td>Last name.</td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td>The email address.</td>
+</tr>
+<tr>
+<td>company</td>
+<td></td>
+<td>Company name if applicable.</td>
+</tr>
+<tr>
+<td>phone</td>
+<td></td>
+<td>The phone number.</td>
+</tr>
+<tr>
+<td>fax</td>
+<td></td>
+<td>The fax number.</td>
+</tr>
+<tr>
+<td>city</td>
+<td></td>
+<td>City address.</td>
+</tr>
+<tr>
+<td>street</td>
+<td></td>
+<td>Address.</td>
+</tr>
+<tr>
+<td>street2</td>
+<td></td>
+<td>Alternate address.</td>
+</tr>
+<tr>
+<td>state</td>
+<td></td>
+<td>State address.</td>
+</tr>
+<tr>
+<td>country</td>
+<td></td>
+<td>Country.</td>
+</tr>
+<tr>
+<td>zip</td>
+<td></td>
+<td>Zip/Postal code.</td>
+</tr>
+</tbody></table>
+
+<h2 id="cards">Cards</h2>
+
+<h3 id="add-card">Add Card</h3>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"custID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cust-212"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"marlonx7"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"paymentDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"payID"</span><span class="p">:</span><span class="w"> </span><span class="mi">95</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lastfour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXXXXXXXXXX2228"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"102931293810294012983109238"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"cardType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visa"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokenex"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"gatewayID"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nmi"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"referrer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"clientIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485000208199"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"userID"</span><span class="p">:</span><span class="w"> </span><span class="mi">84</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slicelocal_nmi"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"proccessTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This method lets you add card for a customer</p>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST customers/&lt;CUSTID&gt;/cards</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>The ID of the customer.</td>
+</tr>
+</tbody></table>
+
+<h4 id="query-parameters">Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>lastfour*</td>
+<td></td>
+<td>Card number.</td>
+</tr>
+<tr>
+<td>reference*</td>
+<td></td>
+<td>Card reference numer.</td>
+</tr>
+<tr>
+<td>type*</td>
+<td></td>
+<td>Type of card (Visa, Mastercard, etc., ) .</td>
+</tr>
+<tr>
+<td>name</td>
+<td></td>
+<td>Name of the card.</td>
+</tr>
+</tbody></table>
+
+<h3 id="view">View</h3>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"paymentDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"payID"</span><span class="p">:</span><span class="w"> </span><span class="mi">95</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lastfour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXXXXXXXXXX2228"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"102931293810294012983109238"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"cardType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visa"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokenex"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves specific customer&rsquo;s credit method details.</p>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET customers/&lt;CUSTID&gt;/cards/&lt;METHODID&gt;</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>The ID of the customer.</td>
+</tr>
+<tr>
+<td>METHODID</td>
+<td>Method ID.</td>
+</tr>
+</tbody></table>
+
+<h3 id="view-all">View All</h3>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"paymentDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"payID"</span><span class="p">:</span><span class="w"> </span><span class="mi">95</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"lastfour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXXXXXXXXXX2228"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"102931293810294012983109238"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"cardType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visa"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokenex"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves all customer&rsquo;s cards.</p>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET customers/&lt;CUSTID&gt;/cards</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>The ID of the customer.</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete">Delete</h3>
+
+<blockquote>
+<p>Returns <code class="prettyprint">true</code> on successful</p>
+</blockquote>
+
+<p>This method lets you remove saved credit.</p>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE customers/&lt;CUSTID&gt;/cards/&lt;METHODID&gt;</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>The ID of the customer.</td>
+</tr>
+<tr>
+<td>METHODID</td>
+<td>Payment method ID.</td>
+</tr>
+</tbody></table>
+
+<h2 id="checks">Checks</h2>
+
+<h3 id="view">View</h3>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"check"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test ACH"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXX-X678-9"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"routing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXX-X678-9"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves specific customer&rsquo;s check details.</p>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET customers/&lt;CUSTID&gt;/checks/&lt;METHODID&gt;</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>The ID of the customer.</td>
+</tr>
+<tr>
+<td>METHODID</td>
+<td>Method ID.</td>
+</tr>
+</tbody></table>
+
+<h3 id="view-all">View All</h3>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"custID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cust-212"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"marlonx7"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"paymentDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ach"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXX-X678-9"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"routing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXX-X678-9"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checking"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"gatewayID"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usaepay"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"referrer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"clientIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485000208199"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userID"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slicelocal"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"proccessTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"custID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cust-212"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"marlonx7"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"paymentDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ach"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXX-X678-9"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"routing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXX-X678-9"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checking"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"gatewayID"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usaepay"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"referrer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"clientIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485000208199"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userID"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slicelocal"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"proccessTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"custID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cust-212"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"marlonx7"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"paymentDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ach"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXX-X678-9"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"routing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXX-X678-9"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checking"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"gatewayID"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usaepay"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"referrer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"clientIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485000208199"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userID"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slicelocal"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"proccessTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"custID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cust-212"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"marlonx7"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"paymentDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ach"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXX-X678-9"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"routing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXX-X678-9"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checking"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"gatewayID"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usaepay"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"referrer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"clientIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485000208199"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userID"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slicelocal"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"proccessTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"custID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cust-212"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"marlonx7"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"paymentDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ach"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXX-X678-9"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"routing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXX-X678-9"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checking"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"gatewayID"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usaepay"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"referrer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"clientIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485000208199"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userID"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slicelocal"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"proccessTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves all customer&rsquo;s saved checks.</p>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET customers/&lt;CUSTID&gt;/checks</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>The ID of the customer.</td>
+</tr>
+</tbody></table>
+
+<h3 id="create">Create</h3>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"custID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cust-212"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"marlonx7"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"paymentDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ach"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXX-X678-9"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"routing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXX-X678-9"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checking"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"gatewayID"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nmi"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"referrer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"clientIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485000208199"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"userID"</span><span class="p">:</span><span class="w"> </span><span class="mi">84</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slicelocal_nmi"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"proccessTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint creates new customer&rsquo;s check.</p>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST customers/&lt;CUSTID&gt;/checks</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>The ID of the customer.</td>
+</tr>
+</tbody></table>
+
+<h4 id="query-parameters">Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account*</td>
+<td></td>
+<td>Check account number.</td>
+</tr>
+<tr>
+<td>routing*</td>
+<td></td>
+<td>Routing number.</td>
+</tr>
+<tr>
+<td>check*</td>
+<td></td>
+<td>Check number.</td>
+</tr>
+<tr>
+<td>name*</td>
+<td></td>
+<td>Payment method name.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">* = Required.</aside>
+
+<h3 id="delete">Delete</h3>
+
+<blockquote>
+<p>Returns <code class="prettyprint">true</code> on successful</p>
+</blockquote>
+
+<p>This method lets you remove saved checks.</p>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE customers/&lt;CUSTID&gt;/checks/&lt;METHODID&gt;</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>The ID of the customer.</td>
+</tr>
+<tr>
+<td>METHODID</td>
+<td>Payment method ID.</td>
+</tr>
+</tbody></table>
+
           <h1 id="transactions">Transactions</h1>
 
 <h2 id="auth-only">Auth Only</h2>
