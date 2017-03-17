@@ -99,7 +99,7 @@ Accepted request `method`s are:
 
 Parameter | Type   | Default | Description
 -------- | ---------- | ---- | -------
-`expand` | *string* | *none* | Attributes to return as full objects. Names can be listed separated by a comma.<br><br> Keywords:<br><br>all - *expands all first level attributes*<br>all.all - *expands all second level attributes*<br>attribute.all - *expands all attributes child elements*
+`expand` | *string* | *none* | By default child objects are returned as id. With this attribute they can be returned as full objects. Names can be listed separated by a comma.<br><br> Keywords:<br><br>all - *expands all first level attributes*<br>all.all - *expands all second level attributes*<br>attribute.all - *expands all attributes child elements*
 `fields` | *array* | *all* | Attributes to receive in response
 `exclude_fields` | *array* | *none* | Attributes to exclude from response
 `include_fields` | *array* | *none* | Attributes to add to response which are not returned by default
@@ -527,11 +527,56 @@ Parameter | Type | Description
 `login` | *[object](#login)* | Object containing session information. Same is returned on login.
 `user` | *object* | Created user after registration
 
+# Service data
 
-<aside class="success">
-Code for successful registration: 2010.
-</aside>
+## Treats
 
-<aside class="warning">
-Error codes for registration: 4010 - 4020.
-</aside>
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/client/treats"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "id": 45,
+      "title": "Free pickup on your next <b>Quickup</b>",
+      "description": "Save some precious time with </b>Quickup</b>. They shop, pickup and drop everything you need.",
+      "note": "* Partners T&C applies.",
+      "image": 223,
+      "image_url": "https://files.dxr.cloud/qYvi51mYq98Bvj1wk94RQSCNAuOvY4GXhEjqMdNRAFKYpckaFnTipz8YwJyT",
+      "link": "http://www.google.com",
+      "sort": 100
+    }
+  ],
+  "meta": {
+    "db_version": 25,
+    "latest_build": 27
+  }
+}
+```
+
+
+Treats are affiliate deals. They are shown in a list. Tapping on one opens a link in a browser.
+
+`"path": "treats"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`title` | *string* | Treat title text.
+`description` | *string* | Treat detailed description text.
+`note` | *string* | Small additional description text.
+`image` | *integer* | Treat image object id. If expanded image full object is returned.
+`image_url` | *string* | Treat image direct link.
+`link` | *string* | Link to treat website.
+`sort` | *integer* | Order of treat.
