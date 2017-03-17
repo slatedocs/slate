@@ -945,6 +945,15 @@ activeReporters = [ "0x61badf138090eb57cac69a595374090ef7b76f86",
                     "0x5d8591daaac13717e12c25fead00406c0f594394",
                     "0x591c4545f370f48d56df8721321e499f980c6e4d" ]
 
+var eventId = "-0xd0dbd235c8de8cccd7d8ef96b460c7dc2d19539fb45778f7897c412d4c0a3683";
+augur.getCurrentMode(reportPeriod, eventId, function (mode) { /* ... */ })
+// example output:
+mode = "3"
+
+augur.getCurrentModeItems(reportPeriod, eventId, function (modeItems) { /* ... */ }))
+// example output:
+modeItems = "8"
+
 augur.getEvents(branchId, reportPeriod, function (events) { /* ... */ });
 // example output:
 events = ["-0xc6481ca18bec443c7831578e5f2de02594041041e0abbf0e8ecafd70197fd1a5",
@@ -985,7 +994,6 @@ augur.getBeforeRep(branchId, reportPeriod, reporter, function (beforeRep) { /* .
 // example output:
 beforeRep = "0x2c3c465ca58ec0000"
 
-var eventId = "-0xd0dbd235c8de8cccd7d8ef96b460c7dc2d19539fb45778f7897c412d4c0a3683";
 augur.getEventWeight(branchId, reportPeriod, eventId, function (eventWeight) { /* ... */ })
 // example output:
 eventWeight = "0x29a2241af62c0000"
@@ -1064,6 +1072,14 @@ reportWeight = "0x29a2241af62c0000"
 #### getActiveReporters(branch, reportPeriod, from, to[, callback])
 
 Fetches an array of reporter addresses from the reporters pool given a start `from` and end `to` point and a specified `reportPeriod`.
+
+#### getCurrentMode(reportPeriod, eventId[, callback])
+
+Returns the current mode report or report key with the most value for a specified Event ID `eventId` and period `reportPeriod`.
+
+#### getCurrentModeItems(reportPeriod, eventId[, callback])
+
+Returns the current mode report value for a specified Event ID `eventId` and period `reportPeriod`.
 
 #### getEvents(branch, reportPeriod[, callback])
 
