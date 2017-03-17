@@ -10,14 +10,10 @@ In Inkling a **schema** describes a named record and its contained fields. Each 
 ### Why do I use it?
 
 Schemas describe the structure of data in Inkling  streams, such as the
-predefined input and output streams. In addition, many Inkling statements (for
+predefined `input` and `output` streams. In addition, many Inkling statements (for
 example `concept` and `curriculum`) use schema references to describe the data that flows in and out of the construct.
 
 ### How do I use it?
-
-A sample schema declaration and an example of its use is shown to the right.
-Note that a schema reference can be anonymous. That means a list of name, type
-pairs appears where a schema name could appear.
 
 ```inkling
 schema MySchema                   # declare
@@ -32,20 +28,19 @@ concept MyConcept
     feeds output
 end
 ```
+
+Select the Inkling tab to show a sample schema declaration and an example of its use.
+Note that a schema reference can be anonymous. That means a list of name, type
+pairs can appear where a schema name could appear.
 ‍
 ## Schema Rules
 
 * Inkling statements can reference schemas by name. Above, `MyConcept` uses `MySchema` as its `predicts` schema.
-* Statements can use anonymous schemas. That means that a list of fields appears where a schema name could appear. Above, after `follows`, the predefined stream input has an anonymous schema with one field. This is useful in cases where you will only need that information once. In general, anywhere a schema name can appear, an anonymous schema can appear.
+* Statements can use anonymous schemas. That means that a list of fields appears where a schema name could appear. Above, after `follows`, the predefined stream `input` has an anonymous schema with one field. This is useful in cases where you will only need that information once. In general, anywhere a schema name can appear, an anonymous schema can appear.
 * The set of types supported with schema fields consists of the set of Inkling primitive types and the set of Inkling structured types. These sets are listed below.
 * A schema field that has a primitive type can also have a type constraint that constrains the set of potential values for that field. Examples and syntax of type constraints are given below.
 
 ## Schema Declaration Syntax
-
-The schema declaration syntax appears to the right.
-
-In the syntax you will see references to Inkling primitive types and structure types
-(Luminance, Matrix). These are discussed in in the Inkling Types section below. 
 
 ```plaintext
 schemaStatement ::=
@@ -92,11 +87,14 @@ scalarDeclaration ::=
   primitiveType typeConstraint?
     <name> [ '[' arraySizeLiteral ']' ]*
 ```
+
+Select the Syntax tab and the schema declaration syntax will appear to the right.
+
+In the syntax you will see references to Inkling primitive types and structure types
+(Luminance, Matrix). These are discussed in in the Inkling Types section below. 
+
 ‍
 ## Schema Reference Syntax
-
-A named schema is referenced by its name. An anonymous schema is referenced by its list of fields.
-
 
 ```plaintext
 schemaReference ::=
@@ -105,9 +103,11 @@ schemaReference ::=
   '(' <fieldDeclarationList> ')'  # anonymous reference
 ```
 
-## Schema Example
+Select the Syntax tab and the schema reference syntax will appear to the right.
 
-Click the Inkling tab to show a schema that has a field with a primitive type and a field with a structured type.
+A named schema is referenced by its name. An anonymous schema is referenced by its list of fields.
+
+## Schema Example
 
 ```inkling
 schema MNIST_training_data_schema
@@ -116,14 +116,11 @@ schema MNIST_training_data_schema
 end
 ```
 
+Select the Inkling tab to show a schema that has a field with a primitive type and a field with a structured type.
+
 ## Inkling Types
 
 ###### Primitive Types
-
-Click the syntax tab to show the Inkling set of primitive types which are used in schema declarations. The
-integer suffix indicates the size in bits of the type. Integer types beginning
-with 'U' are unsigned. 
-
 
 ```plaintext
 primitiveType ::=
@@ -131,27 +128,30 @@ primitiveType ::=
   Int64 | UInt8 | UInt16 | UInt32  | UInt64 | Bool | String
 ```
 
+Select the Syntax tab to show the Inkling set of primitive types which are used in schema declarations. The
+integer suffix indicates the size in bits of the type. Integer types beginning
+with 'U' are unsigned. 
+
 ###### Structured Types
-
-Inkling currently supports the types Matrix and Luminance. This list will be
-expanded.
-
-See the schema declaration syntax for the complete syntax of declaration.
 
 ```plaintext
 structure_type ::= 
   Luminance | Matrix
 ```
+
+Inkling currently supports the types Matrix and Luminance. (This list will be
+expanded.)
+
+See the schema declaration syntax for the complete syntax of structure declaration.
+
 ‍
 ###### Constrained Types
-
-Constrained types are supported in schemas and also in [lessons][1]. They are constrained by means of a special type of expression called a range expression.
 
 ```inkling
   # Example: Range expression
 
   schema Schema1
-    Int8 {0:3:10} field   # start:step:stop
+    Int8 {0:3:10} field   # start:step:stop (all are numeric literals)
   end
  
  # Curly braces delineate the range expression.
@@ -161,13 +161,13 @@ Constrained types are supported in schemas and also in [lessons][1]. They are co
  # necessarily an endpoint).
 ```
 
+Constrained types are supported in schemas and also in [lessons][1]. They are constrained by means of a special type of expression called a range expression.
+
 A range expression has the effect of constraining the values of the type to values defined by the range expression. In a schema this constrains the values in the field. In lessons this constrains the values of the placeholder being configured. In both cases the syntax is the same.
 
 Select the Inkling tab to see an example of a constrained type in a schema definition. 
 
 ### Constrained Type Syntax
-
-Select the Syntax tab to view the constrained type syntax.
 
 ```plaintext
 constrainedType ::=
@@ -179,14 +179,16 @@ primitiveType
 '}'
 ```
 
+Select the Syntax tab to view the constrained type syntax.
+
+Note that start, stop, step, numSteps are all numeric literals.
+
 ‍
 
 ###### Range Expression Rules
 
 There are three forms of range expressions which Inkling supports. 
-Select the Inkling tab to see an examples of each type.
-
-* **Value list range expression**
+Select the Inkling tab to see an example of each type.
 
 ```inkling
 # Example: Value list range expression
@@ -197,11 +199,11 @@ schema Schema2
 end
 ```
 
+* **Value list range expression**
+
 A value list range expression is simply a list of values.
 These range expressions specify sets of values in 
 which each value is explicitly listed.
-
-* **Colon range expression**
 
 ```inkling
 # Example: Range expression, colon range type
@@ -211,14 +213,14 @@ schema Schema3
 end
 ```
 
+* **Colon range expression**
+
 Colon range expressions specify values for the start, 
 the step, and the stop. 
 
 * If the step value is missing, 1 is the default. 
 * Step can be  a floating point number.
 * The step size can be negative only if stop < start.
-
-* **Dot range expression**
 
 ```inkling
 # Example: Range expression, dot range type
@@ -227,6 +229,8 @@ schema Schema4
   Float32 { 0..2:5}    a    # yields (0, .5., 1.0, 1.5, 2.0)
 end
 ```
+
+* **Dot range expression**
 
 Dot range expressions specify values for start, stop, and number of steps. 
 
@@ -239,11 +243,6 @@ The range start point is exact (to the maximum extent possible if the range expr
 
 * **Numeric Range Expression End Point**
 
-The end point specified in the range expression may or may not be included in the values of the range. 
-The range end is a limit. That means that if applying the step results in landing exactly on the end point, then the end point is part of the range. Otherwise the highest value landed on that is less than the end point is the final value in the range.
-
-Select the Inkling tab to view some examples of valid and invalid ranges.
-
 ```inkling
  # Valid and Invalid Range Expressions.
 
@@ -254,6 +253,10 @@ Select the Inkling tab to view some examples of valid and invalid ranges.
  UInt32 {-10:10}  field4    # INVALID. Unsigned integer range contains signed values.
 ```
 
+The end point specified in the range expression may or may not be included in the values of the range. 
+The range end is a limit. That means that if applying the step results in landing exactly on the end point, then the end point is part of the range. Otherwise the highest value landed on that is less than the end point is the final value in the range.
+
+Select the Inkling tab to view some examples of valid and invalid ranges.
 
 ‍
 

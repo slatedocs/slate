@@ -17,9 +17,6 @@ A concept statement describes what the computer will learn. It can be a feature 
 
 ### How Do I Use It?
 
-A typical concept statement is shown to the right. Its structure and keywords
-are explained below.
-
 ```inkling
 concept conceptName
   is classifier                 # or 'is estimator'
@@ -28,6 +25,10 @@ concept conceptName
   feeds output, subsequentconcept
 end
 ```
+
+A typical concept statement is shown to the right. (Select the Inkling tab.) Its structure and keywords
+are explained below.
+
 ## Concept Rules
 
 * The concept must be named after the `concept` keyword.
@@ -40,10 +41,6 @@ end
 * The concept statement is terminated by the `end` keyword.
 
 ## Concept Statement Syntax
-
-Click the Syntax tab to show syntax for the concept statement and its input
-sources and output targets.
-
 
 ```plaintext
 conceptStatement :=
@@ -70,11 +67,10 @@ outputTarget ::=
  |  <name>       # name of a concept or stream
 ```
 
+Select the Syntax tab to show syntax for the concept statement and its input
+sources and output targets.
+
 ## Concept Examples
-
-We show Inkling for the concepts get_high_score, Digit, Curvature, and Segments. 
-
-Click the Inkling tab to display the Inklng source. 
 
 ### get_high_score
 
@@ -87,6 +83,9 @@ concept get_high_score
 end
 ```
 
+We show Inkling for the concepts get_high_score, Digit, Curvature, and Segments. 
+
+Select the Inkling tab to display the Inklng source. 
 
 In this example:
 

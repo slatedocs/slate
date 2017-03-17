@@ -12,9 +12,7 @@ Lessons give you control over the training of the mental model. They allow you t
 
 ### How do I use it?
 
-Select the Syntax tab to show the clauses a lesson can contain.
-
-```inkling
+```plaintext
 lesson lessonName
     follows prevLessonName
   configureClause
@@ -23,11 +21,10 @@ lesson lessonName
   untilClause
 ```
 
+Select the Syntax tab to show the clauses a lesson can contain.
+
 Lessons allow the machine to learn the concept in stages rather than all at
-once. In the example we show lessons that break into stages the task of  playing
-the game breakout. The first lesson, `constant_breakout`, trains the machine
-with a set of fixed values as configuration parameters. The second lesson,
-`vary_breakout`, which **follows** `constant_breakout`, trains the machine with a set of configuration parameters that vary according to specified type constraints.
+once. 
 
 Here are the overall lesson rules:
 
@@ -36,8 +33,16 @@ Here are the overall lesson rules:
 * Lessons appear after the objective clause in curriculums.
 * Lessons can be ordered, using the **follows** clause. Note that this ordering is a suggestion to the instructor, not a hard and fast rule.
 
+Lessons have **configure**, **test**, **train**, and **until** clauses. 
+Some lesson clauses have defaults so if a clause is not specified the default
+will be in effect. Also in certain circumstances not all clauses are available.
+See the lesson clauses table below for the rules which apply to a specific
+clause.
+
+### Breakout Example
+
 ```inkling
-schema BreakoutConfig   # configured in configureClause
+schema BreakoutConfig   # configured in lesson configureClause
   UInt32 level,
   UInt8{1:4} paddle_width,
   Float32 bricks_percent
@@ -82,11 +87,10 @@ curriculum ball_location_curriculum
 end
 ```
 
-Lessons have **configure**, **test**, **train**, and **until** clauses. 
-Some lesson clauses have defaults so if a clause is not specified the default
-will be in effect. Also in certain circumstances not all clauses are available.
-See the lesson clauses table below for the rules which apply to a specific
-clause.
+In this example we show lessons that break into stages the task of  playing
+the game breakout. The first lesson, `constant_breakout`, trains the machine
+with a set of fixed values as configuration parameters. The second lesson,
+`vary_breakout`, which **follows** `constant_breakout`, trains the machine with a set of configuration parameters that vary according to specified type constraints.
 
 The two lessons in our example, `constant_breakout` and `vary_breakout`, are different in their configure clause. The first sets the fields in the configuration schema to constant values and the second lesson, `vary_breakout`, generates sets of values constrained by the type constraint. 
 
@@ -115,11 +119,6 @@ Table for Lesson Clauses
 
 ## Lesson Syntax
 
-Select the Syntax tab to see the lesson syntax.
-
-The syntax for the subordinate clauses is broken out below.
-
-
 ```plaintext
 lessonStatement ::=
   lesson <lessonName>
@@ -129,11 +128,11 @@ lessonStatement ::=
     untilClause?
     testClause?
 ```
-‍
+
+Select the Syntax tab to see the lesson syntax. The syntax for lesson and its subordinate
+clauses is displayed.
 
 ###### Lesson Configure Clause Syntax
-
-Select the Syntax tab for the syntax for this clause.
 
 ```plaintext
 configureClause ::=
@@ -141,16 +140,9 @@ configure
   [constrain <configSchemaFieldName> with constrainedType]+
 ```
 
-‍
-
-
-###### Lesson Train/Test Clause Syntax
-
 Select the Syntax tab for the syntax for this clause.
 
-The **test** clause and the **train** clause have identical syntax except for
-their keyword (**train** or **test**).  However they both vary depending on the
-_trainingSpecifier_ in the curriculum. Note that the **expect** is only available in those cases that have known expected values, and that occurs when the _trainingSpecifier_ is **data** or **generator**.
+###### Lesson Train/Test Clause Syntax
 
 ```plaintext
 trainClause ::=
@@ -161,7 +153,6 @@ train
 trainingSpecifer
 ```
 
-
 ```plaintext
 testClause ::=
 test
@@ -170,14 +161,20 @@ test
   [expect <name>]?    # only valid for data or generator
 trainingSpecifer
 ```
-‍
-The **from** clause in the test/train syntax is used to name and describe the training data that is sent by the system (either from a labeled data set, in the **data** case, or by the generator or simulator) to the lesson.  
 
-Select the Inkling tab to show an example of the **from** clause in a
-curricululm which trains the machine to recognize line segments in an image. The
-generator `segments_generator` sends an image and expects `num_segments` in
-return. (The returned `num_segments` is expected to match the generator's
-`num_segments` value.)
+Select the Syntax tab for the syntax for these clauses.
+
+The **test** clause and the **train** clause have identical syntax except for
+their keyword (**train** or **test**).  However they both vary depending on the
+_trainingSpecifier_ in the curriculum. Note that the **expect** is only available in those cases that have known expected values, and that occurs when the _trainingSpecifier_ is **data** or **generator**.
+
+The **from** clause in the test/train syntax is used to name and describe the
+training data that is sent by the system (either from a labeled data set, in the
+**data** case, or by the generator or simulator) to the lesson. The next example
+shows the usage of the **from** clause.
+‍
+
+### Segments Example
 
 ```inkling
 ‍generator segments_generator(UInt8 segmentCount)
@@ -203,19 +200,16 @@ curriculum segments_curriculum
         expect item.num_segments    # A field in segments_training_schema
 end
 ```
-‍
-The **until** clause in the lesson specifies the termination condition for training. The **until** clause in our breakout example above was this:
 
-  *until minimize ball_location_distance*
-
-‍
-This means train until the curriculum objective (`ball_location_distance`) is minimized. 
+Select the Inkling tab to show an example of the **from** clause in a
+curricululm which trains the machine to recognize line segments in an image. The
+generator `segments_generator` sends an image and expects `num_segments` in
+return. (The returned `num_segments` is expected to match the generator's
+`num_segments` value.)
 
 ‍
 
 ###### Lesson Until Clause Syntax
-
-Select the Syntax tab for the **until** clause syntax.
 
 ```plaintext
 untilClause ::=
@@ -228,7 +222,17 @@ relOp ::=
   '==' | '<' | '>' | '<=' | '>='
 ```
 
+Select the Syntax tab for the **until** clause syntax.
+
 The **until** clause is only required if the curriculum _trainingSpecifier_ is **simulator**.  If this curriculum has a _trainingSpecifier_ of **data** or **generator**, the **until** clause is optional. If it is not present, a default with value minimize will be created.
+
+‍
+The **until** clause in the lesson specifies the termination condition for training. The **until** clause in our breakout example above was this:
+
+  *until minimize ball_location_distance*
+
+‍
+This means train until the curriculum objective (`ball_location_distance`) is minimized. 
 
 [1]: #schema
 [2]: https://daks2k3a4ib2z.cloudfront.net/57bf257ce45825764c5cb54b/57e8edb6507ff363506fcb75_Screen%20Shot%202016-09-26%20at%2005.42.50.png
