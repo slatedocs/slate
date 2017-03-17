@@ -1,4 +1,4 @@
-# Overview
+# Python Library Overview
 
 The Python library wraps the API to simplify the process of building simulators
 in the Python programming language.  Compatible with Python 2.7+
@@ -10,8 +10,8 @@ the AI Engine replies with an action. The simulator then uses this action to
 advance the simulation and compute a new state. This "send state, receive
 action" process is repeated until training stops.  At any time the AI engine
 may stop, reconfigure, and reset the simulator.  After doing so it will either
-restart this training loop or stop training.
-
+restart this training loop or stop training.  A training loop is sometimes
+referred to as an "iteration".
 
 # Simulator Class
 
@@ -123,7 +123,10 @@ the last call to `advance`. `SimState` contains a `state` and an `is_terminal`
 flag. `state` is a dictionary matching the state schema as defined in an
 Inkling `simulator` statement within an Inkling program. `is_terminal` is only
 true when the simulator is in a "game over" state. Any cleanup of the
-`is_terminal` state should be handled by `advance` or `get_state`.
+`is_terminal` state should be handled by `advance` or `get_state`. Each call
+to `get_state` gets the state of an "iteration" of training.  An "episode" is
+a collection of iterations. Episodes are bounded by states where `is_terminal`
+is true.
 
 
 ## Objectives (Reward Functions)
@@ -163,6 +166,12 @@ statement within an Inkling program.
 
 ## run_for_training_or_prediction(name, simulator_or_generator)
 
+```python
+simulator = FindCenterSimulator()
+bonsai.run_for_training_or_prediction("inverted_pendulum_simulator",
+                                      simulator)
+```
+
 Connects to the AI Engine and identifies as `name`. The `name` of this
 simulator must be the same in Inkling as it is in this function call.
 `simulator_or_generator` is a reference to an instance of the simulator. This
@@ -171,7 +180,7 @@ call blocks and drives the simulator loop until training stops.
 
 # Example
 
-For more information, see [examples][3].
+For a more complete example of the `FindCenterSimulation`, see [examples][3].
 
 
 [1]: inkling-referece.html#lesson-configure-clause-syntax
