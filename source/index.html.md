@@ -11,6 +11,7 @@ includes:
   - modules/setup
   - modules/authentication
   - api/payplan
+  - api/customer
   - api/transaction
   - errors
 
