@@ -1,5 +1,32 @@
 ## DepositDTO
 
+```xml
+<deposits type="DepositDTO">
+    <id>deposit_id</id>
+    <accountNumber>78595893712734543344</accountNumber>
+    <autoRenewal>true</autoRenewal>
+    <capitalization>true</capitalization>
+    <capitalizationTerm nil="true"/>
+    <currency>EUR</currency>
+    <fxInterestRate>102342</fxInterestRate>
+    <hasRequisites>false</hasRequisites>
+    <initialAmount type="AmountDTO">
+        <currency>EUR</currency>
+        <fxAmount>100000</fxAmount>
+    </initialAmount>
+    <mainCardId nil="true"/>
+    <maturityDate>2013-05-24T00:00:00.000+03:00</maturityDate>
+    <openingDate>2012-05-24T00:00:00.000+03:00</openingDate>
+    <period>180</period>
+    <productName>deposit_name</productName>
+    <runningBalance type="AmountDTO">
+        <currency>EUR</currency>
+        <fxAmount>920723</fxAmount>
+    </runningBalance>
+    <status>ACTIVE</status>
+</deposits>
+```
+
 key | type | status | comment
 --- | ---- | :----: | ---:
 id | string | 1..1 | уникальный идентификатор
