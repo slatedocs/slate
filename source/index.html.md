@@ -424,7 +424,6 @@ Parameter | Type | Description
 Parameter | Type | Description
 -------- | ----- | -------
 `social.oauth_id`<br>*required* | *string* | Obtained facebook user access token 
-`social.profile_id `<br>*required* | *string* | Obtained Facebook ID of a user
 `social.social_provider_id`<br>*optional* | *integer* | Social login provider `id`.<br><br>*<b>1</b> - Facebook*
 
 ### `params`
@@ -459,7 +458,6 @@ curl\
         "referral_code": "JOHND1234B",
         "social": {
           "oauth_id": "EAAEo0IpvAQcBAK1gy3VjCJPZCp6vidasdvEvEtxmO0gjFFjtz3jd8omEuhVhg3Y3ZAzIjSLQVMMZBaWwIZBRY9U8B7XZCFvGpledf38DPUTfeHNA2PCZALtPFTjXYFD1aPeB6IK4oo8dJWAIMAcpKPmFATTtXABljEA02jIDExTAp5brMUuNLMQlQr48ISRhbNy4hbKyI6plbO6ZCd1iHJ9kxd09PfpiwcZD",
-          "profile_id": 911980962150668,
           "social_provider_id": 1
         },
         "type_id": 1
