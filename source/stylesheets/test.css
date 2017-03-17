@@ -884,6 +884,12 @@ a {}
 	
 }
 
+/* quick fixes */
+
+li.header_menu_item.selected + li.header_menu_item.selected a {border: none !important;}
+
+
+
 /*gcs css fixes*/
 
 /*
