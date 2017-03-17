@@ -1,50 +1,31 @@
 ---
-title: Intelex REST API
+title: Intelex API Reference
 
 language_tabs:
   - javascript: JavaScript
   - csharp: C#
 
-toc_footers:
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
-
 includes:
-  - errors
+  - responses
 
 search: true
 ---
 
-# Introduction
-> **API Base Path**
+# Get Started
+
+## API Reference
+
+> API Endpoint - replace **intelex_url** with the full URL path to your Intelex system
 
 ```
 https://intelex_url/api/v2/
 ```
 
-The Intelex REST API has predictable, resource-oriented URLs, and uses HTTP response codes
-to indicate API errors.  We use built-in HTTP features, like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients.
+The Intelex API is organized around REST. Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients. JSON is returned by all API responses, including errors.
 
-Each API endpoint has the following base path:
-```
-https://YourIntelexSiteURL/api/v2/
-```
-<aside class="notice">
-You must replace <code>YourIntelexSiteURL</code> with the URL for your Intelex platform instance
-</aside>
+## Authentication
 
-For example, if your Intelex Platform instance URL is:
-```
-https://clients.intelex.com/Login/YourCompanyName
-```
-
-Then your API endpoint base path will be:
-```
-https://clients.intelex.com/Login/YourCompanyName/api/v2/
-```
-
-# Authentication
-
-> To authorize your requests, use this code:
+> Example Request - make sure to replace **hello** with your credentials.
 
 ```javascript
 var request = require("request");
@@ -60,8 +41,6 @@ var request = new RestRequest(Method.GET);
 request.AddHeader("authorization", "Basic hello");
 ```
 
-> Make sure to replace `hello` with your credentials.
-
 Authentication to the API is performed via HTTP Basic Auth and your Intelex user credentials. All API requests must be made over HTTPS. API requests without authentication will fail.
 
 Exception Type | Exception Message
@@ -74,23 +53,16 @@ Exception Type | Exception Message
 
 # Requesting Object Data
 
-> **Object Service Base Path**
+> Example Object API Endpoint - replace **IncidentsObject** with the system name of the object you want to access
 
-```
-https://intelex_url/api/v2/object
-```
-The Intelex Object Data Service is a RESTful service that provides read/write access to object data records. Each Intelex object is a resource that can be accessed via an API Endpoint.  Use the system name of the object as your resource.
-
-Example:
 ```
 https://intelex_url/api/v2/object/IncidentsObject
 ```
-<aside class="notice">
-You must replace <code>IncidentsObject</code> with the system name of the object you want to access
-</aside>
+The Intelex Object APIs provide read/write access to object data records. Each Intelex object is a resource that can be accessed via an API Endpoint.  Use the system name of the object as your resource.
+
 
 ### Record Metadata
-> Metadata properties in responses
+> Example response with record metadata
 
 ```json
 {
@@ -111,7 +83,7 @@ Property | Description
 @odata.editLink|Denotes if the record can be modified by the user making the request. Same as @odata.id link
 
 ### Pagination
-> Pagination response
+> Example response with pagination link
 
 ```json
 {
@@ -129,6 +101,8 @@ Objects can be configured with relations to other objects. These relations are c
 Every record will have navigation properties that can be used to access related data.  You'll need to use the system name of the relation field to access related data.  You can access related data a number of ways - by using system query options or navigating to related records through the URL path.
 
 ## Requesting records
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -149,7 +123,7 @@ var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -174,13 +148,15 @@ Returns all records from the Incidents object that the user is authorized to vie
 
 ### GET /api/v2/object/{intelex_object}
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
 intelex_object | The Intelex system name of the object being requested eg. IncidentsObject
 
 ## Requesting a specific record
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -201,7 +177,7 @@ var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -222,7 +198,7 @@ Returns an individual record from the Incidents object by referencing the UID of
 
 ### GET /object/{intelex_object}({id})
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
@@ -231,6 +207,8 @@ id | The Intelex UID of the record being requested
 
 
 ## Requesting related records
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -252,7 +230,7 @@ var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -277,7 +255,7 @@ Navigating to related records allows clients to request only the relational data
 
 ### GET /object/{intelex_object}({id})/{navigation_property}
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
@@ -286,6 +264,8 @@ id | The Intelex UID of the record being requested
 navigation_property|The Intelex system name of the relation type or lookup type field
 
 ## Requesting a specific related record
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -306,7 +286,7 @@ var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -327,7 +307,7 @@ Navigating to related records allows clients to request only the relational data
 
 ### GET /object/{intelex_object}({id})/{navigation_property}({id})
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
@@ -338,6 +318,8 @@ navigation_property|The Intelex system name of the relation type or lookup type 
 # Querying Object Data
 
 ## Query option: $select
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -360,7 +342,7 @@ var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -384,13 +366,15 @@ Option | Example Values
 Select a single field | $select=IncidentNo
 Select mutliple fields | $select=IncidentNo, Description
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
 field_name | Field name(s) to include in response
 
 ## Query option: $count
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -413,7 +397,7 @@ var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -439,13 +423,15 @@ The $count system query option with a value of true specifies that the total cou
 
 ### GET /object/{intelex_object}?$count=true
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
 intelex_object | The Intelex system name of the object being requested eg. IncidentsObject
 
 ## Query option: $top and $skip
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -467,7 +453,7 @@ var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -492,19 +478,21 @@ The $top system query option requests the number of items in the queried collect
 
 ### GET /object/{intelex_object}?$top={top_n}&$skip={skip_n}
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
 intelex_object | The Intelex system name of the object being requested eg. IncidentsObject
 
-### Query Parameters
+#### Query Parameters
 Parameter | Description
 --------- | -----------
 top_n | Number of items to be included in the response
 skip_n| Number of items to be skipped
 
 ## Query option: $orderby
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -527,7 +515,7 @@ var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -560,19 +548,21 @@ Sort by drop-down value |$orderby=Severity/Caption
 Sort by multiple fields|$orderby=DateCreated, Severity/Caption
 Sort by workflow person responsible|$orderby=Workflow/PersonResponsible/Name
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
 intelex_object | The Intelex system name of the object being requested eg. IncidentsObject
 
-### Query Parameters
+#### Query Parameters
 
 Parameter | Description
 --------- | -----------
 field_name | Fields that you want to sort by
 
 ## Query option: $filter
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -594,7 +584,7 @@ var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -620,20 +610,20 @@ The $filter system query option allows clients to filter a collection of records
 
 ### GET /object/{intelex_object}?$filter={filter_expression}
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
 intelex_object | The Intelex system name of the object being requested eg. IncidentsObject
 
-### Query Parameters
+#### Query Parameters
 
 Parameter | Description
 --------- | -----------
 filter_expression | Filter expression used to query data
 
 
-### Comparison Operators:
+#### Comparison Operators:
 |Name|Description|Example Values|
 |---|---|---|
 |eq|Equal|Severity/Value eq 'Moderate'
@@ -643,36 +633,36 @@ filter_expression | Filter expression used to query data
 |lt|Less than|IncidentNo lt 1000
 |le|Less than or equal|DateCreated le 2014-11-24T12:55:05.35-05:00
 
-### Logical Operators:
+#### Logical Operators:
 |Name|Description|Example Values|
 |---|---|---|
 |and|Logical and|Description ne null and Workflow/PersonResponsible/Name eq 'AC Slater'
 |or|Logical or|Cause eq true or IncidentNo gt 1000
 |not|Logical not|not(contains(Description, 'accident'))
 
-### Grouping Operators:
+#### Grouping Operators:
 |Name|Description|Example Values|
 |---|---|---|
 |(   )|Precedence grouping|IncidentNo gt 1000 and (Severity/Value eq 'Moderate' or contains(Description, 'fall'))
 
-### Functions:
+#### Functions:
 |Name|Description|Example Values|
 |---|---|---|
 |contains(Field, Value)|Sub-string search|contains(Description, 'accident'))
 
-### Filtering using Relation Fields:
+#### Filtering using Relation Fields:
 |Description|Example Values|
 |---|---|
 |Filtering by drop-down value |Severity/Value eq 'Moderate'
 |Filtering by sub-record values|SubIncidents/any(x:x/SubIncidentId gt 1000)
 
-### Filtering using Workflow:
+#### Filtering using Workflow:
 |Description|Example Values|
 |---|---|
 |Filter based on person responsible|Workflow/PersonResponsible/Name eq 'AC Slater'
 |Filter based on workflow status (enum)|Workflow/WorkflowStatus eq Enum.WorkflowStatusType'Completed'
 
-### Filter alias
+#### Filter alias
 @me is an alias that can be used in expressions to filter based on your identity'
 
 |Description|Example Values|
@@ -680,6 +670,8 @@ filter_expression | Filter expression used to query data
 |Filter where you are the person responsible|$filter=Workflow/PersonResponsible eq @me|
 
 ## Query option: $expand
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -701,7 +693,7 @@ var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -748,13 +740,13 @@ The $expand system query option specifies the related object records and lookup 
 |Select expanded fields|$expand=Severity($select=Name)|
 |Sort expanded collection|$expand=SubIncidents($orderby=DateCreated)|
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
 intelex_object | The Intelex system name of the object being requested eg. IncidentsObject
 
-### Query Parameters
+#### Query Parameters
 
 Parameter | Description
 --------- | -----------
@@ -763,6 +755,8 @@ relation_field | Relation field used to request related object data
 # Modifying Object Data
 
 ## Create a record
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -794,7 +788,7 @@ request.AddParameter("application/json", "{\r\n    \"ActionsTaken\": \"string\",
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -816,13 +810,13 @@ Creates a record with values in the object specified in the path. A client gener
 
 ### POST /object/{intelex_object}
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
 intelex_object | The Intelex system name of the object eg. IncidentsObject
 
-### Header Parameters
+#### Header Parameters
 
 When you create a record you also have the opportunity to execute an available workflow action within the same request. This is useful if you'd like a record to move to stage when it is created. In order to execute a workflow stage action within a create request, you'll need to provide a  header parameter.
 
@@ -831,21 +825,7 @@ Parameter | Description |Required | Example Value
 --------- | ----------- |--------- | -----------
 ActionToExecute | UID of the workflow stage action|No|Id=797bbb3b-b485-4e73-a21c-2b9d5454f8ab
 
-
-> Creating a record:
-
-```json
-{
-	"ActionsTaken": "string",
-	"Date": "2017-02-13T22:15:30.203Z",
-	"Description": "string",
-	"IncidentNo": 0,
-	"ReportedDate": "2017-02-13T22:15:30.203Z",
-	"SuspectedCause": "string"
-}
-```
-
-> Creating a record and setting a location value:
+> Example request of creating a record and setting a location value:
 
 ```json
 {
@@ -853,7 +833,7 @@ ActionToExecute | UID of the workflow stage action|No|Id=797bbb3b-b485-4e73-a21c
 }
 ```
 
-> Creating a record and setting a lookup type value:
+> Example request of creating a record and setting a lookup type value:
 
 ```json
 {
@@ -861,7 +841,7 @@ ActionToExecute | UID of the workflow stage action|No|Id=797bbb3b-b485-4e73-a21c
 }
 ```
 
-> Creating a record and set workflow recurrence or person responsible:
+> Example request of creating a record and set workflow recurrence or person responsible:
 
 ```json
 {
@@ -876,7 +856,7 @@ ActionToExecute | UID of the workflow stage action|No|Id=797bbb3b-b485-4e73-a21c
 }
 ```
 
-> Creating a record and attaching related records:
+> Example request of creating a record and attaching related records:
 
 ```json
 {
@@ -888,6 +868,8 @@ ActionToExecute | UID of the workflow stage action|No|Id=797bbb3b-b485-4e73-a21c
 ```
 
 ## Create a sub-record
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -919,7 +901,7 @@ request.AddParameter("application/json", "{\r\n    \"ActionsTaken\": \"string\",
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -940,7 +922,7 @@ You can also create related records by sending POST requests to navigation prope
 
 ### POST /object/{intelex_object}({id})/{navigation_property}
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
@@ -948,7 +930,7 @@ intelex_object | The Intelex system name of the object eg. IncidentsObject
 id| The Intelex UID of the parent record
 navigation_property|The Intelex system name of the relation type field that supports sub-records i.e. "Has a list of attached"
 
-### Header Parameters
+#### Header Parameters
 
 When you create related records you also have the opportunity to execute an available workflow action within the same request. This is useful if you'd like a record to move to stage when it is created. In order to execute a workflow stage action within a create request, you'll need to provide a  header parameter.
 
@@ -957,6 +939,8 @@ Parameter | Description |Required | Example Value
 ActionToExecute | UID of the workflow stage action|No|Id=797bbb3b-b485-4e73-a21c-2b9d5454f8ab
 
 ## Update a record
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -986,22 +970,14 @@ Updates a record in the object specified in the path. You can update values for 
 
 ### PATCH /object/{intelex_object}({id})
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
 intelex_object | The Intelex system name of the object eg. IncidentsObject
 id|The Intelex UID of the record being updated
 
-> Updating a record:
-
-```json
-{
-	"Description": "string"
-}
-```
-
-> Updating a location value:
+> Example of updating a location value:
 
 ```json
 {
@@ -1009,7 +985,7 @@ id|The Intelex UID of the record being updated
 }
 ```
 
-> Updating a lookup type value:
+> Example of updating a lookup type value:
 
 ```json
 {
@@ -1017,7 +993,7 @@ id|The Intelex UID of the record being updated
 }
 ```
 
-> Attaching related records:
+> Example of attaching related records:
 
 ```json
 {
@@ -1029,7 +1005,7 @@ id|The Intelex UID of the record being updated
 ```
 
 
-### Header Parameters
+#### Header Parameters
 
 When you update a record you also have the opportunity to execute an available workflow action within the same request. This is useful if you'd like a record to move to stage when it is updated. In order to execute a workflow stage action within an update request, you'll need to provide a  header parameter.
 
@@ -1038,6 +1014,8 @@ Parameter | Description |Required | Example Value
 ActionToExecute | UID of the workflow stage action|No|Id=797bbb3b-b485-4e73-a21c-2b9d5454f8ab
 
 ## Delete a record
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -1062,7 +1040,7 @@ Deletes an individual record in the Intelex object specified in the path. If Sof
 
 ### DELETE /object/{intelex_object}({id})
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
@@ -1070,6 +1048,8 @@ intelex_object | The Intelex system name of the object being requested eg. Incid
 id|The Intelex UID of the record being updated
 
 ## Delete a sub-record
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -1094,7 +1074,7 @@ Deletes an individual sub-record in the Intelex object specified in the path. If
 
 ### DELETE /object/{intelex_object}({id})/{navigation_property}({id})
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
@@ -1103,6 +1083,8 @@ id|The Intelex UID of the record or related record being accessed
 navigation_property|The Intelex system name of the relation type field
 
 ## Removing a single value reference
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -1127,7 +1109,7 @@ Sets the value in a drop-down to null. This call is useful if you need to remove
 
 ### DELETE /object/{intelex_object}({id})/{navigation_property}/$ref
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
@@ -1136,6 +1118,8 @@ id|The Intelex UID of the record
 navigation_property|The Intelex system name of the relation type field - must be a drop-down relation type field
 
 ## Removing a multi-value reference
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -1160,7 +1144,7 @@ This request detaches a related records. It deletes the relationship, but does n
 
 ### DELETE /object/{intelex_object}({id})/{navigation_property}({id})/$ref
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
@@ -1171,6 +1155,8 @@ navigation_property|The Intelex system name of the relation type field - must be
 # Object Workflow Data
 
 ## Requesting Workflow Data
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -1191,7 +1177,7 @@ var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -1213,11 +1199,11 @@ IRestResponse response = client.Execute(request);
 }
 ```
 
-This request allows you to retreive the workflow information for a given record.  
+This request allows you to retrieve the workflow information for a given record.  
 
 ### GET /object/{intelex_object}({id})/Workflow
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
@@ -1225,6 +1211,8 @@ intelex_object | The Intelex system name of the object eg. IncidentsObject
 id|The Intelex UID of the record being accessed
 
 ## Requesting Status
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -1245,7 +1233,7 @@ var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -1272,11 +1260,11 @@ IRestResponse response = client.Execute(request);
 }
 ```
 
-This request allows you to retreive the information about the workflow status that the record is currently in.
+This request allows you to retrieve the information about the workflow status that the record is currently in.
 
 ### GET /object/{intelex_object}({id})/Workflow/Status
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
@@ -1284,6 +1272,8 @@ intelex_object | The Intelex system name of the object eg. IncidentsObject
 id|The Intelex UID of the record being accessed
 
 ## Requesting Current Stage
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -1304,7 +1294,7 @@ var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -1331,11 +1321,11 @@ IRestResponse response = client.Execute(request);
 }
 ```
 
-This request allows you to retreive the information about the workflow stage that the record is currently in.
+This request allows you to retrieve the information about the workflow stage that the record is currently in.
 
 ### GET /object/{intelex_object}({id})/Workflow/CurrentStage
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
@@ -1343,6 +1333,8 @@ intelex_object | The Intelex system name of the object eg. IncidentsObject
 id|The Intelex UID of the record being accessed
 
 ## Requesting Stage Actions
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -1363,7 +1355,7 @@ var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -1393,11 +1385,11 @@ IRestResponse response = client.Execute(request);
 }
 ```
 
-This request allows you to retreive the information about the workflow stage actions available for a record in the current stage. Note: When a workflow is published, the action IDs are created. If someone updates a workflow, they have to re-publish it for the changes to take effect, and all the action IDs change. Typically, you don't need to worry about this, but if your action IDs stop working, you should check them by running a dummy record through the workflow.
+This request allows you to retrieve the information about the workflow stage actions available for a record in the current stage. Note: When a workflow is published, the action IDs are created. If someone updates a workflow, they have to re-publish it for the changes to take effect, and all the action IDs change. Typically, you don't need to worry about this, but if your action IDs stop working, you should check them by running a dummy record through the workflow.
 
 ### GET /object/{intelex_object}({id})/Workflow/CurrentStage/Actions
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
@@ -1405,6 +1397,8 @@ intelex_object | The Intelex system name of the object eg. IncidentsObject
 id|The Intelex UID of the record being accessed
 
 ## Requesting Person Responsible
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -1425,7 +1419,7 @@ var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -1441,11 +1435,11 @@ IRestResponse response = client.Execute(request);
 }
 ```
 
-This request allows you to retreive the individual assigned to the workflow stage of the record. **Workflow** and **PersonResponsible** are  navigation properties that can be accessed using the $expand system query option as well.
+This request allows you to retrieve the individual assigned to the workflow stage of the record. **Workflow** and **PersonResponsible** are  navigation properties that can be accessed using the $expand system query option as well.
 
 ### GET /object/{intelex_object}({id})/Workflow/PersonResponsible
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
@@ -1453,6 +1447,8 @@ intelex_object | The Intelex system name of the object eg. IncidentsObject
 id|The Intelex UID of the record being accessed
 
 ## Requesting Frequency
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -1473,7 +1469,7 @@ var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -1493,11 +1489,11 @@ IRestResponse response = client.Execute(request);
 }
 ```
 
-This request allows you to retreive the workflow frequency applied to the record.  The frequency property value is in iCal format.
+This request allows you to retrieve the workflow frequency applied to the record.  The frequency property value is in iCal format.
 
 ### GET /object/{intelex_object}({id})/Workflow/RecurringSeries
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
@@ -1505,6 +1501,8 @@ intelex_object | The Intelex system name of the object eg. IncidentsObject
 id|The Intelex UID of the record being accessed
 
 ## Executing a Stage Action
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -1530,7 +1528,7 @@ This request allows you to push a record through its workflow stages. Note: When
 
 ### POST /object/{intelex_object}({id})/Workflow/CurrentStage/Actions(id)/Action.ExecuteStageAction
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
@@ -1538,6 +1536,8 @@ intelex_object | The Intelex system name of the object eg. IncidentsObject
 id|The Intelex UID of the record or action being accessed 
 
 ## Updating Frequency
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -1564,28 +1564,23 @@ request.AddHeader("content-type", "application/json");
 request.AddParameter("application/json", "{\n  \"Frequency\": \"RRULE:FREQ=HOURLY\",\n  \"StartDate\": \"2017-06-06T03:30:00-04:00\"\n}", ParameterType.RequestBody);
 IRestResponse response = client.Execute(request);
 ```
-> Example request
 
-```json
-{
-	"Frequency": "RRULE:FREQ=HOURLY",
-	"StartDate": "2017-06-06T03:30:00-04:00"
-}
-```
 This request allows you to modify the workflow frequency for a given record.  The Frequency property will only accept iCal formatted strings.
 
 ### PATCH /object/{intelex_object}({id})/Workflow/RecurringSeries
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
 intelex_object | The Intelex system name of the object eg. IncidentsObject
 id|The Intelex UID of the record or action being accessed 
 
-# Object Document Attachments
+# Object Attachments
 
-## Requesting Private Document Attachments
+## Requesting Private Doc Attachments
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -1606,7 +1601,7 @@ var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -1630,7 +1625,7 @@ This request returns a list of all private document attachments belonging to a g
 
 ### GET /object/{intelex_object}({id})/ILX.Attachments
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
@@ -1638,6 +1633,8 @@ intelex_object | The Intelex system name of the object eg. IncidentsObject
 id|The Intelex UID of the record being accessed 
 
 ## Downloading Attachments
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -1663,7 +1660,7 @@ request.AddHeader("accept", "application/octet-stream");
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -1683,14 +1680,14 @@ By default, this request returns the metadata of a specific private document att
 
 ### GET /object/{intelex_object}({id})/ILX.Attachments({id})
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
 intelex_object | The Intelex system name of the object eg. IncidentsObject
 id|The Intelex UID of the record or document being accessed
 
-### Header Parameters
+#### Header Parameters
 
 Parameter | Description | Example Value
 --------- | ------------| -----------
@@ -1698,6 +1695,8 @@ Accept|Provide the content type in order to download the file|application/octet-
 Prefer|Used to request a thumbnail version of an image file|attachment=thumbnail
 
 ## Attaching Files
+
+> Example Request
 
 ```javascript
 var fs = require("fs");
@@ -1728,7 +1727,7 @@ request.AddParameter("multipart/form-data; boundary=----WebKitFormBoundary7MA4YW
 IRestResponse response = client.Execute(request);
 ```
 
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
 {
@@ -1748,20 +1747,22 @@ This request attaches a private document to a record.  The file must be attached
 
 ### POST /object/{intelex_object}({id})/ILX.Attachments
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
 intelex_object | The Intelex system name of the object eg. IncidentsObject
 id|The Intelex UID of the record being accessed 
 
-### Body Parameters
+#### Body Parameters
 
 Parameter | Type |
 --------- | -----------
 formData | file | 
 
 ## Detaching Documents
+
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -1787,7 +1788,7 @@ This request deletes the specified document attached to a given record. ILX.Atta
 
 ### DELETE /object/{intelex_object}({id})/ILX.Attachments({id})
 
-### URL Parameters
+#### URL Parameters
 
 Parameter | Description
 --------- | -----------
