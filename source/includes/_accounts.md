@@ -91,6 +91,10 @@ Parameter | Type | Required | Description
 date_from | string | Optional | Datetime moment including timezone, ex: 2016-03-11T10:14:00.190Z
 date_to | string | Optional | Datetime moment including timezone, ex: 2016-03-11T10:14:00.190Z
 
+<aside class="notice">
+For fetching data for wallets containing slash symbols '/' please substitute slash for undescrore symbol '_'. Ex., 'W/1234' should be requested as 'W_1234'
+</aside>
+
 # Get user cards
 > `POST https://domain.com/user/get_cards/1.0/json`
 
