@@ -122,7 +122,7 @@ end
 
 Select the Inkling tab to show a schema that has a field with a primitive type and a field with a structured type.
 
-#link
+#inkling_types
 ## Inkling Types
 
 ###### Primitive Types
@@ -265,4 +265,4 @@ Select the Inkling tab to view some examples of valid and invalid ranges.
 ‍
 
 [1]: #lesson
-[3]: #link
+[3]: #inkling_types
