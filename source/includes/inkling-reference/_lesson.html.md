@@ -235,4 +235,4 @@ The **until** clause in the lesson specifies the termination condition for train
 This means train until the curriculum objective (`ball_location_distance`) is minimized. 
 
 [1]: #schema
-[2]: https://daks2k3a4ib2z.cloudfront.net/57bf257ce45825764c5cb54b/57e8edb6507ff363506fcb75_Screen%20Shot%202016-09-26%20at%2005.42.50.png
+[2]: ../images/lesson-clause-table.png
