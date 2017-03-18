@@ -37,8 +37,12 @@ pairs can appear where a schema name could appear.
 
 * Inkling statements can reference schemas by name. Above, `MyConcept` uses `MySchema` as its `predicts` schema.
 * Statements can use anonymous schemas. That means that a list of fields appears where a schema name could appear. Above, after `follows`, the predefined stream `input` has an anonymous schema with one field. This is useful in cases where you will only need that information once. In general, anywhere a schema name can appear, an anonymous schema can appear.
-* The set of types supported with schema fields consists of the set of Inkling primitive types and the set of Inkling structured types. These sets are listed below.
-* A schema field that has a primitive type can also have a type constraint that constrains the set of potential values for that field. Examples and syntax of type constraints are given below.
+* The set of types supported with schema fields consists of the set of Inkling
+* primitive types and the set of Inkling structured types. These sets are
+* specified in the [Inkling Types][3] section.
+* A schema field that has a primitive type can also have a type constraint that
+* constrains the set of potential values for that field. Examples and syntax of
+* type constraints are included in this chapter.
 
 ## Schema Declaration Syntax
 
@@ -88,10 +92,10 @@ scalarDeclaration ::=
     <name> [ '[' arraySizeLiteral ']' ]*
 ```
 
-Select the Syntax tab and the schema declaration syntax will appear to the right.
+Select the Syntax tab to view the schema declaration syntax.
 
 In the syntax you will see references to Inkling primitive types and structure types
-(Luminance, Matrix). These are discussed in in the Inkling Types section below. 
+(Luminance, Matrix). These are discussed in in the Inkling Types section. 
 
 ‍
 ## Schema Reference Syntax
@@ -103,7 +107,7 @@ schemaReference ::=
   '(' <fieldDeclarationList> ')'  # anonymous reference
 ```
 
-Select the Syntax tab and the schema reference syntax will appear to the right.
+Select the Syntax tab to view the schema reference syntax.
 
 A named schema is referenced by its name. An anonymous schema is referenced by its list of fields.
 
@@ -118,6 +122,7 @@ end
 
 Select the Inkling tab to show a schema that has a field with a primitive type and a field with a structured type.
 
+#link
 ## Inkling Types
 
 ###### Primitive Types
@@ -261,3 +266,4 @@ Select the Inkling tab to view some examples of valid and invalid ranges.
 ‍
 
 [1]: #lesson
+[3]: #link

@@ -36,7 +36,7 @@ Here are the overall lesson rules:
 Lessons have **configure**, **test**, **train**, and **until** clauses. 
 Some lesson clauses have defaults so if a clause is not specified the default
 will be in effect. Also in certain circumstances not all clauses are available.
-See the lesson clauses table below for the rules which apply to a specific
+See the lesson clauses table in this chapter for the rules which apply to a specific
 clause.
 
 ### Breakout Example

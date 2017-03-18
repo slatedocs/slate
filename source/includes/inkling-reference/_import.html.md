@@ -21,7 +21,7 @@ from libraryName import importName1
 import importName2
 ```
 
-## Import Examples
+## Import Example
 
 Select the Inkling tab to view the example of an imported function.
 

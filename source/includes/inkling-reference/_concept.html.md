@@ -26,8 +26,8 @@ concept conceptName
 end
 ```
 
-A typical concept statement is shown to the right. (Select the Inkling tab.) Its structure and keywords
-are explained below.
+If you selet the Inkling tab a typical concept statement will be shown. Its structure and keywords
+are explained in the following sections.
 
 ## Concept Rules
 

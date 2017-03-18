@@ -8,7 +8,7 @@ The **curriculum** (keyword) declares a set of lessons that are used to teach co
 
 ### Why do I use it?
 
-A curriculum is used to teach a concept. The curriculum defines what concept is being taught (see the train clause below). Every concept needs a corresponding curriculum to teach it. A curriculum defines a set of lessons used to train the concept.
+A curriculum is used to teach a concept. The curriculum defines what concept is being taught. Every concept needs a corresponding curriculum to teach it. A curriculum defines a set of lessons used to train the concept.
 
 ### How do I use it?
 
@@ -63,7 +63,6 @@ Select the Inkling tab to view an excerpt of the code in the game Mountain Car f
 OpenAI Gym as written in Inkling.
 This illustrates the simulator clause.  (To explore this example more fully,
 refer to it in our [Examples chapter][1].)
-‍
 
 The simulator clause declares the simulator name and two schemas. The first specifies the schema for configuration of the simulator and it appears in parentheses immediately after the simulator name. In this instance, the configuration schema is named `MountainCarConfig`. In the example, the configure clause of lesson `get_high_score` initializes this configuration.
 
@@ -132,7 +131,8 @@ syntax for the curriculum statement, which introduces a **using** clause and a
 * You can train with **data**, **simulators**, or **generators**. These are the values allowed as training specifiers (see the Curriculum syntax). 
 * Every simulator or generator must be declared with a simulator or generator clause, respectively.
 
-**Note:** Currently, during our private beta, you can **only** train with simulators as your training material. That is, only the **simulator** training specifier is supported.
+**Note:** Currently, during our private beta, you can **only** train with
+simulators as your training source. That is, only the **simulator** training specifier is supported.
 
 * Lessons, tests, and assignments can occur in any order. (Assignments are used for data handling when the training specifier is **data**.)
 * If the **using** clause is present (that is, if the simplified curriculum syntax
@@ -267,7 +267,12 @@ end
 
 This curriculum trains the `Digit` concept. 
 
-This example references the MNIST database which is used to train for recognition of handwritten digits.  This example shows the use of the **data** training specifier (which is not supported during private beta) for that data set. When training **with data** the labeled data set must be read in from a file and then prepared and split into training and test partitions. That is shown below.
+This example references the MNIST database which is used to train for
+recognition of handwritten digits.  This example shows the use of the **data**
+training specifier (which is not supported during private beta) for that data
+set. When training **with data** the labeled data set must be read in from a
+file and then prepared and split into training and test partitions. That is
+shown in the Inkling code for digit_curriculum.
 
 In this example:
 
