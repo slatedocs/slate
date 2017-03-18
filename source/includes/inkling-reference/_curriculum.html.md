@@ -135,8 +135,7 @@ syntax for the curriculum statement, which introduces a **using** clause and a
 simulators as your training source. That is, only the **simulator** training specifier is supported.
 
 * Lessons, tests, and assignments can occur in any order. (Assignments are used for data handling when the training specifier is **data**.)
-* If the **using** clause is present (that is, if the simplified curriculum syntax
-* is not being used), there must be one **using** clause for every **with** clause.
+* If the **using** clause is present (that is, if the simplified curriculum syntax is not being used), there must be one **using** clause for every **with** clause.
 * The objective is always required but if the _trainingSpecifier_ is **data**, the objective must be either `equality` or `linear_distance`.
 
 ## Curriculum Statement Syntax
@@ -255,7 +254,7 @@ end
 datastore MNIST_data(MNIST_schema)
 copy "mnist-training.csv" into MNIST_data with format = "csv"
 
- # Training 'with data'
+# Training 'with data'
 curriculum digit_curriculum
   train Digit
   with data
