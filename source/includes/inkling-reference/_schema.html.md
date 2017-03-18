@@ -197,7 +197,6 @@ Select the Inkling tab to see an example of each type.
 
 ```inkling
 # Example: Value list range expression
-
 schema Schema2
   UInt8  {0,1,2,3,4}   num, # a set of UInt8 values
   String {"a", "bc"}   cat  # a set of Strings
