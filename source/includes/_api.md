@@ -2212,38 +2212,45 @@ Sell `amount` shares of all outcomes of `marketId` from the automated market mak
 ```javascript
 // createBranch contract
 augur.createSubbranch({
-  description: "Ground0:Party at Ground Zero",
-  periodLength: 25,
+  description: "bestBranch:Best branch ever!",
+  periodLength: 172800,
   parent: augur.branches.dev,
   tradingFee: "0.02",
+  oracleOnly: 0,
   onSent: function (sentResponse) { /* ... */ },
   onSuccess: function (successResponse) { /* ... */ },
   onFailed: function (failedResponse) { /* ... */ }
 });
 // example outputs:
 sentResponse = {
-  txHash: '0x29b169c0bd087aefd2f2dcd7b54c6ac08a3d8d78c6030a18980d059650f39117',
-  callReturn: '-0xab9869bbaf19cc580a5c6d4571cd7eac02e98ed6ef127c69478bfb43762d4d13'
+  txHash: "0x42502d8c16816d6488d0b02ad102af88dbf7c21cf096e37678a4a5ff03a9d9b9",
+  hash: "0x42502d8c16816d6488d0b02ad102af88dbf7c21cf096e37678a4a5ff03a9d9b9",
+  callReturn: "0x42502d8c16816d6488d0b02ad102af88dbf7c21cf096e37678a4a5ff03a9d9b9"
 }
 successResponse = {
-  nonce: '0x4f0',
-  blockHash: '0xe521198ffbbd9c53bbe7e773502a08482ebe3cdebbb0053a1bf44487b834d43a',
-  blockNumber: '0x6b7f',
-  transactionIndex: '0x0',
-  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
-  to: '0x5f67ab9ff79be97b27ac8f26ef9f4b429b82e2df',
-  value: '0x0',
-  gas: '0x2fd618',
-  gasPrice: '0xba43b7400',
-  input: '0x5c5c65010000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000001900000000000000000000000000000000000000000000000000000000000f69b5000000000000000000000000000000000000000000000000051eb851eb851eb8000000000000000000000000000000000000000000000000000000000000001c47726f756e64303a50617274792061742047726f756e64205a65726f00000000',
-  callReturn: '-0xab9869bbaf19cc580a5c6d4571cd7eac02e98ed6ef127c69478bfb43762d4d13',
-  txHash: '0x29b169c0bd087aefd2f2dcd7b54c6ac08a3d8d78c6030a18980d059650f39117'
+  blockHash: "0x37884ebda00a4fea5f8aaac05d6b72279b29ec8a7970f3cfbf86a888c37de9d7",
+  blockNumber: 37735,
+  callReturn: "0x42502d8c16816d6488d0b02ad102af88dbf7c21cf096e37678a4a5ff03a9d9b9",
+  from: "0x61badf138090eb57cac69a595374090ef7b76f86",
+  gas: "0x2fd618",
+  gasFees: "0.00749788",
+  gasPrice: "0x4a817c800",
+  hash: "0x27651b1e12ff3042cafc295da8ca0a7fb82ec9801432e2870107b27c7c97aa03",
+  input: "0x177cff2900000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000002a30000000000000000000000000000000000000000000000000000000000000f69b500000000000000000000000000000000000000000000000002c68af0bb1400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001c626573744272616e63683a42657374206272616e636820657665722100000000",
+  nonce: "0x8",
+  r: "0x85fea59738f2b52f7a7f2e5525fc05c28760da67bea41aee11e836dddbc5ad64",
+  s: "0x7ce88e84f1e89dc887535bc3549303a2d69c21a7d044db59f7261d7a1ea3583e",
+  timestamp: 1489855429,
+  to: "0x9fe69262bbaa47f013b7dbd6ca5f01e17446c645",
+  transactionIndex: "0x0",
+  v: "0x1c",
+  value: "0x0"
 }
 ```
 ### [createBranch contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/createBranch.se)
-#### createSubbranch(description, periodLength, parent, tradingFee[, onSent, onSuccess, onFailed])
+#### createSubbranch(description, periodLength, parent, minTradingFee, oracleOnly[, onSent, onSuccess, onFailed])
 
-Creates a new sub-branch of branch `parent`.  The description format is branchName:description.  `periodLength` is given in blocks.  Returns the new branch's ID if successful.  Otherwise, returns -1 if there is a bad input or the parent doesn't exist, -2 if there is insufficient funds to create the branch or if the branch already exists.
+Creates a new sub-branch of branch `parent`.  The description format is branchName:description.  `periodLength` is given in seconds. `oracleOnly` is given as 0 or 1 to set the new branch as an oracle only branch. Returns the new branch's ID if successful as `blockHash`.  Otherwise, returns -1 if there is a bad input or the parent doesn't exist, -2 if there is insufficient funds to create the branch or if the branch already exists.
 
 ```javascript
 // sendReputation contract
