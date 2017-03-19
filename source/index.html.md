@@ -87,7 +87,7 @@ You must replace <code>{{AUTHORIZATION_TOKEN}}</code> with your personal authori
 
 All requests to the API have `path` component. It's used to access resources and actions. For resources it can be followed by an `id` to get resource by id. At the end query parameters (`params`) can be added to further modify the response.
 
-`https://api.fantasticservices.com/v2/client/{{path}}/{{{id}}}?{{params}}`
+`https://api.fantasticservices.com/v2/client/{{path}}/{{id}}?{{params}}`
 
 Accepted request `method`s are:
 
