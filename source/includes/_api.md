@@ -565,6 +565,10 @@ augur.getForkPeriod(branchId, function (forkPeriod) { /* ... */ })
 // example output:
 forkPeriod = "0x3091273716303831265436342500000000000000000000000000000000000000"
 
+augur.getForkTime(branchId, function (forkTime) { /* ... */ })
+// example output:
+forkTime = "13801299"
+
 augur.getInitialBalance(branchId, 8615, "eth", function(balance) { /* ... */ })
 // example output:
 balance = "0x0000000000000000000000000000000000000000000000380ac240b094e18ce5"
@@ -635,6 +639,10 @@ Gets the event ID that caused the fork on the specified branch ID `branch`.
 
 Gets the most recent period in which the specified branch ID `branch` was forked.
 
+#### getForkTime(branch[, callback])
+
+Gets the time that the specified branch ID `branch` was forked.
+
 #### getInitialBalance(branch, period, currency[, callback])
 
 Gets the initial balance of a branch given a specified branch ID `branch`, a specified period `period`, and a specified currency `currency`.
@@ -678,23 +686,27 @@ Looks up the number of the current vote period on the specified branch ID `branc
 ```javascript
 // events contract
 var eventId = "-0x5fa67764c533d97e33ef2cbdc37cd11eb5f187b47c89c88d3d81250ba834cb3";
-augur.getBond(eventId, function(bond) { /* ... */ })
+augur.getBond(eventId, function (bond) { /* ... */ })
 // example output:
 bond = "0x0000000000000000000000000000000000000000000000001f399b1438a10000"
 
-augur.getChallenged(eventId, function(challenged) { /* ... */ })
+augur.getChallenged(eventId, function (challenged) { /* ... */ })
 // example output:
 challenged = "0x0000000000000000000000000000000000000000000000000000000000000001"
+
+augur.getCreationTime(eventId, function (eventCreationTime) { /* ... */ })
+// example output:
+eventCreationTime = "13701020"
 
 augur.getEarlyResolutionBond(eventId, function(resolutionBond) { /* ... */ })
 // example output:
 resolutionBond = "0x00000000000000000000000000000000000000000000000021282a48ffb20000"
 
-augur.getEthics(eventId, function(ethical) { /* ... */ })
+augur.getEthics(eventId, function (ethical) { /* ... */ })
 // example output:
 ethical = "0x0000000000000000000000000000000000000000000000000000000000000001"
 
-augur.getEventBranch(eventId, function(branch) { /* ... */ })
+augur.getEventBranch(eventId, function (branch) { /* ... */ })
 // example output:
 branch = "0xf69b5"
 
@@ -702,11 +714,11 @@ augur.getEventInfo(eventId, function (eventInfo) { /* ... */ })
 // example output:
 eventInfo = ["0xf69b5", "13801186", "0", "1", "2", "2"]
 
-augur.getEventPushedUp(eventId, function(eventPushed) { /* ... */ })
+augur.getEventPushedUp(eventId, function (eventPushed) { /* ... */ })
 // example output:
 eventPushed = "0x0000000000000000000000000000000000000000000000000000000000000001"
 
-augur.getEventResolution(eventId, function(resolution) { /* ... */ })
+augur.getEventResolution(eventId, function (resolution) { /* ... */ })
 // example output:
 resolution = "https://www.google.com"
 
@@ -722,19 +734,19 @@ augur.getFirstPreliminaryOutcome(eventId, function (preliminaryOutcome) { /* ...
 // example output:
 preliminaryOutcome = "0x0000000000000000000000000000000000000000000000000000000000000002"
 
-augur.getForkEthicality(eventId, function(forkEthicality) { /* ... */ })
+augur.getForkEthicality(eventId, function (forkEthicality) { /* ... */ })
 // example output:
 forkEthicality = "0x0000000000000000000000000000000000000000000000000000000000000001"
 
-augur.getForkOutcome(eventId, function(forkOutcome) { /* ... */ })
+augur.getForkOutcome(eventId, function (forkOutcome) { /* ... */ })
 // example output:
 forkOutcome = "0x0000000000000000000000000000000000000000000000000000000000000001"
 
-augur.getForked(eventId, function(forked) { /* ... */ })
+augur.getForked(eventId, function (forked) { /* ... */ })
 // example output:
 forked = "0x0000000000000000000000000000000000000000000000000000000000000001"
 
-augur.getForkDone(eventId, function(forkDone) { /* ... */ })
+augur.getForkDone(eventId, function (forkDone) { /* ... */ })
 // example output:
 forkDone = "0x0000000000000000000000000000000000000000000000000000000000000001"
 
@@ -820,6 +832,10 @@ Returns the bond amount for the event ID `eventId` specified.
 #### getChallenged(eventId[, callback])
 
 Returns wether the specified event ID `eventId` has been challenged already.
+
+#### getCreationTime(eventId[, callback])
+
+Returns the time of creation of the specified event ID `eventId`.
 
 #### getEarlyResolutionBond(eventId[, callback])
 
@@ -1765,7 +1781,7 @@ Returns the value of the denominator used to calculate fees to pay out reporters
 
 #### getFeesCollected(branch, address, period, currency[, callback])
 
-Returns wether the specified `address` has collected fees or not.
+Returns wether the specified `address` has collected fees or not for the specified `currency`.
 
 #### getFeeFirst(branch, period[, callback])
 
