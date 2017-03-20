@@ -508,7 +508,7 @@ Parameter | Type | Description
 `phone`<br>*required* | *integer* | User's phone number validated for the region (UK/AUS/USA etc.)
 `email`<br>*required* | *string* | User's email with validated structure (e.g. xxxx@xxx.xxx)
 `referral_code`<br>*optional* | *string* | Referral code from another user
-`social`<br>*optional* | *[object](#login)* | Social login attributes. Same are used for login (check <b>Facebook login request parameters</b>).
+`social`<br>*optional* | *[object](#facebook-login-request-parameters)* | Social login attributes. Same are used for login (check <b>Facebook login request parameters</b>).
 `type_id`<br>*optional* | *integer* | Type of registration`id`.<br><br>*<b>1</b> - Generic (register form)*<br>*<b>2</b> - Social (Facebook)*<br>*<b>3</b> - Anonymous*
 
 
@@ -525,10 +525,13 @@ Parameter | Type | Description
 `login` | *[object](#login)* | Object containing session information. Same is returned on login.
 `user` | *object* | Created user after registration
 
-This endpoint retrieves the following errors:
+ the following errors:
 
-<aside class="warning">4000 - this phone is missing.</aside>
-<aside class="warning">4000 - this phone is missing.</aside>
+This endpoint returns:
+
+* [Common errors](#errors)
+* [Registration errors](#errors)
+
 
 # Service data
 
