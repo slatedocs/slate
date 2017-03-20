@@ -525,6 +525,10 @@ Parameter | Type | Description
 `login` | *[object](#login)* | Object containing session information. Same is returned on login.
 `user` | *object* | Created user after registration
 
+This endpoint retrieves the following errors:
+
+<aside class="warning">4010 <code>&lt;missing phone&gt;</code> this phone is missing.</aside>
+
 # Service data
 
 ## Treats
