@@ -2361,7 +2361,7 @@ Submits the SHA256 hash of the reports array `reportHash` for report period `rep
 Slashes the Reputation of address `reporter` for `report` on branch `branchId`.
 
 ```javascript
-// createEvent contract
+// createMarket contract
 var description = "What will the high temperature (in degrees Fahrenheit) be in San Francisco, California, on July 1, 2016?";
 augur.createEvent({
   branchId: augur.branches.dev,
@@ -2394,14 +2394,7 @@ successResponse = {
   callReturn: '0xce75eb6f37b92fa80df3240ea8528f7c4b70c8553a536275e26f36a87f02518',
   txHash: '0xc9b92f0224fee5f28c35f49c8b3015e5a09a4876ebb819c1abb5c08ba47c01c6'
 }
-```
-### [createEvent contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/createEvent.se)
-#### createEvent(branchId, description, expDate, minValue, maxValue, numOutcomes, resolution[, onSent, onSuccess, onFailed])
 
-Creates an event on branch `branchId` with `description`, expiration date (in epoch time) of `expDate`, minimum value `minValue`, maximum value `maxValue`, `numOutcomes` possible outcomes, and `resolution` source for resolution data (e.g., `resolution` might be set to `https://www.wunderground.com/history` for a weather-related event).
-
-```javascript
-// createMarket contract
 augur.createMarket({
   branchId: augur.branches.dev,
   description: description,
@@ -2409,7 +2402,7 @@ augur.createMarket({
   makerFee: "0.01",
   tags: ["example tag", "other example tag", "nonsense"],
   extraInfo: "An even longer description / link to more info!",
-  events: ["-0x90fb310e94df790eaab7266034ae3807b147696bcf57a72f71db338f86718875"],
+  events: ["0xce75eb6f37b92fa80df3240ea8528f7c4b70c8553a536275e26f36a87f02518"],
   onSent: function (sentResponse) { /* ... */ },
   onSuccess: function (successResponse) { /* ... */ },
   onFailed: function (failedResponse) { /* ... */ }
@@ -2435,6 +2428,10 @@ successResponse = {
 }
 ```
 ### [createMarket contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/createMarket.se)
+#### createEvent(branchId, description, expDate, minValue, maxValue, numOutcomes, resolution[, onSent, onSuccess, onFailed])
+
+Creates an event on branch `branchId` with `description`, expiration date (in epoch time) of `expDate`, minimum value `minValue`, maximum value `maxValue`, `numOutcomes` possible outcomes, and `resolution` source for resolution data (e.g., `resolution` might be set to `https://www.wunderground.com/history` for a weather-related event).
+
 #### createMarket(branchId, description, takerFee, events, tags, makerFee, extraInfo, onSent, onSuccess, onFailed)
 
 Creates a market on branch `branchId` with `description`, trading fees paid by the taker of a trade (as a proportion) `takerFee`, maker fees (fees paid by the order creator, as opposed to the person matching the order) `makerFee`, topics/categories `tags`, and more detailed description and/or link to more info `extraInfo`, and containing event IDs supplied in an array `events`.  Regular (non-combinatorial) markets always have a single event; combinatorial markets allow up to 3 events.
