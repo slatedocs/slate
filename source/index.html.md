@@ -379,7 +379,7 @@ curl\
  "https://{{BASE_URL}}/v2/client/login"
 ```
 
-> The above request success response is:
+> The above request success response is :
 
 ```json
 {
