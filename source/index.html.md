@@ -439,6 +439,9 @@ Parameter | Type | Description
 `login.sid` | *string* | Your session id. Use for `Authorization` header.
 `user` | *object* | Logged in user with expanded avatar, phones, addresses, payment details and last 10 bookings.
 
+* [Common errors](#common-errors)
+* [Login errors](#login-errors)
+
 
 ## Register
 
@@ -509,7 +512,7 @@ Parameter | Type | Description
 `email`<br>*required* | *string* | User's email with validated structure (e.g. xxxx@xxx.xxx)
 `referral_code`<br>*optional* | *string* | Referral code from another user
 `social`<br>*optional* | *[object](#facebook-login-request-parameters)* | Social login attributes. Same are used for login (check <b>Facebook login request parameters</b>).
-`type_id`<br>*optional* | *integer* | Type of registration`id`.<br><br>*<b>1</b> - Anonymous*<br>*<b>2</b> - Generic (register form)*<br>*<b>3</b> - Social (Facebook)*
+`type_id`<br>*optional* | *integer* | Type of registration`id`.<br><br>*<b>1</b> - Generic (register form)*<br>*<b>2</b> - Social (Facebook)*<br>*<b>3</b> - Anonymous*
 
 
 ### `params`
@@ -529,8 +532,8 @@ Parameter | Type | Description
 
 This endpoint returns:
 
-* [Common errors](#errors)
-* [Registration errors](#errors)
+* [Common errors](#common-errors)
+* [Registration errors](#register-errors)
 
 
 # Service data
