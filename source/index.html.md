@@ -527,7 +527,8 @@ Parameter | Type | Description
 
 This endpoint retrieves the following errors:
 
-<aside class="warning">4010 <code>&lt;missing phone&gt;</code> this phone is missing.</aside>
+<aside class="warning">4000 - this phone is missing.</aside>
+<aside class="warning">4000 - this phone is missing.</aside>
 
 # Service data
 
