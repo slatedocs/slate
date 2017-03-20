@@ -2442,37 +2442,39 @@ Creates a market on branch `branchId` with `description`, trading fees paid by t
 ```javascript
 // closeMarket contract
 var marketId = "-0x3bb8d91f2481d886fe94acd4d1ffe3339ec60524aeb55ceb5a6c6c8631a796c2";
+var sender = "0xc72fa3dda5c2f739158ae03d1df4bfd9efcc6fba";
 augur.closeMarket({
-  branchId: augur.branches.dev,
   marketId: marketId,
+  sender: sender,
   onSent: function (sentResponse) { /* ... */ },
   onSuccess: function (successResponse) { /* ... */ },
   onFailed: function (failedResponse) { /* ... */ }
 });
 // example outputs:
 sentResponse = {
-  txHash: '0x2b48ff35e52c9963503d573c15b559c53e6b34e2ba8f1be3d4d63709239bd8f2',
-  callReturn: '0'
+  txHash: "0x2b48ff35e52c9963503d573c15b559c53e6b34e2ba8f1be3d4d63709239bd8f2",
+  hash: "0x2b48ff35e52c9963503d573c15b559c53e6b34e2ba8f1be3d4d63709239bd8f2",
+  callReturn: "1"
 }
 successResponse = {
-  nonce: '0x536',
-  blockHash: '0x107c03ea39f081c462db612b7acbb8c6e3abfbdeb16fb7f2e27a680590092f9e',
-  blockNumber: '0x7301',
-  transactionIndex: '0x0',
-  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
-  to: '0xcece47d6c0a6a1c90521f38ec5bf7550df983804',
-  value: '0x0',
-  gas: '0x2fd618',
-  gasPrice: '0xba43b7400',
-  input: '0x60aea93e00000000000000000000000000000000000000000000000000000000000f69b5c44726e0db7e2779016b532b2e001ccc6139fadb514aa314a5939379ce58693e',
-  callReturn: '0',
-  txHash: '0x2b48ff35e52c9963503d573c15b559c53e6b34e2ba8f1be3d4d63709239bd8f2'
+  nonce: "0x536",
+  blockHash: "0x107c03ea39f081c462db612b7acbb8c6e3abfbdeb16fb7f2e27a680590092f9e",
+  blockNumber: "0x7301",
+  transactionIndex: "0x0",
+  from: "0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b",
+  to: "0xcece47d6c0a6a1c90521f38ec5bf7550df983804",
+  value: "0x0",
+  gas: "0x2fd618",
+  gasPrice: "0xba43b7400",
+  input: "0x3bb8d91f2481d886fe94acd4d1ffe3339ec60524aeb55ceb5a6c6c8631a796c2000000000000000000000000c72fa3dda5c2f739158ae03d1df4bfd9efcc6fba",
+  callReturn: "1",
+  txHash: "0x2b48ff35e52c9963503d573c15b559c53e6b34e2ba8f1be3d4d63709239bd8f2"
 }
 ```
 ### [closeMarket contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/closeMarket.se)
-#### closeMarket(branchId, marketId[, onSent, onSuccess, onFailed])
+#### closeMarket(marketId, sender[, onSent, onSuccess, onFailed])
 
-Closes market with ID `marketId` on branch `branchId`.
+Closes market with ID `marketId` and refunds the closing cost to the specified address `sender`.
 
 Invoke
 ------
