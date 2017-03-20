@@ -11,9 +11,9 @@ includes:
 search: true
 ---
 
-# Get Started
+# API Reference
 
-## API Reference
+## Get Started
 
 > API Endpoint - replace **intelex_url** with the full URL path to your Intelex system
 
