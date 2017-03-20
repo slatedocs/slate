@@ -1961,6 +1961,47 @@ successResponse = {
 Sets the Reputation balance of the sending account to 47.  (Only available during testing, of course!)
 
 ```javascript
+// backstops contract
+var eventId = "0xf1bc1569e8879b54f2ead611aa57d23e3730cb1368dfac9ac02c27e500230ca7";
+augur.setBondAmount({
+  event: eventId,
+  value: 0.5,
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+});
+// example outputs:
+sentResponse = {
+  callReturn: "1",
+  hash: "0x9a1fb3d94adc5b01ef80a023c655d05a9ee73bf5d8b7fbd1eb4dd18703371933",
+  txHash: "0x9a1fb3d94adc5b01ef80a023c655d05a9ee73bf5d8b7fbd1eb4dd18703371933"
+}
+successResponse = {
+  blockHash: "0xae13c03eef03b91b30bd1465bf0d4fa00b147d895e53ec22a177daafe328db31",
+  blockNumber: 50564,
+  callReturn: "1",
+  from: "0x2b77a832543b33a6b03764d01123c80d913c7c62",
+  gas: "0x2fd618",
+  gasFees: "0.00058684",
+  gasPrice: "0x4a817c800",
+  hash: "0x9a1fb3d94adc5b01ef80a023c655d05a9ee73bf5d8b7fbd1eb4dd18703371933",
+  input: "0xdf2d0bedf1bc1569e8879b54f2ead611aa57d23e3730cb1368dfac9ac02c27e500230ca700000000000000000000000000000000000000000000000000000000000000e8",
+  nonce: "0x5",
+  r: "0xd6a257c540981d71bab1c4d9125114616aa00adec1b4f9cce22769b18e965d8d",
+  s: "0x2f1b8c46ba48af703fb4f8ef69d180ee220580b963748327bde5b858bce1cd61",
+  timestamp: 1490037703,
+  to: "0x708fdfe18bf28afe861a69e95419d183ace003eb",
+  transactionIndex: "0x0",
+  v: "0x1c",
+  value: "0x0"
+}
+```
+### [backstops contract](https://github.com/AugurProject/augur-core/blob/master/src/data_api/backstops.se)
+#### setBondAmount(eventId, value[, onSent, onSuccess, onFailed])
+
+Sets the bond amount to a `value` for a specified event Id `eventId`.
+
+```javascript
 // cash contract
 augur.depositEther({
   value: 2,
@@ -2454,7 +2495,7 @@ augur.closeMarket({
 sentResponse = {
   txHash: "0x2b48ff35e52c9963503d573c15b559c53e6b34e2ba8f1be3d4d63709239bd8f2",
   hash: "0x2b48ff35e52c9963503d573c15b559c53e6b34e2ba8f1be3d4d63709239bd8f2",
-  callReturn: "0"
+  callReturn: "1"
 }
 successResponse = {
   nonce: "0x536",
