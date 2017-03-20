@@ -13,8 +13,7 @@ use BrightLocal\Api;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v1/clients-and-locations/clients/', [	   
     'name'                 => 'Le Bernardin',               
-    'company-url'          => 'le-bernardin.com',
-    'business-category-id' =>  791    
+    'company-url'          => 'le-bernardin.com'
 ]);
 print_r($success);
 ```
@@ -26,7 +25,6 @@ curl -X POST \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'name=Le Bernardin' \
  -d 'company-url=le-bernardin.com' \
- -d 'business-category-id=791' \ 
  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
 ```
 
@@ -36,7 +34,6 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 var parameters = new api.Parameters();
 parameters.Add("name", "Le Bernardin");
 parameters.Add("company-url", "http://www.le-bernardin.com");
-parameters.Add("business-category-id", "791");
 
 var success = request.Post("/v1/clients-and-locations/clients/", parameters);
 ```
@@ -65,7 +62,6 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 name | <span class="label label-required">Required</span> 50 characters max.
 company-url | <span class="label label-required">Required</span> 150 characters max
-business-category-id | <span class="label label-required">Required</span> See here for a full list of valid business codes.
 reference-number | An arbitrary unique reference you can use to identify a client. This may correspond to a unique value used within your system and can be useful when importing or exporting data. 50 characters max.
 
 ## Update Client
@@ -85,7 +81,6 @@ $success = $api->put('/v1/clients-and-locations/clients/', [
     'client-id'            => 36447,
     'name'                 => 'Le Bernardin',               
     'company-url'          => 'le-bernardin.com',
-    'business-category-id' =>  791    
 ]);
 print_r($success);
 ```
@@ -98,7 +93,6 @@ curl -X PUT \
  -d 'client-id=36447' \
  -d 'name=Le Bernardin' \
  -d 'company-url=le-bernardin.com' \
- -d 'business-category-id=<INSERT_BUSINESS_CATEGORY_ID>' \
    https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
 ```
 
@@ -137,7 +131,6 @@ expires | <span class="label label-required">Required</span> [See above for how 
 client-id | <span class="label label-required">Required</span>	
 name | 50 characters max
 company-url | 150 characters max
-business-category-id | See here for a full list of valid business codes
 reference-number | An arbitrary unique reference you can use to identify a client. This may correspond to a unique value used within your system and can be useful when importing or exporting data. 50 characters max.
 
 ## Delete Client
@@ -222,8 +215,7 @@ var success = request.Get("/v1/clients-and-locations/clients/" + clientId + "", 
         "client-id":1,
         "company-name": "BrightLocal",
         "status": "client",
-        "client-reference": "BrightLocal-1",
-        "business-category-id": 650
+        "client-reference": "BrightLocal-1"
     }
 }
 ```
@@ -288,15 +280,13 @@ var success = request.Put("/v1/clients-and-locations/clients/search", parameters
             "client-id": 1,
             "company-name": "BrightLocal",
             "status": "client",
-            "client-reference": "BrightLocal-1",
-            "business-category-id": 650
+            "client-reference": "BrightLocal-1"
         },
         {
             "client-id": 2,
             "company-name": "BrightLocal 2",
             "status": "client",
-            "client-reference": "BrightLocal-2",
-            "business-category-id": 650
+            "client-reference": "BrightLocal-2"
         }
     ]
 }
