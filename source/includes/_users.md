@@ -196,8 +196,8 @@ vat data = {
 }
 
 var settings = {
-  "url": "http://<manager-ip>/api/v3/users/<new-tenant-name>",
-  "method": "POST",
+  "url": "http://<manager-ip>/api/v3/users",
+  "method": "PUT",
   "headers": headers,
   "data": data
 }

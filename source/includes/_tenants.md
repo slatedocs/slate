@@ -30,7 +30,7 @@ The Tenant resource is a logical component that represents a closed environment 
 Attribute | Type | Description
 --------- | ------- | -------
 `id` | integer | Auto increment, unique identifier for the tenant.
-`name` | string | The blueprint's description.
+`name` | string | The tenant's name.
 
 
 ## Get Tenant
@@ -217,7 +217,7 @@ A `Tenant` resource.
 > Request Example
 
 ```shell
-$ curl -X DELETE -H "Content-Type: application/json" -H "tenant: <tenant-name>" -u ser:password "http://<manager-ip>/api/v3/tenants/<tenant-name-to-delete>"
+$ curl -X DELETE -H "Content-Type: application/json" -H "tenant: <tenant-name>" -u user:password "http://<manager-ip>/api/v3/tenants/<tenant-name-to-delete>"
 ```
 
 ```python

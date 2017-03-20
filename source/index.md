@@ -29,6 +29,7 @@ includes:
   - user_group
   - tenants
   - cluster
+  - secrets
 
 search: true
 ---
