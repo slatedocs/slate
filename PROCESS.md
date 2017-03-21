@@ -2,10 +2,10 @@
 Follow this process before you open a PR against the dev branch, and the reviewer of the PR should also follow these steps to verify QA.
 1. Test search functionality
 2. Test filter funtionality
-2. Test mobile header navigation
-3. Test desktop header navigation
-4. Test desktop homepage navigation
-5. Run brc http://localhost:4567/ (whatever port you're using)
+3. Test mobile header navigation
+4. Test desktop header navigation
+5. Test desktop homepage navigation
+6. Run brc http://localhost:4567/ (runs broken-link-checker on whatever port you're using)
 
 # Deploy Process
 Follow this process to deploy the dev branch changes to the master branch (and therefore the public website).
