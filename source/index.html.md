@@ -13,7 +13,9 @@ search: true
 
 # API Reference
 
-## Get Started
+The Intelex API is organized around REST. Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients. JSON is returned by all API responses, including errors.
+
+## Getting Started
 
 > API Endpoint - replace **intelex_url** with the full URL path to your Intelex system
 
@@ -21,7 +23,11 @@ search: true
 https://intelex_url/api/v2/
 ```
 
-The Intelex API is organized around REST. Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients. JSON is returned by all API responses, including errors.
+To begin using the Intelex API you will need:
+
+* Your own instance of the Intelex platform with the REST API enabled
+* A valid Intelex system user account
+* The full URL to your Intelex system
 
 ## Authentication
 
@@ -41,7 +47,7 @@ var request = new RestRequest(Method.GET);
 request.AddHeader("authorization", "Basic hello");
 ```
 
-Authentication to the API is performed via HTTP Basic Auth and your Intelex user credentials. All API requests must be made over HTTPS. API requests without authentication will fail.
+Authentication to the API is performed via HTTP Basic Auth and your Intelex user credentials. All API requests must be made over HTTPS and API requests without authentication will fail. Security on data is managed by the platform security configuration. API requests will maintain the same security settings you have configured in the platform for each user. 
 
 Exception Type | Exception Message
 -------------- | --------------
@@ -51,17 +57,11 @@ Exception Type | Exception Message
 1004|Password doesn't match current account policy. Please change the password
 1005|Your password is expired
 
-# Requesting Object Data
+## Versioning
 
-> Example Object API Endpoint - replace **IncidentsObject** with the system name of the object you want to access
+When we make backwards-incompatible changes to the API, we release new versions. The current version is **v2** and can be determined with our API base path **/api/v2/**. Read our [Intelex platform release notes](https://community.intelex.com/library/knowledgebase/release-notes) to see our API changelog.
 
-```
-https://intelex_url/api/v2/object/IncidentsObject
-```
-The Intelex Object APIs provide read/write access to object data records. Each Intelex object is a resource that can be accessed via an API Endpoint.  Use the system name of the object as your resource.
-
-
-### Record Metadata
+## Metadata
 > Example response with record metadata
 
 ```json
@@ -82,7 +82,7 @@ Property | Description
 @odata.id|A URL that can be used to access the record
 @odata.editLink|Denotes if the record can be modified by the user making the request. Same as @odata.id link
 
-### Pagination
+## Pagination
 > Example response with pagination link
 
 ```json
@@ -95,10 +95,15 @@ Property | Description
 
 We've provided a convenient way to access more data in any request for sequential data where the number of records exceeds 500. Simply call the url in the nextLink parameter and we'll respond with the next set of data.
 
-### Relational Data
+## Relational Data
 
-Objects can be configured with relations to other objects. These relations are configured as relation field.  Relation fields are accessible via the API as navigation properties. 
-Every record will have navigation properties that can be used to access related data.  You'll need to use the system name of the relation field to access related data.  You can access related data a number of ways - by using system query options or navigating to related records through the URL path.
+Many Intelex objects have relations to other objects. These relations are configured as relation type or lookup type fields.  These fields are accessible via the API as navigation properties. 
+Every object will have navigation properties that can be used to access its related data in another object.  You'll need to use the system name of the field configured with the related object in order to access related data.  
+
+You can access related data by using the [$expand](#query-option-expand) query option or you can [navigate to related data](#requesting-related-records) using a URL path. You can traverse multiple levels of relational data by navigating through the URL path or with nested $expand queries.
+
+
+# Requesting Object Data
 
 ## Requesting records
 
@@ -144,7 +149,7 @@ IRestResponse response = client.Execute(request);
 }
 ```
 
-Returns all records from the Incidents object that the user is authorized to view
+Returns all records from an Intelex object that the user is authorized to view
 
 ### GET /api/v2/object/{intelex_object}
 
