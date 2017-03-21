@@ -1,7 +1,6 @@
 # Invoice
 
-Lets you create invoice with line items. It will send the email with the attached Invoice PDF.
-
+Invoice handles all invoices with custom fields, lineitems with/without custom fields.
 
 ## Create
 
@@ -10,10 +9,135 @@ Lets you create invoice with line items. It will send the email with the attache
 ```json
 {
   "data": {
-    "status": true,
-    "message": "Invoice sent successfully.",
-    "id": 123,
-    "pdf": "https://s3.amazonaws.com/email-invoices/CZIWUxRlk0AvSkKQx1xKE22rrz2JPzCN0pAY1V48atvfdPVI0X.pdf"
+    "id": 2050,
+    "hash": "bZh9aU89BMeOeFl1r7AXkVxy6bqZDOoW8aotJuhhZdUL3xZaPm",
+    "number": "TST-EVE03152017",
+    "date": "2017-03-15",
+    "logo": "https://s3.amazonaws.com/slycegateway-files/merchant-754c2f6dfbc8aaa8570096dfe296c9fd.png",
+    "credit": null,
+    "mail_to": "evelynl@zylun.com",
+    "mail_body": "An Invoice for your recent medical bill has been created under your account.",
+    "footer_id": 2,
+    "include_login": 1,
+    "login_url": "https://slycegateway-dev.cmsonline.com",
+    "include_pdf": 0,
+    "pdf": "",
+    "medical_invoice": 1,
+    "send_now": 1,
+    "webhook_url": "https://dev-cs.email-invoice.com/response",
+    "date_sent": "2017-03-15",
+    "total": "322.50",
+    "balance": "0.00",
+    "status": "outstanding",
+    "custom_fields": [
+      {
+        "name": "Contact Person",
+        "value": "John Doe",
+        "tag": "{contact_person}"
+      },
+      {
+        "name": "Secondary Email",
+        "value": "email@domain.com",
+        "tag": "{secondary_email}"
+      },
+      {
+        "name": "Fax",
+        "value": "123456789",
+        "tag": "{fax}"
+      },
+      {
+        "name": "Secondary Phone",
+        "value": "123456789",
+        "tag": "{secondary_phone}"
+      },
+      {
+        "name": "Secondary Address",
+        "value": "Address Location",
+        "tag": "{secondary_address}"
+      }
+    ],
+    "customer": {
+      "custid": "7111177788",
+      "first_name": "Savy",
+      "last_name": "Phere",
+      "email": "evelynl@zylun.com",
+      "phone": "",
+      "company": "",
+      "street1": "",
+      "street2": "",
+      "city": "",
+      "state": "",
+      "zip": "",
+      "country": ""
+    },
+    "line_items": [
+      {
+        "id": 123,
+        "sku": "PN01",
+        "quantity": 1,
+        "total_cost": 200,
+        "due_date": "2017-03-15",
+        "date_paid": "0000-00-00",
+        "custom_fields": [
+          {
+            "name": "Description",
+            "value": "A simple dummy text of the printing and typesetting industry."
+          },
+          {
+            "name": "Dosage",
+            "value": "Lorem Ipsum comes from sections 1.10.32 and 1.10.33"
+          }
+        ],
+        "child": [
+          {
+            "id": 124,
+            "sku": "PNB01",
+            "quantity": 1,
+            "total_cost": 10,
+            "due_date": "2017-03-15",
+            "date_paid": "0000-00-00",
+            "custom_fields": [
+              {
+                "name": "Description",
+                "value": "test industry"
+              },
+              {
+                "name": "Dosage",
+                "value": "comes from sections 1.10.32"
+              }
+            ]
+          },
+          {
+            "id": 125,
+            "sku": "PNM01",
+            "quantity": 1,
+            "total_cost": -3,
+            "due_date": "2017-03-15",
+            "date_paid": "0000-00-00",
+            "custom_fields": [
+              {
+                "name": "Description",
+                "value": "typesetting industry"
+              },
+              {
+                "name": "Dosage",
+                "value": "comes from sections 1.10.32 and 1.10.33"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 130,
+        "sku": "STBJ",
+        "quantity": 1,
+        "total_cost": 115.5,
+        "due_date": "2017-03-15",
+        "date_paid": "0000-00-00",
+        "custom_fields": null,
+        "child": []
+      }
+    ]
   }
 }
 ```
@@ -23,54 +147,73 @@ Lets you create invoice with line items. It will send the email with the attache
 
 ```json
 {
-  "number": "INV-1234",
-  "date": "2016-07-14",
-  "logo": "https:\/\/invoice_logos.s3.amazonaws.com\/cms_logo.png",
-  "mail_body": "This email is a reminder that the balance on your account is {tag:invoice_total}. We accept MasterCard, VISA, Discover and American Express. If your payment is already on its way, we thank you and ask that you please disregard this notice. If not, we would appreciate receipt of your payment as soon as possible. If you would like to further discuss the details of your account, please do not hesitate to call billing at {tag:invoice_merchant_contact}.",
-  "credit": "0.00",
-  "mail_to": "youremail@email.com",
-  "include_pdf": "1",
-  "include_login": "1",
-  "login_url": "http:\/\/slycegateway.local\/\/login",
-  "key": "9ypnPRT9v2ChPCQx",
-  "webhook_url": "http:\/\/slycegateway.local\/",
+  "number": "TST-EVE03152017",
+  "date": "2017-03-22",
+  "logo": "",
+  "credit": "50.00",
+  "mail_body": "An Invoice for your recent bill has been created under your account.",
+  "footer_id":2,
+  "mail_to": "email@domain.com",
+  "logo":"",
+  "include_pdf": "0",
+  "include_login": "0",
+  "medical_invoice": "1",
+  "send_now":"0",
+  "login_url": "https://slycegateway-slycev2.cmsonline.comn",
+  "webhook_url": "https://email-invoice.com/response",
+  "custom_fields":[
+      {"name":"Contact Person","value":"John Doe","tag":"{contact_person}"},
+    {"name":"Secondary Email","value":"email2@domain.com","tag":"{secondary_email}"}
+  ],
   "customer": {
-    "custid": "9ypnPRT9v2ChPCQv_2266",
-    "first_name": "Customer  ",
-    "last_name": "Portal",
-    "email": "youremail@email.com",
-    "phone": "",
-    "company": "",
-    "street1": "",
-    "street2": "",
-    "city": "",
-    "state": "",
-    "zip": "",
-    "country": ""
+      "custid": "7111177788",
+      "first_name": "Savy",
+      "last_name": "Phere",
+      "email": "email@domain.com",
+      "phone": "",
+  "company": "",
+      "street1": "",
+      "street2": "",
+      "city": "",
+      "state": "",
+      "zip": "",
+     "country": ""
   },
- "line_items": [
+  "line_items": [
     {
       "id": "123",
       "sku": "PN01",
       "name": "Peanut",
       "quantity": "1",
       "total_cost": "200.00",
-      "due_date": "2016-07-18",
+      "due_date": "2017-03-22",
       "child" : [
           {
             "id": 124,
             "sku": "PNB01",
             "name": "PButter",
             "quantity": "1",
-            "total_cost": "10.00"
+            "total_cost": "10.00",
+            "custom_fields":[
+              {"name":"Description","value":"test industry"},
+            {"name":"Dosage","value":"comes from sections 1.10.32"}
+          ]
           },
           {
             "id": 125,
             "sku": "PNM01",
             "name": "PMayo",
             "quantity": "1",
-            "total_cost": "-3.00"
+            "total_cost": "-3.00",
+            "custom_fields":[
+            {"name":"Description","value":"typesetting industry"},
+          {"name":"Dosage","value":"comes from sections 1.10.32 and 1.10.33"}
+            ]
           }
+      ],
+      "custom_fields":[
+          {"name":"Description","value":"A simple dummy text of the printing and typesetting industry."},
+        {"name":"Dosage","value":"Lorem Ipsum comes from sections 1.10.32 and 1.10.33"}
       ]
     },
     {
@@ -79,17 +222,18 @@ Lets you create invoice with line items. It will send the email with the attache
       "name": "Strawberry Jam",
       "quantity": "1",
       "total_cost": "115.50",
-      "due_date": "2016-07-18",
+      "due_date": "2017-03-22",
       "child":[]
     }
+  ]
 }
 ```
 
-This method lets you create the invoice.
+This method lets you create new invoice.
 
 ### HTTP Request
 
-`POST invoice/create`
+`POST invoice`
 
 
 ### Data Object
@@ -98,12 +242,36 @@ Field Name | Required | Type | Description
 ---------|-----|------|------
 number | yes | string | Invoice Number
 date | yes | string | Invoice Date (Y-m-d).
-logo | | string | Invoice logo link.
-mail_to | yes | string | Email where invoice will be send
+logo | | url| Invoice logo url.
+mail_to | yes | string | Email address for the receiver of the invoice.
 mail_body | | string | Email body. Can be html.
-credit | | string | Customer credit
+include_login | | boolean | Lets you specify if login link should be included or not in the email invoice.
+login_url | | url | Login url.
+include_pdf | | boolean | Lets you specify if pdf invoice attachment should be included or not in the email.
+send_now | | boolean | Lets you specify whether to send the invoice directly or not.
+footer_id | | integer | The id of the invoice footer.
+custom_fields | | json | The custom fields or additional information needed for this new invoice. Useful for medical industry invoices. Refer to [Invoice Custom Fields Json](#invoice-custom-fields-json)
+medical_invoice | | boolean | Lets you specify if this new invoice is for medical industry or not.
+credit | | amount | Customer credit amount.
 customer | | json | Json data of customer. Refer to [Customer Object](#customer-object)
 line_items | | array | Array of objects. Refer to [Line Item Object](#line-item-object)
+
+### Invoice Custom Fields Json
+
+Custom Fields must be in this format:
+```json
+"custom_fields":[
+    {"name":"","value":"","tag":{tag}"},
+],
+```
+Example:
+
+```json
+"custom_fields":[
+    {"name":"Contact Name","value":"John Doe","tag":{contact_name}"},
+    {"name":"Contact No.","value":"123-4567","tag":{contact_no}"},
+],
+```
 
 
 ### Customer Object
@@ -134,6 +302,7 @@ total_cost | yes | float | Total cost of the item
 due_date |yes | string | Date due (Y-m-d)
 order | | numeric | Item ordering
 child | | array | Items as a child. Refer to [Line Item Child Object](#line-item-child-object)
+custom_fields | | json | Lets you add other details through this field. You can also add custom fields to child items. Refer to [Lineitem Custom Fields Json](#lineitem-custom-fields-json)
 
 
 ### Line Item Child Object
@@ -141,15 +310,29 @@ child | | array | Items as a child. Refer to [Line Item Child Object](#line-item
 Field Name | Required |Type| Description
 ---------|-----|------|------
 id | yes | numeric |  Item id
-sku | yes | string |  	Item identification code
+sku | yes | string |    Item identification code
 name | yes | string |  Item name
 quantity | yes | integer | Number of items
 total_cost | yes | float | Total cost of the item
 order | | numeric | Item ordering
 
 
+### Lineitem Custom Fields Json
 
+Lineitem Custom Fields must be in this format:
+```json
+"custom_fields":[
+    {"name":"","value":""},
+],
+```
+Example:
 
+```json
+"custom_fields":[
+    {"name":"Description","value":"Description details are here."},
+    {"name":"Dosage","value":"Dosage details are here"},
+],
+```
 
 ## View
 
@@ -159,81 +342,133 @@ order | | numeric | Item ordering
 ```json
 {
   "data": {
-    "customer_id": "9ypnPRT9v2ChPCQv_2266",
-    "customer_num": "4831234",
-    "customer_name": "Jan Doe",
-    "customer_email": "jandoe@email.com",
-    "customer_street": "",
-    "customer_street2": "",
-    "customer_city": "",
-    "customer_country": "",
-    "customer_state": "",
-    "customer_zip": "",
-    "invoice_number": "INV-0003",
-    "invoice_date": "02 July, 2016",
-    "invoice_credit": "12.00",
-    "invoice_total": "315.50",
-    "status": "sent",
+    "id": 2050,
+    "hash": "bZh9aU89BMeOeFl1r7AXkVxy6bqZDOoW8aotJuhhZdUL3xZaPm",
+    "number": "TST-EVE03152017",
+    "date": "2017-03-15",
+    "logo": "https://s3.amazonaws.com/slycegateway-files/merchant-754c2f6dfbc8aaa8570096dfe296c9fd.png",
+    "credit": null,
+    "mail_to": "evelynl@zylun.com",
+    "mail_body": "An Invoice for your recent medical bill has been created under your account.",
+    "footer_id": 2,
+    "include_login": 1,
+    "login_url": "https://slycegateway-dev.cmsonline.com",
+    "include_pdf": 0,
+    "pdf": "",
+    "medical_invoice": 1,
+    "send_now": 1,
+    "webhook_url": "https://dev-cs.email-invoice.com/response",
+    "date_sent": "2017-03-15",
+    "total": "322.50",
+    "balance": "0.00",
+    "status": "outstanding",
+    "custom_fields": [
+      {
+        "name": "Contact Person",
+        "value": "John Doe",
+        "tag": "{contact_person}"
+      },
+      {
+        "name": "Secondary Email",
+        "value": "email@domain.com",
+        "tag": "{secondary_email}"
+      },
+      {
+        "name": "Fax",
+        "value": "123456789",
+        "tag": "{fax}"
+      },
+      {
+        "name": "Secondary Phone",
+        "value": "123456789",
+        "tag": "{secondary_phone}"
+      },
+      {
+        "name": "Secondary Address",
+        "value": "Address Location",
+        "tag": "{secondary_address}"
+      }
+    ],
+    "customer": {
+      "custid": "7111177788",
+      "first_name": "Savy",
+      "last_name": "Phere",
+      "email": "evelynl@zylun.com",
+      "phone": "",
+      "company": "",
+      "street1": "",
+      "street2": "",
+      "city": "",
+      "state": "",
+      "zip": "",
+      "country": ""
+    },
     "line_items": [
       {
-        "id": 5,
-        "product_id": 123,
-        "invoice_id": 11,
-        "parent": 0,
+        "id": 123,
         "sku": "PN01",
-        "product_name": "Peanut",
-        "product_cost": 200,
         "quantity": 1,
         "total_cost": 200,
-        "due_date": "2016-07-02",
-        "created_at": "2016-07-02 06:28:31",
-        "updated_at": "2016-07-02 06:28:31",
-        "status": "unpaid"
+        "due_date": "2017-03-15",
+        "date_paid": "0000-00-00",
+        "custom_fields": [
+          {
+            "name": "Description",
+            "value": "A simple dummy text of the printing and typesetting industry."
+          },
+          {
+            "name": "Dosage",
+            "value": "Lorem Ipsum comes from sections 1.10.32 and 1.10.33"
+          }
+        ],
+        "child": [
+          {
+            "id": 124,
+            "sku": "PNB01",
+            "quantity": 1,
+            "total_cost": 10,
+            "due_date": "2017-03-15",
+            "date_paid": "0000-00-00",
+            "custom_fields": [
+              {
+                "name": "Description",
+                "value": "test industry"
+              },
+              {
+                "name": "Dosage",
+                "value": "comes from sections 1.10.32"
+              }
+            ]
+          },
+          {
+            "id": 125,
+            "sku": "PNM01",
+            "quantity": 1,
+            "total_cost": -3,
+            "due_date": "2017-03-15",
+            "date_paid": "0000-00-00",
+            "custom_fields": [
+              {
+                "name": "Description",
+                "value": "typesetting industry"
+              },
+              {
+                "name": "Dosage",
+                "value": "comes from sections 1.10.32 and 1.10.33"
+              }
+            ]
+          }
+        ]
       },
       {
-        "id": 6,
-        "product_id": 124,
-        "invoice_id": 11,
-        "parent": 123,
-        "sku": "PNB01",
-        "product_name": "PButter",
-        "product_cost": 10,
-        "quantity": 1,
-        "total_cost": 10,
-        "due_date": "2016-07-02",
-        "created_at": "2016-07-02 06:28:31",
-        "updated_at": "2016-07-02 06:28:31",
-        "status": "unpaid"
-      },
-      {
-        "id": 7,
-        "product_id": 125,
-        "invoice_id": 11,
-        "parent": 123,
-        "sku": "PNM01",
-        "product_name": "PMayo",
-        "product_cost": -3,
-        "quantity": 1,
-        "total_cost": -3,
-        "due_date": "2016-07-02",
-        "created_at": "2016-07-02 06:28:31",
-        "updated_at": "2016-07-02 06:28:31",
-        "status": "unpaid"
-      },
-      {
-        "id": 8,
-        "product_id": 130,
-        "invoice_id": 11,
-        "parent": 0,
+        "id": 130,
         "sku": "STBJ",
-        "product_name": "Strawberry Jam",
-        "product_cost": 115.5,
         "quantity": 1,
         "total_cost": 115.5,
-        "due_date": "2016-07-03",
-        "created_at": "2016-07-02 06:28:31",
-        "updated_at": "2016-07-02 06:28:31",
-        "status": "unpaid"
+        "due_date": "2017-03-15",
+        "date_paid": "0000-00-00",
+        "custom_fields": null,
+        "child": []
       }
     ]
   }
@@ -260,8 +495,135 @@ ID | The id of the invoice.
 ```json
 {
   "data": {
-    "status": true,
-    "url": "https://invoice_logos.s3.amazonaws.com/me.jpg"
+    "id": 2050,
+    "hash": "bZh9aU89BMeOeFl1r7AXkVxy6bqZDOoW8aotJuhhZdUL3xZaPm",
+    "number": "TST-EVE03152017",
+    "date": "2017-03-15",
+    "logo": "https://s3.amazonaws.com/slycegateway-files/merchant-754c2f6dfbc8aaa8570096dfe296c9fd.png",
+    "credit": null,
+    "mail_to": "evelynl@zylun.com",
+    "mail_body": "An Invoice for your recent medical bill has been created under your account.",
+    "footer_id": 2,
+    "include_login": 1,
+    "login_url": "https://slycegateway-dev.cmsonline.com",
+    "include_pdf": 0,
+    "pdf": "",
+    "medical_invoice": 1,
+    "send_now": 1,
+    "webhook_url": "https://dev-cs.email-invoice.com/response",
+    "date_sent": "2017-03-15",
+    "total": "322.50",
+    "balance": "0.00",
+    "status": "outstanding",
+    "custom_fields": [
+      {
+        "name": "Contact Person",
+        "value": "John Doe",
+        "tag": "{contact_person}"
+      },
+      {
+        "name": "Secondary Email",
+        "value": "email@domain.com",
+        "tag": "{secondary_email}"
+      },
+      {
+        "name": "Fax",
+        "value": "123456789",
+        "tag": "{fax}"
+      },
+      {
+        "name": "Secondary Phone",
+        "value": "123456789",
+        "tag": "{secondary_phone}"
+      },
+      {
+        "name": "Secondary Address",
+        "value": "Address Location",
+        "tag": "{secondary_address}"
+      }
+    ],
+    "customer": {
+      "custid": "7111177788",
+      "first_name": "Savy",
+      "last_name": "Phere",
+      "email": "evelynl@zylun.com",
+      "phone": "",
+      "company": "",
+      "street1": "",
+      "street2": "",
+      "city": "",
+      "state": "",
+      "zip": "",
+      "country": ""
+    },
+    "line_items": [
+      {
+        "id": 123,
+        "sku": "PN01",
+        "quantity": 1,
+        "total_cost": 200,
+        "due_date": "2017-03-15",
+        "date_paid": "0000-00-00",
+        "custom_fields": [
+          {
+            "name": "Description",
+            "value": "A simple dummy text of the printing and typesetting industry."
+          },
+          {
+            "name": "Dosage",
+            "value": "Lorem Ipsum comes from sections 1.10.32 and 1.10.33"
+          }
+        ],
+        "child": [
+          {
+            "id": 124,
+            "sku": "PNB01",
+            "quantity": 1,
+            "total_cost": 10,
+            "due_date": "2017-03-15",
+            "date_paid": "0000-00-00",
+            "custom_fields": [
+              {
+                "name": "Description",
+                "value": "test industry"
+              },
+              {
+                "name": "Dosage",
+                "value": "comes from sections 1.10.32"
+              }
+            ]
+          },
+          {
+            "id": 125,
+            "sku": "PNM01",
+            "quantity": 1,
+            "total_cost": -3,
+            "due_date": "2017-03-15",
+            "date_paid": "0000-00-00",
+            "custom_fields": [
+              {
+                "name": "Description",
+                "value": "typesetting industry"
+              },
+              {
+                "name": "Dosage",
+                "value": "comes from sections 1.10.32 and 1.10.33"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 130,
+        "sku": "STBJ",
+        "quantity": 1,
+        "total_cost": 115.5,
+        "due_date": "2017-03-15",
+        "date_paid": "0000-00-00",
+        "custom_fields": null,
+        "child": []
+      }
+    ]
   }
 }
 ```
@@ -270,36 +632,73 @@ ID | The id of the invoice.
 
 ```json
 {
-  "number": "INV-1234",
-  "date": "2016-07-06",
-  "logo": "https:\/\/invoice_logos.s3.amazonaws.com\/bleh.png",
-  "mail_body": "",
-  "credit": "12.00",
-  "mail_to": "youremail@email.com",
-  "include_pdf": "1",
-  "include_login":"0",
-  "login_url":"http://test@test.com/test",
-  "webhook_url":"http://test@test.com/test",
-  "key": "9ypnPRT9v2ChPCQx",
-  "status":"sent",
+  "number": "TST-EVE03152017",
+  "date": "2017-03-22",
+  "logo": "",
+  "credit": "50.00",
+  "mail_body": "An Invoice for your recent bill has been created under your account.",
+  "footer_id":2,
+  "mail_to": "email@domain.com",
+  "logo":"",
+  "include_pdf": "0",
+  "include_login": "0",
+  "medical_invoice": "1",
+  "send_now":"0",
+  "login_url": "https://slycegateway-slycev2.cmsonline.comn",
+  "webhook_url": "https://email-invoice.com/response",
+  "custom_fields":[
+      {"name":"Contact Person","value":"John Doe","tag":"{contact_person}"},
+    {"name":"Secondary Email","value":"email2@domain.com","tag":"{secondary_email}"}
+  ],
+  "customer": {
+      "custid": "7111177788",
+      "first_name": "Savy",
+      "last_name": "Phere",
+      "email": "email@domain.com",
+      "phone": "",
+  "company": "",
+      "street1": "",
+      "street2": "",
+      "city": "",
+      "state": "",
+      "zip": "",
+     "country": ""
+  },
   "line_items": [
     {
-      "id": 123,
+      "id": "123",
       "sku": "PN01",
       "name": "Peanut",
       "quantity": "1",
       "total_cost": "200.00",
-      "due_date": "2016-07-07",
-      "order":2,
+      "due_date": "2017-03-22",
       "child" : [
+          {
+            "id": 124,
+            "sku": "PNB01",
+            "name": "PButter",
+            "quantity": "1",
+            "total_cost": "10.00",
+            "custom_fields":[
+              {"name":"Description","value":"test industry"},
+            {"name":"Dosage","value":"comes from sections 1.10.32"}
+          ]
+          },
           {
             "id": 125,
             "sku": "PNM01",
             "name": "PMayo",
             "quantity": "1",
             "total_cost": "-3.00",
-            "order":1
+            "custom_fields":[
+            {"name":"Description","value":"typesetting industry"},
+          {"name":"Dosage","value":"comes from sections 1.10.32 and 1.10.33"}
+            ]
           }
+      ],
+      "custom_fields":[
+          {"name":"Description","value":"A simple dummy text of the printing and typesetting industry."},
+        {"name":"Dosage","value":"Lorem Ipsum comes from sections 1.10.32 and 1.10.33"}
       ]
     },
     {
@@ -308,19 +707,18 @@ ID | The id of the invoice.
       "name": "Strawberry Jam",
       "quantity": "1",
       "total_cost": "115.50",
-      "due_date": "2016-07-07",
-      "order":1,
+      "due_date": "2017-03-22",
       "child":[]
     }
   ]
 }
 ```
 
-This method lets you update the invoice.
+This method lets you update a specific invoice.
 
 ### HTTP Request
 
-`PUT invoice/update/{id}`
+`PUT invoice/{id}`
 
 ### Data Object
 
@@ -328,10 +726,191 @@ Field Name | Required | Type | Description
 ---------|-----|------|------
 number | yes | string | Invoice Number
 date | yes | string | Invoice Date (Y-m-d).
-logo | | string | Invoice logo link.
-status | | string | Invoice status.
-mail_to | yes | string | Email where invoice will be send
+logo | | url| Invoice logo url.
+mail_to | yes | string | Email address for the receiver of the invoice.
 mail_body | | string | Email body. Can be html.
-credit | | string | Customer credit
+include_login | | boolean | Lets you specify if login link should be included or not in the email invoice.
+login_url | | url | Login url.
+include_pdf | | boolean | Lets you specify if pdf invoice attachment should be included or not in the email.
+send_now | | boolean | Lets you specify whether to send the invoice directly or not.
+footer_id | | integer | The id of the invoice footer.
+custom_fields | | json | The custom fields or additional information needed for this new invoice. Useful for medical industry invoices. Refer to [Invoice Custom Fields Json](#invoice-custom-fields-json)
+medical_invoice | | boolean | Lets you specify if this new invoice is for medical industry or not.
+credit | | amount | Customer credit amount.
 customer | | json | Json data of customer. Refer to [Customer Object](#customer-object)
 line_items | | array | Array of objects. Refer to [Line Item Object](#line-item-object)
+status | | string | Status of the invoice. Refer to [Status Supported](#status-supported). 
+
+### Status Supported
+
+ - unsent
+ - outstanding
+ - partial payment
+ - paid
+ - canceled
+
+##Send
+
+> Returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "id": 2050,
+    "hash": "bZh9aU89BMeOeFl1r7AXkVxy6bqZDOoW8aotJuhhZdUL3xZaPm",
+    "number": "TST-EVE03152017",
+    "date": "2017-03-15",
+    "logo": "https://s3.amazonaws.com/slycegateway-files/merchant-754c2f6dfbc8aaa8570096dfe296c9fd.png",
+    "credit": null,
+    "mail_to": "evelynl@zylun.com",
+    "mail_body": "An Invoice for your recent medical bill has been created under your account.",
+    "footer_id": 2,
+    "include_login": 1,
+    "login_url": "https://slycegateway-dev.cmsonline.com",
+    "include_pdf": 0,
+    "pdf": "",
+    "medical_invoice": 1,
+    "send_now": 1,
+    "webhook_url": "https://dev-cs.email-invoice.com/response",
+    "date_sent": "2017-03-15",
+    "total": "322.50",
+    "balance": "0.00",
+    "status": "outstanding",
+    "custom_fields": [
+      {
+        "name": "Contact Person",
+        "value": "John Doe",
+        "tag": "{contact_person}"
+      },
+      {
+        "name": "Secondary Email",
+        "value": "email@domain.com",
+        "tag": "{secondary_email}"
+      },
+      {
+        "name": "Fax",
+        "value": "123456789",
+        "tag": "{fax}"
+      },
+      {
+        "name": "Secondary Phone",
+        "value": "123456789",
+        "tag": "{secondary_phone}"
+      },
+      {
+        "name": "Secondary Address",
+        "value": "Address Location",
+        "tag": "{secondary_address}"
+      }
+    ],
+    "customer": {
+      "custid": "7111177788",
+      "first_name": "Savy",
+      "last_name": "Phere",
+      "email": "evelynl@zylun.com",
+      "phone": "",
+      "company": "",
+      "street1": "",
+      "street2": "",
+      "city": "",
+      "state": "",
+      "zip": "",
+      "country": ""
+    },
+    "line_items": [
+      {
+        "id": 123,
+        "sku": "PN01",
+        "quantity": 1,
+        "total_cost": 200,
+        "due_date": "2017-03-15",
+        "date_paid": "0000-00-00",
+        "custom_fields": [
+          {
+            "name": "Description",
+            "value": "A simple dummy text of the printing and typesetting industry."
+          },
+          {
+            "name": "Dosage",
+            "value": "Lorem Ipsum comes from sections 1.10.32 and 1.10.33"
+          }
+        ],
+        "child": [
+          {
+            "id": 124,
+            "sku": "PNB01",
+            "quantity": 1,
+            "total_cost": 10,
+            "due_date": "2017-03-15",
+            "date_paid": "0000-00-00",
+            "custom_fields": [
+              {
+                "name": "Description",
+                "value": "test industry"
+              },
+              {
+                "name": "Dosage",
+                "value": "comes from sections 1.10.32"
+              }
+            ]
+          },
+          {
+            "id": 125,
+            "sku": "PNM01",
+            "quantity": 1,
+            "total_cost": -3,
+            "due_date": "2017-03-15",
+            "date_paid": "0000-00-00",
+            "custom_fields": [
+              {
+                "name": "Description",
+                "value": "typesetting industry"
+              },
+              {
+                "name": "Dosage",
+                "value": "comes from sections 1.10.32 and 1.10.33"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 130,
+        "sku": "STBJ",
+        "quantity": 1,
+        "total_cost": 115.5,
+        "due_date": "2017-03-15",
+        "date_paid": "0000-00-00",
+        "custom_fields": null,
+        "child": []
+      }
+    ]
+  }
+}
+```
+
+> Request JSON structure like this:
+
+```json
+{
+  "mail_body": "An Invoice for your recent bill has been created under your account.",
+  "mail_to": "email@domain.com",
+  "status": ""
+}
+```
+
+This method lets you send a specific invoice.
+
+### HTTP Request
+
+`POST invoice/send/<ID>`
+
+
+### Data Object
+
+** With or without the following data*
+
+Field Name | Required | Type | Description
+---------|-----|------|------
+mail_to | yes | string | Email address for the receiver of the invoice.
+mail_body | | string | Email body. Can be html.
