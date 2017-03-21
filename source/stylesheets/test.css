@@ -103,7 +103,7 @@ li.tocify-item {line-height:1.4em !important;}
 ////////////////////////////////////////////////////////////////////////////////*/
 
 
-	#primary-nav a {font-size: 101%;margin-right: 35px !important;text-decoration:none;color: #564e1e;}
+	#primary-nav a  {font-size: 101%;margin-right: 35px !important;text-decoration:none;color: #564e1e;}
 	#primary-nav a:hover{text-decoration:underline;}
 	#primary-nav a:last-of-type {margin-right:0;}
 	 .bonsai-logo{height: 22px;}
@@ -112,7 +112,8 @@ li.tocify-item {line-height:1.4em !important;}
 	#references li.selected a {color:#288136 !important}
 	#guides li.selected a {color:#288136 !important}
 	
-	li a:hover {color:#288136 !important; text-decoration:none !important;}
+	li a:hover, .toggle:hover {color:#288136 !important; text-decoration:none !important;}
+	.toggle {color:#564e1e;}
 
 /*///////////////////////////////////////////////////////////////////////////////
 // TYPE
