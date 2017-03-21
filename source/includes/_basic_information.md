@@ -80,3 +80,30 @@ itens por página.
     }
 
   ```
+## Restrição
+
+Toda resposta de requisição conterá os headers X-RateLimit-Limit, X-RateLimit-Reset e X-RateLimit-Remaining, significando respectivamente o limite de requisições por minuto, a data em que a contagem será resetada e quantas requisições restam.
+
+O Cobranto ainda está em fase de coleta de dados para analise das requisições, por tanto ainda não está restringindo o acesso à API. Futuramente estes valores poderão ser alterados.
+
+```shell
+
+  EXEMPLO DE RESPOSTA
+
+  HTTP/1.1 302 Found
+  X-Frame-Options: SAMEORIGIN
+  X-XSS-Protection: 1; mode=block
+  X-Content-Type-Options: nosniff
+  Location: https://app.cobrato.com/api/v1/login
+  Content-Type: text/html; charset=utf-8
+  X-RateLimit-Limit: 60
+  X-RateLimit-Reset: 2017-03-21T16:35:00Z
+  X-RateLimit-Remaining: -1
+  Cache-Control: no-cache
+  Set-Cookie: _cobrato_session=aWRBQXhZdUpJMi94bndXbFI1WTM0U3JHTmFGZkNxdlhqQzNzbDhuVU8rRG5PQXRQbllsc0xVcm1XRk52b0Zzd1h4WlE5WFA1dTArNytDMHNyV09sY0plckZRcy8zY1ZTcmNHL2VFMmxDWUhURTgreFhKYWZzY3VleUo1WVlnVUJVbThlMk1DZENBYXc3VkZoN2ovV05HWUYxY0dzVUxTK1lsY3haOTJlS3gwd0ptbzN6Yjc2VDc2S09vem1jSmt6R0FXYUtPSEZQcmZOemN6aU80WlhDQT09LS1sQ2lRdDBXLzc4Yi8zVWNOQ2g1bTZRPT0%3D--49014ffe9c982f873529f16a4e4f8ad86ba656b5; path=/; HttpOnly
+  Set-Cookie: __profilin=p%3Dt; path=/
+  X-Request-Id: da552d14-6567-4f59-a313-d6d2eda4605c
+  X-Runtime: 0.026196
+  Transfer-Encoding: chunked
+
+```
