@@ -2399,7 +2399,7 @@ Slashes the Reputation of address `reporter` for `report` on branch `branchId`.
 // createMarket contract
 var description = "What will the high temperature (in degrees Fahrenheit) be in San Francisco, California, on July 1, 2016?";
 augur.createEvent({
-  branchId: augur.branches.dev,
+  branch: augur.branches.dev,
   description: description,
   expDate: new Date("7/2/2016").getTime(),
   minValue: 0,
@@ -2412,26 +2412,26 @@ augur.createEvent({
 });
 // example outputs:
 sentResponse = {
-  txHash: '0xc9b92f0224fee5f28c35f49c8b3015e5a09a4876ebb819c1abb5c08ba47c01c6',
-  callReturn: '0xce75eb6f37b92fa80df3240ea8528f7c4b70c8553a536275e26f36a87f02518'
+  txHash: "0xc9b92f0224fee5f28c35f49c8b3015e5a09a4876ebb819c1abb5c08ba47c01c6",
+  callReturn: "0xce75eb6f37b92fa80df3240ea8528f7c4b70c8553a536275e26f36a87f02518"
 }
 successResponse = {
-  blockHash: '0x30782f7d4dda3be6e9823deb64a926556b9a508bbef76f4d7bb0e69a4940e59f',
-  blockNumber: '0xe287e',
-  from: '0x15f6400a88fb320822b689607d425272bea2175f',
-  gas: '0x2fd618',
-  gasPrice: '0x4a817c800',
-  input: '0x3c1f6f6300000000000000000000000000000000000000000000000000000000000f69b500000000000000000000000000000000000000000000000000000000000000e000000000000000000000000000000000000000000000000000000155aa68258000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000780000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000001800000000000000000000000000000000000000000000000000000000000000068576861742077696c6c2074686520686967682074656d70657261747572652028696e20646567726565732046616872656e686569742920626520696e2053616e204672616e636973636f2c2043616c69666f726e69612c206f6e204a756c7920312c20323031363f000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f7777772e776561746865722e636f6d0000000000000000000000000000000000',
-  nonce: '0x100751',
-  to: '0x24b051c19bd981a59f6c459c128a285bcd8d66bc',
-  transactionIndex: '0x1',
-  value: '0x0',
-  callReturn: '0xce75eb6f37b92fa80df3240ea8528f7c4b70c8553a536275e26f36a87f02518',
-  txHash: '0xc9b92f0224fee5f28c35f49c8b3015e5a09a4876ebb819c1abb5c08ba47c01c6'
+  blockHash: "0x30782f7d4dda3be6e9823deb64a926556b9a508bbef76f4d7bb0e69a4940e59f",
+  blockNumber: "0xe287e",
+  from: "0x15f6400a88fb320822b689607d425272bea2175f",
+  gas: "0x2fd618",
+  gasPrice: "0x4a817c800",
+  input: "0x3c1f6f6300000000000000000000000000000000000000000000000000000000000f69b500000000000000000000000000000000000000000000000000000000000000e000000000000000000000000000000000000000000000000000000155aa68258000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000780000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000001800000000000000000000000000000000000000000000000000000000000000068576861742077696c6c2074686520686967682074656d70657261747572652028696e20646567726565732046616872656e686569742920626520696e2053616e204672616e636973636f2c2043616c69666f726e69612c206f6e204a756c7920312c20323031363f000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f7777772e776561746865722e636f6d0000000000000000000000000000000000",
+  nonce: "0x100751",
+  to: "0x24b051c19bd981a59f6c459c128a285bcd8d66bc",
+  transactionIndex: "0x1",
+  value: "0x0",
+  callReturn: "0xce75eb6f37b92fa80df3240ea8528f7c4b70c8553a536275e26f36a87f02518",
+  txHash: "0xc9b92f0224fee5f28c35f49c8b3015e5a09a4876ebb819c1abb5c08ba47c01c6"
 }
 
 augur.createMarket({
-  branchId: augur.branches.dev,
+  branch: augur.branches.dev,
   description: description,
   takerFee: "0.02",
   makerFee: "0.01",
@@ -2444,32 +2444,65 @@ augur.createMarket({
 });
 // example outputs:
 sendResponse = {
-  txHash: '0x643462835b9899318ead8f47a1c43232b04a1dfeda8fba213e8c3d8a0c4651e0',
-  callReturn: '-0x3bb8d91f2481d886fe94acd4d1ffe3339ec60524aeb55ceb5a6c6c8631a796c2'
+  txHash: "0x643462835b9899318ead8f47a1c43232b04a1dfeda8fba213e8c3d8a0c4651e0",
+  callReturn: "-0x3bb8d91f2481d886fe94acd4d1ffe3339ec60524aeb55ceb5a6c6c8631a796c2"
 }
 successResponse = {
-  nonce: '0x535',
-  blockHash: '0x60a299bc290af601300f2a17686947159073537884aa71fc18fe3628735c5f24',
-  blockNumber: '0x72e7',
-  transactionIndex: '0x0',
-  from: '0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b',
-  to: '0x448c01a2e1fd6c2ef133402c403d2f48c99993e7',
-  value: '0x0',
-  gas: '0x2fd618',
-  gasPrice: '0xba43b7400',
-  input: '0x08d19b3f00000000000000000000000000000000000000000000000000000000000f69b500000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000205bc01a36e2eb200000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000000051eb851eb851eb800000000000000000000000000000000000000000000000000000000000001600000000000000000000000000000000000000000000000000000000000000068576861742077696c6c2074686520686967682074656d70657261747572652028696e20646567726565732046616872656e686569742920626520696e2053616e204672616e636973636f2c2043616c69666f726e69612c206f6e204a756c7920312c20323031363f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000016f04cef16b2086f15548d99fcb51c7f84eb8969430a858d08e24cc70798e778b',
-  callReturn: '-0x3bb8d91f2481d886fe94acd4d1ffe3339ec60524aeb55ceb5a6c6c8631a796c2',
-  txHash: '0x643462835b9899318ead8f47a1c43232b04a1dfeda8fba213e8c3d8a0c4651e0'
+  nonce: "0x535",
+  blockHash: "0x60a299bc290af601300f2a17686947159073537884aa71fc18fe3628735c5f24",
+  blockNumber: "0x72e7",
+  transactionIndex: "0x0",
+  from: "0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b",
+  to: "0x448c01a2e1fd6c2ef133402c403d2f48c99993e7",
+  value: "0x0",
+  gas: "0x2fd618",
+  gasPrice: "0xba43b7400",
+  input: "0x08d19b3f00000000000000000000000000000000000000000000000000000000000f69b500000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000205bc01a36e2eb200000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000000051eb851eb851eb800000000000000000000000000000000000000000000000000000000000001600000000000000000000000000000000000000000000000000000000000000068576861742077696c6c2074686520686967682074656d70657261747572652028696e20646567726565732046616872656e686569742920626520696e2053616e204672616e636973636f2c2043616c69666f726e69612c206f6e204a756c7920312c20323031363f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000016f04cef16b2086f15548d99fcb51c7f84eb8969430a858d08e24cc70798e778b",
+  callReturn: "-0x3bb8d91f2481d886fe94acd4d1ffe3339ec60524aeb55ceb5a6c6c8631a796c2",
+  txHash: "0x643462835b9899318ead8f47a1c43232b04a1dfeda8fba213e8c3d8a0c4651e0"
+}
+
+var marketId = "-0x3bb8d91f2481d886fe94acd4d1ffe3339ec60524aeb55ceb5a6c6c8631a796c2";
+augur.pushMarketForward({
+  branch: augur.branches.dev,
+  market: marketId,
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+})
+// example output:
+onSent = {
+  txHash: "0x96fcfee8dbbd0ceda0899c84bb44e7304924f48beb808d0eb2a759225efd4b20",
+  hash: "0x96fcfee8dbbd0ceda0899c84bb44e7304924f48beb808d0eb2a759225efd4b20",
+  callReturn: "1"
+}
+onSuccess = {
+  nonce: "0x536",
+  blockHash: "0x60a299bc290af601300f2a17686947159073537884aa71fc18fe3628735c5f24",
+  blockNumber: "0x72e7",
+  transactionIndex: "0x0",
+  from: "0x05ae1d0ca6206c6168b42efcd1fbe0ed144e821b",
+  to: "0x448c01a2e1fd6c2ef133402c403d2f48c99993e7",
+  value: "0x0",
+  gas: "0x2fd618",
+  gasPrice: "0xba43b7400",
+  input: "0x2cec448100000000000000000000000000000000000000000000000000000000000f69b5fffffffffcd38ec2ec299f575e0d04c085fea28310707fcbd1034bf6ed524a96",
+  callReturn: "1",
+  txHash: "0x96fcfee8dbbd0ceda0899c84bb44e7304924f48beb808d0eb2a759225efd4b20"
 }
 ```
 ### [createMarket contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/createMarket.se)
-#### createEvent(branchId, description, expDate, minValue, maxValue, numOutcomes, resolution[, onSent, onSuccess, onFailed])
+#### createEvent(branch, description, expDate, minValue, maxValue, numOutcomes, resolution[, onSent, onSuccess, onFailed])
 
-Creates an event on branch `branchId` with `description`, expiration date (in epoch time) of `expDate`, minimum value `minValue`, maximum value `maxValue`, `numOutcomes` possible outcomes, and `resolution` source for resolution data (e.g., `resolution` might be set to `https://www.wunderground.com/history` for a weather-related event).
+Creates an event on branch ID `branch` with `description`, expiration date (in epoch time) of `expDate`, minimum value `minValue`, maximum value `maxValue`, `numOutcomes` possible outcomes, and `resolution` source for resolution data (e.g., `resolution` might be set to `https://www.wunderground.com/history` for a weather-related event).
 
-#### createMarket(branchId, description, takerFee, events, tags, makerFee, extraInfo, onSent, onSuccess, onFailed)
+#### createMarket(branch, description, takerFee, events, tags, makerFee, extraInfo[, onSent, onSuccess, onFailed])
 
-Creates a market on branch `branchId` with `description`, trading fees paid by the taker of a trade (as a proportion) `takerFee`, maker fees (fees paid by the order creator, as opposed to the person matching the order) `makerFee`, topics/categories `tags`, and more detailed description and/or link to more info `extraInfo`, and containing event IDs supplied in an array `events`.  Regular (non-combinatorial) markets always have a single event; combinatorial markets allow up to 3 events.
+Creates a market on branch ID `branch` with `description`, trading fees paid by the taker of a trade (as a proportion) `takerFee`, maker fees (fees paid by the order creator, as opposed to the person matching the order) `makerFee`, topics/categories `tags`, and more detailed description and/or link to more info `extraInfo`, and containing event IDs supplied in an array `events`.  Regular (non-combinatorial) markets always have a single event; combinatorial markets allow up to 3 events.
+
+#### pushMarketForward(branch, market[, onSent, onSuccess, onFailed])
+
+Pushes up a specified `market` on a `branch` so that it is reported on in the next reporting period instead of when it was scheduled to be reported on. The caller of this method will post a bond to pay out reporters in the case that this market isn't reportable after it's been moved up. The bond is equal to `0.5 * marketFee * marketValue`. This will only succeed if the `branch` is valid, the `market` isn't already closed or resolved, and the event for the `market` isn't already pushed forward, being reported on currently, or already has an outcome.
 
 ```javascript
 // closeMarket contract
