@@ -22,17 +22,27 @@ Recurring handles all types of recurring plans.
       "source": "tokenex"
     },
     "recurring": {
-      "id": 83,
-      "status": "ongoing",
-      "type": "subscription",
-      "scheme": "monthly",
-      "amount": "5.33",
-      "total": "0.00",
-      "duration": 0,
-      "startDate": "2016-12-10",
-      "completedDate": "",
-      "nextDueDate": "2016-12-10",
-      "paidCount": 0
+        "id": 558,
+        "status": "ongoing",
+        "type": "payplan",
+        "scheme": "monthly",
+        "amount": "12.50",
+        "total": "87.50",
+        "duration": 8,
+        "startDate": "2017-03-07",
+        "completedDate": "",
+        "nextDueDate": "2017-04-07",
+        "paidCount": 1,
+        "refnum": null,
+        "logs": [
+          {
+            "refnum": "8a8294495a8ed807015aa7d19ea22a06",
+            "date": "2017-03-07",
+            "error": 0,
+            "reason": "",
+            "total": "12.50"
+          }
+        ]
     },
     "info": {
       "gatewayID": 1,
@@ -82,17 +92,27 @@ PLANID | The ID of the recurring plan to retrieve.
         "source": "usaepay"
       },
       "recurring": {
-        "id": 539,
+        "id": 558,
         "status": "ongoing",
         "type": "payplan",
         "scheme": "monthly",
-        "amount": "0.17",
-        "total": "1.00",
-        "duration": 6,
-        "startDate": "2017-02-17",
+        "amount": "12.50",
+        "total": "87.50",
+        "duration": 8,
+        "startDate": "2017-03-07",
         "completedDate": "",
-        "nextDueDate": "2017-02-17",
-        "paidCount": 0
+        "nextDueDate": "2017-04-07",
+        "paidCount": 1,
+        "refnum": null,
+        "logs": [
+          {
+            "refnum": "8a8294495a8ed807015aa7d19ea22a06",
+            "date": "2017-03-07",
+            "error": 0,
+            "reason": "",
+            "total": "12.50"
+          }
+        ]
       },
       "info": {
         "gatewayID": 1,
@@ -130,7 +150,17 @@ PLANID | The ID of the recurring plan to retrieve.
         "startDate": "2017-02-14",
         "completedDate": "",
         "nextDueDate": "2017-03-14",
-        "paidCount": 1
+        "paidCount": 1,
+        "refnum": null,
+        "logs": [
+            {
+              "refnum": "8a8294495a8ed807015aa7d19ea22a06",
+              "date": "2017-03-07",
+              "error": 0,
+              "reason": "",
+              "total": "12.50"
+            }
+         ]
       },
       "info": {
         "gatewayID": 1,
@@ -172,7 +202,17 @@ PLANID | The ID of the recurring plan to retrieve.
           "timezone": "America/Los_Angeles"
         },
         "nextDueDate": "2017-02-14",
-        "paidCount": 1
+        "paidCount": 1,
+        "refnum": null,
+        "logs": [
+            {
+              "refnum": "8a8294495a8ed807015aa7d19ea22a06",
+              "date": "2017-03-07",
+              "error": 0,
+              "reason": "",
+              "total": "12.50"
+            }
+         ]
       },
       "info": {
         "gatewayID": 1,
@@ -248,7 +288,17 @@ page | 1 | Page number.
       "startDate": "2017-03-01",
       "completedDate": "",
       "nextDueDate": "2017-03-01",
-      "paidCount": 0
+      "paidCount": 0,
+      "refnum": null,
+      "logs": [
+          {
+            "refnum": "8a8294495a8ed807015aa7d19ea22a06",
+            "date": "2017-03-07",
+            "error": 0,
+            "reason": "",
+            "total": "12.50"
+          }
+       ]
     },
     "info": {
       "gatewayID": 4,
@@ -318,7 +368,17 @@ total | Total amount that will be charge for the entire plan period. Applies onl
       "startDate": "2017-03-01",
       "completedDate": "",
       "nextDueDate": "2017-03-01",
-      "paidCount": 0
+      "paidCount": 0,
+      "refnum": null,
+      "logs": [
+          {
+            "refnum": "8a8294495a8ed807015aa7d19ea22a06",
+            "date": "2017-03-07",
+            "error": 0,
+            "reason": "",
+            "total": "12.50"
+          }
+       ]
     },
     "info": {
       "gatewayID": 4,
@@ -381,37 +441,43 @@ PLANID | The ID of the recurring plan to be cancelled.
 {
   "data": [
     {
-      "refnum": "100095477",
-      "date": "2015-11-11",
-      "balance": "54.00",
-      "total_fees": "65.00",
-      "total": "119.00",
-      "error": false,
-      "reason": "",
-      "created": 1447299443,
-      "updated": 1447299443
+      "customer": [],
+      "paymentDetails": [],
+      "recurring": {
+        "logs": {
+          "refnum": "8a82944a5a8ee61d015aa7d2cc845f70",
+          "date": "2017-03-07",
+          "total": "10.00",
+          "error": false,
+          "reason": ""
+        }
+      },
+      "info": []
     },
     {
-      "refnum": "100095512",
-      "date": "2015-12-11",
-      "balance": "54.00",
-      "total_fees": "12.00",
-      "total": "66.00",
-      "error": false,
-      "reason": "",
-      "created": 1447299673,
-      "updated": 1447299673
-    }
+      "customer": [],
+      "paymentDetails": [],
+      "recurring": {
+        "logs": {
+          "refnum": "8a82944a5a8ee61d015aa7d37f1b6045",
+          "date": "2017-03-07",
+          "total": "10.00",
+          "error": false,
+          "reason": ""
+        }
+      },
+      "info": []
+    },    
   ],
   "meta": {
     "pagination": {
-      "total": 3,
+      "total": 35,
       "count": 2,
       "per_page": 2,
       "current_page": 1,
       "total_pages": 2,
       "links": {
-        "next": "https://api.slycepay.com/v1/recurring/1/logs/?limit=2&page=2"
+        "next": "https://sliceapilocal.cmsonline.com/v2/recurring/559/logs?page=2"
       }
     }
   }
