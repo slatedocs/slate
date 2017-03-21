@@ -455,7 +455,7 @@ curl\
         "title_id": 1,
         "first_name": "Nikolay",
         "last_name": "Georgiev",
-        "phone": "072313123123",
+        "phone": "+442071234567",
         "email": "test@test.com",
         "password": "1234",
         "referral_code": "JOHND1234B",
