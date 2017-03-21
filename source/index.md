@@ -18,7 +18,6 @@ includes:
   - numbers
   - accounts
   - rpc
-  - batch
   - tests
   - errors
   - contributing
