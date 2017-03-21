@@ -2025,6 +2025,41 @@ Exchange `value` units of Ether for an equivalent number of CASH tokens.  Return
 Exchange `value` CASH tokens for an equivalent number of Ether tokens.  The withdrawn CASH is sent to address `to`.  Returns 1 if successful, 0 otherwise.
 
 ```javascript
+// claimMarketProceeds contract
+var marketId = "0x6eb799feec7669d757ed7bcad178bab45d08bfbd1730f9bd6eb0cb507dfe07d4"
+augur.claimProceeds({
+  market: marketId,
+  onSent: function (sentResponse) { /* ... */ },
+  onSuccess: function (successResponse) { /* ... */ },
+  onFailed: function (failedResponse) { /* ... */ }
+})
+// example output:
+onSent = {
+  txHash: "0xf56ae53dddc1eddfa5ba8fb0931701033e2a39036bbb941001f000556496d110",
+  hash: "0xf56ae53dddc1eddfa5ba8fb0931701033e2a39036bbb941001f000556496d110",
+  callReturn: "1"
+}
+onSuccess = {
+  blockHash: "0x0cde35b78f6102a59c07c0c4279166864e34518fd6672af988cd9224acdfc9c6",
+  blockNumber: "0xe0ddb",
+  from: "0x15f6400a88fb320822b689607d425272bea2175f",
+  gas: "0x2fd618",
+  gasPrice: "0x4a817c800",
+  input: "0x0dd40dd86eb799feec7669d757ed7bcad178bab45d08bfbd1730f9bd6eb0cb507dfe07d4"
+  nonce: "0x539",
+  to: "0xa16ced61576483990d0d821a5fc344a3429ba755",
+  transactionIndex: "0x0",
+  value: "0x0",
+  callReturn: "1",
+  txHash: "0xf56ae53dddc1eddfa5ba8fb0931701033e2a39036bbb941001f000556496d110"
+}
+```
+### [claimMarketProceeds contract](https://github.com/AugurProject/augur-core/blob/master/src/functions/claimMarketProceeds.se)
+#### claimProceeds(market[, onSent, onSuccess, onFailed])
+
+Claims the trading profits after a specified `market` is completed. If the market hasn't been resolved yet, then you will get a call return of `0`.
+
+```javascript
 // buy&sellShares contract
 var marketId = "-0xb196c4ce182399271e6ed434eb3f2210ae5e427c8ac0604c2cb2261694951d9";
 var outcome = 1;
