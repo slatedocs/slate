@@ -1,5 +1,5 @@
-(function() {
-    var cx = '003552815484763729059:feruzu5o53s';
+  (function() {
+    var cx = '017466586782057252750:bkndjzkz8dy';
     var gcse = document.createElement('script');
     gcse.type = 'text/javascript';
     gcse.async = true;
@@ -7,8 +7,8 @@
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(gcse, s);
   })();
-      
-	
+
+      	
 	$(function(){
 	    jQuery('img.svg').each(function(){
 	        var $img = jQuery(this);
