@@ -16,6 +16,7 @@ includes:
   - cli-reference/cli-reference.html.md
   - cli-reference/installation.html.md
   - cli-reference/commands.html.md
-  
+  - cli-reference/projectfile.html.md
+
 search: true
----
+----

@@ -1,16 +1,18 @@
 ---
-title: AI Engine Guide - Bonsai
+title: Library Reference - Bonsai
 
 language_tabs:
+  - python
 
 toc_footers:
   - <a href='https://bons.ai/sign-up'>Sign Up for our Private Beta!</a>
   - <a href='.'>Return home</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  -  <%= partial "partials/footer-links" %>
+
+
 
 includes:
-
-- under-the-hood.html.md
-
+  - library-reference/library-reference.html.md
+  
 search: true
 ---

@@ -471,6 +471,9 @@ input.gsc-search-button {border:solid 2px #ccc !important;height: 45px !importan
 	/* box-shadow: inset 0px 4px 5px -1px rgba(87,87,87,0.7); */
 }
 
+#gs_cb50 {display:none !important;}
+
+#___gcse_0 a.gs-title {background-color: inherit !important;}
 
 
 /*///////////////////////////////////////////////////////////////////////////////
@@ -883,6 +886,12 @@ a {}
 	.footer-links-home a:nth-child(-n+2) {border:none !important;}
 	
 }
+
+/* quick fixes */
+
+li.header_menu_item.selected + li.header_menu_item.selected a {border: none !important;}
+
+
 
 /*gcs css fixes*/
 

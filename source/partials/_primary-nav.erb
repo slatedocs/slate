@@ -27,12 +27,13 @@
 				<li class="<%= is_page_selected("/references/api-reference.html") %>"> <%= link_to 'API', '/references/api-reference.html' %>  </li>
 				<li class="<%= is_page_selected("/references/cli-reference.html") %>"> <%= link_to 'CLI', '/references/cli-reference.html' %>  </li>
 				<li class="<%= is_page_selected("/references/inkling-reference.html") %>"> <%= link_to 'Inkling', '/references/inkling-reference.html' %>  </li>
+				<li class="<%= is_page_selected("/references/library-reference.html") %>"> <%= link_to 'Library', '/references/library-reference.html' %>  </li>
 			</ul> 
 		</li>
 		
 		<li class="header_menu_item <%= is_page_selected("/examples.html") %>"> <%= link_to 'Examples', '/examples.html' %></li>
 
-		<li><gcse:search></gcse:search></li>
+		<li><gcse:search  linktarget="_parent"></gcse:search></li>
 
 
 	</ul>
