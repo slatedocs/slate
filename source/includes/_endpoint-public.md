@@ -30,9 +30,7 @@ ref | string | referring url (URL encoded) to pull content from the referring pa
 
 #### Preview
 
-The preview endpoint is used to preemptively initiate rendering a raster image of a given crunchbox configuration for retrieval by a social network platform crawler for constructing a post share preview. As the preview rendering process can be time-consuming, it is preferable to initiate the process as far before a request for the image binary data will be made by a crawler as possible.
-
-As this endpoint utilizes the POST method, a data payload is required. However, it will be ignored and can be any dummy data name/value pair. e.g. `data=foo`
+The preview endpoint is used to preemptively initiate rendering a given crunchbox configuration to a raster image. This image will be requested by social network platform crawlers as part of constructing a post share preview. The preview-rendering process can be time-consuming, therefore it is preferable to initiate it as soon as is reasonable before a request for the image data.
 
 This endpoint returns no data.
 
