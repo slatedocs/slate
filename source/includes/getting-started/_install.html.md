@@ -252,7 +252,7 @@ After your BRAIN is finished training it can play the Mountain Car game. How wel
 [5]: https://beta.bons.ai
 [6]: http://brew.sh/
 [7]: #what-is-a-simulator
-[8]: https://beta.bons.ai/accounts/settings
+[8]: https://beta.bons.ai/accounts/key
 [9]: #install-with-anaconda
 [10]: https://www.continuum.io/anaconda-overview
 [11]: https://git-for-windows.github.io/

@@ -105,9 +105,13 @@ You can find more discussion of type constraint rules in the [schema][1] section
 
 Lesson clauses have defaults so if a clause is not specified the default will be assumed. Also in certain circumstances not all clauses are available. This table specifies the rules. Recall that the _trainingSpecifier_ appears after the keyword **with** in the curriculum.
 
-![][2]
+**Table for Lesson Clauses**
 
-Table for Lesson Clauses
+        training specifier       |     configure clause           |        train clause        |       test clause         |      until clause          
+-------------- | -------------- | -------------- | -------------- | -------------- 
+**data**      | Not allowed. | Must have train or test at a minimum. Defaults to none.| Must have train or test at a mininum. Defaults to none. | Not user specified. Will default to: *minimize objectiveName*.
+**generator** | Required.    | If neither train nor test is present, defaults to: *from item in generator select item send item.image expects item.label*. | If neither train nor test is present, defaults to: *from item in generator select item send item.image expect item.label*. If not present, generate default for every lesson. | Not user specified. Will default to: *minimize objectiveName*.
+**simulator** | Required.    | If neither train nor test is present, defaults to: *item in simulator select item send item*. | If neither train nor test is present, defaults to: *from item in simulator select item*. If not present, generate default for every lesson. | Required.
 
 ###### Lesson Clause Rules
 
@@ -235,4 +239,3 @@ The **until** clause in the lesson specifies the termination condition for train
 This means train until the curriculum objective (`ball_location_distance`) is minimized. 
 
 [1]: #schema
-[2]: ../images/lesson-clause-table.png
