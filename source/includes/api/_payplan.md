@@ -329,7 +329,7 @@ customer* | The customer ID.
 method* | The payment method to use. Format: `cc:<id>` for cards. `ach:<id>` for ACH/Check payments. E.g.: `cc:12`.
 type* | Plan type. "S" for subscription and "P" for recurring plan.
 scheme* | The plan scheme type. "M" for monthly, "Y" for annually/yearly, "W" for weekly, "BW" for bi-weekly, and "Q" for quarterly.
-balance* | The due amount.
+amount* | The due amount.
 start* | The date the plan will start in YYYY-MM-DD format. (e.g 2015-10-12).
 fee | Initial fee amount.
 callback | The URL that will be use by the system when a payment has been made.
@@ -413,7 +413,7 @@ Parameter | Description
 --------- | -----------
 method | The payment method to use. Format: `cc:<id>` for cards. `ach:<id>` for ACH/Check payments. E.g.: `cc:12`.
 scheme | The plan scheme type. "M" for monthly, "Y" for annually/yearly, "W" for weekly, "BW" for bi-weekly, and "Q" for quarterly.
-balance | The due amount.
+amount | The due amount.
 callback | The URL that will be use by the system when a payment has been made.
 
 ## Cancel Plan
