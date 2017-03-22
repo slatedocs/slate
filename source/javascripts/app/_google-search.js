@@ -50,8 +50,7 @@
       
   	  document.getElementById('gsc-i-id1').placeholder = 'Search Bonsai Docs';
     
-        document.getElementById('gsc-i-id2').placeholder = 'Search Bonsai Docs';
-	  
+        
   	  
 	  
       };
