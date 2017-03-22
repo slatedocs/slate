@@ -109,3 +109,11 @@ More examples will be available soon.
 
 <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/csharp/get_request.cs/" target="blank">GET example</a> for retrieving all projects
 will be added soon.
+
+<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/csharp/post_request.cs" target="blank">POST example</a> for creating a new instance
+
+<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/csharp/put_request.cs" target="blank">PUT example</a> for updating a specific instance
+
+<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/csharp/delete_request.cs" target="blank">DELETE example</a> for deleting a specific instance
+
+<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/csharp/create_run_attachments.cs" target="blank">POST example (with attachments)</a> for uploading test results to PractiTest with files
