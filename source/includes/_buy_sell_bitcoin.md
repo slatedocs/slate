@@ -56,3 +56,78 @@ Response example
     ]
 }
 ```
+
+## Buy bitcoin
+> `POST https://domain.com/buy_currency/1.0/json`
+
+```
+Code request response example
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": null,
+  "result": {
+    "status": "success",
+    "timestamp": "2017-03-22 13:00:16",
+    "method": "email",
+    "code_id": 358,
+    "time": 300000
+  }
+}
+```
+
+```
+Successful charge response example
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": null,
+  "result": {
+    "status": "success"
+  }
+}
+```
+
+```
+Unsuccessful charge response example
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": null,
+  "result": {
+    "status": "error",
+    "message": "Something went wrong"
+  }
+}
+```
+
+If user selects saved card or wallet on first request server sends code_id, time in milliseconds to enter pincode and timestamp to enter pin code received in email or as sms.
+
+Request should have either payment_id, either details of a new card (card_number, cardholder_name, expiration_date, cvc).
+
+If user received code to confirm transaction in new request there should be code and code_id arguments specified.
+
+### HTTP Request
+`POST /buy_currency/1.0/json`
+
+### Arguments
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+buy_amount | string | Required | amount of BTC to buy
+deposit_amount | string | Required | amount of EUR to deposit
+payment_id | string | Optional | id of selected payment source in dropdown
+account_id | string | Required | id of account to deposit bought currency
+save_card | boolean | Optional | mark to save specified card details and its reference
+code_id | string | | code id reference to verify
+code | string | | code to verify and confirm transaction
+cvc | string | | CVV code for charging card
+card_number | string | | Card number to charge
+cardholder_name | string | | Cardholder name of charging card
+expiration_date | string | | Expiration date of charging card in format MM/YY, where MM - is month and YY is year
