@@ -7,7 +7,7 @@ Follow this process before you open a PR against the dev branch, and the reviewe
 1. Merge origin/dev into local WIP branch
 2. Test search functionality by pressing enter on mobile/desktop
 3. Test search functionality by clicking search icon on mobile/desktop
-4. Test filter funtionality
+4. Test filter functionality
 5. Test mobile header navigation
 6. Test desktop header navigation
 7. Test desktop homepage navigation
