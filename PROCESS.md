@@ -11,7 +11,7 @@ Follow this process before you open a PR against the dev branch, and the reviewe
 5. Test mobile header navigation
 6. Test desktop header navigation
 7. Test desktop homepage navigation
-8. Run brc http://localhost:4567/ (runs broken-link-checker on whatever port you're using)
+8. Run blc http://localhost:4567/ -ro (runs broken-link-checker on whatever port you're using)
 
 # Deploy Process
 Follow this process to deploy the dev branch changes to the master branch (and therefore the public website).
