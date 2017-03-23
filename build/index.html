@@ -150,6 +150,1457 @@ curl "api_endpoint_here"
 You must replace <code>THEAPIKEY</code> with your own API key.
 </aside>
 
+          <h1 id="invoice">Invoice</h1>
+
+<p>Invoice handles all invoices with custom fields, lineitems with/without custom fields.</p>
+
+<h2 id="create">Create</h2>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2050</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bZh9aU89BMeOeFl1r7AXkVxy6bqZDOoW8aotJuhhZdUL3xZaPm"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TST-EVE03152017"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/slycegateway-files/merchant-754c2f6dfbc8aaa8570096dfe296c9fd.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mail_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mail_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An Invoice for your recent medical bill has been created under your account."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"footer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"include_login"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"login_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://slycegateway-dev.cmsonline.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"include_pdf"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"medical_invoice"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"send_now"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dev-cs.email-invoice.com/response"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"date_sent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"322.50"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"outstanding"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Contact Person"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{contact_person}"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Secondary Email"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{secondary_email}"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fax"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{fax}"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Secondary Phone"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{secondary_phone}"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Secondary Address"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address Location"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{secondary_address}"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"custid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7111177788"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Savy"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phere"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"line_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PN01"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A simple dummy text of the printing and typesetting industry."</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dosage"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum comes from sections 1.10.32 and 1.10.33"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"child"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PNB01"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test industry"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dosage"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"comes from sections 1.10.32"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PNM01"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">-3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"typesetting industry"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dosage"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"comes from sections 1.10.32 and 1.10.33"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">130</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STBJ"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">115.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"child"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Request JSON structure like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TST-EVE03152017"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"mail_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An Invoice for your recent bill has been created under your account."</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"footer_id"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"mail_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"logo"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"include_pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"include_login"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"medical_invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"send_now"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"login_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://slycegateway-slycev2.cmsonline.comn"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://email-invoice.com/response"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"custom_fields"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Contact Person"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"John Doe"</span><span class="p">,</span><span class="nt">"tag"</span><span class="p">:</span><span class="s2">"{contact_person}"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Secondary Email"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"email2@domain.com"</span><span class="p">,</span><span class="nt">"tag"</span><span class="p">:</span><span class="s2">"{secondary_email}"</span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"custid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7111177788"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Savy"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phere"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+     </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"line_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PN01"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peanut"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PNB01"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PButter"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"custom_fields"</span><span class="p">:[</span><span class="w">
+              </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Description"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"test industry"</span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Dosage"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"comes from sections 1.10.32"</span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PNM01"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PMayo"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-3.00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"custom_fields"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Description"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"typesetting industry"</span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Dosage"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"comes from sections 1.10.32 and 1.10.33"</span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"custom_fields"</span><span class="p">:[</span><span class="w">
+          </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Description"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"A simple dummy text of the printing and typesetting industry."</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Dosage"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Lorem Ipsum comes from sections 1.10.32 and 1.10.33"</span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">130</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STBJ"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Strawberry Jam"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"115.50"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child"</span><span class="p">:[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This method lets you create new invoice.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST invoice</code></p>
+
+<h3 id="data-object">Data Object</h3>
+
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>number</td>
+<td>yes</td>
+<td>string</td>
+<td>Invoice Number</td>
+</tr>
+<tr>
+<td>date</td>
+<td>yes</td>
+<td>string</td>
+<td>Invoice Date (Y-m-d).</td>
+</tr>
+<tr>
+<td>logo</td>
+<td></td>
+<td>url</td>
+<td>Invoice logo url.</td>
+</tr>
+<tr>
+<td>mail_to</td>
+<td>yes</td>
+<td>string</td>
+<td>Email address for the receiver of the invoice.</td>
+</tr>
+<tr>
+<td>mail_body</td>
+<td></td>
+<td>string</td>
+<td>Email body. Can be html.</td>
+</tr>
+<tr>
+<td>include_login</td>
+<td></td>
+<td>boolean</td>
+<td>Lets you specify if login link should be included or not in the email invoice.</td>
+</tr>
+<tr>
+<td>login_url</td>
+<td></td>
+<td>url</td>
+<td>Login url.</td>
+</tr>
+<tr>
+<td>include_pdf</td>
+<td></td>
+<td>boolean</td>
+<td>Lets you specify if pdf invoice attachment should be included or not in the email.</td>
+</tr>
+<tr>
+<td>send_now</td>
+<td></td>
+<td>boolean</td>
+<td>Lets you specify whether to send the invoice directly or not.</td>
+</tr>
+<tr>
+<td>footer_id</td>
+<td></td>
+<td>integer</td>
+<td>The id of the invoice footer.</td>
+</tr>
+<tr>
+<td>custom_fields</td>
+<td></td>
+<td>json</td>
+<td>The custom fields or additional information needed for this new invoice. Useful for medical industry invoices. Refer to <a href="#invoice-custom-fields-json">Invoice Custom Fields Json</a></td>
+</tr>
+<tr>
+<td>medical_invoice</td>
+<td></td>
+<td>boolean</td>
+<td>Lets you specify if this new invoice is for medical industry or not.</td>
+</tr>
+<tr>
+<td>credit</td>
+<td></td>
+<td>amount</td>
+<td>Customer credit amount.</td>
+</tr>
+<tr>
+<td>customer</td>
+<td></td>
+<td>json</td>
+<td>Json data of customer. Refer to <a href="#customer-object">Customer Object</a></td>
+</tr>
+<tr>
+<td>line_items</td>
+<td></td>
+<td>array</td>
+<td>Array of objects. Refer to <a href="#line-item-object">Line Item Object</a></td>
+</tr>
+</tbody></table>
+
+<h3 id="invoice-custom-fields-json">Invoice Custom Fields Json</h3>
+
+<p>Custom Fields must be in this format:
+<code class="prettyprint">json
+&quot;custom_fields&quot;:[
+    {&quot;name&quot;:&quot;&quot;,&quot;value&quot;:&quot;&quot;,&quot;tag&quot;:{tag}&quot;},
+],
+</code>
+Example:</p>
+<pre class="highlight json"><code><span class="s2">"custom_fields"</span><span class="err">:</span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Contact Name"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"John Doe"</span><span class="p">,</span><span class="nt">"tag"</span><span class="p">:{</span><span class="err">contact_name</span><span class="p">}</span><span class="s2">"},
+    {"</span><span class="err">name</span><span class="s2">":"</span><span class="err">Contact</span><span class="w"> </span><span class="err">No.</span><span class="s2">","</span><span class="err">value</span><span class="s2">":"</span><span class="mi">123-4567</span><span class="s2">","</span><span class="err">tag</span><span class="s2">":{contact_no}"</span><span class="p">},</span><span class="w">
+</span><span class="p">]</span><span class="err">,</span><span class="w">
+</span></code></pre>
+
+<h3 id="customer-object">Customer Object</h3>
+
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>custid</td>
+<td>yes</td>
+<td>string</td>
+<td>Customer ID</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td></td>
+<td>string</td>
+<td>Customer&rsquo;s firstname</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td></td>
+<td>string</td>
+<td>Customer&rsquo;s lastname</td>
+</tr>
+<tr>
+<td>email</td>
+<td>yes</td>
+<td>string</td>
+<td>Customer&rsquo;s email</td>
+</tr>
+<tr>
+<td>phone</td>
+<td></td>
+<td>string</td>
+<td>Customer&rsquo;s contact number</td>
+</tr>
+<tr>
+<td>company</td>
+<td></td>
+<td>string</td>
+<td>Company</td>
+</tr>
+<tr>
+<td>street1</td>
+<td></td>
+<td>string</td>
+<td>Street 1</td>
+</tr>
+<tr>
+<td>street2</td>
+<td></td>
+<td>string</td>
+<td>Street 2</td>
+</tr>
+<tr>
+<td>city</td>
+<td></td>
+<td>string</td>
+<td>City</td>
+</tr>
+<tr>
+<td>state</td>
+<td></td>
+<td>string</td>
+<td>State</td>
+</tr>
+<tr>
+<td>zip</td>
+<td></td>
+<td>string</td>
+<td>ZIP</td>
+</tr>
+</tbody></table>
+
+<h3 id="line-item-object">Line Item Object</h3>
+
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>yes</td>
+<td>integer</td>
+<td>ID</td>
+</tr>
+<tr>
+<td>sku</td>
+<td>yes</td>
+<td>integer</td>
+<td>Item identification code</td>
+</tr>
+<tr>
+<td>name</td>
+<td>yes</td>
+<td>integer</td>
+<td>Item name</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>yes</td>
+<td>integer</td>
+<td>Number of items</td>
+</tr>
+<tr>
+<td>total_cost</td>
+<td>yes</td>
+<td>float</td>
+<td>Total cost of the item</td>
+</tr>
+<tr>
+<td>due_date</td>
+<td>yes</td>
+<td>string</td>
+<td>Date due (Y-m-d)</td>
+</tr>
+<tr>
+<td>order</td>
+<td></td>
+<td>numeric</td>
+<td>Item ordering</td>
+</tr>
+<tr>
+<td>child</td>
+<td></td>
+<td>array</td>
+<td>Items as a child. Refer to <a href="#line-item-child-object">Line Item Child Object</a></td>
+</tr>
+<tr>
+<td>custom_fields</td>
+<td></td>
+<td>json</td>
+<td>Lets you add other details through this field. You can also add custom fields to child items. Refer to <a href="#lineitem-custom-fields-json">Lineitem Custom Fields Json</a></td>
+</tr>
+</tbody></table>
+
+<h3 id="line-item-child-object">Line Item Child Object</h3>
+
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>yes</td>
+<td>numeric</td>
+<td>Item id</td>
+</tr>
+<tr>
+<td>sku</td>
+<td>yes</td>
+<td>string</td>
+<td>Item identification code</td>
+</tr>
+<tr>
+<td>name</td>
+<td>yes</td>
+<td>string</td>
+<td>Item name</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>yes</td>
+<td>integer</td>
+<td>Number of items</td>
+</tr>
+<tr>
+<td>total_cost</td>
+<td>yes</td>
+<td>float</td>
+<td>Total cost of the item</td>
+</tr>
+<tr>
+<td>order</td>
+<td></td>
+<td>numeric</td>
+<td>Item ordering</td>
+</tr>
+</tbody></table>
+
+<h3 id="lineitem-custom-fields-json">Lineitem Custom Fields Json</h3>
+
+<p>Lineitem Custom Fields must be in this format:
+<code class="prettyprint">json
+&quot;custom_fields&quot;:[
+    {&quot;name&quot;:&quot;&quot;,&quot;value&quot;:&quot;&quot;},
+],
+</code>
+Example:</p>
+<pre class="highlight json"><code><span class="s2">"custom_fields"</span><span class="err">:</span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Description"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Description details are here."</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Dosage"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Dosage details are here"</span><span class="p">},</span><span class="w">
+</span><span class="p">]</span><span class="err">,</span><span class="w">
+</span></code></pre>
+
+<h2 id="view">View</h2>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2050</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bZh9aU89BMeOeFl1r7AXkVxy6bqZDOoW8aotJuhhZdUL3xZaPm"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TST-EVE03152017"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/slycegateway-files/merchant-754c2f6dfbc8aaa8570096dfe296c9fd.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mail_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mail_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An Invoice for your recent medical bill has been created under your account."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"footer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"include_login"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"login_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://slycegateway-dev.cmsonline.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"include_pdf"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"medical_invoice"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"send_now"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dev-cs.email-invoice.com/response"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"date_sent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"322.50"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"outstanding"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Contact Person"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{contact_person}"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Secondary Email"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{secondary_email}"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fax"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{fax}"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Secondary Phone"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{secondary_phone}"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Secondary Address"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address Location"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{secondary_address}"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"custid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7111177788"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Savy"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phere"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"line_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PN01"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A simple dummy text of the printing and typesetting industry."</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dosage"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum comes from sections 1.10.32 and 1.10.33"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"child"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PNB01"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test industry"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dosage"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"comes from sections 1.10.32"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PNM01"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">-3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"typesetting industry"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dosage"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"comes from sections 1.10.32 and 1.10.33"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">130</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STBJ"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">115.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"child"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This method lets you view a specific invoice.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET invoice/&lt;ID&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The id of the invoice.</td>
+</tr>
+</tbody></table>
+
+<h2 id="update">Update</h2>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2050</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bZh9aU89BMeOeFl1r7AXkVxy6bqZDOoW8aotJuhhZdUL3xZaPm"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TST-EVE03152017"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/slycegateway-files/merchant-754c2f6dfbc8aaa8570096dfe296c9fd.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mail_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mail_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An Invoice for your recent medical bill has been created under your account."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"footer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"include_login"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"login_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://slycegateway-dev.cmsonline.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"include_pdf"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"medical_invoice"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"send_now"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dev-cs.email-invoice.com/response"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"date_sent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"322.50"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"outstanding"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Contact Person"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{contact_person}"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Secondary Email"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{secondary_email}"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fax"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{fax}"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Secondary Phone"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{secondary_phone}"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Secondary Address"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address Location"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{secondary_address}"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"custid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7111177788"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Savy"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phere"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"line_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PN01"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A simple dummy text of the printing and typesetting industry."</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dosage"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum comes from sections 1.10.32 and 1.10.33"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"child"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PNB01"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test industry"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dosage"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"comes from sections 1.10.32"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PNM01"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">-3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"typesetting industry"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dosage"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"comes from sections 1.10.32 and 1.10.33"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">130</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STBJ"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">115.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"child"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Request JSON structure like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TST-EVE03152017"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"mail_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An Invoice for your recent bill has been created under your account."</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"footer_id"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"mail_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"logo"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"include_pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"include_login"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"medical_invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"send_now"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"login_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://slycegateway-slycev2.cmsonline.comn"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://email-invoice.com/response"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"custom_fields"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Contact Person"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"John Doe"</span><span class="p">,</span><span class="nt">"tag"</span><span class="p">:</span><span class="s2">"{contact_person}"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Secondary Email"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"email2@domain.com"</span><span class="p">,</span><span class="nt">"tag"</span><span class="p">:</span><span class="s2">"{secondary_email}"</span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"custid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7111177788"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Savy"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phere"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+     </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"line_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PN01"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peanut"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PNB01"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PButter"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"custom_fields"</span><span class="p">:[</span><span class="w">
+              </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Description"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"test industry"</span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Dosage"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"comes from sections 1.10.32"</span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PNM01"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PMayo"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-3.00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"custom_fields"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Description"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"typesetting industry"</span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Dosage"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"comes from sections 1.10.32 and 1.10.33"</span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"custom_fields"</span><span class="p">:[</span><span class="w">
+          </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Description"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"A simple dummy text of the printing and typesetting industry."</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Dosage"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Lorem Ipsum comes from sections 1.10.32 and 1.10.33"</span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">130</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STBJ"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Strawberry Jam"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"115.50"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child"</span><span class="p">:[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This method lets you update a specific invoice.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT invoice/{id}</code></p>
+
+<h3 id="data-object">Data Object</h3>
+
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>number</td>
+<td>yes</td>
+<td>string</td>
+<td>Invoice Number</td>
+</tr>
+<tr>
+<td>date</td>
+<td>yes</td>
+<td>string</td>
+<td>Invoice Date (Y-m-d).</td>
+</tr>
+<tr>
+<td>logo</td>
+<td></td>
+<td>url</td>
+<td>Invoice logo url.</td>
+</tr>
+<tr>
+<td>mail_to</td>
+<td>yes</td>
+<td>string</td>
+<td>Email address for the receiver of the invoice.</td>
+</tr>
+<tr>
+<td>mail_body</td>
+<td></td>
+<td>string</td>
+<td>Email body. Can be html.</td>
+</tr>
+<tr>
+<td>include_login</td>
+<td></td>
+<td>boolean</td>
+<td>Lets you specify if login link should be included or not in the email invoice.</td>
+</tr>
+<tr>
+<td>login_url</td>
+<td></td>
+<td>url</td>
+<td>Login url.</td>
+</tr>
+<tr>
+<td>include_pdf</td>
+<td></td>
+<td>boolean</td>
+<td>Lets you specify if pdf invoice attachment should be included or not in the email.</td>
+</tr>
+<tr>
+<td>send_now</td>
+<td></td>
+<td>boolean</td>
+<td>Lets you specify whether to send the invoice directly or not.</td>
+</tr>
+<tr>
+<td>footer_id</td>
+<td></td>
+<td>integer</td>
+<td>The id of the invoice footer.</td>
+</tr>
+<tr>
+<td>custom_fields</td>
+<td></td>
+<td>json</td>
+<td>The custom fields or additional information needed for this new invoice. Useful for medical industry invoices. Refer to <a href="#invoice-custom-fields-json">Invoice Custom Fields Json</a></td>
+</tr>
+<tr>
+<td>medical_invoice</td>
+<td></td>
+<td>boolean</td>
+<td>Lets you specify if this new invoice is for medical industry or not.</td>
+</tr>
+<tr>
+<td>credit</td>
+<td></td>
+<td>amount</td>
+<td>Customer credit amount.</td>
+</tr>
+<tr>
+<td>customer</td>
+<td></td>
+<td>json</td>
+<td>Json data of customer. Refer to <a href="#customer-object">Customer Object</a></td>
+</tr>
+<tr>
+<td>line_items</td>
+<td></td>
+<td>array</td>
+<td>Array of objects. Refer to <a href="#line-item-object">Line Item Object</a></td>
+</tr>
+<tr>
+<td>status</td>
+<td></td>
+<td>string</td>
+<td>Status of the invoice. Refer to <a href="#status-supported">Status Supported</a>.</td>
+</tr>
+</tbody></table>
+
+<h3 id="status-supported">Status Supported</h3>
+
+<ul>
+<li>unsent</li>
+<li>outstanding</li>
+<li>partial payment</li>
+<li>paid</li>
+<li>canceled</li>
+</ul>
+
+<h2 id="send">Send</h2>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2050</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bZh9aU89BMeOeFl1r7AXkVxy6bqZDOoW8aotJuhhZdUL3xZaPm"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TST-EVE03152017"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/slycegateway-files/merchant-754c2f6dfbc8aaa8570096dfe296c9fd.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mail_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mail_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An Invoice for your recent medical bill has been created under your account."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"footer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"include_login"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"login_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://slycegateway-dev.cmsonline.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"include_pdf"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"medical_invoice"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"send_now"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dev-cs.email-invoice.com/response"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"date_sent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"322.50"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"outstanding"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Contact Person"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{contact_person}"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Secondary Email"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{secondary_email}"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fax"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{fax}"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Secondary Phone"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{secondary_phone}"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Secondary Address"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address Location"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{secondary_address}"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"custid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7111177788"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Savy"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phere"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"line_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PN01"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A simple dummy text of the printing and typesetting industry."</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dosage"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum comes from sections 1.10.32 and 1.10.33"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"child"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PNB01"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test industry"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dosage"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"comes from sections 1.10.32"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PNM01"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">-3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"typesetting industry"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dosage"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"comes from sections 1.10.32 and 1.10.33"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">130</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STBJ"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">115.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"child"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Request JSON structure like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"mail_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An Invoice for your recent bill has been created under your account."</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"mail_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This method lets you send a specific invoice.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST invoice/send/&lt;ID&gt;</code></p>
+
+<h3 id="data-object">Data Object</h3>
+
+<p>** With or without the following data*</p>
+
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mail_to</td>
+<td>yes</td>
+<td>string</td>
+<td>Email address for the receiver of the invoice.</td>
+</tr>
+<tr>
+<td>mail_body</td>
+<td></td>
+<td>string</td>
+<td>Email body. Can be html.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="invoice-footer">Invoice Footer</h1>
+
+<p>Invoice footer handles all invoice footer templates with/without custom fields tags.</p>
+
+<p>Invoice Footer</p>
+
+<h2 id="view">View</h2>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"footer_value"</span><span class="p">:</span><span class="s2">"&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-4 pull-right\"&gt;\r\n&lt;strong&gt;Total Tax:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{total_tax}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n&lt;div class=\"row\"&gt;\r\n   &lt;div class=\"col-md-4 pull-right\"&gt;\r\n        &lt;strong&gt;Total:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{invoice_total}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-4 pull-right\"&gt;\r\n&lt;strong&gt;Current Balance:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{invoice_current_balance}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;&amp;nbsp;&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-12\"&gt;\r\nWe accept MasterCard, VISA, Discover, American Express and ACH payments. Do you have billing or payment questions? Contact billing at &lt;b&gt;{merchant_contact}&lt;\/b&gt;. We can also be reached via email, &lt;b&gt;{merchant_email}&lt;\/b&gt;.\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;&amp;nbsp;&lt;\/div&gt;"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This method lets you view a specific invoice footer.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET invoicefooter/{id}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The id of the invoice footer.</td>
+</tr>
+</tbody></table>
+
+<h2 id="view-all">View All</h2>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"footer_value"</span><span class="p">:</span><span class="s2">"&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-4 pull-right\"&gt;\r\n&lt;strong&gt;Total Tax:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{total_tax}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n&lt;div class=\"row\"&gt;\r\n   &lt;div class=\"col-md-4 pull-right\"&gt;\r\n        &lt;strong&gt;Total:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{invoice_total}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-4 pull-right\"&gt;\r\n&lt;strong&gt;Current Balance:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{invoice_current_balance}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;&amp;nbsp;&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-12\"&gt;\r\nWe accept MasterCard, VISA, Discover, American Express and ACH payments. Do you have billing or payment questions? Contact billing at &lt;b&gt;{merchant_contact}&lt;\/b&gt;. We can also be reached via email, &lt;b&gt;{merchant_email}&lt;\/b&gt;.\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;&amp;nbsp;&lt;\/div&gt;"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"footer_value"</span><span class="p">:</span><span class="s2">"&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-4 pull-right\"&gt;\r\n&lt;strong&gt;Total Tax:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{total_tax}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n&lt;div class=\"row\"&gt;\r\n   &lt;div class=\"col-md-4 pull-right\"&gt;\r\n        &lt;strong&gt;Total:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{invoice_total}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-4 pull-right\"&gt;\r\n&lt;strong&gt;Current Balance:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{invoice_current_balance}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;&amp;nbsp;&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-12\"&gt;\r\nWe accept MasterCard, VISA, Discover, American Express and ACH payments. Do you have billing or payment questions? Contact billing at &lt;b&gt;{merchant_contact}&lt;\/b&gt;. We can also be reached via email, &lt;b&gt;{merchant_email}&lt;\/b&gt;.\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;&amp;nbsp;&lt;\/div&gt;"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves all invoice footer template.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET invoicefooter</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>20</td>
+<td>Number of items to show per page.</td>
+</tr>
+<tr>
+<td>page</td>
+<td>1</td>
+<td>Page number.</td>
+</tr>
+</tbody></table>
+
+<h2 id="create">Create</h2>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"footer_value"</span><span class="p">:</span><span class="s2">"&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-4 pull-right\"&gt;\r\n&lt;strong&gt;Total Tax:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{total_tax}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n&lt;div class=\"row\"&gt;\r\n   &lt;div class=\"col-md-4 pull-right\"&gt;\r\n        &lt;strong&gt;Total:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{invoice_total}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-4 pull-right\"&gt;\r\n&lt;strong&gt;Current Balance:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{invoice_current_balance}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;&amp;nbsp;&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-12\"&gt;\r\nWe accept MasterCard, VISA, Discover, American Express and ACH payments. Do you have billing or payment questions? Contact billing at &lt;b&gt;{merchant_contact}&lt;\/b&gt;. We can also be reached via email, &lt;b&gt;{merchant_email}&lt;\/b&gt;.\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;&amp;nbsp;&lt;\/div&gt;"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Request JSON structure like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"footer_value"</span><span class="p">:</span><span class="s2">"&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-4 pull-right\"&gt;\r\n&lt;strong&gt;Total Tax:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{total_tax}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n&lt;div class=\"row\"&gt;\r\n   &lt;div class=\"col-md-4 pull-right\"&gt;\r\n        &lt;strong&gt;Total:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{invoice_total}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-4 pull-right\"&gt;\r\n&lt;strong&gt;Current Balance:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{invoice_current_balance}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;&amp;nbsp;&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-12\"&gt;\r\nWe accept MasterCard, VISA, Discover, American Express and ACH payments. Do you have billing or payment questions? Contact billing at &lt;b&gt;{merchant_contact}&lt;\/b&gt;. We can also be reached via email, &lt;b&gt;{merchant_email}&lt;\/b&gt;.\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;&amp;nbsp;&lt;\/div&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This method lets you create new invoice footer.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST invoicefooter</code></p>
+
+<h3 id="data-object">Data Object</h3>
+
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>footer_value</td>
+<td>yes</td>
+<td>string</td>
+<td>Can be an html content.</td>
+</tr>
+</tbody></table>
+
+<h2 id="update">Update</h2>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"footer_value"</span><span class="p">:</span><span class="s2">"&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-4 pull-right\"&gt;\r\n&lt;strong&gt;Total Tax:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{total_tax}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n&lt;div class=\"row\"&gt;\r\n   &lt;div class=\"col-md-4 pull-right\"&gt;\r\n        &lt;strong&gt;Total:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{invoice_total}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-4 pull-right\"&gt;\r\n&lt;strong&gt;Current Balance:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{invoice_current_balance}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;&amp;nbsp;&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-12\"&gt;\r\nWe accept MasterCard, VISA, Discover, American Express and ACH payments. Do you have billing or payment questions? Contact billing at &lt;b&gt;{merchant_contact}&lt;\/b&gt;. We can also be reached via email, &lt;b&gt;{merchant_email}&lt;\/b&gt;.\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;&amp;nbsp;&lt;\/div&gt;"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Request JSON structure like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"footer_value"</span><span class="p">:</span><span class="s2">"&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-4 pull-right\"&gt;\r\n&lt;strong&gt;Total Tax:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{total_tax}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n&lt;div class=\"row\"&gt;\r\n   &lt;div class=\"col-md-4 pull-right\"&gt;\r\n        &lt;strong&gt;Total:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{invoice_total}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-4 pull-right\"&gt;\r\n&lt;strong&gt;Current Balance:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{invoice_current_balance}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;&amp;nbsp;&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-12\"&gt;\r\nWe accept MasterCard, VISA, Discover, American Express and ACH payments. Do you have billing or payment questions? Contact billing at &lt;b&gt;{merchant_contact}&lt;\/b&gt;. We can also be reached via email, &lt;b&gt;{merchant_email}&lt;\/b&gt;.\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;&amp;nbsp;&lt;\/div&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This method lets you update a specific invoice footer.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT invoicefooter/{id}</code></p>
+
+<h3 id="data-object">Data Object</h3>
+
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>footer_value</td>
+<td>yes</td>
+<td>string</td>
+<td>Can be an html content.</td>
+</tr>
+</tbody></table>
+
+<h2 id="remove">Remove</h2>
+
+<blockquote>
+<p>Returns true if successfull:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="kc">true</span><span class="w">
+</span></code></pre>
+
+<p>This method lets you remove a specific invoice footer.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE invoicefooter/{id}</code></p>
+
           <h1 id="recurring">Recurring</h1>
 
 <p>Recurring handles all types of recurring plans.</p>
