@@ -10,8 +10,8 @@ includes:
   - modules/introduction
   - modules/setup
   - modules/authentication
-  - modules/invoice
-  - modules/invoicefooter
+  - api/invoice
+  - api/invoicefooter
   - api/payplan
   - api/customer
   - api/transaction
