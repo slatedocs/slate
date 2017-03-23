@@ -288,4 +288,4 @@ In this example:
 * **0.8:** the amount to split the data by. 80% of the data goes to training. The remaining data (20%) goes to testing.
 * **shuffle=True:** sets the shuffle parameter to true.
 
-[1]: ./inkling-guide.html#example-mountain-car
+[1]: ./../examples.html#mountain-car-example

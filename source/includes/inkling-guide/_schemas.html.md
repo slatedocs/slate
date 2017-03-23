@@ -45,7 +45,7 @@ In Inkling, **Output** is a stream of information returned as a prediction that 
 * If your output is yes/no, true/false, or another dual relationship, you should use the `bool` type.
 * Inkling supports signed and unsigned integers of various sizes as well as floating point (32 and 64 bit). More details can be found under [Inkling Types][3].
 
-[1]: ./inkling-reference.html#schema
+[1]: ./../references/inkling-reference.html#schema
 [2]: https://en.wikipedia.org/wiki/Data_type
-[3]: ./inkling-reference.html#inkling-types
-[4]: ./inkling-reference.html#constrained-types
+[3]: ./../references/inkling-reference.html#inkling-types
+[4]: ./../references/inkling-reference.html#constrained-types
