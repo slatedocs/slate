@@ -374,6 +374,7 @@ html, body {
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
+	color: #0076BD;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -388,6 +389,7 @@ html, body {
     margin-bottom: 0;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
+	color: #0076BD;
   }
 
   // h2s right after h1s should bump right up
@@ -402,10 +404,12 @@ html, body {
     font-size: 20px;
     margin-top: 2.5em;
     margin-bottom: 0.8em;
+	color: #333;
   }
 
   h4, h5, h6 {
     font-size: 15px;
+	color: #333;
   }
 
   hr {
