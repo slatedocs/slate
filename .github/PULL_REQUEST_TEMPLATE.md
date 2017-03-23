@@ -1,5 +1,12 @@
 !!!!! STOP AND READ !!!!!
 
-If the dropdown above says "base fork: lord/master", you are submitting your change to ALL USERS OF SLATE, not just your company. This is probably not what you want. Click "base fork" to change it to the right place.
+If the dropdown above says "base fork: lord/master", click "base fork" to change it to the bonsaiai.github.io on the dev branch, NOT master.
 
-If you're actually trying to submit a change to upstream Slate, please submit to our dev branch, PRs sent to the master branch are generally rejected.
+PR Review Checklist:
+[ ] Test search functionality by pressing enter on mobile/desktop
+[ ] Test search functionality by clicking search icon on mobile/desktop
+[ ] Test filter functionality
+[ ] Test mobile header navigation
+[ ] Test desktop header navigation
+[ ] Test desktop homepage navigation
+[ ] Run blc http://localhost:4567/ -ro (runs broken-link-checker on whatever port you're using)
