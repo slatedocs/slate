@@ -87,7 +87,7 @@ expires | <span class="label label-required">Required</span> [See above for how 
 name | <span class="label label-required">Required</span> 50 characters max.
 client-id | 
 url | 256 characters max
-business-category-id | <span class="label label-required">Required</span> [See here for a full list of valid business codes.](#business-categories)
+business-category-id | [See here for a full list of valid business codes.](#business-categories)
 country | <span class="label label-required">Required</span> ISO 3 country code.
 address1 | <span class="label label-required">Required</span> 80 characters max
 address2 | 80 characters max
