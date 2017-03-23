@@ -14,6 +14,7 @@ includes:
   - projects
   - users
   - custom_fields
+  - tests
   - instances
   - runs
   - errors
@@ -61,8 +62,6 @@ If you already have V1 code, then you must change /api/resource_name to /api/v1/
 # Code examples
 We put popular languages code examples under Github. Please feel free to view, and pull request if you have any updates:
 <a href="https://github.com/PractiTest/pt-api-examples/" target="blank">PractiTest Api Code Examples in Github</a>.
-
-More examples will be available soon.
 
 ## Python
 
