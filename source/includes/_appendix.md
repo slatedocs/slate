@@ -328,7 +328,8 @@ zoominfo|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class=
 
 
 ## Business Category IDs
-[See here how to get a full list of valid business codes.](#business-categories)
+
+We no longer list the supported business categories here. We now have an [endpoint](#business-categories) which enables you to retrieve a list of categories by country.
 
 ## Supported Countries
 
