@@ -327,7 +327,8 @@ zomato|<span class="yes">Yes</span>|<span class="yes">Yes</span>|<span class="ye
 zoominfo|<span class="yes">Yes</span>||<span class="yes">Yes</span>|<span class="yes">Yes</span>|
 
 
-
+## Business Category IDs
+[See here how to get a full list of valid business codes.](#business-categories)
 
 ## Supported Countries
 
