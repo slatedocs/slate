@@ -12,9 +12,9 @@ This endpoint retrieves all tests.
 
 Parameters* | Description |
 --------- | ------- |
-filter-id | the test's filter id -> showing tests of TestSets which are in this filter |
+filter-id | the test's filter id -> showing tests that are in this filter of the Test Library |
 filter-user-id | if filter uses current_user criteria in it, you should provide which is the this user ([list of user ids](#users)) |
-display-ids | filter tests with display-ids (separated by commments) |
+display-ids | filter tests with display-ids (separated by commas) |
 name_exact | filter by test name exact match; case sensitive! |
 name_like | filter by test name: case insensitive, phrase can be inside the name |
 
@@ -91,9 +91,9 @@ YOUR_TOKEN&developer_email=your_EMAIL&name_like=Issuer3&page%5Bnumber%5D=1&page%
 ```
 
 
-## Create an test
+## Create a test
 
-This endpoint creates an test in your project.
+This endpoint creates a test in your project.
 
 ### HTTP Request
 
@@ -104,14 +104,14 @@ This endpoint creates an test in your project.
 Parameters | Description | required? |
 --------- | ------- |------- |
 data/attributes/name | name | true |
-data/attributes/author-id | author id | true |
+data/attributes/author-id | author id - [users list](#users) | true |
 data/attributes/description | Test description | false |
 data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  | false |
 data/attributes/planned-execution | date field of planned-execution | false |
 data/attributes/status | string of status (not run status) | false |
 data/attributes/version | string of test version | false |
 data/attributes/priority | string of test priority | false |
-data/attributes/custom-fields | a hash of custom-fields with thier value | false |
+data/attributes/custom-fields | a hash of custom-fields with their value | false |
 data/steps/data* | an array of steps override the exit code | false |
 
 * Steps array includes steps json hash, with these attributes: name, description, expected-results.
