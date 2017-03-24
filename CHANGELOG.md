@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 1.5.0
+
+*February 23, 2017*
+
+- Add [multiple tabs per programming language](https://github.com/lord/slate/wiki/Multiple-language-tabs-per-programming-language) feature
+- Upgrade Middleman to add Ruby 1.4.0 compatibility
+- Switch default code highlighting color scheme to better highlight JSON
+- Various small typo and bug fixes
+
 ## Version 1.4.0
 
 *November 24, 2016*

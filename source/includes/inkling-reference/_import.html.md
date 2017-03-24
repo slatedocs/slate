@@ -14,24 +14,24 @@ Note: Currently, the only function you can import is **split**.
 
 ### How do I use it?
 
-Typical import statements:
+Select the Inkling tab to view two generic import statements.
 
 ```inkling
 from libraryName import importName1
 import importName2
 ```
 
-## Examples
+## Import Example
+
+Select the Inkling tab to view the example of an imported function.
 
 ```inkling
 from utils import split
 
   datastore MNIST_data(MNIST_training_data_schema)
   copy mnist-training.csv into MNIST_data with format='csv'
-```
 
-> prepare the data with imported function split
+# prepare the data with imported function split
 
-```inkling
 training_data, test_data = split(MNIST_data, 0.8, shuffle=True)
 ```

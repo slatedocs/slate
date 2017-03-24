@@ -73,4 +73,4 @@ The input remains the same as above. The AI has two additional concepts to train
 
 [1]: ../images/mental-model.png
 [2]: #concepts
-[3]: ./inkling-reference.html#concept
+[3]: ./../references/inkling-reference.html#concept

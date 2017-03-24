@@ -174,5 +174,3 @@ if __name__ == "__main__":
 ```
 
 This is a Basic simulator for learning the simulator interface. In this case it is used to find the center between two numbers, 0 and 2. The goal, as outlined in the Inkling file, is to reach 1. The moves that the simulator is able to make are sent from the Inkling file to the simulator and the state of the simulator is sent back to Inkling.
-
-[1]: https://gym.openai.com/envs/MountainCar-v0
