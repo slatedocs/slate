@@ -4,10 +4,10 @@ title: Intelex API Reference
 language_tabs:
   - javascript: JavaScript
   - csharp: C#
-
+  
 includes:
-  - responses
-
+  - support
+  
 search: true
 ---
 
@@ -49,13 +49,33 @@ request.AddHeader("authorization", "Basic hello");
 
 Authentication to the API is performed via HTTP Basic Auth and your Intelex user credentials. All API requests must be made over HTTPS and API requests without authentication will fail. Security on data is managed by the platform security configuration. API requests will maintain the same security settings you have configured in the platform for each user. 
 
-Exception Type | Exception Message
--------------- | --------------
-1001|The user [username] wasn't found. Please check the user name and try again. If you continue to encounter this error, please contact your support team
-1002|Your account is locked. Please try again later or contact your system administrator
-1003|Authentication failed. Password is incorrect
-1004|Password doesn't match current account policy. Please change the password
-1005|Your password is expired
+## Response Codes
+
+> Example error response
+
+```json
+{
+  "error": {
+    "code": "string",
+    "message": "string"
+  }
+}
+```
+
+The Intelex REST API will respond with the following HTTP status codes:
+
+Response Code | Meaning
+---------- | -------
+200 | Success -- Enjoy your data!
+201 | Created -- We created the record!
+204 | No Content -- Your request was successful, but we don't have anything more to tell you.
+400 | Bad Request -- Something is wrong with your request
+401 | Unauthorized -- Your credentials are wrong
+403 | Forbidden -- You do not have permission to access the resource
+404 | Not Found -- The object or navigation property you are trying to access doesn't exist
+405 | Method Not Allowed -- We won't let you do that
+500 | Internal Server Error -- We had a problem with our server. Try again later
+501 | Not Implemented -- What you are trying to do doesn't work...yet.
 
 ## Versioning
 

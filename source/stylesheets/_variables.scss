@@ -52,9 +52,9 @@ $lang-select-pressed-text: #ccc !default; // color of language tab text when mou
 
 // SIZES
 ////////////////////
-$nav-width: 240px !default; // width of the navbar
+$nav-width: 260px !default; // width of the navbar
 $examples-width: 50% !default; // portion of the screen taken up by code examples
-$logo-margin: 20px !default; // margin between nav items and logo, ignored if search is active
+$logo-margin: 10px !default; // margin between nav items and logo, ignored if search is active
 $main-padding: 28px !default; // padding to left and right of content & examples
 $nav-padding: 15px !default; // padding to left and right of navbar
 $nav-v-padding: 10px !default; // padding used vertically around search boxes and results
