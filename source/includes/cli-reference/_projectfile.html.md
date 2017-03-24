@@ -70,6 +70,3 @@ project file.
 
  * `default` marks a named BRAIN as the default BRAIN to use with command
    operations.
-
-
-

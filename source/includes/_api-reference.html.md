@@ -2,7 +2,7 @@
 
 The Bonsai AI Engine provides programmers and data scientists with a new way of building sophisticated ML and AI applications. This API is at the core of how programmers interact with the AI engine.
 
- The Bonsai BRAIN API has several features:
+The Bonsai BRAIN API has several features:
 
 * Managing BRAINS on the AI engine.
 * Connecting simulators for training and use.
