@@ -134,7 +134,7 @@ data/attributes/planned-execution | date field of planned-execution | false |
 data/attributes/version | string of instance version | false |
 data/attributes/priority | string of instance priority | false |
 data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  | false |
-data/attributes/custom-fields | a hash of custom-fields with thier value | false |
+data/attributes/custom-fields | a hash of custom-fields with their value | false |
 
 
 You can find at the [right area](#create-an-instance) (shell) an example of the request
@@ -212,7 +212,7 @@ data/attributes/planned-execution | date field of planned-execution |
 data/attributes/version | string of instance version |
 data/attributes/priority | string of instance priority |
 data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  |
-data/attributes/custom-fields | a hash of custom-fields with thier value |
+data/attributes/custom-fields | a hash of custom-fields with their value |
 
 
 You can find at the right area an example of the JSON request and response

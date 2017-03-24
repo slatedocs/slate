@@ -15,6 +15,7 @@ includes:
   - users
   - custom_fields
   - tests
+  - sets
   - instances
   - runs
   - errors

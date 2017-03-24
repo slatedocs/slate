@@ -205,7 +205,7 @@ data/attributes/planned-execution | date field of planned-execution |
 data/attributes/status | string of status (not run status) |
 data/attributes/version | string of test version |
 data/attributes/priority | string of test priority |
-data/attributes/custom-fields | a hash of custom-fields with thier value |
+data/attributes/custom-fields | a hash of custom-fields with their value |
 
 
 You can find at the right area an example of the JSON request and response
