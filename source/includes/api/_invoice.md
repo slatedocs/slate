@@ -142,93 +142,6 @@ Invoice handles all invoices with custom fields, lineitems with/without custom f
 }
 ```
 
-
-> Request JSON structure like this:
-
-```json
-{
-  "number": "TST-EVE03152017",
-  "date": "2017-03-22",
-  "logo": "",
-  "credit": "50.00",
-  "mail_body": "An Invoice for your recent bill has been created under your account.",
-  "footer_id":2,
-  "mail_to": "email@domain.com",
-  "logo":"",
-  "include_pdf": "0",
-  "include_login": "0",
-  "medical_invoice": "1",
-  "send_now":"0",
-  "login_url": "https://slycegateway-slycev2.cmsonline.comn",
-  "webhook_url": "https://email-invoice.com/response",
-  "custom_fields":[
-      {"name":"Contact Person","value":"John Doe","tag":"{contact_person}"},
-    {"name":"Secondary Email","value":"email2@domain.com","tag":"{secondary_email}"}
-  ],
-  "customer": {
-      "custid": "7111177788",
-      "first_name": "Savy",
-      "last_name": "Phere",
-      "email": "email@domain.com",
-      "phone": "",
-  "company": "",
-      "street1": "",
-      "street2": "",
-      "city": "",
-      "state": "",
-      "zip": "",
-     "country": ""
-  },
-  "line_items": [
-    {
-      "id": "123",
-      "sku": "PN01",
-      "name": "Peanut",
-      "quantity": "1",
-      "total_cost": "200.00",
-      "due_date": "2017-03-22",
-      "child" : [
-          {
-            "id": 124,
-            "sku": "PNB01",
-            "name": "PButter",
-            "quantity": "1",
-            "total_cost": "10.00",
-            "custom_fields":[
-              {"name":"Description","value":"test industry"},
-            {"name":"Dosage","value":"comes from sections 1.10.32"}
-          ]
-          },
-          {
-            "id": 125,
-            "sku": "PNM01",
-            "name": "PMayo",
-            "quantity": "1",
-            "total_cost": "-3.00",
-            "custom_fields":[
-            {"name":"Description","value":"typesetting industry"},
-          {"name":"Dosage","value":"comes from sections 1.10.32 and 1.10.33"}
-            ]
-          }
-      ],
-      "custom_fields":[
-          {"name":"Description","value":"A simple dummy text of the printing and typesetting industry."},
-        {"name":"Dosage","value":"Lorem Ipsum comes from sections 1.10.32 and 1.10.33"}
-      ]
-    },
-    {
-      "id": 130,
-      "sku": "STBJ",
-      "name": "Strawberry Jam",
-      "quantity": "1",
-      "total_cost": "115.50",
-      "due_date": "2017-03-22",
-      "child":[]
-    }
-  ]
-}
-```
-
 This method lets you create new invoice.
 
 ### HTTP Request
@@ -257,22 +170,21 @@ customer | | json | Json data of customer. Refer to [Customer Object](#customer-
 line_items | | array | Array of objects. Refer to [Line Item Object](#line-item-object)
 
 ### Invoice Custom Fields Json
+Follow the format required here.
 
-Custom Fields must be in this format:
-```json
-"custom_fields":[
-    {"name":"","value":"","tag":{tag}"},
-],
-```
-Example:
+### Data Json
 
-```json
+Field 1 | Field 2 | Field 3
+-------|-------|-------
+name | value | tag
+
+### Structure
+``
 "custom_fields":[
     {"name":"Contact Name","value":"John Doe","tag":{contact_name}"},
-    {"name":"Contact No.","value":"123-4567","tag":{contact_no}"},
-],
-```
-
+    {"name":"Contact No.","value":"123-4567","tag":{contact_no}"}
+]
+``
 
 ### Customer Object
 
@@ -302,7 +214,7 @@ total_cost | yes | float | Total cost of the item
 due_date |yes | string | Date due (Y-m-d)
 order | | numeric | Item ordering
 child | | array | Items as a child. Refer to [Line Item Child Object](#line-item-child-object)
-custom_fields | | json | Lets you add other details through this field. You can also add custom fields to child items. Refer to [Lineitem Custom Fields Json](#lineitem-custom-fields-json)
+custom_fields | | json | Lets you add other details through this field. Refer to [Lineitem Custom Fields Json](#lineitem-custom-fields-json)
 
 
 ### Line Item Child Object
@@ -315,27 +227,27 @@ name | yes | string |  Item name
 quantity | yes | integer | Number of items
 total_cost | yes | float | Total cost of the item
 order | | numeric | Item ordering
+custom_fields | | json | Lets you add other details through this field. Refer to [Lineitem Custom Fields Json](#lineitem-custom-fields-json)
 
 
 ### Lineitem Custom Fields Json
+Follow the format required here.
 
-Lineitem Custom Fields must be in this format:
-```json
-"custom_fields":[
-    {"name":"","value":""},
-],
-```
-Example:
+### Data Json
 
-```json
+Field 1 | Field 2 
+-------|-------
+name | value 
+
+### Structure
+``
 "custom_fields":[
     {"name":"Description","value":"Description details are here."},
-    {"name":"Dosage","value":"Dosage details are here"},
-],
-```
+    {"name":"Dosage","value":"Dosage details are here"}
+]
+``
 
 ## View
-
 
 > Returns JSON structured like this:
 
@@ -889,16 +801,6 @@ status | | string | Status of the invoice. Refer to [Status Supported](#status-s
 }
 ```
 
-> Request JSON structure like this:
-
-```json
-{
-  "mail_body": "An Invoice for your recent bill has been created under your account.",
-  "mail_to": "email@domain.com",
-  "status": ""
-}
-```
-
 This method lets you send a specific invoice.
 
 ### HTTP Request
@@ -912,5 +814,5 @@ This method lets you send a specific invoice.
 
 Field Name | Required | Type | Description
 ---------|-----|------|------
-mail_to | yes | string | Email address for the receiver of the invoice.
-mail_body | | string | Email body. Can be html.
+mail_to | no | string | Email address for the receiver of the invoice.
+mail_body | no | string | Email body. Can be html.

@@ -294,92 +294,6 @@ You must replace <code>THEAPIKEY</code> with your own API key.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<blockquote>
-<p>Request JSON structure like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TST-EVE03152017"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"mail_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An Invoice for your recent bill has been created under your account."</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"footer_id"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"mail_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"logo"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"include_pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"include_login"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"medical_invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"send_now"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"login_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://slycegateway-slycev2.cmsonline.comn"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://email-invoice.com/response"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"custom_fields"</span><span class="p">:[</span><span class="w">
-      </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Contact Person"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"John Doe"</span><span class="p">,</span><span class="nt">"tag"</span><span class="p">:</span><span class="s2">"{contact_person}"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Secondary Email"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"email2@domain.com"</span><span class="p">,</span><span class="nt">"tag"</span><span class="p">:</span><span class="s2">"{secondary_email}"</span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"custid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7111177788"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Savy"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phere"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"street1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"street2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-     </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"line_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PN01"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peanut"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200.00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"child"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PNB01"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PButter"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"custom_fields"</span><span class="p">:[</span><span class="w">
-              </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Description"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"test industry"</span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Dosage"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"comes from sections 1.10.32"</span><span class="p">}</span><span class="w">
-          </span><span class="p">]</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PNM01"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PMayo"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-3.00"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"custom_fields"</span><span class="p">:[</span><span class="w">
-            </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Description"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"typesetting industry"</span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Dosage"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"comes from sections 1.10.32 and 1.10.33"</span><span class="p">}</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"custom_fields"</span><span class="p">:[</span><span class="w">
-          </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Description"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"A simple dummy text of the printing and typesetting industry."</span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Dosage"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Lorem Ipsum comes from sections 1.10.32 and 1.10.33"</span><span class="p">}</span><span class="w">
-      </span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">130</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STBJ"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Strawberry Jam"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"115.50"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"child"</span><span class="p">:[]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
 <p>This method lets you create new invoice.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -490,18 +404,32 @@ You must replace <code>THEAPIKEY</code> with your own API key.
 
 <h3 id="invoice-custom-fields-json">Invoice Custom Fields Json</h3>
 
-<p>Custom Fields must be in this format:
-<code class="prettyprint">json
+<p>Follow the format required here.</p>
+
+<h3 id="data-json">Data Json</h3>
+
+<table><thead>
+<tr>
+<th>Field 1</th>
+<th>Field 2</th>
+<th>Field 3</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>value</td>
+<td>tag</td>
+</tr>
+</tbody></table>
+
+<h3 id="structure">Structure</h3>
+
+<p><code class="prettyprint">
 &quot;custom_fields&quot;:[
-    {&quot;name&quot;:&quot;&quot;,&quot;value&quot;:&quot;&quot;,&quot;tag&quot;:{tag}&quot;},
-],
-</code>
-Example:</p>
-<pre class="highlight json"><code><span class="s2">"custom_fields"</span><span class="err">:</span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Contact Name"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"John Doe"</span><span class="p">,</span><span class="nt">"tag"</span><span class="p">:{</span><span class="err">contact_name</span><span class="p">}</span><span class="s2">"},
-    {"</span><span class="err">name</span><span class="s2">":"</span><span class="err">Contact</span><span class="w"> </span><span class="err">No.</span><span class="s2">","</span><span class="err">value</span><span class="s2">":"</span><span class="mi">123-4567</span><span class="s2">","</span><span class="err">tag</span><span class="s2">":{contact_no}"</span><span class="p">},</span><span class="w">
-</span><span class="p">]</span><span class="err">,</span><span class="w">
-</span></code></pre>
+    {&quot;name&quot;:&quot;Contact Name&quot;,&quot;value&quot;:&quot;John Doe&quot;,&quot;tag&quot;:{contact_name}&quot;},
+    {&quot;name&quot;:&quot;Contact No.&quot;,&quot;value&quot;:&quot;123-4567&quot;,&quot;tag&quot;:{contact_no}&quot;}
+]
+</code></p>
 
 <h3 id="customer-object">Customer Object</h3>
 
@@ -643,7 +571,7 @@ Example:</p>
 <td>custom_fields</td>
 <td></td>
 <td>json</td>
-<td>Lets you add other details through this field. You can also add custom fields to child items. Refer to <a href="#lineitem-custom-fields-json">Lineitem Custom Fields Json</a></td>
+<td>Lets you add other details through this field. Refer to <a href="#lineitem-custom-fields-json">Lineitem Custom Fields Json</a></td>
 </tr>
 </tbody></table>
 
@@ -693,22 +621,40 @@ Example:</p>
 <td>numeric</td>
 <td>Item ordering</td>
 </tr>
+<tr>
+<td>custom_fields</td>
+<td></td>
+<td>json</td>
+<td>Lets you add other details through this field. Refer to <a href="#lineitem-custom-fields-json">Lineitem Custom Fields Json</a></td>
+</tr>
 </tbody></table>
 
 <h3 id="lineitem-custom-fields-json">Lineitem Custom Fields Json</h3>
 
-<p>Lineitem Custom Fields must be in this format:
-<code class="prettyprint">json
+<p>Follow the format required here.</p>
+
+<h3 id="data-json">Data Json</h3>
+
+<table><thead>
+<tr>
+<th>Field 1</th>
+<th>Field 2</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>value</td>
+</tr>
+</tbody></table>
+
+<h3 id="structure">Structure</h3>
+
+<p><code class="prettyprint">
 &quot;custom_fields&quot;:[
-    {&quot;name&quot;:&quot;&quot;,&quot;value&quot;:&quot;&quot;},
-],
-</code>
-Example:</p>
-<pre class="highlight json"><code><span class="s2">"custom_fields"</span><span class="err">:</span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Description"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Description details are here."</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Dosage"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Dosage details are here"</span><span class="p">},</span><span class="w">
-</span><span class="p">]</span><span class="err">,</span><span class="w">
-</span></code></pre>
+    {&quot;name&quot;:&quot;Description&quot;,&quot;value&quot;:&quot;Description details are here.&quot;},
+    {&quot;name&quot;:&quot;Dosage&quot;,&quot;value&quot;:&quot;Dosage details are here&quot;}
+]
+</code></p>
 
 <h2 id="view">View</h2>
 
@@ -1360,16 +1306,6 @@ Example:</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<blockquote>
-<p>Request JSON structure like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"mail_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An Invoice for your recent bill has been created under your account."</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"mail_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
 <p>This method lets you send a specific invoice.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -1390,13 +1326,13 @@ Example:</p>
 </thead><tbody>
 <tr>
 <td>mail_to</td>
-<td>yes</td>
+<td>no</td>
 <td>string</td>
 <td>Email address for the receiver of the invoice.</td>
 </tr>
 <tr>
 <td>mail_body</td>
-<td></td>
+<td>no</td>
 <td>string</td>
 <td>Email body. Can be html.</td>
 </tr>
@@ -1510,14 +1446,6 @@ Example:</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<blockquote>
-<p>Request JSON structure like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"footer_value"</span><span class="p">:</span><span class="s2">"&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-4 pull-right\"&gt;\r\n&lt;strong&gt;Total Tax:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{total_tax}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n&lt;div class=\"row\"&gt;\r\n   &lt;div class=\"col-md-4 pull-right\"&gt;\r\n        &lt;strong&gt;Total:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{invoice_total}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-4 pull-right\"&gt;\r\n&lt;strong&gt;Current Balance:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{invoice_current_balance}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;&amp;nbsp;&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-12\"&gt;\r\nWe accept MasterCard, VISA, Discover, American Express and ACH payments. Do you have billing or payment questions? Contact billing at &lt;b&gt;{merchant_contact}&lt;\/b&gt;. We can also be reached via email, &lt;b&gt;{merchant_email}&lt;\/b&gt;.\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;&amp;nbsp;&lt;\/div&gt;"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
 <p>This method lets you create new invoice footer.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -1552,14 +1480,6 @@ Example:</p>
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"footer_value"</span><span class="p">:</span><span class="s2">"&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-4 pull-right\"&gt;\r\n&lt;strong&gt;Total Tax:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{total_tax}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n&lt;div class=\"row\"&gt;\r\n   &lt;div class=\"col-md-4 pull-right\"&gt;\r\n        &lt;strong&gt;Total:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{invoice_total}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-4 pull-right\"&gt;\r\n&lt;strong&gt;Current Balance:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{invoice_current_balance}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;&amp;nbsp;&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-12\"&gt;\r\nWe accept MasterCard, VISA, Discover, American Express and ACH payments. Do you have billing or payment questions? Contact billing at &lt;b&gt;{merchant_contact}&lt;\/b&gt;. We can also be reached via email, &lt;b&gt;{merchant_email}&lt;\/b&gt;.\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;&amp;nbsp;&lt;\/div&gt;"</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<blockquote>
-<p>Request JSON structure like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"footer_value"</span><span class="p">:</span><span class="s2">"&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-4 pull-right\"&gt;\r\n&lt;strong&gt;Total Tax:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{total_tax}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n&lt;div class=\"row\"&gt;\r\n   &lt;div class=\"col-md-4 pull-right\"&gt;\r\n        &lt;strong&gt;Total:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{invoice_total}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-4 pull-right\"&gt;\r\n&lt;strong&gt;Current Balance:&lt;\/strong&gt;\r\n&lt;span&gt;{currency}{invoice_current_balance}&lt;\/span&gt;\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;&amp;nbsp;&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;\r\n&lt;div class=\"col-md-12\"&gt;\r\nWe accept MasterCard, VISA, Discover, American Express and ACH payments. Do you have billing or payment questions? Contact billing at &lt;b&gt;{merchant_contact}&lt;\/b&gt;. We can also be reached via email, &lt;b&gt;{merchant_email}&lt;\/b&gt;.\r\n&lt;\/div&gt;\r\n&lt;\/div&gt;\r\n\r\n&lt;div class=\"row\"&gt;&amp;nbsp;&lt;\/div&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 

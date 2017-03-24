@@ -85,15 +85,6 @@ page | 1 | Page number.
 }
 ```
 
-
-> Request JSON structure like this:
-
-```json
-{
-  "footer_value":"<div class=\"row\">\r\n<div class=\"col-md-4 pull-right\">\r\n<strong>Total Tax:<\/strong>\r\n<span>{currency}{total_tax}<\/span>\r\n<\/div>\r\n<\/div>\r\n<div class=\"row\">\r\n   <div class=\"col-md-4 pull-right\">\r\n        <strong>Total:<\/strong>\r\n<span>{currency}{invoice_total}<\/span>\r\n<\/div>\r\n<\/div>\r\n\r\n<div class=\"row\">\r\n<div class=\"col-md-4 pull-right\">\r\n<strong>Current Balance:<\/strong>\r\n<span>{currency}{invoice_current_balance}<\/span>\r\n<\/div>\r\n<\/div>\r\n\r\n<div class=\"row\">&nbsp;<\/div>\r\n\r\n<div class=\"row\">\r\n<div class=\"col-md-12\">\r\nWe accept MasterCard, VISA, Discover, American Express and ACH payments. Do you have billing or payment questions? Contact billing at <b>{merchant_contact}<\/b>. We can also be reached via email, <b>{merchant_email}<\/b>.\r\n<\/div>\r\n<\/div>\r\n\r\n<div class=\"row\">&nbsp;<\/div>"
-}
-```
-
 This method lets you create new invoice footer.
 
 ### HTTP Request
@@ -117,14 +108,6 @@ footer_value | yes | string | Can be an html content.
     "id": 1,
     "footer_value":"<div class=\"row\">\r\n<div class=\"col-md-4 pull-right\">\r\n<strong>Total Tax:<\/strong>\r\n<span>{currency}{total_tax}<\/span>\r\n<\/div>\r\n<\/div>\r\n<div class=\"row\">\r\n   <div class=\"col-md-4 pull-right\">\r\n        <strong>Total:<\/strong>\r\n<span>{currency}{invoice_total}<\/span>\r\n<\/div>\r\n<\/div>\r\n\r\n<div class=\"row\">\r\n<div class=\"col-md-4 pull-right\">\r\n<strong>Current Balance:<\/strong>\r\n<span>{currency}{invoice_current_balance}<\/span>\r\n<\/div>\r\n<\/div>\r\n\r\n<div class=\"row\">&nbsp;<\/div>\r\n\r\n<div class=\"row\">\r\n<div class=\"col-md-12\">\r\nWe accept MasterCard, VISA, Discover, American Express and ACH payments. Do you have billing or payment questions? Contact billing at <b>{merchant_contact}<\/b>. We can also be reached via email, <b>{merchant_email}<\/b>.\r\n<\/div>\r\n<\/div>\r\n\r\n<div class=\"row\">&nbsp;<\/div>"
   }
-}
-```
-
-> Request JSON structure like this:
-
-```json
-{
-  "footer_value":"<div class=\"row\">\r\n<div class=\"col-md-4 pull-right\">\r\n<strong>Total Tax:<\/strong>\r\n<span>{currency}{total_tax}<\/span>\r\n<\/div>\r\n<\/div>\r\n<div class=\"row\">\r\n   <div class=\"col-md-4 pull-right\">\r\n        <strong>Total:<\/strong>\r\n<span>{currency}{invoice_total}<\/span>\r\n<\/div>\r\n<\/div>\r\n\r\n<div class=\"row\">\r\n<div class=\"col-md-4 pull-right\">\r\n<strong>Current Balance:<\/strong>\r\n<span>{currency}{invoice_current_balance}<\/span>\r\n<\/div>\r\n<\/div>\r\n\r\n<div class=\"row\">&nbsp;<\/div>\r\n\r\n<div class=\"row\">\r\n<div class=\"col-md-12\">\r\nWe accept MasterCard, VISA, Discover, American Express and ACH payments. Do you have billing or payment questions? Contact billing at <b>{merchant_contact}<\/b>. We can also be reached via email, <b>{merchant_email}<\/b>.\r\n<\/div>\r\n<\/div>\r\n\r\n<div class=\"row\">&nbsp;<\/div>"
 }
 ```
 
