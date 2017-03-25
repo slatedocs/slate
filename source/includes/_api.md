@@ -2,7 +2,8 @@ API
 ===
 ```javascript
 // After installing, just require augur.js to use it.
-var augur = require("augur.js");
+var Augur = require("augur.js");
+var augur = new Augur();
 
 // Attempt to connect to a local Ethereum node
 augur.connect({http: "http://127.0.0.1:8545"});
