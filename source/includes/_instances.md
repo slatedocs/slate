@@ -198,7 +198,7 @@ https://api.practitest.com/api/v2/projects/4566/instances/45893.json
 
 ## Update a specific instance
 
-This endpoint retrieves a specific instance.
+This endpoint updates a specific instance.
 
 ### HTTP Request
 

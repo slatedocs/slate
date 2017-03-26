@@ -188,7 +188,7 @@ https://api.practitest.com/api/v2/projects/4566/tests/45893.json
 
 ## Update a specific test
 
-This endpoint retrieves a specific test.
+This endpoint updates a specific test.
 
 ### HTTP Request
 

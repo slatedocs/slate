@@ -12,11 +12,11 @@ This endpoint retrieves all TestSets.
 
 Parameters* | Description |
 --------- | ------- |
-filter-id | the testSet's filter id -> showing testSets that are in this filter |
+filter-id | the TestSet's filter id -> showing TestSets that are in this filter |
 filter-user-id | if filter uses current_user criteria in it, you should provide which is the this user ([list of user ids](#users)) |
-display-ids | filter testSets with display-ids (separated by commas) |
-name_exact | filter by testSet name exact match; case sensitive! |
-name_like | filter by testSet name: case insensitive, phrase can be inside the name |
+display-ids | filter TestSets with display-ids (separated by commas) |
+name_exact | filter by TestSet name exact match; case sensitive! |
+name_like | filter by TestSet name: case insensitive, phrase can be inside the name |
 
 * none of the parameters are required. If you combine multiple parameters, it will do AND
 You can see examples in the dark area to the right.
@@ -32,9 +32,9 @@ https://api.practitest.com/api/v2/projects/4566/sets.json
 # Get all sets of project #4566, where filter-id is 323 and name is like login
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
-https://api.practitest.com/api/v2/projects/4566/sets.json?filter-id=323&name-like=login
+https://api.practitest.com/api/v2/projects/4566/sets.json?filter-id=323&name_like=login
 
-# Get all testSets with display ids 2,4 from project #4566
+# Get all TestSets with display ids 2,4 from project #4566
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 https://api.practitest.com/api/v2/projects/4566/sets.json?display-ids=2,4
@@ -87,9 +87,9 @@ YOUR_TOKEN&developer_email=your_EMAIL&name_like=Issuer3&page%5Bnumber%5D=1&page%
 ```
 
 
-## Create a testSet
+## Create a TestSet
 
-This endpoint creates a testSet in your project.
+This endpoint creates a TestSet in your project.
 
 ### HTTP Request
 
@@ -103,24 +103,24 @@ data/attributes/name | name | true |
 data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  | false |
 data/attributes/planned-execution | date field of planned-execution | false |
 data/attributes/status | string of status (not run status) | false |
-data/attributes/version | string of test version | false |
-data/attributes/priority | string of test priority | false |
+data/attributes/version | string of TestSet version | false |
+data/attributes/priority | string of TestSet priority | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
-data/instances/test-ids | an array of test-ids to add as instances to the new testSet | false |
+data/instances/test-ids | an array of test-ids to add as instances to the new TestSet | false |
 
 * To update / view and delete instances, refer to [instances resource](#instances)
 
 
-You can find at the [right area](#create-an-test) (shell) an example of the request
+You can find at the [right area](#create-a-Test-Set) (shell) an example of the request
 
 ```shell
-# create a test
+# create a Test Set
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 -X POST https://api.practitest.com/api/v2/projects/4566/sets.json \
 -d '{"data": { "type": "sets", "attributes": {"name": "one", "priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
 
-# create a test with 2 test-ids to become instances:
+# create a Test Set with 2 test-ids to become instances:
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 -X POST https://api.practitest.com/api/v2/projects/4566/sets.json \
@@ -128,9 +128,9 @@ curl -H "Content-Type:application/json" \
 ```
 
 
-## Show a specific testSet
+## Show a specific TestSet
 
-This endpoint shows a specific testSet in your project.
+This endpoint shows a specific TestSet in your project.
 
 ### HTTP Request
 
@@ -174,9 +174,9 @@ https://api.practitest.com/api/v2/projects/4566/sets/45893.json
 ```
 
 
-## Update a specific testSet
+## Update a specific TestSet
 
-This endpoint retrieves a specific testSet.
+This endpoint updates a specific TestSet.
 
 ### HTTP Request
 
@@ -189,8 +189,8 @@ Available parameters | Description |
 data/attributes/name | name |
 data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  |
 data/attributes/planned-execution | date field of planned-execution |
-data/attributes/version | string of test version |
-data/attributes/priority | string of test priority |
+data/attributes/version | string of TestSet version |
+data/attributes/priority | string of TestSet priority |
 data/attributes/custom-fields | a hash of custom-fields with their value |
 
 You can find at the right area an example of the JSON request and response
@@ -238,9 +238,9 @@ curl -H "Content-Type:application/json" \
 }
 ```
 
-## Delete a specific testSet
+## Delete a specific TestSet
 
-This endpoint deletes a specific testSet.
+This endpoint deletes a specific TestSet.
 
 ### HTTP Request
 
@@ -271,8 +271,8 @@ Available parameters | Description |
 data/attributes/name | name |
 data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  |
 data/attributes/planned-execution | date field of planned-execution |
-data/attributes/version | string of test version |
-data/attributes/priority | string of test priority |
+data/attributes/version | string of TestSet version |
+data/attributes/priority | string of TestSet priority |
 data/attributes/custom-fields | a hash of custom-fields with their value |
 
 You can find at the right area an example of the JSON request and response
@@ -281,7 +281,7 @@ You can find at the right area an example of the JSON request and response
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 -X POST https://api.practitest.com/api/v2/projects/4566/sets/45893/clone.json \
--d '{"data": { "type": "sets", "attributes": {"name": "my new cloned testSet", "planned-execution":"2017-03-01T12:43:31Z", "priority": "highest", "custom-fields": { "---f-8282": "High", "---f-24": ["ClientA", "ClientB"]}}  } }'
+-d '{"data": { "type": "sets", "attributes": {"name": "my new cloned TestSet", "planned-execution":"2017-03-01T12:43:31Z", "priority": "highest", "custom-fields": { "---f-8282": "High", "---f-24": ["ClientA", "ClientB"]}}  } }'
 
 ```
 
