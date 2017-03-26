@@ -20,6 +20,7 @@ id | integer | The unique identifier of the note object.
 person_ids | integer[] | An array of unique identifiers of person objects that are associated with the note.
 organization_ids | integer[] | An array of unique identifiers of organization objects that are associated with the note.
 content | string | The string containing the content of the note.
+creator_id | integer | The unique identifier of the person object who created the note.
 
 ## Create a new note
 `POST /notes`

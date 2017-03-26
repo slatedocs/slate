@@ -15,7 +15,7 @@ Further, on sign-up, Affinity creates many entity attributes for you automatical
 ## The entity value resource
 Each entity value object has a unique `id`.
 
-It also has a `entity_attribute_id` and `list_entry_id` that tie it to appropriate associations as noted in the example above.
+It also has a `entity_attribute_id`, `entity_id`, `list_entry_id` that tie it to appropriate associations as noted in the example above.
 
 An entity value can take on many different kinds of values, depending on the `entity_attribute` value type (see here).
 > Example Response
@@ -26,9 +26,10 @@ An entity value can take on many different kinds of values, depending on the `en
 
 Attribute | Type | Description
 --------- | ------- | -----------
-id | integer | The unique identifier of the organization object.
-entity_attribute_id | integer | The name of the organization (see below).
-list_entry_id | string | The website name of the organization. This is used by Affinity to automatically associate person objects with an organization.
+id | integer | The unique identifier of the entity value object.
+entity_attribute_id | integer | The unique identifier of the entity attribute the value is associated with.
+entity_id | integer | The unique identifier of the person or organization object the entity value is associated with.
+list_entry_id | integer | The unique identifier of the list entry object the entity value is associated with. This only exists if the entity attribute the value is associated with is list-specific.
 value | One of many | The value attribute can take on many different types, depending on the entity attribute `value_type`. See below for reference.
 
 ### Entity Value value types
@@ -71,7 +72,7 @@ list_entry_id | integer | custom* | A unique id that represents a list entry obj
 **Note:**
 
 1. custom*: Only one of `person_id`, `organization_id`, `list_entry_id` can be specified to the endpoint.
-2. If a `person_id` or `organization_id` is specified, the endpoint returns all entity values tied to these entities
+2. If a `person_id` or `organization_id` is specified, the endpoint returns all entity values tied to these entities - including those that are associated with list entries as well.
 
 
 ### Returns
