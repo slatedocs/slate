@@ -8,14 +8,19 @@ toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
 
 includes:
+  - errors
   - lists
   - list-entries
-  - errors
+  - persons
+  - organizations
+  - entity-values
+  - notes
+
 ---
 
 # Introduction
 
-Welcome to the Affinity API which can get information on the various people, organizations, and lists in your Affinity database. 
+Welcome to the Affinity API which can get information on the various people, organizations, and lists in your Affinity database.
 
 We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
@@ -44,4 +49,3 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
 </aside>
-
