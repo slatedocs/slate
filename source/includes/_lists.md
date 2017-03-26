@@ -1,22 +1,24 @@
 # Lists
-Lists are the primary data structure in Affinity to manage a collection of people or
-organizations. A list is just a collection of people or organizations, but it cannot have
-both.
+Lists are the primary data structure that you can interact with in Affinity. Each list
+manages a collection of either people or organizations. We call people or organizations
+"entities".
 
-A list therefore is represented as a collection of list entries - think of each list entry
-as a row in a spreadsheet.
+A list in Affinity is easily represented as a spreadsheet. The rows of the spreadsheet
+are the list entries, and each list entry corresponds to a single person in a list of
+people, or organization in a list of organizations.
 
-Further, a list can also have any number of custom attributes (think columns) associated,
-allowing you to fully customize your workflow and model the data for your use case.
-We call these columns "entity attributes".
+Lists in Affinity can also have any number of custom attributes. These attributes allow
+you to fully customize your workflow and model the data for your use case. We call these
+attributes "entity attributes", and each entity attribute represents a column in the
+spreadsheet representation.
 
-Here's a simple example:
-A list called "Important People" which has 25 people in it, and has two columns called
-"Title" and "Industry". These columns are the custom attributes (we call them "entity attributes"),
-and the list has 25 "list entries" inside of it.
+As a simple example:
+A list called "Important People" might have 25 people in it. Two of the columns in the
+sheet could be "Title" and "Industry".
 
-Below you will find an example detailing the attributes a list has that will be publicly
-accessible through this API.
+This list would have 25 "list entries". Each list entry would be associated with a single
+person entity. Furthermore, the list would have two "entity attributes" with the names
+"Title" and "Industry". 
 
 ## The list resource
 
