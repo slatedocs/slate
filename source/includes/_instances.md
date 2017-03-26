@@ -34,7 +34,7 @@ https://api.practitest.com/api/v2/projects/4566/instances.json
 # Get all instances of project #4566, where TestSet filter-id is 323 and Instance name is like login
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
-https://api.practitest.com/api/v2/projects/4566/instances.json?set-filter-id=323&name-like=login
+https://api.practitest.com/api/v2/projects/4566/instances.json?set-filter-id=323&name_like=login
 
 # Get all instances of project #4566, of Test-ids 1111 where they belong to TestSets 32321 or 223254
 curl -H "Content-Type:application/json" \

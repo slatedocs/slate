@@ -32,7 +32,7 @@ https://api.practitest.com/api/v2/projects/4566/tests.json
 # Get all tests of project #4566, where filter-id is 323 and name is like login
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
-https://api.practitest.com/api/v2/projects/4566/tests.json?filter-id=323&name-like=login
+https://api.practitest.com/api/v2/projects/4566/tests.json?filter-id=323&name_like=login
 
 # Get all tests with display ids 2,4 from project #4566
 curl -H "Content-Type:application/json" \
