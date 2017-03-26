@@ -148,6 +148,9 @@ html, body {
     }
   }
 
+  .tocify-item:not(.tocify-focus)>a:hover {
+    text-decoration: underline;
+  }
 
   .tocify-item>a, .toc-footer li {
     padding: 0 $nav-padding 0 $nav-padding;
@@ -189,10 +192,6 @@ html, body {
     .tocify-item>a {
       padding-left: $nav-padding + $nav-indent;
       font-size: 12px;
-
-      &:hover {
-        text-decoration: underline;
-      }
     }
 
     &>li:last-child {

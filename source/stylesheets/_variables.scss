@@ -14,11 +14,7 @@ License for the specific language governing permissions and limitations
 under the License.
 */
 
-
-////////////////////////////////////////////////////////////////////////////////
-// CUSTOMIZE SLATE
-////////////////////////////////////////////////////////////////////////////////
-// Use these settings to help adjust the appearance of Slate
+@import 'fonts';
 
 
 // BACKGROUND COLORS
@@ -69,7 +65,7 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 // FONTS
 ////////////////////
 %default-font {
-  font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+  font-family: "Proxima Nova", sans-serif;
   font-size: 13px;
 }
 
