@@ -523,7 +523,6 @@ html, body {
 
 .content {
   pre, blockquote {
-    background-color: $code-bg;
     color: #fff;
 
     padding: 2em $main-padding;
@@ -549,16 +548,17 @@ html, body {
 
   pre {
     @extend %code-font;
+    background-color: $code-bg;
   }
 
   blockquote {
+    padding-bottom: 13px;
+    background-color: $code-annotation-bg;
     &>p {
+      font-size: 14px;
       background-color: $code-annotation-bg;
-      border-radius: 5px;
       padding: $code-annotation-padding;
       color: #ccc;
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #404040;
     }
   }
 }

@@ -20,9 +20,9 @@ under the License.
 // BACKGROUND COLORS
 ////////////////////
 $nav-bg: #fcfcfc !default;
-$examples-bg: #393939 !default;
-$code-bg: #292929 !default;
-$code-annotation-bg: #1c1c1c !default;
+$examples-bg: #292929 !default;
+$code-bg: #1c1c1c !default;
+$code-annotation-bg: #292929 !default;
 $nav-subitem-bg: #fcfcfc !default;
 $nav-active-bg: #fcfcfc !default;
 $lang-select-border: #000 !default;
@@ -56,7 +56,7 @@ $main-padding: 28px !default; // padding to left and right of content & examples
 $nav-padding: 15px !default; // padding to left and right of navbar
 $nav-v-padding: 10px !default; // padding used vertically around search boxes and results
 $nav-indent: 10px !default; // extra padding for ToC subitems
-$code-annotation-padding: 13px !default; // padding inside code annotations
+$code-annotation-padding: 0px !default; // padding inside code annotations
 $h1-margin-bottom: 21px !default; // padding under the largest header tags
 $tablet-width: 930px !default; // min width before reverting to tablet size
 $phone-width: $tablet-width - $nav-width !default; // min width before reverting to mobile size
