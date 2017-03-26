@@ -7,6 +7,8 @@ language_tabs:
 
 toc_footers:
   - <a href='https://www.practitest.com/help/account/account-api-tokens/' target="_blank">How to get an API Token</a>
+  - <a style="font-size:1.4em; color:#196f7f" href='https://discuss.practitest.com/c/api' target="_blank">API's user group</a>
+
 
 includes:
   - authentication
@@ -36,6 +38,8 @@ The REST API is designed for developers who want to integrate PractiTest into th
 The API also enables organizations to update their automated test results into PractiTest.
 
 We have language bindings in Shell, Ruby, Python, Java and C#! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+
+[Reference to old API v1 can be found here](https://www.practitest.com/help/api/api-general/).
 
 ## JSON API
 All along this api we've embraced <a href="http://jsonapi.org/" target="blank">JSON API</a> standards, for share conventions and to save you (and us) precious time.
