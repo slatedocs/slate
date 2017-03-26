@@ -11,8 +11,6 @@ includes:
   - lists
   - list-entries
   - errors
-
-search: true
 ---
 
 # Introduction

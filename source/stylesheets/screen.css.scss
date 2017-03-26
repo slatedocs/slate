@@ -69,6 +69,7 @@ html, body {
   background-color: $nav-bg;
   font-size: 13px;
   font-weight: bold;
+  border-right: 1px solid #dcdcdc;
 
   // language selector for mobile devices
   .lang-selector {
@@ -82,7 +83,9 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
-    max-width: 100%;
+    width: 150px;
+    padding-left: 15px;
+    padding-top: 20px;
   }
 
   &>.search {
@@ -173,7 +176,6 @@ html, body {
 
   // This is the currently selected ToC entry
   .tocify-focus {
-    box-shadow: 0px 1px 0px $nav-active-shadow;
     background-color: $nav-active-bg;
     color: $nav-active-text;
   }
@@ -187,10 +189,12 @@ html, body {
     .tocify-item>a {
       padding-left: $nav-padding + $nav-indent;
       font-size: 12px;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
-    // for embossed look:
-    @include embossed-bg;
     &>li:last-child {
       box-shadow: none; // otherwise it'll overflow out of the subheader
     }
@@ -356,13 +360,12 @@ html, body {
   h1 {
     @extend %header-font;
     font-size: 30px;
-    padding-top: 0.5em;
+    padding-top: 1.5em;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid #ccc;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
     border-top: 1px solid #ddd;
-    background-image: linear-gradient(to bottom, #fff, #f9f9f9);
+    color: $h1-text;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -375,7 +378,6 @@ html, body {
     font-size: 20px;
     margin-top: 4em;
     margin-bottom: 0;
-    border-top: 1px solid #ccc;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
     background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
