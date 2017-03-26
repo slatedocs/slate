@@ -271,20 +271,20 @@ curl -H "Content-Type:application/json" \
 ```
 
 
-## Run status count
+## Run statuses count
 
-This gives statistics data of run status of your project's tests
+This gives statistics data of run statuses of your project's tests
 
 ### HTTP Request
 
-`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/run_status_count.json`
+`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/run_statuses_count.json`
 
 You can find at the right area an example of the JSON request and response
 
 ```shell
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
-https://api.practitest.com/api/v2/projects/4566/tests/run_status_count.json
+https://api.practitest.com/api/v2/projects/4566/tests/run_statuses_count.json
 ```
 
 
@@ -292,7 +292,7 @@ https://api.practitest.com/api/v2/projects/4566/tests/run_status_count.json
 {
   "data":{
     "type":"tests",
-    "run-status-counts":{
+    "run-statuses-count":{
       "PASSED":0,
       "FAILED":0,
       "NOT COMPLETED":0,
