@@ -8,23 +8,33 @@ toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
 
 includes:
-  - errors
   - lists
   - list-entries
   - persons
   - organizations
   - entity-values
   - notes
+  - additional-materials
 
 ---
 
 # Introduction
 
-Welcome to the Affinity API which can get information on the various people, organizations, and lists in your Affinity database.
+Welcome to the Affinity API. This API provides a RESTful interface for performing operations
+on different objects that comprise Affinity. If you are trying to accomplish an action through this API and are not
+sure on what endpoints to use, or if you have ideas on more endpoints we could create to make your workflow easier,
+please do not hesitate to contact us at `support@affinity.co`.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# Overview
 
-# Authentication
+## Authentication
+
+To use the API, you will need to generate an API secret key. This can be done easily through
+the Settings Panel that is accessible through the left sidebar on the Affinity web app.
+
+Currently, we support one key per user on your team. Once you have generated a key, you will
+need to pass in the key with every API request for us to process it successfully. Otherwise, an error
+with a code of `401` will be returned.
 
 > To authorize, use this code:
 
@@ -49,3 +59,25 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
 </aside>
+
+## Requests & Responses
+This is a full-featured RESTful API. We provide reading & writing functionality for each
+object type in Affinity. All requests use the base URL of `https://api.affinity.co/`.
+
+Responses to each request are provided as a JSON object. The response is either the data requested,
+or a valid error message and error code as outlined below.
+
+Here is a list of all the error codes the Affinity API returns in case something does not go as expected:
+
+Error Code | Meaning
+--------------------- | -------
+401 | Unauthorized -- Your API key is invalid.
+404 | Not Found -- Requested resource does not exist.
+422 | Unprocessable Entity -- Malformed parameters supplied. This can also happen in cases the parameters supplied logically cannot complete the request. In this case, an appropriate error message is delivered.
+429 | Too Many Requests -- You have exceed the rate limit.
+500 | Internal Server Error -- We had a problem with our server. Try again later.
+503 | Service Unavailable -- This shouldn't generally happen. Either a deploy is in process, or Affinity services are down.
+
+## Rate Limiting
+Each API key is limited to 150k requests per day. Once you hit the quota, all further requests will return an error code of
+429 - this will reset as soon as the next day begins.
