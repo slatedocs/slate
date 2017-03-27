@@ -42,7 +42,7 @@ type | integer | The type of the entities contained within the list. A list can 
 name | string | The title of the list that is displayed in Affinity.
 public | boolean | If the list is publicly accessible to all users in your team, this is true. Otherwise, this is false.
 owner_id | integer | The unique id of the internal person who created this list.
-list_size | integer | The number of entities contained within the list.
+list_size | integer | The number of list entries contained within the list.
 
 ### List types
 
@@ -87,7 +87,8 @@ None
 
 ### Returns
 An array of all the list resources for lists visible to you. Each list resource in the
-array includes the `id`, `name`, and `type` (refer to the list resource above for further help).
+array includes the `id`, `name`, and `type` (refer to the
+[list resource](#the-list-resource) above for further help).
 
 ## Get a specific list
 
