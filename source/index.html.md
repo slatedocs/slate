@@ -8,6 +8,8 @@ toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
 
 includes:
+  - data-model
+  - entity-attributes
   - lists
   - list-entries
   - persons
@@ -45,20 +47,6 @@ curl "api_endpoint_here"
 ```
 
 > Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
 
 ## Requests & Responses
 This is a full-featured RESTful API. We provide reading & writing functionality for each
