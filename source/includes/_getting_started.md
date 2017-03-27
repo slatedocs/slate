@@ -20,9 +20,9 @@ From the Sendle Dashboard visit the `Settings` tab from the sidebar.
 
 ![API Settings](images/api_settings.png)
 
-[Visit your API tab](https://www.sendle.com/dashboard/api_settings) to get your `sendle ID` and your `api key`.
+<a href="https://www.sendle.com/dashboard/api_settings" target="_blank">Visit your API tab</a> to get your `sendle ID` and your `api key`.
 
-<strong><a href='https://sendle-sandbox.herokuapp.com/dashboard/api_settings' target='__blank'>Be sure to use Sendle's sandbox environment for testing first!</a></strong>
+<strong><a href='https://sendle-sandbox.herokuapp.com/dashboard/api_settings' target='_blank'>Be sure to use Sendle's sandbox environment for testing first!</a></strong>
 
 Requests to the API require the use of HTTP Basic Authentication using
 your account's Sendle ID as the user name and your API key as the
