@@ -16,11 +16,9 @@
 
 Before anything else, you will need to have a [Sendle Account](https://www.sendle.com/#signup-form)
 
-From the Sendle Dashboard visit `Account Settings` by clicking the account's email in the top right corner and selecting `Account Settings` from the drop down.
+From the Sendle Dashboard visit the `Settings` tab from the sidebar.
 
-![Account Settings](images/account_settings.png)
-
-![API Modal](images/api_modal.png)
+![API Settings](images/api_settings.png)
 
 Visit your API tab to get your `sendle ID` and your `api key`.
 
