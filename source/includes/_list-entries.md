@@ -164,7 +164,7 @@ curl "https://api.affinity.vc/lists/450/list-entries/56517?key=<API-KEY>" \
 > Example Response
 
 ```json
-{ success: true }
+{ "success": true }
 ```
 
 `DELETE /lists/{list_id}/list-entries/{list_entry_id}`
@@ -182,4 +182,4 @@ list_id | integer | true | The unique id of the list that contains the specified
 list_entry_id | integer | true| The unique id of the list entry object to be deleted.
 
 ### Returns
-The JSON object `{success: true}`.
+The JSON object `{"success": true}`.
