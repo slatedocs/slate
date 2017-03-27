@@ -1,30 +1,40 @@
 # Persons
-As the name describes, persons represent all the people in your team's address book. This includes
-all the people your team has ever been in email communications or meetings with, and also includes
-all the people that your team manually (or through the API) added to Affinity. Affinity is modeled so that only one person in your team's shared contact list can have a given email address.
+The persons API allows you to manage all the contacts of your organization. These people
+include anyone your team has ever been in email communications or meetings with, and all
+the people that your team has added to Affinity either manually or through the API.
+Affinity's data model also guarantees that only one person in your team's shared contact
+list has a given email address.
 
 **Note:**
 
-1. If you are looking to add / remove a person to / from a list, please check out the `List Entry` section of the API.
-2. If you are looking to modify an entity value (one of the cells on Affinity's spreadsheet), please check out the
-`Entity Values` section of the API.
+1. If you are looking to add or remove a person from a list, please check out the
+[List Entries](#list-entries) section of the API.
+2. If you are looking to modify a person's entity values (one of the cells on Affinity's
+spreadsheet), please check out the [Entity Values](#entity-values) section of the API.
 
 ## The person resource
-Each person object has a unique `id`. It also has a `first_name`, `last_name`, `phone_numbers`, `emails` and
-`organizations` it is associated to. Lastly, there is a smart attribute called `primary_email` that is also
-returned by the API. `primary_email` is automatically computed by Affinity's proprietary algorithms and refers to the email that is most likely to be the current active email address of a person.
-
-Note that a person can be associated to multiple organizations. For example, say your team had talked with
-organization A and B. Person X used to work at A and was your point of contact, but then changed jobs and started emailing
-you from a new address (corresponding to organization B). In this case, Affinity will automatically associate X with both A and B.
-
-Finally, each person can either be internal or external to your team. Every internal person is a user of Affinity on your team, everyone
-else is demarcated as external.
 > Example Response
 
 ```json
 ```
 
+Each person resource is assigned a unique `id` and stores the name, phone numbers, and
+email addresses of the person. A person resource also has access to a smart attribute
+called `primary_email`. The value of `primary_email` is automatically computed by
+Affinity's proprietary algorithms and refers to the email that is most likely to be the
+current active email address of a person.
+
+The person resource `organization_ids` is a collection of unique identifiers to the
+person's associated organizations. Note that a person can be associated with multiple
+organizations. For example, say your team has talked with organizations A and B. Person X
+used to work at A and was your point of contact, but then changed jobs and started emailing
+you from a new email address (corresponding to organization B).
+In this case, Affinity will automatically associate person X with both
+organization A and organization B.
+
+Finally, the person resource `type` indicates whether a person is internal or
+external to your team. Every internal person is a user of Affinity on your team, and all other
+people are externals.
 
 Attribute | Type | Description
 --------- | ------- | -----------
@@ -35,14 +45,14 @@ last_name | string | The last name of the person.
 emails | string[] | The email addresses of the person.
 phone_numbers | string[] | The phone numbers of the person.
 primary_email | string | The email (automatically computed) that is most likely to the current active email address of the person.
-organization_ids | integer[] | An array of unique identifiers of organizations that the person is associated with
+organization_ids | integer[] | An array of unique identifiers of organizations that the person is associated with.
 
 ### Person types
 
 Type | Value | Description
 --------- | ------- | -----------
 external | 0 | Default value. All people that your team has spoken with externally have this type.
-internal | 1 | All people on your team that have Affinity accounts (or had Affinity accounts) will have this type.
+internal | 1 | All people on your team that have Affinity accounts will have this type.
 
 ## Search for persons
 `GET /persons`
@@ -120,7 +130,7 @@ first_name | string | true | The first name of the person.
 last_name | string | true | The last name of the person.
 emails | string[] | true | The email addresses of the person. If there are no email addresses, please specify an empty array.
 phone_numbers | string[] | true | The phone numbers of the person. If there are no phone numbers, please specify an empty array.
-organization_ids | integer[] | false | An array of unique identifiers of organizations that the person is associated with
+organization_ids | integer[] | false | An array of unique identifiers of organizations that the person is associated with.
 
 ### Returns
 The person object that was just created through this request.
