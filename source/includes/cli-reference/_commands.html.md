@@ -54,8 +54,9 @@ Usage: bonsai create [OPTIONS] BRAIN_NAME
   Creates a BRAIN and sets the default BRAIN for future commands.
 
 Options:
-  --project TEXT  Override to target another project directory.
-  --help          Show this message and exit.
+  --project TEXT       Override to target another project directory.
+  --project-type TEXT  Specify to download and use demo/starter project files.
+  --help               Show this message and exit.
 ```
 
 `bonsai create` generates a new brain and names it BRAIN_NAME.  It also sets the assumed BRAIN name for later commands.
@@ -80,7 +81,7 @@ Options:
   --help  Show this message and exit.
 ```
 
-`bonsai download` creates local copies of your BRAIN project files. This will contain your Inkling code and may also contain simulator code.
+`bonsai download` creates local copies of your BRAIN project files. This will contain your Inkling code and may also contain simulator code. This command works like git clone - it copies files into a new directory, and will not try and overwrite files that already exist.
 
 
 ## bonsai load
