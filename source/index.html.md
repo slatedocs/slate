@@ -22,9 +22,10 @@ includes:
 
 # Introduction
 
-Welcome to the Affinity API. This API provides a RESTful interface for performing operations
-on different objects that comprise Affinity. If you are trying to accomplish an action through this API and are not
-sure on what endpoints to use, or if you have ideas on more endpoints we could create to make your workflow easier,
+Welcome to the Affinity API. This API provides a RESTful interface for performing 
+operations on the different objects that make up Affinity. If you are trying to 
+accomplish an action through this API and are not sure on what endpoints to use, or 
+if you have ideas on more endpoints we could create to make your workflow easier, 
 please do not hesitate to contact us at `support@affinity.co`.
 
 # Overview
@@ -41,16 +42,16 @@ curl "https://api.affinity.vc/api_endpoint?key=<API-KEY>"
 To use the API, you will need to generate an API secret key. This can be done easily through
 the Settings Panel that is accessible through the left sidebar on the Affinity web app.
 
-Currently, we support one key per user on your team. Once you have generated a key, you will
-need to pass in the key with every API request for us to process it successfully. Otherwise, an error
-with a code of `401` will be returned.
+Currently, we support one key per user on your team. Once you have generated a key, you 
+will need to pass in the key with every API request for us to process it successfully. 
+Otherwise, an error with a code of `401` will be returned.
 
 ## Requests & Responses
 This is a full-featured RESTful API. We provide reading & writing functionality for each
-object type in Affinity. All requests use the base URL of `https://api.affinity.co/`.
+object type in Affinity. All requests use the base URL of `https://api.affinity.vc/`.
 
-Responses to each request are provided as a JSON object. The response is either the data requested,
-or a valid error message and error code as outlined below.
+Responses to each request are provided as a JSON object. The response is either the data 
+requested, or a valid error message and error code as outlined below.
 
 Here is a list of all the error codes the Affinity API returns in case something does not go as expected:
 
@@ -62,6 +63,9 @@ Error Code | Meaning
 429 | Too Many Requests -- You have exceed the rate limit.
 500 | Internal Server Error -- We had a problem with our server. Try again later.
 503 | Service Unavailable -- This shouldn't generally happen. Either a deploy is in process, or Affinity services are down.
+
+**Note:** Requests must be sent over HTTPS. Requests sent over HTTP will not return any 
+data in order to ensure your sensitive information remains secure.
 
 ## Rate Limiting
 Each API key is limited to 150k requests per day. Once you hit the quota, all further requests will return an error code of
