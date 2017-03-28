@@ -52,7 +52,7 @@ $h1-text: #456990 !default;
 $nav-width: 230px !default; // width of the navbar
 $examples-width: 50% !default; // portion of the screen taken up by code examples
 $logo-margin: 20px !default; // margin between nav items and logo, ignored if search is active
-$main-padding: 28px !default; // padding to left and right of content & examples
+$main-padding: 50px !default; // padding to left and right of content & examples
 $nav-padding: 15px !default; // padding to left and right of navbar
 $nav-v-padding: 10px !default; // padding used vertically around search boxes and results
 $nav-indent: 10px !default; // extra padding for ToC subitems
@@ -66,7 +66,7 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 ////////////////////
 %default-font {
   font-family: "Proxima Nova", sans-serif;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 %header-font {
