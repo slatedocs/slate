@@ -1,37 +1,48 @@
 # Organizations
-An organization in Affinity represents an external company that your team is in touch with - this could be
-an organization you're trying to invest in, you're trying to sell to, or just establish a relationship with.
+An organization in Affinity represents an external company that your team is in touch 
+with- this could be an organization you're trying to invest in, sell to, or establish a 
+relationship with.
 
-An organization has many people associated with it - these are your team's points of contacts at that organization.
-Just like people, organizations can be added to multiple lists and can be assigned entity values.
+An organization has many people associated with it - these are your team's points of 
+contacts at that organization. Just like people, organizations can be added to multiple 
+lists and can be assigned entity values.
 
-To make the data quality as good as possible, we actually have our own proprietary set of organizations database
-that we have developed through third-party partnerships and us scraping the web. This helps in minimizing data entry for you
-as you use Affinity's CRM products.
+To make the data quality as good as possible, we have our own proprietary database of 
+organizations that we have developed through third-party partnerships and web scraping. 
+We use this database to minimize data entry for you as you use Affinity's CRM products.
 
 **Note:**
 
-1. If you are looking to add / remove an organization to / from a list, please check out the `List Entry` section of the API.
-2. If you are looking to modify an entity value (one of the cells on Affinity's spreadsheet), please check out the
-`Entity Values` section of the API.
+1. If you are looking to add or remove an organization from a list, please check out the 
+[List Entries](#list-entries) section of the API.
+2. If you are looking to modify an entity value (one of the cells on Affinity's 
+spreadsheet), please check out the [Entity Values](#entity-values) section of the API.
 
 ## The organization resource
-Each organization object has a unique `id`. It also has a `name`, `domain` (the website of the organization), and
-`persons` associated to it. The `domain` is an important attribute from an automation perspective, as this helps
-Affinity's algorithm automatically link all the appropriate person objects (people with the same email domain
-as the organization) to the organization.
-
-Each organization also has a flag determining whether it's `global` or not. As mentioned above, we at Affinity maintain
-our own set of global organizations that each customer has access to. Note that you cannot change the name or the domain
-of a `global` organization. You also cannot delete a `global` organization.
-
-Of course, if an organization is manually created by your team, all fields can be modified and the organization can be deleted.
 
 > Example Response
 
 ```json
+{
+  "id":64779194,
+  "name":"Affinity",
+  "domain":"affinity.co",
+  "global":false,
+  "person_ids":[89734, 117270, 138123, 274492, 304848, ...]
+}
 ```
+Each organization object has a unique `id`. It also has a `name`, `domain` (the website 
+of the organization), and `persons` associated with it. The `domain` is an important 
+attribute from an automation perspective, as it helps Affinity automatically link all 
+the appropriate person objects to the organization.
 
+Each organization also has a flag determining whether it's `global` or not. As mentioned 
+above, Affinity maintains its own database of global organizations that each customer has 
+access to. Note that you cannot change the name or the domain of a `global` 
+organization. You also cannot delete a `global` organization.
+
+Of course, if an organization is manually created by your team, all fields can be 
+modified and the organization can be deleted.
 
 Attribute | Type | Description
 --------- | ------- | -----------
@@ -45,46 +56,68 @@ global | boolean | Returns whether this organization is a part of Affinity's glo
 ## Search for organizations
 `GET /organizations`
 
-Searches your teams data and fetches all the organizations that meet the search criteria.
-The search term can be a name or a domain name.
+Searches your team's data and fetches all the organizations that meet the search criteria.
+The search term can be a part of an organization's name or domain.
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/lists/450/list-entries?key=<API-KEY>"
+curl "https://api.affinity.vc/organizations?key=<API-KEY>&term=affinity"
 ```
 > Example Response
 
 ```json
+[
+  {
+    "id":64779194,
+    "name":"Affinity",
+    "domain":"affinity.co",
+    "global":false
+  },
+  {
+    "id":1513682,
+    "name":"Brand Affinity Technologies",
+    "domain":"brandaffinity.net",
+    "global":true
+  },
+  ...
+]
 ```
 
-### Parameters
+### Query Parameters
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
-term | string | true | A string used to search all the organizations in your team's address book. This could be a name or a domain name.
+term | string | false | A string used to search all the organizations in your team's address book. This could be a name or a domain name.
 
 ### Returns
 An array of all the organization objects that match the search criteria.
 
 ## Get a specific organization
 
-`GET /organizations/{organization_id}`
-
-Fetches an organization with a specified `organization_id`.
-
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/lists/450/list-entries/16367?key=<API-KEY>"
+curl "https://api.affinity.vc/organizations/64779194?key=<API-KEY>"
 ```
 
 > Example Response
 
 ```json
+{
+  "id":64779194,
+  "name":"Affinity",
+  "domain":"affinity.co",
+  "global":false,
+  "person_ids":[89734, 117270, 138123, 274492, 304848, ...]
+}
 ```
 
-### Parameters
+`GET /organizations/{organization_id}`
+
+Fetches an organization with a specified `organization_id`.
+
+### Path Parameters
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
@@ -95,18 +128,35 @@ The organization object corresponding to the `organization_id`.
 
 ## Create a new organization
 
+> Example Request
+
+```shell
+curl "https://api.affinity.vc/organizations?key=<API-KEY>" \
+  -d name="Acme Corporation" \
+  -d domain="acme.co" \
+  -d person_ids[]=38706
+```
+
+> Example Response
+
+```json
+{
+  "id":120611418,
+  "name":"Acme Corporation",
+  "domain":"acme.co",
+  "global":false,
+  "person_ids":[38706]
+}
+```
+
 `POST /organizations`
 
 Creates a new organization with the supplied parameters.
 
-**Note:** If you are looking to add an existing organization to a list, please check the `List Entry` section
-of the API.
+**Note:** If you are looking to add an existing organization to a list, please check 
+the [List Entries](#list-entries) section of the API.
 
-> Example Request
-
-> Example Response
-
-### Parameters
+### Payload Parameters
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
@@ -115,9 +165,31 @@ domain | string | false | The domain name of the organization.
 person_ids | integer[] | false | An array of unique identifiers of persons that the new organization will be associated with.
 
 ### Returns
-The organization object that was just created through this request.
+The organization resource that was just created by a successful request.
 
 ## Update an organization
+
+> Example Request
+
+```shell
+curl "https://api.affinity.vc/organizations/120611418?key=<API-KEY>" \
+  -d name="Acme Corp." \
+  -d person_ids[]=38706 \
+  -d person_ids[]=89734 \
+  -X "PUT"
+```
+
+> Example Response
+
+```json
+{
+  "id":120611418,
+  "name":"Acme Corp.",
+  "domain":"acme.co",
+  "global":false,
+  "person_ids":[38706,89734]
+}
+```
 
 `PUT /organizations/{organization_id}`
 
@@ -125,20 +197,19 @@ Updates an existing organization with `organization_id` with the supplied parame
 
 **Note:**
 
-If you are looking to add an existing organization to a list, please check the `List Entry` section
-of the API.
+If you are looking to add an existing organization to a list, please check the 
+[List Entries](#list-entries) section of the API.
 
-> Example Request
+If you are trying to add a person to an organization, the existing values for 
+`person_ids` must also be passed into the endpoint.
 
-```shell
-```
+### Path Parameters
 
-> Example Response
+Parameter | Type | Required | Description
+--------- | ------- | ---------- | -----------
+organization_id | integer | true | The unique id of the organization to be updated.
 
-```json
-```
-
-### Parameters
+### Payload Parameters
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
@@ -147,9 +218,22 @@ domain | string | false | The domain name of the organization.
 person_ids | integer[] | false | An array of unique identifiers of persons that the organization will be associated with.
 
 ### Returns
-The organization object that was just updated through this request.
+The organization resource that was just updated through a successful request.
 
 ## Delete an organization
+
+> Example Request
+
+```shell
+curl "https://api.affinity.vc/organizations/120611418?key=<API-KEY>" \
+  -X "DELETE"
+```
+
+> Example Response
+
+```json
+{"success": true}
+```
 
 `DELETE /organizations/{organization_id}`
 
@@ -160,16 +244,6 @@ Deletes an organization with a specified `organization_id`.
 1. An appropriate error will be returned if you are trying to delete a `global` organization.
 2. This will also delete all the entity values, if any, associated with the organization.
 Such entity values exist linked to either global or list-specific entity attributes.
-
-> Example Request
-
-```shell
-```
-
-> Example Response
-
-```json
-```
 
 ### Parameters
 
@@ -190,15 +264,40 @@ If you aren't sure about what entity attributes are, please read `this` section 
 > Example Request
 
 ```shell
+curl "https://api.affinity.vc/organizations/entity-attributes?key=<API-KEY>"
 ```
 
 > Example Response
 
 ```json
+[
+  {
+    "id":662,
+    "name":"Potential Users",
+    "value_type":3,
+    "allows_multiple":false,
+    "dropdown_options":[]
+  },
+  {
+    "id":700,
+    "name":"Leads",
+    "value_type":0,
+    "allows_multiple":true,
+    "dropdown_options":[]
+  },
+  {
+    "id":2988,
+    "name":"Last Funding Date",
+    "value_type":4,
+    "allows_multiple":false,
+    "dropdown_options":[]
+  },
+  ...
+]
 ```
 
 ### Parameters
 None.
 
 ### Returns
-An array of the global entity attributes that exist on organizations for your team.
+An array of the entity attributes that exist on all organizations for your team.

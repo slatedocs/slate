@@ -20,14 +20,14 @@ spreadsheet), please check out the [Entity Values](#entity-values) section of th
   "id": 38706,
   "type": 0,
   "first_name": "John",
-  "last_name": "Smith",
+  "last_name": "Doe",
   "phone_numbers": ["123-456-7890"],
   "primary_email": "john@affinity.co",
   "emails": [
     "john@affinity.co",
     "john@affinity.vc",
-    "jsmith@alumni.stanford.edu",
-    "johnjsmith@gmail.com",
+    "jdoe@alumni.stanford.edu",
+    "johnjdoe@gmail.com",
   ],
   "organization_ids": [1687449],
 },
@@ -78,7 +78,7 @@ The search term can be part of an email address, a first name or a last name.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/persons?key=<API-KEY>"
+curl "https://api.affinity.vc/persons?key=<API-KEY>&term=doe"
 ```
 > Example Response
 
@@ -88,14 +88,14 @@ curl "https://api.affinity.vc/persons?key=<API-KEY>"
     "id": 38706,
     "type": 0,
     "first_name": "John",
-    "last_name": "Smith",
+    "last_name": "Doe",
     "phone_numbers": ["123-456-7890"],
     "primary_email": "john@affinity.co",
     "emails": [
       "john@affinity.co",
       "john@affinity.vc",
-      "jsmith@alumni.stanford.edu",
-      "johnjsmith@gmail.com",
+      "jdoe@alumni.stanford.edu",
+      "johnjdoe@gmail.com",
     ]
   },
   {
@@ -199,7 +199,7 @@ Creates a new person with the supplied parameters.
 
 1. If one of the supplied email addresses conflicts with another person object, this
 request will fail and an appropriate error will be returned.
-2. If you are looking to add an existing person to a list, please check the `List Entry` section
+2. If you are looking to add an existing person to a list, please check the [List Entries](#list-entries) section 
 of the API.
 
 ### Parameters
@@ -249,12 +249,12 @@ that need to be changed must be passed in.
 
 **Note:**
 
-If you are looking to add an existing person to a list, please check the `List Entry` section
-of the API.
+If you are looking to add an existing person to a list, please check the 
+[List Entries](#list-entries) section of the API.
 
-If you are trying to add a new phone number, email, or organization to a person, the existing
-values for `phone_numbers`, `emails` and `organization_ids` must also be supplied as
-parameters.
+If you are trying to add a new phone number, email, or organization to a person, the 
+existing values for `phone_numbers`, `emails` and `organization_ids` must also be 
+supplied as parameters.
 
 ### Parameters
 
