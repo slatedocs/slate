@@ -105,7 +105,7 @@ curl "https://api.affinity.vc/lists/450/list-entries/16367?key=<API-KEY>"
 }
 ```
 
-### Parameters
+### Path Parameters
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
@@ -174,7 +174,7 @@ Deletes a list entry with a specified `list_entry_id`.
 **Note:** This will also delete all the entity values, if any, associated with the list entry.
 Such entity values will only exist in entity attributes specific to this list.
 
-### Parameters
+### Path Parameters
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------

@@ -246,7 +246,7 @@ Deletes an organization with a specified `organization_id`.
 2. This will also delete all the entity values, if any, associated with the organization.
 Such entity values exist linked to either global or list-specific entity attributes.
 
-### Parameters
+### Path Parameters
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------

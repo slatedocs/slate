@@ -113,7 +113,7 @@ curl "https://api.affinity.vc/persons?key=<API-KEY>&term=doe"
 ]
 ```
 
-### Parameters
+### Query Parameters
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
@@ -154,7 +154,7 @@ curl "https://api.affinity.vc/persons/38706?key=<API-KEY>"
 
 Fetches a person with a specified `person_id`.
 
-### Parameters
+### Path Parameters
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
@@ -202,7 +202,7 @@ request will fail and an appropriate error will be returned.
 2. If you are looking to add an existing person to a list, please check the [List Entries](#list-entries) section 
 of the API.
 
-### Parameters
+### Payload Parameters
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
@@ -256,7 +256,14 @@ If you are trying to add a new phone number, email, or organization to a person,
 existing values for `phone_numbers`, `emails` and `organization_ids` must also be 
 supplied as parameters.
 
-### Parameters
+### Path Parameters
+
+Parameter | Type | Required | Description
+--------- | ------- | ---------- | -----------
+person_id | integer | true | The unique id of the person that needs to be retrieved.
+
+
+### Payload Parameters
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
@@ -291,7 +298,7 @@ Deletes a person with a specified `person_id`.
 **Note:** This will also delete all the entity values, if any, associated with the person.
 Such entity values exist linked to either global or list-specific entity attributes.
 
-### Parameters
+### Path Parameters
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------

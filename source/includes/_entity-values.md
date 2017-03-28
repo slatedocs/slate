@@ -186,7 +186,7 @@ curl "https://api.affinity.vc/entity-values?key=<API-KEY>" \
 
 Creates a new entity value with the supplied parameters.
 
-### Query Parameters
+### Payload Parameters
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
@@ -235,7 +235,7 @@ Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
 entity_value_id | integer | true | The unique id of the entity value that needs to be updated.
 
-### Query Parameters
+### Payload Parameters
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
