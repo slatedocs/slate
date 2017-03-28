@@ -157,14 +157,14 @@ The list entry resource that was just created through this request.
 
 ```shell
 curl "https://api.affinity.vc/lists/450/list-entries/56517?key=<API-KEY>" \
-   -d entity_id=38706
+   -d entity_id=38706 \
    -X "DELETE"
  ```
 
 > Example Response
 
 ```json
-{ "success": true }
+{"success": true}
 ```
 
 `DELETE /lists/{list_id}/list-entries/{list_entry_id}`

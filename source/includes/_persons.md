@@ -288,7 +288,7 @@ curl "https://api.affinity.vc/persons/860197?key=<API-KEY>" \
 > Example Response
 
 ```json
-{ "success": true }
+{"success": true}
 ```
 
 `DELETE /persons/{person_id}`

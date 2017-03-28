@@ -204,7 +204,7 @@ The entity value resource that was just created through this request.
 
 ```shell
 curl "https://api.affinity.vc/entity-values/20406836?key=<API-KEY>" \
-  -d value="Healthcare"
+  -d value="Healthcare" \
   -X "PUT"
 ```
 
