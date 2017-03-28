@@ -1,9 +1,9 @@
 # Additional Materials
 
 ## SDK and Native Client support
-We currently don't have native clients or SDKs for different languages, but given the rise
-in the number of REST clients for different languages, hopefully the API is super easy to implement
-for your use case.
+We currently don't have native clients or SDKs for different languages, but given the 
+rise in the number of REST clients for different languages, we have compiled some 
+resources to make the API super easy to implement for your use case.
 
 Here are some links to REST clients in the most popular languages:
 
