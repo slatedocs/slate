@@ -54,10 +54,6 @@ global | boolean | Returns whether this organization is a part of Affinity's glo
 
 
 ## Search for organizations
-`GET /organizations`
-
-Searches your team's data and fetches all the organizations that meet the search criteria.
-The search term can be a part of an organization's name or domain.
 
 > Example Request
 
@@ -83,6 +79,11 @@ curl "https://api.affinity.vc/organizations?key=<API-KEY>&term=affinity"
   ...
 ]
 ```
+
+`GET /organizations`
+
+Searches your team's data and fetches all the organizations that meet the search criteria.
+The search term can be a part of an organization's name or domain.
 
 ### Query Parameters
 
@@ -213,7 +214,7 @@ organization_id | integer | true | The unique id of the organization to be updat
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
-name | string | true | The name of the organization.
+name | string | false | The name of the organization.
 domain | string | false | The domain name of the organization.
 person_ids | integer[] | false | An array of unique identifiers of persons that the organization will be associated with.
 
@@ -256,12 +257,6 @@ organization_id | integer | true | The unique id of the organization that needs 
 
 ## Get global entity attributes
 
-`GET /organizations/entity-attributes`
-
-Fetches an array of all the global entity attributes that exist on organizations.
-If you aren't sure about what entity attributes are, please read the 
-[Entity Attributes](#entity-attributes) section first.
-
 > Example Request
 
 ```shell
@@ -296,6 +291,12 @@ curl "https://api.affinity.vc/organizations/entity-attributes?key=<API-KEY>"
   ...
 ]
 ```
+
+`GET /organizations/entity-attributes`
+
+Fetches an array of all the global entity attributes that exist on organizations.
+If you aren't sure about what entity attributes are, please read the 
+[Entity Attributes](#entity-attributes) section first.
 
 ### Parameters
 None.
