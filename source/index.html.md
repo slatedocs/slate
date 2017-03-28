@@ -35,7 +35,7 @@ please do not hesitate to contact us at `support@affinity.co`.
 > To authorize, use your code as follows:
 
 ```shell
-# Pass the key as sa query parameter with each request over HTTPS.
+# Pass the key as a query parameter with each request over HTTPS.
 curl "https://api.affinity.vc/api_endpoint?key=<API-KEY>"
 ```
 
