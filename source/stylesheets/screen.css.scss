@@ -555,10 +555,11 @@ html, body {
     padding-bottom: 13px;
     background-color: $code-annotation-bg;
     &>p {
-      font-size: 14px;
+      font-size: 15px;
       background-color: $code-annotation-bg;
       padding: $code-annotation-padding;
-      color: #ccc;
+      font-weight: bold;
+      color: #eeeeee;
     }
   }
 }
