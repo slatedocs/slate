@@ -31,22 +31,19 @@ please do not hesitate to contact us at `support@affinity.co`.
 
 ## Authentication
 
+> To authorize, use your code as follows:
+
+```shell
+# Pass the key as sa query parameter with each request over HTTPS.
+curl "https://api.affinity.vc/api_endpoint?key=<API-KEY>"
+```
+
 To use the API, you will need to generate an API secret key. This can be done easily through
 the Settings Panel that is accessible through the left sidebar on the Affinity web app.
 
 Currently, we support one key per user on your team. Once you have generated a key, you will
 need to pass in the key with every API request for us to process it successfully. Otherwise, an error
 with a code of `401` will be returned.
-
-> To authorize, use this code:
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
 
 ## Requests & Responses
 This is a full-featured RESTful API. We provide reading & writing functionality for each
