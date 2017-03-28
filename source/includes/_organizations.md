@@ -259,7 +259,8 @@ organization_id | integer | true | The unique id of the organization that needs 
 `GET /organizations/entity-attributes`
 
 Fetches an array of all the global entity attributes that exist on organizations.
-If you aren't sure about what entity attributes are, please read `this` section first.
+If you aren't sure about what entity attributes are, please read the 
+[Entity Attributes](#entity-attributes) section first.
 
 > Example Request
 
