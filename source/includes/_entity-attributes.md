@@ -1,25 +1,35 @@
 # Entity Attributes
-As discussed in the previous section, entity attributes are the equivalent of "columns" in a spreadsheet.
-An entity attribute can be specific to a given list (spreadsheet), in which case it will only ever show up
-as a column whenever that list is being viewed. However, an entity attribute can also be global, in which
-case it will show up on all lists which allows Affinity to minimize data entry.
+As discussed in the previous section, entity attributes as a data model represent the 
+"columns" in a spreadsheet. An entity attribute can be specific to a given list, or it 
+can be global. List-specific entity attributes appear as a column whenever that 
+list is being viewed while global entity attributes are displayed on all lists.
 
 Let us consider two examples:
 
-1. We have a list called "Top Referrers". We add an entity attribute (column) called "Number of Referrals" on this list
-and make it list-specific. In this case, the "Number of Referrals" column will only be visible whenever you're viewing the "Top Referrers" list. The column will also be visible to any team member you decide to share the list with.
+1. Assume you have a list called "Top Referrers", and a new list-specific entity 
+attribute (column) called "Number of Referrals" is added to this list. In this case, 
+the "Number of Referrals" column will only be visible on the "Top Referrers" list. 
 
-2. We have many lists, "Top Referrers", "Friends in Media", "BD Leads", and say we have some overlap amongst those lists.
-Say we want to track where all the people in these 3 lists live, so we add a column called "Location". It only makes sense to make this colum global - in which case it will be shared across the three lists. Hence, if person A is a top referrer and the live in San Francisco, CA, that information will automatically appear when you are looking at the Friends in Media list as well.
+2. Now assume you have three lists of people, "Top Referrers", "Friends in Media", 
+"BD Leads", and a person X exists on all three lists. If you want to track where all the 
+people in these 3 lists live, you might an entity attribute called "Location". 
+It makes sense to make this entity attribute global - in which case it will be shared 
+across all three lists. Hence, if person X is a top referrer and lives in San 
+Francisco, CA, that information will automatically appear on the "Friends in Media" 
+list as well.
 
-By default, Affinity provides all teams with many global entity attributes: Location, Job Titles and Industries for People and Stage, Industry, Location etc. for Organizations.
+By default, Affinity provides all teams with a few default global entity attributes: 
+For people, the global entity attributes include Location, Job Titles, and Industries.
+For organizations, the global entity attributes include Stage, Industry, Location, and 
+more.
 
 ## The entity attribute resource
 Each entity attribute object has a unique `id`. It also has a `name`, which determines the name of the entity attribute,
 and `allows_multiple`, which determines whether multiple values can be added to a single cell for that entity attribute.
 
 Affinity is extremely flexible and customizable, and a lot of that power comes from our ability to support many different
-value types of entity attributes. An entity attribute can be of type number (a column like "Number of Referrals" would be that type) to of type Location (the default "Location" column has that type).
+value types for entity attributes. Numbers, dates, and locations are all examples of value types, and you can search, 
+sort, or filter all of them.
 
 Attribute | Type | Description
 --------- | ------- | -----------
@@ -35,9 +45,13 @@ All the Types listed below can be referred through looking at the Affinity web a
 
 **Note:**
 
-We currently don't support updating, deleting, and creating entity attributes. We only support reading them, so that you can create appropriate entity values.
+The API currently only supports fetching entity attribute data for entity value creation. 
+It does not support updating, deleting, or creating entity attributes. Modifying or 
+creating an entity attribute must be done through the web product.
 
-All the global entity attributes are returned either _______ or _______, and the list-specific entity attributes are returned by ________.
+For accessing person global entity attributes, see the [Person Entity Attributes](#get-global-entity-attributes) endpoint.
+For accessing company global entity attributes, see the [Company Entity Attributes](#get-global-entity-attributes33) endpoint.
+For accessing list specific entity attributes on a list, see the [Specific List](#get-a-specific-list) endpoint.
 
 
 Value | Type | Description
