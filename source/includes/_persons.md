@@ -209,7 +209,7 @@ Parameter | Type | Required | Description
 first_name | string | true | The first name of the person.
 last_name | string | true | The last name of the person.
 emails | string[] | true | The email addresses of the person. If there are no email addresses, please specify an empty array.
-phone_numbers | string[] | true | The phone numbers of the person. If there are no phone numbers, please specify an empty array.
+phone_numbers | string[] | false | The phone numbers of the person. If there are no phone numbers, please specify an empty array.
 organization_ids | integer[] | false | An array of unique identifiers of organizations that the person is associated with.
 
 ### Returns
