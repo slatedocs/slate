@@ -21,7 +21,7 @@ includes:
 
 # Introduction
 
-Welcome to the Affinity API. This API provides a RESTful interface for performing 
+Welcome to the Affinity API! This API provides a RESTful interface for performing 
 operations on the different objects that make up Affinity. If you are trying to 
 accomplish an action through this API and are not sure on what endpoints to use, or 
 if you have ideas on more endpoints we could create to make your workflow easier, 
