@@ -59,6 +59,13 @@ If you're new to PractiTest and you're just starting to write API code, you shou
 ### Current API V1 users
 If you already have V1 code, then you must change /api/resource_name to /api/v1/resource_name. Also, when you write new code, try to use V2, since V1 will depreciate.
 
+### API rate limit
+
+As part of the improvements we performed to our APIs, we implemented active policies that limit the number of API calls that can be made per minute by each account.  
+
+If an account performs more than 30 API calls in a single minute you will get an error indicating this issue.  The error will stop any further calls from reaching the server during that minute, but once the minute passes, you will be able to continue sending calls, there is nothing else that needs to be done (other than solving the issue detected).
+
+The idea behind this policy is to help users detect possible issues where the API is being implemented incorrectly and inform them immediately of these issues, as well as to limit potential disruptions to our service due to this type of incorrect API implementations.
 
 # Code examples
 We put popular languages code examples under Github. Please feel free to view, and pull request if you have any updates:
