@@ -77,8 +77,7 @@ Update an existing client. Only supply values you want to update. The rest will 
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->put('/v1/clients-and-locations/clients/', [
-    'client-id'            => 36447,
+$success = $api->put('/v1/clients-and-locations/clients/<client_id>', [
     'name'                 => 'Le Bernardin',               
     'company-url'          => 'le-bernardin.com',
 ]);
@@ -90,10 +89,9 @@ curl -X PUT \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'client-id=36447' \
  -d 'name=Le Bernardin' \
  -d 'company-url=le-bernardin.com' \
-   https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
+   https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/<client_id>
 ```
 
 ### Update a client
@@ -102,10 +100,9 @@ curl -X PUT \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-parameters.Add("client-id", "36447");
 parameters.Add("name", "Le Bernardin Cafe");
 
-var success = request.Put("/v1/clients-and-locations/clients/", parameters);
+var success = request.Put("/v1/clients-and-locations/clients/<client_id>", parameters);
 ```
 
 > Success (200 OK)
@@ -119,7 +116,7 @@ var success = request.Put("/v1/clients-and-locations/clients/", parameters);
 
 ### HTTP Request
 
-`PUT https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/`
+`PUT https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/<client_id>`
 
 ### Query Parameters
 
@@ -128,7 +125,6 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-client-id | <span class="label label-required">Required</span>	
 name | 50 characters max
 company-url | 150 characters max
 reference-number | An arbitrary unique reference you can use to identify a client. This may correspond to a unique value used within your system and can be useful when importing or exporting data. 50 characters max.
