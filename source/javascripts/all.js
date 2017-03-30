@@ -6,3 +6,4 @@
 //= require ./app/_darkbox.js
 //= require ./app/_google-search
 //= require ./app/_svg-fills
+// //= require ./app/_pikachu

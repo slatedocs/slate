@@ -76,6 +76,7 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
+		  <img src="/images/pikachu.gif" style="display:none; position:fixed;right:100px; bottom:0px" id="pikachu">
         <%= yield %>
         <% current_page.data.includes && current_page.data.includes.each do |include| %>
           <%= partial "includes/#{include}" %>
