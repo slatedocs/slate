@@ -3,6 +3,8 @@
 
 > [ https://www.sendle.com/dashboard/prepare_form ]
 
+To pre-populate a Sendle Send Parcel Form with pickup, delivery and parcel dimension information. A valid Sendle account is needed to use this service.
+
 
 <aside class="success">
   All parameter arguments with white spaces should be encoded with either `+` or `%20` any other non alphanumeric characters or spaces should be encoded according to standard ASCII encoding conventions <a href="https://www.w3schools.com/tags/ref_urlencode.asp">URL Encoding Reference</a>
