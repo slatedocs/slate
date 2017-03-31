@@ -67,20 +67,40 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 
 // FONTS
 ////////////////////
+$default-font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif !default;
+$default-font-size: 13px !default;
+$default-font-weight: normal !default;
+$default-line-height: 1 !default;
+
+$header-font-family: $default-font-family !default;
+$header-font-size: $default-font-size !default;
+$header-font-weight: bold !default;
+$header-line-height: 1 !default;
+
+$code-font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif !default;
+$code-font-size: 12px !default;
+$code-font-weight: $default-font-weight !default;
+$code-line-height: 1 !default;
+
 %default-font {
-  font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
-  font-size: 13px;
+  font-family: $default-font-family;
+  font-size: $default-font-size;
+  font-weight: $default-font-weight;
+  line-height: $default-line-height;
 }
 
 %header-font {
-  @extend %default-font;
-  font-weight: bold;
+  font-family: $header-font-family;
+  font-size: $header-font-size;
+  font-weight: $header-font-weight;
+  line-height: $header-line-height;
 }
 
 %code-font {
-  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
-  font-size: 12px;
-  line-height: 1.5;
+  font-family: $code-font-family;
+  font-size: $code-font-size;
+  font-weight: $code-font-weight;
+  line-height: $code-line-height;
 }
 
 
@@ -99,7 +119,10 @@ $search-box-border-color: #666 !default;
 ////////////////////////////////////////////////////////////////////////////////
 // These settings are probably best left alone.
 
+$break-word-break: break-all !default;
+$break-hyphens: auto !default;
+
 %break-words {
-    word-break: break-all;
-    hyphens: auto;
+    word-break: $break-word-break;
+    hyphens: $break-hyphens;
 }
