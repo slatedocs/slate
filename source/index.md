@@ -18,6 +18,7 @@ includes:
   - track_parcel
   - cancelling_orders
   - statuses
+  - prepare_form_url
   - errors
   - credits
 

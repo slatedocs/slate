@@ -45,4 +45,4 @@ endpoint | request | task
 /api/orders/{id} | GET | [View Order {id}](#view-an-order)
 /api/{label_url} | GET | [View a Label](#getting-labels)
 /api/tracking/{ref} | GET | [Track a Parcel](#track-a-parcel)
-/api/orders/{id} | DELETE | [Cancel an order](#cancelling-orders)
+/dashboard/prepare_form | - | [Prepare Form URL] (#prepare-form-url)
