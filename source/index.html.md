@@ -107,7 +107,7 @@ Response:		{"verified": true}
 Status:			202
 ```
 
-Once the customer has recieved the SMS code, it must be sent to Zibby to complete the verication of their phone number.
+Once the customer has received the SMS code, it must be sent to Zibby to complete the verification of their phone number.
 
 ##Create an Application
 
@@ -135,11 +135,6 @@ Request:		{"phone": "1234567890",
                  "driver_license_expiration_year": "2018",
                  "driver_license_expiration_month": "09",
                  "driver_license_expiration_day": "12",
-                 "employment_type": "full-time",
-                 "reference_name": "Jamie Smith",
-                 "reference_phone_number": "2172849548",
-                 "employment_name": "Streamlake Insurance",
-                 "employment_number": "3672734875",
                  "privacy_agreement_accepted": "true"}
 Response:		{"uid": "2f0db9059d6a46c1a02e5361243e40b6"}
 Status: 		201
@@ -189,11 +184,6 @@ Request:		{"billing_address" : "151 W 25th St",
                  "driver_license_expiration_year": "2018",
                  "driver_license_expiration_month": "09",
                  "driver_license_expiration_day": "12",
-                 "employment_type": "full-time",
-                 "reference_name": "Jamie Smith",
-                 "reference_phone_number": "2172849548",
-                 "employment_name": "Streamlake Insurance",
-                 "employment_number": "3672734875",
                  "privacy_agreement_accepted": "true"}
 Response: 		{"uid" : "2f0db9059d6a46c1a02e5361243e40b6"}
 Status: 		202
@@ -219,16 +209,28 @@ Once the application has been built successfully, the final step in the Zibby ap
 At this point, Zibby will make a full approval decision in real-time. If approved, we will return the approval amount in the response.
 
 
-##Error Example
+##Error Examples
 
 ```script
 Response: {"error": {"ssn": ["Invalid Ssn"]}}
 Status: 400
 ```
 
+```script
+Response: {"error": {"dob": "You must be 18 or older to apply"}}
+Status: 400
+```
+
+```script
+Response: {"error": {"phone": "Phone numbers must be in XXX-XXX-XXXX format"}}
+Status: 400
+```
+
+
+
 When an error is encountered the system will return this response.
 
-#Zibby Plugin Checkout
+#Zibby Plugin Preapproval and Checkout
 
 ##Step 1
 
@@ -239,7 +241,7 @@ When an error is encountered the system will return this response.
         environment: "https://sandbox.zibby.com"
     };
 
-     !function(e,t){e.zibby=e.zibby||{};var i,r,s;r=!1,i=document.createElement("script"),i.type="text/javascript",i.async=!0,i.src=t.script,i.onload=i.onreadystatechange=function(){r||this.readyState&&"complete"!=this.readyState||(r=!0,e.zibby.setConfig(t.api_key))},s=document.getElementsByTagName("script")[0],s.parentNode.insertBefore(i,s);var n=document.createElement("link");n.setAttribute("rel","stylesheet"),n.setAttribute("type","text/css"),n.setAttribute("href",_config.url+"plugin/css/zibby.css");var c=document.querySelector("head");c.insertBefore(n,c.firstChild)}(window,_zibby_config);
+    !function(e,t){e.zibby=e.zibby||{};var n,i,r;i=!1,n=document.createElement("script"),n.type="text/javascript",n.async=!0,n.src=t.environment+"/"+"plugin/js/zibby.js",n.onload=n.onreadystatechange=function(){i||this.readyState&&"complete"!=this.readyState||(i=!0,e.zibby.setConfig(t.api_key))},r=document.getElementsByTagName("script")[0],r.parentNode.insertBefore(n,r);var s=document.createElement("link");s.setAttribute("rel","stylesheet"),s.setAttribute("type","text/css"),s.setAttribute("href",t.environment+"/"+"plugin/css/zibby.css");var a=document.querySelector("head");a.insertBefore(s,a.firstChild)}(window,_zibby_config);
 
 
 </script>
@@ -250,14 +252,32 @@ Place the following script tag on the bottom of your page. This snippet uses an 
 ##Step 2
 
 ```script
-<a href="#" class="btn-zibby-checkout">
-<img src="https://www.zibby.com/static/img/btn-zibby-checkout.png" alt="Checkout with Zibby">
-</a>
+<a class="btn-zibby-preapprove" href="#"></a>
+```
+
+Place a button with class `btn-zibby-preapprove` on the pages where you want the Zibby pre-approval functionality to be available. Clicking this button will load the Zibby pre-approval form.
+
+##Step 3
+
+```script
+<script>
+$('.btn-zibby-preapprove').on('click', function() {
+    zibby.preapprove();
+});
+</script>
+```
+
+Start the preapproval process when the button is clicked.
+
+##Step 4
+
+```script
+<a class="btn-zibby-checkout" href="#"></a>
 ```
 
 Place or name the Zibby checkout button within the payment options page of your site.
 
-##Step 3
+##Step 5
 
 ```script
 <script>
@@ -329,7 +349,7 @@ To check out with zibby, you must first initialize the cart object with the foll
 
 1. Customer information - This is the billing and shipping information that the customer has already entered on your site
 
-2. Item data - The contents of the customers’ shopping cart
+2. Item data - The contents of the customer's shopping cart
 
 3. Checkout data - Meta data on the transaction, such as the order id and any applicable discounts
 
@@ -370,7 +390,7 @@ Response:		{"verified": true, "approval_limit": "2000", "available_limit": "1500
 Status:			202
 ```
 
-Once the customer has recieved the SMS code, it must be sent to Zibby along with the last four of their SSN/ITIN to complete the verication of their phone number.
+Once the customer has received the SMS code, it must be sent to Zibby along with the last four of their SSN/ITIN to complete the verification of their phone number.
 
 ##Estimate Monthly Payment
 
@@ -467,7 +487,7 @@ Request:	{"code": "123456",
 					"display_name":"Furniture Set",
 					"sku":"FS3525",
 					"unit_price":700,
-					"quantity":1
+					"quantity":1,
 					"leasable": true,
 					"shipping":{"sku":"000HD999000",
 								"display_name":"HOME DELIVERY CHARGE",
@@ -572,16 +592,90 @@ Return: 	{"success": true}
 
 Once items are delivered, retailers can update Zibby on the delivery via the API.
 
+##Multiple Submits
+
+```script
+Batch Delivery:
+
+/api/v3/applications/delivery/
+Method: POST
+Current Limit: 100
+
+Request: {
+  "uids": {
+    "1234567890": {
+      "items": 
+          [
+            {
+              "sku": "285868",
+              "display_name": "BATTERY",
+              "unit_price": 4.0, 
+              "quantity": 4, 
+              
+            }, 
+
+            {
+              "sku": "12345",
+              "display_name": "SOFA",
+              "unit_price": 500.0, 
+              "quantity": 1, 
+            }
+          ]
+      "delivery_date": "2016-10-14T13:40:16.368888"
+    },
+    "ab12345": {
+      "items": 
+          [
+            {
+              "sku": "285868",
+              "display_name": "BATTERY",
+              "unit_price": 4.0, 
+              "quantity": 4, 
+              
+            }
+          ]
+      "delivery_date": "2016-10-17T13:40:16.368888"
+      }
+    }
+  }
 
 
+Response: {"success": true}
+```
 
+The Batch Submit Delivery allows for bulk submission of deliveries. The current limit is 100 per API call.
 
+##First Payment
 
+```script
+/api/v3/first_payment/
+METHOD: POST
+Request:
+{
+  "id": "e7a5eb6c2",
+    "payment_details": {
+        "CardNumber": "4111111111111111",
+        "CardCvv": "324",
+        "CardExpiration": "12/20",
+        "PaymentType": "debit",
+        "Contract": "true",
+        "Disclosure": "true"
+    }
+}
 
+Return: {"success": true}
+```
 
+Post origination, the first payment can be made by posting to this endpoint. In the payload: `id` is the `uid` of the application.
 
+##Contract
 
-
+```script
+/api/v3/<uid>/contract/?type="user" or "pricing"
+METHOD: GET
+Response: Contract object rendered in HTML.
+```
+The Pricing or User Contract can be obtained by passing the `uid` and the type of contract (currently only `user` and `pricing`) in the url.
 
 
 
