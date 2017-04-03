@@ -10,6 +10,7 @@ includes:
   - public_api
   - reseller_api
   - cash_point_api
+  - entry_api
   - changelog
   - version
   
