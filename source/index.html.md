@@ -535,7 +535,7 @@ To begin the checkout, we must open the checkout by submitting the full contents
 
 #Post-Origination
 
-Once an order has been originated, Zibby provides certain API endpoints to allow a retailer to manipulate the order. These enpoints are accessed by means of a private authentication token with which Zibby provides the retailer.
+Once an order has been originated, Zibby provides certain API endpoints to allow a retailer to manipulate the order. These endpoints are accessed by means of a private authentication token with which Zibby provides the retailer.
 The uid provided in the initialize response is required to access these endpoints.
 
 ##Cancel Order
