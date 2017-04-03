@@ -6,6 +6,8 @@ Edit content in the "source" directory. See "Getting set up" below for instructi
 ## Publishing
 `make` will build the HTML/CSS/JS, checkout the "gh-pages" branch, commit those changes to it, and push that branch. This updates what is up on GitHub pages, which is viewable at [docs.crunch.io](http://docs.crunch.io).
 
+## Releasing:
+It is not necessary to follow the standard release process for documentation tickets as there are no automated tests to run. After the development and review processes has been completed, merge the ticket to master via the git PR merge option.
 
 ## For more details
 This repository is a fork of, and indebted to the framework provided by:
