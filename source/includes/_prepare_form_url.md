@@ -3,7 +3,7 @@
 
 > [ https://www.sendle.com/dashboard/prepare_form ]
 
-To pre-populate a Sendle Send Parcel Form with pickup, delivery and parcel dimension information. A valid Sendle account is needed to use this service.
+To pre-populate a Sendle Send Parcel Form with pickup, delivery and parcel dimension information. A valid Sendle account with a confirmed email address is required to use this service.
 
 
 <aside class="success">
