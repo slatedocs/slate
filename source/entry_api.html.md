@@ -36,7 +36,7 @@ The status of a barcode can be queried as follows:
 `GET https://demo.gomus.de/api/v3/barcodes/:barcode`
 
 ```shell
-curl "https://demo.gomus.de/api/v3/barcodes/:barcode"
+curl -H "Authorization: Bearer meowmeowmeow" "https://demo.gomus.de/api/v3/barcodes/:barcode"
 ```
 
 If everything is ok and the barcode is still valid a 200 OK is returned.
@@ -71,7 +71,7 @@ To do an actual entry and possibly void the barcode an PUT needs to be sent.
 `PUT https://demo.gomus.de/api/v3/barcodes/:barcode`
 
 ```shell
-curl -XPUT "https://demo.gomus.de/api/v3/barcodes/:barcode"
+curl -XPUT -H "Authorization: Bearer meowmeowmeow" "https://demo.gomus.de/api/v3/barcodes/:barcode"
 ```
 
 
@@ -91,7 +91,7 @@ This API is for tracking exits
 `PUT https://demo.gomus.de/api/v3/barcodes/:barcode/exit`
 
 ```shell
-curl -XPUT "https://demo.gomus.de/api/v3/barcodes/:barcode/exit"
+curl -XPUT -H "Authorization: Bearer meowmeowmeow" "https://demo.gomus.de/api/v3/barcodes/:barcode/exit"
 ```
 
 
@@ -110,9 +110,7 @@ The following parameters can be used to set additional infos:
 
 You can transmit these parameters in the URL. For example:
 
-```
-PUT https://demo.gomus.de/api/v3/barcodes/:barcode/exit?location=Haupthaus
-```
+`https://demo.gomus.de/api/v3/barcodes/:barcode/exit?location=Haupthaus`
 
 
 # Best practices
