@@ -11,7 +11,7 @@
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('/v1/clients-and-locations/clients/', [	   
+$success = $api->post('/v1/clients-and-locations/clients', [	   
     'name'                 => 'Le Bernardin',               
     'company-url'          => 'le-bernardin.com'
 ]);
@@ -25,7 +25,7 @@ curl -X POST \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'name=Le Bernardin' \
  -d 'company-url=le-bernardin.com' \
- https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
+ https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients
 ```
 
 ```csharp
@@ -35,7 +35,7 @@ var parameters = new api.Parameters();
 parameters.Add("name", "Le Bernardin");
 parameters.Add("company-url", "http://www.le-bernardin.com");
 
-var success = request.Post("/v1/clients-and-locations/clients/", parameters);
+var success = request.Post("/v1/clients-and-locations/clients", parameters);
 ```
 
 > Success (200 OK)
@@ -51,7 +51,7 @@ Adds a new client and associates it with your account.
 
 ### HTTP Request
 
-`POST https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/`
+`POST https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients`
 
 ### Query Parameters
 
