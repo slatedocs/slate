@@ -18,6 +18,9 @@
 | first_name               | string |  |
 | last_name                | string |  |
 | confirmation_token       | string |  |
+| billing_address_url      | string | Ephemeral url allowing the user to edit his billing address with a form |
+| shipping_address_url     | string | Ephemeral url allowing the user to edit his shipping address with a form |
+| card_url                 | string | Ephemeral url allowing the user to edit his credit card with a form |
 | confirmed_at             | timestamp | Time at which the phone number was confirmed |
 | confirmation_sent_at     | timestamp | Time at which the confirmation token was sent to the unconfirmed phone number |
 | created_at               | timestamp | Time at which the object was created |
