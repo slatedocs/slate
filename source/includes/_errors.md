@@ -35,3 +35,7 @@ Error Code | Meaning
 5509 | Invalid social_provider_id
 5511 | Social account not verified
 5512 | Social account already registered
+5513 | Invalid referral code
+5514 | First name is required
+5515 | Last name is required
+5516 | At least 5-character password is required
