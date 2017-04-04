@@ -933,7 +933,8 @@ Contains fields:
 
 Parameter | Description | Possible values 
 --------- | ----------- | -----------
-result | status and optional error message | *
+status | status of operation | 'success' or 'error'
+message | error message | *
 
 # Remove users from book
 
@@ -989,7 +990,8 @@ Contains fields:
 
 Parameter | Description | Possible values 
 --------- | ----------- | -----------
-result | status and optional error message | *
+status | status of operation | 'success' or 'error'
+message | error message | *
 
 # Add partner in book
 
@@ -1046,7 +1048,8 @@ Contains fields:
 
 Parameter | Description | Possible values 
 --------- | ----------- | -----------
-result | status and optional error message | *
+status | status of operation | 'success' or 'error'
+message | error message | *
 
 # Post message
 
@@ -1072,4 +1075,224 @@ ID of message.
 Parameter | Description | Possible values 
 --------- | ----------- | -----------
 message_id | ID of posted message | *
+
+# Chat initialization
+
+> `POST http://domain.com/im_chat/api/init`
+
+```
+Example response
+```
+
+```json
+[
+    {
+        "last_message":
+        {
+            "type": "message",
+            "create_date": "2017-03-30 09:15:07",
+            "id": 118
+        },
+        "im_status": "away",
+        "id": 8,
+        "name": "Russian Support" 
+    }
+]
+```
+
+### HTTP Request
+
+`POST http://domain.com/im_chat/api/init`
+
+Initialize chat for current user and returns his contact list. Method supports filtration 
+of contact list by name and quantity of output names.
+
+### Arguments
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+name | string | Required | search name of user field
+limit | number | Optional | quantity of output names in contact list
+
+### Returns
+List with dictionaries with data about users in contact list.
+
+Contains fields:
+
+Parameter | Description | Possible values 
+--------- | ----------- | -----------
+last_message | last message data | *
+im_status | status of chat member | 'online', 'offline' or 'away'
+id | user's ID | *
+name | name of user | *
+
+# Get history of messages
+
+> `POST http://domain.com/im_chat/api/history`
+
+```
+Example response
+```
+
+```python
+[
+    {
+        "create_date": "2017-03-30 09:15:07", 
+        "to_id": 
+        (
+          15, 
+          "37474642-60c7-4315-8575-0497ad23ac12"
+        ), 
+        "message": "888", 
+        "type": "message", 
+        "id": 118, 
+        "from_id": 
+        (
+            8, 
+            "Russian Support"
+        )
+    }, 
+    {
+        "create_date": "2017-03-30 09:14:47", 
+        "to_id": 
+        (
+            15, 
+            "37474642-60c7-4315-8575-0497ad23ac12"
+        ), 
+        "message": "999", 
+        "type": "message", 
+        "id": 113, 
+        "from_id": 
+        (
+            5, 
+            "Lucid Lynx"
+        )
+    },  
+    {
+        "create_date": "2017-03-30 09:14:45", 
+        "to_id": 
+        (
+            15, 
+            "37474642-60c7-4315-8575-0497ad23ac12"
+        ), 
+        "message": "555", 
+        "type": "message", 
+        "id": 108, 
+        "from_id": 
+        (
+            5, 
+            "Lucid Lynx"
+        )
+    }, 
+    {
+        "create_date": "2017-03-29 10:50:10", 
+        "to_id": 
+        (
+            15, 
+            "37474642-60c7-4315-8575-0497ad23ac12"
+        ), 
+        "message": "111", 
+        "type": "message", 
+        "id": 98, 
+        "from_id": 
+        (
+            5, 
+            "Lucid Lynx"
+        )
+    }
+]
+```
+
+### HTTP Request
+
+`POST http://domain.com/im_chat/api/history`
+
+Method that is used for getting history of messages in current session. 
+Method supports filtration of messages in output list by ID of last message 
+and quantity of messages in output list. Method also changes is_read parameter 
+of current session for current user in True value.
+
+### Arguments
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+uuid | string | Required | session UUID
+last_ID | number | Optional | ID of last message
+limit | number | Optional | quantity of messages in output list
+
+### Returns
+List with dictionaries with data about messages.
+
+Contains fields:
+
+Parameter | Description | Possible values 
+--------- | ----------- | -----------
+create_date | date of message creating | *
+to_id | data about session | *
+message | text of message | *
+type | type of message | 'message', 'money4_chat_attach_msg' or 'typing'
+id | message ID | *
+from_id | data about sender | *
+
+
+# Change session status
+
+> `POST http://domain.com/im_chat/api/change_session_status`
+
+```
+Successful response
+```
+
+```json
+{
+    "jsonrpc": "2.0", 
+    "id": null, 
+    "result": 
+    {
+        "status": "success"
+    }
+}
+```
+
+```
+Unsuccessful response
+```
+
+```json
+{
+    "jsonrpc": "2.0", 
+    "id": null, 
+    "result": 
+    {
+        "status": "error",
+        "field": "uuid",
+        "message": "Session does not exist"
+    }
+}
+```
+
+### HTTP Request
+
+`POST http://domain.com/im_chat/api/change_session_status`
+
+Method that is used for changing status of current user's session.
+
+### Arguments
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+uuid | string | Optional | session UUID
+new_status | string | Optional | new status of session
+
+### Returns
+Dictionary with status of operation and optional error message.
+
+Contains fields:
+
+Parameter | Description | Possible values 
+--------- | ----------- | -----------
+status | status of operation | 'success' or 'error'
+field | field, which contains error | *
+message | error message | *
+
 
