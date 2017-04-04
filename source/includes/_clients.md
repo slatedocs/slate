@@ -253,7 +253,7 @@ curl -X GET \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'q=My+Sample+Query' \	
-  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients
+  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/search
 ```
 
 ```csharp
