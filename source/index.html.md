@@ -1,11 +1,8 @@
 ---
-title: API Reference
+title: Line 5 Aoi
 
 language_tabs:
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -19,171 +16,265 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+This documentation describes the api endpoint of Line5
 
 # Authentication
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
 
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+  -H "Authorization: Token YOUR_API_KEY"
 ```
 
-```javascript
-const kittn = require('kittn');
+> Make sure to replace `YOUR_API_KEY` with your API key.
 
-let api = kittn.authorize('meowmeowmeow');
-```
+Line5 uses API keys to allow access to the API. You can register a new Line5 API key by contacting Line5.
 
-> Make sure to replace `meowmeowmeow` with your API key.
+Line5 expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`Authorization: Token YOUR_API_KEY`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>YOUR_API_KEY</code> with your personal API key.
 </aside>
 
-# Kittens
+# Employees
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Get All active employees
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl "http://example.com/api/v1/employees"
+  -H "Authorization: Token YOR_API_KEY"
 ```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+  "data": [
+    {
+      "id": "3989",
+      "type": "employees",
+      "attributes": {
+        "email": "john@example.com"
+      }
+    },
+    {
+      "id": "3988",
+      "type": "employees",
+      "attributes": {
+        "email": "klaus@example.com"
+      }
+    },
+    {
+      "id": "3995",
+      "type": "employees",
+      "attributes": {
+        "email": "tobias@example.com"
+      }
+    },
+    {
+      "id": "3997",
+      "type": "employees",
+      "attributes": {
+        "email": "ygritte@example.com"
+      }
+    },
+    {
+      "id": "3996",
+      "type": "employees",
+      "attributes": {
+        "email": "victor@example.com"
+      }
+    }
+  ]
+}
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all employees.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+`GET http://example.com/api/v1/employees`
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — a happy dealer is an authenticated dealer!
 </aside>
 
-## Get a Specific Kitten
+# Products
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
+## Get all products
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+curl "http://example.com/api/v1/employees"
+  -H "Authorization: Your API key"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "data":[
+    {
+      "id":"3989",
+      "type":"products",
+      "attributes":{
+        "provider":"Line/5",
+        "name":"Total Tyre Protection",
+        "relationships":{
+          "forms":{
+            "data":[
+              {
+                "type":"forms",
+                "id":34,
+                "attributes":{
+                  "miles":12000,
+                  "start_miles":50,
+                  "months":24,
+                  "start_date":"11/24/2017",
+                  "price":560.99,
+                  "cost":344.35
+                }
+              },
+              {
+                "type":"forms",
+                "id":34,
+                "attributes":{
+                  "miles":12000,
+                  "start_miles":50,
+                  "months":24,
+                  "start_date":"11/24/2017",
+                  "price":560.99,
+                  "cost":344.35
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint retrieves all available products with their forms.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+# Quotes
 
-### HTTP Request
+## POST Quote
+```shell
+curl -i -X POST -H "Content-Type: application/json" -d @create_quote_request.json https://line5-ecredit.herokuapp.com/api/v1/quotes create_quote_request.json
+```
+> The above command expects JSON structured like this:
 
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
+```json
+{
+  "data":[
+    {
+      "id":43,
+      "type":"quotes",
+      "attributes":{
+        "integration_loan_id":54
+      },
+      "relationships":{
+        "customer":{
+          "data":{
+            "type":"customers",
+            "id":23
+          }
+        },
+        "vehicle":{
+          "data":{
+            "type":"vehicles",
+            "id":32
+          }
+        },
+        "employee":{
+          "data":{
+            "type":"employee",
+            "id":3
+          }
+        },
+        "quote_protections":{
+          "data":[
+            {
+              "type":"quote_protections",
+              "id":5
+            },
+            {
+              "type":"quote_protections",
+              "id":12
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "included":[
+    {
+      "type":"customers",
+      "id":23,
+      "attributes":{
+        "first_name":"first_name",
+        "last_name":"last_name",
+        "ssn":"customer_ssn",
+        "date_of_birth":"yyyy-mm-dd",
+        "address_1":"street_address_1",
+        "address_2":"street_address_2",
+        "city":"city",
+        "state":"state_abbreviation",
+        "postal_code":"5_digit_zip",
+        "cell_number":"8885551212",
+        "phone_number":"8885551212"
+      }
+    },
+    {
+      "type":"vehicles",
+      "id":32,
+      "attributes":{
+        "vin":"vehicle_identification_number",
+        "mileage":43
+      }
+    },
+    {
+      "type":"quote_protection",
+      "id":5,
+      "attributes":{
+        "name":"Output GPS Tuner",
+        "term":24,
+        "lifetime_term":false,
+        "start_date":[
+          "Today",
+          "In-service Date",
+          "Model Year"
+        ],
+        "price":1000.0,
+        "exclude_tax":false
+      }
+    },
+    {
+      "type":"quote_protection",
+      "id":12,
+      "attributes":{
+        "name":"Power Video Tuner",
+        "term":24,
+        "lifetime_term":false,
+        "start_date":[
+          "Today",
+          "In-service Date",
+          "Model Year"
+        ],
+        "price":700.0,
+        "exclude_tax":true
+      }
+    }
+  ]
+  }
+}
+```
+## PUT Rates
+## PUT Quote Protections
+## PUT Finalize
