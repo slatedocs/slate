@@ -141,7 +141,7 @@ use BrightLocal\Api;
 
 $clientId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$result = $api->delete(/'v1/clients-and-locations/clients/' . $clientId);
+$result = $api->delete('/v1/clients-and-locations/clients/' . $clientId);
 if (!empty($result['success'])) {
 	echo 'Successfully deleted client.' . PHP_EOL;
 }
@@ -150,10 +150,9 @@ if (!empty($result['success'])) {
 ```csharp
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
-var parameters = new api.Parameters();
-parameters.Add("client-id", "36447");
+var client_id = 36447;
 
-var success = request.Delete("/v1/clients-and-locations/clients/", parameters);
+var success = request.Delete("/v1/clients-and-locations/clients/" + client_id);
 ```
 
 > Success (200 OK)
@@ -168,7 +167,7 @@ Delete an existing client. If there are reports associated with this client then
 
 ### HTTP Request
 
-`DELETE https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/`
+`DELETE https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/<client_id>`
 
 ### Query Parameters
 
@@ -189,7 +188,7 @@ client-id | <span class="label label-required">Required</span>
 <?php
 use BrightLocal\Api;
 $clientId = 1;
-$api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $client = $api->get('/v1/clients-and-locations/clients/'. $clientId);
 print_r($client);
 ```
@@ -254,7 +253,7 @@ curl -X GET \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'q=My+Sample+Query' \	
-  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
+  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients
 ```
 
 ```csharp
