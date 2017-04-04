@@ -33,6 +33,11 @@ end
 activate :relative_assets
 set :relative_links, true
 
+# Reload the browser automatically whenever files change
+configure :development do
+  activate :livereload
+end
+
 # Build Configuration
 configure :build do
   # If you're having trouble with Middleman hanging, commenting
