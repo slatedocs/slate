@@ -31,6 +31,7 @@ includes:
   - sending_funds/payments
   - methods
   - methods/accounts
+  - methods/transactions
   - methods/contacts
   - methods/events
   - methods/webhooks
