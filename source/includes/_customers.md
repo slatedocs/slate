@@ -84,10 +84,10 @@
 
   Parâmetro |  Descrição
   -------------- | --------------
-  **name**  <br> <p> obrigatório </p> | *Nome do cliente*
-  **registry_code**  <br> <p> obrigatório </p> | *Documento do cliente (CPF ou CNPJ)*
-  **email**  <br> <p> obrigatório </p> | *Email do cliente*
-  **external_code**  <br>  <p> obrigatório </p>| *Referência opcional para controle do seu sistema*
+  **name** | *Nome do cliente*
+  **registry_code** | *Documento do cliente (CPF ou CNPJ)*
+  **email**  | *Email do cliente*
+  **external_code** | *Referência opcional para controle do seu sistema*
   **address[zipcode]** <br>  <p> obrigatório </p> | *Código Postal do cliente*
   **address[number]**  <p> obrigatório </p> |  *Número do endereço do cliente*
   **address[country]** | *Código do país no formato ISO 3166-1 alpha-2. Exemplo: BR*

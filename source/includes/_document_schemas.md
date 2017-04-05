@@ -11,13 +11,13 @@
   **name**  <br> String | *Nome do documento.*
   **code**  <br> String | *Código para identificação (Por exemplo:"NFS-e")*
   **type**  <br> String | *Tipo de documento que deve ser emitido/arquivado* <br> **Tipos:** `Invoice::Nfse`
-  **status** <br> Default: active | *Define se o esquema de documento está ativado ou não na API*
+  **status** <br> Default: active | *Define se o tipo de documento está ativado ou não na API*
   **sequence**  <br> Int | *Número sequencial do último documento emitido/armazenado desse tipo*
   **credentials** <br>[`attributes`]<br> Hash | *Consulte a [seção](https://atendimento.fastnotas.com/hc/pt-br/categories/115000135067-Configura%C3%A7%C3%B5es-da-NFS-e) de configurações para cada tipo de <br>`document_schema`*
   **parameters** <br>[`attributes`]<br> Hash |*Consulte a [seção de configurações](https://atendimento.fastnotas.com/hc/pt-br/categories/115000135067-Configura%C3%A7%C3%B5es-da-NFS-e) de configurações para cada tipo de <br>`document_schema`*
 
 
-## Criando um esquema de documento
+## Criando um tipo de documento
 
   > POST https://api.fastnotas.com/v1/document_schemas
 
@@ -37,9 +37,18 @@
   -------------- | --------------
   **name**  <br> <p>obrigatório</p>  | *Nome do documento*
   **code**  <br> <p>obrigatório</p>  | *Código para identificação (Por exemplo:"NFS-e")*
-  **type**  <br> <p>obrigatório</p>  | *Aceita o tipo do esquema do documento* <br> **Tipos:** `Invoice::Nfse`
+  **type**  <br> <p>obrigatório</p>  | *Aceita o tipo do tipo do documento* <br> **Tipos:** `Invoice::Nfse`
   **credentials<br>[`attributes`]** <br> <p>obrigatório</p> | *Consulte a [seção](https://atendimento.fastnotas.com/hc/pt-br/categories/115000135067-Configura%C3%A7%C3%B5es-da-NFS-e) de configurações para cada tipo de <br>`document_schema`*
   **parameters** <br>[`attributes`]<br> Hash | *Consulte a [seção](https://atendimento.fastnotas.com/hc/pt-br/categories/115000135067-Configura%C3%A7%C3%B5es-da-NFS-e) de configurações para cada tipo de <br>`document_schema`*
+
+
+  Tipos de documento devem ser criados com o header abaixo:
+
+HTTP Header | Valor
+-------------- | --------------
+**Content-Type** | *multipart/form-data*
+
+
 
 
 <br> <br> <br> <br> <br> <br>
@@ -76,7 +85,41 @@
 
   Parâmetro | Descrição
  -------------- | --------------
-**:id** <br> <p>obrigatório</p> | *Id do esquema de documento.*
+**:id** <br> <p>obrigatório</p> | *Id do tipo de documento.*
+
+
+## Retornando tipos de documento
+
+  > GET https://api.fastnotas.com/v1/document_schemas/
+
+   ```shell
+    curl -X GET https://api.fastnotas.com/v1/document_schemas \
+    -u 'YOUR_API_KEY:'
+  ```
+  > Exemplo de retorno em JSON:
+
+  ```json
+    [
+      {
+        "id": "b7658863-988b-4e44-9632-a93a282dd41a",
+        "name": "Nota fiscal de serviço",
+        "code": "NFS-e",
+        "type": "Invoice::Nfse",
+        "status": "active",
+        "sequence": 1,
+        "credentials": {
+          "certificate": "[FILTERED]",
+          "password": "[FILTERED]",
+          "expiration_date": "2020-12-30"
+        },
+        "parameters": {
+          "municipal_registration": "12211"
+        }
+      }
+    ]
+  ```
+
+  Retorna um array que contém objetos de tipo de documento.
 
 ## Retornando items de um tipo de documento
 
@@ -112,7 +155,7 @@ Com a rota `/document_schemas/:id/items` é possível ver todos os itens de um t
 
   Parâmetro | Descrição
  -------------- | --------------
-**:id** <br> <p>obrigatório</p> | *Id do esquema de documento.*
+**:id** <br> <p>obrigatório</p> | *Id do tipo de documento.*
 
 <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 ## Atualizando um tipo de documento
@@ -153,15 +196,15 @@ Com a rota `/document_schemas/:id/items` é possível ver todos os itens de um t
 
 Parâmetro | Descrição
  -------------- | --------------
-**:id** <br> <p>obrigatório</p> | *Id do esquema de documento.*
+**:id** <br> <p>obrigatório</p> | *Id do tipo de documento.*
 
 
-## Deletando um esquema de documento
-  Deleta o esquema de documento solicitado.
+## Deletando um tipo de documento
+  Deleta o tipo de documento solicitado.
 
   Parâmetro | Descrição
  -------------- | --------------
-  **:id** <br> <p>obrigatório</p> | *Id do esquema de documento*
+  **:id** <br> <p>obrigatório</p> | *Id do tipo de documento*
 
   > DELETE https://api.fastnotas.com/v1/document_schemas/{DOCUMENT_schema_ID}
 

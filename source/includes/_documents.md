@@ -16,6 +16,7 @@
   **document_schema**  <br> Hash | *Representação da entidade [document_schema](#document-schemas)*
   **customer** <br> Hash | *Representação da entidade [customer](#customers)*
   **document_items** <br> Array | *Produtos/serviços prestados do documento*
+  **print_url** <br> String | *Link para download do documento*
 
 ## Status do documento
 
@@ -39,7 +40,8 @@ Quando um documento é criado, o status inicial é `pending` . Ele pode ter os s
     -u 'YOUR_API_KEY:' \
     -d 'document_schema_id=d0b0d7ef-cb07-42af-9f74-ab17236c82c9' \
     -d 'customer_id=1a925c53-b415-448f-8356-46d33bc2c431' \
-    -d 'document_items[item_id]=daa356f5-d7ec-4a42-b99b-4ffc7db39c16'
+    -d 'document[0][item_id]=daa356f5-d7ec-4a42-b99b-4ffc7db39c16'
+    -d 'document[0][amount]=12.34'
 ```
 
 > Exemplo de retorno em JSON:
@@ -56,6 +58,7 @@ Quando um documento é criado, o status inicial é `pending` . Ele pode ter os s
         "id": "831fb818-704d-484f-8c8f-8fadf361b26b",
         "operation_type": "issue",
         "status": "processing",
+        "print_url": "https://api.fastnotas.com/v1/documents/728a124f-99cd-409a-bd13-b50685778977/print",
         "created_at": "2016-11-18T13:09:27.800Z",
         "updated_at": "2016-11-18T13:09:27.851Z",
         "last_transaction": {
@@ -121,8 +124,8 @@ Quando um documento é criado, o status inicial é `pending` . Ele pode ter os s
  -------------- | --------------
   **customer_id** <br> <p> obrigatório </p> | *Id do cliente*
   **document_schema_id**  <br> <p> obrigatório </p> | *Id do esquema de documento*
-  **document_items[][`id`]** <br> <p> obrigatório </p>| *Id do produto/serviço prestado*
-  **document_items[][`attributes`]** | *Você pode sobrescrever os valores padrões do* [item](#objeto-item)
+  **document[][`item_id`]** <br> <p> obrigatório </p>| *Id do produto/serviço prestado*
+  **document[][`attributes`]** | *Você pode sobrescrever os valores padrões do* [item](#objeto-item)
 
 
 ## Retornando um documento
@@ -144,6 +147,7 @@ Quando um documento é criado, o status inicial é `pending` . Ele pode ter os s
       "amount": 345.5,
       "sequence": 1,
       "status": "processing",
+      "print_url": "https://api.fastnotas.com/v1/documents/728a124f-99cd-409a-bd13-b50685778977/print",
       "last_operation": {
         "id": "831fb818-704d-484f-8c8f-8fadf361b26b",
         "operation_type": "issue",
@@ -245,6 +249,7 @@ Quando um documento é criado, o status inicial é `pending` . Ele pode ter os s
           "email": "exemplo@fastnotas.com",
           "registry_code": "11111111111",
           "status": "active",
+          "print_url": "https://api.fastnotas.com/v1/documents/728a124f-99cd-409a-bd13-b50685778977/print",
           "phone": {
             "id": "4ad34b22-4c43-40b4-a267-3577cb693fc4",
             "phone_type": "mobile",

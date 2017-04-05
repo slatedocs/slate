@@ -64,7 +64,7 @@
  -------------- | --------------
   **name** <br> <p> obrigatório </p>| *Nome do produto/serviço*
   **description** <br> <p> obrigatório </p> | *Descrição do produto/serviço*
-  **amount** <br>Float | *Valor do produto/serviço*
+  **amount** <br> <p> obrigatório </p>| *Valor do produto/serviço*
   **document_schema_id**  <br> <p> obrigatório </p> | *Id do esquema de documento*
   **settings[`attributes`]** <br> <p> obrigatório </p>| *Consulte a [seção](https://atendimento.fastnotas.com/hc/pt-br/categories/115000135067-Configura%C3%A7%C3%B5es-da-NFS-e) de configurações para cada `item`*
 
