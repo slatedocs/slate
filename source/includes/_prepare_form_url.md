@@ -3,11 +3,28 @@
 
 > [ https://www.sendle.com/dashboard/prepare_form ]
 
-To pre-populate a Sendle Send Parcel Form with pickup, delivery and parcel dimension information. A valid Sendle account with a confirmed email address is required to use this service.
+The Prepare Form URL pre-fills a Send Parcel Form with pickup and delivery details. To use this service requires a valid Sendle account with a confirmed email address.
 
 
 <aside class="success">
   All parameter arguments with white spaces should be encoded with either `+` or `%20` any other non alphanumeric characters or spaces should be encoded according to standard ASCII encoding conventions <a href="https://www.w3schools.com/tags/ref_urlencode.asp">URL Encoding Reference</a>
+</aside>
+
+<aside class="success">
+
+Sender's pickup information can also be pre-filled from a Sendle Account's Pickup settings.  To achieve this ensure all the following parameters get excluded.
+
+    <ul>
+        <li>sender_name</li>
+        <li>sender_contact_number</li>
+        <li>sender_email</li>
+        <li>pickup_instructions</li>
+        <li>pickup_address_line1</li>
+        <li>pickup_address_line2</li>
+        <li>pickup_address_suburb</li>
+        <li>pickup_address_postcode</li>
+        <li>pickup_address_state</li>
+     </ul>
 </aside>
 
 ## URL Parameters Details
