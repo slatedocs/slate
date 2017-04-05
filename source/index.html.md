@@ -527,15 +527,13 @@ Parameter | Type | Description
 `login` | *[object](#login)* | Object containing session information. Same is returned on login.
 `user` | *object* | Created user after registration
 
- the following errors:
-
 This endpoint returns:
 
 * [Common errors](#common-errors)
 * [Registration errors](#register-errors)
 
 
-## Forgot password
+## Request reset password
 
 
 ```shell
@@ -547,19 +545,97 @@ curl\
  -d '{
         "email": "test@test.com"
 }'\
- "https://{{BASE_URL}}/v2/client/forgot_password"
+ "https://{{BASE_URL}}/v2/client/request_reset_password"
 ```
 
 
 Initiate sending an email with link for resetting password
 
-`"path": "forgot_password"`
+`"path": "request_reset_password"`
 
 ### Request parameters
 
 Parameter | Type | Description
 -------- | ----- | -------
-`email `<br>*required* | *string* | Email address to which a link for reset password will be sent
+`email`<br>*required* | *string* | Email address to which a link for reset password will be sent
+
+
+## Read user details on password reset
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+ "https://{{BASE_URL}}/v2/client/reset_password_user_details?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "first_name": "John",
+      "last_name": "Doe"
+    }
+  ],
+  "meta": {
+    "db_version": 25,
+    "latest_build": 27
+  }
+}
+```
+
+
+Get user name to greet him upon changing password.
+
+`"path": "reset_password_user_details"`
+
+### Request parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`token`<br>*required* | *string* | Token received via email for resetting password
+
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`first_name` | *string* | First name for user with reset password token
+`last_name` | *string* | Last name for user with reset password token
+
+
+## Reset password
+
+
+```shell
+curl\
+ -X POST\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+ -d '{
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+        "password": "jamie",
+}'\
+ "https://{{BASE_URL}}/v2/client/reset_password"
+```
+
+
+Reset password of user.
+
+`"path": "reset_password"`
+
+### Request parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`token `<br>*required* | *string* | Token for resetting password received via email
+
 
 
 
