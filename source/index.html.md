@@ -464,7 +464,6 @@ curl\
           "social_provider_id": 1
         },
         "type_id": 1
-      }
 }'\
  "https://{{BASE_URL}}/v2/client/register"
 ```
@@ -536,6 +535,34 @@ This endpoint returns:
 * [Registration errors](#register-errors)
 
 
+## Forgot password
+
+
+```shell
+curl\
+ -X POST\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+ -d '{
+        "email": "test@test.com"
+}'\
+ "https://{{BASE_URL}}/v2/client/forgot_password"
+```
+
+
+Initiate sending an email with link for resetting password
+
+`"path": "forgot_password"`
+
+### Request parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`email `<br>*required* | *string* | Email address to which a link for reset password will be sent
+
+
+
 # Service data
 
 ## Treats
@@ -589,3 +616,141 @@ Parameter | Type | Description
 `image_url` | *string* | Treat image direct link.
 `link` | *string* | Link to treat website.
 `sort` | *integer* | Order of treat.
+
+
+## Categories
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/client/categories"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "id": 27,
+      "application_profile_id": 25,
+      "title": "cleaning _services",
+      "short_description_text": "afterbuilders is very nice",
+      "keywords": [
+        "build",
+        "waste",
+        "fantastic"
+      ],
+      "thumbnail_image_url": 23,
+      "active": true,
+      "sort": 6000,
+      "image_url": null,
+      "phone": "",
+      "infos": [],
+      "services": [
+        79,
+        81,
+        83,
+        84,
+        71,
+        86,
+        72,
+        87,
+        73,
+        85,
+        74,
+        78
+      ],
+      "updated_at": 1459492785
+    }
+  ],
+  "meta": {
+    "db_version": 25,
+    "latest_build": 27
+  }
+}
+```
+
+
+[Categories ...]
+
+`"path": "categories"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`id` | *integer* | Identifier
+
+
+## Services
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/client/services"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "id": 79,
+      "application_profile_id": 25,
+      "sort": 6060,
+      "title": "afterbuilders",
+      "type": 1,
+      "description_text": "afterbuilders is very nice.",
+      "short_description_text": "afterbuilders is very nice",
+      "keywords": [
+        "build",
+        "waste",
+        "fantastic"
+      ],
+      "list_image_url": null,
+      "inactive_list_image_url": null,
+      "choice_views_image_urls": [],
+      "thumbnail_image_url": 23,
+      "is_not_available_for_current_profile": true,
+      "customize": [],
+      "logo_image_url": null,
+      "phone": "",
+      "infos": [],
+      "choice_views": [
+        338,
+        339,
+        340,
+        341,
+        342
+      ],
+      "active": true,
+      "updated_at": 1459492785
+    }
+  ],
+  "meta": {
+    "db_version": 25,
+    "latest_build": 27
+  }
+}
+```
+
+
+[Services ...]
+
+`"path": "services"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`id` | *integer* | Identifier
