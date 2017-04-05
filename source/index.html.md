@@ -9,6 +9,7 @@ toc_footers:
 
 includes:
   - authentication
+  - responses
   - employees
   - protections
   - quotes

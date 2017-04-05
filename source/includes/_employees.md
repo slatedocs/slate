@@ -24,27 +24,6 @@ curl "http://example.com/api/v1/employees"
       "attributes": {
         "email": "klaus@example.com"
       }
-    },
-    {
-      "id": "3995",
-      "type": "employees",
-      "attributes": {
-        "email": "tobias@example.com"
-      }
-    },
-    {
-      "id": "3997",
-      "type": "employees",
-      "attributes": {
-        "email": "ygritte@example.com"
-      }
-    },
-    {
-      "id": "3996",
-      "type": "employees",
-      "attributes": {
-        "email": "victor@example.com"
-      }
     }
   ]
 }
