@@ -23,32 +23,42 @@ curl "http://example.com/api/v1/employees"
               {
                 "type":"forms",
                 "id":34,
-                "attributes":{
-                  "miles":12000,
-                  "start_miles":50,
-                  "months":24,
-                  "start_date":"11/24/2017",
-                  "price":560.99,
-                  "cost":344.35
-                }
               },
               {
                 "type":"forms",
                 "id":34,
-                "attributes":{
-                  "miles":12000,
-                  "start_miles":50,
-                  "months":24,
-                  "start_date":"11/24/2017",
-                  "price":560.99,
-                  "cost":344.35
-                }
               }
             ]
           }
         }
       }
     }
+  ],
+  "included":[
+    {
+      "type":"forms",
+      "id":34,
+      "attributes":{
+        "miles":12000,
+        "start_miles":50,
+        "months":24,
+        "start_date":"11/24/2017",
+        "price":560.99,
+        "cost":344.35
+        }
+      },
+      {
+        "type":"forms",
+        "id":34,
+        "attributes":{
+          "miles":12000,
+          "start_miles":50,
+          "months":24,
+          "start_date":"11/24/2017",
+          "price":560.99,
+          "cost":344.35
+        }
+      }
   ]
 }
 ```
