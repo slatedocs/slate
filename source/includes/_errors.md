@@ -1,20 +1,59 @@
 # Errors
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
+## Get all protections
+```shell
+curl "http://example.com/api/v1/employees"
+  -H "Authorization: Your API key"
+```
 
-The Kittn API uses the following error codes:
+> Example error response when the quote protections are not valid:
+
+```json
+{
+  "data":[
+    {
+      "type":"errors",
+      "entity":"quote_protection",
+      "attributes":{
+        "protection_id": "25",
+        "months":"Not enough on the protection",
+        "start_date":"Wrong Format",
+        "start_mileage":"Could not be determined"
+      }
+    }
+  ]
+}
+```
+
+> Example error response when the customer data was invalid:
+
+```json
+{
+  "data":[
+    {
+      "type":"errors",
+      "entity":"customer",
+      "attributes":{
+        "first_name": "Not present",
+        "state":"Not valid",
+        "email":"Wrong Format"
+      }
+    }
+  ]
+}
+```
+
+The Line5 API uses the following error codes:
 
 
 Error Code | Meaning
 ---------- | -------
-400 | Bad Request -- Your request sucks
+400 | Bad Request -- It's Bad
 401 | Unauthorized -- Your API key is wrong
-403 | Forbidden -- The kitten requested is hidden for administrators only
-404 | Not Found -- The specified kitten could not be found
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method
-406 | Not Acceptable -- You requested a format that isn't json
-410 | Gone -- The kitten requested has been removed from our servers
-418 | I'm a teapot
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
+403 | Forbidden -- The action requested is out of limits
+404 | Not Found -- The specified route was not found
+422 | Unprocessable Entity -- The data to create the object was invalid
 500 | Internal Server Error -- We had a problem with our server. Try again later.
 503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+
+

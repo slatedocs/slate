@@ -1,0 +1,10 @@
+@startuml
+Client -> Line5 : POST api/v1/quotes
+Client <-- Line5 : 200: quote data json
+loop n-times
+Client -> Line5 : PUT api/v1/quotes
+Client <-- Line5 : 200: updated quote data json
+end
+Client -> Line5 : PUT api/v1/quotes/finalize
+Client <-- Line5 : finalized quote json
+@enduml

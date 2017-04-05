@@ -1,0 +1,5 @@
+@startuml
+actor Client
+Client -> Line5  : GET api/v1/employees
+Line5 --> Client : index employees json
+@enduml
