@@ -52,6 +52,11 @@ curl "http://example.com/api/v1/employees"
 
 This endpoint retrieves all employees.
 
+Parameter | Type | Description
+-------------- | -------------- | --------------
+id | int | the id which identifies the employee
+email | string | The email of the employee
+
 ### HTTP Request
 
 `GET http://example.com/api/v1/employees`

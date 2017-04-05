@@ -1,0 +1,6 @@
+@startuml
+actor Client
+
+Client -> Line5 : GET api/v1/products
+Line5 --> Client : index available products json
+@enduml

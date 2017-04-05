@@ -10,7 +10,7 @@ toc_footers:
 includes:
   - authentication
   - employees
-  - products
+  - protections
   - quotes
   - errors
 
@@ -20,6 +20,8 @@ search: true
 # Introduction
 
 This documentation describes the api endpoint of Line5
+
+[]
 
 
 
