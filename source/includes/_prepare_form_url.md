@@ -12,7 +12,7 @@ To pre-populate a Sendle Send Parcel Form with pickup, delivery and parcel dimen
 
 ## URL Parameters Details
 ```
-https://www.sendle.com/dashboard/prepare_form?pickup_date=2017%2D04%2D03&customer_reference=Flower+Delivery&kilogram_weight=1&cubic_metre_volume=1&receiver_name=Oscar+Wilde&delivery_address_line1=2+Smith+Lane&delivery_address_suburb=Sydney&delivery_address_state=NSW&delivery_address_postcode=2000
+https://www.sendle.com/dashboard/prepare_form?pickup_date=2017%2D04%2D03&customer_reference=Flower+Delivery&kilogram_weight=1&cubic_metre_volume=0.001&receiver_name=Oscar+Wilde&delivery_address_line1=2+Smith+Lane&delivery_address_suburb=Sydney&delivery_address_state=NSW&delivery_address_postcode=2000
 ```
 
 | Data Field | Attributes |
@@ -20,7 +20,7 @@ https://www.sendle.com/dashboard/prepare_form?pickup_date=2017%2D04%2D03&custome
 **pickup_date** <div class="optional">yyyy-mm-dd</div><div class="optional">optional</div> | If provided the date must be at least one non-holiday, business day in the future. If pickup date is omitted it will be set to the first available pickup date option.
 **description** <div class="optional">optional</div> | Description is used by the customer to track the parcel on Sendle Dashboard. It does not show up on a label.  It must be under 255 characters in length.
 **kilogram_weight** <div class="optional">optional</div> | Must be a decimal value greater than 0 and less than the maximum allowed weight of 25kg.
-**cubic_metre_volume** <div class="optional">optional</div> | Must be a decimal value between 0 and 1.  When included, value will be *length* x *width* x *depth* of parcel in metres.
+**cubic_metre_volume** <div class="optional">optional</div> | Must be a value between 0 and 0.1 (m^3).  When included, value will be *length* x *width* x *depth* of parcel in metres.
 **customer_reference** <div class="optional">optional</div> | Reference will appear on the label for parcel identification.  It must be under 255 characters in length.
 **sender_name** <div class="optional">optional</div> | It must be under 255 characters in length.
 **sender_email** <div class="optional">optional</div> | Allows Sendle to send parcel updates to the sender.
