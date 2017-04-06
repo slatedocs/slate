@@ -554,7 +554,7 @@ curl\
 {
   "data": [
     {
-      "expiration_time": 1491478823
+      "expire_time": 1491478823
     }
   ],
   "success": [
@@ -586,7 +586,7 @@ Parameter | Type | Description
 
 Parameter | Type | Description
 -------- | ----- | -------
-`expiration_time` | *int* |  Unix timestamp of token expiration time
+`expire_time` | *int* |  Unix timestamp of token expiration time
 
 
 ## Read user details on password reset
@@ -609,7 +609,7 @@ curl\
     {
       "first_name": "John",
       "last_name": "Doe",
-      "expiration_time": 1491478823
+      "expire_time": 1491478823
     }
   ],
   "meta": {
@@ -637,7 +637,7 @@ Parameter | Type | Description
 -------- | ----- | -------
 `first_name` | *string* | First name for user with reset password token
 `last_name` | *string* | Last name for user with reset password token
-`expiration_time` | *int* |  Unix timestamp of token expiration time
+`expire_time` | *int* |  Unix timestamp of token expiration time
 
 
 ## Reset password
