@@ -134,8 +134,8 @@ All responses are with HTTP status 200 and contain `data` and `meta` parameters.
 
 Parameter | Type | Description
 --------- | ---- | -----------
-`data` | *array* | Array of data objects returned in the result of the request
-`success`, `warning`, `error` | *array* | Messages with information for the request. More than one type of message can be returned in a response. `success` and `error` can't come in the same response. `warning` can be combined with `success` or `error`.
+`data`<br>*optional* | *array* | Array of data objects returned in the result of the request
+`success`, `warning`, `error`<br>*optional* | *array* | Messages with information for the request. More than one type of message can be returned in a response. `success` and `error` can't come in the same response. `warning` can be combined with `success` or `error`.
 `meta` | *object* | Parameter containing information for the system.
 
 
@@ -354,8 +354,8 @@ The response from batched requests is returned as batched response. It contains 
 
 Parameter | Type | Description
 --------- | ---- | -----------
-`data` | *array* | Array of data objects returned in the result of the request
-`success`, `warning`, `error` | *array* | Messages with information for the request. More than one type of message can be returned in a response. `success` and `error` can't come in the same response. `warning` can be combined with `success` or `error`.
+`data`<br>*optional* | *array* | Array of data objects returned in the result of the request
+`success`, `warning`, `error`<br>*optional* | *array* | Messages with information for the request. More than one type of message can be returned in a response. `success` and `error` can't come in the same response. `warning` can be combined with `success` or `error`.
 `meta` | *object* | Parameter containing information for the system.
 
 In batched responses `meta` is returned once at the end.
@@ -641,6 +641,377 @@ Parameter | Type | Description
 
 # Service data
 
+
+
+
+## Categories
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/client/categories"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "id": 27,
+      "sort": 200,
+      "title": "Cleaning",
+      "phone": "+442221123123",
+      "short_description": "This service is very nice",
+      "keywords": [
+        "clean",
+        "uk",
+        "domestic",
+        "regular"
+      ],
+      "list_image_url": "http://www.image.com/1jsklfas.jpg",
+      "thumbnail_image_url": "http://www.image.com/1jsklfas.jpg",
+      "infos": [
+        3,
+        4,
+        5
+      ],
+      "services": [
+        21,
+        36,
+        89
+      ]
+    }
+  ],
+  "meta": {
+    "db_version": 25,
+    "latest_build": 27
+  }
+}
+```
+
+Categories group services.
+
+
+`"path": "categories"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`id` | *integer* | Object id
+`sort` | *integer* | Order of item in list
+`title` | *string* | Category title text
+`phone` | *string* | Category phone number
+`description` | *string* | Category detailed description text
+`short_description` | *string* | Category short description text
+`keywords` | *array\<string\>* | List of keywords for category
+`list_image_url` | *string* | Link to list image
+`thumbnail_image_url` | *string* | Link to thumbnail image
+`infos` | *array\<info\>* | List of infos for the category
+`services` | *array\<service\>* | List of services for the category
+
+
+
+
+
+## Services
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/client/services"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "id": 79,
+      "sort": 300,
+      "type": 1,
+      "title": "Domestic Cleaning",
+      "phone": "+44222233333",
+      "description": "Domestic Cleaning is very nice.",
+      "short_description": "Domestic Cleaning service",
+      "keywords": [
+        "domestic",
+        "fantastic"
+      ],
+      "list_image_url": "http://www.image.com/1jsklfas.jpg",
+      "inactive_list_image_url": "http://www.image.com/1jsklfas.jpg",
+      "choices_images_urls": [
+        "http://www.image.com/1jsklfas.jpg",
+        "http://www.image.com/1jsklfas.jpg",
+        "http://www.image.com/1jsklfas.jpg"
+      ],
+      "thumbnail_image_url": "http://www.image.com/1jsklfas.jpg",
+      "logo_image_url": "http://www.image.com/1jsklfas.jpg",
+      "infos": [
+        4,
+        5,
+        6
+      ],
+      "choices": [
+        78,
+        90
+      ],
+      "payment_methods": [
+        3,
+        4,
+        5
+      ],
+      "customize": {
+        "tooltip": "Click here"
+      }
+    }
+  ],
+  "meta": {
+    "db_version": 25,
+    "latest_build": 27
+  }
+}
+```
+
+Services
+
+
+`"path": "services"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`id` | *integer* | Object id
+`sort` | *integer* | Order of item in list
+`type` | *integer* | *<b>1</b> - Service*<br>*<b>2</b> - Deal*
+`title` | *string* | Service title text
+`phone` | *string* | Service phone number
+`description` | *string* | Service detailed description text
+`short_description` | *string* | Service short description text
+`keywords` | *array\<string\>* | List of keywords for service
+`list_image_url` | *string* | Link to list image
+`thumbnail_image_url` | *string* | Link to thumbnail image
+`inactive_list_image_url` | *string* | Link to inactive image for displaying past and cancelled bookings
+`choices_images_urls` | *string* | Link to choices images rotating in booking process
+`logo_image_url` | *string* | Link to logo image
+`infos` | *array\<info\>* | List of infos for the services
+`choices` | *array\<choice\>* | List of questions to book the service
+`payment_methods` | *array\<payment_methods\>* | List of available payment methods for the service
+`customize` | *customize* | Key-value pairs of custom attributes
+
+
+
+
+
+## Choices
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/client/choices"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "id": 338,
+      "sort": 100,
+      "title": "have the tradesmen left the property?",
+      "summary_title": "tradesman _left",
+      "infos": [
+        5,
+        7,
+        9
+      ],
+      "required": true,
+      "choice_items": [
+        24,
+        54,
+        94
+      ]
+    }
+  ],
+  "meta": {
+    "db_version": 25,
+    "latest_build": 27
+  }
+}
+```
+
+
+Questions the user needs to answer to book a service.
+
+
+`"path": "choices"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`id` | *integer* | Object id
+`sort` | *integer* | Order of item in list
+`title` | *string* | Question text
+`summary_title` | *string* | Question short title text in summary
+`required` | *boolean* | Should the question be answered to book
+`choice_items` | *array\<choice_item\>* | List of answers for the question
+
+
+
+
+
+
+## Choice items
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/client/choice_items"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "id": 1110,
+      "sort": 100,
+      "parent_id": 0,
+      "type": 1,
+      "max_value": 0,
+      "min_value": 0,
+      "value": 0,
+      "duration": 0,
+      "summary_title": "",
+      "is_in_summary": false,
+      "name": "1 _bedroom",
+      "choice_items": null
+    }
+  ],
+  "meta": {
+    "db_version": 25,
+    "latest_build": 27
+  }
+}
+```
+
+
+Answers to the questions the user needs to answer to book a service.
+
+
+`"path": "choice_items"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`id` | *integer* | Object id
+`sort` | *integer* | Order of item in list
+`parent_id` | *integer* | Parent answer (if answer is sub-answer)
+`type` | *integer* | *<b>1</b> - Check*<br>*<b>2</b> - Radio*<br>*<b>3</b> - Stepper (incremental value)*<br>*<b>4</b> - Text field*<br>*<b>5</b> - Hours (total hours for current booking configuration)*<br>*<b>6</b> - Drop down*<br>*<b>7</b> - Multi select (autocomplete with quantity)*<br>*<b>8</b> - Distance*<br>*<b>9</b> - Always Apply*<br>*<b>10</b> - Price per hour*<br>*<b>11</b> - Decimal Text*<br>
+`max_value` | *integer* | Maximum value of answer
+`min_value` | *integer* | Minimum value of answer
+`value` | *integer* | Default value of answer
+`duration` | *integer* | Minutes added to booking estimated time from the answer
+`summary_title` | *string* | Answer short title text in summary
+`is_in_summary` | *boolean* | Should the answer be included in the summary of booking
+`name` | *string* | Title of answer
+`choice_items` | *array\<choice_item\>* | List of sub-answers for the answers
+
+
+
+
+## Choice items
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/client/choice_items"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "id": 1110,
+      "sort": 100,
+      "parent_id": 0,
+      "type": 1,
+      "max_value": 0,
+      "min_value": 0,
+      "value": 0,
+      "duration": 0,
+      "summary_title": "",
+      "is_in_summary": false,
+      "name": "1 _bedroom",
+      "choice_items": null
+    }
+  ],
+  "meta": {
+    "db_version": 25,
+    "latest_build": 27
+  }
+}
+```
+
+
+Answers to the questions the user needs to answer to book a service.
+
+
+`"path": "choice_items"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`id` | *integer* | Object id
+`sort` | *integer* | Order of item in list
+`parent_id` | *integer* | Parent answer (if answer is sub-answer)
+`type` | *integer* | *<b>1</b> - Check*<br>*<b>2</b> - Radio*<br>*<b>3</b> - Stepper (incremental value)*<br>*<b>4</b> - Text field*<br>*<b>5</b> - Hours (total hours for current booking configuration)*<br>*<b>6</b> - Drop down*<br>*<b>7</b> - Multi select (autocomplete with quantity)*<br>*<b>8</b> - Distance*<br>*<b>9</b> - Always Apply*<br>*<b>10</b> - Price per hour*<br>*<b>11</b> - Decimal Text*<br>
+`max_value` | *integer* | Maximum value of answer
+`min_value` | *integer* | Minimum value of answer
+`value` | *integer* | Default value of answer
+`duration` | *integer* | Minutes added to booking estimated time from the answer
+`summary_title` | *string* | Answer short title text in summary
+`is_in_summary` | *boolean* | Should the answer be included in the summary of booking
+`name` | *string* | Title of answer
+`choice_items` | *array\<choice_item\>* | List of sub-answers for the answers
+
+
+
+
+
+
+
+
 ## Treats
 
 
@@ -692,141 +1063,3 @@ Parameter | Type | Description
 `image_url` | *string* | Treat image direct link.
 `link` | *string* | Link to treat website.
 `sort` | *integer* | Order of treat.
-
-
-## Categories
-
-
-```shell
-curl\
- -X GET\
- -H "Content-Type: application/json"\
- -H "X-Profile: {{PROFILE_ID}}"\
- -H "X-Application: {{APPLICATION_TOKEN}}"\
-"https://{{BASE_URL}}/v2/client/categories"
-```
-
-> The above request success response is:
-
-```json
-{
-  "data": [
-    {
-      "id": 27,
-      "application_profile_id": 25,
-      "title": "cleaning _services",
-      "short_description_text": "afterbuilders is very nice",
-      "keywords": [
-        "build",
-        "waste",
-        "fantastic"
-      ],
-      "thumbnail_image_url": 23,
-      "active": true,
-      "sort": 6000,
-      "image_url": null,
-      "phone": "",
-      "infos": [],
-      "services": [
-        79,
-        81,
-        83,
-        84,
-        71,
-        86,
-        72,
-        87,
-        73,
-        85,
-        74,
-        78
-      ],
-      "updated_at": 1459492785
-    }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
-}
-```
-
-
-[Categories ...]
-
-`"path": "categories"`
-
-### Response parameters
-
-Parameter | Type | Description
--------- | ----- | -------
-`id` | *integer* | Identifier
-
-
-## Services
-
-
-```shell
-curl\
- -X GET\
- -H "Content-Type: application/json"\
- -H "X-Profile: {{PROFILE_ID}}"\
- -H "X-Application: {{APPLICATION_TOKEN}}"\
-"https://{{BASE_URL}}/v2/client/services"
-```
-
-> The above request success response is:
-
-```json
-{
-  "data": [
-    {
-      "id": 79,
-      "application_profile_id": 25,
-      "sort": 6060,
-      "title": "afterbuilders",
-      "type": 1,
-      "description_text": "afterbuilders is very nice.",
-      "short_description_text": "afterbuilders is very nice",
-      "keywords": [
-        "build",
-        "waste",
-        "fantastic"
-      ],
-      "list_image_url": null,
-      "inactive_list_image_url": null,
-      "choice_views_image_urls": [],
-      "thumbnail_image_url": 23,
-      "is_not_available_for_current_profile": true,
-      "customize": [],
-      "logo_image_url": null,
-      "phone": "",
-      "infos": [],
-      "choice_views": [
-        338,
-        339,
-        340,
-        341,
-        342
-      ],
-      "active": true,
-      "updated_at": 1459492785
-    }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
-}
-```
-
-
-[Services ...]
-
-`"path": "services"`
-
-### Response parameters
-
-Parameter | Type | Description
--------- | ----- | -------
-`id` | *integer* | Identifier
