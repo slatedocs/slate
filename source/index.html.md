@@ -652,6 +652,7 @@ curl\
  -d '{
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
         "password": "jamie",
+        "confirm_password": "jamie",
 }'\
  "https://{{BASE_URL}}/v2/client/reset_password"
 ```
@@ -685,7 +686,7 @@ Parameter | Type | Description
 -------- | ----- | -------
 `token `<br>*required* | *string* | Token for resetting password received via email
 `password`<br>*required* | *string* | Client new password
-`password_confirm`<br>*optional* | *string* | Password confirmation for server check - opional
+`confirm_password`<br>*optional* | *string* | Password confirmation for server check
 
 
 # Service data
