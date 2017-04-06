@@ -39,3 +39,25 @@ Error Code | Meaning
 5514 | First name is required
 5515 | Last name is required
 5516 | At least 5-character password is required
+
+## Request reset password
+Error Code | Meaning
+---------- | -------
+5502 | Invalid email
+5530 | Email not found
+
+## Reset password user details
+Error Code | Meaning
+---------- | -------
+5531 | Invalid reset password token
+
+## Reset password
+Error Code | Meaning
+---------- | -------
+5531 | Invalid reset password token
+5516 | At least 5-character password is required
+5532 | Password and password confirmation do not match - # optional if password_confirm passsed
+
+
+
+
