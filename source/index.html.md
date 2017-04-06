@@ -548,6 +548,29 @@ curl\
  "https://{{BASE_URL}}/v2/client/request_reset_password"
 ```
 
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "expiration_time": 1491478823
+    }
+  ],
+  "success": [
+    {
+      "code": 2000,
+      "message": "Success",
+      "debug_message": null,
+      "debug_id": null
+    }
+  ],
+  "meta": {
+    "db_version": 25,
+    "latest_build": 27
+  }
+}
+```
 
 Initiate sending an email with link for resetting password
 
@@ -558,6 +581,12 @@ Initiate sending an email with link for resetting password
 Parameter | Type | Description
 -------- | ----- | -------
 `email`<br>*required* | *string* | Email address to which a link for reset password will be sent
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`expiration_time` | *int* |  Unix timestamp of token expiration time
 
 
 ## Read user details on password reset
@@ -579,7 +608,8 @@ curl\
   "data": [
     {
       "first_name": "John",
-      "last_name": "Doe"
+      "last_name": "Doe",
+      "expiration_time": 1491478823
     }
   ],
   "meta": {
@@ -607,6 +637,7 @@ Parameter | Type | Description
 -------- | ----- | -------
 `first_name` | *string* | First name for user with reset password token
 `last_name` | *string* | Last name for user with reset password token
+`expiration_time` | *int* |  Unix timestamp of token expiration time
 
 
 ## Reset password
@@ -625,6 +656,24 @@ curl\
  "https://{{BASE_URL}}/v2/client/reset_password"
 ```
 
+> The above request success response is:
+
+```json
+{
+  "success": [
+    {
+      "code": 2000,
+      "message": "Success",
+      "debug_message": null,
+      "debug_id": null
+    }
+  ],
+  "meta": {
+    "db_version": 25,
+    "latest_build": 27
+  }
+}
+```
 
 Reset password of user.
 
@@ -635,8 +684,8 @@ Reset password of user.
 Parameter | Type | Description
 -------- | ----- | -------
 `token `<br>*required* | *string* | Token for resetting password received via email
-
-
+`password`<br>*required* | *string* | Client new password
+`password_confirm`<br>*optional* | *string* | Password confirmation for server check - opional
 
 
 # Service data
