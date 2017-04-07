@@ -4,7 +4,21 @@
 
 ```json
 {
-  ...
+  "id": "fffd7e80-1691-41f5-8946-9deeaf0b8640",
+  "phone_number": "+13333333333",
+  "unconfirmed_phone_number": "+13333333333",
+  "country_code": "US",
+  "email": "customer@example.com",
+  "first_name": "Yogi",
+  "last_name": "Berra",
+  "confirmation_token": "123456",
+  "billing_address_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/addresses/3412e1d6-2208-4b54-9ae9-a479ed663cde/edit?t=6959409667137177",
+  "shipping_address_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/addresses/a78c2359-4388-4ed1-87cb-1caa19d80507/edit?t=6959409667137177",
+  "card_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/card/edit?t=6959409667137177",
+  "confirmed_at": "2016-09-02T09:40:08.004Z",
+  "confirmation_sent_at": "2016-09-02T09:40:07.004Z",
+  "created_at": "2016-09-02T09:40:06.004Z",
+  "updated_at": "2016-09-07T02:12:02.012Z"
 }
 ```
 
@@ -43,7 +57,21 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  ...
+  "id": "fffd7e80-1691-41f5-8946-9deeaf0b8640",
+  "phone_number": "+13333333333",
+  "unconfirmed_phone_number": "+13333333333",
+  "country_code": "US",
+  "email": "customer@example.com",
+  "first_name": "Yogi",
+  "last_name": "Berra",
+  "confirmation_token": "123456",
+  "billing_address_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/addresses/3412e1d6-2208-4b54-9ae9-a479ed663cde/edit?t=6959409667137177",
+  "shipping_address_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/addresses/a78c2359-4388-4ed1-87cb-1caa19d80507/edit?t=6959409667137177",
+  "card_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/card/edit?t=6959409667137177",
+  "confirmed_at": "2016-09-02T09:40:08.004Z",
+  "confirmation_sent_at": "2016-09-02T09:40:07.004Z",
+  "created_at": "2016-09-02T09:40:06.004Z",
+  "updated_at": "2016-09-07T02:12:02.012Z"
 }
 ```
 
@@ -77,7 +105,21 @@ HTTP/1.1 201 CREATED
 
 ```json
 {
-  ...
+  "id": "fffd7e80-1691-41f5-8946-9deeaf0b8640",
+  "phone_number": null,
+  "unconfirmed_phone_number": "+13333333333",
+  "country_code": "US",
+  "email": "customer@example.com",
+  "first_name": "Yogi",
+  "last_name": "Berra",
+  "confirmation_token": null,
+  "billing_address_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/addresses/3412e1d6-2208-4b54-9ae9-a479ed663cde/edit?t=6959409667137177",
+  "shipping_address_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/addresses/a78c2359-4388-4ed1-87cb-1caa19d80507/edit?t=6959409667137177",
+  "card_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/card/edit?t=6959409667137177",
+  "confirmed_at": null,
+  "confirmation_sent_at": null,
+  "created_at": "2016-09-02T09:40:06.004Z",
+  "updated_at": "2016-09-02T09:40:06.004Z"
 }
 ```
 
@@ -104,9 +146,7 @@ A customer object.
 const dirtylemon = require('dirtylemon');
 
 dirtylemon.customers.update({CUSTOMER_ID}, {
-  first_name: 'Philippe',
-  last_name: 'Dionne',
-  email: 'phil@example.com'
+  email: 'yogi@berra.com'
 })
 ```
 
@@ -118,7 +158,21 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  ...
+  "id": "fffd7e80-1691-41f5-8946-9deeaf0b8640",
+  "phone_number": "+13333333333",
+  "unconfirmed_phone_number": "+13333333333",
+  "country_code": "US",
+  "email": "yogi@berra.com",
+  "first_name": "Yogi",
+  "last_name": "Berra",
+  "confirmation_token": "123456",
+  "billing_address_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/addresses/3412e1d6-2208-4b54-9ae9-a479ed663cde/edit?t=6959409667137177",
+  "shipping_address_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/addresses/a78c2359-4388-4ed1-87cb-1caa19d80507/edit?t=6959409667137177",
+  "card_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/card/edit?t=6959409667137177",
+  "confirmed_at": "2016-09-02T09:40:08.004Z",
+  "confirmation_sent_at": "2016-09-02T09:40:07.004Z",
+  "created_at": "2016-09-02T09:40:06.004Z",
+  "updated_at": "2016-09-07T02:12:02.012Z"
 }
 ```
 
@@ -158,7 +212,21 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  ...
+  "id": "fffd7e80-1691-41f5-8946-9deeaf0b8640",
+  "phone_number": "+13333333333",
+  "unconfirmed_phone_number": "+13333333333",
+  "country_code": "US",
+  "email": "customer@example.com",
+  "first_name": "Yogi",
+  "last_name": "Berra",
+  "confirmation_token": "123456",
+  "billing_address_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/addresses/3412e1d6-2208-4b54-9ae9-a479ed663cde/edit?t=6959409667137177",
+  "shipping_address_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/addresses/a78c2359-4388-4ed1-87cb-1caa19d80507/edit?t=6959409667137177",
+  "card_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/card/edit?t=6959409667137177",
+  "confirmed_at": "2016-09-02T09:40:08.004Z",
+  "confirmation_sent_at": "2016-09-02T09:40:07.004Z",
+  "created_at": "2016-09-02T09:40:06.004Z",
+  "updated_at": "2016-09-07T02:12:02.012Z"
 }
 ```
 
