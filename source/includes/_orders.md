@@ -38,8 +38,6 @@
 | total        | integer | Total amount in cents |
 | shipping_fee | integer | Shipping fee in cents |
 | preordered   | boolean | |
-| charge       | hash | Charge object |
-| refund       | hash | Refund object |
 | line_items   | list | Array of line item objects |
 | confirmed_at | timestamp | Time at which the order has been confirmed |
 | canceled_at  | timestamp | Time at which the order has been cancelled |
