@@ -16,6 +16,7 @@ includes:
   - projects
   - users
   - custom_fields
+  - requirements
   - tests
   - sets
   - instances
