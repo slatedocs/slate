@@ -40,7 +40,7 @@
 | preordered   | boolean | |
 | line_items   | list | Array of line item objects |
 | confirmed_at | timestamp | Time at which the order has been confirmed |
-| canceled_at  | timestamp | Time at which the order has been cancelled |
+| canceled_at  | timestamp | Time at which the order has been canceled |
 | created_at   | timestamp | Time at which the object was created |
 | updated_at   | timestamp | Time at which the object was updated |
 
