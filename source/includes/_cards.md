@@ -16,12 +16,6 @@ dirtylemon.cards.create({CUSTOMER_ID}, {
 HTTP/1.1 201 CREATED
 ```
 
-```json
-{
-  ...
-}
-```
-
 This endpoint creates a customer credit card. The newly created card then becomes the customer's default payment method.
 
 ### HTTP Request
