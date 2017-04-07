@@ -237,7 +237,7 @@ An order object.
 ```js
 const dirtylemon = require('dirtylemon');
 
-dirtylemon.orders.confirm({})
+dirtylemon.orders.confirm({ORDER_ID})
 ```
 
 > Example response
@@ -296,7 +296,7 @@ An order object.
 ```js
 const dirtylemon = require('dirtylemon');
 
-dirtylemon.orders.cancel({})
+dirtylemon.orders.cancel({ORDER_ID})
 ```
 
 > Example response
