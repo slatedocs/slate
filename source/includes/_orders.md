@@ -48,7 +48,7 @@ This endpoint retrieves a specific order.
 
 ### HTTP Request
 
-`GET https://api.dirtylemon.com/v1/customers/<ID>/orders/<ID>`
+`GET https://api.dirtylemon.com/v1/orders/<ID>`
 
 ### Returns
 
@@ -128,7 +128,7 @@ This endpoint updates an order.
 
 ### HTTP Request
 
-`PATCH https://api.dirtylemon.com/v1/customers/<ID>/orders/<ID>`
+`PATCH https://api.dirtylemon.com/v1/orders/<ID>`
 
 ### Arguments
 
@@ -158,7 +158,7 @@ This endpoint confirms an order and sends the customer a confirmation email.
 
 ### HTTP Request
 
-`POST https://api.dirtylemon.com/v1/customers/<ID>/orders/<ID>/confirm`
+`POST https://api.dirtylemon.com/v1/orders/<ID>/confirm`
 
 ### Returns
 
@@ -183,7 +183,7 @@ This endpoint cancels an order and sends the customer a cancellation email.
 
 ### HTTP Request
 
-`DELETE https://api.dirtylemon.com/v1/customers/<ID>/orders/<ID>`
+`DELETE https://api.dirtylemon.com/v1/orders/<ID>`
 
 ### Returns
 
