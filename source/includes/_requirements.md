@@ -115,13 +115,13 @@ You can find at the [right area](#create-a-Requirement) (shell) an example of th
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 -X POST https://api.practitest.com/api/v2/projects/4566/requirements.json \
--d '{"data": { "type": "requirements", "attributes": {"name": "one", "priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
+-d '{"data": { "type": "requirements", "attributes": {"name": "one", "author-id": 4370, "priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
 
 # create a Requirement with 2 test-ids:
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 -X POST https://api.practitest.com/api/v2/projects/4566/requirements.json \
--d '{"data": { "type": "requirements", "attributes": {"name": "one", "priority": "highest"}, "traceability": {"test-ids": [32222,53333]} }}'
+-d '{"data": { "type": "requirements", "attributes": {"name": "one", "author-id": 4370, "priority": "highest"}, "traceability": {"test-ids": [32222,53333]} }}'
 ```
 
 
