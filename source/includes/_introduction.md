@@ -2,7 +2,7 @@
 
 Welcome to the Mifiel API! We at Mifiel provide a simple and robust RESTful API enabling any service or company operating in Mexico to integrate electronic signatures (using the FIEL) into their workflow.
 
-Through Mifiel's API, you can easily manage documents and certificates within your Mifiel account.
+Through Mifiel's API, you can easily manage the documents and certificates within your Mifiel account.
 
 We have language bindings in **Shell**, **PHP**, **Ruby** and **Python**! You can view code examples on the right (switch between different programming languages using the tabs on top).
 
@@ -21,7 +21,7 @@ Once you have an account you will need an _APP_ID_ and an _APP_SECRET_ which you
 Just change the **www**.mifiel.com for **sandbox**.mifiel.com in every endpoint that you use.
 
 <aside class="warning">
-  Documents signed in the Sandobox environment are legally invalid and should not be used for legal purposes.
+  Documents signed in the Sandbox environment are legally invalid and SHOULD NOT be used for legal purposes.
 </aside>
 
 ### Production enviroment
@@ -73,7 +73,7 @@ Mifiel::setTokens('APP_ID', 'APP_SECRET');
 ?>
 ```
 
-The best way to install Mifiel is quickly and easily with [Composer](https://getcomposer.org).
+The best way to install Mifiel quickly and easily is by using [Composer](https://getcomposer.org).
 
 To install the most recent version, run the following command.
 
@@ -97,7 +97,7 @@ client = Client(app_id='APP_ID', secret_key='APP_SECRET')
 client.use_sandbox
 ```
 
-The best way to install Mifiel lib is with [PIP](https://pypi.python.org/pypi).
+The best way to install the Mifiel lib is by using [PIP](https://pypi.python.org/pypi).
 To install the most recent version please run the following command.
 
 `pip install mifiel`

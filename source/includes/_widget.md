@@ -36,7 +36,7 @@ Field     | Type    | Default |  Description
 --------- | ------- | ------- | ------------
 widgetId  | String  |         | Widget ID. You can get it with `document.widget_id` in Ruby
 appendTo  | String  | body    | ID of the element in the page
-successBtnText | String | 'OK' | Text of the button at the end of the signing flow. When the user click
+successBtnText | String | 'OK' | Text of the button at the end of the signing flow. When the user click this button they will be redirected to the URL that you have specified as the callback URL.
 pdf       | Base64  |   null  | __Optional__ PDF in Base64 if you did not send us the PDF when you created the document.
 color     | String  | 37BC9B  | __Optional__ Custom color in hexadecimal (e.g. 555555) to personalize the look and feel of your widget. Typically the primary color of your app.
 width     | String  | 100%    | __Optional__ Width of the widget __[px or %]__
@@ -121,11 +121,11 @@ Signature failure   | 3002 | Fail to sign document
 
 Following is a more detailed explanation of the steps involved in requesting and executing signatures within the embedded signing widget.
 
-1. The first step is to create a Document in your backend with the _API_ID_ and _APP_SECRET_. You must pass the __PDF file__ that is being signed (or a SHA256 encoded hash of the PDF and the name of the file), along with the following __parameters__: webhook (callback_url) and the email and name (optional) of each signer.
+1. The first step is to create a Document in your server using the _API_ID_ and _APP_SECRET_. You must pass the __PDF file__ that is being signed (or a SHA256 encoded hash of the PDF and the name of the file), along with the following __parameters__: webhook (callback_url) and the email (required) and name (optional) of each signer.
 
 2. Mifiel will return a __Widget ID__ in the response, which you will then need to pass to the widget (running on your website's front-end).
 
-3. The signature process then takes place within your website. The signer will be able to preview the document, select the files of their FIEL, and enter the password of their FIEL to sign (during this process Mifiel will be verifying that the FIEL is valid and not expired). 
+3. The signature process then takes place within your website. The signer will be able to preview the document, select the files of their FIEL, and enter the password of their FIEL to sign (during this process Mifiel will be verifying that the FIEL is valid and not expired or revoked). 
 
 4. If successful, the signer will be presented with a page explaining that the signing was successful and that they will receive an email with the signed document. We will also display a confirmation button (e.g. 'Proceed to next step') which will return the user to the flow of your website.
 

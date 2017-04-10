@@ -2,7 +2,7 @@
 
 ## Create a Document
 
-> Send only **original_hash** and **name** if you dont want us to have the document.
+> Send only **original_hash** and **name** if you do not want us to have the document.
 
 ```ruby
 require 'mifiel'
@@ -24,8 +24,8 @@ document = Mifiel::Document.create(
   callback_url: 'https://www.example.com/webhook/url'
 )
 
-# if you dont want us to have the PDF, you can send us 
-# the original_hash and the name of the document. Both are required
+# if you don't want us to have the PDF, you can send us 
+# the original_hash and the name of the document. Both are required.
 file_contents = File.read('path/to/my-file.pdf')
 original_hash = Digest::SHA256.hexdigest(file_contents)
 document = Mifiel::Document.create(
@@ -64,8 +64,8 @@ $document = new Document([
     ]
   ]
 ]);
-// if you dont want us to have the PDF, you can just send us 
-// the original_hash and the name of the document. Both are required
+// if you don't want us to have the PDF, you can just send us 
+// the original_hash and the name of the document. Both are required.
 $document = new Document([
   'original_hash' => hash('sha256', file_get_contents('path/to/my-file.pdf')),
   'name' => 'my-file.pdf',
@@ -98,8 +98,8 @@ document = Document.create(
   signatories=signatories, 
   file='test/fixtures/example.pdf'
 )
-# if you dont want us to have the PDF, you can just send us 
-# the original_hash and the name of the document. Both are required
+# if you don't want us to have the PDF, you can just send us 
+# the original_hash and the name of the document. Both are required.
 document = Document.create(
   client=client, 
   signatories=signatories, 
