@@ -1601,6 +1601,45 @@ Parameter | Description
 intelex_object | The Intelex system name of the object eg. IncidentsObject
 id|The Intelex UID of the record or action being accessed 
 
+## Updating Person Responsible
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'PATCH',
+  url: 'https://intelex_url/api/v2/object/IncidentsObject(UID)/Workflow',
+  headers: { 'content-type': 'application/json' },
+  body: { 'PersonResponsible@odata.bind': 'https://intelex_url/api/v2/object/SysEmployeeEntity(UID)' },
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject(UID)/Workflow");
+var request = new RestRequest(Method.PATCH);
+request.AddHeader("content-type", "application/json");
+request.AddParameter("application/json", "{\n\t\"PersonResponsible@odata.bind\": \"https://intelex_url/api/v2/object/SysEmployeeEntity(UID)\"\n}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+```
+
+This request allows you to modify the workflow person responsible for a given record. This is the method used to re-assign tasks for a given record. 
+
+### PATCH /object/{intelex_object}({id})/Workflow
+
+#### URL Parameters
+
+Parameter | Description
+--------- | -----------
+intelex_object | The Intelex system name of the object eg. IncidentsObject
+id|The Intelex UID of the record or action being accessed 
+
 # Object Attachments
 
 ## Requesting Private Doc Attachments
@@ -1819,3 +1858,145 @@ Parameter | Description
 --------- | -----------
 intelex_object | The Intelex system name of the object eg. IncidentsObject
 id|The Intelex UID of the record or document being accessed
+
+# Batch Requests
+
+## Object Batch Requests
+
+> Example Batch Request Body: The following example includes a batch with a unique identifier of AAA123 and a change set with a unique identifier of BBB456. The request creates a record then updates the record that was just created
+
+```
+--batch_AAA123
+Content-type: multipart/mixed; boundary=changeset_BBB456
+
+--changeset_BBB456
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+Content-ID:1
+
+POST IncidentsObject HTTP/1.1
+Content-Type: application/json
+
+ { "ActionsTaken": "string", "Date": "string", "Description": "string", "IncidentNo": 0, "ReportedDate": "2017-02-13T22:15:30.203Z", "SuspectedCause": "string" }
+
+--changeset_BBB456
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+Content-ID:2
+
+PATCH $1 HTTP/1.1
+Content-Type: application/json
+
+{"Description":"string"}
+
+--changeset_BBB456--
+
+--batch_AAA123--
+```
+
+> The above batch request returns the following response:
+
+```
+--batchresponse_20a3a5a7-2df7-435e-9c62-ead3472499e7
+Content-Type: multipart/mixed; boundary=changesetresponse_18666d72-dd34-46dc-8cae-2f0ff8208f7c
+
+--changesetresponse_18666d72-dd34-46dc-8cae-2f0ff8208f7c
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+Content-ID: 1
+
+HTTP/1.1 201 Created
+Location: https://intelex_url/api/v2/object/IncidentsObject(UID)
+Content-Type: application/json; odata.metadata=minimal
+OData-Version: 4.0
+
+{
+    "@odata.type": "string", "@odata.id": "string", "@odata.editLink": "string", "Id": "string",  "ActionsTaken": "string", "Date": "2017-02-13T22:15:30.203Z", "Description": "string", "IncidentNo": 0,
+    "ReportedDate": "2017-02-13T22:15:30.203Z", "SuspectedCause": "string"
+}
+--changesetresponse_18666d72-dd34-46dc-8cae-2f0ff8208f7c
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+Content-ID: 2
+
+HTTP/1.1 204 No Content
+
+
+--changesetresponse_18666d72-dd34-46dc-8cae-2f0ff8208f7c--
+--batchresponse_20a3a5a7-2df7-435e-9c62-ead3472499e7--
+
+```
+
+
+
+Use a POST request to submit a batch operation that contains multiple requests. A batch request can include GET, POST, PATCH, and DELETE requests as well as change sets.  To use transactional capabilities of batch requests, only operations that will change data can be included within a change set. GET requests must not be included in the change set.  
+
+The POST request containing the batch must have a Content-Type header with a value set to multipart/mixed with a boundary set to include the identifier of the batch using this pattern:
+
+`
+--batch_<unique_identifier>
+`
+
+The unique identifier doesn't need to be a GUID, but should be unique. Each item within the batch must be preceded by the batch identifier with a Content-Type and Content-Transfer-Encoding header:
+
+`
+--batch_AAA123
+`
+
+`
+Content-Type: application/http
+`
+
+`
+Content-Transfer-Encoding:binary
+`
+
+The end of the batch must contain a termination indicator:
+
+`
+--batch_AAA123--
+`
+
+By default, processing batch requests will stop on the first error unless the **odata.continue-on-error** preference is specified in the Prefer header.  Also, the responses returned are essentially text documents rather than objects that can easily be parsed into JSON. You'll need to parse the text in the response.
+
+
+### POST /object/$batch
+
+
+#### Header Parameters
+
+Parameter | Description |Required | Example Value
+--------- | ----------- |--------- | -----------
+Content-Type | Content type for entire batch request |Yes|multipart/mixed;boundary=batch_AAA123
+Prefer|Preference to continue if error is encountered|No|odata.continue-on-error
+
+#### Change sets
+
+When multiple operations are contained in a change set, all the operations are considered atomic, which means that if any one of the operations fail, any completed operations will be rolled back. Like a batch requests, change sets must have a Content-Type header with a value set to multipart/mixed with a boundary set to include the identifier of the change set using this pattern:
+
+`
+--changeset_<unique_identifier>
+`
+
+The unique identifier doesn't need to be a GUID, but should be unique. Each item within the change set must be preceded by the change set identifier with a Content-Type and Content-Transfer-Encoding header like the following:
+
+
+`
+--changeset_BBB456
+`
+
+`
+Content-Type: application/http
+`
+
+`
+Content-Transfer-Encoding:binary
+`
+
+Change sets can also include a Content-ID header with a unique value. This value, when prefixed with $, represents a variable that contains the URI for any entity created in that operation. For example, when you set the value of 1, you can refer to that entity using $1 later in your change set.  
+
+The end of the change set must contain a termination indicator like the following:
+
+`
+--changeset_BBB456---
+`
