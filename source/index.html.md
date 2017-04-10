@@ -122,6 +122,8 @@ Every object will have navigation properties that can be used to access its rela
 
 You can access related data by using the [$expand](#query-option-expand) query option or you can [navigate to related data](#requesting-related-records) using a URL path. You can traverse multiple levels of relational data by navigating through the URL path or with nested $expand queries.
 
+Please note: Trying to access or modify relation fields that are self-referencing will not work (i.e. A relation type field on an object that is a relation to itself) 
+
 
 # Requesting Object Data
 
