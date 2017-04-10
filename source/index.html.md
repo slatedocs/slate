@@ -766,6 +766,8 @@ The $expand system query option specifies the related object records and lookup 
 |Nested expand|$expand=Workflow($expand=PersonResponsible)|
 |Select expanded fields|$expand=Severity($select=Name)|
 |Sort expanded collection|$expand=SubIncidents($orderby=DateCreated)|
+|Filter expanded collection|$expand=SubIncidents($filter=Description ne null)|
+|Filter and select expanded collection|$expand=SubIncidents($filter=Description ne null;$select=Description)|
 
 #### URL Parameters
 
