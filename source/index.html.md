@@ -1123,3 +1123,63 @@ Parameter | Type | Description
 `image_url` | *string* | Treat image direct link.
 `link` | *string* | Link to treat website.
 `sort` | *integer* | Order of treat.
+
+
+# Units
+
+## Profile
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/unit/profile"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "phone_number": "07904678431",
+      "can_message_client": true,
+      "can_call_client": true,
+      "can_not_cancel_jobs": true,
+      "can_receive_on_demand_jobs": true,
+      "should_send_report_on_checkout": true,
+      "email": "vesi_peikova@abv.bg",
+      "country_code": "+44",
+      "locale": "en_AUS",
+      "rating": 4.5
+    }
+  ],
+  "meta": {
+    "db_version": 25,
+    "latest_build": 27
+  }
+}
+```
+
+
+Profile contains unit details and permissions
+
+`"path": "profile"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`phone_number` | *string* | Phone number of unit
+`can_message_client` | *boolean* | Can unit send SMS messages to clients
+`can_call_client` | *boolean* | Can unit call clients
+`can_not_cancel_jobs` | *boolean* | Can unit decline jobs
+`can_receive_on_demand_jobs` | *boolean* | Can unit receive jobs on-demand via notifications that require response
+`should_send_report_on_checkout` | *boolean* | Should unit sent report on checkout
+`email` | *string* | Unit email for login
+`country_code` | *string* | Country code of area the Unit operates in
+`locale` | *string* | Locale of area the Unit operates in
+`rating` | *double* | Performance score of Unit (1-5)
