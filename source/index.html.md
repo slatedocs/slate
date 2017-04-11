@@ -1145,16 +1145,19 @@ curl\
 {
   "data": [
     {
-      "phone_number": "07904678431",
-      "can_message_client": true,
-      "can_call_client": true,
-      "can_not_cancel_jobs": true,
-      "can_receive_on_demand_jobs": true,
-      "should_send_report_on_checkout": true,
       "email": "vesi_peikova@abv.bg",
+      "full_name": "John Doe",
+      "phone_number": "07904678431",
       "country_code": "+44",
       "locale": "en_AUS",
-      "rating": 4.5
+      "rating": 4.5,
+      "profile_permissions": {
+        "can_message_client": true,
+        "can_call_client": true,
+        "can_not_cancel_jobs": true,
+        "can_receive_on_demand_jobs": true,
+        "should_send_report_on_checkout": true
+      }
     }
   ],
   "meta": {
@@ -1173,13 +1176,14 @@ Profile contains unit details and permissions
 
 Parameter | Type | Description
 -------- | ----- | -------
-`phone_number` | *string* | Phone number of unit
-`can_message_client` | *boolean* | Can unit send SMS messages to clients
-`can_call_client` | *boolean* | Can unit call clients
-`can_not_cancel_jobs` | *boolean* | Can unit decline jobs
-`can_receive_on_demand_jobs` | *boolean* | Can unit receive jobs on-demand via notifications that require response
-`should_send_report_on_checkout` | *boolean* | Should unit sent report on checkout
 `email` | *string* | Unit email for login
+`full_name` | *string* | First name and last name
+`phone_number` | *string* | Phone number of unit
 `country_code` | *string* | Country code of area the Unit operates in
 `locale` | *string* | Locale of area the Unit operates in
 `rating` | *double* | Performance score of Unit (1-5)
+`permissions.can_message_client` | *boolean* | Can unit send SMS messages to clients
+`permissions.can_call_client` | *boolean* | Can unit call clients
+`permissions.can_not_cancel_jobs` | *boolean* | Can unit decline jobs
+`permissions.can_receive_on_demand_jobs` | *boolean* | Can unit receive jobs on-demand via notifications that require response
+`permissions.should_send_report_on_checkout` | *boolean* | Should unit sent report on checkout
