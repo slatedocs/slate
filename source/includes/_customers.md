@@ -2,6 +2,8 @@
 
 ## Customer object
 
+> Example object
+
 ```json
 {
   "id": "fffd7e80-1691-41f5-8946-9deeaf0b8640",
@@ -42,6 +44,8 @@
 
 
 ## Retrieve a customer
+
+> Example request
 
 ```javascript
 const dirtylemon = require('dirtylemon');
@@ -87,6 +91,8 @@ A customer object.
 
 
 ## Create a customer
+
+> Example request
 
 ```js
 const dirtylemon = require('dirtylemon');
@@ -142,6 +148,8 @@ A customer object.
 
 ## Update a customer
 
+> Example request
+
 ```javascript
 const dirtylemon = require('dirtylemon');
 
@@ -196,6 +204,8 @@ A customer object.
 
 ## Confirm a customer
 
+> Example request
+
 ```javascript
 const dirtylemon = require('dirtylemon');
 
@@ -248,6 +258,8 @@ A customer object.
 
 
 ## Generate a confirmation token
+
+> Example request
 
 ```javascript
 const dirtylemon = require('dirtylemon');

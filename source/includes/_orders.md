@@ -2,6 +2,8 @@
 
 ## Order object
 
+> Example object
+
 ```json
 {
   "id": "fffe3495-f515-41cb-a311-c29fdd275cce",
@@ -46,6 +48,8 @@
 
 
 ## Retrieve an order
+
+> Example request
 
 ```javascript
 const dirtylemon = require('dirtylemon');
@@ -99,6 +103,8 @@ This endpoint retrieves a specific order.
 An order object.
 
 ## Create an order
+
+> Example request
 
 ```js
 const dirtylemon = require('dirtylemon');
@@ -166,6 +172,8 @@ An order object.
 
 ## Update an order
 
+> Example request
+
 ```js
 const dirtylemon = require('dirtylemon');
 
@@ -232,6 +240,8 @@ An order object.
 
 ## Confirm an order
 
+> Example request
+
 ```js
 const dirtylemon = require('dirtylemon');
 
@@ -290,6 +300,8 @@ An order object.
 
 
 ## Cancel an order
+
+> Example request
 
 ```js
 const dirtylemon = require('dirtylemon');

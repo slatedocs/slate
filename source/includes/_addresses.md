@@ -2,6 +2,8 @@
 
 ## Create an address
 
+> Example request
+
 ```js
 const dirtylemon = require('dirtylemon');
 
@@ -55,6 +57,8 @@ This endpoint creates both a __shipping__ and __billing__ address for a given cu
 An address object.
 
 ## Validate
+
+> Example request
 
 ```js
 const dirtylemon = require('dirtylemon');

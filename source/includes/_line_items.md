@@ -2,6 +2,8 @@
 
 ## Line item object
 
+> Example object
+
 ```json
 {
   ...
