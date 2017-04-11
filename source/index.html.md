@@ -1048,3 +1048,28 @@ Parameter | Description | Possible values
 --------- | ----------- | -----------
 result | status and optional error message | *
 
+# Post message
+
+> `POST http://domain.com/im_chat/post`
+
+### HTTP Request
+
+`POST http://domain.com/im_chat/post`
+
+Post message in chat
+
+### Arguments
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+uuid | string | Required | Session UUID 
+message_type | string | Required | Type of message
+message_content | string | Required | Content of message
+
+### Returns
+ID of message.
+
+Parameter | Description | Possible values 
+--------- | ----------- | -----------
+message_id | ID of posted message | *
+
