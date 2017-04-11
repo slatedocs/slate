@@ -1,6 +1,6 @@
 # Object Reference
 
-version 0.14
+version 0.15
 
 The Crunch REST API takes a decidedly column-oriented approach to data. A "column" is simply a sequence of values of the same type. A "variable" binds a name (and other metadata) to the column, and indeed may possess a series of columns over its lifetime as inserts and updates are made to it. A "dataset" is a set of variables. Each variable in the dataset is sorted the same way; the variables together form a relation. Reading the N'th item from each variable produces a row.
 
@@ -16,9 +16,9 @@ A Shoji entity is identified by the `element` key having value `shoji:entity`.
 Its principal attribute is the `body` key, which is an object containing the
 attributes that describe the entity.
 
-### Shoji Catalog
+### Shoji catalog
 
-A catalog is identifidied by its `element` key having value `shoji:catalog` with
+A catalog is identified by its `element` key having value `shoji:catalog` with
 its principal attribute being `index` that contains an object keyed by the URLs
 of the entities it contains and for each key an object (tuple) with attributes
 from the referenced entity.
@@ -32,19 +32,19 @@ A Shoji view is identified by its `element` key having value `shoji:view` with
 its principal attribute being `value`. This can contain any arbitrary JSON
 object.
 
-### Shoji Order
+### Shoji order
 
 Shoji orders are identified by the `element` key having a value `shoji:order`.
 Their principal attribute is the `graph` key which is an array containing the
 order of present resources.
 
-A shoji order may be associated to a catalog. In such case it will contain a
+A shoji order may be associated with a catalog. In such case it will contain a
 subset or totality of the entities present in the catalog. The catalog remains
 as the authoritative source of available entities.
 
-Any entity not present on the order but present in the catalog should be
+Any entity not present on the order but present in the catalog may be
 considered to belong at the bottom of the root of the graph in an arbitrary
-order.
+order, or may be excluded from view.
 
 ## Statistical data
 
@@ -99,9 +99,7 @@ Enumeration typically causes the volume of data to shrink dramatically, and can 
 
 ### Variable Definitions
 
-This section describes the metadata of a variable as exposed across HTTP, both expected response values and valid input values.
-
-Crunch operates on the principle that analytic users proceed through a series of steps where they both refine existing data and transform existing variables into new variables. Therefore, it employs a structural type system, not a nominative one. Practically, this means that, although we may know the "type" of a variable (numeric, text, categorical, etc) even before data is input, we learn more about the metadata of a variable as time goes on. The variable definition therefore includes more knowledge than just the type name; we also learn details about range, precision, missing values and reasons, order, etc. Both definitions and types, therefore, are complete objects, not just names. For example:
+Crunch employs a structural type system rather than a nominative one. The variable definition includes more knowledge than just the type name (numeric, text, categorical, etc); we also learn details about range, precision, missing values and reasons, order, etc. For example:
 
 ```json
 {
@@ -131,6 +129,8 @@ Crunch operates on the principle that analytic users proceed through a series of
 }
 ```
 
+This section describes the metadata of a variable as exposed across HTTP, both expected response values and valid input values.
+
 #### Variable types
 
 The "type" of a Variable is a string which defines the superset of values from which the variable may draw. The type governs not only the set of values but also their syntax. (See below.)
@@ -145,9 +145,12 @@ The following types are defined for public use:
 * categorical_array
 
 #### Variable names
-Crunch takes a principled stand that variable "names" should be for people, not for computers.
+
+Variables in Crunch have multiple attributes that provide identifying information: "name", "alias", and "description".
 
 ##### name
+
+Crunch takes a principled stand that variable "names" should be for people, not for computers.
 
 You may be used to domains that have variable "name", "label", and "description". Name is some short, unique, machine-friendlier ID like "Q2"; label is short and human-friendly, something like "Brand awareness", and description is where you might put question wording if you have survey data. Crunch has "alias", "name", and "description". What you may be used to thinking of as a variable name, we consider as an alias: something for more internal use, not something appropriate for a polished dataset ready to share with people who didn't create the dataset (See more in the "Alias" section below). In Crunch, the variable's "name" is what you may be used to thinking of as a label.
 
@@ -169,25 +172,23 @@ Description is an optional string that provides more information about the varia
 
 #### Type-specific attributes
 
-These keys must be present for the specified variable types when creating a variable, but they are not defined for other types.
+These attributes must be present for the specified variable types when creating a variable, but they are not defined for other types.
 
 ##### categories
 
 Categorical variables must contain an array of Category objects, each of which includes:
 
-name: the string name which applications should use to identify the category.
-numeric_value: the numeric value bound to each name. If no numeric value should be bound, this should be null.
-id: a read-only integer identifier for the category. These correspond to the data values.
-missing: boolean indicating whether this category should be interpreted as missing values.
-selected: (optional) boolean indicating whether this category corresponds to a selected value for a dichotomized variable, i.e. part of a multiple response variable. Not required for regular categorical variables, and defaults to `false` if omitted.
+* **id**: a read-only integer identifier for the category. These correspond to the data values.
+* **name**: the string name which applications should use to identify the category.
+* **numeric_value**: the numeric value bound to each name. If no numeric value should be bound, this should be null. numeric_values need not be unique, and they may be `null`.
+* **missing**: boolean indicating whether the data corresponding to this category should be interpreted as missing.
+* **selected**: (optional) boolean indicating whether this category corresponds to a selected value for a dichotomized variable, i.e. part of a multiple response variable. Not required for regular categorical variables, and defaults to `false` if omitted. There also is no requirement for Categories in a multiple-response variable that only one Category be marked "selected".
 
 Categories are valid if:
 
 * Category names are unique within the set
 * Category ids are unique within the set
-* Category ids for user-defined categories are nonnegative. Negative ids are reserved for system missing reasons. See "missing_reasons" below.
-
-numeric_values need not be unique. There also is no requirement for Categories in a dichotomized subvariable that only one Category be marked "selected".
+* Category ids for user-defined categories are positive integers no greater than 32767. Negative ids are reserved for system missing reasons. See "missing_reasons" below.
 
 The order of the array defines the order of the categories, and thus the order in which aggregate data will be presented. This order can be changed by saving a reordered set of Categories.
 
@@ -260,19 +261,18 @@ An object with various members to control the display of Variable data:
 * show_codes: For categorical types only. If true, numeric values are shown.
 * show_counts: If true, show counts; if false, show percents.
 * include_missing: For categorical types only. If true, include missing categories.
-* column_width: For "untyped" Variables only. The selected display width of column data, in pixels, or None.
-* include_noneoftheabove: For multipleresponse types only. If true, display a "none of the above" category in the requested summary or analysis.
+* include_noneoftheabove: For multiple-response types only. If true, display a "none of the above" category in the requested summary or analysis.
 * geodata: A list of associations of a variable to Crunch geodatm entities. PATCH a variable entity amending the `view.geodata` in order to create, modify, or remove an association. An association is an object with required keys `geodatum`, `feature_key`, and optional `match_field`. The geodatum must exist; `feature_key` is the name of the property of each ‘feature’ in the geojson/topojson that corresponds to the `match_field` of the variable (perhaps a dotted string for nested properties; e.g. ”properties.postal-code”). By default, `match_field` is “name”: a categorical variable will match category names to the `feature_key` present in the given geodatum.
 
 ##### discarded
 
 Discarded is a boolean value indicating whether the variable should be viewed as part of the dataset. Hiding variables by setting discarded to True is like a soft, restorable delete method.
 
-Default is "False".
+Default is `false`.
 
 ##### private
 
-If True, the variable will not show in the common variable catalog; instead, it will be included in the private variables catalog. Such variables may have their ids included in the variable order.
+If `true`, the variable will not show in the common variable catalog; instead, it will be included in the personal variables catalog. 
 
 ##### missing_reasons
 

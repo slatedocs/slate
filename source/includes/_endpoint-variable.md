@@ -209,8 +209,8 @@ A POST to this resource must be a Shoji Entity with the following "body" attribu
  * If type is "multiple_response", the definition may include **selected_categories**: an array of category names present in the subvariables. This will mark the specified category or categories as the "selected" response in the multiple response variable. If no "selected_categories" array is provided, the new variable will use any categories already flagged as "selected": true. If no such category exists, the response will return a 400 status.
  * If "type" is "datetime": **resolution**: a string, such as "Y", "M", "D", "h", "m", "s", "ms", that indicates the unit size of the datetime data.
 
-See Variable Definitions for more details and examples of valid attributes, and
-Feature Guide: Arrays for more information on the various cases for creating
+See [Variable Definitions](#variable-definitions) for more details and examples of valid attributes, and
+[Feature Guide: Arrays](#array-variables) for more information on the various cases for creating
 array variables.
 
 It is encouraged, but not required, to include an "alias" in the body. If
@@ -283,7 +283,7 @@ makes changes to it.
 
 The allowed variables on this order are:
  * Any public variable available on the variable catalog
- * Any personal variable or subvariable for the logged user
+ * Any personal variable or subvariable for the authenticated user
  * Any subvariable of an array variable on the variable catalog
 
 #### GET
@@ -306,10 +306,10 @@ Behaves sames as PATCH.
 
 #### GET
 
-GET a `shoji:order` that contains the urls of the variables that have been 
+GET a `shoji:order` that contains the urls of the variables that have been
 designated as possible weight variables.
 
-#### PATCH 
+#### PATCH
 
 PATCH the `graph` with a list of the desired list of weight variables. The
 list will always be overwritten with the new values. This order can only
@@ -318,12 +318,12 @@ be a flat list of URLs, any nesting will be rejected with a 400 response.
 If the dataset has a default weight variable configured, it will always
 be present on the response even if it wasn't included on a PATCH request.
 
-Removing variables from this list will have the side effect of changing any 
+Removing variables from this list will have the side effect of changing any
 user's preference that had such variables set as their weight to the current
 dataset's default weight.
 
-Only numeric variables are allowed to be used as weight. If a variable of 
-another type is included in the list, the server will abort and return a 409 
+Only numeric variables are allowed to be used as weight. If a variable of
+another type is included in the list, the server will abort and return a 409
 response.
 
 
@@ -649,7 +649,7 @@ subvariable and added at the end.
 In the case of derived arrays, an attempt to PATCH this catalog will return a
 405 response. This is because the list of subvariables for this array is
 a function of its derivation expression. The correct way to make modifications
-to derived arrays' subvariables is by editing its `derivation` attribute with 
+to derived arrays' subvariables is by editing its `derivation` attribute with
 the desired expressions for each of them.
 
 #### Values
