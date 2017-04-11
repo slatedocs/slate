@@ -569,7 +569,7 @@ Traces that allocate significant amount of time to `Controller` or `Job` are goo
 
 ### Limits
 
-We limit the number of metrics that can be instrumented. Tracking too many unique metrics can import the performance of our UI. Do not dynamically generate metric types in your instrumentation (ie `self.class.instrument("user_#{user.id}", "generate") { ... })` as this can quickly exceed our rate limits.
+We limit the number of metrics that can be instrumented. Tracking too many unique metrics can impact the performance of our UI. Do not dynamically generate metric types in your instrumentation (ie `self.class.instrument("user_#{user.id}", "generate") { ... })` as this can quickly exceed our rate limits.
 
 ### Instrumenting method calls
 
