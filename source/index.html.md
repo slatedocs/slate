@@ -113,8 +113,8 @@ Parameter | Type   | Default | Description
 {
   "data": [],
   "paging": {
-    "start": 0,
-    "offset": 10,
+    "offset": 0,
+    "limit": 10,
     "total": 224
   },
   "success": [
@@ -141,8 +141,8 @@ Parameter | Type | Description
 --------- | ---- | -----------
 `data`<br>*optional* | *array* | Array of data objects returned in the result of the request
 `paging`<br>*optional* | *object* | Information about paged results
-`paging.start` | *integer* | Page starting element
-`paging.offset` | *integer* | Page size
+`paging.offset` | *integer* | Page starting element
+`paging.limit` | *integer* | Page size
 `paging.total` | *integer*| Total elements count
 `success`, `warning`, `error`<br>*optional* | *array* | Messages with information for the request. More than one type of message can be returned in a response. `success` and `error` can't come in the same response. `warning` can be combined with `success` or `error`.
 `meta` | *object* | Parameter containing information for the system.
