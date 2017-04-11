@@ -242,6 +242,10 @@ HTTP/1.1 200 OK
 
 This endpoint confirms a customer's phone number. Once a customer is created, a confirmation token is sent to the specified phone number and the customer has a short time window, about 5 minutes, to confirm it.
 
+<aside class="notice">
+  This will fail if the customer is already confirmed.
+</aside>
+
 ### HTTP Request
 
 `POST https://api.dirtylemon.com/v1/customers/<ID>/confirm`
@@ -274,6 +278,10 @@ HTTP/1.1 201 CREATED
 ```
 
 This endpoint generates a confirmation token and sends it to the specified phone number. Use it to handle situations when a customer fails to confirm his phone number in the allowed time window.
+
+<aside class="notice">
+  This will fail if the customer is already confirmed.
+</aside>
 
 ### HTTP Request
 
