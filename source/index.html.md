@@ -5,11 +5,13 @@ language_tabs:
   - json
 
 toc_footers:
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - © Nebeus 2017
 
 includes:
+  - accounts
   - card_to_card
   - making_requests
+  - buy_sell_bitcoin
 
 search: true
 ---
@@ -354,7 +356,8 @@ Example response
   }],
   "reserved_money": {
     "credit": 10,
-    "debit": 0.5
+    "debit": 0.5,
+    "currency_name": 'BTC'
   }
 }
 ```
@@ -420,7 +423,8 @@ Possible verification statuses for identity and residency address: not_verified,
   "year": {
     "credit": 0.02455,
     "debit": 0.002163
-  }
+  },
+  "currency_name": 'BTC'
 }
 ```
 
