@@ -1099,7 +1099,8 @@ Example response
         },
         "im_status": "away",
         "id": 8,
-        "name": "Russian Support" 
+        "name": "Russian Support",
+        "email": "russian@support.ru"
     }
 ]
 ```
@@ -1129,6 +1130,7 @@ last_message | last message data | *
 im_status | status of chat member | 'online', 'offline' or 'away'
 id | user's ID | *
 name | name of user | *
+email | user's email | *
 
 # Get history of messages
 
