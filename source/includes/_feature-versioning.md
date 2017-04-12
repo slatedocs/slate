@@ -156,8 +156,8 @@ its value where the asynchronous job's status can be observed.
 
 A common pattern when collaborating on a dataset is for one person to make changes on their own and then, when all is ready, share the whole set of changes back to the other collaborators. Crunch implements this with two mechanisms: the ability to "fork" a dataset to make a copy, and then "merge" any changes made to it back to the original dataset.
 
-To fork a dataset, POST a new fork entity to the dataset's forks catalog. The 201 response will include a Location header with the URL of the new dataset that has been forked from the current one.
-
+To fork a dataset, POST a new fork entity to the dataset's forks catalog.
+ 
 ```python
 >>> ds.forks.index
 {}
@@ -167,6 +167,9 @@ True
 >>> ds.forks.index[forked_ds.self]["name"]
 "My fork"
 ```
+
+The response will be a 201 response if the fork could happen in the allotted time limit for the request or a 202 if the fork requires too much time and is going to continue in background.
+Both cases will include a Location header with the URL of the new dataset that has been forked from the current one.
 
 ```http
 POST /api/datasets/{id}/forks/ HTTP/1.1
@@ -183,6 +186,31 @@ Content-Length: 231
 
 HTTP/1.1 201 Created
 Location: https://app.crunch.io/api/datasets/{forked_id}/
+```
+
+In case of a 202, in addition to the Location headers with the URL of the fork that is going to be created, the response will contain a Shoji view with the url of the endpoint that can be polled
+to track fork completion
+
+```http
+POST /api/datasets/{id}/forks/ HTTP/1.1
+Host: app.crunch.io
+Content-Type: application/json
+Content-Length: 231
+
+{
+    "element": "shoji:entity",
+    "body": {"name": "My fork"}
+}
+
+----
+
+HTTP/1.1 202 Accepted
+Location: https://app.crunch.io/api/datasets/{forked_id}/
+...
+{
+    "element": "shoji:view",
+    "value": "/progress/{progress_id}/"
+}
 ```
 
 The forked dataset can then be viewed and altered like the original; however, those changes do not alter the original until you merge them back with a POST to `datasets/{id}/actions/`.
