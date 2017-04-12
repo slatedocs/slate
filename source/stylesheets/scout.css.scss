@@ -1,0 +1,65 @@
+/** General Scout Company styles **/
+
+$orange: #f0592a;
+
+.content .terminal {
+  font-weight: normal;
+  font-family: "Inconsolata", monaco, "lucida sans typewriter", "lucida console", "courier new";
+  font-size: 12px;
+  color: #fff;
+  line-height: 150%;
+  background-color: #000;
+  margin: 5px 0px 5px 0px;
+  padding: 10px;
+  overflow-x: auto;
+  overflow-y: auto;
+  text-align: left;
+  border-radius: 3px;
+}
+
+.install {
+  margin-left: 28px;
+}
+
+.install p:not(.big) {
+  font-size: 16px;
+  // color: gray;
+  margin-top: 30px;
+  &.smaller {
+    color: gray;
+    font-size: 14px;
+    margin: 10px 0 4px 0;
+    padding: 0;
+  }
+  &.instruct {
+    font-weight: bold;
+  }
+}
+
+.content .terminal {
+  width: 70%;
+  span {
+    color: yellow;
+  }
+}
+
+p.requirements {
+  font-style: italic;
+  font-size: 14px;
+  color: gray;
+}
+
+.step {
+  background: $orange;
+  border-radius: 100%;
+  color: #fff;
+  display: inline-block;
+  font-size: 13px;
+  height: 20px;
+  line-height: 20px;
+  padding: 2px;
+  text-align: center;
+  width: 20px;
+  margin-right: 10px;
+  font-weight: normal;
+}

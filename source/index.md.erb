@@ -2,8 +2,8 @@
 title: Help Docs ~ Scout APM
 
 includes:
-  - configuration
-  - troubleshooting
+  - ruby
+  - elixir
   - features
   - reference
 
@@ -24,13 +24,13 @@ Scout Application Monitoring is a lightweight, production-grade application moni
 
 Here's an overview of the key functionality in our application monitoring service:
 
-### The Agent
+### Agents
 
-We currently monitor Ruby on Rails apps, with beta support for Java ([see java instructions here](#java-applications)). Support for other languages and frameworks is under development. 
+We support Ruby on Rails apps and have beta support for Elixir.
 
 Our agent is designed to run in production environments and has low overhead. Every minute, the agent transmits metrics to our service over SSL. 
 
-There's nothing to install on your servers: just include our Ruby Gem within your Rails app. You'll quickly see actionable metrics from the [common libraries we instrument](#instrumented-libraries).
+There's nothing to install on your servers.
 
 ### User Interface
 
