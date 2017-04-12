@@ -8,6 +8,8 @@ Our Elixir agent supports Phoenix 1.2.0+ and Elixir 1.3+.
 
 ## Installation
 
+Tailored instructions are provided within our user interface. General instructions:
+
 <div class="install">
 
  <p class="instruct">
@@ -36,7 +38,7 @@ Our Elixir agent supports Phoenix 1.2.0+ and Elixir 1.3+.
     <p class="instruct">
       <span class="step">B</span><span class="glyphicon glyphicon-download"></span> Download your customized config file, placing it at <code>config/scout_apm.exs</code>.
     </p>
-    <p class="smaller">Replace <code>"YourApp"</code> with the app name you'd like to appear within Scout.
+    <p class="smaller">Your customized config file is available within your Scout account. Inside the file, replace <code>"YourApp"</code> with the app name you'd like to appear within Scout.
     </p>
     <p class="instruct">
       <span class="step">C</span>Integrate into your Phoenix app.

@@ -18,7 +18,7 @@ Our Ruby agent supports Ruby on Rails 2.2+ and Ruby 1.8.7+ and the following app
 
 Tailored instructions are provided within our user interface. General instructions:
 
-<table class="help install">
+<table class="help install install_ruby">
   <tbody>
 	  <tr>
       <td>
@@ -39,7 +39,9 @@ bundle install
     </tr>
     <tr>
      	<td><span class="step">2</span></td>
-     	<td><p>Download your customized config file, placing it at <code>config/scout_apm.yml</code>.</p></td>
+     	<td><p>Download your customized config file, placing it at <code>config/scout_apm.yml</code>.</p>
+        <p class="smaller">Your customized config file is available within your Scout account.</p>
+      </td>
     </tr>
     <tr>
      	<td><span class="step">3</span></td>
