@@ -28,7 +28,9 @@ Note that the status code will always be 202 for asynchronous or 201 for synchro
 
 #### Appending a dataset
 
-Must contain the URL of a dataset that the current user can read. This action will create a Source entity mapping to such dataset. Its name and description will match the dataset's name and description respectively at that moment.
+Must contain the URL of a dataset that the current user can read. This action 
+will create a Source entity mapping to such dataset. Its name and description 
+will match the dataset's name and description respectively at that moment.
 
 ```json
 {
@@ -39,20 +41,54 @@ Must contain the URL of a dataset that the current user can read. This action wi
 }
 ```
 
-If you wish to include only certain variables from the source dataset you're appending from, you can include an ``function`` in the body of the entity.  The function should be a ZCL function name.  Its arguments should be present in the ``args`` key in the body.
+If you wish to include only certain variables from the source dataset you're 
+appending from, you can include an ``where`` in the body of the entity.  The
+ function should be a `select` function name.  Its arguments should be present 
+ in the key in the body.
 
 ```json
 {
   "element": "shoji:entity",
   "body": {
-      "dataset": "<url>"
-      "function":"select",
-      "args": [
+      "dataset": "<url>",
+      "where": {
+          "function":"select",
+          "args": [
                 {"map":
-                    {"000001": {'variable': "<url>"},
-                     "000002": {'variable': "<url>"}}
+                    {"000001": {"variable": "<url>"},
+                     "000002": {"variable": "<url>"}}
                 }
-                ],
+          ]
+      }
+  }
+}
+```
+
+This can also be combined with a `filter` key to select only a subset of rows
+to be included. The filter must be valid on variables on the dataset to be 
+appended.
+
+```json
+{
+  "element": "shoji:entity",
+  "body": {
+      "dataset": "<url>",
+      "where": {
+          "function":"select",
+          "args": [
+                {"map":
+                    {"000001": {"variable": "<url>"},
+                     "000002": {"variable": "<url>"}}
+                }
+          ]
+      },
+      "filter": {
+          "function":"<",
+          "args": [
+                {"variable": "<url>"},
+                {"value": "<value>"}
+          ]
+      }  
   }
 }
 ```
