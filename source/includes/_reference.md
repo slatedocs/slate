@@ -1,3 +1,14 @@
+# Service Status
+
+We're transparent about our uptime and service issues. If you appear to be experiencing issues with our service:
+
+* [Check out status site](http://status.scoutapp.com). You can subscribe to service incidents. 
+* [Email us](mailto:support@scoutapp.com)
+
+# Contacting Support
+
+Don't hesitate to contact us at [support@scoutapp.com](mailto:support@scoutapp.com) any issues. We typically respond in a couple of hours during the business day.
+
 # Reference
 
 ## How we collect metrics
