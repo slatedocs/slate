@@ -1,8 +1,22 @@
 # Submissão de Pagamentos
 
-Para integrar sua Loja Virtual ou Site ao iPag, envie os seguintes parâmetros via POST ao sistema iPag para a URL http://sandbox.ipag.com.br/pagamento
+Para integrar sua Loja Virtual ou Site ao iPag, envie os seguintes parâmetros via POST ao sistema iPag
 
-> Exemplo de cURL
+##Endpoint
+
+**Sandbox**
+
+`http://sandbox.ipag.com.br/`
+
+**Producão**
+
+`Faça a requisição para suporte@ipag.com.br`
+
+##Realizar Pagamento (Criar transação)
+
+`POST http://sandbox.ipag.com.br/pagamento`
+
+> Exemplo via PHP (cURL)
 
 ```php
 <?php
@@ -97,6 +111,10 @@ Parâmetro | size | type | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
 gera_token_cartao | 5 | boolean | Obrigatório na criação do pedido | Utilizado para realizar a transação em que os dados do Cartão ficam armazenado no iPag. Este parâmetro é utilizado para implementar o recurso de Pagamento com 1 Click
 token_cartao | 37 | string | Obrigatório na utilização do token | Quando o cliente fizer uma compra utilizando a opção de Pagamento com 1 Click, este parâmetro deverá ser obrigatoriamente enviado. Neste caso, os parâmetros a seguir não devem ser enviados: nome_cartao, num_cartao, metodo, cvv_cartao, mes_cartao, ano_cartao
+
+<aside class="info">
+<b>Para compras via OneClick e Assinaturas é necessário entrar em contato com a Adquirente e solicitar a liberação de transações sem a necessidade do CVV (Código de Segurança do Cartão).</b>
+</aside>
 
 ## Campos adicionais para recorrência
 
@@ -226,6 +244,10 @@ O <b>trial_ciclos</b> é calculado da seguinte forma: <i>primeira cobrança + pe
 </aside>
 
 ### Importante
+
+<aside class="info">
+<b>Para compras via OneClick e Assinaturas é necessário entrar em contato com a Adquirente e solicitar a liberação de transações sem a necessidade do CVV (Código de Segurança do Cartão). Esse tipo de transação não informa esse dado, por esse motivo é necessário a liberação.</b>
+</aside>
 
 Ao criar uma transação recorrente, **certifique-se** de informar o profile_id na URL de retorno. (profile_id é um número único que deve ser gerado pela loja e será a referência da recorrência para a loja e iPag). A URL de retorno para este caso deve ter a seguinte estrutura:
 
