@@ -60,15 +60,8 @@ defmodule HeroReview.Web do
     quote do
       use Phoenix.Controller
       <span>use ScoutApm.Instrumentation</span>
-      <span># alias YourApp.Repo</span>
-      <span>alias YourApp.Repo.ScoutApm, as: Repo</span>
       ...</pre>
-    <p class="smaller"><code>lib/your_app/repo.ex</code>:
-    </p>
-    <pre class="terminal"># lib/your_app/repo.ex
-defmodule YourApp.Repo do
-  use Ecto.Repo, otp_app: :your_app
-  <span>use ScoutApm.Instruments.Ecto</span></pre>
+  
     <p class="instruct">
       <span class="step">D</span>Restart your app.
       <div class="terminal">
