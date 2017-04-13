@@ -2,7 +2,7 @@ sudo: false
 language: ruby
 cache: bundler
 install:
-  - git fetch --unshallow
+  - git fetch --all --prune
   - bundle install
 script:
   - "./build.sh"
