@@ -27,9 +27,9 @@ function main {
     git add examples
     git add index.html
     echo "Committing them..."
-    git commit -m "Updating gh-pages"
+    git commit -m "Updating gh-pages" || true
     echo "Push!"
-    git push --quiet origin gh-pages > /dev/null 2>&1
+    git push --quiet origin gh-pages > /dev/null 2>&1 || true
 }
 
 main
