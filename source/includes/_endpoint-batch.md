@@ -41,8 +41,11 @@ will match the dataset's name and description respectively at that moment.
 }
 ```
 
-Note that by default only public and not hidden variables from the dataset will
-be included.
+The variables from the incoming dataset to be included by default will depend
+on the permissions the authenticated user on it. Dataset editors will
+include all public and hidden (`discarded = true`) variables, viewers will
+ only include public variables that aren't hidden and are not able to request
+ them on their `where` expression.
 
 If you wish to include only certain variables from the source dataset you're 
 appending from, you can include an ``where`` in the body of the entity.  The
@@ -67,9 +70,9 @@ appending from, you can include an ``where`` in the body of the entity.  The
 }
 ```
 
-Editors can include hidden variables to be included, else users with view 
-access on the dataset to be appended can request their personal variables to
-be included.
+Editors can select hidden variables to be included, else users with view 
+access on the dataset to be appended can only request their personal variables 
+to be included.
 
 
 This can also be combined with a `filter` key to select only a subset of rows
