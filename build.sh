@@ -29,7 +29,7 @@ function main {
     echo "Committing them..."
     git commit -m "Updating gh-pages"
     echo "Push!"
-    git push
+    git push origin gh-pages
 }
 
 main

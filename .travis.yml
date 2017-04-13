@@ -1,13 +1,18 @@
 branches:
   only:
-    - master
+  - master
 sudo: false
+env:
+  global:
+    secure: nn+19YVGmvIS9Dz/JitsxU4W4U/rzpS3g8+HH0SULRvBiUCwvBxPEFF6p9O2Cu6UMS1cso4PFnMCvl+wPj8FL/2TUELCkTUJxBG3IbOOMZuI7XM3oOkL5mTkXGUGFQ2S5/Vn7Rw3p9HkE5NOWWz2h2/aSIxIEgCnJUtYIwPmFGpQmzh7NnZXJhxc7FxhFXhhTMvsKnktCBLftjum77sCh2AVKiOUAaO3yT8FznFWfmdZIh7hVX43d+oeX5cdiAqckrOibN9HcAi6HRHGc3+wmhjIPJ9qAsK+wfDTfcBMceNRSkViwXCRTx3Id8IIg3psfCrVNI1SyAR2xXe6Dx3Fv/Jum55AXKtphijuFB1C2eqf85I9b9aKOuDqh3N24FQ8c4vEYtD4ANngJb9WB0MeGt31UDErXDauAgvLf7XB1I83HIaGQqBCLGkO0YEVa/EalHZMjI1vs83sRaE1BqXVWMTwbBQcVEf72VOOJokNn0mpOFhL8kdJse1mCIPU8+rnGNTbD62aY0zOD4TukXCr4/RXQHywCeG0yZvvAsGyClewF1RLLz5fL2sMpZlM6ajNHwluB/WjfzbOrwpKIuYAjJYWBqLCnw9++iGBGg0yRR4F51151oewe2qB2kQhYG47Jj8RC9qsveTfZvnBSkVLuk1zxBzTcnKj1ztNY016Z4M=
 language: ruby
 cache: bundler
 install:
-  - git clone https://github.com/$TRAVIS_REPO_SLUG.git $TRAVIS_REPO_SLUG
-  - cd $TRAVIS_REPO_SLUG
-  - git checkout -qf $TRAVIS_BRANCH
-  - bundle install
+- git clone https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG.git $TRAVIS_REPO_SLUG
+- cd $TRAVIS_REPO_SLUG
+- git checkout -qf $TRAVIS_BRANCH
+- git config user.email "systems+crunchbot@crunch.io"
+- git config user.name "Crunchbot"
+- bundle install
 script:
-  - "./build.sh"
+- ./build.sh
