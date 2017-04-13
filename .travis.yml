@@ -1,8 +1,13 @@
+branches:
+  only:
+    - master
 sudo: false
 language: ruby
 cache: bundler
 install:
-  - git fetch --all --prune
+  - git clone https://github.com/$TRAVIS_REPO_SLUG.git $TRAVIS_REPO_SLUG
+  - cd $TRAVIS_REPO_SLUG
+  - git checkout -qf $TRAVIS_BRANCH
   - bundle install
 script:
   - "./build.sh"
