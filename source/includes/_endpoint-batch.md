@@ -4,7 +4,9 @@
 
 `/datasets/{id}/batches/`
 
-A GET on this resource returns a Shoji Catalog enumerating the batches present in the Dataset. Each tuple in the index includes a "status" member, which may be one of "analyzing", "conflict", "error", "importing", "imported", or "appended".
+#### GET
+
+A GET request on this resource returns a Shoji Catalog enumerating the batches present in the Dataset. Each tuple in the index includes a "status" member, which may be one of "analyzing", "conflict", "error", "importing", "imported", or "appended".
 
 ```json
 {
@@ -18,19 +20,19 @@ A GET on this resource returns a Shoji Catalog enumerating the batches present i
 }
 ```
 
-A POST to this resource adds a new batch. The payload can be be a Crunch Table (with variable metadata, row data, or both), the URI of a Source, or the URI of another dataset (provided that the authenticated user has view permissions). All added rows regardless of source obtain the same batch id. A 201 indicates success, and returns the URL of the new batch in the Location header.
+#### POST
 
-If the append operation takes more than two minutes, 202 is returned instead and the batch will continue being appended in the background. The Location header is still returned, pointing to the new batch's URL. The client can GET that URL to query its status.
+A POST to this resource adds a new batch. The request payload can contain (1) the URL of another Dataset, (2) the URL of a Source object, or (3) a Crunch Table definition with variable metadata, row data, or both.
 
-Batches are created in `analyzing` status and will be advanced through `importing`, `imported`, and `appended` status if there are no problems. If there was a problem in processing it, its status will be `conflict` or `error`.
+A successful request will return either 201 status, if sufficiently fast, or 202, if the task is large enough to require processing outside of the request cycle. In both cases, the newly created batch entity's URL is returned in the Location header. The 202 response contains a body with a Progress resource in it; poll that URL for updates on the completion of the append. See [Progress](#progress).
 
-Note that the status code will always be 202 for asynchronous or 201 for synchronous creation of the batch whether there were conflicts or not. So you need to GET the new batch's URL to see if the data is good to go (status `appended`).
+Batches are created in `analyzing` state and will be advanced through `importing`, `imported`, and `appended` states if there are no problems. If there was a problem in processing it, its status will be `conflict` or `error`. Note that the response status code will always be 202 for asynchronous or 201 for synchronous creation of the batch whether there were conflicts or not. So you need to GET the new batch's URL to see if the data is good to go (status `appended`).
 
-#### Appending a dataset
+If an append is already in process on the dataset, the POST request will return 409 status.
 
-Must contain the URL of a dataset that the current user can read. This action 
-will create a Source entity mapping to such dataset. Its name and description 
-will match the dataset's name and description respectively at that moment.
+##### Appending a dataset
+
+To append a Dataset, POST a Shoji Entity with a dataset URL. You must have at least view (read) permissions on this dataset. Internally, this action will create a Source entity pointing to that dataset.
 
 ```json
 {
@@ -42,15 +44,11 @@ will match the dataset's name and description respectively at that moment.
 ```
 
 The variables from the incoming dataset to be included by default will depend
-on the permissions the authenticated user on it. Dataset editors will
-include all public and hidden (`discarded = true`) variables, viewers will
- only include public variables that aren't hidden and are not able to request
- them on their `where` expression.
+on the current user's permissions. Those with edit permissions on the incoming dataset will
+append all public and hidden (`discarded = true`) variables. Those with only view permissions will
+ just include public variables that aren't hidden.
 
-If you wish to include only certain variables from the source dataset you're 
-appending from, you can include an ``where`` in the body of the entity.  The
- function should be a `select` function name.  Its arguments should be present 
- in the key in the body.
+To append only certain variables from the incoming dataset, include an `where` attribute in the entity body. See [Frame functions](#frame-functions) for how to compose the `where` expression.
 
 ```json
 {
@@ -70,14 +68,9 @@ appending from, you can include an ``where`` in the body of the entity.  The
 }
 ```
 
-Editors can select hidden variables to be included, else users with view 
-access on the dataset to be appended can only request their personal variables 
-to be included.
+Users with edit permissions on the incoming dataset can select hidden variables to be included, but viewers cannot. Editors and viewers can however both specify their personal variables to be included.
 
-
-This can also be combined with a `filter` key to select only a subset of rows
-to be included. The filter must be valid on variables on the dataset to be 
-appended.
+To select a subset of rows to append, include an `filter` attribute in the entity body, containing a Crunch filter expression.
 
 ```json
 {
@@ -105,9 +98,9 @@ appended.
 ```
 
 
-#### Appending a source
+##### Appending a source
 
-Must contain the URL of a source that a user can read.
+POST a Shoji Entity with a Source URL. The user must have permission to view the Source entity. Use Source appending to send data in CSV format that matches the schema of the Dataset.
 
 ```json
 {
@@ -118,7 +111,7 @@ Must contain the URL of a source that a user can read.
 }
 ```
 
-#### Appending a Crunch Table
+##### Appending a Crunch Table
 
 The variables IDs must match those of the target dataset since their types will be matched based on ID. The data is expected to match the target dataset's variable types. This action will create a new Source entity, its name and description will match those provided on the JSON response, if not provided they'll default to empty string.
 
@@ -134,12 +127,12 @@ The variables IDs must match those of the target dataset since their types will 
 }
 ```
 
-#### Managing Append Failures
+##### Managing Append Failures
 
 In case of failures while appending the batch, the dataset will be automatically reverted
 back to the state it was before the append and the batch is automatically deleted.
 
-This behaviour can be changed by providing a `autorollback: false` value into the POST
+This behavior can be changed by providing a `autorollback: false` value into the POST
 performed to append the data. When `autorollback: false` is provided a savepoint to which
 user can revert to is still created, but the dataset is left in errored state for inspection.
 The user can then manually revert to the savepoint and delete the associated batch.
@@ -185,7 +178,7 @@ the batches compare endpoint.
 GET /datasets/4bc6af/batches/compare/?dataset=http://app.crunch.io/api/datasets/3e2cfb/
 ```
 
-The response will contain a conflicts key that can contain either `current`, 
+The response will contain a conflicts key that can contain either `current`,
 `incoming` or `union` depending on the type and location of the problem. The response status
 will always be 200, with conflicts, described below, or an empty body.
 
@@ -222,7 +215,7 @@ The possible keys in the conflicts and verifications made are:
 * **Subvariable in different arrays per dataset**: If a subvariable is used for different arrays that are impossible to match, it will be reported here. User action will be needed to fix this.
 
 For each of these, a list of variable IDs will be made available indicating the
-conflicting entities. _Union_ conflicting ids generally refer to variables in 
+conflicting entities. _Union_ conflicting ids generally refer to variables in
 the _current_ dataset and may be referenced by alias in _incoming_.
 
 
@@ -270,7 +263,7 @@ Each batch has a "conflicts" member describing any unresolvable differences foun
 }
 ```
 
-Each conflict has four attributes: `metadata` about the variable on the target dataset (unless it is a variable that only exists on the source dataset), `source_id` and `source_metadata`, which describe the corresponding variable in the source frame (if any), and a `conflicts` member. The `conflicts` member contains an array with a list of individual conflicts that indicate what situations were found during batch preparation. 
+Each conflict has four attributes: `metadata` about the variable on the target dataset (unless it is a variable that only exists on the source dataset), `source_id` and `source_metadata`, which describe the corresponding variable in the source frame (if any), and a `conflicts` member. The `conflicts` member contains an array with a list of individual conflicts that indicate what situations were found during batch preparation.
 
 If there are conflicts in your batch, address the conflicting issues in your datasets, DELETE the batch entity from the failed append attempt, and POST a new one.
 
