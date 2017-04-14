@@ -111,21 +111,21 @@ HTTP/1.1 201 CREATED
 
 ```json
 {
-  "id": "fffd7e80-1691-41f5-8946-9deeaf0b8640",
+  "id": "32139dfd-87c3-4552-8e91-0d9de718bff6",
   "phone_number": null,
-  "unconfirmed_phone_number": "+13333333333",
-  "country_code": "US",
-  "email": "customer@example.com",
-  "first_name": "Yogi",
-  "last_name": "Berra",
-  "confirmation_token": null,
-  "billing_address_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/addresses/3412e1d6-2208-4b54-9ae9-a479ed663cde/edit?t=6959409667137177",
-  "shipping_address_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/addresses/a78c2359-4388-4ed1-87cb-1caa19d80507/edit?t=6959409667137177",
-  "card_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/card/edit?t=6959409667137177",
+  "unconfirmed_phone_number": "+14185810827",
+  "country_code": "CA",
+  "email": null,
+  "first_name": null,
+  "last_name": null,
+  "confirmation_token": "152200",
+  "billing_address_url": null,
+  "shipping_address_url": null,
+  "card_url": "/customers/32139dfd-87c3-4552-8e91-0d9de718bff6/card/edit?t=6959409667563155",
   "confirmed_at": null,
   "confirmation_sent_at": null,
-  "created_at": "2016-09-02T09:40:06.004Z",
-  "updated_at": "2016-09-02T09:40:06.004Z"
+  "created_at": "2017-04-14T18:48:52.367Z",
+  "updated_at": "2017-04-14T18:48:52.967Z"
 }
 ```
 
@@ -222,21 +222,21 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "id": "fffd7e80-1691-41f5-8946-9deeaf0b8640",
-  "phone_number": "+13333333333",
-  "unconfirmed_phone_number": "+13333333333",
-  "country_code": "US",
-  "email": "customer@example.com",
-  "first_name": "Yogi",
-  "last_name": "Berra",
-  "confirmation_token": "123456",
-  "billing_address_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/addresses/3412e1d6-2208-4b54-9ae9-a479ed663cde/edit?t=6959409667137177",
-  "shipping_address_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/addresses/a78c2359-4388-4ed1-87cb-1caa19d80507/edit?t=6959409667137177",
-  "card_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/card/edit?t=6959409667137177",
-  "confirmed_at": "2016-09-02T09:40:08.004Z",
-  "confirmation_sent_at": "2016-09-02T09:40:07.004Z",
-  "created_at": "2016-09-02T09:40:06.004Z",
-  "updated_at": "2016-09-07T02:12:02.012Z"
+  "id": "32139dfd-87c3-4552-8e91-0d9de718bff6",
+  "phone_number": "+14185810827",
+  "unconfirmed_phone_number": "+14185810827",
+  "country_code": "CA",
+  "email": null,
+  "first_name": null,
+  "last_name": null,
+  "confirmation_token": "152200",
+  "billing_address_url": null,
+  "shipping_address_url": null,
+  "card_url": "/customers/32139dfd-87c3-4552-8e91-0d9de718bff6/card/edit?t=6959409667561920",
+  "confirmed_at": "2017-04-14T18:53:59.246Z",
+  "confirmation_sent_at": null,
+  "created_at": "2017-04-14T18:48:52.367Z",
+  "updated_at": "2017-04-14T18:53:59.253Z"
 }
 ```
 
