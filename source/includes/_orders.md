@@ -150,13 +150,22 @@ An order object.
 const dirtylemon = require('dirtylemon');
 
 dirtylemon.orders.create({CUSTOMER_ID}, {
+  currency: 'usd',
+  coupon: '20%OFF',
+  shipping: {
+    name: 'Philippe Dionne',
+    street1: '1-60 crémazie ouest',
+    city: 'Quebec',
+    state: 'Quebec',
+    country: 'Canada',
+    zip: 'g1r1x3'
+  },
   line_items: [
     {
       quantity: 1
       sku: '868137000115'
     }
-  ],
-  coupon: '20%OFF'
+  ]
 })
 ```
 
@@ -168,36 +177,50 @@ HTTP/1.1 201 CREATED
 
 ```json
 {
-  "id": "ffffee73-013b-4aa2-91e1-bdefd0b2c41c",
-  "customer_id": "634f65a5-8e16-4afb-9e8b-714b8bb6eb7f",
-  "state": "created",
-  "currency": null,
+  "id": "2c824c26-967d-497e-a29a-1d1dfab89281",
+  "customer_id": "be224ef0-f6da-4518-8cbe-64572cd6d447",
+  "status": "created",
+  "currency": "usd",
   "tax": 0,
   "total": 6500,
   "shipping_fee": 0,
   "preordered": false,
   "coupon": null,
-  "shipping_label": {
-    "name": "David Chang",
+  "shipping": {
+    "name": "Philippe Dionne",
     "company": null,
-    "phone_number": null,
+    "phone_number": "14185800893",
     "email": null,
-    "street1": "128 Lafayette St",
+    "street1": "1-60 crémazie ouest",
     "street2": null,
     "street3": null,
-    "city": "New York",
-    "state": "New York",
-    "country": "US",
-    "zip": "10013"
+    "city": "Quebec",
+    "state": "Quebec",
+    "country": "Canada",
+    "zip": "g1r1x3"
   },
-  "line_items": [],
+  "line_items": [
+    {
+      "id": "645ef698-77a3-44ea-b8f0-734682804969",
+      "description": "1 six-pack of [skin+hair]",
+      "amount": 6500,
+      "quantity": 1,
+      "sku": {
+        "id": "868137000115",
+        "currency": "usd",
+        "price": 6500
+      },
+      "created_at": "2017-04-14T21:42:36.560Z",
+      "updated_at": "2017-04-14T21:42:36.560Z"
+    }
+  ],
   "shipments": [],
-  "created_at": "2017-02-26T17:16:52.619Z",
-  "updated_at": "2017-04-05T20:24:34.842Z"
+  "created_at": "2017-04-14T21:42:36.518Z",
+  "updated_at": "2017-04-14T21:42:37.312Z"
 }
 ```
 
-This endpoint creates an order. The `shipping_label` is copied from the customer's current shipping address.
+This endpoint creates an order.
 
 ### HTTP Request
 
@@ -207,8 +230,31 @@ This endpoint creates an order. The `shipping_label` is copied from the customer
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
-| line_items | yes | List of at least one `line_item` objects. Both `quantity` and `sku` attributes are required. |
+| currency | yes | String |
 | coupon | no | String |
+| shipping | no | A `Shipping` object. The customer's shipping informations will be used by default. |
+| line_items | yes | List of at least one `Line item` objects. |
+
+### Shipping object
+
+| Attribute | Type | Required |
+| --------- | -------- | ------------ |
+| name | String | yes |
+| company | String | no |
+| street1 | String | yes |
+| street2 | String | no |
+| street3 | String | no |
+| city | String | yes |
+| state | String | yes |
+| country | String | yes |
+| zip | String | yes |
+
+### Line item object
+
+| Attribute | Type | Required |
+| --------- | -------- | ------------ |
+| quantity | Numeric | yes |
+| sku | String | yes |
 
 ### Returns
 
