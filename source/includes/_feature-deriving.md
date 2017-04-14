@@ -575,7 +575,7 @@ Given a variable such as:
 }
 ```
 
-POST'ing to the private variables catalog a Shoji Entity containing a ZCL function like:
+`POST`ing to the private variables catalog a Shoji Entity containing a ZCL function like:
 
 ```json
 {
@@ -594,7 +594,7 @@ POST'ing to the private variables catalog a Shoji Entity containing a ZCL functi
 }
 ```
 
-Results in a private categorical variable containing sentiment classification counts
+Will result in a new categorical variable, where for each row the text variable is classified as “Negative”, “Neutral”, or “Positive” using the [VADER](https://github.com/cjhutto/vaderSentiment) English social-media-tuned lexicon.
 
 ### Other transformations
 
