@@ -13,13 +13,13 @@
 }
 ```
 
-Just like entity values, notes are used to keep track of state on an entity. They could be
+Just like field values, notes are used to keep track of state on an entity. They could be
 notes manually taken from due diligence, a meeting, or a call. Or, notes could be used to
-store logged activity from a prospect's visit to your website. 
+store logged activity from a prospect's visit to your website.
 
 ## The note resource
-A note object contains `content`, which is a string containing the note body. In 
-addition, a note can be associated with multiple people or organizations. Each person or 
+A note object contains `content`, which is a string containing the note body. In
+addition, a note can be associated with multiple people or organizations. Each person or
 organization will display linked notes on their profiles.
 
 Attribute | Type | Description

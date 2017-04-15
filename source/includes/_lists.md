@@ -9,7 +9,7 @@ people, or organization in a list of organizations.
 
 Lists in Affinity can also have any number of custom attributes. These attributes allow
 you to fully customize your workflow and model the data for your use case. We call these
-attributes "entity attributes", and each entity attribute represents a column in the
+attributes "fields", and each fields represents a column in the
 spreadsheet representation.
 
 As a simple example:
@@ -17,8 +17,8 @@ A list called "Important People" might have 25 people in it. Two of the columns 
 sheet could be "Title" and "Industry".
 
 This list would have 25 "list entries". Each list entry would be associated with a single
-person entity. Furthermore, the list would have two "entity attributes" with the names
-"Title" and "Industry". 
+person entity. Furthermore, the list would have two "fields" with the names
+"Title" and "Industry".
 
 ## The list resource
 
@@ -109,7 +109,7 @@ curl "https://api.affinity.vc/lists/450?key=<API-KEY>"
   "public": true,
   "owner_id": 38706,
   "list_size": 67
-  "entity_attributes": [
+  "fields": [
     {
       "id": 1625,
       "name": "Status",
@@ -148,5 +148,5 @@ list_id | integer | true | The unique id of the list object to be retrieved.
 
 ### Returns
 The details of the list resource corresponding to the list id specified in the path
-parameter. These details include an array of the entity attributes that are specific
+parameter. These details include an array of the fields that are specific
 to this list. An appropriate error is returned if an invalid list is supplied.

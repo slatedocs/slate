@@ -9,8 +9,8 @@ list has a given email address.
 
 1. If you are looking to add or remove a person from a list, please check out the
 [List Entries](#list-entries) section of the API.
-2. If you are looking to modify a person's entity values (one of the cells on Affinity's
-spreadsheet), please check out the [Entity Values](#entity-values) section of the API.
+2. If you are looking to modify a person's field values (one of the cells on Affinity's
+spreadsheet), please check out the [Field Values](#field-values) section of the API.
 
 ## The person resource
 > Example Response
@@ -199,7 +199,7 @@ Creates a new person with the supplied parameters.
 
 1. If one of the supplied email addresses conflicts with another person object, this
 request will fail and an appropriate error will be returned.
-2. If you are looking to add an existing person to a list, please check the [List Entries](#list-entries) section 
+2. If you are looking to add an existing person to a list, please check the [List Entries](#list-entries) section
 of the API.
 
 ### Payload Parameters
@@ -249,11 +249,11 @@ that need to be changed must be passed in.
 
 **Note:**
 
-If you are looking to add an existing person to a list, please check the 
+If you are looking to add an existing person to a list, please check the
 [List Entries](#list-entries) section of the API.
 
-If you are trying to add a new phone number, email, or organization to a person, the 
-existing values for `phone_numbers`, `emails` and `organization_ids` must also be 
+If you are trying to add a new phone number, email, or organization to a person, the
+existing values for `phone_numbers`, `emails` and `organization_ids` must also be
 supplied as parameters.
 
 ### Path Parameters
@@ -295,8 +295,8 @@ curl "https://api.affinity.vc/persons/860197?key=<API-KEY>" \
 
 Deletes a person with a specified `person_id`.
 
-**Note:** This will also delete all the entity values, if any, associated with the person.
-Such entity values exist linked to either global or list-specific entity attributes.
+**Note:** This will also delete all the field values, if any, associated with the person.
+Such field values exist linked to either global or list-specific fields.
 
 ### Path Parameters
 
@@ -307,18 +307,18 @@ person_id | integer | true | The unique id of the person that needs to be delete
 ### Returns
 `{success: true}`.
 
-## Get global entity attributes
+## Get global fields
 
-`GET /persons/entity-attributes`
+`GET /persons/fields`
 
-Fetches an array of all the global entity attributes that exist on people. If you aren't sure
-about what entity attributes are, please read the [entity attributes](#entity-attributes) 
+Fetches an array of all the global fields that exist on people. If you aren't sure
+about what fields are, please read the [fields](#fields)
 section first.
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/persons/entity-attributes?key=<API-KEY>"
+curl "https://api.affinity.vc/persons/fields?key=<API-KEY>"
 ```
 
 > Example Response
@@ -354,4 +354,4 @@ curl "https://api.affinity.vc/persons/entity-attributes?key=<API-KEY>"
 None.
 
 ### Returns
-An array of the global entity attributes that exist on people for your team.
+An array of the global fields that exist on people for your team.
