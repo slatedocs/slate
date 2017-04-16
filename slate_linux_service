@@ -1,0 +1,47 @@
+#!/bin/bash
+#
+# chkconfig: 35 90 12
+# description: SLATE server
+#
+# Get function from functions library
+. /etc/init.d/functions
+# Start the service slate
+start() {
+        echo -n "Starting slate server:".
+        echo  ""
+	cd /var/www/slate # Change that to your slate installation folder.
+	/usr/local/bin/middleman server &
+        ### Create the lock file ###
+        sudo touch /var/lock/subsys/middleman
+        success $"Slate server startup"
+        echo
+}
+# Restart the service slate
+stop() {
+        echo -n "Stopping slate server: "
+        sudo killall middleman
+        ### Now, delete the lock file ###
+        sudo rm -f /var/lock/subsys/middleman
+        echo
+}
+### main logic ###
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  status)
+        status middleman
+        ;;
+  restart|reload|condrestart)
+        stop
+        start
+        ;;
+  *)
+        echo $"Slate usage: $0 {start|stop|restart|reload|status}"
+        exit 1
+esac
+exit 0
+
