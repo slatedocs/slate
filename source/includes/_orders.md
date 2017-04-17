@@ -12,6 +12,7 @@
 {
   "id": "ffffee73-013b-4aa2-91e1-bdefd0b2c41c",
   "customer_id": "634f65a5-8e16-4afb-9e8b-714b8bb6eb7f",
+  "reference": "901f7f",
   "state": "created",
   "tax": 0,
   "total": 6500,
@@ -69,6 +70,7 @@
 | ---------- | -------- | ------------|
 | id           | string   | Unique identifier for the object |
 | customer_id  | string   | Unique identifier for the associated customer |
+| reference    | string | Short unique identifier for the object |
 | state        | string | Either `created`, `paid`, `canceled`, `fulfilled` or `returned` |
 | tax          | integer | Tax amount in cents |
 | total        | integer | Total amount in cents |
@@ -102,6 +104,7 @@ HTTP/1.1 200 OK
 {
   "id": "ffffee73-013b-4aa2-91e1-bdefd0b2c41c",
   "customer_id": "634f65a5-8e16-4afb-9e8b-714b8bb6eb7f",
+  "reference": "901f7f",
   "state": "created",
   "tax": 0,
   "total": 6500,
@@ -174,6 +177,7 @@ HTTP/1.1 201 CREATED
 {
   "id": "2c824c26-967d-497e-a29a-1d1dfab89281",
   "customer_id": "be224ef0-f6da-4518-8cbe-64572cd6d447",
+  "reference": "901f7f",
   "status": "created",
   "tax": 0,
   "total": 6500,
@@ -273,6 +277,7 @@ HTTP/1.1 200 OK
 {
   "id": "ffffee73-013b-4aa2-91e1-bdefd0b2c41c",
   "customer_id": "634f65a5-8e16-4afb-9e8b-714b8bb6eb7f",
+  "reference": "901f7f",
   "state": "paid",
   "tax": 0,
   "total": 6500,
@@ -335,6 +340,7 @@ HTTP/1.1 200 OK
 {
   "id": "ffffee73-013b-4aa2-91e1-bdefd0b2c41c",
   "customer_id": "634f65a5-8e16-4afb-9e8b-714b8bb6eb7f",
+  "reference": "901f7f",
   "state": "canceled",
   "tax": 0,
   "total": 6500,
@@ -397,6 +403,7 @@ HTTP/1.1 200 OK
 {
   "id": "ffffee73-013b-4aa2-91e1-bdefd0b2c41c",
   "customer_id": "634f65a5-8e16-4afb-9e8b-714b8bb6eb7f",
+  "reference": "901f7f",
   "state": "fulfilled",
   "tax": 0,
   "total": 6500,
