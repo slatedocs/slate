@@ -47,6 +47,12 @@
 
 > Example request
 
+```shell
+curl -X GET \
+-H 'Authorization: Bearer <TOKEN>' \
+https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}
+```
+
 ```javascript
 const dirtylemon = require('dirtylemon');
 
@@ -93,6 +99,17 @@ A customer object.
 ## Create a customer
 
 > Example request
+
+```shell
+curl -X POST \
+-H 'Authorization: Bearer <TOKEN>' \
+-H 'Content-Type: application/json' \
+-d '{
+  "unconfirmed_phone_number": "333-333-333",
+  "country_code": "US"
+}' \
+https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}
+```
 
 ```javascript
 const dirtylemon = require('dirtylemon');
@@ -150,6 +167,16 @@ A customer object.
 
 > Example request
 
+```shell
+curl -X PUT \
+-H 'Authorization: Bearer <TOKEN>' \
+-H 'Content-Type: application/json' \
+-d '{
+  "email": "yogi@berra.com"
+}' \
+https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}
+```
+
 ```javascript
 const dirtylemon = require('dirtylemon');
 
@@ -205,6 +232,16 @@ A customer object.
 ## Confirm a customer
 
 > Example request
+
+```shell
+curl -X POST \
+-H 'Authorization: Bearer <TOKEN>' \
+-H 'Content-Type: application/json' \
+-d '{
+  "confirmation_token": "123456"
+}' \
+https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/confirm
+```
 
 ```javascript
 const dirtylemon = require('dirtylemon');
@@ -264,6 +301,13 @@ A customer object.
 ## Generate a confirmation token
 
 > Example request
+
+```shell
+curl -X POST \
+-H 'Authorization: Bearer <TOKEN>' \
+-H 'Content-Type: application/json' \
+https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/generate_confirmation
+```
 
 ```javascript
 const dirtylemon = require('dirtylemon');

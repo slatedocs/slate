@@ -4,7 +4,16 @@
 
 > Example request
 
-```js
+```shell
+curl -X POST \
+-H 'Authorization: Bearer <TOKEN>' \
+-H 'Content-Type: application/json' \
+-d '{
+  "stripeToken": "token"
+}' \
+https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/cards
+```
+
 ```javascript
 const dirtylemon = require('dirtylemon');
 

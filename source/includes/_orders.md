@@ -88,6 +88,12 @@
 
 > Example request
 
+```shell
+curl -X GET \
+-H 'Authorization: Bearer <TOKEN>' \
+https://api.dirtylemon.com/v1/orders/{ORDER_ID}
+```
+
 ```javascript
 const dirtylemon = require('dirtylemon');
 
@@ -144,6 +150,30 @@ An order object.
 ## Create an order
 
 > Example request
+
+```shell
+curl -X POST \
+-H 'Authorization: Bearer <TOKEN>' \
+-H 'Content-Type: application/json' \
+-d '{
+  "coupon": "20%OFF",
+  "shipping": {
+    "name": "Philippe Dionne",
+    "street1": "1-60 crémazie ouest",
+    "city": "Quebec",
+    "state": "Quebec",
+    "country": "Canada",
+    "zip": "g1r1x3"
+  },
+  "line_items": [
+    {
+      "quantity": 1,
+      "sku": "868137000115"
+    }
+  ]
+}' \
+https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/orders
+```
 
 ```javascript
 const dirtylemon = require('dirtylemon');
@@ -261,6 +291,13 @@ An order object.
 
 > Example request
 
+```shell
+curl -X POST \
+-H 'Authorization: Bearer <TOKEN>' \
+-H 'Content-Type: application/json' \
+https://api.dirtylemon.com/v1/orders/{ORDER_ID}/pay
+```
+
 ```javascript
 const dirtylemon = require('dirtylemon');
 
@@ -324,6 +361,13 @@ An order object.
 
 > Example request
 
+```shell
+curl -X POST \
+-H 'Authorization: Bearer <TOKEN>' \
+-H 'Content-Type: application/json' \
+https://api.dirtylemon.com/v1/orders/{ORDER_ID}/cancel
+```
+
 ```javascript
 const dirtylemon = require('dirtylemon');
 
@@ -386,6 +430,13 @@ An order object.
 ## Fulfill an order
 
 > Example request
+
+```shell
+curl -X POST \
+-H 'Authorization: Bearer <TOKEN>' \
+-H 'Content-Type: application/json' \
+https://api.dirtylemon.com/v1/orders/{ORDER_ID}/fulfill
+```
 
 ```javascript
 const dirtylemon = require('dirtylemon');

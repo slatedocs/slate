@@ -20,6 +20,17 @@
 
 > Example request
 
+```shell
+curl -X POST \
+-H 'Authorization: Bearer <TOKEN>' \
+-H 'Content-Type: application/json' \
+-d '{
+  "content": "Hey Ho!",
+  "content_type": "text"
+}' \
+https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/messages
+```
+
 ```javascript
 const dirtylemon = require('dirtylemon');
 

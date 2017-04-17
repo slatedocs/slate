@@ -4,6 +4,12 @@
 
 > Example request
 
+```shell
+curl -X GET \
+-H 'Authorization: Bearer <TOKEN>' \
+https://api.dirtylemon.com/v1/coupons
+```
+
 ```javascript
 const dirtylemon = require('dirtylemon');
 
