@@ -107,6 +107,32 @@ When inspecting a [transaction trace](#transaction-traces), you'll see a "Memory
 
 For perspective, we display how this trace's allocations compare to the norm.
 
+## Alerting
+
+__Alerting is a BETA feature.__
+
+![alerts_chart](alerts_chart.png)
+
+Alerting keeps your team updated if your app's performance degrades. Alerts can be configured on the app as a whole and on individual endpoints. Metrics include:
+
+* mean response time
+* 95th percentile response time
+* Apdex
+* error rate
+* throughput
+
+### Alert conditions
+
+Configure alert conditions via the "Alerts" pill in the UI:
+
+![alert_conditions](alert_conditions.png)
+
+### Notification groups
+
+Alerts are sent to a notification group, which is composed of notification channels. You can configure these under your org's settings menu:
+
+![alert notification groups](alert_notification_groups.png)
+
 ## Deploy Tracking
 
 ![deploy tracking](deploy_tracking.png)
