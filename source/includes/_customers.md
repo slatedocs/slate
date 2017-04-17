@@ -14,9 +14,9 @@
   "first_name": "Yogi",
   "last_name": "Berra",
   "confirmation_token": "123456",
-  "billing_address_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/addresses/3412e1d6-2208-4b54-9ae9-a479ed663cde/edit?t=6959409667137177",
-  "shipping_address_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/addresses/a78c2359-4388-4ed1-87cb-1caa19d80507/edit?t=6959409667137177",
-  "card_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/card/edit?t=6959409667137177",
+  "billing_address_url": "https://api.dirtylemon.com/l/6243c9",
+  "shipping_address_url": "https://api.dirtylemon.com/l/192b86",
+  "card_url": "https://api.dirtylemon.com/l/0896d5",
   "confirmed_at": "2016-09-02T09:40:08.004Z",
   "confirmation_sent_at": "2016-09-02T09:40:07.004Z",
   "created_at": "2016-09-02T09:40:06.004Z",
@@ -69,9 +69,9 @@ HTTP/1.1 200 OK
   "first_name": "Yogi",
   "last_name": "Berra",
   "confirmation_token": "123456",
-  "billing_address_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/addresses/3412e1d6-2208-4b54-9ae9-a479ed663cde/edit?t=6959409667137177",
-  "shipping_address_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/addresses/a78c2359-4388-4ed1-87cb-1caa19d80507/edit?t=6959409667137177",
-  "card_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/card/edit?t=6959409667137177",
+  "billing_address_url": "https://api.dirtylemon.com/l/6243c9",
+  "shipping_address_url": "https://api.dirtylemon.com/l/192b86",
+  "card_url": "https://api.dirtylemon.com/l/0896d5",
   "confirmed_at": "2016-09-02T09:40:08.004Z",
   "confirmation_sent_at": "2016-09-02T09:40:07.004Z",
   "created_at": "2016-09-02T09:40:06.004Z",
@@ -79,7 +79,7 @@ HTTP/1.1 200 OK
 }
 ```
 
-This endpoint retrieves a specific customer.
+This endpoint retrieves a specific customer. Use this endpoint to generate short and ephemeral URLs allowing the customer to edit his informations.
 
 ### HTTP Request
 
@@ -121,7 +121,7 @@ HTTP/1.1 201 CREATED
   "confirmation_token": "152200",
   "billing_address_url": null,
   "shipping_address_url": null,
-  "card_url": "/customers/32139dfd-87c3-4552-8e91-0d9de718bff6/card/edit?t=6959409667563155",
+  "card_url": null,
   "confirmed_at": null,
   "confirmation_sent_at": null,
   "created_at": "2017-04-14T18:48:52.367Z",
@@ -174,9 +174,9 @@ HTTP/1.1 200 OK
   "first_name": "Yogi",
   "last_name": "Berra",
   "confirmation_token": "123456",
-  "billing_address_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/addresses/3412e1d6-2208-4b54-9ae9-a479ed663cde/edit?t=6959409667137177",
-  "shipping_address_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/addresses/a78c2359-4388-4ed1-87cb-1caa19d80507/edit?t=6959409667137177",
-  "card_url": "/customers/fffd7e80-1691-41f5-8946-9deeaf0b8640/card/edit?t=6959409667137177",
+  "billing_address_url": null,
+  "shipping_address_url": null,
+  "card_url": null,
   "confirmed_at": "2016-09-02T09:40:08.004Z",
   "confirmation_sent_at": "2016-09-02T09:40:07.004Z",
   "created_at": "2016-09-02T09:40:06.004Z",
@@ -232,7 +232,7 @@ HTTP/1.1 200 OK
   "confirmation_token": "152200",
   "billing_address_url": null,
   "shipping_address_url": null,
-  "card_url": "/customers/32139dfd-87c3-4552-8e91-0d9de718bff6/card/edit?t=6959409667561920",
+  "card_url": null,
   "confirmed_at": "2017-04-14T18:53:59.246Z",
   "confirmation_sent_at": null,
   "created_at": "2017-04-14T18:48:52.367Z",
