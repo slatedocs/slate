@@ -4,7 +4,7 @@
 
 > Example request
 
-```js
+```javascript
 const dirtylemon = require('dirtylemon');
 
 dirtylemon.addresses.create({CUSTOMER_ID}, {
@@ -60,7 +60,7 @@ An address object.
 
 > Example request
 
-```js
+```javascript
 const dirtylemon = require('dirtylemon');
 
 dirtylemon.addresses.validate({

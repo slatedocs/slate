@@ -5,6 +5,7 @@
 > Example request
 
 ```js
+```javascript
 const dirtylemon = require('dirtylemon');
 
 dirtylemon.cards.create({CUSTOMER_ID}, {

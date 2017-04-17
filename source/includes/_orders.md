@@ -145,7 +145,7 @@ An order object.
 
 > Example request
 
-```js
+```javascript
 const dirtylemon = require('dirtylemon');
 
 dirtylemon.orders.create({CUSTOMER_ID}, {
@@ -261,7 +261,7 @@ An order object.
 
 > Example request
 
-```js
+```javascript
 const dirtylemon = require('dirtylemon');
 
 dirtylemon.orders.pay({ORDER_ID})
@@ -324,7 +324,7 @@ An order object.
 
 > Example request
 
-```js
+```javascript
 const dirtylemon = require('dirtylemon');
 
 dirtylemon.orders.cancel({ORDER_ID})
@@ -387,7 +387,7 @@ An order object.
 
 > Example request
 
-```js
+```javascript
 const dirtylemon = require('dirtylemon');
 
 dirtylemon.orders.fulfill({ORDER_ID})

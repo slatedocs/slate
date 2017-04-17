@@ -20,7 +20,7 @@
 
 > Example request
 
-```js
+```javascript
 const dirtylemon = require('dirtylemon');
 
 dirtylemon.messages.create({CUSTOMER_ID}, {

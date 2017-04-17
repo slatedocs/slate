@@ -94,7 +94,7 @@ A customer object.
 
 > Example request
 
-```js
+```javascript
 const dirtylemon = require('dirtylemon');
 
 dirtylemon.customers.create({
