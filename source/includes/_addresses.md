@@ -35,7 +35,7 @@ HTTP/1.1 201 CREATED
 }
 ```
 
-This endpoint creates both a __shipping__ and __billing__ address for a given customer. Most customers will have the same shipping and billing address; customers can always manually update both their shipping and billing addresses by accessing an ephemeral URL provided in the `customer` object.
+This endpoint creates __shipping__ and __billing__ addresses in one go for a given customer. After, customers can always manually update both their shipping and billing addresses by accessing an ephemeral URL provided on the `customer` object.
 
 ### HTTP Request
 

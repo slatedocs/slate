@@ -228,7 +228,7 @@ This endpoint creates an order.
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
 | coupon | no | String |
-| shipping | no | A `Shipping` object. If none provided, the customer's shipping informations will be used by default. |
+| shipping | no | A `Shipping` object. If none provided, the customer's shipping informations will be used by default and both the customer's `first_name` and `last_name` must be set. |
 | line_items | yes | List of at least one `Line item` objects. |
 
 ### Shipping object
