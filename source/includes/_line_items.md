@@ -12,7 +12,6 @@
   "quantity": 1,
   "sku": {
     "id": "868137000115",
-    "currency": "usd",
     "price": 6500
   },
   "created_at": "2017-02-26T17:18:08.341Z",

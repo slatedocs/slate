@@ -13,7 +13,6 @@
   "id": "ffffee73-013b-4aa2-91e1-bdefd0b2c41c",
   "customer_id": "634f65a5-8e16-4afb-9e8b-714b8bb6eb7f",
   "state": "created",
-  "currency": null,
   "tax": 0,
   "total": 6500,
   "shipping_fee": 0,
@@ -40,7 +39,6 @@
       "quantity": 1,
       "sku": {
         "id": "868137000115",
-        "currency": "usd",
         "price": 6500
       },
       "created_at": "2017-02-26T17:18:08.341Z",
@@ -72,7 +70,6 @@
 | id           | string   | Unique identifier for the object |
 | customer_id  | string   | Unique identifier for the associated customer |
 | state        | string | Either `created`, `paid`, `canceled`, `fulfilled` or `returned` |
-| currency     | string | Three letters currency code |
 | tax          | integer | Tax amount in cents |
 | total        | integer | Total amount in cents |
 | shipping_fee | integer | Shipping fee in cents |
@@ -106,7 +103,6 @@ HTTP/1.1 200 OK
   "id": "ffffee73-013b-4aa2-91e1-bdefd0b2c41c",
   "customer_id": "634f65a5-8e16-4afb-9e8b-714b8bb6eb7f",
   "state": "created",
-  "currency": null,
   "tax": 0,
   "total": 6500,
   "shipping_fee": 0,
@@ -150,7 +146,6 @@ An order object.
 const dirtylemon = require('dirtylemon');
 
 dirtylemon.orders.create({CUSTOMER_ID}, {
-  currency: 'usd',
   coupon: '20%OFF',
   shipping: {
     name: 'Philippe Dionne',
@@ -180,7 +175,6 @@ HTTP/1.1 201 CREATED
   "id": "2c824c26-967d-497e-a29a-1d1dfab89281",
   "customer_id": "be224ef0-f6da-4518-8cbe-64572cd6d447",
   "status": "created",
-  "currency": "usd",
   "tax": 0,
   "total": 6500,
   "shipping_fee": 0,
@@ -206,9 +200,8 @@ HTTP/1.1 201 CREATED
       "amount": 6500,
       "quantity": 1,
       "sku": {
-        "id": "868137000115",
-        "currency": "usd",
         "price": 6500
+        "id": "868137000115"
       },
       "created_at": "2017-04-14T21:42:36.560Z",
       "updated_at": "2017-04-14T21:42:36.560Z"
@@ -230,7 +223,6 @@ This endpoint creates an order.
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
-| currency | yes | String |
 | coupon | no | String |
 | shipping | no | A `Shipping` object. The customer's shipping informations will be used by default. |
 | line_items | yes | List of at least one `Line item` objects. |
@@ -282,7 +274,6 @@ HTTP/1.1 200 OK
   "id": "ffffee73-013b-4aa2-91e1-bdefd0b2c41c",
   "customer_id": "634f65a5-8e16-4afb-9e8b-714b8bb6eb7f",
   "state": "paid",
-  "currency": null,
   "tax": 0,
   "total": 6500,
   "shipping_fee": 0,
@@ -345,7 +336,6 @@ HTTP/1.1 200 OK
   "id": "ffffee73-013b-4aa2-91e1-bdefd0b2c41c",
   "customer_id": "634f65a5-8e16-4afb-9e8b-714b8bb6eb7f",
   "state": "canceled",
-  "currency": null,
   "tax": 0,
   "total": 6500,
   "shipping_fee": 0,
@@ -408,7 +398,6 @@ HTTP/1.1 200 OK
   "id": "ffffee73-013b-4aa2-91e1-bdefd0b2c41c",
   "customer_id": "634f65a5-8e16-4afb-9e8b-714b8bb6eb7f",
   "state": "fulfilled",
-  "currency": null,
   "tax": 0,
   "total": 6500,
   "shipping_fee": 0,
