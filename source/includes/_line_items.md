@@ -25,6 +25,6 @@
 | description | string   | |
 | amount      | integer  | Total amount in cents |
 | quantity    | integer  |  |
-| sku         | hash     | `SKU` object |
+| sku         | hash     | A simplified `SKU` object without it's associated `product` object |
 | created_at  | timestamp | Time at which the object was created |
 | updated_at  | timestamp | Time at which the object was updated |
