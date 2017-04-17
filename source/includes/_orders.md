@@ -190,7 +190,7 @@ dirtylemon.orders.create({CUSTOMER_ID}, {
   },
   line_items: [
     {
-      quantity: 1
+      quantity: 1,
       sku: '868137000115'
     }
   ]
@@ -234,7 +234,7 @@ HTTP/1.1 201 CREATED
       "amount": 6500,
       "quantity": 1,
       "sku": {
-        "price": 6500
+        "price": 6500,
         "id": "868137000115"
       },
       "created_at": "2017-04-14T21:42:36.560Z",
