@@ -25,7 +25,7 @@ list entry abstraction.
 Although list entries correspond to rows in an Affinity spreadsheet, the values
 associated with the entity are not stored inside the list entry resource. If you are
 trying to update, create, or delete a value in one of the custom columns for this list
-entry, please refer to the [Entity Values](#entity-values) section. The list entry API
+entry, please refer to the [Field Values](#field-values) section. The list entry API
 is only used for getting, adding, or removing entities from a lst. It does not
 handle updating individual cells in columns.
 
@@ -171,8 +171,8 @@ curl "https://api.affinity.vc/lists/450/list-entries/56517?key=<API-KEY>" \
 
 Deletes a list entry with a specified `list_entry_id`.
 
-**Note:** This will also delete all the entity values, if any, associated with the list entry.
-Such entity values will only exist in entity attributes specific to this list.
+**Note:** This will also delete all the field values, if any, associated with the list entry.
+Such field values will only exist in fields specific to this list.
 
 ### Path Parameters
 

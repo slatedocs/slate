@@ -1,22 +1,22 @@
 # Organizations
-An organization in Affinity represents an external company that your team is in touch 
-with- this could be an organization you're trying to invest in, sell to, or establish a 
+An organization in Affinity represents an external company that your team is in touch
+with- this could be an organization you're trying to invest in, sell to, or establish a
 relationship with.
 
-An organization has many people associated with it - these are your team's points of 
-contacts at that organization. Just like people, organizations can be added to multiple 
-lists and can be assigned entity values.
+An organization has many people associated with it - these are your team's points of
+contacts at that organization. Just like people, organizations can be added to multiple
+lists and can be assigned field values.
 
-To make the data quality as good as possible, we have our own proprietary database of 
-organizations that we have developed through third-party partnerships and web scraping. 
+To make the data quality as good as possible, we have our own proprietary database of
+organizations that we have developed through third-party partnerships and web scraping.
 We use this database to minimize data entry for you as you use Affinity's CRM products.
 
 **Note:**
 
-1. If you are looking to add or remove an organization from a list, please check out the 
+1. If you are looking to add or remove an organization from a list, please check out the
 [List Entries](#list-entries) section of the API.
-2. If you are looking to modify an entity value (one of the cells on Affinity's 
-spreadsheet), please check out the [Entity Values](#entity-values) section of the API.
+2. If you are looking to modify a field value (one of the cells on Affinity's
+spreadsheet), please check out the [Field Values](#field-values) section of the API.
 
 ## The organization resource
 
@@ -31,17 +31,17 @@ spreadsheet), please check out the [Entity Values](#entity-values) section of th
   "person_ids":[89734, 117270, 138123, 274492, 304848, ...]
 }
 ```
-Each organization object has a unique `id`. It also has a `name`, `domain` (the website 
-of the organization), and `persons` associated with it. The `domain` is an important 
-attribute from an automation perspective, as it helps Affinity automatically link all 
+Each organization object has a unique `id`. It also has a `name`, `domain` (the website
+of the organization), and `persons` associated with it. The `domain` is an important
+attribute from an automation perspective, as it helps Affinity automatically link all
 the appropriate person objects to the organization.
 
-Each organization also has a flag determining whether it's `global` or not. As mentioned 
-above, Affinity maintains its own database of global organizations that each customer has 
-access to. Note that you cannot change the name or the domain of a `global` 
+Each organization also has a flag determining whether it's `global` or not. As mentioned
+above, Affinity maintains its own database of global organizations that each customer has
+access to. Note that you cannot change the name or the domain of a `global`
 organization. You also cannot delete a `global` organization.
 
-Of course, if an organization is manually created by your team, all fields can be 
+Of course, if an organization is manually created by your team, all fields can be
 modified and the organization can be deleted.
 
 Attribute | Type | Description
@@ -154,7 +154,7 @@ curl "https://api.affinity.vc/organizations?key=<API-KEY>" \
 
 Creates a new organization with the supplied parameters.
 
-**Note:** If you are looking to add an existing organization to a list, please check 
+**Note:** If you are looking to add an existing organization to a list, please check
 the [List Entries](#list-entries) section of the API.
 
 ### Payload Parameters
@@ -198,10 +198,10 @@ Updates an existing organization with `organization_id` with the supplied parame
 
 **Note:**
 
-If you are looking to add an existing organization to a list, please check the 
+If you are looking to add an existing organization to a list, please check the
 [List Entries](#list-entries) section of the API.
 
-If you are trying to add a person to an organization, the existing values for 
+If you are trying to add a person to an organization, the existing values for
 `person_ids` must also be passed into the endpoint.
 
 ### Path Parameters
@@ -243,8 +243,8 @@ Deletes an organization with a specified `organization_id`.
 **Note:**
 
 1. An appropriate error will be returned if you are trying to delete a `global` organization.
-2. This will also delete all the entity values, if any, associated with the organization.
-Such entity values exist linked to either global or list-specific entity attributes.
+2. This will also delete all the field values, if any, associated with the organization.
+Such field values exist linked to either global or list-specific fields.
 
 ### Path Parameters
 
@@ -255,12 +255,12 @@ organization_id | integer | true | The unique id of the organization that needs 
 ### Returns
 `{success: true}`.
 
-## Get global entity attributes
+## Get global fields
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/organizations/entity-attributes?key=<API-KEY>"
+curl "https://api.affinity.vc/organizations/fields?key=<API-KEY>"
 ```
 
 > Example Response
@@ -292,14 +292,14 @@ curl "https://api.affinity.vc/organizations/entity-attributes?key=<API-KEY>"
 ]
 ```
 
-`GET /organizations/entity-attributes`
+`GET /organizations/fields`
 
-Fetches an array of all the global entity attributes that exist on organizations.
-If you aren't sure about what entity attributes are, please read the 
-[Entity Attributes](#entity-attributes) section first.
+Fetches an array of all the global fields that exist on organizations.
+If you aren't sure about what fields are, please read the
+[Fields](#fields) section first.
 
 ### Parameters
 None.
 
 ### Returns
-An array of the entity attributes that exist on all organizations for your team.
+An array of the fields that exist on all organizations for your team.
