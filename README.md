@@ -77,7 +77,6 @@ Companies Using Slate
 * [Dwolla](https://docs.dwolla.com/)
 * [Clearbit](https://clearbit.com/docs)
 * [Coinbase](https://developers.coinbase.com/api)
-* [Parrot Drones](http://developer.parrot.com/docs/bebop/)
 * [Fidor Bank](http://docs.fidor.de/)
 * [Scale](https://docs.scaleapi.com/)
 
