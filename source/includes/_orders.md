@@ -552,3 +552,98 @@ This endpoint fulfills an order:
 ### Returns
 
 An order object.
+
+
+## Return an order
+
+> Example request
+
+```shell
+curl -X POST \
+-H 'Authorization: Bearer <TOKEN>' \
+-H 'Content-Type: application/json' \
+https://api.dirtylemon.com/v1/orders/{ORDER_ID}/return
+```
+
+```javascript
+const dirtylemon = require('dirtylemon');
+
+dirtylemon.orders.return({ORDER_ID})
+```
+
+> Example response
+
+```http
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "id": "7baf83af-ef6b-4e3e-b467-c4f07351a287",
+  "customer_id": "51f32742-c075-4d38-b2ec-2297b2546b2f",
+  "reference": "4d5728",
+  "status": "returned",
+  "currency": "usd",
+  "tax": 0,
+  "total": 6500,
+  "shipping_fee": 0,
+  "preordered": false,
+  "coupon": null,
+  "shipping": {
+    "company": null,
+    "street1": "128 Lafayette St",
+    "street2": null,
+    "street3": null,
+    "city": "New York",
+    "state": "New York",
+    "country": "US",
+    "zip": "10013"
+  },
+  "line_items": [
+    {
+      "id": "6a9b1a56-249c-4037-8469-b4416e5e30a1",
+      "description": "1 six-pack of [skin+hair]",
+      "amount": 6500,
+      "quantity": 1,
+      "sku": {
+        "id": "f0a5ebf3-9a57-4b96-8e25-c8729c212490",
+        "currency": "usd",
+        "price": 6500
+      },
+      "created_at": "2017-04-18T18:37:43.674Z",
+      "updated_at": "2017-04-18T18:37:43.674Z"
+    }
+  ],
+  "shipments": [
+    {
+      "label": "1 six-pack of [skin+hair]",
+      "carrier": null,
+      "tracking_number": null,
+      "tracking_url": null,
+      "tracking_status": null,
+      "tracking_status_details": null,
+      "tracking_status_at": null,
+      "eta": null,
+      "fulfilled_at": null,
+      "created_at": "2017-04-18T18:38:26.921Z",
+      "updated_at": "2017-04-18T18:38:26.921Z"
+    }
+  ],
+  "created_at": "2017-04-18T18:37:43.634Z",
+  "updated_at": "2017-04-18T18:41:28.714Z"
+}
+```
+
+This endpoint returns an order:
+
+  - Refunds the customer
+  - Marks the order as __returned__
+
+
+### HTTP Request
+
+`POST https://api.dirtylemon.com/v1/orders/<ID>/return`
+
+### Returns
+
+An order object.
