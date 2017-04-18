@@ -423,6 +423,10 @@ html, body {
     td {
       padding: 10px;
     }
+    
+    tr td:last-of-type {
+      width: 100%;
+    }
 
     tr:last-child {
       border-bottom: 1px solid #ccc;
