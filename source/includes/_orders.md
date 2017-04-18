@@ -10,20 +10,18 @@
 
 ```json
 {
-  "id": "ffffee73-013b-4aa2-91e1-bdefd0b2c41c",
-  "customer_id": "634f65a5-8e16-4afb-9e8b-714b8bb6eb7f",
-  "reference": "901f7f",
-  "state": "created",
+  "id": "7baf83af-ef6b-4e3e-b467-c4f07351a287",
+  "customer_id": "51f32742-c075-4d38-b2ec-2297b2546b2f",
+  "reference": "4d5728",
+  "status": "fulfilled",
+  "currency": "usd",
   "tax": 0,
   "total": 6500,
   "shipping_fee": 0,
   "preordered": false,
   "coupon": null,
-  "shipping_label": {
-    "name": "David Chang",
+  "shipping": {
     "company": null,
-    "phone_number": null,
-    "email": null,
     "street1": "128 Lafayette St",
     "street2": null,
     "street3": null,
@@ -34,21 +32,22 @@
   },
   "line_items": [
     {
-      "id": "edf7656f-f76c-4d6f-aabd-f1c4b91431bf",
-      "description": "1 six-pack(s) [skin+hair]",
+      "id": "6a9b1a56-249c-4037-8469-b4416e5e30a1",
+      "description": "1 six-pack of [skin+hair]",
       "amount": 6500,
       "quantity": 1,
       "sku": {
-        "id": "868137000115",
+        "id": "f0a5ebf3-9a57-4b96-8e25-c8729c212490",
+        "currency": "usd",
         "price": 6500
       },
-      "created_at": "2017-02-26T17:18:08.341Z",
-      "updated_at": "2017-02-26T17:18:25.655Z"
+      "created_at": "2017-04-18T18:37:43.674Z",
+      "updated_at": "2017-04-18T18:37:43.674Z"
     }
   ],
   "shipments": [
     {
-      "label": null,
+      "label": "1 six-pack of [skin+hair]",
       "carrier": null,
       "tracking_number": null,
       "tracking_url": null,
@@ -57,12 +56,12 @@
       "tracking_status_at": null,
       "eta": null,
       "fulfilled_at": null,
-      "created_at": "2017-02-27T10:01:39.749Z",
-      "updated_at": "2017-02-28T03:35:17.699Z"
+      "created_at": "2017-04-18T18:38:26.921Z",
+      "updated_at": "2017-04-18T18:38:26.921Z"
     }
   ],
-  "created_at": "2017-02-26T17:16:52.619Z",
-  "updated_at": "2017-04-05T20:24:34.842Z"
+  "created_at": "2017-04-18T18:37:43.634Z",
+  "updated_at": "2017-04-18T18:41:28.714Z"
 }
 ```
 
@@ -71,13 +70,14 @@
 | id           | string   | Unique identifier for the object |
 | customer_id  | string   | Unique identifier for the associated customer |
 | reference    | string | Short unique identifier for the object |
-| state        | string | Either `created`, `paid`, `canceled`, `fulfilled` or `returned` |
+| status       | string | Either `created`, `paid`, `canceled`, `fulfilled` or `returned` |
+| currency     | string | |
 | tax          | integer | Tax amount in cents |
 | total        | integer | Total amount in cents |
 | shipping_fee | integer | Shipping fee in cents |
 | preordered   | boolean | |
 | coupon       | string | A `coupon` id |
-| shipping_label | hash | |
+| shipping     | hash | |
 | line_items   | list | Array of `line item` objects |
 | shipments    | list | Array of `shipments` objects |
 | created_at   | timestamp | Time at which the object was created |
@@ -156,21 +156,13 @@ curl -X POST \
 -H 'Authorization: Bearer <TOKEN>' \
 -H 'Content-Type: application/json' \
 -d '{
-  "coupon": "20%OFF",
-  "shipping": {
-    "name": "Philippe Dionne",
-    "street1": "1-60 crémazie ouest",
-    "city": "Quebec",
-    "state": "Quebec",
-    "country": "Canada",
-    "zip": "g1r1x3"
-  },
   "line_items": [
     {
       "quantity": 1,
       "sku": "868137000115"
     }
-  ]
+  ],
+  "coupon": "20%OFF"
 }' \
 https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/orders
 ```
@@ -179,21 +171,13 @@ https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/orders
 const dirtylemon = require('dirtylemon');
 
 dirtylemon.orders.create({CUSTOMER_ID}, {
-  coupon: '20%OFF',
-  shipping: {
-    name: 'Philippe Dionne',
-    street1: '1-60 crémazie ouest',
-    city: 'Quebec',
-    state: 'Quebec',
-    country: 'Canada',
-    zip: 'g1r1x3'
-  },
   line_items: [
     {
       quantity: 1,
       sku: '868137000115'
     }
-  ]
+  ],
+  coupon: '20%OFF'
 })
 ```
 
@@ -205,49 +189,56 @@ HTTP/1.1 201 CREATED
 
 ```json
 {
-  "id": "2c824c26-967d-497e-a29a-1d1dfab89281",
-  "customer_id": "be224ef0-f6da-4518-8cbe-64572cd6d447",
-  "reference": "901f7f",
+  "id": "7baf83af-ef6b-4e3e-b467-c4f07351a287",
+  "customer_id": "51f32742-c075-4d38-b2ec-2297b2546b2f",
+  "reference": "f786e5",
   "status": "created",
+  "currency": "usd",
   "tax": 0,
   "total": 6500,
   "shipping_fee": 0,
   "preordered": false,
   "coupon": null,
   "shipping": {
-    "name": "Philippe Dionne",
     "company": null,
-    "phone_number": "14185800893",
-    "email": null,
-    "street1": "1-60 crémazie ouest",
+    "street1": "128 Lafayette St",
     "street2": null,
     "street3": null,
-    "city": "Quebec",
-    "state": "Quebec",
-    "country": "Canada",
-    "zip": "g1r1x3"
+    "city": "New York",
+    "state": "New York",
+    "country": "US",
+    "zip": "10013"
   },
   "line_items": [
     {
-      "id": "645ef698-77a3-44ea-b8f0-734682804969",
+      "id": "6a9b1a56-249c-4037-8469-b4416e5e30a1",
       "description": "1 six-pack of [skin+hair]",
       "amount": 6500,
       "quantity": 1,
       "sku": {
-        "price": 6500,
-        "id": "868137000115"
+        "id": "f0a5ebf3-9a57-4b96-8e25-c8729c212490",
+        "currency": "usd",
+        "price": 6500
       },
-      "created_at": "2017-04-14T21:42:36.560Z",
-      "updated_at": "2017-04-14T21:42:36.560Z"
+      "created_at": "2017-04-18T18:37:43.674Z",
+      "updated_at": "2017-04-18T18:37:43.674Z"
     }
   ],
   "shipments": [],
-  "created_at": "2017-04-14T21:42:36.518Z",
-  "updated_at": "2017-04-14T21:42:37.312Z"
+  "created_at": "2017-04-18T18:37:43.634Z",
+  "updated_at": "2017-04-18T18:37:44.599Z"
 }
 ```
 
-This endpoint creates an order.
+This endpoint creates an order:
+
+  - Marks the order as __created__
+
+For this action to be successful, the following conditions must be met:
+
+  - Customer must have a valid email
+  - Customer must have a first name and last name
+  - Customer must have a valid shipping address
 
 ### HTTP Request
 
@@ -257,23 +248,8 @@ This endpoint creates an order.
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
-| coupon | no | String |
-| shipping | no | A `Shipping` object. If none provided, the customer's shipping informations will be used by default and both the customer's `first_name` and `last_name` must be set. |
 | line_items | yes | List of at least one `Line item` objects. |
-
-### Shipping object
-
-| Attribute | Type | Required |
-| --------- | -------- | ------------ |
-| name | String | yes |
-| company | String | no |
-| street1 | String | yes |
-| street2 | String | no |
-| street3 | String | no |
-| city | String | yes |
-| state | String | yes |
-| country | String | yes |
-| zip | String | yes |
+| coupon | no | String |
 
 ### Line item object
 
@@ -312,20 +288,18 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "id": "ffffee73-013b-4aa2-91e1-bdefd0b2c41c",
-  "customer_id": "634f65a5-8e16-4afb-9e8b-714b8bb6eb7f",
-  "reference": "901f7f",
-  "state": "paid",
+  "id": "7baf83af-ef6b-4e3e-b467-c4f07351a287",
+  "customer_id": "51f32742-c075-4d38-b2ec-2297b2546b2f",
+  "reference": "b30fd1",
+  "status": "paid",
+  "currency": "usd",
   "tax": 0,
   "total": 6500,
   "shipping_fee": 0,
   "preordered": false,
   "coupon": null,
-  "shipping_label": {
-    "name": "David Chang",
+  "shipping": {
     "company": null,
-    "phone_number": null,
-    "email": null,
     "street1": "128 Lafayette St",
     "street2": null,
     "street3": null,
@@ -334,18 +308,47 @@ HTTP/1.1 200 OK
     "country": "US",
     "zip": "10013"
   },
-  "line_items": [],
-  "shipments": [],
-  "created_at": "2017-02-26T17:16:52.619Z",
-  "updated_at": "2017-04-05T20:24:34.842Z"
+  "line_items": [
+    {
+      "id": "6a9b1a56-249c-4037-8469-b4416e5e30a1",
+      "description": "1 six-pack of [skin+hair]",
+      "amount": 6500,
+      "quantity": 1,
+      "sku": {
+        "id": "f0a5ebf3-9a57-4b96-8e25-c8729c212490",
+        "currency": "usd",
+        "price": 6500
+      },
+      "created_at": "2017-04-18T18:37:43.674Z",
+      "updated_at": "2017-04-18T18:37:43.674Z"
+    }
+  ],
+  "shipments": [
+    {
+      "label": "1 six-pack of [skin+hair]",
+      "carrier": null,
+      "tracking_number": null,
+      "tracking_url": null,
+      "tracking_status": null,
+      "tracking_status_details": null,
+      "tracking_status_at": null,
+      "eta": null,
+      "fulfilled_at": null,
+      "created_at": "2017-04-18T18:38:26.921Z",
+      "updated_at": "2017-04-18T18:38:26.921Z"
+    }
+  ],
+  "created_at": "2017-04-18T18:37:43.634Z",
+  "updated_at": "2017-04-18T18:38:27.276Z"
 }
 ```
 
 This endpoint pays an order:
 
-- Charges the customer's credit card
-- Creates shipments for the order's line items
-- Sends the customer a confirmation email
+  - Charges the customer's credit card
+  - Creates shipments for the order's line items
+  - Sends the customer a confirmation email
+  - Marks the order as __paid__
 
 
 ### HTTP Request
@@ -382,20 +385,18 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "id": "ffffee73-013b-4aa2-91e1-bdefd0b2c41c",
-  "customer_id": "634f65a5-8e16-4afb-9e8b-714b8bb6eb7f",
-  "reference": "901f7f",
-  "state": "canceled",
+  "id": "7baf83af-ef6b-4e3e-b467-c4f07351a287",
+  "customer_id": "51f32742-c075-4d38-b2ec-2297b2546b2f",
+  "reference": "4d5728",
+  "status": "canceled",
+  "currency": "usd",
   "tax": 0,
   "total": 6500,
   "shipping_fee": 0,
   "preordered": false,
   "coupon": null,
-  "shipping_label": {
-    "name": "David Chang",
+  "shipping": {
     "company": null,
-    "phone_number": null,
-    "email": null,
     "street1": "128 Lafayette St",
     "street2": null,
     "street3": null,
@@ -404,18 +405,50 @@ HTTP/1.1 200 OK
     "country": "US",
     "zip": "10013"
   },
-  "line_items": [],
-  "shipments": [],
-  "created_at": "2017-02-26T17:16:52.619Z",
-  "updated_at": "2017-04-05T20:24:34.842Z"
+  "line_items": [
+    {
+      "id": "6a9b1a56-249c-4037-8469-b4416e5e30a1",
+      "description": "1 six-pack of [skin+hair]",
+      "amount": 6500,
+      "quantity": 1,
+      "sku": {
+        "id": "f0a5ebf3-9a57-4b96-8e25-c8729c212490",
+        "currency": "usd",
+        "price": 6500
+      },
+      "created_at": "2017-04-18T18:37:43.674Z",
+      "updated_at": "2017-04-18T18:37:43.674Z"
+    }
+  ],
+  "shipments": [
+    {
+      "label": "1 six-pack of [skin+hair]",
+      "carrier": null,
+      "tracking_number": null,
+      "tracking_url": null,
+      "tracking_status": null,
+      "tracking_status_details": null,
+      "tracking_status_at": null,
+      "eta": null,
+      "fulfilled_at": null,
+      "created_at": "2017-04-18T18:38:26.921Z",
+      "updated_at": "2017-04-18T18:38:26.921Z"
+    }
+  ],
+  "created_at": "2017-04-18T18:37:43.634Z",
+  "updated_at": "2017-04-18T18:41:28.714Z"
 }
 ```
 
 This endpoint cancels an order:
 
-- Refunds the customer's credit card
-- Cancels previously created shipments
-- Sends the customer a cancelation email
+  - If the order's status was __paid__:
+    - Refunds the customer's credit card
+    - Cancels previously created shipments
+    - Sends the customer a cancelation email
+    - Marks the order as __canceled__
+  - If the order's status was __created__
+    - Marks the order as __canceled__
 
 
 ### HTTP Request
@@ -452,20 +485,18 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "id": "ffffee73-013b-4aa2-91e1-bdefd0b2c41c",
-  "customer_id": "634f65a5-8e16-4afb-9e8b-714b8bb6eb7f",
-  "reference": "901f7f",
-  "state": "fulfilled",
+  "id": "7baf83af-ef6b-4e3e-b467-c4f07351a287",
+  "customer_id": "51f32742-c075-4d38-b2ec-2297b2546b2f",
+  "reference": "4d5728",
+  "status": "fulfilled",
+  "currency": "usd",
   "tax": 0,
   "total": 6500,
   "shipping_fee": 0,
   "preordered": false,
   "coupon": null,
-  "shipping_label": {
-    "name": "David Chang",
+  "shipping": {
     "company": null,
-    "phone_number": null,
-    "email": null,
     "street1": "128 Lafayette St",
     "street2": null,
     "street3": null,
@@ -474,14 +505,44 @@ HTTP/1.1 200 OK
     "country": "US",
     "zip": "10013"
   },
-  "line_items": [],
-  "shipments": [],
-  "created_at": "2017-02-26T17:16:52.619Z",
-  "updated_at": "2017-04-05T20:24:34.842Z"
+  "line_items": [
+    {
+      "id": "6a9b1a56-249c-4037-8469-b4416e5e30a1",
+      "description": "1 six-pack of [skin+hair]",
+      "amount": 6500,
+      "quantity": 1,
+      "sku": {
+        "id": "f0a5ebf3-9a57-4b96-8e25-c8729c212490",
+        "currency": "usd",
+        "price": 6500
+      },
+      "created_at": "2017-04-18T18:37:43.674Z",
+      "updated_at": "2017-04-18T18:37:43.674Z"
+    }
+  ],
+  "shipments": [
+    {
+      "label": "1 six-pack of [skin+hair]",
+      "carrier": null,
+      "tracking_number": null,
+      "tracking_url": null,
+      "tracking_status": null,
+      "tracking_status_details": null,
+      "tracking_status_at": null,
+      "eta": null,
+      "fulfilled_at": null,
+      "created_at": "2017-04-18T18:38:26.921Z",
+      "updated_at": "2017-04-18T18:38:26.921Z"
+    }
+  ],
+  "created_at": "2017-04-18T18:37:43.634Z",
+  "updated_at": "2017-04-18T18:41:28.714Z"
 }
 ```
 
-This endpoint fulfills an order.
+This endpoint fulfills an order:
+
+  - Marks the order as __fulfilled__
 
 
 ### HTTP Request
