@@ -11,13 +11,13 @@ curl -X POST \
 -d '{
   "stripeToken": "token"
 }' \
-https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/cards
+https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/card
 ```
 
 ```javascript
 const dirtylemon = require('dirtylemon');
 
-dirtylemon.cards.create({CUSTOMER_ID}, {
+dirtylemon.card.create({CUSTOMER_ID}, {
   stripeToken: 'token'
 })
 ```
@@ -32,7 +32,7 @@ This endpoint creates a customer credit card. The newly created card then become
 
 ### HTTP Request
 
-`POST https://api.dirtylemon.com/v1/customers/<ID>/cards`
+`POST https://api.dirtylemon.com/v1/customers/<ID>/card`
 
 ### Arguments
 
