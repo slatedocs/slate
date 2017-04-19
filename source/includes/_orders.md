@@ -256,7 +256,7 @@ For this action to be successful, the following conditions must be met:
 | --------- | -------- | ------------|
 | customer_id | yes |  |
 
-### Arguments
+### Body params
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|

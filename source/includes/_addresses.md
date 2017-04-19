@@ -47,6 +47,7 @@ This endpoint creates __shipping__ and __billing__ addresses in one go for a giv
 | --------- | -------- | ------------|
 | customer_id | yes |  |
 
+### Body params
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
@@ -100,7 +101,7 @@ This endpoint validates and normalizes an address.
 
 `POST https://api.dirtylemon.com/v1/addresses/validate`
 
-### Arguments
+### Body params
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|

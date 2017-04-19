@@ -31,7 +31,7 @@ This endpoint creates a [message](#messages) on behalf of a __customer__:
 
 `POST https://api.dirtylemon.com/v1/receive/twilio`
 
-### Arguments
+### Body params
 
 Expected payload from [Twilio's webhook reference](...).
 
@@ -64,6 +64,6 @@ This endpoint creates a [message](#messages) on behalf of __init.ai__:
 
 `POST https://api.dirtylemon.com/v1/receive/init`
 
-### Arguments
+### Body params
 
 Expected payload from [Init.ai's webhook reference](https://docs.init.ai/docs/webhooks).

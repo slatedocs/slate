@@ -34,7 +34,7 @@ This endpoint creates a customer credit card. The newly created card then become
 
 `POST https://api.dirtylemon.com/v1/customers/<ID>/card`
 
-### Arguments
+### Body params
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|

@@ -158,7 +158,7 @@ This endpoint creates an __unconfirmed__ customer, creates a confirmation token 
 
 `POST https://api.dirtylemon.com/v1/customers`
 
-### Arguments
+### Body params
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
@@ -229,7 +229,7 @@ This endpoint updates a customer.
 | --------- | -------- | ------------|
 | customer_id | yes |  |
 
-### Arguments
+### Body params
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
@@ -299,13 +299,13 @@ This endpoint confirms a customer's phone number. Once a customer is created, a 
 
 `POST https://api.dirtylemon.com/v1/customers/:customer_id/confirm`
 
-### Arguments
 ### Path params
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
 | customer_id | yes |  |
 
+### Body params
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|

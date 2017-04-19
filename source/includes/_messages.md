@@ -59,7 +59,6 @@ This endpoint creates a message on behalf of an __agent__:
 
 `POST https://api.dirtylemon.com/v1/customers/:customer_id/sessions/:session_id/messages`
 
-### Arguments
 ### Path params
 
 | Parameter | Required | Description |
@@ -67,6 +66,7 @@ This endpoint creates a message on behalf of an __agent__:
 | customer_id | yes |  |
 | session_id | yes | Only `current` is accepted. |
 
+### Body params
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
