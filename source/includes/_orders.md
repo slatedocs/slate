@@ -141,7 +141,13 @@ This endpoint retrieves a specific order.
 
 ### HTTP Request
 
-`GET https://api.dirtylemon.com/v1/orders/<ID>`
+`GET https://api.dirtylemon.com/v1/orders/:order_id`
+
+### Path params
+
+| Parameter | Required | Description |
+| --------- | -------- | ------------|
+| order_id | yes |  |
 
 ### Returns
 
@@ -242,7 +248,13 @@ For this action to be successful, the following conditions must be met:
 
 ### HTTP Request
 
-`POST https://api.dirtylemon.com/v1/customers/<ID>/orders`
+`POST https://api.dirtylemon.com/v1/customers/:customer_id/orders`
+
+### Path params
+
+| Parameter | Required | Description |
+| --------- | -------- | ------------|
+| customer_id | yes |  |
 
 ### Arguments
 
@@ -353,7 +365,13 @@ This endpoint pays an order:
 
 ### HTTP Request
 
-`POST https://api.dirtylemon.com/v1/orders/<ID>/pay`
+`POST https://api.dirtylemon.com/v1/orders/:order_id/pay`
+
+### Path params
+
+| Parameter | Required | Description |
+| --------- | -------- | ------------|
+| order_id | yes |  |
 
 ### Returns
 
@@ -453,7 +471,13 @@ This endpoint cancels an order:
 
 ### HTTP Request
 
-`POST https://api.dirtylemon.com/v1/orders/<ID>/cancel`
+`POST https://api.dirtylemon.com/v1/orders/:order_id/cancel`
+
+### Path params
+
+| Parameter | Required | Description |
+| --------- | -------- | ------------|
+| order_id | yes |  |
 
 ### Returns
 
@@ -547,7 +571,13 @@ This endpoint fulfills an order:
 
 ### HTTP Request
 
-`POST https://api.dirtylemon.com/v1/orders/<ID>/fulfill`
+`POST https://api.dirtylemon.com/v1/orders/:order_id/fulfill`
+
+### Path params
+
+| Parameter | Required | Description |
+| --------- | -------- | ------------|
+| order_id | yes |  |
 
 ### Returns
 
@@ -642,7 +672,13 @@ This endpoint returns an order:
 
 ### HTTP Request
 
-`POST https://api.dirtylemon.com/v1/orders/<ID>/return`
+`POST https://api.dirtylemon.com/v1/orders/:order_id/return`
+
+### Path params
+
+| Parameter | Required | Description |
+| --------- | -------- | ------------|
+| order_id | yes |  |
 
 ### Returns
 

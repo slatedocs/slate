@@ -39,9 +39,14 @@ This endpoint creates __shipping__ and __billing__ addresses in one go for a giv
 
 ### HTTP Request
 
-`POST https://api.dirtylemon.com/v1/customers/<ID>/addresses`
+`POST https://api.dirtylemon.com/v1/customers/:customer_id/addresses`
 
-### Arguments
+### Path params
+
+| Parameter | Required | Description |
+| --------- | -------- | ------------|
+| customer_id | yes |  |
+
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|

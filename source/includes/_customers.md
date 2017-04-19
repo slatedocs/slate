@@ -89,7 +89,13 @@ This endpoint retrieves a specific customer. Use this endpoint to generate short
 
 ### HTTP Request
 
-`GET https://api.dirtylemon.com/v1/customers/<ID>`
+`GET https://api.dirtylemon.com/v1/customers/:customer_id`
+
+### Path params
+
+| Parameter | Required | Description |
+| --------- | -------- | ------------|
+| customer_id | yes |  |
 
 ### Returns
 
@@ -215,7 +221,13 @@ This endpoint updates a customer.
 
 ### HTTP Request
 
-`PATCH https://api.dirtylemon.com/v1/customers/<ID>`
+`PATCH https://api.dirtylemon.com/v1/customers/:customer_id`
+
+### Path params
+
+| Parameter | Required | Description |
+| --------- | -------- | ------------|
+| customer_id | yes |  |
 
 ### Arguments
 
@@ -285,9 +297,15 @@ This endpoint confirms a customer's phone number. Once a customer is created, a 
 
 ### HTTP Request
 
-`POST https://api.dirtylemon.com/v1/customers/<ID>/confirm`
+`POST https://api.dirtylemon.com/v1/customers/:customer_id/confirm`
 
 ### Arguments
+### Path params
+
+| Parameter | Required | Description |
+| --------- | -------- | ------------|
+| customer_id | yes |  |
+
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
@@ -329,7 +347,13 @@ This endpoint generates a confirmation token and sends it to the specified phone
 
 ### HTTP Request
 
-`POST https://api.dirtylemon.com/v1/customers/<ID>/generate_confirmation`
+`POST https://api.dirtylemon.com/v1/customers/:customer_id/generate_confirmation`
+
+### Path params
+
+| Parameter | Required | Description |
+| --------- | -------- | ------------|
+| customer_id | yes |  |
 
 ### Returns
 
