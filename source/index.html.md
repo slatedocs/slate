@@ -1093,7 +1093,6 @@ curl\
       }
     ],
     "country_code": "+44",
-    "locale": "en_AUS",
     "rating": 4.5,
     "permissions": {
       "can_message_client": true,
