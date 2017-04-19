@@ -875,7 +875,7 @@ ActionToExecute | UID of the workflow stage action|No|Id=797bbb3b-b485-4e73-a21c
 ```json
 {
 	"Workflow": {
-		"PersonResponsible@odata.bind": "https://intelex_url/api/v2/object/SysEmployeeEntity(UID)",
+		"PersonResponsible@odata.bind": "https://intelex_url/api/v2/object/Employees(UID)",
 		"RecurringSeries": {
 			"Frequency": "RRULE:FREQ=HOURLY",
 			"StartDate": "2017-06-06T02:30:00-05:00",
@@ -1615,7 +1615,7 @@ var request = require("request");
 var options = { method: 'PATCH',
   url: 'https://intelex_url/api/v2/object/IncidentsObject(UID)/Workflow',
   headers: { 'content-type': 'application/json' },
-  body: { 'PersonResponsible@odata.bind': 'https://intelex_url/api/v2/object/SysEmployeeEntity(UID)' },
+  body: { 'PersonResponsible@odata.bind': 'https://intelex_url/api/v2/object/Employees(UID)' },
   json: true };
 
 request(options, function (error, response, body) {
@@ -1629,7 +1629,7 @@ request(options, function (error, response, body) {
 var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject(UID)/Workflow");
 var request = new RestRequest(Method.PATCH);
 request.AddHeader("content-type", "application/json");
-request.AddParameter("application/json", "{\n\t\"PersonResponsible@odata.bind\": \"https://intelex_url/api/v2/object/SysEmployeeEntity(UID)\"\n}", ParameterType.RequestBody);
+request.AddParameter("application/json", "{\n\t\"PersonResponsible@odata.bind\": \"https://intelex_url/api/v2/object/Employees(UID)\"\n}", ParameterType.RequestBody);
 IRestResponse response = client.Execute(request);
 ```
 
@@ -1898,7 +1898,7 @@ Content-Type: application/json
 --batch_AAA123--
 ```
 
-> The above batch request returns the following response:
+> The above batch request returns the following response with a 200 OK status:
 
 ```
 --batchresponse_20a3a5a7-2df7-435e-9c62-ead3472499e7
