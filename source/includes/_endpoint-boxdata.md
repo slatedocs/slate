@@ -1,6 +1,6 @@
 ## Boxdata
 
-Boxdata is the data that Crunch provides to the CrunchBox for rendering 
+Boxdata is the data that Crunch provides to the CrunchBox for rendering
 web components that are made publicly available.  This endpoint provides
 a catalog of data that has been precomputed to provide visualizations
 cubes of json data.  Metadata associated with this raw computed data is accessed
@@ -24,11 +24,11 @@ Name | Type | Description
 ---- | ---- | -----------
 title | string | Human friendly identifier
 notes | string | Other information relevent for this CrunchBox
-header | header information for the CrunchBox
-footer | footer information for the CrunchBox
-dataset | URL of the dataset associated with the CrunchBox
-filters | A Crunch expression indicating which filters to include in the CrunchBox
-where | A Crunch expression indicating which variables to include in the CrunchBox
+header | string | header information for the CrunchBox
+footer | string | footer information for the CrunchBox
+dataset | string | URL of the dataset associated with the CrunchBox
+filters | object | A Crunch expression indicating which filters to include in the CrunchBox
+where | object | A Crunch expression indicating which variables to include in the CrunchBox. An undefined value is equavilent to specifying all dataset variables.
 creation_time | string | A timestamp of the date when this CrunchBox was created
 
 
@@ -113,7 +113,7 @@ where | A Crunch expression indicating which variables to include in the CrunchB
 
 ```json
 
-{  
+{
     "element": "shoji:entity",
     "body": {
         "where": {
