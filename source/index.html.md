@@ -103,6 +103,7 @@ Parameter | Type   | Default | Description
 `fields` | *array* | *all* | Attributes to receive in response
 `exclude_fields` | *array* | *none* | Attributes to exclude from response
 `include_fields` | *array* | *none* | Attributes to add to response which are not returned by default
+`return_meta` | *boolean* | *false* | Weather response includes `meta`
 
 ## Response
 
@@ -111,7 +112,7 @@ Parameter | Type   | Default | Description
 
 ```json
 {
-  "data": [],
+  "data": null,
   "paging": {
     "offset": 0,
     "limit": 10,
@@ -132,20 +133,20 @@ Parameter | Type   | Default | Description
 }
 ```
 
-All responses are with HTTP status 200 and contain `data` and `meta` parameters. Optionally there can be `success`, `error` and `warning` parameters.
+All responses are with HTTP status 200 and contain `data` parameter. Optionally there can be `success`, `error` and `warning` message elements, `meta` element and `paging`.
 
 
 ### Response object parameters
 
 Parameter | Type | Description
 --------- | ---- | -----------
-`data`<br>*optional* | *array* | Array of data objects returned in the result of the request
+`data`<br>*optional* | *array or object* | Content of response. `data` holds array of objects when requesting resources with plural names (e.g. addresses).`data` holds object when requesting resources with singular names  (e.g. profile).
 `paging`<br>*optional* | *object* | Information about paged results
 `paging.offset` | *integer* | Page starting element
 `paging.limit` | *integer* | Page size
 `paging.total` | *integer*| Total elements count
 `success`, `warning`, `error`<br>*optional* | *array* | Messages with information for the request. More than one type of message can be returned in a response. `success` and `error` can't come in the same response. `warning` can be combined with `success` or `error`.
-`meta` | *object* | Parameter containing information for the system.
+`meta`<br>*optional*  | *object* | Parameter containing information for the system.
 
 
 ### `meta`
@@ -194,11 +195,7 @@ curl\
       ],
       "updated_at": 1459492785
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -230,19 +227,13 @@ curl\
 
 ```json
 {
-  "data": [
-    {
-      "id": 255,
-      "address_line_1": "9 Apt.",
-      "address_line_2": "24 Red Lion Street",
-      "postcode": "SW12 2TN",
-      "lat": 51.604903,
-      "lng": -0.457022
-    }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
+  "data": {
+    "id": 255,
+    "address_line_1": "9 Apt.",
+    "address_line_2": "24 Red Lion Street",
+    "postcode": "SW12 2TN",
+    "lat": 51.604903,
+    "lng": -0.457022
   }
 }
 ```
@@ -278,11 +269,7 @@ curl\
       "debug_message": null,
       "debug_id": 213124
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -338,7 +325,7 @@ Parameter | Type | Description
 {
   "responses": [
     {
-      "data": [],
+      "data": null,
       "success": [
         {
           "code": 1020,
@@ -348,11 +335,7 @@ Parameter | Type | Description
         }
       ]
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -365,7 +348,7 @@ Parameter | Type | Description
 --------- | ---- | -----------
 `data`<br>*optional* | *array* | Array of data objects returned in the result of the request
 `success`, `warning`, `error`<br>*optional* | *array* | Messages with information for the request. More than one type of message can be returned in a response. `success` and `error` can't come in the same response. `warning` can be combined with `success` or `error`.
-`meta` | *object* | Parameter containing information for the system.
+`meta`<br>*optional*  | *object* | Parameter containing information for the system.
 
 In batched responses `meta` is returned once at the end.
 
@@ -408,11 +391,7 @@ curl\
       "debug_message": null,
       "debug_id": null
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -497,11 +476,7 @@ curl\
       "debug_message": null,
       "debug_id": null
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -573,11 +548,7 @@ curl\
       "debug_message": null,
       "debug_id": null
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -620,11 +591,7 @@ curl\
       "last_name": "Doe",
       "expire_time": 1491478823
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -677,11 +644,7 @@ curl\
       "debug_message": null,
       "debug_id": null
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -745,11 +708,7 @@ curl\
         89
       ]
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -834,11 +793,7 @@ curl\
         "tooltip": "Click here"
       }
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -907,11 +862,7 @@ curl\
         94
       ]
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -968,11 +919,7 @@ curl\
       "name": "1 _bedroom",
       "choice_items": null
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -1033,11 +980,7 @@ curl\
       "name": "1 _bedroom",
       "choice_items": null
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -1098,11 +1041,7 @@ curl\
       "link": "http://www.google.com",
       "sort": 100
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -1163,10 +1102,6 @@ curl\
       "can_receive_on_demand_jobs": true,
       "should_send_report_on_checkout": true
     }
-  },
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
   }
 }
 ```
