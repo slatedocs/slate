@@ -1146,7 +1146,7 @@ curl\
   "data": {
     "email": "vesi_peikova@abv.bg",
     "full_name": "John Doe",
-    "phone_numbers": [
+    "phones": [
       {
         "id": 1,
         "number": "07904678431",
@@ -1182,10 +1182,10 @@ Parameter | Type | Description
 -------- | ----- | -------
 `email` | *string* | Unit email for login
 `full_name` | *string* | First name and last name
-`phone_numbers` | *array* | List of phone numbers of unit
-`phone_numbers.id` | *int* | Unique identifier
-`phone_numbers.number` | *string* | Phone number
-`phone_numbers.default` | *boolean* | Is the phone the default used by the system for receiving calls and SMS
+`phones` | *array* | List of phone numbers of unit
+`phones.id` | *int* | Unique identifier
+`phones.number` | *string* | Phone number
+`phones.default` | *boolean* | Is the phone the default used by the system for receiving calls and SMS
 `country_code` | *string* | Country code of area the Unit operates in
 `locale` | *string* | Locale of area the Unit operates in
 `rating` | *double* | Performance score of Unit (1-5)
