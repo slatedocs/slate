@@ -8,7 +8,7 @@ language_tabs:
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='#'>Sign Up for a Nuonic account</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -19,80 +19,81 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Kids Health API! You can use our API to access Kids Health API endpoints which provide the latest data on a range of consumption and health metrics for primary school age children across Australia.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have language bindings in Shell, Ruby, C#, Java, Javascript and Python. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+This API documentation page was created with [Slate](https://github.com/tripit/slate). Thanks to Robert Lord for creating this awesome tool.
 
 # Authentication
 
 > To authorize, use this code:
 
 ```ruby
-require 'kittn'
+require 'nuonic'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+api = Nuonic::APIClient.authorize!('my-api-key')
 ```
 
 ```python
-import kittn
+import nuonic
 
-api = kittn.authorize('meowmeowmeow')
+api = nuonic.authorize('my-api-key')
+
 ```
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl "https://api.nuonic.com.au/auth"
+  -H "Authorization: my-api-key"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const nuonic = require('nuonic');
 
-let api = kittn.authorize('meowmeowmeow');
+let api = nuonic.authorize('my-api-key');
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `my-api-key` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+Nuonic APIs use JWT API keys to allow access to the API. You can obtain a Nuonic API key by [signing up ](http://www.nuonic.com.au/signup) for a Nuonic account.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Nuonic expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`Authorization: my-api-key`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+Replace <code>my-api-key</code> with your Nuonic API key.
 </aside>
 
-# Kittens
+# Nutrient Profile API
 
-## Get All Kittens
+## Summary by location
 
 ```ruby
-require 'kittn'
+require 'nuonic'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+api = Nuonic::APIClient.authorize!('my-api-key')
+api.nuonic.get
 ```
 
 ```python
-import kittn
+import nuonic
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+api = nuonic.authorize('my-api-key')
+api.nuonic.get()
 ```
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl "http://api.nuonic.com.au/kids_health/summary_by_location"
+  -H "Authorization: my-api-key"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const nuonic = require('nuonic');
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+let api = nuonic.authorize('my-api-key');
+let nuonic = api.nuonic.get();
 ```
 
 > The above command returns JSON structured like this:
@@ -100,90 +101,47 @@ let kittens = api.kittens.get();
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "number_schools": 1103,
+    "number_students": 23847,
+    "number_orders": 25738,
+    "number_items": 104753,
+    "protein_g": 19.23,
+    "carbohydrates_g": 26.53,
+    "sugar_g": 18.43,
+    "sodium_g": 4.54,
+    "saturated_fat_g": 23.26,
+    "unsaturated_fat_g": 16.34
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint returns a high-level nutrient consumption profile for a specified time period and location. The profile is an average across all students who transacted (purchased food items) in the period.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET http://api.nuonic.com.au/kids_health/summary_by_location`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+location_type | country| The type of location to aggregate to. One of ('country', 'school', 'postcode', 'region', 'state').
+location_name | Australia | The location name as a string. For example one of ('The Southport School', '4215', 'South East Queensland', 'Queensland').
+time_period | day | The time period to aggregate over. One of ('day', 'week', 'month', 'year').
+end_date | yesterday's date | The end date of the time period in the form 'yyyy-mm-dd'.
+number_periods | 1 | The number of time periods to return results for, up to a maximum of 12.
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+### Response Fields
 
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
+Field | Type | Description
+--------- | ------- | -----------
+number_schools | Int | The number of schools within the location that data is sourced from.
+number_students | Int | The number of students at the schools who transacted in the requested period.
+number_orders | Int | The number of meal orders by the students at the schools who transacted in the requested period.
+number_items | Int | The number of food items ordered by the students at the schools who transacted in the requested period.
+protein_g | Float | The average amount of protein consumed by all students in the specified subset in g.
+carbohydrates_g | Float | The average amount of carbohydrates consumed by all students in the specified subset in g.
+sugar_g | Float | The average amount of sugar consumed by all students in the specified subset in g.
+sodium_g | Float | The average amount of sodium (salt) consumed by all students in the specified subset in g.
+saturated_fat_g | Float | The average amount of saturated fat consumed by all students in the specified subset in g.
+unsaturated_fat_g | Float | The average amount of unsaturated fat consumed by all students in the specified subset in g.
