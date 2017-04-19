@@ -1143,23 +1143,27 @@ curl\
 
 ```json
 {
-  "data": [
-    {
-      "email": "vesi_peikova@abv.bg",
-      "full_name": "John Doe",
-      "phone_number": "07904678431",
-      "country_code": "+44",
-      "locale": "en_AUS",
-      "rating": 4.5,
-      "profile_permissions": {
-        "can_message_client": true,
-        "can_call_client": true,
-        "can_not_cancel_jobs": true,
-        "can_receive_on_demand_jobs": true,
-        "should_send_report_on_checkout": true
+  "data": {
+    "email": "vesi_peikova@abv.bg",
+    "full_name": "John Doe",
+    "phone_numbers": [
+      {
+        "id": 1,
+        "number": "07904678431",
+        "default": false
       }
+    ],
+    "country_code": "+44",
+    "locale": "en_AUS",
+    "rating": 4.5,
+    "permissions": {
+      "can_message_client": true,
+      "can_call_client": true,
+      "can_not_cancel_jobs": true,
+      "can_receive_on_demand_jobs": true,
+      "should_send_report_on_checkout": true
     }
-  ],
+  },
   "meta": {
     "db_version": 25,
     "latest_build": 27
@@ -1171,6 +1175,56 @@ curl\
 Profile contains unit details and permissions
 
 `"path": "profile"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`email` | *string* | Unit email for login
+`full_name` | *string* | First name and last name
+`phone_numbers` | *array* | List of phone numbers of unit
+`phone_numbers.id` | *int* | Unique identifier
+`phone_numbers.number` | *string* | Phone number
+`phone_numbers.default` | *boolean* | Is the phone the default used by the system for receiving calls and SMS
+`country_code` | *string* | Country code of area the Unit operates in
+`locale` | *string* | Locale of area the Unit operates in
+`rating` | *double* | Performance score of Unit (1-5)
+`permissions.can_message_client` | *boolean* | Can unit send SMS messages to clients
+`permissions.can_call_client` | *boolean* | Can unit call clients
+`permissions.can_not_cancel_jobs` | *boolean* | Can unit decline jobs
+`permissions.can_receive_on_demand_jobs` | *boolean* | Can unit receive jobs on-demand via notifications that require response
+`permissions.should_send_report_on_checkout` | *boolean* | Should unit sent report on checkout
+
+## Request vouchers
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/unit/request_vouchers"
+```
+
+With the following request Unit claims it needs vouchers in the form of flyers
+
+`"path": "request_vouchers"`
+
+## Register voucher
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/unit/register_voucher"
+```
+Units can register voouchers. Bookings with registered voucher will bring them bonuses.
+
+`"path": "register_voucher"`
 
 ### Response parameters
 
