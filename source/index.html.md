@@ -1,11 +1,5 @@
 ---
-title: API Reference
-
-language_tabs:
-  - shell
-  - ruby
-  - python
-  - javascript
+title: EventHero API Reference
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -19,104 +13,151 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the EventHero API!
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+This API documentation page is created from [EventHero API Docs repository](https://github.com/eventhero/api-docs).
+Feel free to log Issues or submit Pull Requests with improvements.
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+# Endpoint
+
+`https://app.eventhero.io/api/registrations`
 
 # Authentication
 
-> To authorize, use this code:
+To authenticate API requests, event organizers (customers of EventHero) need to create an access key for an event and communicate the access key to developers accessing API.
+Access keys are event specific, and perform dual function: authentication of the caller of API, and authorization of the caller to access a particular event.
 
-```ruby
-require 'kittn'
+Access key needs to be passed in HTTP Authorization header using Bearer scheme: `Authorization: Bearer <ACCESS_KEY>`
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+> Example API call with authorization header:
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl "https://app.eventhero.io/api/registrations" \
+  -H "Authorization: Bearer <ACCESS_KEY>" \
+  ...
 ```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+Remember — to replace &lt;ACCESS_KEY&gt; with your event access key!
 </aside>
 
-# Kittens
+# Versioning and Media Types
 
-## Get All Kittens
+EventHero API uses different content types for versioning.
+Currently the v1 version of the API accepts only `application/vnd.eventhero.registrations.v1+json` media type.
+When calling API endpoints the HTTP requests need to include the following Content-Type header:
+`Content-Type: application/vnd.eventhero.registrations.v1+json`
 
-```ruby
-require 'kittn'
+> Example API call with an acceptable Content-Type header:
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+```shell
+curl "https://app.eventhero.io/api/registrations" \
+  -H "Content-Type: application/vnd.eventhero.registrations.v1+json" \
+  ...
 ```
 
-```python
-import kittn
+Please note that incompatible media types (e.g. `application/json`) will be rejected with HTTP 415 error code.
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+# Registration Confirmed Activity
+
+## Request Structure
+
+> Given the following JSON body in `reg_confirmed.json` file
+
+```json
+{
+  "type": "registration.confirmed",
+  "data": {
+    "ref": "reg:1",
+    "type": {
+      "id": "rt:234",
+      "name": "General Admission"
+    },
+    "event": {
+      "name": "My Event",
+      "url": "http://eventbrite.com/..."
+    },
+    "registrant": {
+      "first_name": "Lindsey",
+      "last_name": "Tessmer",
+      "job_title": "QA",
+      "company": "Redargyle",
+      "phone": "(585) 412-2153",
+      "email": "lindsey@redargyle.com",
+      "address": {
+        "street_address": "2220 Sylvania Avenue",
+        "extended_address": "#33",
+        "locality": "Knoxville",
+        "region": "TN",
+        "postal_code": "37920",
+        "country": "USA"
+      }
+    },
+    "answers": [
+      {
+        "question": { "label": "What is your T-shirt size?" },
+        "answer": "XXL"
+      }
+    ]
+  }
+}
 ```
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+cat reg_confirmed.json > curl -i -X POST -d @- \
+  -H 'Content-Type: application/vnd.eventhero.registrations.v1+json' \
+  -H 'Authorization: Bearer <ACCESS_KEY>' \
+  https://app.eventhero.io/api/registrations
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+> The above command returns HTTP 200 success and JSON structure like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+  "status": 200
+}
 ```
 
-This endpoint retrieves all kittens.
+Key | Example | Description
+--- | ------- | -----------
+type      | "registration.confirmed" | Name of the activity
+data |  | Object that contains information on the activity
+data.ref | None | Registration reference. Should be unique across all registrations for this event. You may use identifiers in your system as the ref value.
+data.type | Object | Object representing [Registration Type](#registration-type)
+data.event | Object | Object representing [Event](#event)
+data.registrant | Object | Object representing [Registrant](#registrant)
+
+### Registration Type
+
+Key | Example | Description
+--- | ------- | -----------
+ref | "123" | ID representing registration type
+name | "General Admission" | Name for the registration type
+
+### Event
+
+Key | Example | Description
+--- | ------- | -----------
+url | "http://example.com/my-event" | URL for the source event
+name | "My Event" | Name for the event
+
+### Registrant
+
+Key | Example | Description
+--- | ------- | -----------
+first_name | "Lindsey" | |
+last_name | "Tessmer" |  |
+job_title | "QA" | |
+company | "Redargyle" | |
+phone | "(585) 412-2153" | |
+email | "lindsey@redargyle.com" | |
+address | Object | Object representing address of the registrant |
+address.street_address | "2220 Sylvania Avenue" | |
+address.extended_address | "#33" | |
+address.locality | "Knoxville" | |
+address.region | "TN" | |
+address.postal_code | "37920" | |
+address.country | "USA" | |
+
 
 ### HTTP Request
 
@@ -128,10 +169,6 @@ Parameter | Default | Description
 --------- | ------- | -----------
 include_cats | false | If set to true, the result will also include cats.
 available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
 
 ## Get a Specific Kitten
 
