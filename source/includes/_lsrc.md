@@ -14,9 +14,9 @@ $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v2/lsrc/add', [
     'name'              => 'Le Bernardin',
 	'schedule'          => 'Adhoc',
-	'search-terms'      => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
+	'search-terms'      => "Restaurant\nfood+nyc\ndelivery+midtown+manhattan",
     'website-addresses' => '["le-bernardin.com","le-bernardin2.com"]',
-	'search-engines'    => 'google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'
+	'search-engines'    => 'google,google-mobile,google-local,yahoo,yahoo-local,bing,bing-local'
 ]);
 print_r($success);
 ```
@@ -28,9 +28,9 @@ curl -X POST \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'name=Le Bernardin' \
  -d 'schedule=Adhoc' \
- -d 'search-terms=Restaurant\nfood+nyc\ndelivery+midtown+manhattan' \ 
+ -d $'search-terms=Restaurant\nfood+nyc\ndelivery+midtown+manhattan' \ 
  -d 'website-addresses=["le-bernardin.com","le-bernardin2.com"]' \
- -d 'search-engines=google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local' \ 
+ -d 'search-engines=google,google-mobile,google-local,yahoo,yahoo-local,bing,bing-local' \ 
  https://tools.brightlocal.com/seo-tools/api/v2/lsrc/add
 ```
 
@@ -42,7 +42,7 @@ parameters.Add("name", "Le Bernardin");
 parameters.Add("schedule", "Adhoc");
 parameters.Add("search-terms", "Restaurant\nfood+nyc\ndelivery+midtown+manhattan");
 parameters.Add("website-addresses", JsonConvert.SerializeObject("['le-bernardin.com', 'le-bernardin2.com']"));
-parameters.Add("search-engines", "google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local");
+parameters.Add("search-engines", "google,google-mobile,google-local,yahoo,yahoo-local,bing,bing-local");
 
 var success = request.Post("/v2/lsrc/add", parameters);
 ```
@@ -109,9 +109,9 @@ $success = $api->post('/v2/lsrc/update', [
     'campaign-id'       => 9907,
     'name'              => 'Le Bernardin',
 	'schedule'          => 'Adhoc',
-	'search-terms'      => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
+	'search-terms'      => "Restaurant\nfood+nyc\ndelivery+midtown+manhattan",
     'website-addresses' => '["le-bernardin.com","le-bernardin2.com"]',
-	'search-engines'    => 'google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local'
+	'search-engines'    => 'google,google-mobile,google-local,yahoo,yahoo-local,bing,bing-local'
 ]);
 print_r($success);
 ```
@@ -124,9 +124,9 @@ curl -X POST \
  -d 'campaign-id=9907' \
  -d 'name=Le Bernardin' \
  -d 'schedule=Adhoc' \
- -d 'search-terms=Restaurant\nfood+nyc\ndelivery+midtown+manhattan' \ 
+ -d $'search-terms=Restaurant\nfood+nyc\ndelivery+midtown+manhattan' \ 
  -d 'website-addresses=["le-bernardin.com","le-bernardin2.com"]' \
- -d 'search-engines=google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local' \ 
+ -d 'search-engines=google,google-mobile,google-local,yahoo,yahoo-local,bing,bing-local' \ 
  https://tools.brightlocal.com/seo-tools/api/v2/lsrc/update
 ```
 
@@ -139,7 +139,7 @@ parameters.Add("name", "Le Bernardin");
 parameters.Add("schedule", "Adhoc");
 parameters.Add("search-terms", "Restaurant\nfood+nyc\ndelivery+midtown+manhattan");
 parameters.Add("website-addresses", JsonConvert.SerializeObject("['le-bernardin.com', 'le-bernardin2.com']"));
-parameters.Add("search-engines", "google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local");
+parameters.Add("search-engines", "google,google-mobile,google-local,yahoo,yahoo-local,bing, bing-local");
 
 var success = request.Post("/v2/lsrc/update", parameters);
 ```
