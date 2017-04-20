@@ -92,11 +92,8 @@ end
         <span class="step">2</span>
       </td>
       <td>
-        <p>
-          Using Unicorn?
-        </p>
-        <p>Add the <code>preload_app true</code> directive to your Unicorn config file. <a href="http://unicorn.bogomips.org/Unicorn/Configurator.html#method-i-preload_app">Read more</a> in the Unicorn docs.
-        </p>
+        <p>Are your controllers inheriting from <code>ActionController::Metal</code> instead of <code>ActionController::Base</code>?</p>
+        <p><a href="#actioncontroller-metal">Add instrumentation</a> to your <code>ActionController::Metal</code> controllers.</p>
       </td>
     </tr>
     <tr>
@@ -145,8 +142,11 @@ tail -n1000 log/production.log | grep "Processing"
         <span class="step">7</span>
       </td>
       <td>
-        <p>Are your controllers inheriting from <code>ActionController::Metal</code> instead of <code>ActionController::Base</code>?</p>
-        <p><a href="#actioncontroller-metal">Add instrumentation</a> to your <code>ActionController::Metal</code> controllers.</p>
+        <p>
+          Using Unicorn?
+        </p>
+        <p>Add the <code>preload_app true</code> directive to your Unicorn config file. <a href="http://unicorn.bogomips.org/Unicorn/Configurator.html#method-i-preload_app">Read more</a> in the Unicorn docs.
+        </p>
       </td>
     </tr>
     <tr>
@@ -285,7 +285,7 @@ The following configuration settings are available:
           monitor
         </th>
         <td>
-          Whether monitoring should be enabled. 
+          Whether monitoring should be enabled.
         </td>
         <td>
           <code>false</code>
@@ -299,7 +299,7 @@ The following configuration settings are available:
           log_level
         </th>
         <td>
-          The logging level of the agent. 
+          The logging level of the agent.
         </td>
         <td>
           <code>INFO</code>
@@ -326,7 +326,7 @@ The following configuration settings are available:
           hostname
         </th>
         <td>
-          The hostname the metrics should be aggregrated under. 
+          The hostname the metrics should be aggregrated under.
         </td>
         <td>
           <code>Socket.gethostname</code>
@@ -339,7 +339,7 @@ The following configuration settings are available:
         <th>
           proxy
         </th>
-        <td>Specify the proxy URL (ex: <code>https://proxy</code>) if a proxy is required. 
+        <td>Specify the proxy URL (ex: <code>https://proxy</code>) if a proxy is required.
         </td>
         <td></td>
         <td>
@@ -351,7 +351,7 @@ The following configuration settings are available:
           host
         </th>
         <td>
-          The protocol + domain where the agent should report. 
+          The protocol + domain where the agent should report.
         </td>
         <td>
           <code>https://apm.scoutapp.com</code>
@@ -448,12 +448,12 @@ export SCOUT_KEY=YOURKEY
 ```
 ## Deploy Tracking Config
 
-Scout can [track deploys](#deploy-tracking), making it easier to correlate changes in your app to performance. To enable deploy tracking, first ensure you are on the latest version of `scout_apm`. See our [upgrade instructions](#updating-to-the-newest-version). 
+Scout can [track deploys](#deploy-tracking), making it easier to correlate changes in your app to performance. To enable deploy tracking, first ensure you are on the latest version of `scout_apm`. See our [upgrade instructions](#updating-to-the-newest-version).
 
 Scout identifies deploys via the following:
 
 1. If you are using Capistrano, no extra configuration is required. Scout reads the contents of the `REVISION` and/or `revisions.log` file and parses out the SHA of the most recent release.
-2. If you are using Heroku, enable [Dyno Metadata](https://devcenter.heroku.com/articles/dyno-metadata). This adds a `HEROKU_SLUG_COMMIT` environment variable to your dynos, which Scout then associates with deploys. 
+2. If you are using Heroku, enable [Dyno Metadata](https://devcenter.heroku.com/articles/dyno-metadata). This adds a `HEROKU_SLUG_COMMIT` environment variable to your dynos, which Scout then associates with deploys.
 3. If you are deploying via a custom approach, set a `SCOUT_REVISION_SHA` environment variable equal to the SHA of your latest release.
 4. If the app resides in a Git repo, Scout parses the output of `git rev-parse --short HEAD` to determine the revision SHA.
 
@@ -467,7 +467,7 @@ To see this metric within Scout, you need to configure your upstream software, a
 
 ### HTTP Header
 
-The Scout agent depends on an HTTP request header set by an upstream load balancer (ex: HAProxy) or web server (ex: Apache, Ngnix). 
+The Scout agent depends on an HTTP request header set by an upstream load balancer (ex: HAProxy) or web server (ex: Apache, Ngnix).
 
 __Protip:__ We suggest adding the header as early as possible in your infrastructure. This ensures you won't miss performance issues that appear before the header is set.
 
@@ -534,7 +534,7 @@ This won't interfere with our regular instrumentation. Your controller-action me
 
 ## Docker <img src="images/docker.png" style="float:right;width: 150px" />
 
-Scout runs within Docker containers without any special configuration. 
+Scout runs within Docker containers without any special configuration.
 
 It's common to configure Docker containers with environment variables. Scout can use [enviornment variables](#environment-variables) instead of the `scout_apm.yml` config file.
 
@@ -561,11 +561,11 @@ Scout is also available as a [Heroku Add-on](https://elements.heroku.com/addons/
 
 ## Cloud Foundry <img src="images/cf_logo.png" style="float:right;width: 150px" />
 
-Scout runs on Cloud Foundry without any special configuration. 
+Scout runs on Cloud Foundry without any special configuration.
 
 We suggest a few configuration changes in the `scout_apm.yml` file to best take advantage of Cloud Foundry:
 
-1. Set `log_file_path: STDOUT` to send your the Scout APM log contents to the Loggregator. 
+1. Set `log_file_path: STDOUT` to send your the Scout APM log contents to the Loggregator.
 2. Use the application name configured via Cloud Foundry to identify the app.
 3. Override the hostname reported to Scout. Cloud Foundry hostnames are dynamically generated and don't have any meaningful information. We suggest using a combination of the application name and the instance index.
 
@@ -686,7 +686,7 @@ before_filter :set_scout_context
 Create the following method:
 
 ```ruby
-def set_scout_context 
+def set_scout_context
 	ScoutApm::Context.add_user(email: current_user.email) if current_user.is_a?(User)
 end
 ```
@@ -726,7 +726,7 @@ The call to `instrument_method` should be after the method definition.
 
 #### Naming methods instrumented via `instrument_method`
 
-In the example above, the metric will appear in traces as `User#export_activity`. On timeseries charts, the time will be allocated to a `Custom` type. 
+In the example above, the metric will appear in traces as `User#export_activity`. On timeseries charts, the time will be allocated to a `Custom` type.
 
 __To modify the type__:
 
@@ -734,7 +734,7 @@ __To modify the type__:
 instrument_method :export_activity, type: 'Exporting'
 ```
 
-A new `Exporting` metric will now appear on charts. The trace item will be displayed as `Exporting/User/export_activity`. 
+A new `Exporting` metric will now appear on charts. The trace item will be displayed as `Exporting/User/export_activity`.
 
 __To modify the name__:
 
@@ -762,11 +762,11 @@ To instrument a method call, add the following:
 
 #### Naming methods instrumented via `instrument(type, name)`
 
-In the example above, the metric appear in traces as `User/generate_profile_pic`. On timeseries charts, the time will be allocated to a `User` type. To modify the type or simply, simply change the `instrument` corresponding method arguments. 
+In the example above, the metric appear in traces as `User/generate_profile_pic`. On timeseries charts, the time will be allocated to a `User` type. To modify the type or simply, simply change the `instrument` corresponding method arguments.
 
 ### Testing instrumentation
 
-Improper instrumentation can break your application. It's important to test before deploying to production. The easiest way to validate your instrumentation is by running [DevTrace](#devtrace) and ensuring the new metric appears as desired. 
+Improper instrumentation can break your application. It's important to test before deploying to production. The easiest way to validate your instrumentation is by running [DevTrace](#devtrace) and ensuring the new metric appears as desired.
 
 After restarting your dev server with DevTrace enabled, refresh the browser page and view the trace output. The new metric should appear in the trace:
 
@@ -795,7 +795,7 @@ production:
 development:
   <<: *defaults
   monitor: false
-   
+
 test:
   <<: *defaults
   monitor: false
@@ -808,7 +808,7 @@ staging:
 
 Setting the `SCOUT_NAME` and `SCOUT_MONITOR` environment variables will override settings settings your `scout_apm.yml` config file.
 
-To isolate data for a staging environment: `SCOUT_NAME="YOUR_APP_NAME (Staging)"`. 
+To isolate data for a staging environment: `SCOUT_NAME="YOUR_APP_NAME (Staging)"`.
 
 To disable monitoring: `SCOUT_MONITOR=false`.
 
