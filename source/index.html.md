@@ -1064,6 +1064,75 @@ Parameter | Type | Description
 `sort` | *integer* | Order of treat.
 
 
+## Validations
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/client/validations"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "path": "register",
+      "fields": [
+        {
+          "name": "username",
+          "regex": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
+          "required": true
+        },
+        {
+          "name": "password",
+          "regex": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "addresses",
+      "fields": [
+        {
+          "name": "address1",
+          "regex": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
+          "required": true
+        },
+        {
+          "name": "address2",
+          "regex": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
+          "required": false
+        }
+      ]
+    }
+  ]
+}
+```
+
+Validation object should be used for client side validation of fields before posting to server.
+
+`"path": "validations"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`path` | *string* | Path at which fields to validated will be posted
+`fields` | *array* | Array of field validation objects
+`fields.name` | *string* | Field key name in json
+`fields.regex` | *string* | Regex used to validate the field
+`fields.required` | *boolean* | Is field required for the path
+
+
+
+
+
 # Units
 
 ## Profile
@@ -1129,33 +1198,27 @@ Parameter | Type | Description
 `permissions.can_receive_on_demand_jobs` | *boolean* | Can unit receive jobs on-demand via notifications that require response
 `permissions.should_send_report_on_checkout` | *boolean* | Should unit sent report on checkout
 
-## Request vouchers
-
-
-```shell
-curl\
- -X GET\
- -H "Content-Type: application/json"\
- -H "X-Profile: {{PROFILE_ID}}"\
- -H "X-Application: {{APPLICATION_TOKEN}}"\
-"https://{{BASE_URL}}/v2/unit/request_vouchers"
-```
-
-With the following request Unit claims it needs vouchers in the form of flyers
-
-`"path": "request_vouchers"`
-
 ## Register voucher
 
 
 ```shell
 curl\
- -X GET\
+ -X POST\
  -H "Content-Type: application/json"\
- -H "X-Profile: {{PROFILE_ID}}"\
  -H "X-Application: {{APPLICATION_TOKEN}}"\
-"https://{{BASE_URL}}/v2/unit/register_voucher"
+ -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
+ -d '{
+  "requests": [
+    {
+      "method": "GET",
+      "path": "addresses",
+      "params": null,
+      "data": null
+    }
+  ]
+}' "https://{{BASE_URL}}/v2/unit/register_voucher"
 ```
+
 Units can register voouchers. Bookings with registered voucher will bring them bonuses.
 
 `"path": "register_voucher"`
