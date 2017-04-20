@@ -92,9 +92,9 @@ proxy.endpoint | string | IdaMobProxyServiceFacadeHttpSoap12Endpoint
 
  | | -
 --- | --- | ---:
-security.password.hash | bool | наличие запроса хэш пароля и алгоритм как он был получен. На сервере pro происходит проверка совпадают ли хеши полученные с клиента и с сервера банка
-security.password.encrypt | bool | пароль, зашифрованный по алгоритму Диффи-Хеллмана
-security.verification.encrypt | bool | верификационный код в запросе [confirmTransfer](#confirmtransfer) приходит в зашифрованном виде по алгоритму Диффи-Хеллмана
+security.password.hash | bool | наличие запроса хэш пароля и алгоритм как он был получен [requestHashedPassword](#requesthashedpassword). на сервере pro происходит проверка совпадают ли хеши полученные с клиента и с сервера банка
+security.password.encrypt | bool | расшифровывать пароль, зашифрованный на мобильном криенте
+security.verification.encrypt | bool | расшифровывать код из запроса [confirmTransfer](#confirmtransfer), зашифрованный на мобильном криенте
 security.incorrect_login_attempts | int | количество неверных попыток ввода ПИН кода
 
  | | -
