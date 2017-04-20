@@ -226,6 +226,23 @@ table.help {
   color: #333;
 }
 
+.content {
+  aside {
+    font-weight: bold;
+    font-size: 16px;
+    color: #fff;
+    &:before {
+      font-size: 20px;
+    }
+    &.warning {
+      background-color: #f0592a;
+    }
+    &.notice {
+      background-color: #7aae37;
+    }
+  }
+}
+
 .tocify-wrapper > .search:before {
 
   left: 25px;
