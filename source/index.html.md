@@ -1170,7 +1170,7 @@ curl\
       "can_call_client": true,
       "can_not_cancel_jobs": true,
       "can_receive_on_demand_jobs": true,
-      "should_send_report_on_checkout": true
+      "send_summary_on_checkout": true
     }
   }
 }
@@ -1198,7 +1198,7 @@ Parameter | Type | Description
 `permissions.can_call_client` | *boolean* | Can unit call clients
 `permissions.can_not_cancel_jobs` | *boolean* | Can unit decline jobs
 `permissions.can_receive_on_demand_jobs` | *boolean* | Can unit receive jobs on-demand via notifications that require response
-`permissions.should_send_report_on_checkout` | *boolean* | Should unit sent report on checkout
+`permissions.send_summary_on_checkout` | *boolean* | Should unit sent report on checkout
 
 ## Register voucher
 
