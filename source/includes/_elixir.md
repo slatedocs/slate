@@ -4,7 +4,7 @@ Elixir support is in BETA.
 
 ## Requirements
 
-Our Elixir agent supports Phoenix 1.2.0+ and Elixir 1.3+.
+Our Elixir agent supports Phoenix 1.2.0+ and Elixir 1.4+.
 
 ## Installation
 
