@@ -427,6 +427,8 @@ Parameter | Type | Description
 `login.sid` | *string* | Your session id. Use for `Authorization` header.
 `user` | *object* | Logged in user with expanded avatar, phones, addresses, payment details and last 10 bookings.
 
+This endpoint returns:
+
 * [Common errors](#common-errors)
 * [Login errors](#login-errors)
 
@@ -1208,33 +1210,61 @@ curl\
  -H "X-Application: {{APPLICATION_TOKEN}}"\
  -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
  -d '{
-  "requests": [
-    {
-      "method": "GET",
-      "path": "addresses",
-      "params": null,
-      "data": null
-    }
-  ]
-}' "https://{{BASE_URL}}/v2/unit/register_voucher"
+        "voucher_code": "23DSAD54"
+}'\
+ "https://{{BASE_URL}}/v2/unit/register_voucher"
 ```
 
-Units can register voouchers. Bookings with registered voucher will bring them bonuses.
+Units can register vouchers. Bookings with registered voucher will bring them bonuses.
 
 `"path": "register_voucher"`
+
+This endpoint returns:
+
+* [Common errors](#common-errors)
+
+## Registered vouchers
+
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/unit/registered_vouchers"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "voucher_code": "GO10OFF",
+      "created_at": 1492511551
+    },
+    {
+      "voucher_code": "GO20OFF",
+      "created_at": 1492522551
+    }
+  ]
+}
+```
+
+
+Units can review their registered vouchers.
+
+`"path": "registered_vouchers"`
 
 ### Response parameters
 
 Parameter | Type | Description
 -------- | ----- | -------
-`email` | *string* | Unit email for login
-`full_name` | *string* | First name and last name
-`phone_number` | *string* | Phone number of unit
-`country_code` | *string* | Country code of area the Unit operates in
-`locale` | *string* | Locale of area the Unit operates in
-`rating` | *double* | Performance score of Unit (1-5)
-`permissions.can_message_client` | *boolean* | Can unit send SMS messages to clients
-`permissions.can_call_client` | *boolean* | Can unit call clients
-`permissions.can_not_cancel_jobs` | *boolean* | Can unit decline jobs
-`permissions.can_receive_on_demand_jobs` | *boolean* | Can unit receive jobs on-demand via notifications that require response
-`permissions.should_send_report_on_checkout` | *boolean* | Should unit sent report on checkout
+`voucher_code ` | *string* | Voucher code
+`created_at ` | *integer* | Timestamp when the voucher was registered
+
+This endpoint returns:
+
+* [Common errors](#common-errors)
