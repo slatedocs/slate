@@ -13,7 +13,6 @@ Start the server: `bundle exec middleman server`
 Files are in the `source/` directory.
 
 ## Publishing changes
-
+* Commit all changes to `master`, published changes will be written to the `gh-pages` branch
 * git commit / push
 * rake publish
-
