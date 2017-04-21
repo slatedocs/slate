@@ -1153,26 +1153,24 @@ curl\
 
 ```json
 {
-  "data": {
-    "email": "vesi_peikova@abv.bg",
-    "full_name": "John Doe",
-    "phones": [
-      {
-        "id": 1,
-        "number": "07904678431",
-        "default": false
-      }
-    ],
-    "country_code": "+44",
-    "rating": 4.5,
-    "permissions": {
-      "can_message_client": true,
-      "can_call_client": true,
-      "can_not_cancel_jobs": true,
-      "can_receive_on_demand_jobs": true,
-      "send_summary_on_checkout": true
+    "data": [{
+        "email": "vesi_peikova@abv.bg",
+        "full_name": "John Doe",
+        "phones": [{
+            "id": 1,
+            "number": "07904678431",
+            "default": false
+        }],
+        "country_code": "+44",
+        "rating": 4.5,
+        "permissions": {
+            "can_message_client": true,
+            "can_call_client": true,
+            "cannot_decline_jobs": true,
+            "can_take_ondemand_jobs": true,
+            "has_to_send_summary_on_checkout": true
+        }
     }
-  }
 }
 ```
 
