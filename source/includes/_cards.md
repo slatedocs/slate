@@ -36,7 +36,7 @@ HTTP/1.1 201 CREATED
 }
 ```
 
-This endpoint creates a customer credit card. The newly created card then becomes the customer's default payment method.
+This endpoint creates a [customer](#customers) credit card. The newly created card then becomes the customer's default payment method.
 
 ### HTTP Request
 

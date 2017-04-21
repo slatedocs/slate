@@ -357,9 +357,9 @@ HTTP/1.1 200 OK
 
 This endpoint pays an order:
 
-  - Charges the customer's credit card
-  - Creates shipments for the order's line items
-  - Sends the customer a confirmation email
+  - Charges the customer's [credit card](#cards)
+  - Creates [shipments](#shipments) for the order's line items
+  - Sends the [customer](#customers) a confirmation email
   - Marks the order as __paid__
 
 
@@ -461,9 +461,9 @@ HTTP/1.1 200 OK
 This endpoint cancels an order:
 
   - If the order's status was __paid__:
-    - Refunds the customer's credit card
-    - Cancels previously created shipments
-    - Sends the customer a cancelation email
+    - Refunds the customer's [credit card](#cards)
+    - Cancels previously created [shipments](#shipments)
+    - Sends the [customer](#customers) a cancelation email
     - Marks the order as __canceled__
   - If the order's status was __created__
     - Marks the order as __canceled__
@@ -666,7 +666,7 @@ HTTP/1.1 200 OK
 
 This endpoint returns an order:
 
-  - Refunds the customer
+  - Refunds the [customer](#customers)
   - Marks the order as __returned__
 
 
