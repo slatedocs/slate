@@ -1154,8 +1154,8 @@ curl\
 ```json
 {
   "data": {
-    "email": "vesi_peikova@abv.bg",
-    "full_name": "John Doe",
+    "username": "vesi_peikova@abv.bg",
+    "name": "John Doe",
     "phones": [
       {
         "id": 1,
@@ -1185,15 +1185,15 @@ Profile contains unit details and permissions
 
 Parameter | Type | Description
 -------- | ----- | -------
-`email` | *string* | Unit email for login
-`full_name` | *string* | First name and last name
+`username` | *string* | Unit email for login
+`name` | *string* | First name and last name of unit
 `phones` | *array* | List of phone numbers of unit
 `phones.id` | *int* | Unique identifier
 `phones.number` | *string* | Phone number
 `phones.default` | *boolean* | Is the phone the default used by the system for receiving calls and SMS
 `country_code` | *string* | Country code of area the Unit operates in
-`locale` | *string* | Locale of area the Unit operates in
 `rating` | *double* | Performance score of Unit (1-5)
+`permissions` | *array* | List of permissions of unit
 `permissions.can_message_client` | *boolean* | Can unit send SMS messages to clients
 `permissions.can_call_client` | *boolean* | Can unit call clients
 `permissions.cannot_decline_jobs` | *boolean* | Can unit decline jobs
