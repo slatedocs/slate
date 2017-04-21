@@ -37,8 +37,8 @@
 | billing_address_url      | string | Ephemeral url allowing the user to edit his billing address with a form |
 | shipping_address_url     | string | Ephemeral url allowing the user to edit his shipping address with a form |
 | card_url                 | string | Ephemeral url allowing the user to edit his credit card with a form |
-| confirmed_at             | timestamp | Time at which the phone number was confirmed |
-| confirmation_sent_at     | timestamp | Time at which the confirmation token was sent to the unconfirmed phone number |
+| confirmed_at             | timestamp | Time at which the phone number was confirmed |
+| confirmation_sent_at     | timestamp | Time at which the confirmation token was sent to the unconfirmed phone number |
 | created_at               | timestamp | Time at which the object was created |
 | updated_at               | timestamp | Time at which the object was updated |
 
@@ -152,7 +152,10 @@ HTTP/1.1 201 CREATED
 }
 ```
 
-This endpoint creates an __unconfirmed__ customer, creates a confirmation token and sends it to the specified phone number.
+This endpoint creates an __unconfirmed__ customer:
+
+  - Creates a confirmation token
+  - Fires a `verification` event
 
 ### HTTP Request
 
@@ -289,7 +292,10 @@ HTTP/1.1 200 OK
 }
 ```
 
-This endpoint confirms a customer's phone number. Once a customer is created, a confirmation token is sent to the specified phone number and the customer has a short time window, about 5 minutes, to confirm it.
+This endpoint confirms a customer's phone number:
+
+  - Promotes the customer's `unconfirmed_phone_number` to `phone_number`
+  - Fires a `verification` event
 
 <aside class="notice">
   This will fail if the customer is already confirmed.
@@ -309,7 +315,7 @@ This endpoint confirms a customer's phone number. Once a customer is created, a 
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
-| confirmation_token | yes | Token previously sent to the customer's phone number |
+| confirmation_token | yes | Token generated on customer creation |
 
 ### Returns
 
@@ -339,7 +345,13 @@ dirtylemon.customers.generate_confirmation({CUSTOMER_ID})
 HTTP/1.1 201 CREATED
 ```
 
-This endpoint generates a confirmation token and sends it to the specified phone number. Use it to handle situations when a customer fails to confirm his phone number in the allowed time window.
+This endpoint generates a new confirmation token:
+
+  - Fires a `verification` event
+
+Allows to handle situations when a customer fails to confirm his phone number in the allowed time window, which is usually about 5 minutes.
+
+On the event, the [conversational system](#) can prompt the customer for confirmation.
 
 <aside class="notice">
   This will fail if the customer is already confirmed.
