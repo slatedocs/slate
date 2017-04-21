@@ -432,6 +432,7 @@ end_date | date | ISO-8601 formatted date with day resolution
 is_published | boolean | If false, only project editors will have access to this dataset
 weight_variables | array | Contains aliases of weight variables to start this dataset with; variables must be numeric type
 table | object | Metadata definition for the variables in the dataset
+maintainer | URL | User URL that will be the maintainer of this dataset in case of system notifications; if omitted, the authenticated user will be the maintainer
 
 
 ### Other catalogs
@@ -539,6 +540,7 @@ start_date | ISO-8601 string |  | Date/time for which the data in the dataset co
 end_date | ISO-8601 string |  | End date/time of the dataset's data, defining a start_date:end_date range
 current_editor | URL or null | | URL of the user entity that is currently editing the dataset, or `null` if there is no current editor
 current_editor_name | string or null | | That user's name, for display
+maintainer | URL | The URL of the dataset maintainer. Will always point to a user
 app_settings | object | `{}` | A place for API clients to store values they need per dataset; It is recommended that clients namespace their keys to avoid collisions
 
 ##### Dataset catalogs
