@@ -548,6 +548,54 @@ POST'ing to the private variables catalog a Shoji Entity containing a ZCL functi
 ...results in a private multiple_response variable where the "Frequently" and "Always" categories are selected.
 
 
+### Text Analysis
+
+#### Sentiment Analysis
+
+The "sentiment" function allows you to derive a categorical variable from text variable data, which is classified and accumulated in three categories (positive, negative, and neutral).  It takes one parameter: 
+
+* A reference to a text variable
+
+Given a variable such as:
+
+```json
+{
+    "element": "shoji:entity",
+    "self": "https://app.crunch.io/api/datasets/3ad42c/variables/0000f5/",
+    "body": {
+        "name": "Zest",
+        "alias": "zest",
+        "type": "text",
+        "values": [
+            "Zest is best",
+            "Zest I can take it or leave it",
+            "Zest is the worst"
+        ]
+    }
+}
+```
+
+`POST`ing to the private variables catalog a Shoji Entity containing a ZCL function like:
+
+```json
+{
+    "element": "shoji:entity",
+    "body": {
+        "name": "Zesty Sentiment",
+        "description": "Customer sentiment about Zest",
+        "alias": "zest_sentiment",
+        "derivation": {
+            "function": "sentiment",
+            "args": [
+                {"variable": "https://app.crunch.io/api/datasets/3ad42c/variables/0000f5/"}
+            ]
+        }
+    }
+}
+```
+
+Will result in a new categorical variable, where for each row the text variable is classified as “Negative”, “Neutral”, or “Positive” using the [VADER](https://github.com/cjhutto/vaderSentiment) English social-media-tuned lexicon.
+
 ### Other transformations
 
 #### Arithmetic operations
