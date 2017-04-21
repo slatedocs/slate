@@ -36,8 +36,8 @@ $darkgreen: #64953f;
 
 .content {
   max-width: 800px;
-  > pre, > iframe {
-        margin-left: 28px;
+  > pre, > pre.terminal, > iframe {
+    margin-left: 28px;
   }
   pre {
     border-radius: 3px;

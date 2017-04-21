@@ -160,3 +160,22 @@ The following configuration settings are available:
       </tr>
     </tbody>
   </table>
+
+## Updating to the Newest Version
+
+<div class="install">
+
+ <p class="instruct">
+  <span class="step">A</span>Ensure your <code>mix.exs</code> dependency entry for <code>scout_apm</code> is: <code>{:scout_apm, "~> 0.0"}`</code>
+ </p>
+
+ <p class="instruct">
+  <span class="step">B</span><span class="terminal">mix deps.get scout_apm</span>
+ </p>
+
+  <p class="instruct">
+    <span class="step">C</span>Recompile and deploy.
+ </p>
+
+
+</div>
