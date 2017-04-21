@@ -1170,7 +1170,7 @@ curl\
             "can_take_ondemand_jobs": true,
             "has_to_send_summary_on_checkout": true
         }
-    }]
+    }
 }
 ```
 
@@ -1194,9 +1194,9 @@ Parameter | Type | Description
 `rating` | *double* | Performance score of Unit (1-5)
 `permissions.can_message_client` | *boolean* | Can unit send SMS messages to clients
 `permissions.can_call_client` | *boolean* | Can unit call clients
-`permissions.cannot_decline_jobs` | *boolean* | Can unit decline jobs
-`permissions.can_take_ondemand_jobs` | *boolean* | Can unit receive jobs on-demand via notifications that require response
-`permissions.has_to_send_summary_on_checkout` | *boolean* | Should unit sent report on checkout
+`permissions.can_not_cancel_jobs` | *boolean* | Can unit decline jobs
+`permissions.can_receive_on_demand_jobs` | *boolean* | Can unit receive jobs on-demand via notifications that require response
+`permissions.send_summary_on_checkout` | *boolean* | Should unit sent report on checkout
 
 ## Register voucher
 
