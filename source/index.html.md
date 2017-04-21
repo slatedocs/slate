@@ -1154,6 +1154,7 @@ curl\
 ```json
 {
   "data": {
+    "id": 12,
     "username": "vesi_peikova@abv.bg",
     "name": "John Doe",
     "phones": [
@@ -1184,6 +1185,7 @@ Profile contains unit details and permissions
 
 Parameter | Type | Description
 -------- | ----- | -------
+`id` | *integer* | Unique identifier
 `username` | *string* | Unit email for login
 `name` | *string* | First name and last name of unit
 `phones` | *array* | List of phone numbers of unit
@@ -1196,8 +1198,8 @@ Parameter | Type | Description
 `permissions.can_message_client` | *boolean* | Can unit send SMS messages to clients
 `permissions.can_call_client` | *boolean* | Can unit call clients
 `permissions.can_not_cancel_jobs` | *boolean* | Can unit decline jobs
-`permissions.can_receive_on_demand_jobs` | *boolean* | Can unit receive jobs on-demand via notifications that require response
-`permissions.send_summary_on_checkout` | *boolean* | Should unit sent report on checkout
+`permissions.can_take_ondemand_jobs` | *boolean* | Can unit receive jobs on-demand via notifications that require response
+`permissions.has_to_send_summary_on_checkout` | *boolean* | Should unit sent report on checkout
 
 ## Register voucher
 
