@@ -302,9 +302,9 @@ day(close > ema(close,200)) and 4hour(close < ema(close,200))
 
 Compare signals in different timeframes. When using expressions with multiple timeframe signals, the timeframe querystring parameter is ignored.  The following timeframe functions are available:
 
-* 5min
-* 15min
-* 30min
+* 5minute
+* 15minute
+* 30minute
 * hour
 * 2hour
 * 3hour
