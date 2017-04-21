@@ -15,10 +15,12 @@ $success = $api->post('/v2/ct/add', [
     'report-name'       => 'Le Bernardin',
     'business-name'     => 'Le Bernardin',
     'business-location' => 'New York, NY',
+    'postcode'          => '10020',
     'phone'             => '+1 212-554-1515',
     'website'           => 'le-bernardin.com',
     'business-type'     => 'Restaurant',
-    'state-code'        => 'NY'	
+    'state-code'        => 'NY',
+    'primary_location' => '10020',
 ]);
 print_r($success);
 ```
@@ -32,9 +34,11 @@ curl -X POST \
  -d 'business-name=Le Bernardin' \
  -d 'business-location=New York, NY' \ 
  -d 'phone=+1 212-554-1515' \
+ -d 'postcode=10020' \
  -d 'website=le-bernardin.com' \ 
  -d 'business-type=Restaurant' \
  -d 'state-code=NY' \
+ -d 'primary_location=10020' \
  https://tools.brightlocal.com/seo-tools/api/v2/ct/add
 ```
 
@@ -46,9 +50,11 @@ parameters.Add("report-name", "Sample Citation Tracking Report");
 parameters.Add("business-name", "Le Bernardin");
 parameters.Add("business-location", "NY, New York");
 parameters.Add("phone", "+1 212-554-1515");
+parameters.Add("postcode", "10020");
 parameters.Add("website", "le-bernardin.com");
 parameters.Add("business-type", "Restaurant");
 parameters.Add("state-code", "NY");
+parameters.Add("primary_location", "10020");
 
 var success = request.Post("/v2/ct/add", parameters);
 ```
@@ -81,7 +87,7 @@ business-name | <span class="label label-required">Required</span>
 business-location | <span class="label label-required">Required</span> Town or city name in which business is located.
 old-business-name-1	|
 old-business-name-2	|
-postcode |	80 characters max. 
+postcode |	<span class="label label-required">Required</span> 80 characters max. 
 old-postcode-1 |	
 old-postcode-2 |	
 country | One of USA, GBR, CAN, AUS. Defaults to USA.
@@ -96,6 +102,7 @@ active-only | Flag to fetch only active citations. One of Yes, No. Defaults to N
 notify | One of yes or no. If set to yes we will send report alerts to all email addresses specified (see field below). If you include customer email addresses when setting up your report we'll also email them the alerts so please be sure this is what you want before adding their addresses. Default is no.
 email-addresses | Supply one or more (max 5) email addresses for us to send report alerts to. Emails should be passed as a JSON encoded array. This only takes effect if notify is set to yes.
 is-public | Publish reports on a white label URL. Yes or No.
+primary-location | <span class="label label-required">Required</span> We use ‘Location’ to identify your top 10 ‘Google+ Local’ competitors. Please enter your city/town name or zip/postcode. Note: for US businesses we strongly recommend that you use only 5 digit zips (99750, NOT 99750-0077) as using the longer format can make it harder for us to find competitors.
 
 ## Update Report
 
