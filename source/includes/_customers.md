@@ -122,7 +122,10 @@ const dirtylemon = require('dirtylemon');
 
 dirtylemon.customers.create({
   unconfirmed_phone_number: '333-333-333',
-  country_code: 'US'
+  country_code: 'US',
+  first_name: 'Yogi',
+  last_name: 'Berra',
+  email: 'yogi@berra.com'
 })
 ```
 
@@ -138,24 +141,29 @@ HTTP/1.1 201 CREATED
   "phone_number": null,
   "unconfirmed_phone_number": "+14185810827",
   "country_code": "CA",
-  "email": null,
-  "first_name": null,
-  "last_name": null,
+  "email": "yogi@berra.com",
+  "first_name": "Yogi",
+  "last_name": "Berra",
   "confirmation_token": "152200",
   "billing_address_url": null,
   "shipping_address_url": null,
   "card_url": null,
-  "confirmed_at": null,
+  "confirmed_at": "2017-04-14T18:48:52.367Z",
   "confirmation_sent_at": null,
   "created_at": "2017-04-14T18:48:52.367Z",
   "updated_at": "2017-04-14T18:48:52.967Z"
 }
 ```
 
-This endpoint creates an __unconfirmed__ customer:
+With `confirmation`:
 
-  - Creates a confirmation token
+  - Creates an __unconfirmed__ customer
   - Fires a `verification` event
+
+Without `confirmation`:
+
+  - Creates a __confirmed__ customer
+
 
 ### HTTP Request
 
@@ -165,8 +173,12 @@ This endpoint creates an __unconfirmed__ customer:
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
+| confirmation | no | Wether or not to perform the confirmation flow. Default to `true` |
 | unconfirmed_phone_number | yes | Unique phone number |
 | country_code | yes | The phone number's ISO 3166 country code |
+| first_name | no |  |
+| last_name | no |  |
+| email | no |  |
 
 ### Returns
 
