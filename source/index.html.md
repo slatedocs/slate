@@ -858,7 +858,7 @@ ActionToExecute | UID of the workflow stage action|No|Id=797bbb3b-b485-4e73-a21c
 
 ```json
 {
-	"Location@odata.bind": "https://intelex_url/api/v2/object/SysLocationEntity(Id)"
+	"Location@odata.bind": "https://intelex_url/api/v2/object/LocationObject(Id)"
 }
 ```
 
@@ -875,7 +875,7 @@ ActionToExecute | UID of the workflow stage action|No|Id=797bbb3b-b485-4e73-a21c
 ```json
 {
 	"Workflow": {
-		"PersonResponsible@odata.bind": "https://intelex_url/api/v2/object/Employees(UID)",
+		"PersonResponsible@odata.bind": "https://intelex_url/api/v2/object/EmployeeObject(UID)",
 		"RecurringSeries": {
 			"Frequency": "RRULE:FREQ=HOURLY",
 			"StartDate": "2017-06-06T02:30:00-05:00",
@@ -1010,7 +1010,7 @@ id|The Intelex UID of the record being updated
 
 ```json
 {
-	"Location@odata.bind": "https://intelex_url/api/v2/object/SysLocationEntity(UID)"
+	"Location@odata.bind": "https://intelex_url/api/v2/object/LocationObject(UID)"
 }
 ```
 
@@ -1615,7 +1615,7 @@ var request = require("request");
 var options = { method: 'PATCH',
   url: 'https://intelex_url/api/v2/object/IncidentsObject(UID)/Workflow',
   headers: { 'content-type': 'application/json' },
-  body: { 'PersonResponsible@odata.bind': 'https://intelex_url/api/v2/object/Employees(UID)' },
+  body: { 'PersonResponsible@odata.bind': 'https://intelex_url/api/v2/object/EmployeeObject(UID)' },
   json: true };
 
 request(options, function (error, response, body) {
@@ -1629,7 +1629,7 @@ request(options, function (error, response, body) {
 var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject(UID)/Workflow");
 var request = new RestRequest(Method.PATCH);
 request.AddHeader("content-type", "application/json");
-request.AddParameter("application/json", "{\n\t\"PersonResponsible@odata.bind\": \"https://intelex_url/api/v2/object/Employees(UID)\"\n}", ParameterType.RequestBody);
+request.AddParameter("application/json", "{\n\t\"PersonResponsible@odata.bind\": \"https://intelex_url/api/v2/object/EmployeeObject(UID)\"\n}", ParameterType.RequestBody);
 IRestResponse response = client.Execute(request);
 ```
 
