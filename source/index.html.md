@@ -889,68 +889,6 @@ Parameter | Type | Description
 
 
 
-
-## Choice items
-
-
-```shell
-curl\
- -X GET\
- -H "Content-Type: application/json"\
- -H "X-Profile: {{PROFILE_ID}}"\
- -H "X-Application: {{APPLICATION_TOKEN}}"\
-"https://{{BASE_URL}}/v2/client/choice_items"
-```
-
-> The above request success response is:
-
-```json
-{
-  "data": [
-    {
-      "id": 1110,
-      "sort": 100,
-      "parent_id": 0,
-      "type": 1,
-      "max_value": 0,
-      "min_value": 0,
-      "value": 0,
-      "duration": 0,
-      "summary_title": "",
-      "is_in_summary": false,
-      "name": "1 _bedroom",
-      "choice_items": null
-    }
-  ]
-}
-```
-
-
-Answers to the questions the user needs to answer to book a service.
-
-
-`"path": "choice_items"`
-
-### Response parameters
-
-Parameter | Type | Description
--------- | ----- | -------
-`id` | *integer* | Object id
-`sort` | *integer* | Order of item in list
-`parent_id` | *integer* | Parent answer (if answer is sub-answer)
-`type` | *integer* | *<b>1</b> - Check*<br>*<b>2</b> - Radio*<br>*<b>3</b> - Stepper (incremental value)*<br>*<b>4</b> - Text field*<br>*<b>5</b> - Hours (total hours for current booking configuration)*<br>*<b>6</b> - Drop down*<br>*<b>7</b> - Multi select (autocomplete with quantity)*<br>*<b>8</b> - Distance*<br>*<b>9</b> - Always Apply*<br>*<b>10</b> - Price per hour*<br>*<b>11</b> - Decimal Text*<br>
-`max_value` | *integer* | Maximum value of answer
-`min_value` | *integer* | Minimum value of answer
-`value` | *integer* | Default value of answer
-`duration` | *integer* | Minutes added to booking estimated time from the answer
-`summary_title` | *string* | Answer short title text in summary
-`is_in_summary` | *boolean* | Should the answer be included in the summary of booking
-`name` | *string* | Title of answer
-`choice_items` | *array\<choice_item\>* | List of sub-answers for the answers
-
-
-
-
 ## Choice items
 
 
@@ -1201,6 +1139,7 @@ Parameter | Type | Description
 `permissions.can_take_ondemand_jobs` | *boolean* | Can unit receive jobs on-demand via notifications that require response
 `permissions.has_to_send_summary_on_checkout` | *boolean* | Should unit sent report on checkout
 
+
 ## Register voucher
 
 
@@ -1269,3 +1208,125 @@ Parameter | Type | Description
 This endpoint returns:
 
 * [Common errors](#common-errors)
+
+
+
+## Checklists
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+ -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/unit/checklists"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "job_id": 23,
+      "type": 1,
+      "choices": [
+        {
+          "id": 1,
+          "sort": 100,
+          "required": true,
+          "title": "How many bedrooms are there?",
+          "choice_items": [
+            {
+              "id": 2,
+              "sort": 100,
+              "type": 1,
+              "title": "1 Bedroom"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+Checklists for performing a job
+
+`"path": "checklists"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`id` | *integer* | Unique identifier
+`job_id` | *integer* | Job for checklists
+`type` | *integer* | *<b>10</b> - Before checkin*<br>*<b>20</b> - Before checkout*
+`choices` | *array* | Checklist questions
+`choices.id` | *integer* | Unique identifier
+`choices.sort` | *integer* | Order of item
+`choices.required` | *boolean* | Should question be answered to send the checklist
+`choices.title` | *string* | Checklist question
+`choices.choice_items` | *array* | Question answers
+`choices.choice_items.id` | *integer* | Unique identifier
+`choices.choice_items.sort` | *integer* | Order of item
+`choices.choice_items.type` | *integer* | *<b>2</b> - Radio*<br>*<b>3</b> - Stepper (incremental value)*<br>*<b>12</b> - Photo attachment
+`choices.choice_items.title` | *string* | Checklist question answer
+
+
+
+## Checklist answers
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+ -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/unit/checklist_answers"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "checklist_id": 1,
+      "job_id": 1,
+      "choice_items": [
+        {
+          "id": 2,
+          "value": "1"
+        },
+        {
+          "id": 2,
+          "value": [
+            "23hjfkajsdhfe198237019"
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+Checklist answers after filling checklist.
+
+`"path": "checklist_answers"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`id` | *integer* | Unique identifier
+`checklist_id` | *integer* | Checklist for answers
+`job_id` | *integer* | Job for checklists
+`type` | *integer* | *<b>10</b> - Before checkin*<br>*<b>20</b> - Before checkout*
+`choices_items` | *array* | Checklist answers
+`choices_items.id` | *integer* | Unique identifier
+`choices_items.value` | *string/array* | Answer user entered
