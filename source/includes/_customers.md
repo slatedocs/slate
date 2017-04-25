@@ -29,7 +29,7 @@
 | id                       | string   | Unique identifier for the object |
 | phone_number             | string |  |
 | unconfirmed_phone_number | string |  |
-| country_code             | string |  |
+| country_code             | string | The phone number's ISO 3166 country code |
 | email                    | string |  |
 | first_name               | string |  |
 | last_name                | string |  |
@@ -111,8 +111,7 @@ curl -X POST \
 -H 'Authorization: Bearer <TOKEN>' \
 -H 'Content-Type: application/json' \
 -d '{
-  "unconfirmed_phone_number": "333-333-333",
-  "country_code": "US"
+  "unconfirmed_phone_number": "1 333-333-333"
 }' \
 https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}
 ```
@@ -121,8 +120,7 @@ https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}
 const dirtylemon = require('dirtylemon');
 
 dirtylemon.customers.create({
-  unconfirmed_phone_number: '333-333-333',
-  country_code: 'US',
+  unconfirmed_phone_number: '1 333-333-333'
   first_name: 'Yogi',
   last_name: 'Berra',
   email: 'yogi@berra.com'
@@ -175,7 +173,6 @@ Without `confirmation`:
 | --------- | -------- | ------------|
 | confirmation | no | Wether or not to perform the confirmation flow. Default to `true` |
 | unconfirmed_phone_number | yes | Unique phone number |
-| country_code | yes | The phone number's ISO 3166 country code |
 | first_name | no |  |
 | last_name | no |  |
 | email | no |  |
