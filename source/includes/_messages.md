@@ -5,14 +5,26 @@
 > Example object
 
 ```json
-{}
+{
+  "id": "23940470-2fb3-42ad-8784-500915ad61a5",
+  "session_id": "d57dc142-23ce-4ce5-a03b-9ebdc8497ba3",
+  "content": "What's shea weber's plus-minus?",
+  "content_type": "text",
+  "sender_role": "init",
+  "sent_at": "2016-12-20T20:50:42.708Z",
+  "created_at": "2017-04-25T20:58:41.633Z",
+  "updated_at": "2017-04-25T20:58:41.633Z"
+}
 ```
 
 | Attribute  | Type     | Description |
 | ---------- | -------- | ------------|
 | id           | string   | Unique identifier for the object |
-| confirmed_at | timestamp | Time at which the order has been confirmed |
-| canceled_at  | timestamp | Time at which the order has been canceled |
+| session_id   | string   | Unique identifier for the associated object |
+| content      | string   | Unique identifier for the object |
+| content_type | string   | Unique identifier for the object |
+| sender_role  | string   | Unique identifier for the object |
+| sent_at      | string   | Unique identifier for the object |
 | created_at   | timestamp | Time at which the object was created |
 | updated_at   | timestamp | Time at which the object was updated |
 
