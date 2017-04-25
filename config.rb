@@ -19,6 +19,7 @@ set :fonts_dir, 'fonts'
 activate :syntax
 ready do
   require './lib/multilang.rb'
+  require './lib/recursive_render.rb'
 end
 
 activate :sprockets
