@@ -11,7 +11,6 @@
 curl -v https://api.datil.co/invoices/issue \
 -H "Content-Type: application/json" \
 -H "X-Api-Key: <API-key>" \
--H "X-Location-Id: <location-id>" \
 -H "X-Password: <clave-certificado-firma>" \
 -d '{
       "supplier": {

@@ -12,11 +12,14 @@ toc_footers:
 includes:
   - next/es/ec/core/invoice
   - next/es/ec/core/credit-note
+  - next/es/ec/catalog/product
   - next/es/ec/common
   - next/es/ec/sales
   - next/es/ec/sales/invoices
   - next/es/ec/purchases
   - next/es/ec/purchases/invoices
+  - next/es/ec/catalog/products
+  - next/es/ec/codes
   - next/es/ec/accounting
   - next/es/ec/accounting/accounting_info
   - errores

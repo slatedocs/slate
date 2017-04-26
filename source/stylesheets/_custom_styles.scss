@@ -1,5 +1,5 @@
 // New Datil styles
-
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans:400,600');
 @import 'variables_overrides';
 
 td {
@@ -54,6 +54,17 @@ td {
 
 .toc-footer {
   border-top: 1px solid #f0f4f7 !important;
+}
+
+.content h1 {
+  font-size: 32px;
+  padding-top: 0.7em !important;
+  padding-bottom: 0.5em;
+  border-bottom: none !important;
+  margin-bottom: 21px;
+  margin-top: 2em;
+  border-top: 1px solid #ddd;
+  background-image: none !important;
 }
 
 h4, h5, h6 {
