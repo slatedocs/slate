@@ -1,9 +1,5 @@
 # Orders
 
-<aside class="notice">
-  All actions available on the <code>/orders</code> endpoint will fail if the customer isn't confirmed.
-</aside>
-
 ## Order object
 
 > Example object
@@ -239,12 +235,7 @@ HTTP/1.1 201 CREATED
 This endpoint creates an order:
 
   - Marks the order as __created__
-
-For this action to be successful, the following conditions must be met:
-
-  - Customer must have a valid email
-  - Customer must have a first name and last name
-  - Customer must have a valid shipping address
+  - Sets the `shipping` object from the customer's shipping address if present
 
 ### HTTP Request
 
@@ -355,12 +346,23 @@ HTTP/1.1 200 OK
 }
 ```
 
+<aside class="notice">
+  Calls on this action will fail if the customer isn't confirmed.
+</aside>
+
 This endpoint pays an order:
 
   - Charges the customer's [credit card](#cards)
   - Creates [shipments](#shipments) for the order's line items
   - Sends the [customer](#customers) a confirmation email
+  - Sets the `shipping` object from the customer's shipping address unless already set on creation
   - Marks the order as __paid__
+
+For this action to be successful, the following conditions must be met:
+
+  - Customer must have a valid email
+  - Customer must have a first name and last name
+  - Customer must have a valid shipping address
 
 
 ### HTTP Request
