@@ -2,13 +2,13 @@
 
 #### Operación
 
-`POST /locations/:location-id/sales/invoices/issue`
+`POST /locations/:location-id/sales/invoices/issues`
 #### Requerimiento
 
 > ##### Requerimiento de ejemplo
 
 ```shell
-curl -v https://api.datil.co/invoices/issue \
+curl -v https://api.datil.co/sales/invoices/issues \
 -H "Content-Type: application/json" \
 -H "X-Api-Key: <API-key>" \
 -H "X-Password: <clave-certificado-firma>" \
@@ -59,10 +59,10 @@ curl -v https://api.datil.co/invoices/issue \
       "items": [
         {
           "description": "Apple",
-          "properties": {
+          "properties": [{
             "name": "color",
             "description": "red"
-          },
+          }],
           "unit_discount": "1.00",
           "unit_code": "units",
           "unit_price": "2.00",
@@ -75,17 +75,23 @@ curl -v https://api.datil.co/invoices/issue \
            "name": "Contract Number",
            "description": "420420"
          }
-       ],
-       "payments": [
-         {
-           "properties": {
-             "account_number": "2223XXXX23",
-             "bank": "Banco Guayaquil"
-           },
-           "amount": 114.0,
-           "method": "42"
-         }
-       ],
+      ],
+      "payments": [
+        {
+          "properties": [
+            {
+              "name": "account_number",
+              "description": "2223XXXX23"
+            },
+            {
+              "name": "bank",
+              "description": "Banco Guayaquil"
+            }
+          }],
+          "amount": 114.0,
+          "method": "42"
+        }
+      ],
   }'
 ```
 
@@ -140,10 +146,10 @@ invoice = {
       "items": [
         {
           "description": "Apple",
-          "properties": {
+          "properties": [{
             "name": "size",
             "description": "M"
-          },
+          }],
           "unit_discount": 0.00,
           "unit_code": "units",
           "unit_price": 43256.00,
@@ -161,10 +167,10 @@ invoice = {
        ],
        "payments": [
          {
-           "properties": {
+           "properties": [{
              "account_number": "2223XXXX23",
              "bank": "Bancolombia"
-           },
+           }],
            "amount": 1.09,
            "method": "42"
          }
@@ -187,17 +193,17 @@ ambiente de pruebas del SRI.
 
 Parámetros | &nbsp;
 ---------- | -----------
-supplier<p class="dt-data-type">opcional</p> | En este campo sólo es necesario proveer "location" con los campos "code" y "point_of_sale". Para el objeto "point_of_sale" es necesario sólo especificar "code"
-sequence<p class="dt-data-type">opcional</p> | Número entero positivo mayor a cero
-currency<br>__requerido__ | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda.
-issue_date<p class="dt-data-type">opcional</p> | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
-totals<p class="dt-data-type">objeto tipo [totals](#invoice-totals)</p> | Totales de la factura
-customer<p class="dt-data-type">objeto tipo [contact](#contact) | Información del comprador.
-items<p class="dt-data-type">arreglo de [items](#invoice-item)</p> | Bienes o servicios vendidos.
-uuid<p class="dt-data-type">string</p> | La clave de acceso de la factura. La clave de acceso es un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
-properties<p class="dt-data-type">objeto</p> | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"plan": "Inicial", "vigencia": "1 mes"}`
-payments<p class="dt-data-type">arreglo [payment](#payment)</p> | Pagos realizados a la factura.
-payment_methods<p class="dt-data-type">arreglo [payment_method](#payment_method)</p> | Listado de formas de pago aplicables a la factura. Si alguno de los métodos de pago tienen un "due_date" Datil entenderá esto como una factura a crédito.
+supplier<p class="dt-data-param-required">requerido</p> | En este campo sólo es necesario proveer "location" con los campos "code" y "point_of_sale". Para el objeto "point_of_sale" es necesario sólo especificar "code"
+sequence | Número entero positivo mayor a cero
+currency<p class="dt-data-param-required">requerido</p> | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda.
+issue_date | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). Si no es provista, se utilizará la fecha en la que se envía la factura.
+totals<p class="dt-data-param-required">requerido</p> | Totales de la factura
+customer<p class="dt-data-param-required">requerido</p> | Información del comprador.
+items<p class="dt-data-param-required">requerido</p> | Bienes o servicios vendidos.
+uuid | La clave de acceso de la factura. La clave de acceso es un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
+properties | Información adicional adjunta al comprobante.
+payments | Pagos realizados a la factura.
+payment_methods | Listado de formas de pago aplicables a la factura. Si alguno de los métodos de pago tienen un "due_date" Datil entenderá esto como una factura a crédito.
 
 #### Retorna
 
@@ -217,7 +223,7 @@ se debe examinar el atributos `authorization` de la factura.
 
 #### Operación
 
-`GET /locations/:location-id/sales/invoices/:invoice-id`
+`GET /sales/invoices/:invoice-id`
 
 #### Requerimiento
 

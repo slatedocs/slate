@@ -7,7 +7,7 @@ Una factura de compra está representada por un objeto _Purchase Invoice_.
 
 Atributos |  &nbsp;
 --------- | -----------
-number<p class="dt-data-type">string</p> | Número completo de la factura. Es un número secuencial que se forma a partir de {código establecimiento}-{código pto. emisión}-{secuencia} 
+number<p class="dt-data-type">string</p> | Número completo de la factura. Es un número secuencial que se forma a partir de {código establecimiento}-{código pto. emisión}-{secuencia}
 currency<p class="dt-data-type">string</p> | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda.
 issue_date<p class="dt-data-type">string</p> | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 totals<p class="dt-data-type">objeto [totals](#invoice-totals)</p> | Totales de la factura
@@ -15,7 +15,7 @@ customer<p class="dt-data-type">objeto [contact](#contact) | Información del co
 items<p class="dt-data-type">lista de [items](#invoice-item)</p> | Bienes o servicios facturados.
 uuid<p class="dt-data-type">string</p> | La clave de acceso de la factura. La clave de acceso es un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 properties<p class="dt-data-type">objeto</p> | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"plan": "Inicial", "vigencia": "1 mes"}`
-payments<p class="dt-data-type">lista de [payments](#payment)</p> | Pagos realizados a la factura. 
+payments<p class="dt-data-type">lista de [payments](#payment)</p> | Pagos realizados a la factura.
 payment_methods<p class="dt-data-type">lista de [payment_methods](#payment-method)</p> | Listado de formas de pago aplicables a la factura.
 payment_terms | Objeto de [payment_terms](#payment-terms) | Información del crédito directo otorgado al cliente.
 electronic_document<p class="dt-data-type">string</p> | Documento electrónico, el XML.
@@ -25,7 +25,7 @@ printable_version_url<p class="dt-data-type">string</p> | URL de descarga del RI
 
 <h4 id="invoice-totals">Totals</h4>
 
-Atributos | &nbsp; 
+Atributos | &nbsp;
 --------- | -------
 total_discount_amount<p class="dt-data-type">string</p> | Subtotal sin impuestos
 subtotal_amount<p class="dt-data-type">string</p> | Subtotal sin impuestos
@@ -34,7 +34,7 @@ total_amount<p class="dt-data-type">string</p> | Total final.
 
 <h4 id="invoice-item">Item</h4>
 
-Atributos | &nbsp; 
+Atributos | &nbsp;
 --------- | -------
 description<p class="dt-data-type">string</p> | Descripción del ítem.
 sku<p class="dt-data-type">string</p> | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
@@ -50,7 +50,7 @@ properties | hash | Diccionario de datos de carácter adicional. Ejemplo:<br><co
 
 #### Payment
 
-Atributos | &nbsp; 
+Atributos | &nbsp;
 --------- | -------
 date<p class="dt-data-type">string</p> | Fecha de recepción del pago en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 method <p class="dt-data-type">string</p> | Código del método de pago según [4461 UN/CEFACT standard v06B](http://www.unece.org/trade/untdid/d16a/tred/tred4461.htm)
@@ -60,7 +60,7 @@ properties<p class="dt-data-type">object</p> | Información adicional adjunta al
 
 #### Payment method
 
-Atributos | &nbsp; 
+Atributos | &nbsp;
 --------- | -------
 due_date<p class="dt-data-type">string</p> | Fecha de vencimiento en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 method <p class="dt-data-type">string</p> | Código del método de pago según [4461 UN/CEFACT standard v06B](http://www.unece.org/trade/untdid/d16a/tred/tred4461.htm)
@@ -476,7 +476,7 @@ para obtener la información de la autorización.
 
 Parámetros | &nbsp;
 ---------- | -----------
-<span class="dt-attr">electronic_document</span><p class="dt-param-required">Requerido</p> | Documento electrónico autorizado
+<span class="dt-attr">electronic_document</span><p class="dt-data-param-required">requerido</p> | Documento electrónico autorizado
 
 #### Respuesta
 
@@ -798,7 +798,7 @@ customer<p class="dt-data-type">objeto tipo [contact](#contact) | Información d
 items<p class="dt-data-type">arreglo de [items](#invoice-item)</p> | Bienes o servicios vendidos.
 uuid<p class="dt-data-type">string</p> | La clave de acceso de la factura. La clave de acceso es un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 properties<p class="dt-data-type">objeto</p> | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"plan": "Inicial", "vigencia": "1 mes"}`
-payments<p class="dt-data-type">arreglo [payment](#payment)</p> | Pagos realizados a la factura. 
+payments<p class="dt-data-type">arreglo [payment](#payment)</p> | Pagos realizados a la factura.
 payment_methods<p class="dt-data-type">arreglo [payment_method](#payment_method)</p> | Listado de formas de pago aplicables a la factura.
 payment_terms | Objeto de tipo [credito](#cr-dito) | Información del crédito directo otorgado al cliente.
 
