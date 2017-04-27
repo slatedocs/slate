@@ -21,10 +21,10 @@
 | ---------- | -------- | ------------|
 | id           | string   | Unique identifier for the object |
 | session_id   | string   | Unique identifier for the associated object |
-| content      | string   | Unique identifier for the object |
-| content_type | string   | Unique identifier for the object |
-| sender_role  | string   | Unique identifier for the object |
-| sent_at      | string   | Unique identifier for the object |
+| content      | string   |  |
+| content_type | string   | Must be `text` |
+| sender_role  | string   | Must be `end-user`, `agent` or `init` |
+| sent_at      | timestamp | Time at which the message was sent |
 | created_at   | timestamp | Time at which the object was created |
 | updated_at   | timestamp | Time at which the object was updated |
 
