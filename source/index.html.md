@@ -1220,7 +1220,7 @@ curl\
  -H "Content-Type: application/json"\
  -H "X-Application: {{APPLICATION_TOKEN}}"\
  -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
-"https://{{BASE_URL}}/v2/unit/checklists"
+"https://{{BASE_URL}}/v2/unit/jobs/12/checklists"
 ```
 
 > The above request success response is:
@@ -1229,8 +1229,6 @@ curl\
 {
   "data": [
     {
-      "id": 1,
-      "job_id": 23,
       "type": 1,
       "choices": [
         {
@@ -1255,14 +1253,12 @@ curl\
 
 Checklists for performing a job
 
-`"path": "checklists"`
+`"path": "jobs/{{id}}/checklists"`
 
 ### Response parameters
 
 Parameter | Type | Description
 -------- | ----- | -------
-`id` | *integer* | Unique identifier
-`job_id` | *integer* | Job for checklists
 `type` | *integer* | *<b>10</b> - Before checkin*<br>*<b>20</b> - Before checkout*
 `choices` | *array* | Checklist questions
 `choices.id` | *integer* | Unique identifier
@@ -1272,7 +1268,7 @@ Parameter | Type | Description
 `choices.choice_items` | *array* | Question answers
 `choices.choice_items.id` | *integer* | Unique identifier
 `choices.choice_items.sort` | *integer* | Order of item
-`choices.choice_items.type` | *integer* | *<b>2</b> - Radio*<br>*<b>3</b> - Stepper (incremental value)*<br>*<b>12</b> - Photo attachment
+`choices.choice_items.type` | *integer* | *<b>2</b> - Radio*<br>*<b>3</b> - Stepper (incremental value)*<br>*<b>12</b> - Photo attachment*
 `choices.choice_items.title` | *string* | Checklist question answer
 
 
@@ -1282,11 +1278,11 @@ Parameter | Type | Description
 
 ```shell
 curl\
- -X GET\
+ -X POST\
  -H "Content-Type: application/json"\
  -H "X-Application: {{APPLICATION_TOKEN}}"\
  -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
-"https://{{BASE_URL}}/v2/unit/checklist_answers"
+"https://{{BASE_URL}}/v2/unit/jobs/12/checklist_answers"
 ```
 
 > The above request success response is:
@@ -1295,9 +1291,7 @@ curl\
 {
   "data": [
     {
-      "id": 1,
-      "checklist_id": 1,
-      "job_id": 1,
+      "type": 1,
       "choice_items": [
         {
           "id": 2,
@@ -1317,16 +1311,13 @@ curl\
 
 Checklist answers after filling checklist.
 
-`"path": "checklist_answers"`
+`"path": "jobs/{{id}}/checklist_answers"`
 
 ### Response parameters
 
 Parameter | Type | Description
 -------- | ----- | -------
-`id` | *integer* | Unique identifier
-`checklist_id` | *integer* | Checklist for answers
-`job_id` | *integer* | Job for checklists
-`type` | *integer* | *<b>10</b> - Before checkin*<br>*<b>20</b> - Before checkout*
+`type` | *integer* | Checklist type (see [checklists](#checklists))
 `choices_items` | *array* | Checklist answers
 `choices_items.id` | *integer* | Unique identifier
 `choices_items.value` | *string/array* | Answer user entered
