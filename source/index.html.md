@@ -15,6 +15,7 @@ includes:
   - errors
 
 search: true
+#search_timeout: 300
 ---
 
 # Introduction

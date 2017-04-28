@@ -65,7 +65,7 @@ under the License.
       <% end %>
       <% if current_page.data.search %>
         <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
+          <input type="text" class="search" id="input-search" placeholder="Search" search_timeout="<%= current_page.data.search_timeout %>">
         </div>
         <ul class="search-results"></ul>
       <% end %>
