@@ -179,3 +179,87 @@ The following configuration settings are available:
 
 
 </div>
+
+## Instrumented Libraries
+
+By default, the following libraries are instrumented:
+
+* Phoenix controllers, views, and templates
+* Ecto 2.0
+
+## Custom Instrumentation
+
+Traces that allocate significant amount of time to `Controller` or `Job` are good candidates to add custom instrumentation. This indicates a significant amount of time is falling outside our default instrumentation.
+
+### Limits
+
+We limit the number of metrics that can be instrumented. Tracking too many unique metrics can impact the performance of our UI. Do not dynamically generate metric types in your instrumentation (ie `instrument("user_#{user.id}", "generate", fn -> do_work() end)` as this can quickly exceed our rate limits.
+
+### Instrumenting blocks of code
+
+Use `ScoutApm.Tracing.instrument` to track the execution time of a block of code. Here's an example:
+
+```elixir
+defmodule User do
+  require HTTPoison
+  import ScoutApm.Tracing
+
+  def github_avatar(user \\ %{id: "itsderek23"}) do
+    instrument("HTTP", "GitHub_Avatar", fn ->
+      HTTPoison.get("https://github.com/#{user.id}.png")
+    end)
+  end
+
+end
+```
+
+In the example above, "HTTP" will appear on timeseries charts and "HTTP/GitHub_Avatar" will appear in traces.
+
+#### Adding a description
+
+Call `ScoutApm.Tracing.add_desc/1` to add relevant information to the instrumented item. This description is then viewable in traces. An example:
+
+```elixir
+instrument("HTTP", "GitHub_Avatar", fn ->
+  url = "https://github.com/#{user.id}.png"
+  add_desc("GET #{url}")
+  HTTPoison.get(url)
+end)
+```
+
+<a href="https://hexdocs.pm/scout_apm/ScoutApm.Tracing.html#instrument/3" target="_blank">See the scout_apm hex docs</a> for more details on `instrument`.
+
+### Tracking already executed time
+
+Libraries like Ecto log details on executed queries. This includes timing information. To add a trace item for this, use `ScoutApm.Tracing.track`. An example:
+
+```elixir
+defmodule YourApp.Mongo.Repo do
+  use Ecto.Repo
+
+  # Scout instrumentation of Mongo queries. These appear in traces as "Ecto/Read", "Ecto/Write", etc.
+  def log(entry) do
+    ScoutApm.Tracing.track(
+      "Ecto",
+      query_name(entry),
+      entry.query_time,
+      :microseconds
+    )
+    super entry
+  end
+
+end
+
+```
+
+In the example above, the metric will appear in traces as `Ecto/#{query_time(entry)}`. On timeseries charts, the time will be allocated to `Ecto`.
+
+#### Adding a description
+
+Metadata - like a raw query - can be passed to `track`. Pass it via the `desc` option. Example:
+
+```elixir
+ScoutApm.Tracing.track("Ecto", query_name(entry), entry.query_time, :microseconds, desc: entry.raw_query)
+```
+
+<a href="https://hexdocs.pm/scout_apm/ScoutApm.Tracing.html#track/5" target="_blank">See the scout_apm hex docs</a> for more information on `track`.

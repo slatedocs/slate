@@ -617,7 +617,7 @@ The following libraries are currently instrumented:
 
 Additionally, [Scout can also instrument request queuing time](#request-queuing).
 
-## Adding Custom Context
+## Custom Context
 
 [Context](#context) lets you see the forest from the trees. For example, you can add custom context to answer critical questions like:
 
@@ -699,7 +699,7 @@ Add the following line to the `ApplicationController#set_scout_context` method d
 ScoutApm::Context.add(monthly_spend: current_org.monthly_spend) if current_org
 ```
 
-## Adding Custom Instrumentation
+## Custom Instrumentation
 
 Traces that allocate significant amount of time to `Controller` or `Job` are good candidates to add custom instrumentation. This indicates a significant amount of time is falling outside our default instrumentation.
 
