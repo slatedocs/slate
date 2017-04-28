@@ -187,6 +187,35 @@ Front.fetchDraft(function (draft) {
 });
 ```
 
+> Sample JSON for a draft
+
+```json
+{
+  "attachments" : [],
+  "ext_id" : "43bb19b05566bc60e0094b2238b318f3@frontapp.com",
+  "status" : "draft-compose",
+  "id" : "msg_4zd7",
+  "body" : "<div>Some HTML body</div>",
+  "inbound" : false,
+  "recipients" : [
+    {
+      "display_name" : "Awesome recipient",
+      "role" : "from",
+      "handle" : "awesome@recipient.com"
+    }
+  ],
+  "from" : {
+    "display_name" : "A teammate",
+    "handle": "ateammate@frontapp.com"
+  },
+  "date" : 1493391443349,
+  "blurb" : "Some HTML body",
+  "type" : "email",
+  "subject" : "Re: a message"
+}
+```
+
+
 This call will send you the draft of the current conversation.
 If the conversation has no draft, the `draft` value in the callback will be `null`, else, it will look like any other message object representation.
 

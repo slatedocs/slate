@@ -33,7 +33,7 @@ Front supports **plugins**. A plugin is a small web application that can communi
 
 ```html
 <script src="https://dl.frontapp.com/libs/frontjs.min.js"></script>
- ```
+```
 
 To create a new plugin, go to Settings > API & integrations > Plugins ans click on "Add a plugin":
 
@@ -65,3 +65,14 @@ Front provides a simple way to verify that your plugin is requested by Front. In
 ![Plugin authentication](plugin-auth.png)
 
 If you need any help in getting your plugin working, would like more information or a new feature please drop us a line at api@frontapp.com we will be happy to help.
+
+## Mobile restrictions
+
+Plugins can be used on Mobile devices directly from a conversation. Some helper methods have not been implemented and will not work on iOS and Android: 
+
+```
+- insertHTML
+- setPanelWidth
+- updateDraft
+- addTopic 
+```
