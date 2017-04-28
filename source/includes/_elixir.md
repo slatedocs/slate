@@ -184,7 +184,10 @@ The following configuration settings are available:
 
 By default, the following libraries are instrumented:
 
-* Phoenix controllers, views, and templates
+* Phoenix
+  * controllers
+  * views
+  * templates
 * Ecto 2.0
 
 ## Custom Instrumentation
