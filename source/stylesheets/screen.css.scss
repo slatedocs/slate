@@ -23,17 +23,6 @@ under the License.
 // GENERAL STUFF
 ////////////////////////////////////////////////////////////////////////////////
 
-html, body {
-  color: $main-text;
-  padding: 0;
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  @extend %default-font;
-  background-color: $main-bg;
-  height: 100%;
-  -webkit-text-size-adjust: none; /* Never autoresize text */
-}
 
 ////////////////////////////////////////////////////////////////////////////////
 // TABLE OF CONTENTS
@@ -62,13 +51,10 @@ html, body {
   overflow-x: hidden;
   position: fixed;
   z-index: 30;
-  top: 0;
   left: 0;
-  bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
   font-size: 13px;
-  font-weight: bold;
 
   // language selector for mobile devices
   .lang-selector {
@@ -114,7 +100,7 @@ html, body {
     margin-top: $logo-margin;
   }
 
-  .search-results {
+.search-results {
     margin-top: 0;
     box-sizing: border-box;
     height: 0;
@@ -125,7 +111,6 @@ html, body {
     transition-timing-function: ease-in-out;
     &.visible {
       height: 30%;
-      margin-bottom: 1em;
     }
 
     @include embossed-bg;
@@ -225,7 +210,7 @@ html, body {
     display: block;
     $side-pad: $main-padding / 2 - 8px;
     padding: $side-pad $side-pad $side-pad;
-    background-color: rgba($main-bg, 0.7);
+    background-color: #f3f6fa;
     transform-origin: 0 0;
     transform: rotate(-90deg) translate(-100%, 0);
     border-radius: 0 0 0 5px;
@@ -335,11 +320,11 @@ html, body {
   }
 
   &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
-    margin-right: $examples-width;
+    /*margin-right: $examples-width;*/
     padding: 0 $main-padding;
     box-sizing: border-box;
     display: block;
-    text-shadow: $main-embossed-text-shadow;
+font-weight: normal;
 
     @extend %left-col;
   }
@@ -355,14 +340,11 @@ html, body {
 
   h1 {
     @extend %header-font;
-    font-size: 30px;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid #ccc;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ddd;
-    background-image: linear-gradient(to bottom, #fff, #f9f9f9);
+    font-size: 2em;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -372,13 +354,10 @@ html, body {
 
   h2 {
     @extend %header-font;
-    font-size: 20px;
     margin-top: 4em;
     margin-bottom: 0;
-    border-top: 1px solid #ccc;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
-    background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
   }
 
   // h2s right after h1s should bump right up
@@ -390,14 +369,10 @@ html, body {
 
   h3, h4, h5, h6 {
     @extend %header-font;
-    font-size: 15px;
     margin-top: 2.5em;
     margin-bottom: 0.8em;
   }
 
-  h4, h5, h6 {
-    font-size: 10px;
-  }
 
   hr {
     margin: 2em 0;
@@ -416,16 +391,11 @@ html, body {
 
     th {
       padding: 5px 10px;
-      border-bottom: 1px solid #ccc;
       vertical-align: bottom;
     }
 
     td {
-      padding: 10px;
-    }
-
-    tr:last-child {
-      border-bottom: 1px solid #ccc;
+      padding: 0rem 1rem;
     }
 
     tr:nth-child(odd)>td {
@@ -455,7 +425,7 @@ html, body {
   }
 
   code {
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(255,255,255,0.1);
     padding: 3px;
     border-radius: 3px;
     @extend %break-words;
@@ -624,4 +594,73 @@ html, body {
 
 .highlight, .highlight .w {
   background-color: $code-bg;
+}
+
+.wrapper {
+  transition: left 0.3s ease-in-out;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+.search-results {
+    margin-top: 0;
+    box-sizing: border-box;
+    height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition-property: height, margin;
+    transition-duration: 180ms;
+    transition-timing-function: ease-in-out;
+    &.visible {
+      height: 30%;
+    }
+
+    li {
+      margin: 1em $nav-padding;
+      line-height: 1;
+    }
+
+    a {
+      color: $nav-text;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // The Table of Contents is composed of multiple nested
+  // unordered lists.  These styles remove the default
+  // styling of an unordered list because it is ugly.
+  ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    line-height: 28px;
+  }
+
+  li {
+    color: $nav-text;
+    transition-property: background;
+    transition-timing-function: linear;
+    transition-duration: 230ms;
+  }
+
+}
+
+//
+// stuff I added
+//
+
+.main {
+   font-size: 1.1rem;
+}
+
+.main ul, .main ol {
+  margin: 0;
+}
+
+h3 {
+  font-size: 1.5em;
 }

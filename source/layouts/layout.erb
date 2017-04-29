@@ -20,11 +20,15 @@ under the License.
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title><%= current_page.data.title || "API Documentation" %></title>
+    <title><%= current_page.data.title || "- Sleepy Discord Docs" %></title>
+    <meta property="og:title" content="Sleepy Discord">
+    <meta name="description" content="C++ library for Discord">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
       <%= Rouge::Themes::MonokaiSublime.render(:scope => '.highlight') %>
     </style>
+
     <%= stylesheet_link_tag :screen, media: :screen %>
     <%= stylesheet_link_tag :print, media: :print %>
     <% if current_page.data.search %>
@@ -32,17 +36,36 @@ under the License.
     <% else %>
       <%= javascript_include_tag  "all_nosearch" %>
     <% end %>
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+	  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	  <link rel="stylesheet" type="text/css" href="stylesheets/Stylesheet.css" media="screen">
+	  <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+	  <link href="stylesheets/prism.css" rel="stylesheet" />
   </head>
 
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
+    <script src="prism.js"></script>
+	  <script src="sitemap_reference.js"></script>
+	  <section class="page-header">
+		  <a href="../.." class="btn">
+		  	<h1 class="project-name">Sleepy Discord</h1>
+		  </a>
+      <% if current_page.data.search %>
+		  <input type="text" name="search" id="input-search" placeholder="Search Documentation" style = "border: none;" class="btn">
+	  	<!-- <a href="https://github.com/NoNamer64/sleepy-discord/wiki/DiscordClient" class="btn show-big-only">&rarr;</a> -->
+      <div class="wrapper"> <ul class="search-results"></ul> </div>
+      <% end %>
+	  </section>
+
+	<div class="aplha-below"></div>
+  <section class="main">
     <a href="#" id="nav-button">
       <span>
-        NAV
         <%= image_tag('navbar.png') %>
       </span>
     </a>
     <div class="tocify-wrapper">
-      <%= image_tag "logo.png" %>
       <% if language_tabs.any? %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
@@ -54,16 +77,12 @@ under the License.
           <% end %>
         </div>
       <% end %>
-      <% if current_page.data.search %>
-        <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
-      <% end %>
       <div id="toc">
       </div>
       <% if current_page.data.toc_footers %>
         <ul class="toc-footer">
+        <li><a href="https://github.com/NoNamer64/sleepy-discord">Sleepy Discord</a> is maintained by</li>
+        <li><a href="https://github.com/NoNamer64">NoNamer64</a>.</li>
           <% current_page.data.toc_footers.each do |footer| %>
             <li><%= footer %></li>
           <% end %>
@@ -92,5 +111,6 @@ under the License.
         <% end %>
       </div>
     </div>
+    </section>
   </body>
 </html>

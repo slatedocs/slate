@@ -2,17 +2,11 @@
 title: API Reference
 
 language_tabs:
-  - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
 
 search: true
 ---
@@ -25,45 +19,55 @@ We have language bindings in Shell, Ruby, and Python! You can view code examples
 
 This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
+# addReaction
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+ ```cpp 
+bool SleepyDiscord::DiscordClient::addReaction(std::string channel_id, std::string message_id, std::string emoji);
 ```
+```cpp
+#include <sleepy_discord>
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
+int main() {
+    SleepyDiscord::DiscordClient client("token");
+    client.waitTilReady();
+    client.addReaction("channel id", "message id", "%F0%9F%98%95");
+}
 ```
+> Output: added 😕 reaction
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+Adds reaction to a message.
 
-```javascript
-const kittn = require('kittn');
+### Parameters
+<table><p>
+  <tbody class="parameters">
+    <tr>
+      <td><strong>channel_id</strong></td>
+      <td>The id of the channel with the message you want to add a reaction to</td>
+    </tr>
+    <tr>
+      <td><strong>message_id</strong></td>
+      <td>The id of the message you want to add a reaction to</td>
+    </tr>
+    <tr>
+      <td><strong>emoji</strong></td>
+      <td>The emoji you want to use for the reaction
+        <ul>
+          <li>Use <a href="https://en.wikipedia.org/wiki/Percent-encoding">Percent Encoding</a> for Unicode Emoji</li>
+          <li>For custom emoji, use the id of the emoji (I haven't tested this myself)</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody></p>
+</table>
 
-let api = kittn.authorize('meowmeowmeow');
-```
+### Return value
+true on success, otherwise false
 
-> Make sure to replace `meowmeowmeow` with your API key.
+### Other Details
+[Declared in `client.h`](https://github.com/NoNamer64/sleepy-discord/blob/master/sleepy_discord/client.h) and [defined in `client.cpp`](https://github.com/NoNamer64/sleepy-discord/blob/master/sleepy_discord/client.cpp)
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+Uses [Create Reaction](https://discordapp.com/developers/docs/resources/channel#create-reaction)
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
 
 # Kittens
 
