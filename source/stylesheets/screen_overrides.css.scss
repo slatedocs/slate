@@ -28,9 +28,13 @@ $darkgreen: #64953f;
   background-image: none;
 }
 
+.content p, .content li, .content dt, .content dd {
+  line-height: 1.8;
+}
+
 .content h6, html, body {
 	font-size: 15px;
-    font-family: 'Signika', sans-serif; /* Signika is a google font */
+  font-family: 'Roboto Slab', sans-serif;
   font-weight: 300;
 }
 
@@ -62,9 +66,10 @@ $darkgreen: #64953f;
   	border-bottom: 0;
   }
   h1, h2, h3, h4 {
-    font-family: 'Exo', sans-serif; /** exo is a google font **/
-    text-transform: uppercase;
-    font-weight: 800;
+    font-family: 'Roboto', "Helvetica Neue", Helvetica, sans-serif;
+    color: $orange;
+    line-height: 140%;
+    font-weight: bold;
   } 
   h1 {
     font-size: 40px;
@@ -108,7 +113,7 @@ $darkgreen: #64953f;
 
 .tocify-wrapper {
   width: 280px;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: normal;
 }
 
