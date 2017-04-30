@@ -262,7 +262,12 @@ In the example above, the metric will appear in traces as `Ecto/#{query_time(ent
 Metadata - like a raw query - can be passed to `track`. Pass it via the `desc` option. Example:
 
 ```elixir
-ScoutApm.Tracing.track("Ecto", query_name(entry), entry.query_time, :microseconds, desc: entry.raw_query)
+ScoutApm.Tracing.track(
+  "Ecto", 
+  query_name(entry), 
+  entry.query_time, 
+  :microseconds, 
+  desc: entry.raw_query)
 ```
 
 <a href="https://hexdocs.pm/scout_apm/ScoutApm.Tracing.html#track/5" target="_blank">See the scout_apm hex docs</a> for more information on `track`.

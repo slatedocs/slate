@@ -28,6 +28,10 @@ $darkgreen: #64953f;
   background-image: none;
 }
 
+.content h1:first-child, .content div:first-child + h1 {
+  padding-top: 5px;
+}
+
 .content p, .content li, .content dt, .content dd {
   line-height: 1.8;
 }
@@ -237,7 +241,7 @@ table.help {
     font-size: 16px;
     color: #fff;
     &:before {
-      font-size: 20px;
+      font-size: 16px;
     }
     &.warning {
       background-color: #f0592a;

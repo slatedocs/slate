@@ -69,3 +69,21 @@ p.requirements {
   margin-right: 10px;
   font-weight: normal;
 }
+
+#overview_container {
+  margin-left: 30px;
+  width: calc(100% - 30px);
+  div {
+    display: inline-block;
+    width: 30%;
+    margin-right: 20px;
+    border: 1px solid #efefef;
+    border-radius: 3px;
+    padding: 20px;
+    box-sizing: border-box;
+    h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+  }
+}
