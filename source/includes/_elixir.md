@@ -271,3 +271,16 @@ ScoutApm.Tracing.track(
 ```
 
 <a href="https://hexdocs.pm/scout_apm/ScoutApm.Tracing.html#track/5" target="_blank">See the scout_apm hex docs</a> for more information on `track`.
+
+## Environments
+
+It typically makes sense to treat each environment (production, staging, etc) as a separate application within Scout. To do so, configure a unique app name for each environment. Scout aggregrates data by the app name. 
+
+An example:
+
+```elixir
+# config/staging.exs
+
+config :scout_apm,
+  name: "YOUR APP - Staging"
+```
