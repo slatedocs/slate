@@ -6,14 +6,15 @@
 
 ```json
 {
-  "id": "23940470-2fb3-42ad-8784-500915ad61a5",
-  "session_id": "d57dc142-23ce-4ce5-a03b-9ebdc8497ba3",
-  "content": "What's shea weber's plus-minus?",
+  "id": "9a7c5cf3-0ed5-40b0-8f63-c425bc14afe0",
+  "session_id": "18e22f89-f945-4d6a-858f-7d487c321d67",
+  "content": "Hey",
   "content_type": "text",
-  "sender_role": "init",
-  "sent_at": "2016-12-20T20:50:42.708Z",
-  "created_at": "2017-04-25T20:58:41.633Z",
-  "updated_at": "2017-04-25T20:58:41.633Z"
+  "sender_role": "agent",
+  "sent_at": "2017-05-02T12:04:42.693Z",
+  "delivered_at": null,
+  "created_at": "2017-05-02T12:04:42.694Z",
+  "updated_at": "2017-05-02T12:04:42.694Z"
 }
 ```
 
@@ -25,6 +26,7 @@
 | content_type | string   | Must be `text` |
 | sender_role  | string   | Must be `end-user`, `agent` or `init` |
 | sent_at      | timestamp | Time at which the message was sent |
+| delivered_at | timestamp | Time at which the message was delivered |
 | created_at   | timestamp | Time at which the object was created |
 | updated_at   | timestamp | Time at which the object was updated |
 
@@ -59,7 +61,17 @@ HTTP/1.1 201 CREATED
 ```
 
 ```json
-{}
+{
+  "id": "9a7c5cf3-0ed5-40b0-8f63-c425bc14afe0",
+  "session_id": "18e22f89-f945-4d6a-858f-7d487c321d67",
+  "content": "Hey",
+  "content_type": "text",
+  "sender_role": "agent",
+  "sent_at": "2017-05-02T12:04:42.693Z",
+  "delivered_at": null,
+  "created_at": "2017-05-02T12:04:42.694Z",
+  "updated_at": "2017-05-02T12:04:42.694Z"
+}
 ```
 
 This endpoint creates a message on behalf of an __agent__:
