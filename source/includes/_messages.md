@@ -79,6 +79,10 @@ This endpoint creates a message on behalf of an __agent__:
 - Notifies the [customer](#customers) of the message
 - Notifies the [conversational system](...) of the message
 
+<aside class="notice">
+  Calls on this action will fail if the customer isn't confirmed.
+</aside>
+
 ### HTTP Request
 
 `POST https://api.dirtylemon.com/v1/customers/:customer_id/sessions/:session_id/messages`

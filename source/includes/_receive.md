@@ -84,6 +84,10 @@ This endpoint creates a [message](#messages) on behalf of __init.ai__:
 
 - Notifies the [customer](#customers) of the message
 
+<aside class="notice">
+  Calls on this action will fail if the customer isn't confirmed.
+</aside>
+
 ### HTTP Request
 
 `POST https://api.dirtylemon.com/v1/receive/init`
