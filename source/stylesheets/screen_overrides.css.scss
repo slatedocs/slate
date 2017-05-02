@@ -137,8 +137,12 @@ $darkgreen: #64953f;
 }
 
 table.lookup {
+   font-family: 'Roboto', "Helvetica Neue",Helvetica,Arial,sans-serif;
   width: 100%;
   margin-bottom: 40px;
+  code {
+    font-size: 11px;
+  }
 }
 
 table.lookup thead th {
@@ -156,7 +160,8 @@ table.lookup th {
     padding: 10px;
     line-height: 180%;
     background-color: #fff;
-        font-size: 13px;
+    font-size: 13px;
+    vertical-align: top;
 }
 
 .content > ul {

@@ -134,6 +134,20 @@ The following configuration settings are available:
       </tr>
       <tr>
         <th>
+          monitor
+        </th>
+        <td>
+          Whether monitoring data should be reported.
+        </td>
+        <td>
+          <code>true</code>
+        </td>
+        <td>
+          No
+        </td>
+      </tr>
+      <tr>
+        <th>
           key
         </th>
         <td>
@@ -142,6 +156,20 @@ The following configuration settings are available:
         <td></td>
         <td>
           Yes
+        </td>
+      </tr>
+      <tr>
+        <th>
+          dev_trace
+        </th>
+        <td>
+          Indicates if DevTrace, the Scout development profiler, should be enabled.
+        </td>
+        <td>
+          <code>false</code>
+        </td>
+        <td>
+          No
         </td>
       </tr>
       <tr>
