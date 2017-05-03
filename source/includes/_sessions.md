@@ -98,11 +98,9 @@ Updating the `need_attention` attribute to `false`:
 </aside>
 
 
-
-
 ### HTTP Request
 
-`PATCH https://api.dirtylemon.com/v1/customers/:customer_id/sessions/:session_id/messages`
+`PATCH https://api.dirtylemon.com/v1/customers/:customer_id/sessions/:session_id`
 
 ### Path params
 
