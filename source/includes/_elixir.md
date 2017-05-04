@@ -248,12 +248,12 @@ In the example above, "HTTP" will appear on timeseries charts and "HTTP/GitHub_A
 
 #### Adding a description
 
-Call `ScoutApm.Tracing.add_desc/1` to add relevant information to the instrumented item. This description is then viewable in traces. An example:
+Call `ScoutApm.Tracing.update_desc/1` to add relevant information to the instrumented item. This description is then viewable in traces. An example:
 
 ```elixir
 instrument("HTTP", "GitHub_Avatar", fn ->
   url = "https://github.com/#{user.id}.png"
-  add_desc("GET #{url}")
+  update_desc("GET #{url}")
   HTTPoison.get(url)
 end)
 ```
@@ -299,6 +299,63 @@ ScoutApm.Tracing.track(
 ```
 
 <a href="https://hexdocs.pm/scout_apm/ScoutApm.Tracing.html#track/5" target="_blank">See the scout_apm hex docs</a> for more information on `track`.
+
+## Custom Context
+
+[Context](#context) lets you see the forest from the trees. For example, you can add custom context to answer critical questions like:
+
+* How many users are impacted by slow requests?
+* How many trial customers are impacted by slow requests?
+* How much of an impact are slow requests having on our highest paying customers?
+
+It's simple to add [custom context](#context) to your app. There are two types of context:
+
+### User Context
+
+For context used to identify users (ex: email, name):
+
+```elixir
+ScoutApm.add_user(key, value)
+```
+
+Examples:
+
+```elixir
+ScoutApm.Context.add_user(:email, user.email)
+ScoutApm.Context.add_user(:name, user.name)
+```
+
+### General Context
+
+```elixir
+ScoutApm.Context.add(key, value)
+```
+
+Examples:
+
+```elixir
+ScoutApm.Context.add(:account, account.name)
+ScoutApm.Context.add(:monthly_spend, account.monthly_spend)
+```
+
+### Default Context
+
+Scout reports the Request URI and the user's remote IP Address by default.
+
+### Context Value Types
+
+Context values can be any of the following types:
+
+* Printable strings (`String/printable?/1` returns `true`)
+* Boolean
+* Number
+
+### Context Key Restrictions
+
+The context `key` must be a printable String. Generally, an `atom` is used as a key.
+Custom context keys may contain alphanumeric characters, dashes, and underscores. Spaces are not allowed.
+
+Attempts to add invalid context will be ignored.
 
 ## Environments
 

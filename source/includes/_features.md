@@ -167,7 +167,7 @@ Context lets you see the forest from the trees. For example, you can add custom 
 * How many trial customers are impacted by slow requests?
 * How much of an impact are slow requests having on our highest paying customers?
 
-Adding custom context is easy - [learn how](#adding-custom-context).
+Adding custom context is easy - learn how via [Ruby](#custom-context) or [Elixir](#custom-context27).
 
 When viewing a transaction trace, click the "Context" section to see the context Scout has collected.
 
