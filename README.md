@@ -6,7 +6,7 @@
 
 <p align="center">Slate helps you create beautiful, intelligent, responsive API documentation.</p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/lord/img/master/screenshot-slate.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
+<p align="center"><img src="https://dl.dropboxusercontent.com/u/95847291/github%20images/slate/slate_screenshot_new.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
 
 <p align="center"><em>The example above was created with Slate. Check it out at <a href="https://lord.github.io/slate">lord.github.io/slate</a>.</em></p>
 
@@ -45,15 +45,25 @@ You're going to need:
 1. Fork this repository on Github.
 2. Clone *your forked repository* (not our original one) to your hard drive with `git clone https://github.com/YOURUSERNAME/slate.git`
 3. `cd slate`
-4. Initialize and start Slate. You can either do this locally, or with Vagrant:
+4. Initialize and start Slate. You can do this locally, with Vagrant, or with Docker:
 
+#### a. Locally
 ```shell
-# either run this to run locally
+# run this to run locally
 bundle install
 bundle exec middleman server
+```
 
-# OR run this to run with vagrant
+#### b. Vagrant
+```sh
+# run this to run with vagrant
 vagrant up
+```
+
+##### c. Docker
+```sh
+# run this to run with Docker
+docker-compose up
 ```
 
 You can now see the docs at http://localhost:4567. Whoa! That was fast!
