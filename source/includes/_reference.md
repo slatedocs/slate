@@ -56,6 +56,15 @@ The following data is sent to our servers from the agent:
   * IP Address of the client initiating the request
   * Sanitized SQL query statements
 
+### HIPAA compliance
+
+While Scout itself is not HIPAA compliant, our agent can be installed safely in HIPAA compliant environments. To ensure user data is properly de-identified:
+
+1. Disable sending HTTP query params if these contain sensitive data via the `uri_reporting` config option.
+2. Do not add custom context (like reporting the current user in the session).
+
+Email support@scoutapp.com with any questions on security compliance.
+
 ### Git Integration
 
 Scout only needs read-only access to your repository, but unfortunately, Github doesn't currently allow this - they only offer read-write permissions through their OAuth API.
