@@ -33,8 +33,7 @@
     determine_search_delay();
   }
   function determine_search_delay() {
-      if(index.tokenStore.length>5000)
-      {
+      if(index.tokenStore.length>5000) {
         search_delay = 300;
       }
   }
