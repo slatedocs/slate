@@ -461,8 +461,8 @@ to produce a set of joint values that can be used as weights. Note that
 available weight variables are shared by all; you may not create private 
 weights. To create a weight variable, POST a JSON variable definition to the 
 variables catalog describing the properties of the weight variable, with an 
-"derivation" member indicating to use the "rake" function, which takes a 
-"targets" argument containing an array of Crunch Tables of targets:
+"derivation" member indicating to use the "rake" function, which takes arguments
+ containing an array of variable targets:
 
 ```shell
 POST /api/datasets/{datasetid}/variables/ HTTP/1.1
@@ -473,15 +473,10 @@ Content-Length: 739
     "description": "my raked weight",
     "derivation": {
         "function": "rake",
-        "args": {
-            "targets": [
-                {
-                    "{variable1.id}": [1, 2],
-                    "target": [49.1, 50.9]
-                },
-                …
-            ]
-        }
+        "args": [{
+            "variable": variabl1.id,
+            "targets": [[1, 0.491], [2, 0.509]]
+        }]
     }
 }
 ---------
