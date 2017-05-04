@@ -376,6 +376,10 @@ config :scout_apm,
 
 ## Enabling DevTrace
 
+<aside class="notice" style="font-size: 12px">
+Follow the install instructions first. There's no need to download the config file as signup isn't required.
+</aside>
+
 To enable [DevTrace](#devtrace), our in-browser profiler:
 
 <table class="help install">
