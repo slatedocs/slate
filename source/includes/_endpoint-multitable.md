@@ -30,10 +30,43 @@ This index contains two kinds of multitables: those that belong to the dataset, 
 
 #### POST
 
-POST a Shoji Entity to this catalog to create a new multitable definition. Entities must include a `name` and `template`; the [template](#template-query) must contain a series of objects with a `query` and optionally [`transform`](#transforming-analyses-for-presentation). If omitted, `is_public` defaults to `false`. A successful POST yields a 201 response
+POST a Shoji Entity to this catalog to create a new multitable definition. 
+Entities must include a `name` and `template`; the [template](#template-query) 
+must contain a series of objects with a `query` and optionally 
+[`transform`](#transforming-analyses-for-presentation). If omitted, `is_public` 
+defaults to `false`. A successful POST yields a 201 response
 that will contain a Location header with the URL of the newly created multitable.
 
-All users with access to the dataset can create personal multitable definitions; however, only the current dataset editor can create public multitables (`is_public: true`) which everyone with access to the dataset can see. Attempting to create a public multitable when not the current dataset editor results in a 403 response.
+All users with access to the dataset can create personal multitable definitions; 
+however, only the current dataset editor can create public multitables 
+(`is_public: true`) which everyone with access to the dataset can see. 
+Attempting to create a public multitable when not the current dataset editor 
+results in a 403 response.
+
+##### Copying Multitables between datasets
+
+It is possible to copy over a multitables between datasets as long as the 
+permissions allow it.
+
+Multitable copying requires that all the variables present in the `template`
+of the origin multitable exist on the target dataset and that they all have
+the same type.
+
+POST a shoji entity to the catalog with indicating the URL of the multitable
+to copy:
+
+```json
+{
+    "element": "shoji:catalog",
+    "body": {
+        "name": "Name of my copy",
+        "multitable": "/api/datasets/123/multitables/7ab1e/"
+    }
+}
+```
+
+As shown in the example, it is possible to assign a new name to the copy.
+By default all copies will be private unless specified in the body.
 
 #### PATCH
 
