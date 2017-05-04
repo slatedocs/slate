@@ -187,42 +187,11 @@ You can easily compare the performance of your application between different tim
 
 ## DevTrace
 
-DevTrace is our development profiler: it's included with the `scout_apm` gem and can be used for free without signup. Enabling DevTrace adds a speed badge when navigating your Rails app in development. Clicking the speed badge reveals a shareable transaction trace of the request.
+DevTrace is our development profiler: it's included with our Ruby and Elixir libraries. DevTrace can be used for free without signup. Enabling DevTrace adds a speed badge when navigating your app in development. Clicking the speed badge reveals a shareable transaction trace of the request.
 
 ![devtrace](devtrace.png)
 
-### Enabling DevTrace
-
-DevTrace is a BETA feature. To enable:
-
-<table class="help install">
-  <tbody>
-    <tr>
-      <td>
-        <span class="step">1</span>
-      </td>
-      <td>
-        <p>Ensure you are on the latest version of <code>scout_apm</code>.
-          See our <a href="#updating-to-the-newest-version">upgrade instructions</a>.
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td><span class="step">2</span></td>
-      <td><p style="line-height: 170%">Add <code>dev_trace: true</code> to the <code>development</code> section of your <code>scout_apm.yml</code> config file or start your local Rails server with:
-<code>SCOUT_DEV_TRACE=true rails server</code>.</p></td>
-    </tr>
-    <tr>
-      <td>
-        <span class="step">3</span>
-      </td>
-      <td>
-        <p>Refresh your browser window and look for the speed badge.
-        </p>
-      </td>
-    </tr>
-  </tbody>
-</table>
+View our [Ruby](#enabling-devtrace) and [Elixir](#enabling-devtrace30) instructions.
 
 ## Data Retention
 

@@ -236,206 +236,206 @@ common: &defaults
 The following configuration settings are available:
 
 <table class="lookup">
-    <thead>
-      <tr>
-        <th>
-          Setting&nbsp;Name
-        </th>
-        <th>
-          Description
-        </th>
-        <th>
-          Default
-        </th>
-        <th>
-          Required
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th>
-          name
-        </th>
-        <td>
-          Name of the application (ex: 'Photos App').
-        </td>
-        <td>
-          <code>Rails.application.class.to_s.
-             sub(/::Application$/, '')</code>
-        </td>
-        <td>
-          Yes
-        </td>
-      </tr>
-      <tr>
-        <th>
-          key
-        </th>
-        <td>
-          The organization API key.
-        </td>
-        <td></td>
-        <td>
-          Yes
-        </td>
-      </tr>
-      <tr>
-        <th>
-          monitor
-        </th>
-        <td>
-          Whether monitoring should be enabled.
-        </td>
-        <td>
-          <code>false</code>
-        </td>
-        <td>
-          No
-        </td>
-      </tr>
-      <tr>
-        <th>
-          log_level
-        </th>
-        <td>
-          The logging level of the agent.
-        </td>
-        <td>
-          <code>INFO</code>
-        </td>
-        <td>
-          No
-        </td>
-      </tr>
-      <tr>
-        <th>
-          log_file_path
-        </th>
-        <td>The path to the <code>scout_apm.log</code> log file directory. Use <code>stdout</code> to log to STDOUT.
-        </td>
-        <td>
-          <code>Environment#root+log/</code>&nbsp;or <code>STDOUT</code> if running on Heroku.
-        </td>
-        <td>
-          No
-        </td>
-      </tr>
-      <tr>
-        <th>
-          hostname
-        </th>
-        <td>
-          The hostname the metrics should be aggregrated under.
-        </td>
-        <td>
-          <code>Socket.gethostname</code>
-        </td>
-        <td>
-          No
-        </td>
-      </tr>
-      <tr>
-        <th>
-          proxy
-        </th>
-        <td>Specify the proxy URL (ex: <code>https://proxy</code>) if a proxy is required.
-        </td>
-        <td></td>
-        <td>
-          No
-        </td>
-      </tr>
-      <tr>
-        <th>
-          host
-        </th>
-        <td>
-          The protocol + domain where the agent should report.
-        </td>
-        <td>
-          <code>https://apm.scoutapp.com</code>
-        </td>
-        <td>
-          No
-        </td>
-      </tr>
-      <tr>
-        <th>
-          uri_reporting
-        </th>
-        <td>
-          By default Scout reports the URL and filtered query parameters with transaction traces. Sensitive parameters in the URL will be redacted. To exclude query params entirely, use
-          <code>path</code>.
-        </td>
-        <td>
-          <code>filtered_params</code>
-        </td>
-        <td>
-          No
-        </td>
-      </tr>
-      <tr>
-        <th>
-          disabled_instruments
-        </th>
-        <td>
-          An Array of instruments that Scout should not install. Each Array element should should be a string-ified, case-sensitive class name (ex: <code>['Elasticsearch','HttpClient']</code>). The default installed instruments can be viewed in the <a href="https://github.com/scoutapp/scout_apm_ruby/tree/master/lib/scout_apm/instruments" target="_blank">agent source</a>.
-        </td>
-        <td>
-          <code>[]</code>
-        </td>
-        <td>
-          No
-        </td>
-      </tr>
-      <tr>
-        <th>
-          ignore
-        </th>
-        <td>
-          An Array of web endpoints that Scout should not instrument. Routes that match the prefixed path (ex: <code>['/health', '/status']</code>) will be ignored by the agent.
-        </td>
-        <td>
-          <code>[]</code>
-        </td>
-        <td>
-          No
-        </td>
-      </tr>
-      <tr>
-        <th>dev_trace</th>
-        <td>
-          Indicates if DevTrace, the Scout development profiler, should be enabled. Note this setting only applies
-          to the development environment.
-        </td>
-        <td>
-          <code>false</code>
-        </td>
-        <td>No</td>
-      </tr>
-      <tr>
-        <th>profile</th>
-        <td>
-          Indicates if ScoutProf, the Scout code profiler, should be enabled.
-        </td>
-        <td>
-          <code>true</code>
-        </td>
-        <td>No</td>
-      </tr>
-      <tr>
-        <th>revision_sha</th>
-        <td>
-          The Git SHA that corresponds to the version of the app being deployed.
-        </td>
-        <td>
-          <a href="#deploy-tracking-config">See docs</a>
-        </td>
-        <td>No</td>
-      </tr>
-    </tbody>
-  </table>
+  <thead>
+    <tr>
+      <th>
+        Setting&nbsp;Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Default
+      </th>
+      <th>
+        Required
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>
+        name
+      </th>
+      <td>
+        Name of the application (ex: 'Photos App').
+      </td>
+      <td>
+        <code>Rails.application.class.to_s.
+           sub(/::Application$/, '')</code>
+      </td>
+      <td>
+        Yes
+      </td>
+    </tr>
+    <tr>
+      <th>
+        key
+      </th>
+      <td>
+        The organization API key.
+      </td>
+      <td></td>
+      <td>
+        Yes
+      </td>
+    </tr>
+    <tr>
+      <th>
+        monitor
+      </th>
+      <td>
+        Whether monitoring should be enabled.
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        log_level
+      </th>
+      <td>
+        The logging level of the agent.
+      </td>
+      <td>
+        <code>INFO</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        log_file_path
+      </th>
+      <td>The path to the <code>scout_apm.log</code> log file directory. Use <code>stdout</code> to log to STDOUT.
+      </td>
+      <td>
+        <code>Environment#root+log/</code>&nbsp;or <code>STDOUT</code> if running on Heroku.
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        hostname
+      </th>
+      <td>
+        The hostname the metrics should be aggregrated under.
+      </td>
+      <td>
+        <code>Socket.gethostname</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        proxy
+      </th>
+      <td>Specify the proxy URL (ex: <code>https://proxy</code>) if a proxy is required.
+      </td>
+      <td></td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        host
+      </th>
+      <td>
+        The protocol + domain where the agent should report.
+      </td>
+      <td>
+        <code>https://apm.scoutapp.com</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        uri_reporting
+      </th>
+      <td>
+        By default Scout reports the URL and filtered query parameters with transaction traces. Sensitive parameters in the URL will be redacted. To exclude query params entirely, use
+        <code>path</code>.
+      </td>
+      <td>
+        <code>filtered_params</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        disabled_instruments
+      </th>
+      <td>
+        An Array of instruments that Scout should not install. Each Array element should should be a string-ified, case-sensitive class name (ex: <code>['Elasticsearch','HttpClient']</code>). The default installed instruments can be viewed in the <a href="https://github.com/scoutapp/scout_apm_ruby/tree/master/lib/scout_apm/instruments" target="_blank">agent source</a>.
+      </td>
+      <td>
+        <code>[]</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        ignore
+      </th>
+      <td>
+        An Array of web endpoints that Scout should not instrument. Routes that match the prefixed path (ex: <code>['/health', '/status']</code>) will be ignored by the agent.
+      </td>
+      <td>
+        <code>[]</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>dev_trace</th>
+      <td>
+        Indicates if DevTrace, the Scout development profiler, should be enabled. Note this setting only applies
+        to the development environment.
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>profile</th>
+      <td>
+        Indicates if ScoutProf, the Scout code profiler, should be enabled.
+      </td>
+      <td>
+        <code>true</code>
+      </td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>revision_sha</th>
+      <td>
+        The Git SHA that corresponds to the version of the app being deployed.
+      </td>
+      <td>
+        <a href="#deploy-tracking-config">See docs</a>
+      </td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>
 
 ### Environment Variables
 
@@ -456,6 +456,42 @@ Scout identifies deploys via the following:
 2. If you are using Heroku, enable [Dyno Metadata](https://devcenter.heroku.com/articles/dyno-metadata). This adds a `HEROKU_SLUG_COMMIT` environment variable to your dynos, which Scout then associates with deploys.
 3. If you are deploying via a custom approach, set a `SCOUT_REVISION_SHA` environment variable equal to the SHA of your latest release.
 4. If the app resides in a Git repo, Scout parses the output of `git rev-parse --short HEAD` to determine the revision SHA.
+
+## Enabling DevTrace
+
+To enable [DevTrace](#devtrace), our in-browser profiler:
+
+<table class="help install">
+  <tbody>
+    <tr>
+      <td>
+        <span class="step">1</span>
+      </td>
+      <td>
+        <p>Ensure you are on the latest version of <code>scout_apm</code>.
+          See our <a href="#updating-to-the-newest-version">upgrade instructions</a>.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="step">2</span></td>
+      <td>
+        <p style="line-height: 170%">
+          Add <code>dev_trace: true</code> to the <code>development</code> section of your <code>scout_apm.yml</code> config file or start your local Rails server with:
+          <code>SCOUT_DEV_TRACE=true rails server</code>.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">3</span>
+      </td>
+      <td>
+        <p>Refresh your browser window and look for the speed badge.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## Request Queuing
 
@@ -531,6 +567,161 @@ class FastController < ActionController::Metal
 ```
 
 This won't interfere with our regular instrumentation. Your controller-action metrics will appear under the endpoints area of Scout, just like any other controller-action.
+
+## Custom Context
+
+[Context](#context) lets you see the forest from the trees. For example, you can add custom context to answer critical questions like:
+
+* How many users are impacted by slow requests?
+* How many trial customers are impacted by slow requests?
+* How much of an impact are slow requests having on our highest paying customers?
+
+It's simple to add [custom context](#context) to your app. There are two types of context:
+
+### User Context
+
+For context used to identify users (ex: email, name):
+
+```ruby
+ScoutApm::Context.add_user({})
+```
+
+Examples:
+
+```ruby
+ScoutApm::Context.add_user(email: @user.email)
+ScoutApm::Context.add_user(email: @user.email, location: @user.location.to_s)
+```
+
+### General Context
+
+```ruby
+ScoutApm::Context.add({})
+```
+
+Examples:
+
+```ruby
+ScoutApm::Context.add(account: @account.name)
+ScoutApm::Context.add(database_shard: @db.shard_id, monthly_spend: @account.monthly_spend)
+```
+
+### Default Context
+
+Scout reports the Request URI and the user's remote IP Address by default.
+
+### Context Types
+
+Context values can be any of the following types:
+
+* Numeric
+* String
+* Boolean
+* Time
+* Date
+
+### Context Field Name Restrictions
+
+Custom context names may contain alphanumeric characters, dashes, and underscores. Spaces are not allowed.
+
+Attempts to add invalid context will be ignored.
+
+### Example: adding the current user's email as context
+
+Add the following to your `ApplicationController` class:
+
+```ruby
+before_filter :set_scout_context
+```
+
+Create the following method:
+
+```ruby
+def set_scout_context
+  ScoutApm::Context.add_user(email: current_user.email) if current_user.is_a?(User)
+end
+```
+
+### Example: adding the monthly spend as context
+
+Add the following line to the `ApplicationController#set_scout_context` method defined above:
+
+```ruby
+ScoutApm::Context.add(monthly_spend: current_org.monthly_spend) if current_org
+```
+
+## Custom Instrumentation
+
+Traces that allocate significant amount of time to `Controller` or `Job` are good candidates to add custom instrumentation. This indicates a significant amount of time is falling outside our default instrumentation.
+
+### Limits
+
+We limit the number of metrics that can be instrumented. Tracking too many unique metrics can impact the performance of our UI. Do not dynamically generate metric types in your instrumentation (ie `self.class.instrument("user_#{user.id}", "generate") { ... })` as this can quickly exceed our rate limits.
+
+### Instrumenting method calls
+
+To instrument a method call, add the following to the class containing the method:
+
+```ruby
+  class User
+    include ScoutApm::Tracer
+
+    def export_activity
+      ...
+    end
+    instrument_method :export_activity
+  end
+```
+
+The call to `instrument_method` should be after the method definition.
+
+#### Naming methods instrumented via `instrument_method`
+
+In the example above, the metric will appear in traces as `User#export_activity`. On timeseries charts, the time will be allocated to a `Custom` type.
+
+__To modify the type__:
+
+```ruby
+instrument_method :export_activity, type: 'Exporting'
+```
+
+A new `Exporting` metric will now appear on charts. The trace item will be displayed as `Exporting/User/export_activity`.
+
+__To modify the name__:
+
+```ruby
+instrument_method :export_activity, type: 'Exporting', name: 'user_activity'
+```
+
+The trace item will now be displayed as `Exporting/user_activity`.
+
+### Instrumenting blocks of code
+
+To instrument a method call, add the following:
+
+```ruby
+  class User
+    include ScoutApm::Tracer
+
+    def generate_profile_pic
+      self.class.instrument("User", "generate_profile_pic") do
+        ...
+      end
+    end
+  end
+```
+
+#### Naming methods instrumented via `instrument(type, name)`
+
+In the example above, the metric appear in traces as `User/generate_profile_pic`. On timeseries charts, the time will be allocated to a `User` type. To modify the type or simply, simply change the `instrument` corresponding method arguments.
+
+### Testing instrumentation
+
+Improper instrumentation can break your application. It's important to test before deploying to production. The easiest way to validate your instrumentation is by running [DevTrace](#devtrace) and ensuring the new metric appears as desired.
+
+After restarting your dev server with DevTrace enabled, refresh the browser page and view the trace output. The new metric should appear in the trace:
+
+![custom devtrace](custom_devtrace.png)
 
 ## Docker <img src="images/docker.png" style="float:right;width: 150px" />
 
@@ -616,161 +807,6 @@ The following libraries are currently instrumented:
 * Sidekiq
 
 Additionally, [Scout can also instrument request queuing time](#request-queuing).
-
-## Custom Context
-
-[Context](#context) lets you see the forest from the trees. For example, you can add custom context to answer critical questions like:
-
-* How many users are impacted by slow requests?
-* How many trial customers are impacted by slow requests?
-* How much of an impact are slow requests having on our highest paying customers?
-
-It's simple to add [custom context](#context) to your app. There are two types of context:
-
-### User Context
-
-For context used to identify users (ex: email, name):
-
-```ruby
-ScoutApm::Context.add_user({})
-```
-
-Examples:
-
-```ruby
-ScoutApm::Context.add_user(email: @user.email)
-ScoutApm::Context.add_user(email: @user.email, location: @user.location.to_s)
-```
-
-### General Context
-
-```ruby
-ScoutApm::Context.add({})
-```
-
-Examples:
-
-```ruby
-ScoutApm::Context.add(account: @account.name)
-ScoutApm::Context.add(database_shard: @db.shard_id, monthly_spend: @account.monthly_spend)
-```
-
-### Default Context
-
-Scout reports the Request URI and the user's remote IP Address by default.
-
-### Context Types
-
-Context values can be any of the following types:
-
-* Numeric
-* String
-* Boolean
-* Time
-* Date
-
-### Context Field Name Restrictions
-
-Custom context names may contain alphanumeric characters, dashes, and underscores. Spaces are not allowed.
-
-Attempts to add invalid context will be ignored.
-
-### Example: adding the current user's email as context
-
-Add the following to your `ApplicationController` class:
-
-```ruby
-before_filter :set_scout_context
-```
-
-Create the following method:
-
-```ruby
-def set_scout_context
-	ScoutApm::Context.add_user(email: current_user.email) if current_user.is_a?(User)
-end
-```
-
-### Example: adding the monthly spend as context
-
-Add the following line to the `ApplicationController#set_scout_context` method defined above:
-
-```ruby
-ScoutApm::Context.add(monthly_spend: current_org.monthly_spend) if current_org
-```
-
-## Custom Instrumentation
-
-Traces that allocate significant amount of time to `Controller` or `Job` are good candidates to add custom instrumentation. This indicates a significant amount of time is falling outside our default instrumentation.
-
-### Limits
-
-We limit the number of metrics that can be instrumented. Tracking too many unique metrics can impact the performance of our UI. Do not dynamically generate metric types in your instrumentation (ie `self.class.instrument("user_#{user.id}", "generate") { ... })` as this can quickly exceed our rate limits.
-
-### Instrumenting method calls
-
-To instrument a method call, add the following to the class containing the method:
-
-```ruby
-  class User
-    include ScoutApm::Tracer
-
-    def export_activity
-      ...
-    end
-    instrument_method :export_activity
-  end
-```
-
-The call to `instrument_method` should be after the method definition.
-
-#### Naming methods instrumented via `instrument_method`
-
-In the example above, the metric will appear in traces as `User#export_activity`. On timeseries charts, the time will be allocated to a `Custom` type.
-
-__To modify the type__:
-
-```ruby
-instrument_method :export_activity, type: 'Exporting'
-```
-
-A new `Exporting` metric will now appear on charts. The trace item will be displayed as `Exporting/User/export_activity`.
-
-__To modify the name__:
-
-```ruby
-instrument_method :export_activity, type: 'Exporting', name: 'user_activity'
-```
-
-The trace item will now be displayed as `Exporting/user_activity`.
-
-### Instrumenting blocks of code
-
-To instrument a method call, add the following:
-
-```ruby
-  class User
-    include ScoutApm::Tracer
-
-    def generate_profile_pic
-      self.class.instrument("User", "generate_profile_pic") do
-        ...
-      end
-    end
-  end
-```
-
-#### Naming methods instrumented via `instrument(type, name)`
-
-In the example above, the metric appear in traces as `User/generate_profile_pic`. On timeseries charts, the time will be allocated to a `User` type. To modify the type or simply, simply change the `instrument` corresponding method arguments.
-
-### Testing instrumentation
-
-Improper instrumentation can break your application. It's important to test before deploying to production. The easiest way to validate your instrumentation is by running [DevTrace](#devtrace) and ensuring the new metric appears as desired.
-
-After restarting your dev server with DevTrace enabled, refresh the browser page and view the trace output. The new metric should appear in the trace:
-
-![custom devtrace](custom_devtrace.png)
 
 ## Environments
 

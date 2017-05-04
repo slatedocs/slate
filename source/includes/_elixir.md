@@ -101,93 +101,92 @@ config :scout_apm,
 The following configuration settings are available:
 
 <table class="lookup">
-    <thead>
-      <tr>
-        <th>
-          Setting&nbsp;Name
-        </th>
-        <th>
-          Description
-        </th>
-        <th>
-          Default
-        </th>
-        <th>
-          Required
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th>
-          name
-        </th>
-        <td>
-          Name of the application (ex: 'Photos App').
-        </td>
-        <td>
-        
-        </td>
-        <td>
-          Yes
-        </td>
-      </tr>
-      <tr>
-        <th>
-          monitor
-        </th>
-        <td>
-          Whether monitoring data should be reported.
-        </td>
-        <td>
-          <code>true</code>
-        </td>
-        <td>
-          No
-        </td>
-      </tr>
-      <tr>
-        <th>
-          key
-        </th>
-        <td>
-          The organization API key.
-        </td>
-        <td></td>
-        <td>
-          Yes
-        </td>
-      </tr>
-      <tr>
-        <th>
-          dev_trace
-        </th>
-        <td>
-          Indicates if DevTrace, the Scout development profiler, should be enabled.
-        </td>
-        <td>
-          <code>false</code>
-        </td>
-        <td>
-          No
-        </td>
-      </tr>
-      <tr>
-        <th>
-          host
-        </th>
-        <td>
-          The protocol + domain where the agent should report. 
-        </td>
-        <td>
-          <code>https://apm.scoutapp.com</code>
-        </td>
-        <td>
-          No
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <thead>
+    <tr>
+      <th>
+        Setting&nbsp;Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Default
+      </th>
+      <th>
+        Required
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>
+        name
+      </th>
+      <td>
+        Name of the application (ex: 'Photos App').
+      </td>
+      <td>       
+      </td>
+      <td>
+        Yes
+      </td>
+    </tr>
+    <tr>
+      <th>
+        monitor
+      </th>
+      <td>
+        Whether monitoring data should be reported.
+      </td>
+      <td>
+        <code>true</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        key
+      </th>
+      <td>
+        The organization API key.
+      </td>
+      <td></td>
+      <td>
+        Yes
+      </td>
+    </tr>
+    <tr>
+      <th>
+        dev_trace
+      </th>
+      <td>
+        Indicates if DevTrace, the Scout development profiler, should be enabled.
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        host
+      </th>
+      <td>
+        The protocol + domain where the agent should report. 
+      </td>
+      <td>
+        <code>https://apm.scoutapp.com</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## Updating to the Newest Version
 
@@ -300,6 +299,12 @@ ScoutApm.Tracing.track(
 
 <a href="https://hexdocs.pm/scout_apm/ScoutApm.Tracing.html#track/5" target="_blank">See the scout_apm hex docs</a> for more information on `track`.
 
+### Testing instrumentation
+
+Improper instrumentation can break your application. It's important to test before deploying to production. The easiest way to validate your instrumentation is by running [DevTrace](#enabling-devtrace30) and ensuring the new metric appears as desired.
+
+After restarting your app with DevTrace enabled, refresh the browser page and view the trace output. The new metric should appear in the trace.
+
 ## Custom Context
 
 [Context](#context) lets you see the forest from the trees. For example, you can add custom context to answer critical questions like:
@@ -352,8 +357,7 @@ Context values can be any of the following types:
 
 ### Context Key Restrictions
 
-The context `key` must be a printable String. Generally, an `atom` is used as a key.
-Custom context keys may contain alphanumeric characters, dashes, and underscores. Spaces are not allowed.
+Context keys can be an `Atom` or `String` with only printable characters. Custom context keys may contain alphanumeric characters, dashes, and underscores. Spaces are not allowed.
 
 Attempts to add invalid context will be ignored.
 
@@ -369,3 +373,41 @@ An example:
 config :scout_apm,
   name: "YOUR APP - Staging"
 ```
+
+## Enabling DevTrace
+
+To enable [DevTrace](#devtrace), our in-browser profiler:
+
+<table class="help install">
+  <tbody>
+    <tr>
+      <td><span class="step">1</span></td>
+      <td>
+        <p style="line-height: 170%">
+          Add <code>dev_trace: true</code> to the <code>scout_apm</code> section of your <code>config/dev.exs</code>  file:
+        </p>
+<pre>
+# config/dev.exs
+config :scout_apm,
+  dev_trace: true
+</pre>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">2</span>
+      </td>
+      <td style="vertical-align: middle">
+        <p style="line-height: initial">Restart your app.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">3</span>
+      </td>
+      <td style="vertical-align: middle">
+        <p style="line-height: initial">Refresh your browser window and look for the speed badge.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
