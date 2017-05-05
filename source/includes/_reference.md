@@ -40,9 +40,10 @@ To limit our agent's memory usage, we stop recording the details of every instru
 
 We take the security of your code metrics extremely seriously. Keeping your data secure is fundamental to our business. Scout is nearing a decade storing critical metrics with our server monitoring product and those same fundamentals are applied here:
 
-* All data transmitted by our agent to our servers is sent via SSL.
+* All data transmitted by our agent to our servers is sent as serialized JSON over SSL.
 * Our UI is only served under SSL.
 * When additional data is collected for slow calls (ex: SQL queries), query parameters are sanitized before sending these to our servers.
+* Our infrastructure resides in an SOC2 compliant datacenter.
 
 ### Information sent to our servers
 
@@ -52,9 +53,10 @@ The following data is sent to our servers from the agent:
 * Gems used by your application
 * Transaction traces, which include:
   * The URL, including query parameters, of the slow request. This can be modified to exclude query params via the <a href="#configuration-reference"><code>uri_reporting</code></a> configuration option.
-
   * IP Address of the client initiating the request
   * Sanitized SQL query statements
+* Process memory and CPU usage
+* Error counts
 
 ### HIPAA compliance
 
