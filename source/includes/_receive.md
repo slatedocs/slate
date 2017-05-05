@@ -21,14 +21,13 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "id": "23940470-12b3-42ad-8784-500915ad61a5",
-  "session_id": "d57dc142-23ce-4c39-a03b-9ebdc8497ba3",
-  "content": "Hey ho!",
+  "id": "006b42be-2997-417f-ada5-e2d8c434f023",
+  "session_id": "35559e1d-0dcc-4872-9b26-bdffb56aef52",
+  "content": "Yes please",
   "content_type": "text",
   "sender_role": "end-user",
-  "sent_at": "2016-12-20T20:50:42.708Z",
-  "created_at": "2017-04-25T20:58:41.633Z",
-  "updated_at": "2017-04-25T20:58:41.633Z"
+  "sent_at": "2017-05-05T13:26:41.842Z",
+  "created_at": "2017-05-05T13:26:42.107Z"
 }
 ```
 
@@ -73,15 +72,14 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "id": "23940470-2fb3-42ad-8784-500915ad61a5",
-  "session_id": "d57dc142-23ce-4ce5-a03b-9ebdc8497ba3",
-  "content": "What's shea weber's plus-minus?",
-  "content_type": "text",
-  "sender_role": "init",
-  "sent_at": "2016-12-20T20:50:42.708Z",
-  "created_at": "2017-04-25T20:58:41.633Z",
-  "updated_at": "2017-04-25T20:58:41.633Z"
-}
+    "id": "6e500324-ec66-44b4-8c0b-1d28dbeee868",
+    "session_id": "35559e1d-0dcc-4872-9b26-bdffb56aef52",
+    "content": "What would you like to order?",
+    "content_type": "text",
+    "sender_role": "init",
+    "sent_at": "2017-05-05T13:14:34.113Z",
+    "created_at": "2017-05-05T13:14:34.115Z"
+  }
 ```
 
 This endpoint acts as a proxy between both the Init.ai API and the conversational application.

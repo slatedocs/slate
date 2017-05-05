@@ -8,8 +8,8 @@ curl -X POST \
 -H 'Content-Type: application/json' \
 -d '{
   "need_attention": true,
-  "tags": ["mobile"],
-  "topics": ["sleep", "skin+hair"]
+  "tags": ["detox"],
+  "topics": ["product", "shipping"]
 }' \
 https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/sessions/current
 ```
@@ -19,8 +19,8 @@ const dirtylemon = require('dirtylemon');
 
 dirtylemon.sessions.update({CUSTOMER_ID}, {
   need_attention: true,
-  tags: ["mobile"],
-  topics: ["sleep", "skin+hair"]
+  tags: ["detox"],
+  topics: ["product", "shipping"]
 })
 ```
 
@@ -32,18 +32,18 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "id": "10125e23-3ad9-46bc-a4c1-e1e8e1a79d16",
-  "customer_id": "fffd7e80-1691-41f5-8946-9deeaf0b8640",
+  "id": "35559e1d-0dcc-4872-9b26-bdffb56aef52",
+  "customer_id": "6cbda5ea-aa69-4d06-a7eb-a1656bab4e9d",
   "need_attention": true,
   "tags": [
-    "mobile"
+    "detox"
   ],
   "topics": [
-    "sleep",
-    "skin+hair"
+    "product",
+    "shipping"
   ],
-  "created_at": "2017-04-21T14:38:59.691Z",
-  "updated_at": "2017-04-21T18:10:51.475Z"
+  "created_at": "2017-05-05T13:14:33.959Z",
+  "updated_at": "2017-05-05T13:20:26.066Z"
 }
 ```
 

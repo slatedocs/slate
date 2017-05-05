@@ -32,15 +32,13 @@ HTTP/1.1 201 CREATED
 
 ```json
 {
-  "id": "9a7c5cf3-0ed5-40b0-8f63-c425bc14afe0",
-  "session_id": "18e22f89-f945-4d6a-858f-7d487c321d67",
-  "content": "Hey",
+  "id": "c11ac986-bb0f-46de-89d8-b53f14cc51fc",
+  "session_id": "35559e1d-0dcc-4872-9b26-bdffb56aef52",
+  "content": "Need help?",
   "content_type": "text",
   "sender_role": "agent",
-  "sent_at": "2017-05-02T12:04:42.693Z",
-  "delivered_at": null,
-  "created_at": "2017-05-02T12:04:42.694Z",
-  "updated_at": "2017-05-02T12:04:42.694Z"
+  "sent_at": "2017-05-05T13:35:06.329Z",
+  "created_at": "2017-05-05T13:35:06.345Z"
 }
 ```
 

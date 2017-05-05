@@ -4,18 +4,18 @@
 
 ```json
 {
-  "id": "10125e23-3ad9-46bc-a4c1-e1e8e1a79d16",
-  "customer_id": "fffd7e80-1691-41f5-8946-9deeaf0b8640",
+  "id": "35559e1d-0dcc-4872-9b26-bdffb56aef52",
+  "customer_id": "6cbda5ea-aa69-4d06-a7eb-a1656bab4e9d",
   "need_attention": true,
   "tags": [
-    "mobile"
+    "detox"
   ],
   "topics": [
-    "sleep",
-    "skin+hair"
+    "product",
+    "shipping"
   ],
-  "created_at": "2017-04-21T14:38:59.691Z",
-  "updated_at": "2017-04-21T18:10:51.475Z"
+  "created_at": "2017-05-05T13:14:33.959Z",
+  "updated_at": "2017-05-05T13:20:26.066Z"
 }
 ```
 
