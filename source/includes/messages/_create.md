@@ -50,7 +50,7 @@ This endpoint creates a message:
 - Notifies the [conversational system](...) of the message
 
 <aside class="notice">
-  Calls on this action will fail if the customer isn't confirmed.
+  Calls on this action will fail if the customer is unsubscribed.
 </aside>
 
 ### HTTP Request
