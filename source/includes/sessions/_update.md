@@ -11,13 +11,13 @@ curl -X POST \
   "tags": ["mobile"],
   "topics": ["sleep", "skin+hair"]
 }' \
-https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/sessions/{SESSION_ID}
+https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/sessions/current
 ```
 
 ```javascript
 const dirtylemon = require('dirtylemon');
 
-dirtylemon.messages.create({CUSTOMER_ID}, {SESSION_ID}, {
+dirtylemon.sessions.update({CUSTOMER_ID}, {
   need_attention: true,
   tags: ["mobile"],
   topics: ["sleep", "skin+hair"]
@@ -67,14 +67,13 @@ Updating the `need_attention` attribute to `false`:
 
 ### HTTP Request
 
-`PATCH https://api.dirtylemon.com/v1/customers/:customer_id/sessions/:session_id`
+`PATCH https://api.dirtylemon.com/v1/customers/:customer_id/sessions/current`
 
 ### Path params
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
 | customer_id | yes |  |
-| session_id | yes | Only `current` is accepted. |
 
 ### Body params
 

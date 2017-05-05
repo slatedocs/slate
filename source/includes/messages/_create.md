@@ -11,13 +11,13 @@ curl -X POST \
   "content_type": "text",
   "sender_role": "agent"
 }' \
-https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/sessions/{SESSION_ID}/messages
+https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/sessions/current/messages
 ```
 
 ```javascript
 const dirtylemon = require('dirtylemon');
 
-dirtylemon.messages.create({CUSTOMER_ID}, {SESSION_ID}, {
+dirtylemon.messages.create({CUSTOMER_ID}, {
   content: 'Hey',
   content_type: 'text',
   sender_role: 'agent'
@@ -55,14 +55,13 @@ This endpoint creates a message:
 
 ### HTTP Request
 
-`POST https://api.dirtylemon.com/v1/customers/:customer_id/sessions/:session_id/messages`
+`POST https://api.dirtylemon.com/v1/customers/:customer_id/sessions/current/messages`
 
 ### Path params
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
 | customer_id | yes |  |
-| session_id | yes | Only `current` is accepted. |
 
 ### Body params
 
