@@ -8,8 +8,7 @@ curl -X POST \
 -H 'Content-Type: application/json' \
 -d '{
   "content": "Hey",
-  "content_type": "text",
-  "sender_role": "agent"
+  "content_type": "text"
 }' \
 https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/sessions/current/messages
 ```
@@ -19,8 +18,7 @@ const dirtylemon = require('dirtylemon');
 
 dirtylemon.messages.create({CUSTOMER_ID}, {
   content: 'Hey',
-  content_type: 'text',
-  sender_role: 'agent'
+  content_type: 'text'
 })
 ```
 
@@ -66,8 +64,7 @@ This endpoint creates a message:
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
 | content | yes |  |
-| content_type | yes |  |
-| sender_role | yes | Either `agent` or `init` |
+| content_type | yes | Only `text` is accepted |
 
 ### Returns
 
