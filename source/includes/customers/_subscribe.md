@@ -1,4 +1,4 @@
-## Unsubscribe
+## Subscribe
 
 > Example request
 
@@ -6,13 +6,13 @@
 curl -X POST \
 -H 'Authorization: Bearer <TOKEN>' \
 -H 'Content-Type: application/json' \
-https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/unsubscribe
+https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/subscribe
 ```
 
 ```javascript
 const dirtylemon = require('dirtylemon');
 
-dirtylemon.customers.unsubscribe({CUSTOMER_ID})
+dirtylemon.customers.subscribe({CUSTOMER_ID})
 ```
 
 > Example response
@@ -21,15 +21,15 @@ dirtylemon.customers.unsubscribe({CUSTOMER_ID})
 HTTP/1.1 204 NO CONTENT
 ```
 
-This endpoint unsubscribes a customer from future communications. Attempting to send messages will fail until the customer [subscribes](#subscribe) again.
+This endpoint re-subscribes a customer to communications after [unsubscription](#unsubscribe).
 
 <aside class="notice">
-  This will fail if the customer is already unsubscribed.
+  This will fail if the customer is already subscribed.
 </aside>
 
 ### HTTP Request
 
-`POST https://api.dirtylemon.com/v1/customers/:customer_id/unsubscribe`
+`POST https://api.dirtylemon.com/v1/customers/:customer_id/subscribe`
 
 ### Path params
 
