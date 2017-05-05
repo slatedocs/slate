@@ -7,7 +7,7 @@ curl -X POST \
 -H 'Authorization: Bearer <TOKEN>' \
 -H 'Content-Type: application/json' \
 -d '{
-  "confirmation_token": "123456"
+  "confirmation_token": "256120"
 }' \
 https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/confirm
 ```
@@ -16,7 +16,7 @@ https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/confirm
 const dirtylemon = require('dirtylemon');
 
 dirtylemon.customers.confirm({CUSTOMER_ID}, {
-  confirmation_token: '123456'
+  confirmation_token: '256120'
 })
 ```
 
@@ -28,21 +28,24 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "id": "32139dfd-87c3-4552-8e91-0d9de718bff6",
-  "phone_number": "+14185810827",
-  "unconfirmed_phone_number": "+14185810827",
+  "id": "6cbda5ea-aa69-4d06-a7eb-a1656bab4e9d",
+  "phone_number": "+14185800893",
   "country_code": "CA",
-  "email": null,
-  "first_name": null,
-  "last_name": null,
-  "confirmation_token": "152200",
+  "email": "dionne.phil@gmail.com",
+  "first_name": "Philippe",
+  "last_name": "Dionne",
+  "time_zone": null,
+  "unsubscribed": false,
+  "billing_address": {},
+  "shipping_address": {},
+  "card": {},
   "billing_address_url": null,
   "shipping_address_url": null,
-  "card_url": null,
-  "confirmed_at": "2017-04-14T18:53:59.246Z",
-  "confirmation_sent_at": null,
-  "created_at": "2017-04-14T18:48:52.367Z",
-  "updated_at": "2017-04-14T18:53:59.253Z"
+  "card_url": "https://api.dirtylemon.com/l/330993",
+  "confirmation_token": "256120",
+  "confirmed_at": "2017-05-03T16:02:42.132Z",
+  "created_at": "2017-05-03T16:02:41.132Z",
+  "updated_at": "2017-05-03T16:02:42.132Z"
 }
 ```
 

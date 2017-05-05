@@ -22,21 +22,54 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "id": "fffd7e80-1691-41f5-8946-9deeaf0b8640",
-  "phone_number": "+13333333333",
-  "unconfirmed_phone_number": "+13333333333",
-  "country_code": "US",
-  "email": "customer@example.com",
-  "first_name": "Yogi",
-  "last_name": "Berra",
-  "confirmation_token": "123456",
-  "billing_address_url": "https://api.dirtylemon.com/l/6243c9",
-  "shipping_address_url": "https://api.dirtylemon.com/l/192b86",
-  "card_url": "https://api.dirtylemon.com/l/0896d5",
-  "confirmed_at": "2016-09-02T09:40:08.004Z",
-  "confirmation_sent_at": "2016-09-02T09:40:07.004Z",
-  "created_at": "2016-09-02T09:40:06.004Z",
-  "updated_at": "2016-09-07T02:12:02.012Z"
+  "id": "6cbda5ea-aa69-4d06-a7eb-a1656bab4e9d",
+  "phone_number": "+14185800893",
+  "country_code": "CA",
+  "email": "dionne.phil@gmail.com",
+  "first_name": "Philippe",
+  "last_name": "Dionne",
+  "time_zone": "America/Toronto",
+  "unsubscribed": false,
+  "billing_address": {
+    "id": "4d49a9ef-6c9c-4412-90e3-a3cd164162f1",
+    "type": "BillingAddress",
+    "street1": "1-60 CRÉMAZIE OUEST",
+    "street2": "",
+    "city": "QUEBEC",
+    "state": "QC",
+    "country": "CA",
+    "zip": "G1R 1X3",
+    "lat": null,
+    "lng": null,
+    "created_at": "2017-05-03T21:06:06.374Z",
+    "updated_at": "2017-05-03T21:06:06.374Z"
+  },
+  "shipping_address": {
+    "id": "903f61c0-44bc-4079-a427-483961611f35",
+    "type": "ShippingAddress",
+    "street1": "1-60 CRÉMAZIE OUEST",
+    "street2": "",
+    "city": "QUEBEC",
+    "state": "QC",
+    "country": "CA",
+    "zip": "G1R 1X3",
+    "lat": "46.8051224",
+    "lng": "-71.2270809",
+    "created_at": "2017-05-03T21:06:06.368Z",
+    "updated_at": "2017-05-03T21:06:11.403Z"
+  },
+  "card": {
+    "exp_month": "8",
+    "exp_year": "2019",
+    "last4": "4242"
+  },
+  "billing_address_url": "https://api.dirtylemon.com/l/574c5b",
+  "shipping_address_url": "https://api.dirtylemon.com/l/aa5225",
+  "card_url": "https://api.dirtylemon.com/l/37e04c",
+  "confirmation_token": "256120",
+  "confirmed_at": "2017-05-03T16:03:15.887Z",
+  "created_at": "2017-05-03T16:02:41.132Z",
+  "updated_at": "2017-05-05T13:14:28.670Z"
 }
 ```
 

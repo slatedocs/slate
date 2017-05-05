@@ -3,11 +3,13 @@
 > Example request
 
 ```shell
-curl -X PUT \
+curl -X PATCH \
 -H 'Authorization: Bearer <TOKEN>' \
 -H 'Content-Type: application/json' \
 -d '{
-  "email": "yogi@berra.com"
+  "first_name": Elon",
+  "last_name": Musk",
+  "email": elon@spacex.com"
 }' \
 https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}
 ```
@@ -16,7 +18,9 @@ https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}
 const dirtylemon = require('dirtylemon');
 
 dirtylemon.customers.update({CUSTOMER_ID}, {
-  email: 'yogi@berra.com'
+  first_name: 'Elon',
+  last_name: 'Musk',
+  email: 'elon@spacex.com'
 })
 ```
 
@@ -28,21 +32,24 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "id": "fffd7e80-1691-41f5-8946-9deeaf0b8640",
-  "phone_number": "+13333333333",
-  "unconfirmed_phone_number": "+13333333333",
-  "country_code": "US",
-  "email": "yogi@berra.com",
-  "first_name": "Yogi",
-  "last_name": "Berra",
-  "confirmation_token": "123456",
+  "id": "6cbda5ea-aa69-4d06-a7eb-a1656bab4e9d",
+  "phone_number": "+14185800893",
+  "country_code": "CA",
+  "email": "elon@spacex.com",
+  "first_name": "Elon",
+  "last_name": "Musk",
+  "time_zone": null,
+  "unsubscribed": false,
+  "billing_address": {},
+  "shipping_address": {},
+  "card": {},
   "billing_address_url": null,
   "shipping_address_url": null,
-  "card_url": null,
-  "confirmed_at": "2016-09-02T09:40:08.004Z",
-  "confirmation_sent_at": "2016-09-02T09:40:07.004Z",
-  "created_at": "2016-09-02T09:40:06.004Z",
-  "updated_at": "2016-09-07T02:12:02.012Z"
+  "card_url": "https://api.dirtylemon.com/l/330993",
+  "confirmation_token": "256120",
+  "confirmed_at": null,
+  "created_at": "2017-05-03T16:02:41.132Z",
+  "updated_at": "2017-05-03T16:02:41.132Z"
 }
 ```
 
