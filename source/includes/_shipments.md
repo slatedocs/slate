@@ -31,3 +31,39 @@
 | eta | timestamp     | Time at which the shipment is expected to be delivered |
 | created_at          | timestamp | Time at which the object was created |
 | updated_at          | timestamp | Time at which the object was updated |
+
+
+## Webhook
+
+```shell
+curl https://user:password@api.dirtylemon.com/v1/shipments/webhook \
+  -X POST \
+  -H 'Content-Type: application/json' \
+  -d '{ id: "...", description: "...", result: {} }'
+```
+
+> Example response
+
+```http
+HTTP/1.1 204 NO CONTENT
+```
+
+This endpoint allows an external service to update a shipment's tracking informations.
+
+- A `order.shipment.update` event will be fired
+
+### Authentication
+
+Requests are authenticated with HTTP basic authentication.
+
+### HTTP Request
+
+`POST https://user:password@api.dirtylemon.com/v1/shipments/webhook`
+
+### Body params
+
+Expected payload from [EasyPost's webhook reference](https://www.easypost.com/webhooks-guide).
+
+### Returns
+
+Nothing.
