@@ -16,7 +16,7 @@ curl https://api.dirtylemon.com/v1/receive/twilio \
 > Example response
 
 ```http
-HTTP/1.1 201 CREATED
+HTTP/1.1 200 OK
 ```
 
 ```json
@@ -51,7 +51,7 @@ A message object.
 
 ## Init.ai
 
-> Example request
+> Example request for `MessageOutbound`
 
 ```shell
 curl https://api.dirtylemon.com/v1/receive/init \
@@ -64,7 +64,7 @@ curl https://api.dirtylemon.com/v1/receive/init \
 > Example response
 
 ```http
-HTTP/1.1 201 CREATED
+HTTP/1.1 200 OK
 ```
 
 ```json
@@ -80,13 +80,21 @@ HTTP/1.1 201 CREATED
 }
 ```
 
-This endpoint creates a [message](#messages) on behalf of __init.ai__:
+This endpoint acts as a proxy between both the Init.ai API and the conversational application.
 
-- Notifies the [customer](#customers) of the message
+When webhook event is `MessageOutbound`:
+
+  - A [message](#messages) is created on behalf of __init.ai__
+  - Notifies the [customer](#customers) of the message
 
 <aside class="notice">
   Calls on this action will fail if the customer isn't confirmed.
 </aside>
+
+When webhook event is `LogicInvocation`:
+
+  - The event payload is forwarded to the conversational application
+
 
 ### HTTP Request
 
