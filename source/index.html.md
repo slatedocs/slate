@@ -377,7 +377,7 @@ curl\
 {
   "data": [
     {
-      "login": {
+      "session": {
         "sid": "1cjkidhfqoihoufu18j0ncoy0jl7eu0d4ge1kslggp4outkh",
         "create_time": 1429863734,
         "expire_time": 1429906934
@@ -424,7 +424,7 @@ Parameter | Type | Description
 
 Parameter | Type | Description
 -------- | ----- | -------
-`login.sid` | *string* | Your session id. Use for `Authorization` header.
+`session.sid` | *string* | Your session id. Use for `Authorization` header.
 `user` | *object* | Logged in user with expanded avatar, phones, addresses, payment details and last 10 bookings.
 
 This endpoint returns:
