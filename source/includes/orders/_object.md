@@ -41,15 +41,16 @@
   ],
   "shipments": [
     {
+      "id": "20a21109-0e00-403b-84cc-62e095c94bca",
       "label": "1 six-pack of [skin+hair]",
-      "carrier": null,
-      "tracking_number": null,
-      "tracking_url": null,
-      "tracking_status": null,
-      "tracking_status_at": null,
-      "eta": null,
-      "created_at": "2017-05-02T00:10:39.726Z",
-      "updated_at": "2017-05-02T00:10:39.726Z"
+      "carrier": "UPS",
+      "tracking_number": "9400136897846107013399",
+      "tracking_url": "https://track.easypost.com/djE6dHJrX2Y0YTdkMGI1NmJlNDQ1MzdhMjMzN2M2ODlmMGM2OTdm",
+      "tracking_status": "delivered",
+      "tracking_status_at": "2017-05-03T22:38:23.432Z",
+      "eta": "2017-05-03T12:00:00.000Z",
+      "created_at": "2017-05-03T22:37:50.357Z",
+      "updated_at": "2017-05-03T22:38:23.432Z"
     }
   ],
   "created_at": "2017-05-01T22:25:46.589Z",
@@ -70,7 +71,7 @@
 | preordered   | boolean | |
 | coupon_id    | string | A `coupon` id |
 | shipping     | hash | |
-| line_items   | list | Array of `line item` objects |
-| shipments    | list | Array of `shipments` objects |
+| line_items   | list | Array of [line item](#line-items) objects |
+| shipments    | list | Array of [shipments](#shipments) objects |
 | created_at   | timestamp | Time at which the object was created |
 | updated_at   | timestamp | Time at which the object was updated |
