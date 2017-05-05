@@ -26,7 +26,7 @@
   },
   "line_items": [
     {
-      "id": "29ed62f3-2a36-4543-b586-508bd6a3313f",
+      "id": "26ae9dea-cd8b-449b-bbb1-cdedf3216686",
       "description": "1 six-pack of [skin+hair]",
       "amount": 6500,
       "quantity": 1,
@@ -35,8 +35,8 @@
         "currency": "usd",
         "price": 6500
       },
-      "created_at": "2017-05-01T22:25:46.626Z",
-      "updated_at": "2017-05-01T22:25:46.626Z"
+      "created_at": "2017-05-03T22:26:49.705Z",
+      "updated_at": "2017-05-03T22:26:49.705Z"
     }
   ],
   "shipments": [
