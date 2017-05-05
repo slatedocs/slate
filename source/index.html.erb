@@ -15,13 +15,48 @@ search: true
 
 <%= partial "includes/introduction" %>
 <%= partial "includes/authentication" %>
-<%= partial "includes/customers" %>
-<%= partial "includes/addresses" %>
+
+<h1 id="customers">Customers</h1>
+<%= partial "includes/customers/object" %>
+<%= partial "includes/customers/show" %>
+<%= partial "includes/customers/create" %>
+<%= partial "includes/customers/update" %>
+<%= partial "includes/customers/destroy" %>
+<%= partial "includes/customers/confirm" %>
+<%= partial "includes/customers/generate_confirmation" %>
+<%= partial "includes/customers/send_confirmation" %>
+<%= partial "includes/customers/unsubscribe" %>
+
+<h1 id="addresses">Addresses</h1>
+<%= partial "includes/addresses/object" %>
+<%= partial "includes/addresses/show" %>
+<%= partial "includes/addresses/create" %>
+<%= partial "includes/addresses/update" %>
+<%= partial "includes/addresses/validate" %>
+
 <%= partial "includes/cards" %>
-<%= partial "includes/orders" %>
+
+<h1 id="orders">Orders</h1>
+<%= partial "includes/orders/object" %>
+<%= partial "includes/orders/show" %>
+<%= partial "includes/orders/create" %>
+<%= partial "includes/orders/update" %>
+<%= partial "includes/orders/pay" %>
+<%= partial "includes/orders/cancel" %>
+<%= partial "includes/orders/fulfill" %>
+<%= partial "includes/orders/return" %>
+
 <%= partial "includes/line_items" %>
 <%= partial "includes/skus" %>
 <%= partial "includes/coupons" %>
-<%= partial "includes/sessions" %>
-<%= partial "includes/messages" %>
+
+<h1 id="sessions">Sessions</h1>
+<%= partial "includes/sessions/object" %>
+<%= partial "includes/sessions/show" %>
+<%= partial "includes/sessions/update" %>
+
+<h1 id="messages">Messages</h1>
+<%= partial "includes/messages/object" %>
+<%= partial "includes/messages/create" %>
+
 <%= partial "includes/receive" %>
