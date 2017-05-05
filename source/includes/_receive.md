@@ -36,6 +36,10 @@ This endpoint creates a [message](#messages) on behalf of a __customer__:
 
 - Notifies the [conversational system](...) of the message
 
+### Authentication
+
+Requests are authenticated with the `HTTP_X_TWILIO_SIGNATURE` header.
+
 ### HTTP Request
 
 `POST https://api.dirtylemon.com/v1/receive/twilio`
@@ -95,6 +99,9 @@ When webhook event is `LogicInvocation`:
 
   - The event payload is forwarded to the conversational application
 
+### Authentication
+
+Requests are authenticated with the `X-Init-Ai-Secret` header.
 
 ### HTTP Request
 
