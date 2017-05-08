@@ -75,7 +75,7 @@ curl_close( $ch );
 ?>
 ```
 
-Parâmetro | size | type | Obrigatório | Descrição
+Campo | Tamanho | Tipo | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
 identificacao | 60 | string | sim | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
 metodo | 15 | string | sim | Forma de Pagamento * veja os valores possíveis na seção Métodos deste documento
@@ -105,9 +105,112 @@ vencto | 10 | date | não | Data de vencimento (DD/MM/YYYY). Usado apenas em bol
 url_retorno | 50 | string | sim | URL de retorno à Loja Virtual ou Site.
 retorno_tipo | 5 | string | não | Informar 'xml' para ter retorno em XML, caso não seja informado será retornado em HTML.
 
+## Campos adicionais para Stelo
+
+**TransferBlock**
+
+```php
+<!-- Iframe -->
+<iframe src="https://carteirac1.hml.stelo.com.br/transaction/transfer?idUnico=IDUNICO"
+width="0"
+marginwidth="0"
+height="0"
+marginheight="0"
+frameborder="0">
+</iframe>
+<!-- /Iframe -->
+```
+
+```html
+<!-- Iframe -->
+<iframe src="https://carteirac1.hml.stelo.com.br/transaction/transfer?idUnico=IDUNICO"
+width="0"
+marginwidth="0"
+height="0"
+marginheight="0"
+frameborder="0">
+</iframe>
+<!-- /Iframe -->
+```
+
+O TransferBlock é um iFrame disponibilizado pela Stelo para que eles consigam ter uma melhor análise de risco, a inserção do iFrame é obrigatória e deve ser inserida dentro **BODY** da página de checkout.
+
+O campo **IDUNICO** deve ser substituído sempre por um valor único nas ultimas 24 horas. Este **IDUNICO** deve ser enviado no campo *stelo_fingerprint* do POST para aprovar a transação.
+
+> Exemplo para gerar o stelo_fingerprint:
+
+```php
+<?php
+
+$stelo_fingerprint = md5(uniqid(rand(), true));
+```
+
+Além do *stelo_fingerprint*, é necessário enviar os dados do produto no campo *descricao_pedido* em formato JSON.
+
+### Campos do pedido que deve ser enviado no campo *descricao_pedido* em formato JSON
+
+Campo | Tamanho | Tipo | Obrigatório | Descrição
+------| ------- | ---- | ----------- | ---------
+quant | 4       | alfanúmerico | sim | Quantidade do produto
+descr | 100     | alfanúmerico | sim | Descrição do Produto/ Nome do produto
+valor | 6       | númerico | sim | Valor do Produto, deve ser informado no formato 1.00
+id | 20 | alfanúmrico | não | SKU/Código do produto
+
+> Exemplo do campo descricao_pedido:
+
+```json
+{
+  "1":{
+    "quant":"1",
+    "descr":"Produto Teste",
+    "valor":"1.00",
+    "id":"001"
+  },
+  "2":{
+    "quant":"2",
+    "descr":"Produto Teste 2",
+    "valor":"1.50",
+    "id":"002"
+  },
+  "3": {
+    ...
+  },
+  ...
+}
+```
+
+```php
+<?php
+
+$stelo_fingerprint = md5(uniqid(rand(), true));
+
+//...
+'descricao_pedido' => urlencode('{"1":{"quant":"1","descr":"Produto Teste","valor":"1.00","id":"001"},"2":{"quant":"2","descr":"Produto Teste 2","valor":"1.50","id":"002"}}'),
+'stelo_fingerprint' => urlencode($stelo_fingerprint),
+//...
+```
+
+### Dados obrigátorios para trancionar via Stelo
+
+Campo | Tamanho | Tipo | Obrigatório | Descrição
+------| ------- | ---- | ----------- | ---------
+nome | 50 | string | sim | Nome do cliente
+documento | 18 | string | sim | CPF ou CNPJ do sacado
+email | 50 | string | sim| E-mail do cliente
+fone | 11 | string | sim | Telefone do cliente
+endereco | 50 | string | sim | Endereço completo do cliente
+numero_endereco | 5 | number | sim | Número do Endereço
+bairro | 20 | string | sim | Bairro do cliente
+cidade | 20 | string | sim | Cidade do cliente
+estado | 2 | string | sim | Estado do cliente
+pais | 15 | string | sim | País do cliente
+cep | 8 | string | sim | Cep do cliente
+stelo_fingerprint | 32 | string | sim | ID Unico gerado para o pedido
+descricao_pedido | ... | text | sim | Descrição dos produtos do pedido
+
 ## Campos adicionais para 1-click buy
 
-Parâmetro | size | type | Obrigatório | Descrição
+Campo | Tamanho | Tipo | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
 gera_token_cartao | 5 | boolean | Obrigatório na criação do pedido | Utilizado para realizar a transação em que os dados do Cartão ficam armazenado no iPag. Este parâmetro é utilizado para implementar o recurso de Pagamento com 1 Click
 token_cartao | 37 | string | Obrigatório na utilização do token | Quando o cliente fizer uma compra utilizando a opção de Pagamento com 1 Click, este parâmetro deverá ser obrigatoriamente enviado. Neste caso, os parâmetros a seguir não devem ser enviados: nome_cartao, num_cartao, metodo, cvv_cartao, mes_cartao, ano_cartao
