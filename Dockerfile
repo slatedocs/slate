@@ -6,4 +6,4 @@ EXPOSE 4567
 RUN apt-get update && apt-get install -y nodejs \
 && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-CMD ["bundle", "exec", "middleman", "server", "--force-polling"]
+CMD ["bundle", "exec", "middleman", "server", "--watcher-force-polling"]
