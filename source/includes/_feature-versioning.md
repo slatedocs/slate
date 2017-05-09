@@ -147,7 +147,7 @@ The response will contain a Location header to the new version created.
 In case creating the new version can be created fast enough a 201 response will be issued,
 when the new version takes too long a 202 response will be issued and the creation will proceed in background.
 In case of a 202 response the body will be a Shoji:view containing a progress URL 
-where the asynchronous job's status can be observed.
+where you may query the progress.
 
 ```python
 >>> svp = ds.savepoints.create({"body": {"description": "TestSVP"}})
