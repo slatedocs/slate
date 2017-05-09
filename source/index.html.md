@@ -43,7 +43,7 @@ MarketAlerts is open for beta and does not currently require Authentication.
 
 ```shell
 curl \
-"http://api.fxhistoricaldata.com/v1/indicators?expression=close,ema(close,200),rsi(close,14)&instruments=USDJPY"
+"http://api.fxhistoricaldata.com/indicators?expression=close,ema(close,200),rsi(close,14)&instruments=USDJPY"
 
 # Example expressions
 open,high,low,close
@@ -76,7 +76,7 @@ This endpoint retrieves market data and calculates technical indicators
 
 ### HTTP Request
 
-`GET http://api.fxhistoricaldata.com/v1/indicators`
+`GET http://api.fxhistoricaldata.com/indicators`
 
 ### Query Parameters
 
@@ -93,7 +93,7 @@ item_count    | No       | 10           | The number of data items to return.
 
 ```shell
 curl \
-"http://api.fxhistoricaldata.com/v1/signals?expression=close>ema(close,200) and rsi(close,14)<50&s=USDJPY"
+"http://api.fxhistoricaldata.com/signals?expression=close>ema(close,200) and rsi(close,14)<50&s=USDJPY"
 
 # Example expressions
 rsi(close,14) > 70
@@ -122,7 +122,7 @@ This endpoint calculates signals ie: rsi crossed above 70, closing price is abov
 
 ### HTTP Request
 
-`GET http://api.fxhistoricaldata.com/v1/signals`
+`GET http://api.fxhistoricaldata.com/signals`
 
 ### Query Parameters
 
@@ -353,7 +353,7 @@ The list of timeframes available can be retrieved programmatically with a get re
 
 ```shell
 curl \
-http://api.fxhistoricaldata.com/v1/timeframes
+http://api.fxhistoricaldata.com/timeframes
 ```
 
 # Available markets
@@ -362,7 +362,7 @@ The list of instruments available can be retrieved programmatically with a get r
 
 ```shell
 curl \
-http://api.fxhistoricaldata.com/v1/instruments
+http://api.fxhistoricaldata.com/instruments
 ```
 
 ## Forex
