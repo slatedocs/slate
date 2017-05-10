@@ -11,6 +11,7 @@ includes:
   - getting_started
   - administration
   - compute
+  - openstack
 
 subsections:
   administration:
@@ -19,7 +20,6 @@ subsections:
     - users
     - environments
   compute:
-
     - compute # Compute section
     - instances
     - templates
@@ -44,5 +44,7 @@ subsections:
     - compute_offerings
     - disk_offerings
     - zones # Zones section
+  openstack:
+    - securityGroups
 search: true
 ---
