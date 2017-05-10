@@ -353,6 +353,69 @@ Parameter | Type | Description
 In batched responses `meta` is returned once at the end.
 
 
+
+# Profiles
+
+
+## Configuration
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/client/configuration"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    { 
+      "template_name" : "default",      
+      "website_name": "website name",      
+      "phone": "+442221123123",
+      "show_phone" : true,
+      "default_category_id" : 1,
+      "default_service_id" : 3,      
+      "cta_colors" : "#6c391c",      
+      "currency_code": "GBP",      
+      "locale": "en_GB",
+      "website_url": "http://domainname.com/",      
+      "logo_url": "http://domainname.com/images/logo.jpg",      
+      "terms_and_conditions_url": "https://gofantastic.com/terms-and-conditions.html",
+      "privacy_policy_url": "https://gofantastic.com/privacy-policy.html"      
+    }      
+  ]
+}
+```
+
+Categories group services.
+
+
+`"path": "categories"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`template_name` | *string* | Configuration template name
+`website_name` | *string* | Configuration website name
+`phone` | *string* | Configuration phone number
+`show_phone` | *boolean* | Configuration hide or show phone number
+`default_category_id` | *integer* | Configuration default selected category
+`default_service_id` | *integer* | Configuration default selected service
+`cta_colors` | *string* | Configuration CTA main color
+`currency_code` | *string* | Configuration currency code
+`locale` | *string* | Configuration locale
+`website_url` | *string* | Configuration full website url with protocol
+`logo_url` | *string* | Configuration full path logo url
+`terms_and_conditions_url` | *string* | Configuration terms and conditions full url
+`privacy_policy_url` | *string* | Configuration privacy and policy full url
+
 # Account
 
 ## Login
