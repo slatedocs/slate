@@ -29,12 +29,21 @@ under the License.
 
     $(".lang-selector a").removeClass('active');
     $(".lang-selector a[data-language-name='" + language + "']").addClass('active');
+
+    //Gr8 h4xx
+    $(".highlight.json").hide();
+    $(".lang-specific.json").hide();
     for (var i=0; i < languages.length; i++) {
       $(".highlight.tab-" + languages[i]).hide();
       $(".lang-specific." + languages[i]).hide();
     }
     $(".highlight.tab-" + language).show();
     $(".lang-specific." + language).show();
+
+    if(language === "shell"){
+      $(".highlight.json").show();
+      $(".lang-specific.json").show();
+    }
 
     global.toc.calculateHeights();
 

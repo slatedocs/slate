@@ -76,6 +76,11 @@ under the License.
         <%= yield %>
         <% current_page.data.includes && current_page.data.includes.each do |include| %>
           <%= partial "includes/#{include}" %>
+          <% if current_page.data.subsections["#{include}"] %>
+            <% current_page.data.subsections["#{include}"].each do |api| %>
+              <%= partial "includes/#{include}/#{api}" %>
+            <% end %>
+          <% end %>
         <% end %>
       </div>
       <div class="dark-box">
