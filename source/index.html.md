@@ -104,6 +104,10 @@ Parameter | Type   | Default | Description
 `exclude_fields` | *array* | *none* | Attributes to exclude from response
 `include_fields` | *array* | *none* | Attributes to add to response which are not returned by default
 `return_meta` | *boolean* | *false* | Weather response includes `meta`
+`paging`<br>*optional* | *object* | Information about paged results
+`paging.offset` | *integer* | Page starting element
+`paging.limit` | *integer* | Page size
+`paging.total` | *integer*| Total elements count
 
 ## Response
 
@@ -141,10 +145,7 @@ All responses are with HTTP status 200 and contain `data` parameter. Optionally 
 Parameter | Type | Description
 --------- | ---- | -----------
 `data`<br>*optional* | *array or object* | Content of response. `data` holds array of objects when requesting resources with plural names (e.g. addresses).`data` holds object when requesting resources with singular names  (e.g. profile).
-`paging`<br>*optional* | *object* | Information about paged results
-`paging.offset` | *integer* | Page starting element
-`paging.limit` | *integer* | Page size
-`paging.total` | *integer*| Total elements count
+`paging`<br>*optional* | *object* | Information about paged result as requested
 `success`, `warning`, `error`<br>*optional* | *array* | Messages with information for the request. More than one type of message can be returned in a response. `success` and `error` can't come in the same response. `warning` can be combined with `success` or `error`.
 `meta`<br>*optional*  | *object* | Parameter containing information for the system.
 
