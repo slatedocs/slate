@@ -59,5 +59,13 @@ Error Code | Meaning
 5532 | Password and password confirmation do not match - # optional if password_confirm passsed
 
 
+## Register voucher
+Error Code | Meaning
+---------- | -------
+6018 | This voucher is already registered to another user
+6019 | This voucher is not available to be registered to a user
+6026 | Missing voucher code
+
+
 
 
