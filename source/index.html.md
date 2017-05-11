@@ -538,11 +538,7 @@ curl\
 
 ```json
 {
-  "data": [
-    {
-      "expire_time": 1491478823
-    }
-  ],
+  "data": null,
   "success": [
     {
       "code": 2000,
@@ -564,12 +560,10 @@ Parameter | Type | Description
 -------- | ----- | -------
 `email`<br>*required* | *string* | Email address to which a link for reset password will be sent
 
-### Response parameters
+This endpoint returns:
 
-Parameter | Type | Description
--------- | ----- | -------
-`expire_time` | *int* |  Unix timestamp of token expiration time
-
+* [Common errors](#common-errors)
+* [Request reset password](#request-reset-password)
 
 ## Read user details on password reset
 
@@ -589,9 +583,9 @@ curl\
 {
   "data": [
     {
+      "title": "Mr",
       "first_name": "John",
-      "last_name": "Doe",
-      "expire_time": 1491478823
+      "last_name": "Doe"
     }
   ]
 }
@@ -613,10 +607,14 @@ Parameter | Type | Description
 
 Parameter | Type | Description
 -------- | ----- | -------
+`title` | *string* | Title of the user
 `first_name` | *string* | First name for user with reset password token
 `last_name` | *string* | Last name for user with reset password token
-`expire_time` | *int* |  Unix timestamp of token expiration time
 
+This endpoint returns:
+
+* [Common errors](#common-errors)
+* [Reset password user details](#reset-password-user-details)
 
 ## Reset password
 
@@ -662,6 +660,10 @@ Parameter | Type | Description
 `password`<br>*required* | *string* | Client new password
 `confirm_password`<br>*optional* | *string* | Password confirmation for server check
 
+This endpoint returns:
+
+* [Common errors](#common-errors)
+* [Reset password](#reset-password)
 
 # Service data
 
