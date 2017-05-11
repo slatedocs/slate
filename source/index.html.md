@@ -107,7 +107,6 @@ Parameter | Type   | Default | Description
 `paging`<br>*optional* | *object* | *none* | Information about paged results
 `paging.offset` | *integer* | *0* | Page starting element
 `paging.limit` | *integer* | *10* | Page size
-`paging.total` | *integer*| *none* | Total elements count
 
 ## Response
 
@@ -146,6 +145,7 @@ Parameter | Type | Description
 --------- | ---- | -----------
 `data`<br>*optional* | *array or object* | Content of response. `data` holds array of objects when requesting resources with plural names (e.g. addresses).`data` holds object when requesting resources with singular names  (e.g. profile).
 `paging`<br>*optional* | *object* | Information about paged result as requested
+`paging.total` | *integer* | Total elements count
 `success`, `warning`, `error`<br>*optional* | *array* | Messages with information for the request. More than one type of message can be returned in a response. `success` and `error` can't come in the same response. `warning` can be combined with `success` or `error`.
 `meta`<br>*optional*  | *object* | Parameter containing information for the system.
 
