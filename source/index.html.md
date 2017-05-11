@@ -103,6 +103,7 @@ Parameter | Type   | Default | Description
 `fields` | *array* | *all* | Attributes to receive in response
 `exclude_fields` | *array* | *none* | Attributes to exclude from response
 `include_fields` | *array* | *none* | Attributes to add to response which are not returned by default
+`return_meta` | *boolean* | *false* | Weather response includes `meta`
 
 ## Response
 
@@ -111,7 +112,7 @@ Parameter | Type   | Default | Description
 
 ```json
 {
-  "data": [],
+  "data": null,
   "paging": {
     "offset": 0,
     "limit": 10,
@@ -132,20 +133,20 @@ Parameter | Type   | Default | Description
 }
 ```
 
-All responses are with HTTP status 200 and contain `data` and `meta` parameters. Optionally there can be `success`, `error` and `warning` parameters.
+All responses are with HTTP status 200 and contain `data` parameter. Optionally there can be `success`, `error` and `warning` message elements, `meta` element and `paging`.
 
 
 ### Response object parameters
 
 Parameter | Type | Description
 --------- | ---- | -----------
-`data`<br>*optional* | *array* | Array of data objects returned in the result of the request
+`data`<br>*optional* | *array or object* | Content of response. `data` holds array of objects when requesting resources with plural names (e.g. addresses).`data` holds object when requesting resources with singular names  (e.g. profile).
 `paging`<br>*optional* | *object* | Information about paged results
 `paging.offset` | *integer* | Page starting element
 `paging.limit` | *integer* | Page size
 `paging.total` | *integer*| Total elements count
 `success`, `warning`, `error`<br>*optional* | *array* | Messages with information for the request. More than one type of message can be returned in a response. `success` and `error` can't come in the same response. `warning` can be combined with `success` or `error`.
-`meta` | *object* | Parameter containing information for the system.
+`meta`<br>*optional*  | *object* | Parameter containing information for the system.
 
 
 ### `meta`
@@ -194,11 +195,7 @@ curl\
       ],
       "updated_at": 1459492785
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -230,19 +227,13 @@ curl\
 
 ```json
 {
-  "data": [
-    {
-      "id": 255,
-      "address_line_1": "9 Apt.",
-      "address_line_2": "24 Red Lion Street",
-      "postcode": "SW12 2TN",
-      "lat": 51.604903,
-      "lng": -0.457022
-    }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
+  "data": {
+    "id": 255,
+    "address_line_1": "9 Apt.",
+    "address_line_2": "24 Red Lion Street",
+    "postcode": "SW12 2TN",
+    "lat": 51.604903,
+    "lng": -0.457022
   }
 }
 ```
@@ -278,11 +269,7 @@ curl\
       "debug_message": null,
       "debug_id": 213124
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -338,7 +325,7 @@ Parameter | Type | Description
 {
   "responses": [
     {
-      "data": [],
+      "data": null,
       "success": [
         {
           "code": 1020,
@@ -348,11 +335,7 @@ Parameter | Type | Description
         }
       ]
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -365,7 +348,7 @@ Parameter | Type | Description
 --------- | ---- | -----------
 `data`<br>*optional* | *array* | Array of data objects returned in the result of the request
 `success`, `warning`, `error`<br>*optional* | *array* | Messages with information for the request. More than one type of message can be returned in a response. `success` and `error` can't come in the same response. `warning` can be combined with `success` or `error`.
-`meta` | *object* | Parameter containing information for the system.
+`meta`<br>*optional*  | *object* | Parameter containing information for the system.
 
 In batched responses `meta` is returned once at the end.
 
@@ -394,7 +377,7 @@ curl\
 {
   "data": [
     {
-      "login": {
+      "session": {
         "sid": "1cjkidhfqoihoufu18j0ncoy0jl7eu0d4ge1kslggp4outkh",
         "create_time": 1429863734,
         "expire_time": 1429906934
@@ -408,11 +391,7 @@ curl\
       "debug_message": null,
       "debug_id": null
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -445,8 +424,10 @@ Parameter | Type | Description
 
 Parameter | Type | Description
 -------- | ----- | -------
-`login.sid` | *string* | Your session id. Use for `Authorization` header.
+`session.sid` | *string* | Your session id. Use for `Authorization` header.
 `user` | *object* | Logged in user with expanded avatar, phones, addresses, payment details and last 10 bookings.
+
+This endpoint returns:
 
 * [Common errors](#common-errors)
 * [Login errors](#login-errors)
@@ -483,7 +464,7 @@ curl\
 {
   "data": [
     {
-      "login": {
+      "session": {
         "sid": "1cjkidhfqoihoufu18j0ncoy0jl7eu0d4ge1kslggp4outkh",
         "create_time": 1429863734,
         "expire_time": 1429906934
@@ -497,11 +478,7 @@ curl\
       "debug_message": null,
       "debug_id": null
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -569,11 +546,7 @@ curl\
       "debug_message": null,
       "debug_id": null
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -614,11 +587,7 @@ curl\
       "first_name": "John",
       "last_name": "Doe"
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -675,11 +644,7 @@ curl\
       "debug_message": null,
       "debug_id": null
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -747,11 +712,7 @@ curl\
         89
       ]
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -836,11 +797,7 @@ curl\
         "tooltip": "Click here"
       }
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -909,11 +866,7 @@ curl\
         94
       ]
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -938,7 +891,6 @@ Parameter | Type | Description
 
 
 
-
 ## Choice items
 
 
@@ -970,76 +922,7 @@ curl\
       "name": "1 _bedroom",
       "choice_items": null
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
-}
-```
-
-
-Answers to the questions the user needs to answer to book a service.
-
-
-`"path": "choice_items"`
-
-### Response parameters
-
-Parameter | Type | Description
--------- | ----- | -------
-`id` | *integer* | Object id
-`sort` | *integer* | Order of item in list
-`parent_id` | *integer* | Parent answer (if answer is sub-answer)
-`type` | *integer* | *<b>1</b> - Check*<br>*<b>2</b> - Radio*<br>*<b>3</b> - Stepper (incremental value)*<br>*<b>4</b> - Text field*<br>*<b>5</b> - Hours (total hours for current booking configuration)*<br>*<b>6</b> - Drop down*<br>*<b>7</b> - Multi select (autocomplete with quantity)*<br>*<b>8</b> - Distance*<br>*<b>9</b> - Always Apply*<br>*<b>10</b> - Price per hour*<br>*<b>11</b> - Decimal Text*<br>
-`max_value` | *integer* | Maximum value of answer
-`min_value` | *integer* | Minimum value of answer
-`value` | *integer* | Default value of answer
-`duration` | *integer* | Minutes added to booking estimated time from the answer
-`summary_title` | *string* | Answer short title text in summary
-`is_in_summary` | *boolean* | Should the answer be included in the summary of booking
-`name` | *string* | Title of answer
-`choice_items` | *array\<choice_item\>* | List of sub-answers for the answers
-
-
-
-
-## Choice items
-
-
-```shell
-curl\
- -X GET\
- -H "Content-Type: application/json"\
- -H "X-Profile: {{PROFILE_ID}}"\
- -H "X-Application: {{APPLICATION_TOKEN}}"\
-"https://{{BASE_URL}}/v2/client/choice_items"
-```
-
-> The above request success response is:
-
-```json
-{
-  "data": [
-    {
-      "id": 1110,
-      "sort": 100,
-      "parent_id": 0,
-      "type": 1,
-      "max_value": 0,
-      "min_value": 0,
-      "value": 0,
-      "duration": 0,
-      "summary_title": "",
-      "is_in_summary": false,
-      "name": "1 _bedroom",
-      "choice_items": null
-    }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -1100,11 +983,7 @@ curl\
       "link": "http://www.google.com",
       "sort": 100
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
+  ]
 }
 ```
 
@@ -1127,6 +1006,75 @@ Parameter | Type | Description
 `sort` | *integer* | Order of treat.
 
 
+## Validations
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/client/validations"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "path": "register",
+      "fields": [
+        {
+          "name": "username",
+          "regex": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
+          "required": true
+        },
+        {
+          "name": "password",
+          "regex": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "addresses",
+      "fields": [
+        {
+          "name": "address1",
+          "regex": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
+          "required": true
+        },
+        {
+          "name": "address2",
+          "regex": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
+          "required": false
+        }
+      ]
+    }
+  ]
+}
+```
+
+Validation object should be used for client side validation of fields before posting to server.
+
+`"path": "validations"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`path` | *string* | Path at which fields to validated will be posted
+`fields` | *array* | Array of field validation objects
+`fields.name` | *string* | Field key name in json
+`fields.regex` | *string* | Regex used to validate the field
+`fields.required` | *boolean* | Is field required for the path
+
+
+
+
+
 # Units
 
 ## Profile
@@ -1136,8 +1084,8 @@ Parameter | Type | Description
 curl\
  -X GET\
  -H "Content-Type: application/json"\
- -H "X-Profile: {{PROFILE_ID}}"\
  -H "X-Application: {{APPLICATION_TOKEN}}"\
+ -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
 "https://{{BASE_URL}}/v2/unit/profile"
 ```
 
@@ -1145,27 +1093,26 @@ curl\
 
 ```json
 {
-  "data": [
-    {
-      "email": "vesi_peikova@abv.bg",
-      "full_name": "John Doe",
-      "phone_number": "07904678431",
-      "country_code": "+44",
-      "locale": "en_AUS",
-      "rating": 4.5,
-      "profile_permissions": {
-        "can_message_client": true,
-        "can_call_client": true,
-        "can_not_cancel_jobs": true,
-        "can_receive_on_demand_jobs": true,
-        "should_send_report_on_checkout": true
+  "data": {
+    "id": 12,
+    "username": "vesi_peikova@abv.bg",
+    "name": "John Doe",
+    "phones": [
+      {
+        "id": 1,
+        "number": "07904678431",
+        "default": false
       }
+    ],
+    "country_code": "+44",
+    "rating": 4.5,
+    "permissions": {
+      "can_message_client": true,
+      "can_call_client": true,
+      "cannot_decline_jobs": true,
+      "can_take_ondemand_jobs": true,
+      "has_to_send_summary_on_checkout": true
     }
-  ],
-  "meta": {
-    "db_version": 25,
-    "latest_build": 27
-  }
 }
 ```
 
@@ -1178,14 +1125,201 @@ Profile contains unit details and permissions
 
 Parameter | Type | Description
 -------- | ----- | -------
-`email` | *string* | Unit email for login
-`full_name` | *string* | First name and last name
-`phone_number` | *string* | Phone number of unit
+`id` | *integer* | Unique identifier
+`username` | *string* | Unit email for login
+`name` | *string* | First name and last name of unit
+`phones` | *array* | List of phone numbers of unit
+`phones.id` | *int* | Unique identifier
+`phones.number` | *string* | Phone number
+`phones.default` | *boolean* | Is the phone the default used by the system for receiving calls and SMS
 `country_code` | *string* | Country code of area the Unit operates in
-`locale` | *string* | Locale of area the Unit operates in
 `rating` | *double* | Performance score of Unit (1-5)
+`permissions` | *array* | List of permissions of unit
 `permissions.can_message_client` | *boolean* | Can unit send SMS messages to clients
 `permissions.can_call_client` | *boolean* | Can unit call clients
 `permissions.can_not_cancel_jobs` | *boolean* | Can unit decline jobs
-`permissions.can_receive_on_demand_jobs` | *boolean* | Can unit receive jobs on-demand via notifications that require response
-`permissions.should_send_report_on_checkout` | *boolean* | Should unit sent report on checkout
+`permissions.can_take_ondemand_jobs` | *boolean* | Can unit receive jobs on-demand via notifications that require response
+`permissions.has_to_send_summary_on_checkout` | *boolean* | Should unit sent report on checkout
+
+
+## Register voucher
+
+
+```shell
+curl\
+ -X POST\
+ -H "Content-Type: application/json"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+ -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
+ -d '{
+        "voucher_code": "23DSAD54"
+}'\
+ "https://{{BASE_URL}}/v2/unit/register_voucher"
+```
+
+Units can register vouchers. Bookings with registered voucher will bring them bonuses.
+
+`"path": "register_voucher"`
+
+This endpoint returns:
+
+* [Common errors](#common-errors)
+
+## Registered vouchers
+
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/unit/registered_vouchers"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "voucher_code": "GO10OFF",
+      "created_at": 1492511551
+    },
+    {
+      "voucher_code": "GO20OFF",
+      "created_at": 1492522551
+    }
+  ]
+}
+```
+
+
+Units can review their registered vouchers.
+
+`"path": "registered_vouchers"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`voucher_code ` | *string* | Voucher code
+`created_at ` | *integer* | Timestamp when the voucher was registered
+
+This endpoint returns:
+
+* [Common errors](#common-errors)
+
+
+
+## Checklists
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+ -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/unit/jobs/12/checklists"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "type": 1,
+      "choices": [
+        {
+          "id": 1,
+          "sort": 100,
+          "required": true,
+          "title": "How many bedrooms are there?",
+          "choice_items": [
+            {
+              "id": 2,
+              "sort": 100,
+              "type": 1,
+              "title": "1 Bedroom"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+Checklists for performing a job
+
+`"path": "jobs/{{id}}/checklists"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`type` | *integer* | *<b>10</b> - Before checkin*<br>*<b>20</b> - Before checkout*
+`choices` | *array* | Checklist questions
+`choices.id` | *integer* | Unique identifier
+`choices.sort` | *integer* | Order of item
+`choices.required` | *boolean* | Should question be answered to send the checklist
+`choices.title` | *string* | Checklist question
+`choices.choice_items` | *array* | Question answers
+`choices.choice_items.id` | *integer* | Unique identifier
+`choices.choice_items.sort` | *integer* | Order of item
+`choices.choice_items.type` | *integer* | *<b>2</b> - Radio*<br>*<b>3</b> - Stepper (incremental value)*<br>*<b>12</b> - Photo attachment*
+`choices.choice_items.title` | *string* | Checklist question answer
+
+
+
+## Checklist answers
+
+
+```shell
+curl\
+ -X POST\
+ -H "Content-Type: application/json"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+ -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/unit/jobs/12/checklist_answers"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "type": 1,
+      "choice_items": [
+        {
+          "id": 2,
+          "value": "1"
+        },
+        {
+          "id": 2,
+          "value": [
+            "23hjfkajsdhfe198237019"
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+Checklist answers after filling checklist.
+
+`"path": "jobs/{{id}}/checklist_answers"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`type` | *integer* | Checklist type (see [checklists](#checklists))
+`choices_items` | *array* | Checklist answers
+`choices_items.id` | *integer* | Unique identifier
+`choices_items.value` | *string/array* | Answer user entered
