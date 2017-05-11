@@ -40,32 +40,27 @@ Error Code | Meaning
 5515 | Last name is required
 5516 | At least 5-character password is required
 
-## Request reset password
+## Request reset password errors
 Error Code | Meaning
 ---------- | -------
 5502 | Invalid email
 5530 | Email not found
 
-## Reset password user details
+## Reset password user details errors
 Error Code | Meaning
 ---------- | -------
 5531 | Invalid reset password token
 
-## Reset password
+## Reset password errors
 Error Code | Meaning
 ---------- | -------
 5531 | Invalid reset password token
 5516 | At least 5-character password is required
 5532 | Password and password confirmation do not match - # optional if password_confirm passsed
 
-
-## Register voucher
+## Register voucher errors
 Error Code | Meaning
 ---------- | -------
 6018 | This voucher is already registered to another user
 6019 | This voucher is not available to be registered to a user
 6026 | Missing voucher code
-
-
-
-

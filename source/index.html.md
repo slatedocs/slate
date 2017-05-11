@@ -564,7 +564,7 @@ Parameter | Type | Description
 This endpoint returns:
 
 * [Common errors](#common-errors)
-* [Request reset password](#request-reset-password)
+* [Request reset password](#request-reset-password-errors)
 
 ## Read user details on password reset
 
@@ -615,7 +615,7 @@ Parameter | Type | Description
 This endpoint returns:
 
 * [Common errors](#common-errors)
-* [Reset password user details](#reset-password-user-details)
+* [Reset password user details](#reset-password-user-details-errors)
 
 ## Reset password
 
@@ -664,7 +664,7 @@ Parameter | Type | Description
 This endpoint returns:
 
 * [Common errors](#common-errors)
-* [Reset password](#reset-password)
+* [Reset password](#reset-password-errors)
 
 # Service data
 
@@ -1164,7 +1164,8 @@ Units can register vouchers. Bookings with registered voucher will bring them bo
 
 This endpoint returns:
 
-* [Register voucher errors](#register-voucher)
+* [Common errors](#common-errors)
+* [Register voucher errors](#register-voucher-errors)
 
 ## Registered vouchers
 
