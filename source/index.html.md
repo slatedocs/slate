@@ -104,10 +104,10 @@ Parameter | Type   | Default | Description
 `exclude_fields` | *array* | *none* | Attributes to exclude from response
 `include_fields` | *array* | *none* | Attributes to add to response which are not returned by default
 `return_meta` | *boolean* | *false* | Weather response includes `meta`
-`paging`<br>*optional* | *object* | Information about paged results
-`paging.offset` | *integer* | Page starting element
-`paging.limit` | *integer* | Page size
-`paging.total` | *integer*| Total elements count
+`paging`<br>*optional* | *object* | *none* | Information about paged results
+`paging.offset` | *integer* | *0* | Page starting element
+`paging.limit` | *integer* | *10* | Page size
+`paging.total` | *integer*| *none* | Total elements count
 
 ## Response
 
