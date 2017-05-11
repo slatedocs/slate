@@ -34,7 +34,7 @@
 
 Com o **Checkout do iPag** você não precisa desenvolver seu próprio Checkout, apenas envie um POST com as informações abaixo para criar uma transação no iPag em seu nome.
 
-Para configurar o Checkout iPag acesse o 
+Para configurar o Checkout iPag acesse o
 **Painel iPag** > Configurações > Configurações do Checkout
 
 **Parâmetros do Checkout iPag**
@@ -43,7 +43,7 @@ Parâmetro | Obrigatório | Descrição
 ----------|-------------|---------
 identificacao|sim|Identificação no iPag
 operacao|sim|Tipo da Operação (Pagamento)
-pedido|não|Número do pedido 
+pedido|não|Número do pedido
 valor|sim|Valor que será cobrado do cliente
 plugin|sim|Parâmetro necessário para enviar um requisição ao Checkout iPag
 item_quant_1|não|Quantidade do Produto/Serviço
@@ -62,5 +62,9 @@ complemento|não|Complemento do Cliente
 cidade|não|Cidade do Cliente
 estado|não|Estado do Cliente (formato:SP)
 cep|não|CEP do Cliente
+maxparcelas | não | Máximo de parcelas que pode ser dividio
+parcelasemjuros | não | Quantidade máxima de parcelamento sem juros
+valorminparcela | não | Valor mínimo da parcela
+jurosparcela | não | Juros que será aplicado para as parcelas
 
 
