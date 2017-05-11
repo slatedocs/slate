@@ -23,6 +23,7 @@ includes:
   - operations
   - transactions
   - errors
+  - health_check
 
 
 search: true
