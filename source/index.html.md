@@ -10,7 +10,7 @@ toc_footers:
 includes:
   - getting_started
   - administration
-  - compute
+  - cloudstack
 
 subsections:
   administration:
@@ -18,8 +18,7 @@ subsections:
     - organizations
     - users
     - environments
-  compute:
-
+  cloudstack:
     - compute # Compute section
     - instances
     - templates
