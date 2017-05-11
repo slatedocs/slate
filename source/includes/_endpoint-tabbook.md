@@ -74,6 +74,9 @@ Accept: application/json
                     "showEmpty": {
                         "value": false
                     },
+                    "showNotes": {
+                        "value": false
+                    },
                     "slicesOrGroups": {
                         "value": "groups"
                     },
@@ -657,5 +660,6 @@ decimalPlaces| object | 0 | number of decimal places to diaplay| {"value": 0}
 vizType| object |table|Visialization Type|{value:table},
 countsOrPercents| object |percent| use counts or percents|{value:percent}
 percentageDirection| object |row or column based percents||{value:colPct}
+showNotes| object |display variable notes in sheet header||{value:false}
 slicesOrGroups| object |groups| slices or groups |{value:groups}
 valuesAreMeans| object |false| are values means? |{value:false}
