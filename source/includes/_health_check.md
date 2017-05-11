@@ -4,7 +4,7 @@
   A fim de manter a transparência com seus clientes o Fast Notas disponibiliza um link com todos os dados de `uptime` da plataforma.
 
 <aside class="success">
-  Status Page: <strong><a target="_blank" href="http://status.fastnotas.com/">http://status.fastnotas.com/</a></strong>.
+  Status Page: <strong><a target="_blank" href="http://status.fastnotas.com/">http://status.fastnotas.com/</a></strong>
 </aside>
 
   Abaixo segue alguns dados sobre o status atual da plataforma:
