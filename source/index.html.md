@@ -1164,7 +1164,7 @@ Units can register vouchers. Bookings with registered voucher will bring them bo
 
 This endpoint returns:
 
-* [Common errors](#common-errors)
+* [Register voucher errors](#register-voucher)
 
 ## Registered vouchers
 
