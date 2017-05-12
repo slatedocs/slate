@@ -1,20 +1,16 @@
 # Errors
-
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
-
-The Kittn API uses the following error codes:
-
-
-Error Code | Meaning
----------- | -------
-400 | Bad Request -- Your request sucks
-401 | Unauthorized -- Your API key is wrong
-403 | Forbidden -- The kitten requested is hidden for administrators only
-404 | Not Found -- The specified kitten could not be found
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method
-406 | Not Acceptable -- You requested a format that isn't json
-410 | Gone -- The kitten requested has been removed from our servers
-418 | I'm a teapot
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+<aside class="notice">This errors have evolved with the API and businees requirements verify your errors frequently</aside>
+The DNA API uses the following error codes:
+Error Code | Description
+--------- | -----------
+400 | Bad Request – Your request sucks!
+401 | Unauthorized – Your token key is wrong or has expired.
+403 | Forbidden – The object requested is hidden for your Scope.
+404 | Not Found – The specified object could not be found, invalid URL.
+405 | Method Not Allowed – You tried to access an object with an invalid method.
+406 | Not Acceptable – You requested a format that isn’t valid parameter or is not validated.
+410 | Gone – The object you requested has been removed from our servers.
+418 | Undefined Error.
+429 | Too Many Requests – You’re making too much requests! Slow down!
+500 | Internal Server Error – We had a problem with our server. Try again later.
+503 | Service Unavailable – We’re temporarily offline for maintenance. Please try again later.
