@@ -99,7 +99,7 @@ Accepted request `method`s are:
 
 Parameter | Type   | Default | Description
 -------- | ---------- | ---- | -------
-`expand` | *string* | *none* | By default child objects are returned as id. With this attribute they can be returned as full objects. Names can be listed separated by a comma.<br><br> Keywords:<br><br>all - *expands all first level attributes*<br>all.all - *expands all second level attributes*<br>attribute.all - *expands all attributes child elements*
+`expand` | *array* | *none* | By default child objects are returned as id. With this attribute they can be returned as full objects. Send array of attribute names to expand.<br><br> Keywords:<br><br>all - *expands all first level attributes*<br>all.all - *expands all second level attributes*<br>attribute.all - *expands all attributes child elements*
 `fields` | *array* | *all* | Attributes to receive in response
 `exclude_fields` | *array* | *none* | Attributes to exclude from response
 `include_fields` | *array* | *none* | Attributes to add to response which are not returned by default
