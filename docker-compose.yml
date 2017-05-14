@@ -1,0 +1,10 @@
+version: "3"
+services:
+    app:
+        image: lord/slate:${TAG:-development}
+        build: .
+        hostname: slate
+        ports:
+            - 4567:4567
+        volumes:
+            - .:/app
