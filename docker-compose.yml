@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  app:
+    image: slate
+    build:
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    ports:
+      - "4567:4567"
+    volumes:
+      - .:/src
