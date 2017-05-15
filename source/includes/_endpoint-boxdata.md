@@ -168,7 +168,7 @@ The CrunchBox interface uses three colors, in order. By default, these are Crunc
 
 ##### Static colors
 
-Include an array of `static_colors` and each categorical color will be taken from the list in order.
+Include an array of `static_colors` and every categorical color will be taken from the list in order. If none of your variables have more categories than colors provided here, the generator (below) will never be used, but category lookup will be performed.
 
 ##### Base
 
