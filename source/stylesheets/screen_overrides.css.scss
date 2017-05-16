@@ -14,6 +14,11 @@ $darkgreen: #64953f;
     background-color: #292929;
 }
 
+.anchorjs-link {
+  font-size: 20px !important;
+  color: #000;
+}
+
 /* no dark box in sidebar ... content takes remaining width */
 .page-wrapper {
   background: #fff;
@@ -55,9 +60,7 @@ $darkgreen: #64953f;
   }
   pre, blockquote {
   	float: inherit;
-  	background-color: #efefef;
   	text-shadow: none;
-  	color: #333;
   	p {
   		background-color: inherit;
   		color: #333;
@@ -94,20 +97,6 @@ $darkgreen: #64953f;
     font-size: 15px;
     color: gray;
   }
-}
-
-.highlight, .highlight .w {
-  background-color: inherit;
-  color: inherit;
-}
-
-.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1, .highlight .no {
-  // default color was too light. 
-  color: $red;
-}
-
-.highlight .p, .highlight .pi {
-  color: #333;
 }
 
 #logo {

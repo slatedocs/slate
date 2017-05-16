@@ -1,6 +1,6 @@
 # Ruby Agent
 
-## Requirements
+<h2 id="ruby-requirements">Requirements</h2>
 
 Our Ruby agent supports Ruby on Rails 2.2+ and Ruby 1.8.7+ and the following app servers/background job frameworks:
 
@@ -14,7 +14,7 @@ Our Ruby agent supports Ruby on Rails 2.2+ and Ruby 1.8.7+ and the following app
 
 [Memory Bloat detection](#memory-bloat-detection) and [ScoutProf](#scoutprof) require Ruby 2.1+.
 
-## Installation
+<h2 id="ruby_install">Installation</h2>
 
 Tailored instructions are provided within our user interface. General instructions:
 
@@ -50,7 +50,7 @@ bundle install
  	</tbody>
 </table>
 
-## Troubleshooting
+<h2 id="ruby-troubleshooting">Troubleshooting</h2>
 
 ### No Data
 
@@ -80,8 +80,8 @@ tail -n1000 log/scout_apm.log | grep "Starting monitoring" -A20
         </p>
 <pre>
 group :production do
-gem 'unicorn'
-gem 'scout_apm'
+  gem 'unicorn'
+  gem 'scout_apm'
 end
 </pre>
         <p><a href="#step8">Jump to the last step</a> if <code>scout_apm</code> is correctly configured in your <code>Gemfile</code>.</p>
@@ -217,8 +217,7 @@ The latest version of `scout_apm` is <code><span id="latest-gem-version">SEE CHA
 </table>
 
 The gem version changelog is [available here](https://github.com/scoutapp/scout_apm_ruby/blob/master/CHANGELOG.markdown).  
-
-## Configuration Options
+<h2 id="ruby-configuration-options">Configuration Options</h2>
 
 The Ruby agent can be configured via the `config/scout_apm.yml` Yaml file and/or environment variables. A config file with your organization key is available for download as part of the install instructions.
 
@@ -231,7 +230,7 @@ common: &defaults
   name: <%= "ProjectPlanner.io (#{Rails.env})" %>
 ```
 
-### Configuration Reference
+<h3 id="ruby-configuration-reference">Configuration Reference</h3>
 
 The following configuration settings are available:
 
@@ -437,7 +436,7 @@ The following configuration settings are available:
   </tbody>
 </table>
 
-### Environment Variables
+<h3 id="ruby-env-vars">Environment Variables</h3>
 
 You can also configure Scout APM via environment variables. _Environment variables override settings provided in_ `scout_apm.yml`.
 
@@ -457,7 +456,7 @@ Scout identifies deploys via the following:
 3. If you are deploying via a custom approach, set a `SCOUT_REVISION_SHA` environment variable equal to the SHA of your latest release.
 4. If the app resides in a Git repo, Scout parses the output of `git rev-parse --short HEAD` to determine the revision SHA.
 
-## Enabling DevTrace
+<h2 id="ruby-devtrace">Enabling DevTrace</h2>
 
 To enable [DevTrace](#devtrace), our in-browser profiler:
 
@@ -568,7 +567,7 @@ class FastController < ActionController::Metal
 
 This won't interfere with our regular instrumentation. Your controller-action metrics will appear under the endpoints area of Scout, just like any other controller-action.
 
-## Custom Context
+<h2 id="ruby-custom-context">Custom Context</h2>
 
 [Context](#context) lets you see the forest from the trees. For example, you can add custom context to answer critical questions like:
 
@@ -650,7 +649,7 @@ Add the following line to the `ApplicationController#set_scout_context` method d
 ScoutApm::Context.add(monthly_spend: current_org.monthly_spend) if current_org
 ```
 
-## Custom Instrumentation
+<h2 id="ruby-custom-instrumentation">Custom Instrumentation</h2>
 
 Traces that allocate significant amount of time to `Controller` or `Job` are good candidates to add custom instrumentation. This indicates a significant amount of time is falling outside our default instrumentation.
 
@@ -667,7 +666,7 @@ To instrument a method call, add the following to the class containing the metho
     include ScoutApm::Tracer
 
     def export_activity
-      ...
+      # Do export work
     end
     instrument_method :export_activity
   end
@@ -705,7 +704,7 @@ To instrument a method call, add the following:
 
     def generate_profile_pic
       self.class.instrument("User", "generate_profile_pic") do
-        ...
+        # Do work
       end
     end
   end
@@ -715,7 +714,7 @@ To instrument a method call, add the following:
 
 In the example above, the metric appear in traces as `User/generate_profile_pic`. On timeseries charts, the time will be allocated to a `User` type. To modify the type or simply, simply change the `instrument` corresponding method arguments.
 
-### Testing instrumentation
+<h3 id="ruby-testing-instrumentation">Testing instrumentation</h3>
 
 Improper instrumentation can break your application. It's important to test before deploying to production. The easiest way to validate your instrumentation is by running [DevTrace](#devtrace) and ensuring the new metric appears as desired.
 
@@ -788,8 +787,7 @@ staging:
   <<: *defaults
 ```
 
-
-## Instrumented Libraries
+<h2 id="ruby-instrumented-libs">Instrumented Libraries</h2>
 
 The following libraries are currently instrumented:
 
@@ -808,7 +806,9 @@ The following libraries are currently instrumented:
 
 Additionally, [Scout can also instrument request queuing time](#request-queuing).
 
-## Environments
+You can instrument your own code or other libraries via [custom instrumentation](#ruby-custom-instrumentation).
+
+<h2 id="ruby-environments">Environments</h2>
 
 It typically makes sense to treat each environment (production, staging, etc) as a separate application within Scout and ignore the development and test environments. Configure a unique app name for each environment as Scout aggregrates data by the app name.
 

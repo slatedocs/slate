@@ -167,7 +167,7 @@ Context lets you see the forest from the trees. For example, you can add custom 
 * How many trial customers are impacted by slow requests?
 * How much of an impact are slow requests having on our highest paying customers?
 
-Adding custom context is easy - learn how via [Ruby](#custom-context) or [Elixir](#custom-context27).
+Adding custom context is easy - learn how via [Ruby](#ruby-custom-context) or [Elixir](#elixir-custom-context).
 
 When viewing a transaction trace, click the "Context" section to see the context Scout has collected.
 
@@ -191,7 +191,7 @@ DevTrace is our development profiler: it's included with our Ruby and Elixir lib
 
 ![devtrace](devtrace.png)
 
-View our [Ruby](#enabling-devtrace) and [Elixir](#enabling-devtrace30) instructions.
+View our [Ruby](#ruby-devtrace) and [Elixir](#elixir-devtrace) instructions.
 
 ## Data Retention
 
