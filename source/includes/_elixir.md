@@ -4,11 +4,13 @@
 Elixir support is in BETA.
 </aside>
 
-## Requirements
+<h2 id="elixir-requirements">Requirements</h2>
 
 Our Elixir agent supports Phoenix 1.2.0+ and Elixir 1.4+.
 
-## Installation
+<!-- old unique-ified anchor link -->
+<a name="#installation22"></a>
+<h2 id="elixir-install">Installation</h2>
 
 <aside class="notice">
   A free Scout account is required. <a href="https://apm.scoutapp.com/users/sign_up" target: '_blank'>Signup here</a>.
@@ -77,7 +79,7 @@ defmodule HeroReview.Web do
 
 </div>
 
-## Troubleshooting
+<h2 id="elixir-troubleshooting">Troubleshooting</h2>
 
 Not seeing data? <a href="mailto:support@scoutapp.com">Send us an email</a> with the following:
 
@@ -86,7 +88,7 @@ Not seeing data? <a href="mailto:support@scoutapp.com">Send us an email</a> with
 
 We typically respond within a couple of hours during the business day.
 
-## Configuration
+<h2 id="elixir-configuration">Configuration</h2>
 
 The Elixir agent can be configured via the `config/scout_apm.exs` file. A config file with your organization key is available for download as part of the install instructions. A application name and key is required:
 
@@ -188,7 +190,7 @@ The following configuration settings are available:
   </tbody>
 </table>
 
-## Updating to the Newest Version
+<h2 id="elixir-upgrade">Updating to the Newest Version</h2>
 
 <div class="install">
 
@@ -207,7 +209,7 @@ The following configuration settings are available:
 
 </div>
 
-## Instrumented Libraries
+<h2 id="elixir-instrumented-libaries">Instrumented Libraries</h2>
 
 By default, the following libraries are instrumented:
 
@@ -217,7 +219,7 @@ By default, the following libraries are instrumented:
   * templates
 * Ecto 2.0
 
-## Custom Instrumentation
+<h2 id="elixir-custom-instrumentation">Custom Instrumentation</h2>
 
 Traces that allocate significant amount of time to `Controller` or `Job` are good candidates to add custom instrumentation. This indicates a significant amount of time is falling outside our default instrumentation.
 
@@ -301,11 +303,11 @@ ScoutApm.Tracing.track(
 
 ### Testing instrumentation
 
-Improper instrumentation can break your application. It's important to test before deploying to production. The easiest way to validate your instrumentation is by running [DevTrace](#enabling-devtrace30) and ensuring the new metric appears as desired.
+Improper instrumentation can break your application. It's important to test before deploying to production. The easiest way to validate your instrumentation is by running [DevTrace](#elixir-devtrace) and ensuring the new metric appears as desired.
 
 After restarting your app with DevTrace enabled, refresh the browser page and view the trace output. The new metric should appear in the trace.
 
-## Custom Context
+<h2 id="elixir-custom-context">Custom Context</h2>
 
 [Context](#context) lets you see the forest from the trees. For example, you can add custom context to answer critical questions like:
 
@@ -361,7 +363,7 @@ Context keys can be an `Atom` or `String` with only printable characters. Custom
 
 Attempts to add invalid context will be ignored.
 
-## Environments
+<h2 id="elixir-environments">Environments</h2>
 
 It typically makes sense to treat each environment (production, staging, etc) as a separate application within Scout. To do so, configure a unique app name for each environment. Scout aggregrates data by the app name. 
 
@@ -374,10 +376,12 @@ config :scout_apm,
   name: "YOUR APP - Staging"
 ```
 
-## Enabling DevTrace
+<!-- old reference -->
+<a name="enabling-devtrace30"></a>
+<h2 id="elixir-devtrace">Enabling DevTrace</h2>
 
 <aside class="notice" style="font-size: 12px">
-Follow the install instructions first. There's no need to download the config file as signup isn't required.
+Follow the <a href="#elixir-install">install instructions</a> first. There's no need to download the config file as signup isn't required.
 </aside>
 
 To enable [DevTrace](#devtrace), our in-browser profiler:

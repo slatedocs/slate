@@ -364,9 +364,9 @@
             var arr, item, hashValue;
 
             arr = $.grep(this.items, function (item) {
-
-                return item === self.text();
-
+                // modified to use the element's id to unique-ify toc items. otherwise, items
+                // with the same text but unique ids would be treated as duplicates.
+                return item === self.attr('id');
             });
 
             // If there is already a duplicate TOC item
@@ -423,7 +423,6 @@
         // ------------------
         //      Generates the hash value that will be used to refer to each item.
         _generateHashValue: function(arr, self, index) {
-
             var hashValue = "",
                 hashGeneratorOption = this.options.hashGenerator;
 

@@ -191,7 +191,7 @@ DevTrace is our development profiler: it's included with our Ruby and Elixir lib
 
 ![devtrace](devtrace.png)
 
-View our [Ruby](#enabling-devtrace) and [Elixir](#enabling-devtrace30) instructions.
+View our [Ruby](#ruby-devtrace) and [Elixir](#elixir-devtrace) instructions.
 
 ## Data Retention
 
