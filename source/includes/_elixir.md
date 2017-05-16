@@ -9,7 +9,7 @@ Elixir support is in BETA.
 Our Elixir agent supports Phoenix 1.2.0+ and Elixir 1.4+.
 
 <!-- old unique-ified anchor link -->
-<a name="#installation22"></a>
+<a name="installation22"></a>
 <h2 id="elixir-install">Installation</h2>
 
 <aside class="notice">
