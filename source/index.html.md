@@ -1136,7 +1136,7 @@ Parameter | Type | Description
 `phones.default` | *boolean* | Is the phone the default used by the system for receiving calls and SMS
 `country_code` | *string* | Country code of area the Unit operates in
 `rating` | *double* | Performance score of Unit (1-5)
-`language_preference_code` | *string* | Language code user chose from Settings in XRM or app. List of languages received at [system_languages](#system-languages)
+`language_code` | *string* | Language code user chose from Settings in XRM or app. List of languages received at [system_languages](#system-languages)
 `permissions` | *array* | List of permissions of unit
 `permissions.can_message_client` | *boolean* | Can unit send SMS messages to clients
 `permissions.can_call_client` | *boolean* | Can unit call clients
