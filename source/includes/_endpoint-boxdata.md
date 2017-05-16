@@ -100,15 +100,16 @@ Use POST to create a new datasource for crunchbox.  Note that new boxdata is onl
 
 A POST to this resource must be a Shoji Entity with the following "body" attributes:
 
-Name | Type | Description
----- | ---- | -----------
-title | string | Human friendly identifier
-notes | string | Other information relevent for this CrunchBox
+Name  | Description
+----  | -----------
+title | Human friendly identifier
+notes | Other information relevent for this CrunchBox
 header | header information for the CrunchBox
 footer | footer information for the CrunchBox
 dataset | URL of the dataset associated with the CrunchBox
-filters | A Crunch expression indicating which filters to include in the CrunchBox
-where | A Crunch expression indicating which variables to include in the CrunchBox
+filters | A Crunch expression indicating which **filters** to include
+where | A Crunch expression indicating which **variables** to include
+display_settings | Options to customize how it looks and behaves
 
 
 ```json
@@ -137,6 +138,45 @@ where | A Crunch expression indicating which variables to include in the CrunchB
     }
 }
 ```
+
+#### Display Settings
+
+The `display_settings` member of a CrunchBox payload allows you to customize several aspects of how it will be displayed.
+
+A `minBaseSize` member will suppress display of values in tables or graphs where the sample size is below a given threshold.
+
+To customize a CrunchBox’s color scheme, you may include an optional `palette` member in the `display_settings` of the body of the request to create or edit the boxdata. There are four types of customization available.
+
+```json
+{"display_settings": {
+    "minBaseSize": {"value": 50},
+    "palette": {
+        "brand": ["#111111", "#222222", "#333333"],
+        "static_colors": ["#444444", "#555555", "#666666"],
+        "base": ["#777777", "#888888", "#999999"],
+        "category_lookup": {
+            "category name": "#aaaaaa",
+            "another category:": "bbbbbb"
+        }
+    }
+}}
+```
+
+##### Brand
+
+The CrunchBox interface uses three colors, in order. By default, these are Crunch brand colors of green, blue, and purple. These are used, for example, as the background colors at the top of the interface and the color of the filter selector.
+
+##### Static colors
+
+Include an array of `static_colors` and every categorical color will be taken from the list in order. If none of your variables have more categories than colors provided here, the generator (below) will never be used, but category lookup will be performed.
+
+##### Base
+
+If the number of categories exceeds the number of static colors, or no static colors are specified, “base” colors are used to generate a categorical palette. By default, these are also the Crunch green, blue, and purple, and are not overridden by `brand`. Each color is interpolated in HCL space from itself to Hue + 100, Lightness + 20; and then colors are ordered to maximize sequential absolute distance in L*a*b* space so adjacent colors can be easily distinguished.
+
+##### Category Lookup
+
+Finally, you may include an object where keys are exact category names that should always be assigned a specific color. Using semantically resonant colors in this manner is a boon for interpretation and is highly recommended when possible. For example, to ensure that the Green Party is a verdant shade, include a member such as `"Green": "#00dd00"`. Building a category lookup list requires some attention to the specific categories in a dataset; they must match exactly, and not partially; to ensure that “Green Party” is also green, include an additional `"Green Party"` key with the same value. Lookup values are processed **last**, replacing erstwhile static or generated colors.
 
 ### Entity
 
@@ -187,5 +227,3 @@ Returns the body of the boxdata entity
 #### DELETE
 
 Deletes the boxdata entity. Returns 204.
-
-
