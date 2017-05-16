@@ -30,6 +30,7 @@ HTTP/1.1 200 OK
     "first_name": "Philippe",
     "last_name": "Dionne",
     "time_zone": "America/New_York",
+    "shipping_rate": 0,
     "unsubscribed": false,
     "billing_address": {
       "id": "a4b7609e-7c00-41dd-acec-2856a2b53364",
