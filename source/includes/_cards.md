@@ -32,7 +32,8 @@ HTTP/1.1 201 CREATED
 {
   "exp_month": "8",
   "exp_year": "2019",
-  "last4": "4242"
+  "last4": "4242",
+  "url": "https://api.dirtylemon.com/l/5025c4"
 }
 ```
 

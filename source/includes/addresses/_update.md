@@ -7,7 +7,7 @@ curl -X PATCH \
 -H 'Authorization: Bearer <TOKEN>' \
 -H 'Content-Type: application/json' \
 -d '{
-  "street1": "129 Lafayette St",
+  "street1": "128 Lafayette St",
   "city": "New York",
   "state": "New York",
   "country": "US",
@@ -20,7 +20,7 @@ https://api.dirtylemon.com/v1/addresses/{ADDRESS_ID}
 const dirtylemon = require('dirtylemon');
 
 dirtylemon.addresses.update({ADDRESS_ID}, {
-  street1: "129 Lafayette St",
+  street1: "128 Lafayette St",
   city: "New York",
   state: "New York",
   country: "US",
@@ -36,16 +36,19 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "id": "0b26d7af-9500-48d0-80ae-521ff3f66708",
+  "id": "d1b32cdb-42aa-4ccf-91a1-6bd78fae33ec",
   "type": "ShippingAddress",
-  "street1": "129 Lafayette St",
-  "street2": null,
-  "city": "New York",
-  "state": "New York",
+  "street1": "128 LAFAYETTE ST",
+  "street2": "",
+  "city": "NEW YORK",
+  "state": "NY",
   "country": "US",
-  "zip": "10013",
-  "created_at": "2017-04-18T20:29:10.884Z",
-  "updated_at": "2017-04-18T20:29:10.884Z"
+  "zip": "10013-3174",
+  "lat": "40.7213413",
+  "lng": "-74.0020398",
+  "url": "https://api.dirtylemon.com/l/985a40",
+  "created_at": "2017-05-16T16:15:24.899Z",
+  "updated_at": "2017-05-16T16:18:07.860Z"
 }
 ```
 

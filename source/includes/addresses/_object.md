@@ -4,16 +4,19 @@
 
 ```json
 {
-  "id": "0b26d7af-9500-48d0-80ae-521ff3f66708",
+  "id": "c0501415-92df-406f-a6ea-a98977fcc1e7",
   "type": "ShippingAddress",
-  "street1": "128 Lafayette St",
-  "street2": null,
-  "city": "New York",
-  "state": "New York",
+  "street1": "95 GRAND ST",
+  "street2": "",
+  "city": "NEW YORK",
+  "state": "NY",
   "country": "US",
-  "zip": "10013",
-  "created_at": "2017-04-18T20:29:10.884Z",
-  "updated_at": "2017-04-18T20:29:10.884Z"
+  "zip": "10013-5902",
+  "lat": "40.7213413",
+  "lng": "-74.0020398",
+  "url": "https://api.dirtylemon.com/l/99f49c",
+  "created_at": "2017-05-16T16:10:40.897Z",
+  "updated_at": "2017-05-16T16:10:41.973Z"
 }
 ```
 
@@ -27,5 +30,8 @@
 | state       | string |  |
 | country     | string |  |
 | zip         | string |  |
+| lat         | string |  |
+| lng         | string |  |
+| url         | string |  |
 | created_at  | timestamp | Time at which the object was created |
 | updated_at  | timestamp | Time at which the object was updated |
