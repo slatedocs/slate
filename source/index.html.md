@@ -1096,12 +1096,12 @@ curl\
 {
   "data": {
     "id": 12,
-    "username": "vesi_peikova@abv.bg",
+    "username": "john_doe@example.com",
     "name": "John Doe",
     "phones": [
       {
         "id": 1,
-        "number": "07904678431",
+        "number": "07123456789",
         "default": false
       }
     ],
