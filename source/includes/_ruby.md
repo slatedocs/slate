@@ -714,7 +714,7 @@ To instrument a method call, add the following:
 
 In the example above, the metric appear in traces as `User/generate_profile_pic`. On timeseries charts, the time will be allocated to a `User` type. To modify the type or simply, simply change the `instrument` corresponding method arguments.
 
-### Testing instrumentation
+<h3 id="ruby-testing-instrumentation">Testing instrumentation</h3>
 
 Improper instrumentation can break your application. It's important to test before deploying to production. The easiest way to validate your instrumentation is by running [DevTrace](#devtrace) and ensuring the new metric appears as desired.
 

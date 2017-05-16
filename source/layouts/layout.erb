@@ -123,5 +123,19 @@ under the License.
     }).success(function(response){
       $("#latest-gem-version").html(response.version)
     });
+
+    /**
+ * AnchorJS v3.2.0 options and selector
+ */
+
+(function (global) {
+  'use strict';
+  console.log("anchor")
+  anchors.options.placement = 'right';
+
+  anchors.add('.content > h2, .content > h3, .content > h4');
+
+})(window);
+
   </script>
 </html>

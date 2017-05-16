@@ -301,7 +301,7 @@ ScoutApm.Tracing.track(
 
 <a href="https://hexdocs.pm/scout_apm/ScoutApm.Tracing.html#track/5" target="_blank">See the scout_apm hex docs</a> for more information on `track`.
 
-### Testing instrumentation
+<h3 id="elixir-testing-instrumentation">Testing instrumentation</h3>
 
 Improper instrumentation can break your application. It's important to test before deploying to production. The easiest way to validate your instrumentation is by running [DevTrace](#elixir-devtrace) and ensuring the new metric appears as desired.
 
