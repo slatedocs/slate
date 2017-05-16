@@ -1107,6 +1107,7 @@ curl\
     ],
     "country_code": "+44",
     "rating": 4.5,
+    "language_preference_code": "en",
     "permissions": {
       "can_message_client": true,
       "can_call_client": true,
@@ -1135,12 +1136,55 @@ Parameter | Type | Description
 `phones.default` | *boolean* | Is the phone the default used by the system for receiving calls and SMS
 `country_code` | *string* | Country code of area the Unit operates in
 `rating` | *double* | Performance score of Unit (1-5)
+`language_preference_code` | *string* | Language code user chose from Settings in XRM or app. List of languages received at [available_languages](#available-languages)
 `permissions` | *array* | List of permissions of unit
 `permissions.can_message_client` | *boolean* | Can unit send SMS messages to clients
 `permissions.can_call_client` | *boolean* | Can unit call clients
 `permissions.can_not_cancel_jobs` | *boolean* | Can unit decline jobs
 `permissions.can_take_ondemand_jobs` | *boolean* | Can unit receive jobs on-demand via notifications that require response
 `permissions.has_to_send_summary_on_checkout` | *boolean* | Should unit sent report on checkout
+
+
+## Available languages
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+ -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/unit/available_languages"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "title": "English",
+      "code": "en"
+    },
+    {
+      "title": "Български",
+      "code": "bg"
+    }
+  ]
+}
+```
+
+
+Available languages for visualising the interface in XRM or BFantastic
+
+`"path": "available_languages"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`title` | *string* | Display title of language in Settings
+`code` | *string* | ISO 639-1 two-letter language code
 
 
 ## Register voucher
