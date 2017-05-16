@@ -265,12 +265,20 @@ GET /projects/abcd/members/ HTTP/1.1
       "permissions": {
         "edit": true,
         "view": true
+      },
+      "allowed_dataset_permissions": {
+        "edit": true,
+        "view": true
       }
     },
     "http://app.crunch.io/api/users/00005/": {
       "name": "William Riker",
       "email": "firstofficer@crunch.io",
       "permissions": {
+        "edit": false,
+        "view": true
+      },
+      "allowed_dataset_permissions": {
         "edit": false,
         "view": true
       }
@@ -283,7 +291,10 @@ The catalog will be indexed by each user's entity URL and its tuple will contain
 basic information (name and email) as well as the permissions each user has
 on the given project.
 
-All project members have read access to this resource.
+All project members have read access to this resource, but the 
+`allowed_dataset_permissions` is only present to project editors. It contains
+the maximum dataset permissions each user can have. Assigning anything more
+permissive will not have effect.
 
 #### PATCH
 
