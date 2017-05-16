@@ -34,7 +34,7 @@ request['authorization'] = "Token token=#{your_program_token}"
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl -IH "Authorization: Token token=your_program_token" \
+curl -H "Authorization: Token token=your_program_token" \
 https://<your_program_subdomain>.redii.com/api/recognition/v1/moments
 ```
 
@@ -63,7 +63,7 @@ request['authorization'] = "Token token=#{your_program_token}"
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl -IH "Authorization: Token token=your_program_token" \
+curl -H "Authorization: Token token=your_program_token" \
 https://<your_program_subdomain>.redii.com/api/recognition/v1/moments?limit=2
 ```
 
@@ -87,25 +87,25 @@ https://<your_program_subdomain>.redii.com/api/recognition/v1/moments?limit=2
         },
       "by_user_id": 6,
       "award_id": 4,
-      "by_user": 
+      "by_user":
         {
           "id": 22732,
           "name“: "Alic Doe",
           "staff_id": 22730
-          
+
         },
-      "users": 
+      "users":
         {
           "id": 22734,
           "name“: "Bob Doe",
           "staff_id": 22732
         },
-      "award": 
+      "award":
         {
           "id": 1,
           "name“: "Safety Leader",
           "description": "Noticed someone demonstrating they take safety seriously?"
-        }  
+        }
     },
   {
     "state": "approved",
@@ -122,25 +122,25 @@ https://<your_program_subdomain>.redii.com/api/recognition/v1/moments?limit=2
       }
     "by_user_id": 10,
     "award_id": 3,
-    "by_user": 
+    "by_user":
         {
           "id": 22722,
           "name“: "Alic Doe",
           "staff_id": 22712
-          
+
         },
-      "users": 
+      "users":
         {
           "id": 22111,
           "name“: "Bob Doe",
           "staff_id": 23231
         },
-      "award": 
+      "award":
         {
           "id": 1,
           "name“: "Safety Leader",
           "description": "Noticed someone demonstrating they take safety seriously?"
-        }  
+        }
   }
   ]
 }
