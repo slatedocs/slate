@@ -99,11 +99,14 @@ Accepted request `method`s are:
 
 Parameter | Type   | Default | Description
 -------- | ---------- | ---- | -------
-`expand` | *string* | *none* | By default child objects are returned as id. With this attribute they can be returned as full objects. Names can be listed separated by a comma.<br><br> Keywords:<br><br>all - *expands all first level attributes*<br>all.all - *expands all second level attributes*<br>attribute.all - *expands all attributes child elements*
+`expand` | *array* | *none* | By default child objects are returned as id. With this attribute they can be returned as full objects. Send array of attribute names to expand.<br><br> Keywords:<br><br>all - *expands all first level attributes*<br>all.all - *expands all second level attributes*<br>attribute.all - *expands all attributes child elements*
 `fields` | *array* | *all* | Attributes to receive in response
 `exclude_fields` | *array* | *none* | Attributes to exclude from response
 `include_fields` | *array* | *none* | Attributes to add to response which are not returned by default
 `return_meta` | *boolean* | *false* | Weather response includes `meta`
+`paging`<br>*optional* | *object* | *none* | Information about paged results
+`paging.offset` | *integer* | *0* | Page starting element
+`paging.limit` | *integer* | *10* | Page size
 
 ## Response
 
@@ -141,10 +144,8 @@ All responses are with HTTP status 200 and contain `data` parameter. Optionally 
 Parameter | Type | Description
 --------- | ---- | -----------
 `data`<br>*optional* | *array or object* | Content of response. `data` holds array of objects when requesting resources with plural names (e.g. addresses).`data` holds object when requesting resources with singular names  (e.g. profile).
-`paging`<br>*optional* | *object* | Information about paged results
-`paging.offset` | *integer* | Page starting element
-`paging.limit` | *integer* | Page size
-`paging.total` | *integer*| Total elements count
+`paging`<br>*optional* | *object* | Information about paged result as requested
+`paging.total` | *integer* | Total elements count
 `success`, `warning`, `error`<br>*optional* | *array* | Messages with information for the request. More than one type of message can be returned in a response. `success` and `error` can't come in the same response. `warning` can be combined with `success` or `error`.
 `meta`<br>*optional*  | *object* | Parameter containing information for the system.
 
@@ -601,11 +602,7 @@ curl\
 
 ```json
 {
-  "data": [
-    {
-      "expire_time": 1491478823
-    }
-  ],
+  "data": null,
   "success": [
     {
       "code": 2000,
@@ -627,12 +624,10 @@ Parameter | Type | Description
 -------- | ----- | -------
 `email`<br>*required* | *string* | Email address to which a link for reset password will be sent
 
-### Response parameters
+This endpoint returns:
 
-Parameter | Type | Description
--------- | ----- | -------
-`expire_time` | *int* |  Unix timestamp of token expiration time
-
+* [Common errors](#common-errors)
+* [Request reset password](#request-reset-password-errors)
 
 ## Read user details on password reset
 
@@ -652,9 +647,9 @@ curl\
 {
   "data": [
     {
+      "title": "Mr",
       "first_name": "John",
-      "last_name": "Doe",
-      "expire_time": 1491478823
+      "last_name": "Doe"
     }
   ]
 }
@@ -676,10 +671,14 @@ Parameter | Type | Description
 
 Parameter | Type | Description
 -------- | ----- | -------
+`title` | *string* | Title of the user
 `first_name` | *string* | First name for user with reset password token
 `last_name` | *string* | Last name for user with reset password token
-`expire_time` | *int* |  Unix timestamp of token expiration time
 
+This endpoint returns:
+
+* [Common errors](#common-errors)
+* [Reset password user details](#reset-password-user-details-errors)
 
 ## Reset password
 
@@ -725,6 +724,10 @@ Parameter | Type | Description
 `password`<br>*required* | *string* | Client new password
 `confirm_password`<br>*optional* | *string* | Password confirmation for server check
 
+This endpoint returns:
+
+* [Common errors](#common-errors)
+* [Reset password](#reset-password-errors)
 
 # Service data
 
@@ -1156,17 +1159,18 @@ curl\
 {
   "data": {
     "id": 12,
-    "username": "vesi_peikova@abv.bg",
+    "username": "john_doe@example.com",
     "name": "John Doe",
     "phones": [
       {
         "id": 1,
-        "number": "07904678431",
+        "number": "07123456789",
         "default": false
       }
     ],
     "country_code": "+44",
     "rating": 4.5,
+    "language_code": "en",
     "permissions": {
       "can_message_client": true,
       "can_call_client": true,
@@ -1195,12 +1199,55 @@ Parameter | Type | Description
 `phones.default` | *boolean* | Is the phone the default used by the system for receiving calls and SMS
 `country_code` | *string* | Country code of area the Unit operates in
 `rating` | *double* | Performance score of Unit (1-5)
+`language_code`<br>*editable* | *string* | Language code user chose from Settings in XRM or app. List of languages received at [system_languages](#system-languages)
 `permissions` | *array* | List of permissions of unit
 `permissions.can_message_client` | *boolean* | Can unit send SMS messages to clients
 `permissions.can_call_client` | *boolean* | Can unit call clients
 `permissions.can_not_cancel_jobs` | *boolean* | Can unit decline jobs
 `permissions.can_take_ondemand_jobs` | *boolean* | Can unit receive jobs on-demand via notifications that require response
 `permissions.has_to_send_summary_on_checkout` | *boolean* | Should unit sent report on checkout
+
+
+## System languages
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+ -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/unit/system_languages"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "title": "English",
+      "code": "en"
+    },
+    {
+      "title": "Български",
+      "code": "bg"
+    }
+  ]
+}
+```
+
+
+Available system languages for visualising the interface in XRM or BFantastic
+
+`"path": "system_languages"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`title` | *string* | Display title of language in Settings
+`code` | *string* | ISO 639-1 two-letter language code
 
 
 ## Register voucher
@@ -1225,6 +1272,7 @@ Units can register vouchers. Bookings with registered voucher will bring them bo
 This endpoint returns:
 
 * [Common errors](#common-errors)
+* [Register voucher errors](#register-voucher-errors)
 
 ## Registered vouchers
 
@@ -1234,8 +1282,8 @@ This endpoint returns:
 curl\
  -X GET\
  -H "Content-Type: application/json"\
- -H "X-Profile: {{PROFILE_ID}}"\
  -H "X-Application: {{APPLICATION_TOKEN}}"\
+ -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
 "https://{{BASE_URL}}/v2/unit/registered_vouchers"
 ```
 
