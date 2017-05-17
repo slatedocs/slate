@@ -23,7 +23,7 @@ HTTP/1.1 201 CREATED
 
 This endpoint generates a new confirmation token. Should be used with the [send a confirmation token](#send-a-confirmation-token) endpoint.
 
-Allows to handle situations when a customer fails to confirm his phone number in the allowed time window, which is usually about 5 minutes.
+Allows to handle situations when a customer fails to confirm his phone number in the allowed time window.
 
 <aside class="notice">
   This will fail if the customer is already confirmed.

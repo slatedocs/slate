@@ -85,12 +85,13 @@ HTTP/1.1 201 CREATED
 
 With `confirmation`:
 
-  - Creates an __unconfirmed__ customer
+  - Creates an unconfirmed customer
+  - Generates a confirmation token valid for 30 minutes
   - Fires a `verification` event
 
 Without `confirmation`:
 
-  - Creates a __confirmed__ customer
+  - Creates a confirmed customer
 
 
 ### HTTP Request
