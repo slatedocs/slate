@@ -70,6 +70,7 @@
 | currency     | string | |
 | tax          | integer | Tax amount in cents |
 | shipping_fee | integer | Shipping fee in cents |
+| subtotal     | integer | Subtotal amount in cents |
 | total        | integer | Total amount in cents |
 | preordered   | boolean | |
 | coupon_id    | string | A [coupon](#coupons) id |
