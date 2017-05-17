@@ -69,8 +69,8 @@
 | shipping_fee | integer | Shipping fee in cents |
 | total        | integer | Total amount in cents |
 | preordered   | boolean | |
-| coupon_id    | string | A `coupon` id |
-| shipping     | hash | |
+| coupon_id    | string | A [coupon](#coupons) id |
+| shipping     | hash | [Shipping](#shipping) object |
 | line_items   | list | Array of [line item](#line-items) objects |
 | shipments    | list | Array of [shipments](#shipments) objects |
 | created_at   | timestamp | Time at which the object was created |
