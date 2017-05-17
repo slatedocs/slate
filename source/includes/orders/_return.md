@@ -78,9 +78,13 @@ HTTP/1.1 200 OK
 
 This endpoint returns an order:
 
-  - Refunds the [customer](#customers)
-  - Marks the order as __returned__
+  - If the order before being `fulfilled` was previously `paid`:
+    - Refunds the [customer](#customers)
+    - Marks the order as __returned__
+  - If the order before being `fulfilled` was previously `created`:
+    - Marks the order as __returned__
 
+Only a `fulfilled` order can be returned.
 
 ### HTTP Request
 

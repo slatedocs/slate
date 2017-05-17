@@ -1,4 +1,4 @@
-## Fulfill an order
+## Confirm an order
 
 > Example request
 
@@ -6,13 +6,13 @@
 curl -X POST \
 -H 'Authorization: Bearer <TOKEN>' \
 -H 'Content-Type: application/json' \
-https://api.dirtylemon.com/v1/orders/{ORDER_ID}/fulfill
+https://api.dirtylemon.com/v1/orders/{ORDER_ID}/confirm
 ```
 
 ```javascript
 const dirtylemon = require('dirtylemon');
 
-dirtylemon.orders.fulfill({ORDER_ID})
+dirtylemon.orders.confirm({ORDER_ID})
 ```
 
 > Example response
@@ -26,7 +26,7 @@ HTTP/1.1 200 OK
   "id": "44024b51-742a-4598-8311-d9a629631987",
   "customer_id": "294e03d6-df4f-4ee1-94be-e334c420381a",
   "reference": "d7590e",
-  "status": "fulfilled",
+  "status": "queued",
   "currency": "usd",
   "tax": 0,
   "shipping_fee": 0,
@@ -58,34 +58,38 @@ HTTP/1.1 200 OK
       "updated_at": "2017-05-02T12:59:07.085Z"
     }
   ],
-  "shipments": [
-    {
-      "label": "1 six-pack of [skin+hair]",
-      "carrier": null,
-      "tracking_number": null,
-      "tracking_url": null,
-      "tracking_status": null,
-      "tracking_status_at": null,
-      "eta": null,
-      "created_at": "2017-05-02T12:59:47.539Z",
-      "updated_at": "2017-05-02T12:59:47.539Z"
-    }
-  ],
+  "shipments": [],
   "created_at": "2017-05-02T12:59:07.060Z",
-  "updated_at": "2017-05-02T13:00:15.910Z"
+  "updated_at": "2017-05-02T12:59:47.818Z"
 }
 ```
 
-This endpoint fulfills an order:
+<aside class="notice">
+  Calls on this action will fail if the customer isn't confirmed.
+</aside>
 
-  - Marks the order as __fulfilled__
+This endpoint pays and queues an order:
 
-Either a `created` or `queued` order can be fulfilled.
+  - Pays an order:
+    - Sets the `shipping` object from the customer's shipping address unless already set on creation
+    - Charges the customer's [credit card](#cards)
+    - Sends the [customer](#customers) a confirmation email
+  - Queues an order:
+    - Creates [shipments](#shipments) for the order's line items
+    - Marks the order as __queued__
+
+For this action to be successful, the same conditions than for paying an order must be met:
+
+  - Customer must have a valid email
+  - Customer must have a first name and last name
+  - Customer must have a valid shipping address
+
+Only a `created` order can be confirmed.
 
 
 ### HTTP Request
 
-`POST https://api.dirtylemon.com/v1/orders/:order_id/fulfill`
+`POST https://api.dirtylemon.com/v1/orders/:order_id/confirm`
 
 ### Path params
 

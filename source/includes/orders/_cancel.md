@@ -80,12 +80,14 @@ This endpoint cancels an order:
 
   - If the order's status was __paid__:
     - Refunds the customer's [credit card](#cards)
+    - Marks the order as __canceled__
+  - If the order's status was __queued__:
     - Cancels previously created [shipments](#shipments)
-    - Sends the [customer](#customers) a cancelation email
     - Marks the order as __canceled__
   - If the order's status was __created__
     - Marks the order as __canceled__
 
+Either a `created`, `queued` or `paid` order can be canceled.
 
 ### HTTP Request
 

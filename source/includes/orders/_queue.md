@@ -1,4 +1,4 @@
-## Fulfill an order
+## Queue an order
 
 > Example request
 
@@ -6,13 +6,13 @@
 curl -X POST \
 -H 'Authorization: Bearer <TOKEN>' \
 -H 'Content-Type: application/json' \
-https://api.dirtylemon.com/v1/orders/{ORDER_ID}/fulfill
+https://api.dirtylemon.com/v1/orders/{ORDER_ID}/queue
 ```
 
 ```javascript
 const dirtylemon = require('dirtylemon');
 
-dirtylemon.orders.fulfill({ORDER_ID})
+dirtylemon.orders.queue({ORDER_ID})
 ```
 
 > Example response
@@ -26,7 +26,7 @@ HTTP/1.1 200 OK
   "id": "44024b51-742a-4598-8311-d9a629631987",
   "customer_id": "294e03d6-df4f-4ee1-94be-e334c420381a",
   "reference": "d7590e",
-  "status": "fulfilled",
+  "status": "queued",
   "currency": "usd",
   "tax": 0,
   "shipping_fee": 0,
@@ -76,16 +76,16 @@ HTTP/1.1 200 OK
 }
 ```
 
-This endpoint fulfills an order:
+This endpoint queues an order:
 
-  - Marks the order as __fulfilled__
+  - Marks the order as __queued__
 
-Either a `created` or `queued` order can be fulfilled.
+Either a `created` or `paid` order can be queued.
 
 
 ### HTTP Request
 
-`POST https://api.dirtylemon.com/v1/orders/:order_id/fulfill`
+`POST https://api.dirtylemon.com/v1/orders/:order_id/queue`
 
 ### Path params
 

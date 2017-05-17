@@ -58,19 +58,7 @@ HTTP/1.1 200 OK
       "updated_at": "2017-05-02T12:59:07.085Z"
     }
   ],
-  "shipments": [
-    {
-      "label": "1 six-pack of [skin+hair]",
-      "carrier": null,
-      "tracking_number": null,
-      "tracking_url": null,
-      "tracking_status": null,
-      "tracking_status_at": null,
-      "eta": null,
-      "created_at": "2017-05-02T12:59:47.539Z",
-      "updated_at": "2017-05-02T12:59:47.539Z"
-    }
-  ],
+  "shipments": [],
   "created_at": "2017-05-02T12:59:07.060Z",
   "updated_at": "2017-05-02T12:59:47.818Z"
 }
@@ -82,17 +70,17 @@ HTTP/1.1 200 OK
 
 This endpoint pays an order:
 
-  - Charges the customer's [credit card](#cards)
-  - Creates [shipments](#shipments) for the order's line items
-  - Sends the [customer](#customers) a confirmation email
   - Sets the `shipping` object from the customer's shipping address unless already set on creation
-  - Marks the order as __paid__
+  - Charges the customer's [credit card](#cards)
+  - Sends the [customer](#customers) a confirmation email
 
 For this action to be successful, the following conditions must be met:
 
   - Customer must have a valid email
   - Customer must have a first name and last name
   - Customer must have a valid shipping address
+
+Only a `created` order can be paid.
 
 
 ### HTTP Request
