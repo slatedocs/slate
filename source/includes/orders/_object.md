@@ -4,29 +4,32 @@
 
 ```json
 {
-  "id": "1526b746-6a39-4958-91bf-a80bba41cdc3",
-  "customer_id": "294e03d6-df4f-4ee1-94be-e334c420381a",
-  "reference": "6f324c",
+  "id": "19aaff62-7539-4422-b5a3-85cd06db017f",
+  "customer_id": "904c2b4b-4a81-4d43-94cc-7d04e16cfb6b",
+  "reference": "16ace0",
   "status": "created",
   "currency": "usd",
-  "tax": 0,
+  "tax": 571,
   "shipping_fee": 0,
-  "total": 6500,
+  "subtotal": 6500,
+  "total": 7071,
   "preordered": false,
-  "coupon_id": null,
+  "coupon_id": "50%OFF",
   "shipping": {
+    "name": "Philippe Dionne",
     "company": null,
-    "street1": "1-60 CRÉMAZIE OUEST",
+    "phone_number": "+14185800893",
+    "street1": "95 GRAND ST",
     "street2": "",
     "street3": null,
-    "city": "QUEBEC",
-    "state": "QC",
-    "country": "CA",
-    "zip": "G1R 1X3"
+    "city": "NEW YORK",
+    "state": "NY",
+    "country": "US",
+    "zip": "10013-5902"
   },
   "line_items": [
     {
-      "id": "26ae9dea-cd8b-449b-bbb1-cdedf3216686",
+      "id": "fc0b34eb-4ce2-4b08-b5a4-09ec294125f6",
       "description": "1 six-pack of [skin+hair]",
       "amount": 6500,
       "quantity": 1,
@@ -35,8 +38,8 @@
         "currency": "usd",
         "price": 6500
       },
-      "created_at": "2017-05-03T22:26:49.705Z",
-      "updated_at": "2017-05-03T22:26:49.705Z"
+      "created_at": "2017-05-17T21:52:32.901Z",
+      "updated_at": "2017-05-17T21:52:32.901Z"
     }
   ],
   "shipments": [
@@ -53,8 +56,8 @@
       "updated_at": "2017-05-03T22:38:23.432Z"
     }
   ],
-  "created_at": "2017-05-01T22:25:46.589Z",
-  "updated_at": "2017-05-02T00:19:55.935Z"
+  "created_at": "2017-05-17T21:52:32.867Z",
+  "updated_at": "2017-05-17T21:52:32.867Z"
 }
 ```
 
