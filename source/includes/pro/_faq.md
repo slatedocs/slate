@@ -40,7 +40,11 @@
 
 **Пример wsdl**
 
-pro server - [http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl](http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl)
+pro - [IdaMobProxyServiceFacade?wsdl](http://dev.idamob.ru/proxy/services/IdaMobProxyServiceFacade?wsdl)
+
+**Версия сервера**
+
+pro - [version/getVersion](http://dev.idamob.ru/pro/endpoints/version/getVersion)
 
 ## Multy server
 
