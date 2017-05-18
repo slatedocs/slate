@@ -65,6 +65,7 @@
 | first_name               | string |  |
 | last_name                | string |  |
 | time_zone                | string |  |
+| shipping_rate            | integer | Applicable shipping rate for the current shipping address |
 | unsubscribed             | boolean |  |
 | billing_address          | hash |  |
 | shipping_address         | hash |  |
