@@ -116,3 +116,13 @@ This endpoint creates an order:
 ### Returns
 
 An order object.
+
+### Event
+
+Fires a `order.created` event with payload:
+
+```json
+{
+  "id": "order_id"
+}
+```

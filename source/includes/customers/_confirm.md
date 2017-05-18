@@ -82,7 +82,6 @@ HTTP/1.1 200 OK
 This endpoint confirms a customer's phone number:
 
   - Promotes the customer's `unconfirmed_phone_number` to `phone_number`
-  - Fires a `verification` event
 
 <aside class="notice">
   <ul>
@@ -110,3 +109,11 @@ This endpoint confirms a customer's phone number:
 ### Returns
 
 A customer object.
+
+### Event
+
+Fires a `verification` event with payload:
+
+`{
+  "status": "confirmed"
+}`

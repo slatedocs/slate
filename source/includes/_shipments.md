@@ -50,8 +50,6 @@ HTTP/1.1 204 NO CONTENT
 
 This endpoint allows an external service to update a shipment's tracking informations.
 
-- A `order.shipment.update` event will be fired
-
 ### Authentication
 
 Requests are authenticated with HTTP basic authentication.
@@ -67,3 +65,15 @@ Expected payload from [EasyPost's webhook reference](https://www.easypost.com/we
 ### Returns
 
 Nothing.
+
+### Event
+
+Fires a `order.shipment.updated` event with payload:
+
+`{
+  "id": "shipment_id",
+  "order_id": "order_id",
+  "tracking_status": "status",
+  "tracking_url": "url",
+  "eta": "eta"
+}`

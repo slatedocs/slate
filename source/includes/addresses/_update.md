@@ -78,3 +78,14 @@ This endpoint updates an address.
 ### Returns
 
 An address object.
+
+
+### Event
+
+Fires a `address.updated` event with payload:
+
+```json
+{
+  "id": "address_id"
+}
+```

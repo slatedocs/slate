@@ -87,7 +87,6 @@ With `confirmation`:
 
   - Creates an unconfirmed customer
   - Generates a confirmation token valid for 30 minutes
-  - Fires a `verification` event
 
 Without `confirmation`:
 
@@ -112,3 +111,12 @@ Without `confirmation`:
 ### Returns
 
 A customer object.
+
+### Event
+
+Fires a `verification` event with payload:
+
+`{
+  "status": "needs_confirmation",
+  "code": "token"
+}`
