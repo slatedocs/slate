@@ -92,6 +92,7 @@ With `confirmation`:
 Without `confirmation`:
 
   - Creates a confirmed customer
+  - A `unconfirmed_phone_number` attribute must be present
 
 
 ### HTTP Request
@@ -103,7 +104,7 @@ Without `confirmation`:
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
 | confirmation | no | Wether or not to perform the confirmation flow. Default to `true` |
-| unconfirmed_phone_number | yes | Unique phone number |
+| unconfirmed_phone_number | no | Unique phone number |
 | first_name | no |  |
 | last_name | no |  |
 | email | no |  |

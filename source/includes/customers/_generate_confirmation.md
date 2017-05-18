@@ -26,7 +26,10 @@ This endpoint generates a new confirmation token. Should be used with the [send 
 Allows to handle situations when a customer fails to confirm his phone number in the allowed time window.
 
 <aside class="notice">
-  This will fail if the customer is already confirmed.
+  <ul>
+    <li>This will fail if the customer is already confirmed.</li>
+    <li>This will fail if the customer doesn't have an `unconfirmed_phone_number`</li>
+  </ul>
 </aside>
 
 ### HTTP Request

@@ -28,7 +28,10 @@ This endpoint sends the current confirmation token:
 On the event, the [conversational system](#) can prompt the customer for confirmation.
 
 <aside class="notice">
-  This will fail if the customer is already confirmed.
+  <ul>
+    <li>This will fail if the customer is already confirmed.</li>
+    <li>This will fail if the customer doesn't have an `unconfirmed_phone_number`</li>
+  </ul>
 </aside>
 
 ### HTTP Request

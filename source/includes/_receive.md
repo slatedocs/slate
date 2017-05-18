@@ -90,7 +90,10 @@ When webhook event is `MessageOutbound`:
   - Notifies the [customer](#customers) of the message
 
 <aside class="notice">
-  Calls on this action will fail if the customer is unsubscribed.
+  <ul>
+    <li>This will fail if the customer is unsubscribed.</li>
+    <li>This will fail if the customer doesn't have a `phone_number` or `unconfirmed_phone_number`</li>
+  </ul>
 </aside>
 
 When webhook event is `LogicInvocation`:

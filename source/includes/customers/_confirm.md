@@ -85,7 +85,10 @@ This endpoint confirms a customer's phone number:
   - Fires a `verification` event
 
 <aside class="notice">
-  This will fail if the customer is already confirmed.
+  <ul>
+    <li>This will fail if the customer is already confirmed.</li>
+    <li>This will fail if the customer doesn't have an `unconfirmed_phone_number`</li>
+  </ul>
 </aside>
 
 ### HTTP Request

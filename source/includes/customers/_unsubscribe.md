@@ -24,7 +24,10 @@ HTTP/1.1 204 NO CONTENT
 This endpoint unsubscribes a customer from future communications. Attempting to send messages will fail until the customer [subscribes](#subscribe) again.
 
 <aside class="notice">
-  This will fail if the customer is already unsubscribed.
+  <ul>
+    <li>This will fail if the customer is already unsubscribed.</li>
+    <li>This will fail if the customer doesn't have an `unconfirmed_phone_number`</li>
+  </ul>
 </aside>
 
 ### HTTP Request

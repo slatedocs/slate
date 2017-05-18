@@ -46,7 +46,10 @@ This endpoint creates a message:
 - Notifies the [conversational system](...) of the message
 
 <aside class="notice">
-  Calls on this action will fail if the customer is unsubscribed.
+  <ul>
+    <li>This will fail if the customer is unsubscribed.</li>
+    <li>This will fail if the customer doesn't have a `phone_number` or `unconfirmed_phone_number`</li>
+  </ul>
 </aside>
 
 ### HTTP Request

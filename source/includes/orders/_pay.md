@@ -68,7 +68,7 @@ HTTP/1.1 200 OK
 ```
 
 <aside class="notice">
-  Calls on this action will fail if the customer isn't confirmed.
+  This will fail if the customer isn't confirmed.
 </aside>
 
 This endpoint pays an order:
@@ -79,6 +79,7 @@ This endpoint pays an order:
 
 For this action to be successful, the following conditions must be met:
 
+  - Customer must be confirmed
   - Customer must have a valid email
   - Customer must have a first name and last name
   - Customer must have a valid shipping address

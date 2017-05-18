@@ -96,6 +96,7 @@ This endpoint pays and queues an order:
 
 For this action to be successful, the same conditions than for paying an order must be met:
 
+  - Customer must be confirmed
   - Customer must have a valid email
   - Customer must have a first name and last name
   - Customer must have a valid shipping address
