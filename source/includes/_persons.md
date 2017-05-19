@@ -78,7 +78,7 @@ The search term can be part of an email address, a first name or a last name.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/persons?key=<API-KEY>&term=doe"
+curl "https://api.affinity.vc/persons?term=doe" -u :<API-KEY>
 ```
 > Example Response
 
@@ -127,7 +127,7 @@ An array of all the person resources that match the search criteria. Does not in
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/persons/38706?key=<API-KEY>"
+curl "https://api.affinity.vc/persons/38706" -u :<API-KEY>
 ```
 
 > Example Response
@@ -168,7 +168,8 @@ The person resource corresponding to the `person_id`.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/persons?key=<API-KEY>" \
+curl "https://api.affinity.vc/persons" \
+  -u :<API-KEY> \
   -d first_name="Alice" \
   -d last_name="Doe" \
   -d emails[]="alice@affinity.co" \
@@ -220,7 +221,8 @@ The person resource was newly created from this successful request.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/860197?key=<API-KEY>" \
+curl "https://api.affinity.vc/860197" \
+  -u :<API-KEY> \
   -d phone_numbers[]="123-123-123" \
   -d phone_numbers[]="234-234-234" \
   -d first_name="Allison" \
@@ -281,7 +283,8 @@ The person object that was just updated through this request.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/persons/860197?key=<API-KEY>" \
+curl "https://api.affinity.vc/persons/860197" \
+  -u :<API-KEY> \
   -X "DELETE"
 ```
 
@@ -318,7 +321,7 @@ section first.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/persons/fields?key=<API-KEY>"
+curl "https://api.affinity.vc/persons/fields" -u :<API-KEY>
 ```
 
 > Example Response
