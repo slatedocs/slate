@@ -58,7 +58,7 @@ global | boolean | Returns whether this organization is a part of Affinity's glo
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/organizations?key=<API-KEY>&term=affinity"
+curl "https://api.affinity.vc/organizations?term=affinity" -u :<API-KEY>
 ```
 > Example Response
 
@@ -99,7 +99,7 @@ An array of all the organization objects that match the search criteria.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/organizations/64779194?key=<API-KEY>"
+curl "https://api.affinity.vc/organizations/64779194" -u :<API-KEY>
 ```
 
 > Example Response
@@ -132,7 +132,8 @@ The organization object corresponding to the `organization_id`.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/organizations?key=<API-KEY>" \
+curl "https://api.affinity.vc/organizations" \
+  -u :<API-KEY> \
   -d name="Acme Corporation" \
   -d domain="acme.co" \
   -d person_ids[]=38706
@@ -173,7 +174,8 @@ The organization resource that was just created by a successful request.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/organizations/120611418?key=<API-KEY>" \
+curl "https://api.affinity.vc/organizations/120611418" \
+  -u :<API-KEY> \
   -d name="Acme Corp." \
   -d person_ids[]=38706 \
   -d person_ids[]=89734 \
@@ -226,7 +228,8 @@ The organization resource that was just updated through a successful request.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/organizations/120611418?key=<API-KEY>" \
+curl "https://api.affinity.vc/organizations/120611418" \
+  -u :<API-KEY> \
   -X "DELETE"
 ```
 
@@ -260,7 +263,7 @@ organization_id | integer | true | The unique id of the organization that needs 
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/organizations/fields?key=<API-KEY>"
+curl "https://api.affinity.vc/organizations/fields" -u :<API-KEY>
 ```
 
 > Example Response

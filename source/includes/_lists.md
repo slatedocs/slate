@@ -57,7 +57,7 @@ organization | 1 | Type specifying a list of organizations.
 
 ```shell
 # Returns an array of all lists that you have access to.
-curl "https://api.affinity.vc/lists?key=<API-KEY>"
+curl "https://api.affinity.vc/lists" -u :<API-KEY>
 ```
 
 > Example Response
@@ -96,7 +96,7 @@ array includes the `id`, `name`, and `type` (refer to the
 
 ```shell
 # Returns the list with the specified `list_id`
-curl "https://api.affinity.vc/lists/450?key=<API-KEY>"
+curl "https://api.affinity.vc/lists/450" -u :<API-KEY>
 ```
 
 > Example Response

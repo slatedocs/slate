@@ -42,7 +42,7 @@ created_at | datetime | The time when the list entry was created.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/lists/450/list-entries?key=<API-KEY>"
+curl "https://api.affinity.vc/lists/450/list-entries" -u :<API-KEY>
 ```
 > Example Response
 
@@ -90,7 +90,7 @@ Fetches a list entry with a specified id.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/lists/450/list-entries/16367?key=<API-KEY>"
+curl "https://api.affinity.vc/lists/450/list-entries/16367" -u :<API-KEY>
 ```
 
 > Example Response
@@ -119,7 +119,8 @@ The list entry object corresponding to the `list_entry_id`.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/lists/450/list-entries?key=<API-KEY>" \
+curl "https://api.affinity.vc/lists/450/list-entries" \
+   -u :<API-KEY> \
    -d entity_id=38706
  ```
 
@@ -156,7 +157,8 @@ The list entry resource that was just created through this request.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/lists/450/list-entries/56517?key=<API-KEY>" \
+curl "https://api.affinity.vc/lists/450/list-entries/56517" \
+   -u :<API-KEY> \
    -d entity_id=38706 \
    -X "DELETE"
  ```
