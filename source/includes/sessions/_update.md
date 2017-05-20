@@ -86,3 +86,14 @@ Updating the `need_attention` attribute to `false`:
 ### Returns
 
 A session object.
+
+### Event
+
+Fires a `session.updated` event with payload:
+
+```json
+{
+  "id": "session_id",
+  "need_attention": true
+}
+```
