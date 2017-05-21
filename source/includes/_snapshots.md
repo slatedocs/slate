@@ -227,7 +227,7 @@ curl -s -X POST \
     --header "Content-Type: application/json" \
     --header "Tenant: <manager-tenant>" \
     -u <manager-username>:<manager-password> \
-    -d '{"tenant_name": "<manager-tenant>", "recreate_deployments_envs": true, "force": false}' \
+    -d '{"tenant_name": "<manager-tenant>", "recreate_deployments_envs": true, "force": false, "restore_certificates": false, "no_reboot": false}' \
     "http://<manager-ip>/api/v3/snapshots/<snapshot-id>/restore"
 ```
 
@@ -245,6 +245,8 @@ payload = {
     'tenant_name': '<manager_tenant>',
     'recreate_deployments_envs': True,
     'force': False,
+    'restore_certificates': False,
+    'no_reboot': False
 }
 response = requests.post(
     url,
@@ -281,6 +283,9 @@ Property | Default | Description
 ---------|---------|-------------
 `force`  |  false  | Specifies whether to force restoring the snapshot on a manager that already contains blueprints/deployments.
 `recreate_deployments_envs` | true | Specifies whether deployment environments should be created for restored deployments.
+`tenant_name` | true | In case of restoring a snapshot from a version prior to 4.0.0, it specifies the name of a new tenant that the snapshot will be restored into. Otherwise - not relevant.
+`restore_certificates` | true | Specifies whether to try and restore the certificates from the snapshot and use them to override the current Manager certificates (it only happens if the snapshot's certificates metadata do not match the Manager's certificates metadata). Useful when there are live agents from an old Manager (the one that created the snapshot) and we wish to control them with the current Manager. At the end of the execution the Manager will automatically reboot - unless the `no_reboot` property is `True`.
+`no_reboot` | true | Only relevant when the property `restore_certificates` is `True`. Specifies whether to skip the automatic reboot at the end of the snapshot restore execution. It is not recommended to use this option since the Manager will not function well after certificates restore without a reboot. In that case, it is expected of the user to manually reboot.
 
 ### Response
 An [Execution](#the-execution-resource) resource representing the restore snapshot workflow execution.
