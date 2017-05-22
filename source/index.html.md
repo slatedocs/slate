@@ -796,7 +796,8 @@ curl\
       ],
       "customize": {
         "tooltip": "Click here"
-      }
+      },
+      "logic_js": "function getRequiredActionForState(items) {return null;}"
     }
   ]
 }
@@ -827,7 +828,8 @@ Parameter | Type | Description
 `infos` | *array\<info\>* | List of infos for the services
 `choices` | *array\<choice\>* | List of questions to book the service
 `payment_methods` | *array\<payment_methods\>* | List of available payment methods for the service
-`customize` | *customize* | Key-value pairs of custom attributes
+`customize` | *object* | Key-value pairs of custom attributes
+`logic_js` | *string* | JavaScript containing functions for modification of booking process
 
 
 
