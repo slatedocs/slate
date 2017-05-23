@@ -7,7 +7,8 @@ language_tabs:
 
 toc_footers:
   - <a href='https://www.practitest.com/help/account/account-api-tokens/' target="_blank">How to get an API Token</a>
-  - <a style="font-size:1.4em; color:#196f7f" href='https://discuss.practitest.com/c/api' target="_blank">API's user group</a>
+  - <a href='https://discuss.practitest.com/c/api' target="_blank">API &nbsp;Users Group</a>
+  - <a href='https://discuss.practitest.com/t/faq-section/240' target="_blank">API &nbsp;FAQ</a>
 
 
 includes:
