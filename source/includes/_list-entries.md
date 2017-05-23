@@ -10,6 +10,17 @@
   "list_id": 450,
   "creator_id": 38706,
   "entity_id": 287125,
+  "entity": {
+    "type": 1,
+    "first_name": "John",
+    "last_name": "Doe",
+    "phone_numbers": [ ],
+    "primary_email": "jdoe@jdoe.com",
+    "emails": [
+      "jdoe@jdoe.com",
+      "jdoe2@jdoe2.com",
+    ],
+  },
   "created_at": "2017-01-16 16:34:03 -0800"
 }
 ```
@@ -26,7 +37,7 @@ Although list entries correspond to rows in an Affinity spreadsheet, the values
 associated with the entity are not stored inside the list entry resource. If you are
 trying to update, create, or delete a value in one of the custom columns for this list
 entry, please refer to the [Field Values](#field-values) section. The list entry API
-is only used for getting, adding, or removing entities from a lst. It does not
+is only used for getting, adding, or removing entities from a list. It does not
 handle updating individual cells in columns.
 
 Attribute | Type | Description
@@ -35,6 +46,7 @@ id | integer | The unique identifier of the list entry object.
 list_id | integer | The unique identifier of the list on which the list entry resides.
 creator_id | integer | The unique identifier of the user who created the list entry. If you create a list entry through the API, the user corresponding to the API token will be the creator by default.
 entity_id | integer | The unique identifier of the entity corresponding to the list entry.
+entity | object | Object containing entity-specific details like name, email address, domain etc. for the entity corresponding to `entity_id`.
 created_at | datetime | The time when the list entry was created.
 
 ## Get all list entries
@@ -49,18 +61,38 @@ curl "https://api.affinity.vc/lists/450/list-entries" -u :<API-KEY>
 ```json
 [
   {
-    "id": 56515,
-    "list_id": 450,
-    "creator_id": 38706,
-    "entity_id": 312898,
-    "created_at": "2017-03-23 11:42:15 -0700"
+    "id": 64608,
+    "list_id": 222,
+    "creator_id": 287843,
+    "entity_id": 62034,
+    "created_at": "2017-05-04 10:44:31 -0700",
+    "entity": {
+      "type": 0,
+      "first_name": "Affinity",
+      "last_name": "Team",
+      "phone_numbers": [ ],
+      "primary_email": "team@affinity.vc",
+      "emails": [
+        "team@affinity.vc"
+      ],
+    },
   },
   {
-    "id": 16367,
-    "list_id": 450,
-    "creator_id": 38599,
-    "entity_id": 287125,
-    "created_at": "2017-01-16 16:34:03 -0800"
+    "id": 53510,
+    "list_id": 222,
+    "creator_id": 38596,
+    "entity_id": 241576,
+    "created_at": "2017-02-22 15:22:21 -0800",
+    "entity": {
+      "type": 0,
+      "first_name": "John",
+      "last_name": "Doe",
+      "phone_numbers": [ ],
+      "primary_email": "jdoe@stanford.edu",
+      "emails": [
+        "jdoe@stanford.edu"
+      ],
+    },
   },
   ...
 ]
@@ -97,11 +129,21 @@ curl "https://api.affinity.vc/lists/450/list-entries/16367" -u :<API-KEY>
 
 ```json
 {
-  "id": 16367,
-  "list_id": 450,
-  "creator_id": 38599,
-  "entity_id": 287125,
-  "created_at": "2017-01-16 16:34:03 -0800"
+  "id": 53510,
+  "list_id": 222,
+  "creator_id": 38596,
+  "entity_id": 241576,
+  "created_at": "2017-02-22 15:22:21 -0800",
+  "entity": {
+    "type": 0,
+    "first_name": "John",
+    "last_name": "Doe",
+    "phone_numbers": [ ],
+    "primary_email": "jdoe@stanford.edu",
+    "emails": [
+      "jdoe@stanford.edu"
+    ],
+  },
 }
 ```
 
@@ -128,11 +170,21 @@ curl "https://api.affinity.vc/lists/450/list-entries" \
 
 ```json
 {
-  "id": 56517,
-  "list_id": 450,
-  "creator_id": 38706,
-  "entity_id": 38706,
-  "created_at": "2017-03-26 16:27:51 -0700"
+  "id": 53510,
+  "list_id": 222,
+  "creator_id": 38596,
+  "entity_id": 241576,
+  "created_at": "2017-02-22 15:22:21 -0800",
+  "entity": {
+    "type": 0,
+    "first_name": "John",
+    "last_name": "Doe",
+    "phone_numbers": [ ],
+    "primary_email": "jdoe@stanford.edu",
+    "emails": [
+      "jdoe@stanford.edu"
+    ],
+  },
 }
 ```
 
