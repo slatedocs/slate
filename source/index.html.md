@@ -19,7 +19,7 @@ search: true
 
 Welcome to the DNA API! You can use our API to access DNA API endpoints, which can get information on various elements customers, devices, and billing in our database.
 
-We have language bindings in Shell and PHP we also have Postman for you to test the methods without writing code! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have language bindings in Shell and PHP we also have <a href='https://www.getpostman.com/collections/af70b4327c9f4ded36f5'>Postman</a> for you to test the methods without writing code! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 
 This example API documentation page was created with [Slate](https://github.com/tripit/slate). 
@@ -30,15 +30,12 @@ This example API documentation page was created with [Slate](https://github.com/
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "http://local.websales-api.nexogy.com/api/oauth/token?grant_type=password&client_id=<value>&client_secret=<value>&username=<value>&password=<value>&scope=<value>"
+curl "http://staging.api.nexogy.com/api/oauth/token?grant_type=password&client_id=<value>&client_secret=<value>&username=<value>&password=<value>&scope=<value>"
   -H "Accept: application/json"
 ```
 
 ```php
-$kittn = require('kittn');
-/* test */
 
-let api = kittn.authorize('meowmeowmeow');
 ```
 
 > Make sure to replace the required `<value>` with the information provided.
@@ -86,16 +83,14 @@ Additionally use the <code>Accept:application/json</code> Headers for every API 
 > To Create a new client, use this code:
 
 ```shell
-curl "http://local.websales-api.nexogy.com/api/residential/client"
+curl "http://staging.api.nexogy.com/api/residential/client?start_billing_date=<value>&
+customer_id=<value>&has_subreseller_id=<value>&subreseller_id=<value>&email=<value>&first_name=<values>&last_name=<value>&zipcode=<value>&same_billing_address=<value>&billing_address=<value>&billing_zipcode=<value>"
   -H "Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjY1N2"
   -H "Accept:application/json"
 ```
 
 ```php
-const kittn = require('kittn');
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
 ```
 
 > The above command returns JSON structured like this:
@@ -107,7 +102,7 @@ let kittens = api.kittens.get();
     "client":
       {
         "id":6519,
-        "ns_domain":"ironmaiden.com"
+        "ns_domain":"ironmaiden.com",
       }
   }
 ]
@@ -117,7 +112,8 @@ This endpoint creates a Client on DNA. You will get back a <code>id</code> and a
 
 ### HTTP Request
 
-`POST http://local.websales-api.nexogy.com/api/residential/client`
+`POST http://staging.api.nexogy.com/api/residential/client?start_billing_date=<value>&
+customer_id=<value>&has_subreseller_id=<value>&subreseller_id=<value>&email=<value>&first_name=<values>&last_name=<value>&zipcode=<value>&same_billing_address=<value>&billing_address=<value>&billing_zipcode=<value>`
 
 ### Query Parameters
 
@@ -125,7 +121,9 @@ This endpoint creates a Client on DNA. You will get back a <code>id</code> and a
 
 Parameter | Example | Description
 --------- | ------- | -----------
-has_subreseller_id | true | This is an id used to group your cleint's IDs under a subreseller account if you have resellers that handele your clients this is how we would identify them for consolidation purposes.
+start_billing_date | 2017-05-18 | Date in  YYYY-MM-DD Format for Billing purposes
+customer_id | 1234 | Customer id you use on your side.
+has_subreseller_id | true | This is an id used to group your cleint's IDs under a subreseller account if you have resellers that handle your clients this is how we would identify them for consolidation purposes.
 subreseller_id | 1234 | Send this parameter only if you use a subreseller structure.
 email | email@email.com | Email used for any information required for the client, for example to send received V-mail.
 first_name | Steve | First name for the client.
@@ -143,27 +141,21 @@ Remember — store your <code>&lt;id&gt;</code> and <code>&lt;ns_domain&gt;</cod
 ## Activate a Client
 
 ```shell
-curl "http://local.websales-api.nexogy.com/api/residential/client/<id>/activate"
+curl "http://staging.api.nexogy.com/api/residential/client/<id>/activate"
   -H "Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjY1N2"
   -H "Accept:application/json"
 ```
 
 ```php
-const kittn = require('kittn');
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+ "result": "OK",
+ "timestamp": 1494597810
 }
 ```
 
@@ -173,38 +165,32 @@ This endpoint activates a specific client.
 
 ### HTTP Request
 
-`GET http://local.websales-api.nexogy.com/api/residential/client/<id>/activate`
+`POST http://staging.api.nexogy.com/api/residential/client/<id>/activate`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-id | The ID of the client to activate
+id | The ID of the client to activate,the one we sent you when the client was created
 
 ## Suspend a Client
 
 ```shell
-curl "http://local.websales-api.nexogy.com/api/residential/client/<id>/suspend"
+curl "http://staging.api.nexogy.com/api/residential/client/<id>/suspend"
   -H "Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjY1N2"
   -H "Accept:application/json"
 ```
 
 ```php
-const kittn = require('kittn');
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+ "result": "OK",
+ "timestamp": 1494597810
 }
 ```
 
@@ -214,10 +200,10 @@ This endpoint suspends a Client.
 
 ### HTTP Request
 
-`GET http://local.websales-api.nexogy.com/api/residential/client/<id>/suspend`
+`POST http://staging.api.nexogy.com/api/residential/client/<id>/suspend`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-id | The ID of the client to suspend
+id | The ID of the client to suspend, the one we sent you when the client was created
