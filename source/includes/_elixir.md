@@ -211,7 +211,7 @@ The following configuration settings are available:
 
 <h2 id="elixir-instrumented-libaries">Auto-Instrumented Libraries</h2>
 
-By default, the following libraries are instrumented:
+Our [install instructions](#elixir-install) walk through instrumenting the following libraries:
 
 * Phoenix
   * controllers
@@ -219,7 +219,7 @@ By default, the following libraries are instrumented:
   * templates
 * Ecto 2.0
 
-See [instrumenting common libraries](/#instrumenting-common-libraries) for guides on instrumenting other Elixir libraries.
+See [instrumenting common librariess](/#instrumenting-common-libraries) for guides on instrumenting other Elixir libraries.
 
 ## Instrumenting Common Libraries
 
@@ -547,7 +547,7 @@ Attempts to add invalid context will be ignored.
 
 <h2 id="elixir-environments">Environments</h2>
 
-It typically makes sense to treat each environment (production, staging, etc) as a separate application within Scout. To do so, configure a unique app name for each environment. Scout aggregrates data by the app name. 
+It typically makes sense to treat each environment (production, staging, etc) as a separate application within Scout. To do so, configure a unique app name for each environment. Scout aggregates data by the app name. 
 
 An example:
 
