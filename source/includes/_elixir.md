@@ -209,7 +209,7 @@ The following configuration settings are available:
 
 </div>
 
-<h2 id="elixir-instrumented-libaries">Instrumented Libraries</h2>
+<h2 id="elixir-instrumented-libaries">Auto-Instrumented Libraries</h2>
 
 By default, the following libraries are instrumented:
 
@@ -219,49 +219,244 @@ By default, the following libraries are instrumented:
   * templates
 * Ecto 2.0
 
-<h2 id="elixir-custom-instrumentation">Custom Instrumentation</h2>
+See [instrumenting common libraries](/#instrumenting-common-libraries) for guides on instrumenting other Elixir libraries.
 
-Traces that allocate significant amount of time to `Controller` or `Job` are good candidates to add custom instrumentation. This indicates a significant amount of time is falling outside our default instrumentation.
+## Instrumenting Common Libraries
 
-### Limits
+We've collected best practices for instrumenting common transactions and timing functions below. If you have a suggestion, [please share it](mailto:support@scoutapp.com). See our [custom instrumentation quickstart](#elixir-custom-instrumentation) for more details on adding instrumentation.
 
-We limit the number of metrics that can be instrumented. Tracking too many unique metrics can impact the performance of our UI. Do not dynamically generate metric types in your instrumentation (ie `instrument("user_#{user.id}", "generate", fn -> do_work() end)` as this can quickly exceed our rate limits.
+* Transactions
+  * [Phoenix Channels](#phoenix-channels)
+  * [GenServer calls](#genserver-calls)
+  * [Task.start](#task-start)
+  * [Task.Supervisor.start_child](#task-supervisor-start_child)
+  * [Exq](#exq)
+  * [Absinthe (GraphQL)](#absinthe)
+* Timing
+  * [HTTPoison](#httpoison)
+  * [MongoDB Ecto](#mongodb-ecto)
 
-### Instrumenting blocks of code
+### Phoenix Channels
 
-Use `ScoutApm.Tracing.instrument` to track the execution time of a block of code. Here's an example:
+#### Web or background transactions?
+
+* __web__: For channel-related functions that impact the user-facing experience. Time spent in these transactions will appear on your app overboard dashboard and appear in the "Web" area of the UI.
+* __background__: For functions that don't have an impact on the user-facing experience (example: click-tracking). These will be available in the "Background Jobs" area of the UI.
+
+#### Naming channel transactions
+
+Provide an identifiable name based on the message the `handle_out/` or `handle_in/` function receives.
+
+An example:
 
 ```elixir
-defmodule User do
-  require HTTPoison
-  import ScoutApm.Tracing
+defmodule FirestormWeb.Web.PostsChannel do
+  use FirestormWeb.Web, :channel
 
-  def github_avatar(user \\ %{id: "itsderek23"}) do
-    instrument("HTTP", "GitHub_Avatar", fn ->
-      HTTPoison.get("https://github.com/#{user.id}.png")
-    end)
+  # Will appear under "Web" in the UI, named "PostsChannel.update"
+  @transaction(type: "web", name: "PostsChannel.update")
+  def handle_out("update", msg, socket) do
+    push socket, "update", FetchView.render("index.json", msg)
   end
+```
 
+### GenServer calls
+
+It's common to use `GenServer` to handle background work outside the web request flow. Suggestions:
+
+* Treat these as `background` transactions
+* Provide a `name` based on the message each `handle_call/` function handles.
+
+An example:
+
+```elixir
+defmodule Flight.Checker do
+  use GenServer
+  use ScoutApm.Tracing
+
+  # Will appear under "Background Jobs" in the UI, named "Flight.handle_check".
+  @transaction(type: "background", name: "check")
+  def handle_call({:check, flight}, _from, state) do
+    # Do work...
+  end
+```
+
+### Task.start
+
+These execute asynchronously, so treat as a `background` transaction.
+
+```elixir
+Task.start(fn ->
+  # Will appear under "Background Jobs" in the UI, named "Crawler.crawl".
+  ScoutApm.Tracing.transaction(:background,"Crawler.crawl") do
+    Crawler.crawl(url)
+  end
+end)
+```
+
+### Task.Supervisor.start_child
+
+Like `Task.start`, these execute asynchronously, so treat as a `background` transaction.
+
+```elixir
+Task.Supervisor.start_child(YourApp.TaskSupervisor, fn ->
+  # Will appear under "Background Jobs" in the UI, named "Crawler.crawl". 
+  ScoutApm.Tracing.transaction(:background,"Crawler.crawl") do
+    Crawler.crawl(url)
+  end
+end)
+```
+
+### Exq
+
+To instrument [Exq](https://github.com/akira/exq) background jobs, add a `@transaction` module attribute to each worker's `perform/` function:
+
+```elixir
+defmodule MyWorker do
+  # Will appear under "Background Jobs" in the UI, named "MyWorker.perform".
+  @transaction(type: "background")
+  def perform(arg1, arg2) do
+    # do work
+  end
 end
 ```
 
-In the example above, "HTTP" will appear on timeseries charts and "HTTP/GitHub_Avatar" will appear in traces.
+### Absinthe
+
+Requests to the Absinthe plug can be grouped by the GraphQL `operationName` under the "Web" UI by adding <a href="https://gist.github.com/itsderek23/d9435b21c9a44cd9629e93c4e8c2750e" target="_blank">this plug</a> to your pipeline.  
+
+### HTTPoison
+
+Download this <a href="https://gist.github.com/itsderek23/50296b49df16b266e47cc04d227d4b4a" target="_blank">ScoutApm.HTTPoison module</a> into your app's `/lib` folder, then `alias ScoutApm.HTTPoison` when calling `HTTPoison` functions:
+
+```elixir
+defmodule Demo.Web.PageController do
+  use Demo.Web, :controller
+  # Will route function calls to `HTTPoision` through `ScoutApm.HTTPoison`, which times the execution of the HTTP call.
+  alias ScoutApm.HTTPoison
+
+  def index(conn, _params) do
+    # "HTTP" will appear on timeseries charts. "HTTP/get" and the url "https://cnn.com" will appear in traces.
+    HTTPoison.get("https://cnn.com")
+    render conn, "index.html"
+  end
+end
+```
+
+### MongoDB Ecto
+
+Download <a href="https://gist.github.com/itsderek23/051327a152bc4d95451fd76808b8e83f" target="_blank">this example MongoDB Repo module</a> to use inplace of your existing MongoDB Repo module.
+
+<h2 id="elixir-custom-instrumentation">Custom Instrumentation</h2>
+
+You can extend Scout to record additional types of transactions (background jobs, for example) and time the execution of code that fall outside our custom instrumentation.
+
+For full details on instrumentation functions, see our <a href="https://hexdocs.pm/scout_apm/ScoutApm.Tracing.html" target="_blank">ScoutApm.Tracing Hex docs</a>.
+
+### Transactions & Timing
+
+Scout’s instrumentation is divided into 2 areas:
+
+1. __Transactions__: these wrap around a flow of work, like a web request or a GenServer call. The UI groups data under transactions. Use `@transaction` module attributes and the `transaction/4` macro.
+2. __Timing__: these measure individual pieces of work, like an HTTP request to an outside service or an Ecto query. Use `@timing` module attributes and the `timing/4` macro.
+
+### Instrumenting transactions
+
+Via `@transaction` module attributes:
+
+```elixir
+defmodule YourApp.Web.RoomChannel do
+  use Phoenix.Channel
+  use ScoutApm.Tracing
+
+  # Will appear under "Web" in the UI, named "YourApp.Web.RoomChannel.join".
+  @transaction(type: "web")
+  def join("topic:html", _message, socket) do
+    {:ok, socket}
+  end
+
+  # Will appear under "Background Jobs" in the UI, named "RoomChannel.ping".
+  @transaction(type: "background", name: "RoomChannel.ping")
+  def handle_in("ping", %{"body" => body}, socket) do
+    broadcast! socket, "new_msg", %{body: body}
+    {:noreply, socket}
+  end
+```
+
+Via `transaction/4`:
+
+```elixir
+import ScoutApm.Tracking
+
+def do_async_work do
+  Task.start(fn ->
+    # Will appear under "Background Jobs" in the UI, named "Do Work".
+    transaction(:background, "Do Work") do
+      # Do work...
+    end
+  end)
+end
+```
+
+See the <a href="https://hexdocs.pm/scout_apm/ScoutApm.Tracing.html" target="_blank">ScoutApm.Tracing Hexdocs</a> for details on instrumenting transactions.
+
+### Timing functions and blocks of code
+
+Via `@timing` module attributes:
+
+```elixir
+defmodule Searcher do
+  use ScoutApm.Tracing
+
+  # Time associated with this function will appear under "Hound" in timeseries charts.
+  # The function will appear as `Hound/open_search` in transaction traces.
+  @timing(category: "Hound")
+  def open_search(url) do
+    navigate_to(url)
+  end
+
+  # Time associated with this function will appear under "Hound" in timeseries charts.
+  # The function will appear as `Hound/homepage` in transaction traces.
+  @timing(category: "Hound", name: "homepage")
+  def open_homepage(url) do
+    navigate_to(url)
+  end
+```
+
+Via `timing/4`:
+
+```elixir
+defmodule PhoenixApp.PageController do
+  use PhoenixApp.Web, :controller
+  import ScoutApm.Tracing
+
+  def index(conn, _params) do
+    timing("Timer", "sleep") do
+      :timer.sleep(3000)
+    end
+    render conn, "index.html"
+  end
+```
+
+See the <a href="https://hexdocs.pm/scout_apm/ScoutApm.Tracing.html" target="_blank">ScoutApm.Tracing Hexdocs</a> for details on timing functions and blocks of code.
+
+#### Limits on category arity
+
+We limit the number of unique categories that can be instrumented. Tracking too many unique category can impact the performance of our UI. Do not dynamically generate categories in your instrumentation (ie `timing("user_#{user.id}", "generate", do: do_work())` as this can quickly exceed our rate limits.
 
 #### Adding a description
 
 Call `ScoutApm.Tracing.update_desc/1` to add relevant information to the instrumented item. This description is then viewable in traces. An example:
 
 ```elixir
-instrument("HTTP", "GitHub_Avatar", fn ->
+timing("HTTP", "GitHub_Avatar") do
   url = "https://github.com/#{user.id}.png"
   update_desc("GET #{url}")
   HTTPoison.get(url)
-end)
+end
 ```
 
-<a href="https://hexdocs.pm/scout_apm/ScoutApm.Tracing.html#instrument/3" target="_blank">See the scout_apm hex docs</a> for more details on `instrument`.
-
-### Tracking already executed time
+#### Tracking already executed time
 
 Libraries like Ecto log details on executed queries. This includes timing information. To add a trace item for this, use `ScoutApm.Tracing.track`. An example:
 
@@ -281,31 +476,18 @@ defmodule YourApp.Mongo.Repo do
   end
 
 end
-
 ```
 
 In the example above, the metric will appear in traces as `Ecto/#{query_time(entry)}`. On timeseries charts, the time will be allocated to `Ecto`.
 
-#### Adding a description
-
-Metadata - like a raw query - can be passed to `track`. Pass it via the `desc` option. Example:
-
-```elixir
-ScoutApm.Tracing.track(
-  "Ecto", 
-  query_name(entry), 
-  entry.query_time, 
-  :microseconds, 
-  desc: entry.raw_query)
-```
-
-<a href="https://hexdocs.pm/scout_apm/ScoutApm.Tracing.html#track/5" target="_blank">See the scout_apm hex docs</a> for more information on `track`.
+<a href="https://hexdocs.pm/scout_apm/ScoutApm.Tracing.html#track/5" target="_blank">See the scout_apm hex docs</a> for more information on `track/`.
 
 <h3 id="elixir-testing-instrumentation">Testing instrumentation</h3>
 
 Improper instrumentation can break your application. It's important to test before deploying to production. The easiest way to validate your instrumentation is by running [DevTrace](#elixir-devtrace) and ensuring the new metric appears as desired.
 
 After restarting your app with DevTrace enabled, refresh the browser page and view the trace output. The new metric should appear in the trace.
+
 
 <h2 id="elixir-custom-context">Custom Context</h2>
 

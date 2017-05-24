@@ -33,6 +33,11 @@ $darkgreen: #64953f;
   background-image: none;
 }
 
+.content > h5 {
+  font-size: 13px;
+  color: #333;
+}
+
 .content h1:first-child, .content div:first-child + h1 {
   padding-top: 5px;
 }
@@ -41,7 +46,7 @@ $darkgreen: #64953f;
   line-height: 1.8;
 }
 
-.content h6, html, body {
+.content > h6, html, body {
 	font-size: 15px;
   font-family: 'Roboto Slab', sans-serif;
   font-weight: 300;
@@ -117,6 +122,10 @@ $darkgreen: #64953f;
 
 .tocify-wrapper ul, .tocify-wrapper li {
   line-height: 45px;
+}
+
+.content > code {
+  white-space: nowrap;
 }
 
 /*** lookup table ***/
