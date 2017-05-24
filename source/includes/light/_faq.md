@@ -40,3 +40,13 @@
 **Пример wsdl**
 
 light server - [http://dev.idamob.ru/light/services/WsEndpointServiceFacade?wsdl](http://dev.idamob.ru/light/services/WsEndpointServiceFacade?wsdl)
+
+**Обновление в базе настроек SMTP**
+
+update lightschema.properties set value = 'Trust iDa Mail Server' where key = 'mail.sender.name'
+update lightschema.properties set value = 'smtp.gmail.com' where key = 'mail.smtp.host'
+update lightschema.properties set value = '465' where key = 'mail.smtp.port'
+update lightschema.properties set value = 'true' where key = 'mail.smtp.ssl.enable'
+update lightschema.properties set value = 'notification@idamob.ru' where key = 'mail.smtp.user'
+update lightschema.properties set value = 'notificationidamob' where key = 'mail.smtp.pass'
+update lightschema.properties set value = 'true' where key = 'mail.smtp.auth.enable'
