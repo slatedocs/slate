@@ -19,6 +19,7 @@ includes:
   - custom_fields
   - requirements
   - tests
+  - steps
   - sets
   - instances
   - runs
