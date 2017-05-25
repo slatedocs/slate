@@ -45,7 +45,7 @@ Retrieve a list of all security group rules in a security group.
  Attribute                      | Description                          
  ---------------------------    | ------------------------------------
  `id`<br/>*UUID*                | The security group rule's id         
- `remoteAddress`<br/>*string*   | Remote IPs associated with this rule     
+ `remoteAddress`<br/>*string*   | Remote IPs or CIDRs associated with this rule     
  `startPort`<br/>*int*          | Minimum port that is matched by this rule             
  `endPort`<br/>*int*            | Maximum port that is matched by this rule             
  `etherType`<br/>*string*       | IP type, either IPv4 or IPv6              
@@ -82,7 +82,7 @@ Retrieve information about a security group rule.
 Attribute                      | Description                          
 ---------------------------    | ------------------------------------
 `id`<br/>*UUID*                | The security group rule's id         
-`remoteAddress`<br/>*string*   | Remote IPs associated with this rule     
+`remoteAddress`<br/>*string*   | Remote IPs or CIDRs associated with this rule     
 `startPort`<br/>*int*          | Minimum port that is matched by this rule             
 `endPort`<br/>*int*            | Maximum port that is matched by this rule             
 `etherType`<br/>*string*       | IP type, either IPv4 or IPv6              
@@ -127,7 +127,7 @@ Create a security group rule for a security group.
  `protocol`<br/>*string*      | The IP protocol, either ICMP, TCP or UDP
  `startPort`<br/>*int*        | Minimum port that is matched by this rule, required if end port specified
  `endPort`<br/>*int*          | Maximum port that is matched by this rule
- `remoteAddress`<br/>*string* | Remote IPs associated with this rule
+ `remoteAddress`<br/>*string* | Remote IPs or CIDRs associated with this rule
 
 #### Delete a security group rule
 
