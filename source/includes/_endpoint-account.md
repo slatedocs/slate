@@ -5,7 +5,8 @@ and entities on the app, providing visibility and management tools.
 
 ### Permissions
 
-
+An account user is an account manager if their `account_permissions` have
+`alter_users` set to True.
 
 ### Account entity
 
@@ -14,6 +15,7 @@ The account entity is available on the API root following the shoji
 
 If the account has a name (editable by account managers) it will be available 
 here as well as the path to the account's users.
+
 If the authenticated user is an account manager, the response will include
 paths to the following additional resources:
  * Account projects
@@ -27,7 +29,25 @@ GET /accounts/1234/
 ```
 
 ```json
-{}
+{
+  "element": "shoji:entity",
+  "body": {
+    "name": "Account's name",
+    "oauth_providers": [{
+      "id": "provider",
+      "name": "Service auth"
+    }, {
+      "id": "provider",
+      "name": "Service auth"
+    }]
+  },
+  "catalogs": {
+    "teams": "http://app.crunch.io/api/accounts/abcd/teams/",
+    "projects": "http://app.crunch.io/api/accounts/abcd/projects/",
+    "users": "http://app.crunch.io/api/accounts/abcd/users/",
+    "datasets": "http://app.crunch.io/api/accounts/abcd/datasets/"
+  }
+}
 ```
 
 ### Account users
@@ -42,7 +62,53 @@ GET /accounts/1234/users/
 ```
 
 ```json
-{}
+{
+  "element": "shoji:catalog",
+  "index": {
+    "http://app.crunch.io/api/users/123/": {
+      "id_method": "pwhash",
+      "id_provider": null,
+      "email": "email@example.com",
+      "name": "Steve Austin",
+      "dataset_permissions": {
+        "view": true,
+        "edit": false
+      },
+      "account_permissions": {
+        "alter_users": false,
+        "create_datasets": false
+      }
+    },
+    "http://app.crunch.io/api/users/234/": {
+      "id_method": "pwhash",
+      "id_provider": null,
+      "email": "email1@example.com",
+      "name": "Shawn Michaels",
+      "dataset_permissions": {
+        "view": true,
+        "edit": true
+      },
+      "account_permissions": {
+        "alter_users": true,
+        "create_datasets": true
+      }
+    },
+    "http://app.crunch.io/api/users/345/": {
+      "id_method": "oauth",
+      "id_provider": "google",
+      "email": "email2@example.com",
+      "name": "Rocky Maivia",
+      "dataset_permissions": {
+        "view": true,
+        "edit": true
+      },
+      "account_permissions": {
+        "alter_users": false,
+        "create_datasets": true
+      }
+    }
+  }
+}
 ```
 
 #### POST
@@ -56,7 +122,18 @@ GET /accounts/1234/users/
 ```
 
 ```json
-{}
+{
+  "email": "new_email@example.com",
+  "name": "Initial name",
+  "account_permissions": {
+    "alter_users": false,
+    "create_datasets": true
+  },
+  "id_method": "pwhash/oauth",
+  "id_provider": "",
+  "send_invite": true,
+  "url_base": "http://app.crunch.io/"
+}
 ```
 
 
@@ -71,7 +148,17 @@ GET /accounts/1234/users/
 ```
 
 ```json
-{}
+{
+  "index": {
+    "http://app.crunch.io/api/users/123/": {
+      "account_permissions": {
+        "alter_users": false,
+        "create_datasets": false
+      }
+    },
+    "http://app.crunch.io/api/users/234/": null,
+  }
+}
 ```
 
 
