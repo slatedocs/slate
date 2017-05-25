@@ -50,7 +50,7 @@ Retrieve a list of all security group rules in a security group.
  `endPort`<br/>*int*            | Maximum port that is matched by this rule             
  `etherType`<br/>*string*       | IP type, either IPv4 or IPv6              
  `protocol`<br/>*string*        | The IP protocol, either ICMP, TCP or UDP             
- `ingress`<br/>*boolean*        | Direction in which the rule is applied             
+ `ingress`<br/>*boolean*        | Direction in which the rule is applied, false implies egress            
  `securityGroupId`<br/>*UUID*   | The ID of the parent security group             
 
 
@@ -87,7 +87,7 @@ Attribute                      | Description
 `endPort`<br/>*int*            | Maximum port that is matched by this rule             
 `etherType`<br/>*string*       | IP type, either IPv4 or IPv6              
 `protocol`<br/>*string*        | The IP protocol, either ICMP, TCP or UDP             
-`ingress`<br/>*boolean*        | Direction in which the rule is applied             
+`ingress`<br/>*boolean*        | Direction in which the rule is applied, false implies egress             
 `securityGroupId`<br/>*UUID*   | The ID of the parent security group             
 
 
@@ -123,7 +123,7 @@ Create a security group rule for a security group.
 
  Optional attributes          | Description                          
  --------------------------   | ------------------------------------
- `ingress`<br/>*boolean*      | Direction in which the rule is applied             
+ `ingress`<br/>*boolean*      | Direction in which the rule is applied, false implies egress             
  `protocol`<br/>*string*      | The IP protocol, either ICMP, TCP or UDP
  `startPort`<br/>*int*        | Minimum port that is matched by this rule, required if end port specified
  `endPort`<br/>*int*          | Maximum port that is matched by this rule
