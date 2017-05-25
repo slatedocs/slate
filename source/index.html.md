@@ -46,5 +46,6 @@ subsections:
     - zones # Zones section
   openstack:
     - securityGroups
+    - securityGroupRules
 search: true
 ---
