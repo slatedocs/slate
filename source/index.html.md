@@ -1342,6 +1342,7 @@ curl\
   "data": [
     {
       "type": 1,
+      "event_time": 1234567,
       "choice_items": [
         {
           "id": 2,
@@ -1368,6 +1369,7 @@ Checklist answers after filling checklist.
 Parameter | Type | Description
 -------- | ----- | -------
 `type` | *integer* | Checklist type (see [checklists](#checklists))
+`event_time` | *integer* | Time of event
 `choices_items` | *array* | Checklist answers
 `choices_items.id` | *integer* | Unique identifier
 `choices_items.value` | *string/array* | Answer user entered
