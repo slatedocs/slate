@@ -11,6 +11,7 @@ includes:
   - getting_started
   - administration
   - cloudstack
+  - openstack
 
 subsections:
   administration:
@@ -43,5 +44,7 @@ subsections:
     - compute_offerings
     - disk_offerings
     - zones # Zones section
+  openstack:
+    - securityGroups
 search: true
 ---
