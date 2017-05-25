@@ -372,12 +372,12 @@ html, body {
 
   h2 {
     @extend %header-font;
-    font-size: 20px;
-    margin-top: 4em;
+    font-size: 24px;
+    margin-top: 2em;
     margin-bottom: 0;
     border-top: 1px solid #ccc;
-    padding-top: 1.2em;
-    padding-bottom: 1.2em;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
     background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
   }
 
@@ -390,13 +390,13 @@ html, body {
 
   h3, h4, h5, h6 {
     @extend %header-font;
-    font-size: 15px;
-    margin-top: 2.5em;
+    font-size: 18px;
+    margin-top: 1.5em;
     margin-bottom: 0.8em;
   }
 
   h4, h5, h6 {
-    font-size: 10px;
+    font-size: 14px;
   }
 
   hr {
@@ -424,17 +424,15 @@ html, body {
       padding: 10px;
     }
 
-    tr:last-child {
+    td:first-child {
+      white-space:nowrap;
+      text-align: right;    
+    }
+
+    tr>td {
       border-bottom: 1px solid #ccc;
     }
 
-    tr:nth-child(odd)>td {
-      background-color: lighten($main-bg,4.2%);
-    }
-
-    tr:nth-child(even)>td {
-      background-color: lighten($main-bg,2.4%);
-    }
   }
 
   dt {
@@ -624,4 +622,15 @@ html, body {
 
 .highlight, .highlight .w {
   background-color: $code-bg;
+}
+
+@media (min-width: $tablet-width) {   
+  table{    
+    display: table !important;    
+    width: 95% - $examples-width;   
+    margin-left: 2.5%;    
+  }   
+   th:first-child {   
+     width:25%;   
+   }    
 }
