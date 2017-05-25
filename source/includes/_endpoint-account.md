@@ -5,19 +5,19 @@ and entities on the app, providing visibility and management tools.
 
 ### Permissions
 
-An account user is an account manager if their `account_permissions` have
-`alter_users` set to True.
+A user is an account manager if their `account_permissions` have
+`alter_users` set to `True`.
 
 ### Account entity
 
 The account entity is available on the API root following the shoji 
 `views.account` path, which will point to the authenticated user's account.
 
-If the account has a name (editable by account managers) it will be available 
-here as well as the path to the account's users.
+If the account has a name it will be available here as well as the path to the 
+account's users.
 
 If the authenticated user is an account manager, the response will include
-paths to the following additional resources:
+paths to the following additional catalogs:
  * Account projects
  * Account teams
  * Account datasets
@@ -114,11 +114,11 @@ GET /accounts/1234/users/
 #### POST
 
 Account members can POST to the account's users catalog to create new users.
-If the a user with the provided email address already exists, the server will
-return a 400 response.
+If the a user with the provided email address already exists in the application
+(on another account), the server will return a 400 response.
 
 ```http
-GET /accounts/1234/users/
+POST /accounts/1234/users/
 ```
 
 ```json
@@ -139,12 +139,12 @@ GET /accounts/1234/users/
 
 #### PATCH
 PATCH to the users' catalog allows account admins to edit users' permissions
-in groups. It is only possible to change the `account_permissions` attribute.
+in batch. It is only possible to change the `account_permissions` attribute.
 Additionally, it is possible to delete users from the account by sending `null`
 as their tuple.
 
 ```http
-GET /accounts/1234/users/
+PATCH /accounts/1234/users/
 ```
 
 ```json
@@ -164,9 +164,9 @@ GET /accounts/1234/users/
 
 ### Account datasets
 
-Only account managers have access to this catalog. IT is a read only shoji 
-catalog thta contains all the datasets that users of this account have 
-created.
+Only account managers have access to this catalog. It is a read only shoji 
+catalog containing all the datasets that users of this account have 
+created (potentially very large catalog).
 
 Account managers have implicit editor access to all the account datasets.
 
