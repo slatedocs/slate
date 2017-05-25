@@ -191,6 +191,7 @@ curl -X POST \
    "computeOfferingId": "3caab5ed-b5a2-4d8a-82e4-51c46168ee6c",
    "networkId": "55ccea7f-8286-479e-a648-dd4a45866daf",
    "diskOfferingId": "f16f7f1b-462d-47b9-97bb-25a19e47a648",
+   "rootVolumeSizeInGb": 60,
    "additionalDiskSizeInGb": 20,
    "additionalDiskIops": 1000,
    "sshKeyName": "mysshkey",
@@ -234,6 +235,7 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------ | -----------
+`rootVolumeSizeInGb`<br/>*int* | The number of GB of the root volume. You must choose a [template](#templates) that allows the resize of root volume. If none specified, then the default one of the template will be used.
 `diskOfferingId`<br/>*UUID* | The [disk offering](#disk-offerings) to be used for a new volume to attach to this instance
 `additionalDiskSizeInGb`<br/>*int* | The number of GB the additional disk should have. You must choose a [disk offering](#disk-offerings) with custom disk size enabled.
 `additionalDiskIops`<br/>*int* | The number of IOPS the additional disk should have. You must choose a [disk offering](#disk-offerings) with custom IOPS enabled.
