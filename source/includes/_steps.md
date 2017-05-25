@@ -27,12 +27,12 @@ curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 https://api.practitest.com/api/v2/projects/4566/steps.json
 
-# Get all steps of project #4566, where filter-id is 323 and name is like login
+# Get all steps of project #4566, where name is like login
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 https://api.practitest.com/api/v2/projects/4566/steps.json?name_like=login
 
-# Get all steps with display ids 2,4 from project #4566
+# Get all steps with test ids 23223,43121 from project #4566
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 https://api.practitest.com/api/v2/projects/4566/steps.json?test-ids=23223,43121
@@ -153,7 +153,7 @@ This endpoint deletes a specific step.
 
 ### HTTP Request
 
-`DELETE https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/steps/YOUR_TEST_ID.json`
+`DELETE https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/steps/YOUR_STEP_ID.json`
 
 
 You can find at the right area an example of the JSON request and response
