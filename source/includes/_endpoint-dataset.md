@@ -380,7 +380,13 @@ Content-Length: 88
     "element": "shoji:entity",
     "body": {
         "name": "Trouble with Tribbles",
-        "description": "Stardate 4523.3"
+        "description": "Stardate 4523.3",
+        "settings": {
+            "viewers_can_export": true,
+            "viewers_can_change_weight": false,
+            "min_base_size": 3,
+            "weight": "weight_variable_alias"
+        }
     }
 }
 
@@ -433,6 +439,7 @@ is_published | boolean | If false, only project editors will have access to this
 weight_variables | array | Contains aliases of weight variables to start this dataset with; variables must be numeric type
 table | object | Metadata definition for the variables in the dataset
 maintainer | URL | User URL that will be the maintainer of this dataset in case of system notifications; if omitted, the authenticated user will be the maintainer
+settings | object | [Settings object](#settings) containing `weight/viewers_can_export/viewers_can_change_weight/viewers_can_share/min_base_size` attributes.
 
 
 ### Other catalogs
@@ -667,7 +674,7 @@ All the URLs will refer to entities on the source dataset.
                 "alias": "Variable alias",
                 "owner_url": null,
                 "owner_name": null
-            },
+            }
         },
         "filters": {
             "https://app.crunch.io/filters/abcd/": {
