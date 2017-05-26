@@ -90,6 +90,37 @@ customer_id=<value>&has_subreseller_id=<value>&subreseller_id=<value>&email=<val
 ```
 
 ```php
+// Set api url
+$apiUrl = 'https://staging.api.nexogy.com/api/residential/client';
+// Start cURL
+$c = curl_init();
+curl_setopt($c, CURLOPT_CONNECTTIMEOUT, 5);
+curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+
+// Populate array with parameters
+$data['email'] = 'example@mail.com';
+$data['first_name'] = 'John';
+$data['last_name'] = 'Doe';
+$data['zipcode'] = '12345';
+$data['address'] = 'Client address';
+$data['sameBillingAddress'] = 1;
+$data['has_subreseller_id'] = 1;
+$data['subreseller_id'] = '123';
+
+// Set up headers
+$request_headers = array();
+$request_headers[] = 'Authorization: Bearer '. $access_token;
+$request_headers[] = 'Accept: application/json';
+curl_setopt($c, CURLOPT_HTTPHEADER, $request_headers);
+
+// Setup the remainder of the cURL request
+curl_setopt($c, CURLOPT_URL, $apiUrl);
+curl_setopt($c, CURLOPT_POST, true);
+curl_setopt($c, CURLOPT_POSTFIELDS, http_build_query($data));
+
+// Execute the API call and return the response
+$result = curl_exec($c);
+curl_close($c);
 
 ```
 
@@ -112,7 +143,7 @@ This endpoint creates a Client on DNA. You will get back a <code>id</code> and a
 
 ### HTTP Request
 
-`POST http://staging.api.nexogy.com/api/residential/client?start_billing_date=<value>&
+`POST https://staging.api.nexogy.com/api/residential/client?start_billing_date=<value>&
 customer_id=<value>&has_subreseller_id=<value>&subreseller_id=<value>&email=<value>&first_name=<values>&last_name=<value>&zipcode=<value>&same_billing_address=<value>&billing_address=<value>&billing_zipcode=<value>`
 
 ### Query Parameters
@@ -141,13 +172,32 @@ Remember — store your <code>&lt;id&gt;</code> and <code>&lt;ns_domain&gt;</cod
 ## Activate a Client
 
 ```shell
-curl "http://staging.api.nexogy.com/api/residential/client/<id>/activate"
+curl "https://staging.api.nexogy.com/api/residential/client/<id>/activate"
   -H "Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjY1N2"
   -H "Accept:application/json"
 ```
 
 ```php
+// Set api url
+$apiUrl = 'https://staging.api.nexogy.com/api/residential/client/id/activate';
+// Start cURL
+$c = curl_init();
+curl_setopt($c, CURLOPT_CONNECTTIMEOUT, 5);
+curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
 
+// Set up headers
+$request_headers = array();
+$request_headers[] = 'Authorization: Bearer '. $access_token;
+$request_headers[] = 'Accept: application/json';
+curl_setopt($c, CURLOPT_HTTPHEADER, $request_headers);
+
+// Setup the remainder of the cURL request
+curl_setopt($c, CURLOPT_URL, $apiUrl);
+curl_setopt($c, CURLOPT_POST, true);
+
+// Execute the API call and return the response
+$result = curl_exec($c);
+curl_close($c);
 ```
 
 > The above command returns JSON structured like this:
@@ -176,13 +226,32 @@ id | The ID of the client to activate,the one we sent you when the client was cr
 ## Suspend a Client
 
 ```shell
-curl "http://staging.api.nexogy.com/api/residential/client/<id>/suspend"
+curl "https://staging.api.nexogy.com/api/residential/client/<id>/suspend"
   -H "Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjY1N2"
   -H "Accept:application/json"
 ```
 
 ```php
+// Set api url
+$apiUrl = 'https://staging.api.nexogy.com/api/residential/client/id/suspend';
+// Start cURL
+$c = curl_init();
+curl_setopt($c, CURLOPT_CONNECTTIMEOUT, 5);
+curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
 
+// Set up headers
+$request_headers = array();
+$request_headers[] = 'Authorization: Bearer '. $access_token;
+$request_headers[] = 'Accept: application/json';
+curl_setopt($c, CURLOPT_HTTPHEADER, $request_headers);
+
+// Setup the remainder of the cURL request
+curl_setopt($c, CURLOPT_URL, $apiUrl);
+curl_setopt($c, CURLOPT_POST, true);
+
+// Execute the API call and return the response
+$result = curl_exec($c);
+curl_close($c);
 ```
 
 > The above command returns JSON structured like this:
