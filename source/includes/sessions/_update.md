@@ -3,7 +3,7 @@
 > Example request
 
 ```shell
-curl -X POST \
+curl -X PATCH \
 -H 'Authorization: Bearer <TOKEN>' \
 -H 'Content-Type: application/json' \
 -d '{
