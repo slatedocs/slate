@@ -50,7 +50,7 @@ The client should then store the Cookie and pass it along with each subsequent r
 Failure will return 401 Unauthorized.
 
 <aside class="notice">
-    Replace "fake.user@example.com" and "password" with your email and password, respectively. Refer to the [password policy](#Password-policy) for more information on passwords.
+    Replace "fake.user@example.com" and "password" with your email and password, respectively. Refer to the password policy below for more information.
 </aside>
 
 Crunch also supports OAuth 2.0/OpenID Connect. See [the public endpoint reference](#public) for more on how to authenticate with OAuth.
