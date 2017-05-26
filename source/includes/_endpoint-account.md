@@ -1,23 +1,22 @@
 ## Accounts
 
-Accounts exist to make Crunch.io customers manage their various users
-and entities on the app, providing visibility and management tools.
+Accounts provide an organization-level scope for Crunch.io customers. All Users belong to one and only one Account. Account managers can administer their various users and entities and have visibility on them. 
 
 ### Permissions
 
-A user is an account manager if their `account_permissions` have
+A user is an "account manager" if their `account_permissions` have
 `alter_users` set to `True`.
 
 ### Account entity
 
-The account entity is available on the API root following the shoji 
+The account entity is available on the API root following the Shoji 
 `views.account` path, which will point to the authenticated user's account.
 
-If the account has a name it will be available here as well as the path to the 
+If the account has a name, it will be available here, as well as the path to the 
 account's users.
 
 If the authenticated user is an account manager, the response will include
-paths to the following additional catalogs:
+paths to these additional catalogs:
  * Account projects
  * Account teams
  * Account datasets
@@ -53,7 +52,7 @@ GET /accounts/1234/
 ### Account users
 
 Provides a catalog of all the users that belong to this account. Any account
-member can GET but only account managers can POST/PATCH on it.
+member can GET, but only account managers can POST/PATCH on it.
 
 #### GET
 
