@@ -91,7 +91,7 @@ customer_id=<value>&has_subreseller_id=<value>&subreseller_id=<value>&email=<val
 
 ```php
 // Set api url
-$apiUrl = 'http://local.websales-api.nexogy.com/api/residential/client';
+$apiUrl = 'https://staging.api.nexogy.com/api/residential/client';
 // Start cURL
 $c = curl_init();
 curl_setopt($c, CURLOPT_CONNECTTIMEOUT, 5);
@@ -143,7 +143,7 @@ This endpoint creates a Client on DNA. You will get back a <code>id</code> and a
 
 ### HTTP Request
 
-`POST http://staging.api.nexogy.com/api/residential/client?start_billing_date=<value>&
+`POST https://staging.api.nexogy.com/api/residential/client?start_billing_date=<value>&
 customer_id=<value>&has_subreseller_id=<value>&subreseller_id=<value>&email=<value>&first_name=<values>&last_name=<value>&zipcode=<value>&same_billing_address=<value>&billing_address=<value>&billing_zipcode=<value>`
 
 ### Query Parameters
@@ -172,14 +172,14 @@ Remember — store your <code>&lt;id&gt;</code> and <code>&lt;ns_domain&gt;</cod
 ## Activate a Client
 
 ```shell
-curl "http://staging.api.nexogy.com/api/residential/client/<id>/activate"
+curl "https://staging.api.nexogy.com/api/residential/client/<id>/activate"
   -H "Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjY1N2"
   -H "Accept:application/json"
 ```
 
 ```php
 // Set api url
-$apiUrl = 'http://local.websales-api.nexogy.com/api/residential/client/id/activate';
+$apiUrl = 'https://staging.api.nexogy.com/api/residential/client/id/activate';
 // Start cURL
 $c = curl_init();
 curl_setopt($c, CURLOPT_CONNECTTIMEOUT, 5);
@@ -226,14 +226,14 @@ id | The ID of the client to activate,the one we sent you when the client was cr
 ## Suspend a Client
 
 ```shell
-curl "http://staging.api.nexogy.com/api/residential/client/<id>/suspend"
+curl "https://staging.api.nexogy.com/api/residential/client/<id>/suspend"
   -H "Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjY1N2"
   -H "Accept:application/json"
 ```
 
 ```php
 // Set api url
-$apiUrl = 'http://local.websales-api.nexogy.com/api/residential/client/id/suspend';
+$apiUrl = 'https://staging.api.nexogy.com/api/residential/client/id/suspend';
 // Start cURL
 $c = curl_init();
 curl_setopt($c, CURLOPT_CONNECTTIMEOUT, 5);
