@@ -1336,7 +1336,7 @@ curl\
 ```
 
 > The above request success response is:
-
+choice_items
 ```json
 {
   "data": [
@@ -1370,6 +1370,6 @@ Parameter | Type | Description
 -------- | ----- | -------
 `type` | *integer* | Checklist type (see [checklists](#checklists))
 `event_time` | *integer* | Timestamp when the event ocurred and was saved.
-`choices_items` | *array* | Checklist answers
-`choices_items.id` | *integer* | Unique identifier
-`choices_items.value` | *string/array* | Answer user entered
+`choice_items` | *array* | Checklist answers
+`choice_items.id` | *integer* | Unique identifier
+`choice_items.value` | *string/array* | Answer user entered
