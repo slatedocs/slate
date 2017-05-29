@@ -105,10 +105,10 @@ curl -X POST \
 ```json
 {
     "ingress": true,
-  	"protocol": "UDP",
-  	"startPort": 10,
-  	"endPort": 20,
-  	"remoteAddress": "0.0.0.0/0",
+    "protocol": "UDP",
+    "startPort": 10,
+    "endPort": 20,
+    "remoteAddress": "0.0.0.0/0",
     "securityGroupId": "f54f050b-01b2-4a73-b6e1-4e13a5566323",
 }
 ```
@@ -123,11 +123,11 @@ Create a security group rule for a security group.
 
  Optional attributes          | Description                          
  --------------------------   | ------------------------------------
- `ingress`<br/>*boolean*      | Direction in which the rule is applied, false implies egress             
- `protocol`<br/>*string*      | The IP protocol, either ICMP, TCP or UDP
- `startPort`<br/>*int*        | Minimum port that is matched by this rule, required if end port specified
- `endPort`<br/>*int*          | Maximum port that is matched by this rule
- `remoteAddress`<br/>*string* | Remote IPs or CIDRs associated with this rule
+ `ingress`<br/>*boolean*      | Direction in which the rule is applied, false implies egress. Defaults to ingress.            
+ `protocol`<br/>*string*      | The IP protocol, either ICMP, TCP or UDP. Defaults to allow all protocols.
+ `startPort`<br/>*int*        | Minimum port that is matched by this rule, required if end port specified. Defaults to 1.
+ `endPort`<br/>*int*          | Maximum port that is matched by this rule. Defaults to 65535.
+ `remoteAddress`<br/>*string* | Remote IPs or CIDRs associated with this rule. Defaults to allow all IPs.
 
 #### Delete a security group rule
 
