@@ -47,5 +47,6 @@ subsections:
   openstack:
     - securityGroups
     - securityGroupRules
+    - routers
 search: true
 ---
