@@ -250,7 +250,7 @@ If operation is successful created/updated object is returned.
 
 Parameter | Type | Description
 -------- | ----- | -------
-`return`<br>*optional, default <b>status</b>* | *string* | When object is created/updated different responses can be returned.<br>`status` - returns success status if object created/updated succesfully<br>`id` - returns the id of the created/updated<br>`object` - returns the full created/updated object
+`return`<br>*optional, default <b>status</b>* | *string* | When object is created/updated different responses can be returned based on the value of this parameter:<br><br>`status` - returns success status if object created/updated succesfully<br>`id` - returns the id of the created/updated<br>`object` - returns the full created/updated object
 
 
 ## Delete
