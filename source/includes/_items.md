@@ -5,7 +5,7 @@
   Através do endpoint `/items`, é possível listar, exibir, criar, atualizar e deletar itens.
 
 
-  __*Obs.: Os parâmetros `settings` utilizados em todos os exemplos são referentes a NFS-e emitidas em São Paulo(SP), consulte a [seção de configurações](https://atendimento.fastnotas.com/hc/pt-br/categories/115000135067-Configura%C3%A7%C3%B5es-da-NFS-e) para visualizar quais os atributos são necessários para o documento
+  __*Obs.: Os parâmetros `settings` utilizados em todos os exemplos são referentes a NFS-e emitidas em São Paulo(SP), consulte a <a href="https://atendimento.fastnotas.com/hc/pt-br/categories/115000135067-Configura%C3%A7%C3%B5es-da-NFS-e" target="_blank">seção de configurações</a> para visualizar quais os atributos são necessários para o documento
   que você vai emitir.*__
 
 <br> <br>
@@ -19,7 +19,7 @@
   **status** <br> Default: active | *Define se o item está ativado ou não na API*
   **amount** <br>Float | *Valor do produto/serviço*
   **document_schema**  <br> Hash | *Representação da entidade [document_schema](#document-schemas)*
-  **settings[]** <br>[`attributes`]<br> Hash | *Consulte a [seção](https://atendimento.fastnotas.com/hc/pt-br/categories/115000135067-Configura%C3%A7%C3%B5es-da-NFS-e) de configurações para cada <br>`item`*
+  **settings[]** <br>[`attributes`]<br> Hash | *Consulte a <a href="https://atendimento.fastnotas.com/hc/pt-br/categories/115000135067-Configura%C3%A7%C3%B5es-da-NFS-e" target="_blank">seção de configurações</a>*
 
 ## Criando um item
 
@@ -66,7 +66,7 @@
   **description** <br> <p> obrigatório </p> | *Descrição do produto/serviço*
   **amount** <br> <p> obrigatório </p>| *Valor do produto/serviço*
   **document_schema_id**  <br> <p> obrigatório </p> | *Id do esquema de documento*
-  **settings[`attributes`]** <br> <p> obrigatório </p>| *Consulte a [seção](https://atendimento.fastnotas.com/hc/pt-br/categories/115000135067-Configura%C3%A7%C3%B5es-da-NFS-e) de configurações para cada `item`*
+  ****settings[]** <br>[`attributes`]** <br> <p> obrigatório </p>| *Consulte a <a href="https://atendimento.fastnotas.com/hc/pt-br/categories/115000135067-Configura%C3%A7%C3%B5es-da-NFS-e" target="_blank">seção de configurações</a>*
 
 
   <br> <br> <br> <br> <br>

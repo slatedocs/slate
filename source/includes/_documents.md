@@ -367,3 +367,18 @@ Parâmetro | Descrição
   curl -X DELETE https://api.fastnotas.com/v1/documents/{DOCUMENT_ID} \
   -u 'YOUR_API_KEY:'
 ```
+
+## Imprimindo um documento
+Retorna o documento em formato para impressão (se houver).
+
+Caso o [asset](#assets) do tipo `print` para este documento não esteja com o status `available`, o sistema devolverá um arquivo temporário contendo todas as informações e seguindo o padrão do arquivo original.
+
+Parâmetro | Descrição
+ -------------- | --------------
+  **:id** <br> <p>obrigatório</p> | *Id do documento criado*
+
+  > GET https://api.fastnotas.com/v1/documents/{DOCUMENT_ID}/print
+
+```shell
+  curl -X GET https://api.fastnotas.com/v1/documents/{DOCUMENT_ID}/print
+```

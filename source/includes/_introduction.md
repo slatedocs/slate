@@ -31,7 +31,7 @@ PUT | `/items/:id` | Atualiza os parâmetros
 DELETE | `/items/:id` | Inativa o item
 GET | `/documents` | Retorna todos os documentos de uma empresa
 POST | `/documents` | Cria um documento
-GET | `/documents/:id/print` | Retorna um documento em PDF
+GET | `/documents/:id/print` | Retorna o documento em formato para impressão (se houver)
 GET | `/documents/:id` | Retorna um documento
 GET | `/documents/:id/operations` | Retorna todas operações do documento
 DELETE  | `/documents/:id` | Cancela um documento
