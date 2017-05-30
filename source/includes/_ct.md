@@ -770,7 +770,7 @@ var success = request.Post("/v2/ct/get-directories", parameters);
 
 `POST https://tools.brightlocal.com/seo-tools/api/v2/ct/get-directories`
 
-`POST https://tools.brightlocal.com/seo-tools/api/v2/ct/get-directories/<counry>`
+`POST https://tools.brightlocal.com/seo-tools/api/v2/ct/get-directories/<country>`
 
 ### Query Parameters
 
