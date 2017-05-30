@@ -430,9 +430,10 @@ notes | string | Blank if omitted. Optional notes for the dataset
 start_date | date | ISO-8601 formatted date with day resolution
 end_date | date | ISO-8601 formatted date with day resolution
 is_published | boolean | If false, only project editors will have access to this dataset
-weight_variables | array | Contains aliases of weight variables to start this dataset with; variables must be numeric type
+weight_variables | array | Contains aliases of weight variables to start this dataset with; variables must be numeric type. 
 table | object | Metadata definition for the variables in the dataset
 maintainer | URL | User URL that will be the maintainer of this dataset in case of system notifications; if omitted, the authenticated user will be the maintainer
+settings | object | [Settings object](#settings) containing `weight`, `viewers_can_export`, `viewers_can_change_weight`, `viewers_can_share`, and/or `min_base_size` attributes. If a "weight" is specified, it will be automatically added to "weight_variables" if not already specified there.
 
 
 ### Other catalogs
@@ -667,7 +668,7 @@ All the URLs will refer to entities on the source dataset.
                 "alias": "Variable alias",
                 "owner_url": null,
                 "owner_name": null
-            },
+            }
         },
         "filters": {
             "https://app.crunch.io/filters/abcd/": {
