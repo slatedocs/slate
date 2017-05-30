@@ -1309,7 +1309,7 @@ Checklists for performing a job
 
 Parameter | Type | Description
 -------- | ----- | -------
-`type` | *integer* | *<b>10</b> - Before checkin*<br>*<b>20</b> - Before checkout*
+`type` | *integer* | *<b>10</b> - After checkin*<br>*<b>20</b> - Before checkout*
 `choices` | *array* | Checklist questions
 `choices.id` | *integer* | Unique identifier
 `choices.sort` | *integer* | Order of item
