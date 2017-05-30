@@ -283,40 +283,43 @@ var results = request.Get("/v4/gpw/" + reportId + "", parameters);
 ```json
 {
   "success": true,
-      "report": {
-          "report_id": "1",
-          "report_name": "Report name",
-          "customer_id": "1",
-          "location_id": "1000",
-          "schedule": "Adhoc",
-          "day_of_month": "0",
-          "white_label_profile_id": "24",
-          "report_type": "without",
-          "business_names": [
-              "Business name1"
-          ],
-          "postcode": "90210",
-          "country": "USA",
-          "state_code": "IL",
-          "address1": "email@test.com",
-          "address2": null,
-          "city": "Chicago, IL",
-          "telephone": null,
-          "profile_url": null,
-          "search_terms": [
-              "search_term1",
-              "search_term2",
-              "search_term3"
-          ],
-          "google_location": "Chicago, IL",
-          "notify": "No",
-          "email_addresses": [
-              "email@company.com"
-          ],
-          "last_run_id": "626",
-          "is_public": "Yes",
-          "public_key": "<hidden>",
-          "status": "Enabled"
+  "report": {
+  		"report_id": "1",
+        "report_name": "Report name",
+        "customer_id": "1",
+        "location_id": "1000",
+        "schedule": "Adhoc",
+        "day_of_week": "0",
+        "day_of_month": "0",
+        "white_label_profile_id": "24",
+        "report_type": "without",
+        "business_names": [
+            "Business name1"
+        ],
+        "postcode": "90210",
+        "country": "USA",
+        "state_code": "IL",
+        "address1": "email@test.com",
+        "address2": null,
+        "city": "Chicago, IL",
+        "phone_number": null,
+        "search_terms": [
+            "search_term1",
+            "search_term2",
+            "search_term3"
+        ],
+        "google_location": "Chicago, IL",
+        "notify": true,
+        "email_addresses": [
+        	"email@company.com"
+        ],
+        "notify_about_changes": true,
+        "email_addresses_for_changes": [
+        	"email@company.com"
+        ],
+        "is_public": "Yes",
+        "public_key": "<hidden>",
+        "is_running": false
       }
 }
 ```
