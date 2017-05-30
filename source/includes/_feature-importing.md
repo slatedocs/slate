@@ -153,7 +153,7 @@ Content-Length: 3294
       "table": {
         "metadata": {
            "element": "crunch:table"
-           "weight": {
+           "weight_variable": {
                 "name": "weight variable",
                 "alias": "weight_variable",
                 "type": "numeric"
