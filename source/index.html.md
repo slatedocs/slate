@@ -221,7 +221,7 @@ curl\
   "lat": 51.604903,
   "lng": -0.457022
 }'\
- "https://{{BASE_URL}}/v2/client/addresses"
+ "https://{{BASE_URL}}/v2/client/addresses?return=object"
 ```
 
 > The above request success response is:
