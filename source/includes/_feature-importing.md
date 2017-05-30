@@ -144,8 +144,20 @@ Content-Length: 3294
     "element": "shoji:entity",
     "body": {
       "name": "Dataset with derived arrays",
+      "settings": {
+        "viewers_can_export": true,
+        "viewers_can_change_weight": false,
+        "min_base_size": 3,
+        "weight": "weight_variable"
+      },
       "table": {
         "metadata": {
+           "element": "crunch:table"
+           "weight": {
+                "name": "weight variable",
+                "alias": "weight_variable",
+                "type": "numeric"
+           },
            "combined": {
               "name": "combined CA", 
               "derivation": {
@@ -308,8 +320,7 @@ Content-Length: 3294
               }
             ]
           }
-        }, 
-        "element": "crunch:table"
+        }
       }
     }
  }
