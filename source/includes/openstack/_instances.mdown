@@ -1,6 +1,6 @@
 ### Instances
 
-Manage your compute resources. 
+Deploy and manage your instances. Instances are virtual machines or physical machines managed by OpenStack. 
 
 #### List instances
 
