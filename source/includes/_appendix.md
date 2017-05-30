@@ -30,7 +30,7 @@ One format may work better than another for a specific business so we recommend 
 
 ## Supported Local Directories
 
-We no longer list of supported local directories here. We now have an [endpoint](#local-directories) which enables you to retrieve a list of directories(all or by single country).
+We no longer list the supported local directories here. We now have an [endpoint](#local-directories) which enables you to retrieve a list of directories (either all or for an individual country).
 
 ## Business Category IDs
 
