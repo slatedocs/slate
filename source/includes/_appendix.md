@@ -30,7 +30,90 @@ One format may work better than another for a specific business so we recommend 
 
 ## Supported Local Directories
 
-We no longer list the supported local directories here. We now have an [endpoint](#local-directories) which enables you to retrieve a list of directories (either all or for an individual country).
+We no longer list the supported local directories here. We now have an below which enables you to retrieve a list of directories (either all or for an individual country).
+
+
+### HTTP Request
+
+`GET https://tools.brightlocal.com/seo-tools/api/v2/get-results`
+
+### Query Parameters
+
+Parameter | Notes
+--------- | -----
+api-key | <span class="label label-required">Required</span>	
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+
+## Get list of supported local directories
+
+
+<span class="label label-info">Account Method</span>
+
+> Get list of supported local directories
+
+```php
+<?php
+use BrightLocal\Api;
+
+$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
+$success = $api->post('v2/get-directories');
+print_r($success);
+```
+
+```shell
+curl -X POST \
+ -d 'api-key=<INSERT_API_KEY>' \
+ -d 'sig=<INSERT_API_SIG>' \
+ -d 'expires=<INSERT_API_EXPIRES>' \
+ https://tools.brightlocal.com/seo-tools/api/v2/get-directories
+```
+
+```csharp
+api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+
+var parameters = new api.Parameters();
+
+var success = request.Post("/v2/get-directories", parameters);
+```
+
+> Success (200 OK)
+
+```json
+{
+    "response":  {
+        "count": 256,
+        "supported_countries": ["GBR","USA","IRL",...],
+        "results": [
+	       	{
+		        "identifier": "google",
+		        "countries": ["GBR","USA"],
+		        "url":"google.com",
+		        "urls":[
+			        {"USA": "google.com"},
+			        {"GBR": "google.uk"},...
+		        ],
+		        "supports_reviews": true
+		},...	        
+        ]
+    }
+}
+```
+
+### HTTP Request
+
+`POST https://tools.brightlocal.com/seo-tools/api/v2/get-directories`
+
+`POST https://tools.brightlocal.com/seo-tools/api/v2/get-directories/<country>`
+
+### Query Parameters
+
+Parameter | Notes
+--------- | -----
+api-key | <span class="label label-required">Required</span>	
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+
 
 ## Business Category IDs
 
