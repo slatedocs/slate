@@ -30,7 +30,7 @@ One format may work better than another for a specific business so we recommend 
 
 ## Supported Local Directories
 
-We no longer list the supported local directories here. We now have an below which enables you to retrieve a list of directories (either all or for an individual country).
+We no longer list the supported local directories here. We now have an below which enables you to retrieve a list of directories either all or for an individual country (See list of Supported Countries below).
 
 ## Get list of supported local directories
 
