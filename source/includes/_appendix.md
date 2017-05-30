@@ -30,7 +30,7 @@ One format may work better than another for a specific business so we recommend 
 
 ## Supported Local Directories
 
-We no longer list the supported local directories here. We now have an below which enables you to retrieve a list of directories (either all or for an individual country).
+We now have an API method (shown below) that enables you to retrieve a list of directories for all supported countries.
 
 ## Get list of supported local directories
 
@@ -44,7 +44,7 @@ We no longer list the supported local directories here. We now have an below whi
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('v2/get-directories');
+$success = $api->post('v1/directories/all');
 print_r($success);
 ```
 
@@ -53,7 +53,7 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- https://tools.brightlocal.com/seo-tools/api/v2/get-directories
+ https://tools.brightlocal.com/seo-tools/api/v1/directories/all
 ```
 
 ```csharp
@@ -61,7 +61,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
 
-var success = request.Post("/v2/get-directories", parameters);
+var success = request.Post("/v1/directories/all", parameters);
 ```
 
 > Success (200 OK)
@@ -69,7 +69,7 @@ var success = request.Post("/v2/get-directories", parameters);
 ```json
 {
     "response":  {
-        "count": 256,
+        "count": 375,
         "supported_countries": ["GBR","USA","IRL",...],
         "results": [
 	       	{
@@ -89,9 +89,9 @@ var success = request.Post("/v2/get-directories", parameters);
 
 ### HTTP Request
 
-`POST https://tools.brightlocal.com/seo-tools/api/v2/get-directories`
+`POST https://tools.brightlocal.com/seo-tools/api/v1/directories/all`
 
-`POST https://tools.brightlocal.com/seo-tools/api/v2/get-directories/<country>`
+`POST https://tools.brightlocal.com/seo-tools/api/v1/directories/<country>`
 
 ### Query Parameters
 
