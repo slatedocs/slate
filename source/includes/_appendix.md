@@ -32,19 +32,6 @@ One format may work better than another for a specific business so we recommend 
 
 We no longer list the supported local directories here. We now have an below which enables you to retrieve a list of directories (either all or for an individual country).
 
-
-### HTTP Request
-
-`GET https://tools.brightlocal.com/seo-tools/api/v2/get-results`
-
-### Query Parameters
-
-Parameter | Notes
---------- | -----
-api-key | <span class="label label-required">Required</span>	
-sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-
 ## Get list of supported local directories
 
 

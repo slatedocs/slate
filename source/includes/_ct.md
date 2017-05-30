@@ -697,3 +697,16 @@ var results = request.Get("/v2/ct/get-results", parameters);
     }
 }
 ```
+
+### HTTP Request
+
+`GET https://tools.brightlocal.com/seo-tools/api/v2/ct/get-results`
+
+### Query Parameters
+
+Parameter | Notes
+--------- | -----
+api-key | <span class="label label-required">Required</span>	
+sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+report-id | <span class="label label-required">Required</span>
