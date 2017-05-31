@@ -109,6 +109,26 @@ Create a router.
 | name<br/>*string*                     | The router's name                   |
 | externalNetworkId<br/>*UUID*          | The router's external network ID    |
 
+### Create a router interface on a network
+
+```shell
+curl -X POST \
+    -H "MC-Api-Key: your_api_key" \
+    -H "Content-Type: application/json" \
+    -d "request_body" \
+    "https://api.your.cloudmc/v1/services/compute-os/devel/routers/212eb8d8-80ee-4edd-8bae-1efed8bc5c71?operation=add_interface"
+# Request should look like this:
+```
+```json
+{
+    "newNetworkId": "68f97fb0-6a71-4be1-87bf-1c805940d2cb"
+}
+```
+
+<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/routers/:id?operation=add_interface</code>
+
+Create a router interface on a network.
+
 ### Delete a router
 
 ```shell
@@ -119,12 +139,4 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/routers/:id</code>
 
-Delete a security group.
-
-### Create an interface on a network
-
-```
-TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
-TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
-TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 
-```
+Delete a router.
