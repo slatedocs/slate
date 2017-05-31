@@ -45,6 +45,10 @@ subsections:
     - disk_offerings
     - zones # Zones section
   openstack:
+    - instances
+    - flavors
+    - images
+    - floatingIps
     - securityGroups
     - securityGroupRules
 search: true
