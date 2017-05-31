@@ -89,7 +89,7 @@ Create a security group in an environment.
 
 ```shell
 curl -X DELETE \
-    -H "MC-Api-Key: your_api_key"
+    -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/securitygroups/1bd672f4-b274-4371-a792-b0a6c6778cc7"
 ```
 

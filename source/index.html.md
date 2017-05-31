@@ -48,8 +48,8 @@ subsections:
     - instances
     - flavors
     - images
-    - securityGroups
     - floatingIps
-
+    - securityGroups
+    - securityGroupRules
 search: true
 ---
