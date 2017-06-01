@@ -97,13 +97,31 @@ Required | &nbsp;
 Optional | &nbsp;
 ------ | -----------
 
+<!-------------------- DELETE A SITE-TO-SITE VPN -------------------->
+
+
+#### Delete a site-to-site VPN
+
+
+```shell
+
+# Example:
+
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns/d49b2922-0581-4587-94df-6fe719327d0f"
+```
+
+<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/sitetositevpns/:id</code>
+
+Delete an existing site-to-site VPN.
+
+
 <!-------------------- RESET A SITE-TO-SITE VPN -------------------->
 
 #### Reset a site-to-site VPN
 
 ```shell
-
-# Here is the absolute minimum information required to create a new site-to-site VPN:
 
 curl -X POST \
    -H "Content-Type: application/json" \
