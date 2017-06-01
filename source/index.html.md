@@ -743,7 +743,7 @@ Parameter | Type | Description
 `list_image_url` | *string* | Link to list image
 `thumbnail_image_url` | *string* | Link to thumbnail image
 `infos` | *array\<info\>* | List of infos for the category
-`services` | *array\<service\>* | List of services for the category
+`services` | *array\<[service](#services)\>* | List of services for the category
 
 
 
@@ -797,24 +797,8 @@ curl\
         90
       ],
       "payment_methods": [
-        {
-          "id": 1,
-          "sort": 1,
-          "title": "Cash",
-          "type": "Cash",
-          "data": null,
-          "icon_image_url": "http://image.url/here.jpg"
-        },
-        {
-          "id": 2,
-          "sort": 1,
-          "title": "Card",
-          "type": "Stripe",
-          "data": {
-            "stripe_key": "kdj9DSA923131safdfd89a7fklj`cxzc"
-          },
-          "icon_image_url": "http://image.url/here.jpg"
-        }
+        1,
+        2
       ],
       "customize": {
         "tooltip": "Click here"
@@ -848,15 +832,8 @@ Parameter | Type | Description
 `choices_images_urls` | *string* | Link to choices images rotating in booking process
 `logo_image_url` | *string* | Link to logo image
 `infos` | *array\<info\>* | List of infos for the services
-`choices` | *array\<choice\>* | List of questions to book the service
-`payment_methods` | *array\<payment_methods\>* | List of available payment methods for the service
-`payment_methods.id` | *integer* | Unique identifier
-`payment_methods.sort` | *integer* | Order of item in list
-`payment_methods.title` | *string* | Display name of payment method
-`payment_methods.type` | *string* | *<b>Cash</b> - Cash payment*<br>*<b>Stripe</b> - Card payment via Stripe*
-`payment_methods.data`<br>*optional* | *object* | Based on the payment provider different data may be provided (such as keys, tokens etc.)*<b>3</b> - Stripe UK Apple Pay*
-`payment_methods.data.stripe_key ` | *string* | Token for connecting to Stripe API
-`payment_methods.icon_image_url` | *string* | Icon image for payment method
+`choices` | *array\<[choice](#choices)\>* | List of questions to book the service
+`payment_methods` | *array\<[payment_methods](#payment-methods)\>* | List of available payment methods for the service
 `customize` | *object* | Key-value pairs of custom attributes
 `logic_js` | *string* | JavaScript containing functions for modification of booking process
 
@@ -981,8 +958,61 @@ Parameter | Type | Description
 
 
 
+## Payment methods
 
 
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/client/services/2/payment_methods"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "sort": 1,
+      "title": "Cash",
+      "type": "Cash",
+      "attributes": null,
+      "icon_image_url": "http://image.url/here.jpg"
+    },
+    {
+      "id": 2,
+      "sort": 1,
+      "title": "Card",
+      "type": "Stripe",
+      "attributes": {
+        "stripe_key": "kdj9DSA923131safdfd89a7fklj`cxzc"
+      },
+      "icon_image_url": "http://image.url/here.jpg"
+    }
+  ]
+}
+```
+
+Available payment methods for service
+
+
+`"path": "services/{service id}/payment_methods"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`id` | *integer* | Unique identifier
+`sort` | *integer* | Order of item in list
+`title` | *string* | Display name of payment method
+`type` | *string* | *<b>Cash</b> - Cash payment*<br>*<b>Stripe</b> - Card payment via Stripe*
+`attributes`<br>*optional* | *object* | Based on the payment provider different data may be provided (such as keys, tokens etc.)
+`attributes.stripe_key`<br>*optional* | *string* | Stripe API authorization key
+`icon_image_url` | *string* | Icon image for payment method<
 
 
 ## Treats
