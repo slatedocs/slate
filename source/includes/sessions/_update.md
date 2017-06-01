@@ -78,10 +78,6 @@ Updating the `need_attention` attribute to `false`:
 
   - Resumes the [conversation system](#)
 
-<aside class="notice">
-  At least one <a href="#messages">message</a>  must have been created for the given customer before attempting to update a session.
-</aside>
-
 
 ### HTTP Request
 
