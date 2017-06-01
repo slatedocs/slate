@@ -131,7 +131,7 @@ curl -H "Content-Type:application/json" \
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 -X POST https://api.practitest.com/api/v2/projects/4566/tests.json \
--d '{"data": { "type": "tests", "attributes": {"name": "one", "author-id": 22, "priority": "highest", "steps": {"data": [{"name": "step one", "description": "Step 1 description", "expected-results": "result"}, {"name": "step two", "expected-results": "result2"}] }}}'
+-d '{"data": { "type": "tests", "attributes": {"name": "one", "author-id": 22, "priority": "highest"}, "steps": {"data": [{"name": "step one", "description": "Step 1 description", "expected-results": "result"}, {"name": "step two", "expected-results": "result2"}] }}}'
 ```
 
 
