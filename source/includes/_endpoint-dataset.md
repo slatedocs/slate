@@ -149,21 +149,32 @@ options.  The limit and offset are returned in relationship to datasets related 
 
 Here are the parameters that can be passed to the search endpoint.
 
-Parameter                  | Type        | Description
----------------------------|-------------|------------------------------------------------
-q                          | string      | query string
-f                          | json Object | used to filter the output of the search (see below)
-limit                      | integer     | limit the number of dataset results returned by the api to less than this amount (default: 10)
-offset                     | integer     | offset into the search index to start gathering results from pre-filter
-max_variables_per_dataset  | integer     | limit the number of variables that match to this number (default: 1000, max: 1000)
+Parameter                          | Type        | Description
+-----------------------------------|-------------|------------------------------------------------
+q                                  | string      | query string
+f                                  | json Object | used to filter the output of the search (see below)
+limit                              | integer     | limit the number of dataset results returned by the api to less than this amount (default: 10)
+offset                             | integer     | offset into the search index to start gathering results from pre-filter
+max_variables_per_dataset          | integer     | limit the number of variables that match to this number (default: 1000, max: 1000)
+embedded_variables                 | boolean     | embed the results within the dataset results (this will become the default in the future)
+max_subfield_entries_per_variable  | integer     | some fields in a variable result are a list of items, these lists can be very long at times (think category names).  This limits the number of results for performance/noise reduction.  Pertinent (matching) results are returned first, and then remaining results are padded to meet the limit.  
+
+<aside class="notice">
+By default there are only 10 datasets returned.  Inside the response you will find a `totals.datasets` that
+indicates the total number of datasets that matched the search.  Use this to set offset and limit to appropriately
+limit and compile your search results.
+</aside>
+
 
 Allowable filter parameters:
 
 Parameter   | Type             | Description
 ------------|------------------|-------------------------------------------------
 dataset_ids | array of strings | limit results to particular dataset_ids or urls (user must have read access to that dataset)
-team        | string           | url or id  of the team to limit results (user must have read access to the team)
-project     | strint           | url or id of the project to limit results (user must have access to the project)
+team        | string           | url or id of the team to limit results (user must have read access to the team)
+project     | string           | url or id of the project to limit results (user must have access to the project)
+owner       | string           | The owner of the dataset must match the given url.
+label       | string           | The dataset must be in a folder or subfolder with the given name.
 
 <aside class="notice">
 The query string can only be alpha-numeric characters (including underscores) logical operators are not allowed at this time.
@@ -174,19 +185,19 @@ The query string can only be alpha-numeric characters (including underscores) lo
 
 Here is a list of the fields that are searched by the Crunch search endpoint
 
-Field             | Type            | Description                                             | Post-Filter?
-------------------|-----------------|-------------------------------------------------------- | ----------
-category_names    | List of Strings | Category names (associated with categorical variables)  | yes
-dataset_id        | String          | ID of the dataset                                       | no
-description       | String          | description of the variable                             | yes
-id                | String          | ID of the variable                                      | no
-name              | String          | name of the variable                                    | yes
-owner             | String          | owner's ID of the variable                              | no
-subvar_names      | List of Strings | Names of the subvariables associated with the variable  | yes
-users             | List of Strings | User IDs having read-access to the variable             | no
-group_names       | List of Strings | group names (from the variable ordering) associated with the variable | yes
-dataset_labels    | List of Objects | dataset_labels associated with the user associated with the variable | no
-dataset_name      | String          | dataset_name associated with this variable              | no
+Field             | Type            | Description                                             
+------------------|-----------------|-------------------------------------------------------------------------------
+category_names    | List of Strings | Category names (associated with categorical variables) 
+dataset_id        | String          | ID of the dataset
+description       | String          | description of the variable                           
+id                | String          | ID of the variable                             
+name              | String          | name of the variable      
+owner             | String          | owner's ID of the variable  
+subvar_names      | List of Strings | Names of the subvariables associated with the variable
+users             | List of Strings | User IDs having read-access to the variable
+group_names       | List of Strings | group names (from the variable ordering) associated with the variable
+dataset_labels    | List of Objects | dataset_labels associated with the user associated with the variable
+dataset_name      | String          | dataset_name associated with this variable            
 dataset_owner     | String          | ID of the owner of the dataset associated with the variable | no
 dataset_users     | List of Strings | User IDs having read-access to the dataset associated with the variable | no
 dataset_teams     | List of Strings | Team IDs having read-access to the dataset associated with the variable | no
@@ -196,6 +207,13 @@ dataset_projects  | List of Strings | Project IDs having read-access to the data
 ```http
 GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_variables_list={group_variables_list}  HTTP/1.1
 ```
+
+```
+import pycrunch
+site = pycrunch.connect("me@mycompany.com", "yourpassword", "https://app.crunch.io/api/")
+results = site.datasets.follow('search', 'q=findme&embedded_variables=True').value
+datasets_found = results['groups'][0]['datasets']
+variables_by_dataset = {k, v.get('variables', []) for k, v in datasets_found.iteritems()}
 
 ```json
 {
