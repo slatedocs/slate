@@ -733,7 +733,7 @@ Categories group services.
 
 Parameter | Type | Description
 -------- | ----- | -------
-`id` | *integer* | Object id
+`id` | *integer* | Unique identifier
 `sort` | *integer* | Order of item in list
 `title` | *string* | Category title text
 `phone` | *string* | Category phone number
@@ -797,9 +797,24 @@ curl\
         90
       ],
       "payment_methods": [
-        3,
-        4,
-        5
+        {
+          "id": 1,
+          "sort": 1,
+          "title": "Cash",
+          "type": "Cash",
+          "data": null,
+          "icon_image_url": "http://image.url/here.jpg"
+        },
+        {
+          "id": 2,
+          "sort": 1,
+          "title": "Card",
+          "type": "Stripe",
+          "data": {
+            "stripe_key": "kdj9DSA923131safdfd89a7fklj`cxzc"
+          },
+          "icon_image_url": "http://image.url/here.jpg"
+        }
       ],
       "customize": {
         "tooltip": "Click here"
@@ -819,7 +834,7 @@ Services
 
 Parameter | Type | Description
 -------- | ----- | -------
-`id` | *integer* | Object id
+`id` | *integer* | Unique identifier
 `sort` | *integer* | Order of item in list
 `type` | *integer* | *<b>1</b> - Service*<br>*<b>2</b> - Deal*
 `title` | *string* | Service title text
@@ -835,11 +850,15 @@ Parameter | Type | Description
 `infos` | *array\<info\>* | List of infos for the services
 `choices` | *array\<choice\>* | List of questions to book the service
 `payment_methods` | *array\<payment_methods\>* | List of available payment methods for the service
+`payment_methods.id` | *integer* | Unique identifier
+`payment_methods.sort` | *integer* | Order of item in list
+`payment_methods.title` | *string* | Display name of payment method
+`payment_methods.type` | *string* | *<b>Cash</b> - Cash payment*<br>*<b>Stripe</b> - Card payment via Stripe*
+`payment_methods.data`<br>*optional* | *object* | Based on the payment provider different data may be provided (such as keys, tokens etc.)*<b>3</b> - Stripe UK Apple Pay*
+`payment_methods.data.stripe_key ` | *string* | Token for connecting to Stripe API
+`payment_methods.icon_image_url` | *string* | Icon image for payment method
 `customize` | *object* | Key-value pairs of custom attributes
 `logic_js` | *string* | JavaScript containing functions for modification of booking process
-
-
-
 
 
 ## Choices
@@ -890,7 +909,7 @@ Questions the user needs to answer to book a service.
 
 Parameter | Type | Description
 -------- | ----- | -------
-`id` | *integer* | Object id
+`id` | *integer* | Unique identifier
 `sort` | *integer* | Order of item in list
 `title` | *string* | Question text
 `summary_title` | *string* | Question short title text in summary
@@ -1006,14 +1025,14 @@ Treats are affiliate deals. They are shown in a list. Tapping on one opens a lin
 
 Parameter | Type | Description
 -------- | ----- | -------
-`id` | *integer* | Identifier
+`id` | *integer* | Unique identifier
 `title` | *string* | Treat title text.
 `description` | *string* | Treat detailed description text.
 `note` | *string* | Small additional description text.
 `image` | *integer* | Treat image object id. If expanded image full object is returned.
 `image_url` | *string* | Treat image direct link.
 `link` | *string* | Link to treat website.
-`sort` | *integer* | Order of treat.
+`sort` | *integer* | Order of item in list
 
 
 ## Validations
@@ -1319,12 +1338,12 @@ Parameter | Type | Description
 `type` | *integer* | *<b>10</b> - After checkin*<br>*<b>20</b> - Before checkout*
 `choices` | *array* | Checklist questions
 `choices.id` | *integer* | Unique identifier
-`choices.sort` | *integer* | Order of item
+`choices.sort` | *integer* | Order of item in list
 `choices.required` | *boolean* | Should question be answered to send the checklist
 `choices.title` | *string* | Checklist question
 `choices.choice_items` | *array* | Question answers
 `choices.choice_items.id` | *integer* | Unique identifier
-`choices.choice_items.sort` | *integer* | Order of item
+`choices.choice_items.sort` | *integer* | Order of item in list
 `choices.choice_items.type` | *integer* | *<b>2</b> - Radio*<br>*<b>3</b> - Stepper (incremental value)*<br>*<b>12</b> - Photo attachment*
 `choices.choice_items.title` | *string* | Checklist question answer
 
