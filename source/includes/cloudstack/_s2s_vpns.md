@@ -49,21 +49,21 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the site-to-site VPN
 `name`<br/>*string* | The name of the site-to-site VPN
-`state`<br/>*string* | The state of the site-to-site VPN. Can be Connected, Pending or Disconnected. If disconnected, you can try to use the [reset](#reset-a-site-to-site-vpn) operation
+`state`<br/>*string* | The state of the site-to-site VPN. Can be Connected, Pending or Disconnected. If disconnected, you can try to use the [reset](#reset-the-connection-of-a-site-to-site-vpn) operation
 `vpcId`<br/>*UUID* | The VPC for which the site-to-site VPN was created.
 `gateway`<br/>*string*  | The gateway of the network you want to connect to. NOTE: you cannot use a gateway that has already been used by a site-to-site VPN in your environment
-`cidr`<br/>*string*  | Cidr of the network you want to connect to.
-`ipSecPsk`<br/>*string*  | IPSec pre-shared key. Mmust contain at least 10 alphanumeric characters.
+`cidr`<br/>*string*  | CIDR of the network you want to connect to.
+`ipSecPsk`<br/>*string*  | IPSec pre-shared key. Must contain at least 10 alphanumeric characters.
 `ikeEncryptionAlgorithm`<br/>*string*  | The Internet Key Exchange (IKE) policy for phase-1. The supported encryption algorithms are AES128, AES192, AES256, and 3DES.
 `ikeHashAlgorithm`<br/>*string*  | The IKE hash for phase-1. The supported hash algorithms are SHA1 and MD5.
 `ikeDhGroup`<br/>*string*  | A public-key cryptography protocol which allows two parties to establish a shared secret over an insecure communications channel. The supported options are None, Group-5 (1536-bit) and Group-2 (1024-bit).
 `ikeLifetime`<br/>*integer*  | The phase-1 lifetime of the security association in seconds.
 `espEncryptionAlgorithm`<br/>*string*  | Encapsulating Security Payload (ESP) algorithm within phase-2. The supported encryption algorithms are AES128, AES192, AES256, and 3DES.
 `espHashAlgorithm`<br/>*string*  | Encapsulating Security Payload (ESP) hash for phase-2. Supported hash algorithms are SHA1 and MD5.
-`espPerfectForwardSecrecy`<br/>*string*  |  Forward Secrecy (or PFS) is the property that ensures that a session key derived from a set of long-term public and private keys will not be compromised. The supported options are None, Group-5 (1536-bit) and Group-2 (1024-bit).
+`espPerfectForwardSecrecy`<br/>*string*  | Perfect Forward Secrecy (or PFS) is the property that ensures that a session key derived from a set of long-term public and private keys will not be compromised. The supported options are None, Group-5 (1536-bit) and Group-2 (1024-bit).
 `espLifetime`<br/>*integer*  | The phase-2 lifetime of the security association in seconds
 `dpd`<br/>*boolean*    | A method to detect an unavailable Internet Key Exchange (IKE) peer. 
-`forceEncap`<br/>*boolean* | Force encapsulation for Nat Traversal
+`forceEncap`<br/>*boolean* | Force encapsulation for NAT Traversal
 
 Query Parameters | &nbsp;
 ---------- | -----
@@ -115,18 +115,18 @@ Attributes | &nbsp;
 `state`<br/>*string* | The state of the site-to-site VPN. Can be Connected, Pending or Disconnected. If disconnected, you can try to use the [reset](#reset-a-site-to-site-vpn) operation
 `vpcId`<br/>*UUID* | The VPC for which the site-to-site VPN was created.
 `gateway`<br/>*string*  | The gateway of the network you want to connect to. NOTE: you cannot use a gateway that has already been used by a site-to-site VPN in your environment
-`cidr`<br/>*string*  | Cidr of the network you want to connect to.
-`ipSecPsk`<br/>*string*  | IPSec pre-shared key. Mmust contain at least 10 alphanumeric characters.
+`cidr`<br/>*string*  | CIDR of the network you want to connect to.
+`ipSecPsk`<br/>*string*  | IPSec pre-shared key. Must contain at least 10 alphanumeric characters.
 `ikeEncryptionAlgorithm`<br/>*string*  | The Internet Key Exchange (IKE) policy for phase-1. The supported encryption algorithms are AES128, AES192, AES256, and 3DES.
 `ikeHashAlgorithm`<br/>*string*  | The IKE hash for phase-1. The supported hash algorithms are SHA1 and MD5.
 `ikeDhGroup`<br/>*string*  | A public-key cryptography protocol which allows two parties to establish a shared secret over an insecure communications channel. The supported options are None, Group-5 (1536-bit) and Group-2 (1024-bit).
 `ikeLifetime`<br/>*integer*  | The phase-1 lifetime of the security association in seconds.
 `espEncryptionAlgorithm`<br/>*string*  | Encapsulating Security Payload (ESP) algorithm within phase-2. The supported encryption algorithms are AES128, AES192, AES256, and 3DES.
 `espHashAlgorithm`<br/>*string*  | Encapsulating Security Payload (ESP) hash for phase-2. Supported hash algorithms are SHA1 and MD5.
-`espPerfectForwardSecrecy`<br/>*string*  |  Forward Secrecy (or PFS) is the property that ensures that a session key derived from a set of long-term public and private keys will not be compromised. The supported options are None, Group-5 (1536-bit) and Group-2 (1024-bit).
+`espPerfectForwardSecrecy`<br/>*string*  |  Perfect Forward Secrecy (or PFS) is the property that ensures that a session key derived from a set of long-term public and private keys will not be compromised. The supported options are None, Group-5 (1536-bit) and Group-2 (1024-bit).
 `espLifetime`<br/>*integer*  | The phase-2 lifetime of the security association in seconds
 `dpd`<br/>*boolean*    | A method to detect an unavailable Internet Key Exchange (IKE) peer. 
-`forceEncap`<br/>*boolean* | Force encapsulation for Nat Traversal
+`forceEncap`<br/>*boolean* | Force encapsulation for NAT Traversal
 
 <!-------------------- CREATE A SITE-TO-SITE VPN -------------------->
 
@@ -172,21 +172,21 @@ Required | &nbsp;
 `name`<br/>*string* | The name of the site-to-site VPN
 `vpcId`<br/>*UUID* | The VPC for which the site-to-site VPN was created.
 `gateway`<br/>*string*  | The gateway of the network you want to connect to. NOTE: you cannot use a gateway that has already been used by a site-to-site VPN in your environment
-`cidr`<br/>*string*  | Cidr of the network you want to connect to.
-`ipSecPsk`<br/>*string*  | IPSec pre-shared key. Mmust contain at least 10 alphanumeric characters.
+`cidr`<br/>*string*  | CIDR of the network you want to connect to.
+`ipSecPsk`<br/>*string*  | IPSec pre-shared key. Must contain at least 10 alphanumeric characters.
 `ikeEncryptionAlgorithm`<br/>*string*  | The Internet Key Exchange (IKE) policy for phase-1. The supported encryption algorithms are AES128, AES192, AES256, and 3DES.
 `ikeHashAlgorithm`<br/>*string*  | The IKE hash for phase-1. The supported hash algorithms are SHA1 and MD5.
-`ikeDhGroup`<br/>*string*  | A public-key cryptography protocol which allows two parties to establish a shared secret over an insecure communications channel. The supported options are None, Group-5 (1536-bit) and Group-2 (1024-bit).
 `ikeLifetime`<br/>*integer*  | The phase-1 lifetime of the security association in seconds.
 `espEncryptionAlgorithm`<br/>*string*  | Encapsulating Security Payload (ESP) algorithm within phase-2. The supported encryption algorithms are AES128, AES192, AES256, and 3DES.
 `espHashAlgorithm`<br/>*string*  | Encapsulating Security Payload (ESP) hash for phase-2. Supported hash algorithms are SHA1 and MD5.
-`espPerfectForwardSecrecy`<br/>*string*  |  Forward Secrecy (or PFS) is the property that ensures that a session key derived from a set of long-term public and private keys will not be compromised. The supported options are None, Group-5 (1536-bit) and Group-2 (1024-bit).
 `espLifetime`<br/>*integer*  | The phase-2 lifetime of the security association in seconds
 
 Optional | &nbsp;
 ------ | -----------
-`dpd`<br/>*boolean*    | defaults to false
-`forceEncap`<br/>*boolean* | defaults to false
+`ikeDhGroup`<br/>*string*  | A public-key cryptography protocol which allows two parties to establish a shared secret over an insecure communications channel. The supported options are Group-5 (1536-bit) and Group-2 (1024-bit).
+`espPerfectForwardSecrecy`<br/>*string*  |  Perfect Forward Secrecy (or PFS) is the property that ensures that a session key derived from a set of long-term public and private keys will not be compromised. The supported options are Group-5 (1536-bit) and Group-2 (1024-bit).
+`dpd`<br/>*boolean*    | A method to detect an unavailable Internet Key Exchange (IKE) peer. Defaults to false
+`forceEncap`<br/>*boolean* | Force encapsulation for NAT Traversal. Defaults to false
 
 <!-------------------- DELETE A SITE-TO-SITE VPN -------------------->
 
@@ -210,7 +210,7 @@ Delete an existing site-to-site VPN.
 
 <!-------------------- RESET A SITE-TO-SITE VPN -------------------->
 
-#### Reset a site-to-site VPN
+#### Reset the connection of a site-to-site VPN
 
 ```shell
 
