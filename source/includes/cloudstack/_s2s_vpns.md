@@ -169,7 +169,7 @@ Create a site-to-site VPN
 
 Required | &nbsp;
 ------ | -----------
-`name`<br/>*string* | The name of the site-to-site VPN
+`name`<br/>*string* | The name of the site-to-site VPN. Must be unique in the environment.
 `vpcId`<br/>*UUID* | The VPC for which the site-to-site VPN was created.
 `gateway`<br/>*string*  | The gateway of the network you want to connect to. NOTE: you cannot use a gateway that has already been used by a site-to-site VPN in your environment
 `cidr`<br/>*string*  | CIDR of the network you want to connect to.
