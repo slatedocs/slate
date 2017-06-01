@@ -891,7 +891,7 @@ Parameter | Type | Description
 `title` | *string* | Question text
 `summary_title` | *string* | Question short title text in summary
 `required` | *boolean* | Should the question be answered to book
-`choice_items` | *array\<choice_item\>* | List of answers for the question
+`choice_items` | *array\<[choice_item](#choice-items)\>* | List of answers for the question
 
 
 
@@ -953,7 +953,7 @@ Parameter | Type | Description
 `summary_title` | *string* | Answer short title text in summary
 `is_in_summary` | *boolean* | Should the answer be included in the summary of booking
 `name` | *string* | Title of answer
-`choice_items` | *array\<choice_item\>* | List of sub-answers for the answers
+`choice_items` | *array\<[choice_item](#choice-items)\>* | List of sub-answers for the answers
 
 
 
@@ -980,6 +980,7 @@ curl\
       "sort": 1,
       "title": "Cash",
       "type": "Cash",
+      "payment_provider_id": 3,
       "attributes": null,
       "icon_image_url": "http://image.url/here.jpg"
     },
@@ -1010,6 +1011,7 @@ Parameter | Type | Description
 `sort` | *integer* | Order of item in list
 `title` | *string* | Display name of payment method
 `type` | *string* | *<b>Cash</b> - Cash payment*<br>*<b>Stripe</b> - Card payment via Stripe*
+`payment_provider_id ` | *integer* | Identifier for the the account used for the payment method (e.g. Stripe UK, Stripe AUS etc.)
 `attributes`<br>*optional* | *object* | Based on the payment provider different data may be provided (such as keys, tokens etc.)
 `attributes.stripe_key`<br>*optional* | *string* | Stripe API authorization key
 `icon_image_url` | *string* | Icon image for payment method<
