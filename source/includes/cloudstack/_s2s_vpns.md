@@ -1,5 +1,6 @@
 ### Site-to-site VPN
 
+A site-to-site VPN allows multiple sites to establish a secure connection over the public network. In our case, we are talking about a secure connection between your VPC and another network (e.g. VPC, offices).
 
 <!-------------------- LIST SITE-TO-SITE VPNS -------------------->
 
