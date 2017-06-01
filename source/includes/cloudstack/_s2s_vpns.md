@@ -18,6 +18,8 @@ curl -X GET \
     {
         "id": "d49b2922-0581-4587-94df-6fe719327d0f",
         "name": "stargate",
+        "state": "Connected",
+        "vpcId": "3fe7d82a-f4c4-4552-ac3b-787fdafed4e7",
         "gateway":"19.19.19.19",
         "cidr":"10.12.0.2/22",
         "ipSecPsk": "WtOBS9GRux2XtJPtHY2TUvrv",
@@ -46,6 +48,22 @@ Retrieve a list of all site-to-site VPNs in an [environment](#environments)
 Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the site-to-site VPN
+`name`<br/>*string* | The name of the site-to-site VPN
+`state`<br/>*string* | The state of the site-to-site VPN. Can be Connected, Pending or Disconnected. If disconnected, you can try to use the [reset](#reset-a-site-to-site-vpn) operation
+`vpcId`<br/>*UUID* | The VPC for which the site-to-site VPN was created.
+`gateway`<br/>*string*  | The gateway of the network you want to connect to. NOTE: you cannot use a gateway that has already been used by a site-to-site VPN in your environment
+`cidr`<br/>*string*  | Cidr of the network you want to connect to.
+`ipSecPsk`<br/>*string*  | IPSec pre-shared key. Mmust contain at least 10 alphanumeric characters.
+`ikeEncryptionAlgorithm`<br/>*string*  | The Internet Key Exchange (IKE) policy for phase-1. The supported encryption algorithms are AES128, AES192, AES256, and 3DES.
+`ikeHashAlgorithm`<br/>*string*  | The IKE hash for phase-1. The supported hash algorithms are SHA1 and MD5.
+`ikeDhGroup`<br/>*string*  | A public-key cryptography protocol which allows two parties to establish a shared secret over an insecure communications channel. The supported options are None, Group-5 (1536-bit) and Group-2 (1024-bit).
+`ikeLifetime`<br/>*integer*  | The phase-1 lifetime of the security association in seconds.
+`espEncryptionAlgorithm`<br/>*string*  | Encapsulating Security Payload (ESP) algorithm within phase-2. The supported encryption algorithms are AES128, AES192, AES256, and 3DES.
+`espHashAlgorithm`<br/>*string*  | Encapsulating Security Payload (ESP) hash for phase-2. Supported hash algorithms are SHA1 and MD5.
+`espPerfectForwardSecrecy`<br/>*string*  |  Forward Secrecy (or PFS) is the property that ensures that a session key derived from a set of long-term public and private keys will not be compromised. The supported options are None, Group-5 (1536-bit) and Group-2 (1024-bit).
+`espLifetime`<br/>*integer*  | The phase-2 lifetime of the security association in seconds
+`dpd`<br/>*boolean*    | A method to detect an unavailable Internet Key Exchange (IKE) peer. 
+`forceEncap`<br/>*boolean* | Force encapsulation for Nat Traversal
 
 Query Parameters | &nbsp;
 ---------- | -----
@@ -69,7 +87,6 @@ curl -X GET \
       "name": "stargate",
       "state": "Connected",
       "vpcId": "3fe7d82a-f4c4-4552-ac3b-787fdafed4e7",
-      "vpnCustomerGatewayId": "11e9e3cf-8607-4836-9caa-ea86dc35758f",
       "gateway":"19.19.19.19",
       "cidr":"10.12.0.2/22",
       "ipSecPsk": "WtOBS9GRux2XtJPtHY2TUvrv",
@@ -94,23 +111,22 @@ Retrieve information about a site-to-site VPN.
 Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the site-to-site VPN
-`name`<br/>*string* |  
-`state`<br/>*string* |
-`vpcId`<br/>*UUID* |
-`vpnCustomerGatewayId`<br/>*UUID* |
-`gateway`<br/>*string*  |
-`cidr`<br/>*string*  |
-`ipSecPsk`<br/>*string*  |
-`ikeEncryptionAlgorithm`<br/>*string*  |
-`ikeHashAlgorithm`<br/>*string*  |
-`ikeDhGroup`<br/>*string*  | 
-`ikeLifetime`<br/>*integer*  |
-`espEncryptionAlgorithm`<br/>*string*  |
-`espHashAlgorithm`<br/>*string*  |
-`espPerfectForwardSecrecy`<br/>*string*  |
-`espLifetime`<br/>*integer*  |
-`dpd`<br/>*boolean*    | 
-`forceEncap`<br/>*boolean* | 
+`name`<br/>*string* | The name of the site-to-site VPN
+`state`<br/>*string* | The state of the site-to-site VPN. Can be Connected, Pending or Disconnected. If disconnected, you can try to use the [reset](#reset-a-site-to-site-vpn) operation
+`vpcId`<br/>*UUID* | The VPC for which the site-to-site VPN was created.
+`gateway`<br/>*string*  | The gateway of the network you want to connect to. NOTE: you cannot use a gateway that has already been used by a site-to-site VPN in your environment
+`cidr`<br/>*string*  | Cidr of the network you want to connect to.
+`ipSecPsk`<br/>*string*  | IPSec pre-shared key. Mmust contain at least 10 alphanumeric characters.
+`ikeEncryptionAlgorithm`<br/>*string*  | The Internet Key Exchange (IKE) policy for phase-1. The supported encryption algorithms are AES128, AES192, AES256, and 3DES.
+`ikeHashAlgorithm`<br/>*string*  | The IKE hash for phase-1. The supported hash algorithms are SHA1 and MD5.
+`ikeDhGroup`<br/>*string*  | A public-key cryptography protocol which allows two parties to establish a shared secret over an insecure communications channel. The supported options are None, Group-5 (1536-bit) and Group-2 (1024-bit).
+`ikeLifetime`<br/>*integer*  | The phase-1 lifetime of the security association in seconds.
+`espEncryptionAlgorithm`<br/>*string*  | Encapsulating Security Payload (ESP) algorithm within phase-2. The supported encryption algorithms are AES128, AES192, AES256, and 3DES.
+`espHashAlgorithm`<br/>*string*  | Encapsulating Security Payload (ESP) hash for phase-2. Supported hash algorithms are SHA1 and MD5.
+`espPerfectForwardSecrecy`<br/>*string*  |  Forward Secrecy (or PFS) is the property that ensures that a session key derived from a set of long-term public and private keys will not be compromised. The supported options are None, Group-5 (1536-bit) and Group-2 (1024-bit).
+`espLifetime`<br/>*integer*  | The phase-2 lifetime of the security association in seconds
+`dpd`<br/>*boolean*    | A method to detect an unavailable Internet Key Exchange (IKE) peer. 
+`forceEncap`<br/>*boolean* | Force encapsulation for Nat Traversal
 
 <!-------------------- CREATE A SITE-TO-SITE VPN -------------------->
 
@@ -153,19 +169,19 @@ Create a site-to-site VPN
 
 Required | &nbsp;
 ------ | -----------
-`name`<br/>*string* |  
-`vpcId`<br/>*UUID* |
-`gateway`<br/>*string*  |
-`cidr`<br/>*string*  |
-`ipSecPsk`<br/>*string*  |
-`ikeEncryptionAlgorithm`<br/>*string*  |
-`ikeHashAlgorithm`<br/>*string*  |
-`ikeDhGroup`<br/>*string*  | 
-`ikeLifetime`<br/>*integer*  |
-`espEncryptionAlgorithm`<br/>*string*  |
-`espHashAlgorithm`<br/>*string*  |
-`espPerfectForwardSecrecy`<br/>*string*  |
-`espLifetime`<br/>*integer*  |
+`name`<br/>*string* | The name of the site-to-site VPN
+`vpcId`<br/>*UUID* | The VPC for which the site-to-site VPN was created.
+`gateway`<br/>*string*  | The gateway of the network you want to connect to. NOTE: you cannot use a gateway that has already been used by a site-to-site VPN in your environment
+`cidr`<br/>*string*  | Cidr of the network you want to connect to.
+`ipSecPsk`<br/>*string*  | IPSec pre-shared key. Mmust contain at least 10 alphanumeric characters.
+`ikeEncryptionAlgorithm`<br/>*string*  | The Internet Key Exchange (IKE) policy for phase-1. The supported encryption algorithms are AES128, AES192, AES256, and 3DES.
+`ikeHashAlgorithm`<br/>*string*  | The IKE hash for phase-1. The supported hash algorithms are SHA1 and MD5.
+`ikeDhGroup`<br/>*string*  | A public-key cryptography protocol which allows two parties to establish a shared secret over an insecure communications channel. The supported options are None, Group-5 (1536-bit) and Group-2 (1024-bit).
+`ikeLifetime`<br/>*integer*  | The phase-1 lifetime of the security association in seconds.
+`espEncryptionAlgorithm`<br/>*string*  | Encapsulating Security Payload (ESP) algorithm within phase-2. The supported encryption algorithms are AES128, AES192, AES256, and 3DES.
+`espHashAlgorithm`<br/>*string*  | Encapsulating Security Payload (ESP) hash for phase-2. Supported hash algorithms are SHA1 and MD5.
+`espPerfectForwardSecrecy`<br/>*string*  |  Forward Secrecy (or PFS) is the property that ensures that a session key derived from a set of long-term public and private keys will not be compromised. The supported options are None, Group-5 (1536-bit) and Group-2 (1024-bit).
+`espLifetime`<br/>*integer*  | The phase-2 lifetime of the security association in seconds
 
 Optional | &nbsp;
 ------ | -----------
