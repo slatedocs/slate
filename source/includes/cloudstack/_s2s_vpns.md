@@ -50,7 +50,7 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the site-to-site VPN
 `name`<br/>*string* | The name of the site-to-site VPN
-`state`<br/>*string* | The state of the site-to-site VPN. Can be Connected, Pending or Disconnected. If disconnected, you can try to use the [reset](#reset-the-connection-of-a-site-to-site-vpn) operation
+`state`<br/>*string* | The state of the site-to-site VPN. Can be Connected, Pending, Disconnected or Error. If disconnected, you can try to use the [reset](#reset-the-connection-of-a-site-to-site-vpn) operation
 `vpcId`<br/>*UUID* | The VPC for which the site-to-site VPN was created.
 `gateway`<br/>*string*  | The gateway of the network you want to connect to. NOTE: you cannot use a gateway that has already been used by a site-to-site VPN in your environment
 `cidr`<br/>*string*  | CIDR of the network you want to connect to.
@@ -113,7 +113,7 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the site-to-site VPN
 `name`<br/>*string* | The name of the site-to-site VPN
-`state`<br/>*string* | The state of the site-to-site VPN. Can be Connected, Pending or Disconnected. If disconnected, you can try to use the [reset](#reset-a-site-to-site-vpn) operation
+`state`<br/>*string* | The state of the site-to-site VPN. Can be Connected, Pending, Disconnected or Error. If disconnected, you can try to use the [reset](#reset-the-connection-of-a-site-to-site-vpn) operation
 `vpcId`<br/>*UUID* | The VPC for which the site-to-site VPN was created.
 `gateway`<br/>*string*  | The gateway of the network you want to connect to. NOTE: you cannot use a gateway that has already been used by a site-to-site VPN in your environment
 `cidr`<br/>*string*  | CIDR of the network you want to connect to.
