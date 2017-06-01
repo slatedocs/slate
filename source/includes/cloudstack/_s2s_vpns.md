@@ -16,7 +16,21 @@ curl -X GET \
 {
   "data": [
     {
-        "id": "d49b2922-0581-4587-94df-6fe719327d0f"
+        "id": "d49b2922-0581-4587-94df-6fe719327d0f",
+        "name": "stargate",
+        "gateway":"19.19.19.19",
+        "cidr":"10.12.0.2/22",
+        "ipSecPsk": "WtOBS9GRux2XtJPtHY2TUvrv",
+        "ikeEncryptionAlgorithm": "3des",
+        "ikeHashAlgorithm": "sha1",
+        "ikeDhGroup":"modp1536",
+        "ikeLifetime":86400,
+        "espEncryptionAlgorithm":"3des",
+        "espHashAlgorithm":"sha1",
+        "espPerfectForwardSecrecy":"modp1536",
+        "espLifetime":3600,
+        "dpd": false,
+        "forceEncap": false
     }
   ],
   "metadata": {
@@ -51,7 +65,24 @@ curl -X GET \
 ```json
 {
   "data": {
-    "id": "d49b2922-0581-4587-94df-6fe719327d0f"
+      "id": "d49b2922-0581-4587-94df-6fe719327d0f",
+      "name": "stargate",
+      "state": "Connected",
+      "vpcId": "3fe7d82a-f4c4-4552-ac3b-787fdafed4e7",
+      "vpnCustomerGatewayId": "11e9e3cf-8607-4836-9caa-ea86dc35758f",
+      "gateway":"19.19.19.19",
+      "cidr":"10.12.0.2/22",
+      "ipSecPsk": "WtOBS9GRux2XtJPtHY2TUvrv",
+      "ikeEncryptionAlgorithm": "3des",
+      "ikeHashAlgorithm": "sha1",
+      "ikeDhGroup":"modp1536",
+      "ikeLifetime":86400,
+      "espEncryptionAlgorithm":"3des",
+      "espHashAlgorithm":"sha1",
+      "espPerfectForwardSecrecy":"modp1536",
+      "espLifetime":3600,
+      "dpd": false,
+      "forceEncap": false
   }
 }
 ```
@@ -63,7 +94,23 @@ Retrieve information about a site-to-site VPN.
 Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the site-to-site VPN
-
+`name`<br/>*string* |  
+`state`<br/>*string* |
+`vpcId`<br/>*UUID* |
+`vpnCustomerGatewayId`<br/>*UUID* |
+`gateway`<br/>*string*  |
+`cidr`<br/>*string*  |
+`ipSecPsk`<br/>*string*  |
+`ikeEncryptionAlgorithm`<br/>*string*  |
+`ikeHashAlgorithm`<br/>*string*  |
+`ikeDhGroup`<br/>*string*  | 
+`ikeLifetime`<br/>*integer*  |
+`espEncryptionAlgorithm`<br/>*string*  |
+`espHashAlgorithm`<br/>*string*  |
+`espPerfectForwardSecrecy`<br/>*string*  |
+`espLifetime`<br/>*integer*  |
+`dpd`<br/>*boolean*    | 
+`forceEncap`<br/>*boolean* | 
 
 <!-------------------- CREATE A SITE-TO-SITE VPN -------------------->
 
@@ -83,8 +130,22 @@ curl -X POST \
 ```
 ```json
 {
-
-}
+      "name": "stargate",
+      "vpcId": "3fe7d82a-f4c4-4552-ac3b-787fdafed4e7",
+      "gateway":"19.19.19.19",
+      "cidr":"10.12.0.2/22",
+      "ipSecPsk": "WtOBS9GRux2XtJPtHY2TUvrv",
+      "ikeEncryptionAlgorithm": "3des",
+      "ikeHashAlgorithm": "sha1",
+      "ikeDhGroup":"modp1536",
+      "ikeLifetime":86400,
+      "espEncryptionAlgorithm":"3des",
+      "espHashAlgorithm":"sha1",
+      "espPerfectForwardSecrecy":"modp1536",
+      "espLifetime":3600,
+      "dpd": false,
+      "forceEncap": false
+  }
 ```
  <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/sitetositevpns</code>
 
@@ -92,10 +153,24 @@ Create a site-to-site VPN
 
 Required | &nbsp;
 ------ | -----------
-
+`name`<br/>*string* |  
+`vpcId`<br/>*UUID* |
+`gateway`<br/>*string*  |
+`cidr`<br/>*string*  |
+`ipSecPsk`<br/>*string*  |
+`ikeEncryptionAlgorithm`<br/>*string*  |
+`ikeHashAlgorithm`<br/>*string*  |
+`ikeDhGroup`<br/>*string*  | 
+`ikeLifetime`<br/>*integer*  |
+`espEncryptionAlgorithm`<br/>*string*  |
+`espHashAlgorithm`<br/>*string*  |
+`espPerfectForwardSecrecy`<br/>*string*  |
+`espLifetime`<br/>*integer*  |
 
 Optional | &nbsp;
 ------ | -----------
+`dpd`<br/>*boolean*    | defaults to false
+`forceEncap`<br/>*boolean* | defaults to false
 
 <!-------------------- DELETE A SITE-TO-SITE VPN -------------------->
 
