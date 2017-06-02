@@ -171,8 +171,8 @@ Allowable filter parameters:
 Parameter   | Type             | Description
 ------------|------------------|-------------------------------------------------
 dataset_ids | array of strings | limit results to particular dataset_ids or urls (user must have read access to that dataset)
-team        | string           | url or id of the team to limit results (user must have read access to the team)
-project     | string           | url or id of the project to limit results (user must have access to the project)
+team        | string           | url of the team to limit results (user must have read access to the team)
+project     | string           | url of the project to limit results (user must have access to the project)
 owner       | string           | The owner of the dataset must match the given url.
 label       | string           | The dataset must be in a folder or subfolder with the given name.
 
