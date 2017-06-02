@@ -51,5 +51,6 @@ subsections:
     - floatingIps
     - securityGroups
     - securityGroupRules
+    - routers
 search: true
 ---
