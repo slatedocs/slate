@@ -151,13 +151,13 @@ Here are the parameters that can be passed to the search endpoint.
 
 Parameter                          | Type        | Description
 -----------------------------------|-------------|------------------------------------------------
-q                                  | string      | query string
-f                                  | json Object | used to filter the output of the search (see below)
-limit                              | integer     | limit the number of dataset results returned by the api to less than this amount (default: 10)
-offset                             | integer     | offset into the search index to start gathering results from pre-filter
-max_variables_per_dataset          | integer     | limit the number of variables that match to this number (default: 1000, max: 1000)
-embedded_variables                 | boolean     | embed the results within the dataset results (this will become the default in the future)
-max_subfield_entries_per_variable  | integer     | some fields in a variable result are a list of items, these lists can be very long at times (think category names).  This limits the number of results for performance/noise reduction.  Pertinent (matching) results are returned first, and then remaining results are padded to meet the limit.  
+q                                  | String      | query string
+f                                  | Json Object | used to filter the output of the search (see below)
+limit                              | Integer     | limit the number of dataset results returned by the api to less than this amount (default: 10)
+offset                             | Integer     | offset into the search index to start gathering results from pre-filter
+max_variables_per_dataset          | Integer     | limit the number of variables that match to this number (default: 1000, max: 1000)
+embedded_variables                 | Boolean     | embed the results within the dataset results (this will become the default in the future)
+max_subfield_entries_per_variable  | Integer     | some fields in a variable result are a list of items, these lists can be very long at times (think category names).  This limits the number of results for performance/noise reduction.  Pertinent (matching) results are returned first, and then remaining results are padded to meet the limit.  
 
 <aside class="notice">
 By default there are only 10 datasets returned.  Inside the response you will find a `totals.datasets` that
@@ -170,11 +170,11 @@ Allowable filter parameters:
 
 Parameter   | Type             | Description
 ------------|------------------|-------------------------------------------------
-dataset_ids | array of strings | limit results to particular dataset_ids or urls (user must have read access to that dataset)
-team        | string           | url of the team to limit results (user must have read access to the team)
-project     | string           | url of the project to limit results (user must have access to the project)
-owner       | string           | The owner of the dataset must match the given url.
-label       | string           | The dataset must be in a folder or subfolder with the given name.
+dataset_ids | Array of strings | limit results to particular datasets (urls) (user must have read access to that dataset)
+team        | String           | url of the team to limit results (user must have read access to the team)
+project     | String           | url of the project to limit results (user must have access to the project)
+owner       | String           | The owner of the dataset must match the given url.
+label       | String           | The dataset must be in a folder or subfolder with the given name.
 
 <aside class="notice">
 The query string can only be alpha-numeric characters (including underscores) logical operators are not allowed at this time.
