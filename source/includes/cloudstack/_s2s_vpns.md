@@ -70,7 +70,7 @@ Query Parameters | &nbsp;
 ---------- | -----
 `vpc_id`<br/>*UUID* | Filter the list to only retrieve the site-to-site VPNs of a [VPC](#vpcs)
 
-<!-------------------- RETRIEVE A SNAPSHOT -------------------->
+<!-------------------- RETRIEVE A SITE-TO-SITE VPN -------------------->
 
 #### Retrieve a site-to-site VPN
 
