@@ -307,3 +307,62 @@ This endpoint suspends a Client.
 Parameter | Description
 --------- | -----------
 id | The ID of the client to suspend, the one we sent you when the client was created
+
+## Get Status
+
+```shell
+curl "https://staging.api.nexogy.com/api/residential/domain/<domain>"
+  -H "Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjY1N2"
+  -H "Accept:application/json"
+```
+
+```php
+<?
+// Set api url
+$apiUrl = 'https://staging.api.nexogy.com/api/residential/domain/<domain>';
+// Start cURL
+$c = curl_init();
+curl_setopt($c, CURLOPT_CONNECTTIMEOUT, 5);
+curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+
+// Set up headers
+$request_headers = array();
+$request_headers[] = 'Authorization: Bearer '. $access_token;
+$request_headers[] = 'Accept: application/json';
+curl_setopt($c, CURLOPT_HTTPHEADER, $request_headers);
+
+// Setup the remainder of the cURL request
+curl_setopt($c, CURLOPT_URL, $apiUrl);
+curl_setopt($c, CURLOPT_POST, true);
+
+// Execute the API call and return the response
+$result = curl_exec($c);
+curl_close($c);
+?>
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "result": "OK",
+  "data": {
+    "status": "active",
+    "timestamp": 1496259363
+  }
+}
+```
+
+This endpoint gets the status of a domain. Status are locked or active
+
+<aside class="warning">You will need the <code>&lt;domain&gt;</code> for this operation</aside>
+
+### HTTP Request
+
+`POST https://staging.api.nexogy.com/api/residential/domain/<domain>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+domain | The domain name of the client.
