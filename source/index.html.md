@@ -374,36 +374,34 @@ curl\
  -H "Content-Type: application/json"\
  -H "X-Profile: {{PROFILE_ID}}"\
  -H "X-Application: {{APPLICATION_TOKEN}}"\
-"https://{{BASE_URL}}/v2/client/configurations"
+"https://{{BASE_URL}}/v2/client/configuration"
 ```
 
 > The above request success response is:
 
 ```json
 {
-  "data": [
-    { 
-      "template_name" : "default",      
-      "website_name": "website name",      
-      "phone": "+442221123123",
-      "show_phone" : true,
-      "default_category_id" : 1,
-      "default_service_id" : 3,      
-      "cta_color" : "#6c391c",      
-      "currency_code": "GBP",      
-      "locale": "en_GB",
-      "website_url": "http://domainname.com/",      
-      "logo_url": "http://domainname.com/images/logo.jpg",      
-      "terms_and_conditions_url": "https://gofantastic.com/terms-and-conditions.html",
-      "privacy_policy_url": "https://gofantastic.com/privacy-policy.html"      
-    }      
-  ]
+  "data": {
+    "template_name": "default",
+    "website_name": "website name",
+    "phone": "+442221123123",
+    "show_phone": true,
+    "default_category_id": 1,
+    "default_service_id": 3,
+    "cta_color": "#6c391c",
+    "currency_code": "GBP",
+    "locale": "en_GB",
+    "website_url": "http://domainname.com/",
+    "logo_url": "http://domainname.com/images/logo.jpg",
+    "terms_and_conditions_url": "https://gofantastic.com/terms-and-conditions.html",
+    "privacy_policy_url": "https://gofantastic.com/privacy-policy.html"
+  }
 }
 ```
 
 Configuration object parameters for initial settings in the client side based on the `X-Profile`
 
-`"path": "configurations"`
+`"path": "configuration"`
 
 ### Response parameters
 
