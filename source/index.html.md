@@ -366,3 +366,67 @@ This endpoint gets the status of a domain. Status are locked or active
 Parameter | Description
 --------- | -----------
 domain | The domain name of the client.
+
+# Device
+
+Once a Client is Created a default device is created, additional devices may be created later, with the device method.
+
+## Device method
+
+```shell
+curl "https://staging.api.nexogy.com/api/residential/device?client_id=<value>&
+domain=<value>&extension=<value>"
+  -H "Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjY1N2"
+  -H "Accept:application/json"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+ "result": "OK",
+ "data": {
+   "subscriber_name": "1012",
+   "aor": "sip:1012@kirkhammet.com",
+   "domain": "kirkhammet.com",
+   "authentication_key": "oqyx0245",
+   "regservers": {
+     "server1": {
+       "address": "mians01.nexogy.net",
+       "port": "5092"
+     },
+     "server2": {
+       "address": "mians02.nexogy.net",
+       "port": "5092"
+     }
+   },
+   "timestamp": 1496682921
+ }
+}
+```
+
+
+
+The Device method behaves different according to the parameters it receives.
+
+### HTTP Request
+
+`POST https://staging.api.nexogy.com/api/residential/device?client_id=<value>&
+domain=<value>&extension=<value>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+client_id | The client ID of the requested device. You get this information whe the client was created.
+domain | The domain you received when the client was created.
+extension | This parameter is optional. This is the extension of the customer's device. If no device is sent the default extension is created, in this case extension=1000 and the device information is returned. If a number is sent in this parameter and the device exists this method returns device information. If a number is sent and the device doesn't exist, that device for that extension is created.
+
+### JSON Response
+
+Parameter | Description
+--------- | -----------
+subscriber_name | The Devices extension number.
+aor | The identifier of device and The domain.
+authentication_key | The SIP password for the device.
+regservers | an array with the available registration servers and ports, this is required for your configuration.
