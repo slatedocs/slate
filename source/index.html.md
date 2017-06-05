@@ -1014,7 +1014,7 @@ Parameter | Type | Description
 `payment_provider_id ` | *integer* | Identifier for the the account used for the payment method (e.g. Stripe UK, Stripe AUS etc.)
 `attributes`<br>*optional* | *object* | Based on the payment provider different data may be provided (such as keys, tokens etc.)
 `attributes.stripe_key`<br>*optional* | *string* | Stripe API authorization key
-`icon_image_url` | *string* | Icon image for payment method<
+`icon_image_url` | *string* | Icon image for payment method
 
 
 ## Treats
@@ -1376,7 +1376,7 @@ Parameter | Type | Description
 `choices.choice_items` | *array* | Question answers
 `choices.choice_items.id` | *integer* | Unique identifier
 `choices.choice_items.sort` | *integer* | Order of item in list
-`choices.choice_items.type` | *integer* | *<b>2</b> - Radio*<br>*<b>3</b> - Stepper (incremental value)*<br>*<b>12</b> - Photo attachment*
+`choices.choice_items.type` | *integer* | *<b>2</b> - Radio*<br>*<b>3</b> - Stepper (incremental value)*<br>*<b>4</b> - Text*<br>*11 - Decimal text<b>12</b> - Photo attachment*
 `choices.choice_items.title` | *string* | Checklist question answer
 
 
