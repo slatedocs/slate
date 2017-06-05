@@ -1433,7 +1433,7 @@ Parameter | Type | Description
 `choices.choice_items` | *array* | Question answers
 `choices.choice_items.id` | *integer* | Unique identifier
 `choices.choice_items.sort` | *integer* | Order of item in list
-`choices.choice_items.type` | *integer* | *<b>2</b> - Radio*<br>*<b>3</b> - Stepper (incremental value)*<br>*<b>4</b> - Text*<br>*11 - Decimal text<b>12</b> - Photo attachment*
+`choices.choice_items.type` | *integer* | *<b>2</b> - Radio*<br>*<b>3</b> - Stepper (incremental value)*<br>*<b>4</b> - Text*<br>*<b>11</b> - Decimal text<br><b>12</b> - Photo attachment*
 `choices.choice_items.title` | *string* | Checklist question answer
 
 
@@ -1451,7 +1451,7 @@ curl\
 ```
 
 > The above request success response is:
-choice_items
+
 ```json
 {
   "data": [
