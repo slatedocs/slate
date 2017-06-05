@@ -361,6 +361,133 @@ Parameter | Type | Description
 In batched responses `meta` is returned once at the end.
 
 
+
+# Profiles
+
+
+## Configuration
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/client/configurations"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    { 
+      "template_name" : "default",      
+      "website_name": "website name",      
+      "phone": "+442221123123",
+      "show_phone" : true,
+      "default_category_id" : 1,
+      "default_service_id" : 3,      
+      "cta_color" : "#6c391c",      
+      "currency_code": "GBP",      
+      "locale": "en_GB",
+      "website_url": "http://domainname.com/",      
+      "logo_url": "http://domainname.com/images/logo.jpg",      
+      "terms_and_conditions_url": "https://gofantastic.com/terms-and-conditions.html",
+      "privacy_policy_url": "https://gofantastic.com/privacy-policy.html"      
+    }      
+  ]
+}
+```
+
+Configuration object parameters for initial settings in the client side based on the `X-Profile`
+
+`"path": "configurations"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`template_name` | *string* | If you want to customize an existing template it will help you decide which template needs to be loaded.
+`website_name` | *string* | If you need website title to display
+`phone` | *string* | Default website phone number
+`show_phone` | *boolean* | Configuration for hiding or showing website phone number in the interface
+`default_category_id` | *integer* | Configuration for default selected category in the interface
+`default_service_id` | *integer* | Configuration for default selected service in the interface
+`cta_color` | *string* | Configuration if you want to customize Call to Action colors in the template
+`currency_code` | *string* | Configuration for the currency code
+`locale` | *string* | Configuration for the locale
+`website_url` | *string* | Configuration for the full website url with protocol Ex.: https://domainname.com/
+`logo_url` | *string* | Configuration full path of the website logo Ex.: https://domainname.com/images/logo.png
+`terms_and_conditions_url` | *string* | Configuration of full url in website for terms and conditions
+`privacy_policy_url` | *string* | Configuration of full url in website for privacy and policy
+
+## Validations
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/client/validations"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "path": "register",
+      "fields": [
+        {
+          "name": "username",
+          "regex": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
+          "required": true
+        },
+        {
+          "name": "password",
+          "regex": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "addresses",
+      "fields": [
+        {
+          "name": "address1",
+          "regex": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
+          "required": true
+        },
+        {
+          "name": "address2",
+          "regex": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
+          "required": false
+        }
+      ]
+    }
+  ]
+}
+```
+
+Validation object should be used for client side validation of fields before posting to server.
+
+`"path": "validations"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`path` | *string* | Path at which fields to validated will be posted
+`fields` | *array* | Array of field validation objects
+`fields.name` | *string* | Field key name in json
+`fields.regex` | *string* | Regex used to validate the field
+`fields.required` | *boolean* | Is field required for the path
+
 # Account
 
 ## Login
@@ -1065,74 +1192,6 @@ Parameter | Type | Description
 `image_url` | *string* | Treat image direct link.
 `link` | *string* | Link to treat website.
 `sort` | *integer* | Order of item in list
-
-
-## Validations
-
-
-```shell
-curl\
- -X GET\
- -H "Content-Type: application/json"\
- -H "X-Profile: {{PROFILE_ID}}"\
- -H "X-Application: {{APPLICATION_TOKEN}}"\
-"https://{{BASE_URL}}/v2/client/validations"
-```
-
-> The above request success response is:
-
-```json
-{
-  "data": [
-    {
-      "path": "register",
-      "fields": [
-        {
-          "name": "username",
-          "regex": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
-          "required": true
-        },
-        {
-          "name": "password",
-          "regex": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
-          "required": true
-        }
-      ]
-    },
-    {
-      "path": "addresses",
-      "fields": [
-        {
-          "name": "address1",
-          "regex": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
-          "required": true
-        },
-        {
-          "name": "address2",
-          "regex": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
-          "required": false
-        }
-      ]
-    }
-  ]
-}
-```
-
-Validation object should be used for client side validation of fields before posting to server.
-
-`"path": "validations"`
-
-### Response parameters
-
-Parameter | Type | Description
--------- | ----- | -------
-`path` | *string* | Path at which fields to validated will be posted
-`fields` | *array* | Array of field validation objects
-`fields.name` | *string* | Field key name in json
-`fields.regex` | *string* | Regex used to validate the field
-`fields.required` | *boolean* | Is field required for the path
-
-
 
 
 
