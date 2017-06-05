@@ -52,5 +52,6 @@ subsections:
     - securityGroups
     - securityGroupRules
     - routers
+    - routerInterfaces
 search: true
 ---

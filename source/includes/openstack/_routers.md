@@ -1,8 +1,8 @@
-## Routers
+### Routers
 
 Routers route traffic between networks, including the public internet.
 
-### List routers
+#### List routers
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
@@ -38,14 +38,14 @@ Retrieve a list of routers in an OpenStack environment.
 
 | Attributes                            | Description                         |
 | ------------------------------------- | ----------------------------------- |
-| id<br/>*UUID*                         | The router's ID                     |
-| name<br/>*string*                     | The router's name                   |
-| networkIds<br/>*Array[UUID]*          | The router's internal network IDs   |
-| networkNames<br/>*Array[string]*      | The router's internal network names |
-| externalNetworkId<br/>*UUID*          | The router's external network ID    |
-| externalNetworkName<br/>*string*      | The router's external network name  |
+| `id`<br/>*UUID*                         | The router's ID                     |
+| `name`<br/>*string*                     | The router's name                   |
+| `networkIds`<br/>*Array[UUID]*          | The router's internal network IDs   |
+| `networkNames`<br/>*Array[string]*      | The router's internal network names |
+| `externalNetworkId`<br/>*UUID*          | The router's external network ID    |
+| `externalNetworkName`<br/>*string*      | The router's external network name  |
 
-### Retrieve a router
+#### Retrieve a router
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
@@ -76,14 +76,14 @@ Retrieve a single router in an OpenStack environment.
 
 | Attributes                            | Description                         |
 | ------------------------------------- | ----------------------------------- |
-| id<br/>*UUID*                         | The router's ID                     |
-| name<br/>*string*                     | The router's name                   |
-| networkIds<br/>*Array[UUID]*          | The router's internal network IDs   |
-| networkNames<br/>*Array[string]*      | The router's internal network names |
-| externalNetworkId<br/>*UUID*          | The router's external network ID    |
-| externalNetworkName<br/>*string*      | The router's external network name  |
+| `id`<br/>*UUID*                         | The router's ID                     |
+| `name`<br/>*string*                     | The router's name                   |
+| `networkIds`<br/>*Array[UUID]*          | The router's internal network IDs   |
+| `networkNames`<br/>*Array[string]*      | The router's internal network names |
+| `externalNetworkId`<br/>*UUID*          | The router's external network ID    |
+| `externalNetworkName`<br/>*string*      | The router's external network name  |
 
-### Create a router
+#### Create a router
 
 ```shell
 curl -X POST \
@@ -106,10 +106,10 @@ Create a router.
 
 | Attributes                            | Description                         |
 | ------------------------------------- | ----------------------------------- |
-| name<br/>*string*                     | The router's name                   |
-| externalNetworkId<br/>*UUID*          | The router's external network ID    |
+| `name`<br/>*string*                     | The router's name                   |
+| `externalNetworkId`<br/>*UUID*          | The router's external network ID    |
 
-### Delete a router
+#### Delete a router
 
 ```shell
 curl -X DELETE \
