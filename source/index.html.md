@@ -221,7 +221,7 @@ curl\
   "lat": 51.604903,
   "lng": -0.457022
 }'\
- "https://{{BASE_URL}}/v2/client/addresses"
+ "https://{{BASE_URL}}/v2/client/addresses?return=object"
 ```
 
 > The above request success response is:
@@ -245,6 +245,13 @@ Create objects by using `method: POST` and specifying `path` to resource you wan
 `"path": "addresses"`
 
 If operation is successful created/updated object is returned.
+
+### `params`
+
+Parameter | Type | Description
+-------- | ----- | -------
+`return`<br>*optional, default <b>status</b>* | *string* | Determines response content for successfully created/updated object:<br><br>`status` - returns only status of the operation<br>`id` - returns the id of the created/updated object<br>`object` - returns the full created/updated object
+
 
 ## Delete
 
@@ -853,7 +860,7 @@ Categories group services.
 
 Parameter | Type | Description
 -------- | ----- | -------
-`id` | *integer* | Object id
+`id` | *integer* | Unique identifier
 `sort` | *integer* | Order of item in list
 `title` | *string* | Category title text
 `phone` | *string* | Category phone number
@@ -863,7 +870,7 @@ Parameter | Type | Description
 `list_image_url` | *string* | Link to list image
 `thumbnail_image_url` | *string* | Link to thumbnail image
 `infos` | *array\<info\>* | List of infos for the category
-`services` | *array\<service\>* | List of services for the category
+`services` | *array\<[service](#services)\>* | List of services for the category
 
 
 
@@ -917,13 +924,13 @@ curl\
         90
       ],
       "payment_methods": [
-        3,
-        4,
-        5
+        1,
+        2
       ],
       "customize": {
         "tooltip": "Click here"
-      }
+      },
+      "logic_js": "function getRequiredActionForState(items) { if (items[0].choice_item_id == \"1092\" && items[0].choice_item_value == 2) { return { \"action\": \"service_redirect\", \"redirect_message_title\": \"This is more like EOT. Wanna go?\", \"redirect_message\": \"This is more like EOT. Wanna go?\", \"OK_title\": \"Go there\", \"cancel_title\": \"Not really\", \"service_id\": 23 }; } else { return null; } }"
     }
   ]
 }
@@ -938,7 +945,7 @@ Services
 
 Parameter | Type | Description
 -------- | ----- | -------
-`id` | *integer* | Object id
+`id` | *integer* | Unique identifier
 `sort` | *integer* | Order of item in list
 `type` | *integer* | *<b>1</b> - Service*<br>*<b>2</b> - Deal*
 `title` | *string* | Service title text
@@ -952,12 +959,10 @@ Parameter | Type | Description
 `choices_images_urls` | *string* | Link to choices images rotating in booking process
 `logo_image_url` | *string* | Link to logo image
 `infos` | *array\<info\>* | List of infos for the services
-`choices` | *array\<choice\>* | List of questions to book the service
-`payment_methods` | *array\<payment_methods\>* | List of available payment methods for the service
-`customize` | *customize* | Key-value pairs of custom attributes
-
-
-
+`choices` | *array\<[choice](#choices)\>* | List of questions to book the service
+`payment_methods` | *array\<[payment_methods](#payment-methods)\>* | List of available payment methods for the service
+`customize` | *object* | Key-value pairs of custom attributes
+`logic_js` | *string* | JavaScript containing functions for modification of booking process
 
 
 ## Choices
@@ -1008,12 +1013,12 @@ Questions the user needs to answer to book a service.
 
 Parameter | Type | Description
 -------- | ----- | -------
-`id` | *integer* | Object id
+`id` | *integer* | Unique identifier
 `sort` | *integer* | Order of item in list
 `title` | *string* | Question text
 `summary_title` | *string* | Question short title text in summary
 `required` | *boolean* | Should the question be answered to book
-`choice_items` | *array\<choice_item\>* | List of answers for the question
+`choice_items` | *array\<[choice_item](#choice-items)\>* | List of answers for the question
 
 
 
@@ -1075,13 +1080,68 @@ Parameter | Type | Description
 `summary_title` | *string* | Answer short title text in summary
 `is_in_summary` | *boolean* | Should the answer be included in the summary of booking
 `name` | *string* | Title of answer
-`choice_items` | *array\<choice_item\>* | List of sub-answers for the answers
+`choice_items` | *array\<[choice_item](#choice-items)\>* | List of sub-answers for the answers
 
 
 
 
+## Payment methods
 
 
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Profile: {{PROFILE_ID}}"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/client/services/2/payment_methods"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "sort": 1,
+      "title": "Cash",
+      "type": "Cash",
+      "payment_provider_id": 3,
+      "attributes": null,
+      "icon_image_url": "http://image.url/here.jpg"
+    },
+    {
+      "id": 2,
+      "sort": 1,
+      "title": "Card",
+      "type": "Stripe",
+      "attributes": {
+        "stripe_key": "kdj9DSA923131safdfd89a7fklj`cxzc"
+      },
+      "icon_image_url": "http://image.url/here.jpg"
+    }
+  ]
+}
+```
+
+Available payment methods for service
+
+
+`"path": "services/{service id}/payment_methods"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`id` | *integer* | Unique identifier
+`sort` | *integer* | Order of item in list
+`title` | *string* | Display name of payment method
+`type` | *string* | *<b>Cash</b> - Cash payment*<br>*<b>Stripe</b> - Card payment via Stripe*
+`payment_provider_id ` | *integer* | Identifier for the the account used for the payment method (e.g. Stripe UK, Stripe AUS etc.)
+`attributes`<br>*optional* | *object* | Based on the payment provider different data may be provided (such as keys, tokens etc.)
+`attributes.stripe_key`<br>*optional* | *string* | Stripe API authorization key
+`icon_image_url` | *string* | Icon image for payment method<
 
 
 ## Treats
@@ -1124,14 +1184,14 @@ Treats are affiliate deals. They are shown in a list. Tapping on one opens a lin
 
 Parameter | Type | Description
 -------- | ----- | -------
-`id` | *integer* | Identifier
+`id` | *integer* | Unique identifier
 `title` | *string* | Treat title text.
 `description` | *string* | Treat detailed description text.
 `note` | *string* | Small additional description text.
 `image` | *integer* | Treat image object id. If expanded image full object is returned.
 `image_url` | *string* | Treat image direct link.
 `link` | *string* | Link to treat website.
-`sort` | *integer* | Order of treat.
+`sort` | *integer* | Order of item in list
 
 
 
@@ -1366,15 +1426,15 @@ Checklists for performing a job
 
 Parameter | Type | Description
 -------- | ----- | -------
-`type` | *integer* | *<b>10</b> - Before checkin*<br>*<b>20</b> - Before checkout*
+`type` | *integer* | *<b>10</b> - After checkin*<br>*<b>20</b> - Before checkout*
 `choices` | *array* | Checklist questions
 `choices.id` | *integer* | Unique identifier
-`choices.sort` | *integer* | Order of item
+`choices.sort` | *integer* | Order of item in list
 `choices.required` | *boolean* | Should question be answered to send the checklist
 `choices.title` | *string* | Checklist question
 `choices.choice_items` | *array* | Question answers
 `choices.choice_items.id` | *integer* | Unique identifier
-`choices.choice_items.sort` | *integer* | Order of item
+`choices.choice_items.sort` | *integer* | Order of item in list
 `choices.choice_items.type` | *integer* | *<b>2</b> - Radio*<br>*<b>3</b> - Stepper (incremental value)*<br>*<b>12</b> - Photo attachment*
 `choices.choice_items.title` | *string* | Checklist question answer
 
@@ -1393,12 +1453,13 @@ curl\
 ```
 
 > The above request success response is:
-
+choice_items
 ```json
 {
   "data": [
     {
       "type": 1,
+      "event_time": 1495702059,
       "choice_items": [
         {
           "id": 2,
@@ -1425,6 +1486,7 @@ Checklist answers after filling checklist.
 Parameter | Type | Description
 -------- | ----- | -------
 `type` | *integer* | Checklist type (see [checklists](#checklists))
-`choices_items` | *array* | Checklist answers
-`choices_items.id` | *integer* | Unique identifier
-`choices_items.value` | *string/array* | Answer user entered
+`event_time` | *integer* | Timestamp when the event ocurred and was saved.
+`choice_items` | *array* | Checklist answers
+`choice_items.id` | *integer* | Unique identifier
+`choice_items.value` | *string/array* | Answer user entered
