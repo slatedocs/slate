@@ -437,4 +437,3 @@ Refer to this documentation in order to generate the key here:
 
 <aside class="warning">Send us the public key indicated in step 13 of the <code>gpg</code> documentation found above. For this operation.</aside>
 
-
