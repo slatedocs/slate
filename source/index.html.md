@@ -392,11 +392,11 @@ domain=<value>&extension=<value>"
    "authentication_key": "oqyx0245",
    "regservers": {
      "server1": {
-       "address": "mians01.nexogy.net",
+       "address": "sandbox.nexogy.net",
        "port": "5092"
      },
      "server2": {
-       "address": "mians02.nexogy.net",
+       "address": "sandbox.nexogy.net",
        "port": "5092"
      }
    },
@@ -428,5 +428,13 @@ Parameter | Description
 --------- | -----------
 subscriber_name | The Devices extension number.
 aor | The identifier of device and The domain.
-authentication_key | The SIP password for the device.
+authentication_key | The SIP password for the device. For security reasons we use gpg for encryption. You will recieve this parameter encrypted in Base 64 using gpg. With the Public Key you previously sent to us.
 regservers | an array with the available registration servers and ports, this is required for your configuration.
+
+Refer to this documentation in order to generate the key here:
+
+<a href='https://help.github.com/articles/generating-a-new-gpg-key/'>Documentation for gpg</a>
+
+<aside class="warning">Send us the public key indicated in step 13 of the <code>gpg</code> documentation found above. For this operation.</aside>
+
+
