@@ -20,3 +20,7 @@ key | comment
 text | данные из POS-терминала
 city | (при наличии)
 sic  | (при наличии)
+
+## TransactionDTO
+
+Для работы модуля необходимо в [TransactionDTO](#https://doc.idamob.ru/pro#transactiondto) подавать ключ transactionСurrency текстовый код валюты по ISO 4217
