@@ -1104,8 +1104,9 @@ curl\
       "id": 1,
       "sort": 1,
       "title": "Cash",
-      "payment_provider_id": null,
+      "type": "None",
       "attributes": null,
+      "payment_provider_id": null,
       "icon_image_url": "http://image.url/here.jpg"
     },
     {
@@ -1135,7 +1136,8 @@ Parameter | Type | Description
 `id` | *integer* | Unique identifier
 `sort` | *integer* | Order of item in list
 `title` | *string* | Display name of payment method
-`payment_provider_id ` | *integer* | Identifier for the provider account used to charge the client (e.g. Stripe UK, Stripe AUS etc.). If `null` server won't do any charging and no actions from the user ar e needed (e.g. entering credit card, PayPal, ApplePay details etc.)
+`type` | *string* | *<b>None</b> - No processing needed (e.g. Cash payment)*<br>*<b>Stripe</b> - Card payment via Stripe*
+`payment_provider_id ` | *integer* | Identifier for the the account used for the payment method (e.g. Stripe UK, Stripe AUS etc.)
 `attributes`<br>*optional* | *object* | Based on the payment provider different data may be provided (such as keys, tokens etc.)
 `attributes.stripe_key`<br>*optional* | *string* | Stripe API authorization key
 `icon_image_url` | *string* | Icon image for payment method
