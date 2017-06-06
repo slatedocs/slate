@@ -55,9 +55,9 @@ Attributes | &nbsp;
 `zoneId`<br/>*UUID* | The id of the [zone](#zones) where the volume was created
 `zoneName`<br/>*string* | The name of the [zone](#zones) where the volume was created
 `state`<br/>*string* | The state of the volume
-`sizeInGb`<br/>*int* | The size in gigabytes of the volume
+`sizeInGb`<br/>*integer* | The size in gigabytes of the volume
 
-<!-- iops<br/>*int* | The number of IOPS of the volume -->
+<!-- iops<br/>*integer* | The number of IOPS of the volume -->
 
 Query Parameters | &nbsp;
 ---------- | -----
@@ -114,9 +114,9 @@ Attributes | &nbsp;
 `zoneId`<br/>*UUID* | The id of the [zone](#zones) where the volume was created
 `zoneName`<br/>*string* | The name of the [zone](#zones) where the volume was created
 `state`<br/>*string* | The state of the volume
-`sizeInGb`<br/>*int* | The size in gigabytes of the volume
+`sizeInGb`<br/>*integer* | The size in gigabytes of the volume
 
-<!-- iops<br/>*int* | The number of IOPS of the volume -->
+<!-- iops<br/>*integer* | The number of IOPS of the volume -->
 
 
 <!-------------------- CREATE A VOLUME -------------------->

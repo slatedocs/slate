@@ -35,6 +35,7 @@ subsections:
     - nics
     - remote_access_vpns
     - vpn_users
+    - s2s_vpns
     - storage # Storage section
     - volumes
     - snapshots
