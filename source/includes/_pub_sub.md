@@ -45,7 +45,7 @@ The current list of possible channels is:
  Name | data published into this channel
 ------:|:------------
 product-status | _enabled status, product state_ <font color="DarkGray">_(ACTIVATED/MONITORED etc.)_, user (making the change)</font>
-alert | updates to SMART Solar alert data
+product-alert | updates to SMART Solar alert data
 
 Users can view a list of available channels by sending a `GET` request to `/v1/channels`
 
@@ -175,7 +175,7 @@ key | value type | options
 `user` | _str_ | \<username\> - user that made the change
 `date` | _datetime-str_ | "2016-01-01 00:00:00" - date that the change was effected        
     
-### alert
+### product-alert
 
 key | value type | options
 ---:|-----------|--------
