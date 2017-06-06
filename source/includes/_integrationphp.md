@@ -187,3 +187,90 @@ if (!$response->hasError()) {
 echo $response->getErrorMessage();
 exit;
 ```
+
+## EXEMPLO DE TRANSAÇÃO DE ASSINATURA (SUBSCRIPTION) [**NEW**]
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+use Ipag\Ipag;
+use Ipag\Order;
+use Ipag\Payment;
+use Ipag\Subscription;
+use Ipag\Transaction;
+
+$ipag = new Ipag('meu_id_ipag', Ipag::TEST);
+
+$order    = $ipag->order(Order::OPERATION_PAYMENT, 'http://minhaurl.dev','201700001', 2.00, '1');
+$card     = $ipag->card('4556657802832607', 'SENHOR TESTE', '10', '21', '123');
+$payment  = $ipag->payment(Payment::CREDIT_VISA, $card);
+$customer = $ipag
+                ->customer('SENHOR TESTE', 'senhor@teste.com.br', '12312312333','1839161627')
+                ->setAddress(
+                    $ipag->address(
+                        'Rua Teste', '123', 'Bairro Teste', '', '20000-000', 'São Paulo', 'SP', 'BR'
+                    )
+                );
+
+$tx = $ipag
+        ->transaction($order, $payment, $customer)
+        ->setSubscription(
+            $ipag
+                //Assinatura mensal com inicio em 5 de janeiro de 2017
+                ->subscription(Subscription::INTERVAL_MONTH,1,'05/01/2017')
+                //Valor que será cobrado na assinatura após o período trial (promocional)
+                ->setAmount(2.00)
+                //Período trial mensal
+                ->setTrialFrequency(1)
+                ->setTrialCycle(3)
+                //Valor que será cobrado no período trial
+                ->setTrialAmount(1.20)
+                //Primeira cobranca no ato da criação da transação será de R$1,00 apenas autorizado (não irá debitar do cartão de crédito do cliente)
+                ->setTrial(true)
+        );
+
+$response = $ipag->paymentRequest($tx);
+
+if (!$response->hasError()) {
+    var_dump(print_r($response, true));
+    exit;
+}
+echo $response->getErrorMessage();
+exit;
+```
+
+## EXEMPLO DE TRANSAÇÃO COM SPLIT (CARTÃO) (Payment Request)
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+use Ipag\Ipag;
+use Ipag\Order;
+use Ipag\Payment;
+use Ipag\Transaction;
+
+$ipag = new Ipag('seu_id_ipag', Ipag::TEST);
+$ipag->setPartner('id_parceiro');
+
+$order =    $ipag->order(Order::OPERATION_PAYMENT, 'http://minhaurl.dev','20161109003', '1.00', '1');
+$card =     $ipag->card('4556657802832607', 'SENHOR TESTE', '10', '21', '123');
+$payment =  $ipag->payment(Payment::CREDIT_VISA, $card);
+$customer = $ipag->customer('SENHOR TESTE', 'senhor@teste.com.br', '12312312333','1839161627');
+$address =  $ipag->address('Rua Teste', '123', 'Bairro Teste', '', '20000-000', 'São Paulo', 'SP', 'BR');
+$customer->setAddress($address);
+
+$tx = $ipag->transaction($order, $payment, $customer);
+
+$response = $ipag->paymentRequest($tx);
+
+if (!$response->hasError()) {
+    var_dump(print_r($response, true));
+    exit;
+}
+echo $response->getErrorMessage();
+exit;
+```

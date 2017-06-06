@@ -6,7 +6,7 @@ Para integrar sua Loja Virtual ou Site ao iPag, envie os seguintes parâmetros 
 
 **Sandbox**
 
-`http://sandbox.ipag.com.br/`
+`https://sandbox.ipag.com.br/`
 
 **Producão**
 
@@ -14,43 +14,43 @@ Para integrar sua Loja Virtual ou Site ao iPag, envie os seguintes parâmetros 
 
 ##Realizar Pagamento (Criar transação)
 
-`POST http://sandbox.ipag.com.br/pagamento`
+`POST https://sandbox.ipag.com.br/pagamento`
 
 > Exemplo via PHP (cURL)
 
 ```php
 <?php
 //URL do iPag
-$url = 'http://sandbox.ipag.com.br/pagamento';
+$url = 'https://sandbox.ipag.com.br/pagamento';
 
 //os dados abaixo são apenas de exemplo
 //preencha com os dados necessários para relizar os testes
 $fields = array(
-    'identificacao' => urlencode('identificacao'),
-    'pedido' => urlencode('111111'),
-    'operacao' => urlencode('Pagamento'),//manter
-    'url_retorno' => urlencode('http://minhaloja.com/retorno'),
-    'retorno_tipo' => urlencode('xml'),
-    'valor' => urlencode('1.00'),
-    'nome' => urlencode('Jose da Silva'),
-    'doc' => urlencode('12312312300'),
-    'email' => urlencode('jose@teste.com.br'),
-    'fone' => urlencode('11111111111'),
-    'endereco' => urlencode('Rua 1'),
+    'identificacao'  => urlencode('identificacao'),
+    'pedido'         => urlencode('111111'),
+    'operacao'       => urlencode('Pagamento'),//manter
+    'url_retorno'    => urlencode('http://minhaloja.com/retorno'),
+    'retorno_tipo'   => urlencode('xml'),
+    'valor'          => urlencode('1.00'),
+    'nome'           => urlencode('Jose da Silva'),
+    'doc'            => urlencode('12312312300'),
+    'email'          => urlencode('jose@teste.com.br'),
+    'fone'           => urlencode('11111111111'),
+    'endereco'       => urlencode('Rua 1'),
     'numero_endereco' => urlencode('1111'),
-    'complemento' => urlencode('Complemento'),
-    'bairro' => urlencode('Bairro 1'),
-    'cidade' => urlencode('São paulo'),
-    'estado' => urlencode('SP'),
-    'pais' => urlencode('Brasil'),
-    'cep'=> urlencode('07500000'),
-    'metodo'=> urlencode('mastercard'),
-    'parcelas'=> urlencode('1'),
-    'nome_cartao'=> urlencode('jose da silva'),
-    'num_cartao'=> urlencode('3333333333333333'),
-    'cvv_cartao'=> urlencode('444'),
-    'mes_cartao'=> urlencode('07'),
-    'ano_cartao'=> urlencode('20'),
+    'complemento'    => urlencode('Complemento'),
+    'bairro'         => urlencode('Bairro 1'),
+    'cidade'         => urlencode('São paulo'),
+    'estado'         => urlencode('SP'),
+    'pais'           => urlencode('Brasil'),
+    'cep'            => urlencode('07500000'),
+    'metodo'         => urlencode('mastercard'),
+    'parcelas'       => urlencode('1'),
+    'nome_cartao'    => urlencode('jose da silva'),
+    'num_cartao'     => urlencode('3333333333333333'),
+    'cvv_cartao'     => urlencode('444'),
+    'mes_cartao'     => urlencode('07'),
+    'ano_cartao'     => urlencode('20'),
 );
 //url-ify the data for the POST
 $fields_string ='';
@@ -62,7 +62,7 @@ curl_setopt( $ch, CURLOPT_URL, $url );
 curl_setopt( $ch, CURLOPT_POST, true );
 curl_setopt( $ch, CURLOPT_POSTFIELDS, $fields_string );
 curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-curl_setopt($ch, CURLOPT_HEADER, true);
+curl_setopt( $ch, CURLOPT_HEADER, true);
 curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 curl_setopt( $ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)' );
 curl_setopt( $ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1 );
@@ -111,7 +111,7 @@ retorno_tipo | 5 | string | não | Informar 'xml' para ter retorno em XML, caso 
 
 ```php
 <!-- Iframe -->
-<iframe src="https://carteirac1.hml.stelo.com.br/transaction/transfer?idUnico=IDUNICO"
+<iframe src="https://carteirac1.hml.stelo.com.br/transaction/transfer?idUnico=stelo_fingerprint"
 width="0"
 marginwidth="0"
 height="0"
@@ -123,7 +123,7 @@ frameborder="0">
 
 ```html
 <!-- Iframe -->
-<iframe src="https://carteirac1.hml.stelo.com.br/transaction/transfer?idUnico=IDUNICO"
+<iframe src="https://carteirac1.hml.stelo.com.br/transaction/transfer?idUnico=stelo_fingerprint"
 width="0"
 marginwidth="0"
 height="0"
@@ -135,7 +135,7 @@ frameborder="0">
 
 O TransferBlock é um iFrame disponibilizado pela Stelo para que eles consigam ter uma melhor análise de risco, a inserção do iFrame é obrigatória e deve ser inserida dentro **BODY** da página de checkout.
 
-O campo **IDUNICO** deve ser substituído sempre por um valor único nas ultimas 24 horas. Este **IDUNICO** deve ser enviado no campo *stelo_fingerprint* do POST para aprovar a transação.
+O campo **IdUnico** deve ser substituído sempre por um valor único nas ultimas 24 horas. Este **IdUnico** deve ser enviado no campo *stelo_fingerprint* do POST para aprovar a transação.
 
 > Exemplo para gerar o stelo_fingerprint:
 
@@ -225,42 +225,42 @@ token_cartao | 37 | string | Obrigatório na utilização do token | Quando o
 
 ```php
 <?php
-$url = 'http://sandbox.ipag.com.br/pagamento';
+$url = 'https://sandbox.ipag.com.br/pagamento';
 
 $fields = array(
-      'identificacao' => urlencode('identificacao'),
-      'pedido' => urlencode('111111'),
-      'operacao' => urlencode('Pagamento'),
-      'url_retorno' => urlencode('http://minhaloja.com/profile_id/1234'),
-      'retorno_tipo' => urlencode('xml'),
-      'boleto_tipo' => urlencode('xml'),
-      'valor' => urlencode('10.00'),
-      'nome' => urlencode('José Teste'),
-      'email' => urlencode('ipag@teste.com.br'),
-      'doc' => urlencode('11111111100'),
-      'fone' => urlencode('1839161627'),
-      'endereco' => urlencode('Rua Teste'),
+      'identificacao'  => urlencode('identificacao'),
+      'pedido'         => urlencode('111111'),
+      'operacao'       => urlencode('Pagamento'),
+      'url_retorno'    => urlencode('http://minhaloja.com/profile_id/1234'),
+      'retorno_tipo'   => urlencode('xml'),
+      'boleto_tipo'    => urlencode('xml'),
+      'valor'          => urlencode('10.00'),
+      'nome'           => urlencode('José Teste'),
+      'email'          => urlencode('ipag@teste.com.br'),
+      'doc'            => urlencode('11111111100'),
+      'fone'           => urlencode('1839161627'),
+      'endereco'       => urlencode('Rua Teste'),
       'numero_endereco' => urlencode('1000'),
-      'complemento' => urlencode(''),
-      'bairro' => urlencode('Bairro Teste'),
-      'cidade' => urlencode('São Paulo'),
-      'estado' => urlencode('SP'),
-      'pais' => urlencode('Brasil'),
-      'cep'=> urlencode('01156060'),
-      'metodo'=> urlencode('visa'),
-      'parcelas'=> urlencode('1'),
-      'nome_cartao'=> urlencode('José Teste'),
-      'num_cartao'=> urlencode('4704556510746680'),
-      'cvv_cartao'=> urlencode('123'),
-      'mes_cartao'=> urlencode('12'),
-      'ano_cartao'=> urlencode('21'),
+      'complemento'    => urlencode(''),
+      'bairro'         => urlencode('Bairro Teste'),
+      'cidade'         => urlencode('São Paulo'),
+      'estado'         => urlencode('SP'),
+      'pais'           => urlencode('Brasil'),
+      'cep'            => urlencode('01156060'),
+      'metodo'         => urlencode('visa'),
+      'parcelas'       => urlencode('1'),
+      'nome_cartao'    => urlencode('José Teste'),
+      'num_cartao'     => urlencode('4704556510746680'),
+      'cvv_cartao'     => urlencode('123'),
+      'mes_cartao'     => urlencode('12'),
+      'ano_cartao'     => urlencode('21'),
 
-      'frequencia'=> urlencode('1'),
-      'intervalo'=> urlencode('month'),
-      'inicio'=> urlencode('10/12/2016'),
-      'ciclos'=> urlencode('12'),
-      'trial'=> urlencode(true),
-      'valor_rec'=> urlencode('30.00'),
+      'frequencia'     => urlencode('1'),
+      'intervalo'      => urlencode('month'),
+      'inicio'         => urlencode('10/12/2016'),
+      'ciclos'         => urlencode('12'),
+      'trial'          => urlencode(true),
+      'valor_rec'      => urlencode('30.00'),
 );
 $fields_string ='';
 foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
@@ -404,10 +404,10 @@ id_assinatura | Id da assinatura criado pelo iPag.
 
 Operações | Descrição
 --------- | ----------------
-Pagamento | http://sandbox.ipag.com.br/pagamento
-Consulta | http://sandbox.ipag.com.br/consulta
-Captura | http://sandbox.ipag.com.br/captura
-Cancela | http://sandbox.ipag.com.br/cancela
+Pagamento | https://sandbox.ipag.com.br/pagamento
+Consulta | https://sandbox.ipag.com.br/consulta
+Captura | https://sandbox.ipag.com.br/captura
+Cancela | https://sandbox.ipag.com.br/cancela
 
 ## Métodos
 Cartões | Boleto Bancário | Banco
