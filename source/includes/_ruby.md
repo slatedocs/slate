@@ -726,7 +726,7 @@ After restarting your dev server with DevTrace enabled, refresh the browser page
 
 Scout runs within Docker containers without any special configuration.
 
-It's common to configure Docker containers with environment variables. Scout can use [enviornment variables](#environment-variables) instead of the `scout_apm.yml` config file.
+It's common to configure Docker containers with environment variables. Scout can use [environment variables](#environment-variables) instead of the `scout_apm.yml` config file.
 
 ## Heroku <img src="images/heroku.png" style="float:right;width: 150px" />
 
@@ -810,7 +810,7 @@ You can instrument your own code or other libraries via [custom instrumentation]
 
 <h2 id="ruby-environments">Environments</h2>
 
-It typically makes sense to treat each environment (production, staging, etc) as a separate application within Scout and ignore the development and test environments. Configure a unique app name for each environment as Scout aggregrates data by the app name.
+It typically makes sense to treat each environment (production, staging, etc) as a separate application within Scout and ignore the development and test environments. Configure a unique app name for each environment as Scout aggregates data by the app name.
 
 There are 2 approaches:
 

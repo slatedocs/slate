@@ -25,13 +25,13 @@ Scout collects detailed transactions across your endpoints automatically. The tr
 
 ### Call Breakdown
 
-Method calls are aggregrated together and listed from most expensive to least expensive. The time displayed is the total time across all calls (not the time per-call).
+Method calls are aggregated together and listed from most expensive to least expensive. The time displayed is the total time across all calls (not the time per-call).
 
 ![stream show breakdown](stream_show_call_breakdown.png)
 
 ### SQL Queries
 
-Scout captures a santized version of SQL queries. Click the "SQL" button next to a call to view details. 
+Scout captures a sanitized version of SQL queries. Click the "SQL" button next to a call to view details. 
 
 ![stream show sql](stream_show_sql_annotated.png)
 
@@ -41,11 +41,11 @@ For performance reasons, Scout doesn't attempt to sanitize large SQL queries. Wh
 
 ### Code Backtraces
 
-You'll see "CODE" buttons next to method calls that are >= 500 ms. If you've enabled the Github integration, you can see the line-of-code, associated SQL or HTTP endpoint (if applicable), author, commit date, and deploy time for the relevant slow code.
+You'll see "CODE" buttons next to method calls that are >= 500 ms. If you've enabled the GitHub integration, you can see the line-of-code, associated SQL or HTTP endpoint (if applicable), author, commit date, and deploy time for the relevant slow code.
 
 ![stream show git](stream_slow_git_annotated.png)
 
-If you don't enable the Github integration, you'll see a backtrace.
+If you don't enable the GitHub integration, you'll see a backtrace.
 
 ## ScoutProf
 
@@ -89,7 +89,7 @@ A [detailed ScoutProf FAQ](#scoutprof-faq) is available in our reference area.
 
 ## Memory Bloat Detection
 
-If a user triggers a request to your Rails application that results in a large number of object allocations (example: loading a large number of ActiveRecord objects), your app may require additional memory. The additional memory required to load the objects in memory is released back very slowly. Therefore, a single memory-hungry request will have a long-term impact on your Rails app’s memory usage.
+If a user triggers a request to your Rails application that results in a large number of object allocations (example: loading a large number of ActiveRecord objects), your app may require additional memory. The additional memory required to load the objects in memory is released back very slowly. Therefore, a single memory-hungry request will have a long-term impact on your Rails app's memory usage.
 
 There are 3 specific features of Scout to aid in fixing memory bloat.
 
@@ -149,13 +149,13 @@ You can sort by memory allocations throughout the UI: from the list of endpoints
 
 ## Git Integration
 
-If your code is hosted at Github, you can see the [relevant slow line-of-code within the Scout user interface](#code-backtraces) when viewing a transaction trace. Additionally, you'll also see the:
+If your code is hosted at GitHub, you can see the [relevant slow line-of-code within the Scout user interface](#code-backtraces) when viewing a transaction trace. Additionally, you'll also see the:
 
 * author
 * commit time
 * deploy time
 
-Git integration must be configured on the settings page for each app. Scout integrates with Github via OAuth. Pick the repository name and branch name used for your application.
+Git integration must be configured on the settings page for each app. Scout integrates with GitHub via OAuth. Pick the repository name and branch name used for your application.
 
 ![git settings](git_settings_annotated.png)
 
