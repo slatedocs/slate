@@ -17,6 +17,7 @@ includes:
   - libraries
   - versioning
   - authentication
+  - duplicate_requests
   - errors
   - pagination
   - ordering

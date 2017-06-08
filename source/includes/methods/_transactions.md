@@ -16,6 +16,7 @@ The transactions api endpoint is:
 ```json
 {
     "id": 218,
+    "account": 12,
     "amount": "228.0000",
     "description": "Incoming payment from +401000000099",
     "created": "2017-03-28T12:50:59Z",
@@ -26,11 +27,12 @@ The transactions api endpoint is:
 Field | Type | Description
 ----- | -----| ----
 id | long integer | Unique object identifier
+account | long integer | The ID of the account which this transaction belongs to
 amount | float | The transaction amount
 description | string | The payment description
 created | string | The date that the transaction was created, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
-type | string | The transaction type. This can be AdminFundsUpdate, MobileFundsUpdate, FundsDeposit, FundsAdjustment,
-MobileCollection, MobilePayment, AirtimeTopup, ServiceCharge, MobileWithdrawal, BankWithdrawal
+type | string | The transaction type. This can be admin_funds_update, mobile_funds_update, funds_deposit, funds_adjustment,
+mobile_collection, mobile_payment, airtime_topup, service_charge, mobile_withdrawal, bank_withdrawal
 
 ## Retrieving a Single Transaction
 
@@ -118,6 +120,7 @@ public class SingleTransactionExample {
 ```json
 {
    "id": 12,
+   "account": 123,
    "amount": "228.0000",
    "description": "Incoming payment from +401000000099",
    "created": "2017-03-28T12:50:59Z",
@@ -143,7 +146,7 @@ curl https://app.beyonic.com/api/transactions -H "Authorization: Token ab594c149
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-accounts = Beyonic::Transaction.list
+transactions = Beyonic::Transaction.list
 ```
 
 ```php
@@ -151,7 +154,7 @@ accounts = Beyonic::Transaction.list
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$accounts = Beyonic_Transaction::getAll();
+$transactions = Beyonic_Transaction::getAll();
 ?>
 ```
 
@@ -159,7 +162,7 @@ $accounts = Beyonic_Transaction::getAll();
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-accounts = beyonic.Transaction.list()
+transactions = beyonic.Transaction.list()
 
 ```
 
@@ -222,6 +225,7 @@ public class ListAllTransactionsExample {
   "results": [
     {
       "id": 137,
+      "account": 123,
       "amount": "2000.0000",
       "description": "Complementary Test Credit.",
       "created": "2016-12-09T11:16:30Z",
@@ -229,6 +233,7 @@ public class ListAllTransactionsExample {
     },
     {
       "id": 160,
+      "account": 123,
       "amount": "-600.0000",
       "description": "test msente",
       "created": "2017-02-13T12:01:38Z",
@@ -252,7 +257,7 @@ curl https://app.beyonic.com/api/transactions?type=mobile_payment -H "Authorizat
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-accounts = Beyonic::Transaction.list(
+transactions = Beyonic::Transaction.list(
   type: 'mobile_payment'
 )
 ```
@@ -262,7 +267,7 @@ accounts = Beyonic::Transaction.list(
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$accounts = Beyonic_Transaction::getAll(array(
+$transactions = Beyonic_Transaction::getAll(array(
   "type" => "mobile_payment"
 ));
 ?>
@@ -272,7 +277,7 @@ $accounts = Beyonic_Transaction::getAll(array(
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-accounts = beyonic.Transaction.list(type='mobile_payment')
+transactions = beyonic.Transaction.list(type='mobile_payment')
 
 ```
 
@@ -329,5 +334,5 @@ You can search or filter transactions on the following fields. Simply add them t
 
 * account - the account id
 * type - the type of the transaction
-* start_date - the ealiest date you want to include transactions from
+* start_date - the earliest date you want to include transactions from
 * end_date - the latest date you want to include transactions
