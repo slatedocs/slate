@@ -162,8 +162,10 @@ Allowable filter parameters:
 Parameter   | Type             | Description
 ------------|------------------|-------------------------------------------------
 dataset_ids | array of strings | limit results to particular dataset_ids or urls (user must have read access to that dataset)
-team        | string           | url or id  of the team to limit results (user must have read access to the team)
-project     | strint           | url or id of the project to limit results (user must have access to the project)
+team        | string           | url or id of the team to limit results (user must have read access to the team)
+project     | string           | url or id of the project to limit results (user must have access to the project)
+user        | string           | url or id of the user that has read access to the datasets to limit results (user must match with the provided one)
+owner       | string           | url or id of the dataset owner to limit results
 
 <aside class="notice">
 The query string can only be alpha-numeric characters (including underscores) logical operators are not allowed at this time.
