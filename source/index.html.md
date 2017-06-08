@@ -107,8 +107,8 @@ Additionally use the <code>Accept:application/json</code> Headers for every API 
 > To Create a new client, use this code:
 
 ```shell
-curl "https://staging.api.nexogy.com/api/residential/client?start_billing_date=<value>&
-customer_id=<value>&has_subreseller_id=<value>&subreseller_id=<value>&email=<value>&first_name=<values>&last_name=<value>&zipcode=<value>&same_billing_address=<value>&billing_address=<value>&billing_zipcode=<value>"
+curl "https://staging.api.nexogy.com/api/residential/client?email=<value>&
+first_name=<value>&last_name=<value>&zipcode=<value>&address=<value>&sameBillingAddress=<values>&billing_zipcode=<value>&billing_address=<value>&has_subreseller_id=<value>&subreseller_id=<value>&start_billing_date=<value>&did_porting=<value>&did_number=<value>"
   -H "Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjY1N2"
   -H "Accept:application/json"
 ```
@@ -131,6 +131,10 @@ $data['address'] = 'Client address';
 $data['sameBillingAddress'] = 1;
 $data['has_subreseller_id'] = 1;
 $data['subreseller_id'] = '123';
+$data['billing_zipcode'] = '12345';
+$data['start_billing_date'] = '06/08/2017';
+$data['did_porting'] = 0;
+$data['did_number'] = '3052304777';
 
 // Set up headers
 $request_headers = array();
@@ -152,24 +156,23 @@ curl_close($c);
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "result":"OK",
-    "client":
-      {
-        "id":6519,
-        "ns_domain":"ironmaiden.com",
-      }
+{
+  "result": "OK",
+  "data": {
+    "client": {
+      "id": 92769,
+      "ns_domain": "kerryking2.com"
+    }
   }
-]
+}
 ```
 
 This endpoint creates a Client on DNA. You will get back a <code>id</code> and a <code>ns_domain</code> these will be required for other operations. 
 
 ### HTTP Request
 
-`POST https://staging.api.nexogy.com/api/residential/client?start_billing_date=<value>&
-customer_id=<value>&has_subreseller_id=<value>&subreseller_id=<value>&email=<value>&first_name=<values>&last_name=<value>&zipcode=<value>&same_billing_address=<value>&billing_address=<value>&billing_zipcode=<value>`
+`POST https://staging.api.nexogy.com/api/residential/client?email=<value>&
+first_name=<value>&last_name=<value>&zipcode=<value>&address=<value>&sameBillingAddress=<values>&billing_zipcode=<value>&billing_address=<value>&has_subreseller_id=<value>&subreseller_id=<value>&start_billing_date=<value>&did_porting=<value>&did_number=<value>`
 
 ### Query Parameters
 
@@ -177,18 +180,20 @@ customer_id=<value>&has_subreseller_id=<value>&subreseller_id=<value>&email=<val
 
 Parameter | Example | Description
 --------- | ------- | -----------
-start_billing_date | 2017-05-18 | Date in  YYYY-MM-DD Format for Billing purposes
+start_billing_date | 05/29/2017 | Date in  MM/DD/YYYY Format for Billing purposes
 customer_id | 1234 | Customer id you use on your side.
-has_subreseller_id | true | This is an id used to group your cleint's IDs under a subreseller account if you have resellers that handle your clients this is how we would identify them for consolidation purposes.
+has_subreseller_id | 1 | This is an id used to group your client's IDs under a subreseller account if you have resellers that handle your clients this is how we would identify them for consolidation purposes. Accepts 1 or 0.
 subreseller_id | 1234 | Send this parameter only if you use a subreseller structure.
 email | email@email.com | Email used for any information required for the client, for example to send received V-mail.
 first_name | Steve | First name for the client.
 last_name | Harris | Last name for the client.
 zipcode | 33134 | The client's zipcode.
 address | 126 Mendoza avenue aparment 7A | The client's address.
-same_billing_address | true | Accepts true or false and determines if the address parameter will be used for billing, when false <code>billing_address</code> and <code>billing_zipcode</code> are required.
+sameBillingAddress | 1 | Accepts 1 or 0 and determines if the address parameter will be used for billing, when 0 <code>billing_address</code> and <code>billing_zipcode</code> are required.
 billing_address | 2121 ponce de leon | The billing address.
 billing_zipcode | 33308 | The billing zipcode.
+did_porting | 0 | Acepts 1 or 0 depending on if the did_number you are providing is ported or no.
+did_number | 3052304999 | Main phone number for the client.
 
 <aside class="success">
 Remember — store your <code>&lt;id&gt;</code> and <code>&lt;ns_domain&gt;</code> for future operations!
@@ -232,13 +237,15 @@ curl_close($c);
 
 ```json
 {
- "result": "OK",
- "timestamp": 1494597810
+  "result": "OK",
+  "data": {
+    "timestamp": 1496930642
+  }
 }
 
 ```
 
-This endpoint activates a specific client.
+This endpoint activates a specific client. If the client was previously cancelled, it activates the client on Netsapiens and sets the billing_status to active on DNA.
 
 <aside class="warning">You will need the <code>&lt;id&gt;</code> for this operation</aside>
 
@@ -289,12 +296,14 @@ curl_close($c);
 
 ```json
 {
- "result": "OK",
- "timestamp": 1494597810
+  "result": "OK",
+  "data": {
+    "timestamp": 1496940922
+  }
 }
 ```
 
-This endpoint suspends a Client.
+This endpoint suspends a Client. It just locked the client on Netsapiens. This is different from the cancel endpoint.
 
 <aside class="warning">You will need the <code>&lt;id&gt;</code> for this operation</aside>
 
@@ -308,10 +317,10 @@ Parameter | Description
 --------- | -----------
 id | The ID of the client to suspend, the one we sent you when the client was created
 
-## Get Status
+## Cancel a Client
 
 ```shell
-curl "https://staging.api.nexogy.com/api/residential/domain/<domain>"
+curl "https://staging.api.nexogy.com/api/residential/client/<id>/cancel"
   -H "Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjY1N2"
   -H "Accept:application/json"
 ```
@@ -319,7 +328,7 @@ curl "https://staging.api.nexogy.com/api/residential/domain/<domain>"
 ```php
 <?
 // Set api url
-$apiUrl = 'https://staging.api.nexogy.com/api/residential/domain/<domain>';
+$apiUrl = 'https://staging.api.nexogy.com/api/residential/client/id/cancel';
 // Start cURL
 $c = curl_init();
 curl_setopt($c, CURLOPT_CONNECTTIMEOUT, 5);
@@ -347,6 +356,63 @@ curl_close($c);
 {
   "result": "OK",
   "data": {
+    "timestamp": 1496931834
+  }
+}
+```
+
+This endpoint cancels a Client. It performs two operations, first suspends the client domain on Netsapiens and then set the billing_status of the client to suspended.
+
+<aside class="warning">You will need the <code>&lt;id&gt;</code> for this operation</aside>
+
+### HTTP Request
+
+`POST https://staging.api.nexogy.com/api/residential/client/<id>/cancel`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+id | The ID of the client to cancel, the one we sent you when the client was created
+
+## Get Status
+
+```shell
+curl "https://staging.api.nexogy.com/api/residential/domain/<domain>"
+  -H "Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjY1N2"
+  -H "Accept:application/json"
+```
+
+```php
+<?
+// Set api url
+$apiUrl = 'https://staging.api.nexogy.com/api/residential/domain/<domain>';
+// Start cURL
+$c = curl_init();
+curl_setopt($c, CURLOPT_CONNECTTIMEOUT, 5);
+curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+
+// Set up headers
+$request_headers = array();
+$request_headers[] = 'Authorization: Bearer '. $access_token;
+$request_headers[] = 'Accept: application/json';
+curl_setopt($c, CURLOPT_HTTPHEADER, $request_headers);
+
+// Setup the remainder of the cURL request
+curl_setopt($c, CURLOPT_URL, $apiUrl);
+
+// Execute the API call and return the response
+$result = curl_exec($c);
+curl_close($c);
+?>
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "result": "OK",
+  "data": {
     "status": "active",
     "timestamp": 1496259363
   }
@@ -359,13 +425,75 @@ This endpoint gets the status of a domain. Status are locked or active
 
 ### HTTP Request
 
-`POST https://staging.api.nexogy.com/api/residential/domain/<domain>`
+`GET https://staging.api.nexogy.com/api/residential/domain/<domain>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
 domain | The domain name of the client.
+
+## Update
+
+```shell
+curl "https://staging.api.nexogy.com/api/residential/client/<id>"
+  -H "Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjY1N2"
+  -H "Accept:application/json"
+```
+
+```php
+<?
+// Set api url
+$apiUrl = 'https://staging.api.nexogy.com/api/residential/client/<id>';
+// Start cURL
+$c = curl_init();
+curl_setopt($c, CURLOPT_CONNECTTIMEOUT, 5);
+curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+
+// Populate array with parameters
+$data['start_billing_date'] = '06/08/2017';
+
+// Set up headers
+$request_headers = array();
+$request_headers[] = 'Authorization: Bearer '. $access_token;
+$request_headers[] = 'Accept: application/json';
+curl_setopt($c, CURLOPT_HTTPHEADER, $request_headers);
+
+// Setup the remainder of the cURL request
+curl_setopt($c, CURLOPT_URL, $apiUrl);
+curl_setopt($c, CURLOPT_POST, true);
+curl_setopt($c, CURLOPT_POSTFIELDS, http_build_query($data));
+
+// Execute the API call and return the response
+$result = curl_exec($c);
+curl_close($c);
+?>
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "result": "OK",
+  "data": {
+    "timestamp": 1496941963
+  }
+}
+```
+
+This endpoint updates the information of a client in DNA. For now it's only available for the start_billing_date field.
+
+<aside class="warning">You will need the <code>&lt;id&gt;</code> for this operation</aside>
+
+### HTTP Request
+
+`POST https://staging.api.nexogy.com/api/residential/client/<id>`
+
+### URL Parameters
+
+Parameter | Example | Description
+--------- | ------- | -----------
+start_billing_date | 06/08/2017 | Date in  MM/DD/YYYY Format for Billing purposes.
 
 # Device
 
@@ -374,11 +502,40 @@ Once a Client is Created a default device is created, additional devices may be 
 ## Device method
 
 ```shell
-curl "https://staging.api.nexogy.com/api/residential/device?client_id=<value>&
-domain=<value>&extension=<value>"
+curl "https://staging.api.nexogy.com/api/residential/device?client_id=<value>&domain=<value>&ext=<value>"
   -H "Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjY1N2"
   -H "Accept:application/json"
 ```
+
+```php
+<?
+// Set api url
+$apiUrl = 'https://staging.api.nexogy.com/api/residential/device';
+// Start cURL
+$c = curl_init();
+curl_setopt($c, CURLOPT_CONNECTTIMEOUT, 5);
+curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+
+// Populate array with parameters
+$data['domain'] = '06/08/tomaraya.com';
+$data['client_id'] = '12345';
+$data['ext'] = '1003';
+
+// Set up headers
+$request_headers = array();
+$request_headers[] = 'Authorization: Bearer '. $access_token;
+$request_headers[] = 'Accept: application/json';
+curl_setopt($c, CURLOPT_HTTPHEADER, $request_headers);
+
+// Setup the remainder of the cURL request
+curl_setopt($c, CURLOPT_URL, $apiUrl);
+curl_setopt($c, CURLOPT_POST, true);
+curl_setopt($c, CURLOPT_POSTFIELDS, http_build_query($data));
+
+// Execute the API call and return the response
+$result = curl_exec($c);
+curl_close($c);
+?>
 
 > The above command returns JSON structured like this:
 
@@ -389,13 +546,9 @@ domain=<value>&extension=<value>"
    "subscriber_name": "1012",
    "aor": "sip:1012@kirkhammet.com",
    "domain": "kirkhammet.com",
-   "authentication_key": "oqyx0245",
+   "authentication_key": "encrypted key",
    "regservers": {
      "server1": {
-       "address": "sandbox.nexogy.net",
-       "port": "5092"
-     },
-     "server2": {
        "address": "sandbox.nexogy.net",
        "port": "5092"
      }
@@ -405,14 +558,11 @@ domain=<value>&extension=<value>"
 }
 ```
 
-
-
-The Device method behaves different according to the parameters it receives.
+The Device method behaves different according to the parameters it receives. You can pass the domain or the client_id, no need to pass both. If no ext is sent the default extension is created, in this case extension=1000 and the device information is returned. If a number is sent in this parameter and the device exists this method returns device information. If a number is sent and the device doesn't exist, that device for that extension is created.
 
 ### HTTP Request
 
-`POST https://staging.api.nexogy.com/api/residential/device?client_id=<value>&
-domain=<value>&extension=<value>`
+`POST https://staging.api.nexogy.com/api/residential/device?client_id=<value>&domain=<value>&ext=<value>`
 
 ### URL Parameters
 
@@ -436,4 +586,101 @@ Refer to this documentation in order to generate the key here:
 <a href='https://help.github.com/articles/generating-a-new-gpg-key/'>Documentation for gpg</a>
 
 <aside class="warning">Send us the public key indicated in step 13 of the <code>gpg</code> documentation found above. For this operation.</aside>
+
+# Did
+
+## Search Dids
+
+```shell
+curl "https://staging.api.nexogy.com/api/dids/search?npa=<value>&state=<value>"
+  -H "Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjY1N2"
+  -H "Accept:application/json"
+```
+
+```php
+<?
+// Set api url
+$apiUrl = 'https://staging.api.nexogy.com/api/dids/search';
+// Start cURL
+$c = curl_init();
+curl_setopt($c, CURLOPT_CONNECTTIMEOUT, 5);
+curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+
+// Populate array with parameters
+$data['npa'] = '305';
+$data['state'] = 'FL';
+
+// Set up headers
+$request_headers = array();
+$request_headers[] = 'Authorization: Bearer '. $access_token;
+$request_headers[] = 'Accept: application/json';
+curl_setopt($c, CURLOPT_HTTPHEADER, $request_headers);
+
+// Setup the remainder of the cURL request
+curl_setopt($c, CURLOPT_URL, $apiUrl);
+curl_setopt($c, CURLOPT_POST, true);
+curl_setopt($c, CURLOPT_POSTFIELDS, http_build_query($data));
+
+// Execute the API call and return the response
+$result = curl_exec($c);
+curl_close($c);
+?>
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "result": "OK",
+  "data": {
+    "return": {
+      "npas": {
+        "npa": "305"
+      },
+      "quantity": 6,
+      "consecutive": 1,
+      "result": {
+        "tn": [
+          {
+            "number": 3052304666,
+            "category": "Vanity"
+          },
+          {
+            "number": 3052304777,
+            "category": "Vanity"
+          },
+          {
+            "number": 3052304999,
+            "category": "Vanity"
+          },
+          {
+            "number": 3054344555,
+            "category": "Vanity"
+          },
+          {
+            "number": 3054344600,
+            "category": "Vanity"
+          },
+          {
+            "number": 3054344777,
+            "category": "Vanity"
+          }
+        ]
+      },
+      "tnCount": 6
+    }
+  }
+```
+
+This endpoit conducts a search by area code and state name and returns available did numbers to be used when creating a new client.
+
+### HTTP Request
+
+`POST https://staging.api.nexogy.com/api/dids/search?npa=<value>&state=<value>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+npa | Area code of the desired number.
+state | State of the desired number.
 
