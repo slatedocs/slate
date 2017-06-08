@@ -625,6 +625,7 @@ curl_setopt($c, CURLOPT_POSTFIELDS, http_build_query($data));
 $result = curl_exec($c);
 curl_close($c);
 ?>
+```
 
 > The above command returns JSON structured like this:
 
