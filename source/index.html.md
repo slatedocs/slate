@@ -1444,7 +1444,7 @@ Parameter | Type | Description
 
 ```shell
 curl\
- -X POST\
+ -X GET\
  -H "Content-Type: application/json"\
  -H "X-Application: {{APPLICATION_TOKEN}}"\
  -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
@@ -1489,3 +1489,42 @@ Parameter | Type | Description
 `choice_items` | *array* | Checklist answers
 `choice_items.id` | *integer* | Unique identifier
 `choice_items.value` | *string/array* | Answer user entered
+
+
+## Tracked locations
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+ -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/unit/tracked_locations"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "latitude": 21.197216,
+      "longitude": 21.621094,
+      "event_time": 1496922768
+    }
+  ]
+}
+```
+
+Locations tracked over time for the unit.
+
+`"path": "tracked_locations"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`latitude ` | *integer* | Latitude tracked
+`longitude ` | *array* | Longitude tracked
+`event_time` | *integer* | Timestamp when the event occurred and was saved (may be sent later)
