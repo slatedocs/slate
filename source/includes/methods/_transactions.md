@@ -31,8 +31,7 @@ account | long integer | The ID of the account which this transaction belongs to
 amount | float | The transaction amount
 description | string | The payment description
 created | string | The date that the transaction was created, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
-type | string | The transaction type. This can be admin_funds_update, mobile_funds_update, funds_deposit, funds_adjustment,
-mobile_collection, mobile_payment, airtime_topup, service_charge, mobile_withdrawal, bank_withdrawal
+type | string | The transaction type. This can be admin_funds_update, mobile_funds_update, funds_deposit, funds_adjustment, mobile_collection, mobile_payment, airtime_topup, service_charge, mobile_withdrawal, bank_withdrawal
 
 ## Retrieving a Single Transaction
 
