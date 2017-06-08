@@ -1528,3 +1528,8 @@ Parameter | Type | Description
 `latitude ` | *integer* | Latitude tracked
 `longitude ` | *array* | Longitude tracked
 `event_time` | *integer* | Timestamp when the event occurred and was saved (may be sent later)
+
+This endpoint returns:
+
+* [Common errors](#common-errors)
+* [Tracked locations errors](#tracked-locations-errors)
