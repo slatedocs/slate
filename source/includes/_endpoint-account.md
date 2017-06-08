@@ -122,16 +122,19 @@ POST /accounts/1234/users/
 
 ```json
 {
-  "email": "new_email@example.com",
-  "name": "Initial name",
-  "account_permissions": {
-    "alter_users": false,
-    "create_datasets": true
-  },
-  "id_method": "pwhash/oauth",
-  "id_provider": "",
-  "send_invite": true,
-  "url_base": "http://app.crunch.io/"
+  "element": "shoji:entity",
+  "body": {
+      "email": "new_email@example.com",
+      "name": "Initial name",
+      "account_permissions": {
+        "alter_users": false,
+        "create_datasets": true
+      },
+      "id_method": "pwhash/oauth",
+      "id_provider": "",
+      "send_invite": true,
+      "url_base": "http://app.crunch.io/"
+  }
 }
 ```
 
@@ -148,6 +151,7 @@ PATCH /accounts/1234/users/
 
 ```json
 {
+  "element": "shoji:catalog",
   "index": {
     "http://app.crunch.io/api/users/123/": {
       "account_permissions": {
