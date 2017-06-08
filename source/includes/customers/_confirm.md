@@ -109,11 +109,3 @@ This endpoint confirms a customer's phone number:
 ### Returns
 
 A customer object.
-
-### Event
-
-Fires a `verification` event with payload:
-
-`{
-  "status": "confirmed"
-}`

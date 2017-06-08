@@ -52,8 +52,3 @@ This endpoint creates a [customer](#customers) credit card. The newly created ca
 ### Returns
 
 A card object.
-
-
-### Event
-
-Fires a `card.created` event.

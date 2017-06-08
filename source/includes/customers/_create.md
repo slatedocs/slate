@@ -111,12 +111,3 @@ Without `confirmation`:
 ### Returns
 
 A customer object.
-
-### Event
-
-Fires a `verification` event with payload:
-
-`{
-  "status": "needs_confirmation",
-  "code": "token"
-}`

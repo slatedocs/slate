@@ -65,15 +65,3 @@ Expected payload from [EasyPost's webhook reference](https://www.easypost.com/we
 ### Returns
 
 Nothing.
-
-### Event
-
-Fires a `order.shipment.updated` event with payload:
-
-`{
-  "id": "shipment_id",
-  "order_id": "order_id",
-  "tracking_status": "status",
-  "tracking_url": "url",
-  "eta": "eta"
-}`

@@ -106,13 +106,3 @@ Either a `created`, `queued` or `paid` order can be canceled.
 ### Returns
 
 An order object.
-
-### Event
-
-Fires a `order.canceled` event with payload:
-
-```json
-{
-  "id": "order_id"
-}
-```

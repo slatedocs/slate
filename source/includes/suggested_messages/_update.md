@@ -46,14 +46,3 @@ This endpoint updates a suggested message. It increments the `selected_count` at
 ### Returns
 
 A suggested message object.
-
-### Event
-
-Fires a `suggested_message.updated` event with payload:
-
-```json
-{
-  "id": "suggested_message_id",
-  "selected_count": 1
-}
-```
