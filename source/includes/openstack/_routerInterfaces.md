@@ -95,7 +95,7 @@ Create a router interface.
 Required attributes          | Description                          
 --------------------------   | ------------------------------------
 `networkId`<br/>*UUID*        | The ID of the network that is being connected  
-`routerId`<br/>*UUID*         | The ID of the parent router
+`routerId`<br/>*UUID*         | The ID of the router
 
 
 #### Delete a router interface
@@ -103,7 +103,7 @@ Required attributes          | Description
 ```shell
 curl -X DELETE \
     -H "MC-Api-Key: your_api_key" \
-    "https://api.your.cloudmc/v1/services/compute-os/devel/routers/c14ed06b-6de9-4b3e-aac9-9e6c1406de9e"
+    "https://api.your.cloudmc/v1/services/compute-os/devel/routerinterfaces/c14ed06b-6de9-4b3e-aac9-9e6c1406de9e"
 ```
 
 <code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/routerinterfaces/:id</code>
