@@ -786,7 +786,7 @@ all       | include_personal    | Include the user's personal variables in the e
 ###### SPSS
 
 Categorical-array and multiple-response variables will be exported as "mrsets", as supported by SPSS. If
-the `prefix_subvariables` option is set to `true`, then the subvariables' labels will be prefixed with the
+the `prefix_subvariables` option is set to `true`, then the subvariables' labels will be prefixed with the 
 parent's label.
 
 To pick which variable field to use on the `label` field on the SPSS variables, use the `var_label_field` in the
@@ -794,7 +794,7 @@ To pick which variable field to use on the `label` field on the SPSS variables, 
 
 ###### CSV
 
-By default, categorical variable values will be exported using the category name
+By default, categorical variable values will be exported using the category name 
 and missing values will use their corresponding reason string for all variables.
 
 The missing values will be exported with their configured missing reason in
@@ -1082,7 +1082,7 @@ via the different sources:
  * When the dataset belongs to a project, as project members
  * Members of teams that are shared with the dataset
  * Direct shares to specific users
-
+ 
 This endpoint only supports GET, the response will be a catalog with each user
 as member with the tuple indicating the coalesced permissions and information
 about the type of access:
@@ -1100,45 +1100,45 @@ coalesced_permissions | Permissions this user has to this access, combining all 
 
 {
   "https://app.crunch.io/api/users/411aa32a075b4b57bf25a4ace1baf920/": {
-    "name": "Jean-Luc Picard",
+    "name": "Jean-Luc Picard", 
     "last_accessed": "2017-02-25T00:00:00+00:00",
     "teams": [
-      "https://app.crunch.io/api/teams/c6dbeb7c57e34dd08ab2316f3363e895/",
+      "https://app.crunch.io/api/teams/c6dbeb7c57e34dd08ab2316f3363e895/", 
       "https://app.crunch.io/api/teams/d0abf4e933fc44e38190247ae4d593f9/"
-    ],
-    "project_member": false,
-    "email": "jeanluc@crunch.io",
+    ], 
+    "project_member": false, 
+    "email": "jeanluc@crunch.io", 
     "coalesced_permissions": {
-      "edit": true,
-      "change_permissions": true,
+      "edit": true, 
+      "change_permissions": true, 
       "view": true
     }
-  },
+  }, 
   "https://app.crunch.io/api/users/60f18c51699b4ba992721197743286a4/": {
-    "name": "William Riker",
-    "last_accessed": null,
+    "name": "William Riker", 
+    "last_accessed": null, 
     "teams": [
       "https://app.crunch.io/api/teams/d0abf4e933fc44e38190247ae4d593f9/"
-    ],
-    "project_member": false,
-    "email": "number1@crunch.io",
+    ], 
+    "project_member": false, 
+    "email": "number1@crunch.io", 
     "coalesced_permissions": {
-      "edit": false,
-      "change_permissions": false,
+      "edit": false, 
+      "change_permissions": false, 
       "view": true
     }
-  },
+  }, 
   "https://app.crunch.io/api/users/80d89e4e876344ecb46c528a910e3877/": {
-    "name": "Geordi La Forge",
-    "last_accessed": "2017-01-31T00:00:00+00:00",
+    "name": "Geordi La Forge", 
+    "last_accessed": "2017-01-31T00:00:00+00:00", 
     "teams": [
       "https://app.crunch.io/api/teams/c6dbeb7c57e34dd08ab2316f3363e895/",
-      "https://app.crunch.io/api/teams/d0abf4e933fc44e38190247ae4d593f9/"
-    ],
-    "project_member": true,
-    "email": "geordilf@crunch.io",
+      "https://app.crunch.io/api/teams/d0abf4e933fc44e38190247ae4d593f9/" 
+    ], 
+    "project_member": true, 
+    "email": "geordilf@crunch.io", 
     "coalesced_permissions": {
-      "edit": true,
+      "edit": true, 
       "change_permissions": true, 
       "view": true
     }
