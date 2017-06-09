@@ -1133,7 +1133,7 @@ coalesced_permissions | Permissions this user has to this access, combining all 
     "last_accessed": "2017-01-31T00:00:00+00:00", 
     "teams": [
       "https://app.crunch.io/api/teams/c6dbeb7c57e34dd08ab2316f3363e895/", 
-      "https://app.crunch.io/api/teams/d0abf4e933fc44e38190247ae4d593f9/" 
+      "https://app.crunch.io/api/teams/d0abf4e933fc44e38190247ae4d593f9/"
     ], 
     "project_member": true, 
     "email": "geordilf@crunch.io", 
