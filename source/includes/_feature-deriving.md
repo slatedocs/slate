@@ -510,11 +510,11 @@ Given a variable such as:
         ],
         "subvariables": ["0001", "0002", "0003"],
         "references": {
-            "subreferences": [
-                {"alias": "Coke"},
-                {"alias": "Pepsi"},
-                {"alias": "RC"},
-            ]
+            "subreferences": {
+                "0003": {"alias": "Coke"},
+                "0002": {"alias": "Pepsi"},
+                "0001": {"alias": "RC"}
+            }
         }
     }
 }

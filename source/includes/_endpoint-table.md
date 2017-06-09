@@ -97,11 +97,11 @@ GET /datasets/:id/table/ HTTP/1.1
       "type": "categorical_array",
       "name": "categorical_array",
       "subvariables": ["000007", "000008", "000009"],
-      "subreferences": [
-        {"alias": "ca_subvar_1", "name": "ca_subvar_1", "description": ""},
-        {"alias": "ca_subvar_2", "name": "ca_subvar_2", "description": ""},
-        {"alias": "ca_subvar_3", "name": "ca_subvar_3", "description": ""}
-      ]
+      "subreferences": {
+        "000009": {"alias": "ca_subvar_1", "name": "ca_subvar_1", "description": ""},
+        "000007": {"alias": "ca_subvar_2", "name": "ca_subvar_2", "description": ""},
+        "000008": {"alias": "ca_subvar_3", "name": "ca_subvar_3", "description": ""}
+      },
       "categories": [
         { "numeric_value": null, "selected": false, "id": 1, "missing": false, "name": "a" },
         { "numeric_value": null, "selected": false, "id": 2, "missing": false, "name": "b" },

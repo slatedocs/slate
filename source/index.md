@@ -42,6 +42,7 @@ includes:
   - endpoint-team
   - endpoint-projects
   - endpoint-geodata
+  - endpoint-account
   - object-reference
 
 search: true
