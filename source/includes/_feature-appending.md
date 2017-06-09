@@ -100,6 +100,10 @@ processing each one and the more you can send in a given time. Send multiple
 lines of line-delimited JSON, or if using pycrunch, a list of dicts rather than
 a single dict.
 
+Each time you send a POST, all of the rows in that POST are assembled into a new
+message which is added to the stream. Each message can contain one or more rows
+of data.
+
 As when creating a new source, don't worry about sending values for derived
 variables; Crunch will fill these out for you for each row using the data you
 send.
@@ -137,14 +141,14 @@ ds.batches.create({"body": {
 }})
 ```
 
-The "stream" member tells Crunch to acquire rows from the stream to form this
-Batch. If `null`, the system will acquire all currently pending rows
-(any new rows which arrive during the formation of this Batch will be queued
-and not fetched). If an integer, the system will attempt to fetch that many
-rows from the stream, waiting up to 10 seconds for new ones if the number
-exceeds the number of pending rows. If there are no pending rows,
+The "stream" member tells Crunch to acquire the data from the stream to form this
+Batch. The "stream" member must be `null`, then the system will acquire all 
+currently pending messages (any new messages which arrive during the formation of
+this Batch will be queued and not fetched). If there are no pending messages,
 `409 Conflict` is returned instead of 201/202 for the new Batch.
 
 ##### Pending rows will be added automatically
 
 Every hour, the Crunch system goes through all datasets, and for each that has pending streamed data, it batches up the pending rows and adds them to the dataset automatically, as long as the dataset is not currently in use by someone. That way, streamed data will magically appear in the dataset for the next time a user loads it, but if a user is actively working with the dataset, the system won't update their view of the data and disrupt their session.
+
+See [Stream](#stream) for more details on streams.
