@@ -716,6 +716,15 @@ GET /variables/search/?q={query}&f={filter}&limit={limit}&offset={offset}  HTTP/
  "value": {
   "groups": [
    {
+    "group": "Search Results", 
+    "order": [
+     "https://app.crunch.io/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e1/variables/000007/", 
+     "https://app.crunch.io/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e1/variables/000008/"
+    ], 
+    "totals": {
+     "variables": 2, 
+     "datasets": 1
+    }
     "variables": {
      "https://app.crunch.io/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e1/variables/000008/": {
       "alias": "BOW_AF_Name", 
@@ -762,15 +771,6 @@ GET /variables/search/?q={query}&f={filter}&limit={limit}&offset={offset}  HTTP/
       "description": ""
      }
     }, 
-    "group": "Search Results", 
-    "order": [
-     "https://app.crunch.io/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e1/variables/000007/", 
-     "https://app.crunch.io/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e1/variables/000008/"
-    ], 
-    "totals": {
-     "variables": 2, 
-     "datasets": 1
-    }
    }
   ]
  }, 
