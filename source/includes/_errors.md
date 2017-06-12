@@ -64,3 +64,10 @@ Error Code | Meaning
 6018 | This voucher is already registered to another user
 6019 | This voucher is not available to be registered to a user
 6026 | Missing voucher code
+
+## Tracked locations errors
+Error Code | Meaning
+---------- | -------
+5721 | Latitude is required
+5722 | Longitude is required
+5723 | Event time is required
