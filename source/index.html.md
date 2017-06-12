@@ -567,7 +567,7 @@ curl -i https://rubiconmd.com/api/v1/provider_cases/CASE_ID/attachments?access_t
   "thumb_340": "https://rubicon.s3.amazonaws.com/attachments/images/000/000/000/thumb_340/ee83c9baf45b73138bc6c771a.jpg?",
   "thumb_180": "https://rubicon.s3.amazonaws.com/attachments/images/000/000/000/thumb_180/ee83c9baf45b73138bc6c771a.jpg?",
   "response_id": null
-}  
+}
 ```
 
 Retrieves all the images associated with a specific case.
@@ -623,7 +623,7 @@ curl -X POST
   "thumb_340": "https://rubicon.s3.amazonaws.com/attachments/images/000/000/000/thumb_340/ee83c9baf45b73138bc6c771a.jpg?",
   "thumb_180": "https://rubicon.s3.amazonaws.com/attachments/images/000/000/000/thumb_180/ee83c9baf45b73138bc6c771a.jpg?",
   "response_id": null
-}  
+}
 ```
 
 This allows you post an image in a specific case (as a pcp).
@@ -731,6 +731,92 @@ last_name | Last name of the user.
 role | User's role. Roles are limited to the following values: 'medical_doctor' , 'physician_assistant' , 'registered_nurse' , 'nurse_practitioner'
 per_page | Number of records to display per_page. [Read more.](#paginators)
 page | Page to display. [Read more.](#paginators)
+
+# Members
+
+## Batch Upload
+
+```shell
+curl -X POST
+  -H "Content-Type: application/json"
+  -d '{"members":[{"uid": "JIYGN-357-5309","first_name": "Charles","last_name": "Bovary","gender": "Male","date_of_birth": "12/15/1856","email": "devoted.husband@gmail.fr","race": "Norman","phone_number": "555-555-5555","insurance": "self","location": "Tostes","valid_until": "01/15/2018"}]}' "https://rubiconmd.com/api/v1/members?access_token=AAAAAA"
+```
+
+> The above command ingests JSON structured like this:
+
+```json
+[
+  {
+    "uid": "JIYGN-867-5309",
+    "first_name": "Emma",
+    "last_name": "Bovary",
+    "gender": "Female",
+    "date_of_birth": "12/15/1856",
+    "email": "rouen.girl@gmail.fr",
+    "race": "Norman",
+    "phone_number": "555-555-5555",
+    "insurance": "officier de santé",
+    "location": "Tostes",
+    "valid_until": "01/15/2018"
+  },
+  {
+    "uid": "JIYGN-637-5309",
+    "first_name": "Rodolphe",
+    "last_name": "Boulanger",
+    "gender": "Male",
+    "date_of_birth": "12/15/1856",
+    "email": "livin.easy@gmail.fr",
+    "race": "Aristocrat",
+    "phone_number": "555-555-5555",
+    "insurance": "independent wealth",
+    "location": "Tostes",
+    "valid_until": "01/15/2018"
+  },
+  {
+    "uid": "JIYGN-638-6309",
+    "first_name": "Léon",
+    "last_name": "Dupuis",
+    "gender": "Male",
+    "date_of_birth": "12/15/1856",
+    "email": "poetry.lover@gmail.fr",
+    "race": "Norman",
+    "phone_number": "555-555-5555",
+    "insurance": "grace of God?",
+    "location": "Rouen",
+    "valid_until": "01/15/2018"
+  }
+]
+```
+
+This endpoint retrieves all the members associated with your API client's organization.
+
+### Important Notes
+
+* All payloads must be formatted in JSON and wrapped with {"members": [...]}, with the JSON payloads for individual members listed within the array.
+
+* UID is required for each member and must be unique. If two payloads are submitted with the same UID, the payload received later will overwrite the earlier one.
+
+* An access token created using the client_credentials authentication strategy is sufficient for this completing this request (most other tokens should be valid, as well).
+
+### HTTP Request
+
+`POST https://rubiconmd.com/api/v1/members?access_token="AAAAAA" {"members":[{"uid": "JIYGN-357-5309","first_name": "Charles","last_name": "Bovary","gender": "Male","date_of_birth": "12/15/1856","email": "devoted.husband@gmail.fr","race": "Norman","phone_number": "555-555-5555","insurance": "self","location": "Tostes","valid_until": "01/15/2018"}]}`
+
+### Query Optional Parameters
+
+Parameter |  Description
+--------- | -----------
+uid | A unique identifier for the member, such as plan UID or MRN. (required)
+first_name | Member first name. (recommended)
+last_name | Member last name. (recommended)
+gender | Member gender. Preferred values are 'Male', 'Female', or 'Transgender'
+date_of_birth | Member birthdate. Should be formated as MM/DD/YYYY. (required)
+email | Member e-mail. (optional)
+race | Member race. Can be combined with ethnicity.
+phone_number | Member contact phone number.
+insurance | Member insurance plan (freetext).
+location | Member current location.
+valid_until | Date that member record is no longer valid, or must be renewed/updated by. Should be formated as MM/DD/YYYY.
 
 # iFrame
 
