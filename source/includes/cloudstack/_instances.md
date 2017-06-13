@@ -494,7 +494,7 @@ Required | (if custom compute offering)
 `cpuCount`<br/>*integer* | Number of CPUs for the instance
 `memoryInMB`<br/>*integer* | Amount of memory in MB for the instance
 
-<!-------------------- CHANGE COMPUTE OFFERING OF AN INSTANCE -------------------->
+<!-------------------- RESET PASSWORD OF AN INSTANCE -------------------->
 
 
 #### Reset the password of an instance
@@ -519,6 +519,33 @@ password, err := ccaResources.Instances.ResetPassword("instance_id")
 
 Reset the password of the default user of an existing instance. The new password of the instance will be in the task result.
 
+<!-------------------- CHANGE NETWORK OF AN INSTANCE -------------------->
+
+#### Change network of an instance
+
+
+```shell
+
+# Example:
+
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=changeNetwork"
+```
+```go
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
+ccaResources := resources.(cloudca.Resources)
+password, err := ccaResources.Instances.ChangeNetwork("instance_id", "new_network_id")
+```
+
+ <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=changeNetwork</code>
+
+Move an instance to another network. NOTE: This will destroy all port forwarding rules associated to this instance and remove the instance from all load balancing rules. Additionally, it will reboot your instance.
+
+Required | &nbsp;
+------ | -----------
+`networkId`<br/>*UUID* | The destination [network](#networks).
 
 <!-------------------- ASSOCIATE AN SSH KEY TO AN INSTANCE -------------------->
 
