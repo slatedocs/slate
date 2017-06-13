@@ -1,4 +1,4 @@
-### Router Interfaces
+### Router interfaces
 
 Router interfaces connect a router to a network.
 

@@ -3,7 +3,7 @@ title: CloudMC API Documentation
 
 language_tabs:
   - shell : curl
-  
+
 toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
@@ -35,7 +35,6 @@ subsections:
     - nics
     - remote_access_vpns
     - vpn_users
-    - s2s_vpns
     - storage # Storage section
     - volumes
     - snapshots
@@ -54,5 +53,6 @@ subsections:
     - securityGroupRules
     - routers
     - routerInterfaces
+    - sshKeys
 search: true
 ---
