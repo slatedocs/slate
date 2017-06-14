@@ -1591,7 +1591,7 @@ This endpoint returns:
 * [Common errors](#common-errors)
 * [Tracked locations errors](#tracked-locations-errors)
 
-## Push notifications history
+## Push notifications
 
 
 ```shell
@@ -1600,7 +1600,7 @@ curl\
  -H "Content-Type: application/json"\
  -H "X-Application: {{APPLICATION_TOKEN}}"\
  -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
-"https://{{BASE_URL}}/v2/unit/push_notifications_history"
+"https://{{BASE_URL}}/v2/unit/push_notifications"
 ```
 
 > The above request success response is:
@@ -1622,7 +1622,7 @@ curl\
 
 History of all pushes sent to unit.
 
-`"path": "push_notifications_history"`
+`"path": "push_notifications"`
 
 ### Response parameters
 
