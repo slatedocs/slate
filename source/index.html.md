@@ -1491,6 +1491,59 @@ Parameter | Type | Description
 `choice_items.value` | *string/array* | Answer user entered
 
 
+## Ratings
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+ -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/unit/ratings"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "id": 25,
+      "rate": 4,
+      "comment": "Didn't clean the kitchen well",
+      "client_name": "John Doe",
+      "created_at": 1496233156
+    },
+    {
+      "id": 25,
+      "rate": 4,
+      "comment": "Didn't clean the kitchen well",
+      "created_at": 1496233156
+    }
+  ]
+}
+```
+
+Client ratings for the unit.
+
+`"path": "ratings"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`id` | *integer* | Unique identifier
+`rate ` | *integer* | Rating client gave for the job
+`comment ` | *string* | Client comment upon rating the job 
+`client_name ` | *string* | Name of client who rated the job
+`created_at` | *integer* | Timestamp when the rating was made
+
+This endpoint returns:
+
+* [Common errors](#common-errors)
+
+
 ## Tracked locations
 
 
@@ -1525,8 +1578,8 @@ Locations tracked over time for the unit.
 
 Parameter | Type | Description
 -------- | ----- | -------
-`latitude ` | *integer* | Latitude tracked
-`longitude ` | *array* | Longitude tracked
+`latitude ` | *double* | Latitude tracked
+`longitude ` | *double* | Longitude tracked
 `event_time` | *integer* | Timestamp when the event occurred and was saved (may be sent later)
 
 This endpoint returns:
