@@ -1052,7 +1052,8 @@ curl\
       "is_in_summary": false,
       "name": "1 bedroom",
       "choice_items": null,
-      "image_url": "http://image.url/here.jpg"
+      "image_url": "http://image.url/here.jpg",
+      "customize": null
     }
   ]
 }
@@ -1081,6 +1082,7 @@ Parameter | Type | Description
 `name` | *string* | Title of answer
 `choice_items` | *array\<[choice_item](#choice-items)\>* | List of sub-answers for the answers
 `image_url`| *string* | List image for choice item
+`customize` | *object* | Key-value pairs of custom attributes
 
 
 
@@ -1139,7 +1141,7 @@ Parameter | Type | Description
 `sort` | *integer* | Order of item in list
 `title` | *string* | Display name of payment method
 `type` | *string* | *<b>None</b> - No processing needed (e.g. Cash payment)*<br>*<b>Stripe</b> - Card payment via Stripe*
-`payment_provider_id ` | *integer* | Identifier for the the account used for the payment method (e.g. Stripe UK, Stripe AUS etc.)
+`payment_provider_id` | *integer* | Identifier for the the account used for the payment method (e.g. Stripe UK, Stripe AUS etc.)
 `attributes`<br>*optional* | *object* | Based on the payment provider different data may be provided (such as keys, tokens etc.)
 `attributes.stripe_key`<br>*optional* | *string* | Stripe API authorization key
 `icon_image_url` | *string* | Icon image for payment method
@@ -1370,8 +1372,8 @@ Units can review their registered vouchers.
 
 Parameter | Type | Description
 -------- | ----- | -------
-`voucher_code ` | *string* | Voucher code
-`created_at ` | *integer* | Timestamp when the voucher was registered
+`voucher_code` | *string* | Voucher code
+`created_at` | *integer* | Timestamp when the voucher was registered
 
 This endpoint returns:
 
@@ -1536,9 +1538,9 @@ Client ratings for the unit.
 Parameter | Type | Description
 -------- | ----- | -------
 `id` | *integer* | Unique identifier
-`rate ` | *integer* | Rating client gave for the job
-`comment ` | *string* | Client comment upon rating the job 
-`client_name ` | *string* | Name of client who rated the job
+`rate` | *integer* | Rating client gave for the job
+`comment` | *string* | Client comment upon rating the job 
+`client_name` | *string* | Name of client who rated the job
 `created_at` | *integer* | Timestamp when the rating was made
 
 This endpoint returns:
@@ -1580,8 +1582,8 @@ Locations tracked over time for the unit.
 
 Parameter | Type | Description
 -------- | ----- | -------
-`latitude ` | *double* | Latitude tracked
-`longitude ` | *double* | Longitude tracked
+`latitude` | *double* | Latitude tracked
+`longitude` | *double* | Longitude tracked
 `event_time` | *integer* | Timestamp when the event occurred and was saved (may be sent later)
 
 This endpoint returns:
@@ -1589,7 +1591,7 @@ This endpoint returns:
 * [Common errors](#common-errors)
 * [Tracked locations errors](#tracked-locations-errors)
 
-## Notifications history
+## Push notifications history
 
 
 ```shell
@@ -1598,7 +1600,7 @@ curl\
  -H "Content-Type: application/json"\
  -H "X-Application: {{APPLICATION_TOKEN}}"\
  -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
-"https://{{BASE_URL}}/v2/unit/notifications_history"
+"https://{{BASE_URL}}/v2/unit/push_notifications_history"
 ```
 
 > The above request success response is:
@@ -1608,34 +1610,59 @@ curl\
   "data": [
     {
       "id": 25,
-      "rate": 4,
-      "comment": "Didn't clean the kitchen well",
-      "client_name": "John Doe",
-      "created_at": 1496233156
-    },
-    {
-      "id": 25,
-      "rate": 4,
-      "comment": "Didn't clean the kitchen well",
-      "created_at": 1496233156
+      "umid": "LKJHKEWB324123jkljL",
+      "status": 3000,
+      "action": 1,
+      "message": "Text from push notification",
+      "payload": null
     }
   ]
 }
 ```
 
-Client ratings for the unit.
+History of all pushes sent to unit.
 
-`"path": "notifications_history"`
+`"path": "push_notifications_history"`
 
 ### Response parameters
 
 Parameter | Type | Description
 -------- | ----- | -------
 `id` | *integer* | Unique identifier
-`rate ` | *integer* | Rating client gave for the job
-`comment ` | *string* | Client comment upon rating the job 
-`client_name ` | *string* | Name of client who rated the job
-`created_at` | *integer* | Timestamp when the rating was made
+`umid` | *string* | Unique identifier to update push status
+`status` | *integer* | 100, 200
+`action` | *integer* | Describes what action should be triggered on the unit
+`message` | *string* | Push notification text
+`payload` | *object* | Custom data based on action
+
+### Popup push response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`payload.popup.image_url` | *string* | 
+`payload.popup.title` | *string* | 
+`payload.popup.description` | *string* | 
+`payload.popup.cta_button.title` | *string* | 
+`payload.popup.cta_button.target.screen_id` | *integer* | 
+`payload.popup.cta_button.target.screen_id.item_id` | *integer* | 
+`payload.popup.voucher.voucher_code` | *string* | 
+`payload.popup.voucher.title` | *string* | 
+`payload.popup.voucher.valid_to` | *integer* | 
+
+### Job offer push response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`payload.job_offer.id` | *integer* | 
+`payload.job_offer.booking_id` | *integer* | 
+`payload.job_offer.available` | *boolean* | 
+
+### Open content push response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`payload.target.screen_id` | *integer* | 
+`payload.target.item_id` | *integer* | 
 
 This endpoint returns:
 
