@@ -1050,8 +1050,9 @@ curl\
       "duration": 0,
       "summary_title": "",
       "is_in_summary": false,
-      "name": "1 _bedroom",
-      "choice_items": null
+      "name": "1 bedroom",
+      "choice_items": null,
+      "image_url": "http://image.url/here.jpg"
     }
   ]
 }
@@ -1079,6 +1080,7 @@ Parameter | Type | Description
 `is_in_summary` | *boolean* | Should the answer be included in the summary of booking
 `name` | *string* | Title of answer
 `choice_items` | *array\<[choice_item](#choice-items)\>* | List of sub-answers for the answers
+`image_url`| *string* | List image for choice item
 
 
 
@@ -1586,3 +1588,55 @@ This endpoint returns:
 
 * [Common errors](#common-errors)
 * [Tracked locations errors](#tracked-locations-errors)
+
+## Notifications history
+
+
+```shell
+curl\
+ -X GET\
+ -H "Content-Type: application/json"\
+ -H "X-Application: {{APPLICATION_TOKEN}}"\
+ -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
+"https://{{BASE_URL}}/v2/unit/notifications_history"
+```
+
+> The above request success response is:
+
+```json
+{
+  "data": [
+    {
+      "id": 25,
+      "rate": 4,
+      "comment": "Didn't clean the kitchen well",
+      "client_name": "John Doe",
+      "created_at": 1496233156
+    },
+    {
+      "id": 25,
+      "rate": 4,
+      "comment": "Didn't clean the kitchen well",
+      "created_at": 1496233156
+    }
+  ]
+}
+```
+
+Client ratings for the unit.
+
+`"path": "notifications_history"`
+
+### Response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`id` | *integer* | Unique identifier
+`rate ` | *integer* | Rating client gave for the job
+`comment ` | *string* | Client comment upon rating the job 
+`client_name ` | *string* | Name of client who rated the job
+`created_at` | *integer* | Timestamp when the rating was made
+
+This endpoint returns:
+
+* [Common errors](#common-errors)
