@@ -1438,7 +1438,7 @@ Parameter | Type | Description
 `choices.choice_items` | *array* | Question answers
 `choices.choice_items.id` | *integer* | Unique identifier
 `choices.choice_items.sort` | *integer* | Order of item in list
-`choices.choice_items.type` | *integer* | *<b>2</b> - Radio*<br>*<b>3</b> - Stepper (incremental value)*<br>*<b>4</b> - Text*<br>*<b>11</b> - Decimal text<br><b>12</b> - Photo attachment*
+`choices.choice_items.type` | *integer* | *<b>1</b> - Check*<br>*<b>2</b> - Radio*<br>*<b>3</b> - Stepper (incremental value)*<br>*<b>4</b> - Text*<br>*<b>11</b> - Decimal text<br><b>12</b> - Photo attachment*
 `choices.choice_items.title` | *string* | Checklist question answer
 
 
@@ -1543,6 +1543,13 @@ Parameter | Type | Description
 `client_name` | *string* | Name of client who rated the job
 `created_at` | *integer* | Timestamp when the rating was made
 
+### `params`
+
+Parameter | Type | Description
+-------- | ----- | -------
+`created_at_gt`<br>*optional, default <b>0</b>* | *integer* | Filters response with created_at greater than the passed
+
+
 This endpoint returns:
 
 * [Common errors](#common-errors)
@@ -1620,6 +1627,86 @@ curl\
 }
 ```
 
+> The above request success response for popup is:
+
+```json
+{
+  "data": [
+    {
+      "id": 26,
+      "umid": "HJKHAD324123jkljL",
+      "status": 3000,
+      "action": 2,
+      "message": "Checkout our fresh deal!",
+      "payload": {
+        "popup": {
+          "image_url": "http://images.com/photo.jpg",
+          "title": "Hello there",
+          "description": "This is awesome, you should try!",
+          "cta_button": {
+            "title": "Got it!",
+            "target": {
+              "screen_id": 1,
+              "item_id": 1
+            }
+          },
+          "voucher": {
+            "voucher_code": "FREE",
+            "banner_title": "Use voucher code FREE for a free service",
+            "valid_to": 1497429186
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+> The above request success response for job offer is:
+
+```json
+{
+  "data": [
+    {
+      "id": 26,
+      "umid": "HJKHAD324123jkljL",
+      "status": 3000,
+      "action": 2,
+      "message": "Checkout our fresh deal!",
+      "payload": {
+        "job_offer": {
+          "id": 123,
+          "booking_id": 123,
+          "available": true
+        }
+      }
+    }
+  ]
+}
+```
+
+> The above request success response for target is:
+
+```json
+{
+  "data": [
+    {
+      "id": 26,
+      "umid": "HJKHAD324123jkljL",
+      "status": 3000,
+      "action": 2,
+      "message": "Checkout our fresh deal!",
+      "payload": {
+        "target": {
+          "screen_id": 1,
+          "item_id": 1
+        }
+      }
+    }
+  ]
+}
+```
+
 History of all pushes sent to unit.
 
 `"path": "push_notifications"`
@@ -1631,7 +1718,7 @@ Parameter | Type | Description
 `id` | *integer* | Unique identifier
 `umid` | *string* | Unique identifier to update push status
 `status` | *integer* | 100, 200
-`action` | *integer* | Describes what action should be triggered on the unit
+`action` | *integer* | Describes what action should be triggered on the unit<br><br><br>*<b>1</b> - Update jobs (silent)*<br>*<b>2</b> - Popup message (regular)*<br>*<b>3</b> -  Inbox message (regular)*<br>*<b>5</b> -  Update location (silent)*<br>*<b>6</b> -  New job (silent)*<br>*<b>7</b> -  New job (regular)*<br>*<b>8</b> -  Open service (regular)*<br>*<b>9</b> -  Open chat (regular)*<br>*<b>10</b> -  Inbox message (regular)*<br>*<b>11</b> -  Inbox message (regular)*<br>*<b>12</b> -  Inbox message (regular)*
 `message` | *string* | Push notification text
 `payload` | *object* | Custom data based on action
 
@@ -1663,6 +1750,12 @@ Parameter | Type | Description
 -------- | ----- | -------
 `payload.target.screen_id` | *integer* | 
 `payload.target.item_id` | *integer* | 
+
+### `params`
+
+Parameter | Type | Description
+-------- | ----- | -------
+`created_at_gt`<br>*optional, default <b>0</b>* | *integer* | Filters response with created_at greater than the passed
 
 This endpoint returns:
 
