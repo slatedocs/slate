@@ -157,6 +157,7 @@ limit                      | integer     | limit the number of dataset results r
 offset                     | integer     | offset into the search index to start gathering results from pre-filter
 max_variables_per_dataset  | integer     | limit the number of variables that match to this number (default: 1000, max: 1000)
 projection                 | json Array  | used to limit the fields that should be returned in the search results. ID is always provided.
+scope                      | json Array  | used to limit the fields that the search should look at.
 
 Providing a Projection:
 
@@ -164,6 +165,14 @@ Providing a Projection:
 The fields are specified with the namespace they refer to, like `"variables.fieldname"` and `"datasets.fieldname"`. 
 The namespace is the same as the key where the relevant search results are returned.
 Performing a search with an invalid field will pinpoint the invalid one and provide the list of accepted values.
+
+Providing a Scope:
+
+`scope` parameter must be a JSON array containing the name of the fields that should be used to resolve the query. 
+Much like `projection` paramter this one accepts a list of fields with their namespace (`datasets` or `variables`). T
+he provided query will be looked up only in the specified fields if a `scope` is provided. A special field name `*`
+is accepted to specify that default fields should be looked for a specific namespace. 
+A scope like `dataset.name, variables.*` will search the query in the default variable fields and in dataset name.
 
 Allowable filter parameters:
 
