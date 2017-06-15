@@ -156,6 +156,14 @@ f                          | json Object | used to filter the output of the sear
 limit                      | integer     | limit the number of dataset results returned by the api to less than this amount (default: 10)
 offset                     | integer     | offset into the search index to start gathering results from pre-filter
 max_variables_per_dataset  | integer     | limit the number of variables that match to this number (default: 1000, max: 1000)
+projection                 | json Array  | used to limit the fields that should be returned in the search results. ID is always provided.
+
+Providing a Projection:
+
+`projection` argument must be a JSON array containing the name of the fields that should be projected for datasets and variables.
+The fields are specified with the namespace they refer to, like `"variables.fieldname"` and `"datasets.fieldname"`. 
+The namespace is the same as the key where the relevant search results are returned.
+Performing a search with an invalid field will pinpoint the invalid one and provide the list of accepted values.
 
 Allowable filter parameters:
 
@@ -196,7 +204,7 @@ dataset_projects  | List of Strings | Project IDs having read-access to the data
 
 
 ```http
-GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_variables_list={group_variables_list}  HTTP/1.1
+GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_variables_list={group_variables_list}&projection={projection}  HTTP/1.1
 ```
 
 ```json
