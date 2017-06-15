@@ -34,6 +34,7 @@ GET /account/
   "element": "shoji:entity",
   "body": {
     "name": "Account's name",
+    "id": "abcd",
     "oauth_providers": [{
       "id": "provider",
       "name": "Service auth"
