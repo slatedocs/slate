@@ -581,7 +581,7 @@ curl\
         "phone": "+442071234567",
         "email": "test@test.com",
         "password": "1234",
-        "referral_code": "JOHND1234B",
+        "referrer_code": "JOHND1234B",
         "social": {
           "oauth_id": "EAAEo0IpvAQcBAK1gy3VjCJPZCp6vidasdvEvEtxmO0gjFFjtz3jd8omEuhVhg3Y3ZAzIjSLQVMMZBaWwIZBRY9U8B7XZCFvGpledf38DPUTfeHNA2PCZALtPFTjXYFD1aPeB6IK4oo8dJWAIMAcpKPmFATTtXABljEA02jIDExTAp5brMUuNLMQlQr48ISRhbNy4hbKyI6plbO6ZCd1iHJ9kxd09PfpiwcZD",
           "social_provider_id": 1
@@ -628,7 +628,7 @@ Parameter | Type | Description
 `last_name`<br>*required* | *string* | User's last name (no special characters allowed)
 `phone`<br>*required* | *integer* | User's phone number validated for the region (UK/AUS/USA etc.)
 `email`<br>*required* | *string* | User's email with validated structure (e.g. xxxx@xxx.xxx)
-`referral_code`<br>*optional* | *string* | Referral code from another user
+`referrer_code`<br>*optional* | *string* | Referral code from another user
 `social`<br>*optional* | *[object](#facebook-login-request-parameters)* | Social login attributes. Same are used for login (check <b>Facebook login request parameters</b>).
 `type_id`<br>*optional* | *integer* | Type of registration`id`.<br><br>*<b>1</b> - Anonymous*<br>*<b>2</b> - Generic (register form)*<br>*<b>3</b> - Social (Facebook)*
 
@@ -1711,7 +1711,7 @@ Parameter | Type | Description
 `id` | *integer* | Unique identifier
 `umid` | *string* | Unique identifier to update push status
 `status` | *integer* | *<b>2000</b> - Delivered*<br>*<b>3000</b> - Seen*
-`action` | *integer* | Describes what action should be triggered on the unit<br><br>*<b>1</b> - Update jobs (silent)*<br>*<b>2</b> - Popup message (regular)*<br>*<b>3</b> - Inbox message (regular)*<br>*<b>5</b> - Update location (silent)*<br>*<b>6</b> - New job (silent)*<br>*<b>7</b> - New job (regular)*<br>*<b>8</b> - Open service (regular)*<br>*<b>9</b> - Open chat (regular)*<br>*<b>10</b> - New rating (regular)*<br>*<b>11</b> - Offer with promo code (regular)*<br>*<b>12</b> - Custom*
+`action` | *integer* | Describes what action should be triggered on the unit<br><br>*<b>1</b> - Update jobs (silent)*<br>*<b>2</b> - Popup message (regular)*<br>*<b>3</b> - Inbox message (regular)*<br>*<b>5</b> - Update location (silent)*<br>*<b>6</b> - New job (silent)*<br>*<b>7</b> - New job (regular)*<br>*<b>8</b> - Open service (regular)*<br>*<b>9</b> - Open chat (regular)*<br>*<b>10</b> - New rating (regular)*<br>*<b>11</b> - Offer with promo code (regular)*<br>*<b>12</b> - Custom*<br>*<b>13</b> - New bonus(regular)*
 `message` | *string* | Push notification text
 `payload` | *object* | Custom data based on action
 
