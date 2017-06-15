@@ -1543,13 +1543,6 @@ Parameter | Type | Description
 `client_name` | *string* | Name of client who rated the job
 `created_at` | *integer* | Timestamp when the rating was made
 
-### `params`
-
-Parameter | Type | Description
--------- | ----- | -------
-`created_at_gt`<br>*optional, default <b>0</b>* | *integer* | Filters response with created_at greater than the passed
-
-
 This endpoint returns:
 
 * [Common errors](#common-errors)
@@ -1717,8 +1710,8 @@ Parameter | Type | Description
 -------- | ----- | -------
 `id` | *integer* | Unique identifier
 `umid` | *string* | Unique identifier to update push status
-`status` | *integer* | 100, 200
-`action` | *integer* | Describes what action should be triggered on the unit<br><br><br>*<b>1</b> - Update jobs (silent)*<br>*<b>2</b> - Popup message (regular)*<br>*<b>3</b> -  Inbox message (regular)*<br>*<b>5</b> -  Update location (silent)*<br>*<b>6</b> -  New job (silent)*<br>*<b>7</b> -  New job (regular)*<br>*<b>8</b> -  Open service (regular)*<br>*<b>9</b> -  Open chat (regular)*<br>*<b>10</b> -  Inbox message (regular)*<br>*<b>11</b> -  Inbox message (regular)*<br>*<b>12</b> -  Inbox message (regular)*
+`status` | *integer* | *<b>2000</b> - Delivered*<br>*<b>3000</b> - Seen*
+`action` | *integer* | Describes what action should be triggered on the unit<br><br>*<b>1</b> - Update jobs (silent)*<br>*<b>2</b> - Popup message (regular)*<br>*<b>3</b> -  Inbox message (regular)*<br>*<b>5</b> -  Update location (silent)*<br>*<b>6</b> -  New job (silent)*<br>*<b>7</b> -  New job (regular)*<br>*<b>8</b> -  Open service (regular)*<br>*<b>9</b> -  Open chat (regular)*<br>*<b>10</b> -  Inbox message (regular)*<br>*<b>11</b> -  Inbox message (regular)*<br>*<b>12</b> -  Inbox message (regular)*
 `message` | *string* | Push notification text
 `payload` | *object* | Custom data based on action
 
