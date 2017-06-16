@@ -663,6 +663,10 @@ categories and {"?": code} missing markers for missing categories. The "start"
 and "total" parameters paginate the results. The "filter" is a Crunch filter
 expression.
 
+Note that this endpoint is only accessible by dataset editors unless the 
+`viewers_can_export` dataset setting is set to `true`, else the server will
+return a 403 response.
+
 ### Private Variables
 
 `/datasets/{id}/variables/private/`
