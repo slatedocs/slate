@@ -7,7 +7,7 @@ values. It provides granular control over the rows and columns for each dataset.
 
 #### GET
 
-When authenticated, GET returns a 200 status with a Shoji Table of the 
+Dataset editors can GET to this resource and obtain a Shoji Table of the 
 dataset's data. It will expose all the variables that are visible by the 
 authenticated user (Public + personals created by them if requested) as 
 well as the exclusion filter applied (if any).
@@ -18,6 +18,12 @@ value.
 
 A `metadata` section contains the definitions of all the variables matched
 by variable ID with the corresponding entry under `data`.
+
+Dataset viewers can only access the `metadata` portion of the response. This 
+means they cannot make use of the `limit` and `offset` parameters to query
+data unless the dataset's setting `viewers_can_export` is set to True, else
+the server will respond with a 403 response.
+
 
 ```http
 GET /datasets/:id/table/ HTTP/1.1
