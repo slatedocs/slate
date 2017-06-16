@@ -36,7 +36,7 @@ Retrieve a list of SSH keys in an OpenStack domain.
  ---------------------------------- | -----------------------------------
  `name`<br/>*string*                | The SSH key's name which is the unique identifier for the entity                    
  `fingerprint`<br/>*string*         | A short sequence of bytes used to identify the SSH key                  
- `publicKey`<br/>*string*           | The public SSH key for the key pair   
+ `publicKey`<br/>*string*           | The SSH public key   
 
 #### Retrieve a SSH key
 
@@ -64,7 +64,7 @@ Attributes                         | Description
 `name`<br/>*string*                | The SSH key's name which is the unique identifier for the entity                     
 `fingerprint`<br/>*string*         | A short sequence of bytes used to identify the SSH key
 `createDate` <br/> *date*          | The date the SSH key was created                 
-`publicKey`<br/>*string*           | The public SSH key for the key pair  
+`publicKey`<br/>*string*           | The SSH public key   
 
 #### Create a SSH key
 
