@@ -49,7 +49,7 @@ HTTP/1.1 200 OK
 ]
 ```
 
-This endpoint lists all sessions for a given customer. Objects are ordered by `created_at` ascending.
+This endpoint lists all sessions for a given customer. Objects are ordered by `created_at` descending.
 
 ### HTTP Request
 

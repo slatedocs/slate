@@ -43,7 +43,7 @@ HTTP/1.1 200 OK
 ]
 ```
 
-This endpoint lists all messages for a given session. Objects are ordered by `sent_at` ascending.
+This endpoint lists all messages for a given session. Objects are ordered by `sent_at` descending.
 
 ### HTTP Request
 
