@@ -172,7 +172,7 @@ Providing a Scope:
 Much like `projection` paramter this one accepts a list of fields with their namespace (`datasets` or `variables`). T
 he provided query will be looked up only in the specified fields if a `scope` is provided. A special field name `*`
 is accepted to specify that default fields should be looked for a specific namespace. 
-A scope like `dataset.name, variables.*` will search the query in the default variable fields and in dataset name.
+A scope like `datasets.name, variables.*` will search the query in the default variable fields and in dataset name.
 
 Allowable filter parameters:
 
