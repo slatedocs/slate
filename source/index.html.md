@@ -3,7 +3,7 @@ title: CloudMC API Documentation
 
 language_tabs:
   - shell : curl
-  
+
 toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
@@ -54,5 +54,6 @@ subsections:
     - securityGroupRules
     - routers
     - routerInterfaces
+    - sshKeys
 search: true
 ---
