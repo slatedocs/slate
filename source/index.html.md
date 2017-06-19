@@ -1620,6 +1620,26 @@ curl\
 }
 ```
 
+> The above request success response for rating is:
+
+```json
+{
+  "data": [
+    {
+      "id": 25,
+      "umid": "LKJHKEWB324123jkljL",
+      "status": 3000,
+      "action": 10,
+      "message": "Text from push notification",
+      "payload": {
+      "rating_id": 25,
+      },
+      "created_at": 1497859985
+    }
+  ]
+}
+```
+
 > The above request success response for popup is:
 
 ```json
@@ -1747,6 +1767,12 @@ Parameter | Type | Description
 -------- | ----- | -------
 `payload.target.screen_id` | *integer* | 
 `payload.target.item_id` | *integer* | 
+
+### Popup push response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`payload.popup.rating_id` | *integer* | Rating unique identifier
 
 ### `params`
 
