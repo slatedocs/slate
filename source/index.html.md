@@ -862,7 +862,6 @@ Parameter | Type | Description
 `sort` | *integer* | Order of item in list
 `title` | *string* | Category title text
 `phone` | *string* | Category phone number
-`description` | *string* | Category detailed description text
 `short_description` | *string* | Category short description text
 `keywords` | *array\<string\>* | List of keywords for category
 `list_image_url` | *string* | Link to list image
