@@ -1632,7 +1632,7 @@ curl\
       "action": 10,
       "message": "Text from push notification",
       "payload": {
-      "rating_id": 25,
+        "rating_id": 25
       },
       "created_at": 1497859985
     }
