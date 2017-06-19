@@ -1614,7 +1614,8 @@ curl\
       "status": 3000,
       "action": 1,
       "message": "Text from push notification",
-      "payload": null
+      "payload": null,
+      "created_at": 1497859985
     }
   ]
 }
@@ -1649,7 +1650,8 @@ curl\
             "valid_to": 1497429186
           }
         }
-      }
+      },
+      "created_at": 1497859985
     }
   ]
 }
@@ -1672,7 +1674,8 @@ curl\
           "booking_id": 123,
           "available": true
         }
-      }
+      },
+      "created_at": 1497859985
     }
   ]
 }
@@ -1694,7 +1697,8 @@ curl\
           "screen_id": 1,
           "item_id": 1
         }
-      }
+      },
+      "created_at": 1497859985
     }
   ]
 }
@@ -1714,6 +1718,7 @@ Parameter | Type | Description
 `action` | *integer* | Describes what action should be triggered on the unit<br><br>*<b>1</b> - Update jobs (silent)*<br>*<b>2</b> - Popup message (regular)*<br>*<b>3</b> - Inbox message (regular)*<br>*<b>5</b> - Update location (silent)*<br>*<b>6</b> - New job (silent)*<br>*<b>7</b> - New job (regular)*<br>*<b>8</b> - Open service (regular)*<br>*<b>9</b> - Open chat (regular)*<br>*<b>10</b> - New rating (regular)*<br>*<b>11</b> - Offer with promo code (regular)*<br>*<b>12</b> - Custom*<br>*<b>13</b> - New bonus(regular)*
 `message` | *string* | Push notification text
 `payload` | *object* | Custom data based on action
+`created_at` | *integer* | Timestamp of creation
 
 ### Popup push response parameters
 
