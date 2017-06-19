@@ -44,12 +44,12 @@ We now have an API method (shown below) that enables you to retrieve a list of d
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('v1/directories/all');
+$success = $api->get('v1/directories/all');
 print_r($success);
 ```
 
 ```shell
-curl -X POST \
+curl -X GET \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
@@ -61,7 +61,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
 
-var success = request.Post("/v1/directories/all", parameters);
+var success = request.Get("/v1/directories/all", parameters);
 ```
 
 > Success (200 OK)
@@ -89,9 +89,9 @@ var success = request.Post("/v1/directories/all", parameters);
 
 ### HTTP Request
 
-`POST https://tools.brightlocal.com/seo-tools/api/v1/directories/all`
+`GET https://tools.brightlocal.com/seo-tools/api/v1/directories/all`
 
-`POST https://tools.brightlocal.com/seo-tools/api/v1/directories/<country>`
+`GET https://tools.brightlocal.com/seo-tools/api/v1/directories/<country>`
 
 ### Query Parameters
 
