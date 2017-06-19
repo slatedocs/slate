@@ -1,5 +1,64 @@
 ## Public
 
+`/`
+
+`/public/`
+
+```
+views: {
+signup_resend: "https://app.crunch.io/api/public/signup_resend/",
+inquire: "https://app.crunch.io/api/public/inquire/",
+password_reset: "https://app.crunch.io/api/public/password_reset/",
+signup: "https://app.crunch.io/api/public/signup/",
+oauth2redirect: "https://app.crunch.io/api/public/oauth2redirect/",
+change_email: "https://app.crunch.io/api/public/change_email/",
+login: "https://app.crunch.io/api/public/login/",
+password_change: "https://app.crunch.io/api/public/password_change/"
+},
+```
+
+### Manifests
+
+`GET /public/config/`
+
+https://mycompany.crunch.io/api/public/config/
+
+Have to be able to get when not authenticated
+
+--> https://app.crunch.io/api/accounts/subdomain=mycompany/config/
+
+
+
+GET /api/accounts/id/ [organization]
+
+{
+    ...,
+    "manifest": "https://app.crunch.io/api/accounts/:id/manifest/"
+}
+
+Returns a JSON payload that
+
+```json
+{
+    "element": "shoji:entity",
+    "body": {
+        "name": "Your Company",
+        "logo": {
+            "small": "https://s.crunch.io/logos/yours.png",
+            "large": "" // TBD
+        },
+        "palette": {
+            "brand": {
+                "system": "#FFAABB", // Color of links, interactable things
+                "data": "#G4EEBB", // Titles and such
+                "warning": "#BAA5E7"
+            }
+        },
+        "manifest": {}
+    }
+}
+```
+
 ### Crunchbox
 
 A CrunchBox represents a snapshot of a crunch dataset. These snapshots are

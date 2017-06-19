@@ -1,6 +1,6 @@
 ## Accounts
 
-Accounts provide an organization-level scope for Crunch.io customers. All Users belong to one and only one Account. Account managers can administer their various users and entities and have visibility on them. 
+Accounts provide an organization-level scope for Crunch.io customers. All Users belong to one and only one Account. Account managers can administer their various users and entities and have visibility on them.
 
 ### Permissions
 
@@ -9,10 +9,10 @@ A user is an "account manager" if their `account_permissions` have
 
 ### Account entity
 
-The account entity is available on the API root following the Shoji 
+The account entity is available on the API root following the Shoji
 `views.account` path, which will point to the authenticated user's account.
 
-If the account has a name, it will be available here, as well as the path to the 
+If the account has a name, it will be available here, as well as the path to the
 account's users.
 
 If the authenticated user is an account manager, the response will include
@@ -44,10 +44,62 @@ GET /accounts/1234/
     "teams": "http://app.crunch.io/api/accounts/abcd/teams/",
     "projects": "http://app.crunch.io/api/accounts/abcd/projects/",
     "users": "http://app.crunch.io/api/accounts/abcd/users/",
-    "datasets": "http://app.crunch.io/api/accounts/abcd/datasets/"
+    "datasets": "http://app.crunch.io/api/accounts/abcd/datasets/",
+    "applications": "http://app.crunch.io/api/accounts/abcd/applications/"
   }
 }
 ```
+
+##### Applications
+
+```http
+GET /accounts/1234/applications/
+```
+```json
+{
+    "element":"shoji:catalog",
+    "index": {
+        "./mycompany/": {}
+    }
+}
+```
+
+POST here to make a new subdomain/manifest. subdomain must be unique system-wide.
+
+
+```http
+GET /accounts/1234/applications/mycompany/
+```
+
+```json
+{
+    "element":"shoji:entity",
+    "body": {
+        "name": "Application name",
+        "subdomain": "mycompany",
+        "logos": {
+            "small": "<URL>",
+            "large": "<URL>"
+        },
+        "palette": {
+            "brand": {
+                "system": "#FFAABB", // Color of links, interactable things
+                "data": "#G4EEBB", // Titles and such
+                "warning": "#BAA5E7"
+            }
+        },
+        "manifest": {}
+    },
+    "views": {
+        "logo": "https://app.crunch.io/api/accounts/abcd/applications/mycompany/logo/"
+    }
+}
+```
+To set name, subdomain, palette: PATCH entity.
+
+To upload a logo, POST multipart at views.logo. Include files as "small" and "large" fields. Will update the images accordingly. Server will validate size/dimensions/file format etc.
+
+Authorization: user must be account admin.
 
 ### Account users
 
@@ -167,8 +219,8 @@ PATCH /accounts/1234/users/
 
 ### Account datasets
 
-Only account managers have access to this catalog. It is a read only shoji 
-catalog containing all the datasets that users of this account have 
+Only account managers have access to this catalog. It is a read only shoji
+catalog containing all the datasets that users of this account have
 created (potentially very large catalog).
 
 Account managers have implicit editor access to all the account datasets.
