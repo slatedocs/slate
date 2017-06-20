@@ -23,28 +23,28 @@ under the License.
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #393939 !default;
+$nav-bg: #FE5900 !default;
 $examples-bg: #393939 !default;
 $code-bg: #292929 !default;
 $code-annotation-bg: #1c1c1c !default;
-$nav-subitem-bg: #262626 !default;
-$nav-active-bg: #2467af !default;
+$nav-subitem-bg: #F5B194 !default;
+$nav-active-bg: #fff !default;
 $lang-select-border: #000 !default;
 $lang-select-bg: #222 !default;
 $lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
-$main-bg: #eaf2f6 !default;
-$aside-notice-bg: #8fbcd4 !default;
-$aside-warning-bg: #c97a7e !default;
-$aside-success-bg: #6ac174 !default;
-$search-notice-bg: #c97a7e !default;
+$main-bg: #fff !default;
+$aside-notice-bg: #00CCEC !default;
+$aside-warning-bg: #FF2619 !default;
+$aside-success-bg: #00CF9A !default;
+$search-notice-bg: #FF2619 !default;
 
 
 // TEXT COLORS
 ////////////////////
-$main-text: #333 !default; // main content text color
+$main-text: #273135 !default; // main content text color
 $nav-text: #fff !default;
-$nav-active-text: #fff !default;
+$nav-active-text: #FE5900 !default;
 $lang-select-text: #fff !default; // color of unselected language tab text
 $lang-select-active-text: #fff !default; // color of selected language tab text
 $lang-select-pressed-text: #fff !default; // color of language tab text when mouse is pressed
@@ -68,7 +68,8 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 // FONTS
 ////////////////////
 %default-font {
-  font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+  @import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
+  font-family: "Nunito Sans", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
   font-size: 13px;
 }
 
@@ -86,7 +87,7 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 
 // OTHER
 ////////////////////
-$nav-active-shadow: #000 !default;
+$nav-active-shadow: none !default;
 $nav-footer-border-color: #666 !default;
 $nav-embossed-border-top: #000 !default;
 $nav-embossed-border-bottom: #939393 !default;

@@ -48,10 +48,10 @@ html, body {
 
 @mixin embossed-bg {
   background:
-    linear-gradient(to bottom, rgba(#000, 0.2), rgba(#000, 0) 8px),
-    linear-gradient(to top, rgba(#000, 0.2), rgba(#000, 0) 8px),
-    linear-gradient(to bottom, rgba($nav-embossed-border-top, 1), rgba($nav-embossed-border-top, 0) 1.5px),
-    linear-gradient(to top, rgba($nav-embossed-border-bottom, 1), rgba($nav-embossed-border-bottom, 0) 1.5px),
+    // linear-gradient(to bottom, rgba(#000, 0.2), rgba(#000, 0) 8px),
+    // linear-gradient(to top, rgba(#000, 0.2), rgba(#000, 0) 8px),
+    // linear-gradient(to bottom, rgba($nav-embossed-border-top, 1), rgba($nav-embossed-border-top, 0) 1.5px),
+    // linear-gradient(to top, rgba($nav-embossed-border-bottom, 1), rgba($nav-embossed-border-bottom, 0) 1.5px),
     $nav-subitem-bg;
 }
 
@@ -82,7 +82,8 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
-    max-width: 100%;
+    max-width: 70%;
+    margin: 2em 2.5em 2em 2.5em;
   }
 
   &>.search {
