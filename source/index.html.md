@@ -5,8 +5,7 @@ language_tabs:
   - curl
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='https://fastnotas.com/cadastro.html'>Sign Up for a API Key</a>
 
 includes:
   - introduction
