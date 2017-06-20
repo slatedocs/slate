@@ -34,7 +34,10 @@ POST | `/documents` | Cria um documento
 GET | `/documents/:id/print` | Retorna o documento em formato para impressão (se houver)
 GET | `/documents/:id` | Retorna um documento
 GET | `/documents/:id/operations` | Retorna todas operações do documento
+GET | `/documents/:id/assets` | Retorna todos assets do documento
 DELETE  | `/documents/:id` | Cancela um documento
 GET | `/operations/:id` | Retorna uma operação
-GET | `operations/:id/transactions` | Retorna todas transações da operação
-GET | `transactions/:id` | Retorna uma transação
+GET | `/operations/:id/transactions` | Retorna todas transações da operação
+GET | `/transactions/:id` | Retorna uma transação
+GET | `/assets/:id` | Retorna um asset
+GET | `/assets/:id/download` | Retorna o asset em formato para impressão (se houver)

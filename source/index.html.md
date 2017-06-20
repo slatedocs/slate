@@ -23,6 +23,7 @@ includes:
   - documents
   - operations
   - transactions
+  - assets
   - errors
   - health_check
 

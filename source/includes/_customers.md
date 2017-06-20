@@ -32,21 +32,29 @@
   ```shell
   curl -X POST https://api.fastnotas.com/v1/customers \
     -u 'YOUR_API_KEY:' \
-    -d 'name=Carolina' \
-    -d 'registry_code=11111111111' \
-    -d 'email=exemplo@gmail.com' \
-    -d 'external_code=400' \
-    -d 'address[street]= Rua Doutor Diogo de Faria' \
-    -d 'address[number]=775' \
-    -d 'address[additional_details]=Cj. 123' \
-    -d 'address[zipcode]=04037003' \
-    -d 'address[neighborhood]=Vila Mariana' \
-    -d 'address[city]=São Paulo' \
-    -d 'address[state]=SP' \
-    -d 'phone[phone_type]=landline' \
-    -d 'phone[number]=12345678' \
-    -d 'phone[area_code]=11' \
-    -d 'phone[country_code]=55'
+    -H 'Content-Type: application/json; charset=utf-8' \
+    -d '{
+      "name": "Carolina",
+      "registry_code": "1111111111",
+      "email": "exemplo@gmail.com",
+      "external_code": "400",
+      "address": {
+        "neighborhood": "Vila Clementino",
+        "street": "Rua Doutor Diogo de Faria",
+        "number": "775",
+        "additional_details": "Cj. 123",
+        "zipcode": "04037003",
+        "city": "São Paulo",
+        "state": "SP",
+        "country": "BR"
+      },
+      "phone": {
+        "phone_type": "landline",
+        "number": 12345678,
+        "area_code": "11",
+        "country_code": "55"
+      }
+    }'
  ```
 
   > Exemplo de retorno em JSON:
@@ -161,7 +169,7 @@
 
   Parâmetro |  Descrição
 -------------- | --------------
-**query** |  *Campos para filtro: name, email, registry_code, status, created_at*
+**query** |  *Campos disponíveis para [busca](#busca): `name`, `email`, `registry_code`, `status`, `created_at`*
 
   > GET https://api.fastnotas.com/v1/customers/
 
@@ -217,7 +225,10 @@
   ```shell
     curl -X PUT https://api.fastnotas.com/v1/customers/{CUSTOMER_ID} \
       -u 'YOUR_API_KEY:' \
-      -d 'email=novo_email@gmail.com'
+      -H 'Content-Type: application/json; charset=utf-8' \
+      -d '{
+        "email": "novo_email@gmail.com"
+      }'
   ```
   > Exemplo de retorno em JSON:
 

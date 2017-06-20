@@ -38,10 +38,15 @@ Quando um documento é criado, o status inicial é `pending` . Ele pode ter os s
 ```shell
   curl -X POST  https://api.fastnotas.com/v1/documents/ \
     -u 'YOUR_API_KEY:' \
-    -d 'document_schema_id=d0b0d7ef-cb07-42af-9f74-ab17236c82c9' \
-    -d 'customer_id=1a925c53-b415-448f-8356-46d33bc2c431' \
-    -d 'document[0][item_id]=daa356f5-d7ec-4a42-b99b-4ffc7db39c16'
-    -d 'document[0][amount]=12.34'
+    -H 'Content-Type: application/json; charset=utf-8' \
+    -d '{
+      "document_schema_id": "d0b0d7ef-cb07-42af-9f74-ab17236c82c9",
+      "customer_id": "1a925c53-b415-448f-8356-46d33bc2c431",
+      "document_items": [{
+        "item_id": "a60dd677-5c88-4963-9b08-f48e5899a11f",
+        "amount": "49.9"
+      }]
+    }'
 ```
 
 > Exemplo de retorno em JSON:
@@ -72,10 +77,10 @@ Quando um documento é criado, o status inicial é `pending` . Ele pode ter os s
       },
       "document_items": [
         {
-          "id": "daa356f5-d7ec-4a42-b99b-4ffc7db39c16",
+          "id": "a60dd677-5c88-4963-9b08-f48e5899a11f",
           "name": "item",
           "description": "item description",
-          "amount": 345.5,
+          "amount": 49.90,
           "item_id": "5643de81-e19e-4545-b766-1d80838a744b",
           "settings": {
             "taxes": {
@@ -124,8 +129,8 @@ Quando um documento é criado, o status inicial é `pending` . Ele pode ter os s
  -------------- | --------------
   **customer_id** <br> <p> obrigatório </p> | *Id do cliente*
   **document_schema_id**  <br> <p> obrigatório </p> | *Id do esquema de documento*
-  **document[][`item_id`]** <br> <p> obrigatório </p>| *Id do produto/serviço prestado*
-  **document[][`attributes`]** | *Você pode sobrescrever os valores padrões do* [item](#objeto-item)
+  **document_items[][`item_id`]** <br> <p> obrigatório </p>| *Id do produto/serviço prestado*
+  **document_items[][`attributes`]** | *Você pode sobrescrever os valores padrões do* [item](#objeto-item)
 
 
 ## Retornando um documento
@@ -226,7 +231,7 @@ Quando um documento é criado, o status inicial é `pending` . Ele pode ter os s
 
   Parâmetro |  Descrição
 -------------- | --------------
-**query** |  *Campos para filtro: amount, status, created_at*
+**query** |  *Campos disponíveis para [busca](#busca): `amount`, `status`, `created_at`*
 
   > GET https://api.fastnotas.com/v1/documents/
 
@@ -294,6 +299,35 @@ Quando um documento é criado, o status inicial é `pending` . Ele pode ter os s
     ]
   ```
 
+## Cancelando um documento
+Cancela o documento solicitado.
+
+Parâmetro | Descrição
+ -------------- | --------------
+  **:id** <br> <p>obrigatório</p> | *Id do documento criado*
+
+  > DELETE https://api.fastnotas.com/v1/documents/{DOCUMENT_ID}
+
+```shell
+  curl -X DELETE https://api.fastnotas.com/v1/documents/{DOCUMENT_ID} \
+  -u 'YOUR_API_KEY:'
+```
+
+## Imprimindo um documento
+Retorna o documento em formato para impressão (se houver).
+
+Caso o [asset](#assets) do tipo `print` para este documento não esteja com o status `available`, o sistema devolverá um arquivo temporário contendo todas as informações e seguindo o padrão do arquivo original.
+
+Parâmetro | Descrição
+ -------------- | --------------
+  **:id** <br> <p>obrigatório</p> | *Id do documento criado*
+
+  > GET https://api.fastnotas.com/v1/documents/{DOCUMENT_ID}/print
+
+```shell
+  curl -X GET https://api.fastnotas.com/v1/documents/{DOCUMENT_ID}/print
+```
+
 ## Obtendo operações do documento
 
 > GET https://api.fastnotas.com/v1/documents/{DOCUMENT_ID}/operations
@@ -352,33 +386,65 @@ Com a rota `/documents/:id/operations` é possível ver todas as operações de 
 Parâmetro | Descrição
  -------------- | --------------
   **:id** <br> <p>obrigatório</p> | *Id do documento criado*
-  **query** |  *Campos para filtro: operation_type, created_at, status*
+  **query** |  *Campos disponíveis para [busca](#busca): `operation_type`, `created_at`, `status`*
 
-## Cancelando um documento
-Cancela o documento solicitado.
+## Obtendo assets do documento
+
+> GET https://api.fastnotas.com/v1/documents/{DOCUMENT_ID}/assets
+
+  ```shell
+    curl -X GET https://api.fastnotas.com/v1/documents/{DOCUMENT_ID}/assets \
+    -u 'YOUR_API_KEY'
+  ```
+
+  > Exemplo de retorno em JSON:
+
+  ```json
+  [
+    {
+      "id": "a8ac430a-ea19-46cf-9617-ff8f47ef1260",
+      "status": "available",
+      "type": "Asset::Print",
+      "created_at": "2017-06-13T11:59:47.686Z",
+      "updated_at": "2017-06-13T11:59:48.787Z",
+      "document": {
+        "id": "d18abeb1-185e-4fa7-ba22-6b336d9c3ddd",
+        "customer_id": "dacdf315-aff4-4710-84c5-09c272f1a841",
+        "company_id": "b94888a8-ba9a-493a-8373-ccd0202784c6",
+        "document_schema_id": "8479b00b-f06e-4f85-b9f5-98a240d1f90d",
+        "created_at": "2017-06-13T11:59:44.518Z",
+        "updated_at": "2017-06-13T11:59:47.607Z",
+        "status": "success",
+        "amount": 1985.52,
+        "sequence": 126,
+        "serie": "FASTN"
+      }
+    },
+    {
+      "id": "551e45ba-1b1c-4872-b383-31a98966ae8b",
+      "status": "available",
+      "type": "Asset::XmlRequest",
+      "created_at": "2017-06-13T11:59:47.664Z",
+      "updated_at": "2017-06-13T11:59:47.800Z",
+      "document": {
+        "id": "d18abeb1-185e-4fa7-ba22-6b336d9c3ddd",
+        "customer_id": "dacdf315-aff4-4710-84c5-09c272f1a841",
+        "company_id": "b94888a8-ba9a-493a-8373-ccd0202784c6",
+        "document_schema_id": "8479b00b-f06e-4f85-b9f5-98a240d1f90d",
+        "created_at": "2017-06-13T11:59:44.518Z",
+        "updated_at": "2017-06-13T11:59:47.607Z",
+        "status": "success",
+        "amount": 1985.52,
+        "sequence": 126,
+        "serie": "FASTN"
+      }
+    }
+  ]
+```
+
+Com a rota `/documents/:id/assets` é possível ver todos os [assets](#assets) de um documento.
 
 Parâmetro | Descrição
  -------------- | --------------
   **:id** <br> <p>obrigatório</p> | *Id do documento criado*
-
-  > DELETE https://api.fastnotas.com/v1/documents/{DOCUMENT_ID}
-
-```shell
-  curl -X DELETE https://api.fastnotas.com/v1/documents/{DOCUMENT_ID} \
-  -u 'YOUR_API_KEY:'
-```
-
-## Imprimindo um documento
-Retorna o documento em formato para impressão (se houver).
-
-Caso o [asset](#assets) do tipo `print` para este documento não esteja com o status `available`, o sistema devolverá um arquivo temporário contendo todas as informações e seguindo o padrão do arquivo original.
-
-Parâmetro | Descrição
- -------------- | --------------
-  **:id** <br> <p>obrigatório</p> | *Id do documento criado*
-
-  > GET https://api.fastnotas.com/v1/documents/{DOCUMENT_ID}/print
-
-```shell
-  curl -X GET https://api.fastnotas.com/v1/documents/{DOCUMENT_ID}/print
-```
+  **query** |  *Campos disponíveis para [busca](#busca): `status`, `type`, `created_at`, `updated_at`*

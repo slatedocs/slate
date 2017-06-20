@@ -28,12 +28,21 @@
   ```shell
     curl -X POST  https://api.fastnotas.com/v1/items/ \
       -u 'YOUR_API_KEY:' \
-      -d 'name=Serviço de emissão de notas fiscais' \
-      -d 'description=Software as a service que emite notas' \
-      -d 'amount=345.5' \
-      -d 'settings[taxes][iss]= 3.1' \
-      -d 'settings[parameters][service_code]=123' \
-      -d 'document_schema_id=b7658863-988b-4e44-9632-a93a282dd41a'
+      -H 'Content-Type: application/json; charset=utf-8' \
+     -d '{
+      "name":"Serviço de emissão de notas fiscais",
+      "description":"Software as a service que emite notas",
+      "amount": 345.5,
+      "setting": {
+        "taxes": {
+          "iss":"3.1"
+        },
+        "parameters": {
+          "service_code":"123"
+        }
+      },
+      "document_schema_id": "b7658863-988b-4e44-9632-a93a282dd41a"
+    }'
   ```
   > Exemplo de retorno em JSON:
 
@@ -66,7 +75,7 @@
   **description** <br> <p> obrigatório </p> | *Descrição do produto/serviço*
   **amount** <br> <p> obrigatório </p>| *Valor do produto/serviço*
   **document_schema_id**  <br> <p> obrigatório </p> | *Id do esquema de documento*
-  ****settings[]** <br>[`attributes`]** <br> <p> obrigatório </p>| *Consulte a <a href="https://atendimento.fastnotas.com/hc/pt-br/categories/115000135067-Configura%C3%A7%C3%B5es-da-NFS-e" target="_blank">seção de configurações</a>*
+  **settings[]** <br>[`attributes`] <br> <p> obrigatório </p>| *Consulte a <a href="https://atendimento.fastnotas.com/hc/pt-br/categories/115000135067-Configura%C3%A7%C3%B5es-da-NFS-e" target="_blank">seção de configurações</a>*
 
 
   <br> <br> <br> <br> <br>
@@ -115,7 +124,7 @@
 
   Parâmetro |  Descrição
 -------------- | --------------
-**query** |  *Campos para filtro: name, description, amount, created_at*
+**query** |  *Campos disponíveis para [busca](#busca): `name`, `description`, `amount`, `created_at`*
 
   > GET https://api.fastnotas.com/v1/items/
 
@@ -159,7 +168,10 @@ Atualiza o item solicitado e retorna com os parâmetros atualizados
   ```shell
     curl -X PUT https://api.fastnotas.com/v1/items/{ITEM_ID} \
       -u 'YOUR_API_KEY:' \
-      -d 'amount=450'
+      -H 'Content-Type: application/json; charset=utf-8' \
+      -d '{
+        "amount": 450
+      }'
   ```
   ```json
     [
