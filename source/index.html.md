@@ -14,6 +14,7 @@ includes:
   - pagination
   - search
   - webhooks
+  - rate_limit
   - addresses
   - phones
   - companies
