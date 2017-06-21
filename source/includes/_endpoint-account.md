@@ -47,7 +47,7 @@ GET /account/
     "teams": "http://app.crunch.io/api/account/teams/",
     "projects": "http://app.crunch.io/api/account/projects/",
     "users": "http://app.crunch.io/api/account/users/",
-    "datasets": "http://app.crunch.io/api/account/datasets/"
+    "datasets": "http://app.crunch.io/api/account/datasets/",
     "applications": "http://app.crunch.io/api/account/applications/"
   }
 }
@@ -98,10 +98,12 @@ app.
 
 #### Application entity
 
-
 ```http
 GET /account/applications/1234/
 ```
+
+GET to this endpoint returns the Shoji entity containing all details about
+the configured application.
 
 ```json
 {
@@ -127,11 +129,33 @@ GET /account/applications/1234/
     }
 }
 ```
-To set name, subdomain, palette: PATCH entity.
 
-To upload a logo, POST multipart at views.logo. Include files as "small" and "large" fields. Will update the images accordingly. Server will validate size/dimensions/file format etc.
+PATCH to this endpoint to change the name, palette, or manifest.
 
-Authorization: user must be account admin.
+#### Change application logo
+
+```http
+POST /account/applications/1234/logo/
+```
+
+To set/change an application's logo the client needs to make a `multipart/form-data`
+request containing either or both `large` and `small` fields containing the desired
+image files to use. Only account admins are authorized to change this resource.
+
+
+```http
+POST /projects/6c01/icon/ HTTP/1.1
+Content-Disposition: form-data; name="large"; filename="newlogo.jpg"
+Content-Type: image/jpeg
+```
+
+```http
+HTTP/1.1 201 Created
+Location: https://app.crunch.io/api/account/applications/1234/
+```
+
+The server will update the images accordingly and validate 
+size/dimensions/file format etc.
 
 ### Account users
 
