@@ -68,7 +68,7 @@ var success = request.Get("/v1/directories/all", parameters);
 
 ```json
 {
-    "response":  {
+		"success": true,
         "count": 375,
         "supported_countries": ["GBR","USA","IRL",...],
         "results": [
@@ -81,9 +81,9 @@ var success = request.Get("/v1/directories/all", parameters);
 			        {"GBR": "google.uk"},...
 		        ],
 		        "supports_reviews": true
-		},...	        
+			},...	        
         ]
-    }
+    
 }
 ```
 
