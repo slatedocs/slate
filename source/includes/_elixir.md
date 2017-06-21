@@ -187,6 +187,20 @@ The following configuration settings are available:
         No
       </td>
     </tr>
+    <tr>
+      <th>
+        log_level
+      </th>
+      <td>
+        The logging level of the agent. Possible values: <code>:debug</code>, <code>:info</code>, <code>:warn</code>, and <code>:error</code>.
+      </td>
+      <td>
+        <code>:info</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
   </tbody>
 </table>
 
