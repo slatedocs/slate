@@ -882,6 +882,30 @@ PATCH the "expression" attribute to modify. An empty "expression" object, like
 
 ##### Stream
 
+`/datasets/{id}/stream/`
+
+Stream allows for sending data to a dataset as it is gathered.
+
+```json
+{
+    "element": "shoji:entity",
+    "self": "https://app.crunch.io/api/datasets/223fd4/stream/",
+    "description": "A stream for this Dataset. Each stream acts as a write buffer, from which Sources are periodically made and appended as Batches to the owning Dataset.",
+    "body":{
+        "pending_messages": 1,
+        "received_messages": 8
+    }
+}
+```
+
+GET on this resource returns a Shoji Entity with two attributes in its body:
+
+
+Attribute | Description
+--------|------------
+pending_messages | The number of messages the stream has that have yet to be appended to the dataset (note: a message might contain more than one row, each POST that is made to `/datasets/{id}/stream/` will result in a single message).
+received_messages | The total number of messages that this stream has received.
+
 ##### Settings
 
 `/datasets/{id}/settings/`
