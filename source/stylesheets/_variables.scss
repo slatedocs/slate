@@ -74,24 +74,8 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 // FONTS
 ////////////////////
 
-@font-face {
-    font-family: 'AvenirLTStd';
-    src: url(https://app.crunch.io/AvenirLTPro-Heavy.ttf);
-    // src: url(../fonts/AvenirLTPro-Heavy.ttf);
-    font-weight: font-weight-heavy;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'AvenirLTStd';
-    src: url(https://app.crunch.io/AvenirLTPro-Roman.ttf);
-    // src: url(../fonts/AvenirLTPro-Roman.ttf);
-    font-weight: font-weight-normal;
-    font-style: normal;
-}
-
 %default-font {
-  font-family: "AvenirLTStd", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "ProximaNova", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
 }
 
