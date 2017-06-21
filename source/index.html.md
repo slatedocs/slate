@@ -5,7 +5,7 @@ language_tabs:
   - curl
 
 toc_footers:
-  - <a href='https://fastnotas.com/cadastro.html'>Sign Up for a API Key</a>
+  - <a href='https://fastnotas.com/cadastro.html' target='_blank'>Sign Up for a API Key</a>
 
 includes:
   - introduction

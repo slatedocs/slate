@@ -114,6 +114,10 @@ html, body {
     margin-top: $logo-margin;
   }
 
+  .fn-logo {
+    margin: 20px auto 0 auto;
+  }
+
   .search-results {
     margin-top: 0;
     box-sizing: border-box;
@@ -266,6 +270,15 @@ html, body {
 
   padding-bottom: 1px; // prevent margin overflow
 
+  a {
+    color: $main-nav-text;
+    font-weight: bold;
+  }
+
+  h1 {
+    color: #1abc9c;
+  }
+
   // The dark box is what gives the code samples their dark background.
   // It sits essentially under the actual content block, which has a
   // transparent background.
@@ -413,7 +426,8 @@ html, body {
     float: center;
 
     p {
-      color: $nav-active-bg;
+      color: #e74c3c;
+      font-weight: bold;
     }
 
     th,td {
@@ -446,7 +460,7 @@ html, body {
     }
 
     tr:nth-child(odd) {
-      background-color: #dbecf5;
+      background-color: #c5d5e3;
     }
 
     thead tr {
@@ -522,6 +536,10 @@ html, body {
 
   aside.success:before {
     @extend %icon-ok-sign;
+  }
+
+  aside.success a {
+    color: #1f2b35;
   }
 
   .search-highlight {
