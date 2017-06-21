@@ -53,8 +53,11 @@ GET /accounts/1234/
 ##### Applications
 
 ```http
-GET /accounts/1234/applications/
+GET /accounts/applications/
 ```
+
+The applications catalog
+
 ```json
 {
     "element":"shoji:catalog",
@@ -68,7 +71,7 @@ POST here to make a new subdomain/manifest. subdomain must be unique system-wide
 
 
 ```http
-GET /accounts/1234/applications/mycompany/
+GET /account/applications/1234/
 ```
 
 ```json
