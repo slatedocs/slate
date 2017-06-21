@@ -1,6 +1,8 @@
 ## Accounts
 
-Accounts provide an organization-level scope for Crunch.io customers. All Users belong to one and only one Account. Account managers can administer their various users and entities and have visibility on them. 
+Accounts provide an organization-level scope for Crunch.io customers. All Users 
+belong to one and only one Account. Account managers can administer their 
+various users and entities and have visibility on them. 
 
 ### Permissions
 
@@ -24,7 +26,7 @@ paths to these additional catalogs:
 #### GET
 
 ```http
-GET /accounts/1234/
+GET /account/
 ```
 
 ```json
@@ -32,6 +34,7 @@ GET /accounts/1234/
   "element": "shoji:entity",
   "body": {
     "name": "Account's name",
+    "id": "abcd",
     "oauth_providers": [{
       "id": "provider",
       "name": "Service auth"
@@ -41,10 +44,10 @@ GET /accounts/1234/
     }]
   },
   "catalogs": {
-    "teams": "http://app.crunch.io/api/accounts/abcd/teams/",
-    "projects": "http://app.crunch.io/api/accounts/abcd/projects/",
-    "users": "http://app.crunch.io/api/accounts/abcd/users/",
-    "datasets": "http://app.crunch.io/api/accounts/abcd/datasets/"
+    "teams": "http://app.crunch.io/api/account/teams/",
+    "projects": "http://app.crunch.io/api/account/projects/",
+    "users": "http://app.crunch.io/api/account/users/",
+    "datasets": "http://app.crunch.io/api/account/datasets/"
   }
 }
 ```
@@ -57,7 +60,7 @@ member can GET, but only account managers can POST/PATCH on it.
 #### GET
 
 ```http
-GET /accounts/1234/users/
+GET /account/users/
 ```
 
 ```json
@@ -117,7 +120,7 @@ If the a user with the provided email address already exists in the application
 (on another account), the server will return a 400 response.
 
 ```http
-POST /accounts/1234/users/
+POST /account/users/
 ```
 
 ```json
@@ -146,7 +149,7 @@ Additionally, it is possible to delete users from the account by sending `null`
 as their tuple.
 
 ```http
-PATCH /accounts/1234/users/
+PATCH /account/users/
 ```
 
 ```json
@@ -174,7 +177,7 @@ created (potentially very large catalog).
 Account managers have implicit editor access to all the account datasets.
 
 ```http
-GET /accounts/1234/datasets/
+GET /account/datasets/
 ```
 
 ```json
@@ -230,7 +233,7 @@ that the users have created. Account managers have implicit edit access on all
 projects.
 
 ```http
-GET /accounts/1234/projects/
+GET /account/projects/
 ```
 
 ```json
@@ -259,7 +262,7 @@ that the users have created. Account managers have implicit edit access on all
 teams.
 
 ```http
-GET /accounts/1234/teams/
+GET /account/teams/
 ```
 
 ```json
