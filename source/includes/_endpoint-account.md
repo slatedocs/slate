@@ -1,6 +1,8 @@
 ## Accounts
 
-Accounts provide an organization-level scope for Crunch.io customers. All Users belong to one and only one Account. Account managers can administer their various users and entities and have visibility on them.
+Accounts provide an organization-level scope for Crunch.io customers. All Users 
+belong to one and only one Account. Account managers can administer their 
+various users and entities and have visibility on them. 
 
 ### Permissions
 
@@ -32,6 +34,7 @@ GET /account/
   "element": "shoji:entity",
   "body": {
     "name": "Account's name",
+    "id": "abcd",
     "oauth_providers": [{
       "id": "provider",
       "name": "Service auth"
@@ -41,11 +44,11 @@ GET /account/
     }]
   },
   "catalogs": {
-    "teams": "http://app.crunch.io/api/accounts/abcd/teams/",
-    "projects": "http://app.crunch.io/api/accounts/abcd/projects/",
-    "users": "http://app.crunch.io/api/accounts/abcd/users/",
-    "datasets": "http://app.crunch.io/api/accounts/abcd/datasets/",
-    "applications": "http://app.crunch.io/api/accounts/abcd/applications/"
+    "teams": "http://app.crunch.io/api/account/teams/",
+    "projects": "http://app.crunch.io/api/account/projects/",
+    "users": "http://app.crunch.io/api/account/users/",
+    "datasets": "http://app.crunch.io/api/account/datasets/"
+    "applications": "http://app.crunch.io/api/account/applications/"
   }
 }
 ```

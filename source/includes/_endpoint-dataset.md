@@ -157,6 +157,7 @@ limit                      | integer     | limit the number of dataset results r
 offset                     | integer     | offset into the search index to start gathering results from pre-filter
 max_variables_per_dataset  | integer     | limit the number of variables that match to this number (default: 1000, max: 1000)
 projection                 | json Array  | used to limit the fields that should be returned in the search results. ID is always provided.
+scope                      | json Array  | used to limit the fields that the search should look at.
 
 Providing a Projection:
 
@@ -165,15 +166,27 @@ The fields are specified with the namespace they refer to, like `"variables.fiel
 The namespace is the same as the key where the relevant search results are returned.
 Performing a search with an invalid field will pinpoint the invalid one and provide the list of accepted values.
 
+Providing a Scope:
+
+`scope` parameter must be a JSON array containing the name of the fields that should be used to resolve the query. 
+Much like `projection` paramter this one accepts a list of fields with their namespace (`datasets` or `variables`). T
+he provided query will be looked up only in the specified fields if a `scope` is provided. A special field name `*`
+is accepted to specify that default fields should be looked for a specific namespace. 
+A scope like `datasets.name, variables.*` will search the query in the default variable fields and in dataset name.
+
 Allowable filter parameters:
 
-Parameter   | Type             | Description
-------------|------------------|-------------------------------------------------
-dataset_ids | array of strings | limit results to particular dataset_ids or urls (user must have read access to that dataset)
-team        | string           | url or id of the team to limit results (user must have read access to the team)
-project     | string           | url or id of the project to limit results (user must have access to the project)
-user        | string           | url or id of the user that has read access to the datasets to limit results (user must match with the provided one)
-owner       | string           | url or id of the dataset owner to limit results
+Parameter         | Type             | Description
+------------------|------------------|-------------------------------------------------
+dataset_ids       | array of strings | limit results to particular dataset_ids or urls (user must have read access to that dataset)
+team              | string           | url or id of the team to limit results (user must have read access to the team)
+project           | string           | url or id of the project to limit results (user must have access to the project)
+user              | string           | url or id of the user that has read access to the datasets to limit results (user must match with the provided one)
+owner             | string           | url or id of the dataset owner to limit results
+start_date        | array of strings | array of `[begin, end]` range of values in ISO8601 format. Provide same for exact matching.
+end_date          | array of strings | array of `[begin, end]` range of values in ISO8601 format. Provide same for exact matching.
+modification_time | array of strings | array of `[begin, end]` range of values in ISO8601 format. Provide same for exact matching.
+creation_time     | array of strings | array of `[begin, end]` range of values in ISO8601 format. Provide same for exact matching.
 
 <aside class="notice">
 The query string can only be alpha-numeric characters (including underscores) logical operators are not allowed at this time.
@@ -881,6 +894,30 @@ PATCH the "expression" attribute to modify. An empty "expression" object, like
  are dropped.
 
 ##### Stream
+
+`/datasets/{id}/stream/`
+
+Stream allows for sending data to a dataset as it is gathered.
+
+```json
+{
+    "element": "shoji:entity",
+    "self": "https://app.crunch.io/api/datasets/223fd4/stream/",
+    "description": "A stream for this Dataset. Each stream acts as a write buffer, from which Sources are periodically made and appended as Batches to the owning Dataset.",
+    "body":{
+        "pending_messages": 1,
+        "received_messages": 8
+    }
+}
+```
+
+GET on this resource returns a Shoji Entity with two attributes in its body:
+
+
+Attribute | Description
+--------|------------
+pending_messages | The number of messages the stream has that have yet to be appended to the dataset (note: a message might contain more than one row, each POST that is made to `/datasets/{id}/stream/` will result in a single message).
+received_messages | The total number of messages that this stream has received.
 
 ##### Settings
 
