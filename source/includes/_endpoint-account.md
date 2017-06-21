@@ -24,7 +24,7 @@ paths to these additional catalogs:
 #### GET
 
 ```http
-GET /accounts/1234/
+GET /account/
 ```
 
 ```json
@@ -56,7 +56,8 @@ GET /accounts/1234/
 GET /accounts/applications/
 ```
 
-The applications catalog
+The applications catalog will list all the configured subdomains an account has.
+It will return a shoji catalog with the list of available subdomains.
 
 ```json
 {
@@ -67,7 +68,32 @@ The applications catalog
 }
 ```
 
-POST here to make a new subdomain/manifest. subdomain must be unique system-wide.
+POST a shoji entity here to make a new application. The `subdomain` must be 
+unique system-wide, if not available or invalid, the server will return a 400 response. 
+
+```json
+{
+    "element": "shoji:entity",
+    "body": {
+      "name": "my company",
+      "subdomain": "mycompanysubdomain",
+      "palette": {
+          "brand": {
+                "system": "#FFAABB", // Color of links, interactable things
+                "data": "#G4EEBB", // Titles and such
+                "warning": "#BAA5E7"
+            }
+      },
+      "manifest": {}
+    }
+}
+```
+
+Attributes `name` and `subdomain` are required. Note that creating an app does
+not allow for logos. Use the `/logo/` endpoint to upload the image files to the
+app.
+
+#### Application entity
 
 
 ```http
@@ -94,7 +120,7 @@ GET /account/applications/1234/
         "manifest": {}
     },
     "views": {
-        "logo": "https://app.crunch.io/api/accounts/abcd/applications/mycompany/logo/"
+        "logo": "https://app.crunch.io/api/account/applications/mycompany/logo/"
     }
 }
 ```
@@ -112,7 +138,7 @@ member can GET, but only account managers can POST/PATCH on it.
 #### GET
 
 ```http
-GET /accounts/1234/users/
+GET /account/users/
 ```
 
 ```json
@@ -172,7 +198,7 @@ If the a user with the provided email address already exists in the application
 (on another account), the server will return a 400 response.
 
 ```http
-POST /accounts/1234/users/
+POST /account/users/
 ```
 
 ```json
@@ -201,7 +227,7 @@ Additionally, it is possible to delete users from the account by sending `null`
 as their tuple.
 
 ```http
-PATCH /accounts/1234/users/
+PATCH /account/users/
 ```
 
 ```json
@@ -229,7 +255,7 @@ created (potentially very large catalog).
 Account managers have implicit editor access to all the account datasets.
 
 ```http
-GET /accounts/1234/datasets/
+GET /account/datasets/
 ```
 
 ```json
@@ -285,7 +311,7 @@ that the users have created. Account managers have implicit edit access on all
 projects.
 
 ```http
-GET /accounts/1234/projects/
+GET /account/projects/
 ```
 
 ```json
@@ -314,7 +340,7 @@ that the users have created. Account managers have implicit edit access on all
 teams.
 
 ```http
-GET /accounts/1234/teams/
+GET /account/teams/
 ```
 
 ```json
