@@ -13,30 +13,22 @@ signup: "https://app.crunch.io/api/public/signup/",
 oauth2redirect: "https://app.crunch.io/api/public/oauth2redirect/",
 change_email: "https://app.crunch.io/api/public/change_email/",
 login: "https://app.crunch.io/api/public/login/",
+config: "https://app.crunch.io/api/public/config/",
 password_change: "https://app.crunch.io/api/public/password_change/"
 },
 ```
 
-### Manifests
+### Application configuration
 
 `GET /public/config/`
 
-https://mycompany.crunch.io/api/public/config/
+When accessing Crunch from a configured application via its subdomain:
 
-Have to be able to get when not authenticated
+* https://mycompany.crunch.io/api/public/config/
 
---> https://app.crunch.io/api/accounts/subdomain=mycompany/config/
+The public endpoint `/public/config/` will return a shoji entity with the
+subdomain's available configurations if any. Else an empty shoji body will be served.
 
-
-
-GET /api/accounts/id/ [organization]
-
-{
-    ...,
-    "manifest": "https://app.crunch.io/api/accounts/:id/manifest/"
-}
-
-Returns a JSON payload that
 
 ```json
 {
@@ -44,8 +36,8 @@ Returns a JSON payload that
     "body": {
         "name": "Your Company",
         "logo": {
-            "small": "https://s.crunch.io/logos/yours.png",
-            "large": "" // TBD
+            "small": "https://s.crunch.io/logos/yours_small.png",
+            "large": "https://s.crunch.io/logos/yours_large.png"
         },
         "palette": {
             "brand": {
@@ -58,6 +50,13 @@ Returns a JSON payload that
     }
 }
 ```
+
+Attribute | Type | Description
+----------|------|----------------
+name      | string| Name of the configured application on the given subdomain
+logo      | object| Contains two keys `large` and `small` with different resolusion company logos
+palette   | object| Contains three colors `system`, `data` and `warning` under the `brand` attribute to theme the web app
+manifest  | object| Optional, contains further client configurations
 
 ### Crunchbox
 
