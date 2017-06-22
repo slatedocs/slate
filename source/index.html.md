@@ -1714,7 +1714,7 @@ curl\
       "payload": {
         "rate": 4,
         "comment": "Didn't clean the kitchen well",
-        "client_name": "John Doe",
+        "client_name": "John Doe"
       },
       "created_at": 1497859985
     }
@@ -1735,7 +1735,7 @@ curl\
       "payload": {
         "bonus": 5,
         "bonus_formatted": "£5",
-        "total_bonus": 5,
+        "total_bonus": 20,
         "total_bonus_formatted": "£20",
         "service": "Carpet Cleaning"
       },
