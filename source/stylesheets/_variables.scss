@@ -28,15 +28,15 @@ $examples-bg: #393939 !default;
 $code-bg: #292929 !default;
 $code-annotation-bg: #1c1c1c !default;
 $nav-subitem-bg: #FE5900 !default;
-$nav-active-bg: #FE5900 !default;
+$nav-active-bg: darken(#FE5900,8%)  !default;
 $lang-select-border: #000 !default;
 $lang-select-bg: #222 !default;
 $lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
-$main-bg: #F7F8FA !default;
-$aside-notice-bg: #00CCEC !default;
-$aside-warning-bg: #FF2619 !default;
-$aside-success-bg: #00CF9A !default;
+$main-bg: #fff !default;
+$aside-notice-bg: lighten(#00CCEC,20%) !default;
+$aside-warning-bg: lighten(#FF2619,20%) !default;
+$aside-success-bg: lighten(#00CF9A,20%) !default;
 $search-notice-bg: #FF2619 !default;
 
 

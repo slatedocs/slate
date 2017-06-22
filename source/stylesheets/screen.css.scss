@@ -69,7 +69,6 @@ html, body {
   background-color: $nav-bg;
   font-size: 16px;
   font-weight: bold;
-  padding:0.5em;
 
   // language selector for mobile devices
   .lang-selector {
@@ -83,12 +82,13 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
-    max-width: 80%;
-    margin: 1.5em;
+    max-width: 70%;
+    margin: 1.5em 0 1.5em 2em;
   }
 
   &>.search {
     position: relative;
+    margin: 0 0 1em 0;
 
     ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
       color: rgba(255, 255, 255, 0.8);
@@ -193,13 +193,6 @@ html, body {
     background-color: $nav-active-bg;
     color: $nav-active-text;
   }
-
-  .tocify-focus::after { 
-    content: '>\12296';
-    position: absolute;
-    @extend %icon;
-    text-decoration:inherit;
-}
 
   // Subheaders are the submenus that slide open
   // in the table of contents.
