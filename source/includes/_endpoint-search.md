@@ -171,94 +171,93 @@ GET /search/?q={query}&f={filter}&limit={limit}&offset={offset}&grouping=variabl
  "self": "https://app.crunch.io/api/search/?q=Atchafalaya&grouping=variables", 
  "description": "Returns a view with relevant search information", 
  "value": {
-  "groups": [
-   {
-    "group": "Search Results", 
-    "order": [
-     "https://app.crunch.io/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e1/variables/000007/", 
-     "https://app.crunch.io/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e1/variables/000008/"
-    ], 
-    "totals": {
-     "variables": 3, 
-     "datasets": 2
-    }
-    "variables": {
-     "https://app.crunch.io/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e1/variables/000008/": {
-      "alias": "BOW_AF_Name", 
-      "category_names": [
-       "Atchafalaya Bay, Delta, Gulf waters", 
-       "Barataria Bay", 
-       "Bayou Grand Caillou", 
-       "Bayou du Large", 
-       "Bays Gardene, Black, American and Crabe", 
-       "Calcasieu Lake", 
-       "Calcasieu River and Ship Channel", 
-       "California Bay and Breton Sound", 
-       "East Cote Blanche Bay", 
-       "Grid 12", 
-       "..."
-      ], 
-      "name": "BOW_AF_Name", 
-      "dataset": "https://app.crunch.io/api/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e1/",
-      "siblings": {
-          "https://app.crunch.io/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e5/variables/000008/": {
-          "alias": "BOW_AF_Name", 
-          "category_names": [
-           "Atchafalaya Bay, Delta, Gulf waters", 
-           "Barataria Bay", 
-           "Bayou Grand Caillou", 
-           "Bayou du Large", 
-           "Bays Gardene, Black, American and Crabe", 
-           "Calcasieu Lake", 
-           "Calcasieu River and Ship Channel", 
-           "California Bay and Breton Sound", 
-           "East Cote Blanche Bay", 
-           "Grid 12", 
-           "..."
-          ], 
-          "name": "BOW_AF_Name", 
-          "dataset": "https://app.crunch.io/api/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e5/"
-         }
+  "groups": [{
+      "group":"Search Results",
+      "totals":{
+        "variables":2,
+        "datasets":2
+      },
+      "buckets":{
+        "Qk9XX0FGX05hbWU":[
+          "http://app.crunch.io:29668/api/datasets/825b87ff955049128b9d48b614abbe99/variables/000008/",
+          "http://app.crunch.io:29668/api/datasets/fcd37212fe0d4b8eb8804ffb7ccb933d/variables/000008/"
+        ]
+      },
+      "order":[
+        "http://app.crunch.io:29668/api/datasets/825b87ff955049128b9d48b614abbe99/variables/000008/",
+        "http://app.crunch.io:29668/api/datasets/fcd37212fe0d4b8eb8804ffb7ccb933d/variables/000008/"
+      ]
+      "variables":{
+        "http://app.crunch.io:29668/api/datasets/fcd37212fe0d4b8eb8804ffb7ccb933d/variables/000008/":{
+          "alias":"BOW_AF_Name",
+          "category_names":[
+            "East Cote Blanche Bay",
+            "Atchafalaya Bay, Delta, Gulf waters",
+            "Barataria Bay",
+            "Bayou Grand Caillou",
+            "Bayou du Large",
+            "Bays Gardene, Black, American and Crabe",
+            "Calcasieu Lake",
+            "Calcasieu River and Ship Channel",
+            "California Bay and Breton Sound",
+            "Grid 12",
+            "..."
+          ],
+          "bucket":"Qk9XX0FGX05hbWU",
+          "name":"BOW_AF_Name",
+          "dataset":"http://app.crunch.io:29668/api/datasets/fcd37212fe0d4b8eb8804ffb7ccb933d/"
+        },
+        "http://app.crunch.io:29668/api/datasets/825b87ff955049128b9d48b614abbe99/variables/000008/":{
+          "alias":"BOW_AF_Name",
+          "category_names":[
+            "East Cote Blanche Bay",
+            "Atchafalaya Bay, Delta, Gulf waters",
+            "Barataria Bay",
+            "Bayou Grand Caillou",
+            "Bayou du Large",
+            "Bays Gardene, Black, American and Crabe",
+            "Calcasieu Lake",
+            "Calcasieu River and Ship Channel",
+            "California Bay and Breton Sound",
+            "Grid 12",
+            "..."
+          ],
+          "bucket":"Qk9XX0FGX05hbWU",
+          "name":"BOW_AF_Name",
+          "dataset":"http://app.crunch.io:29668/api/datasets/825b87ff955049128b9d48b614abbe99/"
+        }
+      },
+      "datasets":{
+        "http://app.crunch.io:29668/api/datasets/fcd37212fe0d4b8eb8804ffb7ccb933d/":{
+          "modification_time":"2017-06-22T17:00:36.571000",
+          "archived":false,
+          "description":"",
+          "end_date":null,
+          "name":"test_variable_search_matching_2",
+          "labels":null,
+          "creation_time":"2017-06-22T17:00:37.024000",
+          "id":"fcd37212fe0d4b8eb8804ffb7ccb933d",
+          "projects":[
+
+          ],
+          "start_date":null
+        },
+        "http://app.crunch.io:29668/api/datasets/825b87ff955049128b9d48b614abbe99/":{
+          "modification_time":"2017-06-22T17:00:34.681000",
+          "archived":false,
+          "description":"",
+          "end_date":null,
+          "name":"test_variable_search_matching_1",
+          "labels":null,
+          "creation_time":"2017-06-22T17:00:35.151000",
+          "id":"825b87ff955049128b9d48b614abbe99",
+          "projects":[
+
+          ],
+          "start_date":null
+        }
       }
-     }, 
-     "https://app.crunch.io/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e1/variables/000007/": {
-      "alias": "Basin_Name", 
-      "category_names": [
-       "Atchafalaya", 
-       "Barataria", 
-       "Calcasieu", 
-       "Outside Waters", 
-       "Pontchartrain", 
-       "Terrebonne", 
-       "Vermilion-Teche"
-      ], 
-      "name": "Basin_Name", 
-      "dataset": "https://app.crunch.io/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e1/"
-     }
-    }, 
-    "datasets": {
-     "https://app.crunch.io/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e1/": {
-      "modification_time": "2017-06-12T14:28:42.489000", 
-      "archived": false, 
-      "name": "oyster", 
-      "labels": null, 
-      "creation_time": "2017-06-12T14:28:42.478000", 
-      "id": "2db3ff2b32b64c0e83cb2458c7bdd5e1", 
-      "projects": [], 
-      "description": ""
-     },
-     "https://app.crunch.io/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e5/": {
-      "modification_time": "2017-06-12T14:28:42.489000", 
-      "archived": false, 
-      "name": "oyster 2", 
-      "labels": null, 
-      "creation_time": "2017-06-12T14:28:42.478000", 
-      "id": "2db3ff2b32b64c0e83cb2458c7bdd5e1", 
-      "projects": [], 
-      "description": ""
-     }
-    }, 
-   }
+    }
   ]
  }
 }
