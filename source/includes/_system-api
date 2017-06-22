@@ -1,0 +1,102 @@
+# Task API - In Beta
+
+The Task API gives you the ability to retrieve your Intelex tasks. These tasks can be found in the My Tasks Summary application in your Intelex platform. Tasks are object data records that are assigned to an employee in the Intelex system. You can create tasks by [creating records](#create-a-record) and setting the workflow's person responsible or re-assign tasks by [updating a record's person responsible](#updating-person-responsible)
+
+The Task API is currently in beta. This means that we might make changes to the data returned or how requests are made with future Intelex releases.  Once the beta tag is removed, breaking changes to this API will be [versioned](#versioning).
+
+## Metadata
+> Example response with record metadata
+
+```json
+{
+	"value": {
+		"@odata.type": "#Intelex.IncidentsObject",
+		"@odata.id": "https://intelex_url/api/v2/object/IncidentsObject(UID)",
+	}
+}
+```
+
+Records returned from the API will contain a few properties that provide some useful information.
+
+Property | Description
+--------- | -----------
+@odata.type|The the entity type of the record. Also contains the object system name the record belongs to
+@odata.id|A URL that can be used to access the record via the [Object Data API](#object-data-api)
+
+## Pagination
+> Example response with pagination link
+
+```json
+{
+	"value": {
+        "@odata.nextLink": "https://intelex_url/api/v2/task/mytasks?$skip=500"
+	}
+}
+```
+
+We've provided a convenient way to access more data in any request for sequential data where the number of records exceeds 500. Simply call the url in the nextLink parameter and we'll respond with the next set of data.
+
+## Relational Data
+Tasks resources have relations to Employees or Locations. These relations are accessible via the API as navigation properties. 
+
+Each task resource will have navigation properties that can be used to access its related data in either the Employee or Location objects:
+
+Resource | Available Navigation Properties
+--------- | -----------
+mytasks | Employee
+stafftasks | Employee
+locationtasks | Employee, Location
+alltasks | Employee
+
+You can use these navigation properties in [$expand]() queries to return the related data in-line with your tasks.
+
+## Requesting Tasks
+
+The following resources are similar to the application abs you find in the My Tasks Summary application.  You will only be able to access the following resources if you have the correct permissions set for the 'Use Application Tab' security setting on the associated application tab in Intelex.
+
+### Requesting Task Resources
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://intelex_url/api/v2/task' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/task");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> Example Response
+
+```json
+{
+	"value": [
+	  {
+		"name": "string",
+		"kind": "string",
+		"url": "string"
+	  }
+	]
+}
+```
+
+Returns the task resource endpoints that you can access
+
+#### GET /api/v2/task
+
+Attribute | Description
+--------- | -----------
+name | The entity type of the record.
+kind | Entity set or function
+url | Endpoint for resource
