@@ -123,15 +123,38 @@ Required | &nbsp;
 `flavorId`<br/>*UUID* | The [flavor](#flavors) will determine the number of CPU and RAM of your instance
 `networkId`<br/>*UUID* | The network in which the instance will be created. If you don't have a network, it can be created through the create network API.
 
+#### Associate a floating IP
+
+```shell
+curl -X POST \
+    -H "MC-Api-Key: your_api_key" \
+    -H "Content-Type: application/json" \
+    -d "request_body" \
+    "https://api.your.cloudmc/v1/services/compute-os/devel/instances/30fca349-68b0-48c2-9ada-1f60f57fa44e?operation=associate"
+# Request body should look like
+```
+```json
+{
+  "floatingIpId": "287a3963-983b-4602-9dea-4dff89e9dc10"
+}
+```
+
+<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=associate</code>
+
+Associate a floating IP to an instance in your environment.
+
+Required                  | Description
+------------------------- | -------------------------------------------
+`floatingIpId`<br/>*UUID* | The ID of a previously-acquired floating IP
 
 #### Delete an instance
 
 ```shell
 curl -X DELETE \
-    -H "MC-Api-Key: your_api_key"
+    -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/instances/30fca349-68b0-48c2-9ada-1f60f57fa44e"
 ```
 
 <code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
 
-Delete a instance.
+Delete an instance.
