@@ -167,6 +167,7 @@ GET /search/?q={query}&f={filter}&limit={limit}&offset={offset}&grouping=variabl
 
 ```json
 {
+ "element": "shoji:view",
  "self": "https://app.crunch.io/api/search/?q=Atchafalaya&grouping=variables", 
  "description": "Returns a view with relevant search information", 
  "value": {
@@ -178,8 +179,8 @@ GET /search/?q={query}&f={filter}&limit={limit}&offset={offset}&grouping=variabl
      "https://app.crunch.io/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e1/variables/000008/"
     ], 
     "totals": {
-     "variables": 2, 
-     "datasets": 1
+     "variables": 3, 
+     "datasets": 2
     }
     "variables": {
      "https://app.crunch.io/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e1/variables/000008/": {
@@ -198,7 +199,27 @@ GET /search/?q={query}&f={filter}&limit={limit}&offset={offset}&grouping=variabl
        "..."
       ], 
       "name": "BOW_AF_Name", 
-      "dataset": "https://app.crunch.io/api/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e1/"
+      "dataset": "https://app.crunch.io/api/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e1/",
+      "siblings": {
+          "https://app.crunch.io/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e5/variables/000008/": {
+          "alias": "BOW_AF_Name", 
+          "category_names": [
+           "Atchafalaya Bay, Delta, Gulf waters", 
+           "Barataria Bay", 
+           "Bayou Grand Caillou", 
+           "Bayou du Large", 
+           "Bays Gardene, Black, American and Crabe", 
+           "Calcasieu Lake", 
+           "Calcasieu River and Ship Channel", 
+           "California Bay and Breton Sound", 
+           "East Cote Blanche Bay", 
+           "Grid 12", 
+           "..."
+          ], 
+          "name": "BOW_AF_Name", 
+          "dataset": "https://app.crunch.io/api/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e5/"
+         }
+      }
      }, 
      "https://app.crunch.io/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e1/variables/000007/": {
       "alias": "Basin_Name", 
@@ -225,12 +246,21 @@ GET /search/?q={query}&f={filter}&limit={limit}&offset={offset}&grouping=variabl
       "id": "2db3ff2b32b64c0e83cb2458c7bdd5e1", 
       "projects": [], 
       "description": ""
+     },
+     "https://app.crunch.io/api/datasets/2db3ff2b32b64c0e83cb2458c7bdd5e5/": {
+      "modification_time": "2017-06-12T14:28:42.489000", 
+      "archived": false, 
+      "name": "oyster 2", 
+      "labels": null, 
+      "creation_time": "2017-06-12T14:28:42.478000", 
+      "id": "2db3ff2b32b64c0e83cb2458c7bdd5e1", 
+      "projects": [], 
+      "description": ""
      }
     }, 
    }
   ]
- }, 
- "element": "shoji:view"
+ }
 }
 ```
 
