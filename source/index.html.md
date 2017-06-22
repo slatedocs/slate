@@ -1611,7 +1611,6 @@ curl\
   "data": [
     {
       "id": 25,
-      "umid": "LKJHKEWB324123jkljL",
       "status": 3000,
       "action": 1,
       "message": "Text from push notification",
@@ -1629,7 +1628,6 @@ curl\
   "data": [
     {
       "id": 25,
-      "umid": "LKJHKEWB324123jkljL",
       "status": 3000,
       "action": 10,
       "message": "You just got rated! Check out your score.",
@@ -1649,7 +1647,6 @@ curl\
   "data": [
     {
       "id": 26,
-      "umid": "HJKHAD324123jkljL",
       "status": 3000,
       "action": 2,
       "message": "Checkout our fresh deal!",
@@ -1685,7 +1682,6 @@ curl\
   "data": [
     {
       "id": 26,
-      "umid": "HJKHAD324123jkljL",
       "status": 3000,
       "action": 2,
       "message": "Checkout our fresh deal!",
@@ -1709,7 +1705,6 @@ curl\
   "data": [
     {
       "id": 26,
-      "umid": "HJKHAD324123jkljL",
       "status": 3000,
       "action": 2,
       "message": "Checkout our fresh deal!",
@@ -1734,7 +1729,6 @@ History of all pushes sent to unit.
 Parameter | Type | Description
 -------- | ----- | -------
 `id` | *integer* | Unique identifier
-`umid` | *string* | Unique identifier to update push status
 `status` | *integer* | *<b>1000</b> - Sent*<br>*<b>2000</b> - Delivered*<br>*<b>3000</b> - Seen*
 `action` | *integer* | Describes what action should be triggered on the unit<br><br>*<b>1</b> - Update jobs (silent)*<br>*<b>2</b> - Popup message (regular)*<br>*<b>3</b> - Inbox message (regular)*<br>*<b>5</b> - Update location (silent)*<br>*<b>6</b> - New job (silent)*<br>*<b>7</b> - New job (regular)*<br>*<b>8</b> - Open service (regular)*<br>*<b>9</b> - Open chat (regular)*<br>*<b>10</b> - New rating (regular)*<br>*<b>11</b> - Offer with promo code (regular)*<br>*<b>12</b> - Custom*<br>*<b>13</b> - New bonus(regular)*
 `message` | *string* | Push notification text
