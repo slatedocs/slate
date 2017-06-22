@@ -1590,6 +1590,8 @@ This endpoint returns:
 * [Common errors](#common-errors)
 * [Tracked locations errors](#tracked-locations-errors)
 
+# Shared
+
 ## Push notifications
 
 
@@ -1599,7 +1601,7 @@ curl\
  -H "Content-Type: application/json"\
  -H "X-Application: {{APPLICATION_TOKEN}}"\
  -H "Authorization: {{AUTHORIZATION_TOKEN}}"\
-"https://{{BASE_URL}}/v2/unit/push_notifications"
+"https://{{BASE_URL}}/v2/shared/push_notifications"
 ```
 
 > The above request success response is:
