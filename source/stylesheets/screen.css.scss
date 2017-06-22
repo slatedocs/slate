@@ -32,6 +32,7 @@ html, body {
   @extend %default-font;
   background-color: $main-bg;
   height: 100%;
+  font-weight: 600;
   -webkit-text-size-adjust: none; /* Never autoresize text */
 }
 
@@ -66,7 +67,7 @@ html, body {
   bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: bold;
   padding:0.5em;
 
@@ -89,10 +90,23 @@ html, body {
   &>.search {
     position: relative;
 
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: rgba(255, 255, 255, 0.8);
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+      color: rgba(255, 255, 255, 0.8);
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+      color: rgba(255, 255, 255, 0.8);
+    }
+    :-moz-placeholder { /* Firefox 18- */
+      color: rgba(255, 255, 255, 0.8);
+    }
+
     input {
       background: $nav-bg;
       border-width: 0 0 1px 0;
-      border-color: $search-box-border-color;
+      //border-color: $search-box-border-color;
       padding: 6px 0 6px 20px;
       box-sizing: border-box;
       margin: $nav-v-padding $nav-padding;
@@ -163,7 +177,6 @@ html, body {
     margin: 0;
     padding: 0;
     line-height: 28px;
-    border-radius: 3px;
   }
 
   li {
@@ -171,7 +184,7 @@ html, body {
     transition-property: background;
     transition-timing-function: linear;
     transition-duration: 230ms;
-    padding:0.5em;
+    padding:0.5em 0.5em 0.5em 0;
   }
 
   // This is the currently selected ToC entry
@@ -180,6 +193,13 @@ html, body {
     background-color: $nav-active-bg;
     color: $nav-active-text;
   }
+
+  .tocify-focus::after { 
+    content: '>\12296';
+    position: absolute;
+    @extend %icon;
+    text-decoration:inherit;
+}
 
   // Subheaders are the submenus that slide open
   // in the table of contents.
@@ -202,7 +222,7 @@ html, body {
   .toc-footer {
     padding: 1em 0;
     margin-top: 1em;
-    border-top: 1px dashed $nav-footer-border-color;
+    //border-top: 1px dashed $nav-footer-border-color;
 
     li,a {
       color: $nav-text;
