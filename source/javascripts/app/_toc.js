@@ -12,7 +12,7 @@
 
   var makeToc = function() {
     global.toc = $("#toc").tocify({
-      selectors: 'h1, h2',
+      selectors: 'h1, h2, h3',
       extendPage: false,
       theme: 'none',
       smoothScroll: false,

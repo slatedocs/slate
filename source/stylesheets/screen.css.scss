@@ -39,6 +39,16 @@ html, body {
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
 
+
+ // Section headers
+  .tocify-item[data-unique="api-reference"], .tocify-item[data-unique="object-data-api"], .tocify-item[data-unique="task-api-beta"], .tocify-item[data-unique="developer-community"], .tocify-item[data-unique="interface-api"], .tocify-item[data-unique="package-api"]  {
+    text-transform: uppercase;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+  }
+
+
 #toc > ul > li > a > span {
   float: right;
   background-color: #2484FF;
@@ -193,22 +203,33 @@ html, body {
   }
 
   // Subheaders are the submenus that slide open
-  // in the table of contents.
-  .tocify-subheader {
-    display: none; // tocify will override this when needed
-    background-color: $nav-subitem-bg;
-    font-weight: 500;
-    .tocify-item>a {
-      padding-left: $nav-padding + $nav-indent;
-      font-size: 12px;
-    }
+  // in the table of contents.	
+	.tocify-subheader {
+		display: none; // tocify will override this when needed
+		background-color: $nav-subitem-bg;
+		font-weight: 500;
+		.tocify-item>a {
+		  padding-left: $nav-padding + $nav-indent;
+		  font-size: 12px;
+		}
 
-    // for embossed look:
-    @include embossed-bg;
-    &>li:last-child {
-      box-shadow: none; // otherwise it'll overflow out of the subheader
-    }
-  }
+		// for embossed look:
+		@include embossed-bg;
+		&>li:last-child {
+		  box-shadow: none; // otherwise it'll overflow out of the subheader
+		}
+	  }
+	  
+	  .tocify-subheader {
+		.tocify-subheader {
+			.tocify-item>a {
+			  // Styling here for a level 2 nesting. For example -> 
+			  padding-left: $nav-padding + $nav-indent * 2;
+			  font-size: 12px;
+			}
+		}
+	}
+	
 
   .toc-footer {
     padding: 1em 0;
@@ -408,7 +429,12 @@ html, body {
   }
 
   h4, h5, h6 {
-    font-size: 15px;
+    font-size: 16px;
+	color: #333;
+  }
+  
+  h5, h6 {
+    font-size: 14px;
 	color: #333;
   }
 
