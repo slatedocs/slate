@@ -468,3 +468,431 @@ Description | Description of object
 Module.Captiom | System caption of application
 Module.UrlCaptions | Navigation caption of application
 Module.Description | Description of application
+
+## Querying Tasks
+
+You can use the following query options on any of the Task API resources
+
+### Query option: $select
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://intelex_url/api/v2/task/mytasks',
+  qs: { '$select': 'RecordDescription' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/task/mytasks?$select=RecordDescription");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> Example Response
+
+```json
+{
+	"value": [
+	  {
+		"@odata.type": "string",
+		"@odata.id": "string",
+		"RecordDescription": "string"
+	  }
+	]
+}
+```
+
+The $select system query option allows clients to request a limited set of fields for each task.
+
+#### GET /task/mytasks?$select={field_name}
+
+Option | Example Values
+--------- | -----------
+Select a single field | $select=RecordDescription
+Select mutliple fields | $select=RecordDescription, RespEmployeeName
+
+##### URL Parameters
+
+Parameter | Description
+--------- | -----------
+field_name | Field name(s) to include in response
+
+### Query option: $count
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://intelex_url/api/v2/task/mytasks',
+  qs: { '$count': 'true' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/task/mytasks?$count=true");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> Example Response
+
+```json
+{
+	"@odata.count": 1,
+	"value": [
+	  {
+		"@odata.type": "string",
+		"@odata.id": "string",
+		"Id": "string",
+		"RespEmployeeName": "string",
+		"DueDateType": "string",
+		"LocationName": "string",
+		"NetObjectId": "string",
+		"NetObjectType": "string",
+		"NetTaskId": "string",
+		"NextDate": "2017-06-25T04:00:00Z",
+		"RecordDescription": "string",
+		"Stage": "string",
+		"TaskType": "string",
+		"LegacyRecordId": "string",
+		"LegacyRecordIdname": "string",
+		"LegacyRespEmployeeId": "string",
+		"LegacyTaskId": "string"
+	  }
+	]
+}
+```
+
+The $count system query option with a value of true specifies that the total count of items within a collection matching the request be returned along with the result.
+
+#### GET /task/mytasks?$count=true
+
+### Query option: $top and $skip
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://intelex_url/api/v2/task/mytasks',
+  qs: { '$skip': '10', '$top': '5' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/task/mytasks?$skip=10&$top=5");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> Example Response
+
+```json
+{
+	"value": [
+	  {
+		"@odata.type": "string",
+		"@odata.id": "string",
+		"Id": "string",
+		"RespEmployeeName": "string",
+		"DueDateType": "string",
+		"LocationName": "string",
+		"NetObjectId": "string",
+		"NetObjectType": "string",
+		"NetTaskId": "string",
+		"NextDate": "2017-06-25T04:00:00Z",
+		"RecordDescription": "string",
+		"Stage": "string",
+		"TaskType": "string",
+		"LegacyRecordId": "string",
+		"LegacyRecordIdname": "string",
+		"LegacyRespEmployeeId": "string",
+		"LegacyTaskId": "string"
+	  }
+	]
+}
+```
+
+The $top system query option requests the number of items in the queried collection to be included in the result. The $skip query option requests the number of items in the queried collection that are to be skipped and not included in the result.
+
+#### GET /task/mytasks?$top={top_n}&$skip={skip_n}
+
+##### Query Parameters
+Parameter | Description
+--------- | -----------
+top_n | Number of items to be included in the response
+skip_n| Number of items to be skipped
+
+### Query option: $orderby
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://intelex_url/api/v2/task/mytasks',
+  qs: { '$orderby': 'NextDate desc' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/task/mytasks?$orderby=NextDate desc");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> Example Response
+
+```json
+{
+	"value": [
+	  {
+		"@odata.type": "string",
+		"@odata.id": "string",
+		"Id": "string",
+		"RespEmployeeName": "string",
+		"DueDateType": "string",
+		"LocationName": "string",
+		"NetObjectId": "string",
+		"NetObjectType": "string",
+		"NetTaskId": "string",
+		"NextDate": "2017-06-25T04:00:00Z",
+		"RecordDescription": "string",
+		"Stage": "string",
+		"TaskType": "string",
+		"LegacyRecordId": "string",
+		"LegacyRecordIdname": "string",
+		"LegacyRespEmployeeId": "string",
+		"LegacyTaskId": "string"
+	  }
+	]
+}
+```
+
+The $orderby system query option allows clients to request tasks in either ascending order using 'asc' or descending order using 'desc'. Default is ascending. The request below sorts the collection by date in descending order.
+
+#### GET /task/mytasks?$orderby={field_name}
+
+Option | Example Values
+-------- | --------
+Sort by descending|$orderby=NextDate desc
+Sort by ascending|$orderby=NextDate asc
+Sort by drop-down value |$orderby=RespEmployeeName
+Sort by multiple fields|$orderby=NextDate, RecordDescription
+
+##### Query Parameters
+
+Parameter | Description
+--------- | -----------
+field_name | Fields that you want to sort by
+
+### Query option: $filter
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://intelex_url/api/v2/task/mytasks',
+  qs: { '$filter': 'RespEmployeeName eq \'Steve Rogers\'' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
+```
+
+```csharp
+var client = new RestClient("http://cloud3.intelex.com/wabouchalha/api/v2/task/mytasks?%24filter=RespEmployeeName%20eq%20'Steve%20Rogers'");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> Example Response
+
+```json
+{
+	"value": [
+	  {
+		"@odata.type": "string",
+		"@odata.id": "string",
+		"Id": "string",
+		"RespEmployeeName": "string",
+		"DueDateType": "string",
+		"LocationName": "string",
+		"NetObjectId": "string",
+		"NetObjectType": "string",
+		"NetTaskId": "string",
+		"NextDate": "2017-06-25T04:00:00Z",
+		"RecordDescription": "string",
+		"Stage": "string",
+		"TaskType": "string",
+		"LegacyRecordId": "string",
+		"LegacyRecordIdname": "string",
+		"LegacyRespEmployeeId": "string",
+		"LegacyTaskId": "string"
+	  }
+	]
+}
+```
+
+
+The $filter system query option allows clients to filter a collection of task. The expression specified with $filter is evaluated for each task in the collection, and only items where the expression evaluates to true are included in the response. There are built-in filter operators that can be used in order to retrieve the data you need
+
+#### GET /task/mytasks?$filter={filter_expression}
+
+##### Query Parameters
+
+Parameter | Description
+--------- | -----------
+filter_expression | Filter expression used to query data
+
+##### Comparison Operators:
+|Name|Description|Example Values|
+|---|---|---|
+|eq|Equal|DueDateType eq Enum.DueDateType'Overdue'
+|ne|Not equal|RecordDescription ne null
+|gt|Greater than|NextDate gt 2017-01-01
+|ge|Greater than or equal|NextDate ge 2017-01-01
+|lt|Less than|NextDate lt 2017-01-01
+|le|Less than or equal|NextDate le 2014-11-24T12:55:05.35-05:00
+
+##### Logical Operators:
+|Name|Description|Example Values|
+|---|---|---|
+|and|Logical and|RecordDescription ne null and RespEmployeeName eq 'Steve Rogers'
+|or|Logical or|RecordDescription eq null or NextDate gt 2017-01-01
+|not|Logical not|not(contains(RecordDescription, 'accident'))
+
+##### Grouping Operators:
+|Name|Description|Example Values|
+|---|---|---|
+|(   )|Precedence grouping|RespEmployeeName eq 'Steve Rogers' and (contains(TaskType, 'Safety') or contains(RecordDescription, 'Safety'))
+
+##### Functions:
+|Name|Description|Example Values|
+|---|---|---|
+|contains(Field, Value)|Sub-string search|contains(RecordDescription, 'accident'))
+
+##### Filtering using Relation Fields:
+|Description|Example Values|
+|---|---|
+|Filtering by Employee name |Employee/Name eq 'Steve Rogers'
+|Filtering by Location name|Location/Name eq 'Toronto'
+
+### Query option: $expand
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://intelex_url/api/v2/task/locationtasks',
+  qs: { '$expand': 'Location' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/task/locationtasks?$expand=Location");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> Example Response
+
+```json
+{
+	"value": [
+	  {
+		"@odata.type": "string",
+		"@odata.id": "string",
+		"Id": "string",
+		"RespEmployeeName": "string",
+		"DueDateType": "string",
+		"LocationName": "string",
+		"NetObjectId": "string",
+		"NetObjectType": "string",
+		"NetTaskId": "string",
+		"NextDate": "2017-06-25T04:00:00Z",
+		"RecordDescription": "string",
+		"Stage": "string",
+		"TaskType": "string",
+		"LegacyRecordId": "string",
+		"LegacyRecordIdname": "string",
+		"LegacyRespEmployeeId": "string",
+		"LegacyTaskId": "string",
+		"Location": {
+			"@odata.type": "string",
+			"@odata.id": "string",
+			"@odata.editLink": "string",
+			"Id": "string",
+			"DateCreated": "2015-01-28T16:24:19.63-05:00",
+			"DateModified": "2016-04-21T15:02:38.723-04:00",
+			"Address1": null,
+			"Address2": null,
+			"Area": null,
+			"BusinessUnits": null,
+			"City": null
+		}
+	  }
+	]
+}
+```
+
+The $expand system query option specifies the related object records to be included in-line with requested tasks. The parameter accepts a comma-separated list of relation field names. Use the system name of the relation type field or lookup type field in your query.
+
+#### GET /task/mytasks?$expand={relation_field}
+
+|Option|Example Values|
+| -------- | -------- |
+|Expand Employee|$expand=Employee|
+|Expand Employee and Location|$expand=Employee, Location|
+|Expand all relations|$expand=*|
+|Select expanded fields|$expand=Location($select=Name)|
+|Sort expanded collection|$expand=Location($orderby=Name)|
+
+##### Query Parameters
+
+Parameter | Description
+--------- | -----------
+relation_field | Relation field used to request related object data

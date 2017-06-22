@@ -392,7 +392,7 @@ request(options, function (error, response, body) {
 ```
 
 ```csharp
-var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject?Rskip=10&$top=5");
+var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject?$skip=10&$top=5");
 var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
@@ -442,8 +442,8 @@ skip_n| Number of items to be skipped
 var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://clients.intelex.com/IntelexTechnologies/api/v2/object/IncidentsObject',
-  qs: { '$orderby': 'DateCreateddesc' } };
+  url: 'https://intelex_url/api/v2/object/IncidentsObject',
+  qs: { '$orderby': 'DateCreated desc' } };
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);

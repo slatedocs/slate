@@ -6,6 +6,10 @@
 * Ask technical questions
 * Give us feedback
 
+You can submit API issues here: [Intelex Customer Support](https://www.intelex-exchange.com/Ticket/Create)
+
+
+
 
 
 
