@@ -261,7 +261,7 @@ navigation_property|The Intelex system name of the relation type or lookup type 
 
 ## Querying Object Data
 
-### Query option: $select
+### Selecting record fields
 
 > Example Request
 
@@ -316,7 +316,7 @@ Parameter | Description
 --------- | -----------
 field_name | Field name(s) to include in response
 
-### Query option: $count
+### Counting records
 
 > Example Request
 
@@ -373,7 +373,7 @@ Parameter | Description
 --------- | -----------
 intelex_object | The Intelex system name of the object being requested eg. IncidentsObject
 
-### Query option: $top and $skip
+### Paginating records
 
 > Example Request
 
@@ -434,7 +434,7 @@ Parameter | Description
 top_n | Number of items to be included in the response
 skip_n| Number of items to be skipped
 
-### Query option: $orderby
+### Sorting records
 
 > Example Request
 
@@ -504,7 +504,7 @@ Parameter | Description
 --------- | -----------
 field_name | Fields that you want to sort by
 
-### Query option: $filter
+### Filtering records
 
 > Example Request
 
@@ -613,7 +613,7 @@ filter_expression | Filter expression used to query data
 |---|---|
 |Filter where you are the person responsible|$filter=Workflow/PersonResponsible eq @me|
 
-### Query option: $expand
+### Expanding related records
 
 > Example Request
 

@@ -473,7 +473,7 @@ Module.Description | Description of application
 
 You can use the following query options on any of the Task API resources
 
-### Query option: $select
+### Selecting task fields
 
 > Example Request
 
@@ -527,7 +527,7 @@ Parameter | Description
 --------- | -----------
 field_name | Field name(s) to include in response
 
-### Query option: $count
+### Counting task records
 
 > Example Request
 
@@ -585,7 +585,7 @@ The $count system query option with a value of true specifies that the total cou
 
 #### GET /task/mytasks?$count=true
 
-### Query option: $top and $skip
+### Paginating tasks
 
 > Example Request
 
@@ -647,7 +647,7 @@ Parameter | Description
 top_n | Number of items to be included in the response
 skip_n| Number of items to be skipped
 
-### Query option: $orderby
+### Sorting tasks
 
 > Example Request
 
@@ -717,7 +717,7 @@ Parameter | Description
 --------- | -----------
 field_name | Fields that you want to sort by
 
-### Query option: $filter
+### Filtering tasks
 
 > Example Request
 
@@ -814,7 +814,7 @@ filter_expression | Filter expression used to query data
 |Filtering by Employee name |Employee/Name eq 'Steve Rogers'
 |Filtering by Location name|Location/Name eq 'Toronto'
 
-### Query option: $expand
+### Expanding related information
 
 > Example Request
 
