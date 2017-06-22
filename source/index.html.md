@@ -8,7 +8,7 @@ language_tabs:
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://twitter.com/sensumco'>Follow us on Twitter @sensumco</a>
   - <a href='#'>Join the Sensum mailing list</a>
 
 includes:

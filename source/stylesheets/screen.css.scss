@@ -57,7 +57,6 @@ html, body {
 
 .tocify-wrapper {
   transition: left 0.3s ease-in-out;
-
   overflow-y: auto;
   overflow-x: hidden;
   position: fixed;
@@ -69,6 +68,7 @@ html, body {
   background-color: $nav-bg;
   font-size: 13px;
   font-weight: bold;
+  padding:0.5em;
 
   // language selector for mobile devices
   .lang-selector {
@@ -82,8 +82,8 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
-    max-width: 70%;
-    margin: 2em 2.5em 2em 2.5em;
+    max-width: 80%;
+    margin: 1.5em;
   }
 
   &>.search {
@@ -163,6 +163,7 @@ html, body {
     margin: 0;
     padding: 0;
     line-height: 28px;
+    border-radius: 3px;
   }
 
   li {
@@ -170,6 +171,7 @@ html, body {
     transition-property: background;
     transition-timing-function: linear;
     transition-duration: 230ms;
+    padding:0.5em;
   }
 
   // This is the currently selected ToC entry
@@ -359,11 +361,11 @@ html, body {
     font-size: 30px;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid #ccc;
+    //border-bottom: 1px solid #ccc;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ddd;
-    background-image: linear-gradient(to bottom, #fff, #f9f9f9);
+    //border-top: 1px solid #ddd;
+    //background-image: linear-gradient(to bottom, #fff, #f9f9f9);
   }
 
   h1:first-child, div:first-child + h1 {
@@ -557,8 +559,8 @@ html, body {
       border-radius: 5px;
       padding: $code-annotation-padding;
       color: #ccc;
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #404040;
+      //border-top: 1px solid #000;
+      //border-bottom: 1px solid #404040;
     }
   }
 }
