@@ -1621,25 +1621,6 @@ curl\
 }
 ```
 
-> The above request success response for rating is:
-
-```json
-{
-  "data": [
-    {
-      "id": 25,
-      "status": 3000,
-      "action": 10,
-      "message": "You just got rated! Check out your score.",
-      "payload": {
-        "rating_id": 25
-      },
-      "created_at": 1497859985
-    }
-  ]
-}
-```
-
 > The above request success response for popup is:
 
 ```json
@@ -1720,6 +1701,50 @@ curl\
 }
 ```
 
+> The above request success response for rating is:
+
+```json
+{
+  "data": [
+    {
+      "id": 25,
+      "status": 3000,
+      "action": 10,
+      "message": "You just got rated! Check out your score.",
+      "payload": {
+        "rate": 4,
+        "comment": "Didn't clean the kitchen well",
+        "client_name": "John Doe",
+      },
+      "created_at": 1497859985
+    }
+  ]
+}
+```
+
+> The above request success response for bonus is:
+
+```json
+{
+  "data": [
+    {
+      "id": 26,
+      "status": 3000,
+      "action": 2,
+      "message": "Checkout our fresh deal!",
+      "payload": {
+        "bonus": 5,
+        "bonus_formatted": "£5",
+        "total_bonus": 5,
+        "total_bonus_formatted": "£20",
+        "service": "Carpet Cleaning"
+      },
+      "created_at": 1497859985
+    }
+  ]
+}
+```
+
 History of all pushes sent to unit.
 
 `"path": "push_notifications"`
@@ -1764,11 +1789,23 @@ Parameter | Type | Description
 `payload.target.screen_id` | *integer* | 
 `payload.target.item_id` | *integer* | 
 
-### Popup push response parameters
+### Rate push response parameters
 
 Parameter | Type | Description
 -------- | ----- | -------
-`payload.popup.rating_id` | *integer* | Rating unique identifier
+`payload.rate` | *integer* | Rating client gave for the job
+`payload.comment` | *string* | Client comment upon rating the job
+`payload.client_name` | *string* | Name of client who rated the job
+
+### Bonus push response parameters
+
+Parameter | Type | Description
+-------- | ----- | -------
+`payload.bonus` | *double* | Bonus for cross-sell on sight or with flyer
+`payload.bonus_formatted` | *string* | Formatted bonus for cross-sell on sight or with flyer
+`payload.total_bonus` | *double* | Total bonus to collect before current bonus
+`payload.total_bonus_formatted` | *string* | Formatted total bonus to collect before current bonus
+`payload.service` | *string* | Cross-selled service name
 
 ### `params`
 
