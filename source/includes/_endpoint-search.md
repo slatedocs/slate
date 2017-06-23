@@ -186,7 +186,7 @@ GET /search/?q={query}&f={filter}&limit={limit}&offset={offset}&grouping=variabl
       "order":[
         "http://app.crunch.io:29668/api/datasets/825b87ff955049128b9d48b614abbe99/variables/000008/",
         "http://app.crunch.io:29668/api/datasets/fcd37212fe0d4b8eb8804ffb7ccb933d/variables/000008/"
-      ]
+      ],
       "variables":{
         "http://app.crunch.io:29668/api/datasets/fcd37212fe0d4b8eb8804ffb7ccb933d/variables/000008/":{
           "alias":"BOW_AF_Name",
