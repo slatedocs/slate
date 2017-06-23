@@ -571,8 +571,10 @@ This won't interfere with our regular instrumentation. Your controller-action me
 ## Rack
 
 Rack instrumentation is more explicit than Rails instrumentation, since Rack applications can take
-nearly any form. Instrumenting Rack is a two step process, starting the agent, then wrapping
-endpoints in tracing.
+nearly any form. After [installing our agent](#ruby_install), instrumenting Rack is a two step process:
+
+1. Starting the agent
+2. Wrapping endpoints in tracing
 
 ### Starting the Agent
 
