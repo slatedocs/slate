@@ -47,9 +47,9 @@ This endpoint lists all messages for a given session. Objects are ordered by `se
 
 ### HTTP Request
 
-`GET https://api.dirtylemon.com/v1/customers/:customer_id/sessions/:session_id/messages?limit=100`
+`GET https://api.dirtylemon.com/v1/customers/:customer_id/sessions/:session_id/messages`
 
-`GET https://api.dirtylemon.com/v1/customers/:customer_id/sessions/current/messages?limit=100`
+`GET https://api.dirtylemon.com/v1/customers/:customer_id/sessions/current/messages`
 
 ### Path params
 
@@ -63,6 +63,7 @@ This endpoint lists all messages for a given session. Objects are ordered by `se
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
 | limit | no | Default to 100 |
+| offset | no | Default to 0 |
 
 
 ### Returns

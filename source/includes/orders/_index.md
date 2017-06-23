@@ -85,7 +85,7 @@ This endpoint lists all orders for a given customer. Objects are ordered by `cre
 
 ### HTTP Request
 
-`GET https://api.dirtylemon.com/v1/customers/:customer_id/orders?limit=100`
+`GET https://api.dirtylemon.com/v1/customers/:customer_id/orders`
 
 ### Path params
 
@@ -98,6 +98,7 @@ This endpoint lists all orders for a given customer. Objects are ordered by `cre
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
 | limit | no | Default to 100 |
+| offset | no | Default to 0 |
 
 
 ### Returns

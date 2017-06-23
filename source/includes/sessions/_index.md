@@ -53,7 +53,7 @@ This endpoint lists all sessions for a given customer. Objects are ordered by `c
 
 ### HTTP Request
 
-`GET https://api.dirtylemon.com/v1/customers/:customer_id/sessions?limit=100`
+`GET https://api.dirtylemon.com/v1/customers/:customer_id/sessions`
 
 ### Path params
 
@@ -66,6 +66,7 @@ This endpoint lists all sessions for a given customer. Objects are ordered by `c
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
 | limit | no | Default to 100 |
+| offset | no | Default to 0 |
 
 
 ### Returns
