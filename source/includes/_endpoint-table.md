@@ -7,7 +7,7 @@ values. It provides granular control over the rows and columns for each dataset.
 
 #### GET
 
-When authenticated, GET returns a 200 status with a Shoji Table of the 
+Dataset editors can GET to this resource and obtain a Shoji Table of the 
 dataset's data. It will expose all the variables that are visible by the 
 authenticated user (Public + personals created by them if requested) as 
 well as the exclusion filter applied (if any).
@@ -18,6 +18,12 @@ value.
 
 A `metadata` section contains the definitions of all the variables matched
 by variable ID with the corresponding entry under `data`.
+
+Dataset viewers can only access the `metadata` portion of the response. This 
+means they cannot make use of the `limit` and `offset` parameters to query
+data unless the dataset's setting `viewers_can_export` is set to True, else
+the server will respond with a 403 response.
+
 
 ```http
 GET /datasets/:id/table/ HTTP/1.1
@@ -97,11 +103,11 @@ GET /datasets/:id/table/ HTTP/1.1
       "type": "categorical_array",
       "name": "categorical_array",
       "subvariables": ["000007", "000008", "000009"],
-      "subreferences": [
-        {"alias": "ca_subvar_1", "name": "ca_subvar_1", "description": ""},
-        {"alias": "ca_subvar_2", "name": "ca_subvar_2", "description": ""},
-        {"alias": "ca_subvar_3", "name": "ca_subvar_3", "description": ""}
-      ]
+      "subreferences": {
+        "000009": {"alias": "ca_subvar_1", "name": "ca_subvar_1", "description": ""},
+        "000007": {"alias": "ca_subvar_2", "name": "ca_subvar_2", "description": ""},
+        "000008": {"alias": "ca_subvar_3", "name": "ca_subvar_3", "description": ""}
+      },
       "categories": [
         { "numeric_value": null, "selected": false, "id": 1, "missing": false, "name": "a" },
         { "numeric_value": null, "selected": false, "id": 2, "missing": false, "name": "b" },

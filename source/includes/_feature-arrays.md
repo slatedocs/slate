@@ -1,6 +1,6 @@
 ## Array Variables
 
-Simple variables have only one value per row; sometimes, however, it is convenient to consider multiple values (of the same type) as a single Variable. The Crunch system implements the data as a 2-dimensional array, but the array variable includes two additional attributes: "subvariables", which is a list of sub-ids, and "subreferences", which is a list of {name, alias, description, ...} objects. There are two types of array variable: categorical array and multiple response.
+Simple variables have only one value per row; sometimes, however, it is convenient to consider multiple values (of the same type) as a single Variable. The Crunch system implements the data as a 2-dimensional array, but the array variable includes two additional attributes: "subvariables", which is a list of subvariable URLs, and "subreferences", which is an object of {name, alias, description, ...} objects keyed by subvariable URL. There are two types of array variable: categorical array and multiple response.
 
 ### Categorical arrays
 
@@ -22,11 +22,16 @@ The respondent may only select one rating in each row. To represent that answer 
     "body": {
         "name": "Soft Drinks",
         "type": "categorical_array",
-        "subreferences": [
-            {"name": "Coke", "alias": "coke"},
-            {"name": "Pepsi", "alias": "pepsi"},
-            {"name": "RC", "alias": "rc"}
-        ],
+        "subvariables": [
+            "./subvariables/001/", 
+            "./subvariables/002/",
+            "./subvariables/003/"
+         ],
+        "subreferences": {
+            "./subvariables/002/": {"name": "Coke", "alias": "coke"},
+            "./subvariables/003/": {"name": "Pepsi", "alias": "pepsi"},
+            "./subvariables/001/": {"name": "RC", "alias": "rc"}
+        },
         "categories": [
             {"id": -1, "name": "No Data",    "numeric_value": null, "missing":  true},
             {"id":  1, "name": "Not at all", "numeric_value": null, "missing": false},
@@ -106,12 +111,18 @@ The respondent may check the box or not for each row. To represent that answer d
     "body": {
         "name": "Countries Visited",
         "type": "multiple_response",
-        "subreferences": [
-            {"name": "USA", "alias": "visited_usa"},
-            {"name": "Germany", "alias": "visited_germany"},
-            {"name": "Japan", "alias": "visited_japan"},
-            {"name": "None of the above", "alias": "visited_none_of_the_above"}
-        ],
+        "subvariables": [
+            "./subvariables/001/", 
+            "./subvariables/002/",
+            "./subvariables/003/",
+            "./subvariables/004/"
+         ],
+        "subreferences": {
+            "./subvariables/002/": {"name": "USA", "alias": "visited_usa"},
+            "./subvariables/004/": {"name": "Germany", "alias": "visited_germany"},
+            "./subvariables/001/": {"name": "Japan", "alias": "visited_japan"},
+            "./subvariables/003/": {"name": "None of the above", "alias": "visited_none_of_the_above"}
+        },
         "categories": [
             {"id": -1, "name": "No Data",     "numeric_value": null, "missing":  true},
             {"id":  1, "name": "Checked",     "numeric_value": null, "missing": false, "selected": true},

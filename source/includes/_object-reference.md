@@ -206,13 +206,15 @@ Like Categories, the array of subvariables within an array variable indicate
 
 ##### subreferences
 
-Multiple Response and Categorical Array variables contain an array of subvariable
+Multiple Response and Categorical Array variables contain an object of subvariable
  "references": names, alias, description, etc. To create a variable of type
  "multiple_response" or "categorical_array" directly, you must include a
- "subreferences" member with an array of objects. These label the subvariables
+ "subreferences" member with an object of objects. These label the subvariables
  in the new array variable.
 
 The shape of each subreferences member must contain a name and optionally an alias.
+Note that the subreferences is an unordered object. The order of the subvariables
+is read from the "subvariables" attribute.
 
 ```json
 {
@@ -232,11 +234,16 @@ The shape of each subreferences member must contain a name and optionally an ali
             "missing": false
         }
     ],
-    "subreferences": [
-        {"name": "subvariable 1"},
-        {"name": "subvariable 2", "alias": "subvar2_alias"},
-        {"name": "subvariable 3"}
-    ]
+    "subvariables": [
+      "/api/datasets/abcdef/variables/abc/subvariables/1/",
+      "/api/datasets/abcdef/variables/abc/subvariables/2/",
+      "/api/datasets/abcdef/variables/abc/subvariables/3/"
+    ],
+    "subreferences": {
+        "/api/datasets/abcdef/variables/abc/subvariables/2/": {"name": "subvariable 2", "alias": "subvar2_alias"},
+        "/api/datasets/abcdef/variables/abc/subvariables/1/": {"name": "subvariable 1"},
+        "/api/datasets/abcdef/variables/abc/subvariables/3/": {"name": "subvariable 3"}
+    }
 }
 ```
 

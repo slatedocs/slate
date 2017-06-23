@@ -205,7 +205,7 @@ A POST to this resource must be a Shoji Entity with the following "body" attribu
  * **type**
  * If "type" is "categorical", "multiple_response", or "categorical_array": **categories**: an array of category definitions
  * If "type" is "multiple_response" or "categorical_array": **subvariables**: an array of URLs of variables to be "bound" together to form the array variable
- * If "type" is "multiple_response" or "categorical_array": **subreferences**: an array of partial variable definitions, which will be created as categorical subvariables of the array. If included, the array definition must include "categories", which are shared among the subvariables.
+ * If "type" is "multiple_response" or "categorical_array": **subreferences**: an object keyed by each of the subvariable URLs where each value contains partial variable definitions, which will be created as categorical subvariables of the array. If included, the array definition must include "categories", which are shared among the subvariables.
  * If type is "multiple_response", the definition may include **selected_categories**: an array of category names present in the subvariables. This will mark the specified category or categories as the "selected" response in the multiple response variable. If no "selected_categories" array is provided, the new variable will use any categories already flagged as "selected": true. If no such category exists, the response will return a 400 status.
  * If "type" is "datetime": **resolution**: a string, such as "Y", "M", "D", "h", "m", "s", "ms", that indicates the unit size of the datetime data.
 
@@ -366,7 +366,7 @@ derived | boolean | Whether the variable is a function of another; default: fals
 type | string | The string type name
 categories | array | If "type" is "categorical", "multiple_response", or "categorical_array", an array of category definitions (see below). Other types have an empty array
 subvariables | array of URLs | For array variables, an ordered array of subvariable ids
-subreferences | object of objects | For array variables, an object of {"name": ..., "alias": ..., ...} objects keyed by subvariable
+subreferences | object of objects | For array variables, an object of {"name": ..., "alias": ..., ...} objects keyed by subvariable url
 resolution | string | For datetime variables, a string, such as "Y", "M", "D", "h", "m", "s", "ms", that indicates the unit size of the datetime data.
 derivation | object | For derived variables, a Crunch expression which was used to derive this variable; or null
 format | object | An object with various members to control the display of Variable data (see below)
@@ -662,6 +662,10 @@ return strings, and categorical variables will return category names for valid
 categories and {"?": code} missing markers for missing categories. The "start"
 and "total" parameters paginate the results. The "filter" is a Crunch filter
 expression.
+
+Note that this endpoint is only accessible by dataset editors unless the 
+`viewers_can_export` dataset setting is set to `true`, else the server will
+return a 403 response.
 
 ### Private Variables
 

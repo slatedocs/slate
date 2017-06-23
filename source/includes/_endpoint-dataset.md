@@ -154,10 +154,12 @@ Parameter                          | Type        | Description
 q                                  | String      | query string
 f                                  | Json Object | used to filter the output of the search (see below)
 limit                              | Integer     | limit the number of dataset results returned by the api to less than this amount (default: 10)
-offset                             | Integer     | offset into the search index to start gathering results from pre-filter
+offset                             | Integer     | offset into the search index to start gathering results
 max_variables_per_dataset          | Integer     | limit the number of variables that match to this number (default: 1000, max: 1000)
 embedded_variables                 | Boolean     | embed the results within the dataset results (this will become the default in the future)
 max_subfield_entries_per_variable  | Integer     | some fields in a variable result are a list of items, these lists can be very long at times (think category names).  This limits the number of results for performance/noise reduction.  Pertinent (matching) results are returned first, and then remaining results are padded to meet the limit.  
+projection                         | Json Object | used to limit the fields that should be returned in the search results. ID is always provided.
+scope                              | Json Object | used to limit the fields that the search should look at.
 
 <aside class="notice">
 By default there are only 10 datasets returned.  Inside the response you will find a `totals.datasets` that
@@ -166,15 +168,34 @@ limit and compile your search results.
 </aside>
 
 
+Providing a Projection:
+
+`projection` argument must be a JSON array containing the name of the fields that should be projected for datasets and variables.
+The fields are specified with the namespace they refer to, like `"variables.fieldname"` and `"datasets.fieldname"`. 
+The namespace is the same as the key where the relevant search results are returned.
+Performing a search with an invalid field will pinpoint the invalid one and provide the list of accepted values.
+
+Providing a Scope:
+
+`scope` parameter must be a JSON array containing the name of the fields that should be used to resolve the query. 
+Much like `projection` paramter this one accepts a list of fields with their namespace (`datasets` or `variables`). T
+he provided query will be looked up only in the specified fields if a `scope` is provided. A special field name `*`
+is accepted to specify that default fields should be looked for a specific namespace. 
+A scope like `datasets.name, variables.*` will search the query in the default variable fields and in dataset name.
+
 Allowable filter parameters:
 
-Parameter   | Type             | Description
-------------|------------------|-------------------------------------------------
-dataset_ids | Array of strings | limit results to particular datasets (urls) (user must have read access to that dataset)
-team        | String           | url of the team to limit results (user must have read access to the team)
-project     | String           | url of the project to limit results (user must have access to the project)
-owner       | String           | The owner of the dataset must match the given url.
-label       | String           | The dataset must be in a folder or subfolder with the given name.
+Parameter         | Type             | Description
+------------------|------------------|-------------------------------------------------
+dataset_ids       | Array of strings | limit results to particular datasets (urls) (user must have read access to that dataset)
+team              | String           | url of the team to limit results (user must have read access to the team)
+project           | String           | url of the project to limit results (user must have access to the project)
+owner             | String           | The owner of the dataset must match the given url.
+label             | String           | The dataset must be in a folder or subfolder with the given name.
+start_date        | Array of strings | array of `[begin, end]` range of values in ISO8601 format. Provide same for exact matching.
+end_date          | Array of strings | array of `[begin, end]` range of values in ISO8601 format. Provide same for exact matching.
+modification_time | Array of strings | array of `[begin, end]` range of values in ISO8601 format. Provide same for exact matching.
+creation_time     | Array of strings | array of `[begin, end]` range of values in ISO8601 format. Provide same for exact matching.
 
 <aside class="notice">
 The query string can only be alpha-numeric characters (including underscores) logical operators are not allowed at this time.
@@ -205,7 +226,7 @@ dataset_projects  | List of Strings | Project IDs having read-access to the data
 
 
 ```http
-GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_variables_list={group_variables_list}  HTTP/1.1
+GET /datasets/search/?q={query}&f={filter}&limit={limit}&offset={offset}&group_variables_list={group_variables_list}&projection={projection}  HTTP/1.1
 ```
 
 ```
@@ -889,6 +910,30 @@ PATCH the "expression" attribute to modify. An empty "expression" object, like
  are dropped.
 
 ##### Stream
+
+`/datasets/{id}/stream/`
+
+Stream allows for sending data to a dataset as it is gathered.
+
+```json
+{
+    "element": "shoji:entity",
+    "self": "https://app.crunch.io/api/datasets/223fd4/stream/",
+    "description": "A stream for this Dataset. Each stream acts as a write buffer, from which Sources are periodically made and appended as Batches to the owning Dataset.",
+    "body":{
+        "pending_messages": 1,
+        "received_messages": 8
+    }
+}
+```
+
+GET on this resource returns a Shoji Entity with two attributes in its body:
+
+
+Attribute | Description
+--------|------------
+pending_messages | The number of messages the stream has that have yet to be appended to the dataset (note: a message might contain more than one row, each POST that is made to `/datasets/{id}/stream/` will result in a single message).
+received_messages | The total number of messages that this stream has received.
 
 ##### Settings
 
