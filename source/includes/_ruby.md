@@ -567,6 +567,53 @@ class FastController < ActionController::Metal
 
 This won't interfere with our regular instrumentation. Your controller-action metrics will appear under the endpoints area of Scout, just like any other controller-action.
 
+
+## Rack
+
+Rack instrumentation is more explicit than Rails instrumentation, since Rack applications can take
+nearly any form. Instrumenting Rack is a two step process, starting the agent, then wrapping
+endpoints in tracing.
+
+### Starting the Agent
+
+Add the `ScoutApm::Rack.install!` startup call as close to the spot you
+`run` your Rack application.  <span style="white-space: nowrap;">`install!`</span>
+should be called after you require other gems (ActiveRecord, Mongo, etc)
+to install instrumentation for those libraries.
+
+```ruby
+# config.ru
+
+require 'scout_apm'
+ScoutApm::Rack.install!
+
+run MyApp
+```
+
+### Adding endpoints
+
+Wrap each endpoint in a call to `ScoutApm::Rack.transaction(name, env)`.
+
+* `name` - an unchanging string argument for what the endpoint is. Example: `"API User Listing"`
+* `env` - the rack environment hash
+
+This may be fairly application specific in details.
+
+Example:
+
+```ruby
+app = Proc.new do |env|
+  ScoutApm::Rack.transaction("API User Listing", env) do
+    User.all.to_json
+    ['200', {'Content-Type' => 'application/json'}, [users]]
+  end
+end
+```
+
+If you run into any issues, or want advice on naming or wrapping endpoints, contact us at
+support@scoutapp.com for additional help.
+
+
 <h2 id="ruby-custom-context">Custom Context</h2>
 
 [Context](#context) lets you see the forest from the trees. For example, you can add custom context to answer critical questions like:
