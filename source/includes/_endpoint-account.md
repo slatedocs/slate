@@ -178,8 +178,7 @@ xxxxxxxxxx
 ```
 
 ```http
-HTTP/1.1 201 Created
-Location: https://app.crunch.io/api/account/applications/1234/
+HTTP/1.1 204
 ```
 
 The server will update the images accordingly. The only valid file extensions 
