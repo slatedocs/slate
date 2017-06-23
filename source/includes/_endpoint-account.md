@@ -1,8 +1,8 @@
 ## Accounts
 
-Accounts provide an organization-level scope for Crunch.io customers. All Users 
-belong to one and only one Account. Account managers can administer their 
-various users and entities and have visibility on them. 
+Accounts provide an organization-level scope for Crunch.io customers. All Users
+belong to one and only one Account. Account managers can administer their
+various users and entities and have visibility on them.
 
 ### Permissions
 
@@ -56,11 +56,10 @@ GET /account/
 ##### Applications
 
 ```http
-GET /accounts/applications/
+GET /account/applications/
 ```
 
-The applications catalog will list all the configured subdomains an account has.
-It will return a shoji catalog with the list of available subdomains.
+GET returns a Shoji Catalog with the list of all the configured subdomains an account has.
 
 ```json
 {
@@ -71,8 +70,8 @@ It will return a shoji catalog with the list of available subdomains.
 }
 ```
 
-POST a shoji entity here to make a new application. The `subdomain` must be 
-unique system-wide, if not available or invalid, the server will return a 400 response. 
+POST a Shoji Entity here to make a new application. The `subdomain` must be
+unique system-wide and must be a valid URL segment; if unavailable or invalid, the server will return a 400 response.
 
 The server will check that the subdomains follow these rules:
 
@@ -88,7 +87,7 @@ The server will check that the subdomains follow these rules:
     "element": "shoji:entity",
     "body": {
       "name": "my company",
-      "subdomain": "mycompanysubdomain",
+      "subdomain": "mycompany",
       "palette": {
           "brand": {
                 "system": "#FFAABB", // Color of links, interactable things
@@ -101,9 +100,8 @@ The server will check that the subdomains follow these rules:
 }
 ```
 
-Attributes `name` and `subdomain` are required. Note that creating an app does
-not allow for logos. Use the `/logo/` endpoint to upload the image files to the
-app.
+Attributes `name` and `subdomain` are required; `palette` and `manifest` are optional. Note that you cannot specify logos in the POST request. Use the created entity's `logo/` resource to upload the image files to the
+app (see below).
 
 
 Attribute | Type | Description
@@ -119,7 +117,7 @@ manifest  | object| Optional, contains further client configurations
 GET /account/applications/1234/
 ```
 
-GET to this endpoint returns the Shoji entity containing all details about
+GET this endpoint for a Shoji Entity containing all details about
 the configured application.
 
 ```json
@@ -147,7 +145,7 @@ the configured application.
 }
 ```
 
-PATCH to this endpoint to change the name, palette, or manifest.
+PATCH this endpoint to change the name, palette, or manifest. Logos are controlled by the logo subresource.
 
 #### Change application logo
 

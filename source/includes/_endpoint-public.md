@@ -5,17 +5,19 @@
 `/public/`
 
 ```
-views: {
-signup_resend: "https://app.crunch.io/api/public/signup_resend/",
-inquire: "https://app.crunch.io/api/public/inquire/",
-password_reset: "https://app.crunch.io/api/public/password_reset/",
-signup: "https://app.crunch.io/api/public/signup/",
-oauth2redirect: "https://app.crunch.io/api/public/oauth2redirect/",
-change_email: "https://app.crunch.io/api/public/change_email/",
-login: "https://app.crunch.io/api/public/login/",
-config: "https://app.crunch.io/api/public/config/",
-password_change: "https://app.crunch.io/api/public/password_change/"
-},
+{
+    "views": {
+        "signup_resend": "https://app.crunch.io/api/public/signup_resend/",
+        "inquire": "https://app.crunch.io/api/public/inquire/",
+        "password_reset": "https://app.crunch.io/api/public/password_reset/",
+        "signup": "https://app.crunch.io/api/public/signup/",
+        "oauth2redirect": "https://app.crunch.io/api/public/oauth2redirect/",
+        "change_email": "https://app.crunch.io/api/public/change_email/",
+        "login": "https://app.crunch.io/api/public/login/",
+        "config": "https://app.crunch.io/api/public/config/",
+        "password_change": "https://app.crunch.io/api/public/password_change/"
+    }
+}
 ```
 
 ### Application configuration
@@ -26,8 +28,8 @@ When accessing Crunch from a configured application via its subdomain:
 
 * https://mycompany.crunch.io/api/public/config/
 
-The public endpoint `/public/config/` will return a shoji entity with the
-subdomain's available configurations if any. Else an empty shoji body will be served.
+A GET request on `/public/config/` return a Shoji Entity with the
+subdomain's available configurations, if any; if none exists, the body will be empty.
 
 
 ```json
@@ -41,8 +43,8 @@ subdomain's available configurations if any. Else an empty shoji body will be se
         },
         "palette": {
             "brand": {
-                "system": "#FFAABB", // Color of links, interactable things
-                "data": "#G4EEBB", // Titles and such
+                "system": "#FFAABB",
+                "data": "#G4EEBB",
                 "warning": "#BAA5E7"
             }
         },
@@ -50,6 +52,13 @@ subdomain's available configurations if any. Else an empty shoji body will be se
     }
 }
 ```
+
+Attribute | Type | Description
+----------|------|----------------
+name      | string| Name of the configured application on the given subdomain
+logo      | object| Contains two attributes, `large` and `small`, with different resolution company logos
+palette   | object| Contains three colors, `system`, `data` and `warning`, under the `brand` attribute to theme the web app
+manifest  | object| Optional, contains further client configurations
 
 ### Crunchbox
 
