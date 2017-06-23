@@ -61,7 +61,7 @@ HTTP/1.1 200 OK
 }
 ```
 
-This endpoint retrieves a specific session.
+This endpoint retrieves a specific session. Messages are ordered by `sent_at` ascending.
 
 ### HTTP Request
 
