@@ -24,6 +24,7 @@ Invoice handles all invoices with custom fields, lineitems with/without custom f
     "pdf": "",
     "medical_invoice": 1,
     "send_now": 1,
+    "send_reminder":"1",
     "webhook_url": "https://dev-cs.email-invoice.com/response",
     "date_sent": "2017-03-15",
     "total": "322.50",
@@ -58,6 +59,7 @@ Invoice handles all invoices with custom fields, lineitems with/without custom f
     ],
     "customer": {
       "custid": "7111177788",
+      "user_id":142971,
       "first_name": "Savy",
       "last_name": "Phere",
       "email": "evelynl@zylun.com",
@@ -77,6 +79,7 @@ Invoice handles all invoices with custom fields, lineitems with/without custom f
         "quantity": 1,
         "total_cost": 200,
         "due_date": "2017-03-15",
+        "date_service":"2017-03-15",
         "date_paid": "0000-00-00",
         "custom_fields": [
           {
@@ -134,6 +137,7 @@ Invoice handles all invoices with custom fields, lineitems with/without custom f
         "total_cost": 115.5,
         "due_date": "2017-03-15",
         "date_paid": "0000-00-00",
+        "date_service":"2017-03-15",
         "custom_fields": null,
         "child": []
       }
@@ -162,6 +166,7 @@ include_login | | boolean | Lets you specify if login link should be included or
 login_url | | url | Login url.
 include_pdf | | boolean | Lets you specify if pdf invoice attachment should be included or not in the email.
 send_now | | boolean | Lets you specify whether to send the invoice directly or not.
+send_reminder| | boolean | Lets you specify whether to send the email reminders or not.
 footer_id | | integer | The id of the invoice footer.
 custom_fields | | json | The custom fields or additional information needed for this new invoice. Useful for medical industry invoices. Refer to [Invoice Custom Fields Json](#invoice-custom-fields-json)
 medical_invoice | | boolean | Lets you specify if this new invoice is for medical industry or not.
@@ -191,6 +196,7 @@ name | value | tag
 Field Name|Required|Type| Description
 ---------|-----|------|------
 custid | yes | string | Customer ID
+user_id | | int | Customer User Account ID
 first_name | | string | Customer's firstname
 last_name | | string | Customer's lastname
 email | yes | string | Customer's email
@@ -212,6 +218,7 @@ name | yes | integer | Item name
 quantity | yes | integer | Number of items
 total_cost | yes | float | Total cost of the item
 due_date |yes | string | Date due (Y-m-d)
+date_service |yes | string | Date of Service (Y-m-d)
 order | | numeric | Item ordering
 child | | array | Items as a child. Refer to [Line Item Child Object](#line-item-child-object)
 custom_fields | | json | Lets you add other details through this field. Refer to [Lineitem Custom Fields Json](#lineitem-custom-fields-json)
@@ -269,6 +276,7 @@ name | value
     "pdf": "",
     "medical_invoice": 1,
     "send_now": 1,
+    "send_reminder": 1,
     "webhook_url": "https://dev-cs.email-invoice.com/response",
     "date_sent": "2017-03-15",
     "total": "322.50",
@@ -303,6 +311,7 @@ name | value
     ],
     "customer": {
       "custid": "7111177788",
+      "user_id":142971,
       "first_name": "Savy",
       "last_name": "Phere",
       "email": "evelynl@zylun.com",
@@ -322,6 +331,7 @@ name | value
         "quantity": 1,
         "total_cost": 200,
         "due_date": "2017-03-15",
+        "date_service":"2017-03-15",
         "date_paid": "0000-00-00",
         "custom_fields": [
           {
@@ -379,6 +389,7 @@ name | value
         "total_cost": 115.5,
         "due_date": "2017-03-15",
         "date_paid": "0000-00-00",
+        "date_service":"2017-03-15",
         "custom_fields": null,
         "child": []
       }
@@ -456,6 +467,7 @@ ID | The id of the invoice.
     ],
     "customer": {
       "custid": "7111177788",
+      "user_id":142971,
       "first_name": "Savy",
       "last_name": "Phere",
       "email": "evelynl@zylun.com",
@@ -475,6 +487,7 @@ ID | The id of the invoice.
         "quantity": 1,
         "total_cost": 200,
         "due_date": "2017-03-15",
+        "date_service":"2017-03-15",
         "date_paid": "0000-00-00",
         "custom_fields": [
           {
@@ -531,6 +544,7 @@ ID | The id of the invoice.
         "quantity": 1,
         "total_cost": 115.5,
         "due_date": "2017-03-15",
+        "date_service":"2017-03-15",
         "date_paid": "0000-00-00",
         "custom_fields": null,
         "child": []
@@ -556,6 +570,7 @@ ID | The id of the invoice.
   "include_login": "0",
   "medical_invoice": "1",
   "send_now":"0",
+  "send_reminder":1,
   "login_url": "https://slycegateway-slycev2.cmsonline.comn",
   "webhook_url": "https://email-invoice.com/response",
   "custom_fields":[
@@ -564,11 +579,12 @@ ID | The id of the invoice.
   ],
   "customer": {
       "custid": "7111177788",
+      "user_id":142971,
       "first_name": "Savy",
       "last_name": "Phere",
       "email": "email@domain.com",
       "phone": "",
-  "company": "",
+      "company": "",
       "street1": "",
       "street2": "",
       "city": "",
@@ -584,6 +600,7 @@ ID | The id of the invoice.
       "quantity": "1",
       "total_cost": "200.00",
       "due_date": "2017-03-22",
+      "date_service": "2017-03-22",
       "child" : [
           {
             "id": 124,
@@ -620,6 +637,7 @@ ID | The id of the invoice.
       "quantity": "1",
       "total_cost": "115.50",
       "due_date": "2017-03-22",
+      "date_service": "2017-03-22",
       "child":[]
     }
   ]
@@ -645,6 +663,7 @@ include_login | | boolean | Lets you specify if login link should be included or
 login_url | | url | Login url.
 include_pdf | | boolean | Lets you specify if pdf invoice attachment should be included or not in the email.
 send_now | | boolean | Lets you specify whether to send the invoice directly or not.
+send_reminder | | boolean | Lets you specify whether to send the email reminders or not.
 footer_id | | integer | The id of the invoice footer.
 custom_fields | | json | The custom fields or additional information needed for this new invoice. Useful for medical industry invoices. Refer to [Invoice Custom Fields Json](#invoice-custom-fields-json)
 medical_invoice | | boolean | Lets you specify if this new invoice is for medical industry or not.
@@ -683,6 +702,7 @@ status | | string | Status of the invoice. Refer to [Status Supported](#status-s
     "pdf": "",
     "medical_invoice": 1,
     "send_now": 1,
+    "send_reminder": 1,
     "webhook_url": "https://dev-cs.email-invoice.com/response",
     "date_sent": "2017-03-15",
     "total": "322.50",
@@ -717,6 +737,7 @@ status | | string | Status of the invoice. Refer to [Status Supported](#status-s
     ],
     "customer": {
       "custid": "7111177788",
+      "user_id":142971,
       "first_name": "Savy",
       "last_name": "Phere",
       "email": "evelynl@zylun.com",
@@ -736,6 +757,7 @@ status | | string | Status of the invoice. Refer to [Status Supported](#status-s
         "quantity": 1,
         "total_cost": 200,
         "due_date": "2017-03-15",
+        "date_service": "2017-03-15",
         "date_paid": "0000-00-00",
         "custom_fields": [
           {
@@ -793,6 +815,7 @@ status | | string | Status of the invoice. Refer to [Status Supported](#status-s
         "total_cost": 115.5,
         "due_date": "2017-03-15",
         "date_paid": "0000-00-00",
+        "date_service": "2017-03-15",
         "custom_fields": null,
         "child": []
       }

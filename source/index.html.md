@@ -12,6 +12,7 @@ includes:
   - modules/authentication
   - api/invoice
   - api/invoicefooter
+  - api/invoicecustomersuser
   - api/payplan
   - api/customer
   - api/transaction

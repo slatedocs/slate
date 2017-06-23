@@ -2,8 +2,6 @@
 
 Invoice footer handles all invoice footer templates with/without custom fields tags.
 
-Invoice Footer
-
 ## View
 
 
