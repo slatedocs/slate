@@ -176,6 +176,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
     </span><span class="nt">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nt">"medical_invoice"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"send_now"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"send_reminder"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dev-cs.email-invoice.com/response"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"date_sent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"322.50"</span><span class="p">,</span><span class="w">
@@ -210,6 +211,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"custid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7111177788"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="mi">142971</span><span class="p">,</span><span class="w">
       </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Savy"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phere"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
@@ -229,6 +231,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
         </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_service"</span><span class="p">:</span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
@@ -286,6 +289,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">115.5</span><span class="p">,</span><span class="w">
         </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_service"</span><span class="p">:</span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"child"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
       </span><span class="p">}</span><span class="w">
@@ -363,6 +367,12 @@ You must replace <code>THEAPIKEY</code> with your own API key.
 <td></td>
 <td>boolean</td>
 <td>Lets you specify whether to send the invoice directly or not.</td>
+</tr>
+<tr>
+<td>send_reminder</td>
+<td></td>
+<td>boolean</td>
+<td>Lets you specify whether to send the email reminders or not.</td>
 </tr>
 <tr>
 <td>footer_id</td>
@@ -446,6 +456,12 @@ You must replace <code>THEAPIKEY</code> with your own API key.
 <td>yes</td>
 <td>string</td>
 <td>Customer ID</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td></td>
+<td>int</td>
+<td>Customer User Account ID</td>
 </tr>
 <tr>
 <td>first_name</td>
@@ -554,6 +570,12 @@ You must replace <code>THEAPIKEY</code> with your own API key.
 <td>yes</td>
 <td>string</td>
 <td>Date due (Y-m-d)</td>
+</tr>
+<tr>
+<td>date_service</td>
+<td>yes</td>
+<td>string</td>
+<td>Date of Service (Y-m-d)</td>
 </tr>
 <tr>
 <td>order</td>
@@ -678,6 +700,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
     </span><span class="nt">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nt">"medical_invoice"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"send_now"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"send_reminder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dev-cs.email-invoice.com/response"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"date_sent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"322.50"</span><span class="p">,</span><span class="w">
@@ -712,6 +735,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"custid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7111177788"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="mi">142971</span><span class="p">,</span><span class="w">
       </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Savy"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phere"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
@@ -731,6 +755,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
         </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_service"</span><span class="p">:</span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
@@ -788,6 +813,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">115.5</span><span class="p">,</span><span class="w">
         </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_service"</span><span class="p">:</span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"child"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
       </span><span class="p">}</span><span class="w">
@@ -872,6 +898,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"custid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7111177788"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="mi">142971</span><span class="p">,</span><span class="w">
       </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Savy"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phere"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
@@ -891,6 +918,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
         </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_service"</span><span class="p">:</span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
@@ -947,6 +975,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">115.5</span><span class="p">,</span><span class="w">
         </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_service"</span><span class="p">:</span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"child"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
@@ -972,6 +1001,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
   </span><span class="nt">"include_login"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"medical_invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"send_now"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"send_reminder"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="nt">"login_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://slycegateway-slycev2.cmsonline.comn"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://email-invoice.com/response"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"custom_fields"</span><span class="p">:[</span><span class="w">
@@ -980,11 +1010,12 @@ You must replace <code>THEAPIKEY</code> with your own API key.
   </span><span class="p">],</span><span class="w">
   </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"custid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7111177788"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="mi">142971</span><span class="p">,</span><span class="w">
       </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Savy"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phere"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="nt">"street1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="nt">"street2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -1000,6 +1031,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200.00"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date_service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"child"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w">
@@ -1036,6 +1068,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"115.50"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date_service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"child"</span><span class="p">:[]</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
@@ -1113,6 +1146,12 @@ You must replace <code>THEAPIKEY</code> with your own API key.
 <td>Lets you specify whether to send the invoice directly or not.</td>
 </tr>
 <tr>
+<td>send_reminder</td>
+<td></td>
+<td>boolean</td>
+<td>Lets you specify whether to send the email reminders or not.</td>
+</tr>
+<tr>
 <td>footer_id</td>
 <td></td>
 <td>integer</td>
@@ -1188,6 +1227,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
     </span><span class="nt">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nt">"medical_invoice"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"send_now"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"send_reminder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dev-cs.email-invoice.com/response"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"date_sent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"322.50"</span><span class="p">,</span><span class="w">
@@ -1222,6 +1262,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"custid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7111177788"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="mi">142971</span><span class="p">,</span><span class="w">
       </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Savy"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phere"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
@@ -1241,6 +1282,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
         </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
@@ -1298,6 +1340,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">115.5</span><span class="p">,</span><span class="w">
         </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"date_paid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"child"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
       </span><span class="p">}</span><span class="w">
@@ -1341,8 +1384,6 @@ You must replace <code>THEAPIKEY</code> with your own API key.
           <h1 id="invoice-footer">Invoice Footer</h1>
 
 <p>Invoice footer handles all invoice footer templates with/without custom fields tags.</p>
-
-<p>Invoice Footer</p>
 
 <h2 id="view">View</h2>
 
@@ -1520,6 +1561,203 @@ You must replace <code>THEAPIKEY</code> with your own API key.
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">DELETE invoicefooter/{id}</code></p>
+
+          <h1 id="invoice-customers-user">Invoice Customers User</h1>
+
+<p>Invoice Customers User handles the adding of customer user account for customer portal to support multiple customers in a single user account. </p>
+
+<h2 id="view">View</h2>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">142965</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joannedoe"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joanne Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"department"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485010000008"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"recent_login"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"master"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_added"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-21 23:38:12"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This method lets you view a specific customer user.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET invoicecustomersuser/{id}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The id of the customer user.</td>
+</tr>
+</tbody></table>
+
+<h2 id="create">Create</h2>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">142965</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joannedoe"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joanne Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"department"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485010000008"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"recent_login"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"master"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_added"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-21 23:38:12"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This method lets you create new invoice customer user.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST invoicecustomersuser</code></p>
+
+<h3 id="data-object">Data Object</h3>
+
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>firstname</td>
+<td>yes</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>lastname</td>
+<td>yes</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>email</td>
+<td>yes</td>
+<td>string</td>
+<td>Should be email</td>
+</tr>
+<tr>
+<td>username</td>
+<td>yes</td>
+<td>string</td>
+<td>Should be unique</td>
+</tr>
+<tr>
+<td>password</td>
+<td>yes</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h2 id="update">Update</h2>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">142965</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joannedoe"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joanne Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"department"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485010000008"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"recent_login"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"master"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_added"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-21 23:38:12"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This method lets you update existing invoice customer user.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT invoicecustomersuser/{id}</code></p>
+
+<h3 id="data-object">Data Object</h3>
+
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>firstname</td>
+<td>yes</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>lastname</td>
+<td>yes</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>email</td>
+<td>yes</td>
+<td>string</td>
+<td>Should be email</td>
+</tr>
+<tr>
+<td>username</td>
+<td>yes</td>
+<td>string</td>
+<td>Should be unique</td>
+</tr>
+</tbody></table>
+
+<h2 id="remove">Remove</h2>
+
+<blockquote>
+<p>Returns true if successfull:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="kc">true</span><span class="w">
+</span></code></pre>
+
+<p>This method lets you remove a specific invoice customer user.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE invoicecustomersuser/{id}</code></p>
 
           <h1 id="recurring">Recurring</h1>
 
