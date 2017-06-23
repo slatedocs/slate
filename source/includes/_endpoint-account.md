@@ -74,6 +74,15 @@ It will return a shoji catalog with the list of available subdomains.
 POST a shoji entity here to make a new application. The `subdomain` must be 
 unique system-wide, if not available or invalid, the server will return a 400 response. 
 
+The server will check that the subdomains follow these rules:
+
+ * Must be unique system wide - Case insensitive
+ * Can only contain letters, numbers and `-`
+ * Must be between 3 and 32 characters in length
+ * Cannot begin or start with a dash `-`
+ * Cannot start with a number
+
+
 ```json
 {
     "element": "shoji:entity",
@@ -95,6 +104,14 @@ unique system-wide, if not available or invalid, the server will return a 400 re
 Attributes `name` and `subdomain` are required. Note that creating an app does
 not allow for logos. Use the `/logo/` endpoint to upload the image files to the
 app.
+
+
+Attribute | Type | Description
+----------|------|----------------
+name      | string| Name of the configured application on the given subdomain
+logo      | object| Contains two keys `large` and `small` with different resolusion company logos
+palette   | object| Contains three colors `system`, `data` and `warning` under the `brand` attribute to theme the web app
+manifest  | object| Optional, contains further client configurations
 
 #### Application entity
 
@@ -145,8 +162,20 @@ image files to use. Only account admins are authorized to change this resource.
 
 ```http
 POST /projects/6c01/icon/ HTTP/1.1
+Content-Type: multipart/form-data; boundary=----------123456789
+Content-Length: 500326
+
+----------123456789
 Content-Disposition: form-data; name="large"; filename="newlogo.jpg"
 Content-Type: image/jpeg
+
+xxxxxxxxxx
+----------123456789
+Content-Disposition: form-data; name="small"; filename="newlogo_small.jpg"
+Content-Type: image/jpeg
+
+xxxxxxxxxx
+----------123456789--
 ```
 
 ```http
@@ -154,8 +183,8 @@ HTTP/1.1 201 Created
 Location: https://app.crunch.io/api/account/applications/1234/
 ```
 
-The server will update the images accordingly and validate 
-size/dimensions/file format etc.
+The server will update the images accordingly. The only valid file extensions 
+are GIF, JPEG and PNG image files.
 
 ### Account users
 
