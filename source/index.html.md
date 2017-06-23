@@ -15,7 +15,7 @@ search: true
 
 Welcome to the help site for __[Scout Application Monitoring](https://scoutapp.com)__. Don't have an account? <a href="https://scoutapp.com/info/pricing" target="_blank">Get started - it's free</a>.
 
-Browse through the sidebar, search, or [ask a question](mailto:support@scoutapp.com). We're here to help.
+Browse through the sidebar, search, [email us](mailto:support@scoutapp.com), or <a href="http://slack.scoutapp.com" target="_blank">join our Slack community</a>. We're here to help.
 
 
 <div id="overview_container">
