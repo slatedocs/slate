@@ -107,9 +107,10 @@ app (see below).
 Attribute | Type | Description
 ----------|------|----------------
 name      | string| Name of the configured application on the given subdomain
-logo      | object| Contains two keys `large` and `small` with different resolusion company logos
-palette   | object| Contains three colors `system`, `data` and `warning` under the `brand` attribute to theme the web app
+logo      | object| Contains two attributes, `large` and `small`, with different resolution company logos
+palette   | object| Contains three colors, `system`, `data` and `warning`, under the `brand` attribute to theme the web app
 manifest  | object| Optional, contains further client configurations
+
 
 #### Application entity
 
