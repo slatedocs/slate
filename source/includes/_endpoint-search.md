@@ -72,23 +72,23 @@ The query string can only be alpha-numeric characters (including underscores) lo
 
 Here is a list of the fields that are searched by the Crunch search endpoint
 
-Field             | Type            | Description                                             | Post-Filter?
-------------------|-----------------|-------------------------------------------------------- | ----------
-category_names    | List of Strings | Category names (associated with categorical variables)  | yes
-dataset_id        | String          | ID of the dataset                                       | no
-description       | String          | description of the variable                             | yes
-id                | String          | ID of the variable                                      | no
-name              | String          | name of the variable                                    | yes
-owner             | String          | owner's ID of the variable                              | no
-subvar_names      | List of Strings | Names of the subvariables associated with the variable  | yes
-users             | List of Strings | User IDs having read-access to the variable             | no
-group_names       | List of Strings | group names (from the variable ordering) associated with the variable | yes
-dataset_labels    | List of Objects | dataset_labels associated with the user associated with the variable | no
-dataset_name      | String          | dataset_name associated with this variable              | no
-dataset_owner     | String          | ID of the owner of the dataset associated with the variable | no
-dataset_users     | List of Strings | User IDs having read-access to the dataset associated with the variable | no
-dataset_teams     | List of Strings | Team IDs having read-access to the dataset associated with the variable | no
-dataset_projects  | List of Strings | Project IDs having read-access to the dataset associated with the variable | no
+Field             | Type            | Description                                             
+------------------|-----------------|----------------------------------------------------------------------------------------- 
+category_names    | List of Strings | Category names (associated with categorical variables) 
+dataset_id        | String          | ID of the dataset                                     
+description       | String          | description of the variable                           
+id                | String          | ID of the variable                                    
+name              | String          | name of the variable                                  
+owner             | String          | owner's ID of the variable                            
+subvar_names      | List of Strings | Names of the subvariables associated with the variable
+users             | List of Strings | User IDs having read-access to the variable            
+group_names       | List of Strings | group names (from the variable ordering) associated with the variable
+dataset_labels    | List of Objects | dataset_labels associated with the user associated with the variable
+dataset_name      | String          | dataset_name associated with this variable            
+dataset_owner     | String          | ID of the owner of the dataset associated with the variable
+dataset_users     | List of Strings | User IDs having read-access to the dataset associated with the variable
+dataset_teams     | List of Strings | Team IDs having read-access to the dataset associated with the variable
+dataset_projects  | List of Strings | Project IDs having read-access to the dataset associated with the variable
 
 
 Grouping by datasets:
