@@ -142,7 +142,7 @@ You can snapshot the current state of the dataset at any time with a POST to
 `datasets/{id}/savepoints/`. This marks the current point in the actions
 history, allowing you to provide a description of your progress.
 
-The response will contain a Location header to the new version created.
+The response will contain a Location header that will lead to the new version created.
 
 In case creating the new version can be created fast enough a 201 response will be issued,
 when the new version takes too long a 202 response will be issued and the creation will proceed in background.
@@ -172,7 +172,7 @@ to the exact revision the dataset was when the POST was issued. This is because
 the dataset might have moved forward in the meanwhile. For this reason instead
 of reponding with a `Location` header that points to an exact savepoint, the
 POST savepoints endpoint will respond with `Location` header that points to 
-`/datasets/{dataset_id}/revisiontag/{revision}` URL, which when accessed will
+`/progress/{operation_id}/result` URL, which when accessed will
 redirect to the nearest savepoint for that revision.
 
 #### Reverting savepoints
