@@ -142,7 +142,38 @@ You can snapshot the current state of the dataset at any time with a POST to
 `datasets/{id}/savepoints/`. This marks the current point in the actions
 history, allowing you to provide a description of your progress.
 
-The 201 response will contain a Location header to the new version created.
+The response will contain a Location header that will lead to the new version created.
+
+In case creating the new version can be created fast enough a 201 response will be issued,
+when the new version takes too long a 202 response will be issued and the creation will proceed in background.
+In case of a 202 response the body will be a Shoji:view containing a progress URL 
+where you may query the progress.
+
+```python
+>>> svp = ds.savepoints.create({"body": {"description": "TestSVP"}})
+pycrunch.shoji.Entity(**{
+    "body": {
+        "creation_time": "2017-05-09T14:18:07.761000+00:00", 
+        "version": "master__000003", 
+        "user_name": "captain-68305620", 
+        "description": "", 
+        "last_update": "2017-05-09T14:18:07.761000+00:00"
+    }, 
+    "self": "http://local.crunch.io:19404/api/datasets/5283e3f4e3d645c0a750c09e854bdcb1/savepoints/6fbe47c97d8e4290a0c09227d6d6b63a/", 
+    "views": {
+        "revert": "http://local.crunch.io:19404/api/datasets/5283e3f4e3d645c0a750c09e854bdcb1/savepoints/6fbe47c97d8e4290a0c09227d6d6b63a/revert/"
+    }, 
+    "element": "shoji:entity"
+})
+```
+
+There is no guarantee that creating a savepoint will lead to a savepoint that points
+to the exact revision the dataset was when the POST was issued. This is because
+the dataset might have moved forward in the meanwhile. For this reason instead
+of reponding with a `Location` header that points to an exact savepoint, the
+POST savepoints endpoint will respond with `Location` header that points to 
+`/progress/{operation_id}/result` URL, which when accessed will
+redirect to the nearest savepoint for that revision.
 
 #### Reverting savepoints
 
