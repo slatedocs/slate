@@ -23,6 +23,7 @@ includes:
   - endpoint-intro
   - endpoint-public
   - endpoint-dataset
+  - endpoint-search
   - endpoint-table
   - endpoint-variable
   - endpoint-filter
