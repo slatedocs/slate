@@ -70,17 +70,14 @@ GET returns a Shoji Catalog with the list of all the configured subdomains an ac
 }
 ```
 
-POST a Shoji Entity here to make a new application. The `subdomain` must be
-unique system-wide and must be a valid URL segment; if unavailable or invalid, the server will return a 400 response.
+POST a Shoji Entity here to make a new application. The `subdomain`:
 
-The server will check that the subdomains follow these rules:
-
- * Must be unique system wide - Case insensitive
- * Can only contain letters, numbers and `-`
- * Must be between 3 and 32 characters in length
- * Cannot begin or start with a dash `-`
- * Cannot start with a number
-
+ * must be unique system-wide, case insensitive
+ * can only contain letters, numbers, and `-` (dash)
+ * must be between 3 and 32 characters in length
+ * cannot start with `-` or a number
+ 
+If the requested subdomain is unavailable or invalid, the server will return a 400 response.
 
 ```json
 {
@@ -115,7 +112,7 @@ manifest  | object| Optional, contains further client configurations
 #### Application entity
 
 ```http
-GET /account/applications/1234/
+GET /account/applications/app_id/
 ```
 
 GET this endpoint for a Shoji Entity containing all details about
@@ -151,7 +148,7 @@ PATCH this endpoint to change the name, palette, or manifest. Logos are controll
 #### Change application logo
 
 ```http
-POST /account/applications/1234/logo/
+POST /account/applications/app_id/logo/
 ```
 
 To set/change an application's logo the client needs to make a `multipart/form-data`
@@ -160,7 +157,7 @@ image files to use. Only account admins are authorized to change this resource.
 
 
 ```http
-POST /projects/6c01/icon/ HTTP/1.1
+POST /account/applications/app_id/logo/ HTTP/1.1
 Content-Type: multipart/form-data; boundary=----------123456789
 Content-Length: 500326
 
