@@ -15,11 +15,13 @@
 
 Для поиска расширенной информации по транзакции используются следующие поля:
 
-key | comment
---- | ---:
-text | данные из POS-терминала
-city | (при наличии)
-sic  | (при наличии)
+key | type | status | comment
+--- | ---- | :----: | ---:
+text | string | 1..1 | данные из POS-терминала
+city | string | 0..1 | город
+sic | int | 0..1 | mcc код операции
+
+В случае связки с PRO сервером в качестве ключа text используется поле description [TransactionDTO](#https://doc.idamob.ru/pro#transactiondto)
 
 ## TransactionDTO
 
