@@ -685,3 +685,78 @@ Parameter | Description
 npa | Area code of the desired number.
 state | State of the desired number.
 
+## Provision 911 Did
+
+```shell
+curl "https://staging.api.nexogy.com/api/residential/e911?client_id=<value>&address1=<value>&address2=<value>&city=<value>&state=<value>&zip=<value>&force=<value>"
+  -H "Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjY1N2"
+  -H "Accept:application/json"
+```
+
+```php
+<?
+// Set api url
+$apiUrl = 'https://staging.api.nexogy.com/api/residential/e911';
+// Start cURL
+$c = curl_init();
+curl_setopt($c, CURLOPT_CONNECTTIMEOUT, 5);
+curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+
+// Populate array with parameters
+$data['client_id'] = '6559';
+$data['address1'] = '1111 Somestreet st';
+$data['address2'] = '';
+$data['city'] = 'City;
+$data['state'] = 'ST';
+$data['zip'] = '33000';
+$data['force'] = '0';
+
+// Set up headers
+$request_headers = array();
+$request_headers[] = 'Authorization: Bearer '. $access_token;
+$request_headers[] = 'Accept: application/json';
+curl_setopt($c, CURLOPT_HTTPHEADER, $request_headers);
+
+// Setup the remainder of the cURL request
+curl_setopt($c, CURLOPT_URL, $apiUrl);
+curl_setopt($c, CURLOPT_POST, true);
+curl_setopt($c, CURLOPT_POSTFIELDS, http_build_query($data));
+
+// Execute the API call and return the response
+$result = curl_exec($c);
+curl_close($c);
+?>
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "result": "OK",
+    "data": {
+        "timestamp": 1498572262
+    }
+}
+```
+
+This endpoit sets the 911 address for the number associated to the client. Behind the scenes it has two layers of address validation, the first one using UPS API and the second one uses Bandwidth API. For the request to be successful it has to go through both layers. In case the address is not valid but the validation services have other options, they will be presented to the user with the message "ambiguous address", so the user may select any of them. In case the validation services can't provide valid options, the user will get a message of "invalid address" and the action won't be completed.
+
+If the user wants to use an invalid address anyway, the parameter "force" have to be passed with value 1.
+
+### HTTP Request
+
+`POST https://staging.api.nexogy.com/api/residential/e911?client_id=<value>&address1=<value>&address2=<value>&city=<value>&state=<value>&zip=<value>&force=<value>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+client_id | The client ID. You get this information whe the client was created. This parameter is required.
+addres1   | Street address. This parameter is required.
+addres2   | Second line of street address. This parameter is not required.
+city      | City name. This parameter is required.
+state     | State name. This parameter is required.
+zip       | Zipcode. This parameter is required.
+force     | Wheter the address will be forced or not (1 or 0). This parameter is not required.
+
+
