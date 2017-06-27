@@ -1,5 +1,16 @@
 # Object Data API
 
+>  Object Data API Endpoint - replace **intelex_object** with the system name of your object
+
+```
+https://intelex_url/api/v2/object/intelex_object
+```
+
+The Object Data API gives you the ability to create, retrieve, update, and delete data in your Intelex application objects.  Each Object Data API resource is an Intelex application object. Access each resource by using the system name of the object in the API endpoint URL. The data sent and returned with your API requests are the fields that exist on the object you are accessing. The system name of fields is used in every request and response.
+
+Your instance of Intelex may include system and custom objects. System objects include general platform objects and standard application objects. Custom objects are any objects created from scratch for your organization. All of these objects have unique system names. You'll find the system name on the object detail page, in the System Name field.
+
+
 ## Metadata
 > Example response with record metadata
 
@@ -750,27 +761,6 @@ IRestResponse response = client.Execute(request);
 	"SuspectedCause": "string"
 }
 ```
-
-
-Creates a record with values in the object specified in the path. A client generated GUID can be used when creating records. Creating a record also supports setting a value for related fields, lookup types, or workflow person responsible. You can do this by binding the @odata.id property of the related record to the field.
-
-#### POST /object/{intelex_object}
-
-##### URL Parameters
-
-Parameter | Description
---------- | -----------
-intelex_object | The Intelex system name of the object eg. IncidentsObject
-
-##### Header Parameters
-
-When you create a record you also have the opportunity to execute an available workflow action within the same request. This is useful if you'd like a record to move to stage when it is created. In order to execute a workflow stage action within a create request, you'll need to provide a  header parameter.
-
-
-Parameter | Description |Required | Example Value
---------- | ----------- |--------- | -----------
-ActionToExecute | UID of the workflow stage action|No|Id=797bbb3b-b485-4e73-a21c-2b9d5454f8ab
-
 > Example request of creating a record and setting a location value:
 
 ```json
@@ -812,6 +802,32 @@ ActionToExecute | UID of the workflow stage action|No|Id=797bbb3b-b485-4e73-a21c
 	]
 }
 ```
+
+Creates a record with values in the object specified in the path. A client generated GUID can be used when creating records. Creating a record also supports setting a value for related fields, lookup types, or workflow person responsible. You can do this by binding the @odata.id property of the related record to the field.
+
+#### POST /object/{intelex_object}
+
+##### URL Parameters
+
+Parameter | Description
+--------- | -----------
+intelex_object | The Intelex system name of the object eg. IncidentsObject
+
+##### Body Parameters
+
+Parameter | Description
+--------- | -----------
+field_name | The value you want to set for your object field. Replace *field_name* with the system name of the object field
+relation_field@odata.bind| The @odata.id of the related record you want to associate to a relational field. Replace *relation_field* with the system name of the relation type field you want to set 
+
+
+##### Header Parameters
+
+When you create a record you also have the opportunity to execute an available workflow action within the same request. This is useful if you'd like a record to move to stage when it is created. In order to execute a workflow stage action within a create request, you'll need to provide a  header parameter.
+
+Parameter | Description |Required | Example Value
+--------- | ----------- |--------- | -----------
+ActionToExecute | UID of the workflow stage action|No|Id=797bbb3b-b485-4e73-a21c-2b9d5454f8ab
 
 ### Create a sub-record
 
@@ -876,6 +892,12 @@ intelex_object | The Intelex system name of the object eg. IncidentsObject
 id| The Intelex UID of the parent record
 navigation_property|The Intelex system name of the relation type field that supports sub-records i.e. "Has a list of attached"
 
+##### Body Parameters
+
+Parameter | Description
+--------- | -----------
+field_name | The value you want to set for your related object field. Replace *field_name* with the system name of the object field
+
 ##### Header Parameters
 
 When you create related records you also have the opportunity to execute an available workflow action within the same request. This is useful if you'd like a record to move to stage when it is created. In order to execute a workflow stage action within a create request, you'll need to provide a  header parameter.
@@ -912,17 +934,6 @@ request.AddParameter("application/json", "{\r\n    \"Description\": \"string\"\r
 IRestResponse response = client.Execute(request);
 ```
 
-Updates a record in the object specified in the path. You can update values for related fields, lookup types by binding the @odata.id property of the related record to the field.
-
-#### PATCH /object/{intelex_object}({id})
-
-##### URL Parameters
-
-Parameter | Description
---------- | -----------
-intelex_object | The Intelex system name of the object eg. IncidentsObject
-id|The Intelex UID of the record being updated
-
 > Example of updating a location value:
 
 ```json
@@ -950,6 +961,23 @@ id|The Intelex UID of the record being updated
 }
 ```
 
+Updates a record in the object specified in the path. You can update values for related fields, lookup types by binding the @odata.id property of the related record to the field.
+
+#### PATCH /object/{intelex_object}({id})
+
+##### URL Parameters
+
+Parameter | Description
+--------- | -----------
+intelex_object | The Intelex system name of the object eg. IncidentsObject
+id|The Intelex UID of the record being updated
+
+##### Body Parameters
+
+Parameter | Description
+--------- | -----------
+field_name | The value you want to set for your object field. Replace *field_name* with the system name of the object field
+relation_field@odata.bind| The @odata.id of the related record you want to associate to a relational field. Replace *relation_field* with the system name of the relation type field you want to set 
 
 ##### Header Parameters
 
@@ -1522,6 +1550,14 @@ Parameter | Description
 intelex_object | The Intelex system name of the object eg. IncidentsObject
 id|The Intelex UID of the record or action being accessed 
 
+##### Body Parameters
+
+Parameter | Description
+--------- | -----------
+Frequency | iCal formatted string representing the calendar frequency
+StarDate | Date you want the frequency to begin
+EndDate | Date you want the frequency to end
+
 ### Updating Person Responsible
 
 > Example Request
@@ -1560,6 +1596,12 @@ Parameter | Description
 --------- | -----------
 intelex_object | The Intelex system name of the object eg. IncidentsObject
 id|The Intelex UID of the record or action being accessed 
+
+##### Body Parameters
+
+Parameter | Description
+--------- | -----------
+PersonResponsible@odata.bind | the @odata.id of the employee you want to assign as person responsible
 
 ## Object Attachments
 
@@ -1741,9 +1783,9 @@ id|The Intelex UID of the record being accessed
 
 ##### Body Parameters
 
-Parameter | Type |
+Parameter | Type | Description
 --------- | -----------
-formData | file | 
+multipart/formData | file | The file you want to attach to the record. Cannot exceed 10MB.
 
 ### Detaching Documents
 

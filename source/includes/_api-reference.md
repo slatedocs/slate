@@ -15,6 +15,7 @@ To begin using the Intelex API you will need:
 * Your own instance of the Intelex platform with the REST API enabled
 * A valid Intelex system user account
 * The full URL to your Intelex system
+* An basic understanding of [the Intelex Application model](https://community.intelex.com/library/knowledgebase/help/Content/Getting%20Started/Application%20Builder.htm). 
 
 ## Authentication
 
@@ -24,17 +25,21 @@ To begin using the Intelex API you will need:
 var request = require("request");
 
 var options = {
-  headers: { authorization: 'Basic hello' }
+  headers: { Authorization: 'Basic hello' }
   };
 });
 ```
 
 ```csharp
 var request = new RestRequest(Method.GET);
-request.AddHeader("authorization", "Basic hello");
+request.AddHeader("Authorization", "Basic hello");
 ```
 
 Authentication to the API is performed via HTTP Basic Auth and your Intelex user credentials. All API requests must be made over HTTPS and API requests without authentication will fail. Security on data is managed by the platform security configuration. API requests will maintain the same security settings you have configured in the platform for each user. 
+
+## Data Format
+
+The Intelex API only supports [JSON](http://www.json.org/) as the data format for requests and responses.
 
 ## Response Codes
 

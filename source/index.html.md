@@ -9,7 +9,7 @@ includes:
   - api-reference
   - object-data-api
   - task-api
-  - dev-community
+  - dev-support
 
   
 search: true

@@ -47,6 +47,16 @@ Returns the apps that you can use
 
 #### POST /api/v2/packages/install
 
+##### Body Parameters
+All body parameters are in JSON format:
+
+Parameter | Description
+--------- | -----------
+field_name | the system name of fields on the Intelex object you are requesting
+
+
+
+
 Attribute | Description
 --------- | -----------
 Id | Application ID
