@@ -58,7 +58,7 @@ Tailored instructions are provided within our user interface. General instructio
 import_config "scout_apm.exs"
 
 config :your_app, YourApp.Repo,
-  loggers: [{Ecto.LogEntry, :log, []}, 
+  loggers: [{Ecto.LogEntry, :log, []},
             <span>{ScoutApm.Instruments.EctoLogger, :log, []}</span>]</pre>
     <p class="smaller"><code>web/web.ex</code>:
     </p>
@@ -69,7 +69,7 @@ defmodule HeroReview.Web do
       use Phoenix.Controller
       <span>use ScoutApm.Instrumentation</span>
       ...</pre>
-  
+
     <p class="instruct">
       <span class="step">D</span>Restart your app.
       <div class="terminal">
@@ -178,7 +178,7 @@ The following configuration settings are available:
         host
       </th>
       <td>
-        The protocol + domain where the agent should report. 
+        The protocol + domain where the agent should report.
       </td>
       <td>
         <code>https://apm.scoutapp.com</code>
@@ -266,6 +266,7 @@ An example:
 ```elixir
 defmodule FirestormWeb.Web.PostsChannel do
   use FirestormWeb.Web, :channel
+  use ScoutApm.Tracing
 
   # Will appear under "Web" in the UI, named "PostsChannel.update"
   @transaction(type: "web", name: "PostsChannel.update")
@@ -314,7 +315,7 @@ Like `Task.start`, these execute asynchronously, so treat as a `background` tran
 
 ```elixir
 Task.Supervisor.start_child(YourApp.TaskSupervisor, fn ->
-  # Will appear under "Background Jobs" in the UI, named "Crawler.crawl". 
+  # Will appear under "Background Jobs" in the UI, named "Crawler.crawl".
   ScoutApm.Tracing.transaction(:background,"Crawler.crawl") do
     Crawler.crawl(url)
   end
@@ -561,7 +562,7 @@ Attempts to add invalid context will be ignored.
 
 <h2 id="elixir-environments">Environments</h2>
 
-It typically makes sense to treat each environment (production, staging, etc) as a separate application within Scout. To do so, configure a unique app name for each environment. Scout aggregates data by the app name. 
+It typically makes sense to treat each environment (production, staging, etc) as a separate application within Scout. To do so, configure a unique app name for each environment. Scout aggregates data by the app name.
 
 An example:
 
