@@ -20,6 +20,10 @@
   <position nil="true"/>
   <requiresCommission>false</requiresCommission>
   <type>PAYMENT</type>
+  <formUrl>
+    <openUrl></openUrl>
+    <closeUrl></closeUrl>
+  </formUrl>
 </form>
 ```
 
@@ -35,6 +39,7 @@ requiresCommission | bool | 0..1 | признак необходимости з�
 logoResource | [LogoResource](#logoresource) | 0..1 | url для доступа к логотипу
 position | [FormPosition](#formposition) | 0..1 | расположение формы для ряда уникальных кейсов
 showConfirmation | bool | 0..1 | показ экрана подтверждения
+formUrl | FormURL | 0..1 | параметры webview
 
 ### FormType
 key | comment
@@ -48,3 +53,9 @@ key | comment
 --- | ---:
 HIDDEN | форма не видна в списках, но на нее возможен переход через таргет продукта или пуш сообщения
 PRODUCT_ORDER | форма попадает в отдельный раздел бокового меню с поддержкой расширенного вида строки из [LogoResource](#logoresource)
+
+### FormURL
+key | comment
+--- | ---:
+openUrl | Url, который требуется открыть на клиенте
+closeUrl | Url финальной страницы
