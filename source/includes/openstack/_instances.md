@@ -172,7 +172,7 @@ curl -X POST \
 ```
 ```json
 {
-  "newSecurityGroups": [ "securityGroupNameA", "securityGroupNameB"]
+  "securityGroupNames": [ "securityGroupNameA", "securityGroupNameB"]
 }
 ```
 
