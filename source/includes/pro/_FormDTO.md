@@ -21,8 +21,8 @@
   <requiresCommission>false</requiresCommission>
   <type>PAYMENT</type>
   <formUrl>
-    <openUrl></openUrl>
-    <closeUrl></closeUrl>
+    <openUrl>https://doc.idamob.ru</openUrl>
+    <closeUrl>https://doc.idamob.ru/pro</closeUrl>
   </formUrl>
 </form>
 ```
