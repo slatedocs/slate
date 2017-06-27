@@ -180,9 +180,9 @@ curl -X POST \
 
 Change the security groups of an instance to the ones specified in the request.
 
-Required                                | Description
---------------------------------------- | -------------------------------------------
-`newSecurityGroups`<br/>*Array[string]* | A list of security group names that should be associated to the instance
+Required                                 | Description
+---------------------------------------- | -------------------------------------------
+`securityGroupNames`<br/>*Array[string]* | A list of security group names that should be associated to the instance
 
 
 #### Delete an instance
