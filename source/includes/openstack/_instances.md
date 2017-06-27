@@ -24,9 +24,8 @@ curl -H "MC-Api-Key: your_api_key" \
          "networkName": "web",
          "privateIpAddress": "192.168.0.11",
          "securityGroupNames": [
-             "secGroupA",
-             "secGroupB",
-             "secGroupC"
+             "webServerSecGroup",
+             "sshSecGroup"
          ]
       }
     ],
@@ -77,9 +76,8 @@ curl -H "MC-Api-Key: your_api_key" \
       "networkName": "web",
       "privateIpAddress": "192.168.0.11",
       "securityGroupNames": [
-          "secGroupA",
-          "secGroupB",
-          "secGroupC"
+          "webServerSecGroup",
+          "sshSecGroup"
       ]
    }
 }
