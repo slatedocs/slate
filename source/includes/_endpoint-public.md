@@ -1,5 +1,58 @@
 ## Public
 
+`/`
+
+`/public/`
+
+```
+{
+    "views": {
+        "signup_resend": "https://app.crunch.io/api/public/signup_resend/",
+        "inquire": "https://app.crunch.io/api/public/inquire/",
+        "password_reset": "https://app.crunch.io/api/public/password_reset/",
+        "signup": "https://app.crunch.io/api/public/signup/",
+        "oauth2redirect": "https://app.crunch.io/api/public/oauth2redirect/",
+        "change_email": "https://app.crunch.io/api/public/change_email/",
+        "login": "https://app.crunch.io/api/public/login/",
+        "config": "https://app.crunch.io/api/public/config/",
+        "password_change": "https://app.crunch.io/api/public/password_change/"
+    }
+}
+```
+
+### Application configuration
+
+`GET /public/config/`
+
+When accessing Crunch from a configured application via its subdomain:
+
+* https://mycompany.crunch.io/api/public/config/
+
+A GET request on `/public/config/` return a Shoji Entity with the
+subdomain's available configurations, if any; if none exists, the body will be empty.
+
+
+```json
+{
+    "element": "shoji:entity",
+    "body": {
+        "name": "Your Company",
+        "logo": {
+            "small": "https://s.crunch.io/logos/yours_small.png",
+            "large": "https://s.crunch.io/logos/yours_large.png"
+        },
+        "palette": {
+            "brand": {
+                "system": "#FFAABB",
+                "data": "#G4EEBB",
+                "warning": "#BAA5E7"
+            }
+        },
+        "manifest": {}
+    }
+}
+```
+
 ### Crunchbox
 
 A CrunchBox represents a snapshot of a crunch dataset. These snapshots are
