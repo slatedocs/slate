@@ -14,14 +14,21 @@ Here are the parameters that can be passed to the search endpoint.
 
 Parameter                  | Type        | Description
 ---------------------------|-------------|------------------------------------------------
-q                          | string      | query string
-f                          | json Object | used to filter the output of the search (see below)
-limit                      | integer     | limit the number of dataset results returned by the api to less than this amount (default: 10)
-offset                     | integer     | offset into the search index to start gathering results from pre-filter
-max_variables_per_dataset  | integer     | limit the number of variables that match to this number (default: 1000, max: 1000)
-projection                 | json Array  | used to limit the fields that should be returned in the search results. ID is always provided.
-scope                      | json Array  | used to limit the fields that the search should look at.
-grouping                   | string      | One of ``datasets`` or ``variables``. Tells if search results should be grouped by datasets or variables.
+q                          | String      | query string
+f                          | Json Object | used to filter the output of the search (see below)
+limit                      | Integer     | limit the number of dataset results returned by the api to less than this amount (default: 10)
+offset                     | Integer     | offset into the search index to start gathering results from pre-filter
+max_variables_per_dataset  | Integer     | limit the number of variables that match to this number (default: 1000, max: 1000)
+embedded_variables         | Boolean     | embed the results within the dataset results (this will become the default in the future)
+projection                 | Json Object | used to limit the fields that should be returned in the search results. ID is always provided.
+scope                      | Json Object | used to limit the fields that the search should look at.
+grouping                   | String      | One of ``datasets`` or ``variables``. Tells if search results should be grouped by datasets or variables.
+
+<aside class="notice">
+By default there are only 10 datasets returned.  Inside the response you will find a `totals.datasets` that
+indicates the total number of datasets that matched the search.  Use this to set offset and limit to appropriately
+limit and compile your search results.  Note that `totals.variables` should not be used for pagination.
+</aside>
 
 Providing a Projection:
 
@@ -58,6 +65,7 @@ team              | string           | url or id of the team to limit results (u
 project           | string           | url or id of the project to limit results (user must have access to the project)
 user              | string           | url or id of the user that has read access to the datasets to limit results (user must match with the provided one)
 owner             | string           | url or id of the dataset owner to limit results
+label             | String           | The dataset must be in a folder or subfolder with the given name.
 start_date        | array of strings | array of `[begin, end]` range of values in ISO8601 format. Provide same for exact matching.
 end_date          | array of strings | array of `[begin, end]` range of values in ISO8601 format. Provide same for exact matching.
 modification_time | array of strings | array of `[begin, end]` range of values in ISO8601 format. Provide same for exact matching.
@@ -96,6 +104,13 @@ Grouping by datasets:
 ```http
 GET /search/?q={query}&f={filter}&limit={limit}&offset={offset}&projection={projection}&grouping=datasets  HTTP/1.1
 ```
+
+```
+import pycrunch
+site = pycrunch.connect("me@mycompany.com", "yourpassword", "https://app.crunch.io/api/")
+results = site.follow('search', 'q=findme&embedded_variables=True').value
+datasets_found = results['groups'][0]['datasets']
+variables_by_dataset = {k, v.get('variables', []) for k, v in datasets_found.iteritems()}
 
 ```json
 {
@@ -158,6 +173,7 @@ GET /search/?q={query}&f={filter}&limit={limit}&offset={offset}&projection={proj
     }
 }
 ```
+Search results are limited to 1000 variables per dataset.
 
 Grouping by variables:
 
