@@ -1,8 +1,8 @@
 ## Accounts
 
-Accounts provide an organization-level scope for Crunch.io customers. All Users 
-belong to one and only one Account. Account managers can administer their 
-various users and entities and have visibility on them. 
+Accounts provide an organization-level scope for Crunch.io customers. All Users
+belong to one and only one Account. Account managers can administer their
+various users and entities and have visibility on them.
 
 ### Permissions
 
@@ -11,10 +11,10 @@ A user is an "account manager" if their `account_permissions` have
 
 ### Account entity
 
-The account entity is available on the API root following the Shoji 
+The account entity is available on the API root following the Shoji
 `views.account` path, which will point to the authenticated user's account.
 
-If the account has a name, it will be available here, as well as the path to the 
+If the account has a name, it will be available here, as well as the path to the
 account's users.
 
 If the authenticated user is an account manager, the response will include
@@ -47,10 +47,139 @@ GET /account/
     "teams": "http://app.crunch.io/api/account/teams/",
     "projects": "http://app.crunch.io/api/account/projects/",
     "users": "http://app.crunch.io/api/account/users/",
-    "datasets": "http://app.crunch.io/api/account/datasets/"
+    "datasets": "http://app.crunch.io/api/account/datasets/",
+    "applications": "http://app.crunch.io/api/account/applications/"
   }
 }
 ```
+
+##### Applications
+
+```http
+GET /account/applications/
+```
+
+GET returns a Shoji Catalog with the list of all the configured subdomains an account has.
+
+```json
+{
+    "element":"shoji:catalog",
+    "index": {
+        "./mycompany/": {}
+    }
+}
+```
+
+POST a Shoji Entity here to make a new application. The `subdomain`:
+
+ * must be unique system-wide, case insensitive
+ * can only contain letters, numbers, and `-` (dash)
+ * must be between 3 and 32 characters in length
+ * cannot start with `-` or a number
+ 
+If the requested subdomain is unavailable or invalid, the server will return a 400 response.
+
+```json
+{
+    "element": "shoji:entity",
+    "body": {
+      "name": "my company",
+      "subdomain": "mycompany",
+      "palette": {
+          "brand": {
+                "system": "#FFAABB", // Color of links, interactable things
+                "data": "#G4EEBB", // Titles and such
+                "warning": "#BAA5E7"
+            }
+      },
+      "manifest": {}
+    }
+}
+```
+
+Attributes `name` and `subdomain` are required; `palette` and `manifest` are optional. Note that you cannot specify logos in the POST request. Use the created entity's `logo/` resource to upload the image files to the
+app (see below).
+
+
+Attribute | Type | Description
+----------|------|----------------
+name      | string| Name of the configured application on the given subdomain
+logo      | object| Contains two attributes, `large` and `small`, with different resolution company logos
+palette   | object| Contains three colors, `system`, `data` and `warning`, under the `brand` attribute to theme the web app
+manifest  | object| Optional, contains further client configurations
+
+
+#### Application entity
+
+```http
+GET /account/applications/app_id/
+```
+
+GET this endpoint for a Shoji Entity containing all details about
+the configured application.
+
+```json
+{
+    "element":"shoji:entity",
+    "body": {
+        "name": "Application name",
+        "subdomain": "mycompany",
+        "logos": {
+            "small": "<URL>",
+            "large": "<URL>"
+        },
+        "palette": {
+            "brand": {
+                "system": "#FFAABB", // Color of links, interactable things
+                "data": "#G4EEBB", // Titles and such
+                "warning": "#BAA5E7"
+            }
+        },
+        "manifest": {}
+    },
+    "views": {
+        "logo": "https://app.crunch.io/api/account/applications/mycompany/logo/"
+    }
+}
+```
+
+PATCH this endpoint to change the name, palette, or manifest. Logos are controlled by the logo subresource.
+
+#### Change application logo
+
+```http
+POST /account/applications/app_id/logo/
+```
+
+To set/change an application's logo the client needs to make a `multipart/form-data`
+request containing either or both `large` and `small` fields containing the desired
+image files to use. Only account admins are authorized to change this resource.
+
+
+```http
+POST /account/applications/app_id/logo/ HTTP/1.1
+Content-Type: multipart/form-data; boundary=----------123456789
+Content-Length: 500326
+
+----------123456789
+Content-Disposition: form-data; name="large"; filename="newlogo.jpg"
+Content-Type: image/jpeg
+
+xxxxxxxxxx
+----------123456789
+Content-Disposition: form-data; name="small"; filename="newlogo_small.jpg"
+Content-Type: image/jpeg
+
+xxxxxxxxxx
+----------123456789--
+```
+
+```http
+HTTP/1.1 204
+```
+
+The server will update the images accordingly. The only valid file extensions 
+are GIF, JPEG and PNG image files.
 
 ### Account users
 
@@ -170,8 +299,8 @@ PATCH /account/users/
 
 ### Account datasets
 
-Only account managers have access to this catalog. It is a read only shoji 
-catalog containing all the datasets that users of this account have 
+Only account managers have access to this catalog. It is a read only shoji
+catalog containing all the datasets that users of this account have
 created (potentially very large catalog).
 
 Account managers have implicit editor access to all the account datasets.
