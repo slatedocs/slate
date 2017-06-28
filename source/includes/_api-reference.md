@@ -15,7 +15,7 @@ To begin using the Intelex API you will need:
 * Your own instance of the Intelex platform with the REST API enabled
 * A valid Intelex system user account
 * The full URL to your Intelex system
-* An basic understanding of [the Intelex Application model](https://community.intelex.com/library/knowledgebase/help/Content/Getting%20Started/Application%20Builder.htm). 
+* A basic understanding of the [Intelex Application model](https://community.intelex.com/library/knowledgebase/help/Content/Getting%20Started/Application%20Builder.htm). 
 
 ## Authentication
 
