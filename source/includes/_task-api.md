@@ -160,7 +160,7 @@ Returns your tasks
 Attribute | Description
 --------- | -----------
 Id | Task ID
-RespEmployeeName | Peron Responsible for Task
+RespEmployeeName | Person Responsible for Task
 DueDateType | Overdue, Upcoming, None
 LocationId | Location ID
 LocationName | Location Name
@@ -235,7 +235,7 @@ Returns all tasks assigned to employees that the user is supervisor of
 Attribute | Description
 --------- | -----------
 Id | Task ID
-RespEmployeeName | Peron Responsible for Task
+RespEmployeeName | Person Responsible for Task
 DueDateType | Overdue, Upcoming, None
 LocationId | Location ID
 LocationName | Location Name
@@ -310,7 +310,7 @@ Returns all tasks for a location. Default location is the user's logon location 
 Attribute | Description
 --------- | -----------
 Id | Task ID
-RespEmployeeName | Peron Responsible for Task
+RespEmployeeName | Person Responsible for Task
 DueDateType | Overdue, Upcoming, None
 LocationName | Location Name
 NetObjectId | Object ID
@@ -391,7 +391,7 @@ Returns all tasks in Intelex
 Attribute | Description
 --------- | -----------
 Id | Task ID
-RespEmployeeName | Peron Responsible for Task
+RespEmployeeName | Person Responsible for Task
 DueDateType | Overdue, Upcoming, None
 LocationId | Location ID
 LocationName | Location Name

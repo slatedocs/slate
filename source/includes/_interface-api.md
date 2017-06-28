@@ -35,9 +35,9 @@ IRestResponse response = client.Execute(request);
 	  {
 		"Id": "string",
 		"Caption": "string",
-		"NavigationUrl": "string",
+		"Group": "string",
 		"Icon": "string",
-		"Group": "string"
+		"NavigationUrl": "string"		
 	  }
 	]
 }
@@ -51,9 +51,11 @@ Attribute | Description
 --------- | -----------
 Id | Application ID
 Caption | Application name 
-NavigationUrl | Navigation URL of application
-Icon | Icon for the application
 Group | Group that the app belongs to
+Icon | Icon for the application
+NavigationUrl | Navigation URL of application
+
+
 
 ### Requesting Reports
 
