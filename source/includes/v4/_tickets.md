@@ -19,6 +19,7 @@ curl "https://demo.gomus.de/api/v4/tickets"
         "id": 247,
         "title": "El Siglo de Oro mit Gemäldegalerie regulär",
         "ticket_type": "time_slot",
+        "bookable": true,
         "museum_ids": [
             20
         ],
@@ -70,6 +71,7 @@ The json response contains a list of tickets as an array and a meta block.
 - title (string), the name of the ticket
 - description (text), a more descriptive name
 - ticket_type, either `"day_ticket"` or `"time_slot"`
+- bookable (boolean), if the ticket is bookable within your authentication type
 - museum_ids, array of museum ids to which the ticket belongs, can be empty
 - exhibition_ids, array of exhibition ids to whick the ticket belongs, can be empty
 - quota_ids, array of quota ids to which the ticket belongs, can be empty
@@ -100,6 +102,7 @@ curl "https://demo.gomus.de/api/v4/tickets/1"
         "sub_title": null,
         "description": "...",
         "ticket_type": "time_slot",
+        "bookable": true,
         "museum_ids": [
             20
         ],
