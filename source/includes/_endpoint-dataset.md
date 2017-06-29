@@ -684,6 +684,76 @@ To control the output of the header row, use the `header_field` option. Valid va
 
 Refer to the options described on the table above for the `csv` format to change this behavior.
 
+
+##### Match
+`GET /datasets/match{?datasets={id}&datasets={id}[&datasets={id}]+`
+
+```json
+
+{
+    "element": "shoji:order",
+    "self": "/datasets/match/?datasets=https://app.crunch.io/api/datasets/ae213b4/&datasets=https://app.crunch.io/api/datasets/333e233/",
+    u'value': {u'graph': [{u'datasets': [{u'archived': False,
+                                       u'creation_time': u'2017-06-29T01:43:26.955000',
+                                       u'description': u'',
+                                       u'end_date': None,
+                                       u'id': u'ae213b4',
+                                       u'labels': None,
+                                       u'modification_time': u'2017-06-29T01:43:26.896000',
+                                       u'name': u'test_datasets_match_1',
+                                       u'projects': [],
+                                       u'start_date': None},
+                                      {u'archived': False,
+                                       u'creation_time': u'2017-06-29T01:43:27.990000',
+                                       u'description': u'',
+                                       u'end_date': None,
+                                       u'id': u'333e233',
+                                       u'labels': None,
+                                       u'modification_time': u'2017-06-29T01:43:27.837000',
+                                       u'name': u'test_datasets_match_2',
+                                       u'projects': [],
+                                       u'start_date': None}]},
+                       {u'variables': [{u'alias': u'x',
+                                        u'category_names': [u'red',
+                                                            u'green',
+                                                            u'blue',
+                                                            u'4',
+                                                            u'8',
+                                                            u'9',
+                                                            u'No Data'],
+                                        u'dataset_id': u'ae213b4',
+                                        u'description': u'Numeric variable with value labels',
+                                        u'group_names': None,
+                                        u'id': u'000000',
+                                        u'name': u'x',
+                                        u'variable_type': u'categorical'},
+                                       {u'alias': u'y',
+                                        u'dataset_id': u'ae213b4',
+                                        u'description': u'Date variable',
+                                        u'group_names': None,
+                                        u'id': u'000001',
+                                        u'name': u'y',
+                                        u'variable_type': u'datetime'},
+                                       {u'alias': u'z',
+                                        u'dataset_id': u'ae213b4',
+                                        u'description': u'Numberic variable with missing value range',
+                                        u'group_names': None,
+                                        u'id': u'000002',
+                                        u'name': u'z',
+                                        u'variable_type': u'numeric'},
+                                       ]}]}}
+
+```
+
+The matches endpoint returns a Shoji order with two groups.  
+
+that defines all of the variables that match between the first dataset provided, and the
+rest of them.  If the dataset doesn't have any variables that match, it is not included in the "datasets" group in the order.  For now,
+this endpoint returns the metadata for the datasets and the first dataset's variables if it matches in the other datasets.
+Only variable aliases are compared to determine a match at this time.  More sophisticated variable matching is planned for future releases. 
+
+
+
 ##### Summary
 
 `/datasets/{id}/summary/{?filter}`
@@ -743,7 +813,7 @@ in its body. Rows that match the filter expression will be excluded from all vie
 PATCH the "expression" attribute to modify. An empty "expression" object, like
  `{"body": {"expression": {}}}`, is equivalent to "no exclusion", i.e. no rows
  are dropped.
-
+ 
 ##### Stream
 
 `/datasets/{id}/stream/`
