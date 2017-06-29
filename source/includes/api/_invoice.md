@@ -25,6 +25,7 @@ Invoice handles all invoices with custom fields, lineitems with/without custom f
     "medical_invoice": 1,
     "send_now": 1,
     "send_reminder":"1",
+    "invoice_preference":"email",
     "webhook_url": "https://dev-cs.email-invoice.com/response",
     "date_sent": "2017-03-15",
     "total": "322.50",
@@ -167,6 +168,7 @@ login_url | | url | Login url.
 include_pdf | | boolean | Lets you specify if pdf invoice attachment should be included or not in the email.
 send_now | | boolean | Lets you specify whether to send the invoice directly or not.
 send_reminder| | boolean | Lets you specify whether to send the email reminders or not.
+invoice_preference| | varchar | Lets you specify invoice preference data to receive (email, paper, or both).
 footer_id | | integer | The id of the invoice footer.
 custom_fields | | json | The custom fields or additional information needed for this new invoice. Useful for medical industry invoices. Refer to [Invoice Custom Fields Json](#invoice-custom-fields-json)
 medical_invoice | | boolean | Lets you specify if this new invoice is for medical industry or not.
@@ -277,6 +279,7 @@ name | value
     "medical_invoice": 1,
     "send_now": 1,
     "send_reminder": 1,
+    "invoice_preference":"email",
     "webhook_url": "https://dev-cs.email-invoice.com/response",
     "date_sent": "2017-03-15",
     "total": "322.50",
@@ -433,6 +436,7 @@ ID | The id of the invoice.
     "pdf": "",
     "medical_invoice": 1,
     "send_now": 1,
+    "invoice_preference":"email",
     "webhook_url": "https://dev-cs.email-invoice.com/response",
     "date_sent": "2017-03-15",
     "total": "322.50",
@@ -571,6 +575,7 @@ ID | The id of the invoice.
   "medical_invoice": "1",
   "send_now":"0",
   "send_reminder":1,
+  "invoice_preference":"email",
   "login_url": "https://slycegateway-slycev2.cmsonline.comn",
   "webhook_url": "https://email-invoice.com/response",
   "custom_fields":[
@@ -664,6 +669,7 @@ login_url | | url | Login url.
 include_pdf | | boolean | Lets you specify if pdf invoice attachment should be included or not in the email.
 send_now | | boolean | Lets you specify whether to send the invoice directly or not.
 send_reminder | | boolean | Lets you specify whether to send the email reminders or not.
+invoice_preference| | varchar | Lets you specify invoice preference data to receive (email, paper, or both).
 footer_id | | integer | The id of the invoice footer.
 custom_fields | | json | The custom fields or additional information needed for this new invoice. Useful for medical industry invoices. Refer to [Invoice Custom Fields Json](#invoice-custom-fields-json)
 medical_invoice | | boolean | Lets you specify if this new invoice is for medical industry or not.
@@ -703,6 +709,7 @@ status | | string | Status of the invoice. Refer to [Status Supported](#status-s
     "medical_invoice": 1,
     "send_now": 1,
     "send_reminder": 1,
+    "invoice_preference": "email",
     "webhook_url": "https://dev-cs.email-invoice.com/response",
     "date_sent": "2017-03-15",
     "total": "322.50",

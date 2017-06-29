@@ -1,6 +1,4 @@
-# Invoice Customers User 
-
-Invoice Customers User handles the adding of customer user account for customer portal to support multiple customers in a single user account. 
+# User
 
 ## View
 
@@ -9,9 +7,9 @@ Invoice Customers User handles the adding of customer user account for customer 
 ```json
 {
     "data": {
-        "id": 142965,
-        "username": "joannedoe",
-        "name": "Joanne Doe",
+        "id": 142968,
+        "username": "nbieuser",
+        "name": "Newbie Custy",
         "email": "evelynl@zylun.com",
         "department": 26,
         "profile": "513485010000008",
@@ -20,22 +18,58 @@ Invoice Customers User handles the adding of customer user account for customer 
         "recent_login": null,
         "master": 0,
         "enabled": null,
-        "date_added": "2017-06-21 23:38:12"
+        "date_added": "2017-06-28 22:20:05"
     }
 }
 ```
 
-This method lets you view a specific customer user.
+This endpoint retrieves specific customer's user details.
 
 ### HTTP Request
 
-`GET invoicecustomersuser/{id}`
+`GET customers/<CUSTID>/user/<USERID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The id of the customer user.
+CUSTID | The ID of the customer.
+USERID | User ID.
+
+## View All
+
+> Returns JSON structured like this:
+
+```json
+{
+    "data": {
+        "id": 142968,
+        "username": "nbieuser",
+        "name": "Newbie Custy",
+        "email": "evelynl@zylun.com",
+        "department": 26,
+        "profile": "513485010000008",
+        "profile_type": 6,
+        "profile_type_name": "Customer",
+        "recent_login": null,
+        "master": 0,
+        "enabled": null,
+        "date_added": "2017-06-28 22:20:05"
+    }
+}
+```
+
+This endpoint retrieves customer's user account.
+
+### HTTP Request
+
+`GET customers/<CUSTID>/user`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+CUSTID | The ID of the customer.
 
 ## Create
 
@@ -44,9 +78,9 @@ ID | The id of the customer user.
 ```json
 {
     "data": {
-        "id": 142965,
-        "username": "joannedoe",
-        "name": "Joanne Doe",
+        "id": 142968,
+        "username": "nbieuser",
+        "name": "Newbie Custy",
         "email": "evelynl@zylun.com",
         "department": 26,
         "profile": "513485010000008",
@@ -55,19 +89,24 @@ ID | The id of the customer user.
         "recent_login": null,
         "master": 0,
         "enabled": null,
-        "date_added": "2017-06-21 23:38:12"
+        "date_added": "2017-06-28 22:20:05"
     }
 }
 ```
 
-This method lets you create new invoice customer user.
+This endpoint creates new customer's user account.
 
 ### HTTP Request
 
-`POST invoicecustomersuser`
+`POST customers/<CUSTID>/user`
 
+### URL Parameters
 
-### Data Object
+Parameter | Description
+--------- | -----------
+CUSTID | The ID of the customer.
+
+### Query Parameters
 
 Field Name | Required | Type | Description
 ---------|-----|------|------
@@ -77,54 +116,19 @@ email | yes | string | Should be email
 username | yes | string | Should be unique
 password | yes | string |
 
-##Update
+## Delete
 
-> Returns JSON structured like this:
+> Returns `true` on successful
 
-```json
-{
-    "data": {
-        "id": 142965,
-        "username": "joannedoe",
-        "name": "Joanne Doe",
-        "email": "evelynl@zylun.com",
-        "department": 26,
-        "profile": "513485010000008",
-        "profile_type": 6,
-        "profile_type_name": "Customer",
-        "recent_login": null,
-        "master": 0,
-        "enabled": null,
-        "date_added": "2017-06-21 23:38:12"
-    }
-}
-```
-
-This method lets you update existing invoice customer user.
+This method lets you remove customer's user account.
 
 ### HTTP Request
 
-`PUT invoicecustomersuser/{id}`
+`DELETE customers/<CUSTID>/user/<USERID>`
 
-### Data Object
+### URL Parameters
 
-Field Name | Required | Type | Description
----------|-----|------|------
-firstname | yes | string | 
-lastname | yes | string |
-email | yes | string | Should be email
-username | yes | string | Should be unique
-
-##Remove
-
-> Returns true if successfull:
-
-```json
-true
-```
-
-This method lets you remove a specific invoice customer user.
-
-### HTTP Request
-
-`DELETE invoicecustomersuser/{id}`
+Parameter | Description
+--------- | -----------
+CUSTID | The ID of the customer.
+USERID | User ID.
