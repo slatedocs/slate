@@ -39,6 +39,7 @@ curl "https://demo.gomus.de/api/v4/tickets"
         "first_entry": 660,
         "last_entry": 990,
         "personalizeable": false,
+        "attendees": "required"
         }
     ],
     "meta": {
@@ -85,6 +86,7 @@ The json response contains a list of tickets as an array and a meta block.
 - min_persons (integer), minimum quantity to buy per order
 - max_persons (integer), maximum quantity to buy per order
 - personalizeable (boolean), weather the ticket can be personalised (e.g. annual tickets)
+- attendees (string), when required, the attendees needs to be set on purchase
 
 ## Details of single ticket
 
@@ -130,6 +132,7 @@ curl "https://demo.gomus.de/api/v4/tickets/1"
             "shop_description": ""
         },
         "personalizeable": false,
+        "attendees": "required",
         "location": {
             "name": "Gemäldegalerie",
             "city": "Berlin",
