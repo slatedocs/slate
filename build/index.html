@@ -177,6 +177,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
     </span><span class="nt">"medical_invoice"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"send_now"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"send_reminder"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"invoice_preference"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dev-cs.email-invoice.com/response"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"date_sent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"322.50"</span><span class="p">,</span><span class="w">
@@ -373,6 +374,12 @@ You must replace <code>THEAPIKEY</code> with your own API key.
 <td></td>
 <td>boolean</td>
 <td>Lets you specify whether to send the email reminders or not.</td>
+</tr>
+<tr>
+<td>invoice_preference</td>
+<td></td>
+<td>varchar</td>
+<td>Lets you specify invoice preference data to receive (email, paper, or both).</td>
 </tr>
 <tr>
 <td>footer_id</td>
@@ -701,6 +708,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
     </span><span class="nt">"medical_invoice"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"send_now"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"send_reminder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"invoice_preference"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dev-cs.email-invoice.com/response"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"date_sent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"322.50"</span><span class="p">,</span><span class="w">
@@ -864,6 +872,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
     </span><span class="nt">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nt">"medical_invoice"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"send_now"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"invoice_preference"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dev-cs.email-invoice.com/response"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"date_sent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"322.50"</span><span class="p">,</span><span class="w">
@@ -1002,6 +1011,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
   </span><span class="nt">"medical_invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"send_now"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"send_reminder"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"invoice_preference"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"login_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://slycegateway-slycev2.cmsonline.comn"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://email-invoice.com/response"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"custom_fields"</span><span class="p">:[</span><span class="w">
@@ -1152,6 +1162,12 @@ You must replace <code>THEAPIKEY</code> with your own API key.
 <td>Lets you specify whether to send the email reminders or not.</td>
 </tr>
 <tr>
+<td>invoice_preference</td>
+<td></td>
+<td>varchar</td>
+<td>Lets you specify invoice preference data to receive (email, paper, or both).</td>
+</tr>
+<tr>
 <td>footer_id</td>
 <td></td>
 <td>integer</td>
@@ -1228,6 +1244,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
     </span><span class="nt">"medical_invoice"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"send_now"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"send_reminder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"invoice_preference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dev-cs.email-invoice.com/response"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"date_sent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"322.50"</span><span class="p">,</span><span class="w">
@@ -1561,203 +1578,6 @@ You must replace <code>THEAPIKEY</code> with your own API key.
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">DELETE invoicefooter/{id}</code></p>
-
-          <h1 id="invoice-customers-user">Invoice Customers User</h1>
-
-<p>Invoice Customers User handles the adding of customer user account for customer portal to support multiple customers in a single user account. </p>
-
-<h2 id="view">View</h2>
-
-<blockquote>
-<p>Returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">142965</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joannedoe"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joanne Doe"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"department"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"profile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485010000008"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"profile_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"profile_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"recent_login"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"master"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"date_added"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-21 23:38:12"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This method lets you view a specific customer user.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET invoicecustomersuser/{id}</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The id of the customer user.</td>
-</tr>
-</tbody></table>
-
-<h2 id="create">Create</h2>
-
-<blockquote>
-<p>Returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">142965</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joannedoe"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joanne Doe"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"department"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"profile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485010000008"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"profile_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"profile_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"recent_login"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"master"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"date_added"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-21 23:38:12"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This method lets you create new invoice customer user.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">POST invoicecustomersuser</code></p>
-
-<h3 id="data-object">Data Object</h3>
-
-<table><thead>
-<tr>
-<th>Field Name</th>
-<th>Required</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>firstname</td>
-<td>yes</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>lastname</td>
-<td>yes</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>email</td>
-<td>yes</td>
-<td>string</td>
-<td>Should be email</td>
-</tr>
-<tr>
-<td>username</td>
-<td>yes</td>
-<td>string</td>
-<td>Should be unique</td>
-</tr>
-<tr>
-<td>password</td>
-<td>yes</td>
-<td>string</td>
-<td></td>
-</tr>
-</tbody></table>
-
-<h2 id="update">Update</h2>
-
-<blockquote>
-<p>Returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">142965</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joannedoe"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joanne Doe"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"department"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"profile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485010000008"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"profile_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"profile_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"recent_login"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"master"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"date_added"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-21 23:38:12"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This method lets you update existing invoice customer user.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">PUT invoicecustomersuser/{id}</code></p>
-
-<h3 id="data-object">Data Object</h3>
-
-<table><thead>
-<tr>
-<th>Field Name</th>
-<th>Required</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>firstname</td>
-<td>yes</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>lastname</td>
-<td>yes</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>email</td>
-<td>yes</td>
-<td>string</td>
-<td>Should be email</td>
-</tr>
-<tr>
-<td>username</td>
-<td>yes</td>
-<td>string</td>
-<td>Should be unique</td>
-</tr>
-</tbody></table>
-
-<h2 id="remove">Remove</h2>
-
-<blockquote>
-<p>Returns true if successfull:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="kc">true</span><span class="w">
-</span></code></pre>
-
-<p>This method lets you remove a specific invoice customer user.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">DELETE invoicecustomersuser/{id}</code></p>
 
           <h1 id="recurring">Recurring</h1>
 
@@ -3435,6 +3255,296 @@ You must replace <code>THEAPIKEY</code> with your own API key.
 <tr>
 <td>METHODID</td>
 <td>Payment method ID.</td>
+</tr>
+</tbody></table>
+
+<h2 id="user">User</h2>
+
+<h3 id="view">View</h3>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">142968</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nbieuser"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Newbie Custy"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"department"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485010000008"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"recent_login"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"master"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_added"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-28 22:20:05"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves specific customer&rsquo;s user details.</p>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET customers/&lt;CUSTID&gt;/user/&lt;USERID&gt;</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>The ID of the customer.</td>
+</tr>
+<tr>
+<td>USERID</td>
+<td>User ID.</td>
+</tr>
+</tbody></table>
+
+<h3 id="view-all">View All</h3>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">142968</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nbieuser"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Newbie Custy"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"department"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485010000008"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"recent_login"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"master"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_added"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-28 22:20:05"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves customer&rsquo;s user account.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET customers/&lt;CUSTID&gt;/user</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>The ID of the customer.</td>
+</tr>
+</tbody></table>
+
+<h3 id="create">Create</h3>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">142968</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nbieuser"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Newbie Custy"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"department"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485010000008"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"recent_login"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"master"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_added"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-28 22:20:05"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint creates new customer&rsquo;s user account.</p>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST customers/&lt;CUSTID&gt;/user</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>The ID of the customer.</td>
+</tr>
+</tbody></table>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>firstname</td>
+<td>yes</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>lastname</td>
+<td>yes</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>email</td>
+<td>yes</td>
+<td>string</td>
+<td>Should be email</td>
+</tr>
+<tr>
+<td>username</td>
+<td>yes</td>
+<td>string</td>
+<td>Should be unique</td>
+</tr>
+<tr>
+<td>password</td>
+<td>yes</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h3 id="update">Update</h3>
+
+<blockquote>
+<p>Returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">142968</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nbieuser"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Newbie Custy"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"department"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485010000008"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profile_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"recent_login"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"master"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_added"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-28 22:20:05"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint updates existing customer&rsquo;s user account.</p>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST customers/&lt;CUSTID&gt;/user/&lt;USERID&gt;</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>The ID of the customer.</td>
+</tr>
+<tr>
+<td>USERID</td>
+<td>User ID.</td>
+</tr>
+</tbody></table>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>firstname</td>
+<td>yes</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>lastname</td>
+<td>yes</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>email</td>
+<td>yes</td>
+<td>string</td>
+<td>Should be email</td>
+</tr>
+<tr>
+<td>username</td>
+<td>yes</td>
+<td>string</td>
+<td>Should be unique</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete">Delete</h3>
+
+<blockquote>
+<p>Returns <code class="prettyprint">true</code> on successful</p>
+</blockquote>
+
+<p>This method lets you remove customer&rsquo;s user account.</p>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE customers/&lt;CUSTID&gt;/user/&lt;USERID&gt;</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>The ID of the customer.</td>
+</tr>
+<tr>
+<td>USERID</td>
+<td>User ID.</td>
 </tr>
 </tbody></table>
 
