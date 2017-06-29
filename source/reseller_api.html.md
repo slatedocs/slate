@@ -445,7 +445,18 @@ An item has two major attributes:
         "id": 247,
         "quantity": 1,
         "time": "2016-07-07T13:00:00+02:00",
-        "reservations": ["8CE0mEgjyAvQB1IbPJ4iyg"]
+        "reservations": ["8CE0mEgjyAvQB1IbPJ4iyg"],
+        "attendees":[
+          {
+            "name":"Capt'n",
+            "surname":"Hook"
+          },
+          {
+            "name":"Peter",
+            "surname":"Pan"
+          }
+        ]
+        
     }
 }
 ```
@@ -457,7 +468,7 @@ A ticket item has a fairly simple structure:
 - quantity (integer), a count > 0
 - time (iso8601), the entry timestamp
 - reservations (array of tokens), if any (see Tickets -> Reservations for more info)
-
+- attendees (array of objects), needs to be set on purchase when ticket's attendees are required. Attendees require a name and surname. Number of attendees needs to match the ticket sales quantity. 
 
 
 ### Event
