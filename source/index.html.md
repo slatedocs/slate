@@ -752,8 +752,8 @@ If the user wants to use an invalid address anyway, the parameter "force" have t
 Parameter | Description
 --------- | -----------
 client_id | The client ID. You get this information whe the client was created. This parameter is required.
-addres1   | Street address. This parameter is required.
-addres2   | Second line of street address. This parameter is not required.
+address1   | Street address. This parameter is required.
+address2   | Second line of street address. This parameter is not required.
 city      | City name. This parameter is required.
 state     | State name. This parameter is required.
 zip       | Zipcode. This parameter is required.
