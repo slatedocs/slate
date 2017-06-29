@@ -1816,3 +1816,4 @@ Parameter | Type | Description
 This endpoint returns:
 
 * [Common errors](#common-errors)
+* [Push notification errors](#push-notifications-errors)
