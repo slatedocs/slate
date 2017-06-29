@@ -71,3 +71,9 @@ Error Code | Meaning
 5721 | Latitude is required
 5722 | Longitude is required
 5723 | Event time is required
+
+## Push notifications errors
+Error Code | Meaning
+---------- | -------
+5810 | Invalid push notification
+5811 | Invalid push notification status
