@@ -691,57 +691,81 @@ Refer to the options described on the table above for the `csv` format to change
 ```json
 
 {
-    "element": "shoji:order",
-    "self": "/datasets/match/?datasets=https://app.crunch.io/api/datasets/ae213b4/&datasets=https://app.crunch.io/api/datasets/333e233/",
-    u'value': {u'graph': [{u'datasets': [{u'archived': False,
-                                       u'creation_time': u'2017-06-29T01:43:26.955000',
-                                       u'description': u'',
-                                       u'end_date': None,
-                                       u'id': u'ae213b4',
-                                       u'labels': None,
-                                       u'modification_time': u'2017-06-29T01:43:26.896000',
-                                       u'name': u'test_datasets_match_1',
-                                       u'projects': [],
-                                       u'start_date': None},
-                                      {u'archived': False,
-                                       u'creation_time': u'2017-06-29T01:43:27.990000',
-                                       u'description': u'',
-                                       u'end_date': None,
-                                       u'id': u'333e233',
-                                       u'labels': None,
-                                       u'modification_time': u'2017-06-29T01:43:27.837000',
-                                       u'name': u'test_datasets_match_2',
-                                       u'projects': [],
-                                       u'start_date': None}]},
-                       {u'variables': [{u'alias': u'x',
-                                        u'category_names': [u'red',
-                                                            u'green',
-                                                            u'blue',
-                                                            u'4',
-                                                            u'8',
-                                                            u'9',
-                                                            u'No Data'],
-                                        u'dataset_id': u'ae213b4',
-                                        u'description': u'Numeric variable with value labels',
-                                        u'group_names': None,
-                                        u'id': u'000000',
-                                        u'name': u'x',
-                                        u'variable_type': u'categorical'},
-                                       {u'alias': u'y',
-                                        u'dataset_id': u'ae213b4',
-                                        u'description': u'Date variable',
-                                        u'group_names': None,
-                                        u'id': u'000001',
-                                        u'name': u'y',
-                                        u'variable_type': u'datetime'},
-                                       {u'alias': u'z',
-                                        u'dataset_id': u'ae213b4',
-                                        u'description': u'Numberic variable with missing value range',
-                                        u'group_names': None,
-                                        u'id': u'000002',
-                                        u'name': u'z',
-                                        u'variable_type': u'numeric'},
-                                       ]}]}}
+  "self": "http://local.crunch.io/api/datasets/match/?datasets=http://app.crunch.io/api/datasets/26df3c304/&datasets=http://app.crunch.io/api/datasets/3e03136be/", 
+  "value": {
+    "graph": [
+      {
+        "datasets": [
+          {
+            "archived": false, 
+            "description": "", 
+            "end_date": null, 
+            "labels": null, 
+            "creation_time": "2017-06-29T01:49:30.831000", 
+            "start_date": null, 
+            "modification_time": "2017-06-29T01:49:30.774000", 
+            "self": "http://app.crunch.io/api/datasets/26df3c304/", 
+            "projects": [], 
+            "name": "test_datasets_match_1"
+          }, 
+          {
+            "archived": false, 
+            "description": "", 
+            "end_date": null, 
+            "labels": null, 
+            "creation_time": "2017-06-29T01:49:32.261000", 
+            "start_date": null, 
+            "modification_time": "2017-06-29T01:49:32.207000", 
+            "id": "28b773839ac747bb834b8b4713f77c06", 
+            "projects": [], 
+            "name": "test_datasets_match_2"
+          }
+        ]
+      }, 
+      {
+        "variables": [
+          {
+            "description": "Numeric variable with value labels", 
+            "category_names": [
+              "red", 
+              "green", 
+              "blue", 
+              "4", 
+              "8", 
+              "9", 
+              "No Data"
+            ], 
+            "id": "000000", 
+            "alias": "x", 
+            "group_names": null, 
+            "dataset": "http://app.crunch.io/api/datasets/26df3c304/", 
+            "variable_type": "categorical", 
+            "name": "x"
+          }, 
+          {
+            "alias": "y", 
+            "description": "Date variable", 
+            "dataset": "http://app.crunch.io/api/datasets/26df3c304/", 
+            "group_names": null, 
+            "variable_type": "datetime", 
+            "id": "000001", 
+            "name": "y"
+          }, 
+          {
+            "alias": "z", 
+            "description": "Numberic variable with missing value range", 
+            "dataset": "http://app.crunch.io/api/datasets/26df3c304/", 
+            "group_names": null, 
+            "variable_type": "numeric", 
+            "id": "000002", 
+            "name": "z"
+          }
+        ]
+      }
+    ]
+  }, 
+  "element": "shoji:order"
+}
 
 ```
 
