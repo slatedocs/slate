@@ -122,6 +122,11 @@ curl "https://demo.gomus.de/api/v4/tickets/1"
         "min_persons": 0,
         "max_persons": 100,
         "after_sale_information": null,
+        "content": {
+            "shop_title": "Best ticket in the world",
+            "shop_sub_title": "",
+            "shop_description": ""
+        },
         "location": {
             "name": "Gemäldegalerie",
             "city": "Berlin",
@@ -141,6 +146,8 @@ The json response contains a ticket block with information for that the informat
 
 - after_sale_information (string), information to be shown after the sale of a ticket. Can contain html elements.
 - location, contains information about the location of the museum that the ticket belongs to.
+- content contains dynamic multi locale information
+
 
 ## Capacities of a ticket
 
