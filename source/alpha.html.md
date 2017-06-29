@@ -7,6 +7,7 @@ language_tabs:
   
 includes:
   - interface-api
+  - package-api
   - dev-support
    
 search: true

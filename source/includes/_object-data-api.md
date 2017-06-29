@@ -1784,7 +1784,7 @@ id|The Intelex UID of the record being accessed
 ##### Body Parameters
 
 Parameter | Type | Description
---------- | -----------
+--------- | ----------- | --------- 
 multipart/formData | file | The file you want to attach to the record. Cannot exceed 10MB.
 
 ### Detaching Documents
