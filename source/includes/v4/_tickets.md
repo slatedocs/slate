@@ -37,7 +37,8 @@ curl "https://demo.gomus.de/api/v4/tickets"
             19
         ],
         "first_entry": 660,
-        "last_entry": 990
+        "last_entry": 990,
+        "personalizeable": false,
         }
     ],
     "meta": {
@@ -83,6 +84,7 @@ The json response contains a list of tickets as an array and a meta block.
 - entry_duration (integer), if ticket type is a time slot, the slot duration in minutes, else null
 - min_persons (integer), minimum quantity to buy per order
 - max_persons (integer), maximum quantity to buy per order
+- personalizeable (boolean), weather the ticket can be personalised (e.g. annual tickets)
 
 ## Details of single ticket
 
@@ -127,6 +129,7 @@ curl "https://demo.gomus.de/api/v4/tickets/1"
             "shop_sub_title": "",
             "shop_description": ""
         },
+        "personalizeable": false,
         "location": {
             "name": "Gemäldegalerie",
             "city": "Berlin",
