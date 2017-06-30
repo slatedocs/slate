@@ -684,6 +684,100 @@ To control the output of the header row, use the `header_field` option. Valid va
 
 Refer to the options described on the table above for the `csv` format to change this behavior.
 
+
+##### Match
+`GET /datasets/match{?datasets={id}&datasets={id}[&datasets={id}]+`
+
+```json
+
+{
+  "self": "http://local.crunch.io/api/datasets/match/?datasets=http://app.crunch.io/api/datasets/26df3c304/&datasets=http://app.crunch.io/api/datasets/3e03136be/", 
+  "value": {
+    "graph": [
+      {
+        "datasets": [
+          {
+            "archived": false, 
+            "description": "", 
+            "end_date": null, 
+            "labels": null, 
+            "creation_time": "2017-06-29T01:49:30.831000", 
+            "start_date": null, 
+            "modification_time": "2017-06-29T01:49:30.774000", 
+            "self": "http://app.crunch.io/api/datasets/26df3c304/", 
+            "projects": [], 
+            "name": "test_datasets_match_1"
+          }, 
+          {
+            "archived": false, 
+            "description": "", 
+            "end_date": null, 
+            "labels": null, 
+            "creation_time": "2017-06-29T01:49:32.261000", 
+            "start_date": null, 
+            "modification_time": "2017-06-29T01:49:32.207000", 
+            "id": "28b773839ac747bb834b8b4713f77c06", 
+            "projects": [], 
+            "name": "test_datasets_match_2"
+          }
+        ]
+      }, 
+      {
+        "variables": [
+          {
+            "description": "Numeric variable with value labels", 
+            "category_names": [
+              "red", 
+              "green", 
+              "blue", 
+              "4", 
+              "8", 
+              "9", 
+              "No Data"
+            ], 
+            "id": "000000", 
+            "alias": "x", 
+            "group_names": null, 
+            "dataset": "http://app.crunch.io/api/datasets/26df3c304/", 
+            "variable_type": "categorical", 
+            "name": "x"
+          }, 
+          {
+            "alias": "y", 
+            "description": "Date variable", 
+            "dataset": "http://app.crunch.io/api/datasets/26df3c304/", 
+            "group_names": null, 
+            "variable_type": "datetime", 
+            "id": "000001", 
+            "name": "y"
+          }, 
+          {
+            "alias": "z", 
+            "description": "Numberic variable with missing value range", 
+            "dataset": "http://app.crunch.io/api/datasets/26df3c304/", 
+            "group_names": null, 
+            "variable_type": "numeric", 
+            "id": "000002", 
+            "name": "z"
+          }
+        ]
+      }
+    ]
+  }, 
+  "element": "shoji:order"
+}
+
+```
+
+The matches endpoint returns a Shoji order with two groups.  
+
+that defines all of the variables that match between the first dataset provided, and the
+rest of them.  If the dataset doesn't have any variables that match, it is not included in the "datasets" group in the order.  For now,
+this endpoint returns the metadata for the datasets and the first dataset's variables if it matches in the other datasets.
+Only variable aliases are compared to determine a match at this time.  More sophisticated variable matching is planned for future releases. 
+
+
+
 ##### Summary
 
 `/datasets/{id}/summary/{?filter}`
@@ -743,7 +837,7 @@ in its body. Rows that match the filter expression will be excluded from all vie
 PATCH the "expression" attribute to modify. An empty "expression" object, like
  `{"body": {"expression": {}}}`, is equivalent to "no exclusion", i.e. no rows
  are dropped.
-
+ 
 ##### Stream
 
 `/datasets/{id}/stream/`
