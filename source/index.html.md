@@ -739,9 +739,11 @@ curl_close($c);
 }
 ```
 
-This endpoit sets the 911 address for the number associated to the client. Behind the scenes it has two layers of address validation, the first one using UPS API and the second one uses Bandwidth API. For the request to be successful it has to go through both layers. In case the address is not valid but the validation services have other options, they will be presented to the user with the message "ambiguous address", so the user may select any of them. In case the validation services can't provide valid options, the user will get a message of "invalid address" and the action won't be completed.
+This endpoint sets the 911 address for the number associated to the client. Behind the scenes it has two layers of address validation, the first one using UPS API and the second one uses Bandwidth API. For the request to be successful it has to go through both layers. In case the address is not valid but the validation services have other options, they will be presented to the user with the message "ambiguous address", so the user may select any of them. In case the validation services can't provide valid options, the user will get a message of "invalid address" and the action won't be completed.
 
-If the user wants to use an invalid address anyway, the parameter "force" have to be passed with value 1.
+If the user wants to use an invalid address anyway, the parameter "force=1" would need to be sent to be passed with value 1.
+
+<aside class="warning">Our recommendation is to first validate the address using the provided services and it the address is still correct after validadion then force it. Do not force addresses unless there's no other option. </aside>
 
 ### HTTP Request
 
@@ -751,12 +753,12 @@ If the user wants to use an invalid address anyway, the parameter "force" have t
 
 Parameter | Description
 --------- | -----------
-client_id | The client ID. You get this information whe the client was created. This parameter is required.
+client_id | The client ID. You get this information when the client was created. This parameter is required.
 address1   | Street address. This parameter is required.
 address2   | Second line of street address. This parameter is not required.
 city      | City name. This parameter is required.
 state     | State name. This parameter is required.
 zip       | Zipcode. This parameter is required.
-force     | Wheter the address will be forced or not (1 or 0). This parameter is not required.
+force     | Wether the address will be forced or not (1 or 0). This parameter is not required.
 
 
