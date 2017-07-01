@@ -701,13 +701,7 @@ METHODID | Payment method ID.
         "username": "nbieuser",
         "name": "Newbie Custy",
         "email": "evelynl@zylun.com",
-        "department": 26,
-        "profile": "513485010000008",
-        "profile_type": 6,
-        "profile_type_name": "Customer",
         "recent_login": null,
-        "master": 0,
-        "enabled": null,
         "date_added": "2017-06-28 22:20:05"
     }
 }
@@ -736,13 +730,7 @@ CUSTID | The ID of the customer.
         "username": "nbieuser",
         "name": "Newbie Custy",
         "email": "evelynl@zylun.com",
-        "department": 26,
-        "profile": "513485010000008",
-        "profile_type": 6,
-        "profile_type_name": "Customer",
         "recent_login": null,
-        "master": 0,
-        "enabled": null,
         "date_added": "2017-06-28 22:20:05"
     }
 }
@@ -781,13 +769,7 @@ password | yes | string |
         "username": "nbieuser",
         "name": "Newbie Custy",
         "email": "evelynl@zylun.com",
-        "department": 26,
-        "profile": "513485010000008",
-        "profile_type": 6,
-        "profile_type_name": "Customer",
         "recent_login": null,
-        "master": 0,
-        "enabled": null,
         "date_added": "2017-06-28 22:20:05"
     }
 }
