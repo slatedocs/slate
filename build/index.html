@@ -3283,53 +3283,6 @@ You must replace <code>THEAPIKEY</code> with your own API key.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves specific customer&rsquo;s user details.</p>
-
-<h4 id="http-request">HTTP Request</h4>
-
-<p><code class="prettyprint">GET customers/&lt;CUSTID&gt;/user/&lt;USERID&gt;</code></p>
-
-<h4 id="url-parameters">URL Parameters</h4>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>CUSTID</td>
-<td>The ID of the customer.</td>
-</tr>
-<tr>
-<td>USERID</td>
-<td>User ID.</td>
-</tr>
-</tbody></table>
-
-<h3 id="view-all">View All</h3>
-
-<blockquote>
-<p>Returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">142968</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nbieuser"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Newbie Custy"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"department"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"profile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485010000008"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"profile_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"profile_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"recent_login"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"master"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"date_added"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-28 22:20:05"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
 <p>This endpoint retrieves customer&rsquo;s user account.</p>
 
 <h3 id="http-request">HTTP Request</h3>
