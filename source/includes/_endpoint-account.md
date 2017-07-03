@@ -101,14 +101,6 @@ Attributes `name` and `subdomain` are required; `palette` and `manifest` are opt
 app (see below).
 
 
-Attribute | Type | Description
-----------|------|----------------
-name      | string| Name of the configured application on the given subdomain
-logo      | object| Contains two attributes, `large` and `small`, with different resolution company logos
-palette   | object| Contains three colors, `system`, `data` and `warning`, under the `brand` attribute to theme the web app
-manifest  | object| Optional, contains further client configurations
-
-
 #### Application entity
 
 ```http
@@ -126,7 +118,8 @@ the configured application.
         "subdomain": "mycompany",
         "logos": {
             "small": "<URL>",
-            "large": "<URL>"
+            "large": "<URL>",
+            "favicon": "<URL>"
         },
         "palette": {
             "brand": {
@@ -144,6 +137,16 @@ the configured application.
 ```
 
 PATCH this endpoint to change the name, palette, or manifest. Logos are controlled by the logo subresource.
+
+
+Attribute | Type | Description
+----------|------|----------------
+name      | string| Name of the configured application on the given subdomain
+logo      | object| Contains two attributes, `large`, `small` and `favicon`, with different resolution company logos
+palette   | object| Contains three colors, `system`, `data` and `warning`, under the `brand` attribute to theme the web app
+manifest  | object| Optional, contains further client configurations
+
+
 
 #### Change application logo
 
@@ -291,7 +294,7 @@ PATCH /account/users/
         "create_datasets": false
       }
     },
-    "http://app.crunch.io/api/users/234/": null,
+    "http://app.crunch.io/api/users/234/": null
   }
 }
 ```
