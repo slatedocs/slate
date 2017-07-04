@@ -237,7 +237,7 @@ curl --request POST \
 
 Campo |  tipo | Obrigatório | Descrição
 ------| ----- | ----------- | ---------
-ctrl  | string | sim | Enviar: **'zoopbusiness'**
+ctrl  | string | sim | Enviar: **'zoopindividual'**
 address_street | string | sim | Endereço da Empresa (Rua, Av.)
 address_number | string | sim | Número do endereço
 address_complement | string | não | Complemento do endereço
