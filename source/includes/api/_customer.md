@@ -253,7 +253,9 @@ zip |  | Zip/Postal code.
       "state": "cebu",
       "country": "philippines",
       "zip": "6014",
-      "custom_fields": [],
+      "custom_fields": [
+        "user_account": "123456"
+      ],
       "created": 1489733229,
       "updated": 1489733272
     },
@@ -284,6 +286,7 @@ street2 |  | Alternate address.
 state |  | State address.
 country |  | Country.
 zip |  | Zip/Postal code.
+userid  |  | The id of the user account of this customer.
 
 
 ## Cards
