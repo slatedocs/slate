@@ -1,6 +1,6 @@
 ### Instances
 
-Deploy and manage your instances. Instances are virtual machines or physical machines managed by OpenStack. 
+Deploy and manage your instances. Instances are virtual machines or physical machines managed by OpenStack.
 
 #### List instances
 
@@ -22,7 +22,11 @@ curl -H "MC-Api-Key: your_api_key" \
          "imageId": "68f9027d-cf64-4648-a0fa-4667d5618b6b",
          "imageName": "ubuntu",
          "networkName": "web",
-         "privateIpAddress": "192.168.0.11"
+         "privateIpAddress": "192.168.0.11",
+         "securityGroupNames": [
+             "webServerSecGroup",
+             "sshSecGroup"
+         ]
       }
     ],
     "metadata": {
@@ -49,6 +53,7 @@ Attributes | &nbsp;
 `networkId`<br/>*UUID* | The id of the network where instance is deployed
 `networkName`<br/>*string* | The name of the network where instance is deployed
 `privateIpAddress`<br/>*string* | The instance's private IP address
+`securityGroupNames`<br/>*Array[string]* | The list of [security groups](#security-groups) associated to the instance
 
 #### Retrieve an instance
 
@@ -69,7 +74,11 @@ curl -H "MC-Api-Key: your_api_key" \
       "imageId": "68f9027d-cf64-4648-a0fa-4667d5618b6b",
       "imageName": "ubuntu",
       "networkName": "web",
-      "privateIpAddress": "192.168.0.11"
+      "privateIpAddress": "192.168.0.11",
+      "securityGroupNames": [
+          "webServerSecGroup",
+          "sshSecGroup"
+      ]
    }
 }
 ```
@@ -92,6 +101,7 @@ Attributes | &nbsp;
 `networkId`<br/>*UUID* | The id of the network where instance is deployed
 `networkName`<br/>*string* | The name of the network where instance is deployed
 `privateIpAddress`<br/>*string* | The instance's private IP address
+`securityGroupNames`<br/>*Array[string]* | The list of [security groups](#security-groups) associated to the instance
 
 #### Create an instance
 
@@ -108,7 +118,8 @@ curl -X POST \
     "name": "web1",
     "imageId": "1d547941-1738-4d7b-a70b-b52a44ff18e5",
     "flavorId": "68f9027d-cf64-4648-a0fa-4667d5618b6b",
-    "networkId": "2fc5a74b-26c9-4541-af3f-84ee4c75eb0c"
+    "networkId": "2fc5a74b-26c9-4541-af3f-84ee4c75eb0c",
+    "securityGroupNames": ["secGroupA", "secGroupB"]
 }
 ```
 
@@ -122,6 +133,7 @@ Required | &nbsp;
 `imageId`<br/>*UUID* | The [image](#images) to use for this instance
 `flavorId`<br/>*UUID* | The [flavor](#flavors) will determine the number of CPU and RAM of your instance
 `networkId`<br/>*UUID* | The network in which the instance will be created. If you don't have a network, it can be created through the create network API.
+`securityGroupNames`<br/>*Array[string]* | The list of [security groups](#security-groups) to be associated to the instance
 
 #### Associate a floating IP
 
@@ -146,6 +158,30 @@ Associate a floating IP to an instance in your environment.
 Required                  | Description
 ------------------------- | -------------------------------------------
 `floatingIpId`<br/>*UUID* | The ID of a previously-acquired floating IP
+
+#### Change security groups
+```shell
+curl -X POST \
+    -H "MC-Api-Key: your_api_key" \
+    -H "Content-Type: application/json" \
+    -d "request_body" \
+    "https://api.your.cloudmc/v1/services/compute-os/devel/instances/30fca349-68b0-48c2-9ada-1f60f57fa44e?operation=changeSecurityGroups"
+# Request body should look like
+```
+```json
+{
+  "securityGroupNames": [ "securityGroupNameA", "securityGroupNameB"]
+}
+```
+
+<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=changeSecurityGroups</code>
+
+Change the security groups of an instance to the ones specified in the request.
+
+Required                                 | Description
+---------------------------------------- | -------------------------------------------
+`securityGroupNames`<br/>*Array[string]* | A list of security group names that should be associated to the instance
+
 
 #### Delete an instance
 
