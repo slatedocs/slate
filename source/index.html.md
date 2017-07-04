@@ -21,6 +21,7 @@ includes:
   - woocommerce
   - prestashop
   - assinatura
+  - zoop
   - integrationphp
 
 search: true
