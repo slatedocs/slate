@@ -45,10 +45,11 @@ The current list of possible channels is:
  Name | data published into this channel
 ------:|:------------
 product-status | _enabled status, product state_ <font color="DarkGray">_(ACTIVATED/MONITORED etc.)_, user (making the change)</font>
+product-alert | updates to SMART Solar alert data
 
 Users can view a list of available channels by sending a `GET` request to `/v1/channels`
 
-Users can view the possible cotents and format of the data sent in the channel <a href="#channel-data">below</a>:
+Users can view the possible contents and format of the data sent in the channel <a href="#channel-data">below</a>:
 
 ## Subscribing to a Channel
 
@@ -174,6 +175,21 @@ key | value type | options
 `user` | _str_ | \<username\> - user that made the change
 
 
+    
+### product-alert
+
+key | value type | options
+---:|-----------|--------
+`alert_id` | _int_ | unique identifier for this alert (any subsequent updates to this alert will have the same value here)
+`product_imei`| _str_ | the IMEI of the product associated with the alert
+<a href="/#alert-type">alert_type_id</a> | _int_ | identifies the type of the alert 
+`start_time` | _datetime-str_ | "2016-01-01 00:00:00" - when the alert was raised        
+`dismissed_at` | _datetime-str_ | "2016-01-01 00:00:00" - when the alert was dismissed (will be null if the alert is still active)        
+`dismissed_by` | _str_ | \<username\> - user that made the change (will be null if the alert is still active)
+`dismissal_reason` | _str_ | the reason for the alert dismissal (will be null if the alert is still active)
+<a href="/#repair">repair_id</a> | _int_ | identifies the repair assicated with the alert (may be null) 
+`extra_info` | _str_ | extra details about the alert (may be null)
+`customer_called_date` | _datetime-str_ | when the customer was called to discuss the alert (may be null)         
     
 ## Authenticating BBOXX Notifications
 
