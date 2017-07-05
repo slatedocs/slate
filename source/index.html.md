@@ -64,6 +64,7 @@ includes:
   - product_parts
   - parameters
   - parameter_history
+  - connectivity_reliability_rate
 
   - product_data
 
