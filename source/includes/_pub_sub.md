@@ -164,7 +164,7 @@ The format of the request will be as follows:
 ## Channel Data
 
 The possible contents of `data` in the notification for each channel is listed here:
-
+The time that the change occured is held in the `timestamp` that is sent with the request.
 ### product-status
 
 key | value type | options
@@ -172,7 +172,8 @@ key | value type | options
 `state` | _int_ | [1-9]
 `enabled_status`| _str_ | "enabled", "pending_enabled", "pending_disabled", "disabled"
 `user` | _str_ | \<username\> - user that made the change
-`date` | _datetime-str_ | "2016-01-01 00:00:00" - date that the change was effected        
+
+
     
 ## Authenticating BBOXX Notifications
 
