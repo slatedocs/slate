@@ -53,6 +53,15 @@ You can access related data by using the [$expand](#query-option-expand) query o
 
 Please note: Trying to access or modify relation fields that are self-referencing will not work (i.e. A relation type field on an object that is a relation to itself) 
 
+## System Objects
+
+Sometimes you might need to access data from system objects that contain data such as Employees or Locations.  Here are some of the system objects for your reference:
+
+System Object | Description |  System Name
+--------- | ----------- | --------- 
+Employee Object | Employees stored in Intelex | SysEmployeeEntity
+Location Object | Locations stored in Intelex | SysLocationEntity
+
 ## Requesting Object Data
 
 ### Requesting records
