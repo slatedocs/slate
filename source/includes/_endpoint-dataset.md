@@ -307,7 +307,7 @@ is_published | boolean | If false, only project editors will have access to this
 weight_variables | array | Contains aliases of weight variables to start this dataset with; variables must be numeric type. 
 table | object | Metadata definition for the variables in the dataset
 maintainer | URL | User URL that will be the maintainer of this dataset in case of system notifications; if omitted, the authenticated user will be the maintainer
-settings | object | [Settings object](#settings) containing `weight`, `viewers_can_export`, `viewers_can_change_weight`, `viewers_can_share`, and/or `min_base_size` attributes. If a "weight" is specified, it will be automatically added to "weight_variables" if not already specified there.
+settings | object | [Settings object](#settings) containing `weight`, `viewers_can_export`, `viewers_can_change_weight`, `viewers_can_share`, `dashboard_deck`, and/or `min_base_size` attributes. If a "weight" is specified, it will be automatically added to "weight_variables" if not already specified there.
 
 
 ### Other catalogs
@@ -899,6 +899,7 @@ viewers_can_export | When false, only editor can export; else, all users with vi
 viewers_can_change_weight | When true, all users with access can set their own personal weight; else, the editor configured `weight` will be applied to all without option to change
 viewers_can_share | When true, all users with access can share the dataset with other users or teams; Defaults to `True`
 weight | Default initial weight for all new users on this dataset, and when `viewers_can_change_weight` is false, this variable will be the always-applied weight for all viewers of the dataset.
+dashboard_deck | When set, points to a deck that will become publicly visible and be used as dashboard by the web client
 
 
 ##### Preferences
