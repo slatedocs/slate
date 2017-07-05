@@ -11,7 +11,7 @@ The Object Data API gives you the ability to create, retrieve, update, and delet
 Your instance of Intelex may include system and custom objects. System objects include general platform objects and standard application objects. Custom objects are any objects created from scratch for your organization. All of these objects have unique system names. You'll find the system name on the object detail page, in the System Name field.
 
 
-## Metadata
+## Record Metadata
 > Example response with record metadata
 
 ```json
@@ -32,7 +32,7 @@ Property | Description
 @odata.id|A URL that can be used to access the record
 @odata.editLink|Denotes if the record can be modified by the user making the request. Same as @odata.id link
 
-## Pagination
+## Record Limits
 > Example response with pagination link
 
 ```json
@@ -45,7 +45,7 @@ Property | Description
 
 We've provided a convenient way to access more data in any request for sequential data where the number of records exceeds 500. Simply call the url in the nextLink parameter and we'll respond with the next set of data.
 
-## Relational Data
+## Object Relational Data
 Many Intelex objects have relations to other objects. These relations are configured as relation type or lookup type fields.  These fields are accessible via the API as navigation properties. 
 Every object will have navigation properties that can be used to access its related data in another object.  You'll need to use the system name of the field configured with the related object in order to access related data.  
 

@@ -4,7 +4,7 @@ The Task API gives you the ability to retrieve your Intelex tasks. These tasks c
 
 The Task API is currently in beta. This means that we might make changes to the data returned or how requests are made with future Intelex releases.  Once the beta tag is removed, breaking changes to this API will be [versioned](#versioning).
 
-## Metadata
+## Task Metadata
 > Example response with record metadata
 
 ```json
@@ -23,7 +23,7 @@ Property | Description
 @odata.type|The the entity type of the record. Also contains the object system name the record belongs to
 @odata.id|A URL that can be used to access the record via the [Object Data API](#object-data-api)
 
-## Pagination
+## Task Record Limits
 > Example response with pagination link
 
 ```json
@@ -36,7 +36,7 @@ Property | Description
 
 We've provided a convenient way to access more data in any request for sequential data where the number of records exceeds 500. Simply call the url in the nextLink parameter and we'll respond with the next set of data.
 
-## Relational Data
+## Task Relational Data
 Tasks resources have relations to Employees or Locations. These relations are accessible via the API as navigation properties. 
 
 Each task resource will have navigation properties that can be used to access its related data in either the Employee or Location objects:
