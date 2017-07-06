@@ -148,7 +148,8 @@ Content-Length: 3294
         "viewers_can_export": true,
         "viewers_can_change_weight": false,
         "min_base_size": 3,
-        "weight": "weight_variable"
+        "weight": "weight_variable",
+        "dashboard_deck": null
       },
       "table": {
         "metadata": {
