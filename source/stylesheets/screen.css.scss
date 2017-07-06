@@ -82,8 +82,8 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
-    max-width: 70%;
-    margin: 1.5em 0 1.5em 2em;
+    max-width: 60%;
+    margin: 3em 1em 2.5em 2.5em;
   }
 
   &>.search {
@@ -91,22 +91,22 @@ html, body {
     margin: 0 0 1em 0;
 
     ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(25, 34, 36, 0.8);
     }
     ::-moz-placeholder { /* Firefox 19+ */
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(25, 34, 36, 0.8);
     }
     :-ms-input-placeholder { /* IE 10+ */
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(25, 34, 36, 0.8);
     }
     :-moz-placeholder { /* Firefox 18- */
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(25, 34, 36, 0.8);
     }
 
     input {
       background: $nav-bg;
       border-width: 0 0 1px 0;
-      //border-color: $search-box-border-color;
+      border-color: $search-box-border-color;
       padding: 6px 0 6px 20px;
       box-sizing: border-box;
       margin: $nav-v-padding $nav-padding;

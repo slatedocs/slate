@@ -23,12 +23,12 @@ under the License.
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #FE5900 !default;
+$nav-bg: #FF600A !default;
 $examples-bg: #393939 !default;
 $code-bg: #292929 !default;
 $code-annotation-bg: #1c1c1c !default;
-$nav-subitem-bg: #FE5900 !default;
-$nav-active-bg: darken(#FE5900,8%)  !default;
+$nav-subitem-bg: #FF600A !default;
+$nav-active-bg: darken(#FF600A,8%)  !default;
 $lang-select-border: #000 !default;
 $lang-select-bg: #222 !default;
 $lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
@@ -42,9 +42,9 @@ $search-notice-bg: #FF2619 !default;
 
 // TEXT COLORS
 ////////////////////
-$main-text: #273135 !default; // main content text color
-$nav-text: #fff !default;
-$nav-active-text: #fff !default;
+$main-text: #192224 !default; // main content text color
+$nav-text: #192224 !default;
+$nav-active-text: #192224 !default;
 $lang-select-text: #fff !default; // color of unselected language tab text
 $lang-select-active-text: #fff !default; // color of selected language tab text
 $lang-select-pressed-text: #fff !default; // color of language tab text when mouse is pressed
@@ -92,7 +92,7 @@ $nav-footer-border-color: #666 !default;
 $nav-embossed-border-top: #000 !default;
 $nav-embossed-border-bottom: #939393 !default;
 $main-embossed-text-shadow: 0px 1px 0px #fff !default;
-$search-box-border-color: #666 !default;
+$search-box-border-color: #192224 !default;
 
 
 ////////////////////////////////////////////////////////////////////////////////
