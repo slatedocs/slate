@@ -35,7 +35,7 @@ $content = http_build_query(array(
     "owner_birthdate"      => '1987-11-11',
     "bank_name"            => 'Test Seller',
     "bank_cpf"             => '45237426182',
-    //Se informado cpj não informar cnpj
+    //Se informado cpf não informar cnpj
     "bank_cnpj"            => '29654759000170',
     "bank_code"            => '341',
     "bank_agencynumber"    => '1234',
@@ -60,8 +60,8 @@ echo print_r($result, true);
 
 ````shell
 curl --request POST \
-  --url http://localhost/ipag-core/service/v1 \
-  --header 'authorization: Basic am9uYXRoYW46REM4QS00QzE2OUM5NS1EQTZBRUY2OC0wRkQ2RDMyOC0wRjAz' \
+  --url https://sandbox.ipag.com.br/service/v1 \
+  --header 'authorization: Basic aaaaaYXRoYW46REM4QS00QzE2OUM5NS1EQTZBRUY2OC0wRkQ2RDMy00001' \
   --header 'content-type: application/x-www-form-urlencoded' \
   --data 'ctrl=zoopbusiness&owner_phone=1112345678&owner_cpf=64028478286&owner_email=test%40owner.com&owner_birthdate=1987-11-11&owner_firstname=Test&owner_lastname=Seller&address_street=P%20Sherman&address_number=42&address_neighborhood=Wallaby%20Way&address_postalcode=01000000&address_city=Sydney&address_state=SP&bank_name=Test%20Seller&bank_cnpj=77441655000120&bank_code=341&bank_agencynumber=1234&bank_accountnumber=12345-4&business_name=Test%20Co.&business_phone=1187654321&business_email=test%40business.com&business_description=A%20test%20business&business_cnpj=05533862000101'
 ```
@@ -90,7 +90,7 @@ owner_birthdate | string | não | Data de Nascimento do Sócio responsável
 bank_name | string | não * | Titular da Conta Bancária
 bank_cpf | string | não * | CPF do Titular da Conta caso esteja em nome de Pessoa Física
 bank_cnpj | string | não * | CNPJ do Titular da Conta caso esteja em nome de Pessoa Jurídica
-bank_code | string | não * | [Código do Banco (3 digitos)](http://www.codigobanco.com/)
+bank_code | string | não * | [Código do Banco (3 digitos)](https://pt.wikipedia.org/wiki/Lista_de_bancos_do_Brasil)
 bank_agencynumber | string | não * | Número da Agência Bancária
 bank_accountnumber | string | não * | Número da Conta Bancária
 
@@ -229,8 +229,8 @@ echo print_r($result, true);
 
 ```shell
 curl --request POST \
-  --url http://localhost/ipag-core/service/v1 \
-  --header 'authorization: Basic am9uYXRoYW46REM4QS00QzE2OUM5NS1EQTZBRUY2OC0wRkQ2RDMyOC0wRjAz' \
+  --url https://sandbox.ipag.com.br/service/v1 \
+  --header 'authorization: Basic aaaaaYXRoYW46REM4QS00QzE2OUM5NS1EQTZBRUY2OC0wRkQ2RDMy00001' \
   --header 'content-type: application/x-www-form-urlencoded' \
   --data 'ctrl=zoopindividual&owner_phone=1112345678&owner_cpf=08935742449&owner_email=test%40owner.com&owner_birthdate=1987-11-11&owner_firstname=Test&owner_lastname=Seller&address_street=P%20Sherman&address_number=42&address_neighborhood=Wallaby%20Way&address_postalcode=01000000&address_city=Sydney&address_state=SP&bank_name=Test%20Seller&bank_cnpj=77441655000120&bank_code=341&bank_agencynumber=1234&bank_accountnumber=12345-4'
 ```
@@ -254,7 +254,7 @@ owner_birthdate | string | não | Data de Nascimento do Sócio responsável
 bank_name | string | não * | Titular da Conta Bancária
 bank_cpf | string | não * | CPF do Titular da Conta caso esteja em nome de Pessoa Física
 bank_cnpj | string | não * | CNPJ do Titular da Conta caso esteja em nome de Pessoa Jurídica
-bank_code | string | não * | [Código do Banco (3 digitos)](http://www.codigobanco.com/)
+bank_code | string | não * | [Código do Banco (3 digitos)](https://pt.wikipedia.org/wiki/Lista_de_bancos_do_Brasil)
 bank_agencynumber | string | não * | Número da Agência Bancária
 bank_accountnumber | string | não * | Número da Conta Bancária
 
@@ -332,7 +332,7 @@ bank[document] | Documento do Titular
 ```shell
 curl -X POST \
 https://sandbox.ipag.com.br/service/v1 \
--H 'authorization: Basic am9uYXRoYW46REM4QS00QzE2OUM5NS1EQTZBRUY2OC0wRkQ2RDMyOC0wRjAz' \
+-H 'authorization: Basic aaaaaYXRoYW46REM4QS00QzE2OUM5NS1EQTZBRUY2OC0wRkQ2RDMy00001' \
 -F ctrl=zoopbank \
 -F bank_name=Teste \
 -F bank_code=341 \
@@ -376,9 +376,11 @@ ctrl  | string | sim | Enviar: **'zoopbank'**
 bank_name | string | sim | Titular da Conta Bancária
 bank_cpf | string | não * | CPF do Titular da Conta caso esteja em nome de Pessoa Física
 bank_cnpj | string | não * | CNPJ do Titular da Conta caso esteja em nome de Pessoa Jurídica
-bank_code | string | sim | [Código do Banco (3 digitos)](http://www.codigobanco.com/)
+bank_code | string | sim | [Código do Banco (3 digitos)](https://pt.wikipedia.org/wiki/Lista_de_bancos_do_Brasil)
 bank_agencynumber | string | sim | Número da Agência Bancária
 bank_accountnumber | string | sim | Número da Conta Bancária
+
+* É necessário enviar CPF ou CNPJ.
 
 ### Retorno (Zoop Bank)
 
@@ -418,7 +420,7 @@ bank[document] | Documento do Titular
 ```shell
 curl -X POST \
 https://sandbox.ipag.com.br/service/v1 \
--H 'authorization: Basic am9uYXRoYW46REM4QS00QzE2OUM5NS1EQTZBRUY2OC0wRkQ2RDMyOC0wRjAz' \
+-H 'authorization: Basic aaaaaYXRoYW46REM4QS00QzE2OUM5NS1EQTZBRUY2OC0wRkQ2RDMy00001' \
 -F ctrl=zoopsyncbank \
 -F bank_id=313f5e0174df42548e8eae97c202f4a7 \
 -F seller_id=31883d1a2bbe4b728f3fde175b74447c
@@ -531,7 +533,7 @@ bank[document] | Documento do Titular
 ```shell
 curl -X POST \
 https://sandbox.ipag.com.br/service/v1 \
--H 'authorization: Basic am9uYXRoYW46REM4QS00QzE2OUM5NS1EAAABRUY2OC0wRkQ2RDMyOC000001' \
+-H 'authorization: Basic aaaaaYXRoYW46REM4QS00QzE2OUM5NS1EQTZBRUY2OC0wRkQ2RDMy00001' \
 -F ctrl=zoopgetseller \
 -F seller_id=4c2048c8c4414cd0abd29ad7716fee03
 ```
