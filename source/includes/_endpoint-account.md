@@ -262,6 +262,8 @@ POST /account/users/
         "alter_users": false,
         "create_datasets": true
       },
+      "teams": ["<list of team urls>"],
+      "projects": ["<list of project urls>"],
       "id_method": "pwhash/oauth",
       "id_provider": "",
       "send_invite": true,
@@ -269,6 +271,31 @@ POST /account/users/
   }
 }
 ```
+
+It is possible to create a user to belong to different teams or projects by 
+including those teams or projects' urls in the payload, for example:
+
+
+```json
+{
+  "element": "shoji:entity",
+  "body": {
+      "email": "new_email@example.com",
+      "name": "Initial name",
+      "account_permissions": {
+        "alter_users": false,
+        "create_datasets": true
+      },
+      "teams": ["https://app.crunch.io/api/teams/abc/", "https://app.crunch.io/api/teams/123/"],
+      "projects": ["https://app.crunch.io/api/projects/def/"],
+      "id_method": "pwhash"
+  }
+}
+```
+
+The `teams` and `projects` attributes are optional and can be omited or empty
+lists. 
+
 
 
 #### PATCH
