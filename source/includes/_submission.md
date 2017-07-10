@@ -410,18 +410,46 @@ Captura | https://sandbox.ipag.com.br/captura
 Cancela | https://sandbox.ipag.com.br/cancela
 
 ## Métodos
-Cartões | Boleto Bancário | Banco
------------ | --------- | ----------
-visa | boleto_itau | bradescopf
-mastercard | boleto_cef (SICOB) | itaushopline
-diners | boleto_bb | bancobrasil
-amex | boleto_banespasantander |
-elo | boleto_bradesco |
-discover | boleto_hsbc |
-hipercard | |
-jcb | |
-visaelectron | |
-maestro| |
+
+###Cartões
+
+**Método** | Tipo
+-----------|--------
+**visa** | crédito
+**mastercard** | crédito
+**diners** | crédito
+**amex** | crédito
+**elo** | crédito
+**discover** | crédito
+**hipercard** | crédito
+**jcb** | crédito
+**aura** | crédito
+**visaelectron** | débito
+**maestro** | débito
+
+###Boleto
+
+**Método** | Tipo
+-----------|--------
+**boleto_itau** | boleto impresso
+**boleto_cef** | boleto impresso
+**boleto_bb** | boleto impresso
+**boleto_banespasantander** | boleto impresso
+**boleto_bradesco** | boleto impresso
+**boletostelo** | boleto impresso
+**boletocielo** | boleto impresso
+**boletostone** | boleto impresso
+**boletozoop** | boleto impresso
+**boletoitaushopline** | boleto impresso
+
+###Transferência (Office Bank)
+
+**Método** | Tipo
+-----------|--------
+**bradescopf** | Transferência
+**itaushopline** | Transferência e Boleto
+**bancobrasil** | Transferência e Boleto
+
 
 ## Status das Transações
 
