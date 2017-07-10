@@ -10,7 +10,7 @@
 
 ```shell
 # Retrieve visible environments
-curl "https://api.cloud.ca/v1/usage_summary/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
+curl "https://api.cloud.ca/v1/usage_summary/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5?start_date=2015-05-01&end_date=2015-05-15" \
    -H "MC-Api-Key: your_api_key"
 
 # Response body example
