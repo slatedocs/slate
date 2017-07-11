@@ -870,7 +870,7 @@ To change the streaming configuration of the dataset, PATCH the entity's
 table:
 
 Value | Allows schema changes | Accepts streaming rows
-------|----------------------------
+------|-----------------------|------------------------
 `streaming` | No | Yes 
 `finished` | No | No
 `no` | Yes | No
