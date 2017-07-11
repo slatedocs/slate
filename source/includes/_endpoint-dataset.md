@@ -856,7 +856,7 @@ set to `streaming`.
 While a dataset is receiving streams, any other kind of append is disabled 
 returning 409 if attempted. Only streaming data is allowed.
 
-The following operations are also forbidden on a dataset while it is accepting
+The following operations are forbidden on a dataset while it is accepting
 streaming rows in order to protect the schema.
 
  * Deleting public non derived variables
@@ -864,6 +864,7 @@ streaming rows in order to protect the schema.
  * Changing variable aliases
  * Deleting categories from categorical variables
  * Changing ID of category IDs
+ * Removing subvariables from an array
 
 To change the streaming configuration of the dataset, PATCH the entity's 
 `streaming` attribute to either `finished` or `no` according to the following 
