@@ -7,8 +7,12 @@
 `GET /usage_summary/organizations/:id`
 
 ```shell
-# Retrieve usage summary
-curl "https://api.cloud.ca/v1/usage_summary/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5?start_date=2017-05-01&end_date=2017-05-15" \
+# Retrieve usage summary in JSON
+curl "https://cloudmc_endpoint/v1/usage_summary/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5?start_date=2017-05-01&end_date=2017-05-15&format=json" \
+   -H "MC-Api-Key: your_api_key"
+
+# Retrieve usage summary in CSV
+curl "https://cloudmc_endpoint/v1/usage_summary/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5?start_date=2017-05-01&end_date=2017-05-15&format=csv" \
    -H "MC-Api-Key: your_api_key"
 
 # Response body example
@@ -35,6 +39,8 @@ organizationId,serviceConnectionId,startDate,endDate,usageType,secondaryType,ser
 
 Retrieve the usage summary records for an organization and all of its sub-organizations for a specific period. The response can be in JSON (default) or CSV format. Additionally, you can aggregate these records using the different query parameters available.
 
+*Note*: Old records are aggregated by day instead of hour. If you try to query those records per hour, then you will receive an empty list.
+
 Attributes | &nbsp;
 ---- | -----------
 `organizationId`<br/>*UUID* | Id of the [organization](#organizations)
@@ -60,5 +66,3 @@ Query Parameters | &nbsp;
 `combine_usage_types`<br/>*boolean* | Sums up all the utility cost per organization and service connection. The following fields are removed from the output: `serviceConnectionPricingId`, `usageType`, `secondaryType`, `utilityUsage` 
 `period`<br/>*String* | The period on which the aggregation is made. HOUR, DAY or PERIOD. The default is HOUR.
 `format`<br/>*String* | JSON or CSV. Defaults to JSON.
-
-Note: Old records are aggregated by day instead of hour. If you try to query those records per hour, then you will receive an empty list.
