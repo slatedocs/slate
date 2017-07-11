@@ -63,7 +63,7 @@ try {
   $collection_requests = Beyonic_Collection_Request::getAll();
 } catch (Beyonic_Exception $e) {
   echo $e->getMessage();
-  echo json_decode($e->responseBody)->detail;
+  echo json_decode($e->responseBody);
 }
 ?>
 ```
