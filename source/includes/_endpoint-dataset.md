@@ -869,11 +869,11 @@ To change the streaming configuration of the dataset, PATCH the entity's
 `streaming` attribute to either `finished` or `no` according to the following 
 table:
 
-Value | Allows schema changes | Accepts streaming rows
-------|-----------------------|------------------------
-`streaming` | No | Yes 
-`finished` | No | No
-`no` | Yes | No
+Value | Allows schema changes | Accepts streaming rows | Next state
+------|-----------------------|------------------------|------------
+`streaming` | No | Yes | `finished`
+`finished` | No | No | `no`
+`no` | Yes | No | - 
 
 Note that the only allowed sequence of states for the  `streaming` attribute
 is `streaming` -> `finished` -> `no`. It cannot be set in any other sequence.
