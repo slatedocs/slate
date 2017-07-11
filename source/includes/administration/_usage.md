@@ -1,4 +1,4 @@
-## Usage summary
+## Usage
 
 <!-------------------- LIST USAGE SUMMARY -------------------->
 
