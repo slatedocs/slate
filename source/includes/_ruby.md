@@ -897,7 +897,7 @@ To isolate data for a staging environment: `SCOUT_NAME="YOUR_APP_NAME (Staging)"
 
 To disable monitoring: `SCOUT_MONITOR=false`.
 
-See the full list of [configuration options](#configuration-options).
+See the full list of [configuration options](#ruby-configuration-options).
 
 ## Disabling a Node
 

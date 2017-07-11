@@ -2,7 +2,7 @@
 
 We're transparent about our uptime and service issues. If you appear to be experiencing issues with our service:
 
-* [Check out status site](http://status.scoutapp.com). You can subscribe to service incidents. 
+* [Check out status site](http://status.scoutapp.com). You can subscribe to service incidents.
 * [Email us](mailto:support@scoutapp.com)
 
 # Contacting Support
@@ -94,7 +94,7 @@ With a few extra steps, you can grant Scout read-only access. Here's how:
 
 ### Does ScoutProf work with Stackprof?
 
-[ScoutProf](#scoutprof) and StackProf are not guaranteed to operate at the same time.  If you wish to use Stackprof, temporarily disable profiling in your config file (`profile: false`) or via environment variables (`SCOUT_PROFILE=false`). See the agent's [configuration options](#configuration-options).
+[ScoutProf](#scoutprof) and StackProf are not guaranteed to operate at the same time.  If you wish to use Stackprof, temporarily disable profiling in your config file (`profile: false`) or via environment variables (`SCOUT_PROFILE=false`). See the agent's [configuration options](#ruby-configuration-options).
 
 ### How is ScoutProf different than Stackprof?
 
