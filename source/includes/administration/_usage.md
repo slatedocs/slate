@@ -61,6 +61,7 @@ Query Parameters (*required*) | &nbsp;
 
 Query Parameters | &nbsp;
 ---------- | -----
+`service_connection_id`<br/>*UUID* | Show usage summary for this service connection
 `include_sub_orgs`<br/>*boolean* | Include usage summary of all its sub-organizations. Defaults to false.
 `include_cost`<br/>*boolean* | Include the utility cost and service connection pricing id fields. Defaults to true.
 `include_free_usage`<br/>*boolean* | Include all summary records that has no cost associated to it (i.e. utilityCost == 0). Defaults to true.
