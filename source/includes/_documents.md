@@ -231,7 +231,7 @@ Quando um documento é criado, o status inicial é `pending` . Ele pode ter os s
 
   Parâmetro |  Descrição
 -------------- | --------------
-**query** |  *Campos disponíveis para [busca](#busca): `amount`, `status`, `created_at`*
+**query** |  *Campos disponíveis para [busca](#busca): `amount`, `status`, `sequence`, `serie`, `created_at`*
 
   > GET https://api.fastnotas.com/v1/documents/
 
