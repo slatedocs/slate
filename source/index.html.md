@@ -19,6 +19,7 @@ subsections:
     - organizations
     - users
     - environments
+    - usage
   cloudstack:
     - compute # Compute section
     - instances
