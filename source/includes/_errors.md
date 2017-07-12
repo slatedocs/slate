@@ -1,4 +1,4 @@
-# Errors
+# Error Handling
 
 > 401 Unauthorized error response due to using a wrong token.
 
