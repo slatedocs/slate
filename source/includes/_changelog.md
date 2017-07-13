@@ -1,5 +1,12 @@
 # Changelog
 
+### 4.2
+
+- added documentation for new by_bookable filters
+- added documentation for new version info
+- added documentation for attendees for tickets
+- added documentation for entry api
+
 ### 4.1
 
 - added documentation for time frames
