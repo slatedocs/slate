@@ -1,6 +1,6 @@
 ## Version
 
-the go~mus API version is _4.1-rc-2_
+the go~mus API version is _4.2_
 
 Note: the current API version is a release candidate, features and specs might change until final release.
 
@@ -17,8 +17,11 @@ curl "https://demo.gomus.de/api/v4/version"
 ```json
 {
     "version": {
-      "system": "2.7.1",
-      "api": "4.1-rc-2"
+        "system": "2.9.1",
+        "api": "4.2",
+        "time": "2017-07-13T19:49:15+02:00",
+        "zone": "Europe/Berlin",
+        "currency": "EUR"
     }
 }
 ```
