@@ -595,7 +595,6 @@ curl "https://demo.gomus.de/api/v4/dates"
 - by_proposal_category_ids (Array of proposal category ids), filter by proposal category, see proposal categories section
 - by_language_ids (Array of language ids), filter by language, see languages section
 - by_categories (Array of category names), filter by categories, see categories section
-- by_online_bookable (Boolean), set to true to get only the online bookable events
 
 ### Available parameters:
 
