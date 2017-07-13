@@ -380,6 +380,7 @@ The calender for a single event provides a fast way to check when the event has 
 ### Available filters:
 
 - by_language_ids (Array of language ids), filter by language, see languages section
+- by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)
 
 ### Available parameters:
 
@@ -595,6 +596,7 @@ curl "https://demo.gomus.de/api/v4/dates"
 - by_proposal_category_ids (Array of proposal category ids), filter by proposal category, see proposal categories section
 - by_language_ids (Array of language ids), filter by language, see languages section
 - by_categories (Array of category names), filter by categories, see categories section
+- by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)
 
 ### Available parameters:
 
@@ -667,7 +669,7 @@ The global calender provides a nice way to check wether dates are available for 
 - by_proposal_category_ids (Array of proposal category ids), filter by proposal category, see proposal categories section
 - by_language_ids (Array of language ids), filter by language, see languages section
 - by_categories (Array of category names), filter by categories, see categories section
-- by_bookable (Boolean, true|false, default: all), filter for bookable dates only
+- by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)
 
 ### Available parameters:
 
