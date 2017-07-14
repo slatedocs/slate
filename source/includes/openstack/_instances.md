@@ -135,6 +135,10 @@ Required | &nbsp;
 `networkId`<br/>*UUID* | The network in which the instance will be created. If you don't have a network, it can be created through the create network API.
 `securityGroupNames`<br/>*Array[string]* | The list of [security groups](#security-groups) to be associated to the instance
 
+Optional | &nbsp;
+------ | -----------
+`userData`<br/>*string* | Data that the user can specify when they launch an instance
+
 #### Associate a floating IP
 
 ```shell
