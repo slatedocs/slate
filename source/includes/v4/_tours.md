@@ -354,13 +354,16 @@ There are three different ways of how the base price for a tour is calculated:
 - scale prices
 - customer type related price ("Entgelttabelle")
 
-plus additional surcharges, e.g. sunday extra, foreign language extra and so on. All prices depend on the date of the tour, the customer type and the language.
+plus additional surcharges, e.g. sunday extra, foreign language extra and so on. All prices depend on the date and time of the tour, participants and the customer type and the language.
 
 ### Available parameters:
 
 - date (`YYYY-MM-DD`), defaults to today
+- time (`HH-MM`), defaults to 12:00
+- participants, defaults to 1
+- price_target_audience_id_id (integer), defaults to default PTA (e.g. "Privatkunde")
 - language_id (integer), defaults to first assigned language of the tour
-
+  
 ### Response
 
 
