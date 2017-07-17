@@ -59,8 +59,9 @@ Sometimes you might need to access data from system objects that contain data su
 
 System Object | Description |  System Name
 --------- | ----------- | --------- 
-Employee Object | Employees stored in Intelex | SysEmployeeEntity
-Location Object | Locations stored in Intelex | SysLocationEntity
+Employees | Intelex Employees | SysEmployeeEntity
+Locations | Intelex locations | SysLocationEntity
+Groups | Intelex Employee groups | SysGroupEntity
 
 ## Requesting Object Data
 
