@@ -109,6 +109,31 @@ Create a router.
 | `name`<br/>*string*                     | The router's name                   |
 | `externalNetworkId`<br/>*UUID*          | The router's external network ID    |
 
+#### Add a router interface
+
+```shell
+curl -X POST \
+    -H "MC-Api-Key: your_api_key" \
+    -H "Content-Type: application/json" \
+    -d "request_body" \
+    "https://api.your.cloudmc/v1/services/compute-os/devel/routers/212eb8d8-80ee-4edd-8bae-1efed8bc5c71?operation=addRouterInterface"
+# Request should look like this:
+```
+```json
+{
+    "networkId": "471eb361-c028-45f5-bd1a-6d05a057624f",
+}
+```
+
+<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/routers/:id?operation=addRouterInterface</code>
+
+Connect a router to a network.
+
+| Attributes                            | Description                         |
+| ------------------------------------- | ----------------------------------- |
+| `networkId`<br/>*UUID*                | The ID of the network to connect    |
+
+
 #### Delete a router
 
 ```shell
