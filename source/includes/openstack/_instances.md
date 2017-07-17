@@ -137,7 +137,7 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------ | -----------
-`userData`<br/>*string* | Data that the user can specify when they launch an instance. User data holds a file that cloud-aware applications in the guest instance can access. One application that uses user data is the cloud-init system, which is available on various Linux systems.
+`userData`<br/>*string* | Data that the user can specify when they launch an instance. User data can be used in the cloud-init system as a script that is run during the initial launch. The user data field can be used to configure SSH keys, user settings, or run a script.
 
 #### Associate a floating IP
 
