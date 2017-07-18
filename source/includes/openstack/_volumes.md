@@ -106,3 +106,39 @@ curl -X DELETE \
 <code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes/:id</code>
 
 Delete a volume
+
+#### Attach a volume to an instance
+
+```shell
+curl -X POST \
+    -H "MC-Api-Key: your_api_key" \
+    -H "Content-Type: application/json" \
+    -d "request_body" \
+    "https://api.your.cloudmc/v1/services/compute-os/devel/volumes/52cfc2f8-5b1f-4833-83cd-a77f55c5ed24?operation=attach"
+# Request should look like this:
+```
+```json
+{
+   "instanceId": "449efafc-0a6f-4f9e-9602-4b9ac2400abd",
+}
+```
+
+<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes/:id?operation=attach</code>
+
+Attach a volume to an instance
+
+Required attributes                | Description                         
+---------------------------------- | -----------------------------------
+`instanceId`<br/>*UUID*            | The instance id
+
+#### Detach a volume from an instance
+
+```shell
+curl -X POST \
+    -H "MC-Api-Key: your_api_key" \
+    "https://api.your.cloudmc/v1/services/compute-os/devel/volumes/52cfc2f8-5b1f-4833-83cd-a77f55c5ed24?operation=detach"
+```
+
+<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes/:id?operation=detach</code>
+
+Detach a volume from an instance
