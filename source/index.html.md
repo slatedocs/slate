@@ -56,6 +56,7 @@ subsections:
     - routers
     - routerInterfaces
     - sshKeys
+    - volumes
     - snapshots
 search: true
 ---
