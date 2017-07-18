@@ -2,13 +2,15 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
+  - php
   - python
-  - javascript
+  - ruby
+  - shell
+
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://www.adback.co/fr/register/'>Sign Up for a Developer token</a>
+  - <a href='https://www.adback.co/fr/admin/api/'>Claim your token here, must be logged</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -25,14 +27,43 @@ We have language bindings in Shell, Ruby, and Python! You can view code examples
 
 This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
+# How it works ?
 
-> To authorize, use this code:
+What's the utility of the API? How it works ?
 
-```ruby
-require 'kittn'
+AdBlock lists are updated regularly so domains or scripts can be blocked in a very untimely manner.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+The API gives a possibility to provide you with functioning domains and scripts in real time. Our system daily verifies the validity of domains and scripts we provide and in case of blocking, automatically allocates the new ones.
+
+Therefore the implementation of the API script has to be done only once and then operates totally autonomously.
+
+![alt text](/images/how.png)
+
+# Script URL and name
+
+> To get script URL and name, use this code:
+
+```php
+<?php
+
+/*
+CONNECT TO YOUR IN-MEMORY DATA STRUCTURE STORE LIKE REDIS
+*/
+$cache = new Redis();
+$cache->connect('host');
+
+/*
+GET DATA FROM EITHER IN YOUR IN-MEMORY DATA STRUCTURE STORE OR THE API
+*/
+if ($cache->has('scriptElement')) {
+    $scriptElement = $cache->hGetAll('scriptElement');
+} else {
+    $scriptElement = json_decode(file_get_contents('https://adback.co/api/script/me?access_token=[token]'), true);
+    foreach ($scriptElement as $key => $value) {
+        $cache->hSet('scriptElement', $key, $value);
+    }
+    $cache->expire('scriptElement', 60*60*24);
+}
 ```
 
 ```python
@@ -41,29 +72,38 @@ import kittn
 api = kittn.authorize('meowmeowmeow')
 ```
 
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+```
+
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+$  wget https://raw.githubusercontent.com/dekalee/adback-bash-refresh/master/adback-refresh-tags
+
+$  chmod +x adback-refresh-tags
+
+$  ./adback-refresh-tags [token] [options]
+
+Options:
+
+    -c: output custom message script (JS output)
+    -a: output analytics script (JS output)
+    -html: change the output method (html output)
+
 ```
 
-```javascript
-const kittn = require('kittn');
+> Make sure to replace `[token]` with your API token.
 
-let api = kittn.authorize('meowmeowmeow');
-```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+With shell, you can just execute bash script from [this repo](https://github.com/dekalee/adback-bash-refresh/blob/master/adback-refresh-tags)
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+[here](https://www.adback.co/fr/admin/api/) your can get your personal API `[token]`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>[token]</code> with your personal API token.
 </aside>
+
 
 # Kittens
 
