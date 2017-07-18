@@ -5,6 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - php
   - python
   - ruby
+  - java
   - shell
 
 
@@ -39,241 +40,149 @@ Therefore the implementation of the API script has to be done only once and then
 
 ![alt text](/images/how.png)
 
-# Script URL and name
+# Implement AdBack tags !
 
-> To get script URL and name, use this code:
+## 1) Get script name and url
+
+> get script URL and name, store it in your preferred local cache provider:
 
 ```php
+
 <?php
 
-/*
-CONNECT TO YOUR IN-MEMORY DATA STRUCTURE STORE LIKE REDIS
-*/
+/* here we use redis to cache api requests */
 $cache = new Redis();
 $cache->connect('host');
 
-/*
-GET DATA FROM EITHER IN YOUR IN-MEMORY DATA STRUCTURE STORE OR THE API
-*/
-if ($cache->has('scriptElement')) {
-    $scriptElement = $cache->hGetAll('scriptElement');
-} else {
-    $scriptElement = json_decode(file_get_contents('https://adback.co/api/script/me?access_token=[token]'), true);
-    foreach ($scriptElement as $key => $value) {
-        $cache->hSet('scriptElement', $key, $value);
-    }
-    $cache->expire('scriptElement', 60*60*24);
+$scriptElements = json_decode(file_get_contents('https://adback.co/api/script/me?access_token=[token]'), true);
+foreach ($scriptElements as $key => $value) {
+    $cache->hSet('scriptElement', $key, $value);
+}
+$cache->expire('scriptElement', 60*60*24);
+
+```
+
+```python
+wip
+```
+
+```ruby
+wip
+```
+
+```java
+wip
+```
+
+```shell
+
+curl -X "GET" 'https://adback.co/api/script/me?access_token=[token]'
+
+```
+
+> The above API call returns JSON structured like this:
+
+```json
+{
+  "analytics_domain": "example.url.com",
+  "analytics_script": "scriptname",
+  "message_domain": "example.url.com",
+  "message_script": "scriptname",
+  "autopromo_banner_domain": "example.url.com",
+  "autopromo_banner_script": "scriptname",
+  "product_domain": "example.url.com",
+  "product_script": "scriptname"
 }
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```shell
-$  wget https://raw.githubusercontent.com/dekalee/adback-bash-refresh/master/adback-refresh-tags
-
-$  chmod +x adback-refresh-tags
-
-$  ./adback-refresh-tags [token] [options]
-
-Options:
-
-    -c: output custom message script (JS output)
-    -a: output analytics script (JS output)
-    -html: change the output method (html output)
-
-```
-
-> Make sure to replace `[token]` with your API token.
-
-
-With shell, you can just execute bash script from [this repo](https://github.com/dekalee/adback-bash-refresh/blob/master/adback-refresh-tags)
-
-[here](https://www.adback.co/fr/admin/api/) your can get your personal API `[token]`
-
-<aside class="notice">
-You must replace <code>[token]</code> with your personal API token.
-</aside>
-
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://adback.co/api/script/me`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Required | Description
+--------- | -------- | -----------
+access_token | true | Personal token for authentication, [here](https://www.adback.co/fr/admin/api/) your can get your token
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+
+<aside class="notice">
+You should use cache storage to limit api calls.
 </aside>
 
-## Get a Specific Kitten
 
-```ruby
-require 'kittn'
+## 2) Generate
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
+> generate autopromo script from cache:
+
+```php
+
+<?php
+
+/* here we use redis to cache api requests */
+$cache = new Redis();
+$cache->connect('host');
+
+if ($cache->has('scriptElement')) {
+    $scriptElements = $cache->hGetAll('scriptElement');
+    $autopromoBannerDomain = $scriptElements['autopromo_banner_domain'];
+    $autopromoBannerScript = $scriptElements['autopromo_banner_script'];
+    
+    $autopromoBannerCode = 
+<<< EOS
+        (function (a,d){var s,t;s=d.createElement('script');
+        s.src=a;s.async=1;
+        t=d.getElementsByTagName('script')[0];
+        t.parentNode.insertBefore(s,t);
+        })("https://$autopromoBannerDomain/$autopromoBannerScript.js", document);
+EOS;
+}
+
 ```
 
 ```python
-import kittn
+```
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
+```ruby
+```
+
+```java
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+
 ```
 
-```javascript
-const kittn = require('kittn');
+### Generate autopromo script from cache
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
 
-> The above command returns JSON structured like this:
+<aside class="warning">You should setup cron task or service to reshresh tag every 6 hours</aside>
 
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
 
-This endpoint retrieves a specific kitten.
+## 3) Display
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+```php
 
-### HTTP Request
+<?php
 
-`GET http://example.com/kittens/<ID>`
+/* add a div where you want to display your banner */
+echo "<div data-tag='test'></div>";
 
-### URL Parameters
+/* display script */
+echo "<script>$autopromoBannerCode</script>";
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
 ```
 
 ```python
-import kittn
+```
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
+```ruby
+```
+
+```java
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+Display autopromo banner AdBack script
