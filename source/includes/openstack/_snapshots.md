@@ -45,7 +45,7 @@ Attributes | &nbsp;
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://api.your.cloudmc/v1/services/compute-os/devel/snapshots/22f53310-798d-4029-bb00-747a52d2a376"
+    "https://api.your.cloudmc/v1/services/compute-os/devel/snapshots/4b41c7de-b2a8-4cb7-82ce-46685b07921d"
 
 Response body:
 ```
