@@ -17,13 +17,11 @@ includes:
 search: true
 ---
 
-# Introduction
+# Overview
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to Sunlight's API! Use our api to create groups, invite users to a group, see the activities of a group's users and many other things.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+The api is organized around REST and was built under the [JSON API](http://jsonapi.org/) specifications, for this reason our api requires the use of the JSON API media type [application/vnd.api+json](https://www.iana.org/assignments/media-types/application/vnd.api+json) for exchanging data.
 
 # Authentication
 
@@ -95,7 +93,7 @@ let api = kittn.authorize('meowmeowmeow');
 let kittens = api.kittens.get();
 ```
 
-> The above command returns JSON structured like this:
+> The command above returns a structured JSON like this:
 
 ```json
 [
@@ -161,7 +159,7 @@ let api = kittn.authorize('meowmeowmeow');
 let max = api.kittens.get(2);
 ```
 
-> The above command returns JSON structured like this:
+> The command above returns a structured JSON like this:
 
 ```json
 {
@@ -216,7 +214,7 @@ let api = kittn.authorize('meowmeowmeow');
 let max = api.kittens.delete(2);
 ```
 
-> The above command returns JSON structured like this:
+> The command above returns a structured JSON like this:
 
 ```json
 {
