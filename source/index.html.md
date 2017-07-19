@@ -4,7 +4,6 @@ title: API Reference
 language_tabs: # must be one of https://git.io/vQNgJ
   - php
   - python
-  - ruby
   - java
   - shell
 
@@ -72,15 +71,13 @@ $cache->expire('scriptElement', 60 * 60 * 6);
 wip
 ```
 
-```ruby
-wip
-```
-
 ```java
 wip
 ```
 
 ```shell
+
+# curl command
 
 curl -X "GET" 'https://adback.co/api/script/me?access_token=[token]'
 
@@ -122,6 +119,16 @@ If API doesn't return all script names or URL, please check your configuration <
 
 <aside class="warning">You should setup cron task or service to refresh tag every 6 hours</aside>
 
+### Code logic :
+
+* connect to your cache provider (here Redis)
+
+* call AdBack API to get tags information's 
+
+* Cache all information
+
+* set cache expiry time to 6 hours
+
 
 ## 2) Analytics script
 
@@ -154,16 +161,9 @@ EOS;
 /* display script */
 echo "<script>$analyticsScriptCode</script>";
 
-
 ```
 
 ```python
-
-wip
-
-```
-
-```ruby
 
 wip
 
@@ -182,7 +182,16 @@ wip
 ```
 
 
-## 3) Message script (pop-up for adblockers desactivation)
+### Code logic :
+
+* connect to your cache provider (here Redis)
+
+* get script names and URL
+
+* generate and display tag
+
+
+## 3) Message script
 
 
 > generate message script from cache:
@@ -222,12 +231,6 @@ wip
 
 ```
 
-```ruby
-
-wip
-
-```
-
 ```java
 
 wip
@@ -239,6 +242,18 @@ wip
 wip
 
 ```
+
+
+### Code logic :
+
+* connect to your cache provider (here Redis)
+
+* get script names and URL
+
+* generate and display tag
+
+
+<aside class="notice">You should configure your message after tag installation <a href="https://www.adback.co/en/monitoring/custom">here</a></aside>
 
 
 ## 4) Autopromo banner script
@@ -284,12 +299,6 @@ wip
 
 ```
 
-```ruby
-
-wip
-
-```
-
 ```java
 
 wip
@@ -301,6 +310,18 @@ wip
 wip
 
 ```
+
+
+### Code logic :
+
+* connect to your cache provider (here Redis)
+
+* get script names and URL
+
+* generate and display tag
+
+
+<aside class="notice">You should create a new banner after tag installation <a href="https://www.adback.co/en/autopromo/banners">here</a></aside>
 
 
 ## 5) Product flow script
@@ -332,18 +353,15 @@ EOS;
     }
 }
 
+/* add div where you want to display product flow */
+echo "<div data-tag='tag'></div>";
+
 /* display product flow script */
 echo "<script>$productFlowCode</script>";
 
 ```
 
 ```python
-
-wip
-
-```
-
-```ruby
 
 wip
 
@@ -360,3 +378,16 @@ wip
 wip
 
 ```
+
+
+### Code logic :
+
+* connect to your cache provider (here Redis)
+
+* get script names and URL
+
+* generate and display tag
+
+
+ 
+<aside class="notice">You should contact our sales team to activate the product flow after tag installation at <a href="mailto:support@adback.co">support@adback.co</a></aside>
