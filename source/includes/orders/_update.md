@@ -88,7 +88,7 @@ This endpoint updates an order.
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
-| shipping | yes | [Shipping](#shipping) object |
+| shipping | yes | [Shipping](#shipping-object) object |
 
 ### Returns
 

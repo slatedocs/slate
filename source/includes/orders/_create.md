@@ -7,6 +7,9 @@ curl -X POST \
 -H 'Authorization: Bearer <TOKEN>' \
 -H 'Content-Type: application/json' \
 -d '{
+  "shipping": {
+    "phone_number": "+14185800893"
+  },
   "line_items": [
     {
       "quantity": 1,
@@ -22,6 +25,9 @@ https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/orders
 const dirtylemon = require('dirtylemon');
 
 dirtylemon.orders.create({CUSTOMER_ID}, {
+  shipping: {
+    phone_number: "+14185800893"
+  },
   line_items: [
     {
       quantity: 1,
@@ -103,8 +109,24 @@ This endpoint creates an order:
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
+| shipping  | no | [Shipping](#shipping-object) object |
 | line_items | yes | List of at least one `Line item` objects. |
 | coupon | no | String |
+
+### Shipping object
+
+| Attribute | Type | Required |
+| --------- | -------- | ------------ |
+| name         | string |  |
+| company      | string |  |
+| phone_number | string |  |
+| email        | string |  |
+| street1      | string |  |
+| street2      | string |  |
+| city         | string |  |
+| state        | string |  |
+| country      | string |  |
+| zip          | string |  |
 
 ### Line item object
 
