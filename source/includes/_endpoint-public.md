@@ -43,9 +43,9 @@ subdomain's available configurations, if any; if none exists, the body will be e
         },
         "palette": {
             "brand": {
-                "system": "#FFAABB",
-                "data": "#G4EEBB",
-                "warning": "#BAA5E7"
+                "primary": "#FFAABB",
+                "secondary": "#G4EEBB",
+                "message": "#BAA5E7"
             }
         },
         "manifest": {}
