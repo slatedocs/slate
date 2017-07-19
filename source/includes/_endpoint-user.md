@@ -87,5 +87,61 @@ If the user ID does not match the current signed in user, an 403 Forbidden will 
 
 ##### User Datasets
 
+`/account/users/{id}/datasets/`
+
+This URL is only accessible and available to account admins. 
+
+This Shoji catalog lists all the datasets that are owned by this user.
+
 
 ##### User Visible datasets
+
+`/users/{id}/visible_datasets/`
+
+This endpoint is only available and accessible to account admins.
+
+Returns a Shoji catalog listing all the datasets (archived or not) that a any
+user has access to, either via direct share, via team access or project membership.
+
+```json
+{
+    "https://app.crunch.io/api/datasets/wsx345/": {
+        "name": "survey data",
+        "last_access_time": "2017-02-25",
+        "access_type": {
+            "teams": ["https://app.crunch.io/api/teams/abx/"],
+            "project": "https://app.crunch.io/api/projects/qwe/",
+            "direct": true
+        },
+        "permissions": {
+          "edit": true,
+          "view": true,
+          "change_permissions": true
+        }
+    },
+    "https://app.crunch.io/api/datasets/a2c4b2/": {
+        "name": "responses dataset",
+        "last_access_time": "2016-11-09",
+        "access_type": {
+            "teams": [],
+            "project": null,
+            "direct": true
+        },
+        "permissions": {
+          "edit": false,
+          "view": true,
+          "change_permissions": false
+        }
+    }
+}
+```
+
+The tuples contain information of the type of access the user has to each 
+dataset via the `access_type` attribute. It includes:
+ 
+ * The list of teams that provide access to this dataset
+ * The project that provides access to this dataset or null
+ * If the user has a direct share to this dataset
+ 
+The `permissions` attribute indicates the final coalesced permissions this 
+user enjoys on the given dataset.
