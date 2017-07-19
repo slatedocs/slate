@@ -53,7 +53,7 @@ GET /account/
 }
 ```
 
-##### Applications
+#### Applications
 
 ```http
 GET /account/applications/
@@ -101,7 +101,7 @@ Attributes `name` and `subdomain` are required; `palette` and `manifest` are opt
 app (see below).
 
 
-#### Application entity
+##### Application entity
 
 ```http
 GET /account/applications/app_id/
@@ -148,7 +148,7 @@ manifest  | object| Optional, contains further client configurations
 
 
 
-#### Change application logo
+##### Change application logo
 
 ```http
 POST /account/applications/app_id/logo/
@@ -441,3 +441,37 @@ GET /account/teams/
   }
 }
 ```
+
+### Account Collaborators
+
+This catalog lists all the users that are not members of the account that have
+access to any of the account's datasets, projects or teams.
+
+```http
+GET /account/collaborators/
+```
+
+Each element in the catalog tuple links to the user's entity endpoint and 
+has the name and email attribute.
+
+```json
+{
+  "element": "shoji:catalog",
+  "index": {
+        "https://app.crunch.io/api/users/cc9161/": {
+          "name": "John doe",
+          "email": "user1@example.com",
+          "active": true,
+        },
+        "https://app.crunch.io/api/users/a598c7/": {
+          "name": "John notdoe",
+          "email": "user2@example.com",
+          "active": true,
+        }
+  }
+}
+```
+
+To disable collaborators, it is possible to PATCH `active` set to `false` for
+users in the catalog.
+
