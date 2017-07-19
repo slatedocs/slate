@@ -41,9 +41,15 @@ Therefore the implementation of the API script has to be done only once and then
 
 # Implement AdBack tags !
 
-## 1) Get script name and url
+## 1) Get script names and URL
 
-> get script URL and name, store it in your preferred local cache provider:
+AdBack provide 4 different scripts that you can generate and display from your server.
+
+Here is the fist step to implement AdBack solution.
+
+Call AdBack API to get script names and URL, store it in your preferred local cache provider.
+
+> get scripts names and URL, store it in your preferred local cache provider:
 
 ```php
 
@@ -54,10 +60,11 @@ $cache = new Redis();
 $cache->connect('host');
 
 $scriptElements = json_decode(file_get_contents('https://adback.co/api/script/me?access_token=[token]'), true);
+/** @var array $scriptElements */
 foreach ($scriptElements as $key => $value) {
     $cache->hSet('scriptElement', $key, $value);
 }
-$cache->expire('scriptElement', 60*60*24);
+$cache->expire('scriptElement', 60 * 60 * 6);
 
 ```
 
@@ -109,10 +116,17 @@ access_token | true | Personal token for authentication, [here](https://www.adba
 You should use cache storage to limit api calls.
 </aside>
 
+<aside class="notice">
+If API doesn't return all script names or URL, please check your configuration <a href="https://www.adback.co/en/integration/admin/activation">here</a> and make sure all tags are activated.
+</aside>
 
-## 2) Generate
+<aside class="warning">You should setup cron task or service to refresh tag every 6 hours</aside>
 
-> generate autopromo script from cache:
+
+## 2) Analytics script
+
+
+> generate analytics script from cache:
 
 ```php
 
@@ -122,20 +136,24 @@ You should use cache storage to limit api calls.
 $cache = new Redis();
 $cache->connect('host');
 
+$analyticsScriptCode = '';
 if ($cache->has('scriptElement')) {
     $scriptElements = $cache->hGetAll('scriptElement');
-    $autopromoBannerDomain = $scriptElements['autopromo_banner_domain'];
-    $autopromoBannerScript = $scriptElements['autopromo_banner_script'];
+    $analyticsDomain = $scriptElements['analytics_domain'];
+    $analyticsScript = $scriptElements['analytics_script'];
     
-    $autopromoBannerCode = 
-<<< EOS
+    $analyticsScriptCode = <<<EOS
         (function (a,d){var s,t;s=d.createElement('script');
         s.src=a;s.async=1;
         t=d.getElementsByTagName('script')[0];
         t.parentNode.insertBefore(s,t);
-        })("https://$autopromoBannerDomain/$autopromoBannerScript.js", document);
+        })("https://$analyticsDomain/$analyticsScript.js", document);
 EOS;
 }
+
+/* display script */
+echo "<script>$analyticsScriptCode</script>";
+
 
 ```
 
@@ -163,19 +181,96 @@ wip
 
 ```
 
-### Generate autopromo script from cache
+
+## 3) Message script (pop-up for adblockers desactivation)
 
 
-<aside class="warning">You should setup cron task or service to reshresh tag every 6 hours</aside>
-
-
-## 3) Display
+> generate message script from cache:
 
 ```php
 
 <?php
 
-/* add a div where you want to display your banner */
+/* here we use redis to cache api requests */
+$cache = new Redis();
+$cache->connect('host');
+
+$messageCode = '';
+if ($cache->has('scriptElement')) {
+    $scriptElements = $cache->hGetAll('scriptElement');
+    if (isset($scriptElements['message_script'])) {
+        $messageDomain = $scriptElements['message_domain'];
+        $messageScript = $scriptElements['message_script'];
+        $messageCode = <<<EOS
+        (function (a,d){var s,t;s=d.createElement(‘script’);
+        s.src=a;s.async=1;
+        t=d.getElementsByTagName('script')[0];
+        t.parentNode.insertBefore(s,t);
+        })("https://$messageDomain/$messageScript.js", document);
+EOS;
+    }
+}
+
+/* display script */
+echo "<script>$messageCode</script>";
+
+```
+
+```python
+
+wip
+
+```
+
+```ruby
+
+wip
+
+```
+
+```java
+
+wip
+
+```
+
+```shell
+
+wip
+
+```
+
+
+## 4) Autopromo banner script
+
+
+> generate autopromo banner script from cache:
+
+```php
+
+<?php
+
+/* here we use redis to cache api requests */
+$cache = new Redis();
+$cache->connect('host');
+
+$autopromoBannerCode = '';
+if ($cache->has('scriptElement')) {
+    $scriptElements = $cache->hGetAll('scriptElement');
+    if (isset($scriptElements['autopromo_banner_script'])) {
+    $autopromoBannerDomain = $scriptElements['autopromo_banner_domain'];
+    $autopromoBannerScript = $scriptElements['autopromo_banner_script'];
+    $autopromoBannerCode = <<<EOS
+        (function (a,d){var s,t;s=d.createElement('script');
+        s.src=a;s.async=1;
+        t=d.getElementsByTagName('script')[0];
+        t.parentNode.insertBefore(s,t);
+        })("https://$autopromoBannerDomain/$autopromoBannerScript.js", document);
+EOS;
+    }
+}
+
+/* add div where you want to display your banner */
 echo "<div data-tag='test'></div>";
 
 /* display script */
@@ -207,4 +302,61 @@ wip
 
 ```
 
-Display autopromo banner AdBack script
+
+## 5) Product flow script
+
+
+> generate product flow script from cache:
+
+```php
+
+<?php
+
+/* here we use redis to cache api requests */
+$cache = new Redis();
+$cache->connect('host');
+
+$productFlowCode = '';
+if ($cache->has('scriptElement')) {
+    $scriptElements = $cache->hGetAll('scriptElement');
+    if (isset($scriptElements['product_script'])) {
+        $productDomain = $scriptElements['product_domain'];
+        $productScript = $scriptElements['product_script'];
+        $productFlowCode = <<<EOS
+        (function (a,d){var s,t;s=d.createElement(‘script’);
+        s.src=a;s.async=1;
+        t=d.getElementsByTagName('script')[0];
+        t.parentNode.insertBefore(s,t);
+        })("https://$productDomain/$productScript.js", document);
+EOS;
+    }
+}
+
+/* display product flow script */
+echo "<script>$productFlowCode</script>";
+
+```
+
+```python
+
+wip
+
+```
+
+```ruby
+
+wip
+
+```
+
+```java
+
+wip
+
+```
+
+```shell
+
+wip
+
+```
