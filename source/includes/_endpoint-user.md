@@ -58,7 +58,7 @@ If the user ID does not match the current signed in user, an 403 Forbidden will 
 
 ##### Expropriate a user
 
-An account admin can expropriate a user from the same account which will change
+An account admin can expropriate a user from the same account. This will change
 ownership of all of the affected user's teams, projects and datasets to a new
 owner.
 
