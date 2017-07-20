@@ -115,11 +115,11 @@ Call AdBack API to get script names and URL, store it in your preferred local ca
 
 * set cache expiry time to 6 hours
 
-### HTTP Request
+### HTTP Request:
 
 `GET https://adback.co/api/script/me`
 
-### Query Parameters
+### Query Parameters:
 
 Parameter | Required | Description
 --------- | -------- | -----------
@@ -185,6 +185,7 @@ wip
 {{ adback_generate_scripts() }}
 ```
 
+AdBack analytics provide unique data on adblock users (blocked pages, types of adblockers, Ghostery users, acceptable ads Eyeo users, precise repartition on desktop and mobile adblocker users, etc)
 
 ### Code logic:
 
@@ -255,6 +256,8 @@ wip
 {{ adback_generate_scripts() }}
 ```
 
+The custom message allows to dialog with adblock users, through a smart paywall able tu push several alternatives (whilsting tutorial, video watching).
+
 ### Code logic:
 
 * connect to your cache provider (here Redis)
@@ -267,15 +270,41 @@ wip
 
 * [optional] create adback.perimeter variable and set the perimeter
 
-### Script Parameters
+* [optional] add custom class to your `<body>` if CONTENT LIMITATION is check
+
+### Script Parameters:
 
 Parameter | Required | Description
 --------- | -------- | -----------
 adback.perimeter | No | Variable you can set to display message on certain pages of your site, perimeter can be configured <a href="https://www.adback.co/en/monitoring/custom">here</a>
 
-Back-office configuration example:
+Back office configuration example:
 
 ![message perimeter](/images/perimeter_message.png)
+
+### Specific format - restriction content message:
+
+You can display text inside the article content and show only the 400 first character of an article for example.
+
+> restricted body example:
+
+```html
+<!-- article example -->
+<body class="test_restriction_content">
+    Section 1.10.32 du "De Finibus Bonorum et Malorum" de Ciceron (45 av. J.-C.)
+
+    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
+    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
+    Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui 
+    ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, 
+    adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
+    Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi 
+    consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, 
+    vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+</body>
+```
+
+![content restriction](/images/content_restriction.png)
 
 <aside class="notice">You should configure your message after tag installation, <a href="https://www.adback.co/en/monitoring/custom">here</a>
 you can see a preview of all your messages and publish / unpublish it</aside>
@@ -348,6 +377,8 @@ wip
 {{ adback_generate_autopromo_banner_script() }}
 ```
 
+Our auto-promo banners permit to display ads for premium campaigns or your own content on blocked ads placements.
+
 ![Autopromo](/images/autopromo.png)
 
 ### Code logic:
@@ -364,11 +395,11 @@ Parameter | Required | Description
 --------- | -------- | -----------
 data-tag='' | Yes | Variable you must set to display one banner, data-tag takes one "perimeter" and can be configured <a href="https://www.adback.co/en/autopromo/banners">here</a>
 
-Back-office configuration example:
+Back office configuration example:
 
-![Autopromo perimeter](/images/perimeter_autopromo.png)
+![Autopromo perimeter](/images/autopromo_perimeter.png)
 
-<aside class="notice">You should create a new banner after tag installation <a href="https://www.adback.co/en/autopromo/banners">here</a></aside>
+<aside class="notice">You can display a new banner only after tag(s) installation <a href="https://www.adback.co/en/autopromo/banners">here</a></aside>
 
 
 ## 5) Product flow script
@@ -425,6 +456,8 @@ wip
 ```twig
     Not implemented yet
 ```
+
+Our product-flow displays automatically contextual ads on the blocked ads placements.
 
 ### Code logic:
 
