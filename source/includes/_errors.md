@@ -45,6 +45,7 @@ Error Code | Meaning
 404 | Not Found -- You are attempting to access a resource that doesn't exit. Check the url for your request.
 405 | Method Not Allowed -- You are attempting to use an invalid method. For example, you might be trying to POST to a readonly endpoint.
 406 | Not Acceptable -- You requested a format that isn't supported. Check the "Accept" header of your request, and try to ensure that you are using json format for your requests.
+409 | Conflict -- You sent a duplicate request. Check your Duplicate-Check-Key
 415 | Unsupported Media Type -- Check the content-type of the data you are sending.
 429 | Throttled -- You are sending too many requests in a short period of time. Slow down!
 500 | Internal Server Error -- We had a problem with our server. Try again later.
