@@ -118,7 +118,7 @@ archived | bool | false | Whether the dataset is "archived" or active
 permissions | object | `{"edit": false}` | Authorizations on this dataset; see [Permissions](#permissions)
 owner_id | URL |  | URL of the user entity of the dataset's owner
 owner_name | string | "" | That user's name, for display
-size | object | `{"rows": null, "columns": null}` | Dimensions of the dataset
+size | object | `{"rows": 0, "columns": 0, "unfiltered_rows": 0}` | Dimensions of the dataset
 creation_time | ISO-8601 string |  | Datetime at which the dataset was created in Crunch
 modification_time | ISO-8601 string | | Datetime of the last modification for this dataset globally
 start_date | ISO-8601 string |  | Date/time for which the data in the dataset corresponds
@@ -409,7 +409,7 @@ archived | bool | false | Whether the dataset is "archived" or active
 permissions | object | `{"edit": false}` | Authorizations on this dataset; see [Permissions](#permissions)
 owner_id | URL |  | URL of the user entity of the dataset's owner
 owner_name | string | "" | That user's name, for display
-size | object | `{"rows": null, "columns": null}` | Dimensions of the dataset
+size | object | `{"rows": 0, "unfiltered_rows", "columns": 0}` | Dimensions of the dataset
 creation_time | ISO-8601 string |  | Datetime at which the dataset was created in Crunch
 start_date | ISO-8601 string |  | Date/time for which the data in the dataset corresponds
 end_date | ISO-8601 string |  | End date/time of the dataset's data, defining a start_date:end_date range
