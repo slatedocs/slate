@@ -424,7 +424,7 @@ wip
 ```
 
 ```twig
-    Not implemented yet
+{{ adback_generate_product_script() }}
 ```
 
 
