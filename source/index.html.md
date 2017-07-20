@@ -9,8 +9,8 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 
 toc_footers:
-  - <a href='https://www.adback.co/fr/register/'>Sign Up for a Developer token</a>
-  - <a href='https://www.adback.co/fr/admin/api/'>Claim your token here, must be logged</a>
+  - <a href='https://www.adback.co/en/register/'>Sign Up for a Developer token</a>
+  - <a href='https://www.adback.co/en/admin/api/'>Claim your token here, must be logged</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -36,19 +36,13 @@ The API gives a possibility to provide you with functioning domains and scripts 
 
 Therefore the implementation of the API script has to be done only once and then operates totally autonomously.
 
-![alt text](/images/how.png)
+![AdBack schema](/images/how.png)
 
 # Implement AdBack tags !
 
 ## 1) Get script names and URL
 
-AdBack provide 4 different scripts that you can generate and display from your server.
-
-Here is the fist step to implement AdBack solution.
-
-Call AdBack API to get script names and URL, store it in your preferred local cache provider.
-
-> get scripts names and URL, store it in your preferred local cache provider:
+> Here is a sample script:
 
 ```php
 
@@ -98,6 +92,22 @@ curl -X "GET" 'https://adback.co/api/script/me?access_token=[token]'
 }
 ```
 
+AdBack provide 4 different scripts that you can generate and display from your server.
+
+Here is the fist step to implement AdBack solution.
+
+Call AdBack API to get script names and URL, store it in your preferred local cache provider.
+
+### Code logic:
+
+* connect to your cache provider to limit api calls (here Redis)
+
+* call AdBack API to get tags information's 
+
+* Cache all information
+
+* set cache expiry time to 6 hours
+
 ### HTTP Request
 
 `GET https://adback.co/api/script/me`
@@ -106,28 +116,14 @@ curl -X "GET" 'https://adback.co/api/script/me?access_token=[token]'
 
 Parameter | Required | Description
 --------- | -------- | -----------
-access_token | true | Personal token for authentication, [here](https://www.adback.co/fr/admin/api/) your can get your token
+access_token | Yes | Personal token for authentication, [here](https://www.adback.co/en/admin/api/) your can get your token
 
-
-<aside class="notice">
-You should use cache storage to limit api calls.
-</aside>
 
 <aside class="notice">
 If API doesn't return all script names or URL, please check your configuration <a href="https://www.adback.co/en/integration/admin/activation">here</a> and make sure all tags are activated.
 </aside>
 
-<aside class="warning">You should setup cron task or service to refresh tag every 6 hours</aside>
-
-### Code logic :
-
-* connect to your cache provider (here Redis)
-
-* call AdBack API to get tags information's 
-
-* Cache all information
-
-* set cache expiry time to 6 hours
+<aside class="warning">You should setup cron task or service to reenesh tag every 6 hours</aside>
 
 
 ## 2) Analytics script
@@ -158,7 +154,7 @@ if ($cache->has('scriptElement')) {
 EOS;
 }
 
-/* display script */
+/* display tag */
 echo "<script>$analyticsScriptCode</script>";
 
 ```
@@ -182,7 +178,7 @@ wip
 ```
 
 
-### Code logic :
+### Code logic:
 
 * connect to your cache provider (here Redis)
 
@@ -220,8 +216,11 @@ EOS;
     }
 }
 
-/* display script */
+/* display tag */
 echo "<script>$messageCode</script>";
+
+/* script you can set to display message on certain pages of your site (Perimeter) (not required) */
+echo "<script>var adback = adback || {}; adback.perimeter = 'test';</script>";
 
 ```
 
@@ -243,8 +242,16 @@ wip
 
 ```
 
+### Script Parameters
 
-### Code logic :
+Parameter | Required | Description
+--------- | -------- | -----------
+Adback.perimeter | No | Variable you can set to display message on certain pages of your site, perimeter can be configured <a href="https://www.adback.co/en/monitoring/custom">here</a>
+
+![message perimeter](/images/perimeter_message.png)
+
+
+### Code logic:
 
 * connect to your cache provider (here Redis)
 
@@ -253,7 +260,8 @@ wip
 * generate and display tag
 
 
-<aside class="notice">You should configure your message after tag installation <a href="https://www.adback.co/en/monitoring/custom">here</a></aside>
+<aside class="notice">You should configure your message after tag installation, <a href="https://www.adback.co/en/monitoring/custom">here</a>
+you can see a preview of all your messages and publish / unpublish it</aside>
 
 
 ## 4) Autopromo banner script
@@ -285,10 +293,13 @@ EOS;
     }
 }
 
-/* add div where you want to display your banner */
-echo "<div data-tag='test'></div>";
+/* add div where you want to display your banner 1 */
+echo "<div data-tag='perimeter1 (required)'></div>";
 
-/* display script */
+/* add div where you want to display your banner 2 */
+echo "<div data-tag='perimeter2 (required)'></div>";
+
+/* display tag */
 echo "<script>$autopromoBannerCode</script>";
 
 ```
@@ -311,14 +322,24 @@ wip
 
 ```
 
+![Autopromo](/images/autopromo.png)
 
-### Code logic :
+### Script Parameters
+
+Parameter | Required | Description
+--------- | -------- | -----------
+data-tag='' | Yes | Variable you must set to display one banner, data-tag takes one "perimeter" and can be configured <a href="https://www.adback.co/en/autopromo/banners">here</a>
+
+![Autopromo perimeter](/images/perimeter_autopromo.png)
+
+
+### Code logic:
 
 * connect to your cache provider (here Redis)
 
 * get script names and URL
 
-* generate and display tag
+* generate and display tag with one perimeter / banner
 
 
 <aside class="notice">You should create a new banner after tag installation <a href="https://www.adback.co/en/autopromo/banners">here</a></aside>
@@ -353,9 +374,6 @@ EOS;
     }
 }
 
-/* add div where you want to display product flow */
-echo "<div data-tag='tag'></div>";
-
 /* display product flow script */
 echo "<script>$productFlowCode</script>";
 
@@ -380,7 +398,7 @@ wip
 ```
 
 
-### Code logic :
+### Code logic:
 
 * connect to your cache provider (here Redis)
 
