@@ -43,7 +43,7 @@ Therefore the implementation of the API script has to be done only once and then
 
 ## 1) Get script names and URL
 
-> Here is a sample script:
+> sample script:
 
 ```php
 
@@ -115,16 +115,15 @@ Call AdBack API to get script names and URL, store it in your preferred local ca
 
 * set cache expiry time to 6 hours
 
-### HTTP Request
+### HTTP Request:
 
 `GET https://adback.co/api/script/me`
 
-### Query Parameters
+### Query Parameters:
 
 Parameter | Required | Description
 --------- | -------- | -----------
 access_token | Yes | Personal token for authentication, [here](https://www.adback.co/en/admin/api/) your can get your token
-
 
 <aside class="notice">
 If API doesn't return all script names or URL, please check your configuration <a href="https://www.adback.co/en/integration/admin/activation">here</a> and make sure all tags are activated.
@@ -132,11 +131,9 @@ If API doesn't return all script names or URL, please check your configuration <
 
 <aside class="warning">You should setup cron task or service to reenesh tag every 6 hours</aside>
 
-
 ## 2) Analytics script
 
-
-> generate analytics script from cache:
+> sample script:
 
 ```php
 
@@ -188,6 +185,7 @@ wip
 {{ adback_generate_scripts() }}
 ```
 
+AdBack analytics provide unique data on adblock users (blocked pages, types of adblockers, Ghostery users, acceptable ads Eyeo users, precise repartition on desktop and mobile adblocker users, etc)
 
 ### Code logic:
 
@@ -201,7 +199,7 @@ wip
 ## 3) Message script
 
 
-> generate message script from cache:
+> sample script:
 
 ```php
 
@@ -230,7 +228,7 @@ EOS;
 /* display tag */
 echo "<script>$messageCode</script>";
 
-/* script you can set to display message on certain pages of your site (Perimeter) (not required) */
+/* script you can set to display message on certain pages of your site */
 echo "<script>var adback = adback || {}; adback.perimeter = 'test';</script>";
 
 ```
@@ -258,14 +256,7 @@ wip
 {{ adback_generate_scripts() }}
 ```
 
-### Script Parameters
-
-Parameter | Required | Description
---------- | -------- | -----------
-Adback.perimeter | No | Variable you can set to display message on certain pages of your site, perimeter can be configured <a href="https://www.adback.co/en/monitoring/custom">here</a>
-
-![message perimeter](/images/perimeter_message.png)
-
+The custom message allows to dialog with adblock users, through a smart paywall able tu push several alternatives (whilsting tutorial, video watching).
 
 ### Code logic:
 
@@ -273,8 +264,47 @@ Adback.perimeter | No | Variable you can set to display message on certain pages
 
 * get script names and URL
 
-* generate and display tag
+* generate javascript tag
 
+* display tag
+
+* [optional] create adback.perimeter variable and set the perimeter
+
+* [optional] add custom class to your `<body>` if CONTENT LIMITATION is check
+
+### Script Parameters:
+
+Parameter | Required | Description
+--------- | -------- | -----------
+adback.perimeter | No | Variable you can set to display message on certain pages of your site, perimeter can be configured <a href="https://www.adback.co/en/monitoring/custom">here</a>
+
+Back office configuration example:
+
+![message perimeter](/images/perimeter_message.png)
+
+### Specific format - restriction content message:
+
+You can display text inside the article content and show only the 400 first character of an article for example.
+
+> restricted body example:
+
+```html
+<!-- article example -->
+<body class="test_restriction_content">
+    Section 1.10.32 du "De Finibus Bonorum et Malorum" de Ciceron (45 av. J.-C.)
+
+    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
+    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
+    Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui 
+    ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, 
+    adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
+    Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi 
+    consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, 
+    vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+</body>
+```
+
+![content restriction](/images/content_restriction.png)
 
 <aside class="notice">You should configure your message after tag installation, <a href="https://www.adback.co/en/monitoring/custom">here</a>
 you can see a preview of all your messages and publish / unpublish it</aside>
@@ -282,8 +312,7 @@ you can see a preview of all your messages and publish / unpublish it</aside>
 
 ## 4) Autopromo banner script
 
-
-> generate autopromo banner script from cache:
+> sample script:
 
 ```php
 
@@ -348,16 +377,9 @@ wip
 {{ adback_generate_autopromo_banner_script() }}
 ```
 
+Our auto-promo banners permit to display ads for premium campaigns or your own content on blocked ads placements.
+
 ![Autopromo](/images/autopromo.png)
-
-### Script Parameters
-
-Parameter | Required | Description
---------- | -------- | -----------
-data-tag='' | Yes | Variable you must set to display one banner, data-tag takes one "perimeter" and can be configured <a href="https://www.adback.co/en/autopromo/banners">here</a>
-
-![Autopromo perimeter](/images/perimeter_autopromo.png)
-
 
 ### Code logic:
 
@@ -367,14 +389,22 @@ data-tag='' | Yes | Variable you must set to display one banner, data-tag takes 
 
 * generate and display tag with one perimeter / banner
 
+### Script Parameters
 
-<aside class="notice">You should create a new banner after tag installation <a href="https://www.adback.co/en/autopromo/banners">here</a></aside>
+Parameter | Required | Description
+--------- | -------- | -----------
+data-tag='' | Yes | Variable you must set to display one banner, data-tag takes one "perimeter" and can be configured <a href="https://www.adback.co/en/autopromo/banners">here</a>
+
+Back office configuration example:
+
+![Autopromo perimeter](/images/autopromo_perimeter.png)
+
+<aside class="notice">You can display a new banner only after tag(s) installation <a href="https://www.adback.co/en/autopromo/banners">here</a></aside>
 
 
 ## 5) Product flow script
 
-
-> generate product flow script from cache:
+> sample script:
 
 ```php
 
@@ -427,6 +457,7 @@ wip
 {{ adback_generate_product_script() }}
 ```
 
+Our product-flow displays automatically contextual ads on the blocked ads placements.
 
 ### Code logic:
 
@@ -435,7 +466,5 @@ wip
 * get script names and URL
 
 * generate and display tag
-
-
 
 <aside class="notice">You should contact our sales team to activate the product flow after tag installation at <a href="mailto:support@adback.co">support@adback.co</a></aside>
