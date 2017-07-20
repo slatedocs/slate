@@ -6,6 +6,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - python
   - java
   - shell
+  - twig
 
 
 toc_footers:
@@ -75,6 +76,12 @@ wip
 
 curl -X "GET" 'https://adback.co/api/script/me?access_token=[token]'
 
+```
+
+```twig
+    # Launch the Symfony command to refesh the tags
+    
+    $ php app/console adback:api-client:refresh-tag
 ```
 
 > The above API call returns JSON structured like this:
@@ -177,6 +184,10 @@ wip
 
 ```
 
+```twig
+{{ adback_generate_scripts() }}
+```
+
 
 ### Code logic:
 
@@ -240,6 +251,11 @@ wip
 
 wip
 
+```
+
+```twig
+<!-- Make sure to include it only once -->
+{{ adback_generate_scripts() }}
 ```
 
 ### Script Parameters
@@ -322,6 +338,16 @@ wip
 
 ```
 
+```twig
+<!-- add div where you want to display your banner 1 -->
+<div data-tag='perimeter1 (required)'></div>
+
+<!-- add div where you want to display your banner 2 -->
+<div data-tag='perimeter2 (required)'></div>
+
+{{ adback_generate_autopromo_banner_script() }}
+```
+
 ![Autopromo](/images/autopromo.png)
 
 ### Script Parameters
@@ -397,6 +423,10 @@ wip
 
 ```
 
+```twig
+    Not implemented yet
+```
+
 
 ### Code logic:
 
@@ -407,5 +437,5 @@ wip
 * generate and display tag
 
 
- 
+
 <aside class="notice">You should contact our sales team to activate the product flow after tag installation at <a href="mailto:support@adback.co">support@adback.co</a></aside>
