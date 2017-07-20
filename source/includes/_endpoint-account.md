@@ -87,9 +87,9 @@ If the requested subdomain is unavailable or invalid, the server will return a 4
       "subdomain": "mycompany",
       "palette": {
           "brand": {
-                "system": "#FFAABB", // Color of links, interactable things
-                "data": "#G4EEBB", // Titles and such
-                "warning": "#BAA5E7"
+                "primary": "#FFAABB", // Color of links, interactable things
+                "secondary": "#G4EEBB", // Titles and such
+                "message": "#BAA5E7"
             }
       },
       "manifest": {}
@@ -123,9 +123,9 @@ the configured application.
         },
         "palette": {
             "brand": {
-                "system": "#FFAABB", // Color of links, interactable things
-                "data": "#G4EEBB", // Titles and such
-                "warning": "#BAA5E7"
+                "primary": "#FFAABB", // Color of links, interactable things
+                "secondary": "#G4EEBB", // Titles and such
+                "message": "#BAA5E7"
             }
         },
         "manifest": {}
@@ -143,7 +143,7 @@ Attribute | Type | Description
 ----------|------|----------------
 name      | string| Name of the configured application on the given subdomain
 logo      | object| Contains two attributes, `large`, `small` and `favicon`, with different resolution company logos
-palette   | object| Contains three colors, `system`, `data` and `warning`, under the `brand` attribute to theme the web app
+palette   | object| Contains three colors, `primary`, `secondary` and `message`, under the `brand` attribute to theme the web app
 manifest  | object| Optional, contains further client configurations
 
 
