@@ -1,6 +1,6 @@
 //= require ../lib/_jquery
 //= require ../lib/_imagesloaded.min
-;(function () {
+(function () {
   'use strict';
 
   var loaded = false;
