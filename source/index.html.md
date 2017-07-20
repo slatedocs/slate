@@ -43,7 +43,7 @@ Therefore the implementation of the API script has to be done only once and then
 
 ## 1) Get script names and URL
 
-> Here is a sample script:
+> sample script:
 
 ```php
 
@@ -125,18 +125,15 @@ Parameter | Required | Description
 --------- | -------- | -----------
 access_token | Yes | Personal token for authentication, [here](https://www.adback.co/en/admin/api/) your can get your token
 
-
 <aside class="notice">
 If API doesn't return all script names or URL, please check your configuration <a href="https://www.adback.co/en/integration/admin/activation">here</a> and make sure all tags are activated.
 </aside>
 
 <aside class="warning">You should setup cron task or service to reenesh tag every 6 hours</aside>
 
-
 ## 2) Analytics script
 
-
-> generate analytics script from cache:
+> sample script:
 
 ```php
 
@@ -201,7 +198,7 @@ wip
 ## 3) Message script
 
 
-> generate message script from cache:
+> sample script:
 
 ```php
 
@@ -230,7 +227,7 @@ EOS;
 /* display tag */
 echo "<script>$messageCode</script>";
 
-/* script you can set to display message on certain pages of your site (Perimeter) (not required) */
+/* script you can set to display message on certain pages of your site */
 echo "<script>var adback = adback || {}; adback.perimeter = 'test';</script>";
 
 ```
@@ -258,23 +255,27 @@ wip
 {{ adback_generate_scripts() }}
 ```
 
-### Script Parameters
-
-Parameter | Required | Description
---------- | -------- | -----------
-Adback.perimeter | No | Variable you can set to display message on certain pages of your site, perimeter can be configured <a href="https://www.adback.co/en/monitoring/custom">here</a>
-
-![message perimeter](/images/perimeter_message.png)
-
-
 ### Code logic:
 
 * connect to your cache provider (here Redis)
 
 * get script names and URL
 
-* generate and display tag
+* generate javascript tag
 
+* display tag
+
+* [optional] create adback.perimeter variable and set the perimeter
+
+### Script Parameters
+
+Parameter | Required | Description
+--------- | -------- | -----------
+adback.perimeter | No | Variable you can set to display message on certain pages of your site, perimeter can be configured <a href="https://www.adback.co/en/monitoring/custom">here</a>
+
+Back-office configuration example:
+
+![message perimeter](/images/perimeter_message.png)
 
 <aside class="notice">You should configure your message after tag installation, <a href="https://www.adback.co/en/monitoring/custom">here</a>
 you can see a preview of all your messages and publish / unpublish it</aside>
@@ -282,8 +283,7 @@ you can see a preview of all your messages and publish / unpublish it</aside>
 
 ## 4) Autopromo banner script
 
-
-> generate autopromo banner script from cache:
+> sample script:
 
 ```php
 
@@ -350,15 +350,6 @@ wip
 
 ![Autopromo](/images/autopromo.png)
 
-### Script Parameters
-
-Parameter | Required | Description
---------- | -------- | -----------
-data-tag='' | Yes | Variable you must set to display one banner, data-tag takes one "perimeter" and can be configured <a href="https://www.adback.co/en/autopromo/banners">here</a>
-
-![Autopromo perimeter](/images/perimeter_autopromo.png)
-
-
 ### Code logic:
 
 * connect to your cache provider (here Redis)
@@ -367,14 +358,22 @@ data-tag='' | Yes | Variable you must set to display one banner, data-tag takes 
 
 * generate and display tag with one perimeter / banner
 
+### Script Parameters
+
+Parameter | Required | Description
+--------- | -------- | -----------
+data-tag='' | Yes | Variable you must set to display one banner, data-tag takes one "perimeter" and can be configured <a href="https://www.adback.co/en/autopromo/banners">here</a>
+
+Back-office configuration example:
+
+![Autopromo perimeter](/images/perimeter_autopromo.png)
 
 <aside class="notice">You should create a new banner after tag installation <a href="https://www.adback.co/en/autopromo/banners">here</a></aside>
 
 
 ## 5) Product flow script
 
-
-> generate product flow script from cache:
+> sample script:
 
 ```php
 
@@ -427,7 +426,6 @@ wip
     Not implemented yet
 ```
 
-
 ### Code logic:
 
 * connect to your cache provider (here Redis)
@@ -435,7 +433,5 @@ wip
 * get script names and URL
 
 * generate and display tag
-
-
 
 <aside class="notice">You should contact our sales team to activate the product flow after tag installation at <a href="mailto:support@adback.co">support@adback.co</a></aside>
