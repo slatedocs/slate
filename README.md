@@ -54,8 +54,11 @@ bundle exec middleman server
 
 # OR run this to run with vagrant
 vagrant up
-```
 
+# OR run this to run  with docker
+docker build -t slate_container .
+docker run  -p 4567:4567 slate_container bundle exec middleman server --watcher-force-polling --watcher-latency=1
+```
 You can now see the docs at http://localhost:4567. Whoa! That was fast!
 
 Now that Slate is all set up on your machine, you'll probably want to learn more about [editing Slate markdown](https://github.com/lord/slate/wiki/Markdown-Syntax), or [how to publish your docs](https://github.com/lord/slate/wiki/Deploying-Slate).
