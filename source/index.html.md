@@ -281,7 +281,7 @@ curl -i https://rubiconmd.com/api/v1/referrals?access_token="AAAAAA"
 ]
 ```
 
-This endpoint retrieves all the case referrals for the authenticated user.
+This endpoint returns all the `Consults` tied to `Assignments` a specialist has participated on as individual or as a `Specialist Panel` member, given that the assignments are not in `revoked`, `time_out` or `declined` state. Will include those consults anyway if the specialist had submitted a `Response` for them.
 
 ### HTTP Request
 
@@ -567,7 +567,7 @@ curl -i https://rubiconmd.com/api/v1/provider_cases/CASE_ID/attachments?access_t
   "thumb_340": "https://rubicon.s3.amazonaws.com/attachments/images/000/000/000/thumb_340/ee83c9baf45b73138bc6c771a.jpg?",
   "thumb_180": "https://rubicon.s3.amazonaws.com/attachments/images/000/000/000/thumb_180/ee83c9baf45b73138bc6c771a.jpg?",
   "response_id": null
-}  
+}
 ```
 
 Retrieves all the images associated with a specific case.
@@ -623,7 +623,7 @@ curl -X POST
   "thumb_340": "https://rubicon.s3.amazonaws.com/attachments/images/000/000/000/thumb_340/ee83c9baf45b73138bc6c771a.jpg?",
   "thumb_180": "https://rubicon.s3.amazonaws.com/attachments/images/000/000/000/thumb_180/ee83c9baf45b73138bc6c771a.jpg?",
   "response_id": null
-}  
+}
 ```
 
 This allows you post an image in a specific case (as a pcp).
