@@ -37,6 +37,127 @@ Basic Auth é trivial para usar de bibliotecas cliente HTTP. Ferramentas como cU
 <aside class="notice">
 <b>Você deve manter sua chave API segura não importa o quê! NÃO COMPARTILHE sua chave de API com ninguém, nem mesmo nos canais de suporte do iPag. Ninguém que represente de forma legítima o iPag nunca lhe pedirá sua chave da API!</b>
 </aside>
+....
+
+##Consultar Assinatura
+
+**`GET`** `/service/v1?ctrl=assinatura&action=consultar&id_assinatura=<id_assinatura>`
+
+> Exemplo para Consultar Assinatura
+
+```shell
+curl -X GET \
+  'https://sandbox.ipag.com.br/service/v1?ctrl=assinatura&action=consultar&id_assinatura=105' \
+  -H 'authorization: Basic am9uYXRoYW24NzFGMC00QzMyODdEMy0xQzE1N0VFMy1BQ0FFTEY2MD0yRkU0'
+```
+
+```php
+<?php
+
+$url = 'https://sandbox.ipag.com.br/service/v1?ctrl=assinatura&action=consultar&id_assinatura=105';
+$username = <LOGIN_IPAG>;
+$password = <API_KEY>;
+
+$options  = array(
+    'http' => array(
+        'method'  => 'GET',
+        'user_agent' => 'My Own Application',
+        'header'  => "Authorization: Basic " . base64_encode("$username:$password")
+    )
+);
+$context = stream_context_create($options);
+
+$result = file_get_contents($url, null, $context);
+
+print_r($result);
+```
+
+Parâmetro | valor  | type  | Obrigatório | Descrição
+--------- | ----- | ----- | ----------- | ---------
+ctrl      | assinatura | string| sim | controlador selecionado
+action    | consultar | string| sim | ação selecionado
+id_assinatura | Ex.: 1000 | string| sim/não | ID de referência da assinatura (obrigatório caso não tenha profile_id)
+profile_id      | Ex.: 99282 | string| não | ID de referência da assinatura, criado pelo usuário (obrigatório caso não o tenha id_assinatura)
+
+##Resposta - Consultar Assinatura (XML)
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<retorno>
+    <code>000</code>
+    <message>success</message>
+    <id>105</id>
+    <profile_id>20170327084547</profile_id>
+    <is_active>1</is_active>
+    <description>Assinatura #20170327084547</description>
+    <value>3.00</value>
+    <billing_date>04</billing_date>
+    <frequency>1</frequency>
+    <interval>month</interval>
+    <token>e738-d7d28e1b-c08be6c7-80823d54-5a5d</token>
+    <credit_card>
+        <bin>000000</bin>
+        <last4>0004</last4>
+        <expiry>10-2017</expiry>
+        <brand>visa</brand>
+    </credit_card>
+    <billing>
+        <payment_1>
+            <number>1</number>
+            <expiry_date>2017-03-27</expiry_date>
+            <value>4.00</value>
+            <is_payed>1</is_payed>
+            <payed_value>4.00</payed_value>
+            <payed_date>2017-03-27</payed_date>
+            <description>Assinatura #20170327084547</description>
+            <transaction>
+                <installment_number>1</installment_number>
+                <transaction_id>993921</transaction_id>
+                <payed_value>4.00</payed_value>
+                <payed_date>2017-03-27</payed_date>
+            </transaction>
+        </payment_1>
+    </billing>
+</retorno>
+```
+
+Parâmetro | Descrição
+--------- | ---------
+retorno | *Container*
+code | Código de retorno (000 = sucesso)
+message | Mensagem de retorno
+id | ID da assinatura criado pelo iPag
+profile_id | ID da assinatura criado pelo usuário
+is_active | Status atual da assinatura (1 = ativo, 0 = inativo)
+description | Descrição da assinatura
+value | Valor recorrente cobrado no período
+billing_date | Dia de vencimento
+frequency | Frequência que ocorrem as cobranças
+interval | Intevalo de tempo que ocorrem as cobranças (day, week, month)
+token | Token de cartão vinculado a assinatura
+credit_card | *Container*
+bin | Bin do cartão de crédito
+last4 | Last4 do cartão de crédito
+expiry | Data de validade do cartão de crédito
+brand | Operadora do cartão
+billing | *Container*
+payment_1* | *Container* (Poderá repetir)
+number | Número do pagamento
+expiry_date | Vencimento do pagamento
+value | Valor do pagamento
+is_payed | 1 = Pago, 0 = Não pago
+payed_value | Valor Pago
+payed_date | Data que foi realizado o pagamento
+description | Descrição do pagamento
+transaction | *Container*
+installment_number | Número de parcelas escolhido no pagamento
+transaction_id | ID da transação vinculada no iPag
+payed_value | Valor pago na transação
+payed_date | Data que foi realizada a transação
+
+<aside class="notice">
+    * Para cada pagamento realizado na assinatura terá um container <b>payment_</b>
+</aside>
 
 ##Ativar Assinatura
 
@@ -120,10 +241,10 @@ retorno | *Container*
 code | Código de retorno (000 = sucesso)
 message | Mensagem de retorno
 id | ID da assinatura criado pelo iPag
-profile_id | ID da assiatura criado pelo usuário
+profile_id | ID da assinatura criado pelo usuário
 is_active | Status atual da assinatura (1 = ativo, 0 = inativo)
-description | Descrição da Assinatura
-value | Valor recorrênte cobrado no período
+description | Descrição da assinatura
+value | Valor recorrente cobrado no período
 billing_date | Dia de vencimento
 frequency | Frequência que ocorrem as cobranças
 interval | Intevalo de tempo que ocorrem as cobranças (day, week, month)
@@ -132,7 +253,7 @@ credit_card | *Container*
 bin | Bin do cartão de crédito
 last4 | Last4 do cartão de crédito
 expiry | Data de validade do cartão de crédito
-brand | Marca do cartão
+brand | Operadora do cartão
 
 ##Inativar Assinatura
 
@@ -216,10 +337,10 @@ retorno | *Container*
 code | Código de retorno (000 = sucesso)
 message | Mensagem de retorno
 id | ID da assinatura criado pelo iPag
-profile_id | ID da assiatura criado pelo usuário
+profile_id | ID da assinatura criado pelo usuário
 is_active | Status atual da assinatura (1 = ativo, 0 = inativo)
-description | Descrição da Assinatura
-value | Valor recorrênte cobrado no período
+description | Descrição da assinatura
+value | Valor recorrente cobrado no período
 billing_date | Dia de vencimento
 frequency | Frequência que ocorrem as cobranças
 interval | Intevalo de tempo que ocorrem as cobranças (day, week, month)
@@ -228,7 +349,7 @@ credit_card | *Container*
 bin | Bin do cartão de crédito
 last4 | Last4 do cartão de crédito
 expiry | Data de validade do cartão de crédito
-brand | Marca do cartão
+brand | Operadora do cartão
 
 ##Alterar Data de Vencimento da Assinatura
 
@@ -314,10 +435,10 @@ retorno | *Container*
 code | Código de retorno (000 = sucesso)
 message | Mensagem de retorno
 id | ID da assinatura criado pelo iPag
-profile_id | ID da assiatura criado pelo usuário
+profile_id | ID da assinatura criado pelo usuário
 is_active | Status atual da assinatura (1 = ativo, 0 = inativo)
-description | Descrição da Assinatura
-value | Valor recorrênte cobrado no período
+description | Descrição da assinatura
+value | Valor recorrente cobrado no período
 billing_date | Dia de vencimento
 frequency | Frequência que ocorrem as cobranças
 interval | Intevalo de tempo que ocorrem as cobranças (day, week, month)
@@ -326,7 +447,7 @@ credit_card | *Container*
 bin | Bin do cartão de crédito
 last4 | Last4 do cartão de crédito
 expiry | Data de validade do cartão de crédito
-brand | Marca do cartão
+brand | Operadora do cartão
 
 ##Alterar Valor da Assinatura
 
@@ -386,7 +507,7 @@ profile_id      | Ex.: 99282 | string| não | ID de referência da assinatura, c
 <?xml version="1.0" encoding="utf-8"?>
 <retorno>
     <code>000</code>
-    <message>Novo valor da Assinatura alterado com sucesso.</message>
+    <message>Novo valor da assinatura alterado com sucesso.</message>
     <id>1000</id>
     <profile_id>10002000</profile_id>
     <is_active>1</is_active>
@@ -411,10 +532,10 @@ retorno | *Container*
 code | Código de retorno (000 = sucesso)
 message | Mensagem de retorno
 id | ID da assinatura criado pelo iPag
-profile_id | ID da assiatura criado pelo usuário
+profile_id | ID da assinatura criado pelo usuário
 is_active | Status atual da assinatura (1 = ativo, 0 = inativo)
-description | Descrição da Assinatura
-value | Valor recorrênte cobrado no período
+description | Descrição da assinatura
+value | Valor recorrente cobrado no período
 billing_date | Dia de vencimento
 frequency | Frequência que ocorrem as cobranças
 interval | Intevalo de tempo que ocorrem as cobranças (day, week, month)
@@ -423,7 +544,7 @@ credit_card | *Container*
 bin | Bin do cartão de crédito
 last4 | Last4 do cartão de crédito
 expiry | Data de validade do cartão de crédito
-brand | Marca do cartão
+brand | Operadora do cartão
 
 ##Gerar Token Único para Assinatura
 
@@ -581,10 +702,10 @@ retorno | *Container*
 code | Código de retorno (000 = sucesso)
 message | Mensagem de retorno
 id | ID da assinatura criado pelo iPag
-profile_id | ID da assiatura criado pelo usuário
+profile_id | ID da assinatura criado pelo usuário
 is_active | Status atual da assinatura (1 = ativo, 0 = inativo)
-description | Descrição da Assinatura
-value | Valor recorrênte cobrado no período
+description | Descrição da assinatura
+value | Valor recorrente cobrado no período
 billing_date | Dia de vencimento
 frequency | Frequência que ocorrem as cobranças
 interval | Intevalo de tempo que ocorrem as cobranças (day, week, month)
@@ -593,7 +714,7 @@ credit_card | *Container*
 bin | Bin do cartão de crédito
 last4 | Last4 do cartão de crédito
 expiry | Data de validade do cartão de crédito
-brand | Marca do cartão
+brand | Operadora do cartão
 
 ##Tabela de Erros (Integração Assinatura)
 
