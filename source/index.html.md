@@ -225,7 +225,7 @@ let max = api.kittens.delete(2);
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint deletes a specific kitten.
 
 ### HTTP Request
 
