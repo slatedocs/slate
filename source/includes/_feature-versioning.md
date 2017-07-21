@@ -291,13 +291,13 @@ already common between the two datasets, and won't try to replay those. You can
 even make further changes to the forked dataset and merge again and again.
 
 Use the "autorollback" member to tell Crunch how to handle merge conflicts. If
-an action cannot be replayed on the original dataset (typically because it has
- had conflicting changes or has been rolled back), then if "autorollback" is
- true (the default), the original dataset will be reverted to the previous
- state before any of the new changes were applied. If "autorollback" is false,
- the dataset is left in the half-merged state, which allows you to investigate
-  the problem, repair it if possible (in either dataset as needed), and then
-  POST again to continue the merge.
+an action cannot be replayed on the original dataset (typically because it 
+had conflicting changes or has been rolled back), then if "autorollback" is 
+true (the default), the original dataset will be reverted to the previous 
+state before any of the new changes were applied. If "autorollback" is false, 
+the dataset is left to the last action that it could successfully play, 
+which allows you to investigate the problem, repair it if possible (in either dataset as needed), 
+and then POST again to continue the merge from that point.
 
 Per-user settings (filters, decks and slides, variable permissions etc) are copied to the new dataset when you fork. However, changes to them are not merged back at this time. Please reach out to us as you experiment so we can fine-tune which details to fork and merge as we discover use cases.
 
