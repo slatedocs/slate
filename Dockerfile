@@ -19,4 +19,4 @@ COPY . /usr/src/app
 
 EXPOSE 4567
 
-# CMD bundle exec middleman server -p 4567 --watcher-force-polling --watcher-latency=1 --verbose
+CMD bundle exec middleman server -p 4567 --watcher-force-polling --watcher-latency=1 --verbose

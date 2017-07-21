@@ -1,9 +1,0 @@
-version: '2'
-services:
-  web:
-    build: .
-    command: bundle exec middleman server -p 4567 --watcher-force-polling --watcher-latency=1 --verbose
-    ports:
-      - "4567:4567"
-    volumes:
-      - .:/usr/src/app
