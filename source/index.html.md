@@ -338,11 +338,11 @@ EOS;
     }
 }
 
-/* add div where you want to display your banner 1 */
-echo "<div data-tag='perimeter1 (required)'></div>";
+/* add div where you want to display your banner header_728x90 */
+echo "<div data-tag='header_728x90'></div>";
 
-/* add div where you want to display your banner 2 */
-echo "<div data-tag='perimeter2 (required)'></div>";
+/* add div where you want to display your banner side_300x250_actu */
+echo "<div data-tag='side_300x250_actu'></div>";
 
 /* display tag */
 echo "<script>$autopromoBannerCode</script>";
@@ -368,11 +368,11 @@ wip
 ```
 
 ```twig
-<!-- add div where you want to display your banner 1 -->
-<div data-tag='perimeter1 (required)'></div>
+<!-- add div where you want to display your banner header_728x90 -->
+<div data-tag='header_728x90'></div>
 
-<!-- add div where you want to display your banner 2 -->
-<div data-tag='perimeter2 (required)'></div>
+<!-- add div where you want to display your banner side_300x250_actu -->
+<div data-tag='side_300x250_actu'></div>
 
 {{ adback_generate_autopromo_banner_script() }}
 ```
@@ -389,7 +389,7 @@ Our auto-promo banners permit to display ads for premium campaigns or your own c
 
 * generate and display tag with one perimeter / banner
 
-### Script Parameters
+### Script Parameters:
 
 Parameter | Required | Description
 --------- | -------- | -----------
@@ -399,7 +399,15 @@ Back office configuration example:
 
 ![Autopromo perimeter](/images/autopromo_perimeter.png)
 
-<aside class="notice">You can display a new banner only after tag(s) installation <a href="https://www.adback.co/en/autopromo/banners">here</a></aside>
+### data-tag naming:
+
+You should name your data-tag like back office example, location _ dimension _ campaign promo name,
+
+`header_728x90  ou  side_300x250_actu`
+
+Make sure this names match the back office configuration.
+
+<aside class="notice">After tag installation, you must create new banner <a href="https://www.adback.co/en/autopromo/banners">here</a> for every data-tag that you integrate before.</aside>
 
 
 ## 5) Product flow script
