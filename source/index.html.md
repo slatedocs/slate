@@ -5,6 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - php
   - python
   - java
+  - ruby
   - shell
   - twig
 
@@ -27,9 +28,9 @@ Welcome to the AdBack API documentation! You can use our API to access AdBack AP
 We have language bindings in PHP, Shell, Ruby, Java, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 
-# How it works ?
+# How it works?
 
-What's the utility of the API? How it works ?
+What's the utility of the API? How it works?
 
 AdBlock lists are updated regularly so domains or scripts can be blocked in a very untimely manner.
 
@@ -39,7 +40,7 @@ Therefore the implementation of the API script has to be done only once and then
 
 ![AdBack schema](/images/how.png)
 
-# Implement AdBack tags !
+# Implement AdBack tags!
 
 ## 1) Get script names and URL
 
@@ -68,6 +69,21 @@ wip
 
 ```java
 wip
+```
+
+```ruby
+require "redis"
+require "json"
+require 'open-uri'
+
+# here we use redis to cache api requests
+cache = Redis.new(:host => "HOST")
+script = open('https://adback.co/api/script/me?access_token=[token]').read
+script_elements = JSON.parse(script)
+script_elements.each do |key, value|
+  cache.hset('script_element', key, value)
+end
+cache.expire('script_element', 60 * 60 * 6)
 ```
 
 ```shell
@@ -99,9 +115,9 @@ curl -X "GET" 'https://adback.co/api/script/me?access_token=[token]'
 }
 ```
 
-AdBack provide 4 different scripts that you can generate and display from your server.
+AdBack provides 4 different scripts that you can generate and display from your server.
 
-Here is the fist step to implement AdBack solution.
+Here is the first step to implement AdBack solution.
 
 Call AdBack API to get script names and URL, store it in your preferred local cache provider.
 
@@ -111,7 +127,7 @@ Call AdBack API to get script names and URL, store it in your preferred local ca
 
 * call AdBack API to get tags information's 
 
-* Cache all information
+* cache all information
 
 * set cache expiry time to 6 hours
 
@@ -173,6 +189,28 @@ wip
 
 wip
 
+```
+
+```ruby
+# here we use redis to cache api requests
+cache = Redis.new(:host => "HOST")
+analytics_script_code = '';
+if cache.exists('script_element')
+  script_elements = cache.hgetall('script_element');
+  analytics_domain = script_elements['analytics_domain'];
+  analytics_script = script_elements['analytics_script'];
+    
+  analytics_script_code = """
+  (function (a,d){var s,t;s=d.createElement('script');
+  s.src=a;s.async=1;
+  t=d.getElementsByTagName('script')[0];
+  t.parentNode.insertBefore(s,t);
+  })(\"https://#{analytics_domain}/#{analytics_script}.js\", document);
+  """
+end
+
+# display tag
+puts "<script>#{analytics_script_code}</script>"
 ```
 
 ```shell
@@ -242,6 +280,33 @@ wip
 ```java
 
 wip
+
+```
+
+```ruby
+# here we use redis to cache api requests
+cache = Redis.new(:host => "HOST")
+message_code = '';
+if cache.exists('script_element')
+  script_elements = cache.hgetall('script_element');
+  unless script_elements['message_script'].nil?
+    message_domain = script_elements['message_domain'];
+    message_script = script_elements['message_script'];
+    message_code = """
+    (function (a,d){var s,t;s=d.createElement('script');
+    s.src=a;s.async=1;
+    t=d.getElementsByTagName('script')[0];
+    t.parentNode.insertBefore(s,t);
+    })(\"https://#{message_domain}/#{message_script}.js\", document);
+    """
+  end
+end
+
+# display tag
+puts "<script>#{message_code}</script>"
+
+# script you can set to display message on certain pages of your site
+puts "<script>var adback = adback || {}; adback.perimeter = 'test';</script>"
 
 ```
 
@@ -361,6 +426,36 @@ wip
 
 ```
 
+
+```ruby
+# here we use redis to cache api requests
+cache = Redis.new(:host => "HOST")
+autopromo_banner_code = '';
+if cache.exists('script_element')
+  script_elements = cache.hgetall('script_element');
+  unless script_elements['autopromo_banner_script'].nil?
+    autopromo_banner_domain = script_elements['autopromo_banner_domain'];
+    autopromo_banner_script = script_elements['autopromo_banner_script'];
+    autopromo_banner_code = """
+    (function (a,d){var s,t;s=d.createElement('script');
+    s.src=a;s.async=1;
+    t=d.getElementsByTagName('script')[0];
+    t.parentNode.insertBefore(s,t);
+    })(\"https://#{autopromo_banner_domain}/#{autopromo_banner_script}.js\", document);
+    """
+  end
+end
+
+# add div where you want to display your banner header_728x90
+puts "<div data-tag='header_728x90'></div>"
+
+# add div where you want to display your banner side_300x250_actu
+puts "<div data-tag='side_300x250_actu'></div>"
+
+# display tag
+puts "<script>#{autopromo_banner_code}</script>"
+```
+
 ```shell
 
 wip
@@ -452,6 +547,30 @@ wip
 ```java
 
 wip
+
+```
+
+```ruby
+# here we use redis to cache api requests
+cache = Redis.new(:host => "HOST")
+product_flow_code = '';
+if cache.exists('script_element')
+  script_elements = cache.hgetall('script_element');
+  unless script_elements['product_script'].nil?
+    product_domain = script_elements['product_domain'];
+    product_script = script_elements['product_script'];
+    product_flow_code = """
+    (function (a,d){var s,t;s=d.createElement('script');
+    s.src=a;s.async=1;
+    t=d.getElementsByTagName('script')[0];
+    t.parentNode.insertBefore(s,t);
+    })(\"https://#{product_domain}/#{product_script}.js\", document);
+    """
+  end
+end
+
+# display tag
+puts "<script>#{product_flow_code}</script>"
 
 ```
 
