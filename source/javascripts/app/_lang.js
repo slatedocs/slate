@@ -98,7 +98,7 @@ under the License.
   // gets the language set in the query string
   function getLanguageFromQueryString() {
     if (location.search.length >= 1) {
-      var language = parseURL(location.search).language
+      var language = parseURL(location.search).language;
       if (language) {
         return language;
       } else if (jQuery.inArray(location.search.substr(1), languages) != -1) {
