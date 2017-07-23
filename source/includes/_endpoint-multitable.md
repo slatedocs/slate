@@ -57,7 +57,7 @@ to copy:
 
 ```json
 {
-    "element": "shoji:catalog",
+    "element": "shoji:entity",
     "body": {
         "name": "Name of my copy",
         "multitable": "/api/datasets/123/multitables/7ab1e/"
