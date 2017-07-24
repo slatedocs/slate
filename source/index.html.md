@@ -90,7 +90,7 @@ cache.expire('script_element', 60 * 60 * 6)
 
 # curl command
 
-curl -X "GET" 'https://adback.co/api/script/me?access_token=[token]'
+curl -X "GET" 'https://adback.co/api/script/me?access_token="token"'
 
 ```
 
@@ -215,7 +215,13 @@ puts "<script>#{analytics_script_code}</script>"
 
 ```shell
 
-wip
+# bash script to api consumption
+$ wget https://raw.githubusercontent.com/adback-anti-adblock-solution/adback-bash-refresh/master/adback-refresh-tags
+
+$ chmod +x adback-refresh-tags
+
+# display analytics tag with option -a and -html
+$ ./adback-refresh-tags "token" -a -html
 
 ```
 
@@ -312,7 +318,13 @@ puts "<script>var adback = adback || {}; adback.perimeter = 'test';</script>"
 
 ```shell
 
-wip
+# bash script to api consumption
+$ wget https://raw.githubusercontent.com/adback-anti-adblock-solution/adback-bash-refresh/master/adback-refresh-tags
+
+$ chmod +x adback-refresh-tags
+
+# display message tag with option -c and -html
+$ ./adback-refresh-tags "token" -c -html
 
 ```
 
@@ -458,7 +470,13 @@ puts "<script>#{autopromo_banner_code}</script>"
 
 ```shell
 
-wip
+# bash script to api consumption
+$ wget https://raw.githubusercontent.com/adback-anti-adblock-solution/adback-bash-refresh/master/adback-refresh-tags
+
+$ chmod +x adback-refresh-tags
+
+# display autopromo banner tag with option -b and -html
+$ ./adback-refresh-tags "token" -b -html
 
 ```
 
@@ -576,7 +594,13 @@ puts "<script>#{product_flow_code}</script>"
 
 ```shell
 
-wip
+# bash script to api consumption
+$ wget https://raw.githubusercontent.com/adback-anti-adblock-solution/adback-bash-refresh/master/adback-refresh-tags
+
+$ chmod +x adback-refresh-tags
+
+# display product flow tag with option -p and -html
+$ ./adback-refresh-tags "token" -p -html
 
 ```
 
