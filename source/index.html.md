@@ -47,7 +47,6 @@ Therefore the implementation of the API script has to be done only once and then
 > sample script:
 
 ```php
-
 <?php
 
 /* here we use redis to cache api requests */
@@ -60,15 +59,22 @@ foreach ($scriptElements as $key => $value) {
     $cache->hSet('scriptElement', $key, $value);
 }
 $cache->expire('scriptElement', 60 * 60 * 6);
-
 ```
 
 ```python
-wip
+import redis
+import requests
+
+'''here we use redis to cache api requests'''
+r_server = redis.Redis('host')
+script_elements = requests.get('https://adback.co/api/script/me?access_token=[token]').json()
+for (key, value) in script_elements.items():
+    r_server.set('script_element', key, value)
+r_server.expire('scriptElement', 60 * 60 * 6)
 ```
 
 ```java
-wip
+
 ```
 
 ```ruby
@@ -87,17 +93,15 @@ cache.expire('script_element', 60 * 60 * 6)
 ```
 
 ```shell
-
 # curl command
 
 curl -X "GET" 'https://adback.co/api/script/me?access_token="token"'
-
 ```
 
 ```twig
-    # Launch the Symfony command to refesh the tags
-    
-    $ php app/console adback:api-client:refresh-tag
+# Launch the Symfony command to refesh the tags
+
+$ php app/console adback:api-client:refresh-tag
 ```
 
 > The above API call returns JSON structured like this:
@@ -154,7 +158,6 @@ If API doesn't return all script names or URL, please check your configuration <
 ```php
 
 <?php
-
 /* here we use redis to cache api requests */
 $cache = new Redis();
 $cache->connect('host');
@@ -176,22 +179,40 @@ EOS;
 
 /* display tag */
 echo "<script>$analyticsScriptCode</script>";
-
 ```
 
 ```python
+import redis
+import requests
 
-wip
+'''here we use redis to cache api requests'''
+r_server = redis.Redis('host')
+analytics_script_code = ''
+if r_server.exists('script_element'):
+    script_elements = r_server.hgetall('script_element')
+    analytics_domain = script_elements['analytics_domain']
+    analytics_script = script_elements['analytics_script']
+    
+    analytics_script_code = """
+    (function (a,d){var s,t;s=d.createElement('script');
+    s.src=a;s.async=1;
+    t=d.getElementsByTagName('script')[0];
+    t.parentNode.insertBefore(s,t);
+    })(\"https://${analytics_domain}/${analytics_script}.js\", document);
+    """
 
+# display tag
+print "<script>${analytics_script_code}</script>"
 ```
 
 ```java
-
-wip
-
 ```
 
 ```ruby
+require "redis"
+require "json"
+require 'open-uri'
+
 # here we use redis to cache api requests
 cache = Redis.new(:host => "HOST")
 analytics_script_code = '';
@@ -214,7 +235,6 @@ puts "<script>#{analytics_script_code}</script>"
 ```
 
 ```shell
-
 # bash script to api consumption
 $ wget https://raw.githubusercontent.com/adback-anti-adblock-solution/adback-bash-refresh/master/adback-refresh-tags
 
@@ -222,7 +242,6 @@ $ chmod +x adback-refresh-tags
 
 # display analytics tag with option -a and -html
 $ ./adback-refresh-tags "token" -a -html
-
 ```
 
 ```twig
@@ -246,7 +265,6 @@ AdBack analytics provide unique data on adblock users (blocked pages, types of a
 > sample script:
 
 ```php
-
 <?php
 
 /* here we use redis to cache api requests */
@@ -274,22 +292,40 @@ echo "<script>$messageCode</script>";
 
 /* script you can set to display message on certain pages of your site */
 echo "<script>var adback = adback || {}; adback.perimeter = 'test';</script>";
-
 ```
 
 ```python
+import redis
+import requests
 
-wip
+'''here we use redis to cache api requests'''
+r_server = redis.Redis('host')
+analytics_script_code = ''
+if r_server.exists('script_element'):
+    script_elements = r_server.hgetall('script_element')
+    message_domain = script_elements['message_domain'];
+    message_script = script_elements['message_script'];
 
+    message_code = """
+    (function (a,d){var s,t;s=d.createElement('script');
+    s.src=a;s.async=1;
+    t=d.getElementsByTagName('script')[0];
+    t.parentNode.insertBefore(s,t);
+    })(\"https://${message_domain}/${message_script}.js\", document);
+    """
+
+# display tag
+print "<script>${message_code}</script>"
 ```
 
 ```java
-
-wip
-
 ```
 
 ```ruby
+require "redis"
+require "json"
+require 'open-uri'
+
 # here we use redis to cache api requests
 cache = Redis.new(:host => "HOST")
 message_code = '';
@@ -313,11 +349,9 @@ puts "<script>#{message_code}</script>"
 
 # script you can set to display message on certain pages of your site
 puts "<script>var adback = adback || {}; adback.perimeter = 'test';</script>"
-
 ```
 
 ```shell
-
 # bash script to api consumption
 $ wget https://raw.githubusercontent.com/adback-anti-adblock-solution/adback-bash-refresh/master/adback-refresh-tags
 
@@ -325,7 +359,6 @@ $ chmod +x adback-refresh-tags
 
 # display message tag with option -c and -html
 $ ./adback-refresh-tags "token" -c -html
-
 ```
 
 ```twig
@@ -392,7 +425,6 @@ you can see a preview of all your messages and publish / unpublish it</aside>
 > sample script:
 
 ```php
-
 <?php
 
 /* here we use redis to cache api requests */
@@ -423,23 +455,46 @@ echo "<div data-tag='side_300x250_actu'></div>";
 
 /* display tag */
 echo "<script>$autopromoBannerCode</script>";
-
 ```
 
 ```python
+import redis
+import requests
 
-wip
+'''here we use redis to cache api requests'''
+r_server = redis.Redis('host')
+autopromo_banner_code = ''
+if r_server.exists('script_element'):
+    script_elements = r_server.hgetall('script_element')
+    autopromo_banner_domain = script_elements['autopromo_banner_domain'];
+    autopromo_banner_script = script_elements['autopromo_banner_script'];
+    autopromo_banner_code = """
+    (function (a,d){var s,t;s=d.createElement('script');
+    s.src=a;s.async=1;
+    t=d.getElementsByTagName('script')[0];
+    t.parentNode.insertBefore(s,t);
+    })(\"https://${autopromo_banner_domain}/${autopromo_banner_script}.js\", document);
+    """
 
+'''add div where you want to display your banner header_728x90'''
+print "<div data-tag='header_728x90'></div>"
+
+'''add div where you want to display your banner side_300x250_actu'''
+print "<div data-tag='side_300x250_actu'></div>"
+
+'''display tag'''
+print "<script>${autopromo_banner_code}</script>"
 ```
 
 ```java
-
-wip
-
 ```
 
 
 ```ruby
+require "redis"
+require "json"
+require 'open-uri'
+
 # here we use redis to cache api requests
 cache = Redis.new(:host => "HOST")
 autopromo_banner_code = '';
@@ -469,7 +524,6 @@ puts "<script>#{autopromo_banner_code}</script>"
 ```
 
 ```shell
-
 # bash script to api consumption
 $ wget https://raw.githubusercontent.com/adback-anti-adblock-solution/adback-bash-refresh/master/adback-refresh-tags
 
@@ -477,7 +531,6 @@ $ chmod +x adback-refresh-tags
 
 # display autopromo banner tag with option -b and -html
 $ ./adback-refresh-tags "token" -b -html
-
 ```
 
 ```twig
@@ -528,7 +581,6 @@ Make sure this names match the back office configuration.
 > sample script:
 
 ```php
-
 <?php
 
 /* here we use redis to cache api requests */
@@ -553,22 +605,39 @@ EOS;
 
 /* display product flow script */
 echo "<script>$productFlowCode</script>";
-
 ```
 
 ```python
+import redis
+import requests
 
-wip
+'''here we use redis to cache api requests'''
+r_server = redis.Redis('host')
+product_flow_code = ''
+if r_server.exists('script_element'):
+    script_elements = r_server.hgetall('script_element')
+    product_domain = script_elements['product_domain'];
+    product_script = script_elements['product_script'];
+    product_flow_code = """
+    (function (a,d){var s,t;s=d.createElement('script');
+    s.src=a;s.async=1;
+    t=d.getElementsByTagName('script')[0];
+    t.parentNode.insertBefore(s,t);
+    })(\"https://${product_domain}/${product_script}.js\", document);
+    """
 
+'''display tag'''
+print "<script>${product_flow_code}</script>"
 ```
 
 ```java
-
-wip
-
 ```
 
 ```ruby
+require "redis"
+require "json"
+require 'open-uri'
+
 # here we use redis to cache api requests
 cache = Redis.new(:host => "HOST")
 product_flow_code = '';
@@ -593,7 +662,6 @@ puts "<script>#{product_flow_code}</script>"
 ```
 
 ```shell
-
 # bash script to api consumption
 $ wget https://raw.githubusercontent.com/adback-anti-adblock-solution/adback-bash-refresh/master/adback-refresh-tags
 
@@ -601,7 +669,6 @@ $ chmod +x adback-refresh-tags
 
 # display product flow tag with option -p and -html
 $ ./adback-refresh-tags "token" -p -html
-
 ```
 
 ```twig
