@@ -6,7 +6,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 
 toc_footers:
-  - Innovation Management Team
+  - Web & Digital Banking Team
   - Documentation property of BankVision
 includes:
   - errors
@@ -16,25 +16,20 @@ search: true
 
 # Introduction
 
-Welcome to the BankVision documentation API. If you are reading this page you have been granted permission to use it.  You can use our API to access the corresponding endpoints, which can execute  financial transactions throught our CORE.  In the following  sections you should find every detail about out API endpoints.
+Welcome to the BankVision documentation API. If you are reading this page you have been granted permission to use it.  You can use our API to access the corresponding endpoints, which can execute  financial transactions throught our CORE.  In the following  sections you should find every detail about our API endpoints.
 
-We have language bindings in Java. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have language bindings in curl. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 # Authentication
 
 > To authorize, use this code:
 
 ```ruby
-require 'kittn'
-
+require 'rest-client'
+api = 
 api = Kittn::APIClient.authorize!('meowmeowmeow')
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
 
 ```shell
 # With shell, you can just pass the correct header with each request
@@ -50,20 +45,20 @@ let api = kittn.authorize('meowmeowmeow');
 
 > Make sure to replace `meowmeowmeow` with your API key.
 
-BankVision uses API keys to allow access to the API.
-You can register a new BankVision API token at our [developer portal](http://example.com/developers).
+BankVision uses API authorization key to allow access to the API.
+You can register a new BankVision APP at our [client developer portal](https://api.bankvision.com).
 
 BankVision expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: XAXAXAXAXAXAXA`
+`Authorization: Bearer 1535bcad473aec160d7147d22b426ba8c12a97e5bf580bc779eed87ccca23aaf`
 
 <aside class="notice">
 This token should be refreshed every 24 hours.
 </aside>
 
-BankVision API uses Doorkeeper for authorization porposes. Doorkeeper is an OAuth 2 provider for Rails. It's built on top of Rails engines.
+BankVision API uses Oauth 2.0 for authorization pourposes. OAuth 2.0 is the industry-standard protocol for authorization. OAuth 2.0 focuses on client developer simplicity while providing specific authorization flows for web applications, desktop applications, mobile phones, and living room devices.
 
-**Supported Features**
+**Oauth 2.0 Authentication**
 
 Function | Docs
 --------- | -------
@@ -75,22 +70,83 @@ Resource Owner Password Credentials:  |  http://tools.ietf.org/html/draft-ietf-o
 Client Credentials:  |  http://tools.ietf.org/html/draft-ietf-oauth-v2-22#section-4.4
 Token Revocation Flow:  |  http://tools.ietf.org/html/rfc7009
 
-**Routes in our system**
+**Configuring an Application**
 
- |  |  |  |
---------- | --------- | ------- | -----------
-  |  GET  |  /oauth/authorize/:code(.:format)  |  doorkeeper/authorizations#show
-oauth_authorization  |  GET  |  /oauth/authorize(.:format)  |  doorkeeper/authorizations#new
-  |  POST  |  /oauth/authorize(.:format)  |  doorkeeper/authorizations#create
-  |  DELETE  |  /oauth/authorize(.:format)  |  doorkeeper/authorizations#destroy
-oauth_token  |  POST  |  /oauth/token(.:format)  |  doorkeeper/tokens#create
-oauth_revoke  |  POST  |  /oauth/revoke(.:format)  |  doorkeeper/tokens#revoke
-oauth_applications  |  GET  |  /oauth/applications(.:format)  |  doorkeeper/applications#index
-  |  POST  |  /oauth/applications(.:format)  |  doorkeeper/applications#create
-oauth_application  |  GET  |  /oauth/applications/:id(.:format)  |  doorkeeper/applications#show
-  |  PATCH  |  /oauth/applications/:id(.:format)  |  doorkeeper/applications#update
-  |  PUT  |  /oauth/applications/:id(.:format)  |  doorkeeper/applications#update
-  |  DELETE  |  /oauth/applications/:id(.:format)  |  doorkeeper/applications#destroy
+Bankvision will provide you with the credentials to access our [authorization server](https://api.bankvision.com).
+
+When you create your application, you will then receive two numbers: a client ID and a client secret. These two numbers will be used in your app, so store them as appropriate.
+
+**Revoking Access**
+
+If a user wishes to revoke an authorization, they do it via
+
+`https://api.bankvision.com/oauth/authorized_applications`
+
+Revoking authorization to an app is done through the Bankvision applications page at
+
+`https://api.bankvision.com/oauth/applications`
+
+**Requesting the Grant**
+
+In order to prompt the user to grant the access, we need to open a browser window. That window will open https://api.bankvision.com/oauth/authorize?client_id=XXX&response_type=code&redirect_uri=YYY with the following stand-in values:
+
+Parameter | Info
+----------|---------
+XXX | stands for the client ID received in the previous step.
+YYY | is the callback URI you configured in the previous step. These must match exactly or your request will be rejected.
+
+When the user grants access to your application, that callback URI will be triggered and we will receive our authorization code. When we see callback://bankapp/callback?code=1928dbb28h... we are really only concerned with the business after the equals sign, of course. That is our authorization code.
+
+
+**Using the Access Token**
+For each request to access a protected resource, you will want to add this HTTP header:
+<aside class="notice">
+Authorization: Bearer 09ba487fc3df...
+</aside>
+
+##Getting an Access Token
+**POST /oauth/token**
+
+For this, we will craft a POST request to https://api.bankvision.com/oauth/token that presents our various bits and asks for a reusable token. The required parameters must be passed as form-urlencoded. The required parameters are:
+
+Parameter | Info
+----------|---------
+client_id | The client ID issued in the first step.
+client_secret | The client secret issued in the first step.
+redirect_uri | The callback URI we defined previously.
+grant_type | This is authorization_code in the initial request.
+code | The authorization code received in the previous step.
+
+The response body that comes back looks like this:
+
+```json
+{
+  "access_token":"09ba487fc3df...",
+  "token_type":"bearer",
+  "expires_in":7200,
+  "refresh_token":"8c488ab5f75d61...",
+  "scope":"public",
+  "created_at":"1500926357"
+}
+
+```
+We'll parse out the access_token, refresh_token and expires_in values. The access_token is what we'll set in all our HTTP headers; it will expire in expires_in seconds. Once that period has passed, we use the refresh_token to get a new access_token.
+
+To this end, to keep from re-authorizing each time the app runs, the refresh_token should be persisted somewhere.
+
+##Renewing the Access Token
+
+**POST /oauth/token**
+
+When we need to refresh our token, we will craft a POST request very similar to the one following the authorization grant. Only a few values are different:
+
+Parameter | Info
+----------|----------------
+client_id | The client ID issued in the first step.
+client_secret | The client secret issued in the first step.
+redirect_uri | The callback URI we defined previously.
+grant_type | This was authorization_code in the initial request, but now it'll be refresh_token.
+refresh_token | The saved refresh token.
 
 ##GET Authorization Code
 
