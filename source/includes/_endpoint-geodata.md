@@ -40,6 +40,7 @@ created | timestamp | Time when the item was created
 id | string | Global unique identifier for this deck
 location | uri | Location of crunch-curated geojson/topojson file. Users may need to inspect this actual file to learn about details of the FeatureCollection and individual Features.
 description | string | Any additional information about the geodatum
+metadata | object | Information regarding the actual data provided by the location.  For now, the properties in the geodata features are extracted for the purpose of matching geodata to variable categories.
 
 ### Geodata for common applications
 
@@ -52,6 +53,59 @@ description | string | Any additional information about the geodatum
 - <https://app.crunch.io/api/geodata/2b64724ce81c41c9bdc2436fb0bf6026/>
   **UK Regions** –
   `properties.EER13NM` matches a YouGov stylization of United Kingdom region names.
+
+### Creating new public Geodatum
+
+For users with create dataset privileges, new geodatum can be added.  This will allow you to create new geodatum
+context in crunch for use in analysis.  Note that geodatum created outside of the Crunch domain (ie without a .crunch.io
+domain in the URL) will not be available in whaam due to browser constraints.  If you would like to make your
+geodatum public and have Crunch serve it, please contact us!
+
+Adding a new geodatum is as easy as POSTing it to the geodatum index via pycrunch.  Crunch will attempt to download
+your geodata file and analyze it's metadata which can be used at a later time to match variables to available geodata.
+The lists of properties returned in the metadata are correlated, such that if a feature in your geodata is missing a
+ given property, it will return null.
+
+```python
+>>> import pycrunch
+>>> site = pycrunch.connect("me@mycompany.com", "yourpassword", "https://app.crunch.io/api/")
+>>> geodata = self.site.geodata.create(as_entity({'name': 'test_geojson',
+                                                  'location': 'https://s.crunch.io/geodata/leafletjs/us-states.geojson',
+                                                  'description': '',
+                                                  'format': 'geojson'}))
+>>> geodata.body.metadata
+pycrunch.elements.JSONObject(**{
+    "postal-code": [
+        "AL", 
+        "AK", 
+        "AZ", 
+        "AK", 
+        "CA", ...],
+    "name": [
+        "Alabama", 
+        "Alaska", 
+        "Arizona", 
+        "Arkansas", 
+        "California", ...]})
+        
+```
+
+### Modifying your public Geodata
+You can modify any Geodatum that you own.  Note that you can transfer ownership to another user if you change the owner_id
+of your geodatum.  You may also change the metadata of your geodatum, but keep in mind that if you do this you will override
+any automated metadata extraction that Crunch provides.  If you modify the location of the geodatum and do not provide
+a metadata parameter in the patch, Crunch will automatically extract metadata as long as the location is publicly accessible.
+
+
+```python
+>>> import pycrunch
+>>> site = pycrunch.connect("me@mycompany.com", "yourpassword", "https://app.crunch.io/api/")
+>>> entity = site.geodata.index['<geodatum_url>'].entity
+>>> entity.patch({'description': 'US States'})
+>>> entity.refresh()
+>>> entity.body.description
+US States
+```
 
 
 ### Associating Variables with Geodata
