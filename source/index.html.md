@@ -26,7 +26,7 @@ We have language bindings in curl. You can view code examples in the dark area t
 
 ```ruby
 require 'rest-client'
-api = 
+api =
 api = Kittn::APIClient.authorize!('meowmeowmeow')
 ```
 
@@ -625,4 +625,67 @@ ID | The ID of the kitten to delete
 
 ## Get Balance
 
+This endpoint return the balance for the account of the client.
+
+**GET http://api.bankvision.com/clients/client_id/accounts/account_id/balances**
+
+>The above command returns JSON structured like this:
+
+```json
+{
+
+  "account_id":"12345678...",
+  "network":"petitioner"
+}
+
+```
+
 ## Get Transactions
+
+This endpoint return the transactions made by the client for the defined account.
+
+**GET http://api.bankvision.com/clients/client_id/accounts/account_id/transfers**
+
+>The above command returns JSON structured like this:
+
+```json
+{
+  "account_id":"12345678...",
+  "network":"petitioner"
+}
+
+```
+
+## GET Payments
+
+This endpoint returns the payments made from the defined account.
+
+**GET http://api.bankvision.com/clients/client_id/accounts/account_id/payments**
+
+>The above command returns JSON structured like this:
+
+```json
+{
+  "document_id":"100200300",
+  "document_type":"CC",
+  "account_id":"12345678..."
+}
+
+```
+
+##GET Deposits
+
+This endpoint returns the deposits made on the defined account.
+
+**GET http://api.bankvision.com/clients/client_id/accounts/account_id/deposits**
+
+>The above command returns JSON structured like this:
+
+```json
+{
+  "document_id":"100200300",
+  "document_type":"CC",
+  "account_id":"12345678..."
+}
+
+```
