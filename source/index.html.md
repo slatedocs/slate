@@ -374,6 +374,22 @@ redirect to /oauth/authorized_applications
 
 # Client
 
+## Create Client
+This endpoint create a new client. ( Data missing we need more information from core)
+
+### HTTP Request
+
+`POST https://api.bankvision.com/clients`
+
+### BODY Parameters
+Parameter | Description
+----------|------------
+name | Client name
+last_name | Client last name
+document_type | Client document type
+identification | Client identification
+
+
 ## Get Client
 
 ```shell
@@ -497,6 +513,20 @@ This endpoint update a specific client. (Data missing we need more information f
 
 # Account
 
+## Create Account
+This endpoint create a new account. ( Data missing we need more information from core)
+
+### HTTP Request
+
+`POST https://api.bankvision.com/clients/<ID>/accounts`
+
+### BODY Parameters
+Parameter | Description
+----------|------------
+type | Account type
+status | Account status
+
+
 ## Get Accounts
 
 ```shell
@@ -614,6 +644,7 @@ This endpoint return the balance for the account of the client.
 ### HTTP Request
 `GET /clients/<ID>/accounts/<AID>/balances`
 
+
 ### BODY Parameters
 
 Parameter | Description
@@ -645,12 +676,15 @@ This endpoint return the transactions made by the client for the defined account
 ### HTTP Request
 `GET /clients/<ID>/accounts/<AID>/transactions`
 
+### QUERY Parameters
+Parameter | Required | Description
+----------|----------|-------------
+page | false | Pagination: Page number
+per_page | false | Pagination: Transactions per page
+date | false | Transaction start date
+end_date | false | Trasaction end date
+trans_type | false | Transaction Type
 
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-trans_type | Transaction Type
 
 
 >The above command returns JSON structured like this:
@@ -662,4 +696,124 @@ trans_type | Transaction Type
 }
 
 ```
+## Create Transfer
 
+This endpoint create a new transfer.
+
+### HTTP Request
+
+`POST /clients/<ID>/accounts/<ID>/transfers`
+
+### BODY Parameters
+Parameter | Description
+----------|------------
+hour | Transaction hour
+time | Transaction time
+destination_account | Destination account
+amount | Transaction amount
+
+>The above command returns JSON structured like this:
+
+```json
+{
+  "hour":"",
+  "time":"",
+  "destination_account":"",
+  "account_holder":"",
+  "amount": "",
+  "origin_balance":""
+  "transaction_id":"",
+  "message_description":""
+}
+
+```
+## Create Payment
+
+This endpoint create a new payment.
+
+### HTTP Request
+
+`POST /clients/<ID>/accounts/<ID>/payments`
+
+### BODY Parameters
+Parameter | Description
+----------|------------
+hour | Transaction hour
+time | Transaction time
+amount | Transaction amount
+
+>The above command returns JSON structured like this:
+
+```json
+{
+  "hour":"",
+  "time":"",
+  "account_holder":"",
+  "amount": "",
+  "commision":""
+  "transaction_id":"",
+  "message_code":"",
+  "message_description":""
+}
+
+```
+## Create a Deposit
+
+This endpoint create a new deposits.
+
+### HTTP Request
+
+`POST /clients/<ID>/accounts/<ID>/deposits`
+
+### BODY Parameters
+Parameter | Description
+----------|------------
+hour | Transaction hour
+time | Transaction time
+amount | Transaction amount
+
+>The above command returns JSON structured like this:
+
+```json
+{
+  "hour":"",
+  "time":"",
+  "account_holder":"",
+  "amount": "",
+  "commision":""
+  "transaction_id":"",
+  "message_code":"",
+  "message_description":""
+}
+
+```
+## Create a Withdrawal
+
+This endpoint create a new withdrawal.
+
+### HTTP Request
+
+`POST /clients/<ID>/accounts/<ID>/withdrawals`
+
+### BODY Parameters
+Parameter | Description
+----------|------------
+hour | Transaction hour
+time | Transaction time
+amount | Transaction amount
+
+>The above command returns JSON structured like this:
+
+```json
+{
+  "hour":"",
+  "time":"",
+  "account_holder":"",
+  "amount": "",
+  "commision":""
+  "transaction_id":"",
+  "message_code":"",
+  "message_description":""
+}
+
+```
