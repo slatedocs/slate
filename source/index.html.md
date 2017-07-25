@@ -66,11 +66,11 @@ import redis
 import requests
 
 '''here we use redis to cache api requests'''
-r_server = redis.Redis('host')
+r_server = redis.Redis('host', 'port')
 script_elements = requests.get('https://adback.co/api/script/me?access_token=[token]').json()
 for (key, value) in script_elements.items():
-    r_server.set('script_element', key, value)
-r_server.expire('scriptElement', 60 * 60 * 6)
+    r_server.hset('script_element', key, value.encode("utf8"))
+r_server.expire('script_element', 60 * 60 * 6)
 ```
 
 ```java
@@ -160,7 +160,7 @@ If API doesn't return all script names or URL, please check your configuration <
 <?php
 /* here we use redis to cache api requests */
 $cache = new Redis();
-$cache->connect('host');
+$cache->connect('host', 'port');
 
 $analyticsScriptCode = '';
 if ($cache->has('scriptElement')) {
@@ -186,7 +186,7 @@ import redis
 import requests
 
 '''here we use redis to cache api requests'''
-r_server = redis.Redis('host')
+r_server = redis.Redis('host', 'port')
 analytics_script_code = ''
 if r_server.exists('script_element'):
     script_elements = r_server.hgetall('script_element')
@@ -198,11 +198,11 @@ if r_server.exists('script_element'):
     s.src=a;s.async=1;
     t=d.getElementsByTagName('script')[0];
     t.parentNode.insertBefore(s,t);
-    })(\"https://${analytics_domain}/${analytics_script}.js\", document);
-    """
+    })(\"https://%s/%s.js\", document);
+    """ % (analytics_domain, analytics_script)
 
-# display tag
-print "<script>${analytics_script_code}</script>"
+''' display tag '''
+print "<script>%s</script>" % analytics_script_code
 ```
 
 ```java
@@ -235,7 +235,7 @@ puts "<script>#{analytics_script_code}</script>"
 ```
 
 ```shell
-# bash script to api consumption
+# bash script to test api consumption
 $ wget https://raw.githubusercontent.com/adback-anti-adblock-solution/adback-bash-refresh/master/adback-refresh-tags
 
 $ chmod +x adback-refresh-tags
@@ -269,7 +269,7 @@ AdBack analytics provide unique data on adblock users (blocked pages, types of a
 
 /* here we use redis to cache api requests */
 $cache = new Redis();
-$cache->connect('host');
+$cache->connect('host', 'port');
 
 $messageCode = '';
 if ($cache->has('scriptElement')) {
@@ -291,7 +291,7 @@ EOS;
 echo "<script>$messageCode</script>";
 
 /* script you can set to display message on certain pages of your site */
-echo "<script>var adback = adback || {}; adback.perimeter = 'test';</script>";
+echo "<script>var adback = adback || {}; adback.perimeter = 'perimeter1';</script>";
 ```
 
 ```python
@@ -299,23 +299,26 @@ import redis
 import requests
 
 '''here we use redis to cache api requests'''
-r_server = redis.Redis('host')
-analytics_script_code = ''
+r_server = redis.Redis('host', 'port')
+message_code = ''
 if r_server.exists('script_element'):
     script_elements = r_server.hgetall('script_element')
-    message_domain = script_elements['message_domain'];
-    message_script = script_elements['message_script'];
+    message_domain = script_elements['message_domain']
+    message_script = script_elements['message_script']
 
     message_code = """
     (function (a,d){var s,t;s=d.createElement('script');
     s.src=a;s.async=1;
     t=d.getElementsByTagName('script')[0];
     t.parentNode.insertBefore(s,t);
-    })(\"https://${message_domain}/${message_script}.js\", document);
-    """
+    })(\"https://%s/%s.js\", document);
+    """ % (message_domain, message_script)
 
-# display tag
-print "<script>${message_code}</script>"
+''' display tag '''
+print "<script>%s</script>" % message_code
+
+''' script you can set to display message on certain pages of your site '''
+print "<script>var adback = adback || {}; adback.perimeter = 'perimeter1';</script>"
 ```
 
 ```java
@@ -327,7 +330,7 @@ require "json"
 require 'open-uri'
 
 # here we use redis to cache api requests
-cache = Redis.new(:host => "HOST")
+cache = Redis.new(:host => 'host')
 message_code = '';
 if cache.exists('script_element')
   script_elements = cache.hgetall('script_element');
@@ -348,11 +351,11 @@ end
 puts "<script>#{message_code}</script>"
 
 # script you can set to display message on certain pages of your site
-puts "<script>var adback = adback || {}; adback.perimeter = 'test';</script>"
+puts "<script>var adback = adback || {}; adback.perimeter = 'perimeter1';</script>"
 ```
 
 ```shell
-# bash script to api consumption
+# bash script to test api consumption
 $ wget https://raw.githubusercontent.com/adback-anti-adblock-solution/adback-bash-refresh/master/adback-refresh-tags
 
 $ chmod +x adback-refresh-tags
@@ -429,7 +432,7 @@ you can see a preview of all your messages and publish / unpublish it</aside>
 
 /* here we use redis to cache api requests */
 $cache = new Redis();
-$cache->connect('host');
+$cache->connect('host', 'port');
 
 $autopromoBannerCode = '';
 if ($cache->has('scriptElement')) {
@@ -447,10 +450,10 @@ EOS;
     }
 }
 
-/* add div where you want to display your banner header_728x90 */
+/* add div where you want to display your banner with placement 'header_728x90' */
 echo "<div data-tag='header_728x90'></div>";
 
-/* add div where you want to display your banner side_300x250_actu */
+/* add div where you want to display your banner with placement 'side_300x250_actu' */
 echo "<div data-tag='side_300x250_actu'></div>";
 
 /* display tag */
@@ -462,28 +465,29 @@ import redis
 import requests
 
 '''here we use redis to cache api requests'''
-r_server = redis.Redis('host')
+r_server = redis.Redis('host', 'port')
 autopromo_banner_code = ''
 if r_server.exists('script_element'):
     script_elements = r_server.hgetall('script_element')
-    autopromo_banner_domain = script_elements['autopromo_banner_domain'];
-    autopromo_banner_script = script_elements['autopromo_banner_script'];
+    autopromo_banner_domain = script_elements['autopromo_banner_domain']
+    autopromo_banner_script = script_elements['autopromo_banner_script']
+
     autopromo_banner_code = """
     (function (a,d){var s,t;s=d.createElement('script');
     s.src=a;s.async=1;
     t=d.getElementsByTagName('script')[0];
     t.parentNode.insertBefore(s,t);
-    })(\"https://${autopromo_banner_domain}/${autopromo_banner_script}.js\", document);
-    """
+    })(\"https://%s/%s.js\", document);
+    """ % (autopromo_banner_domain, autopromo_banner_script)
 
-'''add div where you want to display your banner header_728x90'''
+'''add div where you want to display your banner with placement 'header_728x90' '''
 print "<div data-tag='header_728x90'></div>"
 
-'''add div where you want to display your banner side_300x250_actu'''
+'''add div where you want to display your banner with placement 'side_300x250_actu' '''
 print "<div data-tag='side_300x250_actu'></div>"
 
 '''display tag'''
-print "<script>${autopromo_banner_code}</script>"
+print "<script>%s</script>" % autopromo_banner_code
 ```
 
 ```java
@@ -513,10 +517,10 @@ if cache.exists('script_element')
   end
 end
 
-# add div where you want to display your banner header_728x90
+# add div where you want to display your banner with placement 'header_728x90'
 puts "<div data-tag='header_728x90'></div>"
 
-# add div where you want to display your banner side_300x250_actu
+# add div where you want to display your banner with placement 'side_300x250_actu'
 puts "<div data-tag='side_300x250_actu'></div>"
 
 # display tag
@@ -524,7 +528,7 @@ puts "<script>#{autopromo_banner_code}</script>"
 ```
 
 ```shell
-# bash script to api consumption
+# bash script to test api consumption
 $ wget https://raw.githubusercontent.com/adback-anti-adblock-solution/adback-bash-refresh/master/adback-refresh-tags
 
 $ chmod +x adback-refresh-tags
@@ -534,10 +538,10 @@ $ ./adback-refresh-tags "token" -b -html
 ```
 
 ```twig
-<!-- add div where you want to display your banner header_728x90 -->
+<!-- add div where you want to display your banner with placement 'header_728x90' -->
 <div data-tag='header_728x90'></div>
 
-<!-- add div where you want to display your banner side_300x250_actu -->
+<!-- add div where you want to display your banner with placement 'side_300x250_actu' -->
 <div data-tag='side_300x250_actu'></div>
 
 {{ adback_generate_autopromo_banner_script() }}
@@ -553,27 +557,27 @@ Our auto-promo banners permit to display ads for premium campaigns or your own c
 
 * get script names and URL
 
-* generate and display tag with one perimeter / banner
+* generate and display tag with one placement / banner
 
 ### Script Parameters:
 
 Parameter | Required | Description
 --------- | -------- | -----------
-data-tag='' | Yes | Variable you must set to display one banner, data-tag takes one "perimeter" and can be configured <a href="https://www.adback.co/en/autopromo/banners">here</a>
+placement | Yes | Variable you must set to display one banner, data-tag takes one placement and can be configured <a href="https://www.adback.co/en/autopromo/banners">here</a>
 
 Back office configuration example:
 
-![Autopromo perimeter](/images/autopromo_perimeter.png)
+![Autopromo perimeter](/images/autopromo_placement.png)
 
-### data-tag naming:
+### placement naming:
 
-You should name your data-tag like back office example, location _ dimension _ campaign promo name,
+You should name your placement like back office example, location _ dimension _ campaign promo name,
 
 `header_728x90  ou  side_300x250_actu`
 
 Make sure this names match the back office configuration.
 
-<aside class="notice">After tag installation, you must create new banner <a href="https://www.adback.co/en/autopromo/banners">here</a> for every data-tag that you integrate before.</aside>
+<aside class="notice">After tag installation, you must create new banner <a href="https://www.adback.co/en/autopromo/banners">here</a> for every placement that you integrate before.</aside>
 
 
 ## 5) Product flow script
@@ -612,22 +616,29 @@ import redis
 import requests
 
 '''here we use redis to cache api requests'''
-r_server = redis.Redis('host')
+r_server = redis.Redis('host', 'port')
 product_flow_code = ''
 if r_server.exists('script_element'):
     script_elements = r_server.hgetall('script_element')
-    product_domain = script_elements['product_domain'];
-    product_script = script_elements['product_script'];
+    product_domain = script_elements['product_domain']
+    product_script = script_elements['product_script']
+
     product_flow_code = """
     (function (a,d){var s,t;s=d.createElement('script');
     s.src=a;s.async=1;
     t=d.getElementsByTagName('script')[0];
     t.parentNode.insertBefore(s,t);
-    })(\"https://${product_domain}/${product_script}.js\", document);
-    """
+    })(\"https://%s/%s.js\", document);
+    """ % (product_domain, product_script)
+
+'''add div where you want to display your banner with placement header_728x90'''
+print "<div data-tag='header_728x90'></div>"
+
+'''add div where you want to display your banner with placement side_300x250_actu'''
+print "<div data-tag='side_300x250_actu'></div>"
 
 '''display tag'''
-print "<script>${product_flow_code}</script>"
+print "<script>%s</script>" % product_flow_code
 ```
 
 ```java
@@ -662,7 +673,7 @@ puts "<script>#{product_flow_code}</script>"
 ```
 
 ```shell
-# bash script to api consumption
+# bash script to test api consumption
 $ wget https://raw.githubusercontent.com/adback-anti-adblock-solution/adback-bash-refresh/master/adback-refresh-tags
 
 $ chmod +x adback-refresh-tags
