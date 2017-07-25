@@ -22,29 +22,6 @@ We have language bindings in curl. You can view code examples in the dark area t
 
 # Authentication
 
-> To authorize, use this code:
-
-```ruby
-require 'rest-client'
-api =
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
 BankVision uses API authorization key to allow access to the API.
 You can register a new BankVision APP at our [client developer portal](https://api.bankvision.com).
 
@@ -90,6 +67,8 @@ Revoking authorization to an app is done through the Bankvision applications pag
 
 In order to prompt the user to grant the access, we need to open a browser window. That window will open https://api.bankvision.com/oauth/authorize?client_id=XXX&response_type=code&redirect_uri=YYY with the following stand-in values:
 
+### Query Parameters
+
 Parameter | Info
 ----------|---------
 XXX | stands for the client ID received in the previous step.
@@ -105,9 +84,14 @@ Authorization: Bearer 09ba487fc3df...
 </aside>
 
 ##Getting an Access Token
-**POST /oauth/token**
 
-For this, we will craft a POST request to https://api.bankvision.com/oauth/token that presents our various bits and asks for a reusable token. The required parameters must be passed as form-urlencoded. The required parameters are:
+For this, we will craft a POST request that presents our various bits and asks for a reusable token. The required parameters must be passed as form-urlencoded. The required parameters are:
+
+### HTTP Request
+
+`POST /oauth/token`
+
+### Query Parameters
 
 Parameter | Info
 ----------|---------
@@ -118,6 +102,8 @@ grant_type | This is authorization_code in the initial request.
 code | The authorization code received in the previous step.
 
 The response body that comes back looks like this:
+
+> Server response
 
 ```json
 {
@@ -136,9 +122,14 @@ To this end, to keep from re-authorizing each time the app runs, the refresh_tok
 
 ##Renewing the Access Token
 
-**POST /oauth/token**
-
 When we need to refresh our token, we will craft a POST request very similar to the one following the authorization grant. Only a few values are different:
+
+### HTTP Request
+
+`POST /oauth/token`
+
+
+### Query Parameters
 
 Parameter | Info
 ----------|----------------
@@ -150,10 +141,15 @@ refresh_token | The saved refresh token.
 
 ##Revoke The Access Token
 
-**POST /oauth/authorize**
-
 Revoke OAuth authorization, deletes the access token.
 Post here with client credentials (in basic auth or in params client_id and client_secret) to revoke an access/refresh token. This corresponds to the token endpoint, using the OAuth 2.0 Token Revocation RFC (RFC 7009).
+
+### HTTP Request
+
+`POST /oauth/authorize`
+
+
+### Query Parameters
 
 Parameter | Info
 ----------|----------------
@@ -164,13 +160,20 @@ redirect_uri | The callback URI we defined previously.
 
 ##Getting Token Information
 
-**GET /oauth/token/info**
-
 Shows details about the token used for authentication.
+
+### HTTP Request
+
+`GET /oauth/token/info`
+
+
+### Query Parameters
 
 Header | Info
 -------|------
 Authorization | Bearer client_token
+
+> Example
 
 ```shell
 
@@ -178,7 +181,7 @@ curl -H "Authorization: Bearer 53cff8f4a549beb1c38704158b0f6608a2382f094b6947ecc
      api.bankvision.com/oauth/token/info
 
 ```
-
+> Server response
 
 ```json
 {
@@ -190,6 +193,7 @@ curl -H "Authorization: Bearer 53cff8f4a549beb1c38704158b0f6608a2382f094b6947ecc
 }
 
 ```
+> Invalid response
 
 ```json
 
@@ -202,15 +206,21 @@ curl -H "Authorization: Bearer 53cff8f4a549beb1c38704158b0f6608a2382f094b6947ecc
 
 ##Oauth 2.0 GET Authorization Code
 
-**GET /oauth/authorize/:code**
-
 Provides a page with the authorization code.
+
+### HTTP Request
+
+`GET /oauth/authorize/:code`
+
+
+> Example
 
 ```shell
 
 curl http://api.bankvision.com/oauth/authorize/fd0847dbb559752d932dd3c1ac34ff98d27b11fe2fea5a864f44740cd7919ad0
 
 ```
+> HTML Response
 
 ```html
 <h3>Authorization code:</h3>
@@ -220,9 +230,13 @@ curl http://api.bankvision.com/oauth/authorize/fd0847dbb559752d932dd3c1ac34ff98d
 
 ##Oauth 2.0 POST Authorization Code
 
-**POST /oauth/authorize**
-
 Post here with response_type=code, client_id, client_secret, redirect_uri, and username. Will create and return an authorization code, then redirect to GET /oauth/authorize/:code with the authorization code.
+
+### HTTP Request
+
+`POST /oauth/authorize`
+
+> Example
 
 ```shell
 
@@ -235,6 +249,8 @@ curl -F response_type=code \
 
 ```
 
+> HTML Response
+
 ```html
 
 Redirect to the GET /oauth/authorize/:code path.
@@ -245,9 +261,14 @@ Redirect to the GET /oauth/authorize/:code path.
 
 ##Oauth 2.0 DELETE Authorization Code
 
-**DELETE /oauth/authorize**
-
 Revoke OAuth authorization, deletes the access token.
+
+### HTTP Request
+
+`DELETE /oauth/authorize`
+
+
+> Example
 
 ```shell
 curl -F response_type=token \
@@ -260,6 +281,8 @@ curl -F response_type=token \
 
 ```
 
+> HTML Response
+
 ```html
 Redirect to redirect_uri
 
@@ -268,15 +291,21 @@ Redirect to redirect_uri
 
 ##Oauth 2.0 GET Aplications Authorization
 
-**GET /oauth/applications**
-
 Revoke OAuth authorization, deletes the access token.
+
+### HTTP Request
+
+`GET /oauth/applications`
+
+
+> Example
 
 ```shell
 
 curl http://localhost:3000/oauth/applications
 
 ```
+> HTML Response
 
 ```html
 HTML page with tabular list of authorized application clients
@@ -292,9 +321,14 @@ HTML page with tabular list of authorized application clients
 
 ##Oauth 2.0 GET Authorized Applications
 
-**GET /oauth/authorized_applications**
-
 Web user interface for logged-in user displays a list of api client authorizations.
+
+### HTTP Request
+
+`GET /oauth/authorized_applications`
+
+
+> Example
 
 ```shell
 
@@ -302,6 +336,7 @@ curl -F username=user@example.com \
 -X GET http://api.bankvision.com/oauth/authorized_applications
 
 ```
+> HTML Response
 
 ```html
 <tr>
@@ -314,16 +349,21 @@ curl -F username=user@example.com \
 
 ##Oauth 2.0 DELETE Authorized Applications
 
-**DELETE /oauth/authorized_applications/:id**
-
 Destroys the identified api client authorization from a user.
 
-```shell
+### HTTP Request
 
+`DELETE /oauth/authorized_applications/:id`
+
+
+> Example
+
+```shell
 curl -F username=user@example.com \
 -X DELETE http://api.bankvision.com/oauth/authorized_applications/1
 
 ```
+> Response
 
 ```html
 redirect to /oauth/authorized_applications
@@ -336,189 +376,263 @@ redirect to /oauth/authorized_applications
 
 ## Get Client
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+curl "https://api.bankvision.com/clients"
+  -H "Authorization: 57hHsakGhAs524...."
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+  "clients": [
+    {
+      "id": 1,
+      "name": "Juan",
+      "last_name": "Perez",
+      "document_type": "CC",
+      "identification": 45362727
+    },
+    {
+
+      "id": 2,
+      "name": "Juan",
+      "last_name": "Lopez",
+      "document_type": "CE",
+      "identification": 123453
+    }
+  ]
+}
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all clients. ( Data missing we need more information from core)
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+`GET https://api.bankvision.com/clients`
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember you must be authenticated!
 </aside>
 
 ## Get a Specific Client
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+curl "https://api.bankvision.com/clients/2"
+  -H "Authorization: 6gfDsjesaHYlmn0892..."
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "client": {
+    "id": 2,
+    "name": "Max",
+    "last_name": "Doe",
+    "document_type": 'CC',
+    "identification": 10227262
+  }
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint retrieves a specific client. ( Data missing we need more information from core )
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://api.bankvision.com/clients/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+ID | The ID of the client to retrieve
 
 ## Delete a Specific Client
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
+```shell
+curl "http://api.bankvision.com/clients/2"
+  -X DELETE
+  -H "Authorization: Jhsk789hY3jsU...."
 ```
 
-```python
-import kittn
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+This endpoint delete a specific client.
+
+### HTTP Request
+
+`DELETE https://api.bankvision.com/clients/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the client to delete
+
+## Update a Specific Client
+
+### HTTP Request
+
+`PUT/PATCH https://api.bankvision.com/clients/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the client to update
+
+
+### BODY Parameters
+
+Parameter | Description
+--------- | -----------
+name | Client name
+last_name | Client last name
+document_type | Client document type
+identification | Client identification number
+phone | Client phone
+
+This endpoint update a specific client. (Data missing we need more information from core )
+
+# Account
+
+## Get Accounts
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+curl "https://api.bankvision.com/clients/<ID>/accounts/"
+  -H "Authorization: 57hHsakGhAs524...."
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "accounts": [
+    {
+      "id": 1,
+      "number": "1234555",
+      "balance": "2000",
+      "type": "S",
+      "status": "A"
+    },
+    {
+
+      "id": 2,
+      "number": "983883",
+      "balance": "90090",
+      "type": "L",
+      "status": "B"
+    }
+  ]
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint retrieves all accounts that belongs to a specific client. ( Data missing we need more information from core)
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`GET /clients/<ID>/accounts`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete
+ID | The ID of the client to retrive accounts
 
-# Account
+## Get a Specific Account
+
+
+```shell
+curl "https://api.bankvision.com/clients/2/accounts/1"
+  -H "Authorization: 6gfDsjesaHYlmn0892..."
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "account": {
+      "id": 2,
+      "number": "983883",
+      "balance": "90090",
+      "type": "L",
+      "status": "B",
+      "client": {
+        "id": 2,
+        "name": "Max",
+        "last_name": "Doe",
+        "document_type": 'CC',
+        "identification": 10227262
+      }
+  }
+}
+```
+
+This endpoint retrieves a specific client account. ( Data missing we need more information from core )
+
+### HTTP Request
+
+`GET /clients/<ID>/accounts/<AID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the client to retrieve
+AID | The ID of the account to retrieve
+
+
+## Update a Specific Acccount
+
+### HTTP Request
+
+`PUT/PATCH /clients/<ID>/accounts/<AID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the account owner
+AID | The ID of the account to update
+
+### BODY Parameters
+
+Parameter | Description
+--------- | -----------
+status | Account status
+account_type | Account type
+
+This endpoint update a specific client. (Data missing we need more information from core )
+
 
 ## Get Balance
 
 This endpoint return the balance for the account of the client.
 
-**GET http://api.bankvision.com/clients/client_id/accounts/account_id/balances**
+
+### HTTP Request
+`GET /clients/<ID>/accounts/<AID>/balances`
+
+### BODY Parameters
+
+Parameter | Description
+--------- | -----------
+account_id | Account number
+network | Transaction network
 
 >The above command returns JSON structured like this:
 
 ```json
 {
 
-  "account_id":"12345678...",
-  "network":"petitioner"
+  "account_id_holder":"Peter Broner",
+  "available_balance":"500",
+  "block_balance":"100",
+  "total_balance":"1000",
+  "total_exchange":"200",
+  "pending_cancel_balance":"100",
+  "message_description":"text"
 }
 
 ```
@@ -527,48 +641,25 @@ This endpoint return the balance for the account of the client.
 
 This endpoint return the transactions made by the client for the defined account.
 
-**GET http://api.bankvision.com/clients/client_id/accounts/account_id/transfers**
+
+### HTTP Request
+`GET /clients/<ID>/accounts/<AID>/transactions`
+
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+trans_type | Transaction Type
+
 
 >The above command returns JSON structured like this:
 
 ```json
 {
-  "account_id":"12345678...",
-  "network":"petitioner"
+  "":"",
+  "":""
 }
 
 ```
 
-## GET Payments
-
-This endpoint returns the payments made from the defined account.
-
-**GET http://api.bankvision.com/clients/client_id/accounts/account_id/payments**
-
->The above command returns JSON structured like this:
-
-```json
-{
-  "document_id":"100200300",
-  "document_type":"CC",
-  "account_id":"12345678..."
-}
-
-```
-
-##GET Deposits
-
-This endpoint returns the deposits made on the defined account.
-
-**GET http://api.bankvision.com/clients/client_id/accounts/account_id/deposits**
-
->The above command returns JSON structured like this:
-
-```json
-{
-  "document_id":"100200300",
-  "document_type":"CC",
-  "account_id":"12345678..."
-}
-
-```
