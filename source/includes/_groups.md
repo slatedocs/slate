@@ -1,6 +1,6 @@
 # Groups
 
-The groups help you organize better the users in sunlight, they allow you to monitor what the members are learning and know what they are spending their sunlights.
+The groups help you organize better the users in sunlight. They allow you to monitor what the members are learning and you can know on what they are spending their sunlights.
 
 ## Group Model
 
@@ -32,7 +32,7 @@ name | **string** | The name of the group
 address | **string** | The address of the group
 bio | **string** | A short description of the group
 abour-url | **strin g** | Url for the group's website.
-manager-approval | **boolean** | if the orders requieres manager approval
+manager-approval | **boolean** | If the orders requieres manager approval
 privacy-setting | **string** | Group privacy type
 avatar-url | **string** | Avatar url of the group
 cover-url | **string** | Cover url of the group
@@ -42,16 +42,16 @@ updated-at | **timestamp** | The time the group was updated to Sunlight
 
 ### privacy-settings:
 
-You can choose to allow people to join your group anytime, have them request invites or only allow them to join by an admin’s invitation.
+You can choose to allow people join your group at anytime, have them request invites or only allow them to join by an admin’s invitation.
 
-- `admin-invite`: People are joined by an invitation from the group admin ***(Avaiable)***
-- `public_access`: People can join your group anytime ***(No avaible)***
-- `request_invite`: People request invite to join a group ***(No avaible)***
+- `admin-invite`: People can only join by an invitation from a group admin ***(Avaiable)***
+- `public_access`: People can join your group at anytime ***(Not avaible)***
+- `request_invite`: People request invite to join a group ***(Not avaible)***
 
 ### manager-approval
 
-- `true`: if you’d like every spending order that uses funds from this group to require approval from a group admin.
-- `false`: if you wouldn't like every spending order that uses funds from this group to require approval from a group admin.
+- `true`: if you’d like every order that uses funds from this group to require approval from a group admin.
+- `false`: if you wouldn't like every order that uses funds from this group to require approval from a group admin.
 
 
 ## Create group
@@ -78,7 +78,7 @@ $ curl -X POST \
 }'
 ```
 
-> The json response encoded looks like:
+> The encoded json response looks like:
 
 ```json
 HTTP/1.1 201 CREATED 
@@ -115,7 +115,7 @@ HTTP/1.1 201 CREATED
 Groups can be created via a `POST` to `https://sunlight.is/api/groups`, which accepts a JSON object describing the group.
 
 <aside class="notice">
-  Note that a group will always have at least one user associated, at the time of creating a group will automatically be a member and administrator.
+  Note that a group will always have at least one user associated. At the time of creating a group, that user will automatically be a member and administrator.
 </aside>
 
 ### Query Parameters
@@ -128,7 +128,7 @@ name | yes | The name of the group
 address | no | The address of the group
 bio | no | A short description of the group
 abour-url | no | Url for the group's website.
-manager-approval | no | if the orders requieres manager approval
+manager-approval | no | If the orders require manager approval
 privacy-setting | yes | Group privacy type
 avatar-url | no | Avatar url of the group
 cover-url | no | Cover url of the group
@@ -139,7 +139,7 @@ cover-url | no | Cover url of the group
 
 ```shell
 $ curl -X POST \
-  http://localhost:4000/api/v2/group-invitations \
+  https://app.sunlight.is/api/v2/group-invitations \
   -H 'accept: application/vnd.api+json' \
   -H 'authorization: Bearer <your access token>' \
   -H 'content-type: application/json' \
@@ -159,7 +159,7 @@ $ curl -X POST \
 }'
 ```
 
-> The json response encoded looks like:
+> The encoded json response looks like:
 
 ```json
 HTTP/1.1 201 CREATED 
@@ -185,12 +185,10 @@ HTTP/1.1 201 CREATED
 
 ```shell
 $ curl -X POST \
-  http://localhost:4000/api/v2/group-users \
+  https://app.sunlight.is/api/v2/group-users \
   -H 'accept: application/vnd.api+json' \
   -H 'authorization: Bearer <your access token>' \
-  -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
-  -H 'postman-token: 648830e0-0f0e-5d35-93ab-b7fd494c8d61' \
   -d '{
   "data": {
     "attributes": {
@@ -212,7 +210,7 @@ $ curl -X POST \
 }'
 ```
 
-> The json response encoded looks like:
+> The encoded json response looks like:
 
 ```json
 HTTP/1.1 201 CREATED 
@@ -233,7 +231,7 @@ HTTP/1.1 201 CREATED
 }
 ```
 
-The groups allow you to invite registered and unregistered users in sunglight, to each case there are different params and different endpoints.
+The groups allow you to invite registered and unregistered users in sunlight, to each case there are different params and different endpoints.
 
 <aside class="notice">
   You can only invite users to groups where you are an admin.
@@ -260,3 +258,62 @@ relationships[group][id] | yes | Group's id which the user will be joining
 
 
 ## Edit budget of an individual user
+
+> Edit budget of an individual user - Example
+
+```shell
+$ curl -X POST \
+  https://sunlight.is/api/credits \
+  -H 'accept: application/vnd.api+json' \
+  -H 'authorization: Bearer <your access token>' \
+  -H 'content-type: application/json' \
+  -d '{
+  "data": {
+    "attributes": {
+      "amount": "100"
+    },
+    "relationships": {
+      "group-user": {
+        "data": {
+          "id": "e70099a393"
+        }
+      } 
+    }
+  }
+}'
+```
+
+> The encoded json response looks like:
+
+```json
+{
+  "data": {
+    "type": "transactions",
+    "id": "ec28e8f7c2",
+    "attributes": {
+      "id": "ec28e8f7c2",
+      "amount": 100,
+      "created-at": "2017-07-26T14:30:54.649Z",
+      "source": "credit"
+    },
+    "links": {
+      "self": "/transactions/ec28e8f7c2"
+    },
+    "relationships": { }
+  }
+}
+```
+
+Budget is one way that users in a group get sunlights, it allows groups to budget a certain amount of money they use to invest in their education.
+
+Can edit the budget for each member of a group individually via `POST` to` https://sunlight.is/api/credit`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+amount | yes | Amount of money expressed in cents.
+relationships[group-user][id] | yes | `group-user` id
+
+
+

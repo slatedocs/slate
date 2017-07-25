@@ -16,4 +16,4 @@ All routes support query parameters to refine responses
 
 - [**page**](http://jsonapi.org/format/#fetching-pagination), e.g. `GET /api/v2/orders?page[number]=1&page[size]=10` to return only the first 10 orders
 
-- [**filter**](http://jsonapi.org/format/#fetching-filtering), The `filter` is not defined by JSON API. Implementations must specify if how the `filter` query parameter is supported.
+- [**filter**](http://jsonapi.org/format/#fetching-filtering), The `filter` is not defined by JSON API. Implementations must specify how the `filter` query parameter is supported.

@@ -1,6 +1,6 @@
 # Orders
 
-Overview orders
+An Order is a request for a purchase of a certain Item.
 
 ## Order Model
 
@@ -35,7 +35,7 @@ Attribute | Type | Description
 --------- | ------- | -----------
 id | **string** | The sunlight defined id representing the order.
 name | **string** | The name of the order.
-url | **string** | Url to find out more about item or where to buy it.
+url | **string** | Url to find out more about the item or where to buy it.
 provider | **string** | Name of the provider of the item to be purchased.
 cost | **integer** | Additional costs associated with the order.
 price | **integer** | Order price.
@@ -48,23 +48,23 @@ status-changed-at | **timestamp** | The time the order status was update to Sunl
 card-name | **string** |The name as displayed in the card.
 card-number | **string** | The 16 digit card number.
 card-cvv | **string** | The 3-4 digit code on the back.
-card-billing-address | **string** | The billing address associated to the card.
+card-billing-address | **text** | The billing address associated to the card.
 card-expiration-month | **string** | The expiration month of the card
 card-expiration-year | **string** | The expiration year of the card
 
-## List orders
+## Orders List
 
-> List orders - Example
+> Orders List - Example
 
 ```shell
 $ curl -X GET \
-  http://localhost:4000/api/v2/orders \
+  https://app.sunlight.is/api/v2/orders \
   -H 'accept: application/vnd.api+json' \
   -H 'authorization: Bearer <your access token>' \
   -H 'content-type: application/json' \
 ```
 
-> The json response encoded looks like:
+> The encoded json response looks like:
 
 ```json
 HTTP/1.1 200 OK 
@@ -141,17 +141,23 @@ HTTP/1.1 200 OK
     "totalPages": 1
   },
   "links": {
-    "self": "http://localhost:4000/orders?page[number]=1&page[size]=10",
-    "first": "http://localhost:4000/orders?page[number]=1&page[size]=10",
-    "prev": "http://localhost:4000/orders?page[number]=0&page[size]=10",
-    "next": "http://localhost:4000/orders?page[number]=2&page[size]=10",
-    "last": "http://localhost:4000/orders?page[number]=2&page[size]=10"
+    "self": "https://app.sunlight.is/orders?page[number]=1&page[size]=10",
+    "first": "https://app.sunlight.is/orders?page[number]=1&page[size]=10",
+    "prev": "https://app.sunlight.is/orders?page[number]=0&page[size]=10",
+    "next": "https://app.sunlight.is/orders?page[number]=2&page[size]=10",
+    "last": "https://app.sunlight.is/orders?page[number]=2&page[size]=10"
   },
   "included": []
 }
 ```
 
 You can fetch a list of orders via a `GET` to `https://sunlight.is/api/v2/orders`. The order list is sorted by the `updated-at` field and by default is ordered descending, most recently updated first.
+
+<aside class="notice">
+  The scope of the orders a user can see will depend on the rol of said user.
+
+  Every user can see all of their orders and the ones associated to the groups which said user is admin.
+</aside>
 
 ### Query Parameters
 
@@ -162,9 +168,11 @@ page[size] | no | How many results per page defaults to 10, max is 50.
 sort | no | what field to sort the results by. Valid values: `name`, `created-at`, `update-at`, `total`, `status`, `provider`
 filter | no | The filter query parameter is reserved for filtering data. Valid Values: `group-id`, `received-by`, `status`, `id`
 
-<aside class="notice">
-  The scope of the orders a user can see will depend on the rol of said user.
+### Filters
 
-  Every user can see all of their orders and the ones associated to the groups which said user is admin.
-</aside>
-
+Filter | Description | Uri Example
+---------- | ------------ | -------------
+`id` | Filter by order id | `/orders?filter[id]=e67c60e651`
+`group-id` | Filter by group-id | `/orders?filter[group-id]=410aff7f39`
+`received-by` | Filter by user-id who owns the order | `/orders?filter[received-by]=2bc8066314`
+`status` | Filter by order status | `/orders?filter[status]=completed`

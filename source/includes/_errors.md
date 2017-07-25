@@ -1,6 +1,8 @@
 # Errors
 
-The Sunlight API uses the following error codes:
+### HTTP Status codes
+
+The Sunlight API uses the following codes:
 
 
 Code | Meaning
@@ -9,7 +11,7 @@ Code | Meaning
 201 | Created -- The resource was successfully created.
 202 | Accept -- The resource was asynchronously created
 204 | No Content - The server successfully processed the request and is not returning any content.
-400 | Bad Request -- Your request sucks.
+400 | Bad Request -- General client error, possibly malformed data.
 401 | Unauthorized -- Your API key is wrong.
 403 | Forbidden -- The requested is hidden for administrators only.
 404 | Not Found -- The specified kitten could not be found.
