@@ -258,6 +258,12 @@ AdBack analytics provide unique data on adblock users (blocked pages, types of a
 
 * generate and display tag
 
+### Single page application
+
+You must call javascript function `adback.API().send()` to count your one page views after the analytics AdBack tag.
+
+<aside class="notice">If you run single page application, don't forget to call javascript function `adback.API().send()` to count your pages views</aside>
+
 
 ## 3) Message script
 
