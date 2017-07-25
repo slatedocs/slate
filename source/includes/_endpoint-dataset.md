@@ -695,72 +695,23 @@ Refer to the options described on the table above for the `csv` format to change
   "value": {
     "graph": [
       {
-        "datasets": [
+        "matches": [
+        [
           {
-            "archived": false, 
-            "description": "", 
-            "end_date": null, 
-            "labels": null, 
-            "creation_time": "2017-06-29T01:49:30.831000", 
-            "start_date": null, 
-            "modification_time": "2017-06-29T01:49:30.774000", 
-            "self": "http://app.crunch.io/api/datasets/26df3c304/", 
-            "projects": [], 
-            "name": "test_datasets_match_1"
+            "variable": "../26df3c304/variables/00000", 
+            "confidence": 0.9, 
           }, 
           {
-            "archived": false, 
-            "description": "", 
-            "end_date": null, 
-            "labels": null, 
-            "creation_time": "2017-06-29T01:49:32.261000", 
-            "start_date": null, 
-            "modification_time": "2017-06-29T01:49:32.207000", 
-            "id": "28b773839ac747bb834b8b4713f77c06", 
-            "projects": [], 
-            "name": "test_datasets_match_2"
-          }
-        ]
-      }, 
-      {
-        "variables": [
-          {
-            "description": "Numeric variable with value labels", 
-            "category_names": [
-              "red", 
-              "green", 
-              "blue", 
-              "4", 
-              "8", 
-              "9", 
-              "No Data"
-            ], 
-            "id": "000000", 
-            "alias": "x", 
-            "group_names": null, 
-            "dataset": "http://app.crunch.io/api/datasets/26df3c304/", 
-            "variable_type": "categorical", 
-            "name": "x"
+            "variable": "../6663af333/variables/00001", 
+            "confidence": 0.7, 
           }, 
           {
-            "alias": "y", 
-            "description": "Date variable", 
-            "dataset": "http://app.crunch.io/api/datasets/26df3c304/", 
-            "group_names": null, 
-            "variable_type": "datetime", 
-            "id": "000001", 
-            "name": "y"
+            "variable": "../6868642a/variables/00065", 
+            "confidence": 0.6, 
           }, 
-          {
-            "alias": "z", 
-            "description": "Numberic variable with missing value range", 
-            "dataset": "http://app.crunch.io/api/datasets/26df3c304/", 
-            "group_names": null, 
-            "variable_type": "numeric", 
-            "id": "000002", 
-            "name": "z"
-          }
-        ]
+        ], 
+        ... (more matches ordered by number of matching variables)
+       ]
       }
     ]
   }, 
@@ -769,13 +720,9 @@ Refer to the options described on the table above for the `csv` format to change
 
 ```
 
-The matches endpoint returns a Shoji order with two groups.  
-
-that defines all of the variables that match between the first dataset provided, and the
-rest of them.  If the dataset doesn't have any variables that match, it is not included in the "datasets" group in the order.  For now,
-this endpoint returns the metadata for the datasets and the first dataset's variables if it matches in the other datasets.
-Only variable aliases are compared to determine a match at this time.  More sophisticated variable matching is planned for future releases. 
-
+The matches endpoint returns a Shoji order with a single group, matches. The matches are listed by order of the
+number of variables matched.  Each variable inside the matches will contain a variable (URI) parameter and the confidence
+that the variable matches the others in the list.
 
 
 ##### Summary
