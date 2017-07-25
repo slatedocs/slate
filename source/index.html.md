@@ -148,45 +148,94 @@ redirect_uri | The callback URI we defined previously.
 grant_type | This was authorization_code in the initial request, but now it'll be refresh_token.
 refresh_token | The saved refresh token.
 
-##GET Authorization Code
+##Revoke The Access Token
+
+**POST /oauth/authorize**
+
+Revoke OAuth authorization, deletes the access token.
+Post here with client credentials (in basic auth or in params client_id and client_secret) to revoke an access/refresh token. This corresponds to the token endpoint, using the OAuth 2.0 Token Revocation RFC (RFC 7009).
+
+Parameter | Info
+----------|----------------
+access_token | The client access token
+client_id | The client ID issued in the first step.
+client_secret | The client secret issued in the first step.
+redirect_uri | The callback URI we defined previously.
+
+##Getting Token Information
+
+**GET /oauth/token/info**
+
+Shows details about the token used for authentication.
+
+Header | Info
+-------|------
+Authorization | Bearer client_token
+
+```shell
+
+curl -H "Authorization: Bearer 53cff8f4a549beb1c38704158b0f6608a2382f094b6947ecc35c2eed4146a17c" \
+     api.bankvision.com/oauth/token/info
+
+```
+
+
+```json
+{
+  "resource_owner_id":1,
+  "scopes":[],
+  "expires_in_seconds":7178,
+  "application":{"uid":null},
+  "created_at":1440460991
+}
+
+```
+
+```json
+
+{
+  "error":"invalid_request",
+  "error_description":"The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed."
+}
+
+```
+
+##Oauth 2.0 GET Authorization Code
 
 **GET /oauth/authorize/:code**
 
 Provides a page with the authorization code.
 
-```Java
+```shell
 
-COMMAND
+curl http://api.bankvision.com/oauth/authorize/fd0847dbb559752d932dd3c1ac34ff98d27b11fe2fea5a864f44740cd7919ad0
 
-require 'BankVision'
+```
 
-api = BankVision::APIClient.authorize!('XAXAXAXAXAXAXA')
-
-COMMAND OUTPUT
-
+```html
 <h3>Authorization code:</h3>
 <code id="authorization_code">fd0847dbb559752d932dd3c1ac34ff98d27b11fe2fea5a864f44740cd7919ad0</code>
 
 ```
 
-##POST Authorization Code
+##Oauth 2.0 POST Authorization Code
 
 **POST /oauth/authorize**
 
 Post here with response_type=code, client_id, client_secret, redirect_uri, and username. Will create and return an authorization code, then redirect to GET /oauth/authorize/:code with the authorization code.
 
-```Java
-
-COMMAND
+```shell
 
 curl -F response_type=code \
 -F client_id=9b36d8c0db59eff5038aea7a417d73e69aea75b41aac771816d2ef1b3109cc2f \
 -F client_secret=d6ea27703957b69939b8104ed4524595e210cd2e79af587744a7eb6e58f5b3d2 \
 -F redirect_uri=urn:ietf:wg:oauth:2.0:oob \
 -F username=user@example.com \
--X POST http://localhost:3000/oauth/authorize
+-X POST http://api.bankvision.com/oauth/authorize
 
-COMMAND OUTPUT
+```
+
+```html
 
 Redirect to the GET /oauth/authorize/:code path.
 
@@ -194,134 +243,42 @@ Redirect to the GET /oauth/authorize/:code path.
 
 ```
 
-##DELETE Authorization Code
+##Oauth 2.0 DELETE Authorization Code
 
 **DELETE /oauth/authorize**
 
 Revoke OAuth authorization, deletes the access token.
 
-```Java
-
-COMMAND
-
+```shell
 curl -F response_type=token \
 -F access_token=dbaf97579826846f45fa37a923a4387474070e04323b22f499b7227a860bac920b0ee6560c2  \
 -F client_id=9b36d8c0db59eff5038aea7a417d73e69aea75b41aac771816d2ef1b3109cc2f \
 -F client_secret=d6ea27703957b69939b8104ed4524595e210cd2e79af587744a7eb6e58f5b3d2 \
 -F redirect_uri=urn:ietf:wg:oauth:2.0:oob \
 -F username=user@example.com \
--X DELETE http://localhost:3000/oauth/authorize
+-X DELETE http://api.bankvision.com/oauth/authorize
 
-COMMAND OUTPUT
+```
 
+```html
 Redirect to redirect_uri
 
 ```
 
-##POST Token
 
-**POST /oauth/token**
-
-Post here with authorization code for authorization code grant type or username and password for password grant type, or refresh token for refresh token type.
-
-```Java
-
-COMMAND
-
-curl -F grant_type=authorization_code \
--F client_id=9b36d8c0db59eff5038aea7a417d73e69aea75b41aac771816d2ef1b3109cc2f \
--F client_secret=d6ea27703957b69939b8104ed4524595e210cd2e79af587744a7eb6e58f5b3d2 \
--F code=fd0847dbb559752d932dd3c1ac34ff98d27b11fe2fea5a864f44740cd7919ad0 \
--F redirect_uri=urn:ietf:wg:oauth:2.0:oob \
--X POST http://localhost:3000/oauth/token
-
-COMMAND OUTPUT
-
-{"access_token":"dbaf9757982a9e738f05d249b7b5b4a266b3a139049317c4909f2f263572c781","token_type":"bearer","expires_in":7200,"refresh_token":"76ba4c5c75c96f6087f58a4de10be6c00b29ea1ddc3b2022ee2016d1363e3a7c","scope":"public"}
-
-COMMAND PASSWORD GRANT
-
-curl -F grant_type=password \
--F username=user@example.com \
--F password=doorkeeper \
--X POST http://localhost:3000/oauth/token
-
-COMMAND OUTPUT  
-
-{"access_token":"0ddb922452c983a70566e30dce16e2017db335103e35d783874c448862a78168",
-"token_type":"bearer",
-"expires_in":7200,
-"refresh_token":"f2188c4165d912524e04c6496d10f06803cc08ed50271a0b0a73061e3ac1c06c",
-"scope":"public"}
-
-COMMAND REFRESH TOKEN GRANT
-
-curl -F grant_type=refresh_token \
--F client_id=9b36d8c0db59eff5038aea7a417d73e69aea75b41aac771816d2ef1b3109cc2f \
--F client_secret=d6ea27703957b69939b8104ed4524595e210cd2e79af587744a7eb6e58f5b3d2 \
--F refresh_token=c65b265611713028344a2c285dfdc4e28f9ce2dbc36b9f7e12f626a3d106a304 \
--X POST http://localhost:3000/oauth/token
-
-COMMAND OUTPUT
-
-{"access_token":"ad0b5847cb7d254f1e2ff1910275fe9dcb95345c9d54502d156fe35a37b93e80",
-"token_type":"bearer",
-"expires_in":30,
-"refresh_token":"cc38f78a5b8abe8ee81cdf25b1ca74c3fa10c3da2309de5ac37fde00cbcf2815",
-"scope":"public"}
-
-COMMAND OUTPUT FAILED RESPONSE
-
-{"error":"invalid_grant",
-"error_description":"The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client."}
-
-```
-
-##POST Token Revoke
-
-**POST /oauth/revoke**
-
-Revoke OAuth authorization, deletes the access token.
-
-```Java
-
-COMMAND -  Token revoke with client credentials in params
-
-curl -F client_id=9b36d8c0db59eff5038aea7a417d73e69aea75b41aac771816d2ef1b3109cc2f \
--F client_secret=d6ea27703957b69939b8104ed4524595e210cd2e79af587744a7eb6e58f5b3d2 \
--F token=dbaf9757982a9e738f05d249b7b5b4a266b3a139049317c4909f2f263572c781 \
--X POST http://localhost:3000/oauth/revoke
-
-COMMAND OUTPUT
-
-{}
-
-COMMAND - token revoke with client credentials in basic auth
-
-curl -F token=dbaf9757982a9e738f05d249b7b5b4a266b3a139049317c4909f2f263572c781 \
--u '9b36d8c0db59eff5038aea7a417d73e69aea75b41aac771816d2ef1b3109cc2f:d6ea27703957b69939b8104ed4524595e210cd2e79af587744a7eb6e58f5b3d2' \
--X POST http://localhost:3000/oauth/revoke
-
-COMMAND OUTPUT
-
-{}
-
-```
-
-##GET Aplications Authorization
+##Oauth 2.0 GET Aplications Authorization
 
 **GET /oauth/applications**
 
 Revoke OAuth authorization, deletes the access token.
 
-```Java
-
-COMMAND
+```shell
 
 curl http://localhost:3000/oauth/applications
 
-COMMAND OUTPUT
+```
 
+```html
 HTML page with tabular list of authorized application clients
         <tr id="application_1">
           <td><a href="/oauth/applications/1">Doorkeeper Sinatra Client</a></td>
@@ -332,122 +289,48 @@ HTML page with tabular list of authorized application clients
 
 ```
 
-##API for managing authorized api clients
 
-**POST /oauth/applications**
-
-Creates an authorized application with client id and secret. This is form submission from the page served by
- /oauth/applications/new
-
-**GET /oauth/applications/new**
-
-Serves a web form for editing a new authorized api client.
-
-**GET /oauth/applications/:id/edit**
-
-Serves a web form for editing the specified authorized api client.
-
-**GET /oauth/applications/:id**
-
-Displays a web page with details of a specified authorized api client.
-
-**PUT /oauth/applications/:id**
-
-Updates an authorized api client. This is form submission from the page served by /oauth/applications/:id/edit
-
-**DELETE /oauth/applications/:id**
-
-Deletes the specified authorized api client
-
-##GET Authorized Applications
+##Oauth 2.0 GET Authorized Applications
 
 **GET /oauth/authorized_applications**
 
 Web user interface for logged-in user displays a list of api client authorizations.
 
-```Java
-
-COMMAND
+```shell
 
 curl -F username=user@example.com \
--X GET http://localhost:3000/oauth/authorized_applications
+-X GET http://api.bankvision.com/oauth/authorized_applications
 
-COMMAND OUTPUT
+```
 
+```html
 <tr>
-  <td>Doorkeeper Sinatra Client</td>
+  <td>Oauth 2.0 Bankvision Client</td>
   <td>2014-01-28 17:03:24 UTC</td>
   <td><a href="/oauth/authorized_applications/1" class="btn danger" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Revoke</a></td>
 </tr>
 
 ```
 
-##DELETE Authorized Applications
+##Oauth 2.0 DELETE Authorized Applications
 
 **DELETE /oauth/authorized_applications/:id**
 
 Destroys the identified api client authorization from a user.
 
-```Java
-
-COMMAND
+```shell
 
 curl -F username=user@example.com \
--X DELETE http://localhost:3000/oauth/authorized_applications/1
+-X DELETE http://api.bankvision.com/oauth/authorized_applications/1
 
-COMMAND OUTPUT
+```
 
+```html
 redirect to /oauth/authorized_applications
 
 ```
 
-##GET Token Information
 
-**GET /oauth/token/info**
-
-Shows details about the token used for authentication.
-
-```Java
-
-COMMAND
-
-curl -H "Authorization: Bearer 53cff8f4a549beb1c38704158b0f6608a2382f094b6947ecc35c2eed4146a17c" \
-     localhost:3000/oauth/token/info
-
-COMMAND OUTPUT
-
-{"resource_owner_id":1,
-"scopes":[],
-"expires_in_seconds":7178,
-"application":{"uid":null},
-"created_at":1440460991}
-
-COMMAND OUTPUT - Token not found
-
-{"error":"invalid_request",
-"error_description":"The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed."}
-
-```
-
-##POST Token Revoke
-
-**POST /oauth/revoke**
-
-Revokes the given token, requires authentication.
-
-```Java
-
-COMMAND
-
-curl -F token=53cff8f4a549beb1c38704158b0f6608a2382f094b6947ecc35c2eed4146a17c \
- -H "Authorization: Bearer 53cff8f4a549beb1c38704158b0f6608a2382f094b6947ecc35c2eed4146a17c" \
- -X POST localhost:3000/oauth/revoke
-
-COMMAND OUTPUT
-
-Always returns 200 OK, even if token doesn't exist or has already been revoked.
-
-```
 
 # Client
 
