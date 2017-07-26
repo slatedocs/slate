@@ -19,7 +19,7 @@ The collections api endpoint is:
     "remote_transaction_id": "12132",
     "organization": 1,
     "amount": "20.0000",
-    "currency": 1,
+    "currency": "BXC",
     "phonenumber": "+80000000001",
     "payment_date": "2015-12-12T00:00:00Z",
     "reference": null,
@@ -53,14 +53,14 @@ collection_request | JSON string| *New in V3.* A JSON representation of the coll
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/collections/230 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://app.beyonic.com/api/collections/131820 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-collection = Beyonic::Collection.get(23)
+collection = Beyonic::Collection.get(131820)
 ```
 
 ```php
@@ -68,7 +68,7 @@ collection = Beyonic::Collection.get(23)
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$collection = Beyonic_Collection::get(23);
+$collection = Beyonic_Collection::get(131820);
 ?>
 ```
 
@@ -76,7 +76,7 @@ $collection = Beyonic_Collection::get(23);
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-collection = beyonic.Collection.get(23)
+collection = beyonic.Collection.get(131820)
 
 ```
 
@@ -99,7 +99,7 @@ public class SingleCollectionExample {
     public static void main(String[] args){
         URL url = null;
         try {
-            url = new URL(API_ENDPOINT + "/1");
+            url = new URL(API_ENDPOINT + "/131820");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
             conn.setRequestProperty("Content-Type", "application/json");
@@ -134,11 +134,11 @@ public class SingleCollectionExample {
 
 ```json
 {
-    "id": 1,
+    "id": 131820,
     "remote_transaction_id": "12132",
     "organization": 1,
     "amount": "200.0000",
-    "currency": "KES",
+    "currency": "BXC",
     "phonenumber": "+254722000000",
     "payment_date": "2016-09-21T08:55:54Z",
     "reference": "98989",
@@ -151,7 +151,7 @@ public class SingleCollectionExample {
         "id": 2,
         "organization": 1,
         "amount": "200.0000",
-        "currency": "KES",
+        "currency": "BXC",
         "phonenumber": "+254722000000",
         "reason": "Test payment",
         "metadata": {},
