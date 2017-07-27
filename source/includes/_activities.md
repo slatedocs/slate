@@ -1,6 +1,6 @@
 # Activities
 
-The activities register some actions the users make, like join a group, leave a group or buy a resource.
+The activities registers actions the users makes, like joining a group, leaving a group or buying a resource.
 
 ## Activity Object
 
@@ -44,7 +44,7 @@ $ curl -X GET \
 > The encoded json response looks like:
 
 ```json
-HTTP/1.1 200 OK 
+HTTP/1.1 200 OK
 
 {
   "data": [
@@ -107,7 +107,7 @@ HTTP/1.1 200 OK
 }
 ```
 
-You can fetch a list of activities via a `GET` to `https://sunlight.is/api/activities` The activities list is sorted by the `created-at` field and by default is ordered descending, most recently created first.
+You can fetch a list of activities via a `GET` to `https://app.sunlight.is/api/activities` The activities list is sorted by the `created-at` field and by default is ordered descending, by most recently created first.
 
 <aside class="notice">
   A user can see the activities of other users only if they belong to the same group.

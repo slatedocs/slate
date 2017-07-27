@@ -67,7 +67,7 @@ $ curl -X GET \
 > The encoded json response looks like:
 
 ```json
-HTTP/1.1 200 OK 
+HTTP/1.1 200 OK
 
 {
   "data": [
@@ -151,12 +151,12 @@ HTTP/1.1 200 OK
 }
 ```
 
-You can fetch a list of orders via a `GET` to `https://sunlight.is/api/v2/orders`. The order list is sorted by the `updated-at` field and by default is ordered descending, most recently updated first.
+You can fetch a list of orders via a `GET` to `https://app.sunlight.is/api/v2/orders`. The order list is sorted by the `updated-at` field and by default is ordered descending, most recently updated first.
 
 <aside class="notice">
-  The scope of the orders a user can see will depend on the rol of said user.
+  The scope of the orders a user can see will depend on the role of said user.
 
-  Every user can see all of their orders and the ones associated to the groups which said user is admin.
+  Every user can see all of their orders. Additionally, admins of a group can see that groups associated orders.
 </aside>
 
 ### Query Parameters

@@ -1,6 +1,6 @@
 # Groups
 
-The groups help you organize better the users in sunlight. They allow you to monitor what the members are learning and you can know on what they are spending their sunlights.
+Groups help you organize better the users in sunlight. They allow you to monitor what the members are learning as well as know what they are spending their sunlight on.
 
 ## Group Model
 
@@ -32,21 +32,21 @@ name | **string** | The name of the group
 address | **string** | The address of the group
 bio | **string** | A short description of the group
 abour-url | **strin g** | Url for the group's website.
-manager-approval | **boolean** | If the orders requieres manager approval
+manager-approval | **boolean** | If the orders requires manager approval
 privacy-setting | **string** | Group privacy type
 avatar-url | **string** | Avatar url of the group
 cover-url | **string** | Cover url of the group
 number-of-members | **integer** | The number of users in the group
-created-at | **timestamp** | The time the group was added to Sunlight
-updated-at | **timestamp** | The time the group was updated to Sunlight
+created-at | **timestamp** | The datetime the group was added to Sunlight
+updated-at | **timestamp** | The datetime the group was updated to Sunlight
 
 ### privacy-settings:
 
 You can choose to allow people join your group at anytime, have them request invites or only allow them to join by an admin’s invitation.
 
-- `admin-invite`: People can only join by an invitation from a group admin ***(Avaiable)***
-- `public_access`: People can join your group at anytime ***(Not avaible)***
-- `request_invite`: People request invite to join a group ***(Not avaible)***
+- `admin-invite`: People can only join by an invitation from a group admin ***(Available)***
+- `public_access`: People can join your group at anytime ***(Not available)***
+- `request_invite`: People request invite to join a group ***(Not available)***
 
 ### manager-approval
 
@@ -81,7 +81,7 @@ $ curl -X POST \
 > The encoded json response looks like:
 
 ```json
-HTTP/1.1 201 CREATED 
+HTTP/1.1 201 CREATED
 
 {
   "data": {
@@ -112,7 +112,7 @@ HTTP/1.1 201 CREATED
 }
 ```
 
-Groups can be created via a `POST` to `https://sunlight.is/api/groups`, which accepts a JSON object describing the group.
+Groups can be created via a `POST` to `https://app.sunlight.is/api/groups`, which accepts a JSON object describing the group.
 
 <aside class="notice">
   Note that a group will always have at least one user associated. At the time of creating a group, that user will automatically be a member and administrator.
@@ -151,7 +151,7 @@ $ curl -X POST \
     "relationships": {
       "group": {
         "data": {
-          "id": "9030927d27" 
+          "id": "9030927d27"
         }
       }
     }
@@ -162,7 +162,7 @@ $ curl -X POST \
 > The encoded json response looks like:
 
 ```json
-HTTP/1.1 201 CREATED 
+HTTP/1.1 201 CREATED
 
 {
   "data": {
@@ -202,7 +202,7 @@ $ curl -X POST \
       },
       "group": {
         "data": {
-          "id": "9030927d27" 
+          "id": "9030927d27"
         }
       }
     }
@@ -213,7 +213,7 @@ $ curl -X POST \
 > The encoded json response looks like:
 
 ```json
-HTTP/1.1 201 CREATED 
+HTTP/1.1 201 CREATED
 
 {
   "data": {
@@ -237,9 +237,9 @@ The groups allow you to invite registered and unregistered users in sunlight, to
   You can only invite users to groups where you are an admin.
 </aside>
 
-### To unregistered users 
+### To unregistered users
 
-via a `POST` to `https://sunlight.is/api/group-invitations`, which accepts a JSON object.
+via a `POST` to `https://app.sunlight.is/api/group-invitations`, which accepts a JSON object.
 
 Parameter | Required | Description
 --------- | ------- | -----------
@@ -248,7 +248,7 @@ relationships[group][id] | yes | Group id which the user will be joining to.
 
 ### To registered users
 
-via a `POST` to `https://sunlight.is/api/group-users`, which accepts a JSON object.
+via a `POST` to `https://app.sunlight.is/api/group-users`, which accepts a JSON object.
 
 Parameter | Required | Description
 --------- | ------- | -----------
@@ -277,7 +277,7 @@ $ curl -X POST \
         "data": {
           "id": "e70099a393"
         }
-      } 
+      }
     }
   }
 }'
@@ -304,9 +304,9 @@ $ curl -X POST \
 }
 ```
 
-Budget is one way that users in a group get sunlights, it allows groups to budget a certain amount of money they use to invest in their education.
+Budget is one way that users in a group get sunlight, it allows groups to budget a certain amount of money they use to invest in their education.
 
-Can edit the budget for each member of a group individually via `POST` to` https://sunlight.is/api/credit`
+Can edit the budget for each member of a group individually via `POST` to` https://app.sunlight.is/api/credit`
 
 ### Query Parameters
 
@@ -314,6 +314,3 @@ Parameter | Required | Description
 --------- | ------- | -----------
 amount | yes | Amount of money expressed in cents.
 relationships[group-user][id] | yes | `group-user` id
-
-
-
