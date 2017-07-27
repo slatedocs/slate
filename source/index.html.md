@@ -634,8 +634,8 @@ This endpoint return the balance for the account of the client.
 
 Parameter | Description
 --------- | -----------
-<ID> | Client Id
-<AID> | Account Number
+ID | Client Id
+AID | Account Number
 
 >The above command returns JSON structured like this:
 
