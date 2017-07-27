@@ -512,21 +512,6 @@ phone | Client phone
 This endpoint update a specific client. (Data missing we need more information from core )
 
 # Account
-
-## Create Account
-This endpoint create a new account. ( Data missing we need more information from core)
-
-### HTTP Request
-
-`POST https://api.bankvision.com/clients/<ID>/accounts`
-
-### BODY Parameters
-Parameter | Description
-----------|------------
-type | Account type
-status | Account status
-
-
 ## Get Accounts
 
 ```shell
@@ -642,15 +627,15 @@ This endpoint return the balance for the account of the client.
 
 
 ### HTTP Request
-`GET /clients/<ID>/accounts/<AID>/balances`
+`GET /clients/<ID>/accounts/<AID>/balance`
 
 
-### BODY Parameters
+### QUERY Parameters
 
 Parameter | Description
 --------- | -----------
-account_id | Account number
-network | Transaction network
+<ID> | Client Id
+<AID> | Account Number
 
 >The above command returns JSON structured like this:
 
