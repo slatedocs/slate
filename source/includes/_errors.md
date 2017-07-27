@@ -1,20 +1,20 @@
 # Errors
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
+### HTTP Status codes
 
-The Kittn API uses the following error codes:
+The Sunlight API uses the following codes:
 
 
-Error Code | Meaning
+Code | Meaning
 ---------- | -------
-400 | Bad Request -- Your request sucks.
+200 | Ok -- The request was successful.
+201 | Created -- The resource was successfully created.
+202 | Accept -- The resource was asynchronously created
+204 | No Content - The server successfully processed the request and is not returning any content.
+400 | Bad Request -- General client error, possibly malformed data.
 401 | Unauthorized -- Your API key is wrong.
-403 | Forbidden -- The kitten requested is hidden for administrators only.
+403 | Forbidden -- The requested is hidden for administrators only.
 404 | Not Found -- The specified kitten could not be found.
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method.
-406 | Not Acceptable -- You requested a format that isn't json.
-410 | Gone -- The kitten requested has been removed from our servers.
-418 | I'm a teapot.
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
+422 | Unprocessable Entity -- The request was well-formed but was unable to be followed due to semantic errors.
 500 | Internal Server Error -- We had a problem with our server. Try again later.
 503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
