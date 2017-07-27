@@ -54,3 +54,26 @@ A POST on this resource must consist of a JSON object with the members "pw" and 
 If the password does not match the users current password they will receive an error message (400 Bad Request). If the user is an oauth account, then the email address may not be changed (409 Conflict).
 
 If the user ID does not match the current signed in user, an 403 Forbidden will be sent back.
+
+
+##### Expropriate a user
+
+An account admin can expropriate a user from the same account. This will change
+ownership of all of the affected user's teams, projects and datasets to a new
+owner.
+
+The new owner must also be part of the same account and should have 
+`create_datasets` permissions set to `true`.
+
+`POST /users/{id}/expropriate/`
+
+````json
+{
+  "element": "shoji:entity",
+  "body": {
+    "owner": "http://app.crunch.io/api/users/123abc/"
+  }
+}
+````
+
+The new owner provided can be a user URL or a user email.
