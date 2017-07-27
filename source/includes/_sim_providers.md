@@ -1,15 +1,13 @@
-## <u>Network</u>
-A table holding the availble networks that a unit might connect on.
+## <u>SIM Provider</u>
+The list of SIM providers
 
 
-### <u>The network object</u>
+### <u>The sim_provider object</u>
 
 Field | Description
 ------:|:------------
-__mccmnc__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each network.
-__name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
-__mcc__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | The Mobile Country Code of the network.
-__mnc__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | The Mobile Network Code of the network.
+__sim_provider_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each sim_provider.
+__name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -19,15 +17,17 @@ __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modifie
 
 Relationship | Description
 -------------:|:------------
-<font color="DarkGray">N/A</font> | <font color="DarkGray">_There are no relationships for this table._</font>
+__sim_part_type_sim_provider_linker__ | The associated sim_part_type_sim_provider_linker
+__sim_provider_network_linker__ | The associated sim_provider_network_linker
+
 
 <hr>
 <br>
 
-> An example POST request. Note that `mccmnc`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `sim_provider_id`, `created_at`, `modified_at`, `created_by` and `modified_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/networks"
+    url = "http://smartapi.bboxx.co.uk/v1/sim_providers"
     data = json.dumps({
 		"name": "test",
 		})
@@ -41,18 +41,19 @@ Relationship | Description
     r.json()
 
     >>> {
-		"mccmnc": 1
+		"sim_provider_id": 1,
 		"name": "test",
-		"created_at": "2000-01-01 00:00:00"
-		"created_by": "test.user@bboxx.co.uk"
-		"modified_at": None
+		"created_at": "2000-01-01 00:00:00",
+		"created_by": "test.user@bboxx.co.uk",
+        "modified_at": None,
+        "modified_by": None
 	}
 ```
 
-    > We can retrieve the `network` created by specifying its `mccmnc` in the request url:
+    > We can retrieve the `sim_provider` created by specifying its `sim_provider_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/networks/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/sim_providers/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -62,18 +63,19 @@ Relationship | Description
 
     r.json()
     >>> {
-		"mccmnc": 1
-		"name": "test",
-		"created_at": "2000-01-01 00:00:00"
-		"created_by": "test.user@bboxx.co.uk"
-		"modified_at": None
+        "sim_provider_id": 1,
+        "name": "test",
+        "created_at": "2000-01-01 00:00:00",
+        "created_by": "test.user@bboxx.co.uk",
+        "modified_at": None,
+        "modified_by": None
 	}
 ```
 
-> We can retrieve all `networks` by omitting the `mccmnc`:
+> We can retrieve all `sim_providers` by omitting the `sim_provider_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/networks'
+    url = 'http://smartapi.bboxx.co.uk/v1/sim_providers'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -96,10 +98,10 @@ Relationship | Description
     }
 ```
 
-> We can edit the newly created `network` with a `PUT` request:
+> We can edit the newly created `sim_provider` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/networks/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/sim_providers/1'
     data = json.dumps({
 		"name": "changed",
 		})
@@ -112,19 +114,20 @@ Relationship | Description
 
     r.json()
     >>> {
-		"mccmnc": 1
+		"sim_provider_id": 1
 		"name": "changed",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
-		"modified_at": 2016-07-07 12:34:45
+		"modified_at": "2016-07-07 12:34:45",
+        "modified_by": "test.user@bboxx.co.uk"
 	}
 ```
-> Note that the `modified_at` field has been updated accordingly.
+> Note that the `modified_at` and `modified_by` fields have been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the `network`
+> If a user has `SYSTEM` permissions they can delete the `sim_provider`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/networks/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/sim_providers/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)
@@ -142,20 +145,20 @@ Relationship | Description
 ### POST
      | value
  ----:|:---
-endpoint | `/v1/networks`
+endpoint | `/v1/sim_providers`
 method | `POST`
 url_params | <font color="DarkGray">N/A</font>
 query params | <font color="DarkGray">N/A</font>
-body | JSON-formatted dictionary with the details of the `network` that you wish to create
+body | JSON-formatted dictionary with the details of the `sim_provider` that you wish to create
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `201`
 
 ### GET
      | value
  ----:|:---
-endpoint | `/v1/networks` or `/v1/networks/<mccmnc>`
+endpoint | `/v1/sim_providers` or `/v1/sim_providers/<sim_provider_id>`
 method | `GET`
-url_params | `mccmnc` <font color="DarkGray">_(int)_</font>
+url_params | `sim_provider_id` <font color="DarkGray">_(int)_</font>
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>
@@ -164,9 +167,9 @@ response | `200`
 ### PUT
      | value
  ----:|:---
-endpoint | `/v1/networks/<mccmnc>`
+endpoint | `/v1/sim_providers/<sim_provider_id>`
 method | `PUT`
-url_params | `mccmnc` of the network you wish to edit
+url_params | `sim_provider_id` of the sim_provider you wish to edit
 query params | <font color="DarkGray">N/A</font>
 body | JSON-formatted dictionary of the columns that you wish to alter
 permissions | <font color="Crimson">__`SYSTEM`__</font>
@@ -175,9 +178,9 @@ response | `200`
 ### DELETE
      | value
  ----:|:---
-endpoint | `/v1/networks/<mccmnc>`
+endpoint | `/v1/sim_providers/<sim_provider_id>`
 method | `DELETE`
-url_params | `mccmnc` <font color="DarkGray">_(int)_</font>
+url_params | `sim_provider_id` <font color="DarkGray">_(int)_</font>
 query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>

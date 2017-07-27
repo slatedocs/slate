@@ -24,6 +24,7 @@ includes:
   - entities
   - hubs
   - latest_softwares
+  - networks
   - parameter_types
   - parts
   - part_parameters
@@ -40,6 +41,9 @@ includes:
   - product_type_software_version_type_linker
   - repairs
   - repair_symptom_type_linker
+  - sim_providers
+  - sim_part_type_sim_provider_linker
+  - sim_provider_network_linker
   - sms_history
   - shops
   - software_version_types
@@ -65,6 +69,7 @@ includes:
   - parameters
   - parameter_history
   - connectivity_reliability_rate
+  - available_networks
 
   - product_data
 
