@@ -152,3 +152,41 @@ this Batch will be queued and not fetched). If there are no pending messages,
 Every hour, the Crunch system goes through all datasets, and for each that has pending streamed data, it batches up the pending rows and adds them to the dataset automatically, as long as the dataset is not currently in use by someone. That way, streamed data will magically appear in the dataset for the next time a user loads it, but if a user is actively working with the dataset, the system won't update their view of the data and disrupt their session.
 
 See [Stream](#stream) for more details on streams.
+
+
+## Combining datasets
+
+Combining datasets consists on creating a new dataset formed by stacking a list 
+of datasets together. It works under the same rules as a normal append.
+
+To create a new dataset combined from others, it is necessary to POST to the
+datasets catalog indicating a `combine` expression:
+
+```
+POST /api/datasets/
+```
+
+```json
+
+{
+  "element": "shoji:entity",
+  "body": {
+    "name": "My combined dataset",
+    "description": "Consists on dsA and dsB"
+  },
+  "expression": {
+    "function": "combine",
+    "args": [
+      {"dataset": "https://app.crunch.io/api/datasets/dsabc/"},
+      {"dataset": "https://app.crunch.io/api/datasets/ds123/"}
+    ]
+  }
+}
+```
+
+The server will verify that the authenticated user has view permission to all
+datasets, else will raise a 400 error.
+
+The resulting dataset will consist on the matched union of all included datasets
+with the rows in the same order. Private/public variable visibility and exclusion
+filters will be honored in the result.
