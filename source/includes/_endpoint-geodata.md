@@ -42,6 +42,48 @@ location | uri | Location of crunch-curated geojson/topojson file. Users may nee
 description | string | Any additional information about the geodatum
 metadata | object | Information regarding the actual data provided by the location.  For now, the properties in the geodata features are extracted for the purpose of matching geodata to variable categories.
 
+### Catalog
+
+`/geodata/id/`
+
+#### GET
+
+Crunch maintains a few geojson/topojson resources and publishes them on CDN.
+Most of their properties, with the exception of `metadata`, are present on the catalog
+tuple, described above; metadata is an open field but may be populated at creation time
+by a Crunch utility that extracts and aggregates across features of geojson and topojson
+resources. For other formats, users may supply relevant metadata for the geodatum resource.
+
+```json
+{
+    "element": "shoji:entity",
+    "self": "https://app.crunch.io/api/geodata/7ae898e210b04a9a8992314452c6677b/",
+    "body": {
+        "description": "use properties.name or properties.postal-code",
+        "created": "2016-07-08T16:33:44.601000+00:00",
+        "name": "US States GeoJSON Name + Postal Code",
+        "location": "https://s.crunch.io/geodata/leafletjs/us-states.geojson",
+        "id": "7ae898e210b04a9a8992314452c6677b",
+        "metadata": {
+            "status": "success",
+            "properties": {
+                "postal-code": [
+                    "AL",
+                    "AK",
+                    "AZ", "etc."
+                ],
+                "name": [
+                    "Alabama",
+                    "Arkansas",
+                    "Alaska", "etcetera"
+                ]
+            }
+        }
+    }
+}
+```
+
+
 ### Geodata for common applications
 
 - <https://app.crunch.io/api/geodata/7ae898e210b04a9a8992314452c6677b/>
@@ -65,6 +107,12 @@ Adding a new geodatum is as easy as POSTing it to the geodata catalog, most easi
 the geodata file and analyze the properties present on the features (generally polygons), which can then be associated
 with Crunch variables. The metadata extraction and summary can help you align variables and select the right property to 
 associate with your Crunch geographic variable by category name.
+
+Include a `format` member in the payload (on post or patch) to trigger automatic metadata extraction. The server will
+fetch and aggregate properties from FeatureCollections in order to provide hints for eventual consumers of the Crunch 
+geodatum. The automatic feature extractor supports GeoJSON and TopoJSON formats; you may register a Shapefile (shp) or
+other resource as a Crunch geodatum, but will have to supply `metadata` hints yourself and are advised to indicate its
+non-json format.
 
 The lists of properties returned in the metadata are correlated, such that if a feature in your geodata is missing a
  given property, it will return null.
