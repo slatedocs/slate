@@ -281,7 +281,7 @@ curl -i https://rubiconmd.com/api/v1/referrals?access_token="AAAAAA"
 ]
 ```
 
-This endpoint returns all the `Consults` tied to `Assignments` a specialist has participated on as individual or as a `Specialist Panel` member, given that the assignments are not in `revoked`, `time_out` or `declined` state. Will include those consults anyway if the specialist had submitted a `Response` for them.
+This endpoint returns all the `Consults` tied to `Assignments` a specialist has participated on as individual or as a `Specialist Panel` member, given that the assignments are not in `revoked`, `time_out` or `declined` state. Will include also consults in `timed_out` and `declined` states if the `Specialist` had written a `Response` for them.
 
 ### HTTP Request
 
