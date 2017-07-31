@@ -11,6 +11,8 @@ Our Ruby agent supports Ruby on Rails 2.2+ and Ruby 1.8.7+ and the following app
 * Unicorn
 * WEBrick
 * Sidekiq
+* DelayedJob
+* Resque
 
 [Memory Bloat detection](#memory-bloat-detection) and [ScoutProf](#scoutprof) require Ruby 2.1+.
 
@@ -559,15 +561,23 @@ anything. It will be ignored by the agent and have no effect.
 ## Rack
 
 Rack instrumentation is more explicit than Rails instrumentation, since Rack applications can take
-nearly any form. After [installing our agent](#ruby_install), instrumenting Rack is a two step process:
+nearly any form. After [installing our agent](#ruby_install), instrumenting Rack is a three step process:
 
-1. Starting the agent
-2. Wrapping endpoints in tracing
+1. Configuring the agent
+2. Starting the agent
+3. Wrapping endpoints in tracing
+
+<h3 id="rack-config">Configuration</h3>
+
+Rack apps are configured using the same approach as a Rails app: either via a `config/scout_apm.yml` config file or environment variables.
+
+* __configuration file__: create a `config/scout_apm.yml` file under your application root directory. The file structure is outlined [here](#ruby-configuration-options).
+* __environment variables__: see our docs on configuring the agent via [environment variables](#ruby-env-vars).
 
 ### Starting the Agent
 
 Add the `ScoutApm::Rack.install!` startup call as close to the spot you
-`run` your Rack application.  <span style="white-space: nowrap;">`install!`</span>
+`run` your Rack application as possible.  <span style="white-space: nowrap;">`install!`</span>
 should be called after you require other gems (ActiveRecord, Mongo, etc)
 to install instrumentation for those libraries.
 
@@ -582,7 +592,7 @@ run MyApp
 
 ### Adding endpoints
 
-Wrap each endpoint in a call to `ScoutApm::Rack.transaction(name, env)`.
+Wrap each endpoint in a call to `ScoutApm::Rack#transaction(name, env)`.
 
 * `name` - an unchanging string argument for what the endpoint is. Example: `"API User Listing"`
 * `env` - the rack environment hash
@@ -603,6 +613,43 @@ end
 If you run into any issues, or want advice on naming or wrapping endpoints, contact us at
 support@scoutapp.com for additional help.
 
+## Sinatra
+
+Instrumenting a Sinatra application is similar to instrumenting a generic [Rack application](#rack).
+
+<h3 id="sinatra-configuration">Configuration</h3>
+
+The agent configuration (API key, app name, etc) follows the same process as the [Rack application config](#rack-config).
+
+<h3 id="sinatra-starting-agent">Starting the agent</h3>
+
+Add the `ScoutApm::Rack.install!` startup call as close to the spot you
+`run` your Sinatra application as possible.  <span style="white-space: nowrap;">`install!`</span>
+should be called _after_ you require other gems (ActiveRecord, Mongo, etc).
+
+```ruby
+require './main'
+
+require 'scout_apm'
+ScoutApm::Rack.install!
+
+run Sinatra::Application
+```
+
+<h3 id="sinatra-transactions">Adding endpoints</h3>
+
+Wrap each endpoint in a call to `ScoutApm::Rack#transaction(name, env)`. For example:
+
+```ruby
+get '/' do
+  ScoutApm::Rack.transaction("get /", request.env) do
+    ActiveRecord::Base.connection.execute("SELECT * FROM pg_catalog.pg_tables")
+    "Hello!"
+  end
+end
+```
+
+See our [Rack docs for adding an endpoint](#adding-endpoints) for more details.
 
 <h2 id="ruby-custom-context">Custom Context</h2>
 
@@ -840,6 +887,8 @@ The following libraries are currently instrumented:
 * Middleware
 * Redis
 * Sidekiq
+* DelayedJob
+* Resque
 
 Additionally, [Scout can also instrument request queuing time](#request-queuing).
 

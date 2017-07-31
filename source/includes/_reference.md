@@ -67,7 +67,7 @@ While Scout itself is not HIPAA compliant, our agent can be installed safely in 
 
 Email support@scoutapp.com with any questions on security compliance.
 
-### Git Integration
+<h3 id="git-integration-security">Git Integration</h3>
 
 Scout only needs read-only access to your repository, but unfortunately, Github doesn't currently allow this - they only offer read-write permissions through their OAuth API.
 
