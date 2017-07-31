@@ -70,7 +70,7 @@ Not seeing any data?
 tail -n1000 log/scout_apm.log | grep "Starting monitoring" -A20
 </pre>
         <p>
-          See something noteworthy? Proceed to <a href="#step8">to the last step</a>. Otherwise, continue to step 2.
+          See something noteworthy? Proceed to <a href="#step7">to the last step</a>. Otherwise, continue to step 2.
         </p>
         <p><strong style="color:gray">No:</strong></p>
         <p>
@@ -84,21 +84,12 @@ group :production do
   gem 'scout_apm'
 end
 </pre>
-        <p><a href="#step8">Jump to the last step</a> if <code>scout_apm</code> is correctly configured in your <code>Gemfile</code>.</p>
+        <p><a href="#step7">Jump to the last step</a> if <code>scout_apm</code> is correctly configured in your <code>Gemfile</code>.</p>
       </td>
     </tr>
     <tr>
       <td>
         <span class="step">2</span>
-      </td>
-      <td>
-        <p>Are your controllers inheriting from <code>ActionController::Metal</code> instead of <code>ActionController::Base</code>?</p>
-        <p><a href="#actioncontroller-metal">Add instrumentation</a> to your <code>ActionController::Metal</code> controllers.</p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <span class="step">3</span>
       </td>
       <td>
         <p>Was the <code><strong>scout_apm</strong></code> gem deployed with your application?</p>
@@ -109,7 +100,7 @@ bundle list scout_apm
     </tr>
     <tr>
       <td>
-        <span class="step">4</span>
+        <span class="step">3</span>
       </td>
       <td>
         <p>Did you download the config file, placing it in <code><strong>config/scout_apm.yml</strong></code>?</p>
@@ -117,7 +108,7 @@ bundle list scout_apm
     </tr>
     <tr>
       <td>
-        <span class="step">5</span>
+        <span class="step">4</span>
       </td>
       <td>
         <p>
@@ -127,10 +118,10 @@ bundle list scout_apm
     </tr>
     <tr>
       <td>
-        <span class="step">6</span>
+        <span class="step">5</span>
       </td>
       <td>
-        <a name="step6"></a>
+        <a name="step5"></a>
         <p>Are you sure the application has processed any requests?</p>
 <pre>
 tail -n1000 log/production.log | grep "Processing"
@@ -139,7 +130,7 @@ tail -n1000 log/production.log | grep "Processing"
     </tr>
     <tr>
       <td>
-        <span class="step">7</span>
+        <span class="step">6</span>
       </td>
       <td>
         <p>
@@ -151,8 +142,8 @@ tail -n1000 log/production.log | grep "Processing"
     </tr>
     <tr>
       <td>
-        <a name="step8"></a>
-        <span class="step">8</span>
+        <a name="step7"></a>
+        <span class="step">7</span>
       </td>
       <td>
         <p>
@@ -556,16 +547,13 @@ passenger_set_cgi_param X_REQUEST_START "t=${msec}";
 
 ## ActionController::Metal
 
-Scout instruments controllers that inherit from `ActionController::Base` automatically, but not those that inherit from `ActionController::Metal` (including `ActionController::API`). We instrument `ActionController::Base` as this allows us to instrument the full request cycle (which includes before/after filters). If we just instrumented `ActionController::Metal`, we'd miss this instrumentation.
+Prior to agent version 2.1.26, an extra step was required to instrument `ActionController::Metal`
+and <span style="white-space: nowrap;">`ActionController::Api`</span> controllers. After 2.1.26, this is automatic.
 
-However, adding instrumentation to controllers that inherit from `ActionController::Metal` is simple. Just include our instrumentation library in the controller:
+The previous instructions which had an explicit `include` are no longer
+needed, but if that code is still in your controller, it will not harm
+anything. It will be ignored by the agent and have no effect.
 
-```ruby
-class FastController < ActionController::Metal
-  include ScoutApm::Instruments::ActionControllerRails3Rails4Instruments
-```
-
-This won't interfere with our regular instrumentation. Your controller-action metrics will appear under the endpoints area of Scout, just like any other controller-action.
 
 
 ## Rack
