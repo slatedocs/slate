@@ -61,6 +61,7 @@ hint | string | 0..1 | отображаемая подсказка к полю
 placeholder | string | 0..1 | отображаемое внутри поля
 comboBoxValues | [ComboBoxValueDTO](#comboboxvaluedto) | 0..1 | список значений
 readOnly | bool | 0..1 | признак редактируемости
+mask | string | 0..1 | маска вида ``*** **-**`` применимо для полей класса NUMERIC, SINGLE_LINE_TEXT, позволяет вводить символы только в области ``*``
 
 <aside class="notice">для платежных форм валюта поля AMOUNT будет привязана к валюте в выбранном счете поля SOURCE_ACCOUNT</aside>
 
