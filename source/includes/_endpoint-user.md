@@ -85,6 +85,28 @@ error message (400 Bad Request). If the user is an oauth account, then the email
 
 If the user ID does not match the current signed in user, an 403 Forbidden will be sent back.
 
+
+##### Expropriate a user
+
+An account admin can expropriate a user from the same account. This will change
+ownership of all of the affected user's teams, projects and datasets to a new
+owner.
+
+The new owner must also be part of the same account and should have 
+`create_datasets` permissions set to `true`.
+
+`POST /users/{id}/expropriate/`
+
+````json
+{
+  "element": "shoji:entity",
+  "body": {
+    "owner": "http://app.crunch.io/api/users/123abc/"
+  }
+}
+````
+
+The new owner provided can be a user URL or a user email.
 ##### User Datasets
 
 `/account/users/{id}/datasets/`

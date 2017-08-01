@@ -291,14 +291,62 @@ already common between the two datasets, and won't try to replay those. You can
 even make further changes to the forked dataset and merge again and again.
 
 Use the "autorollback" member to tell Crunch how to handle merge conflicts. If
-an action cannot be replayed on the original dataset (typically because it has
- had conflicting changes or has been rolled back), then if "autorollback" is
- true (the default), the original dataset will be reverted to the previous
- state before any of the new changes were applied. If "autorollback" is false,
- the dataset is left in the half-merged state, which allows you to investigate
-  the problem, repair it if possible (in either dataset as needed), and then
-  POST again to continue the merge.
+an action cannot be replayed on the original dataset (typically because it 
+had conflicting changes or has been rolled back), then if "autorollback" is 
+true (the default), the original dataset will be reverted to the previous 
+state before any of the new changes were applied. If "autorollback" is false, 
+the dataset is left to the last action that it could successfully play, 
+which allows you to investigate the problem, repair it if possible (in either dataset as needed), 
+and then POST again to continue the merge from that point.
 
 Per-user settings (filters, decks and slides, variable permissions etc) are copied to the new dataset when you fork. However, changes to them are not merged back at this time. Please reach out to us as you experiment so we can fine-tune which details to fork and merge as we discover use cases.
 
 Merging actions may take a few seconds, in which case the POST to actions/ will return 204 when finished. Merging many or large actions, however, may take longer, in which case the POST will return 202 with a Location header containing the URL of a [progress resource](#progress).
+
+#### Filtered Merges
+
+When merging actions it is possible to provide a filter to select which actions should
+be replayed from the other dataset. It is currently possible to filter them by `key` and by `hash`.
+
+When filtering by `hash`, only the provided actions will be merged:
+
+```python
+ds.actions.post({
+    "element": "shoji:entity",
+    "body": {"dataset": forked_ds.self,
+             "filter": {"hash": ["000003"]}}
+})
+```
+
+When filtering by `key`, only the actions that are part of that category will be merged:
+
+```python
+ds.actions.post({
+    "element": "shoji:entity",
+    "body": {"dataset": forked_ds.self,
+             "filter": {"key": ["Variable.create"]}}
+})
+```
+
+##### Recording the filtered actions
+
+If you know that you are going to merge from the same two datasets multiple times
+it is possible to tell crunch to remember the filtered actions so that a subsequent
+merge to the same target won't try to apply them again if they were skipped in a previous merge.
+
+This behaviour can be changed by providing `remember: True` option to the filter,
+which means that the filtered actions will be recorded and a subsequent merge won't
+try to apply them to the target if they are not explicitly filtered again.
+
+```python
+ds.actions.post({
+    "element": "shoji:entity",
+    "body": {"dataset": forked_ds.self,
+             "remember": True,
+             "filter": {"key": ["Variable.create"]}}
+})
+```
+
+Note that only the actions skipped during this merge are recorded, so the previous example
+won't skipp all the `Variable.create` actions forever, but will only remember the action
+that was skipped at that time.
