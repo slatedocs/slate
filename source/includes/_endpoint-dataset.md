@@ -69,6 +69,7 @@ crGET("https://app.crunch.io/api/datasets/")
             "owner_id": "https://app.crunch.io/api/users/685722/",
             "start_date": "2286",
             "end_date": null,
+            "streaming": "no",
             "creation_time": "1986-11-26T12:05:00",
             "modification_time": "1986-11-26T12:05:00",
             "current_editor": "https://app.crunch.io/api/users/ff9443/",
@@ -93,6 +94,7 @@ crGET("https://app.crunch.io/api/datasets/")
             "owner_id": "https://app.crunch.io/api/users/af432c/",
             "start_date": "2285-10-03",
             "end_date": "2285-10-20",
+            "streaming": "no",
             "creation_time": "1982-06-04T09:16:23.231045",
             "modification_time": "1982-06-04T09:16:23.231045",
             "current_editor": null,
@@ -123,6 +125,7 @@ creation_time | ISO-8601 string |  | Datetime at which the dataset was created i
 modification_time | ISO-8601 string | | Datetime of the last modification for this dataset globally
 start_date | ISO-8601 string |  | Date/time for which the data in the dataset corresponds
 end_date | ISO-8601 string |  | End date/time of the dataset's data, defining a start_date:end_date range
+streaming | string | Possible values "no", "finished" and "streaming" to enable/disable streaming
 current_editor | URL or null | | URL of the user entity that is currently editing the dataset, or `null` if there is no current editor
 current_editor_name | string or null | | That user's name, for display
 is_published | boolean | true | Indicates if the dataset is published to viewers or not
@@ -303,6 +306,7 @@ owner | URL | Provide a project URL to set the owner to that project; if omitted
 notes | string | Blank if omitted. Optional notes for the dataset
 start_date | date | ISO-8601 formatted date with day resolution
 end_date | date | ISO-8601 formatted date with day resolution
+streaming | string | Only "streaming", "finished" and "no" available values to define if a dataset will accept streaming data or not
 is_published | boolean | If false, only project editors will have access to this dataset
 weight_variables | array | Contains aliases of weight variables to start this dataset with; variables must be numeric type. 
 table | object | Metadata definition for the variables in the dataset
@@ -413,6 +417,7 @@ size | object | `{"rows": 0, "unfiltered_rows", "columns": 0}` | Dimensions of t
 creation_time | ISO-8601 string |  | Datetime at which the dataset was created in Crunch
 start_date | ISO-8601 string |  | Date/time for which the data in the dataset corresponds
 end_date | ISO-8601 string |  | End date/time of the dataset's data, defining a start_date:end_date range
+streaming | string | Possible values are "no", "finished" and "streaming" to determine if a dataset is streamed or not
 current_editor | URL or null | | URL of the user entity that is currently editing the dataset, or `null` if there is no current editor
 current_editor_name | string or null | | That user's name, for display
 maintainer | URL | The URL of the dataset maintainer. Will always point to a user
@@ -840,9 +845,48 @@ PATCH the "expression" attribute to modify. An empty "expression" object, like
  
 ##### Stream
 
+###### Stream lock
+
+When a dataset is configured to receive streaming data, the /stream/ endpoint
+will accept POST requests to append new rows to the streaming queue.
+
+A dataset is able to receive streaming data while its `streaming` attribute is 
+set to `streaming`.
+
+While a dataset is receiving streams, any other kind of append is disabled 
+returning 409 if attempted. Only streaming data is allowed.
+
+The following operations are forbidden on a dataset while it is accepting
+streaming rows in order to protect the schema.
+
+ * Deleting public non derived variables
+ * Casting variables (Includes changing resolution on datetime variables)
+ * Changing variable aliases
+ * Deleting categories from categorical variables
+ * Changing ID of category IDs
+ * Removing subvariables from arrays
+
+To change the streaming configuration of the dataset, PATCH the entity's 
+`streaming` attribute to either `finished` or `no` according to the following 
+table:
+
+Value | Allows schema changes | Accepts streaming rows | Next state
+------|-----------------------|------------------------|------------
+`streaming` | No | Yes | `finished`
+`finished` | No | No | `no`
+`no` | Yes | No | - 
+
+Note that the only allowed sequence of states for the  `streaming` attribute
+is `streaming` -> `finished` -> `no`. It cannot be set in any other sequence.
+
+
+###### Sending rows
+
 `/datasets/{id}/stream/`
 
 Stream allows for sending data to a dataset as it is gathered.
+
+GET on this resource returns a Shoji Entity with two attributes in its body:
 
 ```json
 {
@@ -855,14 +899,20 @@ Stream allows for sending data to a dataset as it is gathered.
     }
 }
 ```
-
-GET on this resource returns a Shoji Entity with two attributes in its body:
-
-
 Attribute | Description
 --------|------------
 pending_messages | The number of messages the stream has that have yet to be appended to the dataset (note: a message might contain more than one row, each POST that is made to `/datasets/{id}/stream/` will result in a single message).
 received_messages | The total number of messages that this stream has received.
+
+POST to this endpoint to add rows. The payload should be a multi line string
+where each line contains a json representation of objects indicating the
+value for each variable keyed by **alias**.
+
+```
+{"alias1": 1, "alias2": "value", "alias3": 0}
+{"alias1": 99, "alias2": "other", "alias3": 2}
+{"alias1": 10, "alias2": "empty", "alias3": 1}
+```
 
 ##### Settings
 
