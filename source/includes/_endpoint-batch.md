@@ -219,6 +219,61 @@ conflicting entities. _Union_ conflicting ids generally refer to variables in
 the _current_ dataset and may be referenced by alias in _incoming_.
 
 
+#### Lining up datasets for append/combine
+
+`/datasets/align/`
+
+Given that some datasets may be close to being fit for appending but may need
+some work before proceeding, the `align` endpoint provides API expressions
+that can be used directly on the append steps as `where` parameter in order
+to avoid such conflicts.
+
+Currently, this endpoint will provide an expression that will exclude the 
+troubling variables from the append.
+
+It will exclude arrays that are different but may share subvariables by alias. 
+This is currently not allowed and would reject the append operation.
+
+To use, GET the endpoint with the list of datasets as the `dataset` query 
+parameter:
+
+```http
+GET /datasets/align/?datasets=http://app.crunch.io/api/datasets/abc/&datasets=http://app.crunch.io/api/datasets/def/
+```
+
+The response will be a `shoji:view` containing the `where` expression used for
+each append:
+
+```json
+{
+  "element": "shoji:view",
+  "value": {
+    "abc": {"function": "deselect", "args": [...]]},
+    "def": {"function": "deselect", "args": [...]]}
+  }
+}
+```
+
+
+Later, to append dataset `def` to dataset `abc` we can use the expression
+provided from the `align` response for the `def` dataset as so:
+
+```http
+POST /datasets/abd/batches/
+```
+
+```json
+{
+    "element": "shoji:entity",
+    "body": {
+      "dataset": "http://app.crunch.io/api/datasets/def/",
+      "where": {"function": "deselect", "args": [...]]}
+    }
+}
+
+```
+
+
 ### Entity
 
 `/datasets/{id}/batches/{id}/`
