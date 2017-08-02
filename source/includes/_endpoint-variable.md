@@ -623,6 +623,13 @@ Example:
 ]
 ```
 
+
+<aside class="warning">
+Missing rules consist on filter expressions that can **only** refer to the same
+variable ID where they are defined. Marking values as missing based on the 
+contents of another column is not supported.
+</aside>
+
 #### Subvariables
 
 `/datasets/{id}/variables/{id}/subvariables/`
