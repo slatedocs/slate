@@ -1,8 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // RTL Styles
-Author: Mohammad Hossein Rabiee | @mhrabiee
 ////////////////////////////////////////////////////////////////////////////////
-
 ////////////////////////////////////////////////////////////////////////////////
 // CUSTOM FONT (PERSIAN)
 ////////////////////////////////////////////////////////////////////////////////
@@ -36,8 +34,6 @@ $right: right;
 $left: left;
 $rtl: rtl;
 $ltr: ltr;
-$direction: right;
-$counter-direction: left;
 $default: auto;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -50,7 +46,7 @@ $default: auto;
 
 .toc-wrapper {
     transition: $right 0.3s ease-in-out !important;
-    left: auto !important;
+    left: $default !important;
     #{$right}: 0;
 }
 
@@ -70,16 +66,16 @@ $default: auto;
 // PAGE LAYOUT AND CODE SAMPLE BACKGROUND
 ////////////////////////////////////////////////////////////////////////////////
 .page-wrapper {
-    margin-#{$left}: auto !important;
+    margin-#{$left}: $default !important;
     margin-#{$right}: $nav-width;
     .dark-box {
-        #{$right}: auto;
+        #{$right}: $default;
         #{$left}: 0;
     }
 }
 
 .lang-selector {
-    width: auto !important;
+    width: $default !important;
     a {
         float: $right;
     }
@@ -109,9 +105,6 @@ $default: auto;
         padding-#{$right}: $main-padding + 15px;
     }
     table {
-        direction: rtl;
-        margin-right: auto !important;
-        margin-left: auto !important;
         th,
         td {
             text-align: $right;
@@ -147,7 +140,7 @@ h6,
 p,
 aside {
     @extend %vazir;
-    text-align: $direction;
+    text-align: $right;
     direction: $rtl;
 }
 
@@ -157,7 +150,7 @@ code {
 
 .toc-wrapper {
     @extend %vazir;
-    text-align: $direction;
+    text-align: $right;
     direction: $rtl;
     font-weight: 100 !important;
 }
