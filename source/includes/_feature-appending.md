@@ -160,7 +160,7 @@ Combining datasets consists on creating a new dataset formed by stacking a list
 of datasets together. It works under the same rules as a normal append.
 
 To create a new dataset combined from others, it is necessary to POST to the
-datasets catalog indicating a `combine` expression:
+datasets catalog indicating a `combine_datasets` expression:
 
 ```
 POST /api/datasets/
@@ -174,8 +174,8 @@ POST /api/datasets/
     "name": "My combined dataset",
     "description": "Consists on dsA and dsB"
   },
-  "expression": {
-    "function": "combine",
+  "derivation": {
+    "function": "combine_datasets",
     "args": [
       {"dataset": "https://app.crunch.io/api/datasets/dsabc/"},
       {"dataset": "https://app.crunch.io/api/datasets/ds123/"}
@@ -190,3 +190,39 @@ datasets, else will raise a 400 error.
 The resulting dataset will consist on the matched union of all included datasets
 with the rows in the same order. Private/public variable visibility and exclusion
 filters will be honored in the result.
+
+### Transformations during combination
+
+The combine procedures will perform normal append matching rules which means 
+that any mismatch on aliases or types will not proceed, as well limiting the
+existing union of variables from the present datasets as the result.
+
+It is possible to provide transformations on the datasets to ensure that
+they line up on the combination phase and to add extra columns with constant
+dataset metadata per dataset on the resulting combined result.
+
+Each `{"dataset"}` argument allows for an extra `frame` key that can contain
+a function expression on the desired dataset transformation, for example:
+
+
+```json
+{
+    "dataset": "<dataset_url>",
+    "frame": {
+        "function": "select",
+        "args": [{
+            "map": {
+                "*": {"variable": "*"},
+                "dataset_id": {
+                    "value": "<dataset_id>",
+                    "type": "text",
+                    "references": {
+                        "name": "Dataset ID",
+                        "alias": "dataset_id"
+                    }
+                }
+            }
+        }]
+    }
+}
+```
