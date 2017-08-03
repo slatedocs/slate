@@ -732,6 +732,42 @@ role | User's role. Roles are limited to the following values: 'medical_doctor' 
 per_page | Number of records to display per_page. [Read more.](#paginators)
 page | Page to display. [Read more.](#paginators)
 
+## Reviewers
+
+```shell
+curl -i https://rubiconmd.com/api/v1/users/reviewers?access_token="AAAAAA"
+```
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": "zaBgO",
+    "first_name": "Charles",
+    "last_name": "Bovary",
+    "email": "devoted.husband@gmail.fr"
+  },
+  {
+    "id": "9RXXW",
+    "first_name": "Jason",
+    "last_name": "Awesome",
+    "email": "jason.awesome@gmail.com"
+  },
+  {
+    "id": "YdgL8",
+    "first_name": "Megan",
+    "last_name": "Chair",
+    "email": "megachair@ucsf.edu"
+  }
+]
+```
+
+Retrieve all the possible users that can review an eConsult.
+
+### HTTP Request
+
+`GET https://rubiconmd.com/api/v1/users/reviewers?access_token="AAAAAA"`
+
 # Members
 
 ## Batch Upload
