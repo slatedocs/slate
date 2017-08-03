@@ -281,7 +281,7 @@ curl -i https://rubiconmd.com/api/v1/referrals?access_token="AAAAAA"
 ]
 ```
 
-This endpoint retrieves all the case referrals for the authenticated user.
+This endpoint returns all the `Consults` tied to `Assignments` a specialist has participated on as individual or as a `Specialist Panel` member, given that the assignments are not in `revoked`, `time_out` or `declined` state. Will include also consults in `timed_out` and `declined` states if the `Specialist` had written a `Response` for them.
 
 ### HTTP Request
 
@@ -637,6 +637,187 @@ This allows you post an image in a specific case (as a pcp).
 Parameter |  Description
 --------- | -----------
 CASE_ID | The ID of the case you want to upload to
+
+# Members
+
+Operate over the members of a Client Organization
+
+<aside class="notice">
+  All calls to this endpoint require the client_organization_id of those members to be sent
+</aside>
+
+## Index
+
+`GET https://rubiconmd.com/api/v1/members?access_token=AAAAAA&client_organization_id=ID`
+
+```shell
+curl -i https://rubiconmd.com/api/v1/members?access_token=AAAAAA&client_organization_id=ID
+```
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "uid":"1231231",
+    "first_name":"Franklin",
+    "last_name":"McAwesome",
+    "gender":"male",
+    "date_of_birth":"12/12/1959",
+    "email":"email@domain.com",
+    "race":"asian",
+    "phone_number":"555-18000-YEAH",
+    "insurance":"insurance info",
+    "location":"with waldo"
+  },
+  {
+    "uid":"21231231",
+    "first_name":"Jenny",
+    "last_name":"McDoe",
+    "gender":"female",
+    "date_of_birth":"1/12/1987",
+    "email":"another_email@domain.com",
+    "race":"caucasian",
+    "phone_number":"555-1800-HOWDY",
+    "insurance":"insurance info",
+    "location":"with waldo"
+  }
+]
+```
+
+## Show
+
+<aside class="notice">
+  Use the member UID/MRN as MEMBER_UID field for lookup
+</aside>
+
+`GET https://rubiconmd.com/api/v1/member/MEMBER_UID?access_token=AAAAAA&client_organization_id=ID`
+
+```shell
+curl -i https://rubiconmd.com/api/v1/member/1231231?access_token=AAAAAA&client_organization_id=ID
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  "uid":"1231231",
+  "first_name":"Franklin",
+  "last_name":"McAwesome",
+  "gender":"male",
+  "date_of_birth":"12/12/1959",
+  "email":"email@domain.com",
+  "race":"asian",
+  "phone_number":"555-18000-YEAH",
+  "insurance":"insurance info",
+  "location":"with waldo"
+}
+```
+
+## Create
+
+<aside class="notice">
+  Use the member UID/MRN as MEMBER_UID field for lookup
+</aside>
+
+`POST https://rubiconmd.com/api/v1/member/MEMBER_UID?access_token=AAAAAA&client_organization_id=ID/ {"member": {
+  "uid": TEXT,
+  "first_name": TEXT,
+  "last_name": TEXT,
+  "gender": TEXT,
+  "date_of_birth": TEXT,
+  "email": TEXT,
+  "race": TEXT,
+  "phone_number": TEXT,
+  "insurance": TEXT,
+  "location": TEXT
+  }
+}`
+
+```shell
+curl -X POST
+  -H "Content-Type: application/json"
+  -d '{"member": {"uid":"1231231", "first_name":"Franklin", "last_name":"McAwesome", "gender":"male", "date_of_birth":"12/12/1959", "email":"email@domain.com", "race":"asian", "phone_number":"555-18000-YEAH", "insurance":"insurance info", "location":"with waldo"}}' "https://rubiconmd.com/api/v1/member/MEMBER_UID?access_token=AAAAAA&client_organization_id=ID"
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  "uid":"1231231",
+  "first_name":"Franklin",
+  "last_name":"McAwesome",
+  "gender":"male",
+  "date_of_birth":"12/12/1959",
+  "email":"email@domain.com",
+  "race":"asian",
+  "phone_number":"555-18000-YEAH",
+  "insurance":"insurance info",
+  "location":"with waldo"
+}
+```
+
+## Update
+
+<aside class="notice">
+  <ul>
+    <li>Use the member UID/MRN as MEMBER_UID field for lookup</li>
+    <li>The UID/MRN field won't be updated, as it is used for lookup.</li>
+    <li>All fields are required!</li>
+  </ul>
+</aside>
+
+`PUT https://rubiconmd.com/api/v1/member/MEMBER_UID?access_token="AAAAAA"&client_organization_id="ID"/ {"member": {
+  "uid": TEXT,
+  "first_name": TEXT,
+  "last_name": TEXT,
+  "gender": TEXT,
+  "date_of_birth": TEXT,
+  "email": TEXT,
+  "race": TEXT,
+  "phone_number": TEXT,
+  "insurance": TEXT,
+  "location": TEXT
+  }
+}`
+
+```shell
+curl -X PUT
+  -H "Content-Type: application/json"
+  -d '{"member": {"uid":"1231231", "first_name":"Johann", "last_name":"McAwesome", "gender":"male", "date_of_birth":"12/12/1959", "email":"email@domain.com", "race":"asian", "phone_number":"555-18000-YEAH", "insurance":"insurance info", "location":"with waldo"}}' "https://rubiconmd.com/api/v1/member/MEMBER_UID?access_token=AAAAAA&client_organization_id=ID"
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  "uid":"1231231",
+  "first_name":"Johann",
+  "last_name":"McAwesome",
+  "gender":"male",
+  "date_of_birth":"12/12/1959",
+  "email":"email@domain.com",
+  "race":"asian",
+  "phone_number":"555-18000-YEAH",
+  "insurance":"insurance info",
+  "location":"with waldo"
+}
+```
+
+## Destroy
+
+<aside class="notice">
+  Use the member UID/MRN as MEMBER_UID field for lookup
+</aside>
+
+`DELETE https://rubiconmd.com/api/v1/member/MEMBER_UID?access_token="AAAAAA"&client_organization_id="ID"`
+
+```shell
+curl -X DELETE "https://rubiconmd.com/api/v1/member/MEMBER_UID?access_token=AAAAAA&client_organization_id=ID"
+```
+> The above command returns JSON structured like this:
+
+```json
+[
+  "Member destroyed successfully"
+]
+```
 
 <!--
  ##
