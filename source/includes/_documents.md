@@ -17,7 +17,8 @@
   **customer** <br> Hash | *Representação da entidade [customer](#customers)*
   **document_items** <br> Array | *Produtos/serviços prestados do documento*
   **print_url** <br> String | *Link para download do documento*
-
+  **issue_on** <br> String | *Data de emissão do documento no formato [`ISO 8601`](https://www.iso.org/iso-8601-date-and-time-format.html)*
+  
 ## Status do documento
 
 Quando um documento é criado, o status inicial é `pending` . Ele pode ter os seguintes status:
@@ -42,6 +43,7 @@ Quando um documento é criado, o status inicial é `pending` . Ele pode ter os s
     -d '{
       "document_schema_id": "d0b0d7ef-cb07-42af-9f74-ab17236c82c9",
       "customer_id": "1a925c53-b415-448f-8356-46d33bc2c431",
+      "issue_on": "2017-07-15",
       "document_items": [{
         "item_id": "a60dd677-5c88-4963-9b08-f48e5899a11f",
         "amount": "49.9"
@@ -59,6 +61,7 @@ Quando um documento é criado, o status inicial é `pending` . Ele pode ter os s
       "amount": 345.5,
       "sequence": 1,
       "status": "processing",
+      "issue_on": "2017-07-15",
       "last_operation": {
         "id": "831fb818-704d-484f-8c8f-8fadf361b26b",
         "operation_type": "issue",
@@ -152,6 +155,7 @@ Quando um documento é criado, o status inicial é `pending` . Ele pode ter os s
       "amount": 345.5,
       "sequence": 1,
       "status": "processing",
+      "issue_on": "2017-07-15",
       "print_url": "https://api.fastnotas.com/v1/documents/728a124f-99cd-409a-bd13-b50685778977/print",
       "last_operation": {
         "id": "831fb818-704d-484f-8c8f-8fadf361b26b",
@@ -248,6 +252,7 @@ Quando um documento é criado, o status inicial é `pending` . Ele pode ter os s
         "id": "40d34041-d8f5-4ff1-8c2c-8bf21dcea35f",
         "company_id": "cced3716-0288-4371-9f4d-027d9a62ddef",
         "amount": 150.5,
+        "issue_on": "2017-07-15",
         "customer": {
           "id": "cec6d637-599f-4ea5-9672-ad85acb95ebf",
           "name": "Carolina",
@@ -361,6 +366,7 @@ Parâmetro | Descrição
         "amount": 345.5,
         "sequence": 1,
         "status": "processing",
+        "issue_on": "2017-07-15",
         "last_operation": {
           "id": "831fb818-704d-484f-8c8f-8fadf361b26b",
           "operation_type": "issue",
@@ -414,6 +420,7 @@ Parâmetro | Descrição
         "document_schema_id": "8479b00b-f06e-4f85-b9f5-98a240d1f90d",
         "created_at": "2017-06-13T11:59:44.518Z",
         "updated_at": "2017-06-13T11:59:47.607Z",
+        "issue_on": "2017-07-15",
         "status": "success",
         "amount": 1985.52,
         "sequence": 126,
@@ -433,6 +440,7 @@ Parâmetro | Descrição
         "document_schema_id": "8479b00b-f06e-4f85-b9f5-98a240d1f90d",
         "created_at": "2017-06-13T11:59:44.518Z",
         "updated_at": "2017-06-13T11:59:47.607Z",
+        "issue_on": "2017-07-15",
         "status": "success",
         "amount": 1985.52,
         "sequence": 126,
