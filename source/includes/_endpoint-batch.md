@@ -223,7 +223,7 @@ the _current_ dataset and may be referenced by alias in _incoming_.
 
 `/datasets/align/`
 
-Given that some datasets may be close to being fit for appending but may need
+Given that some datasets may be close to being fit for appending but could need
 some work before proceeding, the `align` endpoint provides API expressions
 that can be used directly on the append steps as `where` parameter in order
 to avoid such conflicts.
@@ -231,32 +231,94 @@ to avoid such conflicts.
 Currently, this endpoint will provide an expression that will exclude the 
 troubling variables from the append.
 
-It will exclude arrays that are different but may share subvariables by alias. 
+ * Exclude different arrays that may share subvariables by alias. 
 This is currently not allowed and would reject the append operation.
 
-To use, GET the endpoint with the list of datasets as the `dataset` query 
-parameter:
+To use this endpoint, the client needs to provide a list of variables they wish
+to line up together as a list of lists.
+
+```json
+
+[
+  [
+    {"variable": "http://app.crunch.io/api/datasets/abc/variables/123/"},
+    {"variable": "http://app.crunch.io/api/datasets/def/variables/234/"},
+    {"variable": "http://app.crunch.io/api/datasets/hij/variables/345/"}
+  ],
+  [
+    {"variable": "http://app.crunch.io/api/datasets/abc/variables/678/"},
+    {"variable": "http://app.crunch.io/api/datasets/def/variables/789/"},
+    {"variable": "http://app.crunch.io/api/datasets/hij/variables/890/"}
+  ],
+  [
+    {"variable": "http://app.crunch.io/api/datasets/abc/variables/1ab/"},
+    {"variable": "http://app.crunch.io/api/datasets/def/variables/ab2/"},
+    {"variable": "http://app.crunch.io/api/datasets/hij/variables/b23/"}
+  ]
+]
+
+```
+
+The example above indicates that the client wishes to line up three variables
+from three datasets as indicated by the groups. 
+
+From the input, the endpoint wil analyze the groups and return an expression 
+which will only include those variables that can be appended without conflict
+among all of them. This expression is ready to be used as a `where` parameter
+on the append `/batches/` endpoint.
+
+The payload needs to be sent as JSON encoded `variables` GET parameter:
 
 ```http
-GET /datasets/align/?datasets=http://app.crunch.io/api/datasets/abc/&datasets=http://app.crunch.io/api/datasets/def/
+GET /datasets/align/?variables=variables=%5B%5B%7B%22variable%22%3A+%22http%3A%2F%2Fapp.crunch.io%3A45741%2Fapi%2Fdatasets%2Fdb0a936ef0ff4675a0d8bca2edbdf266%2Fvariables%2F000006%2F%22%7D%2C+%7B%22variable%22%3A+%22http%3A%2F%2Fapp.crunch.io%3A45741%2Fapi%2Fdatasets%2Fb732eb17a2f849138455811d46b30f08%2Fvariables%2F000006%2F%22%7D%5D%2C+%5B%7B%22variable%22%3A+%22http%3A%2F%2Fapp.crunch.io%3A45741%2Fapi%2Fdatasets%2Fdb0a936ef0ff4675a0d8bca2edbdf266%2Fvariables%2F000000%2F%22%7D%2C+%7B%22variable%22%3A+%22http%3A%2F%2Fapp.crunch.io%3A45741%2Fapi%2Fdatasets%2Fb732eb17a2f849138455811d46b30f08%2Fvariables%2F000000%2F%22%7D%5D%5D
 ```
 
 The response will be a `shoji:view` containing the `where` expression used for
-each append:
+each dataset:
 
 ```json
 {
   "element": "shoji:view",
   "value": {
-    "abc": {"function": "deselect", "args": [...]]},
-    "def": {"function": "deselect", "args": [...]]}
+    "abc": {"function": "select", "args": [{"map": {
+      "678": {"variable": "678"},
+      "1ab": {"variable": "1ab"}
+    }}]]},
+    "def": {"function": "select", "args": [{"map": {
+      "789": {"variable": "789"},
+      "ab2": {"variable": "ab2"}
+    }}]]]},
+    "hij": {"function": "select", "args": [{"map": {
+      "890": {"variable": "890"},
+      "b23": {"variable": "b23"}
+    }}]]]}
   }
 }
 ```
+Following the example above, in the case that the first group could not be
+appended because conflicts between their variables, it will be excluded
+from the final expressions.
 
+Later, using the expressions obtained, it is possible to append all the datasets
+to a new one without conflicts.
 
-Later, to append dataset `def` to dataset `abc` we can use the expression
-provided from the `align` response for the `def` dataset as so:
+```http
+POST /datasets/abd/batches/
+```
+
+```json
+{
+    "element": "shoji:entity",
+    "body": {
+      "dataset": "http://app.crunch.io/api/datasets/abc/",
+      "where": {"function": "select", "args": [{"map": {
+          "678": {"variable": "678"},
+          "1ab": {"variable": "1ab"}
+        }}]]}
+    }
+}
+
+```
 
 ```http
 POST /datasets/abd/batches/
@@ -267,7 +329,28 @@ POST /datasets/abd/batches/
     "element": "shoji:entity",
     "body": {
       "dataset": "http://app.crunch.io/api/datasets/def/",
-      "where": {"function": "deselect", "args": [...]]}
+      "where": {"function": "select", "args": [{"map": {
+          "789": {"variable": "789"},
+          "ab2": {"variable": "ab2"}
+        }}]]]}
+    }
+}
+
+```
+
+```http
+POST /datasets/abd/batches/
+```
+
+```json
+{
+    "element": "shoji:entity",
+    "body": {
+      "dataset": "http://app.crunch.io/api/datasets/hij/",
+      "where": {"function": "select", "args": [{"map": {
+          "890": {"variable": "890"},
+          "b23": {"variable": "b23"}
+        }}]]]}
     }
 }
 
