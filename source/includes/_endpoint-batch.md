@@ -283,15 +283,15 @@ each dataset:
     "abc": {"function": "select", "args": [{"map": {
       "678": {"variable": "678"},
       "1ab": {"variable": "1ab"}
-    }}]]},
+    }}]},
     "def": {"function": "select", "args": [{"map": {
       "789": {"variable": "789"},
       "ab2": {"variable": "ab2"}
-    }}]]]},
+    }}]},
     "hij": {"function": "select", "args": [{"map": {
       "890": {"variable": "890"},
       "b23": {"variable": "b23"}
-    }}]]]}
+    }}]}
   }
 }
 ```
@@ -314,7 +314,7 @@ POST /datasets/abd/batches/
       "where": {"function": "select", "args": [{"map": {
           "678": {"variable": "678"},
           "1ab": {"variable": "1ab"}
-        }}]]}
+        }}]}
     }
 }
 
@@ -332,7 +332,7 @@ POST /datasets/abd/batches/
       "where": {"function": "select", "args": [{"map": {
           "789": {"variable": "789"},
           "ab2": {"variable": "ab2"}
-        }}]]]}
+        }}]}
     }
 }
 
@@ -350,7 +350,7 @@ POST /datasets/abd/batches/
       "where": {"function": "select", "args": [{"map": {
           "890": {"variable": "890"},
           "b23": {"variable": "b23"}
-        }}]]]}
+        }}]}
     }
 }
 
