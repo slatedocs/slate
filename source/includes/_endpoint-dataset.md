@@ -687,7 +687,7 @@ Refer to the options described on the table above for the `csv` format to change
 
 ##### Match
 ```http
-POST /datasets/match HTTP/1.1
+POST /datasets/match/ HTTP/1.1
 Host: app.crunch.io
 Content-Type: application/json
 
@@ -727,8 +727,21 @@ Content-Type: application/json
                     }
                 ],
                 [
-                    ...
-                ]
+                    {
+                        "alias": "AnotherVariableThatHasMatches", 
+                        "confidence": 1, 
+                        "name": "Another Variable", 
+                        "variable": "234e8e76d0e1a32667ab33bc30a9900", 
+                        "desc": "This is another variable", 
+                        "dataset": "8274bfb842d645728a49634414b999c4"
+                    }, 
+                    {
+                        "variable": "9373729ac990b009e0a90dca99092789", 
+                        "confidence": 1, 
+                        "dataset": "699a3315c3f347d4923257380938f9b9"
+                    }
+                ],
+                ...
             ], 
             "metadata": [
                 "http://local.crunch.io:50976/api/datasets/match/3c7df52cffd5bd4f70bd0e55a146ccfd/0-500/"
