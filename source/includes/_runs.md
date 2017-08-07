@@ -121,7 +121,7 @@ data/files/data** | an array of files  | false |
 
 
 * Steps array includes steps json hash, with these attributes: name, description, expected-results, actual-results, status.
-Status can be one of the following: PASSED, FAILED, BLOCKED, NOT COMPLETED, N/A
+Status can be one of the following: PASSED, FAILED, BLOCKED, NO RUN, N/A
 When using steps, the exit-code is ignored, and it calculates it according to the steps status.
 
 ** files would be as an attachments in your automated tests. It's a json hash that has two attributes: filename, and content_encoded.
