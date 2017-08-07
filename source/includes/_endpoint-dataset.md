@@ -686,26 +686,48 @@ Refer to the options described on the table above for the `csv` format to change
 
 
 ##### Match
+
+The match endpoint provides a graph of matches indicating which variables match amongst the datasets provided.  To use it,
+send a post request representing an ordered list of datasets you would like to match. Include the "minimum_matches"
+parameter in your graph if you would like to limit the output of the matches based on the number of datasets matching.
+The default minim_matches is 2.  Currently, only alias is utilized to match the variables to one another.  To 
+
+The result of a match endpoint request can be one of two things.  If the same match has been completed previously, the
+api with return a 201 status code, along with the match results.  Otherwise, the endpoint will return a 202 status code,
+with a Progress result that provides status information as the match is completed.  Either request will result in the
+location header being set to the URI for staticly generated comparison result that can be accessed with the match is completed.
+
+The results are a Shoji Order with a single group, matches. The matches are listed by order of the
+number of variables matched.  Each variable inside the matches will contain the dataset, the variable id and the confidence
+that the variable matches the others in the list. The order of the variables inside the matches returned will match
+ the order of the datasets provided. The first variable will also contain some additional information
+to allow previewing a match. To retrieve complete details about all the matching variables the endpoints
+listed in `metadata` field can be called, those provide all the matching metadata chunked by groups of matches.
+
+
 ```http
 POST /datasets/match/ HTTP/1.1
+{
+    "graph": [
+        {
+            "datasets": [
+                [
+                    "http://local.crunch.io:50976/api/datasets/8274bfb842d645728a49634414b999c4",
+                    "http://local.crunch.io:50976/api/datasets/699a3315c3f347d4923257380938f9b9",
+                    "http://local.crunch.io:50976/api/datasets/8274bfb842d645728a49634414b999c4",
+                    "http://local.crunch.io:50976/api/datasets/699a3315c3f347d4923257380938f9b9",                   
+                ],
+             "minimum_matches": 3
+        }
+    ], 
+    "self": "http://local.crunch.io:50976/api/datasets/match/3c7df52cffd5bd4f70bd0e55a146ccfd/", 
+    "element": "shoji:order"
+}
+
+Response:
 Host: app.crunch.io
 Content-Type: application/json
-
-{  
-   "graph":[  
-      {  
-         "datasets":[  
-            "http://local.crunch.io:49847/api/datasets/06a47aff9b2343ea9ad5e92a05b94fef/",
-            "http://local.crunch.io:49847/api/datasets/9f4671e0be8746e889e39be1d0fd0b8d/",
-            "http://local.crunch.io:49847/api/datasets/d1378d19c2824360b6d0d898b55ddf8e/"
-         ]
-      }
-   ],
-   "element":"shoji:order"
-}
-```
-
-```json
+Location: http://local.crunch.io:50976/api/datasets/matches/394d9e9c9deffff93120956e
 
 {
     "graph": [
