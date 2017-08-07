@@ -22,8 +22,8 @@ includes:
   - feature-versioning
   - endpoint-intro
   - endpoint-public
-  - endpoint-batch
   - endpoint-account
+  - endpoint-batch
   - endpoint-boxdata
   - endpoint-comparison
   - endpoint-dataset
