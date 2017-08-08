@@ -23,47 +23,45 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "id": "c52c27bb-7da5-44b1-9469-f53891c1ff5d",
-  "customer_id": "904c2b4b-4a81-4d43-94cc-7d04e16cfb6b",
-  "reference": "edcb11",
+  "id": "0e4ce262-3e40-4c3a-9763-baa284c0873c",
+  "customer_id": "6547bfaf-9cd9-43bf-abf5-6e3fd22df2a2",
+  "reference": "19d5b0",
   "status": "paid",
   "currency": "usd",
-  "tax": 571,
+  "tax": 288,
   "shipping_fee": 0,
-  "subtotal": 6500,
-  "total": 7071,
-  "preordered": false,
-  "coupon_id": "50%OFF",
+  "total": 3538,
+  "coupon_id": "50OFF",
   "shipping": {
-    "name": "Philippe Dionne",
+    "name": "Felipe Dionne",
     "company": null,
     "phone_number": "+14185800893",
-    "street1": "95 GRAND ST",
-    "street2": "",
-    "street3": null,
+    "email": "philippe@dirtylemon.com",
+    "street1": "128 LAFAYETTE ST",
+    "street2": null,
     "city": "NEW YORK",
     "state": "NY",
     "country": "US",
-    "zip": "10013-5902"
+    "zip": "10013-3174"
   },
   "line_items": [
     {
-      "id": "4f602b47-d2d0-4171-a5c4-6f026f68c6f4",
-      "description": "1 six-pack of [skin+hair]",
+      "id": "d872ccd2-70f5-438a-9075-1386f85616c8",
+      "description": "1 six-pack of [sleep]",
       "amount": 6500,
       "quantity": 1,
       "sku": {
-        "id": "868137000115",
+        "id": "868137000122",
         "currency": "usd",
         "price": 6500
       },
-      "created_at": "2017-05-17T21:57:01.665Z",
-      "updated_at": "2017-05-17T21:57:01.665Z"
+      "created_at": "2017-08-08T14:23:04.319Z",
+      "updated_at": "2017-08-08T14:23:04.319Z"
     }
   ],
   "shipments": [],
-  "created_at": "2017-05-17T21:57:01.492Z",
-  "updated_at": "2017-05-17T21:57:25.227Z"
+  "created_at": "2017-08-08T14:23:04.204Z",
+  "updated_at": "2017-08-08T14:24:53.713Z"
 }
 ```
 

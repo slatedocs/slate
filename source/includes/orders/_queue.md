@@ -23,60 +23,61 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "id": "e43b7307-ae29-4359-9ac3-2ea07998ceea",
-  "customer_id": "904c2b4b-4a81-4d43-94cc-7d04e16cfb6b",
-  "reference": "b3e554",
+  "id": "0e4ce262-3e40-4c3a-9763-baa284c0873c",
+  "customer_id": "6547bfaf-9cd9-43bf-abf5-6e3fd22df2a2",
+  "reference": "19d5b0",
   "status": "queued",
   "currency": "usd",
-  "tax": 571,
+  "tax": 288,
   "shipping_fee": 0,
-  "subtotal": 6500,
-  "total": 7071,
-  "preordered": false,
-  "coupon_id": "50%OFF",
+  "total": 3538,
+  "coupon_id": "50OFF",
   "shipping": {
-    "name": "Philippe Dionne",
+    "name": "Felipe Dionne",
     "company": null,
     "phone_number": "+14185800893",
-    "street1": "95 GRAND ST",
-    "street2": "",
-    "street3": null,
+    "email": "philippe@dirtylemon.com",
+    "street1": "128 LAFAYETTE ST",
+    "street2": null,
     "city": "NEW YORK",
     "state": "NY",
     "country": "US",
-    "zip": "10013-5902"
+    "zip": "10013-3174"
   },
   "line_items": [
     {
-      "id": "ebccf38c-ece3-4587-b88d-66fac4c59953",
-      "description": "1 six-pack of [skin+hair]",
+      "id": "d872ccd2-70f5-438a-9075-1386f85616c8",
+      "description": "1 six-pack of [sleep]",
       "amount": 6500,
       "quantity": 1,
       "sku": {
-        "id": "868137000115",
+        "id": "868137000122",
         "currency": "usd",
         "price": 6500
       },
-      "created_at": "2017-05-17T21:55:27.805Z",
-      "updated_at": "2017-05-17T21:55:27.805Z"
+      "created_at": "2017-08-08T14:23:04.319Z",
+      "updated_at": "2017-08-08T14:23:04.319Z"
     }
   ],
   "shipments": [
     {
-      "id": "d404a8ca-1f8a-425d-b7ed-ce496c27ece2",
-      "label": "[skin+hair]",
+      "id": "a7681e95-68d2-450e-bf32-73562c4d74c6",
       "carrier": null,
+      "rate": null,
       "tracking_number": null,
       "tracking_url": null,
       "tracking_status": null,
       "tracking_status_at": null,
       "eta": null,
-      "created_at": "2017-05-17T21:55:59.554Z",
-      "updated_at": "2017-05-17T21:55:59.554Z"
+      "sku": {
+        "id": "868137000122"
+      },
+      "created_at": "2017-08-08T14:25:20.559Z",
+      "updated_at": "2017-08-08T14:25:20.559Z"
     }
   ],
-  "created_at": "2017-05-17T21:55:27.676Z",
-  "updated_at": "2017-05-17T21:55:59.630Z"
+  "created_at": "2017-08-08T14:23:04.204Z",
+  "updated_at": "2017-08-08T14:25:20.591Z"
 }
 ```
 

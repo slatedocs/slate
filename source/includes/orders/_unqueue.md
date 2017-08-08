@@ -1,17 +1,18 @@
-## Retrieve an order
+## Unqueue an order
 
 > Example request
 
 ```shell
-curl -X GET \
+curl -X POST \
 -H 'Authorization: Bearer <TOKEN>' \
-https://api.dirtylemon.com/v1/orders/{ORDER_ID}
+-H 'Content-Type: application/json' \
+https://api.dirtylemon.com/v1/orders/{ORDER_ID}/unqueue
 ```
 
 ```javascript
 const dirtylemon = require('dirtylemon');
 
-dirtylemon.orders.retrieve({ORDER_ID})
+dirtylemon.orders.unqueue({ORDER_ID})
 ```
 
 > Example response
@@ -25,7 +26,7 @@ HTTP/1.1 200 OK
   "id": "0e4ce262-3e40-4c3a-9763-baa284c0873c",
   "customer_id": "6547bfaf-9cd9-43bf-abf5-6e3fd22df2a2",
   "reference": "19d5b0",
-  "status": "queued",
+  "status": "unqueued",
   "currency": "usd",
   "tax": 288,
   "shipping_fee": 0,
@@ -61,18 +62,18 @@ HTTP/1.1 200 OK
   "shipments": [
     {
       "id": "a7681e95-68d2-450e-bf32-73562c4d74c6",
-      "carrier": "UPS",
-      "rate": "10.67",
-      "tracking_number": "1Z034864P299368312",
-      "tracking_url": "https://track.easypost.com/djE6dHJrXzg1MjQ1MTQ0YWEzNzQzMjBhNTc2NjgwMzdiMmIzMjVi",
-      "tracking_status": "pre_transit",
-      "tracking_status_at": "2017-08-08T14:26:44.000Z",
-      "eta": "2017-08-08T14:26:44.000Z",
+      "carrier": null,
+      "rate": null,
+      "tracking_number": null,
+      "tracking_url": null,
+      "tracking_status": null,
+      "tracking_status_at": null,
+      "eta": null,
       "sku": {
         "id": "868137000122"
       },
       "created_at": "2017-08-08T14:25:20.559Z",
-      "updated_at": "2017-08-08T14:26:47.249Z"
+      "updated_at": "2017-08-08T14:25:20.559Z"
     }
   ],
   "created_at": "2017-08-08T14:23:04.204Z",
@@ -80,11 +81,16 @@ HTTP/1.1 200 OK
 }
 ```
 
-This endpoint retrieves a specific order.
+This endpoint queues an order:
+
+  - Marks the order as __unqueued__
+
+Only a `queued` order can be queued.
+
 
 ### HTTP Request
 
-`GET https://api.dirtylemon.com/v1/orders/:order_id`
+`POST https://api.dirtylemon.com/v1/orders/:order_id/unqueue`
 
 ### Path params
 

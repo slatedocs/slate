@@ -23,60 +23,61 @@ HTTP/1.1 200 OK
 ```json
 [
   {
-    "id": "19aaff62-7539-4422-b5a3-85cd06db017f",
-    "customer_id": "904c2b4b-4a81-4d43-94cc-7d04e16cfb6b",
-    "reference": "16ace0",
-    "status": "created",
+    "id": "0e4ce262-3e40-4c3a-9763-baa284c0873c",
+    "customer_id": "6547bfaf-9cd9-43bf-abf5-6e3fd22df2a2",
+    "reference": "19d5b0",
+    "status": "queued",
     "currency": "usd",
-    "tax": 571,
+    "tax": 288,
     "shipping_fee": 0,
-    "subtotal": 6500,
-    "total": 7071,
-    "preordered": false,
-    "coupon_id": "50%OFF",
+    "total": 3538,
+    "coupon_id": "50OFF",
     "shipping": {
-      "name": "Philippe Dionne",
+      "name": "Felipe Dionne",
       "company": null,
       "phone_number": "+14185800893",
-      "street1": "95 GRAND ST",
-      "street2": "",
-      "street3": null,
+      "email": "philippe@dirtylemon.com",
+      "street1": "128 LAFAYETTE ST",
+      "street2": null,
       "city": "NEW YORK",
       "state": "NY",
       "country": "US",
-      "zip": "10013-5902"
+      "zip": "10013-3174"
     },
     "line_items": [
       {
-        "id": "fc0b34eb-4ce2-4b08-b5a4-09ec294125f6",
-        "description": "1 six-pack of [skin+hair]",
+        "id": "d872ccd2-70f5-438a-9075-1386f85616c8",
+        "description": "1 six-pack of [sleep]",
         "amount": 6500,
         "quantity": 1,
         "sku": {
-          "id": "868137000115",
+          "id": "868137000122",
           "currency": "usd",
           "price": 6500
         },
-        "created_at": "2017-05-17T21:52:32.901Z",
-        "updated_at": "2017-05-17T21:52:32.901Z"
+        "created_at": "2017-08-08T14:23:04.319Z",
+        "updated_at": "2017-08-08T14:23:04.319Z"
       }
     ],
     "shipments": [
       {
-        "id": "20a21109-0e00-403b-84cc-62e095c94bca",
-        "label": "1 six-pack of [skin+hair]",
+        "id": "a7681e95-68d2-450e-bf32-73562c4d74c6",
         "carrier": "UPS",
-        "tracking_number": "9400136897846107013399",
-        "tracking_url": "https://track.easypost.com/djE6dHJrX2Y0YTdkMGI1NmJlNDQ1MzdhMjMzN2M2ODlmMGM2OTdm",
-        "tracking_status": "delivered",
-        "tracking_status_at": "2017-05-03T22:38:23.432Z",
-        "eta": "2017-05-03T12:00:00.000Z",
-        "created_at": "2017-05-03T22:37:50.357Z",
-        "updated_at": "2017-05-03T22:38:23.432Z"
+        "rate": "10.67",
+        "tracking_number": "1Z034864P299368312",
+        "tracking_url": "https://track.easypost.com/djE6dHJrXzg1MjQ1MTQ0YWEzNzQzMjBhNTc2NjgwMzdiMmIzMjVi",
+        "tracking_status": "pre_transit",
+        "tracking_status_at": "2017-08-08T14:26:44.000Z",
+        "eta": "2017-08-08T14:26:44.000Z",
+        "sku": {
+          "id": "868137000122"
+        },
+        "created_at": "2017-08-08T14:25:20.559Z",
+        "updated_at": "2017-08-08T14:26:47.249Z"
       }
     ],
-    "created_at": "2017-05-17T21:52:32.867Z",
-    "updated_at": "2017-05-17T21:52:32.867Z"
+    "created_at": "2017-08-08T14:23:04.204Z",
+    "updated_at": "2017-08-08T14:25:20.591Z"
   }
 ]
 ```
