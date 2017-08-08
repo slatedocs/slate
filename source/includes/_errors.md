@@ -9,6 +9,7 @@ Error Code | Meaning
 403 | Forbidden -- The server understood the request but refuses to authorize it.
 404 | Not Found -- The specified resource could not be found.
 404 | Routing Error --	Nothing exists at this endpoint.
+409 | Conflict -- The requested resource already exist.
 422 | Record Invalid	-- The request was unacceptable, all required parameters are present, but some parameters are invalid.
 422 | Record Not Unique --	The request was unacceptable due to a non-unique attribute.
 422 | Parameter Missing	-- The request was unacceptable due to missing a required parameter.
