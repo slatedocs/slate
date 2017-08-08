@@ -9,8 +9,7 @@ curl -X PATCH \
 -d '{
   "need_attention": true,
   "tags": ["detox"],
-  "topics": ["product"],
-  "suggested_messages": [{"id": "26ae9dea-cd8b-449b-bbb1-cdedf3216686", "content_type": "text", "content": "What can I do to help?"}],
+  "topics": ["product"]
 }' \
 https://api.dirtylemon.com/v1/customers/{CUSTOMER_ID}/sessions/current
 ```
@@ -21,8 +20,7 @@ const dirtylemon = require('dirtylemon');
 dirtylemon.sessions.update({CUSTOMER_ID}, {
   need_attention: true,
   tags: ["detox"],
-  topics: ["product"],
-  suggested_messages: [{id: "26ae9dea-cd8b-449b-bbb1-cdedf3216686", "content_type": "text", content: "What can I do to help?"}]
+  topics: ["product"]
 })
 ```
 
@@ -52,14 +50,6 @@ HTTP/1.1 200 OK
       "sender_role": "agent",
       "sent_at": "2017-05-24T19:32:54.060Z",
       "created_at": "2017-05-24T19:32:54.062Z"
-    }
-  ],
-  "suggested_messages": [
-    {
-      "id": "4891b7bb-1985-48f4-9a03-1e573041bd8a",
-      "remote_id": "26ae9dea-cd8b-449b-bbb1-cdedf3216686",
-      "content": "What can I do to help?",
-      "content_type": "text"
     }
   ],
   "created_at": "2017-05-24T19:32:54.048Z",
@@ -96,7 +86,6 @@ Updating the `need_attention` attribute to `false`:
 | need_attention     | false | |
 | tags               | false | Array of tags. Will erase existing values. |
 | topics             | false | Array of topics. Will erase existing values. |
-| suggested_messages | false | Array of [suggested messages](#suggested-messages). Will erase existing values if attribute is `null` or an empty array. |
 
 ### Returns
 
