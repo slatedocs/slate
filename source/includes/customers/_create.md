@@ -19,7 +19,7 @@ dirtylemon.customers.create({
   unconfirmed_phone_number: "+14185800893",
   first_name: "Philippe",
   last_name: "Dionne",
-  email: "dionne.phil@gmail.com"
+  email: "philippe@dirtylemon.com"
 })
 ```
 
@@ -31,17 +31,17 @@ HTTP/1.1 201 CREATED
 
 ```json
 {
-  "id": "6d7c3d91-e0b3-4dc0-9a9d-a60c686f3dbd",
+  "id": "6547bfaf-9cd9-43bf-abf5-6e3fd22df2a2",
+  "reference": "9559c5",
   "unconfirmed_phone_number": "+14185800893",
   "country_code": "CA",
-  "email": "dionne.phil@gmail.com",
+  "email": "philippe@dirtylemon.com",
   "first_name": "Philippe",
   "last_name": "Dionne",
   "time_zone": "UTC",
-  "shipping_rate": 0,
   "unsubscribed": false,
   "billing_address": {
-    "id": "4d49da45-f6e2-4524-80a9-ee0cd9aa364b",
+    "id": "64084e6a-6a5c-436f-8888-971eef7c04c0",
     "type": "BillingAddress",
     "street1": null,
     "street2": null,
@@ -51,12 +51,12 @@ HTTP/1.1 201 CREATED
     "zip": null,
     "lat": null,
     "lng": null,
-    "url": "https://api.dirtylemon.com/l/fddb4c",
-    "created_at": "2017-05-16T16:01:14.299Z",
-    "updated_at": "2017-05-16T16:01:14.329Z"
+    "url": "http://localhost:5000/l/c4766493",
+    "created_at": "2017-08-08T13:50:47.884Z",
+    "updated_at": "2017-08-08T13:50:47.884Z"
   },
   "shipping_address": {
-    "id": "9e20e302-28e5-4599-9b98-6ff47bdb37d5",
+    "id": "4530fad5-c939-4a59-be3a-9467c1b389bf",
     "type": "ShippingAddress",
     "street1": null,
     "street2": null,
@@ -66,27 +66,27 @@ HTTP/1.1 201 CREATED
     "zip": null,
     "lat": null,
     "lng": null,
-    "url": "https://api.dirtylemon.com/l/2168a4",
-    "created_at": "2017-05-16T16:01:14.284Z",
-    "updated_at": "2017-05-16T16:01:14.317Z"
+    "url": "http://localhost:5000/l/1cb4d262",
+    "created_at": "2017-08-08T13:50:47.881Z",
+    "updated_at": "2017-08-08T13:50:47.881Z"
   },
   "card": {
     "exp_month": null,
     "exp_year": null,
     "last4": null,
-    "url": "https://api.dirtylemon.com/l/76b9a5"
+    "url": "http://localhost:5000/l/622a3661"
   },
-  "confirmation_token": "368582",
+  "confirmation_token": "92575",
   "confirmed_at": null,
-  "created_at": "2017-05-16T16:01:14.237Z",
-  "updated_at": "2017-05-16T16:01:15.079Z"
+  "created_at": "2017-08-08T13:50:47.855Z",
+  "updated_at": "2017-08-08T13:50:48.836Z"
 }
 ```
 
 With `confirmation`:
 
   - Creates an unconfirmed customer
-  - Generates a confirmation token valid for 30 minutes
+  - Generates a confirmation token
 
 Without `confirmation`:
 
