@@ -22,7 +22,7 @@
 | session_id   | string   | Unique identifier for the associated object |
 | content      | string   |  |
 | content_type | string   | Must be `text` |
-| sender_role  | string   | Must be `end-user`, `agent` or `init` |
+| sender_role  | string   | Must be `end-user`, `agent` or `bot` |
 | sent_at      | timestamp | Time at which the message was sent |
 | delivered_at | timestamp | Time at which the message was delivered |
 | created_at   | timestamp | Time at which the object was created |
