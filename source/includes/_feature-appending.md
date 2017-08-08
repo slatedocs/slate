@@ -226,3 +226,42 @@ a function expression on the desired dataset transformation, for example:
     }
 }
 ```
+
+### Selecting a subset of variables to combine
+
+In the same fashion that it is possible to add extra variables to the dataset
+transforms, it is possible to select which variables only to include.
+
+Note in the example above, we use the `"*": {"variable": "*"}` expressions
+which instructs the server to include all variables. Omitting that would cause
+to only include the selected variables, for example:
+
+
+```json
+{
+    "dataset": "<dataset_url>",
+    "frame": {
+        "function": "select",
+        "args": [{
+            "map": {
+                "A": {"variable": "A"},
+                "B": {"variable": "B"},
+                "C": {"variable": "C"},
+                "dataset_id": {
+                    "value": "<dataset_id>",
+                    "type": "text",
+                    "references": {
+                        "name": "Dataset ID",
+                        "alias": "dataset_id"
+                    }
+                }
+            }
+        }]
+    }
+}
+```
+
+On this example, the expression indicates to only include variables with IDs 
+`A`, `B` and `C` from the referenced dataset as well as add the new extra 
+variable `dataset_id`. This would effectively append only these 4 variables 
+instead of the full dataset's variables.
