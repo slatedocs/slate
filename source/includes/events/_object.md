@@ -4,47 +4,60 @@
 
 ```json
 {
-  "id": "9a7c5cf3-0ed5-40b0-8f63-c425bc14afe0",
-  "name": "session.updated",
+  "id": "7f8e3fdc-44a2-4b0c-b4f0-f0df4a11d099",
+  "name": "customer.updated",
+  "created_at": "2017-08-08T13:54:09.766Z",
   "data": {
-    "id": "7cb0a876-5d34-4e03-b725-932606041626",
-    "customer_id": "d78c6a9e-ff0a-4fd6-b1cc-d2a31cc002d5",
-    "need_attention": true,
-    "tags": [
-      "detox"
-    ],
-    "topics": [
-      "product"
-    ],
-    "messages": [
-      {
-        "id": "4bada73e-14f2-4306-9752-51b4008251a4",
-        "session_id": "7cb0a876-5d34-4e03-b725-932606041626",
-        "content": "Need help?",
-        "content_type": "text",
-        "sender_role": "agent",
-        "sent_at": "2017-05-24T19:32:54.060Z",
-        "created_at": "2017-05-24T19:32:54.062Z"
-      }
-    ],
-    "suggested_messages": [
-      {
-        "id": "66483766-13ae-4d4b-b40a-99864a8bfabb",
-        "remote_id": "26ae9dea-cd8b-449b-bbb1-cdedf3216686",
-        "content": "What would you like to order?",
-        "content_type": "text"
-      },
-      {
-        "id": "4891b7bb-1985-48f4-9a03-1e573041bd8a",
-        "remote_id": "c5c87512-2a3c-4c30-b388-d4ac38aa0bac",
-        "content": "How can I help?",
-        "content_type": "text"
-      }
-    ],
-    "created_at": "2017-05-24T19:32:54.048Z",
-    "updated_at": "2017-05-24T20:00:00.929Z"
-  },  
-  "created_at": "2017-05-02T12:04:42.694Z"
+    "id": "6547bfaf-9cd9-43bf-abf5-6e3fd22df2a2",
+    "card": {
+      "url": "http://localhost:5000/l/622a3661",
+      "last4": null,
+      "exp_year": null,
+      "exp_month": null
+    },
+    "email": "philippe@dirtylemon.com",
+    "last_name": "Musk",
+    "reference": "9559c5",
+    "time_zone": "UTC",
+    "created_at": "2017-08-08T13:50:47.855Z",
+    "first_name": "Elon",
+    "updated_at": "2017-08-08T13:54:09.662Z",
+    "confirmed_at": "2017-08-08T13:54:09.660Z",
+    "country_code": "CA",
+    "phone_number": "+14185800893",
+    "unsubscribed": false,
+    "billing_address": {
+      "id": "64084e6a-6a5c-436f-8888-971eef7c04c0",
+      "lat": null,
+      "lng": null,
+      "url": "http://localhost:5000/l/c4766493",
+      "zip": null,
+      "city": null,
+      "type": "BillingAddress",
+      "state": null,
+      "country": null,
+      "street1": null,
+      "street2": null,
+      "created_at": "2017-08-08T13:50:47.884Z",
+      "updated_at": "2017-08-08T13:50:47.884Z"
+    },
+    "shipping_address": {
+      "id": "4530fad5-c939-4a59-be3a-9467c1b389bf",
+      "lat": null,
+      "lng": null,
+      "url": "http://localhost:5000/l/1cb4d262",
+      "zip": null,
+      "city": null,
+      "type": "ShippingAddress",
+      "state": null,
+      "country": null,
+      "street1": null,
+      "street2": null,
+      "created_at": "2017-08-08T13:50:47.881Z",
+      "updated_at": "2017-08-08T13:50:47.881Z"
+    },
+    "confirmation_token": "92575"
+  }
 }
 ```
 
@@ -55,5 +68,5 @@ An `Event` object is created for major things happening while interacting with t
 | ---------- | --------- | ------------|
 | id         | string    | Unique identifier for the object |
 | name       | string    | Description of the event |
-| data       | hash      | Object containing data associated with the event. |
 | created_at | timestamp | Time at which the object was created |
+| data       | hash      | Object containing data associated with the event. |
