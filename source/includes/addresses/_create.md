@@ -22,7 +22,7 @@ HTTP/1.1 201 CREATED
 
 ```json
 {
-  "id": "d1b32cdb-42aa-4ccf-91a1-6bd78fae33ec",
+  "id": "4530fad5-c939-4a59-be3a-9467c1b389bf",
   "type": "ShippingAddress",
   "street1": "95 GRAND ST",
   "street2": "",
@@ -30,11 +30,11 @@ HTTP/1.1 201 CREATED
   "state": "NY",
   "country": "US",
   "zip": "10013-5902",
-  "lat": "40.7213413",
-  "lng": "-74.0020398",
-  "url": "https://api.dirtylemon.com/l/985a40",
-  "created_at": "2017-05-16T16:15:24.899Z",
-  "updated_at": "2017-05-16T16:15:25.868Z"
+  "lat": "46.8051224",
+  "lng": "-71.2270809",
+  "url": "http://localhost:5000/l/1cb4d262",
+  "created_at": "2017-08-08T13:50:47.881Z",
+  "updated_at": "2017-08-08T13:55:25.005Z"
 }
 ```
 

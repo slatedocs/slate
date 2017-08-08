@@ -22,19 +22,19 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "id": "d1b32cdb-42aa-4ccf-91a1-6bd78fae33ec",
+  "id": "4530fad5-c939-4a59-be3a-9467c1b389bf",
   "type": "ShippingAddress",
-  "street1": "95 GRAND ST",
+  "street1": "128 LAFAYETTE ST",
   "street2": "",
   "city": "NEW YORK",
   "state": "NY",
   "country": "US",
-  "zip": "10013-5902",
+  "zip": "10013-3174",
   "lat": "40.7213413",
-  "lng": "-74.0020398",
-  "url": "https://api.dirtylemon.com/l/985a40",
-  "created_at": "2017-05-16T16:15:24.899Z",
-  "updated_at": "2017-05-16T16:15:25.868Z"
+  "lng": "-74.0020399",
+  "url": "http://localhost:5000/l/1cb4d262",
+  "created_at": "2017-08-08T13:50:47.881Z",
+  "updated_at": "2017-08-08T14:14:20.390Z"
 }
 ```
 
