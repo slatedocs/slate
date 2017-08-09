@@ -20,7 +20,7 @@ under the License.
     current_page.data.includes.each do |include|
       split = include.split('/')
       id = split.length > 1 ? "#{split[0]}-" : ""
-      page_content += ActiveSupport::SafeBuffer.new(partial("includes/#{include}").gsub("id='", "id='#{id}"))
+      page_content += ActiveSupport::SafeBuffer.new(partial("includes/#{include}").gsub(" id='", " id='#{id}"))
     end
   end
 %>
