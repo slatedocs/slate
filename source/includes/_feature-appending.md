@@ -173,13 +173,13 @@ POST /api/datasets/
   "body": {
     "name": "My combined dataset",
     "description": "Consists on dsA and dsB"
-  },
-  "derivation": {
-    "function": "combine_datasets",
-    "args": [
-      {"dataset": "https://app.crunch.io/api/datasets/dsabc/"},
-      {"dataset": "https://app.crunch.io/api/datasets/ds123/"}
-    ]
+      "derivation": {
+        "function": "combine_datasets",
+        "args": [
+          {"dataset": "https://app.crunch.io/api/datasets/dsabc/"},
+          {"dataset": "https://app.crunch.io/api/datasets/ds123/"}
+        ]
+    }
   }
 }
 ```
