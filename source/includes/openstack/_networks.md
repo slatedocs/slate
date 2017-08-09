@@ -1,6 +1,6 @@
 ### Networks
 
-Networks manage network access to instances.
+Networks are privisioned to be able to control data flow to instances. To comminucate with the external network, the network must be connected to a [router]#routers
 
 #### List networks
 
