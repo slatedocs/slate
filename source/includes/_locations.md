@@ -325,7 +325,8 @@ var success = request.Get("/v1/clients-and-locations/locations/" + locationId + 
         "num-of-employees":"50",
         "year-of-formation":"2009",
         "extra-business_categories":[
-            "marketing"
+            503,
+            2824
         ],
         "working-hours":{
             "mon_start":"9 a.m.",
