@@ -18,7 +18,9 @@ under the License.
 <%
   if current_page.data.includes
     current_page.data.includes.each do |include|
-      page_content += partial("includes/#{include}")
+      split = include.split('/')
+      id = split.length > 1 ? "#{split[0]}-" : ""
+      page_content += ActiveSupport::SafeBuffer.new(partial("includes/#{include}").gsub("id='", "id='#{id}"))
     end
   end
 %>
@@ -78,6 +80,24 @@ under the License.
                 <% h1[:children].each do |h2| %>
                   <li>
                     <a href="#<%= h2[:id] %>" class="toc-h2 toc-link" data-title="<%= h1[:content] %>"><%= h2[:content] %></a>
+                    <% if h2[:children].length > 0 %>
+                      <ul class="toc-list-h3">
+                        <% h2[:children].each do |h3| %>
+                          <li>
+                            <a href="#<%= h3[:id] %>" class="toc-h3 toc-link" data-title="<%= h1[:content] %>"><%= h3[:content] %></a>
+                            <% if h3[:children].length > 0 %>
+                              <ul class="toc-list-h4">
+                                <% h3[:children].each do |h4| %>
+                                  <li>
+                                    <a href="#<%= h4[:id] %>" class="toc-h4 toc-link" data-title="<%= h1[:content] %>"><%= h4[:content] %></a>
+                                  </li>
+                                <% end %>
+                              </ul>
+                            <% end %>
+                          </li>
+                        <% end %>
+                      </ul>
+                    <% end %>
                   </li>
                 <% end %>
               </ul>
