@@ -48,6 +48,7 @@ subsections:
     - zones # Zones section
   openstack:
     - instances
+    - networks
     - flavors
     - images
     - floatingIps
