@@ -129,7 +129,6 @@ Create an instance in an environment.
 
 Required | &nbsp;
 ------ | -----------
-`name`<br/>*string* | Name of the instance
 `imageId`<br/>*UUID* | The [image](#images) to use for this instance
 `flavorId`<br/>*UUID* | The [flavor](#flavors) will determine the number of CPU and RAM of your instance
 `networkId`<br/>*UUID* | The network in which the instance will be created. If you don't have a network, it can be created through the create network API.
@@ -137,6 +136,7 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------ | -----------
+`name`<br/>*string* | Name of the instance
 `userData`<br/>*string* | Data that the user can specify when they launch an instance. User data can be used in the cloud-init system as a script that is run during the initial launch. The user data field can be used to configure SSH keys, user settings, or run a script.
 
 #### Associate a floating IP

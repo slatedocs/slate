@@ -44,6 +44,7 @@ includes:
   - cloudstack/zones # Zones section
   - openstack
   - openstack/instances
+  - openstack/networks
   - openstack/flavors
   - openstack/images
   - openstack/floatingIps
