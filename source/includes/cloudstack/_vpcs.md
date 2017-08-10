@@ -35,11 +35,6 @@ curl -X GET \
   }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-vpcs, err := ccaResources.Vpcs.List()
-```
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs</code>
 
@@ -90,11 +85,6 @@ curl -X GET \
   }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-vpc, err := ccaResources.Vpcs.Get("ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e")
-```
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs/:id</code>
 
@@ -141,25 +131,6 @@ curl -X POST \
   "networkDomain": "hello.world"
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-createdVpc, err := ccaResources.Vpcs.Create(cloudca.Vpc{
-        Name: "my_vpc",
-        Description: "My prod VPC",
-        VpcOfferingId: "21a40b85-5fa9-440f-ab77-5e560073b584",
-        NetworkDomain:"hello.world"
-    })
-```
-```dart
-resource "cloudca_vpc" "my_vpc" {
-    service_code = "compute-on"
-    environment_name = "test_area"
-    name = "my_vpc"
-    description = "This is a test vpc"
-    vpc_offering = "Default VPC offering"
-}
-```
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs</code>
 
@@ -200,15 +171,6 @@ curl -X PUT \
   "description": "My prod VPC"
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-updatedVpc, err := ccaResources.Vpcs.Update(cloudca.Vpc{
-        Id: "d77e1ab1-0320-4504-83c5-e78b431c7577",
-        Name: "my_updated_vpc",
-        Description: "My prod VPC",
-    })
-```
 
 <code>PUT /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs</code>
 
@@ -234,11 +196,6 @@ curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Vpcs.Destroy("ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e")
-```
 
 <code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs/:id</code>
 
@@ -257,11 +214,6 @@ Destroy an existing VPC. To delete a VPC, you must first delete all the [network
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e?operation=restart"
-```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Vpcs.RestartRouter("ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e")
 ```
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs/:id?operation=restart</code>

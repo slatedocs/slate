@@ -34,11 +34,6 @@ curl -X GET \
   }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-volumes, err := ccaResources.Volumes.List()
-```
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes</code>
 
@@ -93,12 +88,6 @@ curl -X GET \
   }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-volumes, err := ccaResources.Volumes.Get("1bd672f4-b274-4371-a792-b0a6c6778cc7")
-```
-
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes/:id</code>
 
 Retrieve information about an volume.
@@ -139,25 +128,6 @@ curl -X POST \
    "instanceId": "c043e651-8b3f-4941-b47f-5ecb77f3423b"
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-createdVolume, err := ccaResources.Volumes.Create(cloudca.Volume{
-        Name: "my_volume",
-        DiskOfferingId: "166f85eb-b4a2-4000-8e0c-24104d551f60",
-        InstanceId: "c043e651-8b3f-4941-b47f-5ecb77f3423b"
-    })
-```
-```dart
-resource "cloudca_volume" "data_volume" {
-    service_code = "compute-on"
-    environment_name = "test_area"
-
-    name = "my_volume"
-    disk_offering = "50GB - 50 IOPS Min.",
-    instance_id = "c043e651-8b3f-4941-b47f-5ecb77f3423b"
-}
-```
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes</code>
 
@@ -182,11 +152,6 @@ instanceId<br/>*UUID* | The id of the [instance](#instances) to which the create
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/volumes/e922e5fc-8fee-4688-ad93-c9ef5d7eb685"
-```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-err := ccaResources.Volumes.Delete("e922e5fc-8fee-4688-ad93-c9ef5d7eb685")
 ```
 
 <code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs/:id</code>
@@ -213,14 +178,6 @@ curl -X POST \
    "instanceId": "c043e651-8b3f-4941-b47f-5ecb77f3423b"
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-err := ccaResources.Volumes.AttachToInstance(cloudca.Volume{
-        Id: "e922e5fc-8fee-4688-ad93-c9ef5d7eb685"
-        InstanceId: "c043e651-8b3f-4941-b47f-5ecb77f3423b"
-    })
-```
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes/:id?operation=attachToInstance</code>
 
@@ -242,13 +199,6 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/testing/volumes/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=detachFromInstance"
-```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-err := ccaResources.Volumes.DetachFromInstance(cloudca.Volume{
-        Id: "e922e5fc-8fee-4688-ad93-c9ef5d7eb685"
-    })
 ```
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes/:id?operation=detachFromInstance</code>

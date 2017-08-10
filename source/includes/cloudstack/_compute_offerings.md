@@ -35,11 +35,6 @@ curl -X GET \
     }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-computeOfferings, _ := ccaResources.ComputeOfferings.List()
-```
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/computeofferings</code>
 
@@ -75,11 +70,6 @@ curl -X GET \
         "custom": false
     }
 }
-```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-computeOfferings, _ := ccaResources.ComputeOfferings.Get("40a2e5f7-22e6-4d1e-b03b-4a4b7c9cbc6f")
 ```
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/computeofferings/:id</code>

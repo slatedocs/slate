@@ -34,11 +34,6 @@ curl -X GET \
     }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-diskOfferings, _ := ccaResources.DiskOfferings.List()
-```
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/diskofferings</code>
 
@@ -71,11 +66,6 @@ curl -X GET \
         "name": "20GB - 20 IOPS Min."
     }
 }
-```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-diskOfferings, _ := ccaResources.DiskOfferings.Get("18bbab50-8d85-4b34-8361-0dc223ffd7e5")
 ```
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/diskofferings/:id</code>

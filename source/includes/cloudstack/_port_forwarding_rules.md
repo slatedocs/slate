@@ -36,12 +36,6 @@ curl -X GET \
   }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-portForwardingRules, err := ccaResources.PortForwardingRules.List()
-```
-
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/portforwardingrules</code>
 
 Retrieve a list of all port forwarding rules of an environment.
@@ -99,11 +93,6 @@ curl -X GET \
   }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-portForwardingRule, err := ccaResources.PortForwardingRule.Get("bf145d1e-7beb-42b8-bd2c-1a316aeb9aef")
-```
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/portforwardingrules/:id</code>
 
@@ -156,31 +145,6 @@ curl -X POST \
   "publicPortEnd": "80"
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-createdVpc, err := ccaResources.PortForwardingRules.Create(cloudca.PortForwardingRule{
-        PublicIpId: "4daf6ce5-a8b1-47d2-96b3-8edda63d891c"
-        InstanceId: "0ec9ee23-f9dd-4830-acb6-7f8d4469673a",
-        Protocol: "TCP",
-        PrivatePortStart: "8080",
-        PrivatePortEnd: "8080",
-        PublicPortStart: "80",
-        PublicPortEnd: "80"
-    })
-```
-```dart
-resource "cloudca_port_forwarding_rule" "web_pfr" {
-    service_code = "compute-on"
-    environment_name = "test_area"
-
-    public_ip_id = "4daf6ce5-a8b1-47d2-96b3-8edda63d891c"
-    public_port_start = 80
-    private_ip_id = "30face92-f1cf-4064-aa7f-008ea09ef7f0"
-    private_port_start = 8080
-    protocol = "TCP"
-}
-```
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/portforwardingrules</code>
 
@@ -214,11 +178,6 @@ Optional | &nbsp;
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/portforwardingrules/7d22b390-cbb3-4df6-96c6-52901ccb63c0"
-```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.PortForwardingRules.Delete("7d22b390-cbb3-4df6-96c6-52901ccb63c0")
 ```
 
 <code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/portforwardingrules/:id</code>

@@ -18,9 +18,14 @@ under the License.
 <%
   if current_page.data.includes
     current_page.data.includes.each do |include|
-      split = include.split('/')
-      id = split.length > 1 ? "#{split[0]}-" : ""
-      page_content += ActiveSupport::SafeBuffer.new(partial("includes/#{include}").gsub(" id='", " id='#{id}"))
+
+      ##
+      # We need to prefix id's with the first part of the path to be able to avoid collisions in links and hrefs
+      # Since this is only done at build time, it minimizes the impact of doing a string replace on each document
+      ##
+      includePath = include.split('/')
+      sectionName = includePath.length > 1 ? "#{includePath[0]}-" : ""
+      page_content += ActiveSupport::SafeBuffer.new(partial("includes/#{include}").gsub(" id='", " id='#{sectionName}"))
     end
   end
 %>

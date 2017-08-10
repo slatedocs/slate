@@ -44,11 +44,7 @@ curl -X GET \
   }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-instances, err := ccaResources.Instances.List()
-```
+
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances</code>
 
 Retrieve a list of all instances in a given [environment](#environments)
@@ -132,11 +128,7 @@ curl -X GET \
   }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-instance, err := ccaResources.Instances.Get("9db8ff2f-b49b-466d-a2f3-c1e6def408f4")
-```
+
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
 
 Retrieve information about a specific instance.
@@ -201,27 +193,7 @@ curl -X POST \
    "userData": "#!/bin/bash\necho 'hello world'"
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-createdInstance, err := ccaResources.Instances.Create(cloudca.Instance{
-        Name: "jarvis",
-        TemplateId: "5f968ad6-56d0-4d0d-ad7e-f8f4a5b5d986",
-        ComputeOfferingId:"3caab5ed-b5a2-4d8a-82e4-51c46168ee6c",
-        NetworkId:"55ccea7f-8286-479e-a648-dd4a45866daf",
-    })
-```
-```dart
-resource "cloudca_instance" "my_instance" {
-    service_code = "compute-on"
-    environment_name = "test_area"
-    name = "jarvis"
-    network_id = "55ccea7f-8286-479e-a648-dd4a45866daf"
-    template = "CentOS 6.8 PV"
-    compute_offering = "1vCPU.512MB"
-    ssh_key_name = "my_ssh_key"
-}
-```
+
  <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances</code>
 
 Create an instance in an [environment](#environments). This endpoint allows you to easily attach a new or existing data volume and add port forwarding rules to the new instance without doing additional API calls.
@@ -311,11 +283,6 @@ curl -X DELETE \
    ]
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Instances.Destroy("5951c2b8-e901-4c01-8ae0-cb8d7c508d29", true) // purge flag
-```
 
 <code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
 
@@ -345,11 +312,6 @@ curl -X POST \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=start"
 
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Instances.Start("5951c2b8-e901-4c01-8ae0-cb8d7c508d29")
-```
 
  <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=start</code>
 
@@ -371,11 +333,6 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=stop"
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Instances.Stop("5951c2b8-e901-4c01-8ae0-cb8d7c508d29")
-```
 
  <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=stop</code>
 
@@ -395,11 +352,6 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=reboot"
-```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Instances.Reboot("5951c2b8-e901-4c01-8ae0-cb8d7c508d29")
 ```
 
  <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=reboot</code>
@@ -421,11 +373,7 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=purge"
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Instances.Purge("5951c2b8-e901-4c01-8ae0-cb8d7c508d29")
-```
+
  <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=purge</code>
 
 Purges an existing instance (i.e. completely remove it from the environment). The instance must be in a *Destroyed* state.
@@ -445,11 +393,7 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=recover"
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Instances.Recover("instance_id")
-```
+
  <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=recover</code>
 
 Recover an existing instance that was previously destroyed. The instance must be in a *Destroyed* state.
@@ -468,13 +412,6 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=changeComputeOffering"
-```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Instances.ChangeComputeOffering(Instance {
-   Id: "instance_id",
-   ComputeOfferingId: "new_compute_offering_id"})
 ```
 
  <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=changeComputeOffering</code>
@@ -509,11 +446,6 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=resetPassword"
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-password, err := ccaResources.Instances.ResetPassword("instance_id")
-```
 
  <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=resetPassword</code>
 
@@ -532,11 +464,6 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=changeNetwork"
-```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-password, err := ccaResources.Instances.ChangeNetwork("instance_id", "new_network_id")
 ```
 
  <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=changeNetwork</code>
@@ -568,11 +495,6 @@ curl -X POST \
 {
    "sshKeyName": "my_ssh_key"
 }
-```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Instances.AssociateSSHKey("5951c2b8-e901-4c01-8ae0-cb8d7c508d29", "my_ssh_key")
 ```
 
  <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=associateSSHKey</code>
