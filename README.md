@@ -37,7 +37,7 @@ Getting Started with Slate
 You're going to need:
 
  - **Linux or OS X** — Windows may work, but is unsupported.
- - **Ruby, version 2.2.5 or newer**
+ - **Ruby, version 2.3.1 or newer**
  - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
 
 ### Getting Set Up
@@ -62,13 +62,16 @@ Now that Slate is all set up on your machine, you'll probably want to learn more
 
 If you'd prefer to use Docker, instructions are available [in the wiki](https://github.com/lord/slate/wiki/Docker).
 
+### Note on JavaScript Runtime
+
+For those who don't have JavaScript runtime or are experiencing JavaScript runtime issues with ExecJS, it is recommended to add the [rubyracer gem](https://github.com/cowboyd/therubyracer) to your gemfile and run `bundle` again.
+
 Companies Using Slate
 ---------------------------------
 
 * [NASA](https://api.nasa.gov)
 * [IBM](https://docs.cloudant.com/api.html)
 * [Sony](http://developers.cimediacloud.com)
-* [Mozilla](http://localforage.github.io/localForage/)
 * [Best Buy](https://bestbuyapis.github.io/api-documentation/)
 * [Travis-CI](https://docs.travis-ci.com/api/)
 * [Greenhouse](https://developers.greenhouse.io/harvest.html)
@@ -100,7 +103,7 @@ Thanks to the following people who have submitted major pull requests:
 - [@realityking](https://github.com/realityking)
 - [@cvkef](https://github.com/cvkef)
 
-Also, thanks to [Sauce Labs](http://saucelabs.com) for helping sponsor the project.
+Also, thanks to [Sauce Labs](http://saucelabs.com) for sponsoring the development of the responsive styles.
 
 Special Thanks
 --------------------
