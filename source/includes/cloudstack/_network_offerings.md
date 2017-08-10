@@ -1,6 +1,6 @@
 ### Network offerings
 
-Network offerings determine which services are available to each provisioned [network](#networks).
+Network offerings determine which services are available to each provisioned [network](#cloudstack-networks).
 
 #### List network offerings
 
@@ -51,13 +51,8 @@ curl -X GET \
     }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-networkOfferings, _ := ccaResources.NetworkOfferings.List()
-```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkofferings</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkofferings</code>
 
 Retrieve a list of available network offerings.
 
@@ -97,13 +92,8 @@ curl -X GET \
     }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-networkOfferings, _ := ccaResources.NetworkOfferings.Get("89724d35-b69c-418c-be81-7d83fcfc9da9")
-```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkofferings/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkofferings/:id</code>
 
 Retrieve a network offering.
 

@@ -43,12 +43,7 @@ curl -X GET \
   }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-lbrs, err := ccaResources.LoadBalancerRules.List()
-```
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules?public_ip_id=:public_ip_id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/loadbalancerrules?public_ip_id=:public_ip_id</code>
 
 Retrieve a list of load balancer rules.
 
@@ -56,9 +51,9 @@ Attributes                 | &nbsp;
 ---------------------------|-------
 `id`<br/>*UUID*            | The id of the load balancer rule
 `name`<br/>*string*        | The name of the load balancer rule
-`networkId`<br/>*string*   | The [network](#networks) id of the load balancer rule
-`publicIp`<br/>*UUID*      | The [public IP](#public-ips) of this load balancer rule
-`publicIpId`<br/>*string*  | The id of the [public IP](#public-ips) of this load balancer rule
+`networkId`<br/>*string*   | The [network](#cloudstack-networks) id of the load balancer rule
+`publicIp`<br/>*UUID*      | The [public IP](#cloudstack-public-ips) of this load balancer rule
+`publicIpId`<br/>*string*  | The id of the [public IP](#cloudstack-public-ips) of this load balancer rule
 `publicPort`<br/>*int*     | The public port of this load balancer rule
 `privatePort`<br/>*int*    | The private port of this load balancer rule
 `algorithm`<br/>*string*   | The algorithm to use for this load balancer rule
@@ -70,7 +65,7 @@ Attributes                 | &nbsp;
 
 Query Parameters | &nbsp;
 ---------- | -----
-`public_ip_id`<br/>*UUID* | Filter the list to only retrieve the load balancer rules of a [public IP](#public-ips)
+`public_ip_id`<br/>*UUID* | Filter the list to only retrieve the load balancer rules of a [public IP](#cloudstack-public-ips)
 
 #### Retrieve a load balancer rule
 
@@ -107,12 +102,7 @@ curl -X GET \
    }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-lbr, err := ccaResources.LoadBalancerRules.Get("736d0c2e-d6b5-43fc-bcf0-732fce9a509e")
-```
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/loadbalancerrules/:id</code>
 
 Retrieve a specific load balancer rule by its id.
 
@@ -120,9 +110,9 @@ Attributes                 | &nbsp;
 ---------------------------|-------
 `id`<br/>*UUID*            | The id of the load balancer rule
 `name`<br/>*string*        | The name of the load balancer rule
-`networkId`<br/>*string*   | The [network](#networks) id of the load balancer rule
-`publicIp`<br/>*UUID*      | The [public IP](#public-ips) of this load balancer rule
-`publicIpId`<br/>*string*  | The id of the [public IP](#public-ips) of this load balancer rule
+`networkId`<br/>*string*   | The [network](#cloudstack-networks) id of the load balancer rule
+`publicIp`<br/>*UUID*      | The [public IP](#cloudstack-public-ips) of this load balancer rule
+`publicIpId`<br/>*string*  | The id of the [public IP](#cloudstack-public-ips) of this load balancer rule
 `publicPort`<br/>*int*     | The public port of this load balancer rule
 `privatePort`<br/>*int*    | The private port of this load balancer rule
 `algorithm`<br/>*string*   | The algorithm to use for this load balancer rule
@@ -160,57 +150,22 @@ curl -X POST \
    }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-lbr, err := ccaResources.LoadBalancerRules.Create(cloudca.LoadBalancerRule{
-   Name: "test",
-   PublicIpId: "44ebac5d-18cc-4eea-ab59-7a2af0691c88",
-   NetworkId: "093f6208-8a56-4035-8e71-3e39029fc5aa",
-   PublicPort: "80",
-   PrivatePort: "80",
-   Algorithm: "roundrobin",
-   Protocol: "tcp",
-   StickinessMethod: "AppCookie",
-   StickinesPolicyParameters: map[string]string{,
-      "holdtime": "3600000",
-   },
-   InstanceIds: ["d7048640-35d4-4a4f-8193-f4837da7e861"]
-})
-```
-```dart
-resource "cloudca_load_balancer_rule" "lbr" {
-    service_code = "compute-qc"
-    environment_name = "dev"
-    name="web_lb"
-    public_ip_id="5cd3a059-f15b-49f7-b7e1-254fef15968d"
-    protocol="tcp"
-    algorithm = "leastconn"
-    public_port = 80
-    private_port = 80
-    instance_ids = ["071e2929-672e-45bc-a5b6-703d17c08367"]
-    stickiness_method = "AppCookie"
-    stickiness_params {
-       cookieName = "allo"
-    }
- }
-```
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/loadbalancerrules</code>
 
 Create a new load balancer rule associated to a public IP.
 
 Required                   | &nbsp;
 ---------------------------|-------
 `name`<br/>*string*        | The name of the load balancer rule
-`publicIpId`<br/>*string*  | The id of the [public IP](#public-ips) of this load balancer rule
+`publicIpId`<br/>*string*  | The id of the [public IP](#cloudstack-public-ips) of this load balancer rule
 `publicPort`<br/>*int*     | The public port of this load balancer rule
 `privatePort`<br/>*int*    | The private port of this load balancer rule
 `algorithm`<br/>*string*   | The algorithm to use for this load balancer rule (roundrobin, leastconn or source)
 `protocol`<br/>*string*    | The protocol to load balance (TCP, UDP or TCP-PROXY)
 
-Optional (required if [public IP](#public-ips) already assigned a [network](#networks)) | &nbsp;
+Optional (required if [public IP](#cloudstack-public-ips) already assigned a [network](#cloudstack-networks)) | &nbsp;
 ---------------------------|-------
-`networkId`<br/>*string*   | The [network](#networks) id of the load balancer rule
+`networkId`<br/>*string*   | The [network](#cloudstack-networks) id of the load balancer rule
 
 Optional                 | &nbsp;
 ---------------------------|-------
@@ -260,15 +215,8 @@ curl -X PUT \
    "algorithm": "roundrobin"
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-lbr, err := ccaResources.LoadBalancerRules.Update("3247167a-e7e7-11e3-9187-06669c0000ad", cloudca.LoadBalancerRule{
-   Name: "newtest",
-   Algorithm: "leastconn",
-})
-```
-<code>PUT /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules/:id</code>
+
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/loadbalancerrules/:id</code>
 
 Update a load balancer rule.
 
@@ -294,12 +242,7 @@ curl -X PUT \
    ]
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-err := ccaResources.LoadBalancerRules.SetLoadBalancerRuleInstances("3247167a-e7e7-11e3-9187-06669c0000ad", []string {"95d034b5-b902-440c-b430-120efaed9caf"})
-```
-<code>PUT /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules/:id?operation=updateInstances</code>
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/loadbalancerrules/:id?operation=updateInstances</code>
 
 Update instances of a load balancer rule.
 
@@ -330,14 +273,7 @@ curl -X PUT \
    }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-lbr, err := ccaResources.LoadBalancerRules.SetLoadBalancerRuleStickinessPolicy("3247167a-e7e7-11e3-9187-06669c0000ad", "LbCookie", map[string]string{,
-   "holdtime": "3600000",
-})
-```
-<code>PUT /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules/:id?operation=updateStickiness</code>
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/loadbalancerrules/:id?operation=updateStickiness</code>
 
 Update instances of a load balancer rule.
 
@@ -346,7 +282,7 @@ Required                   | &nbsp;
 `stickinessMethod`<br/>*string*        | The stickiness policy for the load balancer rule
 `stickinessPolicyParameters`<br/>*Map[String, String]*        | The parameters for the stickiness policy of the load balancer rule
 
-See [Create a load balance rule](#create-a-load-balancer-rule) for stickiness policy parameters documentation.
+See [Create a load balance rule](#cloudstack-create-a-load-balancer-rule) for stickiness policy parameters documentation.
 
 #### Delete a load balancer rule
 
@@ -355,11 +291,6 @@ curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/loadbalancerrules/736d0c2e-d6b5-43fc-bcf0-732fce9a509e"
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.LoadBalancerRules.Delete("736d0c2e-d6b5-43fc-bcf0-732fce9a509e")
-```
-<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/loadbalancerrules/:id</code>
 
 Delete a load balancer rule.

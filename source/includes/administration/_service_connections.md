@@ -1,9 +1,6 @@
 ## Service connections
 
-Service connections are the services that you can create resources for (e.g. compute, object storage). [Environments](#environments) are created for a specific service which allows you to create and manage resources within that service.
-
-<!---- The service APIs are documented [here](#serviceApis) ---->
-
+Service connections are the services that you can create resources for (e.g. compute, object storage). [Environments](#administration-environments) are created for a specific service which allows you to create and manage resources within that service.
 
 <!-------------------- LIST ORGANIZATIONS -------------------->
 ### List service connections
@@ -17,7 +14,6 @@ Service connections are the services that you can create resources for (e.g. com
     "serviceCode": "compute-qc",
     "name": "Compute - Québec",
     "type": "CloudCA",
-    "category": "IAAS",
     "status": {  
       "lastUpdated": 1478897488000,
       "reachable": true
@@ -32,7 +28,6 @@ Attributes | &nbsp;
 `serviceCode`<br/>*string* | The service code of the service connection. It is used in the endpoint of the services API.
 `name`<br/>*string* | The name of the service connection
 `type`<br/>*string* | The type of the service connection.
-`category`<br/>*string* | The category of the service connection.
 `status`<br/>*Object* | Status of the service connection. Tells you if the service is up.<br/>*includes*: `lastUpdated`, `reachable`
 
 
@@ -49,7 +44,6 @@ Attributes | &nbsp;
     "serviceCode": "compute-qc",
     "name": "Compute - Québec",
     "type": "CloudCA",
-    "category": "IAAS",
     "status": {  
       "lastUpdated": 1478897488000,
       "reachable": true
@@ -64,5 +58,4 @@ Attributes | &nbsp;
 `serviceCode`<br/>*string* | The service code of the service connection. It is used in the endpoint of the services API.
 `name`<br/>*string* | The name of the service connection
 `type`<br/>*string* | The type of the service connection.
-`category`<br/>*string* | The category of the service connection.
 `status`<br/>*Object* | Status of the service connection. Tells you if the service is up.<br/>*includes*: `lastUpdated`, `reachable`

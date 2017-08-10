@@ -1,6 +1,6 @@
 ## Environments
 
-Environments allow you to manage resources of a specific service and to manage your [users'](#users) access to them. With [environment roles](#roles), you have tight control of what a user is allowed to do in your environment. A general use case of environments is to split your resources into different [deployment environments](https://en.wikipedia.org/wiki/Deployment_environment) (e.g. dev, staging and production). The advantage is that resources of different deployments are isolated from each other and you can restrict user access to your most critical resources.
+Environments allow you to manage resources of a specific service and to manage your [users'](#administration-users) access to them. With [environment roles](#administration-roles), you have tight control of what a user is allowed to do in your environment. A general use case of environments is to split your resources into different [deployment environments](https://en.wikipedia.org/wiki/Deployment_environment) (e.g. dev, staging and production). The advantage is that resources of different deployments are isolated from each other and you can restrict user access to your most critical resources.
 
 
 <!-------------------- LIST ENVIRONMENTS -------------------->
@@ -55,9 +55,9 @@ Attributes | &nbsp;
 `description`<br/>*string* | The description of the environment
 `membership`<br/>*string* | Type of membership of the environment. (e.g. ALL_ORG_USERS, MANY_USERS)
 `creationDate`<br/>*long* | The date in [unix time](https://en.wikipedia.org/wiki/Unix_time) that the environment was created
-`organization`<br/>*[Organization](#organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
-`serviceConnection`<br/>*[ServiceConnection](#service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`
-`roles`<br/>*Array[[Role](#roles)]* | The roles of the environment with all the users assigned to them.<br/>*includes*: `id`, `name`, `isDefault`, `users.id`, `users.name`
+`organization`<br/>*[Organization](#administration-organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
+`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`
+`roles`<br/>*Array[[Role](#administration-roles)]* | The roles of the environment with all the users assigned to them.<br/>*includes*: `id`, `name`, `isDefault`, `users.id`, `users.name`
 
 
 
@@ -118,10 +118,10 @@ Attributes | &nbsp;
 `description`<br/>*string* | The description of the environment
 `membership`<br/>*string* | Type of membership of the environment. (e.g. ALL_ORG_USERS, MANY_USERS)
 `creationDate`<br/>*long* | The date in [unix time](https://en.wikipedia.org/wiki/Unix_time) that the environment was created
-`organization`<br/>*[Organization](#organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
-`serviceConnection`<br/>*[ServiceConnection](#service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`
-`users`<br/>*Array[[User](#users)]* | The users that are members of the environment<br/>*includes*: `id`, `username`
-`roles`<br/>*Array[[Role](#roles)]* | The roles of the environment with all the users assigned to them.<br/>*includes*: `id`, `name`, `isDefault`, `users.id`, `users.name`
+`organization`<br/>*[Organization](#administration-organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
+`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`
+`users`<br/>*Array[[User](#administration-users)]* | The users that are members of the environment<br/>*includes*: `id`, `username`
+`roles`<br/>*Array[[Role](#administration-roles)]* | The roles of the environment with all the users assigned to them.<br/>*includes*: `id`, `name`, `isDefault`, `users.id`, `users.name`
 
 <!-------------------- CREATE ENVIRONMENT -------------------->
 
@@ -167,18 +167,16 @@ Required | &nbsp;
 -------- | -----------
 `name`<br/>*string* | The name of the new environment. Should be unique in the environment and only contain lower case characters, numbers, dashes and underscores.
 `description`<br/>*string* | The description of the new environment.
-`serviceConnection`<br/>*[ServiceConnection](#service-connections)* | The service connection that the environment should be created in<br/>*required*: `id`
+`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection that the environment should be created in<br/>*required*: `id`
 
 Optional | &nbsp;
 -------- | -----------
-`organization`<br/>*[Organization](#organizations)* | The organization that the environment should be created in. *Defaults to your organization*<br/>*required*: `id`
+`organization`<br/>*[Organization](#administration-organizations)* | The organization that the environment should be created in. *Defaults to your organization*<br/>*required*: `id`
 `membership`<br/>*string* | Type of membership of the environment. ALL_ORG_USERS will add every user in the organization to this environment with the default role. MANY_USERS will allow you to  choose the users you want in the environment and assigned them specific roles. *Defaults to MANY_USERS*
-`roles`<br/>*Array[[Role](#roles)]* | The roles of the environment and the users assigned to them. Also, defines the default role of the environment.<br/>*required*: `name`, `users.id`<br/>*optional*: `isDefault`
+`roles`<br/>*Array[[Role](#administration-roles)]* | The roles of the environment and the users assigned to them. Also, defines the default role of the environment.<br/>*required*: `name`, `users.id`<br/>*optional*: `isDefault`
 
 
-##### Returns
-
-The responses' `data` field contains the updated [environment](#environments).
+The responses' `data` field contains the updated [environment](#administration-environments).
 
 
 <!-------------------- UPDATE ENVIRONMENT -------------------->
@@ -216,7 +214,7 @@ Optional | &nbsp;
 `name`<br/>*string* | The updated name of the environment. Should be unique in the environment and only contain lower case characters, numbers, dashes and underscores.
 `description`<br/>*string* | The updated description of the environment
 `membership`<br/>*string* | Type of membership of the environment. ALL_ORG_USERS will add every user in the organization to this environment with the default role. MANY_USERS will allow you to  choose the users you want in the environment and assigned them specific roles. *Defaults to MANY_USERS*
-`roles`<br/>*Array[[Role](#roles)]* | Update the users roles in the environment. Also, can also update the default role.<br/>*required*: `name`, `users.id`<br/>*optional*: `isDefault`
+`roles`<br/>*Array[[Role](#administration-roles)]* | Update the users roles in the environment. Also, can also update the default role.<br/>*required*: `name`, `users.id`<br/>*optional*: `isDefault`
 
 
 You will need the `Environments update` permission to execute this operation.
@@ -236,7 +234,7 @@ curl "https://cloudmc_endpoint/v1/environments/[environment-id]" \
 
 ```
 
-Delete a specific environment. You will need a [role](#roles) with the `Delete an existing environment	` permission to execute this operation.
+Delete a specific environment. You will need a [role](#administration-roles) with the `Delete an existing environment	` permission to execute this operation.
 
 <aside class="warning">
   <strong>Be careful:</strong> This will destroy all the resources in your environment.

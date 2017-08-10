@@ -2,7 +2,7 @@
 
 ### Network ACLs
 
-Manage access control lists and their rules. To apply an ACL to a network, [replace the ACL of a network](#replace-the-network-acl-of-a-network).
+Manage access control lists and their rules. To apply an ACL to a network, [replace the ACL of a network](#cloudstack-replace-the-network-acl-of-a-network).
 
 #### List network ACLs
 
@@ -36,12 +36,7 @@ curl -X GET \
   }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-acls, err := ccaResources.NetworkAcls.ListByVpcId("eb763d03-9935-4cd4-8a42-99134e242ccb")
-```
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkacls?vpc_id=:vpc_id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkacls?vpc_id=:vpc_id</code>
 
 Retrieve a list of network ACLs in a VPC.
 
@@ -55,7 +50,7 @@ Attributes                 | &nbsp;
 
 Query Parameters | &nbsp;
 ---------- | -----
-`vpc_id`<br/>*UUID*    | Filter the list to only retrieve the network ACLs of a specific [VPC](#vpcs)
+`vpc_id`<br/>*UUID*    | Filter the list to only retrieve the network ACLs of a specific [VPC](#cloudstack-vpcs)
 
 #### Retrieve a network ACL
 
@@ -74,12 +69,7 @@ curl -X GET \
   }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-acl, err := ccaResources.NetworkAcls.Get("736d0c2e-d6b5-43fc-bcf0-732fce9a509e")
-```
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkacls/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkacls/:id</code>
 
 Retrieve a specific network ACL by its id.
 
@@ -99,25 +89,7 @@ curl -X POST \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/networkacls"
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-acl, err := ccaResources.NetworkAcls.Create(cloudca.NetworkAcl{
-  Name: "network-ingress",
-  Description: "Allows network ingress",
-  VpcId: "eb763d03-9935-4cd4-8a42-99134e242ccb",
-})
-```
-```dart
-resource "cloudca_network_acl" "my_acl" {
-  service_code = "compute-on"
-  environment_name = "test_area"
-  name = "network-ingress"
-  description = "Allows network ingress"
-  vpc_id = "eb763d03-9935-4cd4-8a42-99134e242ccb"
-}
-```
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkacls</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkacls</code>
 
 Create a new network ACL associated to a VPC.
 
@@ -134,12 +106,7 @@ curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/networkacls/736d0c2e-d6b5-43fc-bcf0-732fce9a509e"
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.NetworkAcls.Delete("736d0c2e-d6b5-43fc-bcf0-732fce9a509e")
-```
-<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkacls/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkacls/:id</code>
 
 Delete an ACL and all of its rules.
 
@@ -180,12 +147,7 @@ curl -X GET \
   }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-rules, err := ccaResources.NetworkAclRules.ListByNetworkAclId("3246de94-e7e7-11e3-9187-06669c0000ad")
-```
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkaclrules?network_acl_id=:network_acl_id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkaclrules?network_acl_id=:network_acl_id</code>
 
 List a network ACL's rules.
 
@@ -202,7 +164,7 @@ Attributes                 | &nbsp;
 
 Query Parameters | &nbsp;
 ---------- | -----
-`network_acl_id`<br/>*UUID* | Filter the list to only retrieve the rules of a specific [network ACL](#network-acls)
+`network_acl_id`<br/>*UUID* | Filter the list to only retrieve the rules of a specific [network ACL](#cloudstack-network-acls)
 
 #### Retrieve a network ACL rule
 
@@ -225,12 +187,7 @@ curl -X GET \
   }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-rules, err := ccaResources.NetworkAclRules.Get("3247167a-e7e7-11e3-9187-06669c0000ad")
-```
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkaclrules/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkaclrules/:id</code>
 
 Attributes                 | &nbsp;
 ---------------------------|-------
@@ -252,31 +209,7 @@ curl -X POST \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/networkaclrules"
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-rule, err := ccaResources.NetworkAclRules.Create(cloudca.NetworkAclRule{
-  NetworkAclId: "3247167a-e7e7-11e3-9187-06669c0000ad",
-  RuleNumber: 1,
-  Cidr: "0.0.0.0/0",
-  Action: "Deny",
-  TrafficType: "Ingress",
-  Protocol: "ALL",
-})
-```
-```dart
-resource "cloudca_network_acl_rule" "my_acl_rule" {
-  service_code = "compute-on"
-  environment_name = "test_area"
-  network_acl_id = "3247167a-e7e7-11e3-9187-06669c0000ad"
-  rule_number = 1
-  cidr = "0.0.0.0/0"
-  action = "Deny"
-  traffic_type = "Ingress"
-  protocol = "ALL"
-}
-```
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkaclrules</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkaclrules</code>
 
 Required                   | &nbsp;
 ---------------------------|-------
@@ -307,15 +240,7 @@ curl -X PUT \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/networkaclrules/3247167a-e7e7-11e3-9187-06669c0000ad"
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-rule, err := ccaResources.NetworkAclRules.Update("3247167a-e7e7-11e3-9187-06669c0000ad", cloudca.NetworkAclRule{
-  RuleNumber: 3,
-  Action: "Allow",
-})
-```
-<code>PUT /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkaclrules/:id</code>
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkaclrules/:id</code>
 
 Update a network ACL rule.
 
@@ -342,11 +267,6 @@ curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/networkaclrules/3247167a-e7e7-11e3-9187-06669c0000ad"
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.NetworkAclRules.Delete("3247167a-e7e7-11e3-9187-06669c0000ad")
-```
-<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkaclrules/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkaclrules/:id</code>
 
 Delete a specific rule of a network ACL.

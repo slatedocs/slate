@@ -1,6 +1,6 @@
 ## Users
 
-A user account allows users to authenticate to an [organization](#organizations) and to have access to the resources in it. You can restrict user access to the system and environments by assigning them specific [roles](#roles). Additionally, every user is given an API key which is needed to use our APIs. All operations done by users are persisted and can be accessed through the activity log.
+A user account allows users to authenticate to an [organization](#administration-organizations) and to have access to the resources in it. You can restrict user access to the system and environments by assigning them specific [roles](#administration-roles). Additionally, every user is given an API key which is needed to use our APIs. All operations done by users are persisted and can be accessed through the activity log.
 
 <!-------------------- LIST USERS -------------------->
 
@@ -46,12 +46,8 @@ curl "https://cloudmc_endpoint/v1/users" \
   }]
 }
 ```
-```go
-ccaClient := cca.NewCcaClient("your_api_key")
-users, err := ccaClient.Users.List()
-```
 
-Retrieve information about users you have access to. If you want access to other users in your [organization or sub-organizations](#organizations), you will need to be assigned the `Users read` permission. Without this permission, you will only see your own user in the list.
+Retrieve information about users you have access to. If you want access to other users in your [organization or sub-organizations](#administration-organizations), you will need to be assigned the `Users read` permission. Without this permission, you will only see your own user in the list.
 
 Attributes | &nbsp;
 ---------- | -----------
@@ -62,8 +58,8 @@ Attributes | &nbsp;
 `email`<br/>*string* | The email of the user
 `creationDate`<br/>*long* | The date in [unix time](https://en.wikipedia.org/wiki/Unix_time) that the user was created
 `status`<br/>*string* | The current status of the user.
-`organization`<br/>*[Organization](#organization)* | The organization to which the user belongs
-`roles`<br/>*Array[[Role](#roles)]* | The system and environments roles that are assigned to the user<br/>*includes*: `id`, `name` and `environment.id`
+`organization`<br/>*[Organization](#administration-organization)* | The organization to which the user belongs
+`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles that are assigned to the user<br/>*includes*: `id`, `name` and `environment.id`
 
 
 <!-------------------- GET USER -------------------->
@@ -114,12 +110,8 @@ curl "https://cloudmc_endpoint/v1/users/[user-id]" \
   }
 }
 ```
-```go
-ccaClient := cca.NewCcaClient("your_api_key")
-user, err := ccaClient.Users.Get("[user-id]")
-```
 
-Retrieve information about a specific user. If you want access to other users in your [organization or sub-organizations](#organizations), you will need to be assigned the `Users Read` permission.
+Retrieve information about a specific user. If you want access to other users in your [organization or sub-organizations](#administration-organizations), you will need to be assigned the `Users Read` permission.
 
 Attributes | &nbsp;
 ---------- | -----------
@@ -130,9 +122,9 @@ Attributes | &nbsp;
 `email`<br/>*string* | The email of the user
 `creationDate`<br/>*long* | The date in [unix time](https://en.wikipedia.org/wiki/Unix_time) that the user was created
 `status`<br/>*string* | The current status of the user.
-`organization`<br/>*[Organization](#organization)* | The organization to which the user belongs
-`environments`<br/>*Array[[Environment](#environments)]* | The environments the user is member of<br/>*includes*: `id`, `name`
-`roles`<br/>*Array[[Role](#roles)]* | The system and environments roles that are assigned to the user<br/>*includes*: `id`, `name` and `environment.id`
+`organization`<br/>*[Organization](#administration-organization)* | The organization to which the user belongs
+`environments`<br/>*Array[[Environment](#administration-environments)]* | The environments the user is member of<br/>*includes*: `id`, `name`
+`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles that are assigned to the user<br/>*includes*: `id`, `name` and `environment.id`
 
 
 <!-------------------- CREATE USER -------------------->
@@ -169,7 +161,7 @@ curl -X POST "https://cloudmc_endpoint/v1/users" \
 }
 ```
 
-Create a user in a specific organization. There's two different types of [role](#roles) you can assign to the user. A system role will determine the set of system permissions the user will have. An environment role will give the user access to an environment and will determine what he can see and do in that environment. You will need the `Create a new user` permission to execute this operation.
+Create a user in a specific organization. There's two different types of [role](#administration-roles) you can assign to the user. A system role will determine the set of system permissions the user will have. An environment role will give the user access to an environment and will determine what he can see and do in that environment. You will need the `Create a new user` permission to execute this operation.
 
 Required | &nbsp;
 -------- | -----------
@@ -180,12 +172,12 @@ Required | &nbsp;
 
 Optional | &nbsp;
 -------- | -----------
-`organization`</br>*[Organization](#organization)* | Organization in which the user will be created. *Defaults to your organization*<br/>*required:* `id`
-`roles`<br/>*Array[[Role](#roles)]* | The system and environment roles to give to the user<br/>*required*: `id`
+`organization`</br>*[Organization](#administration-organization)* | Organization in which the user will be created. *Defaults to your organization*<br/>*required:* `id`
+`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environment roles to give to the user<br/>*required*: `id`
 
 ##### Returns
 
-The responses' `data` field contains the created [user](#users) with it's `id`.
+The responses' `data` field contains the created [user](#administration-users) with it's `id`.
 
 
 <!-------------------- UPDATE USER -------------------->
@@ -227,11 +219,11 @@ Optional | &nbsp;
 `firstName`<br/>*string* | The new first name of the user
 `lastName`<br/>*string* | The new last name of the user
 `email`<br/>*string* | The new email of the user. Should be unique across the organization.
-`roles`<br/>*Array[[Role](#roles)]* | The new list of system or environment roles to give to the user. This will override the previous list of roles.<br/>*required*: `id`
+`roles`<br/>*Array[[Role](#administration-roles)]* | The new list of system or environment roles to give to the user. This will override the previous list of roles.<br/>*required*: `id`
 
 ##### Returns
 
-The responses' `data` field contains the updated [user](#users).
+The responses' `data` field contains the updated [user](#administration-users).
 
 
 <!-------------------- DELETE USER -------------------->

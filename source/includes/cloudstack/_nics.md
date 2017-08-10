@@ -41,7 +41,7 @@ curl -X GET \
 }
 ```
 
-<code>GET <a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/portforwardingrules</code>
+<code>GET <a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/portforwardingrules</code>
 
 Retrieve a list of all NICs.
 
@@ -50,20 +50,20 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the NIC
 `name`<br/>*string* | The name of the NIC
 `ipAddress`<br/>*string* | The IP address of the NIC
-`isDefault`<br/>*string* | true if it's the default NIC of the [instance](#instances) (i.e. it will be the private IP on the instance)
-`networkId`<br/>*UUID* | The id of the [network](#networks) of the NIC
-`networkName`<br/>*string* | The name of the [network](#networks) of the NIC
-`gateway`<br/>*string* | The gateway of the [network](#networks) associated with the NIC
-`netmask`<br/>*string* | The netmask of the [network](#networks) associated with the NIC
+`isDefault`<br/>*string* | true if it's the default NIC of the [instance](#cloudstack-instances) (i.e. it will be the private IP on the instance)
+`networkId`<br/>*UUID* | The id of the [network](#cloudstack-networks) of the NIC
+`networkName`<br/>*string* | The name of the [network](#cloudstack-networks) of the NIC
+`gateway`<br/>*string* | The gateway of the [network](#cloudstack-networks) associated with the NIC
+`netmask`<br/>*string* | The netmask of the [network](#cloudstack-networks) associated with the NIC
 `instanceId`<br/>*string* | The id of the instance associated with the NIC
-`vpcId`<br/>*string* | The id of the [VPC](#vpcs) associated with the NIC
-`vpcName`<br/>*string* | The name of the [VPC](#vpcs) associated with the NIC
+`vpcId`<br/>*string* | The id of the [VPC](#cloudstack-vpcs) associated with the NIC
+`vpcName`<br/>*string* | The name of the [VPC](#cloudstack-vpcs) associated with the NIC
 `secondaryIps`<br/>*SecondaryIP* | The list of secondary IPs of the NIC<br/>*includes:* `id`, `ipAddress`
 
 Query Parameters | &nbsp;
 ---------- | -----
-`instance_id`<br/>*UUID* | Filter the list to only retrieve the NICs of a specific [instance](#instances)
-`network_id`<br/>*UUID* | Filter the list to only retrieve the NICs of a specific [network](#networks)
+`instance_id`<br/>*UUID* | Filter the list to only retrieve the NICs of a specific [instance](#cloudstack-instances)
+`network_id`<br/>*UUID* | Filter the list to only retrieve the NICs of a specific [network](#cloudstack-networks)
 
 
 <!-------------------- RETRIEVE A NIC -------------------->
@@ -103,7 +103,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/nics/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/nics/:id</code>
 
 Retrieve an existing NIC.
 
@@ -112,14 +112,14 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the NIC
 `name`<br/>*string* | The name of the NIC
 `ipAddress`<br/>*string* | The IP address of the NIC
-`isDefault`<br/>*string* | true if it's the default NIC of the [instance](#instances) (i.e. it will be the private IP on the instance)
-`networkId`<br/>*UUID* | The id of the [network](#networks) of the NIC
-`networkName`<br/>*string* | The name of the [network](#networks) of the NIC
-`gateway`<br/>*string* | The gateway of the [network](#networks) associated with the NIC
-`netmask`<br/>*string* | The netmask of the [network](#networks) associated with the NIC
-`instanceId`<br/>*string* | The id of the [instance](#instances) associated with the NIC
-`vpcId`<br/>*string* | The id of the [VPC](#vpcs) associated with the NIC
-`vpcName`<br/>*string* | The name of the [VPC](#vpcs) associated with the NIC
+`isDefault`<br/>*string* | true if it's the default NIC of the [instance](#cloudstack-instances) (i.e. it will be the private IP on the instance)
+`networkId`<br/>*UUID* | The id of the [network](#cloudstack-networks) of the NIC
+`networkName`<br/>*string* | The name of the [network](#cloudstack-networks) of the NIC
+`gateway`<br/>*string* | The gateway of the [network](#cloudstack-networks) associated with the NIC
+`netmask`<br/>*string* | The netmask of the [network](#cloudstack-networks) associated with the NIC
+`instanceId`<br/>*string* | The id of the [instance](#cloudstack-instances) associated with the NIC
+`vpcId`<br/>*string* | The id of the [VPC](#cloudstack-vpcs) associated with the NIC
+`vpcName`<br/>*string* | The name of the [VPC](#cloudstack-vpcs) associated with the NIC
 `secondaryIps`<br/>*SecondaryIP* | The list of secondary IPs of the NIC<br/>*includes:* `id`, `ipAddress`
 
 
@@ -149,14 +149,14 @@ curl -X POST \
 ```
 
 
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/nics</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/nics</code>
 
-Create a NIC for an [instance](#instances) in a specific network. You can only have one NIC per [network](#networks).
+Create a NIC for an [instance](#cloudstack-instances) in a specific network. You can only have one NIC per [network](#cloudstack-networks).
 
 Required | &nbsp;
 ------ | -----------
-`networkId`<br/>*string* | The id of the [network](#networks) where to create the NIC
-`instanceId`<br/>*string* | The id of the [instance](#instances) where to attach the NIC
+`networkId`<br/>*string* | The id of the [network](#cloudstack-networks) where to create the NIC
+`instanceId`<br/>*string* | The id of the [instance](#cloudstack-instances) where to attach the NIC
 
 
 <!-------------------- DELETE A NIC -------------------->
@@ -174,7 +174,7 @@ curl -X DELETE \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/nics"
 ```
 
-<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/nics/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/nics/:id</code>
 
 Delete an existing NIC. The NIC you're trying to delete must not be the default one.
 
@@ -194,6 +194,6 @@ curl -X POST \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/nics/63ef1efe-225f-4e05-bc79-b3e457a041e2?operation=setDefault"
 ```
 
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/nics/:id?operation=setDefault</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/nics/:id?operation=setDefault</code>
 
-Set an existing NIC as the default NIC of an [instance](#instances).
+Set an existing NIC as the default NIC of an [instance](#cloudstack-instances).

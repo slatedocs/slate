@@ -1,6 +1,6 @@
 ### Disk offerings
 
-Disk offerings determine the size and the performance (IOPS) of [data volumes](#volumes).
+Disk offerings determine the size and the performance (IOPS) of [data volumes](#cloudstack-volumes).
 
 #### List disk offerings
 
@@ -34,13 +34,8 @@ curl -X GET \
     }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-diskOfferings, _ := ccaResources.DiskOfferings.List()
-```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/diskofferings</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/diskofferings</code>
 
 Retrieve a list of available disk offerings.
 
@@ -48,7 +43,7 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the disk offering
 `name`<br/>*string* | The name of the disk offering
-`gbSize`<br/>*int* | The size of the [data volume](#volumes) in GB
+`gbSize`<br/>*int* | The size of the [data volume](#cloudstack-olumes) in GB
 `customSize`<br/>*boolean* | If the offering supports custom size
 `customIops`<br/>*boolean* | If the offering supports custom IOPS
 
@@ -72,13 +67,8 @@ curl -X GET \
     }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-diskOfferings, _ := ccaResources.DiskOfferings.Get("18bbab50-8d85-4b34-8361-0dc223ffd7e5")
-```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/diskofferings/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/diskofferings/:id</code>
 
 Retrieve a disk offering.
 
@@ -86,6 +76,6 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the disk offering
 `name`<br/>*string* | The name of the disk offering
-`gbSize`<br/>*int* | The size of the [data volume](#volumes) in GB
+`gbSize`<br/>*int* | The size of the [data volume](#cloudstack-volumes) in GB
 `customSize`<br/>*boolean* | If the offering supports custom size
 `customIops`<br/>*boolean* | If the offering supports custom IOPS

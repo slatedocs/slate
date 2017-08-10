@@ -1,5 +1,5 @@
 ### SSH keys
-SSH keys can be assigned to default users of instances by using the [associate SSH key](#associate-an-ssh-key-to-an-instance) operation.
+SSH keys can be assigned to default users of instances by using the [associate SSH key](#cloudstack-associate-an-ssh-key-to-an-instance) operation.
 
 <!-------------------- LIST SSH KEYS -------------------->
 
@@ -24,9 +24,9 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/sshkeys</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sshkeys</code>
 
-Retrieve a list of all SSH keys in an [environment](#environments)
+Retrieve a list of all SSH keys in an [environment](#administration-environments)
 
 Attributes | &nbsp;
 ---------- | -----
@@ -55,9 +55,9 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/sshkeys/:name</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sshkeys/:name</code>
 
-Retrieve information about an SSH key of an [environment](#environments)
+Retrieve information about an SSH key of an [environment](#administration-environments)
 
 Attributes | &nbsp;
 ---------- | -----

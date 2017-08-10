@@ -6,26 +6,14 @@ The API is  [RESTful](https://en.wikipedia.org/wiki/Representational_state_trans
 
 API endpoint : `https://cloudmc_endpoint/v1`
 
-<!-- We have also developed tools to help consume our APIs. If you use `go`, check out our [library](https://github.com/cloud-ca/go-cloudca). If you use Terraform, check out our [provider](https://github.com/cloud-ca/terraform-cloudca). NB: both are being actively developed, so there is still some functionality missing.
- -->
 ## Authentication
-<!-- ```go
-import "github.com/cloud-ca/go-cloudca"
-ccaClient := cca.NewCcaClient("your_api_key")
-```
- -->
+
 ```shell
 ## To authenticate, add a header
 ## Make sure to replace `your_api_key` with your API key.
 curl "https://cloudmc_endpoint/v1/organizations" \
    -H "MC-Api-Key: your_api_key"
 ```
-
-<!-- ```dart
-provider "cloudca" {
-    api_key = "${var.my_api_key}"
-}
-``` -->
 
 API endpoints are secured by the same role-based access control (RBAC) as the CloudMC portal. To identify who is making the requests, it is required to add a header to your HTTP requests:
 
@@ -91,8 +79,8 @@ When an API request is successful, the response body will contain the `data` fie
 Attributes | &nbsp;
 --- | ---
 `data` | The data field contains the object requested by the API caller
-`taskId` | The [task id](#tasks) of an operation executed through the [compute API](#compute-api)
-`taskStatus` | The status of a [task](#tasks) of an operation executed through the [compute API](#compute-api)
+`taskId` | The [task id](#tasks) of an operation executed through the services API
+`taskStatus` | The status of a [task](#tasks) of an operation executed the services API
 <!--
 `metadata` | The metadata is an optionally returned field containing paging and sorting information
 -->
@@ -119,22 +107,6 @@ If the response contains the "errors" field, the request was <strong>not</strong
       }
     }
   ]
-}
-```
-```go
-_, err := ccaResources.Volumes.Get("[some-volume-id]")
-if err != nil {
-   if errorResponse, ok := err.(api.CcaErrorResponse); ok {
-      if errorResponse.StatusCode == api.NOT_FOUND {
-         fmt.Println("Volume was not found")
-      } else {
-         //Can get more details from the CcaErrors
-         fmt.Println(errorResponse.Errors)
-      }
-   } else {
-      //handle unexpected error
-      panic("Unexpected error")
-   }
 }
 ```
 

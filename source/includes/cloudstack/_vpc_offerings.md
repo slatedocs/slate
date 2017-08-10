@@ -1,6 +1,6 @@
 ### VPC offerings
 
-VPC offerings determine which services are available to provisioned [VPCs](#vpcs).
+VPC offerings determine which services are available to provisioned [VPCs](#cloudstack-vpcs).
 
 #### List VPC offerings
 
@@ -36,13 +36,8 @@ curl -X GET \
     }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-vpcOfferings, _ := ccaResources.VpcOfferings.List()
-```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcofferings</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpcofferings</code>
 
 Retrieve a list of available VPC offerings.
 
@@ -82,13 +77,8 @@ curl -X GET \
     }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-vpcOfferings, _ := ccaResources.VpcOfferings.Get("41ac6ba0-6172-4bc4-bff6-b0831b91677c")
-```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcofferings/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpcofferings/:id</code>
 
 Retrieve a VPC offering.
 
