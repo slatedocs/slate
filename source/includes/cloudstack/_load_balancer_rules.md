@@ -43,11 +43,6 @@ curl -X GET \
   }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-lbrs, err := ccaResources.LoadBalancerRules.List()
-```
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules?public_ip_id=:public_ip_id</code>
 
 Retrieve a list of load balancer rules.
@@ -107,11 +102,6 @@ curl -X GET \
    }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-lbr, err := ccaResources.LoadBalancerRules.Get("736d0c2e-d6b5-43fc-bcf0-732fce9a509e")
-```
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules/:id</code>
 
 Retrieve a specific load balancer rule by its id.
@@ -159,41 +149,6 @@ curl -X POST \
       "holdtime": 3600000
    }
 }
-```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-lbr, err := ccaResources.LoadBalancerRules.Create(cloudca.LoadBalancerRule{
-   Name: "test",
-   PublicIpId: "44ebac5d-18cc-4eea-ab59-7a2af0691c88",
-   NetworkId: "093f6208-8a56-4035-8e71-3e39029fc5aa",
-   PublicPort: "80",
-   PrivatePort: "80",
-   Algorithm: "roundrobin",
-   Protocol: "tcp",
-   StickinessMethod: "AppCookie",
-   StickinesPolicyParameters: map[string]string{,
-      "holdtime": "3600000",
-   },
-   InstanceIds: ["d7048640-35d4-4a4f-8193-f4837da7e861"]
-})
-```
-```dart
-resource "cloudca_load_balancer_rule" "lbr" {
-    service_code = "compute-qc"
-    environment_name = "dev"
-    name="web_lb"
-    public_ip_id="5cd3a059-f15b-49f7-b7e1-254fef15968d"
-    protocol="tcp"
-    algorithm = "leastconn"
-    public_port = 80
-    private_port = 80
-    instance_ids = ["071e2929-672e-45bc-a5b6-703d17c08367"]
-    stickiness_method = "AppCookie"
-    stickiness_params {
-       cookieName = "allo"
-    }
- }
 ```
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules</code>
 
@@ -260,14 +215,7 @@ curl -X PUT \
    "algorithm": "roundrobin"
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-lbr, err := ccaResources.LoadBalancerRules.Update("3247167a-e7e7-11e3-9187-06669c0000ad", cloudca.LoadBalancerRule{
-   Name: "newtest",
-   Algorithm: "leastconn",
-})
-```
+
 <code>PUT /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules/:id</code>
 
 Update a load balancer rule.
@@ -293,11 +241,6 @@ curl -X PUT \
       "95d034b5-b902-440c-b430-120efaed9caf", "60df0bc2-f59b-4608-8147-1b8ac4a39add"
    ]
 }
-```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-err := ccaResources.LoadBalancerRules.SetLoadBalancerRuleInstances("3247167a-e7e7-11e3-9187-06669c0000ad", []string {"95d034b5-b902-440c-b430-120efaed9caf"})
 ```
 <code>PUT /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules/:id?operation=updateInstances</code>
 
@@ -330,13 +273,6 @@ curl -X PUT \
    }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-lbr, err := ccaResources.LoadBalancerRules.SetLoadBalancerRuleStickinessPolicy("3247167a-e7e7-11e3-9187-06669c0000ad", "LbCookie", map[string]string{,
-   "holdtime": "3600000",
-})
-```
 <code>PUT /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules/:id?operation=updateStickiness</code>
 
 Update instances of a load balancer rule.
@@ -354,11 +290,6 @@ See [Create a load balance rule](#create-a-load-balancer-rule) for stickiness po
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/loadbalancerrules/736d0c2e-d6b5-43fc-bcf0-732fce9a509e"
-```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.LoadBalancerRules.Delete("736d0c2e-d6b5-43fc-bcf0-732fce9a509e")
 ```
 <code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules/:id</code>
 

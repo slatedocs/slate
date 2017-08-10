@@ -46,10 +46,6 @@ curl "https://cloudmc_endpoint/v1/users" \
   }]
 }
 ```
-```go
-ccaClient := cca.NewCcaClient("your_api_key")
-users, err := ccaClient.Users.List()
-```
 
 Retrieve information about users you have access to. If you want access to other users in your [organization or sub-organizations](#organizations), you will need to be assigned the `Users read` permission. Without this permission, you will only see your own user in the list.
 
@@ -113,10 +109,6 @@ curl "https://cloudmc_endpoint/v1/users/[user-id]" \
     ]
   }
 }
-```
-```go
-ccaClient := cca.NewCcaClient("your_api_key")
-user, err := ccaClient.Users.Get("[user-id]")
 ```
 
 Retrieve information about a specific user. If you want access to other users in your [organization or sub-organizations](#organizations), you will need to be assigned the `Users Read` permission.

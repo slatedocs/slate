@@ -50,11 +50,6 @@ curl -X GET \
    }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-publicIps, _ := ccaResources.PublicIps.List()
-```
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/publicipaddresses</code>
 
@@ -102,11 +97,6 @@ curl -X GET -H "MC-Api-Key: your_api_key"
       "zoneName": "ON-1"
    }
 }
-```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-publicIp, _ := ccaResources.PublicIps.Get("10001e7d-b4ef-489b-836e-0619a383bc8d")
 ```
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/publicipaddresses/:id</code>

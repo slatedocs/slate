@@ -36,11 +36,6 @@ curl -X GET \
     }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-vpcOfferings, _ := ccaResources.VpcOfferings.List()
-```
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcofferings</code>
 
@@ -81,11 +76,6 @@ curl -X GET \
         "state": "Enabled"
     }
 }
-```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-vpcOfferings, _ := ccaResources.VpcOfferings.Get("41ac6ba0-6172-4bc4-bff6-b0831b91677c")
 ```
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcofferings/:id</code>

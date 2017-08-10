@@ -39,11 +39,6 @@ curl -X GET \
   }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-networks, err := ccaResources.Networks.List()
-```
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networks</code>
 
@@ -108,11 +103,6 @@ curl -X GET \
   }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-network, err := ccaResources.Networks.Get("ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e")
-```
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networks/:id</code>
 
@@ -165,28 +155,6 @@ curl -X POST \
   "networkAclId": "9ba3ec65-2e1d-11e4-8e05-42a29a39fc92"
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-createdNetwork, err := ccaResources.Networks.Create(cloudca.Network{
-        Name: "my_network",
-        Description: "My production network",
-        VpcId: "b1932c7c-0b85-450f-92b9-bfdeb3e80804",
-        NetworkOfferingId: "c5d4ffcd-56e2-407a-8b4d-06082b7365c4",
-        NetworkAclId: "9ba3ec65-2e1d-11e4-8e05-42a29a39fc92"
-    },  map[string]string{})
-```
-```dart
-resource "cloudca_network" "my_network" {
-    service_code = "compute-on"
-    environment_name = "test_area"
-    name = "my_network"
-    description = "This is a prod network"
-    vpc_id = "8b46e2d1-bbc4-4fad-b3bd-1b25fcba4cec"
-    network_offering = "Standard Network"
-    network_acl_id = "7d428416-263d-47cd-9270-2cdbdf222f57"
-}
-```
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networks</code>
 
@@ -225,14 +193,6 @@ curl -X PUT \
   "description": "My updated production network"
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-updatedNetwork, err := ccaResources.Networks.Update("9572d2ea-a60d-478a-a75e-8ed31f2641f1", cloudca.Network{
-        Name: "my_updated_network",
-        Description: "My updated production network"
-    })
-```
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networks/9572d2ea-a60d-478a-a75e-8ed31f2641f1</code>
 
@@ -257,11 +217,6 @@ Required | &nbsp;
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/networks/9572d2ea-a60d-478a-a75e-8ed31f2641f1"
-```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Networks.Delete("9572d2ea-a60d-478a-a75e-8ed31f2641f1")
 ```
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networks/9572d2ea-a60d-478a-a75e-8ed31f2641f1</code>
@@ -292,11 +247,6 @@ curl -X POST \
   "name": "my_updated_network",
   "description": "My updated production network"
 }
-```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Networks.ChangeAcl("9572d2ea-a60d-478a-a75e-8ed31f2641f1", "9ba3863e-2e1d-11e4-8e05-42a29a39fc92")
 ```
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networks/9572d2ea-a60d-478a-a75e-8ed31f2641f1?operation=replace</code>

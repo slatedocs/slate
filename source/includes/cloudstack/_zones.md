@@ -24,11 +24,6 @@ curl -X GET \
     }
 }
 ```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-zones, _ := ccaResources.Zones.List()
-```
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/zones</code>
 
@@ -56,11 +51,6 @@ curl -X GET \
     }
 }
 
-```
-```go
-resources, _ := ccaClient.GetResources("compute-on", "test_area")
-ccaResources := resources.(cloudca.Resources)
-zones, _ := ccaResources.Zones.Get("ea901007-056b-4c50-bb3a-2dd635fce2ab")
 ```
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/zones/:id</code>
