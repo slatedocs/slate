@@ -1,9 +1,6 @@
 ## Service connections
 
-Service connections are the services that you can create resources for (e.g. compute, object storage). [Environments](#environments) are created for a specific service which allows you to create and manage resources within that service.
-
-<!---- The service APIs are documented [here](#serviceApis) ---->
-
+Service connections are the services that you can create resources for (e.g. compute, object storage). [Environments](#administration-environments) are created for a specific service which allows you to create and manage resources within that service.
 
 <!-------------------- LIST ORGANIZATIONS -------------------->
 ### List service connections

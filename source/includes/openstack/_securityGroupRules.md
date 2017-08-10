@@ -38,7 +38,7 @@ curl -H "MC-Api-Key: your_api_key" \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/securitygrouprules?securitygroupid=<a href="#security-groups">:securityGroupId</a></code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securitygrouprules?securitygroupid=<a href="#openstack-security-groups">:securityGroupId</a></code>
 
 Retrieve a list of all security group rules in a security group.
 
@@ -75,7 +75,7 @@ curl -H "MC-Api-Key: your_api_key" \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/securitygrouprules/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securitygrouprules/:id</code>
 
 Retrieve information about a security group rule.
 
@@ -113,7 +113,7 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/securitygrouprules</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securitygrouprules</code>
 
 Create a security group rule for a security group.
 
@@ -137,6 +137,6 @@ curl -X DELETE \
     "https://api.your.cloudmc/v1/services/compute-os/devel/securitygrouprules/655d3bcb-3f8a-4738-b50a-53bca43469b5"
 ```
 
-<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/securitygrouprules/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securitygrouprules/:id</code>
 
 Delete a security group rule.

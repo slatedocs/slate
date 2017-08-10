@@ -24,7 +24,7 @@ curl -H "MC-Api-Key: your_api_key" \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networks</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks</code>
 
 Retrieve a list of all networks in an environment.
 
@@ -55,7 +55,7 @@ curl -H "MC-Api-Key: your_api_key" \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networks/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks/:id</code>
 
 Retrieve information about a network.
 
@@ -87,7 +87,7 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networks</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks</code>
 
 Create a network in an environment.
 
@@ -107,6 +107,6 @@ curl -X DELETE \
     "https://api.your.cloudmc/v1/services/compute-os/devel/networks/a9e8861d-64a1-4126-b385-6e4db9a5814f"
 ```
 
-<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networks/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks/:id</code>
 
 Delete a network.

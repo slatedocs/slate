@@ -45,30 +45,30 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
 
-Retrieve a list of all instances in a given [environment](#environments)
+Retrieve a list of all instances in a given [environment](#administration-environments)
 
 Attributes | &nbsp;
 ------- | -----------
 `id`<br/>*UUID* | The id of the instance
 `name`<br/>*string* | The display name of the instance
 `state`<br/>*string* | The current state of the instance
-`templateId`<br/>*UUID* | The [template](#templates) id of the instance
-`templateName`<br/>*string* | The [template](#templates) name of the instance
-`computeOfferingId`<br/>*UUID* | The [compute offering](#compute-offerings) id of the instance
-`computeOfferingName`<br/>*string* | The [compute offering](#compute-offerings) name of the instance
-`cpuCount`<br/>*int* | The number of vCPUs associated with the instance's [compute offering](#compute-offerings)
-`memoryInMB`<br/>*int* | The number of megabytes associated with the instance's [compute offering](#compute-offerings)
-`networkId`<br/>*UUID* | The id of the [network](#networks) where instance is deployed
-`networkName`<br/>*string* | The name of the [network](#networks) where instance is deployed
+`templateId`<br/>*UUID* | The [template](#cloudstack-templates) id of the instance
+`templateName`<br/>*string* | The [template](#cloudstack-templates) name of the instance
+`computeOfferingId`<br/>*UUID* | The [compute offering](#cloudstack-compute-offerings) id of the instance
+`computeOfferingName`<br/>*string* | The [compute offering](#cloudstack-compute-offerings) name of the instance
+`cpuCount`<br/>*int* | The number of vCPUs associated with the instance's [compute offering](#cloudstack-compute-offerings)
+`memoryInMB`<br/>*int* | The number of megabytes associated with the instance's [compute offering](#cloudstack-compute-offerings)
+`networkId`<br/>*UUID* | The id of the [network](#cloudstack-networks) where instance is deployed
+`networkName`<br/>*string* | The name of the [network](#cloudstack-networks) where instance is deployed
 `hostname`<br/>*string* | The host name of the instance
 `username`<br/>*string* | The username that can be used to connect to the instance
-`affinityGroupIds`<br/>*Array[UUID]* | The id(s) of the [affinity groups](#affinity-groups) to which the instance is associated.
-`zoneId`<br/>*UUID* | The id of the [zone](#zones) where instance is deployed
-`zoneName`<br/>*string* | The name of associated [zone](#zones)
-`vpcId`<br/>*UUID* | The id of the associated [VPC](#vpcs)
-`vpcName`<br/>*string* | The name of associated [VPC](#vpcs)
+`affinityGroupIds`<br/>*Array[UUID]* | The id(s) of the [affinity groups](#cloudstack-affinity-groups) to which the instance is associated.
+`zoneId`<br/>*UUID* | The id of the [zone](#cloudstack-zones) where instance is deployed
+`zoneName`<br/>*string* | The name of associated [zone](#cloudstack-zones)
+`vpcId`<br/>*UUID* | The id of the associated [VPC](#cloudstack-vpcs)
+`vpcName`<br/>*string* | The name of associated [VPC](#cloudstack-vpcs)
 `ipAddress`<br/>*string* | The instance's private IPv4 address
 `isPasswordEnabled`<br/>*boolean* | Indicate whether a password can be used for remote connections
 `macAddress`<br/>*string* | The instance's MAC address
@@ -129,7 +129,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
 
 Retrieve information about a specific instance.
 
@@ -138,27 +138,27 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the instance
 `name`<br/>*string* | The display name of the instance
 `state`<br/>*string* | The current state of the instance
-`templateId`<br/>*UUID* | The [template](#templates) id of the instance
-`templateName`<br/>*string* | The [template](#templates) name of the instance
-`computeOfferingId`<br/>*UUID* | The [compute offering](#compute-offerings) id of the instance
-`computeOfferingName`<br/>*string* | The [compute offering](#compute-offerings) name of the instance
-`cpuCount`<br/>*int* | The number of vCPUs associated with the instance's [compute offering](#compute-offerings)
-`memoryInMB`<br/>*int* | The number of megabytes associated with the instance's [compute offering](#compute-offerings)
-`networkId`<br/>*UUID* | The id of the [network](#networks) where instance is deployed
-`networkName`<br/>*string* | The name of the [network](#networks) where instance is deployed
+`templateId`<br/>*UUID* | The [template](#cloudstack-templates) id of the instance
+`templateName`<br/>*string* | The [template](#cloudstack-templates) name of the instance
+`computeOfferingId`<br/>*UUID* | The [compute offering](#cloudstack-compute-offerings) id of the instance
+`computeOfferingName`<br/>*string* | The [compute offering](#cloudstack-compute-offerings) name of the instance
+`cpuCount`<br/>*int* | The number of vCPUs associated with the instance's [compute offering](#cloudstack-compute-offerings)
+`memoryInMB`<br/>*int* | The number of megabytes associated with the instance's [compute offering](#cloudstack-compute-offerings)
+`networkId`<br/>*UUID* | The id of the [network](#cloudstack-networks) where instance is deployed
+`networkName`<br/>*string* | The name of the [network](#cloudstack-networks) where instance is deployed
 `hostname`<br/>*string* | The host name of the instance
 `username`<br/>*string* | The username that can be used to connect to the instance
-`affinityGroupIds`<br/>*Array[UUID]* | The id(s) of the [affinity groups](#affinity-groups) to which the instance is associated.
-`zoneId`<br/>*UUID* | The id of the [zone](#zones) where instance is deployed
-`zoneName`<br/>*string* | The name of associated [zone](#zones)
-`vpcId`<br/>*UUID* | The id of the associated [VPC](#vpcs)
-`vpcName`<br/>*string* | The name of associated [VPC](#vpcs)
+`affinityGroupIds`<br/>*Array[UUID]* | The id(s) of the [affinity groups](#cloudstack-affinity-groups) to which the instance is associated.
+`zoneId`<br/>*UUID* | The id of the [zone](#cloudstack-zones) where instance is deployed
+`zoneName`<br/>*string* | The name of associated [zone](#cloudstack-zones)
+`vpcId`<br/>*UUID* | The id of the associated [VPC](#cloudstack-vpcs)
+`vpcName`<br/>*string* | The name of associated [VPC](#cloudstack-vpcs)
 `ipAddress`<br/>*string* | The instance's private IPv4 address
 `isPasswordEnabled`<br/>*boolean* | Indicate whether a password can be used for remote connections
 `macAddress`<br/>*string* | The instance's MAC address
 `userData`<br/>*string* | The user data of the instance
-`publicIps`<br/>*Array[[PublicIp](#public-ips)]* | The public IP addresses associated to the instance<br/>*includes:* `id`, `purposes`, `ipAddress`, `ports`
-`nics`<br/>*Array[[NIC](#nics)]* | The NICs of the instance<br/>*includes:* `id`, `isDefault`, `networkId`
+`publicIps`<br/>*Array[[PublicIp](#cloudstack-public-ips)]* | The public IP addresses associated to the instance<br/>*includes:* `id`, `purposes`, `ipAddress`, `ports`
+`nics`<br/>*Array[[NIC](#cloudstack-nics)]* | The NICs of the instance<br/>*includes:* `id`, `isDefault`, `networkId`
 
 <!-------------------- CREATE AN INSTANCE -------------------->
 
@@ -194,31 +194,31 @@ curl -X POST \
 }
 ```
 
- <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances</code>
+ <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
 
-Create an instance in an [environment](#environments). This endpoint allows you to easily attach a new or existing data volume and add port forwarding rules to the new instance without doing additional API calls.
+Create an instance in an [environment](#administration-environments). This endpoint allows you to easily attach a new or existing data volume and add port forwarding rules to the new instance without doing additional API calls.
 
 Required | &nbsp;
 ------ | -----------
 `name`<br/>*string* | Name of the newly created instance
-`templateId`<br/>*UUID* | The [template](#templates) to use for this instance
-`computeOfferingId`<br/>*UUID* | The [compute offering](#compute-offerings) will determine the number of CPU and RAM of your instance
-`networkId`<br/>*UUID* | The [network](#networks) in which the instance will be created. If you don't have a network, it can be created through the [create network](#create-network) api.
+`templateId`<br/>*UUID* | The [template](#cloudstack-templates) to use for this instance
+`computeOfferingId`<br/>*UUID* | The [compute offering](#cloudstack-compute-offerings) will determine the number of CPU and RAM of your instance
+`networkId`<br/>*UUID* | The [network](#cloudstack-networks) in which the instance will be created. If you don't have a network, it can be created through the [create network](#cloudstack-create-network) api.
 
 Optional | &nbsp;
 ------ | -----------
-`rootVolumeSizeInGb`<br/>*int* | The number of GB of the root volume. You must choose a [template](#templates) that allows the resize of root volume. If none specified, then the default one of the template will be used.
-`diskOfferingId`<br/>*UUID* | The [disk offering](#disk-offerings) to be used for a new volume to attach to this instance
-`additionalDiskSizeInGb`<br/>*int* | The number of GB the additional disk should have. You must choose a [disk offering](#disk-offerings) with custom disk size enabled.
-`additionalDiskIops`<br/>*int* | The number of IOPS the additional disk should have. You must choose a [disk offering](#disk-offerings) with custom IOPS enabled.
-`sshKeyName`<br/>*string* | The name of the [SSH key](#ssh-keys) to use for this instance. If you don't have an SSH key registered, you can do so through this [api](#create-ssh-key).
+`rootVolumeSizeInGb`<br/>*int* | The number of GB of the root volume. You must choose a [template](#cloudstack-templates) that allows the resize of root volume. If none specified, then the default one of the template will be used.
+`diskOfferingId`<br/>*UUID* | The [disk offering](#cloudstack-disk-offerings) to be used for a new volume to attach to this instance
+`additionalDiskSizeInGb`<br/>*int* | The number of GB the additional disk should have. You must choose a [disk offering](#cloudstack-disk-offerings) with custom disk size enabled.
+`additionalDiskIops`<br/>*int* | The number of IOPS the additional disk should have. You must choose a [disk offering](#cloudstack-disk-offerings) with custom IOPS enabled.
+`sshKeyName`<br/>*string* | The name of the [SSH key](#cloudstack-ssh-keys) to use for this instance. If you don't have an SSH key registered, you can do so through this [api](#cloudstack-create-ssh-key).
 `publicKey`<br/>*string* | The public key to use for this instance.
-`volumeIdToAttach`<br/>*UUID* | The [volume](#volumes) to attach to this instance.
-`affinityGroupId`<br/>*UUID* | The [affinity group](#affinity-groups) where to create the instance.
-`portsToForward`<br/>*array[string]* | The [ports](#port-forwarding-rules) you would like to open on the instance. It will try to use an existing [public IP address](#public-ips), if it can't find one it will [acquire a new public IP](#acquire-a-public-ip).
+`volumeIdToAttach`<br/>*UUID* | The [volume](#cloudstack-volumes) to attach to this instance.
+`affinityGroupId`<br/>*UUID* | The [affinity group](#cloudstack-affinity-groups) where to create the instance.
+`portsToForward`<br/>*array[string]* | The [ports](#port-forwarding-rules) you would like to open on the instance. It will try to use an existing [public IP address](#cloudstack-public-ips), if it can't find one it will [acquire a new public IP](#cloudstack-acquire-a-public-ip).
 `userData`<br/>*string* | User data is data that can be accessed and interpreted in the instance.
-`cpuCount`<br/>*int* | If the [compute offering](#compute-offerings) requires custom values (i.e. `"custom": true`), this value must be provided.
-`memoryInMB`<br/>*int* | If the [compute offering](#compute-offerings) requires custom values (i.e. `"custom": true`), this value must be provided.
+`cpuCount`<br/>*int* | If the [compute offering](#cloudstack-compute-offerings) requires custom values (i.e. `"custom": true`), this value must be provided.
+`memoryInMB`<br/>*int* | If the [compute offering](#cloudstack-compute-offerings) requires custom values (i.e. `"custom": true`), this value must be provided.
 
 
 
@@ -247,7 +247,7 @@ curl -X PUT \
 }
 ```
 
- <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
+ <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
 
 Update the name and hostname of an existing instance.
 <aside class="caution">
@@ -284,17 +284,17 @@ curl -X DELETE \
 }
 ```
 
-<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
 
-Destroys an existing instance. The instance needs to be in the *Running*, *Stopped* or *Error* state for the operation to work. This endpoint allows you to do additional cleanup of resources attached to this instance such as [public IPs](#public-ips), [volumes](#volumes) and [snapshots](#snapshots). If the purgeImmediately flag is not true, then it will not completely remove the instance from the [environment](#environments). (i.e. the instance could still be recovered).
+Destroys an existing instance. The instance needs to be in the *Running*, *Stopped* or *Error* state for the operation to work. This endpoint allows you to do additional cleanup of resources attached to this instance such as [public IPs](#cloudstack-public-ips), [volumes](#cloudstack-volumes) and [snapshots](#cloudstack-snapshots). If the purgeImmediately flag is not true, then it will not completely remove the instance from the [environment](#administration-environments). (i.e. the instance could still be recovered).
 
 
 Optional | &nbsp;
 ------ | -----------
 `purgeImmediately`<br/>*boolean* | Will destroy and purge the instance if true, puts the instance in destroyed state otherwise. An instance that wasn't purged can be recovered.
-`deleteSnapshots`<br/>*boolean* | Will delete all [snapshots](#snapshots) of volumes attached to this instance if true, will keep snapshots otherwise.
-`publicIpIdsToRelease`<br/>*Array[UUID]* | List of IDs of the [public IP addresses](#public-ips) to release with the instance. Can only release public IPs of the instance being destroyed and they must not be used by other instances.
-`volumeIdsToDelete`<br/>*Array[UUID]* | List of IDs of the [data volumes](#volumes) to delete with the instance. Can only destroy data volumes that are attached to this instance.
+`deleteSnapshots`<br/>*boolean* | Will delete all [snapshots](#cloudstack-snapshots) of volumes attached to this instance if true, will keep snapshots otherwise.
+`publicIpIdsToRelease`<br/>*Array[UUID]* | List of IDs of the [public IP addresses](#cloudstack-public-ips) to release with the instance. Can only release public IPs of the instance being destroyed and they must not be used by other instances.
+`volumeIdsToDelete`<br/>*Array[UUID]* | List of IDs of the [data volumes](#cloudstack-volumes) to delete with the instance. Can only destroy data volumes that are attached to this instance.
 
 <!-------------------- START AN INSTANCE -------------------->
 
@@ -313,7 +313,7 @@ curl -X POST \
 
 ```
 
- <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=start</code>
+ <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=start</code>
 
 Start an existing instance. The instance must be in the *Stopped* state for this operation to work.
 
@@ -334,7 +334,7 @@ curl -X POST \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=stop"
 ```
 
- <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=stop</code>
+ <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=stop</code>
 
  Stop an existing instance. The instance must be in the *Running* state for this operation to work.
 
@@ -354,7 +354,7 @@ curl -X POST \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=reboot"
 ```
 
- <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=reboot</code>
+ <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=reboot</code>
 
 Reboot an existing instance. The instance must be in the *Running* or *Stopped* state for this operation to work.
 
@@ -374,7 +374,7 @@ curl -X POST \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=purge"
 ```
 
- <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=purge</code>
+ <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=purge</code>
 
 Purges an existing instance (i.e. completely remove it from the environment). The instance must be in a *Destroyed* state.
 
@@ -394,7 +394,7 @@ curl -X POST \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=recover"
 ```
 
- <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=recover</code>
+ <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=recover</code>
 
 Recover an existing instance that was previously destroyed. The instance must be in a *Destroyed* state.
 
@@ -414,7 +414,7 @@ curl -X POST \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=changeComputeOffering"
 ```
 
- <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=changeComputeOffering</code>
+ <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=changeComputeOffering</code>
 
 Change the compute offering of an existing instance.
 
@@ -447,7 +447,7 @@ curl -X POST \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=resetPassword"
 ```
 
- <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=resetPassword</code>
+ <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=resetPassword</code>
 
 Reset the password of the default user of an existing instance. The new password of the instance will be in the task result.
 
@@ -466,13 +466,13 @@ curl -X POST \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=changeNetwork"
 ```
 
- <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=changeNetwork</code>
+ <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=changeNetwork</code>
 
 Move an instance to another network. NOTE: This will destroy all port forwarding rules associated to this instance and remove the instance from all load balancing rules. Additionally, it will reboot your instance.
 
 Required | &nbsp;
 ------ | -----------
-`networkId`<br/>*UUID* | The destination [network](#networks).
+`networkId`<br/>*UUID* | The destination [network](#cloudstack-networks).
 
 <!-------------------- ASSOCIATE AN SSH KEY TO AN INSTANCE -------------------->
 
@@ -497,10 +497,10 @@ curl -X POST \
 }
 ```
 
- <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=associateSSHKey</code>
+ <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=associateSSHKey</code>
 
-Associate a new [SSH key](#ssh-keys) to the default user of an existing instance. This will override any other [SSH key](#ssh-keys) associated to the instance for the default user. You can register a new SSH key with the [register SSH key](#register-an-ssh-key) endpoint.
+Associate a new [SSH key](#cloudstack-ssh-keys) to the default user of an existing instance. This will override any other [SSH key](#cloudstack-ssh-keys) associated to the instance for the default user. You can register a new SSH key with the [register SSH key](#cloudstack-register-an-ssh-key) endpoint.
 
 Required | &nbsp;
 ------ | -----------
-`sshKeyName`<br/>*string* | The name of the [SSH key](#ssh-keys) to associate to the instance
+`sshKeyName`<br/>*string* | The name of the [SSH key](#cloudstack-ssh-keys) to associate to the instance

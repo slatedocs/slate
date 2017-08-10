@@ -1,6 +1,6 @@
 ### Network offerings
 
-Network offerings determine which services are available to each provisioned [network](#networks).
+Network offerings determine which services are available to each provisioned [network](#cloudstack-networks).
 
 #### List network offerings
 
@@ -52,7 +52,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkofferings</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkofferings</code>
 
 Retrieve a list of available network offerings.
 
@@ -93,7 +93,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkofferings/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkofferings/:id</code>
 
 Retrieve a network offering.
 

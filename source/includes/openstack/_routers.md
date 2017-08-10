@@ -32,7 +32,7 @@ curl -H "MC-Api-Key: your_api_key" \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/routers</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/routers</code>
 
 Retrieve a list of routers in an OpenStack environment.
 
@@ -70,7 +70,7 @@ curl -H "MC-Api-Key: your_api_key" \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/routers/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/routers/:id</code>
 
 Retrieve a single router in an OpenStack environment.
 
@@ -100,7 +100,7 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/routers</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/routers</code>
 
 Create a router.
 
@@ -125,7 +125,7 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/routers/:id?operation=addRouterInterface</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/routers/:id?operation=addRouterInterface</code>
 
 Connect a router to a network.
 
@@ -142,6 +142,6 @@ curl -X DELETE \
     "https://api.your.cloudmc/v1/services/compute-os/devel/routers/212eb8d8-80ee-4edd-8bae-1efed8bc5c71"
 ```
 
-<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/routers/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/routers/:id</code>
 
 Delete a router.

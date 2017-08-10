@@ -1,6 +1,6 @@
 ### Port forwarding rules
 
-Port forwarding allows traffic from external hosts to services offered by applications in your [VPCs](#vpcs). A port forwarding rule is a mapping of public IP ports to [private IP](#nics) ports (i.e. forwards traffic from a public IP to an instance).
+Port forwarding allows traffic from external hosts to services offered by applications in your [VPCs](#cloudstack-vpcs). A port forwarding rule is a mapping of public IP ports to [private IP](#cloudstack-nics) ports (i.e. forwards traffic from a public IP to an instance).
 
 <!-------------------- LIST PORT FORWARDING RULES -------------------->
 
@@ -36,30 +36,30 @@ curl -X GET \
   }
 }
 ```
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/portforwardingrules</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/portforwardingrules</code>
 
 Retrieve a list of all port forwarding rules of an environment.
 
 Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the port forwarding rule
-`ipAddress`<br/>*string* | The ip address of the [public IP](#public-ips) associated to this port forwarding rule
-`ipAddressId`<br/>*UUID* | The id of the [public IP](#public-ips) associated to this port forwarding rule
+`ipAddress`<br/>*string* | The ip address of the [public IP](#cloudstack-public-ips) associated to this port forwarding rule
+`ipAddressId`<br/>*UUID* | The id of the [public IP](#cloudstack-public-ips) associated to this port forwarding rule
 `privatePortStart`<br/>*string* | The start of the private port range
 `privatePortEnd`<br/>*string* | The end of the private port range
 `publicPortStart`<br/>*string* | The start of the public port range
 `publicPortEnd`<br/>*string* | The end of the public port range
 `protocol`<br/>*string* | The protocol of the port forwarding rule (e.g. TCP, UDP)
-`instanceId`<br/>*UUID* | The id of the [instance](#instances) of the port forwarding rule
-`instanceName`<br/>*string* | The name of the [instance](#instances) of the port forwarding rule
+`instanceId`<br/>*UUID* | The id of the [instance](#cloudstack-instances) of the port forwarding rule
+`instanceName`<br/>*string* | The name of the [instance](#cloudstack-instances) of the port forwarding rule
 `networkId`<br/>*UUID* | The id of the [network](#networks) of the port forwarding rule
-`vpcId`<br/>*UUID* | The id of the [VPC](#vpcs) of the port forwarding rule
-`privateIp`<br/>*string* | The private IP address of the [instance](#instances) where the traffic will be forwarded
-`privateIpId`<br/>*UUID* | The id of private IP address of the [instance](#instances) where traffic will be forwarded
+`vpcId`<br/>*UUID* | The id of the [VPC](#cloudstack-vpcs) of the port forwarding rule
+`privateIp`<br/>*string* | The private IP address of the [instance](#cloudstack-instances) where the traffic will be forwarded
+`privateIpId`<br/>*UUID* | The id of private IP address of the [instance](#cloudstack-instances) where traffic will be forwarded
 
 Query Parameters | &nbsp;
 ---------- | -----
-`instance_id`<br/>*UUID* | Filter the list to only retrieve the port forwarding rules of an [instance](#instances)
+`instance_id`<br/>*UUID* | Filter the list to only retrieve the port forwarding rules of an [instance](#cloudstack-instances)
 
 <!-------------------- RETRIEVE A PORT FORWARDING RULE -------------------->
 
@@ -94,26 +94,26 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/portforwardingrules/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/portforwardingrules/:id</code>
 
 Retrieve information about a port forwarding rule.
 
 Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the port forwarding rule
-`ipAddress`<br/>*string* | The ip address of the [public IP](#public-ips) associated to this port forwarding rule
-`ipAddressId`<br/>*UUID* | The id of the [public IP](#public-ips) associated to this port forwarding rule
+`ipAddress`<br/>*string* | The ip address of the [public IP](#cloudstack-public-ips) associated to this port forwarding rule
+`ipAddressId`<br/>*UUID* | The id of the [public IP](#cloudstack-public-ips) associated to this port forwarding rule
 `privatePortStart`<br/>*string* | The start of the private port range
 `privatePortEnd`<br/>*string* | The end of the private port range
 `publicPortStart`<br/>*string* | The start of the public port range
 `publicPortEnd`<br/>*string* | The end of the public port range
 `protocol`<br/>*string* | The protocol of the port forwarding rule (e.g. TCP, UDP)
-`instanceId`<br/>*UUID* | The id of the [instance](#instances) of the port forwarding rule
-`instanceName`<br/>*string* | The name of the [instance](#instances) of the port forwarding rule
+`instanceId`<br/>*UUID* | The id of the [instance](#cloudstack-instances) of the port forwarding rule
+`instanceName`<br/>*string* | The name of the [instance](#cloudstack-instances) of the port forwarding rule
 `networkId`<br/>*UUID* | The id of the [network](#networks) of the port forwarding rule
-`vpcId`<br/>*UUID* | The id of the [VPC](#vpcs) of the port forwarding rule
-`privateIp`<br/>*string* | The private IP address of the [instance](#instances) where requests will be forwarded
-`privateIpId`<br/>*UUID* | The id of private IP address of the [instance](#instances) where requests will be forwarded
+`vpcId`<br/>*UUID* | The id of the [VPC](#cloudstack-vpcs) of the port forwarding rule
+`privateIp`<br/>*string* | The private IP address of the [instance](#cloudstack-instances) where requests will be forwarded
+`privateIpId`<br/>*UUID* | The id of private IP address of the [instance](#cloudstack-instances) where requests will be forwarded
 
 
 <!-------------------- CREATE A PORT FORWARDING RULE -------------------->
@@ -146,13 +146,13 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/portforwardingrules</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/portforwardingrules</code>
 
-Create a port forwarding rule for a [public IP](#public-ips).
+Create a port forwarding rule for a [public IP](#cloudstack-public-ips).
 
 Required | &nbsp;
 ------ | -----------
-`ipAddressId`<br/>*UUID* | The id of the [public IP](#public-ips) where the port forwarding should be created
+`ipAddressId`<br/>*UUID* | The id of the [public IP](#cloudstack-public-ips) where the port forwarding should be created
 `protocol`<br/>*string* | The protocol (e.g. TCP, UDP) to forward
 `privatePortStart`<br/>*string* | The start of the private port range
 `privatePortEnd`<br/>*string* | The end of the private port range
@@ -161,7 +161,7 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------ | -----------
-`instanceId`<br/>*UUID* | The id of the [instance](#instances) that will have a port forwarded (it will use the default private port)
+`instanceId`<br/>*UUID* | The id of the [instance](#cloudstack-instances) that will have a port forwarded (it will use the default private port)
 `privateIpId`<br/>*UUID* | The id of the private IP to forward
 
 
@@ -180,6 +180,6 @@ curl -X DELETE \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/portforwardingrules/7d22b390-cbb3-4df6-96c6-52901ccb63c0"
 ```
 
-<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/portforwardingrules/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/portforwardingrules/:id</code>
 
 Delete an existing port forwarding rule.

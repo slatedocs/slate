@@ -2,7 +2,7 @@
 
 ### Network ACLs
 
-Manage access control lists and their rules. To apply an ACL to a network, [replace the ACL of a network](#replace-the-network-acl-of-a-network).
+Manage access control lists and their rules. To apply an ACL to a network, [replace the ACL of a network](#cloudstack-replace-the-network-acl-of-a-network).
 
 #### List network ACLs
 
@@ -36,7 +36,7 @@ curl -X GET \
   }
 }
 ```
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkacls?vpc_id=:vpc_id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkacls?vpc_id=:vpc_id</code>
 
 Retrieve a list of network ACLs in a VPC.
 
@@ -50,7 +50,7 @@ Attributes                 | &nbsp;
 
 Query Parameters | &nbsp;
 ---------- | -----
-`vpc_id`<br/>*UUID*    | Filter the list to only retrieve the network ACLs of a specific [VPC](#vpcs)
+`vpc_id`<br/>*UUID*    | Filter the list to only retrieve the network ACLs of a specific [VPC](#cloudstack-vpcs)
 
 #### Retrieve a network ACL
 
@@ -69,7 +69,7 @@ curl -X GET \
   }
 }
 ```
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkacls/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkacls/:id</code>
 
 Retrieve a specific network ACL by its id.
 
@@ -89,7 +89,7 @@ curl -X POST \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/networkacls"
 ```
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkacls</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkacls</code>
 
 Create a new network ACL associated to a VPC.
 
@@ -106,7 +106,7 @@ curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/networkacls/736d0c2e-d6b5-43fc-bcf0-732fce9a509e"
 ```
-<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkacls/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkacls/:id</code>
 
 Delete an ACL and all of its rules.
 
@@ -147,7 +147,7 @@ curl -X GET \
   }
 }
 ```
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkaclrules?network_acl_id=:network_acl_id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkaclrules?network_acl_id=:network_acl_id</code>
 
 List a network ACL's rules.
 
@@ -164,7 +164,7 @@ Attributes                 | &nbsp;
 
 Query Parameters | &nbsp;
 ---------- | -----
-`network_acl_id`<br/>*UUID* | Filter the list to only retrieve the rules of a specific [network ACL](#network-acls)
+`network_acl_id`<br/>*UUID* | Filter the list to only retrieve the rules of a specific [network ACL](#cloudstack-network-acls)
 
 #### Retrieve a network ACL rule
 
@@ -187,7 +187,7 @@ curl -X GET \
   }
 }
 ```
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkaclrules/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkaclrules/:id</code>
 
 Attributes                 | &nbsp;
 ---------------------------|-------
@@ -209,7 +209,7 @@ curl -X POST \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/networkaclrules"
 ```
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkaclrules</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkaclrules</code>
 
 Required                   | &nbsp;
 ---------------------------|-------
@@ -240,7 +240,7 @@ curl -X PUT \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/networkaclrules/3247167a-e7e7-11e3-9187-06669c0000ad"
 ```
-<code>PUT /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkaclrules/:id</code>
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkaclrules/:id</code>
 
 Update a network ACL rule.
 
@@ -267,6 +267,6 @@ curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/networkaclrules/3247167a-e7e7-11e3-9187-06669c0000ad"
 ```
-<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkaclrules/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkaclrules/:id</code>
 
 Delete a specific rule of a network ACL.

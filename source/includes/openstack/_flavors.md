@@ -28,7 +28,7 @@ Response body:
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/flavors</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/flavors</code>
 
 Retrieve a list of available flavors.
 
@@ -54,7 +54,7 @@ Response body:
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/flavors/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/flavors/:id</code>
 
 Retrieve information about a flavor
 

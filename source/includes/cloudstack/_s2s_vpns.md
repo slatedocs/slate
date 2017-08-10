@@ -42,15 +42,15 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/sitetositevpns</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sitetositevpns</code>
 
-Retrieve a list of all site-to-site VPNs in an [environment](#environments)
+Retrieve a list of all site-to-site VPNs in an [environment](#administration-environments)
 
 Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the site-to-site VPN
 `name`<br/>*string* | The name of the site-to-site VPN
-`state`<br/>*string* | The state of the site-to-site VPN. Can be Connected, Pending, Disconnected or Error. If disconnected, you can try to use the [reset](#reset-the-connection-of-a-site-to-site-vpn) operation
+`state`<br/>*string* | The state of the site-to-site VPN. Can be Connected, Pending, Disconnected or Error. If disconnected, you can try to use the [reset](#cloudstack-reset-the-connection-of-a-site-to-site-vpn) operation
 `vpcId`<br/>*UUID* | The VPC for which the site-to-site VPN was created.
 `gateway`<br/>*string*  | The gateway of the network you want to connect to. NOTE: you cannot use a gateway that has already been used by a site-to-site VPN in your environment
 `cidr`<br/>*string*  | CIDR of the network you want to connect to.
@@ -68,7 +68,7 @@ Attributes | &nbsp;
 
 Query Parameters | &nbsp;
 ---------- | -----
-`vpc_id`<br/>*UUID* | Filter the list to only retrieve the site-to-site VPNs of a [VPC](#vpcs)
+`vpc_id`<br/>*UUID* | Filter the list to only retrieve the site-to-site VPNs of a [VPC](#cloudstack-vpcs)
 
 <!-------------------- RETRIEVE A SITE-TO-SITE VPN -------------------->
 
@@ -105,7 +105,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/sitetositevpns/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sitetositevpns/:id</code>
 
 Retrieve information about a site-to-site VPN.
 
@@ -113,7 +113,7 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the site-to-site VPN
 `name`<br/>*string* | The name of the site-to-site VPN
-`state`<br/>*string* | The state of the site-to-site VPN. Can be Connected, Pending, Disconnected or Error. If disconnected, you can try to use the [reset](#reset-the-connection-of-a-site-to-site-vpn) operation
+`state`<br/>*string* | The state of the site-to-site VPN. Can be Connected, Pending, Disconnected or Error. If disconnected, you can try to use the [reset](#cloudstack-reset-the-connection-of-a-site-to-site-vpn) operation
 `vpcId`<br/>*UUID* | The VPC for which the site-to-site VPN was created.
 `gateway`<br/>*string*  | The gateway of the network you want to connect to. NOTE: you cannot use a gateway that has already been used by a site-to-site VPN in your environment
 `cidr`<br/>*string*  | CIDR of the network you want to connect to.
@@ -164,7 +164,7 @@ curl -X POST \
       "forceEncap": false
   }
 ```
- <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/sitetositevpns</code>
+ <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sitetositevpns</code>
 
 Create a site-to-site VPN
 
@@ -224,7 +224,7 @@ curl -X PUT \
       "forceEncap": false
   }
 ```
- <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/sitetositevpns/:id</code>
+ <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sitetositevpns/:id</code>
 
 Update a site-to-site VPN
 
@@ -260,7 +260,7 @@ curl -X DELETE \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns/d49b2922-0581-4587-94df-6fe719327d0f"
 ```
 
-<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/sitetositevpns/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sitetositevpns/:id</code>
 
 Delete an existing site-to-site VPN.
 
@@ -277,6 +277,6 @@ curl -X POST \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns/ca86b14f-20db-463d-b58a-9d3fa5959af2?operation=reset"
 
 ```
- <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/sitetositevpns/:id?operation=reset</code>
+ <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sitetositevpns/:id?operation=reset</code>
 
 Reset a site-to-site VPN.

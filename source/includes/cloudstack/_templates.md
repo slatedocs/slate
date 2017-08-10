@@ -1,5 +1,5 @@
 ### Templates
-A template is a virtual disk image that can be used on the creation of an [instance](#instances). It contains the operating system which can contain some predefined configuration, files and software.
+A template is a virtual disk image that can be used on the creation of an [instance](#cloudstack-instances). It contains the operating system which can contain some predefined configuration, files and software.
 
 #### List templates
 
@@ -33,9 +33,9 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/templates</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/templates</code>
 
-Retrieve a list of all templates of an [environment](#environments) It will include all the public templates of the system.
+Retrieve a list of all templates of an [environment](#administration-environments) It will include all the public templates of the system.
 
 Attributes | &nbsp;
 ---------- | -----
@@ -44,11 +44,11 @@ Attributes | &nbsp;
 `description`<br/>*string* | The description of the template
 `size`<br/>*long* | The size of the template in bytes
 `isPublic`<br/>*boolean* | true if public to everyone. Your custom templates will always be private
-`isReady`<br/>*boolean* | true if the template is ready to be used for a new [instance](#instances)
-`isDynamicallyScalable`<br/>*boolean* | true if you can dynamically scale an [instance](#instances) with this template
+`isReady`<br/>*boolean* | true if the template is ready to be used for a new [instance](#cloudstack-instances)
+`isDynamicallyScalable`<br/>*boolean* | true if you can dynamically scale an [instance](#cloudstack-instances) with this template
 `created`<br/>*string* | The creation date of the template
 `osType`<br/>*string* | The OS type of the template (e.g. Ubuntu, CentOS...)
-`availableInZones`<br/>*array[UUID]* | List of all [zone ids](#zones) that the template is available in
+`availableInZones`<br/>*array[UUID]* | List of all [zone ids](#cloudstack-zones) that the template is available in
 
 #### Retrieve a template
 
@@ -79,9 +79,9 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/templates/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/templates/:id</code>
 
-Retrieve information about a public or private template of an [environment](#environments)
+Retrieve information about a public or private template of an [environment](#administration-environments)
 
 Attributes | &nbsp;
 ---------- | -----
@@ -90,8 +90,8 @@ Attributes | &nbsp;
 `description`<br/>*string* | The description of the template
 `size`<br/>*long* | The size of the template in bytes
 `isPublic`<br/>*boolean* | true if public to everyone. Your custom templates will always be private
-`isReady`<br/>*boolean* | true if the template is ready to be used for a new [instance](#instances)
-`isDynamicallyScalable`<br/>*boolean* | true if you can dynamically scale an [instance](#instances) with this template
+`isReady`<br/>*boolean* | true if the template is ready to be used for a new [instance](#cloudstack-instances)
+`isDynamicallyScalable`<br/>*boolean* | true if you can dynamically scale an [instance](#cloudstack-instances) with this template
 `created`<br/>*string* | The creation date of the template
 `osType`<br/>*string* | The OS type of the template (e.g. Ubuntu, CentOS...)
-`availableInZones`<br/>*array[UUID]* | List of all [zone ids](#zones) that the template is available in
+`availableInZones`<br/>*array[UUID]* | List of all [zone ids](#cloudstack-zones) that the template is available in

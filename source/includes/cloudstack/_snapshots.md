@@ -32,9 +32,9 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/snapshots</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/snapshots</code>
 
-Retrieve a list of all snapshots in an [environment](#environments)
+Retrieve a list of all snapshots in an [environment](#administration-environments)
 
 Attributes | &nbsp;
 ---------- | -----
@@ -42,13 +42,13 @@ Attributes | &nbsp;
 `name`<br/>*string* | The name of the snapshot
 `state`<br/>*string* | The state of the snapshot
 `intervalType`<br/>*string* | The interval type. `MANUAL` means that you created the snapshot manually (i.e. it's not a recurring snapshot)
-`volumeId`<br/>*UUID* | The id of the [volume](#volumes) that was snapshotted
-`volume`<br/>*string* | The name of the [volume](#volumes) that was snapshotted
-`volumeType`<br/>*string* | The type of the [volume](#volumes) that was snapshotted
+`volumeId`<br/>*UUID* | The id of the [volume](#cloudstack-volumes) that was snapshotted
+`volume`<br/>*string* | The name of the [volume](#cloudstack-volumes) that was snapshotted
+`volumeType`<br/>*string* | The type of the [volume](#cloudstack-volumes) that was snapshotted
 
 Query Parameters | &nbsp;
 ---------- | -----
-`volume_id`<br/>*UUID* | Filter the list to only retrieve the snapshots of a specific [volume](#volumes)
+`volume_id`<br/>*UUID* | Filter the list to only retrieve the snapshots of a specific [volume](#cloudstack-volumes)
 
 <!-------------------- RETRIEVE A SNAPSHOT -------------------->
 
@@ -75,7 +75,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/snapshots/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/snapshots/:id</code>
 
 Retrieve information about a snapshot.
 
@@ -85,6 +85,6 @@ Attributes | &nbsp;
 `name`<br/>*string* | The name of the snapshot
 `state`<br/>*string* | The state of the snapshot
 `intervalType`<br/>*string* | The interval type. `MANUAL` means that you created the snapshot manually (i.e. it's not a recurring snapshot)
-`volumeId`<br/>*UUID* | The id of the [volume](#volumes) that was snapshotted
-`volume`<br/>*string* | The name of the [volume](#volumes) that was snapshotted
-`volumeType`<br/>*string* | The type of the [volume](#volumes) that was snapshotted
+`volumeId`<br/>*UUID* | The id of the [volume](#cloudstack-volumes) that was snapshotted
+`volume`<br/>*string* | The name of the [volume](#cloudstack-volumes) that was snapshotted
+`volumeType`<br/>*string* | The type of the [volume](#cloudstack-volumes) that was snapshotted

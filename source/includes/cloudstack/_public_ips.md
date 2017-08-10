@@ -51,28 +51,28 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/publicipaddresses</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses</code>
 
 List allocated public IP addresses.
 
 Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the public IP
-`instances`<br/>*Array[[Instance](#instances)]* | The associated [instances](#instances) <br/>*includes*: `id`,`name`
+`instances`<br/>*Array[[Instance](#cloudstack-instances)]* | The associated [instances](#cloudstack-instances) <br/>*includes*: `id`,`name`
 `ipAddress`<br/>*string* | The IP address (e.g. 208.80.154.224)
-`networkId`<br/>*UUID* | The associated [network](#networks) id
-`networkName`<br/>*string* | The associated [network](#networks) name
+`networkId`<br/>*UUID* | The associated [network](#cloudstack-networks) id
+`networkName`<br/>*string* | The associated [network](#cloudstack-networks) name
 `purposes`<br/>*Array[string]* | The list of purposes of the IP address.</br>*Possible values:* `STATIC_NAT`, `PORT_FORWARDING`, `LOAD_BALANCING`, `SOURCE_NAT` or `SOURCE_NAT` and `VPN`
 `state`<br/>*string* | The state of the public IP
-`vpcId`<br/>*UUID* | The id of the [VPC](#vpcs)
-`vpcName`<br/>*string* | The name of the [VPC](#vpcs)
-`zoneId`<br/>*UUID* | The id of the [zone](#zones)
-`zoneName`<br/>*string* | The name of the [zone](#zones)
+`vpcId`<br/>*UUID* | The id of the [VPC](#cloudstack-vpcs)
+`vpcName`<br/>*string* | The name of the [VPC](#cloudstack-vpcs)
+`zoneId`<br/>*UUID* | The id of the [zone](#cloudstack-zones)
+`zoneName`<br/>*string* | The name of the [zone](#cloudstack-zones)
 
 Query Parameters | &nbsp;
 ---------- | -----
-`vpc_id`<br/>*UUID* | Filter the list to only retrieve the public IPs in a specific [VPC](#vpcs)
-`instance_id`<br/>*UUID* | Filter the list to only retrieve the public IPs associated to a specific [instance](#instances)
+`vpc_id`<br/>*UUID* | Filter the list to only retrieve the public IPs in a specific [VPC](#cloudstack-vpcs)
+`instance_id`<br/>*UUID* | Filter the list to only retrieve the public IPs associated to a specific [instance](#cloudstack-instances)
 
 #### Retrieve a public IP
 
@@ -99,23 +99,23 @@ curl -X GET -H "MC-Api-Key: your_api_key"
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/publicipaddresses/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses/:id</code>
 
 Retrieve a public IP address.
 
 Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the public IP
-`instances`<br/>*Array[[Instance](#instances)]* | The associated [instances](#instances) <br/>*includes*: `id`,`name`
+`instances`<br/>*Array[[Instance](#cloudstack-instances)]* | The associated [instances](#cloudstack-instances) <br/>*includes*: `id`,`name`
 `ipAddress`<br/>*string* | The IP address (e.g. 208.80.154.224)
-`networkId`<br/>*UUID* | The associated [network](#networks) id
-`networkName`<br/>*string* | The associated [network](#networks) name
+`networkId`<br/>*UUID* | The associated [network](#cloudstack-networks) id
+`networkName`<br/>*string* | The associated [network](#cloudstack-networks) name
 `purposes`<br/>*Array[string]* | The list of purposes of the IP address.</br>*Possible values:* `STATIC_NAT`, `PORT_FORWARDING`, `LOAD_BALANCING`, `SOURCE_NAT` or `SOURCE_NAT` and `VPN`
 `state`<br/>*string* | The state of the public IP
-`vpcId`<br/>*UUID* | The id of the [VPC](#vpcs)
-`vpcName`<br/>*string* | The name of the [VPC](#vpcs)
-`zoneId`<br/>*UUID* | The id of the [zone](#zones)
-`zoneName`<br/>*string* | The name of the [zone](#zones)
+`vpcId`<br/>*UUID* | The id of the [VPC](#cloudstack-vpcs)
+`vpcName`<br/>*string* | The name of the [VPC](#cloudstack-vpcs)
+`zoneId`<br/>*UUID* | The id of the [zone](#cloudstack-zones)
+`zoneName`<br/>*string* | The name of the [zone](#cloudstack-zones)
 
 #### Acquire a public IP
 
@@ -134,13 +134,13 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/publicipaddresses</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses</code>
 
-Acquire a public IP address for a [VPC](#vpcs).
+Acquire a public IP address for a [VPC](#cloudstack-vpcs).
 
 Required | &nbsp;
 ---------- | -----
-`vpcId`<br/>*UUID* | The id of the [VPC](#vpcs) where to acquire the public IP
+`vpcId`<br/>*UUID* | The id of the [VPC](#cloudstack-vpcs) where to acquire the public IP
 
 
 #### Release a public IP
@@ -151,7 +151,7 @@ curl -X DELETE \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/publicipaddresses/a723b2b1-e343-4ea1-afe0-bf345a99a92b"
 ```
 
-<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/publicipaddresses/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses/:id</code>
 
 Release a public IP. When acquiring a public IP, you are not guaranteed to receive a previously owned public IP, so be careful when releasing public IPs.
 
@@ -172,13 +172,13 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/publicipaddresses/:id?operation=enableStaticNat</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses/:id?operation=enableStaticNat</code>
 
 Enable static NAT on a public IP address.
 
 Required | &nbsp;
 ---------- | -----
-`privateIpId`<br/>*string* | The private IP id of the [instance](#instances) which is to be available on that IP. It can also be done on a secondary IP id.
+`privateIpId`<br/>*string* | The private IP id of the [instance](#cloudstack-instances) which is to be available on that IP. It can also be done on a secondary IP id.
 
 #### Disable static NAT
 
@@ -189,6 +189,6 @@ curl -X POST \
 
 ```
 
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/publicipaddresses/:id?operation=disableStaticNat</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses/:id?operation=disableStaticNat</code>
 
 Disable static NAT on that public IP.

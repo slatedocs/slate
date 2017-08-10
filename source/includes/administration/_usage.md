@@ -44,8 +44,8 @@ Retrieve the usage summary records for an organization and all of its sub-organi
 
 Attributes | &nbsp;
 ---- | -----------
-`organizationId`<br/>*UUID* | Id of the [organization](#organizations)
-`serviceConnectionId`<br/>*UUID* | Id of the [service connection](#service-connections)
+`organizationId`<br/>*UUID* | Id of the [organization](#administration-organizations)
+`serviceConnectionId`<br/>*UUID* | Id of the [service connection](#administration-service-connections)
 `serviceConnectionPricingId`<br/>*UUID* | Id of the service connection pricing
 `utilityCost`<br/>*string* | Utility cost of the record (aggregated per the period)
 `utilityUsage`<br/>*string* | Utility usage of the record

@@ -1,6 +1,6 @@
 ### Compute offerings
 
-Compute offerings determine the number of vCPUs and the size of the memory allocated to new [instances](#instances).
+Compute offerings determine the number of vCPUs and the size of the memory allocated to new [instances](#cloudstack-instances).
 
 #### List compute offerings
 
@@ -36,7 +36,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/computeofferings</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/computeofferings</code>
 
 Retrieve a list of available compute offerings.
 
@@ -45,11 +45,11 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the compute offering
 `name`<br/>*string* | The name of the compute offering
 `memoryInMB`<br/>*int* | The amount of provisioned memory in MB
-`cpuCount`<br/>*int* | The number of vCPUs available to the created [instance](#instances)
-`custom`<br/>*boolean* | If true, the `cpuCount` and `memoryInMB` fields will be missing from the response and will be required on [instance create](#create-an-instance)
-`availableCpuCountValues`<br/>*Array[integer]* | The list of valid cpu counts when used in the [create instance operation](#create-an-instance). Only present for custom offerings
-`availableMemoryInMBValues`<br/>*Array[integer]* | The list of valid amounts of memory (in MB) that can be used in the [create instance operation](#create-an-instance). Only present for custom offerings
-`maxMemoryInMBToCpuRatio`<br/>*integer* | The maximum ratio of memory (in MB) to number of CPU of an [instance](#instance) created with this offering. Only present for custom offerings.
+`cpuCount`<br/>*int* | The number of vCPUs available to the created [instance](#cloudstack-instances)
+`custom`<br/>*boolean* | If true, the `cpuCount` and `memoryInMB` fields will be missing from the response and will be required on [instance create](#cloudstack-create-an-instance)
+`availableCpuCountValues`<br/>*Array[integer]* | The list of valid cpu counts when used in the [create instance operation](#cloudstack-create-an-instance). Only present for custom offerings
+`availableMemoryInMBValues`<br/>*Array[integer]* | The list of valid amounts of memory (in MB) that can be used in the [create instance operation](#cloudstack-create-an-instance). Only present for custom offerings
+`maxMemoryInMBToCpuRatio`<br/>*integer* | The maximum ratio of memory (in MB) to number of CPU of an [instance](#cloudstack-instances) created with this offering. Only present for custom offerings.
 
 #### Retrieve a compute offering
 
@@ -72,7 +72,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/computeofferings/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/computeofferings/:id</code>
 
 Retrieve a compute offering.
 
@@ -81,8 +81,8 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the compute offering
 `name`<br/>*string* | The name of the compute offering
 `memoryInMB`<br/>*int* | The amount of provisioned memory in MB
-`cpuCount`<br/>*int* | The number of vCPUs available to the created [instance](#instances)
-`custom`<br/>*boolean* | If true, the `cpuCount` and `memoryInMB` fields will be missing from the response and will be required on [instance create](#create-an-instance)
-`availableCpuCountValues`<br/>*Array[integer]* | The list of valid cpu counts when used in the [create instance operation](#create-an-instance). Only present for custom offerings
-`availableMemoryInMBValues`<br/>*Array[integer]* | The list of valid amounts of memory (in MB) that can be used in the [create instance operation](#create-an-instance). Only present for custom offerings
-`maxMemoryInMBToCpuRatio`<br/>*integer* | The maximum ratio of memory (in MB) to number of CPU of an [instance](#instance) created with this offering. Only present for custom offerings.
+`cpuCount`<br/>*int* | The number of vCPUs available to the created [instance](#cloudstack-instances)
+`custom`<br/>*boolean* | If true, the `cpuCount` and `memoryInMB` fields will be missing from the response and will be required on [instance create](#cloudstack-create-an-instance)
+`availableCpuCountValues`<br/>*Array[integer]* | The list of valid cpu counts when used in the [create instance operation](#cloudstack-create-an-instance). Only present for custom offerings
+`availableMemoryInMBValues`<br/>*Array[integer]* | The list of valid amounts of memory (in MB) that can be used in the [create instance operation](#cloudstack-create-an-instance). Only present for custom offerings
+`maxMemoryInMBToCpuRatio`<br/>*integer* | The maximum ratio of memory (in MB) to number of CPU of an [instance](#cloudstack-instances) created with this offering. Only present for custom offerings.

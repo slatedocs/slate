@@ -1,6 +1,6 @@
 ### Remote access VPNs
 
-Remote access VPNs allow users to connect to [VPCs](#vpcs) through secure connections.
+Remote access VPNs allow users to connect to [VPCs](#cloudstack-vpcs) through secure connections.
 
 #### List remote access VPNs
 ```shell
@@ -32,7 +32,7 @@ curl -H "MC-Api-Key: your_api_key" \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/remoteaccessvpns</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/remoteaccessvpns</code>
 
 List remote access VPNs.
 
@@ -40,13 +40,13 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the remote access VPN
 `presharedKey`<br/>*string* | The VPN's preshared key
-`publicIpAddress`<br/>*string* | The [public IP](#public-ips) (e.g. 208.80.154.224)
-`publicIpAddressId`<br/>*string* | The id of the [public IP](#public-ips)
+`publicIpAddress`<br/>*string* | The [public IP](#cloudstack-public-ips) (e.g. 208.80.154.224)
+`publicIpAddressId`<br/>*string* | The id of the [public IP](#cloudstack-public-ips)
 `state`<br/>*string* | The state.<br/>*Possible values:* `Enabled`, `Disabled.`
 
 Query Parameters | &nbsp;
 ---------- | -----
-`vpc_id`<br/>*UUID* | Filter the list to only retrieve the VPN information of a specific [VPC](#vpcs)
+`vpc_id`<br/>*UUID* | Filter the list to only retrieve the VPN information of a specific [VPC](#cloudstack-vpcs)
 
 #### Retrieve a remote access VPN
 ```shell
@@ -66,7 +66,7 @@ curl -H "MC-Api-Key: your_api_key" \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/remoteaccessvpns/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/remoteaccessvpns/:id</code>
 
 Retrieve a remote access VPN.
 
@@ -74,6 +74,6 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the remote access VPN
 `presharedKey`<br/>*string* | The VPN's preshared key
-`publicIpAddress`<br/>*string* | The [public IP](#public-ips) (e.g. 208.80.154.224)
-`publicIpAddressId`<br/>*string* | The id of the [public IP](#public-ips)
+`publicIpAddress`<br/>*string* | The [public IP](#cloudstack-public-ips) (e.g. 208.80.154.224)
+`publicIpAddressId`<br/>*string* | The id of the [public IP](#cloudstack-public-ips)
 `state`<br/>*string* | The state.<br/>*Possible values:* `Enabled`, `Disabled.`

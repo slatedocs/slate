@@ -26,7 +26,7 @@ curl -H "MC-Api-Key: your_api_key" \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/routerinterfaces?routerid=<a href="#routers">:routerid</a></code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/routerinterfaces?routerid=<a href="#routers">:routerid</a></code>
 
 Retrieve a list of router interfaces associated with a router in an OpenStack environment.
 
@@ -58,7 +58,7 @@ curl -H "MC-Api-Key: your_api_key" \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/routerinterfaces/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/routerinterfaces/:id</code>
 
 Retrieve a single router interface in an OpenStack environment.
 
@@ -88,7 +88,7 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/routerinterfaces</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/routerinterfaces</code>
 
 Create a router interface.
 
@@ -106,6 +106,6 @@ curl -X DELETE \
     "https://api.your.cloudmc/v1/services/compute-os/devel/routerinterfaces/c14ed06b-6de9-4b3e-aac9-9e6c1406de9e"
 ```
 
-<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/routerinterfaces/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/routerinterfaces/:id</code>
 
 Delete a router interface.

@@ -1,6 +1,6 @@
 ### VPC offerings
 
-VPC offerings determine which services are available to provisioned [VPCs](#vpcs).
+VPC offerings determine which services are available to provisioned [VPCs](#cloudstack-vpcs).
 
 #### List VPC offerings
 
@@ -37,7 +37,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcofferings</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpcofferings</code>
 
 Retrieve a list of available VPC offerings.
 
@@ -78,7 +78,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcofferings/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpcofferings/:id</code>
 
 Retrieve a VPC offering.
 

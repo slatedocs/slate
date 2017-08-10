@@ -35,7 +35,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes</code>
 
 Retrieve a list of all volumes in an environment.
 
@@ -43,12 +43,12 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the volume
 `name`<br/>*string* | The name of the volume
-`type`<br/>*string* | The type of the volume. `os` if it is a root volume of an [instance](#instances), `data` otherwise
+`type`<br/>*string* | The type of the volume. `os` if it is a root volume of an [instance](#cloudstack-instances), `data` otherwise
 `creationDate`<br/>*string* | The creation date of the volume
-`instanceId`<br/>*UUID* | The id of the [instance](#instances) to which the volume is attached
-`instanceName`<br/>*string* | The name of the [instance](#instances) to which the volume is attached
-`zoneId`<br/>*UUID* | The id of the [zone](#zones) where the volume was created
-`zoneName`<br/>*string* | The name of the [zone](#zones) where the volume was created
+`instanceId`<br/>*UUID* | The id of the [instance](#cloudstack-instances) to which the volume is attached
+`instanceName`<br/>*string* | The name of the [instance](#cloudstack-instances) to which the volume is attached
+`zoneId`<br/>*UUID* | The id of the [zone](#cloudstack-zones) where the volume was created
+`zoneName`<br/>*string* | The name of the [zone](#cloudstack-zones) where the volume was created
 `state`<br/>*string* | The state of the volume
 `sizeInGb`<br/>*integer* | The size in gigabytes of the volume
 
@@ -57,7 +57,7 @@ Attributes | &nbsp;
 Query Parameters | &nbsp;
 ---------- | -----
 `type`<br/>*string* | Filter the list to only retrieve the volumes of a specific type (`os` or `data`)
-`instance_id`<br/>*UUID* | Filter the list to only retrieve the volumes of a specific [instance](#instances)
+`instance_id`<br/>*UUID* | Filter the list to only retrieve the volumes of a specific [instance](#cloudstack-instances)
 
 <!-------------------- RETRIEVE A VOLUME -------------------->
 
@@ -88,7 +88,7 @@ curl -X GET \
   }
 }
 ```
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes/:id</code>
 
 Retrieve information about an volume.
 
@@ -96,12 +96,12 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the volume
 `name`<br/>*string* | The name of the volume
-`type`<br/>*string* | The type of the volume. `os` if it is a root volume of an [instance](#instances), `data` otherwise
+`type`<br/>*string* | The type of the volume. `os` if it is a root volume of an [instance](#cloudstack-instances), `data` otherwise
 `creationDate`<br/>*string* | The creation date of the volume
-`instanceId`<br/>*UUID* | The id of the [instance](#instances) to which the volume is attached
-`instanceName`<br/>*string* | The name of the [instance](#instances) to which the volume is attached
-`zoneId`<br/>*UUID* | The id of the [zone](#zones) where the volume was created
-`zoneName`<br/>*string* | The name of the [zone](#zones) where the volume was created
+`instanceId`<br/>*UUID* | The id of the [instance](#cloudstack-instances) to which the volume is attached
+`instanceName`<br/>*string* | The name of the [instance](#cloudstack-instances) to which the volume is attached
+`zoneId`<br/>*UUID* | The id of the [zone](#cloudstack-zones) where the volume was created
+`zoneName`<br/>*string* | The name of the [zone](#cloudstack-zones) where the volume was created
 `state`<br/>*string* | The state of the volume
 `sizeInGb`<br/>*integer* | The size in gigabytes of the volume
 
@@ -129,15 +129,15 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes</code>
 
-Create a volume in an environment. It will attached to the specified [instance](#instances).
+Create a volume in an environment. It will attached to the specified [instance](#cloudstack-instances).
 
 Required | &nbsp;
 ---------- | -----
 name<br/>*string* | The name of the new volume
 diskOfferingId<br/>*UUID* | The [disk offering](#disk-offerings) to use for the volume
-instanceId<br/>*UUID* | The id of the [instance](#instances) to which the created volume will be attached
+instanceId<br/>*UUID* | The id of the [instance](#cloudstack-instances) to which the created volume will be attached
 
 
 <!-------------------- DELETE A VOLUME -------------------->
@@ -154,9 +154,9 @@ curl -X DELETE \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/volumes/e922e5fc-8fee-4688-ad93-c9ef5d7eb685"
 ```
 
-<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpcs/:id</code>
 
-Destroy an existing data volume. A volume can only be deleted if it's not attached to an [instance](#instances).
+Destroy an existing data volume. A volume can only be deleted if it's not attached to an [instance](#cloudstack-instances).
 
 
 <!-------------------- ATTACH A VOLUME -------------------->
@@ -179,13 +179,13 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes/:id?operation=attachToInstance</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes/:id?operation=attachToInstance</code>
 
-Attach an existing data volume to an [instance](#instances).
+Attach an existing data volume to an [instance](#cloudstack-instances).
 
 Required | &nbsp;
 ---------- | -----
-instanceId<br/>*UUID* | The id of the [instance](#instances) to which the created volume should be attached
+instanceId<br/>*UUID* | The id of the [instance](#cloudstack-instances) to which the created volume should be attached
 
 
 <!-------------------- DETACH A VOLUME -------------------->
@@ -201,6 +201,6 @@ curl -X POST \
    "https://cloudmc_endpoint/v1/services/compute-on/testing/volumes/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=detachFromInstance"
 ```
 
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes/:id?operation=detachFromInstance</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes/:id?operation=detachFromInstance</code>
 
-Detach a data volume from an [instance](#instances).
+Detach a data volume from an [instance](#cloudstack-instances).

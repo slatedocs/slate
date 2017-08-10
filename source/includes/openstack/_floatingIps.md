@@ -24,7 +24,7 @@ curl -H "MC-Api-Key: your_api_key" \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/floatingips</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/floatingips</code>
 
 Retrieve a list of all floating IPs in an environment.
 
@@ -52,7 +52,7 @@ curl -H "MC-Api-Key: your_api_key" \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/floatingips/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/floatingips/:id</code>
 
 Retrieve information about a floating IP.
 
@@ -71,7 +71,7 @@ curl -X POST \
     "https://api.your.cloudmc/v1/services/compute-os/devel/floatingips"
 ```
 
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/floatingips</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/floatingips</code>
 
 Acquire a floating IP in an environment.
 
@@ -83,6 +83,6 @@ curl -X DELETE \
     "https://api.your.cloudmc/v1/services/compute-os/devel/floatingips/287a3963-983b-4602-9dea-4dff89e9dc10"
 ```
 
-<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/floatingips/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/floatingips/:id</code>
 
 Release a floating IP.

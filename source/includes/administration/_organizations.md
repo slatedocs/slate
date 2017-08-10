@@ -1,5 +1,5 @@
 ## Organizations
-Organizations are the largest logical grouping of users, environments and resources available in CloudMC. Each organization is isolated from other organizations. It has its own subdomain (`[entryPoint].CloudMC`) and is protected by its own customizable system [roles](#roles). An administrator that must manage it's sub-organizations environments or provisioned resources can do so by having the `Access other levels` permission. Additionally, provisioned resource usage is metered at the organization level facilitating cost tracking.
+Organizations are the largest logical grouping of users, environments and resources available in CloudMC. Each organization is isolated from other organizations. It has its own subdomain (`[entryPoint].CloudMC`) and is protected by its own customizable system [roles](#administration-roles). An administrator that must manage it's sub-organizations environments or provisioned resources can do so by having the `Access other levels` permission. Additionally, provisioned resource usage is metered at the organization level facilitating cost tracking.
 
 
 <!-------------------- LIST ORGANIZATIONS -------------------->
@@ -59,11 +59,11 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | ---
 `name`<br/>*string* | ---
 `entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL : `[entryPoint].CloudMC`
-`parent`<br/>*[Organization](#organizations)* | If the organization is a sub-organization, it will have it's `parent` organization. *includes*:`id`,`name`
-`environments`<br/>*Array[[Environment](#environments)]* | The environments belonging to the organization<br/>*includes*: `id`
-`roles`<br/>*Array[[Role](#roles)]* | The system and environments roles belonging to the organization<br/>*includes*: `id`
-`serviceConnections`<br/>*Array[[ServiceConnection](#service-connections)]* | The services for which the organization is allowed to provision resources<br/>*includes*: `id`,`serviceCode`
-`users`<br/>*Array[[User](#users)]* | The users of the organization<br/>*includes*: `id`
+`parent`<br/>*[Organization](#administration-organizations)* | If the organization is a sub-organization, it will have it's `parent` organization. *includes*:`id`,`name`
+`environments`<br/>*Array[[Environment](#administration-environments)]* | The environments belonging to the organization<br/>*includes*: `id`
+`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles belonging to the organization<br/>*includes*: `id`
+`serviceConnections`<br/>*Array[[ServiceConnection](#administration-service-connections)]* | The services for which the organization is allowed to provision resources<br/>*includes*: `id`,`serviceCode`
+`users`<br/>*Array[[User](#administration-users)]* | The users of the organization<br/>*includes*: `id`
 
 <!-------------------- FIND ORGANIZATION -------------------->
 ### Retrieve an organization
@@ -120,11 +120,11 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | ---
 `name`<br/>*string* | ---
 `entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL :<br/>`[entryPoint].CloudMC`
-`parent`<br/>*[Organization](#organizations)* | If the organization is a sub-organization, it will have it's `parent` organization. *includes*:`id`,`name`
-`environments`<br/>*Array[[Environment](#environments)]* | The environments belonging to the organization<br/>*includes*: `id`
-`roles`<br/>*Array[[Role](#roles)]* | The system and environments roles belonging to the organization<br/>*includes*: `id`
-`serviceConnections`<br/>*Array[[ServiceConnection](#service-connections)]* | The services for which the organization is allowed to provision resources<br/>*includes*: `id`,`serviceCode`
-`users`<br/>*Array[[User](#users)]* | The users of the organization<br/>*includes*: `id`
+`parent`<br/>*[Organization](#administration-organizations)* | If the organization is a sub-organization, it will have it's `parent` organization. *includes*:`id`,`name`
+`environments`<br/>*Array[[Environment](#administration-environments)]* | The environments belonging to the organization<br/>*includes*: `id`
+`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles belonging to the organization<br/>*includes*: `id`
+`serviceConnections`<br/>*Array[[ServiceConnection](#administration-service-connections)]* | The services for which the organization is allowed to provision resources<br/>*includes*: `id`,`serviceCode`
+`users`<br/>*Array[[User](#administration-users)]* | The users of the organization<br/>*includes*: `id`
 
 <!-------------------- CREATE ORGANIZATION -------------------->
 ### Create organization
@@ -165,10 +165,10 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ---- | ----
-`serviceConnections`<br/>Array[[ServiceConnection](#service-connections)] | A list of service connections for which the organization may provision resources.<br/>*required :*`id`
-`parent`<br/>[Organization](#organization) | The organization that will be the parent of the new organization. By default, it will default to the caller's organization.<br/>*required :*`id`
+`serviceConnections`<br/>Array[[ServiceConnection](#administration-service-connections)] | A list of service connections for which the organization may provision resources.<br/>*required :*`id`
+`parent`<br/>[Organization](#administration-organization) | The organization that will be the parent of the new organization. By default, it will default to the caller's organization.<br/>*required :*`id`
 
-The responses' `data` field contains the created [organization](#organizations) with it's `id`.
+The responses' `data` field contains the created [organization](#administration-organizations) with it's `id`.
 
 <!-------------------- UPDATE ORGANIZATION -------------------->
 ### Update organization
@@ -204,9 +204,9 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ---- | ----
-`serviceConnections`<br/>Array[[ServiceConnection](#service-connections)] | A list of service connections for which the organization may provision resources. The caller must have access to all connections that are provided. **NB :** Service connection access may be added but not revoked at this time.<br/>*required :* `id`
+`serviceConnections`<br/>Array[[ServiceConnection](#administration-service-connections)] | A list of service connections for which the organization may provision resources. The caller must have access to all connections that are provided. **NB :** Service connection access may be added but not revoked at this time.<br/>*required :* `id`
 
-The responses' `data` field contains the updated [organization](#organizations).
+The responses' `data` field contains the updated [organization](#administration-organizations).
 
 <!-------------------- DELETE ORGANIZATION -------------------->
 ### Delete organization

@@ -1,6 +1,6 @@
 ### Disk offerings
 
-Disk offerings determine the size and the performance (IOPS) of [data volumes](#volumes).
+Disk offerings determine the size and the performance (IOPS) of [data volumes](#cloudstack-volumes).
 
 #### List disk offerings
 
@@ -35,7 +35,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/diskofferings</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/diskofferings</code>
 
 Retrieve a list of available disk offerings.
 
@@ -43,7 +43,7 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the disk offering
 `name`<br/>*string* | The name of the disk offering
-`gbSize`<br/>*int* | The size of the [data volume](#volumes) in GB
+`gbSize`<br/>*int* | The size of the [data volume](#cloudstack-olumes) in GB
 `customSize`<br/>*boolean* | If the offering supports custom size
 `customIops`<br/>*boolean* | If the offering supports custom IOPS
 
@@ -68,7 +68,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/diskofferings/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/diskofferings/:id</code>
 
 Retrieve a disk offering.
 
@@ -76,6 +76,6 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the disk offering
 `name`<br/>*string* | The name of the disk offering
-`gbSize`<br/>*int* | The size of the [data volume](#volumes) in GB
+`gbSize`<br/>*int* | The size of the [data volume](#cloudstack-volumes) in GB
 `customSize`<br/>*boolean* | If the offering supports custom size
 `customIops`<br/>*boolean* | If the offering supports custom IOPS

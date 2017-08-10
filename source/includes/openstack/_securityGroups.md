@@ -23,7 +23,7 @@ curl -H "MC-Api-Key: your_api_key" \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/securitygroups</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securitygroups</code>
 
 Retrieve a list of all security groups in an environment.
 
@@ -49,7 +49,7 @@ curl -H "MC-Api-Key: your_api_key" \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/securitygroups/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securitygroups/:id</code>
 
 Retrieve information about a security group.
 
@@ -76,7 +76,7 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/securitygroups</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securitygroups</code>
 
 Create a security group in an environment.
 
@@ -93,6 +93,6 @@ curl -X DELETE \
     "https://api.your.cloudmc/v1/services/compute-os/devel/securitygroups/1bd672f4-b274-4371-a792-b0a6c6778cc7"
 ```
 
-<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/securitygroups/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securitygroups/:id</code>
 
 Delete a security group.

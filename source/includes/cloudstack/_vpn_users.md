@@ -1,6 +1,6 @@
 ### VPN users
 
-VPN users are the accounts that are allowed to connect to [remote access VPNs](#remote-access-vpns).
+VPN users are the accounts that are allowed to connect to [remote access VPNs](#cloudstack-remote-access-vpns).
 
 #### List VPN users
 ```shell
@@ -24,7 +24,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpnusers</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpnusers</code>
 
 List VPN users.
 
@@ -50,7 +50,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpnusers/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpnusers/:id</code>
 
 Retrieve a VPN user
 

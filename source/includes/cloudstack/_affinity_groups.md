@@ -1,6 +1,6 @@
 ### Affinity groups
 
-Affinity groups are a way of influencing on which host an [instance](#instances) will be deployed. An anti-affinity group (the only type of affinity group we support) allows you to put [instances](#instances) on different hosts to increase fault-tolerance. In the unlikely event of a host failure, your services would still be up on another host (assuming you distribute your services on multiple instances).
+Affinity groups are a way of influencing on which host an [instance](#cloudstack-instances) will be deployed. An anti-affinity group (the only type of affinity group we support) allows you to put [instances](#cloudstack-instances) on different hosts to increase fault-tolerance. In the unlikely event of a host failure, your services would still be up on another host (assuming you distribute your services on multiple instances).
 
 <!-------------------- LIST AFFINITY GROUPS -------------------->
 
@@ -29,16 +29,16 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/affinitygroups</code>
 
-Retrieve a list of all affinity groups in an [environment](#environments)
+Retrieve a list of all affinity groups in an [environment](#administration-environments)
 
 Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the affinity group
 `name`<br/>*string* | The name of the affinity group
 `type`<br/>*string* | The type of affinity group. We only support anti-affinity
-`instanceIds`<br/>*Array[UUID]* | The ids of the [instances](#instances) in the affinity group
+`instanceIds`<br/>*Array[UUID]* | The ids of the [instances](#cloudstack-instances) in the affinity group
 
 
 <!-------------------- RETRIEVE AN AFFINITY GROUP -------------------->
@@ -65,7 +65,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/affinitygroups/:id</code>
 
 Retrieve information about an affinity group.
 
@@ -74,7 +74,7 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the affinity group
 `name`<br/>*string* | The name of the affinity group
 `type`<br/>*string* | The type of affinity group. We only support anti-affinity
-`instanceIds`<br/>*Array[UUID]* | The ids of the [instances](#instances) in the affinity group
+`instanceIds`<br/>*Array[UUID]* | The ids of the [instances](#cloudstack-instances) in the affinity group
 
 
 
@@ -102,16 +102,16 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/affinitygroups</code>
 
-Create an affinity group and add [instances](#instances) to it.
+Create an affinity group and add [instances](#cloudstack-instances) to it.
 
 Required | &nbsp;
 ---------- | -----
 `name`<br/>*string* | The name of the new affinity group
 `description`<br/>*string* | A description of the affinity group
 `type`<br/>*string* | The type of new affinity group. We only support anti-affinity
-`instanceIds`<br/>*Array[UUID]* | The ids of the [instances](#instances) in the affinity group
+`instanceIds`<br/>*Array[UUID]* | The ids of the [instances](#cloudstack-instances) in the affinity group
 
 
 
@@ -137,16 +137,16 @@ curl -X PUT \
 }
 ```
 
-<code>PUT /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups/:id</code>
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/affinitygroups/:id</code>
 
-Update the list of [instances](#instances) in the affinity group.
+Update the list of [instances](#cloudstack-instances) in the affinity group.
 
 Required | &nbsp;
 ---------- | -----
 `name`<br/>*string* | The name of the new affinity group
 `description`<br/>*string* | A description of the affinity group
 `type`<br/>*string* | The type of new affinity group. We only support anti-affinity
-`instanceIds`<br/>*Array[UUID]* | The ids of the [instances](#instances) in the affinity group
+`instanceIds`<br/>*Array[UUID]* | The ids of the [instances](#cloudstack-instances) in the affinity group
 
 
 <!-------------------- DELETE AN AFFINITY GROUP -------------------->
@@ -159,6 +159,6 @@ curl -X DELETE \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/affinitygroups/d4fd794f-66e1-4906-a720-d0afb04bd517"
 ```
 
-<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/affinitygroups/:id</code>
 
 Delete an existing affinity group.

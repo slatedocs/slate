@@ -35,7 +35,7 @@ curl -H "MC-Api-Key: your_api_key" \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
 
 Retrieve a list of all instances in an environment.
 
@@ -44,16 +44,16 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the instance
 `name`<br/>*string* | The name of the instance
 `state`<br/>*string* | The current state of the instance
-`flavorId`<br/>*UUID* | The [flavor](#flavors) id of the instance
-`flavorName`<br/>*string* | The [flavor](#flavors) name of the instance
-`imageId`<br/>*UUID* | The [image](#images) id of the instance
-`imageName`<br/>*string* | The [image](#images)  name of the instance
-`cpuCount`<br/>*int* | The number of vCPUs associated with the instance's [flavor](#flavors)
-`memoryInMB`<br/>*int* | The number of megabytes associated with the instance's [flavor](#flavors)
+`flavorId`<br/>*UUID* | The [flavor](#openstack-flavors) id of the instance
+`flavorName`<br/>*string* | The [flavor](#openstack-flavors) name of the instance
+`imageId`<br/>*UUID* | The [image](#openstack-images) id of the instance
+`imageName`<br/>*string* | The [image](#openstack-images)  name of the instance
+`cpuCount`<br/>*int* | The number of vCPUs associated with the instance's [flavor](#openstack-flavors)
+`memoryInMB`<br/>*int* | The number of megabytes associated with the instance's [flavor](#openstack-flavors)
 `networkId`<br/>*UUID* | The id of the network where instance is deployed
 `networkName`<br/>*string* | The name of the network where instance is deployed
 `privateIpAddress`<br/>*string* | The instance's private IP address
-`securityGroupNames`<br/>*Array[string]* | The list of [security groups](#security-groups) associated to the instance
+`securityGroupNames`<br/>*Array[string]* | The list of [security groups](#openstack-security-groups) associated to the instance
 
 #### Retrieve an instance
 
@@ -83,7 +83,7 @@ curl -H "MC-Api-Key: your_api_key" \
 }
 ```
 
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
 
 Retrieve information about an instance.
 
@@ -92,16 +92,16 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the instance
 `name`<br/>*string* | The name of the instance
 `state`<br/>*string* | The current state of the instance
-`flavorId`<br/>*UUID* | The [flavor](#flavors) id of the instance
-`flavorName`<br/>*string* | The [flavor](#flavors) name of the instance
-`imageId`<br/>*UUID* | The [image](#images) id of the instance
-`imageName`<br/>*string* | The [image](#images)  name of the instance
-`cpuCount`<br/>*int* | The number of vCPUs associated with the instance's [flavor](#flavors)
-`memoryInMB`<br/>*int* | The number of megabytes associated with the instance's [flavor](#flavors)
+`flavorId`<br/>*UUID* | The [flavor](#openstack-flavors) id of the instance
+`flavorName`<br/>*string* | The [flavor](#openstack-flavors) name of the instance
+`imageId`<br/>*UUID* | The [image](#openstack-images) id of the instance
+`imageName`<br/>*string* | The [image](#openstack-images)  name of the instance
+`cpuCount`<br/>*int* | The number of vCPUs associated with the instance's [flavor](#openstack-flavors)
+`memoryInMB`<br/>*int* | The number of megabytes associated with the instance's [flavor](#openstack-flavors)
 `networkId`<br/>*UUID* | The id of the network where instance is deployed
 `networkName`<br/>*string* | The name of the network where instance is deployed
 `privateIpAddress`<br/>*string* | The instance's private IP address
-`securityGroupNames`<br/>*Array[string]* | The list of [security groups](#security-groups) associated to the instance
+`securityGroupNames`<br/>*Array[string]* | The list of [security groups](#openstack-security-groups) associated to the instance
 
 #### Create an instance
 
@@ -123,16 +123,16 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
 
 Create an instance in an environment.
 
 Required | &nbsp;
 ------ | -----------
-`imageId`<br/>*UUID* | The [image](#images) to use for this instance
-`flavorId`<br/>*UUID* | The [flavor](#flavors) will determine the number of CPU and RAM of your instance
+`imageId`<br/>*UUID* | The [image](#openstack-images) to use for this instance
+`flavorId`<br/>*UUID* | The [flavor](#openstack-flavors) will determine the number of CPU and RAM of your instance
 `networkId`<br/>*UUID* | The network in which the instance will be created. If you don't have a network, it can be created through the create network API.
-`securityGroupNames`<br/>*Array[string]* | The list of [security groups](#security-groups) to be associated to the instance
+`securityGroupNames`<br/>*Array[string]* | The list of [security groups](#openstack-security-groups) to be associated to the instance
 
 Optional | &nbsp;
 ------ | -----------
@@ -155,7 +155,7 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=associate</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=associate</code>
 
 Associate a floating IP to an instance in your environment.
 
@@ -178,7 +178,7 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=changeSecurityGroups</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=changeSecurityGroups</code>
 
 Change the security groups of an instance to the ones specified in the request.
 
@@ -195,6 +195,6 @@ curl -X DELETE \
     "https://api.your.cloudmc/v1/services/compute-os/devel/instances/30fca349-68b0-48c2-9ada-1f60f57fa44e"
 ```
 
-<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
 
 Delete an instance.

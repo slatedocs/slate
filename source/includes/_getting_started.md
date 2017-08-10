@@ -79,8 +79,8 @@ When an API request is successful, the response body will contain the `data` fie
 Attributes | &nbsp;
 --- | ---
 `data` | The data field contains the object requested by the API caller
-`taskId` | The [task id](#tasks) of an operation executed through the [compute API](#compute-api)
-`taskStatus` | The status of a [task](#tasks) of an operation executed through the [compute API](#compute-api)
+`taskId` | The [task id](#tasks) of an operation executed through the services API
+`taskStatus` | The status of a [task](#tasks) of an operation executed the services API
 <!--
 `metadata` | The metadata is an optionally returned field containing paging and sorting information
 -->
