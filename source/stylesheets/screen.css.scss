@@ -468,7 +468,7 @@ html, body {
 
   code {
     background-color: rgba(0,0,0,0.05);
-    padding: 3px;
+    padding: 3px 6px 3px 6px;
     border-radius: 3px;
     @extend %break-words;
     @extend %code-font;
