@@ -168,8 +168,6 @@ Optional | &nbsp;
 `serviceConnections`<br/>Array[[ServiceConnection](#service-connections)] | A list of service connections for which the organization may provision resources.<br/>*required :*`id`
 `parent`<br/>[Organization](#organization) | The organization that will be the parent of the new organization. By default, it will default to the caller's organization.<br/>*required :*`id`
 
-##### Returns
-
 The responses' `data` field contains the created [organization](#organizations) with it's `id`.
 
 <!-------------------- UPDATE ORGANIZATION -------------------->
@@ -208,8 +206,6 @@ Optional | &nbsp;
 ---- | ----
 `serviceConnections`<br/>Array[[ServiceConnection](#service-connections)] | A list of service connections for which the organization may provision resources. The caller must have access to all connections that are provided. **NB :** Service connection access may be added but not revoked at this time.<br/>*required :* `id`
 
-#### Returns
-
 The responses' `data` field contains the updated [organization](#organizations).
 
 <!-------------------- DELETE ORGANIZATION -------------------->
@@ -223,7 +219,5 @@ Delete an organization. The caller may not delete his own organization. Also, an
 curl -X DELETE "https://cloudmc_endpoint/v1/organizations/[id]" \
    -H "MC-Api-Key: your_api_key"
 ```
-
-#### Returns
 
 Returns an HTTP status code 204, with an empty response body.
