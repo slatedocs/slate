@@ -181,14 +181,15 @@ working_hours_mon_end | <span class="label label-required">Required</span> Pleas
 working_hours_tue_start	| <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
 working_hours_tue_end | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
 working_hours_wed_start | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
-working_hours_thu_end | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
+working_hours_wed_end | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
 working_hours_thu_start | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
-working_hours_fri_end | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
+working_hours_thu_end | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
 working_hours_fri_start | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
-working_hours_sat_end | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
+working_hours_fri_end | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
 working_hours_sat_start | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
-working_hours_sun_end | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
+working_hours_sat_end | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
 working_hours_sun_start	| <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
+working_hours_sun_end | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
 special_offer |		
 special_offer_description |		
 special_offer_expiry_date |		
@@ -336,14 +337,15 @@ working_hours_mon_end | <span class="label label-required">Required</span> Pleas
 working_hours_tue_start	| <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
 working_hours_tue_end | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
 working_hours_wed_start | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
-working_hours_thu_end | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
+working_hours_wed_end | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
 working_hours_thu_start | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
-working_hours_fri_end | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
+working_hours_thu_end | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
 working_hours_fri_start | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
-working_hours_sat_end | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
+working_hours_fri_end | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
 working_hours_sat_start | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
-working_hours_sun_end | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
+working_hours_sat_end | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
 working_hours_sun_start	| <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A 	
+working_hours_sun_end | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 2:45 pm, Closed or N/A
 special_offer |		
 special_offer_description |		
 special_offer_expiry_date |		
