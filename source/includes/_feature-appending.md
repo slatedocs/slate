@@ -152,3 +152,116 @@ this Batch will be queued and not fetched). If there are no pending messages,
 Every hour, the Crunch system goes through all datasets, and for each that has pending streamed data, it batches up the pending rows and adds them to the dataset automatically, as long as the dataset is not currently in use by someone. That way, streamed data will magically appear in the dataset for the next time a user loads it, but if a user is actively working with the dataset, the system won't update their view of the data and disrupt their session.
 
 See [Stream](#stream) for more details on streams.
+
+
+## Combining datasets
+
+Combining datasets consists on creating a new dataset formed by stacking a list 
+of datasets together. It works under the same rules as a normal append.
+
+To create a new dataset combined from others, it is necessary to POST to the
+datasets catalog indicating a `combine_datasets` expression:
+
+```
+POST /api/datasets/
+```
+
+```json
+
+{
+  "element": "shoji:entity",
+  "body": {
+    "name": "My combined dataset",
+    "description": "Consists on dsA and dsB",
+    "derivation": {
+      "function": "combine_datasets",
+      "args": [
+        {"dataset": "https://app.crunch.io/api/datasets/dsabc/"},
+        {"dataset": "https://app.crunch.io/api/datasets/ds123/"}
+      ]
+    }
+  }
+}
+```
+
+The server will verify that the authenticated user has view permission to all
+datasets, else will raise a 400 error.
+
+The resulting dataset will consist on the matched union of all included datasets
+with the rows in the same order. Private/public variable visibility and exclusion
+filters will be honored in the result.
+
+### Transformations during combination
+
+The combine procedures will perform normal append matching rules which means 
+that any mismatch on aliases or types will not proceed, as well limiting the
+existing union of variables from the present datasets as the result.
+
+It is possible to provide transformations on the datasets to ensure that
+they line up on the combination phase and to add extra columns with constant
+dataset metadata per dataset on the resulting combined result.
+
+Each `{"dataset"}` argument allows for an extra `frame` key that can contain
+a function expression on the desired dataset transformation, for example:
+
+
+```json
+{
+    "dataset": "<dataset_url>",
+    "frame": {
+        "function": "select",
+        "args": [{
+            "map": {
+                "*": {"variable": "*"},
+                "dataset_id": {
+                    "value": "<dataset_id>",
+                    "type": "text",
+                    "references": {
+                        "name": "Dataset ID",
+                        "alias": "dataset_id"
+                    }
+                }
+            }
+        }]
+    }
+}
+```
+
+### Selecting a subset of variables to combine
+
+In the same fashion that it is possible to add extra variables to the dataset
+transforms, it is possible to select which variables only to include.
+
+Note in the example above, we use the `"*": {"variable": "*"}` expressions
+which instructs the server to include all variables. Omitting that would cause
+to only include the selected variables, for example:
+
+
+```json
+{
+    "dataset": "<dataset_url>",
+    "frame": {
+        "function": "select",
+        "args": [{
+            "map": {
+                "A": {"variable": "A"},
+                "B": {"variable": "B"},
+                "C": {"variable": "C"},
+                "dataset_id": {
+                    "value": "<dataset_id>",
+                    "type": "text",
+                    "references": {
+                        "name": "Dataset ID",
+                        "alias": "dataset_id"
+                    }
+                }
+            }
+        }]
+    }
+}
+```
+
+On this example, the expression indicates to only include variables with IDs 
+`A`, `B` and `C` from the referenced dataset as well as add the new extra 
+variable `dataset_id`. This would effectively append only these 4 variables 
+instead of the full dataset's variables.
