@@ -76,7 +76,6 @@ HTTP/1.1 201 CREATED
     "last4": null,
     "url": "http://localhost:5000/l/622a3661"
   },
-  "confirmation_token": "92575",
   "confirmed_at": null,
   "created_at": "2017-08-08T13:50:47.855Z",
   "updated_at": "2017-08-08T13:50:48.836Z"

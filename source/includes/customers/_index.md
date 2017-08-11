@@ -68,7 +68,6 @@ HTTP/1.1 200 OK
       "last4": "4242",
       "url": "https://api.dirtylemon.com/l/a6bbee"
     },
-    "confirmation_token": "368582",
     "confirmed_at": "2017-05-16T16:03:22.798Z",
     "created_at": "2017-05-16T16:01:14.237Z",
     "updated_at": "2017-05-16T16:07:17.404Z"

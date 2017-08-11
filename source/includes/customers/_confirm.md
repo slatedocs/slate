@@ -73,7 +73,6 @@ HTTP/1.1 200 OK
     "last4": null,
     "url": "http://localhost:5000/l/622a3661"
   },
-  "confirmation_token": "92575",
   "confirmed_at": "2017-08-08T13:54:09.660Z",
   "created_at": "2017-08-08T13:50:47.855Z",
   "updated_at": "2017-08-08T13:54:09.662Z"

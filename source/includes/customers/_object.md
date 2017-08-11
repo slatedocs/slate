@@ -49,7 +49,6 @@
     "last4": "4242",
     "url": "https://api.dirtylemon.com/l/a6bbee"
   },
-  "confirmation_token": "368582",
   "confirmed_at": "2017-05-16T16:03:22.798Z",
   "created_at": "2017-05-16T16:01:14.237Z",
   "updated_at": "2017-05-16T16:07:17.404Z"
@@ -70,7 +69,6 @@
 | billing_address          | hash |  |
 | shipping_address         | hash |  |
 | card                     | hash |  |
-| confirmation_token       | string |  |
 | confirmed_at             | timestamp | Time at which the phone number was confirmed |
 | created_at               | timestamp | Time at which the object was created |
 | updated_at               | timestamp | Time at which the object was updated |

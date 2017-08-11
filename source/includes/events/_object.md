@@ -55,8 +55,7 @@
       "street2": null,
       "created_at": "2017-08-08T13:50:47.881Z",
       "updated_at": "2017-08-08T13:50:47.881Z"
-    },
-    "confirmation_token": "92575"
+    }
   }
 }
 ```

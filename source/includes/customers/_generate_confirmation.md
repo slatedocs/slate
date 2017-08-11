@@ -21,7 +21,7 @@ dirtylemon.customers.generate_confirmation({CUSTOMER_ID})
 HTTP/1.1 201 CREATED
 ```
 
-This endpoint generates a new confirmation token. Should be used with the [send a confirmation token](#send-a-confirmation-token) endpoint.
+This endpoint generates a new confirmation token.
 
 Allows to handle situations when a customer fails to confirm his phone number in the allowed time window.
 
