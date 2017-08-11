@@ -480,9 +480,6 @@ has the name and email attribute.
 }
 ```
 
-To disable collaborators, it is possible to PATCH `active` set to `false` for
-users in the catalog.
-
 #### Collaborators order
 
 ```http
