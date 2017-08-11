@@ -445,6 +445,7 @@ var citations = request.Get("/v2/cb/citations", parameters);
     "campaignId": 123,
     "citations": {
         "bing.com": {
+            "url": "https://bing.com/local/some-place",
             "citation_value": "Very High",
             "domain_authority": "99",
             "type": "General Directory",
@@ -456,8 +457,9 @@ var citations = request.Get("/v2/cb/citations", parameters);
             "part_of_yext_network": "Y",
             "quick_listing": "N",
             "secondary_campaign_id": "b",
-            "status": "To Do"
-        }
+            "status": "To Do",
+            "previous_submission_updates_allowed":"Y"
+        }        
     },
     "aggregators": [
         {
