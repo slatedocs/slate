@@ -14,5 +14,5 @@ This is a list of all the types of event we currently send.
 | `order.updated`                   | Occurs whenever an [order is updated](#update-an-order) | [Order](#orders) |
 | `session.created`                 | Occurs whenever a session is created | [Session](#sessions) |
 | `session.updated`                 | Occurs whenever a [session is updated](#update-a-session) | [Session](#sessions) |
-| `message.created`                 | Occurs whenever a message is created, whatever the message's `sender_role`. | [Message](#messages) |
+| `message.created`                 | Occurs whenever a message is created. | [Message](#messages) |
 | `shipment.updated`                | Occurs whenever a [shipment is updated](#webhook) | [Shipment](#shipments) |
