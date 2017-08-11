@@ -752,3 +752,30 @@ Returns a numeric variable with row 0 based indices. It takes no arguments.
     "args": []
 }
 ```
+
+### Integrating variables
+
+"Integrating" a variable means to remove its derived properties and turn it into
+a regular _base_ variable. Doing so will make this variable stop reflecting
+the expression if new data is added to its original parent variable and new rows
+will be filled with No Data `{"?": -1}`.
+
+To integrate a variable it is necessary to PATCH to the variable entity with
+the `derived` attribute set to `false` as so:
+
+```http
+PATCH /api/dataset/abc/variables/123/
+```
+
+```json
+{
+  "element": "shoji:entity",
+  "body": {
+    "derived": false
+  }
+}
+```
+
+Will effectively integrate the variable and make its `derivation` attribute 
+contain `null` from now in. Note that it is only possible to set the `derived`
+attribute to `false` and never to `true`.
