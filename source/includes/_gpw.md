@@ -309,7 +309,7 @@ var results = request.Get("/v4/gpw/" + reportId + "", parameters);
             "search_term3"
         ],
         "google_location": "Chicago, IL",
-        "notify": true,
+        "notify": "Yes",
         "email_addresses": [
         	"email@company.com"
         ],
@@ -319,7 +319,7 @@ var results = request.Get("/v4/gpw/" + reportId + "", parameters);
         ],
         "is_public": "Yes",
         "public_key": "<hidden>",
-        "is_running": false
+        "is_running": "No"
       }
 }
 ```
