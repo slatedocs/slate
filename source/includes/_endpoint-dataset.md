@@ -691,96 +691,101 @@ Refer to the options described on the table above for the `csv` format to change
 
 
 ##### Match
-`GET /datasets/match{?datasets={id}&datasets={id}[&datasets={id}]+`
 
-```json
+The match endpoint provides a graph of matches indicating which variables match amongst the datasets provided.  To use it,
+send a post request representing an ordered list of datasets you would like to match. Include the "minimum_matches"
+parameter in your graph if you would like to limit the output of the matches based on the number of datasets matching.
+The default minim_matches is 2.  Currently, only alias is utilized to match the variables to one another.  To 
+
+The result of a match endpoint request can be one of two things.  If the same match has been completed previously, the
+api with return a 201 status code, along with the match results.  Otherwise, the endpoint will return a 202 status code,
+with a Progress result that provides status information as the match is completed.  Either request will result in the
+location header being set to the URI for staticly generated comparison result that can be accessed with the match is completed.
+
+The results are a Shoji Order with a single group, matches. The matches are listed by order of the
+number of variables matched.  Each variable inside the matches will contain the dataset, the variable id and the confidence
+that the variable matches the others in the list. The order of the variables inside the matches returned will match
+ the order of the datasets provided. The first variable will also contain some additional information
+to allow previewing a match. To retrieve complete details about all the matching variables the endpoints
+listed in `metadata` field can be called, those provide all the matching metadata chunked by groups of matches.
+
+
+```http
+POST /datasets/match/ HTTP/1.1
+{
+    "graph": [
+        {
+            "datasets": [
+                [
+                    "http://local.crunch.io:50976/api/datasets/8274bfb842d645728a49634414b999c4",
+                    "http://local.crunch.io:50976/api/datasets/699a3315c3f347d4923257380938f9b9",
+                    "http://local.crunch.io:50976/api/datasets/8274bfb842d645728a49634414b999c4",
+                    "http://local.crunch.io:50976/api/datasets/699a3315c3f347d4923257380938f9b9",                   
+                ],
+             "minimum_matches": 3
+        }
+    ], 
+    "self": "http://local.crunch.io:50976/api/datasets/match/3c7df52cffd5bd4f70bd0e55a146ccfd/", 
+    "element": "shoji:order"
+}
+
+Response:
+Host: app.crunch.io
+Content-Type: application/json
+Location: http://local.crunch.io:50976/api/datasets/matches/394d9e9c9deffff93120956e
 
 {
-  "self": "http://local.crunch.io/api/datasets/match/?datasets=http://app.crunch.io/api/datasets/26df3c304/&datasets=http://app.crunch.io/api/datasets/3e03136be/", 
-  "value": {
     "graph": [
-      {
-        "datasets": [
-          {
-            "archived": false, 
-            "description": "", 
-            "end_date": null, 
-            "labels": null, 
-            "creation_time": "2017-06-29T01:49:30.831000", 
-            "start_date": null, 
-            "modification_time": "2017-06-29T01:49:30.774000", 
-            "self": "http://app.crunch.io/api/datasets/26df3c304/", 
-            "projects": [], 
-            "name": "test_datasets_match_1"
-          }, 
-          {
-            "archived": false, 
-            "description": "", 
-            "end_date": null, 
-            "labels": null, 
-            "creation_time": "2017-06-29T01:49:32.261000", 
-            "start_date": null, 
-            "modification_time": "2017-06-29T01:49:32.207000", 
-            "id": "28b773839ac747bb834b8b4713f77c06", 
-            "projects": [], 
-            "name": "test_datasets_match_2"
-          }
-        ]
-      }, 
-      {
-        "variables": [
-          {
-            "description": "Numeric variable with value labels", 
-            "category_names": [
-              "red", 
-              "green", 
-              "blue", 
-              "4", 
-              "8", 
-              "9", 
-              "No Data"
+        {
+            "matches": [
+                [
+                    {
+                        "alias": "SomeVariable", 
+                        "confidence": 1, 
+                        "name": "Some Variable", 
+                        "variable": "521b5c014e1e474fa5173d95000bd6e9", 
+                        "desc": "This is some variable", 
+                        "dataset": "8274bfb842d645728a49634414b999c4"
+                    }, 
+                    {
+                        "variable": "3fa1d3358888474eb949ae586e80f9a4", 
+                        "confidence": 1, 
+                        "dataset": "699a3315c3f347d4923257380938f9b9"
+                    }
+                ],
+                [
+                    {
+                        "alias": "AnotherVariableThatHasMatches", 
+                        "confidence": 1, 
+                        "name": "Another Variable", 
+                        "variable": "234e8e76d0e1a32667ab33bc30a9900", 
+                        "desc": "This is another variable", 
+                        "dataset": "8274bfb842d645728a49634414b999c4"
+                    }, 
+                    {
+                        "variable": "9373729ac990b009e0a90dca99092789", 
+                        "confidence": 1, 
+                        "dataset": "699a3315c3f347d4923257380938f9b9"
+                    }
+                ],
+                ...
             ], 
-            "id": "000000", 
-            "alias": "x", 
-            "group_names": null, 
-            "dataset": "http://app.crunch.io/api/datasets/26df3c304/", 
-            "variable_type": "categorical", 
-            "name": "x"
-          }, 
-          {
-            "alias": "y", 
-            "description": "Date variable", 
-            "dataset": "http://app.crunch.io/api/datasets/26df3c304/", 
-            "group_names": null, 
-            "variable_type": "datetime", 
-            "id": "000001", 
-            "name": "y"
-          }, 
-          {
-            "alias": "z", 
-            "description": "Numberic variable with missing value range", 
-            "dataset": "http://app.crunch.io/api/datasets/26df3c304/", 
-            "group_names": null, 
-            "variable_type": "numeric", 
-            "id": "000002", 
-            "name": "z"
-          }
-        ]
-      }
-    ]
-  }, 
-  "element": "shoji:order"
+            "metadata": [
+                "http://local.crunch.io:50976/api/datasets/match/3c7df52cffd5bd4f70bd0e55a146ccfd/0-500/"
+            ]
+        }
+    ], 
+    "self": "http://local.crunch.io:50976/api/datasets/match/3c7df52cffd5bd4f70bd0e55a146ccfd/", 
+    "element": "shoji:order"
 }
 
 ```
 
-The matches endpoint returns a Shoji order with two groups.  
-
-that defines all of the variables that match between the first dataset provided, and the
-rest of them.  If the dataset doesn't have any variables that match, it is not included in the "datasets" group in the order.  For now,
-this endpoint returns the metadata for the datasets and the first dataset's variables if it matches in the other datasets.
-Only variable aliases are compared to determine a match at this time.  More sophisticated variable matching is planned for future releases. 
-
+The matches endpoint returns a Shoji order with a single group, matches. The matches are listed by order of the
+number of variables matched.  Each variable inside the matches will contain the dataset, the variable id and the confidence
+that the variable matches the others in the list. The first variable will also contain some additional information
+to allow previewing a match. To retrieve complete details about all the matching variables the endpoints
+listed in `metadata` field can be called, those provide all the matching metadata chunked by groups of matches.
 
 
 ##### Summary

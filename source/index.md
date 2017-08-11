@@ -22,28 +22,28 @@ includes:
   - feature-versioning
   - endpoint-intro
   - endpoint-public
-  - endpoint-dataset
-  - endpoint-search
-  - endpoint-table
-  - endpoint-variable
-  - endpoint-filter
-  - endpoint-deck
-  - endpoint-multitable
-  - endpoint-tabbook
-  - endpoint-xlsx
+  - endpoint-account
+  - endpoint-batch
   - endpoint-boxdata
   - endpoint-comparison
-  - endpoint-version
-  - endpoint-batch
-  - endpoint-source
+  - endpoint-dataset
+  - endpoint-deck
+  - endpoint-filter
+  - endpoint-geodata
   - endpoint-join
+  - endpoint-multitable
   - endpoint-permission
   - endpoint-progress
-  - endpoint-user
-  - endpoint-team
   - endpoint-projects
-  - endpoint-geodata
-  - endpoint-account
+  - endpoint-search
+  - endpoint-source
+  - endpoint-tabbook
+  - endpoint-table
+  - endpoint-team
+  - endpoint-user
+  - endpoint-variable
+  - endpoint-version
+  - endpoint-xlsx
   - object-reference
 
 search: true
