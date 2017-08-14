@@ -692,18 +692,19 @@ Refer to the options described on the table above for the `csv` format to change
 
 ##### Match
 
-The match endpoint provides a graph of matches indicating which variables match amongst the datasets provided.  To use it,
+The match endpoint provides a list of matches indicating which variables match amongst the datasets provided.  To use it,
 send a post request representing an ordered list of datasets you would like to match. Include the "minimum_matches"
 parameter in your graph if you would like to limit the output of the matches based on the number of datasets matching.
-The default minim_matches is 2.  Currently, only alias is utilized to match the variables to one another.  To 
+The default minim_matches is 2. Currently, only alias is utilized to match the variables to one another. 
 
-The result of a match endpoint request can be one of two things.  If the same match has been completed previously, the
-api with return a 201 status code, along with the match results.  Otherwise, the endpoint will return a 202 status code,
-with a Progress result that provides status information as the match is completed.  Either request will result in the
-location header being set to the URI for staticly generated comparison result that can be accessed with the match is completed.
+The result of a match endpoint request can be one of two things. If the same match has been completed previously, the
+api with return a 201 status code and a Location header to the existing results. Otherwise, the endpoint will return 
+a 202 status code, with a Progress result that provides status information as the match is completed. Either request will 
+result in the location header being set to the URI for staticly generated comparison result that can be accessed with the 
+match is completed.
 
-The results are a Shoji Order with a single group, matches. The matches are listed by order of the
-number of variables matched.  Each variable inside the matches will contain the dataset, the variable id and the confidence
+The results are a Shoji Entity with an attribute `matches`. The matches are listed by order of the
+number of variables matched. Each variable inside the matches will contain the dataset, the variable id and the confidence
 that the variable matches the others in the list. The order of the variables inside the matches returned will match
  the order of the datasets provided. The first variable will also contain some additional information
 to allow previewing a match. To retrieve complete details about all the matching variables the endpoints
@@ -712,80 +713,80 @@ listed in `metadata` field can be called, those provide all the matching metadat
 
 ```http
 POST /datasets/match/ HTTP/1.1
+```
+```json
 {
-    "graph": [
-        {
-            "datasets": [
-                [
-                    "http://local.crunch.io:50976/api/datasets/8274bfb842d645728a49634414b999c4",
-                    "http://local.crunch.io:50976/api/datasets/699a3315c3f347d4923257380938f9b9",
-                    "http://local.crunch.io:50976/api/datasets/8274bfb842d645728a49634414b999c4",
-                    "http://local.crunch.io:50976/api/datasets/699a3315c3f347d4923257380938f9b9",                   
-                ],
-             "minimum_matches": 3
-        }
-    ], 
-    "self": "http://local.crunch.io:50976/api/datasets/match/3c7df52cffd5bd4f70bd0e55a146ccfd/", 
-    "element": "shoji:order"
+    "element": "shoji:entity",
+    "body":  {
+        "datasets": [
+            "http://app.crunch.io/api/datasets/8274bf/",
+            "http://app.crunch.io/api/datasets/699a33/",
+            "http://app.crunch.io/api/datasets/8274bf/",
+            "http://app.crunch.io/api/datasets/699a33/"                   
+        ],
+         "minimum_matches": 3
+    }
 }
+```
 
 Response:
-Host: app.crunch.io
-Content-Type: application/json
-Location: http://local.crunch.io:50976/api/datasets/matches/394d9e9c9deffff93120956e
 
+```http
+201 Created
+Host: app.crunch.io
+Location: http://app.crunch.io/api/datasets/matches/394d9e/
+```
+
+```http
+GET /api/datasets/matches/394d9e/
+```
+
+```json
 {
-    "graph": [
-        {
-            "matches": [
-                [
-                    {
-                        "alias": "SomeVariable", 
-                        "confidence": 1, 
-                        "name": "Some Variable", 
-                        "variable": "521b5c014e1e474fa5173d95000bd6e9", 
-                        "desc": "This is some variable", 
-                        "dataset": "8274bfb842d645728a49634414b999c4"
-                    }, 
-                    {
-                        "variable": "3fa1d3358888474eb949ae586e80f9a4", 
-                        "confidence": 1, 
-                        "dataset": "699a3315c3f347d4923257380938f9b9"
-                    }
-                ],
-                [
-                    {
-                        "alias": "AnotherVariableThatHasMatches", 
-                        "confidence": 1, 
-                        "name": "Another Variable", 
-                        "variable": "234e8e76d0e1a32667ab33bc30a9900", 
-                        "desc": "This is another variable", 
-                        "dataset": "8274bfb842d645728a49634414b999c4"
-                    }, 
-                    {
-                        "variable": "9373729ac990b009e0a90dca99092789", 
-                        "confidence": 1, 
-                        "dataset": "699a3315c3f347d4923257380938f9b9"
-                    }
-                ],
-                ...
-            ], 
-            "metadata": [
-                "http://local.crunch.io:50976/api/datasets/match/3c7df52cffd5bd4f70bd0e55a146ccfd/0-500/"
-            ]
-        }
-    ], 
-    "self": "http://local.crunch.io:50976/api/datasets/match/3c7df52cffd5bd4f70bd0e55a146ccfd/", 
-    "element": "shoji:order"
+
+    "element": "shoji:order",
+    "self": "http://app.crunch.io:50976/api/datasets/match/3c7df5/", 
+    "body": {
+        "matches": [
+            [
+                {
+                    "alias": "SomeVariable", 
+                    "confidence": 1, 
+                    "name": "Some Variable", 
+                    "variable": "521b5c014e1e474fa5173d95000bd6e9", 
+                    "desc": "This is some variable", 
+                    "dataset": "8274bfb842d645728a49634414b999c4"
+                }, 
+                {
+                    "variable": "3fa1d3358888474eb949ae586e80f9a4", 
+                    "confidence": 1, 
+                    "dataset": "699a3315c3f347d4923257380938f9b9"
+                }
+            ],
+            [
+                {
+                    "alias": "AnotherVariableThatHasMatches", 
+                    "confidence": 1, 
+                    "name": "Another Variable", 
+                    "variable": "234e8e76d0e1a32667ab33bc30a9900", 
+                    "desc": "This is another variable", 
+                    "dataset": "8274bfb842d645728a49634414b999c4"
+                }, 
+                {
+                    "variable": "9373729ac990b009e0a90dca99092789", 
+                    "confidence": 1, 
+                    "dataset": "699a3315c3f347d4923257380938f9b9"
+                }
+            ],
+            ...
+        ], 
+        "metadata": [
+            "http://app.crunch.io/api/datasets/match/3c7df5/0-500/"
+        ]
+    }
 }
 
 ```
-
-The matches endpoint returns a Shoji order with a single group, matches. The matches are listed by order of the
-number of variables matched.  Each variable inside the matches will contain the dataset, the variable id and the confidence
-that the variable matches the others in the list. The first variable will also contain some additional information
-to allow previewing a match. To retrieve complete details about all the matching variables the endpoints
-listed in `metadata` field can be called, those provide all the matching metadata chunked by groups of matches.
 
 
 ##### Summary
