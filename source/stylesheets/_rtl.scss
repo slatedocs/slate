@@ -107,17 +107,11 @@ h5,
 h6,
 p,
 aside {
-    @extend %vazir;
     text-align: right;
     direction: rtl;
 }
 
-code {
-    @extend %vazir-code;
-}
-
 .toc-wrapper {
-    @extend %vazir;
     text-align: right;
     direction: rtl;
     font-weight: 100 !important;
