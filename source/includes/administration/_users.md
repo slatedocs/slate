@@ -56,7 +56,7 @@ Attributes | &nbsp;
 `firstName`<br/>*string* | The first name of the user
 `lastName`<br/>*string* | The last name of the user
 `email`<br/>*string* | The email of the user
-`creationDate`<br/>*string* | The date in [ISO 8601](#https://en.wikipedia.org/wiki/ISO_8601) that the user was created
+`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the user was created
 `status`<br/>*string* | The current status of the user.
 `organization`<br/>*[Organization](#administration-organization)* | The organization to which the user belongs
 `roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles that are assigned to the user<br/>*includes*: `id`, `name` and `environment.id`
@@ -120,7 +120,7 @@ Attributes | &nbsp;
 `firstName`<br/>*string* | The first name of the user
 `lastName`<br/>*string* | The last name of the user
 `email`<br/>*string* | The email of the user
-`creationDate`<br/>*string* | The date in [ISO 8601](#https://en.wikipedia.org/wiki/ISO_8601) that the user was created
+`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the user was created
 `status`<br/>*string* | The current status of the user.
 `organization`<br/>*[Organization](#administration-organization)* | The organization to which the user belongs
 `environments`<br/>*Array[[Environment](#administration-environments)]* | The environments the user is member of<br/>*includes*: `id`, `name`

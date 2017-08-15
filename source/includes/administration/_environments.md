@@ -54,7 +54,7 @@ Attributes | &nbsp;
 `name`<br/>*string* | The name of the environment
 `description`<br/>*string* | The description of the environment
 `membership`<br/>*string* | Type of membership of the environment. (e.g. ALL_ORG_USERS, MANY_USERS)
-`creationDate`<br/>*string* | The date in [ISO 8601](#https://en.wikipedia.org/wiki/ISO_8601) that the environment was created
+`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the environment was created
 `organization`<br/>*[Organization](#administration-organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
 `serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`
 `roles`<br/>*Array[[Role](#administration-roles)]* | The roles of the environment with all the users assigned to them.<br/>*includes*: `id`, `name`, `isDefault`, `users.id`, `users.name`
@@ -117,7 +117,7 @@ Attributes | &nbsp;
 `name`<br/>*string* | The name of the environment
 `description`<br/>*string* | The description of the environment
 `membership`<br/>*string* | Type of membership of the environment. (e.g. ALL_ORG_USERS, MANY_USERS)
-`creationDate`<br/>*string* | The date in [ISO 8601](#https://en.wikipedia.org/wiki/ISO_8601) that the environment was created
+`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the environment was created
 `organization`<br/>*[Organization](#administration-organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
 `serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`
 `users`<br/>*Array[[User](#administration-users)]* | The users that are members of the environment<br/>*includes*: `id`, `username`
