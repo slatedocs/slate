@@ -721,7 +721,8 @@ var campaign = request.Get("/v2/cb/get", parameters);
             "campaign_state": "CA",
             "campaign_city": "San Diego",
             "business_category_id": "2291",
-            "extra_business_categories": [
+            "business_category_name": "bar, liquor store, restaurant, food, store",
+            "extra_business_categories_ids": [
             	"1058",
                 "1160",
                 "5376"
