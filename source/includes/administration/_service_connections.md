@@ -15,7 +15,7 @@ Service connections are the services that you can create resources for (e.g. com
     "name": "Compute - Québec",
     "type": "CloudCA",
     "status": {  
-      "lastUpdated": 1478897488000,
+      "lastUpdated": "2017-08-15T12:00:00.000Z",
       "reachable": true
     }
   }]
@@ -45,7 +45,7 @@ Attributes | &nbsp;
     "name": "Compute - Québec",
     "type": "CloudCA",
     "status": {  
-      "lastUpdated": 1478897488000,
+      "lastUpdated": "2017-08-15T12:00:00.000Z",
       "reachable": true
     }
   }]
