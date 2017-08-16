@@ -32,7 +32,7 @@ html, body {
   @extend %default-font;
   background-color: $main-bg;
   height: 100%;
-  font-weight: 600;
+  //font-weight: 600;
   -webkit-text-size-adjust: none; /* Never autoresize text */
 }
 
@@ -68,7 +68,8 @@ html, body {
   width: $nav-width;
   background-color: $nav-bg;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 300;
+  //border-left: 5px solid #ff600a;
 
   // language selector for mobile devices
   .lang-selector {
@@ -83,7 +84,7 @@ html, body {
   &>img {
     display: block;
     max-width: 60%;
-    margin: 3em 1em 2.5em 2.5em;
+    margin: 1.2em 1em 1.5em 1em;
   }
 
   &>.search {
@@ -91,21 +92,21 @@ html, body {
     margin: 0 0 1em 0;
 
     ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-      color: rgba(25, 34, 36, 0.8);
+      color: hsla(198, 26%, 40%, 0.80);
     }
     ::-moz-placeholder { /* Firefox 19+ */
-      color: rgba(25, 34, 36, 0.8);
+      color: rgba(198, 26%, 40%, 0.8);
     }
     :-ms-input-placeholder { /* IE 10+ */
-      color: rgba(25, 34, 36, 0.8);
+      color: rgba(198, 26%, 40%, 0.8);
     }
     :-moz-placeholder { /* Firefox 18- */
-      color: rgba(25, 34, 36, 0.8);
+      color: rgba(198, 26%, 40%, 0.8);
     }
 
     input {
       background: $nav-bg;
-      border-width: 0 0 1px 0;
+      border-width: 0 0 0px 0;
       border-color: $search-box-border-color;
       padding: 6px 0 6px 20px;
       box-sizing: border-box;
@@ -218,7 +219,7 @@ html, body {
     //border-top: 1px dashed $nav-footer-border-color;
 
     li,a {
-      color: $nav-text;
+      color: $toc-footer;
       text-decoration: none;
     }
 
@@ -306,7 +307,7 @@ html, body {
 .lang-selector {
   background-color: $lang-select-bg;
   width: 100%;
-  font-weight: bold;
+  font-weight: 500;
   a {
     display: block;
     float:left;
@@ -374,7 +375,7 @@ html, body {
     font-size: 30px;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    //border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #eee;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
     //border-top: 1px solid #ddd;
