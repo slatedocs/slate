@@ -10,18 +10,17 @@ language_tabs:
   - java: Java
   - swift: Swift 
 
+toc_footers:
+  - <a href='https://sensum-staging.preview.sensum.co/'>Sign Up for a Developer Key</a>
+  - <a href='#'>Documentation Powered by Slate</a>
+
 includes:
   - api/api
   - android/android
   - androidserviceconstants/serviceconstants
   - ios/ios
 
-toc_footers:
-  - <a href='https://sensum-staging.preview.sensum.co/'>Sign Up for a Developer Key</a>
-  - <a href='#'>Documentation Powered by Slate</a>
-    
 search: true
-
 ---
 
 # Introduction

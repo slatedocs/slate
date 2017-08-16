@@ -14,7 +14,7 @@ The Emotion AI SDKs handle many of these requests and responses natively. It can
 The Sensum Emotion AI API uses URI resources to provide access to its services. To use a RESTful API, your application will use HTTP Methods(GET, POST, etc.) to request and parse a response. The Emotion AI API uses JSON for communication between your aplication and the server.
 
 An example URI:
-<a href="">https://example.com/test/testData</a>
+<a href="">https://api.sensum.co/v0/testData</a>
 
 ## Authorization
 
@@ -48,12 +48,12 @@ Below are the metrics that the Emotion AI API can analyse and the units that dat
 |location_altitude|m|
 |location_accuracy|or location_accuracy_h/v if available|
 |location_speed|m/s|
-|acceleration|linear accelleration in m/s2*|
+|acceleration|linear acceleration in m/s2*|
 |acceleration_x|m/s2|
 |acceleration_y|m/s2|
 |acceleration_z|m/s2|
 
-## Get sentiment from emojis 
+## Send text data to analyse emoji sentiment  
 
 Given a list of emojis, this endpoint returns a dictionary containing sentiment.
 
@@ -62,20 +62,20 @@ Emoji Sentiment is calculated by the service as the average of the raw Valence, 
 
 ### HTTP Request
 
-`POST https://example.com/test/sentiment`
+`POST https://api.sensum.co/v0/sentiment`
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X post https://example.com/test/sentiment \
+curl -X post https://api.sensum.co/v0/sentiment \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-POST https://example.com/test/sentiment HTTP/1.1
-Host: example.com
+POST https://api.sensum.co/v0/sentiment HTTP/1.1
+Host: api.sensum.co/v0
 
 Accept: application/json
 
@@ -88,7 +88,7 @@ var headers = {
 };
 
 $.ajax({
-  url: 'https://example.com/test/sentiment',
+  url: 'https://api.sensum.co/v0/sentiment',
   method: 'post',
 
   headers: headers,
@@ -106,7 +106,7 @@ const headers = {
 
 };
 
-fetch('https://example.com/test/sentiment',
+fetch('https://api.sensum.co/v0/sentiment',
 {
   method: 'POST',
 
@@ -127,7 +127,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.post 'https://example.com/test/sentiment', params: {
+result = RestClient.post 'https://api.sensum.co/v0/sentiment', params: {
   }, headers: headers
 
 p JSON.parse(result)
@@ -139,7 +139,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.post('https://example.com/test/sentiment', params={
+r = requests.post('https://api.sensum.co/v0/sentiment', params={
 
 }, headers = headers)
 
@@ -147,7 +147,7 @@ print r.json()
 ```
 
 ```java
-URL obj = new URL("https://example.com/test/sentiment");
+URL obj = new URL("https://api.sensum.co/v0/sentiment");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("POST");
 int responseCode = con.getResponseCode();
@@ -174,8 +174,8 @@ Status|Meaning|Description
 {}
 ```
 <aside class="warning">
-To perform this operation, you must be authenticated by means of the following method:
-API Key.
+To perform this operation, you must be authenticated by means of the following headers:
+API Key, Authorisation.
 </aside>
 
 ## Check the methods that can be called on the sentiment resource
@@ -184,22 +184,22 @@ This endpoint allows the user to check the HTTP Methods that can be used on the 
 
 ### HTTP Request
 
-`OPTIONS https://example.com/sentiment`
+`OPTIONS https://api.sensum.co/v0/sentiment`
 
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X options https://example.com/test/sentiment \
+curl -X options https://api.sensum.co/v0/sentiment \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-OPTIONS https://example.com/test/sentiment HTTP/1.1
-Host: example.com
+OPTIONS https://api.sensum.co/v0/sentiment HTTP/1.1
+Host: api.sensum.co/v0
 Content-Type: application/json
 Accept: application/json
 
@@ -213,7 +213,7 @@ var headers = {
 };
 
 $.ajax({
-  url: 'https://example.com/test/sentiment',
+  url: 'https://api.sensum.co/v0/sentiment',
   method: 'options',
 
   headers: headers,
@@ -232,7 +232,7 @@ const headers = {
 
 };
 
-fetch('https://example.com/test/sentiment',
+fetch('https://api.sensum.co/v0/sentiment',
 {
   method: 'OPTIONS',
 
@@ -254,7 +254,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.options 'https://example.com/test/sentiment', params: {
+result = RestClient.options 'https://api.sensum.co/v0/sentiment', params: {
   }, headers: headers
 
 p JSON.parse(result)
@@ -267,7 +267,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.options('https://example.com/test/sentiment', params={
+r = requests.options('https://api.sensum.co/v0/sentiment', params={
 
 }, headers = headers)
 
@@ -275,7 +275,7 @@ print r.json()
 ```
 
 ```java
-URL obj = new URL("https://example.com/test/sentiment");
+URL obj = new URL("https://api.sensum.co/v0/sentiment");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("OPTIONS");
 int responseCode = con.getResponseCode();
@@ -315,8 +315,8 @@ Status|Header|Type|Format|Description
 }
 ```
 <aside class="warning">
-To perform this operation, you must be authenticated by means of the following method:
-API Key.
+To perform this operation, you must be authenticated by means of the following headers:
+API Key, Authorization.
 </aside>
 
 ## Retrieve previously recorded data
@@ -324,20 +324,20 @@ API Key.
 This endpoint allows the user to retreive prevously entered data by providing a start time, and endtime and the metrics to be retrieved.
 
 ### HTTP Request
-`GET https://example.com/data/`
+`GET https://api.sensum.co/v0/data/`
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X GET https://example.com/test/data/{proxy+} \
+curl -X GET https://api.sensum.co/v0/data/ \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-GET https://example.com/test/data/{proxy+} HTTP/1.1
-Host: example.com
+GET https://api.sensum.co/v0/data/ HTTP/1.1
+Host: api.sensum.co/v0
 
 Accept: application/json
 
@@ -350,7 +350,7 @@ var headers = {
 };
 
 $.ajax({
-  url: 'https://example.com/test/data/{proxy+}',
+  url: 'https://api.sensum.co/v0/data/',
   method: 'get',
 
   headers: headers,
@@ -368,7 +368,7 @@ const headers = {
 
 };
 
-fetch('https://example.com/test/data/{proxy+}',
+fetch('https://api.sensum.co/v0/data/',
 {
   method: 'get',
 
@@ -389,7 +389,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get 'https://example.com/test/data/{proxy+}', params: {
+result = RestClient.get 'https://api.sensum.co/v0/data/', params: {
   }, headers: headers
 
 p JSON.parse(result)
@@ -401,7 +401,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('https://example.com/test/data/{proxy+}', params={
+r = requests.get('https://api.sensum.co/v0/data/', params={
 
 }, headers = headers)
 
@@ -409,7 +409,7 @@ print r.json()
 ```
 
 ```java
-URL obj = new URL("https://example.com/test/data/{proxy+}");
+URL obj = new URL("https://api.sensum.co/v0/data/");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("get");
 int responseCode = con.getResponseCode();
@@ -436,6 +436,7 @@ metrics|string|true|List of strings of requested metrics
 
 Status|Meaning|Description
 ---|---|---|
+200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful request
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of the following headers:
@@ -447,20 +448,20 @@ X-API-Key, Authorization
 This endpoint allows the user to retreive a list of available records based on the supplied query information.
 
 ### HTTP Request
-`GET /data/records.json`
+`GET https://api.sensum.co/data/records.json`
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X GET https://example.com/test/data/records.json \
+curl -X GET https://api.sensum.co/v0/data/records.json \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-GET https://example.com/test/data/records.json HTTP/1.1
-Host: example.com
+GET https://api.sensum.co/v0/data/records.json HTTP/1.1
+Host: api.sensum.co/v0
 
 Accept: application/json
 
@@ -473,7 +474,7 @@ var headers = {
 };
 
 $.ajax({
-  url: 'https://example.com/test/data/records.json',
+  url: 'https://api.sensum.co/v0/data/records.json',
   method: 'get',
 
   headers: headers,
@@ -491,7 +492,7 @@ const headers = {
 
 };
 
-fetch('https://example.com/test/data/records.json',
+fetch('https://api.sensum.co/v0/data/records.json',
 {
   method: 'get',
 
@@ -512,7 +513,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get 'https://example.com/test/data/records.json', params: {
+result = RestClient.get 'https://api.sensum.co/v0/data/records.json', params: {
   }, headers: headers
 
 p JSON.parse(result)
@@ -524,7 +525,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('https://example.com/test/data/records.json', params={
+r = requests.get('https://api.sensum.co/v0/data/records.json', params={
 
 }, headers = headers)
 
@@ -532,7 +533,7 @@ print r.json()
 ```
 
 ```java
-URL obj = new URL("https://example.com/test/data/records.json");
+URL obj = new URL("https://api.sensum.co/v0/data/records.json");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("get");
 int responseCode = con.getResponseCode();
@@ -559,6 +560,7 @@ metrics|string|true|List of strings of requested metrics
 
 Status|Meaning|Description
 ---|---|---|
+200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful request
 
  > Example Response
 
@@ -588,20 +590,20 @@ X-API-Key, Authorization
 This endpoint allows the user to retreive a list of available metrics in the requested records.
 
 ### HTTP Request
-`GET https://example.com/data/metrics.json`
+`GET https://api.sensum.co/v0/data/metrics.json`
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X GET https://example.com/test/data/metrics.json \
+curl -X GET https://api.sensum.co/v0/data/metrics.json \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-GET https://example.com/test/data/metrics.json HTTP/1.1
-Host: example.com
+GET https://api.sensum.co/v0/data/metrics.json HTTP/1.1
+Host: api.sensum.co/v0
 
 Accept: application/json
 
@@ -614,7 +616,7 @@ var headers = {
 };
 
 $.ajax({
-  url: 'https://example.com/test/data/metrics.json',
+  url: 'https://api.sensum.co/v0/data/metrics.json',
   method: 'get',
 
   headers: headers,
@@ -632,7 +634,7 @@ const headers = {
 
 };
 
-fetch('https://example.com/test/data/metrics.json',
+fetch('https://api.sensum.co/v0/data/metrics.json',
 {
   method: 'get',
 
@@ -653,7 +655,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get 'https://example.com/test/data/metrics.json', params: {
+result = RestClient.get 'https://api.sensum.co/v0/data/metrics.json', params: {
   }, headers: headers
 
 p JSON.parse(result)
@@ -665,7 +667,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('https://example.com/test/data/metrics.json', params={
+r = requests.get('https://api.sensum.co/v0/data/metrics.json', params={
 
 }, headers = headers)
 
@@ -673,7 +675,7 @@ print r.json()
 ```
 
 ```java
-URL obj = new URL("https://example.com/test/data/metrics.json");
+URL obj = new URL("https://api.sensum.co/v0/data/metrics.json");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("get");
 int responseCode = con.getResponseCode();
@@ -700,6 +702,7 @@ metrics|string|true|List of strings of requested metrics
 
 Status|Meaning|Description
 ---|---|---|
+200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful request
 
 > Example Response
 
@@ -721,20 +724,20 @@ X-API-Key, Authorization
 This endpoint allows the user to retreive wide-form array of timeseries records for the available metrics, filled with null values for unavailable values.
 
 ### HTTP Request
-`GET https://example.com/data/wide.json`
+`GET https://api.sensum.co/v0/data/wide.json`
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X GET https://example.com/test/data/wide.json \
+curl -X GET https://api.sensum.co/v0/data/wide.json \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-GET https://example.com/test/data/wide.json HTTP/1.1
-Host: example.com
+GET https://api.sensum.co/v0/data/wide.json HTTP/1.1
+Host: api.sensum.co/v0
 
 Accept: application/json
 
@@ -747,7 +750,7 @@ var headers = {
 };
 
 $.ajax({
-  url: 'https://example.com/test/data/wide.json',
+  url: 'https://api.sensum.co/v0/data/wide.json',
   method: 'get',
 
   headers: headers,
@@ -765,7 +768,7 @@ const headers = {
 
 };
 
-fetch('https://example.com/test/data/wide.json',
+fetch('https://api.sensum.co/v0/data/wide.json',
 {
   method: 'get',
 
@@ -786,7 +789,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get 'https://example.com/test/data/wide.json', params: {
+result = RestClient.get 'https://api.sensum.co/v0/data/wide.json', params: {
   }, headers: headers
 
 p JSON.parse(result)
@@ -798,7 +801,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('https://example.com/test/data/wide.json', params={
+r = requests.get('https://api.sensum.co/v0/data/wide.json', params={
 
 }, headers = headers)
 
@@ -806,7 +809,7 @@ print r.json()
 ```
 
 ```java
-URL obj = new URL("https://example.com/test/data/wide.json");
+URL obj = new URL("https://api.sensum.co/v0/data/wide.json");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("get");
 int responseCode = con.getResponseCode();
@@ -833,6 +836,7 @@ metrics|string|true|List of strings of requested metrics
 
 Status|Meaning|Description
 ---|---|---|
+200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful request
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of the following headers:
@@ -844,21 +848,21 @@ X-API-Key, Authorization
 This endpoint allows the user to check the HTTP Methods that can be used on the data resource
 
 ### HTTP Request
-`OPTIONS https://example.com/data`
+`OPTIONS https://api.sensum.co/v0/data`
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X options https://example.com/test/data \
+curl -X options https://api.sensum.co/v0/data \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-OPTIONS https://example.com/test/data HTTP/1.1
-Host: example.com
+OPTIONS https://api.sensum.co/v0/data HTTP/1.1
+Host: api.sensum.co/v0
 Content-Type: application/json
 Accept: application/json
 
@@ -872,7 +876,7 @@ var headers = {
 };
 
 $.ajax({
-  url: 'https://example.com/test/data',
+  url: 'https://api.sensum.co/v0/data',
   method: 'options',
 
   headers: headers,
@@ -891,7 +895,7 @@ const headers = {
 
 };
 
-fetch('https://example.com/test/data',
+fetch('https://api.sensum.co/v0/data',
 {
   method: 'OPTIONS',
 
@@ -913,7 +917,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.options 'https://example.com/test/data', params: {
+result = RestClient.options 'https://api.sensum.co/v0/data', params: {
   }, headers: headers
 
 p JSON.parse(result)
@@ -926,7 +930,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.options('https://example.com/test/data', params={
+r = requests.options('https://api.sensum.co/v0/data', params={
 
 }, headers = headers)
 
@@ -934,7 +938,7 @@ print r.json()
 ```
 
 ```java
-URL obj = new URL("https://example.com/test/data");
+URL obj = new URL("https://api.sensum.co/v0/data");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("OPTIONS");
 int responseCode = con.getResponseCode();
@@ -974,8 +978,8 @@ Status|Header|Type|Format|Description
 }
 ```
 <aside class="warning">
-To perform this operation, you must be authenticated by means of the following method:
-API Key.
+To perform this operation, you must be authenticated by means of the following headers:
+API Key, Authorization.
 </aside>
 
 
@@ -985,21 +989,21 @@ This endpoint allows the user to send data to the Emotion AI service for analysi
 
 ### HTTP Request 
 
-`POST https://example.com/test/events`
+`POST https://api.sensum.co/v0/events`
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X post https://example.com/test/events \
+curl -X post https://api.sensum.co/v0/events \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-POST https://example.com/test/events HTTP/1.1
-Host: example.com
+POST https://api.sensum.co/v0/events HTTP/1.1
+Host: api.sensum.co/v0
 Content-Type: application/json
 Accept: application/json
 
@@ -1013,7 +1017,7 @@ var headers = {
 };
 
 $.ajax({
-  url: 'https://example.com/test/events',
+  url: 'https://api.sensum.co/v0/events',
   method: 'post',
 
   headers: headers,
@@ -1035,7 +1039,7 @@ const headers = {
 
 };
 
-fetch('https://example.com/test/events',
+fetch('https://api.sensum.co/v0/events',
 {
   method: 'POST',
   body: inputBody,
@@ -1057,7 +1061,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.post 'https://example.com/test/events', params: {
+result = RestClient.post 'https://api.sensum.co/v0/events', params: {
   }, headers: headers
 
 p JSON.parse(result)
@@ -1070,7 +1074,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.post('https://example.com/test/events', params={
+r = requests.post('https://api.sensum.co/v0/events', params={
 
 }, headers = headers)
 
@@ -1078,7 +1082,7 @@ print r.json()
 ```
 
 ```java
-URL obj = new URL("https://example.com/test/events");
+URL obj = new URL("https://api.sensum.co/v0/events");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("POST");
 int responseCode = con.getResponseCode();
@@ -1202,21 +1206,21 @@ This endpoint allows the user to check the HTTP Methods that can be used on the 
 ### HTTP Request
 
 
-`OPTIONS http://example.com/events`
+`OPTIONS http://api.sensum.co/v0/events`
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X options https://example.com/test/events \
+curl -X options https://api.sensum.co/v0/events \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-OPTIONS https://example.com/test/events HTTP/1.1
-Host: example.com
+OPTIONS https://api.sensum.co/v0/events HTTP/1.1
+Host: api.sensum.co/v0
 Content-Type: application/json
 Accept: application/json
 
@@ -1230,7 +1234,7 @@ var headers = {
 };
 
 $.ajax({
-  url: 'https://example.com/test/events',
+  url: 'https://api.sensum.co/v0/events',
   method: 'options',
 
   headers: headers,
@@ -1249,7 +1253,7 @@ const headers = {
 
 };
 
-fetch('https://example.com/test/events',
+fetch('https://api.sensum.co/v0/events',
 {
   method: 'OPTIONS',
 
@@ -1271,7 +1275,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.options 'https://example.com/test/events', params: {
+result = RestClient.options 'https://api.sensum.co/v0/events', params: {
   }, headers: headers
 
 p JSON.parse(result)
@@ -1284,7 +1288,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.options('https://example.com/test/events', params={
+r = requests.options('https://api.sensum.co/v0/events', params={
 
 }, headers = headers)
 
@@ -1292,7 +1296,7 @@ print r.json()
 ```
 
 ```java
-URL obj = new URL("https://example.com/test/events");
+URL obj = new URL("https://api.sensum.co/v0/events");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("OPTIONS");
 int responseCode = con.getResponseCode();
@@ -1332,8 +1336,8 @@ Status|Header|Type|Format|Description
 }
 ```
 <aside class="warning">
-To perform this operation, you must be authenticated by means of the following method:
-API Key.
+To perform this operation, you must be authenticated by means of the following headers:
+API Key, Authorization.
 </aside>
 
 ## Get test data 
@@ -1341,21 +1345,21 @@ API Key.
 This endpoint allows the user to generate a series of test data streams that can be fed into the events endpoint to test the analysis service. When testing the events endpoint only POST the "records" JSON object in the request body. 
 
 ### HTTP Request
-`GET https://example.com/test/testdata`
+`GET https://api.sensum.co/v0/testdata`
 
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X get https://example.com/test/testdata \
+curl -X get https://api.sensum.co/v0/testdata \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-GET https://example.com/test/testdata HTTP/1.1
-Host: example.com
+GET https://api.sensum.co/v0/testdata HTTP/1.1
+Host: api.sensum.co/v0
 
 Accept: application/json
 
@@ -1368,7 +1372,7 @@ var headers = {
 };
 
 $.ajax({
-  url: 'https://example.com/test/testdata',
+  url: 'https://api.sensum.co/v0/testdata',
   method: 'get',
 
   headers: headers,
@@ -1386,7 +1390,7 @@ const headers = {
 
 };
 
-fetch('https://example.com/test/testdata',
+fetch('https://api.sensum.co/v0/testdata',
 {
   method: 'GET',
 
@@ -1407,7 +1411,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get 'https://example.com/test/testdata', params: {
+result = RestClient.get 'https://api.sensum.co/v0/testdata', params: {
   }, headers: headers
 
 p JSON.parse(result)
@@ -1419,7 +1423,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('https://example.com/test/testdata', params={
+r = requests.get('https://api.sensum.co/v0/testdata', params={
 
 }, headers = headers)
 
@@ -1427,7 +1431,7 @@ print r.json()
 ```
 
 ```java
-URL obj = new URL("https://example.com/test/testdata");
+URL obj = new URL("https://api.sensum.co/v0/testdata");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -1496,21 +1500,21 @@ X-API-Key, Authorization
 This endpoint allows the user to check the HTTP Methods that can be used on the testdata resource
 
 ### HTTP Request
-`OPTIONS http://example.com/testdata`
+`OPTIONS http://api.sensum.co/v0/testdata`
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X options https://example.com/test/testdata \
+curl -X options https://api.sensum.co/v0/testdata \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-OPTIONS https://example.com/test/testdata HTTP/1.1
-Host: example.com
+OPTIONS https://api.sensum.co/v0/testdata HTTP/1.1
+Host: api.sensum.co/v0
 Content-Type: application/json
 Accept: application/json
 
@@ -1524,7 +1528,7 @@ var headers = {
 };
 
 $.ajax({
-  url: 'https://example.com/test/testdata',
+  url: 'https://api.sensum.co/v0/testdata',
   method: 'options',
 
   headers: headers,
@@ -1543,7 +1547,7 @@ const headers = {
 
 };
 
-fetch('https://example.com/test/testdata',
+fetch('https://api.sensum.co/v0/testdata',
 {
   method: 'OPTIONS',
 
@@ -1565,7 +1569,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.options 'https://example.com/test/testdata', params: {
+result = RestClient.options 'https://api.sensum.co/v0/testdata', params: {
   }, headers: headers
 
 p JSON.parse(result)
@@ -1578,7 +1582,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.options('https://example.com/test/testdata', params={
+r = requests.options('https://api.sensum.co/v0/testdata', params={
 
 }, headers = headers)
 
@@ -1586,7 +1590,7 @@ print r.json()
 ```
 
 ```java
-URL obj = new URL("https://example.com/test/testdata");
+URL obj = new URL("https://api.sensum.co/v0/testdata");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("OPTIONS");
 int responseCode = con.getResponseCode();
@@ -1626,8 +1630,8 @@ Status|Header|Type|Format|Description
 }
 ```
 <aside class="warning">
-To perform this operation, you must be authenticated by means of the following method:
-API Key.
+To perform this operation, you must be authenticated by means of the following headers:
+API Key, Authorisation.
 </aside>
 
 ## Errors
@@ -1635,15 +1639,13 @@ API Key.
 The Sensum Emotion AI API uses the following error codes:
 
 
-Error Code | Meaning
----------- | -------
-400 | Bad Request - Your Request may have caused an error
-401 | Unauthorized - This error will likely occur if the Cognito Authorization Header (AWS Signature v4) is either missing or invalid.
-
-403 | Forbidden -This error will likely occur if the API Key Header is either invalid or missing.
-
-405 | Method Not Allowed - You have attempted to make a request using a HTTP Method that is invalid for the requested resource.
-429 | Too Many Requests - You have made more requests than is allowed under the usage plan.
+Error Code | Meaning|
+---------- | -------|
+400 | Bad Request - Your Request may have caused an error|
+401 | Unauthorized - This error will likely occur if the Cognito Authorization Header (AWS Signature v4) is either missing or invalid.|
+403 | Forbidden -This error will likely occur if the API Key Header is either invalid or missing.|
+405 | Method Not Allowed - You have attempted to make a request using a HTTP Method that is invalid for the requested resource.|
+429 | Too Many Requests - You have made more requests than is allowed under the usage plan.|
 500 | Internal Server Error - There is an error with our service
 503 | Service Unavailable - Our service is down for maintenance. Please try again later.
 

@@ -1,8 +1,12 @@
 # Android SDK
 
-## `private final ServiceConnection mConnection = new ServiceConnection()`
+## Initiate connection to service
+ 
+`private final ServiceConnection mConnection = new ServiceConnection()`
 
 Connection made to the service. Once bound to the service, the binder object is passed through to messenger to set it up
+
+> Please find examples in the Java tab
 
 ```java
     private final ServiceConnection mConnection = new ServiceConnection() {
@@ -19,10 +23,13 @@ Connection made to the service. Once bound to the service, the binder object is 
     };
 ```
 
-## `void submit()`
+## Submit Credentials to service for authorisation 
+
+`void submit()`
 
 Sets up the credential bundle to be sent to the SDK service this needs to be sent first to the SDK service as only authenticated users can use the service
 
+> Please find examples in the Java tab
 
 ```java
     void submit() {
@@ -37,7 +44,9 @@ Sets up the credential bundle to be sent to the SDK service this needs to be sen
     }
 ```
 
-## `public void sendToService(Bundle bundle, int argValue)`
+## Send a data message to the service 
+ 
+`public void sendToService(Bundle bundle, int argValue)`
 
 Send message to the service
 
@@ -45,6 +54,7 @@ Send message to the service
    * `bundle` — any data that needs passed to the service
    * `argValue` — for service handler to switch on
 
+> Please find examples in the Java tab
 
 ```java
     public void sendToService(Bundle bundle, int argValue) {
@@ -60,10 +70,13 @@ Send message to the service
     }
 ```
 
-## `private BroadcastReceiver mMessageReceiver = new BroadcastReceiver()`
+## Create new Broadcast Receiever object
+ 
+`private BroadcastReceiver mMessageReceiver = new BroadcastReceiver()`
 
 Broadcast receiver with the list of registered filters
 
+> Please find examples in the Java tab
 
 ```java
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
@@ -73,7 +86,7 @@ Broadcast receiver with the list of registered filters
 
             switch (action) {
                 case DEVICE_FILTER:
-                    ArrayList<BluetoothDevice> devices = intent.getParcelableArrayListExtra(EXTRA_DATA);
+                    ArrayList<BluetoothDevice devices = intent.getParcelableArrayListExtra(EXTRA_DATA);
                     break;
                 case VALUE_FILTER:
                     String message = intent.getStringExtra(EXTRA_DATA);
@@ -104,9 +117,14 @@ Broadcast receiver with the list of registered filters
     };
 ```
 
-## `private IntentFilter updateIntentFilter()`
+## Update IntentFilter with new Actions 
+
+`private IntentFilter updateIntentFilter()`
 
  * **Returns:** an intent filter with a list of actions
+
+> Please find examples in the Java tab
+
 
 ```java
     private IntentFilter updateIntentFilter() {
@@ -125,9 +143,13 @@ Broadcast receiver with the list of registered filters
     }
 ```
 
-## `private void startCaptureSetUp()`
+## Start biometric data capture
+
+`private void startCaptureSetUp()`
 
 Starts capturing of biometric/contextual data
+
+> Please find examples in the Java tab
 
 ```java
     private void startCaptureSetUp() {
@@ -137,11 +159,14 @@ Starts capturing of biometric/contextual data
     }
 ```
 
-## `private Bundle getCaptureBundle()`
+## Get capture bundle
+`private Bundle getCaptureBundle()`
 
 Sets up the bundle data for capture using the service constants
 
  * **Returns:** capture bundle
+
+> Please find examples in the Java tab
 
 ```java
     private Bundle getCaptureBundle() {
@@ -158,9 +183,15 @@ Sets up the bundle data for capture using the service constants
     }
 ```
 
-## `private void stopCaptureSetUp()`
+
+
+## Stop biometric data capture
+ `private void stopCaptureSetUp()`
 
 Stops capturing of biometric/contextual data
+
+> Please find examples in the Java tab
+
 
 ```java
     private void stopCaptureSetUp() {
