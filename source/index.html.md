@@ -1,5 +1,5 @@
 ---
-title: 'Welcome to Sensum'
+title: 'Sensum Emotion AI API & SDK Reference'
 language_tabs:
   - shell: Shell
   - http: HTTP
@@ -15,6 +15,10 @@ includes:
   - android/android
   - androidserviceconstants/serviceconstants
   - ios/ios
+
+toc_footers:
+  - <a href='https://sensum-staging.preview.sensum.co/'>Sign Up for a Developer Key</a>
+  - <a href='#'>Documentation Powered by Slate</a>
     
 search: true
 
@@ -22,26 +26,7 @@ search: true
 
 # Introduction
 
-Welcome to Sensum Emotion API/SDK
+Welcome to Sensum Emotion AI API & SDK.
 
-## Quick Start
+The Sensum API and SDKs enable you to build services or products which respond to emotional events in real time.
 
-### Metrics
-
-Below are the metrics that Emotion AI can analyse and the units that data should be sent in
-
-|Metric Name|Unit|
-|-----------|----|
-|heartrate  |bpm |
-|breathingrate|bpm|
-|temperature|C, assumed to be ambient/external|
-|skintemperature|C|
-|location_latitude|deg|
-|location_longitude|deg|
-|location_altitude|m|
-|location_accuracy|or location_accuracy_h/v if available|
-|location_speed|m/s|
-|acceleration|linear accelleration in m/s2*|
-|acceleration_x|m/s2|
-|acceleration_y|m/s2|
-|acceleration_z|m/s2|

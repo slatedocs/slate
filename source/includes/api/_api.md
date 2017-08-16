@@ -2,7 +2,9 @@
 # Emotion AI API
 
 ## Introduction
-The Sensum Emotion AI API enables you to access our emotional intelligence platform.  Our API is designed to be RESTful, responding to HTTP requests with data in JSON format. Our SDKs handle many of these requests and responses natively. It can however be useful to utilise the APi directly
+The Sensum Emotion AI API enables you to access our emotional intelligence platform.  Our API is designed to be RESTful, responding to HTTP requests with bodies in JSON format. All requests require that the `Content-Type: application/json` be specified.
+The API is also cross-origin resource sharing ready.
+The Emotion AI SDKs handle many of these requests and responses natively. It can however be useful to utilise the API directly.
 
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
@@ -16,403 +18,40 @@ An example URI:
 
 ## Authorization
 
-Sensum Emotion AI uses API Keys and AWS Signature v4 to allow access to the API. You can register a new API Key by contacting us.
+Sensum Emotion AI uses a combination of an API Key and AWS Signature v4 signing to authorise access to the API. You can register a new API Key by contacting us.
 
 Sensum Emotion AI expects each call to contain the following headers to gain access: 
 
  * Content-Type: "application/json"
  * Authorization: "AWS v4 Signature"
- * X-API-Key: "EmotionAPIKey" 
+ * X-API-Key: "Your API Key"
+ 
+To calculate the value for the Authorization header you must calculate a hash of your request, add an extra information, then add the AWS secret key in orger to create a signing key and then use this to sign the request.
+To learn more about generating the Signature please read the <a href="https://docs.aws.amazon.com/general/latest/gr/signature-v4-examples.html">AWS Documentation on Signature v4</a>
+
+When using the SDKs, the signature will be automatically generated for you when making API calls through it.
 
 <aside class="notice">Replace the above authorization header with the AWS Signature generated after login and X-API-Key with your personal API key.</aside>
 
-## Endpoints
-
-### POST /audio
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X post https://example.com/test/audio \
-  -H 'Accept: application/json'
-
-```
-
-```http
-POST https://example.com/test/audio HTTP/1.1
-Host: example.com
-
-Accept: application/json
-
-```
-
-```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://example.com/test/audio',
-  method: 'post',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-```
-
-```javascript--nodejs
-const request = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json'
-
-};
-
-fetch('https://example.com/test/audio',
-{
-  method: 'POST',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json'
-}
-
-result = RestClient.post 'https://example.com/test/audio', params: {
-  }, headers: headers
-
-p JSON.parse(result)
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json'
-}
-
-r = requests.post('https://example.com/test/audio', params={
-
-}, headers = headers)
-
-print r.json()
-```
-
-```java
-URL obj = new URL("https://example.com/test/audio");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-```
-
-### Responses
-
-Status|Meaning|Description
----|---|---|
-200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful request
-
-> Example responses
-
-```json
-{}
-```
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-## Check the methods that can be called on the data resource
-
-This endpoint allows the user to check the HTTP Methods that can be used on the data resource
-
-### HTTP Request
-`OPTIONS https://example.com/data`
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X options https://example.com/test/data \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
-
-```
-
-```http
-OPTIONS https://example.com/test/data HTTP/1.1
-Host: example.com
-Content-Type: application/json
-Accept: application/json
-
-```
-
-```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://example.com/test/data',
-  method: 'options',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-```
-
-```javascript--nodejs
-const request = require('node-fetch');
-
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-fetch('https://example.com/test/data',
-{
-  method: 'OPTIONS',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
-}
-
-result = RestClient.options 'https://example.com/test/data', params: {
-  }, headers: headers
-
-p JSON.parse(result)
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-r = requests.options('https://example.com/test/data', params={
-
-}, headers = headers)
-
-print r.json()
-```
-
-```java
-URL obj = new URL("https://example.com/test/data");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("OPTIONS");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-```
-
-### Responses
-
-Status|Meaning|Description
----|---|---|
-200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful request
-
-### Response Headers
-
-Status|Header|Type|Format|Description
----|---|---|---|---|
-200|Access-Control-Allow-Origin|string||
-200|Access-Control-Allow-Methods|string||
-200|Access-Control-Allow-Headers|string||
-
-> Response headers
-
-```json
-{
-    "Access-Control-Allow-Origin":"*",
-    "Access-Control-Allow-Methods":"DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT",
-    "Access-Control-Allow-Headers":"Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token",
-    "Content-Type":"application/json"
-}
-```
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-## OPTIONS /data/{proxy+}
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X options https://example.com/test/data/{proxy+} \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
-
-```
-
-```http
-OPTIONS https://example.com/test/data/{proxy+} HTTP/1.1
-Host: example.com
-Content-Type: application/json
-Accept: application/json
-
-```
-
-```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://example.com/test/data/{proxy+}',
-  method: 'options',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-```
-
-```javascript--nodejs
-const request = require('node-fetch');
-
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-fetch('https://example.com/test/data/{proxy+}',
-{
-  method: 'OPTIONS',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
-}
-
-result = RestClient.options 'https://example.com/test/data/{proxy+}', params: {
-  }, headers: headers
-
-p JSON.parse(result)
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-r = requests.options('https://example.com/test/data/{proxy+}', params={
-
-}, headers = headers)
-
-print r.json()
-```
-
-```java
-URL obj = new URL("https://example.com/test/data/{proxy+}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("OPTIONS");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-```
-
-### Responses
-
-Status|Meaning|Description
----|---|---|
-200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful request
-
-### Response Headers
-
-Status|Header|Type|Format|Description
----|---|---|---|---|
-200|Access-Control-Allow-Origin|string||
-200|Access-Control-Allow-Methods|string||
-200|Access-Control-Allow-Headers|string||
-
-> Response Headers
-
-```json
-{
-    "Access-Control-Allow-Origin":"*",
-    "Access-Control-Allow-Methods":"DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT",
-    "Access-Control-Allow-Headers":"Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token",
-    "Content-Type":"application/json"
-}
-```
-<aside class="success">
-This operation does not require authentication
-</aside>
+## Available Metrics
+
+Below are the metrics that the Emotion AI API can analyse and the units that data should the data should be posted in.
+
+|Metric Name|Unit|
+|-----------|----|
+|heartrate  |bpm |
+|breathingrate|bpm|
+|temperature|C, assumed to be ambient/external|
+|skintemperature|C|
+|location_latitude|deg|
+|location_longitude|deg|
+|location_altitude|m|
+|location_accuracy|or location_accuracy_h/v if available|
+|location_speed|m/s|
+|acceleration|linear accelleration in m/s2*|
+|acceleration_x|m/s2|
+|acceleration_y|m/s2|
+|acceleration_z|m/s2|
 
 ## Get sentiment from emojis 
 
@@ -675,23 +314,29 @@ Status|Header|Type|Format|Description
     "Content-Type":"application/json"
 }
 ```
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of the following method:
+API Key.
 </aside>
 
-## X-AMAZON-APIGATEWAY-ANY-METHOD /data/{proxy+}
+## Retrieve previously recorded data
+
+This endpoint allows the user to retreive prevously entered data by providing a start time, and endtime and the metrics to be retrieved.
+
+### HTTP Request
+`GET https://example.com/data/`
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X x-amazon-apigateway-any-method https://example.com/test/data/{proxy+} \
+curl -X GET https://example.com/test/data/{proxy+} \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-X-AMAZON-APIGATEWAY-ANY-METHOD https://example.com/test/data/{proxy+} HTTP/1.1
+GET https://example.com/test/data/{proxy+} HTTP/1.1
 Host: example.com
 
 Accept: application/json
@@ -706,7 +351,7 @@ var headers = {
 
 $.ajax({
   url: 'https://example.com/test/data/{proxy+}',
-  method: 'x-amazon-apigateway-any-method',
+  method: 'get',
 
   headers: headers,
   success: function(data) {
@@ -725,7 +370,7 @@ const headers = {
 
 fetch('https://example.com/test/data/{proxy+}',
 {
-  method: 'X-AMAZON-APIGATEWAY-ANY-METHOD',
+  method: 'get',
 
   headers: headers
 })
@@ -744,7 +389,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.x-amazon-apigateway-any-method 'https://example.com/test/data/{proxy+}', params: {
+result = RestClient.get 'https://example.com/test/data/{proxy+}', params: {
   }, headers: headers
 
 p JSON.parse(result)
@@ -756,7 +401,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.x-amazon-apigateway-any-method('https://example.com/test/data/{proxy+}', params={
+r = requests.get('https://example.com/test/data/{proxy+}', params={
 
 }, headers = headers)
 
@@ -766,7 +411,7 @@ print r.json()
 ```java
 URL obj = new URL("https://example.com/test/data/{proxy+}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("X-AMAZON-APIGATEWAY-ANY-METHOD");
+con.setRequestMethod("get");
 int responseCode = con.getResponseCode();
 BufferedReader in = new BufferedReader(
     new InputStreamReader(con.getInputStream()));
@@ -781,10 +426,11 @@ System.out.println(response.toString());
 
 ### Parameters
 
-Parameter|In|Type|Required|Description
----|---|---|---|---|
-proxy|path|string|true|No description
-
+Parameter|Type|Required|Description
+---|---|---|---|
+start|string|true|Datetime compatible start time for query
+end|string|true|End time for query
+metrics|string|true|List of strings of requested metrics
 
 ### Responses
 
@@ -796,9 +442,546 @@ To perform this operation, you must be authenticated by means of the following h
 X-API-Key, Authorization
 </aside>
 
+## Retrieve available records
+
+This endpoint allows the user to retreive a list of available records based on the supplied query information.
+
+### HTTP Request
+`GET /data/records.json`
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://example.com/test/data/records.json \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET https://example.com/test/data/records.json HTTP/1.1
+Host: example.com
+
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://example.com/test/data/records.json',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+```
+
+```javascript--nodejs
+const request = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://example.com/test/data/records.json',
+{
+  method: 'get',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://example.com/test/data/records.json', params: {
+  }, headers: headers
+
+p JSON.parse(result)
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://example.com/test/data/records.json', params={
+
+}, headers = headers)
+
+print r.json()
+```
+
+```java
+URL obj = new URL("https://example.com/test/data/records.json");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("get");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+```
+
+### Parameters
+
+Parameter|Type|Required|Description
+---|---|---|---|
+start|string|true|Datetime compatible start time for query
+end|string|true|End time for query
+metrics|string|true|List of strings of requested metrics
+
+### Responses
+
+Status|Meaning|Description
+---|---|---|
+
+ > Example Response
+
+```json
+{
+  "data": {
+    "acceleration_x": [
+      {"time": 1501761816636,"value": 0.00222260966538161},
+      {"time": 1501761817632, "value": -0.0132070300688734},
+      {"time": 1501761818631, "value": -0.0390399978164584},
+      {"time": 1501761819632, "value": -0.0268580912779318},
+      ...
+      ],
+   "acceleration_y": [...],
+  },
+  "metrics":
+    ["accelerator_x","accelerator_y", "accelerator_z", "gps_altitude", "gps_horizontalaccuracy", "gps_latitude", "gps_longitude", "gps_speed", "gps_verticalaccuracy"]
+  }
+```
+<aside class="warning">
+To perform this operation, you must be authenticated by means of the following headers:
+X-API-Key, Authorization
+</aside>
+
+## Retrieve available metrics
+
+This endpoint allows the user to retreive a list of available metrics in the requested records.
+
+### HTTP Request
+`GET https://example.com/data/metrics.json`
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://example.com/test/data/metrics.json \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET https://example.com/test/data/metrics.json HTTP/1.1
+Host: example.com
+
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://example.com/test/data/metrics.json',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+```
+
+```javascript--nodejs
+const request = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://example.com/test/data/metrics.json',
+{
+  method: 'get',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://example.com/test/data/metrics.json', params: {
+  }, headers: headers
+
+p JSON.parse(result)
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://example.com/test/data/metrics.json', params={
+
+}, headers = headers)
+
+print r.json()
+```
+
+```java
+URL obj = new URL("https://example.com/test/data/metrics.json");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("get");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+```
+
+### Parameters
+
+Parameter|Type|Required|Description
+---|---|---|---|
+start|string|true|Datetime compatible start time for query
+end|string|true|End time for query
+metrics|string|true|List of strings of requested metrics
+
+### Responses
+
+Status|Meaning|Description
+---|---|---|
+
+> Example Response
+
+```json
+{
+    "metrics":[
+      "heartrate",
+      "breatingrate"
+    ]
+}
+```
+<aside class="warning">
+To perform this operation, you must be authenticated by means of the following headers:
+X-API-Key, Authorization
+</aside>
+
+## Retrieve available wide-format records
+
+This endpoint allows the user to retreive wide-form array of timeseries records for the available metrics, filled with null values for unavailable values.
+
+### HTTP Request
+`GET https://example.com/data/wide.json`
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://example.com/test/data/wide.json \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET https://example.com/test/data/wide.json HTTP/1.1
+Host: example.com
+
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://example.com/test/data/wide.json',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+```
+
+```javascript--nodejs
+const request = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://example.com/test/data/wide.json',
+{
+  method: 'get',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://example.com/test/data/wide.json', params: {
+  }, headers: headers
+
+p JSON.parse(result)
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://example.com/test/data/wide.json', params={
+
+}, headers = headers)
+
+print r.json()
+```
+
+```java
+URL obj = new URL("https://example.com/test/data/wide.json");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("get");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+```
+
+### Parameters
+
+Parameter|Type|Required|Description
+---|---|---|---|
+start|string|true|Datetime compatible start time for query
+end|string|true|End time for query
+metrics|string|true|List of strings of requested metrics
+
+### Responses
+
+Status|Meaning|Description
+---|---|---|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of the following headers:
+X-API-Key, Authorization
+</aside>
+
+## Check the methods that can be called on the data resource
+
+This endpoint allows the user to check the HTTP Methods that can be used on the data resource
+
+### HTTP Request
+`OPTIONS https://example.com/data`
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X options https://example.com/test/data \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+OPTIONS https://example.com/test/data HTTP/1.1
+Host: example.com
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://example.com/test/data',
+  method: 'options',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+```
+
+```javascript--nodejs
+const request = require('node-fetch');
+
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('https://example.com/test/data',
+{
+  method: 'OPTIONS',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.options 'https://example.com/test/data', params: {
+  }, headers: headers
+
+p JSON.parse(result)
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.options('https://example.com/test/data', params={
+
+}, headers = headers)
+
+print r.json()
+```
+
+```java
+URL obj = new URL("https://example.com/test/data");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("OPTIONS");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+```
+
+### Responses
+
+Status|Meaning|Description
+---|---|---|
+200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful request
+
+### Response Headers
+
+Status|Header|Type|Format|Description
+---|---|---|---|---|
+200|Access-Control-Allow-Origin|string||
+200|Access-Control-Allow-Methods|string||
+200|Access-Control-Allow-Headers|string||
+
+> Response headers
+
+```json
+{
+    "Access-Control-Allow-Origin":"*",
+    "Access-Control-Allow-Methods":"DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT",
+    "Access-Control-Allow-Headers":"Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token",
+    "Content-Type":"application/json"
+}
+```
+<aside class="warning">
+To perform this operation, you must be authenticated by means of the following method:
+API Key.
+</aside>
+
+
 ## Send data for events analysis
 
-This endpoint allows the user to send data to the Emotion AI service for analysis. The response will return a series of significant events  
+This endpoint allows the user to send data to the Emotion AI service for analysis. The response will return a series of significant events.   
 
 ### HTTP Request 
 
@@ -1148,16 +1331,17 @@ Status|Header|Type|Format|Description
     "Content-Type":"application/json"
 }
 ```
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of the following method:
+API Key.
 </aside>
 
 ## Get test data 
 
-This endpoint allows the user to generate a series of test data streams that can be fed into the events endpoint to test the analysis service.
+This endpoint allows the user to generate a series of test data streams that can be fed into the events endpoint to test the analysis service. When testing the events endpoint only POST the "records" JSON object in the request body. 
 
 ### HTTP Request
-`GET http://example.com/test/testdata`
+`GET https://example.com/test/testdata`
 
 
 > Code samples
@@ -1441,8 +1625,9 @@ Status|Header|Type|Format|Description
     "Content-Type":"application/json"
 }
 ```
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of the following method:
+API Key.
 </aside>
 
 ## Errors
@@ -1452,14 +1637,15 @@ The Sensum Emotion AI API uses the following error codes:
 
 Error Code | Meaning
 ---------- | -------
-400 | Bad Request
-401 | Unauthorized
-403 | Forbidden
-405 | Method Not Allowed
-406 | Not Acceptable
-410 | Gone
-429 | Too Many Requests
-500 | Internal Server Error
-503 | Service Unavailable
+400 | Bad Request - Your Request may have caused an error
+401 | Unauthorized - This error will likely occur if the Cognito Authorization Header (AWS Signature v4) is either missing or invalid.
+
+403 | Forbidden -This error will likely occur if the API Key Header is either invalid or missing.
+
+405 | Method Not Allowed - You have attempted to make a request using a HTTP Method that is invalid for the requested resource.
+429 | Too Many Requests - You have made more requests than is allowed under the usage plan.
+500 | Internal Server Error - There is an error with our service
+503 | Service Unavailable - Our service is down for maintenance. Please try again later.
+
 
 
