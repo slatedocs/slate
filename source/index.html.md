@@ -25,7 +25,7 @@ search: true
 
 # Introduction
 
-Welcome to Sensum Emotion AI API & SDK.
+Welcome to the Sensum Emotion AI API & SDK.
 
-The Sensum API and SDKs enable you to build services or products which respond to emotional events in real time.
+The Sensum API and SDK enables you to build services or products which respond to emotional events in real time.
 

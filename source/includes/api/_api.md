@@ -4,14 +4,14 @@
 ## Introduction
 The Sensum Emotion AI API enables you to access our emotional intelligence platform.  Our API is designed to be RESTful, responding to HTTP requests with bodies in JSON format. All requests require that the `Content-Type: application/json` be specified.
 The API is also cross-origin resource sharing ready.
-The Emotion AI SDKs handle many of these requests and responses natively. It can however be useful to utilise the API directly.
+The Emotion AI SDK handles many of these requests and responses natively. It can however be useful to utilise the API directly.
 
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
 ## URI Structure
 
-The Sensum Emotion AI API uses URI resources to provide access to its services. To use a RESTful API, your application will use HTTP Methods(GET, POST, etc.) to request and parse a response. The Emotion AI API uses JSON for communication between your aplication and the server.
+The Sensum Emotion AI API uses URI resources to provide access to its services. To use a RESTful API, your application will use HTTP Methods(GET, POST, etc.) to request and parse a response. The Emotion AI API uses JSON for communication between your application and the server.
 
 An example URI:
 <a href="">https://api.sensum.co/v0/testData</a>
@@ -26,23 +26,23 @@ Sensum Emotion AI expects each call to contain the following headers to gain acc
  * Authorization: "AWS v4 Signature"
  * X-API-Key: "Your API Key"
  
-To calculate the value for the Authorization header you must calculate a hash of your request, add an extra information, then add the AWS secret key in orger to create a signing key and then use this to sign the request.
+To calculate the value for the Authorization header you must calculate a hash of your request, add extra information, then add the AWS secret key in order to create a signing key and then use this to sign the request.
 To learn more about generating the Signature please read the <a href="https://docs.aws.amazon.com/general/latest/gr/signature-v4-examples.html">AWS Documentation on Signature v4</a>
 
-When using the SDKs, the signature will be automatically generated for you when making API calls through it.
+When using the SDK, the signature will be automatically generated when making API calls through it.
 
 <aside class="notice">Replace the above authorization header with the AWS Signature generated after login and X-API-Key with your personal API key.</aside>
 
 ## Available Metrics
 
-Below are the metrics that the Emotion AI API can analyse and the units that data should the data should be posted in.
+Below are the metrics that the Emotion AI API can analyse and the units that the data is posted in
 
 |Metric Name|Unit|
 |-----------|----|
 |heartrate  |bpm |
 |breathingrate|bpm|
-|temperature|C, assumed to be ambient/external|
-|skintemperature|C|
+|temperature|^o^C, assumed to be ambient/external|
+|skintemperature|^o^C|
 |location_latitude|deg|
 |location_longitude|deg|
 |location_altitude|m|
@@ -53,7 +53,7 @@ Below are the metrics that the Emotion AI API can analyse and the units that dat
 |acceleration_y|m/s2|
 |acceleration_z|m/s2|
 
-## Send text data to analyse emoji & text sentiment  
+## Send text data to analyse emoji and text sentiment  
 
 This endpoint allows users to send strings of text to our service for emotional sentiment analysis. 
 
@@ -247,7 +247,7 @@ Status|Meaning|Description
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of the following headers:
-API Key, Authorisation.
+API Key, Authorization.
 </aside>
 
 ## Check the methods that can be called on the sentiment resource
@@ -393,7 +393,7 @@ API Key, Authorization.
 
 ## Retrieve previously recorded data
 
-This endpoint allows the user to retreive prevously entered data by providing a start time, and endtime and the metrics to be retrieved.
+This endpoint allows the user to retrieve previously entered data by providing a start time, an end time and the metrics to be retrieved.
 
 ### HTTP Request
 `GET https://api.sensum.co/v0/data/`
@@ -517,7 +517,7 @@ X-API-Key, Authorization
 
 ## Retrieve available records
 
-This endpoint allows the user to retreive a list of available records based on the supplied query information.
+This endpoint allows the user to retrieve a list of available records based on the supplied query information.
 
 ### HTTP Request
 `GET https://api.sensum.co/data/records.json`
@@ -793,7 +793,7 @@ X-API-Key, Authorization
 
 ## Retrieve available wide-format records
 
-This endpoint allows the user to retreive wide-form array of timeseries records for the available metrics, filled with null values for unavailable values.
+This endpoint allows the user to retrieve wide-form array of timeseries records for the available metrics, filled with null values for unavailable values.
 
 ### HTTP Request
 `GET https://api.sensum.co/v0/data/wide.json`
