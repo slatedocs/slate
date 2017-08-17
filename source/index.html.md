@@ -697,3 +697,156 @@ Our product-flow displays automatically contextual ads on the blocked ads placem
 * generate and display tag
 
 <aside class="notice">You should contact our sales team to activate the product flow after tag installation at <a href="mailto:support@adback.co">support@adback.co</a></aside>
+
+## 6) IAB banner script
+
+> sample script:
+
+```php
+<?php
+
+/* here we use redis to cache api requests */
+$cache = new Redis();
+$cache->connect('host', 'port');
+
+$iabBannerCode = '';
+if ($cache->has('scriptElement')) {
+    $scriptElements = $cache->hGetAll('scriptElement');
+    if (isset($scriptElements['iab_script'])) {
+    $iabBannerDomain = $scriptElements['iab_banner_domain'];
+    $iabBannerScript = $scriptElements['iab_banner_script'];
+    $iabBannerCode = <<<EOS
+        (function (a,d){var s,t;s=d.createElement('script');
+        s.src=a;s.async=1;
+        t=d.getElementsByTagName('script')[0];
+        t.parentNode.insertBefore(s,t);
+        })("https://$iabBannerDomain/$iabBannerScript.js", document);
+EOS;
+    }
+}
+
+/* add div where you want to display your banner with placement 'header_728x90' */
+echo "<div data-iab-tag='header_728x90'></div>";
+
+/* add div where you want to display your banner with placement 'side_300x250_actu' */
+echo "<div data-iab-tag='side_300x250_actu'></div>";
+
+/* display tag */
+echo "<script>$iabBannerCode</script>";
+```
+
+```python
+import redis
+import requests
+
+'''here we use redis to cache api requests'''
+r_server = redis.Redis('host', 'port')
+iab_banner_code = ''
+if r_server.exists('script_element'):
+    script_elements = r_server.hgetall('script_element')
+    iab_banner_domain = script_elements['iab_banner_domain']
+    iab_banner_script = script_elements['iab_banner_script']
+
+    iab_banner_code = """
+    (function (a,d){var s,t;s=d.createElement('script');
+    s.src=a;s.async=1;
+    t=d.getElementsByTagName('script')[0];
+    t.parentNode.insertBefore(s,t);
+    })(\"https://%s/%s.js\", document);
+    """ % (iab_banner_domain, iab_banner_script)
+
+'''add div where you want to display your banner with placement 'header_728x90' '''
+print "<div data-iab-tag='header_728x90'></div>"
+
+'''add div where you want to display your banner with placement 'side_300x250_actu' '''
+print "<div data-iab-tag='side_300x250_actu'></div>"
+
+'''display tag'''
+print "<script>%s</script>" % iab_banner_code
+```
+
+```java
+```
+
+
+```ruby
+require "redis"
+require "json"
+require 'open-uri'
+
+# here we use redis to cache api requests
+cache = Redis.new(:host => "HOST")
+iab_banner_code = '';
+if cache.exists('script_element')
+  script_elements = cache.hgetall('script_element');
+  unless script_elements['iab_banner_script'].nil?
+    iab_banner_domain = script_elements['iab_banner_domain'];
+    iab_banner_script = script_elements['iab_banner_script'];
+    iab_banner_code = """
+    (function (a,d){var s,t;s=d.createElement('script');
+    s.src=a;s.async=1;
+    t=d.getElementsByTagName('script')[0];
+    t.parentNode.insertBefore(s,t);
+    })(\"https://#{iab_banner_domain}/#{iab_banner_script}.js\", document);
+    """
+  end
+end
+
+# add div where you want to display your banner with placement 'header_728x90'
+puts "<div data-iab-tag='header_728x90'></div>"
+
+# add div where you want to display your banner with placement 'side_300x250_actu'
+puts "<div data-iab-tag='side_300x250_actu'></div>"
+
+# display tag
+puts "<script>#{iab_banner_code}</script>"
+```
+
+```shell
+# bash script to test api consumption
+$ wget https://raw.githubusercontent.com/adback-anti-adblock-solution/adback-bash-refresh/master/adback-refresh-tags
+
+$ chmod +x adback-refresh-tags
+
+# display iab banner tag with option -b and -html
+$ ./adback-refresh-tags "token" -b -html
+```
+
+```twig
+<!-- add div where you want to display your banner with placement 'header_728x90' -->
+<div data-iab-tag='header_728x90'></div>
+
+<!-- add div where you want to display your banner with placement 'side_300x250_actu' -->
+<div data-iab-tag='side_300x250_actu'></div>
+
+{{ adback_generate_iab_banner_script() }}
+```
+
+Our IAB banners permit to display ads for premium campaigns on blocked ads placements.
+
+### Code logic:
+
+* connect to your cache provider (here Redis)
+
+* get script names and URL
+
+* generate and display tag with one placement / banner
+
+### Script Parameters:
+
+Parameter | Required | Description
+--------- | -------- | -----------
+placement | Yes | Variable you must set to display one banner, data-iab-tag takes one placement and can be configured <a href="https://www.adback.co/en/iab-banners/banners">here</a>
+
+Back office configuration example:
+
+### placement naming:
+
+You should name your placement like back office example, location _ dimension _ campaign promo name,
+
+`header_728x90  ou  side_300x250_actu`
+
+Make sure this names match the back office configuration.
+
+<aside class="notice">After tag installation, you must create new banner <a href="https://www.adback.co/en/iab-banners/banners">here</a> for every placement that you integrate before.</aside>
+
