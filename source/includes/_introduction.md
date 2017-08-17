@@ -11,8 +11,12 @@ Bem-vindo ao guia de referências da API do Fast Notas! É através desta API qu
 
 Método | Endpoint | Descrição
 -------------- | -------------- | --------------
-GET | `/companies`| Retorna todas empresas
+GET | `/campany`| Retorna dados da empresa 
+GET | `/companies`| Retorna dados das empresas afiliadas à empresa parceira
 GET | `/companies/:id`| Retorna uma empresa específica
+POST | `/companies` | Cria uma empresa
+DELETE  | `/companies/:id` | Inativa uma empresa
+PUT | `/companies/:id` | Atualiza os parâmetros de uma empresa
 GET | `/customers` | Retorna todos clientes
 POST | `/customers` | Cria um cliente
 GET | `/customers/:id` | Retorna um cliente
