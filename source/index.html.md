@@ -15,7 +15,6 @@ toc_footers:
 includes:
   - api/api
   - android/android
-  - androidserviceconstants/serviceconstants
   - ios/ios
 
 search: true
