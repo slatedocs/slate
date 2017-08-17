@@ -267,10 +267,34 @@ which will only include those variables that can be appended without conflict
 among all of them. This expression is ready to be used as a `where` parameter
 on the append `/batches/` endpoint.
 
-The payload needs to be sent as JSON encoded `variables` GET parameter:
+The payload needs to be sent as JSON encoded `variables` POST parameter:
 
 ```http
-GET /datasets/align/?variables=%5B%5B%7B%22variable%22%3A+%22http%3A%2F%2Fapp.crunch.io%2Fapi%2Fdatasets%2Fabc%2Fvariables%2F123%2F%22%7D%2C+%7B%22variable%22%3A+%22http%3A%2F%2Fapp.crunch.io%2Fapi%2Fdatasets%2Fdef%2Fvariables%2F234%2F%22%7D%2C+%7B%22variable%22%3A+%22http%3A%2F%2Fapp.crunch.io%2Fapi%2Fdatasets%2Fhij%2Fvariables%2F345%2F%22%7D%5D%2C+%5B%7B%22variable%22%3A+%22http%3A%2F%2Fapp.crunch.io%2Fapi%2Fdatasets%2Fabc%2Fvariables%2F678%2F%22%7D%2C+%7B%22variable%22%3A+%22http%3A%2F%2Fapp.crunch.io%2Fapi%2Fdatasets%2Fdef%2Fvariables%2F789%2F%22%7D%2C+%7B%22variable%22%3A+%22http%3A%2F%2Fapp.crunch.io%2Fapi%2Fdatasets%2Fhij%2Fvariables%2F890%2F%22%7D%5D%2C+%5B%7B%22variable%22%3A+%22http%3A%2F%2Fapp.crunch.io%2Fapi%2Fdatasets%2Fabc%2Fvariables%2F1ab%2F%22%7D%2C+%7B%22variable%22%3A+%22http%3A%2F%2Fapp.crunch.io%2Fapi%2Fdatasets%2Fdef%2Fvariables%2Fab2%2F%22%7D%2C+%7B%22variable%22%3A+%22http%3A%2F%2Fapp.crunch.io%2Fapi%2Fdatasets%2Fhij%2Fvariables%2Fb23%2F%22%7D%5D%5D
+POST /datasets/align/
+```
+
+```json
+{
+"element": "shoji:entity",
+"body": {
+    "variables": [
+      [
+        {"variable": "http://app.crunch.io/api/datasets/abc/variables/123/"},
+        {"variable": "http://app.crunch.io/api/datasets/def/variables/234/"},
+        {"variable": "http://app.crunch.io/api/datasets/hij/variables/345/"}
+      ],
+      [
+        {"variable": "http://app.crunch.io/api/datasets/abc/variables/678/"},
+        {"variable": "http://app.crunch.io/api/datasets/def/variables/789/"},
+        {"variable": "http://app.crunch.io/api/datasets/hij/variables/890/"}
+      ],
+      [
+        {"variable": "http://app.crunch.io/api/datasets/abc/variables/1ab/"},
+        {"variable": "http://app.crunch.io/api/datasets/def/variables/ab2/"},
+        {"variable": "http://app.crunch.io/api/datasets/hij/variables/b23/"}
+      ]
+    ]}
+}
 ```
 
 The response will be a `shoji:view` containing the `where` expression used for
