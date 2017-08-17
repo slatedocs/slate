@@ -1,12 +1,10 @@
 ---
 title: 'Sensum Emotion AI API & SDK Reference'
 language_tabs:
-  - shell: Shell
   - http: HTTP
   - javascript: JavaScript
   - javascript--nodejs: Node.JS
   - python: Python
-  - ruby: Ruby
   - java: Java
   - swift: Swift 
 

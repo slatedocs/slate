@@ -14,7 +14,7 @@ The Emotion AI SDK handles many of these requests and responses natively. It can
 The Sensum Emotion AI API uses URI resources to provide access to its services. To use a RESTful API, your application will use HTTP Methods(GET, POST, etc.) to request and parse a response. The Emotion AI API uses JSON for communication between your application and the server.
 
 An example URI:
-<a href="">https://api.sensum.co/v0/testData</a>
+<a href="">https://api.sensum.co/v0/testdata</a>
 
 ## Authorization
 
@@ -78,13 +78,6 @@ The service will return a JSON object that contain Positivity, Negativity and Em
 
 > Code samples
 
-```shell
-# You can also use wget
-curl -X post https://api.sensum.co/v0/sentiment \
-  -H 'Accept: application/json'
-
-```
-
 ```http
 POST https://api.sensum.co/v0/sentiment HTTP/1.1
 Host: api.sensum.co/v0
@@ -131,19 +124,6 @@ fetch('https://api.sensum.co/v0/sentiment',
 });
 ```
 
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json'
-}
-
-result = RestClient.post 'https://api.sensum.co/v0/sentiment', params: {
-  }, headers: headers
-
-p JSON.parse(result)
-```
 
 ```python
 import requests
@@ -261,27 +241,17 @@ This endpoint allows the user to check the HTTP Methods that can be used on the 
 
 > Code samples
 
-```shell
-# You can also use wget
-curl -X options https://api.sensum.co/v0/sentiment \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
-
-```
-
 ```http
 OPTIONS https://api.sensum.co/v0/sentiment HTTP/1.1
 Host: api.sensum.co/v0
 Content-Type: application/json
 Accept: application/json
-
 ```
 
 ```javascript
 var headers = {
   'Content-Type':'application/json',
   'Accept':'application/json'
-
 };
 
 $.ajax({
@@ -316,22 +286,6 @@ fetch('https://api.sensum.co/v0/sentiment',
     console.log(body);
 });
 ```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
-}
-
-result = RestClient.options 'https://api.sensum.co/v0/sentiment', params: {
-  }, headers: headers
-
-p JSON.parse(result)
-```
-
 ```python
 import requests
 headers = {
@@ -400,13 +354,6 @@ This endpoint allows the user to retrieve previously entered data by providing a
 
 > Code samples
 
-```shell
-# You can also use wget
-curl -X GET https://api.sensum.co/v0/data/ \
-  -H 'Accept: application/json'
-
-```
-
 ```http
 GET https://api.sensum.co/v0/data/ HTTP/1.1
 Host: api.sensum.co/v0
@@ -451,20 +398,6 @@ fetch('https://api.sensum.co/v0/data/',
 }).then(function(body) {
     console.log(body);
 });
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json'
-}
-
-result = RestClient.get 'https://api.sensum.co/v0/data/', params: {
-  }, headers: headers
-
-p JSON.parse(result)
 ```
 
 ```python
@@ -524,13 +457,6 @@ This endpoint allows the user to retrieve a list of available records based on t
 
 > Code samples
 
-```shell
-# You can also use wget
-curl -X GET https://api.sensum.co/v0/data/records.json \
-  -H 'Accept: application/json'
-
-```
-
 ```http
 GET https://api.sensum.co/v0/data/records.json HTTP/1.1
 Host: api.sensum.co/v0
@@ -575,20 +501,6 @@ fetch('https://api.sensum.co/v0/data/records.json',
 }).then(function(body) {
     console.log(body);
 });
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json'
-}
-
-result = RestClient.get 'https://api.sensum.co/v0/data/records.json', params: {
-  }, headers: headers
-
-p JSON.parse(result)
 ```
 
 ```python
@@ -666,13 +578,6 @@ This endpoint allows the user to retreive a list of available metrics in the req
 
 > Code samples
 
-```shell
-# You can also use wget
-curl -X GET https://api.sensum.co/v0/data/metrics.json \
-  -H 'Accept: application/json'
-
-```
-
 ```http
 GET https://api.sensum.co/v0/data/metrics.json HTTP/1.1
 Host: api.sensum.co/v0
@@ -717,20 +622,6 @@ fetch('https://api.sensum.co/v0/data/metrics.json',
 }).then(function(body) {
     console.log(body);
 });
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json'
-}
-
-result = RestClient.get 'https://api.sensum.co/v0/data/metrics.json', params: {
-  }, headers: headers
-
-p JSON.parse(result)
 ```
 
 ```python
@@ -800,13 +691,6 @@ This endpoint allows the user to retrieve wide-form array of timeseries records 
 
 > Code samples
 
-```shell
-# You can also use wget
-curl -X GET https://api.sensum.co/v0/data/wide.json \
-  -H 'Accept: application/json'
-
-```
-
 ```http
 GET https://api.sensum.co/v0/data/wide.json HTTP/1.1
 Host: api.sensum.co/v0
@@ -851,20 +735,6 @@ fetch('https://api.sensum.co/v0/data/wide.json',
 }).then(function(body) {
     console.log(body);
 });
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json'
-}
-
-result = RestClient.get 'https://api.sensum.co/v0/data/wide.json', params: {
-  }, headers: headers
-
-p JSON.parse(result)
 ```
 
 ```python
@@ -924,14 +794,6 @@ This endpoint allows the user to check the HTTP Methods that can be used on the 
 
 > Code samples
 
-```shell
-# You can also use wget
-curl -X options https://api.sensum.co/v0/data \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
-
-```
-
 ```http
 OPTIONS https://api.sensum.co/v0/data HTTP/1.1
 Host: api.sensum.co/v0
@@ -978,21 +840,6 @@ fetch('https://api.sensum.co/v0/data',
 }).then(function(body) {
     console.log(body);
 });
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
-}
-
-result = RestClient.options 'https://api.sensum.co/v0/data', params: {
-  }, headers: headers
-
-p JSON.parse(result)
 ```
 
 ```python
@@ -1065,14 +912,6 @@ This endpoint allows the user to send data to the Emotion AI service for analysi
 
 > Code samples
 
-```shell
-# You can also use wget
-curl -X post https://api.sensum.co/v0/events \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
-
-```
-
 ```http
 POST https://api.sensum.co/v0/events HTTP/1.1
 Host: api.sensum.co/v0
@@ -1122,21 +961,6 @@ fetch('https://api.sensum.co/v0/events',
 }).then(function(body) {
     console.log(body);
 });
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
-}
-
-result = RestClient.post 'https://api.sensum.co/v0/events', params: {
-  }, headers: headers
-
-p JSON.parse(result)
 ```
 
 ```python
@@ -1282,14 +1106,6 @@ This endpoint allows the user to check the HTTP Methods that can be used on the 
 
 > Code samples
 
-```shell
-# You can also use wget
-curl -X options https://api.sensum.co/v0/events \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
-
-```
-
 ```http
 OPTIONS https://api.sensum.co/v0/events HTTP/1.1
 Host: api.sensum.co/v0
@@ -1336,21 +1152,6 @@ fetch('https://api.sensum.co/v0/events',
 }).then(function(body) {
     console.log(body);
 });
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
-}
-
-result = RestClient.options 'https://api.sensum.co/v0/events', params: {
-  }, headers: headers
-
-p JSON.parse(result)
 ```
 
 ```python
@@ -1422,13 +1223,6 @@ This endpoint allows the user to generate a series of test data streams that can
 
 > Code samples
 
-```shell
-# You can also use wget
-curl -X get https://api.sensum.co/v0/testdata \
-  -H 'Accept: application/json'
-
-```
-
 ```http
 GET https://api.sensum.co/v0/testdata HTTP/1.1
 Host: api.sensum.co/v0
@@ -1473,20 +1267,6 @@ fetch('https://api.sensum.co/v0/testdata',
 }).then(function(body) {
     console.log(body);
 });
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json'
-}
-
-result = RestClient.get 'https://api.sensum.co/v0/testdata', params: {
-  }, headers: headers
-
-p JSON.parse(result)
 ```
 
 ```python
@@ -1576,14 +1356,6 @@ This endpoint allows the user to check the HTTP Methods that can be used on the 
 
 > Code samples
 
-```shell
-# You can also use wget
-curl -X options https://api.sensum.co/v0/testdata \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
-
-```
-
 ```http
 OPTIONS https://api.sensum.co/v0/testdata HTTP/1.1
 Host: api.sensum.co/v0
@@ -1630,21 +1402,6 @@ fetch('https://api.sensum.co/v0/testdata',
 }).then(function(body) {
     console.log(body);
 });
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
-}
-
-result = RestClient.options 'https://api.sensum.co/v0/testdata', params: {
-  }, headers: headers
-
-p JSON.parse(result)
 ```
 
 ```python
