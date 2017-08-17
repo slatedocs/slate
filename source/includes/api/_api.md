@@ -53,16 +53,28 @@ Below are the metrics that the Emotion AI API can analyse and the units that dat
 |acceleration_y|m/s2|
 |acceleration_z|m/s2|
 
-## Send text data to analyse emoji sentiment  
+## Send text data to analyse emoji & text sentiment  
 
-Given a list of emojis, this endpoint returns a dictionary containing sentiment.
+This endpoint allows users to send strings of text to our service for emotional sentiment analysis. 
 
-Emoji Sentiment is calculated by the service as the average of the raw Valence, Arousal and Popularity(TODO Add Glossary or something to explain these).
+The service will return a JSON object that contain Positivity, Negativity and Emotionality values for emojis and text.
+
 
 
 ### HTTP Request
 
 `POST https://api.sensum.co/v0/sentiment`
+
+###Glossary
+
+|Term|Description|
+|----|-----------|
+|Positivity| The level of positive emotion expressed in an input(Scale: 0 to +1)|
+|Negativity| The level of negative emotion expressed in an input(Scale: 0 to +1)|
+|Emotionality| The overall strength of emotion contained in an input(Scale: -1 to +1)*|
+
+* Values greater than 0 imply positive feelings, values less than 0 imply negative feelings while 0 implies no emotional response. 
+
 
 > Code samples
 
@@ -161,6 +173,28 @@ while ((inputLine = in.readLine()) != null) {
 in.close();
 System.out.println(response.toString());
 ```
+> Body Parameters: Text Only - Unemotional
+
+```json
+{
+  "text": "This is nothing"
+}
+```
+> Body Parameters: Text Only - Emotional
+
+```json
+{
+  "text": "This was a very good test"
+}
+```
+
+> Body Parameters: Emoji
+
+```json
+{
+  "text":"👌👌👌"
+}
+```
 
 ### Responses
 
@@ -168,11 +202,49 @@ Status|Meaning|Description
 ---|---|---|
 200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|200 response
 
-> Example responses
+> Example responses: Text Only - Unemotional
 
 ```json
-{}
+{
+  "emoji_sentiment": null,
+  "text_sentiment": {
+    "compound": 0.0, //Aggregate Emotionality Score from -1,+1
+    "neg": 0.0, // Negativity Score from 0 to +1
+    "neu": 1.0, // Neutrality Score from 0 to +1
+    "pos": 0.0  // Positivity Score from 0 to +1
+   }
+}
 ```
+> Example responses: Text Only - Emotional
+
+```json
+{
+  "emoji_sentiment": null,
+  "text_sentiment": {
+    "positivity": 0.444,
+    "negativity": 0.0,
+    "emotionality": 0.4927
+  }
+}
+```
+> Example responses: Emoji
+
+```json
+{
+  "text_sentiment": {
+    "negativity": 0.0,
+    "positivity": 0.0,
+    "emotionality": 0.0
+  },
+  "emoji_sentiment": {
+    "positivity": 0.6575529733,
+    "negativity": 0.0936431989,
+    "emotionality": 0.4236068641
+  }
+}
+```
+
+
 <aside class="warning">
 To perform this operation, you must be authenticated by means of the following headers:
 API Key, Authorisation.
