@@ -104,7 +104,7 @@ contact-email | 100 characters max
 contact-fax | 20 characters max
 number-of-employees | 10 characters max
 year-of-formation | 20 characters max
-extra-business-categories | Json encoded array. For example, [“1234”,“5678”,“9012”]. [See here for a full list of valid business category IDs.](#business-categories)
+extra-business-categories-ids | Json encoded array. For example, [“1234”,“5678”,“9012”]. [See here for a full list of valid business category IDs.](#business-categories)
 working-hours | Json encoded array. Available array keys: mon_start, mon_end, tue_start, tue_end, wed_start, wed_end, thu_start, thu_end, fri_start, fri_end, sat_start, sat_end, sun_start, sun_end 
 payment-methods | Json encoded array. Available values: cash, visa, mastercard, amex, cheque, invoice, insurance, atm, travelers, financing, paypal, discover
 short-description | 200 characters max
@@ -217,7 +217,7 @@ contact-email | 100 characters max
 contact-fax | 20 characters max
 number-of-employees | 10 characters max
 year-of-formation | 20 characters max
-extra-business-categories | Json encoded array. For example, [“1234”,“5678”,“9012”]. [See here for a full list of valid business category IDs.](#business-categories)
+extra-business-categories-ids | Json encoded array. For example, [“1234”,“5678”,“9012”]. [See here for a full list of valid business category IDs.](#business-categories)
 working-hours | Json encoded array. Available array keys: mon_start, mon_end, tue_start, tue_end, wed_start, wed_end, thu_start, thu_end, fri_start, fri_end, sat_start, sat_end, sun_start, sun_end 
 payment-methods | Json encoded array. Available values: cash, visa, mastercard, amex, cheque, invoice, insurance, atm, travelers, financing, paypal, discover
 short-description | 200 characters max
