@@ -45,3 +45,6 @@ GET | `/operations/:id/transactions` | Retorna todas transações da operação
 GET | `/transactions/:id` | Retorna uma transação
 GET | `/assets/:id` | Retorna um asset
 GET | `/assets/:id/download` | Retorna o asset em formato para impressão (se houver)
+POST | `/notification_templates` |  Cria um notification_template
+GET | `/notification_templates/:id` | Retorna um notification_template
+DELETE  | `/notification_templates/:id` | Inativa um notification_template

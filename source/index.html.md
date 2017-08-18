@@ -26,6 +26,7 @@ includes:
   - assets
   - errors
   - health_check
+  - notification_templates
 
 
 search: true
