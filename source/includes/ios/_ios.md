@@ -1,5 +1,68 @@
 # iOS SDK
 
+## Introduction
+
+### SDK Module Command Protocol
+
+Every Sensum SDK module conforms to the module command protocol.
+At present these can be switched on and off independently. Every SDK managed object has three states that can be toggled independently:
+
+* Updating: You will get live data updates from the respective managed object. If you have defined a listener for that object it’s update methods will be called by the SDK and you can reflect these and carry out actions in your app.
+* Recording: Data updates will be stored only. If you do not turn on updates no data can be recorded as updates will not be read.
+* Sending To API: Data updates will be recorded and sent to the Emotion AI service.
+
+> Protocol Code
+
+```swift
+import foundation
+
+public protocol SDKModuleCommandProtocol {
+    func startUpdating()
+    func stopUpdating()
+    func startRecording()
+    func stopRecording()
+    func startSendingToAPI()
+    func stopSendingToAPI()
+    func isUpdating() -> Bool
+    func isRecording() -> Bool
+    func isSendingToAPI() -> Bool
+}
+```
+
+## Authentication
+
+To get started working with the Sensum SDK manager you’re going to need a valid Authentication session. Create an instance of this object and give it valid sign in details
+
+### Initialisation
+
+`var authenticationObj = Authentication()`
+
+Create an instance of the Authentication object, specifying the Cognito User Pool ID, the App Client ID, the API base URL and your API key.
+These should all have been provided to you by Sensum when you requested API access.
+
+####Parameters
+
+|Name|Description|
+|----|-----------|
+|cognitoUserPoolId|This is the user pool ID we have given you to use|
+|CognitoClientId|This is the Cognito App Client ID we have given you to use|
+|apiBaseURL|This is the base URL of the API, this may change over time hence we allow you to configure this from your app|
+|apiKey|This is your unique developer's API access key, contact Sensum to get one if we haven't given you one already|
+
+### Login
+
+'authenticationObj.attemptSignIn()'
+
+Sign in using your Amazon Web Service Cognito account details with a username and password.
+This will allows you to create and instantiate the SDK fully and enable sending requests to our emotion AI service.
+
+#### Parameters
+
+|Name|Description|
+|----|-----------|
+|username|The cognito username you have registered with|
+|password|The cognito password you have registered with|
+
 ## Bluetooth Command
 
 Below are all available commands relating to Bluetooth in the iOS SDK.
@@ -116,7 +179,7 @@ Returns a list of dictionaries containing bluetooth peripheral information with 
 |----------|----|-----------|
 |deviceName|String|returns a String of the device name|
 |peripheral|CoreBluetooth CBPeripheral| returns the CoreBluetooth CBPeripheral object (import CoreBluetooth to use this)|
-|Type|String|For now all peripherals are of type BLE|
+|type|String|For now all peripherals are of type BLE|
 
 > Example Usage
 
