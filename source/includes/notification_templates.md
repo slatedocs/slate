@@ -1,16 +1,35 @@
 # Notification templates
 
   Utilize este método para cadastrar o tipo de notification template.
+  
+  Templates de notificação são utilizadas para criar um modelo para notificações.
 
-  Através do endpoint `/notification_templates` é possível exibir, criar e deletar tipos de notification templates.
+  Essa notificação é relacionada a uma gatilho (trigger) de uma entidade.
 
+  Através do endpoint `/notification_templates` é possível exibir, criar e deletar `templates de notificações`.
+
+##Notification type
+
+  Este campo é utilizado para deterimar o tipo de notificação utilizada para o template registrado.
+    
+  **Tipos:** `email`
+
+##Trigger
+
+  Utilizado para deterimar com qual ação do Documento o template será utilizado 
+
+ 
+   Tipos | Descrição
+    -------------- | --------------
+   `document_success` | [document_schema](#document-schemas) 
+   `document_canceled` | [document_schema](#document-schemas)
 
 ##Objeto `notification templates`
-  Parâmetro |  Descrição
+  Parâmetro | Descrição
   -------------- | --------------
   **notification_template_entity** <br> Hash | *Representação da entidade [document_schema](#document-schemas)*
-  **notification_type**  <br> String | *tipo da notificação.* <br> **Tipos:** `email`
-  **trigger**  <br> String | *Tipo de notificação* <br> **Tipos:** `document_success` ou `document_canceled`
+  **notification_type**  <br> String | *tipo da notificação(#notification-type).*
+  **trigger**  <br> String | *quando a ação deve ser disparada (#notification-type).*
 
 ## Criando uma notification template
 
@@ -44,10 +63,10 @@
 
   Parâmetro |  Descrição
  -------------- | --------------
-  **notification_template_entity_id**  <br> <p> obrigatório </p> | *Id do esquema de documento*
-  **notification_type**  <br> String | *tipo da notificação.* <br> **Tipos:** `email`
-  **trigger**  <br> String | *Tipo de notificação* <br> **Tipos:** `document_success` ou `document_canceled`
-
+   **notification_template_entity** <br> Hash | *Representação da entidade [document_schema](#document-schemas)*
+   **notification_type**  <br> String | *tipo da notificação(#notification-type).*
+   **trigger**  <br> String | *quando a ação deve ser disparada (#notification-type).*
+   
   <br> <br> <br> <br> <br>
 
 ##Retornando uma notification template
@@ -82,7 +101,7 @@
 
 ## Inativando uma notification template
 
-Inativa uma notification template.
+Inativa uma template de notificação.
 
   Parâmetro | Descrição
  -------------- | --------------
