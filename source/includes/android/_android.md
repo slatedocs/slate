@@ -1,4 +1,4 @@
-# Android SDK
+# java SDK
 
 ## Service Constants 
 
@@ -80,7 +80,7 @@ This is used to pass the password for authentication to the SDK service
 ### Wear HR Value
 `public static final String WEAR_HR_VALUE = "wear-hr-value"`
 
-This is used to pass the Heart Rate value captured using Android Wear to the SDK service
+This is used to pass the Heart Rate value captured using java Wear to the SDK service
 
 ### Text Message
 `public static final String TEXT_MESSAGE = "text-message"`
@@ -327,7 +327,6 @@ This is used to filter/pass text & emoji message to the SDK service
 
 Connection made to the service. Once bound to the service, the binder object is passed through to messenger to set it up
 
-> Please find examples in the Java tab
 
 ```java
     private final ServiceConnection mConnection = new ServiceConnection() {
@@ -350,7 +349,7 @@ Connection made to the service. Once bound to the service, the binder object is 
 
 Sets up the credential bundle to be sent to the SDK service this needs to be sent first to the SDK service as only authenticated users can use the service
 
-> Please find examples in the Java tab
+
 
 ```java
     void submit() {
@@ -375,7 +374,7 @@ Send message to the service
    * `bundle` — any data that needs passed to the service
    * `argValue` — for service handler to switch on
 
-> Please find examples in the Java tab
+
 
 ```java
     public void sendToService(Bundle bundle, int argValue) {
@@ -391,13 +390,13 @@ Send message to the service
     }
 ```
 
-## Create new Broadcast Receiever object
+## Create new Broadcast Receiver object
  
 `private BroadcastReceiver mMessageReceiver = new BroadcastReceiver()`
 
 Broadcast receiver with the list of registered filters
 
-> Please find examples in the Java tab
+
 
 ```java
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
@@ -444,7 +443,7 @@ Broadcast receiver with the list of registered filters
 
  * **Returns:** an intent filter with a list of actions
 
-> Please find examples in the Java tab
+
 
 
 ```java
@@ -470,7 +469,7 @@ Broadcast receiver with the list of registered filters
 
 Starts capturing of biometric/contextual data
 
-> Please find examples in the Java tab
+
 
 ```java
     private void startCaptureSetUp() {
@@ -487,7 +486,7 @@ Sets up the bundle data for capture using the service constants
 
  * **Returns:** capture bundle
 
-> Please find examples in the Java tab
+
 
 ```java
     private Bundle getCaptureBundle() {
@@ -511,7 +510,7 @@ Sets up the bundle data for capture using the service constants
 
 Stops capturing of biometric/contextual data
 
-> Please find examples in the Java tab
+
 
 
 ```java
