@@ -8,13 +8,13 @@
 
   Através do endpoint `/notification_templates` é possível exibir, criar e deletar `templates de notificações`.
 
-##Notification type
+##Tipo de notificação
 
   Este campo é utilizado para deterimar o tipo de notificação utilizada para o template registrado.
     
   **Tipos:** `email`
 
-##Trigger
+##Gatilho
 
   Utilizado para deterimar com qual ação do Documento o template será utilizado 
 
@@ -28,8 +28,8 @@
   Parâmetro | Descrição
   -------------- | --------------
   **notification_template_entity** <br> Hash | *Representação da entidade [document_schema](#document-schemas)*
-  **notification_type**  <br> String | *tipo da notificação(#notification-type).*
-  **trigger**  <br> String | *quando a ação deve ser disparada (#notification-type).*
+  **notification_type**  <br> String | *tipo da notificação(#tipo-de-notifica-o).*
+  **trigger**  <br> String | *quando a ação deve ser disparada (#gatilho).*
 
 ## Criando uma notification template
 
@@ -64,8 +64,8 @@
   Parâmetro |  Descrição
  -------------- | --------------
    **notification_template_entity** <br> Hash | *Representação da entidade [document_schema](#document-schemas)*
-   **notification_type**  <br> String | *tipo da notificação(#notification-type).*
-   **trigger**  <br> String | *quando a ação deve ser disparada (#notification-type).*
+   **notification_type**  <br> String | *tipo da notificação(#tipo-de-notifica-o).*
+   **trigger**  <br> String | *quando a ação deve ser disparada (#gatilho).*
    
   <br> <br> <br> <br> <br>
 
