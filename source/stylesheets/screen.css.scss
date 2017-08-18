@@ -161,6 +161,11 @@ html, body {
     }
   }
 
+   .toc-list-h3 {
+    display: none;
+    background-color: $nav-subitem-bg;
+  }
+
 
   .tocify-item>a, .toc-footer li {
     padding: 0 $nav-padding 0 $nav-padding;

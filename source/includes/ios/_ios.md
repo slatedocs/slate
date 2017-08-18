@@ -63,6 +63,133 @@ This will allows you to create and instantiate the SDK fully and enable sending 
 |username|The cognito username you have registered with|
 |password|The cognito password you have registered with|
 
+
+## API Command
+
+All available commands for configuring and enabling API communication 
+
+### Initialisation 
+
+`var apiCommand = APICommand()`
+
+### Set Server Request Rate
+
+`apiCommand.setServerRtequestRate()`
+
+Set how frequently uploads occur to the server.
+
+#### Parameters
+
+|Name|Description|
+|----|-----------|
+|requestRateInSeconds|Frequency of server updates in seconds|
+
+### Get Server Request Rate
+
+`apiCommand.getServerRequestRate()`
+
+ Returns how often requests are sent to the API
+
+ ###Assign Listener
+
+`apiCommand.assignListener()`
+
+Assign a listener to listen for API events
+
+#### Parameters
+
+|Name|Type|Description|
+|----|-----------|
+|listener|APIResponseListener|An instance of a class that conforms to the APIResponseListener extension|
+
+## Accelerometer Command
+
+All available commands for the Sensum accelerometer SDK
+
+### Initialisation
+
+`var accCommand = AccelerometerCommand()`
+
+### Start Updating
+
+`accCommand.startUpdating()`
+
+Start the updates from CoreMotion
+
+### Stop Updating
+
+`accCommand.stopUpdating()`
+
+Stop the updates from CoreMotion
+
+### Start Recording
+
+`accCommand.startRecording()`
+
+Start recording the updates from CoreMotion
+
+### Stop Recording
+
+`accCommand.stopRecording()`
+
+Stop recording the updates from CoreMotion
+
+### Start Sending to API
+
+`accCommmand.startSendingToAPI()`
+
+Start sending the updates of CoreMotion to the Emotion AI service
+
+### Stop Sending to API
+
+`accCommmand.stopSendingToAPI()`
+
+Stop sending the updates of CoreMotion to the Emotion AI service
+
+
+### Check Module Update Status
+
+`accCommand.isUpdating()`
+
+Check if module is updating. Returns a boolean value.
+
+### Check Module Recording Status
+
+`accCommand.isRecording()`
+
+Check if module is recording. Returns a boolean value.
+
+### Check Emotion AI Update Status
+
+`accCommand.isSendingToAPI()`
+
+Check if module is sending to the Emotion AI Service
+
+### Assign Listener
+ 
+`accCommand.assignListener()`
+
+Assign a listener to the accelerometer module to receive accelerometer event updates.
+
+
+#### Parameters
+|Parameter|Type|Description|
+|---------|----|-----------|
+|listener|AccelerometerListener|An instance of a class that conforms to the AccelerometerListener extension|
+
+### Set Read Frequency
+
+`accCommand.setReadFrequency()`
+
+Set the frequency of the updates from the accelerometer.
+
+#### Parameters
+|Parameter|Type|Description|
+|---------|----|-----------|
+|newIntervalInSeconds|Double|Set the interval time in seconds, (minimum interval is 0.01s)|
+
+
+
 ## Bluetooth Command
 
 Below are all available commands relating to Bluetooth in the iOS SDK.
@@ -135,7 +262,7 @@ Assign a listener to the bluetooth module to receive bluetooth event updates.
 #### Parameters
 |Parameter|Type|Description|
 |---------|----|-----------|
-|listener|BluetoothListener|An instance of a class that conforms to the Bluetooth listener extension|
+|listener|BluetoothListener|An instance of a class that conforms to the BluetoothListener extension|
 
 ### Start Scan for Devices
 
@@ -188,6 +315,158 @@ Returns a list of dictionaries containing bluetooth peripheral information with 
         let peripheralToAdd = peripheralDictionary as! CBPeripheral
      }
 ````
+## Location Command
+
+All available commands for the Sensum location SDK
+
+### Initialisation
+
+`var locationCommand = LocationCommand()`
+
+### Start Updating
+
+`locationCommand.startUpdating()`
+
+Start the updates from CoreMotion
+
+### Stop Updating
+
+`locationCommand.stopUpdating()`
+
+Stop the updates from CoreMotion
+
+### Start Recording
+
+`locationCommand.startRecording()`
+
+Start recording the updates from CoreMotion
+
+### Stop Recording
+
+`locationCommand.stopRecording()`
+
+Stop recording the updates from CoreMotion
+
+### Start Sending to API
+
+`accCommmand.startSendingToAPI()`
+
+Start sending the updates of CoreMotion to the Emotion AI service
+
+### Stop Sending to API
+
+`accCommmand.stopSendingToAPI()`
+
+Stop sending the updates of CoreMotion to the Emotion AI service
+
+
+### Check Module Update Status
+
+`locationCommand.isUpdating()`
+
+Check if module is updating. Returns a boolean value.
+
+### Check Module Recording Status
+
+`locationCommand.isRecording()`
+
+Check if module is recording. Returns a boolean value.
+
+### Check Emotion AI Update Status
+
+`locationCommand.isSendingToAPI()`
+
+Check if module is sending to the Emotion AI Service
+
+### Assign Listener
+ 
+`locationCommand.assignListener()`
+
+Assign a listener to the accelerometer module to receive accelerometer event updates.
+
+
+#### Parameters
+|Parameter|Type|Description|
+|---------|----|-----------|
+|listener|LocationListener|An instance of a class that conforms to the LocationListener extension|
+
+## Tag Command
+
+All available commands for our tagging module. This is useful for noting events that occur in data. e.g. "Started workout set", "Jumped out of a plane", "Finished jogging".
+These events are automatically timestamped.
+
+### Initialisation
+
+`var tagCommand = TagCommand()`
+
+### Start Updating
+
+`tagCommand.startUpdating()`
+
+Start the updates from CoreMotion
+
+### Stop Updating
+
+`tagCommand.stopUpdating()`
+
+Stop the updates from CoreMotion
+
+### Start Recording
+
+`tagCommand.startRecording()`
+
+Start recording the updates from CoreMotion
+
+### Stop Recording
+
+`tagCommand.stopRecording()`
+
+Stop recording the updates from CoreMotion
+
+### Start Sending to API
+
+`tagCommmand.startSendingToAPI()`
+
+Start sending the updates of CoreMotion to the Emotion AI service
+
+### Stop Sending to API
+
+`tagCommmand.stopSendingToAPI()`
+
+Stop sending the updates of CoreMotion to the Emotion AI service
+
+
+### Check Module Update Status
+
+`tagCommand.isUpdating()`
+
+Check if module is updating. Returns a boolean value.
+
+### Check Module Recording Status
+
+`tagCommand.isRecording()`
+
+Check if module is recording. Returns a boolean value.
+
+### Check Emotion AI Update Status
+
+`tagCommand.isSendingToAPI()`
+
+Check if module is sending to the Emotion AI Service
+
+### Assign Listener
+ 
+`tagCommand.assignListener()`
+
+Assign a listener to the accelerometer module to receive accelerometer event updates.
+
+
+#### Parameters
+|Parameter|Type|Description|
+|---------|----|-----------|
+|listener|TagListener|An instance of a class that conforms to the TagListener extension|
+
+
 
 
 

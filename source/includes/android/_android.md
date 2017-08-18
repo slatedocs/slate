@@ -1,4 +1,4 @@
-# java SDK
+# Android SDK
 
 ## Service Constants 
 
