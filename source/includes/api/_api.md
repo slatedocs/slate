@@ -22,9 +22,9 @@ Sensum Emotion AI uses a combination of an API Key and AWS Signature v4 signing 
 
 Sensum Emotion AI expects each call to contain the following headers to gain access: 
 
- * Content-Type: "application/json"
- * Authorization: "AWS v4 Signature"
- * X-API-Key: "Your API Key"
+ * Content-Type: `application/json`
+ * Authorization: `$AWSv4Signature`
+ * X-API-Key: `$YourAPIKey`
  
 To calculate the value for the Authorization header you must calculate a hash of your request, add extra information, then add the AWS secret key in order to create a signing key and then use this to sign the request.
 To learn more about generating the Signature please read the <a href="https://docs.aws.amazon.com/general/latest/gr/signature-v4-examples.html">AWS Documentation on Signature v4</a>
@@ -64,6 +64,11 @@ The service will return a JSON object that contain Positivity, Negativity and Em
 ### HTTP Request
 
 `POST https://api.sensum.co/v0/sentiment`
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of the following headers:
+API Key, Authorization.
+</aside>
 
 ###Glossary
 
@@ -153,28 +158,7 @@ while ((inputLine = in.readLine()) != null) {
 in.close();
 System.out.println(response.toString());
 ```
-> Body Parameters: Text Only - Unemotional
 
-```json
-{
-  "text": "This is nothing"
-}
-```
-> Body Parameters: Text Only - Emotional
-
-```json
-{
-  "text": "This was a very good test"
-}
-```
-
-> Body Parameters: Emoji
-
-```json
-{
-  "text":"👌👌👌"
-}
-```
 
 ### Responses
 
@@ -182,7 +166,19 @@ Status|Meaning|Description
 ---|---|---|
 200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|200 response
 
-> Example responses: Text Only - Unemotional
+### Examples
+
+> Text Only - Unemotional
+
+> Request
+
+```json
+{
+  "text": "This is nothing"
+}
+```
+
+> Response
 
 ```json
 {
@@ -195,7 +191,16 @@ Status|Meaning|Description
    }
 }
 ```
-> Example responses: Text Only - Emotional
+> Text Only - Emotional
+
+> Request
+
+```json
+{
+  "text": "This was a very good test"
+}
+```
+> Response
 
 ```json
 {
@@ -207,7 +212,17 @@ Status|Meaning|Description
   }
 }
 ```
-> Example responses: Emoji
+> Emoji
+
+> Request
+
+```json
+{
+  "text":"👌👌👌"
+}
+```
+
+> Response
 
 ```json
 {
@@ -223,127 +238,6 @@ Status|Meaning|Description
   }
 }
 ```
-
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of the following headers:
-API Key, Authorization.
-</aside>
-
-## Check the methods that can be called on the sentiment resource
-
-This endpoint allows the user to check the HTTP Methods that can be used on the sentiment resource
-
-### HTTP Request
-
-`OPTIONS https://api.sensum.co/v0/sentiment`
-
-
-> Code samples
-
-```http
-OPTIONS https://api.sensum.co/v0/sentiment HTTP/1.1
-Host: api.sensum.co/v0
-Content-Type: application/json
-Accept: application/json
-```
-
-```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-};
-
-$.ajax({
-  url: 'https://api.sensum.co/v0/sentiment',
-  method: 'options',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-```
-
-```javascript--nodejs
-const request = require('node-fetch');
-
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-fetch('https://api.sensum.co/v0/sentiment',
-{
-  method: 'OPTIONS',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-```
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-r = requests.options('https://api.sensum.co/v0/sentiment', params={
-
-}, headers = headers)
-
-print r.json()
-```
-
-```java
-URL obj = new URL("https://api.sensum.co/v0/sentiment");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("OPTIONS");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-```
-
-### Responses
-
-Status|Meaning|Description
----|---|---|
-200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|200 response
-
-### Response Headers
-
-Status|Header|Type|Format|Description
----|---|---|---|---|
-200|Access-Control-Allow-Origin|string||
-200|Access-Control-Allow-Methods|string||
-200|Access-Control-Allow-Headers|string||
-
-> Response Header
-
-```json
-{
-    "Access-Control-Allow-Origin":"*",
-    "Access-Control-Allow-Methods":"DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT",
-    "Access-Control-Allow-Headers":"Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token",
-    "Content-Type":"application/json"
-}
-```
-<aside class="warning">
-To perform this operation, you must be authenticated by means of the following headers:
-API Key, Authorization.
-</aside>
 
 ## Retrieve previously recorded data
 
@@ -561,7 +455,10 @@ Status|Meaning|Description
    "acceleration_y": [...],
   },
   "metrics":
-    ["accelerator_x","accelerator_y", "accelerator_z", "gps_altitude", "gps_horizontalaccuracy", "gps_latitude", "gps_longitude", "gps_speed", "gps_verticalaccuracy"]
+    [
+      "acceleration_x","acceleration_y", "acceleration_z", 
+      "location_altitude", "location_horizontalaccuracy", "location_latitude", 
+      "location_longitude", "location_speed", "location_verticalaccuracy"]
   }
 ```
 <aside class="warning">
@@ -785,122 +682,6 @@ To perform this operation, you must be authenticated by means of the following h
 X-API-Key, Authorization
 </aside>
 
-## Check the methods that can be called on the data resource
-
-This endpoint allows the user to check the HTTP Methods that can be used on the data resource
-
-### HTTP Request
-`OPTIONS https://api.sensum.co/v0/data`
-
-> Code samples
-
-```http
-OPTIONS https://api.sensum.co/v0/data HTTP/1.1
-Host: api.sensum.co/v0
-Content-Type: application/json
-Accept: application/json
-
-```
-
-```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://api.sensum.co/v0/data',
-  method: 'options',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-```
-
-```javascript--nodejs
-const request = require('node-fetch');
-
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-fetch('https://api.sensum.co/v0/data',
-{
-  method: 'OPTIONS',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-r = requests.options('https://api.sensum.co/v0/data', params={
-
-}, headers = headers)
-
-print r.json()
-```
-
-```java
-URL obj = new URL("https://api.sensum.co/v0/data");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("OPTIONS");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-```
-
-### Responses
-
-Status|Meaning|Description
----|---|---|
-200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful request
-
-### Response Headers
-
-Status|Header|Type|Format|Description
----|---|---|---|---|
-200|Access-Control-Allow-Origin|string||
-200|Access-Control-Allow-Methods|string||
-200|Access-Control-Allow-Headers|string||
-
-> Response headers
-
-```json
-{
-    "Access-Control-Allow-Origin":"*",
-    "Access-Control-Allow-Methods":"DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT",
-    "Access-Control-Allow-Headers":"Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token",
-    "Content-Type":"application/json"
-}
-```
-<aside class="warning">
-To perform this operation, you must be authenticated by means of the following headers:
-API Key, Authorization.
-</aside>
-
 
 ## Send data for events analysis
 
@@ -1095,123 +876,6 @@ To perform this operation, you must be authenticated by means of the following h
 X-API-Key, Authorization
 </aside>
 
-## Check the methods that can be called on the events resource
-
-This endpoint allows the user to check the HTTP Methods that can be used on the events resource
-
-### HTTP Request
-
-
-`OPTIONS http://api.sensum.co/v0/events`
-
-> Code samples
-
-```http
-OPTIONS https://api.sensum.co/v0/events HTTP/1.1
-Host: api.sensum.co/v0
-Content-Type: application/json
-Accept: application/json
-
-```
-
-```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://api.sensum.co/v0/events',
-  method: 'options',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-```
-
-```javascript--nodejs
-const request = require('node-fetch');
-
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-fetch('https://api.sensum.co/v0/events',
-{
-  method: 'OPTIONS',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-r = requests.options('https://api.sensum.co/v0/events', params={
-
-}, headers = headers)
-
-print r.json()
-```
-
-```java
-URL obj = new URL("https://api.sensum.co/v0/events");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("OPTIONS");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-```
-
-### Responses
-
-Status|Meaning|Description
----|---|---|
-200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful request
-
-### Response Headers
-
-Status|Header|Type|Format|Description
----|---|---|---|---|
-200|Access-Control-Allow-Origin|string||
-200|Access-Control-Allow-Methods|string||
-200|Access-Control-Allow-Headers|string||
-
-> Response header
-
-```json
-{
-    "Access-Control-Allow-Origin":"*",
-    "Access-Control-Allow-Methods":"POST,OPTIONS",
-    "Access-Control-Allow-Headers":"Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
-    "Content-Type":"application/json"
-}
-```
-<aside class="warning">
-To perform this operation, you must be authenticated by means of the following headers:
-API Key, Authorization.
-</aside>
 
 ## Get test data 
 
@@ -1345,122 +1009,6 @@ Status|Header|Type|Format|Description
 <aside class="warning">
 To perform this operation, you must be authenticated by means of the following headers:
 X-API-Key, Authorization
-</aside>
-
-## Check the methods that can be called on the testdata resource
-
-This endpoint allows the user to check the HTTP Methods that can be used on the testdata resource
-
-### HTTP Request
-`OPTIONS http://api.sensum.co/v0/testdata`
-
-> Code samples
-
-```http
-OPTIONS https://api.sensum.co/v0/testdata HTTP/1.1
-Host: api.sensum.co/v0
-Content-Type: application/json
-Accept: application/json
-
-```
-
-```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://api.sensum.co/v0/testdata',
-  method: 'options',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-```
-
-```javascript--nodejs
-const request = require('node-fetch');
-
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-fetch('https://api.sensum.co/v0/testdata',
-{
-  method: 'OPTIONS',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-r = requests.options('https://api.sensum.co/v0/testdata', params={
-
-}, headers = headers)
-
-print r.json()
-```
-
-```java
-URL obj = new URL("https://api.sensum.co/v0/testdata");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("OPTIONS");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-```
-
-### Responses
-
-Status|Meaning|Description
----|---|---|
-200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful request
-
-### Response Headers
-
-Status|Header|Type|Format|Description
----|---|---|---|---|
-200|Access-Control-Allow-Origin|string||
-200|Access-Control-Allow-Methods|string||
-200|Access-Control-Allow-Headers|string||
-
-> Response Header 
-
-```json
-{
-    "Access-Control-Allow-Origin":"*",
-    "Access-Control-Allow-Methods":"DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT",
-    "Access-Control-Allow-Headers":"Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
-    "Content-Type":"application/json"
-}
-```
-<aside class="warning">
-To perform this operation, you must be authenticated by means of the following headers:
-API Key, Authorisation.
 </aside>
 
 ## Errors

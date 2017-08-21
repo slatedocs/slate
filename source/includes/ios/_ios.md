@@ -35,23 +35,23 @@ To get started working with the Sensum SDK manager you’re going to need a vali
 
 ### Initialisation
 
-`var authenticationObj = Authentication()`
+`var authenticationObj = Authentication(cognitoUserPoolID, cognitoClientId, apiBaseURL, apiKey)`
 
 Create an instance of the Authentication object, specifying the Cognito User Pool ID, the App Client ID, the API base URL and your API key.
 These should all have been provided to you by Sensum when you requested API access.
 
-####Parameters
+### Parameters
 
 |Name|Description|
 |----|-----------|
 |cognitoUserPoolId|This is the user pool ID we have given you to use|
-|CognitoClientId|This is the Cognito App Client ID we have given you to use|
+|cognitoClientId|This is the Cognito App Client ID we have given you to use|
 |apiBaseURL|This is the base URL of the API, this may change over time hence we allow you to configure this from your app|
 |apiKey|This is your unique developer's API access key, contact Sensum to get one if we haven't given you one already|
 
 ### Login
 
-'authenticationObj.attemptSignIn()'
+`authenticationObj.attemptSignIn(username,password)`
 
 Sign in using your Amazon Web Service Cognito account details with a username and password.
 This will allows you to create and instantiate the SDK fully and enable sending requests to our emotion AI service.
@@ -74,11 +74,11 @@ All available commands for configuring and enabling API communication
 
 ### Set Server Request Rate
 
-`apiCommand.setServerRtequestRate()`
+`apiCommand.setServerRequestRate(requestRateInSeconds)`
 
 Set how frequently uploads occur to the server.
 
-#### Parameters
+### Parameters
 
 |Name|Description|
 |----|-----------|
@@ -90,9 +90,9 @@ Set how frequently uploads occur to the server.
 
  Returns how often requests are sent to the API
 
- ###Assign Listener
+### Assign Listener
 
-`apiCommand.assignListener()`
+`apiCommand.assignListener(listener)`
 
 Assign a listener to listen for API events
 
@@ -167,7 +167,7 @@ Check if module is sending to the Emotion AI Service
 
 ### Assign Listener
  
-`accCommand.assignListener()`
+`accCommand.assignListener(listener)`
 
 Assign a listener to the accelerometer module to receive accelerometer event updates.
 
@@ -179,7 +179,7 @@ Assign a listener to the accelerometer module to receive accelerometer event upd
 
 ### Set Read Frequency
 
-`accCommand.setReadFrequency()`
+`accCommand.setReadFrequency(newIntervalInSeconds)`
 
 Set the frequency of the updates from the accelerometer.
 
@@ -204,13 +204,13 @@ Below are all available commands relating to Bluetooth in the iOS SDK.
 
 Start the updates of any connected heart rate peripheral 
 
- ### Stop Updating
+### Stop Updating
 
  `bluetoothCommand.stopUpdating()`
 
 Stop the updates of any connected heart rate peripheral
 
- ### Start Recording
+### Start Recording
 
  `bluetoothCommand.startRecording()`
 
@@ -254,7 +254,7 @@ Check if module is sending to the Emotion AI Service
 
 ### Assign Listener
  
-`bluetoothCommand.assignListener()`
+`bluetoothCommand.assignListener(listener)`
 
 Assign a listener to the bluetooth module to receive bluetooth event updates.
 
@@ -272,7 +272,7 @@ Start scanning for discoverable peripheral devices
 
 ### Connect to peripheral device
 
-`bluetoothCommand.connectTo()`
+`bluetoothCommand.connectTo(peripheralDevice)`
 
 Connect to a discovered peripheral device. Discovered devices can be acquired from the listOfDevices returned by the getDeviceList() function.
 
