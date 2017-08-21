@@ -4,10 +4,10 @@ title: AdBack API Reference
 language_tabs: # must be one of https://git.io/vQNgJ
   - php
   - python
-  - java
   - ruby
   - shell
   - twig
+  - java
 
 
 toc_footers:
@@ -74,7 +74,7 @@ r_server.expire('script_element', 60 * 60 * 6)
 ```
 
 ```java
-
+Please contact our support team at "support@adback.co" to configure adback with Java
 ```
 
 ```ruby
@@ -206,6 +206,7 @@ print "<script>%s</script>" % analytics_script_code
 ```
 
 ```java
+Please contact our support team at "support@adback.co" to configure adback with Java
 ```
 
 ```ruby
@@ -328,6 +329,7 @@ print "<script>var adback = adback || {}; adback.perimeter = 'perimeter1';</scri
 ```
 
 ```java
+Please contact our support team at "support@adback.co" to configure adback with Java
 ```
 
 ```ruby
@@ -497,6 +499,7 @@ print "<script>%s</script>" % autopromo_banner_code
 ```
 
 ```java
+Please contact our support team at "support@adback.co" to configure adback with Java
 ```
 
 
@@ -648,6 +651,7 @@ print "<script>%s</script>" % product_flow_code
 ```
 
 ```java
+Please contact our support team at "support@adback.co" to configure adback with Java
 ```
 
 ```ruby
@@ -772,6 +776,7 @@ print "<script>%s</script>" % iab_banner_code
 ```
 
 ```java
+Please contact our support team at "support@adback.co" to configure adback with Java
 ```
 
 
