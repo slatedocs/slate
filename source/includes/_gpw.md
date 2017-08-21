@@ -284,7 +284,7 @@ var results = request.Get("/v4/gpw/" + reportId + "", parameters);
 {
   "success": true,
   "report": {
-  		"report_id": "1",
+  	"report_id": "1",
         "report_name": "Report name",
         "customer_id": "1",
         "location_id": "1000",
