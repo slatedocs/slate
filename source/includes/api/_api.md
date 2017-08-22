@@ -581,7 +581,7 @@ X-API-Key, Authorization
 
 ## Retrieve available wide-format records
 
-This endpoint allows the user to retrieve wide-form array of timeseries records for the available metrics, filled with null values for unavailable values.
+This endpoint allows the user to retrieve a wide-format array of time series records for the available metrics, filled with null values for unavailable values.
 
 ### HTTP Request
 `GET https://api.sensum.co/v0/data/wide.json`
