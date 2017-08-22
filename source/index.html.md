@@ -384,13 +384,114 @@ This endpoint create a new client. ( Data missing we need more information from 
 ### BODY Parameters
 Parameter | Description
 ----------|------------
-name | Client name
-last_name | Client last name
-document_type | Client document type
-identification | Client identification
+first_name | Client First Name
+middle_name | Client Middle Name  
+last_name | Client Last Name  
+second_last_name | Client Second Last Name
+short_name | Client Short Name (Client First and Last Name)
+client_type | Type of Client
+id_number | Client Identification Number
+id_type | Client Identification Type
+id_expedition_date | Client Identification Expedition Date
+account_official | Official of the Account
+market_segment | Client Market Segment
+activity_cod  | Activity Code
+language_cod | Language Code
+opening_branch | Opening Branch
+third_party_control | Third Party Control
+tax_info_check_account | Check Account Tax Information
+tax_info_savings_account | Savings Account Tax Information
+expedition_city | Client ID Expedition City
+birth_date | Client Birth Date
+tax_info_certified | Certified Tax Information
+tax_info_loans | Loans Tax Information
+sequence | Sequence
+
+
+```json
+{
+  "clients": [
+    {
+      "first_name": "Juan",
+      "middle_name": "Pedro",
+      "last_name":"Perez",
+      "second_last_name":"Garcia",
+      "short_name":"Juan Perez",
+      "client_type":"N",
+      "id_number":123456,
+      "id_type":"CC",
+      "id_expedition_date":"20170606",
+      "account_official":"00001",
+      "market_segment":"A",
+      "activity_cod": "00003",
+      "language_cod": "01",
+      "opening_branch":"01",
+      "third_party_control":"A",
+      "tax_info_check_account":"00",
+      "tax_info_savings_account":"00",
+      "expedition_city":"Bogota",
+      "birth_date":"20170606",
+      "tax_info_certified":"000",
+      "tax_info_loans":"000",
+      "sequence":"000001"
+    },
+    {
+
+      "first_name": "Juan",
+      "middle_name": "Pedro",
+      "last_name":"Perez",
+      "second_last_name":"Garcia",
+      "client_type":"N",
+      "id_number":123456,
+      "id_type":"CC",
+      "id_expedition_date":"20170606",
+      "opening_branch":"01",
+      "expedition_city":"Bogota",
+      "birth_date":"20170606",
+      "sequence":"000001"
+    }
+  ]
+}
+```
 
 
 ## Get Client
+
+This endpoint retrieves all clients.
+
+### HTTP Request
+
+`GET https://api.bankvision.com/clients`
+
+<aside class="success">
+Remember you must be authenticated!
+</aside>
+
+### BODY Parameters
+Parameter | Description
+----------|------------
+first_name | Client First Name
+middle_name | Client Middle Name  
+last_name | Client Last Name  
+second_last_name | Client Second Last Name
+short_name | Client Short Name (Client First and Last Name)
+client_type | Type of Client
+id_number | Client Identification Number
+id_type | Client Identification Type
+id_expedition_date | Client Identification Expedition Date
+account_official | Official of the Account
+market_segment | Client Market Segment
+activity_cod  | Activity Code
+language_cod | Language Code
+opening_branch | Opening Branch
+third_party_control | Third Party Control
+tax_info_check_account | Check Account Tax Information
+tax_info_savings_account | Savings Account Tax Information
+expedition_city | Client ID Expedition City
+birth_date | Client Birth Date
+tax_info_certified | Certified Tax Information
+tax_info_loans | Loans Tax Information
+sequence | Sequence
 
 ```shell
 curl "https://api.bankvision.com/clients"
@@ -403,57 +504,49 @@ curl "https://api.bankvision.com/clients"
 {
   "clients": [
     {
-      "id": 1,
-      "name": "Juan",
-      "last_name": "Perez",
-      "document_type": "CC",
-      "identification": 45362727
+      "first_name": "Juan",
+      "middle_name": "Pedro",
+      "last_name":"Perez",
+      "second_last_name":"Garcia",
+      "short_name":"Juan Perez",
+      "client_type":"N",
+      "id_number":123456,
+      "id_type":"CC",
+      "id_expedition_date":"20170606",
+      "account_official":"00001",
+      "market_segment":"A",
+      "activity_cod": "00003",
+      "language_cod": "01",
+      "opening_branch":"01",
+      "third_party_control":"A",
+      "tax_info_check_account":"00",
+      "tax_info_savings_account":"00",
+      "expedition_city":"Bogota",
+      "birth_date":"20170606",
+      "tax_info_certified":"000",
+      "tax_info_loans":"000",
+      "sequence":"000001"
     },
     {
 
-      "id": 2,
-      "name": "Juan",
-      "last_name": "Lopez",
-      "document_type": "CE",
-      "identification": 123453
+      "first_name": "Juan",
+      "middle_name": "Pedro",
+      "last_name":"Perez",
+      "second_last_name":"Garcia",
+      "client_type":"N",
+      "id_number":123456,
+      "id_type":"CC",
+      "id_expedition_date":"20170606",
+      "opening_branch":"01",
+      "expedition_city":"Bogota",
+      "birth_date":"20170606",
+      "sequence":"000001"
     }
   ]
 }
 ```
 
-This endpoint retrieves all clients. ( Data missing we need more information from core)
-
-### HTTP Request
-
-`GET https://api.bankvision.com/clients`
-
-<aside class="success">
-Remember you must be authenticated!
-</aside>
-
 ## Get a Specific Client
-
-
-```shell
-curl "https://api.bankvision.com/clients/2"
-  -H "Authorization: 6gfDsjesaHYlmn0892..."
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "client": {
-    "id": 2,
-    "name": "Max",
-    "last_name": "Doe",
-    "document_type": 'CC',
-    "identification": 10227262
-  }
-}
-```
-
-This endpoint retrieves a specific client. ( Data missing we need more information from core )
 
 ### HTTP Request
 
@@ -465,6 +558,85 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the client to retrieve
 
+### BODY Parameters
+Parameter | Description
+----------|------------
+first_name | Client First Name
+middle_name | Client Middle Name  
+last_name | Client Last Name  
+second_last_name | Client Second Last Name
+short_name | Client Short Name (Client First and Last Name)
+client_type | Type of Client
+id_number | Client Identification Number
+id_type | Client Identification Type
+id_expedition_date | Client Identification Expedition Date
+account_official | Official of the Account
+market_segment | Client Market Segment
+activity_cod  | Activity Code
+language_cod | Language Code
+opening_branch | Opening Branch
+third_party_control | Third Party Control
+tax_info_check_account | Check Account Tax Information
+tax_info_savings_account | Savings Account Tax Information
+expedition_city | Client ID Expedition City
+birth_date | Client Birth Date
+tax_info_certified | Certified Tax Information
+tax_info_loans | Loans Tax Information
+sequence | Sequence
+
+```shell
+curl "https://api.bankvision.com/clients/2"
+  -H "Authorization: 6gfDsjesaHYlmn0892..."
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "clients": [
+    {
+      "first_name": "Juan",
+      "middle_name": "Pedro",
+      "last_name":"Perez",
+      "second_last_name":"Garcia",
+      "short_name":"Juan Perez",
+      "client_type":"N",
+      "id_number":123456,
+      "id_type":"CC",
+      "id_expedition_date":"20170606",
+      "account_official":"00001",
+      "market_segment":"A",
+      "activity_cod": "00003",
+      "language_cod": "01",
+      "opening_branch":"01",
+      "third_party_control":"A",
+      "tax_info_check_account":"00",
+      "tax_info_savings_account":"00",
+      "expedition_city":"Bogota",
+      "birth_date":"20170606",
+      "tax_info_certified":"000",
+      "tax_info_loans":"000",
+      "sequence":"000001"
+    },
+    {
+
+      "first_name": "Juan",
+      "middle_name": "Pedro",
+      "last_name":"Perez",
+      "second_last_name":"Garcia",
+      "client_type":"N",
+      "id_number":123456,
+      "id_type":"CC",
+      "id_expedition_date":"20170606",
+      "opening_branch":"01",
+      "expedition_city":"Bogota",
+      "birth_date":"20170606",
+      "sequence":"000001"
+    }
+  ]
+}
+```
+
 ## Delete a Specific Client
 
 ```shell
@@ -472,7 +644,6 @@ curl "http://api.bankvision.com/clients/2"
   -X DELETE
   -H "Authorization: Jhsk789hY3jsU...."
 ```
-
 
 This endpoint delete a specific client.
 
@@ -503,45 +674,79 @@ ID | The ID of the client to update
 
 Parameter | Description
 --------- | -----------
-name | Client name
-last_name | Client last name
-document_type | Client document type
-identification | Client identification number
-phone | Client phone
+first_name | Client First Name
+middle_name | Client Middle Name  
+last_name | Client Last Name  
+second_last_name | Client Second Last Name
+short_name | Client Short Name (Client First and Last Name)
+client_type | Type of Client
+id_number | Client Identification Number
+id_type | Client Identification Type
+id_expedition_date | Client Identification Expedition Date
+account_official | Official of the Account
+market_segment | Client Market Segment
+activity_cod  | Activity Code
+language_cod | Language Code
+opening_branch | Opening Branch
+third_party_control | Third Party Control
+tax_info_check_account | Check Account Tax Information
+tax_info_savings_account | Savings Account Tax Information
+expedition_city | Client ID Expedition City
+birth_date | Client Birth Date
+tax_info_certified | Certified Tax Information
+tax_info_loans | Loans Tax Information
+sequence | Sequence
 
-This endpoint update a specific client. (Data missing we need more information from core )
-
-# Account
-## Get Accounts
-
-```shell
-curl "https://api.bankvision.com/clients/<ID>/accounts/"
-  -H "Authorization: 57hHsakGhAs524...."
-```
-
-> The above command returns JSON structured like this:
 
 ```json
 {
-  "accounts": [
+  "clients": [
     {
-      "id": 1,
-      "number": "1234555",
-      "balance": "2000",
-      "type": "S",
-      "status": "A"
+      "action": "I",
+      "first_name": "Juan",
+      "middle_name": "Pedro",
+      "last_name":"Perez",
+      "second_last_name":"Garcia",
+      "short_name":"Juan Perez",
+      "client_type":"N",
+      "id_number":123456,
+      "id_type":"CC",
+      "id_expedition_date":"20170606",
+      "account_official":"00001",
+      "market_segment":"A",
+      "activity_cod": "00003",
+      "language_cod": "01",
+      "opening_branch":"01",
+      "third_party_control":"A",
+      "tax_info_check_account":"00",
+      "tax_info_savings_account":"00",
+      "expedition_city":"Bogota",
+      "birth_date":"20170606",
+      "tax_info_certified":"000",
+      "tax_info_loans":"000",
+      "sequence":"000001"
     },
     {
 
-      "id": 2,
-      "number": "983883",
-      "balance": "90090",
-      "type": "L",
-      "status": "B"
+      "first_name": "Juan",
+      "middle_name": "Pedro",
+      "last_name":"Perez",
+      "second_last_name":"Garcia",
+      "client_type":"N",
+      "id_number":123456,
+      "id_type":"CC",
+      "id_expedition_date":"20170606",
+      "opening_branch":"01",
+      "expedition_city":"Bogota",
+      "birth_date":"20170606",
+      "sequence":"000001"
     }
   ]
 }
 ```
+
+# Account
+## Get Accounts
 
 This endpoint retrieves all accounts that belongs to a specific client. ( Data missing we need more information from core)
 
@@ -555,34 +760,88 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the client to retrive accounts
 
-## Get a Specific Account
+### BODY Parameters
+Parameter | Description
+----------|------------
+first_name | Client First Name
+middle_name | Client Middle Name  
+last_name | Client Last Name  
+second_last_name | Client Second Last Name
+short_name | Client Short Name (Client First and Last Name)
+client_type | Type of Client
+id_number | Client Identification Number
+id_type | Client Identification Type
+id_expedition_date | Client Identification Expedition Date
+account_official | Official of the Account
+market_segment | Client Market Segment
+activity_cod  | Activity Code
+language_cod | Language Code
+opening_branch | Opening Branch
+third_party_control | Third Party Control
+tax_info_check_account | Check Account Tax Information
+tax_info_savings_account | Savings Account Tax Information
+expedition_city | Client ID Expedition City
+birth_date | Client Birth Date
+tax_info_certified | Certified Tax Information
+tax_info_loans | Loans Tax Information
+sequence | Sequence
 
 
 ```shell
-curl "https://api.bankvision.com/clients/2/accounts/1"
-  -H "Authorization: 6gfDsjesaHYlmn0892..."
+curl "https://api.bankvision.com/clients/<ID>/accounts/"
+  -H "Authorization: 57hHsakGhAs524...."
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "account": {
-      "id": 2,
-      "number": "983883",
-      "balance": "90090",
-      "type": "L",
-      "status": "B",
-      "client": {
-        "id": 2,
-        "name": "Max",
-        "last_name": "Doe",
-        "document_type": 'CC',
-        "identification": 10227262
-      }
-  }
+  "accounts": [
+    {
+      "first_name": "Juan",
+      "middle_name": "Pedro",
+      "last_name":"Perez",
+      "second_last_name":"Garcia",
+      "short_name":"Juan Perez",
+      "client_type":"N",
+      "id_number":123456,
+      "id_type":"CC",
+      "id_expedition_date":"20170606",
+      "account_official":"00001",
+      "market_segment":"A",
+      "activity_cod": "00003",
+      "language_cod": "01",
+      "opening_branch":"01",
+      "third_party_control":"A",
+      "tax_info_check_account":"00",
+      "tax_info_savings_account":"00",
+      "expedition_city":"Bogota",
+      "birth_date":"20170606",
+      "tax_info_certified":"000",
+      "tax_info_loans":"000",
+      "sequence":"000001"
+    },
+    {
+
+      "first_name": "Juan",
+      "middle_name": "Pedro",
+      "last_name":"Perez",
+      "second_last_name":"Garcia",
+      "client_type":"N",
+      "id_number":123456,
+      "id_type":"CC",
+      "id_expedition_date":"20170606",
+      "opening_branch":"01",
+      "expedition_city":"Bogota",
+      "birth_date":"20170606",
+      "sequence":"000001"
+    }
+  ]
 }
 ```
+
+## Get a Specific Account
+
 
 This endpoint retrieves a specific client account. ( Data missing we need more information from core )
 
@@ -597,6 +856,84 @@ Parameter | Description
 ID | The ID of the client to retrieve
 AID | The ID of the account to retrieve
 
+### BODY Parameters
+Parameter | Description
+----------|------------
+first_name | Client First Name
+middle_name | Client Middle Name  
+last_name | Client Last Name  
+second_last_name | Client Second Last Name
+short_name | Client Short Name (Client First and Last Name)
+client_type | Type of Client
+id_number | Client Identification Number
+id_type | Client Identification Type
+id_expedition_date | Client Identification Expedition Date
+account_official | Official of the Account
+market_segment | Client Market Segment
+activity_cod  | Activity Code
+language_cod | Language Code
+opening_branch | Opening Branch
+third_party_control | Third Party Control
+tax_info_check_account | Check Account Tax Information
+tax_info_savings_account | Savings Account Tax Information
+expedition_city | Client ID Expedition City
+birth_date | Client Birth Date
+tax_info_certified | Certified Tax Information
+tax_info_loans | Loans Tax Information
+sequence | Sequence
+
+```shell
+curl "https://api.bankvision.com/clients/2/accounts/1"
+  -H "Authorization: 6gfDsjesaHYlmn0892..."
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "accounts": [
+    {
+      "first_name": "Juan",
+      "middle_name": "Pedro",
+      "last_name":"Perez",
+      "second_last_name":"Garcia",
+      "short_name":"Juan Perez",
+      "client_type":"N",
+      "id_number":123456,
+      "id_type":"CC",
+      "id_expedition_date":"20170606",
+      "account_official":"00001",
+      "market_segment":"A",
+      "activity_cod": "00003",
+      "language_cod": "01",
+      "opening_branch":"01",
+      "third_party_control":"A",
+      "tax_info_check_account":"00",
+      "tax_info_savings_account":"00",
+      "expedition_city":"Bogota",
+      "birth_date":"20170606",
+      "tax_info_certified":"000",
+      "tax_info_loans":"000",
+      "sequence":"000001"
+    },
+    {
+
+      "first_name": "Juan",
+      "middle_name": "Pedro",
+      "last_name":"Perez",
+      "second_last_name":"Garcia",
+      "client_type":"N",
+      "id_number":123456,
+      "id_type":"CC",
+      "id_expedition_date":"20170606",
+      "opening_branch":"01",
+      "expedition_city":"Bogota",
+      "birth_date":"20170606",
+      "sequence":"000001"
+    }
+  ]
+}
+```
 
 ## Update a Specific Acccount
 
@@ -612,14 +949,78 @@ ID | The ID of the account owner
 AID | The ID of the account to update
 
 ### BODY Parameters
-
 Parameter | Description
---------- | -----------
-status | Account status
-account_type | Account type
+----------|------------
+first_name | Client First Name
+middle_name | Client Middle Name  
+last_name | Client Last Name  
+second_last_name | Client Second Last Name
+short_name | Client Short Name (Client First and Last Name)
+client_type | Type of Client
+id_number | Client Identification Number
+id_type | Client Identification Type
+id_expedition_date | Client Identification Expedition Date
+account_official | Official of the Account
+market_segment | Client Market Segment
+activity_cod  | Activity Code
+language_cod | Language Code
+opening_branch | Opening Branch
+third_party_control | Third Party Control
+tax_info_check_account | Check Account Tax Information
+tax_info_savings_account | Savings Account Tax Information
+expedition_city | Client ID Expedition City
+birth_date | Client Birth Date
+tax_info_certified | Certified Tax Information
+tax_info_loans | Loans Tax Information
+sequence | Sequence
 
-This endpoint update a specific client. (Data missing we need more information from core )
+This endpoint update a specific account.
 
+```json
+{
+  "accounts": [
+    {
+      "first_name": "Juan",
+      "middle_name": "Pedro",
+      "last_name":"Perez",
+      "second_last_name":"Garcia",
+      "short_name":"Juan Perez",
+      "client_type":"N",
+      "id_number":123456,
+      "id_type":"CC",
+      "id_expedition_date":"20170606",
+      "account_official":"00001",
+      "market_segment":"A",
+      "activity_cod": "00003",
+      "language_cod": "01",
+      "opening_branch":"01",
+      "third_party_control":"A",
+      "tax_info_check_account":"00",
+      "tax_info_savings_account":"00",
+      "expedition_city":"Bogota",
+      "birth_date":"20170606",
+      "tax_info_certified":"000",
+      "tax_info_loans":"000",
+      "sequence":"000001"
+    },
+    {
+
+      "first_name": "Juan",
+      "middle_name": "Pedro",
+      "last_name":"Perez",
+      "second_last_name":"Garcia",
+      "client_type":"N",
+      "id_number":123456,
+      "id_type":"CC",
+      "id_expedition_date":"20170606",
+      "opening_branch":"01",
+      "expedition_city":"Bogota",
+      "birth_date":"20170606",
+      "sequence":"000001"
+    }
+  ]
+}
+```
 
 ## Get Balance
 
@@ -634,23 +1035,53 @@ This endpoint return the balance for the account of the client.
 
 Parameter | Description
 --------- | -----------
-ID | Client Id
-AID | Account Number
+transaction_time | Transaction Time
+transaction_date | Transaction Date
+account_number | Account Number
+origin | Transaction Origin
+terminal | Terminal
+secuence | Secuence
+account_type | Type of Account
+
+```shell
+curl "https://api.bankvision.com/clients/<ID>/accounts/balance"
+  -H "Authorization: 6gfDsjesaHYlmn0892..."
+```
 
 >The above command returns JSON structured like this:
 
 ```json
 {
+  "balance": [
+    {
+  "transaction_time":"00:06:06",
+  "transaction_date":"20170606",
+  "account_number":123456,
+  "origin":123,
+  "terminal":"10",
+  "secuence":123456,
+  "account_type":"B"
+  },
+  {
 
-  "account_id_holder":"Peter Broner",
-  "available_balance":"500",
-  "block_balance":"100",
-  "total_balance":"1000",
-  "total_exchange":"200",
-  "pending_cancel_balance":"100",
-  "message_description":"text"
+  "S005":"0001",
+  "transaction_time":"00:06:06",
+  "transaction_date":"20170606",
+  "S05A":"0001",
+  "account_number":123456,
+  "id_number":111222,
+  "available_balance":"500,00",
+  "total_balance":"500,00",
+  "terminal":"01",
+  "comision_value":"10",
+  "message_cod":10,
+  "message_desc":"text",
+  "transactional_group":"BV1",
+  "secuence":123456,
+  "account_type":"O"
+    }
+  ]
 }
-
 ```
 
 ## Get Transactions
@@ -664,13 +1095,21 @@ This endpoint return the transactions made by the client for the defined account
 ### QUERY Parameters
 Parameter | Required | Description
 ----------|----------|-------------
-page | false | Pagination: Page number
-per_page | false | Pagination: Transactions per page
-date | false | Transaction start date
-end_date | false | Trasaction end date
-trans_type | false | Transaction Type
+transaction_time | true | Pagination: Page number
+transaction_date | true | Pagination: Transactions per page
+account_origin_type | true | Transaction start date
+account_origin_number | true | Origin Account Number  
+account_target_type | true | Target Account Number Type
+account_target_number | true | Target Account Number
+transaction_amount | true | Amount of money to be transfer
+sequence | false | Sequence Number for the transaction
 
 
+
+```shell
+curl "https://api.bankvision.com/clients/<ID>/accounts/transactions"
+  -H "Authorization: 6gfDsjesaHYlmn0892..."
+```
 
 >The above command returns JSON structured like this:
 
@@ -692,26 +1131,61 @@ This endpoint create a new transfer.
 ### BODY Parameters
 Parameter | Description
 ----------|------------
-hour | Transaction hour
-time | Transaction time
-destination_account | Destination account
-amount | Transaction amount
+transaction_time | true | Pagination: Page number
+transaction_date | true | Pagination: Transactions per page
+account_origin_type | true | Transaction start date
+account_origin_number | true | Origin Account Number  
+account_target_type | true | Target Account Number Type
+account_target_number | true | Target Account Number
+transaction_amount | true | Amount of money to be transfer
+sequence | false | Sequence Number for the transaction
+
+```shell
+curl "https://api.bankvision.com/clients/<ID>/accounts/transfers"
+  -H "Authorization: 6gfDsjesaHYlmn0892..."
+```
 
 >The above command returns JSON structured like this:
 
 ```json
 {
-  "hour":"",
-  "time":"",
-  "destination_account":"",
-  "account_holder":"",
-  "amount": "",
-  "origin_balance":""
-  "transaction_id":"",
-  "message_description":""
-}
+  "transfers": [
+    {
+      "transaction_time": "06:06:00",
+      "transaction_date": "20170606",
+      "account_origin_type": "O",
+      "account_origin_number": 645789,
+      "account_target_type": "S",
+      "account_target_number":123456,
+      "transaction_amount":"500,00",
+      "sequence":123456
+    },
+    {
 
+      "transaction_time": "06:06:00",
+      "transaction_date": "20170606",
+      "account_origin_type": "O",
+      "account_origin_number": 645789,
+      "account_target_type": "S",
+      "account_target_number":123456,
+      "transaction_amount":"500,00",
+      "discount_target_number":"10",
+      "total_balance_target":"1000,00",
+      "available_balance_target":"900,00",
+      "message_cod":"10",
+      "message_desc":"lunch payment",
+      "transactional_group":"20",
+      "sequence":123456,
+      "terminal":001,
+      "comision_value":10,
+      "transaction_type":"002",
+      "origin":"R01"
+    }
+  ]
+}
 ```
+
+
 ## Create Payment
 
 This endpoint create a new payment.
@@ -723,25 +1197,41 @@ This endpoint create a new payment.
 ### BODY Parameters
 Parameter | Description
 ----------|------------
-hour | Transaction hour
-time | Transaction time
-amount | Transaction amount
+transaction_time | Transaction Hour
+transaction_date | Transaction Date
+account_number | Account Number
+transaction_amount | Amount
+
+```shell
+curl "https://api.bankvision.com/clients/<ID>/accounts/payments"
+  -H "Authorization: 6gfDsjesaHYlmn0892..."
+```
 
 >The above command returns JSON structured like this:
 
 ```json
 {
-  "hour":"",
-  "time":"",
-  "account_holder":"",
-  "amount": "",
-  "commision":""
-  "transaction_id":"",
-  "message_code":"",
-  "message_description":""
-}
+  "payments": [
+    {
+      "transaction_time": "06:06:00",
+      "transaction_date": "20170606",
+      "account_number": 646789,
+      "transaction_amount": "500,00",
+    },
+    {
 
+      "transaction_time": "06:06:00",
+      "transaction_date": "20170606",
+      "account_number": 646789,
+      "client_name": "Juan Perez",
+      "transaction_amount": "500,00",
+      "message_cod":10,
+      "message_desc":"lunch payment"
+    }
+  ]
+}
 ```
+
 ## Create a Deposit
 
 This endpoint create a new deposits.
@@ -753,25 +1243,41 @@ This endpoint create a new deposits.
 ### BODY Parameters
 Parameter | Description
 ----------|------------
-hour | Transaction hour
-time | Transaction time
-amount | Transaction amount
+transaction_time | Transaction Hour
+transaction_date | Transaction Date
+account_number | Account Number
+transaction_amount | Amount
+
+```shell
+curl "https://api.bankvision.com/clients/<ID>/accounts/deposits"
+  -H "Authorization: 6gfDsjesaHYlmn0892..."
+```
 
 >The above command returns JSON structured like this:
 
 ```json
 {
-  "hour":"",
-  "time":"",
-  "account_holder":"",
-  "amount": "",
-  "commision":""
-  "transaction_id":"",
-  "message_code":"",
-  "message_description":""
-}
+  "deposits": [
+    {
+      "transaction_time": "06:06:00",
+      "transaction_date": "20170606",
+      "account_number": 646789,
+      "transaction_amount": "500,00",
+    },
+    {
 
+      "transaction_time": "06:06:00",
+      "transaction_date": "20170606",
+      "account_number": 646789,
+      "client_name": "Juan Perez",
+      "transaction_amount": "500,00",
+      "message_cod":10,
+      "message_desc":"lunch payment"
+    }
+  ]
+}
 ```
+
 ## Create a Withdrawal
 
 This endpoint create a new withdrawal.
@@ -783,22 +1289,37 @@ This endpoint create a new withdrawal.
 ### BODY Parameters
 Parameter | Description
 ----------|------------
-hour | Transaction hour
-time | Transaction time
-amount | Transaction amount
+transaction_time | Transaction Hour
+transaction_date | Transaction Date
+account_number | Account Number
+transaction_amount | Amount
+
+```shell
+curl "https://api.bankvision.com/clients/<ID>/accounts/withdrawals"
+  -H "Authorization: 6gfDsjesaHYlmn0892..."
+```
 
 >The above command returns JSON structured like this:
 
 ```json
 {
-  "hour":"",
-  "time":"",
-  "account_holder":"",
-  "amount": "",
-  "commision":""
-  "transaction_id":"",
-  "message_code":"",
-  "message_description":""
-}
+  "withdrawals": [
+    {
+      "transaction_time": "06:06:00",
+      "transaction_date": "20170606",
+      "account_number": 646789,
+      "transaction_amount": "500,00",
+    },
+    {
 
+      "transaction_time": "06:06:00",
+      "transaction_date": "20170606",
+      "account_number": 646789,
+      "client_name": "Juan Perez",
+      "transaction_amount": "500,00",
+      "message_cod":10,
+      "message_desc":"lunch payment"
+    }
+  ]
+}
 ```
