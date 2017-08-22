@@ -4,7 +4,7 @@
 
 These constants can used to construct message bundled that are then relayed to the Emotion AI service to send and retrieve data.
 
-One example of a call to the service would be to send credentials in order to authorise a user. See <a href = "#submit-credentials-to-service-for-authorisation">"Submit Credentials to service for authorisation"</a> for an example in how these bundles are constructed.
+One example of a call to the service would be to send credentials in order to authorize a user. See <a href = "#submit-credentials-to-service-for-authorisation">"Submit Credentials to service for authorisation"</a> for an example in how these bundles are constructed.
 
 
 ### Enable Scan
