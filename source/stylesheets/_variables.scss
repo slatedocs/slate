@@ -35,9 +35,9 @@ $lang-select-bg: #222 !default;
 $lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
 $main-bg: #fff !default;
-$aside-notice-bg: lighten(#00CCEC,20%) !default;
-$aside-warning-bg: lighten(#FF2619,20%) !default;
-$aside-success-bg: lighten(#00CF9A,20%) !default;
+$aside-notice-bg: #00CCEC !default;
+$aside-warning-bg: #FF2619 !default;
+$aside-success-bg: #00CF9A !default;
 $search-notice-bg: #FF2619 !default;
 
 
@@ -95,7 +95,6 @@ $nav-active-shadow: none !default;
 $nav-footer-border-color: #666 !default;
 $nav-embossed-border-top: #000 !default;
 $nav-embossed-border-bottom: #939393 !default;
-$main-embossed-text-shadow: 0px 1px 0px #fff !default;
 $search-box-border-color: #192224 !default;
 
 
