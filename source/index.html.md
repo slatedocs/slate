@@ -860,4 +860,5 @@ You should name your placement like back office example, location _ dimension _ 
 Make sure this names match the back office configuration.
 
 <aside class="notice">After tag installation, you must create new banner <a href="https://www.adback.co/en/iab-banners/banners">here</a> for every placement that you integrate before.</aside>
+<aside class="warning">Take care that the container where you put the "data-iab-tag" div must not be blocked by adblock, otherwise no ads will be shown. Often containers with classes starting with "ad-" will be blocked.</aside>
 
