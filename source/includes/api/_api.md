@@ -18,7 +18,7 @@ An example URI:
 
 ## Authorization
 
-Sensum Emotion AI uses a combination of an API Key and AWS Signature v4 signing to authorise access to the API. You can register a new API Key by contacting us.
+Sensum Emotion AI uses a combination of an API Key and AWS Signature v4 signing to authorize access to the API. You can register a new API Key by contacting us.
 
 Sensum Emotion AI expects each call to contain the following headers to gain access: 
 
