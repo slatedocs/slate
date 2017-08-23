@@ -956,7 +956,7 @@ Retrieve all the possible users that can review an eConsult.
 ```shell
 curl -X POST
   -H "Content-Type: application/json"
-  -d '{"members":[{"uid": "JIYGN-357-5309","first_name": "Charles","last_name": "Bovary","gender": "Male","date_of_birth": "12/15/1856","email": "devoted.husband@gmail.fr","race": "Norman","phone_number": "555-555-5555","insurance": "self","location": "Tostes","valid_until": "01/15/2018"}]}' "https://rubiconmd.com/api/v1/members?access_token=AAAAAA"
+  -d '{"members":[{"uid": "JIYGN-357-5309","first_name": "Charles","last_name": "Bovary","gender": "Male","date_of_birth": "12/15/1856","email": "devoted.husband@gmail.fr","race": "Norman","phone_number": "555-555-5555","insurance": "self","location": "Tostes","valid_until": "01/15/2018"}]}' "https://rubiconmd.com/api/v1/members/upload?access_token=AAAAAA"
 ```
 
 > The above command ingests JSON structured like this:
