@@ -342,7 +342,8 @@ PATCH /projects/abcd/members/ HTTP/1.1
     "http://app.crunch.io/api/users/003/": null,
     "user@email.com": {},
     "send_notification": true,
-    "url_base": "https://app.crunch.io/password/change/${token}/"
+    "url_base": "https://app.crunch.io/password/change/${token}/",
+    "project_url": "https://app.crunch.io/${project_id}/",
   }
 }
 ```
@@ -365,6 +366,10 @@ client location where the password resetting should happen for brand new users.
 The server will replace the `${token}` part of the string with the generated
 token and will be included on the notification email as a link for the invited 
 user to configure their account in order to use the app.
+
+Additionally, to indicate the URL of the project, the client can provide a
+`project_url` key that should be formatted as a URL containing a `${project_id}`
+part that the server will replace with the project's ID.
 
 This behavior is the same as described for [inviting new users when sharing a dataset](#inviting-new-users)
 
