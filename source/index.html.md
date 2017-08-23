@@ -42,8 +42,6 @@ The API also enables organizations to update their automated test results into P
 
 We have language bindings in Shell, Ruby, Python, Java and C#! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-[Reference to old API v1 can be found here](https://www.practitest.com/help/api/api-general/).
-
 ## JSON API
 All along this api we've embraced <a href="http://jsonapi.org/" target="blank">JSON API</a> standards, for share conventions and to save you (and us) precious time.
 
