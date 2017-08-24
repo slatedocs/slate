@@ -2,7 +2,7 @@
 # Emotion AI API
 
 ## Introduction
-The Sensum Emotion AI API enables you to access our emotional intelligence platform.  Our API is designed to be RESTful, responding to HTTP requests with bodies in JSON format. All requests require that the `Content-Type: application/json` be specified.
+The Sensum Emotion AI API enables you to access our emotional intelligence platform.  Our API is designed to be RESTful, responding to HTTP requests with bodies in JSON format. All requests require that the `Content-Type: application/json` header be specified.
 The API is also cross-origin resource sharing ready.
 The Emotion AI SDK handles many of these requests and responses natively. It can however be useful to utilise the API directly.
 
@@ -41,17 +41,22 @@ Below are the metrics that the Emotion AI API can analyse and the units that the
 |-----------|----|
 |heartrate  |bpm |
 |breathingrate|bpm|
-|temperature|^o^C, assumed to be ambient/external|
-|skintemperature|^o^C|
+|temperature|<sup>o</sup>C, assumed to be ambient/external|
+|skintemperature|<sup>o</sup>C|
+|gsr| Siemens<sup>*</sup>|
 |location_latitude|deg|
 |location_longitude|deg|
 |location_altitude|m|
 |location_accuracy|or location_accuracy_h/v if available|
 |location_speed|m/s|
-|acceleration|linear acceleration in m/s2*|
-|acceleration_x|m/s2|
-|acceleration_y|m/s2|
-|acceleration_z|m/s2|
+|acceleration|linear acceleration in m/s<sup>2**</sup>|
+|acceleration_x|m/s<sup>2</sup>|
+|acceleration_y|m/s<sup>2</sup>|
+|acceleration_z|m/s<sup>2</sup>|
+
+<sup>*</sup> The GSR Conductance unit "Siemens" is the inverse of the skin resistance; some devices return GSR as resistance in Ohms and this must be converted before upload, i.e. if a device returns values in x kOhms, the conversion is 1/(1000*x)
+
+<sup>**</sup> All acceleration values should exclude gravity and be in m/s<sup>2</sup> i.e. using the userAcceleration iOS method rather than the acceleration method
 
 ## Send text data to analyse emoji and text sentiment  
 
@@ -167,6 +172,8 @@ Status|Meaning|Description
 200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|200 response
 
 ### Examples
+
+Please refer to the code samples for request and response examples 
 
 > Text Only - Unemotional
 
