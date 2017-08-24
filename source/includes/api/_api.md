@@ -88,15 +88,6 @@ API Key, Authorization.
 
 > Code samples
 
-```http
-POST https://api.sensum.co/v0/sentiment HTTP/1.1
-Host: api.sensum.co/v0
-
-  'Content-Type':'application/json',
-  'Authorization' : 'AWS Sig v4 Key',
-  'x-api-key' : 'PublicDemoKeyForDocumentation'
-```
-
 ```javascript
 var headers = {
   'Content-Type':'application/json',
@@ -266,16 +257,6 @@ This endpoint allows the user to retrieve previously entered data by providing a
 
 > Code samples
 
-```http
-GET https://api.sensum.co/v0/data/ HTTP/1.1
-Host: api.sensum.co/v0
-
-  'Content-Type':'application/json',
-  'Authorization' : 'AWS Sig v4 Key',
-  'x-api-key' : 'PublicDemoKeyForDocumentation'
-
-```
-
 ```javascript
 var headers = {
   'Content-Type':'application/json',
@@ -381,16 +362,6 @@ This endpoint allows the user to retrieve a list of available records based on t
 `GET https://api.sensum.co/data/records.json`
 
 > Code samples
-
-```http
-GET https://api.sensum.co/v0/data/records.json HTTP/1.1
-Host: api.sensum.co/v0
-
-  'Content-Type':'application/json',
-  'Authorization' : 'AWS Sig v4 Key',
-  'x-api-key' : 'PublicDemoKeyForDocumentation'
-
-```
 
 ```javascript
 var headers = {
@@ -518,16 +489,6 @@ This endpoint allows the user to retrieve a list of available metrics in the req
 
 > Code samples
 
-```http
-GET https://api.sensum.co/v0/data/metrics.json HTTP/1.1
-Host: api.sensum.co/v0
-
-  'Content-Type':'application/json',
-  'Authorization' : 'AWS Sig v4 Key',
-  'x-api-key' : 'PublicDemoKeyForDocumentation'
-
-```
-
 ```javascript
 var headers = {
   'Content-Type':'application/json',
@@ -644,15 +605,6 @@ This endpoint allows the user to retrieve a wide-format array of time series rec
 
 > Code samples
 
-```http
-GET https://api.sensum.co/v0/data/wide.json HTTP/1.1
-Host: api.sensum.co/v0
-
-  'Content-Type':'application/json',
-  'Authorization' : 'AWS Sig v4 Key',
-  'x-api-key' : 'PublicDemoKeyForDocumentation'
-
-```
 
 ```javascript
 var headers = {
@@ -756,15 +708,6 @@ This endpoint allows the user to send data to the Emotion AI service for analysi
 `POST https://api.sensum.co/v0/events`
 
 > Code samples
-
-```http
-POST https://api.sensum.co/v0/events HTTP/1.1
-Host: api.sensum.co/v0
-  'Content-Type':'application/json',
-  'Authorization' : 'AWS Sig v4 Key',
-  'x-api-key' : 'PublicDemoKeyForDocumentation'
-
-```
 
 ```javascript
 var headers = {
@@ -1001,16 +944,6 @@ This endpoint allows the user to generate a series of test data streams that can
 
 
 > Code samples
-
-```http
-GET https://api.sensum.co/v0/testdata HTTP/1.1
-Host: api.sensum.co/v0
-
-  'Content-Type':'application/json',
-  'Authorization' : 'AWS Sig v4 Key',
-  'x-api-key' : 'PublicDemoKeyForDocumentation'
-
-```
 
 ```javascript
 var headers = {
