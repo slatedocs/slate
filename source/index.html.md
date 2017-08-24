@@ -722,7 +722,7 @@ $cache->connect('host', 'port');
 $iabBannerCode = '';
 if ($cache->has('scriptElement')) {
     $scriptElements = $cache->hGetAll('scriptElement');
-    if (isset($scriptElements['iab_script'])) {
+    if (isset($scriptElements['iab_banner_script'])) {
     $iabBannerDomain = $scriptElements['iab_banner_domain'];
     $iabBannerScript = $scriptElements['iab_banner_script'];
     $iabBannerCode = <<<EOS
