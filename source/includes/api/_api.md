@@ -24,7 +24,7 @@ Sensum Emotion AI expects each call to contain the following headers to gain acc
 
  * Content-Type: `application/json`
  * Authorization: `$AWSv4Signature`
- * X-API-Key: `$YourAPIKey`
+ * X-API-Key: `$YourAPIKey(For trial usage use "PublicDemoKeyForDocumentation")`
  
 To calculate the value for the Authorization header you must calculate a hash of your request, add extra information, then add the AWS secret key in order to create a signing key and then use this to sign the request.
 To learn more about generating the Signature please read the <a href="https://docs.aws.amazon.com/general/latest/gr/signature-v4-examples.html">AWS Documentation on Signature v4</a>
@@ -92,20 +92,27 @@ API Key, Authorization.
 POST https://api.sensum.co/v0/sentiment HTTP/1.1
 Host: api.sensum.co/v0
 
-Accept: application/json
-
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 ```
 
 ```javascript
 var headers = {
-  'Accept':'application/json'
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 
+};
+
+var data = {
+  "text":"👌👌👌"
 };
 
 $.ajax({
   url: 'https://api.sensum.co/v0/sentiment',
   method: 'post',
-
+  data: JSON.stringify(data);
   headers: headers,
   success: function(data) {
     console.log(JSON.stringify(data));
@@ -117,7 +124,9 @@ $.ajax({
 const request = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 
 };
 
@@ -138,7 +147,9 @@ fetch('https://api.sensum.co/v0/sentiment',
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 }
 
 r = requests.post('https://api.sensum.co/v0/sentiment', params={
@@ -259,13 +270,18 @@ This endpoint allows the user to retrieve previously entered data by providing a
 GET https://api.sensum.co/v0/data/ HTTP/1.1
 Host: api.sensum.co/v0
 
-Accept: application/json
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 
 ```
 
 ```javascript
 var headers = {
-  'Accept':'application/json'
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
+
 
 };
 
@@ -284,7 +300,9 @@ $.ajax({
 const request = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 
 };
 
@@ -304,7 +322,9 @@ fetch('https://api.sensum.co/v0/data/',
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 }
 
 r = requests.get('https://api.sensum.co/v0/data/', params={
@@ -362,13 +382,17 @@ This endpoint allows the user to retrieve a list of available records based on t
 GET https://api.sensum.co/v0/data/records.json HTTP/1.1
 Host: api.sensum.co/v0
 
-Accept: application/json
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 
 ```
 
 ```javascript
 var headers = {
-  'Accept':'application/json'
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 
 };
 
@@ -387,8 +411,9 @@ $.ajax({
 const request = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 };
 
 fetch('https://api.sensum.co/v0/data/records.json',
@@ -407,7 +432,9 @@ fetch('https://api.sensum.co/v0/data/records.json',
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 }
 
 r = requests.get('https://api.sensum.co/v0/data/records.json', params={
@@ -486,13 +513,17 @@ This endpoint allows the user to retreive a list of available metrics in the req
 GET https://api.sensum.co/v0/data/metrics.json HTTP/1.1
 Host: api.sensum.co/v0
 
-Accept: application/json
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 
 ```
 
 ```javascript
 var headers = {
-  'Accept':'application/json'
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 
 };
 
@@ -511,7 +542,9 @@ $.ajax({
 const request = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 
 };
 
@@ -531,7 +564,9 @@ fetch('https://api.sensum.co/v0/data/metrics.json',
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 }
 
 r = requests.get('https://api.sensum.co/v0/data/metrics.json', params={
@@ -599,13 +634,17 @@ This endpoint allows the user to retrieve a wide-format array of time series rec
 GET https://api.sensum.co/v0/data/wide.json HTTP/1.1
 Host: api.sensum.co/v0
 
-Accept: application/json
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 
 ```
 
 ```javascript
 var headers = {
-  'Accept':'application/json'
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 
 };
 
@@ -624,7 +663,9 @@ $.ajax({
 const request = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
+   'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 
 };
 
@@ -644,7 +685,9 @@ fetch('https://api.sensum.co/v0/data/wide.json',
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 }
 
 r = requests.get('https://api.sensum.co/v0/data/wide.json', params={
@@ -703,22 +746,71 @@ This endpoint allows the user to send data to the Emotion AI service for analysi
 ```http
 POST https://api.sensum.co/v0/events HTTP/1.1
 Host: api.sensum.co/v0
-Content-Type: application/json
-Accept: application/json
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 
 ```
 
 ```javascript
 var headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
+  'Authorization': 'AWS_Sig v4 Key',
+  'x-api-key': 'Public'
 
 };
+
+var data = {
+    "records": {
+      "heartrate": [
+        {
+          "time": 1502807187332,
+          "value": 111.77347523527911
+        },
+        {
+          "time": 1502807188332,
+          "value": 112.89604978090439
+        },
+        {
+          "time": 1502807189332,
+          "value": 112.37719504311998
+        },
+        {
+          "time": 1502807190332,
+          "value": 113.68469103590627
+        },
+        {
+          "time": 1502807191332,
+          "value": 113.67799449012763
+        },
+        {
+          "time": 1502807192332,
+          "value": 112.71988545819869
+        },
+        {
+          "time": 1502807193332,
+          "value": 113.05775062793727
+        },
+        {
+          "time": 1502807194332,
+          "value": 114.53499763344529
+        },
+        {
+          "time": 1502807195332,
+          "value": 115.4964191594706
+        },
+        {
+          "time": 1502807196332,
+          "value": 115.31744641217797
+        }
+      ]
+    }
+  }; 
 
 $.ajax({
   url: 'https://api.sensum.co/v0/events',
   method: 'post',
-
+  data: JSON.stringify(data),
   headers: headers,
   success: function(data) {
     console.log(JSON.stringify(data));
@@ -734,7 +826,8 @@ const inputBody = '{
 }';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 
 };
 
@@ -754,8 +847,9 @@ fetch('https://api.sensum.co/v0/events',
 ```python
 import requests
 headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Content-Type':'application/json',,
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 }
 
 r = requests.post('https://api.sensum.co/v0/events', params={
@@ -898,13 +992,17 @@ This endpoint allows the user to generate a series of test data streams that can
 GET https://api.sensum.co/v0/testdata HTTP/1.1
 Host: api.sensum.co/v0
 
-Accept: application/json
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 
 ```
 
 ```javascript
 var headers = {
-  'Accept':'application/json'
+   'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 
 };
 
@@ -923,7 +1021,9 @@ $.ajax({
 const request = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 
 };
 
@@ -943,7 +1043,9 @@ fetch('https://api.sensum.co/v0/testdata',
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Content-Type':'application/json',
+  'Authorization' : 'AWS Sig v4 Key',
+  'x-api-key' : 'PublicDemoKeyForDocumentation'
 }
 
 r = requests.get('https://api.sensum.co/v0/testdata', params={
