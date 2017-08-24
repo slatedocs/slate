@@ -7,7 +7,7 @@ language_tabs:
   - java: Java
 
 toc_footers:
-  - <a href='https://sensum-staging.preview.sensum.co/'>Sign Up for a Developer Key</a>
+  - <a href='https://www.sensum.co/'>Sign Up for a Developer Key</a>
   - <a href='#'>Documentation Powered by Slate</a>
 
 includes:

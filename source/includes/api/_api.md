@@ -39,7 +39,7 @@ Below are the metrics that the Emotion AI API can analyse and the units that the
 
 |Metric Name|Unit|
 |-----------|----|
-|heartrate  |bpm |
+|heartrate|bpm |
 |breathingrate|bpm|
 |temperature|<sup>o</sup>C, assumed to be ambient/external|
 |skintemperature|<sup>o</sup>C|
@@ -121,10 +121,15 @@ const headers = {
 
 };
 
+var data = {
+  "text":"👌👌👌"
+};
+
+
 fetch('https://api.sensum.co/v0/sentiment',
 {
   method: 'POST',
-
+  body : body, 
   headers: headers
 })
 .then(function(res) {
@@ -157,6 +162,9 @@ print r.json()
 URL obj = new URL("https://api.sensum.co/v0/sentiment");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("POST");
+con.setRequestProperty( 'Content-Type':'application/json');
+con.setRequestProperty('Authorization' : 'AWS Sig v4 Key');
+con.setRequestProperty('x-api-key' : 'PublicDemoKeyForDocumentation);
 int responseCode = con.getResponseCode();
 BufferedReader in = new BufferedReader(
     new InputStreamReader(con.getInputStream()));
@@ -294,7 +302,7 @@ const headers = {
 
 };
 
-fetch('https://api.sensum.co/v0/data/',
+fetch('https://api.sensum.co/v0/data/?start=2017-08-15&end=2017-08-25&metrics=['heartrate','breathingrate']',
 {
   method: 'get',
 
@@ -331,6 +339,9 @@ print r.json()
 URL obj = new URL("https://api.sensum.co/v0/data/");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("get");
+con.setRequestProperty( 'Content-Type':'application/json');
+con.setRequestProperty('Authorization' : 'AWS Sig v4 Key');
+con.setRequestProperty('x-api-key' : 'PublicDemoKeyForDocumentation);
 int responseCode = con.getResponseCode();
 BufferedReader in = new BufferedReader(
     new InputStreamReader(con.getInputStream()));
@@ -404,7 +415,7 @@ const headers = {
   'x-api-key' : 'PublicDemoKeyForDocumentation'
 };
 
-fetch('https://api.sensum.co/v0/data/records.json',
+fetch('https://api.sensum.co/v0/data/records.json?start=2017-08-15&end=2017-08-25&metrics=['heartrate','breathingrate']',
 {
   method: 'get',
 
@@ -439,9 +450,12 @@ print r.json()
 ```
 
 ```java
-URL obj = new URL("https://api.sensum.co/v0/data/records.json");
+URL obj = new URL("https://api.sensum.co/v0/data/records.json?start=2017-08-15&end=2017-08-25&metrics=['heartrate','breathingrate']");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("get");
+con.setRequestProperty( 'Content-Type':'application/json');
+con.setRequestProperty('Authorization' : 'AWS Sig v4 Key');
+con.setRequestProperty('x-api-key' : 'PublicDemoKeyForDocumentation);
 int responseCode = con.getResponseCode();
 BufferedReader in = new BufferedReader(
     new InputStreamReader(con.getInputStream()));
@@ -537,13 +551,7 @@ const headers = {
 
 };
 
-var params = {
-	'start' : '2017-08-15',
-	'end' : '2017-08-25',
-	'metrics' : ['heartrate','breathingrate']
-};
-
-fetch('https://api.sensum.co/v0/data/metrics.json',
+fetch('https://api.sensum.co/v0/data/metrics.json?start=2017-08-15&end=2017-08-25&metrics=['heartrate','breathingrate']',
 {
   method: 'get',
 
@@ -577,9 +585,12 @@ print r.json()
 ```
 
 ```java
-URL obj = new URL("https://api.sensum.co/v0/data/metrics.json");
+URL obj = new URL("https://api.sensum.co/v0/data/metrics.json?start=2017-08-15&end=2017-08-25&metrics=['heartrate','breathingrate']");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("get");
+con.setRequestProperty( 'Content-Type':'application/json');
+con.setRequestProperty('Authorization' : 'AWS Sig v4 Key');
+con.setRequestProperty('x-api-key' : 'PublicDemoKeyForDocumentation);
 int responseCode = con.getResponseCode();
 BufferedReader in = new BufferedReader(
     new InputStreamReader(con.getInputStream()));
@@ -667,7 +678,7 @@ const headers = {
 
 };
 
-fetch('https://api.sensum.co/v0/data/wide.json',
+fetch('https://api.sensum.co/v0/data/wide.json?start=2017-08-15&end=2017-08-25&metrics=['heartrate','breathingrate']',
 {
   method: 'get',
 
@@ -701,10 +712,13 @@ print r.json()
 ```
 
 ```java
-URL obj = new URL("https://api.sensum.co/v0/data/wide.json");
+URL obj = new URL("https://api.sensum.co/v0/data/wide.json?start=2017-08-15&end=2017-08-25&metrics=['heartrate','breathingrate']");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("get");
 int responseCode = con.getResponseCode();
+con.setRequestProperty( 'Content-Type':'application/json');
+con.setRequestProperty('Authorization' : 'AWS Sig v4 Key');
+con.setRequestProperty('x-api-key' : 'PublicDemoKeyForDocumentation);
 BufferedReader in = new BufferedReader(
     new InputStreamReader(con.getInputStream()));
 String inputLine;
@@ -946,6 +960,9 @@ print r.json()
 URL obj = new URL("https://api.sensum.co/v0/events");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("POST");
+con.setRequestProperty( 'Content-Type':'application/json');
+con.setRequestProperty('Authorization' : 'AWS Sig v4 Key');
+con.setRequestProperty('x-api-key' : 'PublicDemoKeyForDocumentation);
 int responseCode = con.getResponseCode();
 BufferedReader in = new BufferedReader(
     new InputStreamReader(con.getInputStream()));
@@ -1112,7 +1129,7 @@ var params = {
 	'values' : ['heartrate']
 };
 
-fetch('https://api.sensum.co/v0/testdata',
+fetch('https://api.sensum.co/v0/testdata?n=10&freq=1&values=['heartrate']',
 {
   method: 'GET',
   data: params,
@@ -1145,9 +1162,12 @@ print r.json()
 ```
 
 ```java
-URL obj = new URL("https://api.sensum.co/v0/testdata");
+URL obj = new URL("https://api.sensum.co/v0/testdata?n=10&freq=1&values=['heartrate']");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
+con.setRequestProperty( 'Content-Type':'application/json');
+con.setRequestProperty('Authorization' : 'AWS Sig v4 Key');
+con.setRequestProperty('x-api-key' : 'PublicDemoKeyForDocumentation);
 int responseCode = con.getResponseCode();
 BufferedReader in = new BufferedReader(
     new InputStreamReader(con.getInputStream()));
