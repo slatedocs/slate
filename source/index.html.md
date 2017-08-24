@@ -578,7 +578,7 @@ Back office configuration example:
 
 ![Autopromo perimeter](/images/autopromo_placement.png)
 
-### placement naming:
+### Placement naming:
 
 You should name your placement like back office example, location _ dimension _ campaign promo name,
 
@@ -851,7 +851,7 @@ placement | Yes | Variable you must set to display one banner, data-iab-tag take
 
 Back office configuration example:
 
-### placement naming:
+### Placement naming:
 
 You should name your placement like back office example, location _ dimension _ campaign promo name,
 
@@ -861,4 +861,35 @@ Make sure this names match the back office configuration.
 
 <aside class="notice">After tag installation, you must create new banner <a href="https://www.adback.co/en/iab-banners/banners">here</a> for every placement that you integrate before.</aside>
 <aside class="warning">Take care that the container where you put the "data-iab-tag" div must not be blocked by adblock, otherwise no ads will be shown. Often containers with classes starting with "ad-" will be blocked.</aside>
+
+### Wordpress placement creation
+
+You can either modify the source code of your Wordpress template if you feel confident with it, and add the placement where you want:
+`<div data-iab-tag='side_300x250_actu'></div>`
+(Change the placement name of course)
+
+Or you can create a new widget in your backoffice
+
+* Go to the widgets management page from your Dashboard or Menu
+
+![Widgets management](/images/wp_widgets_management.png)
+
+![Widgets management meny](/images/wp_widgets_management_2.png)
+
+* Select "Custom HTML"
+
+![Custom HTML](/images/wp_widgets_custom_html.png)
+
+* Depending on your wordpress template, select where you want the ad to appear, and click on "Add Widget"
+
+![Widget location](/images/wp_widgets_location.png)
+
+* Enter your placement code in the content, leave title blank and click "Save". Your placement code should look like this: 
+`<div data-iab-tag='side_300x250_actu'></div>`
+(Change the placement name of course)
+
+![Widget placement_code](/images/wp_widgets_placement_code.png)
+
+* Your ad should appear shortly after where you defined it.
+
 
