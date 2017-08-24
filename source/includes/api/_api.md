@@ -143,9 +143,12 @@ headers = {
   'x-api-key' : 'PublicDemoKeyForDocumentation'
 }
 
-r = requests.post('https://api.sensum.co/v0/sentiment', params={
 
-}, headers = headers)
+data = {
+  "text":"👌👌👌"
+}
+
+r = requests.post('https://api.sensum.co/v0/sentiment', data=data, headers = headers)
 
 print r.json()
 ```
@@ -312,9 +315,14 @@ headers = {
   'x-api-key' : 'PublicDemoKeyForDocumentation'
 }
 
-r = requests.get('https://api.sensum.co/v0/data/', params={
+params = {
+	'start' : '2017-08-15',
+	'end' : '2017-08-25',
+	'metrics' : ['heartrate','breathingrate']
+}
 
-}, headers = headers)
+
+r = requests.get('https://api.sensum.co/v0/data/', params = params, headers = headers)
 
 print r.json()
 ```
@@ -417,9 +425,15 @@ headers = {
   'x-api-key' : 'PublicDemoKeyForDocumentation'
 }
 
-r = requests.get('https://api.sensum.co/v0/data/records.json', params={
 
-}, headers = headers)
+params = {
+	'start' : '2017-08-15',
+	'end' : '2017-08-25',
+	'metrics' : ['heartrate','breathingrate']
+}
+
+
+r = requests.get('https://api.sensum.co/v0/data/records.json', params = params, headers = headers)
 
 print r.json()
 ```
@@ -523,6 +537,12 @@ const headers = {
 
 };
 
+var params = {
+	'start' : '2017-08-15',
+	'end' : '2017-08-25',
+	'metrics' : ['heartrate','breathingrate']
+};
+
 fetch('https://api.sensum.co/v0/data/metrics.json',
 {
   method: 'get',
@@ -544,9 +564,14 @@ headers = {
   'x-api-key' : 'PublicDemoKeyForDocumentation'
 }
 
-r = requests.get('https://api.sensum.co/v0/data/metrics.json', params={
+params = {
+	'start' : '2017-08-15',
+	'end' : '2017-08-25',
+	'metrics' : ['heartrate','breathingrate']
+};
 
-}, headers = headers)
+
+r = requests.get('https://api.sensum.co/v0/data/metrics.json', params= params, headers = headers)
 
 print r.json()
 ```
@@ -614,10 +639,17 @@ var headers = {
 
 };
 
+var params = {
+	'start' : '2017-08-15',
+	'end' : '2017-08-25',
+	'metrics' : ['heartrate','breathingrate']
+};
+
+
 $.ajax({
   url: 'https://api.sensum.co/v0/data/wide.json',
   method: 'get',
-
+  data: params,
   headers: headers,
   success: function(data) {
     console.log(JSON.stringify(data));
@@ -656,9 +688,14 @@ headers = {
   'x-api-key' : 'PublicDemoKeyForDocumentation'
 }
 
-r = requests.get('https://api.sensum.co/v0/data/wide.json', params={
+params = {
+	'start' : '2017-08-15',
+	'end' : '2017-08-25',
+	'metrics' : ['heartrate','breathingrate']
+};
 
-}, headers = headers)
+
+r = requests.get('https://api.sensum.co/v0/data/wide.json', params = params, headers = headers)
 
 print r.json()
 ```
@@ -778,9 +815,52 @@ $.ajax({
 ```javascript--nodejs
 const request = require('node-fetch');
 const inputBody = '{
-  "records": {},
-  "events": {}
-}';
+    "records": {
+      "heartrate": [
+        {
+          "time": 1502807187332,
+          "value": 111.77347523527911
+        },
+        {
+          "time": 1502807188332,
+          "value": 112.89604978090439
+        },
+        {
+          "time": 1502807189332,
+          "value": 112.37719504311998
+        },
+        {
+          "time": 1502807190332,
+          "value": 113.68469103590627
+        },
+        {
+          "time": 1502807191332,
+          "value": 113.67799449012763
+        },
+        {
+          "time": 1502807192332,
+          "value": 112.71988545819869
+        },
+        {
+          "time": 1502807193332,
+          "value": 113.05775062793727
+        },
+        {
+          "time": 1502807194332,
+          "value": 114.53499763344529
+        },
+        {
+          "time": 1502807195332,
+          "value": 115.4964191594706
+        },
+        {
+          "time": 1502807196332,
+          "value": 115.31744641217797
+        }
+      ]
+    }
+  } 
+';
 const headers = {
   'Content-Type':'application/json',
   'Authorization' : 'AWS Sig v4 Key',
@@ -809,9 +889,55 @@ headers = {
   'x-api-key' : 'PublicDemoKeyForDocumentation'
 }
 
-r = requests.post('https://api.sensum.co/v0/events', params={
+data = {
+    "records": {
+      "heartrate": [
+        {
+          "time": 1502807187332,
+          "value": 111.77347523527911
+        },
+        {
+          "time": 1502807188332,
+          "value": 112.89604978090439
+        },
+        {
+          "time": 1502807189332,
+          "value": 112.37719504311998
+        },
+        {
+          "time": 1502807190332,
+          "value": 113.68469103590627
+        },
+        {
+          "time": 1502807191332,
+          "value": 113.67799449012763
+        },
+        {
+          "time": 1502807192332,
+          "value": 112.71988545819869
+        },
+        {
+          "time": 1502807193332,
+          "value": 113.05775062793727
+        },
+        {
+          "time": 1502807194332,
+          "value": 114.53499763344529
+        },
+        {
+          "time": 1502807195332,
+          "value": 115.4964191594706
+        },
+        {
+          "time": 1502807196332,
+          "value": 115.31744641217797
+        }
+      ]
+    }
+  } 
 
-}, headers = headers)
+
+r = requests.post('https://api.sensum.co/v0/events', params = data, headers = headers)
 
 print r.json()
 ```
@@ -957,7 +1083,7 @@ var params = {
 	'n' : '10',
 	'freq' : '1',
 	'values' : ['heartrate']
-}
+};
 
 $.ajax({
   url: 'https://api.sensum.co/v0/testdata',
@@ -980,10 +1106,16 @@ const headers = {
 
 };
 
+var params = {
+	'n' : '10',
+	'freq' : '1',
+	'values' : ['heartrate']
+};
+
 fetch('https://api.sensum.co/v0/testdata',
 {
   method: 'GET',
-
+  data: params,
   headers: headers
 })
 .then(function(res) {
@@ -1001,9 +1133,13 @@ headers = {
   'x-api-key' : 'PublicDemoKeyForDocumentation'
 }
 
-r = requests.get('https://api.sensum.co/v0/testdata', params={
+params = {
+	'n' : '10',
+	'freq' : '1',
+	'values' : ['heartrate']
+}
 
-}, headers = headers)
+r = requests.get('https://api.sensum.co/v0/testdata', params = params, headers = headers)
 
 print r.json()
 ```
