@@ -159,6 +159,10 @@ print r.json()
 ```
 
 ```java
+
+JSON data = {
+  "text":"👌👌👌"
+};
 URL obj = new URL("https://api.sensum.co/v0/sentiment");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("POST");
@@ -168,7 +172,7 @@ con.setRequestProperty('x-api-key' : 'PublicDemoKeyForDocumentation);
 int responseCode = con.getResponseCode();
 BufferedReader in = new BufferedReader(
     new InputStreamReader(con.getInputStream()));
-String inputLine;
+String inputLine = data.toString();
 StringBuffer response = new StringBuffer();
 while ((inputLine = in.readLine()) != null) {
     response.append(inputLine);
@@ -302,7 +306,7 @@ const headers = {
 
 };
 
-fetch('https://api.sensum.co/v0/data/?start=2017-08-15&end=2017-08-25&metrics=['heartrate','breathingrate']',
+fetch('https://api.sensum.co/v0/data?start=2017-08-15&end=2017-08-25&metrics=['heartrate','breathingrate']',
 {
   method: 'get',
 
@@ -336,7 +340,7 @@ print r.json()
 ```
 
 ```java
-URL obj = new URL("https://api.sensum.co/v0/data/");
+URL obj = new URL("https://api.sensum.co/v0/data?start=2017-08-15&end=2017-08-25&metrics=['heartrate','breathingrate']');
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("get");
 con.setRequestProperty( 'Content-Type':'application/json');
@@ -957,6 +961,54 @@ print r.json()
 ```
 
 ```java
+
+JSONObject data = {
+    "records": {
+      "heartrate": [
+        {
+          "time": 1502807187332,
+          "value": 111.77347523527911
+        },
+        {
+          "time": 1502807188332,
+          "value": 112.89604978090439
+        },
+        {
+          "time": 1502807189332,
+          "value": 112.37719504311998
+        },
+        {
+          "time": 1502807190332,
+          "value": 113.68469103590627
+        },
+        {
+          "time": 1502807191332,
+          "value": 113.67799449012763
+        },
+        {
+          "time": 1502807192332,
+          "value": 112.71988545819869
+        },
+        {
+          "time": 1502807193332,
+          "value": 113.05775062793727
+        },
+        {
+          "time": 1502807194332,
+          "value": 114.53499763344529
+        },
+        {
+          "time": 1502807195332,
+          "value": 115.4964191594706
+        },
+        {
+          "time": 1502807196332,
+          "value": 115.31744641217797
+        }
+      ]
+    }
+  }; 
+
 URL obj = new URL("https://api.sensum.co/v0/events");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("POST");
@@ -966,7 +1018,7 @@ con.setRequestProperty('x-api-key' : 'PublicDemoKeyForDocumentation);
 int responseCode = con.getResponseCode();
 BufferedReader in = new BufferedReader(
     new InputStreamReader(con.getInputStream()));
-String inputLine;
+String inputLine = data.toString();
 StringBuffer response = new StringBuffer();
 while ((inputLine = in.readLine()) != null) {
     response.append(inputLine);
