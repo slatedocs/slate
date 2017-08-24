@@ -281,14 +281,18 @@ var headers = {
   'Content-Type':'application/json',
   'Authorization' : 'AWS Sig v4 Key',
   'x-api-key' : 'PublicDemoKeyForDocumentation'
+};
 
-
+var params = {
+	'start' : '2017-08-15',
+	'end' : '2017-08-25',
+	'metrics' : ['heartrate','breathingrate']
 };
 
 $.ajax({
   url: 'https://api.sensum.co/v0/data/',
   method: 'get',
-
+  data : params, 
   headers: headers,
   success: function(data) {
     console.log(JSON.stringify(data));
@@ -354,7 +358,7 @@ System.out.println(response.toString());
 
 Parameter|Type|Required|Description
 ---|---|---|---|
-start|string|true|Datetime compatible start time for query
+start|string|true|<a href = http://www.cl.cam.ac.uk/~mgk25/iso-time.html> Datetime compatible</a> start time for query
 end|string|true|End time for query
 metrics|string|true|List of strings of requested metrics
 
@@ -393,13 +397,18 @@ var headers = {
   'Content-Type':'application/json',
   'Authorization' : 'AWS Sig v4 Key',
   'x-api-key' : 'PublicDemoKeyForDocumentation'
+};
 
+var params = {
+	'start' : '2017-08-15',
+	'end' : '2017-08-25',
+	'metrics' : ['heartrate','breathingrate']
 };
 
 $.ajax({
   url: 'https://api.sensum.co/v0/data/records.json',
   method: 'get',
-
+  data: 'params',
   headers: headers,
   success: function(data) {
     console.log(JSON.stringify(data));
@@ -502,7 +511,7 @@ X-API-Key, Authorization
 
 ## Retrieve available metrics
 
-This endpoint allows the user to retreive a list of available metrics in the requested records.
+This endpoint allows the user to retrieve a list of available metrics in the requested records.
 
 ### HTTP Request
 `GET https://api.sensum.co/v0/data/metrics.json`
@@ -524,13 +533,18 @@ var headers = {
   'Content-Type':'application/json',
   'Authorization' : 'AWS Sig v4 Key',
   'x-api-key' : 'PublicDemoKeyForDocumentation'
+};
 
+var params = {
+	'start' : '2017-08-15',
+	'end' : '2017-08-25',
+	'metrics' : ['heartrate','breathingrate']
 };
 
 $.ajax({
   url: 'https://api.sensum.co/v0/data/metrics.json',
   method: 'get',
-
+  data: params,
   headers: headers,
   success: function(data) {
     console.log(JSON.stringify(data));
@@ -1006,10 +1020,16 @@ var headers = {
 
 };
 
+var params = {
+	'n' : '10',
+	'freq' : '1',
+	'values' : ['heartrate']
+}
+
 $.ajax({
   url: 'https://api.sensum.co/v0/testdata',
   method: 'get',
-
+  data : params,
   headers: headers,
   success: function(data) {
     console.log(JSON.stringify(data));
