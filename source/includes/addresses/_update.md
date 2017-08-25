@@ -56,13 +56,14 @@ This endpoint updates an address.
 
 ### HTTP Request
 
-`PATCH https://api.dirtylemon.com/v1/addresses/:address_id`
+`PATCH https://api.dirtylemon.com/v1/addresses/:address_id?validate=true`
 
 ### Path params
 
-| Parameter | Required | Description |
-| --------- | -------- | ------------|
-| address_id | yes |  |
+| Parameter  | Required | Description |
+| ---------- | -------- | ------------|
+| address_id | yes      |             |
+| validate   | no       | To validate the address or not, defaults to `true`. |
 
 ### Body params
 
