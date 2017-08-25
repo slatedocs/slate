@@ -11,7 +11,7 @@ At present these can be switched on and off independently. Every SDK managed obj
 * Recording: Data updates will be stored only. If you do not turn on updates no data can be recorded as updates will not be read.
 * Sending To API: Data updates will be recorded and sent to the Emotion AI service.
 
-> Protocol Code
+> Protocol Code - SDK written in Swift 3
 
 ```swift
 import foundation
