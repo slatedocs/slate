@@ -82,12 +82,11 @@ HTTP/1.1 201 CREATED
 }
 ```
 
-With `confirmation`:
+With `confirmation == false`:
 
-  - Creates an unconfirmed customer
-  - Generates a confirmation token
+  - Creates a unconfirmed customer
 
-Without `confirmation`:
+With `confirmation == true`:
 
   - Creates a confirmed customer
   - A `unconfirmed_phone_number` attribute must be present
@@ -95,13 +94,19 @@ Without `confirmation`:
 
 ### HTTP Request
 
-`POST https://api.dirtylemon.com/v1/customers`
+`POST https://api.dirtylemon.com/v1/customers?confirmation=false`
+
+
+### Path params
+
+| Parameter      | Required | Description |
+| -------------- | -------- | ------------|
+| confirmation   | no       | To create a confirmed customer or not, defaults to `false`. |
 
 ### Body params
 
 | Parameter | Required | Description |
 | --------- | -------- | ------------|
-| confirmation | no | Wether or not to perform the confirmation flow. Default to `true` |
 | unconfirmed_phone_number | no | Unique phone number |
 | first_name | no |  |
 | last_name | no |  |
