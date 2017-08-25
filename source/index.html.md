@@ -1,14 +1,12 @@
 ---
 title: 'Sensum Emotion AI API & SDK Reference'
 language_tabs:
-  - http: HTTP
   - javascript: JavaScript
   - javascript--nodejs: Node.JS
   - python: Python
-  - java: Java
 
 toc_footers:
-  - <a href='https://sensum-staging.preview.sensum.co/'>Sign Up for a Developer Key</a>
+  - <a href='https://www.sensum.co/'>Sign Up for a Developer Key</a>
   - <a href='#'>Documentation Powered by Slate</a>
 
 includes:
