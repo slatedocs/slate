@@ -31,7 +31,7 @@ public protocol SDKModuleCommandProtocol {
 
 ## Authentication
 
-To get started working with the Sensum SDK manager you’re going to need a valid Authentication session. Create an instance of this object and give it valid sign in details
+To get started working with the Sensum SDK manager you’re going to need a valid Authentication session. Create an instance of this object and give it valid sign in details. When using third-party login providers you must provide us with an Audience ID. In the case of Google Sign-In, you must provide use with the Google Applications Client ID. You can find this id contained inside the plist configfuration file generated when you set up the login application. For more details please read Google's documentation <a href="https://developers.google.com/identity/sign-in/ios/start-integrating"> here</a>.
 
 ### Initialisation
 

@@ -343,7 +343,7 @@ Connection made to the service. Once bound to the service, the binder object is 
     };
 ```
 
-## Submit Credentials to service for authorisation 
+## Submit Credentials to service for authorisation (Cognito User Pools) 
 
 `void submit()`
 
@@ -362,6 +362,29 @@ Sets up the credential bundle to be sent to the SDK service this needs to be sen
         bundle.putString(AUTH_TOKEN, "authToken");
         sendToService(bundle, LOGIN);
     }
+```
+
+## Submit Credentials to service for authorisation (Google Sign-In)
+
+Follow Google's <a href = "https://developers.google.com/identity/sign-in/android/start-integrating">instructions</a> to add Google sign in to your application.
+
+Once successfully implemented you must send the Google Id token for the Google Sign In application to us
+
+`void submit()`
+
+Sets up the credential bundle to be sent to the SDK service this needs to be sent first to the SDK service as only authenticated users can use the service
+
+
+
+```java
+    void submit() {
+       Bundle bundle = new Bundle();
+            bundle.putString(API_BASEURL, apiBaseUrl);
+            bundle.putString(API_KEY, apiKey);
+            bundle.putString(IDENTITY_POOL_ID, identityPoolId);
+            bundle.putString(GOOGLE_ID_TOKEN, googleIdToken);
+            bundle.putString(GOOGLE_WEB_CLIENT_ID, googleWebClientId);
+            sendToService(bundle, GOOGLE_LOGIN);
 ```
 
 ## Send a data message to the service 
