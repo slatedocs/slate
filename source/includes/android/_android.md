@@ -80,7 +80,7 @@ This is used to pass the password for authentication to the SDK service
 ### Wear HR Value
 `public static final String WEAR_HR_VALUE = "wear-hr-value"`
 
-This is used to pass the Heart Rate value captured using java Wear to the SDK service
+This is used to pass the Heart Rate value captured using Android Wear to the SDK service
 
 ### Text Message
 `public static final String TEXT_MESSAGE = "text-message"`
