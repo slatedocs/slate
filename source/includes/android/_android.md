@@ -15,7 +15,7 @@ This passes a message of enabling scan for the devices to the SDK service
 ### Device List
 `public static final String DEVICE_LIST = "device-list"`
 
-This is used to get list of scan devices
+This is used to get a list of scanned devices
 
 ### Request
 `public static final String REQUEST = "send-request"`
