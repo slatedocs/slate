@@ -56,7 +56,7 @@ These should all have been provided to you by Sensum when you requested API acce
 
 ### Federated sign in 
 
-In order to authenticate you must sign in using Google Sign-in. The n use this function to sign in to the SDK.
+In order to authenticate you must sign in using Google Sign-in. Once this has been implemented, use this function to sign in to access the Emotion AI service.
 
 `authenticationCommandObj.federatedSignIn()`  
 
@@ -80,7 +80,7 @@ All available commands for configuring and enabling API communication
 
 `apiCommand.setServerRequestRate(requestRateInSeconds)`
 
-Set how frequently uploads occur to the server.
+Set how frequently data is uploaded to the server.
 
 ### Parameters
 
@@ -232,7 +232,7 @@ Stop recording the updates of any connected heart rate peripheral
 
 Start sending the updates of any connected heart rate peripheral to the Emotion AI service
 
-###Stop Sending to Emotion AI Service
+### Stop Sending to Emotion AI Service
 
 `bluetoothCommand.stopSendingToAPI()`
 

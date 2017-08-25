@@ -4,7 +4,7 @@
 
 These constants can used to construct message bundled that are then relayed to the Emotion AI service to send and retrieve data.
 
-One example of a call to the service would be to send credentials in order to authorize a user. See <a href = "#submit-credentials-to-service-for-authorisation">"Submit Credentials to service for authorisation"</a> for an example in how these bundles are constructed.
+One example of a call to the service would be to send credentials in order to authorize a user. See <a href = "#submit-credentials-to-service-for-authorization">"Submit Credentials to service for authorization"</a> for an example in how these bundles are constructed.
 
 
 ### Enable Scan
@@ -45,9 +45,9 @@ This is used to pass a message from the SDK service which is used as an intent f
 ### GPS Filter
 `public static final String GPS_FILTER = "gps-filter"`
 
-This is used to pass a message from the SDK service which is used as an intent filter at the front end for receiving the gps values
+This is used to pass a message from the SDK service which is used as an intent filter at the front end for receiving the GPS values
 
-### Acelerometer Filter
+### Accelerometer Filter
 `public static final String ACC_FILTER = "acc-filter"`
 
 This is used to pass a message from the SDK service which is used as an intent filter at the front end for receiving the accelerometer values
@@ -105,32 +105,32 @@ This is used to pass the captured accelerometer z value
 ### Speed Value
 `public static final String SPEED_VALUE = "speed-value"`
 
-This is used to pass the captured gps speed value
+This is used to pass the captured GPS speed value
 
 ### Latitude Value
 `public static final String LATITUDE_VALUE = "latitude-value"`
 
-This is used to pass the captured gps latitude value
+This is used to pass the captured GPS latitude value
 
 ### Longitude Value
 `public static final String LONGITUDE_VALUE = "longtitude-value"`
 
-This is used to pass the captured gps longitude value
+This is used to pass the captured GPS longitude value
 
 ### Altitude Value
 `public static final String ALTITUDE_VALUE = "altitude-value"`
 
-This is used to pass the captured gps altitude value
+This is used to pass the captured GPS altitude value
 
 ### Bearing Value
 `public static final String BEARING_VALUE = "bearing-value"`
 
-This is used to pass the captured gps bearing value
+This is used to pass the captured GPS bearing value
 
 ### Accuracy Value
 `public static final String ACCURACY_VALUE = "accuracy-value"`
 
-This is used to pass the captured gps accuracy value
+This is used to pass the captured GPS accuracy value
 
 ### Acceleration Capture
 `public static final String ACCELERATION_CAPTURE = "acceleration-capture"`
@@ -140,7 +140,7 @@ This is used to enable/disable capturing of accelerometer data which is sent to 
 ### GPS Capture
 `public static final String GPS_CAPTURE = "gps-capture"`
 
-This is used to enable/disable capturing of gps data which is sent to the API
+This is used to enable/disable capturing of GPS data which is sent to the API
 
 ### HR Capture
 `public static final String HR_CAPTURE = "heartrate-capture"`
@@ -165,7 +165,7 @@ This is used to pass the interval rate (in milliseconds) for the accelerometer d
 ### GPS Data Rate
 `public static final String GPS_DATA_RATE = "gps_data_rate"`
 
-This is used to pass the interval rate (in milliseconds) for the gps data to be sent to the API
+This is used to pass the interval rate (in milliseconds) for the GPS data to be sent to the API
 
 ### Input Tags Data Rate
 `public static final String INPUT_TAGS_DATA_RATE = "input_tags_data_rate"`
@@ -235,7 +235,7 @@ This is used to filter for devices
 ### Send
 `public static final int SEND = 108`
 
-This is sued to filter send from the front end
+This is used to filter send from the front end
 
 ### Connecting
 `public static final int CONNECTING = 109`
@@ -290,12 +290,12 @@ This is used to disable the timer for sending the accelerometer data to the API
 ### Enable GPS Timer
 `public static final int ENABLE_GPSTIMER = 120`
 
-This is used to enable the timer for sending the gps data to the API
+This is used to enable the timer for sending the GPS data to the API
 
 ### Disable GPS Timer
 `public static final int DISABLE_GPSTIMER = 121`
 
-This is used to disable the timer for sending the gps data to the API
+This is used to disable the timer for sending the GPS data to the API
 
 ### Enable Input Timer
 `public static final int ENABLE_INPUTTIMER = 122`
@@ -343,7 +343,7 @@ Connection made to the service. Once bound to the service, the binder object is 
     };
 ```
 
-## Submit Credentials to service for authorisation (Cognito User Pools) 
+## Submit Credentials to service for authorization (Cognito User Pools) 
 
 `void submit()`
 
@@ -364,11 +364,11 @@ Sets up the credential bundle to be sent to the SDK service this needs to be sen
     }
 ```
 
-## Submit Credentials to service for authorisation (Google Sign-In)
+## Submit Credentials to service for authorization (Google Sign-In)
 
-Follow Google's <a href = "https://developers.google.com/identity/sign-in/android/start-integrating">instructions</a> to add Google sign in to your application.
+Follow Google's <a href = "https://developers.google.com/identity/sign-in/android/start-integrating">instructions</a> to add Google Sign-In to your application.
 
-Once successfully implemented you must send the Google Id token for the Google Sign In application to us
+Once successfully implemented you must send the Google Id token for the Google Sign-In application to us
 
 `void submit()`
 
