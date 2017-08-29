@@ -1,1 +1,3 @@
 docs.sensum.co
+# While CNAME is generated on the gh-pages branch by the github webinterface, as it is not automatically merged back into master as part of the deploy script, that information is overwritten on next deploy, which breaks
+# the connection from docs.sensum.co -> sensum.github.io/docs
