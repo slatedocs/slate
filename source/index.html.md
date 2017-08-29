@@ -1,6 +1,8 @@
 ---
 title: API Reference
 
+home_link: https://github.com/lord/slate
+
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
   - ruby
