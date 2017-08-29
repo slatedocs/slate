@@ -21,6 +21,7 @@ dirtylemon.messages.create({CUSTOMER_ID}, {
   content: 'Hey',
   content_type: 'text',
   sender_role: 'bot'
+  sent_at: new Date.toISOString()
 })
 ```
 
@@ -63,11 +64,12 @@ This endpoint creates a message.
 
 ### Body params
 
-| Parameter | Required | Description |
-| --------- | -------- | ------------|
-| content | yes |  |
-| content_type | yes | Only `text` is accepted |
-| sender_role | yes |  |
+| Parameter     | Required  | Description |
+| ------------- | --------- | ------------|
+| content       | yes       |             |
+| content_type  | yes       | Only `text` is accepted |
+| sender_role   | yes       | One of `end-user`, `agent` or `bot` |
+| sent_at       | yes       | ISO 8601 formatted time |
 
 ### Returns
 
