@@ -104,4 +104,29 @@ Special Thanks
 - [jquery.tocify.js](https://github.com/gfranko/jquery.tocify.js)
 - [middleman-syntax](https://github.com/middleman/middleman-syntax)
 - [middleman-gh-pages](https://github.com/edgecase/middleman-gh-pages)
-- [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
+- [Font Awesome](http://fortawesome.github.io/Font-Awesome
+
+
+
+
+BBOXX SLATE INSTRUCTIONS
+------------------------
+
+ - sudo apt-add-repository ppa:brightbox/ruby-ng
+ - sudo apt-get update
+ - sudo apt-get install ruby2.2 ruby2.2-dev
+ - sudo apt-get install ruby-bundler
+ 
+
+ - clone the slate repository
+ - run the backend locally
+ - ensure that a folder called "docs" is present in the /app directory
+ - navigate to: http://localhost/v1/generate_slate_docs to fill the /docs folder with auto-gen documentation
+ - copy the \_\<doc-name\>.md files over to the `includes` folder in the slate repo. 
+ - add the file paths (minus the preceeding _ and the trailing .md to the \_includes.md file
+ 
+  
+ - bundle install
+ - bundle exec middleman server
+ 
+ - view newly created docs in htttp://localhost:4567
