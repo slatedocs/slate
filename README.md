@@ -38,8 +38,8 @@ BBOXX SLATE INSTRUCTIONS
  bundle exec middleman server
  ```
  - view newly created docs at http://localhost:4567
- - Now that Slate is all set up your machine, you'll probably want to learn more about [editing Slate markdown (https://github.com/tripit/slate/wiki/Markdown-Syntax), or [how to publish your docs](https://github.com/tripit/slate/wiki/Deploying-Slate).
-
+ - Now that Slate is all set up your machine, you'll probably want to learn more about SlateMarkDown (https://github.com/tripit/slate/wiki/Markdown-Syntax)
+ 
  **Publish Docs**
  - push changes to MASTER branch
  - view newly published docs at http://docs.smart.bboxx.co.uk
