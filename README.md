@@ -111,7 +111,7 @@ Special Thanks
 
 BBOXX SLATE INSTRUCTIONS
 ------------------------
-
+**Install Instructions**
  ```
  sudo apt-add-repository ppa:brightbox/ruby-ng
  sudo apt-get update
@@ -119,7 +119,7 @@ BBOXX SLATE INSTRUCTIONS
  sudo apt-get install ruby-bundler
 ```
  
-
+**Autogenerate docs**
  - clone the slate repository
  - run the backend locally
  - ensure that a folder called "docs" is present in the /app directory
@@ -127,11 +127,14 @@ BBOXX SLATE INSTRUCTIONS
  - copy the \_\<doc-name\>.md files over to the `includes` folder in the slate repo. 
  - add the file paths (minus the preceeding _ and the trailing .md to the \_includes.md file
  
-  
- - bundle install
- - bundle exec middleman server
- 
+ **Host docs locally**
+ ```
+ bundle install
+ bundle exec middleman server
+ ```
  - view newly created docs in htttp://localhost:4567
+ 
+ **Publish Docs**
  - push changes to MASTER branch
  - view new docs at http://docs.smart.bboxx.co.uk
  
