@@ -112,10 +112,12 @@ Special Thanks
 BBOXX SLATE INSTRUCTIONS
 ------------------------
 
- - sudo apt-add-repository ppa:brightbox/ruby-ng
- - sudo apt-get update
- - sudo apt-get install ruby2.2 ruby2.2-dev
- - sudo apt-get install ruby-bundler
+ ```
+ sudo apt-add-repository ppa:brightbox/ruby-ng
+ sudo apt-get update
+ sudo apt-get install ruby2.2 ruby2.2-dev
+ sudo apt-get install ruby-bundler
+```
  
 
  - clone the slate repository
@@ -130,3 +132,7 @@ BBOXX SLATE INSTRUCTIONS
  - bundle exec middleman server
  
  - view newly created docs in htttp://localhost:4567
+ - push changes to MASTER branch
+ - view new docs at http://docs.smart.bboxx.co.uk
+ 
+ 
