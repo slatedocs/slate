@@ -1,5 +1,5 @@
 ## <u>Part Type</u>
-This description is not yet complete it should be filled in!
+Lists the available part types
 
 
 ### <u>The part_type object</u>
@@ -10,8 +10,10 @@ __part_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">_
 __name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
 __description__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __erp_code__ <br><font color="DarkGray">_varchar(6)_</font> <font color="Crimson"></font> | 
+__<a href="/#part-type-category">part_type_category_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __serial_number_category__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["known", "unknown", "hidden"]</font>
 __parameter_types__ <br><font color="DarkGray">_array_</font> <font color="Crimson"></font> | 
+__part_type_metadata_validator__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -22,7 +24,9 @@ __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modifie
 Relationship | Description
 -------------:|:------------
 __parts__ | The associated parts
-__part_type_product_type_linker__ | The associated part_type_product_type_linker
+__repair_part_type_linker__ | The associated repair_part_type_linker
+__replacements__ | The associated replacements
+__existing__ | The associated existing
 
 
 <hr>
@@ -36,8 +40,10 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 		"name": "test",
 		"description": "test",
 		"erp_code": "XX0001",
+		"part_type_category_id": 1,
 		"serial_number_category": "test",
 		"parameter_types": [1,2,3],
+		"part_type_metadata_validator": "test",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -53,8 +59,10 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 		"name": "test",
 		"description": "test",
 		"erp_code": "XX0001",
+		"part_type_category_id": 1,
 		"serial_number_category": "test",
 		"parameter_types": [1,2,3],
+		"part_type_metadata_validator": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -78,8 +86,10 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 		"name": "test",
 		"description": "test",
 		"erp_code": "XX0001",
+		"part_type_category_id": 1,
 		"serial_number_category": "test",
 		"parameter_types": [1,2,3],
+		"part_type_metadata_validator": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -120,8 +130,10 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 		"name": "changed",
 		"description": "changed",
 		"erp_code": YY9999,
+		"part_type_category_id": 2,
 		"serial_number_category": "changed",
 		"parameter_types": [1,2,3,4,5,6],
+		"part_type_metadata_validator": "changed",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -136,8 +148,10 @@ __part_type_product_type_linker__ | The associated part_type_product_type_linker
 		"name": "changed",
 		"description": "changed",
 		"erp_code": YY9999,
+		"part_type_category_id": 2,
 		"serial_number_category": "changed",
 		"parameter_types": [1,2,3,4,5,6],
+		"part_type_metadata_validator": "changed",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

@@ -1,5 +1,5 @@
 ## <u>Product Note</u>
-This description is not yet complete it should be filled in!
+Table of notes about each product
 
 
 ### <u>The product_note object</u>

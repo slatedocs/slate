@@ -1,4 +1,4 @@
-## <u>SIM Part Type SIM Provider Linker</u>
+## <u>Sim Part Type Sim Provider Linker</u>
 Specifies which SIM types are associated with which provider
 
 
@@ -7,7 +7,7 @@ Specifies which SIM types are associated with which provider
 Field | Description
 ------:|:------------
 __sim_part_type_sim_provider_linker_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each sim_part_type_sim_provider_linker.
-__<a href="/#part-type">sim_part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#sim-part-type">sim_part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,unique,foreign-key)</font> | 
 __<a href="/#sim-provider">sim_provider_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
@@ -23,7 +23,7 @@ Relationship | Description
 <hr>
 <br>
 
-> An example POST request. Note that `sim_part_type_sim_provider_linker_id`, `created_at`, `modified_at`, `created_by` and `modified_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `sim_part_type_sim_provider_linker_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/sim_part_type_sim_provider_linker"
@@ -41,13 +41,12 @@ Relationship | Description
     r.json()
 
     >>> {
-		"sim_part_type_sim_provider_linker_id": 1,
+		"sim_part_type_sim_provider_linker_id": 1
 		"sim_part_type_id": 1,
 		"sim_provider_id": 1,
-		"created_at": "2000-01-01 00:00:00",
-		"created_by": "test.user@bboxx.co.uk",
-        "modified_at": None,
-        "modified_by": None
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
 	}
 ```
 
@@ -64,13 +63,12 @@ Relationship | Description
 
     r.json()
     >>> {
-        "sim_part_type_sim_provider_linker_id": 1,
-        "sim_part_type_id": 1,
-        "sim_provider_id": 1,
-        "created_at": "2000-01-01 00:00:00",
-        "created_by": "test.user@bboxx.co.uk",
-        "modified_at": None,
-        "modified_by": None
+		"sim_part_type_sim_provider_linker_id": 1
+		"sim_part_type_id": 1,
+		"sim_provider_id": 1,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
 	}
 ```
 
@@ -117,13 +115,12 @@ Relationship | Description
 
     r.json()
     >>> {
-        "sim_part_type_sim_provider_linker_id": 1,
-        "sim_part_type_id": 2,
-        "sim_provider_id": 2,
-        "created_at": "2000-01-01 00:00:00",
-        "created_by": "test.user@bboxx.co.uk",
-        "modified_at": "2016-07-07 12:34:45",
-        "modified_by": "test.user@bboxx.co.uk"
+		"sim_part_type_sim_provider_linker_id": 1
+		"sim_part_type_id": 2,
+		"sim_provider_id": 2,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": 2016-07-07 12:34:45
 	}
 ```
 > Note that the `modified_at` field has been updated accordingly.
@@ -173,7 +170,7 @@ response | `200`
  ----:|:---
 endpoint | `/v1/sim_part_type_sim_provider_linker/<sim_part_type_sim_provider_linker_id>`
 method | `PUT`
-url_params | `sim_part_type_sim_provider_linker` of the sim_part_type_sim_provider_linker you wish to edit
+url_params | `sim_part_type_sim_provider_linker_id` of the sim_part_type_sim_provider_linker you wish to edit
 query params | <font color="DarkGray">N/A</font>
 body | JSON-formatted dictionary of the columns that you wish to alter
 permissions | <font color="Crimson">__`SYSTEM`__</font>

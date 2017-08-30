@@ -15,7 +15,7 @@ __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)
 __sent_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
 __sms_timeout__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
 __status__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
-__trigger__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__trigger__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["update_status", "wakeup"]</font>
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified

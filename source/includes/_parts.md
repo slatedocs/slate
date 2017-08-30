@@ -7,8 +7,9 @@ This description is not yet complete it should be filled in!
 Field | Description
 ------:|:------------
 __part_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each part.
-__serial_number__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
+__serial_number__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(unique)</font> | 
 __<a href="/#part-type">part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__properties__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -32,6 +33,7 @@ __part_parameter__ | The associated part_parameter
     data = json.dumps({
 		"serial_number": "test",
 		"part_type_id": 1,
+		"properties": Unknown column type,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -46,6 +48,7 @@ __part_parameter__ | The associated part_parameter
 		"part_id": 1
 		"serial_number": "test",
 		"part_type_id": 1,
+		"properties": Unknown column type,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -68,6 +71,7 @@ __part_parameter__ | The associated part_parameter
 		"part_id": 1
 		"serial_number": "test",
 		"part_type_id": 1,
+		"properties": Unknown column type,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -107,6 +111,7 @@ __part_parameter__ | The associated part_parameter
     data = json.dumps({
 		"serial_number": "changed",
 		"part_type_id": 2,
+		"properties": Unknown column type,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -120,6 +125,7 @@ __part_parameter__ | The associated part_parameter
 		"part_id": 1
 		"serial_number": "changed",
 		"part_type_id": 2,
+		"properties": Unknown column type,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

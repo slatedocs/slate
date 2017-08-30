@@ -21,7 +21,6 @@ __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modifie
 Relationship | Description
 -------------:|:------------
 __hubs__ | The associated hubs
-__customer_entity_linker__ | The associated customer_entity_linker
 __product_entity_linker__ | The associated product_entity_linker
 
 

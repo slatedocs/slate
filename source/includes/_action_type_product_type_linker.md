@@ -1,15 +1,14 @@
-## <u>Network</u>
-A table holding the available networks that a unit might connect on.
+## <u>Action Type Product Type Linker</u>
+This description is not yet complete it should be filled in!
 
 
-### <u>The network object</u>
+### <u>The action_type_product_type_linker object</u>
 
 Field | Description
 ------:|:------------
-__mccmnc__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each network.
-__name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
-__mcc__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
-__mnc__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__action_type_product_type_linker_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each action_type_product_type_linker.
+__<a href="/#product-type">product_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#action-type">action_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -24,14 +23,13 @@ Relationship | Description
 <hr>
 <br>
 
-> An example POST request. Note that `mccmnc`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `action_type_product_type_linker_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/networks"
+    url = "http://smartapi.bboxx.co.uk/v1/action_type_product_type_linker"
     data = json.dumps({
-		"name": "test",
-		"mcc": 1,
-		"mnc": 1,
+		"product_type_id": 1,
+		"action_type_id": 1,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -43,20 +41,19 @@ Relationship | Description
     r.json()
 
     >>> {
-		"mccmnc": 1
-		"name": "test",
-		"mcc": 1,
-		"mnc": 1,
+		"action_type_product_type_linker_id": 1
+		"product_type_id": 1,
+		"action_type_id": 1,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
 ```
 
-    > We can retrieve the `network` created by specifying its `mccmnc` in the request url:
+    > We can retrieve the `action_type_product_type_linker` created by specifying its `action_type_product_type_linker_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/networks/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/action_type_product_type_linker/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -66,20 +63,19 @@ Relationship | Description
 
     r.json()
     >>> {
-		"mccmnc": 1
-		"name": "test",
-		"mcc": 1,
-		"mnc": 1,
+		"action_type_product_type_linker_id": 1
+		"product_type_id": 1,
+		"action_type_id": 1,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
 ```
 
-> We can retrieve all `networks` by omitting the `mccmnc`:
+> We can retrieve all `action_type_product_type_linker` by omitting the `action_type_product_type_linker_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/networks'
+    url = 'http://smartapi.bboxx.co.uk/v1/action_type_product_type_linker'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -102,14 +98,13 @@ Relationship | Description
     }
 ```
 
-> We can edit the newly created `network` with a `PUT` request:
+> We can edit the newly created `action_type_product_type_linker` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/networks/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/action_type_product_type_linker/1'
     data = json.dumps({
-		"name": "changed",
-		"mcc": 2,
-		"mnc": 2,
+		"product_type_id": 2,
+		"action_type_id": 2,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -120,10 +115,9 @@ Relationship | Description
 
     r.json()
     >>> {
-		"mccmnc": 1
-		"name": "changed",
-		"mcc": 2,
-		"mnc": 2,
+		"action_type_product_type_linker_id": 1
+		"product_type_id": 2,
+		"action_type_id": 2,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45
@@ -131,10 +125,10 @@ Relationship | Description
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the `network`
+> If a user has `SYSTEM` permissions they can delete the `action_type_product_type_linker`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/networks/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/action_type_product_type_linker/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)
@@ -152,20 +146,20 @@ Relationship | Description
 ### POST
      | value
  ----:|:---
-endpoint | `/v1/networks`
+endpoint | `/v1/action_type_product_type_linker`
 method | `POST`
 url_params | <font color="DarkGray">N/A</font>
 query params | <font color="DarkGray">N/A</font>
-body | JSON-formatted dictionary with the details of the `network` that you wish to create
+body | JSON-formatted dictionary with the details of the `action_type_product_type_linker` that you wish to create
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `201`
 
 ### GET
      | value
  ----:|:---
-endpoint | `/v1/networks` or `/v1/networks/<mccmnc>`
+endpoint | `/v1/action_type_product_type_linker` or `/v1/action_type_product_type_linker/<action_type_product_type_linker_id>`
 method | `GET`
-url_params | `mccmnc` <font color="DarkGray">_(int)_</font>
+url_params | `action_type_product_type_linker_id` <font color="DarkGray">_(int)_</font>
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>
@@ -174,9 +168,9 @@ response | `200`
 ### PUT
      | value
  ----:|:---
-endpoint | `/v1/networks/<mccmnc>`
+endpoint | `/v1/action_type_product_type_linker/<action_type_product_type_linker_id>`
 method | `PUT`
-url_params | `mccmnc` of the network you wish to edit
+url_params | `action_type_product_type_linker_id` of the action_type_product_type_linker you wish to edit
 query params | <font color="DarkGray">N/A</font>
 body | JSON-formatted dictionary of the columns that you wish to alter
 permissions | <font color="Crimson">__`SYSTEM`__</font>
@@ -185,9 +179,9 @@ response | `200`
 ### DELETE
      | value
  ----:|:---
-endpoint | `/v1/networks/<mccmnc>`
+endpoint | `/v1/action_type_product_type_linker/<action_type_product_type_linker_id>`
 method | `DELETE`
-url_params | `mccmnc` <font color="DarkGray">_(int)_</font>
+url_params | `action_type_product_type_linker_id` <font color="DarkGray">_(int)_</font>
 query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>

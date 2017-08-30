@@ -1,5 +1,5 @@
 ## <u>Symptom Type Product Type Linker</u>
-This description is not yet complete it should be filled in!
+Specifies which symptom_types are valid for which product_types
 
 
 ### <u>The symptom_type_product_type_linker object</u>

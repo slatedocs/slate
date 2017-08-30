@@ -1,5 +1,5 @@
 ## <u>Product Type</u>
-This description is not yet complete it should be filled in!
+Specifies the different types of product that exist.
 
 
 ### <u>The product_type object</u>
@@ -22,10 +22,11 @@ Relationship | Description
 __products__ | The associated products
 __alert_type_product_type_linker__ | The associated alert_type_product_type_linker
 __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_linker
-__part_type_product_type_linker__ | The associated part_type_product_type_linker
 __product_type_software_version_type_linker__ | The associated product_type_software_version_type_linker
-__symptom_type_product_type_linker__ | The associated symptom_type_product_type_linker
+__action_type_product_type_linker__ | The associated action_type_product_type_linker
+__symptom_types__ | The associated symptom_types
 __latest_software__ | The associated latest_software
+__part_type_replacements__ | The associated part_type_replacements
 
 
 <hr>

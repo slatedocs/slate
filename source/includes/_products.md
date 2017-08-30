@@ -1,5 +1,5 @@
 ## <u>Product</u>
-This description is not yet complete it should be filled in!
+Lists the products in the SMARTSolar System
 
 
 ### <u>The product object</u>
@@ -34,7 +34,6 @@ Relationship | Description
 -------------:|:------------
 __anomalies__ | The associated anomalies
 __connections__ | The associated connections
-__customer_product_history__ | The associated customer_product_history
 __notes__ | The associated notes
 __part_product_linker__ | The associated part_product_linker
 __product_entity_linker__ | The associated product_entity_linker
@@ -43,8 +42,8 @@ __enable_history_rel__ | The associated enable_history_rel
 __repairs__ | The associated repairs
 __sms_history__ | The associated sms_history
 __states__ | The associated states
-__tamper_enable_history__ | The associated tamper_enable_history
 __product_parameter__ | The associated product_parameter
+__analysis_histories__ | The associated analysis_histories
 
 
 <hr>

@@ -16,7 +16,7 @@ __dismissal_reason__ <br><font color="DarkGray">_string_</font> <font color="Cri
 __<a href="/#repair">repair_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __extra_info__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __customer_contact_date__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
-__customer_contact_type__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__customer_contact_type__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["phone", "sms"]</font>
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -45,7 +45,7 @@ Relationship | Description
 		"repair_id": 1,
 		"extra_info": "test",
 		"customer_contact_date": "2000-01-01 00:00:00",
-		"customer_contact_type": "phone",
+		"customer_contact_type": "test",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -67,7 +67,7 @@ Relationship | Description
 		"repair_id": 1,
 		"extra_info": "test",
 		"customer_contact_date": "2000-01-01 00:00:00",
-		"customer_contact_type": "phone",
+		"customer_contact_type": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -97,7 +97,7 @@ Relationship | Description
 		"repair_id": 1,
 		"extra_info": "test",
 		"customer_contact_date": "2000-01-01 00:00:00",
-		"customer_contact_type": "phone",
+		"customer_contact_type": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -143,8 +143,8 @@ Relationship | Description
 		"dismissal_reason": "changed",
 		"repair_id": 2,
 		"extra_info": "changed",
-		"customer_contact_date": "2000-01-01 00:00:00",
-		"customer_contact_type": "phone",
+		"customer_contact_date": "2016-07-01 12:34:45",
+		"customer_contact_type": "changed",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -164,8 +164,8 @@ Relationship | Description
 		"dismissal_reason": "changed",
 		"repair_id": 2,
 		"extra_info": "changed",
-		"customer_contact_date": "2000-01-01 00:00:00",
-		"customer_contact_type": "phone",
+		"customer_contact_date": "2016-07-01 12:34:45",
+		"customer_contact_type": "changed",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

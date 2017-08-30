@@ -1,5 +1,5 @@
 ## <u>Part Parameter</u>
-This description is not yet complete it should be filled in!
+Base table that product_parameters and part_parameters can inherit from
 
 
 ### <u>The part_parameter object</u>

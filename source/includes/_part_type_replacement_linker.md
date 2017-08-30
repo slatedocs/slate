@@ -10,6 +10,7 @@ __part_type_replacement_linker_id__ <br><font color="DarkGray">_int_</font> <fon
 __<a href="/#product-type">product_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __<a href="/#existing-part-type">existing_part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __<a href="/#replacement-part-type">replacement_part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__default_part_type__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -32,6 +33,7 @@ Relationship | Description
 		"product_type_id": 1,
 		"existing_part_type_id": 1,
 		"replacement_part_type_id": 1,
+		"default_part_type": True,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -47,6 +49,7 @@ Relationship | Description
 		"product_type_id": 1,
 		"existing_part_type_id": 1,
 		"replacement_part_type_id": 1,
+		"default_part_type": True,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -70,6 +73,7 @@ Relationship | Description
 		"product_type_id": 1,
 		"existing_part_type_id": 1,
 		"replacement_part_type_id": 1,
+		"default_part_type": True,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -110,6 +114,7 @@ Relationship | Description
 		"product_type_id": 2,
 		"existing_part_type_id": 2,
 		"replacement_part_type_id": 2,
+		"default_part_type": False,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -124,6 +129,7 @@ Relationship | Description
 		"product_type_id": 2,
 		"existing_part_type_id": 2,
 		"replacement_part_type_id": 2,
+		"default_part_type": False,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

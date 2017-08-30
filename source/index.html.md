@@ -19,6 +19,9 @@ includes:
   - anomalies
   - anomaly_types
   - anomaly_type_product_type_linker
+  - battery_failures
+  - battery_failure_types
+  - battery_failure_battery_failure_type_linker
   - connections
   - enable_history
   - entities
@@ -89,5 +92,3 @@ includes:
 
 search: true
 ---
-
-

@@ -1,5 +1,5 @@
 ## <u>Part Product Linker</u>
-This description is not yet complete it should be filled in!
+Specifies which parts are associated with which product.Includes a history of which product each part is associated with.Includes the repair during which the new part was added and what it replaced.
 
 
 ### <u>The part_product_linker object</u>

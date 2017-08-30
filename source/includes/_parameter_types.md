@@ -11,6 +11,7 @@ __name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-n
 __data_type__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["int", "float", "bool", "string", "datetime"]</font>
 __validation_rules__ <br><font color="DarkGray">_json_</font> <font color="Crimson"></font> | 
 __description__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__units__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -36,6 +37,7 @@ __part_parameters__ | The associated part_parameters
 		"data_type": "test",
 		"validation_rules": {},
 		"description": "test",
+		"units": "test",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -52,6 +54,7 @@ __part_parameters__ | The associated part_parameters
 		"data_type": "test",
 		"validation_rules": {},
 		"description": "test",
+		"units": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -76,6 +79,7 @@ __part_parameters__ | The associated part_parameters
 		"data_type": "test",
 		"validation_rules": {},
 		"description": "test",
+		"units": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -117,6 +121,7 @@ __part_parameters__ | The associated part_parameters
 		"data_type": "changed",
 		"validation_rules": {},
 		"description": "changed",
+		"units": "changed",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -132,6 +137,7 @@ __part_parameters__ | The associated part_parameters
 		"data_type": "changed",
 		"validation_rules": {},
 		"description": "changed",
+		"units": "changed",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

@@ -1,5 +1,5 @@
 ## <u>Symptom Type</u>
-This description is not yet complete it should be filled in!
+Lists various symptoms that a product can present when coming in for repair.
 
 
 ### <u>The symptom_type object</u>

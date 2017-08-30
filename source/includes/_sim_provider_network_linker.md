@@ -1,4 +1,4 @@
-## <u>SIM Provider Network Linker</u>
+## <u>Sim Provider Network Linker</u>
 Specifies which networks are available to each SIM provider
 
 
@@ -6,7 +6,7 @@ Specifies which networks are available to each SIM provider
 
 Field | Description
 ------:|:------------
-sim_provider_network_linker_id <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each sim_provider_network_linker.
+__sim_provider_network_linker_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each sim_provider_network_linker.
 __<a href="/#sim-provider">sim_provider_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __<a href="/#network">network_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
@@ -23,13 +23,13 @@ Relationship | Description
 <hr>
 <br>
 
-> An example POST request. Note that `sim_provider_network_linker_id`, `created_at`, `modified_at`, `created_by` and `modified_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `sim_provider_network_linker_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/sim_provider_network_linker"
     data = json.dumps({
 		"sim_provider_id": 1,
-		"network_id": 63502,
+		"network_id": 1,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -41,13 +41,12 @@ Relationship | Description
     r.json()
 
     >>> {
-		"sim_provider_network_linker_id": 1,
-        "sim_provider_id": 1,
-        "network_id": 63502,
-		"created_at": "2000-01-01 00:00:00",
-		"created_by": "test.user@bboxx.co.uk",
-        "modified_at": None,
-        "modified_by": None
+		"sim_provider_network_linker_id": 1
+		"sim_provider_id": 1,
+		"network_id": 1,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
 	}
 ```
 
@@ -64,13 +63,12 @@ Relationship | Description
 
     r.json()
     >>> {
-        "sim_provider_network_linker_id": 1,
-        "sim_provider_id": 1,
-        "network_id": 63502,
-        "created_at": "2000-01-01 00:00:00",
-        "created_by": "test.user@bboxx.co.uk",
-        "modified_at": None,
-        "modified_by": None
+		"sim_provider_network_linker_id": 1
+		"sim_provider_id": 1,
+		"network_id": 1,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
 	}
 ```
 
@@ -105,8 +103,8 @@ Relationship | Description
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/sim_provider_network_linker/1'
     data = json.dumps({
-        "sim_provider_id": 1,
-        "network_id": 63503,
+		"sim_provider_id": 2,
+		"network_id": 2,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -117,13 +115,12 @@ Relationship | Description
 
     r.json()
     >>> {
-        "sim_provider_network_linker_id": 1,
-        "sim_provider_id": 1,
-        "network_id": 63503,
-        "created_at": "2000-01-01 00:00:00",
-        "created_by": "test.user@bboxx.co.uk",
-        "modified_at": "2016-07-07 12:34:45",
-        "modified_by": "test.user@bboxx.co.uk"
+		"sim_provider_network_linker_id": 1
+		"sim_provider_id": 2,
+		"network_id": 2,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": 2016-07-07 12:34:45
 	}
 ```
 > Note that the `modified_at` field has been updated accordingly.
@@ -131,7 +128,7 @@ Relationship | Description
 > If a user has `SYSTEM` permissions they can delete the `sim_provider_network_linker`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/sim_part_type_sim_provider_linker/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/sim_provider_network_linker/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)
@@ -160,7 +157,7 @@ response | `201`
 ### GET
      | value
  ----:|:---
-endpoint | `/v1/sim_provider_network_linker` or `/v1/sim_provider_network_linker/<sim_part_type_sim_provider_linker_id>`
+endpoint | `/v1/sim_provider_network_linker` or `/v1/sim_provider_network_linker/<sim_provider_network_linker_id>`
 method | `GET`
 url_params | `sim_provider_network_linker_id` <font color="DarkGray">_(int)_</font>
 query params | *> See Query Format and Filtering*
@@ -173,7 +170,7 @@ response | `200`
  ----:|:---
 endpoint | `/v1/sim_provider_network_linker/<sim_provider_network_linker_id>`
 method | `PUT`
-url_params | `sim_provider_network_linker` of the sim_provider_network_linker you wish to edit
+url_params | `sim_provider_network_linker_id` of the sim_provider_network_linker you wish to edit
 query params | <font color="DarkGray">N/A</font>
 body | JSON-formatted dictionary of the columns that you wish to alter
 permissions | <font color="Crimson">__`SYSTEM`__</font>

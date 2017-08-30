@@ -1,18 +1,16 @@
-## <u>Product Parameter</u>
-Base table that product_parameters and part_parameters can inherit from
+## <u>Analysis History</u>
+Records which analyses have been run on which units and at what time.
 
 
-### <u>The product_parameter object</u>
+### <u>The analysis_history object</u>
 
 Field | Description
 ------:|:------------
-__product_parameter_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each product_parameter.
-__value__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
-__date_added__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
-__date_removed__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
+__analysis_history_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each analysis_history.
 __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__status__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["active", "removed", "expired", "pending"]</font>
-__<a href="/#parameter-type">parameter_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#alert-type">alert_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__timestamp__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
+__status__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["success", "failure"]</font>
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -27,17 +25,15 @@ Relationship | Description
 <hr>
 <br>
 
-> An example POST request. Note that `product_parameter_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `analysis_history_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/product_parameters"
+    url = "http://smartapi.bboxx.co.uk/v1/analysis_history"
     data = json.dumps({
-		"value": "test",
-		"date_added": "2000-01-01 00:00:00",
-		"date_removed": "2000-01-01 00:00:00",
 		"product_imei": "000000000000000",
+		"alert_type_id": 1,
+		"timestamp": "2000-01-01 00:00:00",
 		"status": "test",
-		"parameter_type_id": 1,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -49,23 +45,21 @@ Relationship | Description
     r.json()
 
     >>> {
-		"product_parameter_id": 1
-		"value": "test",
-		"date_added": "2000-01-01 00:00:00",
-		"date_removed": "2000-01-01 00:00:00",
+		"analysis_history_id": 1
 		"product_imei": "000000000000000",
+		"alert_type_id": 1,
+		"timestamp": "2000-01-01 00:00:00",
 		"status": "test",
-		"parameter_type_id": 1,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
 ```
 
-    > We can retrieve the `product_parameter` created by specifying its `product_parameter_id` in the request url:
+    > We can retrieve the `analysis_history` created by specifying its `analysis_history_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/product_parameters/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/analysis_history/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -75,23 +69,21 @@ Relationship | Description
 
     r.json()
     >>> {
-		"product_parameter_id": 1
-		"value": "test",
-		"date_added": "2000-01-01 00:00:00",
-		"date_removed": "2000-01-01 00:00:00",
+		"analysis_history_id": 1
 		"product_imei": "000000000000000",
+		"alert_type_id": 1,
+		"timestamp": "2000-01-01 00:00:00",
 		"status": "test",
-		"parameter_type_id": 1,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
 ```
 
-> We can retrieve all `product_parameters` by omitting the `product_parameter_id`:
+> We can retrieve all `analysis_history` by omitting the `analysis_history_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/product_parameters'
+    url = 'http://smartapi.bboxx.co.uk/v1/analysis_history'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -114,17 +106,15 @@ Relationship | Description
     }
 ```
 
-> We can edit the newly created `product_parameter` with a `PUT` request:
+> We can edit the newly created `analysis_history` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/product_parameters/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/analysis_history/1'
     data = json.dumps({
-		"value": "changed",
-		"date_added": "2016-07-01 12:34:45",
-		"date_removed": "2016-07-01 12:34:45",
 		"product_imei": "999999999999999",
+		"alert_type_id": 2,
+		"timestamp": "2016-07-01 12:34:45",
 		"status": "changed",
-		"parameter_type_id": 2,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -135,13 +125,11 @@ Relationship | Description
 
     r.json()
     >>> {
-		"product_parameter_id": 1
-		"value": "changed",
-		"date_added": "2016-07-01 12:34:45",
-		"date_removed": "2016-07-01 12:34:45",
+		"analysis_history_id": 1
 		"product_imei": "999999999999999",
+		"alert_type_id": 2,
+		"timestamp": "2016-07-01 12:34:45",
 		"status": "changed",
-		"parameter_type_id": 2,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45
@@ -149,10 +137,10 @@ Relationship | Description
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
-> If a user has `SYSTEM` permissions they can delete the `product_parameter`
+> If a user has `SYSTEM` permissions they can delete the `analysis_history`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/product_parameters/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/analysis_history/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)
@@ -170,20 +158,20 @@ Relationship | Description
 ### POST
      | value
  ----:|:---
-endpoint | `/v1/product_parameters`
+endpoint | `/v1/analysis_history`
 method | `POST`
 url_params | <font color="DarkGray">N/A</font>
 query params | <font color="DarkGray">N/A</font>
-body | JSON-formatted dictionary with the details of the `product_parameter` that you wish to create
+body | JSON-formatted dictionary with the details of the `analysis_history` that you wish to create
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `201`
 
 ### GET
      | value
  ----:|:---
-endpoint | `/v1/product_parameters` or `/v1/product_parameters/<product_parameter_id>`
+endpoint | `/v1/analysis_history` or `/v1/analysis_history/<analysis_history_id>`
 method | `GET`
-url_params | `product_parameter_id` <font color="DarkGray">_(int)_</font>
+url_params | `analysis_history_id` <font color="DarkGray">_(int)_</font>
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>
@@ -192,9 +180,9 @@ response | `200`
 ### PUT
      | value
  ----:|:---
-endpoint | `/v1/product_parameters/<product_parameter_id>`
+endpoint | `/v1/analysis_history/<analysis_history_id>`
 method | `PUT`
-url_params | `product_parameter_id` of the product_parameter you wish to edit
+url_params | `analysis_history_id` of the analysis_history you wish to edit
 query params | <font color="DarkGray">N/A</font>
 body | JSON-formatted dictionary of the columns that you wish to alter
 permissions | <font color="Crimson">__`SYSTEM`__</font>
@@ -203,9 +191,9 @@ response | `200`
 ### DELETE
      | value
  ----:|:---
-endpoint | `/v1/product_parameters/<product_parameter_id>`
+endpoint | `/v1/analysis_history/<analysis_history_id>`
 method | `DELETE`
-url_params | `product_parameter_id` <font color="DarkGray">_(int)_</font>
+url_params | `analysis_history_id` <font color="DarkGray">_(int)_</font>
 query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>

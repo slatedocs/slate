@@ -1,5 +1,5 @@
 ## <u>Alert Type Anomaly Type Linker</u>
-This description is not yet complete it should be filled in!
+Specifies which alerts can be generated from which anomalies.
 
 
 ### <u>The alert_type_anomaly_type_linker object</u>

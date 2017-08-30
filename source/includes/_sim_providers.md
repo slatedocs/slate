@@ -1,5 +1,5 @@
-## <u>SIM Provider</u>
-The list of SIM providers
+## <u>Sim Provider</u>
+Contains a list of SIM providers
 
 
 ### <u>The sim_provider object</u>
@@ -17,14 +17,12 @@ __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modifie
 
 Relationship | Description
 -------------:|:------------
-__sim_part_type_sim_provider_linker__ | The associated sim_part_type_sim_provider_linker
-__sim_provider_network_linker__ | The associated sim_provider_network_linker
-
+<font color="DarkGray">N/A</font> | <font color="DarkGray">_There are no relationships for this table._</font>
 
 <hr>
 <br>
 
-> An example POST request. Note that `sim_provider_id`, `created_at`, `modified_at`, `created_by` and `modified_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `sim_provider_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "http://smartapi.bboxx.co.uk/v1/sim_providers"
@@ -41,12 +39,11 @@ __sim_provider_network_linker__ | The associated sim_provider_network_linker
     r.json()
 
     >>> {
-		"sim_provider_id": 1,
+		"sim_provider_id": 1
 		"name": "test",
-		"created_at": "2000-01-01 00:00:00",
-		"created_by": "test.user@bboxx.co.uk",
-        "modified_at": None,
-        "modified_by": None
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
 	}
 ```
 
@@ -63,12 +60,11 @@ __sim_provider_network_linker__ | The associated sim_provider_network_linker
 
     r.json()
     >>> {
-        "sim_provider_id": 1,
-        "name": "test",
-        "created_at": "2000-01-01 00:00:00",
-        "created_by": "test.user@bboxx.co.uk",
-        "modified_at": None,
-        "modified_by": None
+		"sim_provider_id": 1
+		"name": "test",
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
 	}
 ```
 
@@ -118,11 +114,10 @@ __sim_provider_network_linker__ | The associated sim_provider_network_linker
 		"name": "changed",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
-		"modified_at": "2016-07-07 12:34:45",
-        "modified_by": "test.user@bboxx.co.uk"
+		"modified_at": 2016-07-07 12:34:45
 	}
 ```
-> Note that the `modified_at` and `modified_by` fields have been updated accordingly.
+> Note that the `modified_at` field has been updated accordingly.
 
 > If a user has `SYSTEM` permissions they can delete the `sim_provider`
 
