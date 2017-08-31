@@ -63,6 +63,8 @@ Updating the `need_attention` attribute to `true`:
 
   - Notifies a human agent to take action
 
+Note that `current` session means a session with a message sent in the last 2 hours. If the customer has no current session, a 404 will be returned.
+
 
 ### HTTP Request
 

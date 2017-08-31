@@ -49,6 +49,8 @@ HTTP/1.1 200 OK
 
 This endpoint retrieves a specific session. Messages are ordered by `sent_at` ascending.
 
+Note that `current` session means a session with a message sent in the last 2 hours. If the customer has no current session, a 404 will be returned.
+
 ### HTTP Request
 
 `GET https://api.dirtylemon.com/v1/customers/:customer_id/sessions/:session_id`
