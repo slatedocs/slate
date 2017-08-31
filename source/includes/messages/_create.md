@@ -49,6 +49,7 @@ This endpoint creates a message.
   <ul>
     <li>This will fail if the customer is unsubscribed.</li>
     <li>This will fail if the customer doesn't have a `phone_number` or `unconfirmed_phone_number`</li>
+    <li>If there's no `current` session for the customer, a new session will be created</li>
   </ul>
 </aside>
 
