@@ -61,12 +61,7 @@ This endpoint updates a session.
 
 Updating the `need_attention` attribute to `true`:
 
-  - Pauses the [conversation system](#)
   - Notifies a human agent to take action
-
-Updating the `need_attention` attribute to `false`:
-
-  - Resumes the [conversation system](#)
 
 
 ### HTTP Request
