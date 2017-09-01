@@ -439,37 +439,37 @@ These events are automatically timestamped.
 
 `sdkManager?tag.startUpdating()`
 
-Start the updates from CoreMotion
+Start the updates from the tag system which notifies listeners of new tags
 
 ### Stop Updating
 
 `sdkManager?tag.stopUpdating()`
 
-Stop the updates from CoreMotion
+ Stop the updates from the tag system 
 
 ### Start Recording
 
 `sdkManager?tag.startRecording()`
 
-Start recording the updates from CoreMotion
+Start recording tags created
 
 ### Stop Recording
 
 `sdkManager?tag.stopRecording()`
 
-Stop recording the updates from CoreMotion
+Stop recording tags created
 
 ### Start Sending to API
 
 `sdkManager?tag.startSendingToAPI()`
 
-Start sending the updates of CoreMotion to the Emotion AI service
+ Start sending tags to the Emotion API
 
 ### Stop Sending to API
 
 `sdkManager?tag.stopSendingToAPI()`
 
-Stop sending the updates of CoreMotion to the Emotion AI service
+ Stop sending tags to the Emotion API
 
 
 ### Check Module Update Status
