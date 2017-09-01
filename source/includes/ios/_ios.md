@@ -29,6 +29,50 @@ public protocol SDKModuleCommandProtocol {
 }
 ```
 
+## Starting the SDK
+
+To start the SDK you will need:
+
+ * An API Key,
+ * A host URL,
+ * A stage URL.
+We will provide you with the API Key as a string, all you have to do is pass this string into the SensumSDKManager .
+
+By default, the host URL and stage URL should be api.sensum.co and v0 respectively, unless we have instructed you otherwise.
+
+In order to create a single instance of the SensumSDKManager, follow the example within the code snippet opposite (the example makes use of a ViewController to do this, but this could be achieved within any file)
+
+> Code Snippet
+
+```swift
+import UIKit
+import SensumKit
+
+class TabBarController: UITabBarController {
+	var sensumSDK : SensumSDKManager?
+	
+	override func viewDidLoad() {
+           super.viewDidLoad()
+           // Do any additional setup after loading the view, typically from a nib.
+           sensumSDK = SensumSDKManager(
+               requestEngineInternalInSeconds: 30,
+               apiKey: "PublicDemoKeyForDocumentation",
+               host: "api.sensum.co",
+               stage: "v0")
+	    startEverythingUpdating()
+       }
+	
+	func startEverythingUpdating() {
+		sensumSDK?.accelerometer.startUpdating()
+		sensumSDK?.location.startUpdating()
+		sensumSDK?.bluetooth.startUpdating()
+		sensumSDK?.tag.startUpdating()
+	}	
+}
+```
+
+This single instance of the SensumSDKManager can then be referenced from elsewhere within your application.
+
 ## Authentication
 
 To get started working with the Sensum SDK manager you’re going to need a valid Authentication session. Create an instance of this object and give it valid sign in details. When using third-party login providers you must provide us with an Audience ID. In the case of Google Sign-In, you must provide use with the Google Applications Client ID. You can find this id contained inside the plist configuration file generated when you set up the login application. For more details please read Google's documentation <a href="https://developers.google.com/identity/sign-in/ios/start-integrating"> here</a>.
@@ -110,68 +154,65 @@ Assign a listener to listen for API events
 
 All available commands for the Sensum accelerometer SDK
 
-### Initialisation
-
-`var accCommand = AccelerometerCommand()`
 
 ### Start Updating
 
-`accCommand.startUpdating()`
+`sdkManager?.accelerometer.startUpdating()`
 
 Start the updates from CoreMotion
 
 ### Stop Updating
 
-`accCommand.stopUpdating()`
+`sdkManager?accelerometer.stopUpdating()`
 
 Stop the updates from CoreMotion
 
 ### Start Recording
 
-`accCommand.startRecording()`
+`sdkManager?accelerometer.startRecording()`
 
 Start recording the updates from CoreMotion
 
 ### Stop Recording
 
-`accCommand.stopRecording()`
+`sdkManager?accelerometer.stopRecording()`
 
 Stop recording the updates from CoreMotion
 
 ### Start Sending to API
 
-`accCommmand.startSendingToAPI()`
+`sdkManager?accelerometer.startSendingToAPI()`
 
 Start sending the updates of CoreMotion to the Emotion AI service
 
 ### Stop Sending to API
 
-`accCommmand.stopSendingToAPI()`
+`sdkManager?accelerometer.stopSendingToAPI()`
 
 Stop sending the updates of CoreMotion to the Emotion AI service
 
 
 ### Check Module Update Status
 
-`accCommand.isUpdating()`
+`sdkManager?accelerometer.isUpdating()`
 
 Check if module is updating. Returns a boolean value.
 
 ### Check Module Recording Status
 
-`accCommand.isRecording()`
+`sdkManager?accelerometer.isRecording()`
 
 Check if module is recording. Returns a boolean value.
 
 ### Check Emotion AI Update Status
 
-`accCommand.isSendingToAPI()`
+`sdkManager?accelerometer.isSendingToAPI()`
 
 Check if module is sending to the Emotion AI Service
 
 ### Assign Listener
  
-`accCommand.assignListener(listener)`
+`sdkManager?accelerometer.assignListener(listener)`
 
 Assign a listener to the accelerometer module to receive accelerometer event updates.
 
@@ -183,7 +224,7 @@ Assign a listener to the accelerometer module to receive accelerometer event upd
 
 ### Set Read Frequency
 
-`accCommand.setReadFrequency(newIntervalInSeconds)`
+`sdkManager?accelerometer.setReadFrequency(newIntervalInSeconds)`
 
 Set the frequency of the updates from the accelerometer.
 
@@ -198,67 +239,64 @@ Set the frequency of the updates from the accelerometer.
 
 Below are all available commands relating to Bluetooth in the iOS SDK.
 
-### Initialisation
-
-`var bluetoothCommand = BluetoothCommand()`
 
 ### Start Updating
 
-`bluetoothCommand.startUpdating()`
+`sdkManager?bluetooth.startUpdating()`
 
 Start the updates of any connected heart rate peripheral 
 
 ### Stop Updating
 
- `bluetoothCommand.stopUpdating()`
+ `sdkManager?bluetooth.stopUpdating()`
 
 Stop the updates of any connected heart rate peripheral
 
 ### Start Recording
 
- `bluetoothCommand.startRecording()`
+ `sdkManager?bluetooth.startRecording()`
 
 Start recording the updates of any connected heart rate peripheral 
 
 ### Stop Recording
 
-`bluetoothCommand.stopRecording()`
+`sdkManager?bluetooth.stopRecording()`
 
 Stop recording the updates of any connected heart rate peripheral
 
 ### Start Sending to Emotion AI Service
 
-`bluetoothCommand.startSendingToAPI()`
+`sdkManager?bluetooth.startSendingToAPI()`
 
 Start sending the updates of any connected heart rate peripheral to the Emotion AI service
 
 ### Stop Sending to Emotion AI Service
 
-`bluetoothCommand.stopSendingToAPI()`
+`sdkManager?bluetooth.stopSendingToAPI()`
 
 Stop sending the updates of any connected heart rate peripheral to the Emotion AI service
 
 ### Check Module Update Status
 
-`bluetoothCommand.isUpdating()`
+`sdkManager?bluetooth.isUpdating()`
 
 Check if module is updating. Returns a boolean value.
 
 ### Check Module Recording Status
 
-`bluetoothCommand.isRecording()`
+`sdkManager?bluetooth.isRecording()`
 
 Check if module is recording. Returns a boolean value.
 
 ### Check Emotion AI Update Status
 
-`bluetoothCommand.isSendingToAPI()`
+`sdkManager?bluetooth.isSendingToAPI()`
 
 Check if module is sending to the Emotion AI Service
 
 ### Assign Listener
  
-`bluetoothCommand.assignListener(listener)`
+`sdkManager?bluetooth.assignListener(listener)`
 
 Assign a listener to the bluetooth module to receive bluetooth event updates.
 
@@ -270,13 +308,13 @@ Assign a listener to the bluetooth module to receive bluetooth event updates.
 
 ### Start Scan for Devices
 
-`bluetoothCommand.startScanForDevices()`
+`sdkManager?bluetooth.startScanForDevices()`
 
 Start scanning for discoverable peripheral devices
 
 ### Connect to peripheral device
 
-`bluetoothCommand.connectTo(peripheralDevice)`
+`sdkManager?bluetooth.connectTo(peripheralDevice)`
 
 Connect to a discovered peripheral device. Discovered devices can be acquired from the listOfDevices returned by the getDeviceList() function.
 
@@ -287,20 +325,20 @@ Connect to a discovered peripheral device. Discovered devices can be acquired fr
 
 ### Clear List of Discovered Devices
 
-`bluetoothCommand.clearDeviceList()`
+`sdkManager?bluetooth.clearDeviceList()`
 
 Clear the list of devices discovered (equivalent to a refresh)
 
 
 ### Disconnect from Device
 
-`bluetoothCommand.disconnect()`
+`sdkManager?bluetooth.disconnect()`
 
 Disconnect from the currently connected peripheral device
 
 ### Get Device List
 
-`bluetoothCommand.getDeviceList()`
+`sdkManager?bluetooth.getDeviceList()`
 
 Return a list of all discovered peripherals. This list is populated when startScanForDevices() is called.
 
@@ -323,70 +361,67 @@ Returns a list of dictionaries containing bluetooth peripheral information with 
 
 All available commands for the Sensum location SDK
 
-### Initialisation
-
-`var locationCommand = LocationCommand()`
 
 ### Start Updating
 
-`locationCommand.startUpdating()`
+`sdkManager?location.startUpdating()`
 
-Start the updates from CoreMotion
+Start the updates from CoreLocation
 
 ### Stop Updating
 
-`locationCommand.stopUpdating()`
+`sdkManager?location.stopUpdating()`
 
-Stop the updates from CoreMotion
+Stop the updates from CoreLocation
 
 ### Start Recording
 
-`locationCommand.startRecording()`
+`sdkManager?location.startRecording()`
 
-Start recording the updates from CoreMotion
+Start recording the updates from CoreLocation
 
 ### Stop Recording
 
-`locationCommand.stopRecording()`
+`sdkManager?location.stopRecording()`
 
-Stop recording the updates from CoreMotion
+Stop recording the updates from CoreLocation
 
 ### Start Sending to API
 
-`accCommmand.startSendingToAPI()`
+`sdkManager?location.startSendingToAPI()`
 
-Start sending the updates of CoreMotion to the Emotion AI service
+Start sending the updates of CoreLocation to the Emotion AI service
 
 ### Stop Sending to API
 
-`accCommmand.stopSendingToAPI()`
+`sdkManager?location.stopSendingToAPI()`
 
-Stop sending the updates of CoreMotion to the Emotion AI service
+Stop sending the updates of CoreLocation to the Emotion AI service
 
 
 ### Check Module Update Status
 
-`locationCommand.isUpdating()`
+`sdkManager?location.isUpdating()`
 
 Check if module is updating. Returns a boolean value.
 
 ### Check Module Recording Status
 
-`locationCommand.isRecording()`
+`sdkManager?location.isRecording()`
 
 Check if module is recording. Returns a boolean value.
 
 ### Check Emotion AI Update Status
 
-`locationCommand.isSendingToAPI()`
+`sdkManager?location.isSendingToAPI()`
 
 Check if module is sending to the Emotion AI Service
 
 ### Assign Listener
  
-`locationCommand.assignListener()`
+`sdkManager?location.assignListener()`
 
-Assign a listener to the accelerometer module to receive accelerometer event updates.
+Assign a listener to the location module to receive location event updates.
 
 
 ### Parameters
@@ -399,70 +434,67 @@ Assign a listener to the accelerometer module to receive accelerometer event upd
 All available commands for our tagging module. This is useful for noting events that occur in data. e.g. "Started workout set", "Jumped out of a plane", "Finished jogging".
 These events are automatically timestamped.
 
-### Initialisation
-
-`var tagCommand = TagCommand()`
 
 ### Start Updating
 
-`tagCommand.startUpdating()`
+`sdkManager?tag.startUpdating()`
 
-Start the updates from CoreMotion
+Start the updates from the tag system which notifies listeners of new tags
 
 ### Stop Updating
 
-`tagCommand.stopUpdating()`
+`sdkManager?tag.stopUpdating()`
 
-Stop the updates from CoreMotion
+ Stop the updates from the tag system 
 
 ### Start Recording
 
-`tagCommand.startRecording()`
+`sdkManager?tag.startRecording()`
 
-Start recording the updates from CoreMotion
+Start recording tags created
 
 ### Stop Recording
 
-`tagCommand.stopRecording()`
+`sdkManager?tag.stopRecording()`
 
-Stop recording the updates from CoreMotion
+Stop recording tags created
 
 ### Start Sending to API
 
-`tagCommmand.startSendingToAPI()`
+`sdkManager?tag.startSendingToAPI()`
 
-Start sending the updates of CoreMotion to the Emotion AI service
+ Start sending tags to the Emotion API
 
 ### Stop Sending to API
 
-`tagCommmand.stopSendingToAPI()`
+`sdkManager?tag.stopSendingToAPI()`
 
-Stop sending the updates of CoreMotion to the Emotion AI service
+ Stop sending tags to the Emotion API
 
 
 ### Check Module Update Status
 
-`tagCommand.isUpdating()`
+`sdkManager?tag.isUpdating()`
 
 Check if module is updating. Returns a boolean value.
 
 ### Check Module Recording Status
 
-`tagCommand.isRecording()`
+`sdkManager?tag.isRecording()`
 
 Check if module is recording. Returns a boolean value.
 
 ### Check Emotion AI Update Status
 
-`tagCommand.isSendingToAPI()`
+`sdkManager?tag.isSendingToAPI()`
 
 Check if module is sending to the Emotion AI Service
 
 ### Assign Listener
  
-`tagCommand.assignListener()`
+`sdkManager?tag.assignListener(listener)`
 
-Assign a listener to the accelerometer module to receive accelerometer event updates.
+Assign a listener to the tag module to receive tag event updates.
 
 
 ### Parameters
@@ -470,7 +502,16 @@ Assign a listener to the accelerometer module to receive accelerometer event upd
 |---------|----|-----------|
 |listener|TagListener|An instance of a class that conforms to the TagListener extension|
 
+### Create Tag
 
+`sdkManager?tag.createTag(tag)`
+
+Creates a tag object composed of a string and timestamp pair
+
+### Parameters
+|Parameter|Type|Description|
+|---------|----|-----------|
+|tag|String|A string object of a message or emoticon|
 
 
 
