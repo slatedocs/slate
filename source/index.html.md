@@ -425,8 +425,7 @@ error_description | Error Message Description
 
 ```json
 {
-  "client": [
-  {
+  "client": {
 	"date":"80170814",
 	"time":"132900",
 	"terminal":"00001",
@@ -460,21 +459,22 @@ error_description | Error Message Description
 	"transaction_id": "90001",
 	"record_type": "01",
 	"business_office_code": "10001"
-},
-    {
+   }
+}
 
-      "sequence": "b373c5ad-f444-40b3-a139-983f174de9e1",
-      "full_name": "LUIS BENAVIDES",
-      "date": "20160310",
-      "document_type": "2",
-      "time": "111102",
-      "identification": "63000025",
-      "plan": "100",
-      "account_origin": "00000000004",
-      "error_code": "96",
-      "error_description": "¡ ¡  Transaccion exitosa ! !"
-    }
-  ]
+
+{
+
+    "sequence": "b373c5ad-f444-40b3-a139-983f174de9e1",
+    "full_name": "LUIS BENAVIDES",
+    "date": "20160310",
+    "document_type": "2",
+    "time": "111102",
+    "identification": "63000025",
+    "plan": "100",
+    "account_origin": "00000000004",
+    "error_code": "96",
+    "error_description": "¡ ¡  Transaccion exitosa ! !"
 }
 ```
 
