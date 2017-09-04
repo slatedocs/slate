@@ -77,32 +77,14 @@ This single instance of the SensumSDKManager can then be referenced from elsewhe
 
 To get started working with the Sensum SDK manager you’re going to need a valid Authentication session. Create an instance of this object and give it valid sign in details. When using third-party login providers you must provide us with an Audience ID. In the case of Google Sign-In, you must provide use with the Google Applications Client ID. You can find this id contained inside the plist configuration file generated when you set up the login application. For more details please read Google's documentation <a href="https://developers.google.com/identity/sign-in/ios/start-integrating"> here</a>.
 
-### Initialisation
-
-`var authenticationObj = Authentication(apiKey, host, stage)`
-
-Create an instance of the Authentication object, specifying the Cognito Identity Pool Id, the host URL, stage and your API key.
-These should all have been provided to you by Sensum when you requested API access.
-
-### Parameters
-
-|Name|Description|
-|----|-----------|
-|identityPoolId|This is the Cognito identity pool ID we have given you to use|
-|host|This is the base URL of the API, this may change over time hence we allow you to configure this from your app|
-|stage|This is typically the version of the API you want to use. Defaults is 'v0'.
-|apiKey|This is your unique developer's API access key, contact Sensum to get one if we haven't given you one already|
-
 
 ## Authentication Command 
-
-`var authenticationCommandObj = AuthenticationCommand(authenticationObj)`
 
 ### Federated sign in 
 
 In order to authenticate you must sign in using Google Sign-in. Once this has been implemented, use this function to sign in to access the Emotion AI service.
 
-`authenticationCommandObj.federatedSignIn()`  
+`sdkManager?authentication.federatedSignIn(provider: provider, authenticationToken: authenticationToken)`  
 
 ### Parameters
 
@@ -512,6 +494,594 @@ Creates a tag object composed of a string and timestamp pair
 |Parameter|Type|Description|
 |---------|----|-----------|
 |tag|String|A string object of a message or emoticon|
+
+
+## APIListener
+
+To be able to listen for updates from the API you must extend your class using an extension of type `API Listener` using the following example code.
+
+> APIListener extension
+
+```swift
+ extension RecordingMasterViewController: APIListener {
+    
+    func realmResponseSaved() {
+        // saved to Realm, lets query it and print the values
+        if let realmResponse = try? Realm().objects(Response.self).last {
+            print(realmResponse)
+        }
+    }
+    
+    func sentimentResponseSaved() {
+        if let realmSentiment = try? Realm().objects(SentimentResponse.self).last {
+            print(realmSentiment)
+        }
+    }
+    
+    func arousalReceived(arousalScore: Double) {
+        print("arousalScore \(arousalScore)")
+    }
+    
+    func apiRequestFailure(message: String, statusCode: Int?) {
+        print("Failed to send to Emotion AI \(message) \(statusCode)")
+    }
+    
+    func apiRequestSuccessful() {
+        print("successfully saved")
+    }
+    
+}
+```
+
+###API Listener Functions: API Request Successful
+
+`func apiRequestSuccessful()`
+
+Used to notify listeners that a request made to the Emotion AI was successful.
+  Called immediately after a 200 HTTP response is received but not before the data received has been safely saved to Realm instance of SensumKit.
+
+
+###API Listener Functions: API Request Failure
+
+` func apiRequestFailure(message: String, statusCode: Int?)`
+
+  Used to notify listeners that a request made to the Emotion AI was unsuccessful.
+  Called immediately after a HTTP response that was not 200.
+
+### Parameters
+|Parameter|Type|Description|
+|---------|----|-----------|
+|message|String|The error message from the HTTP request|
+|statusCode|Int?|Optional URLResponse HTTP status code from the HTTP request|
+
+
+### API Listener Functions: Realm Response Saved
+
+ `func realmResponseSaved()`
+
+  Used to notify listeners that a successful request body has been parsed and is ready for querying in Realm.
+  Called immediately after response.save() is called.
+
+
+### API Listener Functions: Arousal Received
+
+ `func arousalReceived(arousalScore: Double)`
+
+  Used to notify listeners that a successful request body has been parsed and an arousal score value is sent to listeners.
+
+### Parameters
+|Parameter|Type|Description|
+|---------|----|-----------|
+|arousalScore|Double|Double value of the calculated arousal from the Emotion AI|
+
+
+### API Listener Functions: Sentiment Response Received
+
+  ` func sentimentResponseReceived()`
+
+  Used to notify listeners that a successful request body for a text/emoji object has been parsed and is ready for querying in Realm.
+  Called immediately after sentimentEmotion.save() is called.
+
+## AccelerometerListener
+
+Accelerometer listeners handles updates from the Accelerometer SDK component.
+Subscribers will be notified of updates to the Accelerometer object. To use this listener extend your class using the example code
+
+> AccelerometerListener extension
+
+```swift
+extension AccelerometerViewController: AccelerometerListener {
+  func accelerationUpdated(newAcceleration: CMAcceleration, dateTime: Date) {
+        DispatchQueue.main.async {
+            print(newAcceleration)
+        }
+    }
+}
+```
+
+### AccelerometerListener Functions: Acceleration Updated
+
+`func accelerationUpdated(newAcceleration: CMAcceleration, dateTime: Date)`
+
+Called when a new accelerometer value is generated by the device.
+
+### Parameters
+|Parameter|Type|Description|
+|---------|----|-----------|
+|newAcceleration|CMAcceleration|A raw acceleration object from the CoreMotion framework.|
+|dateTime|Date|The native Date() in date time of when the acceleration object was created.|
+
+
+## AuthenticationListener
+
+This listener can be used to handle the Authentication component of the local federated identity sign in process. This step occurs after the third party login, where the Emotion AI will validate the idToken from the end user.
+
+### AuthenticationListener Functions: Sign In Successful
+
+  `func signInSuccesful(message: String)`
+
+Implement to handle the result of a successful login to the Emotion AI after the third party identity provider authentication.
+
+
+ ### Parameters
+ |Parameter|Type|Description|
+ |---------|----|-----------|
+ |message|String| A success message from a valid sign in result.|
+
+ ### AuthenticationListener Functions: Sign In Failed
+
+  `func signInFailed(message: String)`
+
+  ### AuthenticationListener Functions: Sign In Successful
+
+  `func signInSuccesful(message: String)`
+
+Implement to handle the result of a successful login to the Emotion AI after the third party identity provider authentication.
+
+ ### Parameters
+ |Parameter|Type|Description|
+ |---------|----|-----------|
+ |message|String| A fail message from an invalid sign in result.|
+
+
+## BluetoothListener
+
+Bluetooth listeners handles updates from the Bluetooth SDK component.
+Subscribers will be notified of updates to the Bluetooth object.
+
+To use a BluetoothListener extend your class as in the example code
+
+>BluetoothListener extension
+
+```swift
+extension BluetoothTableViewController: BluetoothListener {
+  
+  public func deviceDiscovered() {
+    DispatchQueue.main.async {
+      self.tableView.reloadData()
+    }
+  }
+  
+  public func bpmUpdated(newBpm: Int, dateTime: Date) {}
+  public func deviceConnectionSuccess() {}
+  public func deviceConnectionFailure() {}
+  public func deviceDisconnected(disconnectedPeripheral: CBPeripheral) {}
+}
+```
+
+### BluetoothListener Functions: Device Discovered
+  
+  `func deviceDiscovered()`  
+
+  Called when a BLE device has been discovered during a device scan.
+
+### BluetoothListener Functions: Device Connection Success
+  
+  `func deviceConnectionSuccess()`  
+
+  Called when the users device has successfully connected to a BLE device.
+
+### BluetoothListener Functions: Device Connection Failure
+  
+  `func deviceConnectionFailure()`  
+
+  Called when the users device has failed to connect to a BLE device.
+
+### BluetoothListener Functions: Device Disconnected
+  
+  `func deviceDisconnected(disconnectedPeripheral: CBPeripheral)`  
+
+  Called when the users device has been disconnected from a BLE device.
+
+ ### Parameters
+  |Parameter|Type|Description|
+  |---------|----|-----------|
+  |disconnectedPeripheral|CBPeripheral|The CoreBluetooth BLE device that disconnected.|
+
+### BluetoothListener Functions: BPM Updated
+
+  `func bpmUpdated(newBpm: Int, dateTime: Date)`
+
+  Called when the BLE device connected to the users device has a processed update value ready.
+
+### Parameters
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|newBpm|Int|A heart rate value in beats per minute.|
+|dateTime|Date|A native Date() object of when the reading was generated.|  
+
+
+##LocationListener
+
+Location listeners handles updates from the Location SDK component.
+Subscribers will be notified of updates to the Location object.
+
+To use a LocationListener, extend your class as seen in the following example code.
+
+> LocationListener extension
+
+```swift
+extension GPSViewController: LocationListener {
+    func locationUpdated(newLocation: CLLocation) {
+        DispatchQueue.main.async {
+      print(newLocation)
+        }
+    }
+}
+```
+
+### LocationListener Functions: Location Updated
+
+  `func locationUpdated(newLocation:CLLocation)`
+
+  Called when a new location update has been generated by the device.
+
+### Parameters
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|newLocation|CLLocation|A CoreLocation type location object containing fine values about the device location.|
+
+## TagListener
+
+This listener can be used to handle the response to Tag objects of unicode text/emoji objects.
+
+### TagListener Functions: Tag Created
+
+ `func tagCreated(newTag: String, dateTime: Date)`
+
+ Called when a new tag object is created.
+
+ ###Parameters
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|newTag|String|The literal string tag that was created.|
+|dateTime|Date|A native Date() object representing time and date when the tag was created.|
+
+
+## SensumSDKManager
+
+ The SDK manager is the root object in the SensumKit which starts the service.
+The manager prepares all objects you can use to interface with your device motion, location and bluetooth peripheral frameworks.
+As well as all the data required to send data to the Emotion API.
+
+In order to create a single instance of the SensumSDKManager, follow the example within Code Snippet 9 (the example makes use of a ViewController to do this, but this could be achieved within any file)
+
+This single instance of the SensumSDKManager can then be referenced from elsewhere within your application.
+
+> Instantiation of SensumSDKManager
+
+```swift
+import UIKit
+import SensumKit
+
+class TabBarController: UITabBarController {
+  var sensumSDK : SensumSDKManager?
+  
+  override func viewDidLoad() {
+           super.viewDidLoad()
+           // Do any additional setup after loading the view, typically from a nib.
+           sensumSDK = SensumSDKManager(
+               requestEngineInternalInSeconds: 30,
+               apiKey: "PublicDemoKeyForDocumentation",
+               host: "api.sensum.co",
+               stage: "v0")
+      startEverythingUpdating()
+       }
+  
+  func startEverythingUpdating() {
+    sensumSDK?.accelerometer.startUpdating()
+    sensumSDK?.location.startUpdating()
+    sensumSDK?.bluetooth.startUpdating()
+    sensumSDK?.tag.startUpdating()
+  } 
+}
+```
+### SensumSDKManager Functions: Initialisation
+
+`public init(requestEngineInternalInSeconds: Int, apiKey: String, host: String, stage: String)`
+
+SensumSDKManager initialiser.
+
+### Parameters
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|requestEngineInternalInSeconds|Int|How often local data is uploaded to the Emotion AI.|
+|apiKey|String|The apiKey to authenticate use with the Emotion AI.|
+|host|String|The host version of the API. Defaults to "api.sensum.co"|
+|stage|String|The version of the API.|
+
+
+## ServerRequestEngine
+
+### ServerRequestEngine Functions: Set Request Interval
+
+`public func setRequestInterval(newUpdateInterval : Int)`
+
+This changes the interval immediately, destroying the old timer and starting a new one counting from time zero.
+
+### Parameters
+
+Parameter|Type|Description|
+|--------|----|-----------|
+|newUpdateInterval|Int|The new update interval in seconds|
+
+## SDKManagedObject
+
+The managed DataSource that custom types must implement to use with the Emotion AI.
+
+###SDKManagedObject Functions: Start Updates
+
+  `func startUpdates()`
+
+  Start retrieving updates from the data source.
+
+  ###SDKManagedObject Functions: Stop Updates
+
+ `func stopUpdates()`
+  
+
+  Stop retrieving updates from the data source
+
+  
+###SDKManagedObject Functions: Start Recording
+
+  `func startRecording()`
+
+  Start recording updates from the data source to the local Realm store on device.
+
+###SDKManagedObject Functions: Stop Recording
+  
+  `func stopRecording()`
+
+  Stop recording updates from the data source to the local Realm store on device.
+    
+###SDKManagedObject Functions: Start Sending To API    
+
+  `func startSendingToAPI()`
+  
+  Start sending updates from the data source to the Emotion AI.
+
+###SDKManagedObject Functions: Stop Sending To API
+  
+  `func stopSendingToAPI()`
+
+  Stop sending updates from the data source to the Emotion AI.
+
+## Database
+
+Database manager handles the key functions of the Realm instance used as part of the SDK.
+
+### Database Functions: Delete All Records
+
+`static public func deleteAllRecords()`
+
+  Attempts to delete the default Realm database on the device, deleting all SensumKit related data.
+
+## BluetoothPeripheral
+
+`public struct BluetoothPeripheral`
+
+> BluetoothPeripheral
+
+```swift
+public struct BluetoothPeripheral {
+    var advertisedName: String = ""
+    var peripheral: CBPeripheral
+    var type: String = "ble"
+}
+```
+
+  Struct composing a Bluetooth Device, including name, type and peripheral value.
+    
+## Response
+
+Parent response Realm object generated from request data sent from the device.
+
+### Response Functions: Save
+
+ `func save()`
+
+Saves to Realm
+
+## HeartRateResponse
+
+A root heart rate response object generated from the Emotion AI
+
+### Response Functions: Save
+
+ `func save()`
+
+Saves to Realm
+
+## AccelerometerResponse
+
+AccelerometerResponse is a mapping to Accelerometer based data from the device that was sent and processed by the Emotions API.
+Realm typeobject which is persisted under the Response object.
+
+### AccelerometerResponse Functions: Save
+
+ `func save()`
+
+Saves to Realm
+
+## LocationResponse
+
+A root location response object generated from the Emotion AI.
+
+### LocationResponse Functions: Save
+
+ `func save()`
+
+Saves to Realm
+
+## ArousalResponse
+
+ArousalResponse is the root object of arousal data generated by the Emotion AI.
+
+### ArousalResponse Functions: Save
+
+ `func save()`
+
+Saves to Realm
+
+## SentimentResponse
+
+Sentiment represents the Emotion AI analysis of textual and emoji input sent from SensumKit.
+
+### SentimentResponse Functions: Save
+
+ `func save()`
+
+Saves to Realm
+
+## HeartRate
+
+A raw heart rate value processed from a BLE device that was connected to the users device.
+
+### HeartRate Functions: Map To Schema
+
+  `public func mapToSchema() -> [RecordTuple]` 
+
+Maps the raw Heart rate value to the database record.
+
+## Location
+
+A CLLocation realm type object saved from the location data that was generated by the device.
+
+### HeartRate Functions: Map To Schema
+
+  `public func mapToSchema() -> [RecordTuple]` 
+
+Maps the location data to the database record.
+
+## Accelerometer
+
+The Realm Accelerometer object class used for persisting raw accelerometer readings to Realm.
+
+### Accelerometer Functions: Map To Schema
+
+  `public func mapToSchema() -> [RecordTuple]` 
+
+Maps the location data to the database record.
+
+## UnicodeTag
+
+Local text/emoji unicode objects created that can be used for sentiment analysis completed on the Emotion AI
+
+### UnicodeTag Functions: Map To Schema
+
+  `public func mapToSchema() -> [RecordTuple]` 
+
+Maps the location data to the database record.
+
+
+## ArousalStat
+
+Statistical information relating to arousal which is generated by the Emotion AI.
+
+### ArousalStat Functions: Save
+
+ `func save()`
+
+Saves to Realm
+
+## ArousalRecord
+
+The arousal record relates to the arousal calculated and sent as a response from the Emotion AI which processed heart rate data to generate this object.
+
+### ArousalRecord Functions: Save
+
+ `func save()`
+
+Saves to Realm
+
+## Stat
+
+A generic statistic object that represents related values about a processed data from the Emotion AI.
+
+### Stat Functions: Save
+
+ `func save()`
+
+ Saves to Realm
+
+
+## Percentile
+
+A percentile object represents the amount of values that exist as part of a parent reading in a certain percentile. Generated from the Emotion AI.
+
+
+### Percentile Functions: Save
+
+ `func save()`
+
+Saves to Realm
+
+## Event
+
+Generic events that can occur relating to the changes of the values coming from a typical data stream.
+
+### Event Functions: Save
+
+ `func save()`
+
+
+## Emotion
+
+Emotion is a collection of inferred emotions from the sentiment analysis of the Emotion AI.
+
+### Emotion Functions: Save
+
+ `func save()`
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
