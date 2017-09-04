@@ -400,7 +400,7 @@ second_name  | Client Second Name
 full_name | Client Full Name (First + Last Name)
 first_last_name | Client First Last Name
 second_last_name | Client Second Last Name
-dob | PREGUNTAR
+dob | Day of birthday
 gender | Client Gender
 client_type | Client Type
 cardholder_print_name | Client Name on Card
@@ -418,7 +418,6 @@ plan | Plan to be Assigned to Client
 transaction_id | ID of Transaction Requested
 record_type | Type of Client
 business_office_code | Bussiness Office of Request
-sequence | Unique ID of Transaction
 account_origin | Account Number of New Client
 error_code | Error ID
 error_description | Error Message Description

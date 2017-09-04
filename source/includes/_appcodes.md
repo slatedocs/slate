@@ -73,3 +73,11 @@ App Code | Meaning
 F | Female Client
 M | Male Client
 N | NA (Bussiness Client)
+
+
+***Core Transaction***
+
+App Code | Meaning
+---------- | -------
+90001 | Create client and account
+
