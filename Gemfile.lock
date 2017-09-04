@@ -112,6 +112,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
+    wdm (0.1.1)
 
 PLATFORMS
   ruby
@@ -125,6 +126,7 @@ DEPENDENCIES
   nokogiri (~> 1.6.8)
   redcarpet (~> 3.4.0)
   rouge (~> 2.0.5)
+  wdm (>= 0.1.0)
 
 RUBY VERSION
    ruby 2.3.3p222

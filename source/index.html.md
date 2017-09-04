@@ -9,6 +9,7 @@ toc_footers:
   - Web & Digital Banking Team
   - Documentation property of BankVision
 includes:
+  - appcodes
   - errors
 
 search: true
@@ -384,71 +385,95 @@ This endpoint create a new client. ( Data missing we need more information from 
 ### BODY Parameters
 Parameter | Description
 ----------|------------
+date | Date of Client Creation
+time | Time of Client Creation
+terminal | Terminal of Client Creation Request  
+transactional_group | Client Transactional Group
+transaction | Transaction
+origin | Origin of Client Creation Request
+Identification | Client Identification Number
+document_type | Client Identification Type
+channel | Channel of Client Creation Request
+terminal_type | Type of Terminal of Client Creation Request
 first_name | Client First Name
-middle_name | Client Middle Name  
-last_name | Client Last Name  
+second_name  | Client Second Name
+full_name | Client Full Name (First + Last Name)
+first_last_name | Client First Last Name
 second_last_name | Client Second Last Name
-short_name | Client Short Name (Client First and Last Name)
-client_type | Type of Client
-id_number | Client Identification Number
-id_type | Client Identification Type
-id_expedition_date | Client Identification Expedition Date
-account_official | Official of the Account
+dob | PREGUNTAR
+gender | Client Gender
+client_type | Client Type
+cardholder_print_name | Client Name on Card
+expedition_date | Client´s Card Expedition Date
 market_segment | Client Market Segment
-activity_cod  | Activity Code
-language_cod | Language Code
-opening_branch | Opening Branch
-third_party_control | Third Party Control
-tax_info_check_account | Check Account Tax Information
-tax_info_savings_account | Savings Account Tax Information
+economic_activity | Client Economic Activity
 expedition_city | Client ID Expedition City
-birth_date | Client Birth Date
-tax_info_certified | Certified Tax Information
-tax_info_loans | Loans Tax Information
-sequence | Sequence
+ciiu_code | Client Ciiu Code
+residential_address | Client Residential Address
+residential_phone | Client Residential Phone
+mobile_phone | Client Mobile Phone
+email | Client Email
+residence_city | Client Residence City
+plan | Plan to be Assigned to Client
+transaction_id | ID of Transaction Requested
+record_type | Type of Client
+business_office_code | Bussiness Office of Request
+sequence | Unique ID of Transaction
+account_origin | Account Number of New Client
+error_code | Error ID
+error_description | Error Message Description
 
 
 ```json
 {
-  "clients": [
-    {
-      "first_name": "Juan",
-      "middle_name": "Pedro",
-      "last_name":"Perez",
-      "second_last_name":"Garcia",
-      "short_name":"Juan Perez",
-      "client_type":"N",
-      "id_number":123456,
-      "id_type":"CC",
-      "id_expedition_date":"20170606",
-      "account_official":"00001",
-      "market_segment":"A",
-      "activity_cod": "00003",
-      "language_cod": "01",
-      "opening_branch":"01",
-      "third_party_control":"A",
-      "tax_info_check_account":"00",
-      "tax_info_savings_account":"00",
-      "expedition_city":"Bogota",
-      "birth_date":"20170606",
-      "tax_info_certified":"000",
-      "tax_info_loans":"000",
-      "sequence":"000001"
-    },
+  "client": [
+  {
+	"date":"80170814",
+	"time":"132900",
+	"terminal":"00001",
+	"transactional_group":"100",
+	"transaction":"05",
+	"origin":"00",
+	"identification":"63000026",
+	"document_type":"2",
+	"channel":"00",
+	"terminal_type":"00",
+	"first_name":"LUIS",
+	"second_name":"GUILLERMO",
+	"full_name":"LUIS BENAVIDES",
+	"first_last_name":"BENAVIDES",
+	"second_last_name":"MORENO",
+	"dob":"19250101",
+	"gender":"M",
+	"client_type":"N",
+	"cardholder_print_name":"LUIS BENAVIDES",
+	"expedition_date":"20170216",
+	"market_segment":"4",
+	"economic_activity":"00000",
+	"expedition_city":"27001000",
+	"ciiu_code":"81",
+	"residential_address":"Calle 147 7B ",
+	"residential_phone":"3168346547 ",
+	"mobile_phone":"3168346547",
+	"email":"hello@gmail.com ",
+	"residence_city":"15238000",
+	"plan":"100",
+	"transaction_id": "90001",
+	"record_type": "01",
+	"business_office_code": "10001"
+},
     {
 
-      "first_name": "Juan",
-      "middle_name": "Pedro",
-      "last_name":"Perez",
-      "second_last_name":"Garcia",
-      "client_type":"N",
-      "id_number":123456,
-      "id_type":"CC",
-      "id_expedition_date":"20170606",
-      "opening_branch":"01",
-      "expedition_city":"Bogota",
-      "birth_date":"20170606",
-      "sequence":"000001"
+      "sequence": "b373c5ad-f444-40b3-a139-983f174de9e1",
+      "full_name": "LUIS BENAVIDES",
+      "date": "20160310",
+      "document_type": "2",
+      "time": "111102",
+      "identification": "63000025",
+      "plan": "100",
+      "account_origin": "00000000004",
+      "error_code": "96",
+      "error_description": "¡ ¡  Transaccion exitosa ! !"
     }
   ]
 }
