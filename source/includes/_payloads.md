@@ -1,6 +1,47 @@
 # Payloads
 
-São as requisições enviadas pelo webhook do Cobrato para uma determinada URL para notificar que certas ações ocorreram. Estas ações notificadas são as seguintes:
+São as requisições enviadas pelo webhook do Cobrato para uma determinada URL notificando a ocorrência de [certos eventos](#eventos-notificados).
+
+Quando um destes eventos ocorre, o webhook envia o payload (para a URL definida na criação do Webhook) em uma requisição HTTP do tipo POST com os seguintes _headers_:
+
+- **Accept**: application/json
+- **Content-Type**: application/json
+- **User-Agent**: Cobrato v1
+- **X-Cobrato-Signature**: \<some-signature>
+- **X-Cobrato-Requestid**: \<some-request-id>
+
+Os dois últimos fazem parte da assinatura do payload, detalhada a seguir.
+
+<aside class="notice">
+  A URL definida na criação do Webhook deve estar disponível e respondendo com HTTP 200 ok aos payloads. Se a resposta for diferente ou não tiver qualquer resposta, o Cobrato fará 5 novas tentativas até não tentar mais.
+</aside>
+
+### Assinatura do Payload
+
+Por medidas de segurança, você pode verificar a assinatura do payload antes de tomar qualquer ação em relação ao payload recebido. Isso pode evitar que alguém se passe pelo Cobrato e enviei payloads falsos de eventos que não ocorreram de fato.
+
+```ruby
+# EXEMPLO DE CÁCULO PARA VERIFICAÇÃO DA SIGNATURE (ruby)
+
+secret = 'segredo definido na criação do Webhook'
+content = "#{request.headers['X-Cobrato-RequestId']}#{request.body}"
+cobrato_signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), secret, content)
+
+cobrato_signature == request.headers['X-Cobrato-Signature']
+# => true
+```
+
+**X-Cobrato-RequestId**
+
+Este header é único para cada requisição e é utilizado no cálculo do `X-Cobrato-Signature`.
+
+**X-Cobrato-Signature**
+
+Este header é a assinatura do webhook. Este valor pode ser calculado com o HMAC hex digest do `X-Cobrato-RequestId` concatenado ao corpo do payload, utilizando o **Segredo** (definido na criação do Webhook) como a chave.
+
+### Eventos notificados
+
+Os eventos notificados são os seguintes:
 
 | Objeto          | Evento             | Descrição                                      |
 |-----------------|--------------------|------------------------------------------------|
@@ -20,29 +61,6 @@ São as requisições enviadas pelo webhook do Cobrato para uma determinada URL 
 | payer           | created            | quando o pagador é criado                      |
 | payer           | updated            | quando o pagador é atualizado                  |
 | payer           | destroyed          | quando o pagador é excluído                    |
-
-### Assinatura do Payload
-
-```ruby
-# EXEMPLO DE CÁCULO PARA VERIFICAÇÃO DA SIGNATURE (ruby)
-
-secret = 'segredo definido na criação do Webhook'
-content = "#{request.headers['X-Cobrato-RequestId']}#{request.body}"
-cobrato_signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), secret, content)
-
-cobrato_signature == request.headers['X-Cobrato-Signature']
-# => true
-```
-
-Quando um destes eventos ocorre, o webhook envia o payload (para a URL definida na criação do Webhook) em uma requisição HTTP do tipo POST com dois headers específicos:
-
-**X-Cobrato-RequestId**
-
-Este header é único para cada requisição e é utilizado no cálculo do `X-Cobrato-Signature`.
-
-**X-Cobrato-Signature**
-
-Este header é a assinatura do webhook. Este valor pode ser calculado com o HMAC hex digest do `X-Cobrato-RequestId` concatenado ao corpo do payload, utilizando o **Segredo** (definido na criação do Webhook) como a chave.
 
 
 ## Cobrança criada

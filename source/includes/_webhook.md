@@ -151,7 +151,7 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 ```
 
-Cria um novo webhook, retornando as informações do mesmo caso haja sucesso. Para realizar o cadastro é necessária que a URL informa aceite as requisições POST e GET, respondendo sempre com HTTP 200. Afim de verificação da URL, o Cobrato fará requisições testes a mesma
+Cria um novo webhook, retornando as informações do mesmo caso haja sucesso. Para realizar o cadastro é necessária que a URL informa aceite requisições POST, respondendo sempre com HTTP 200. No momento da criação, afim verificar a URL informada, o Cobrato fará uma requisição de teste à mesma. A requisição de teste será um [payload](#payloads) com o corpo `{"test": true}`.
 
 **Parâmetros**
 
