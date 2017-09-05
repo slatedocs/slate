@@ -804,7 +804,7 @@ The managed DataSource that custom types must implement to use with the **Sensum
 
   Start retrieving updates from the data source.
 
-  ###SDKManagedObject Functions: Stop Updates
+###SDKManagedObject Functions: Stop Updates
 
  `func stopUpdates()`
 
