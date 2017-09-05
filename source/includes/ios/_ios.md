@@ -106,7 +106,7 @@ All available commands for configuring and enabling API communication
 
 `apiCommand.setServerRequestRate(requestRateInSeconds)`
 
-Set how frequently data is uploaded to the server.
+Set the frequency of data uploads to the Emotion API.
 
 ### Parameters
 
@@ -118,7 +118,7 @@ Set how frequently data is uploaded to the server.
 
 `apiCommand.getServerRequestRate()`
 
- Returns how often requests are sent to the API
+Returns how often requests are sent to the Emotion API
 
 ### Assign Listener
 
@@ -178,25 +178,25 @@ Stop sending the updates of CoreMotion to the Emotion AI service
 
 `sdkManager?accelerometer.isUpdating()`
 
-Check if module is updating. Returns a boolean value.
+Check if CoreMotion Accelerometer is updating. Returns a boolean value.
 
 ### Check Module Recording Status
 
 `sdkManager?accelerometer.isRecording()`
 
-Check if module is recording. Returns a boolean value.
+Check if Check if CoreMotion Accelerometer is recording. Returns a boolean value.
 
 ### Check Emotion AI Update Status
 
 `sdkManager?accelerometer.isSendingToAPI()`
 
-Check if module is sending to the Emotion AI Service
+Check if Check if CoreMotion Accelerometer is sending to the Emotion AI Service
 
 ### Assign Listener
  
 `sdkManager?accelerometer.assignListener(listener)`
 
-Assign a listener to the accelerometer module to receive accelerometer event updates.
+Assign a listener to the accelerometer module to receive CoreMotion event updates.
 
 
 ### Parameters
@@ -322,7 +322,7 @@ Disconnect from the currently connected peripheral device
 
 `sdkManager?bluetooth.getDeviceList()`
 
-Return a list of all discovered peripherals. This list is populated when startScanForDevices() is called.
+Return a list of all discovered peripherals. The list will begin populating after startScanForDevices() is called.
 
 Returns a list of dictionaries containing bluetooth peripheral information with three fields:
 
@@ -385,25 +385,25 @@ Stop sending the updates of CoreLocation to the Emotion AI service
 
 `sdkManager?location.isUpdating()`
 
-Check if module is updating. Returns a boolean value.
+Check if the location module is updating. Returns a boolean value.
 
 ### Check Module Recording Status
 
 `sdkManager?location.isRecording()`
 
-Check if module is recording. Returns a boolean value.
+Check if the location module is recording. Returns a boolean value.
 
 ### Check Emotion AI Update Status
 
 `sdkManager?location.isSendingToAPI()`
 
-Check if module is sending to the Emotion AI Service
+Check if the location module is sending to the Emotion AI Service
 
 ### Assign Listener
  
 `sdkManager?location.assignListener()`
 
-Assign a listener to the location module to receive location event updates.
+Assign a listener to the location module to receive CoreLocation event updates.
 
 
 ### Parameters
@@ -458,19 +458,19 @@ Stop recording tags created
 
 `sdkManager?tag.isUpdating()`
 
-Check if module is updating. Returns a boolean value.
+Check if the tag module is updating. Returns a boolean value.
 
 ### Check Module Recording Status
 
 `sdkManager?tag.isRecording()`
 
-Check if module is recording. Returns a boolean value.
+Check if the tag module is recording. Returns a boolean value.
 
 ### Check Emotion AI Update Status
 
 `sdkManager?tag.isSendingToAPI()`
 
-Check if module is sending to the Emotion AI Service
+Check if the tag module is sending to the Emotion AI Service
 
 ### Assign Listener
  
