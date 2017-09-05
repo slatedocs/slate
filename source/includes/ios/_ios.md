@@ -194,7 +194,7 @@ Check if *CoreMotion* Accelerometer is recording. Returns a boolean value.
 
 `sdkManager?accelerometer.isSendingToAPI()`
 
-Check if Check if *CoreMotion* Accelerometer is sending to the **SensumAPI**.
+Check if *CoreMotion* Accelerometer is sending to the **SensumAPI**.
 
 ### Assign Listener
 
