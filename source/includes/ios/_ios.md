@@ -4,12 +4,12 @@
 
 ### SDK Module Command Protocol
 
-Every Sensum SDK module conforms to the module command protocol.
-At present these can be switched on and off independently. Every SDK managed object has three states that can be toggled independently:
+Every **SensumSDK** module conforms to the module command protocol.
+At present these can be switched on and off independently. Every SDK-managed object has three states that can be toggled independently:
 
-* Updating: You will get live data updates from the respective managed object. If you have defined a listener for that object it’s update methods will be called by the SDK and you can reflect these and carry out actions in your app.
-* Recording: Data updates will be stored only. If you do not turn on updates no data can be recorded as updates will not be read.
-* Sending To API: Data updates will be recorded and sent to the Emotion AI service.
+* Updating: You will get live data updates from the respective managed object. If you have defined a listener for that object, its update methods will be called by the SDK and you can reflect these and carry out actions in your app.
+* Recording: Data updates will be stored only. If you do not enable updates no data can be recorded as updates will not be read.
+* Sending To API: Data updates will be recorded and sent to the **SensumAPI**.
 
 > Protocol Code - SDK written in Swift 3
 
@@ -29,18 +29,22 @@ public protocol SDKModuleCommandProtocol {
 }
 ```
 
-## Starting the SDK
+## Starting the SensumSDK
 
-To start the SDK you will need:
+To start the **SensumSDK** you will need:
 
  * An API Key,
  * A host URL,
  * A stage URL.
-We will provide you with the API Key as a string, all you have to do is pass this string into the SensumSDKManager .
+We will provide you with the API Key as a string, all you have to do is pass this string into the `SensumSDKManager`.
 
-By default, the host URL and stage URL should be api.sensum.co and v0 respectively, unless we have instructed you otherwise.
+By default, the host URL and stage URL should be **"api.sensum.co"** and **"v0"** respectively, unless we have instructed you otherwise.
 
-In order to create a single instance of the SensumSDKManager, follow the example within the code snippet opposite (the example makes use of a ViewController to do this, but this could be achieved within any file)
+ The `SensumSDKManager` is the root object in the **SensumKit** which starts the service.
+The manager prepares all objects you can use to interface with your device motion, location and bluetooth peripheral frameworks.
+As well as all the data required to send data to the **SensumAPI**.
+
+In order to create a single instance of the `SensumSDKManager`, follow the example within the Code Snippet below (the example makes use of a `TabBarController` to do this, but this could be achieved within any file).
 
 > Code Snippet
 
@@ -50,7 +54,7 @@ import SensumKit
 
 class TabBarController: UITabBarController {
 	var sensumSDK : SensumSDKManager?
-	
+
 	override func viewDidLoad() {
            super.viewDidLoad()
            // Do any additional setup after loading the view, typically from a nib.
@@ -61,62 +65,44 @@ class TabBarController: UITabBarController {
                stage: "v0")
 	    startEverythingUpdating()
        }
-	
+
 	func startEverythingUpdating() {
 		sensumSDK?.accelerometer.startUpdating()
 		sensumSDK?.location.startUpdating()
 		sensumSDK?.bluetooth.startUpdating()
 		sensumSDK?.tag.startUpdating()
-	}	
+	}
 }
 ```
 
-This single instance of the SensumSDKManager can then be referenced from elsewhere within your application.
+This single instance of the `SensumSDKManager` can then be referenced from elsewhere within your application.
 
 ## Authentication
 
-To get started working with the Sensum SDK manager you’re going to need a valid Authentication session. Create an instance of this object and give it valid sign in details. When using third-party login providers you must provide us with an Audience ID. In the case of Google Sign-In, you must provide use with the Google Applications Client ID. You can find this id contained inside the plist configuration file generated when you set up the login application. For more details please read Google's documentation <a href="https://developers.google.com/identity/sign-in/ios/start-integrating"> here</a>.
-
-### Initialisation
-
-`var authenticationObj = Authentication(apiKey, host, stage)`
-
-Create an instance of the Authentication object, specifying the Cognito Identity Pool Id, the host URL, stage and your API key.
-These should all have been provided to you by Sensum when you requested API access.
-
-### Parameters
-
-|Name|Description|
-|----|-----------|
-|identityPoolId|This is the Cognito identity pool ID we have given you to use|
-|host|This is the base URL of the API, this may change over time hence we allow you to configure this from your app|
-|stage|This is typically the version of the API you want to use. Defaults is 'v0'.
-|apiKey|This is your unique developer's API access key, contact Sensum to get one if we haven't given you one already|
+To get started working with the `SensumSDKManager` you’re going to need a valid Authentication session. Create an instance of this object and give it valid sign-in details. When using third-party login providers you must provide us with an Audience ID. In the case of *Google Sign-In*, you must provide use with the *Google Applications Client ID*. You can find this id contained inside the plist configuration file generated when you set up the login application. For more details please read Google's documentation <a href="https://developers.google.com/identity/sign-in/ios/start-integrating"> here</a>.
 
 
-## Authentication Command 
+## Authentication Command
 
-`var authenticationCommandObj = AuthenticationCommand(authenticationObj)`
+### Federated sign-in
 
-### Federated sign in 
+In order to authenticate you must sign in using *Google Sign-in*. Once this has been implemented, use this function to sign in to access the **SensumAPI**.
 
-In order to authenticate you must sign in using Google Sign-in. Once this has been implemented, use this function to sign in to access the Emotion AI service.
-
-`authenticationCommandObj.federatedSignIn()`  
+`sdkManager?authentication.federatedSignIn(provider: provider, authenticationToken: authenticationToken)`  
 
 ### Parameters
 
 |Name|Description|
 |----|-----------|
-|provider| The URL of the identity provider that you are using this will be 'accounts.google.com' in the case of Google Sign-In|
-|authenticationToken|This is the authentication token generated by successful login with the identity provider| 
+|provider| The URL of the identity provider that you are using this will be 'accounts.google.com' in the case of *Google Sign-In*|
+|authenticationToken|This is the authentication token generated by successful login with the identity provider|
 
 
 ## API Command
 
-All available commands for configuring and enabling API communication 
+All available commands for configuring and enabling API communication.
 
-### Initialisation 
+### Initialisation
 
 `var apiCommand = APICommand()`
 
@@ -124,7 +110,7 @@ All available commands for configuring and enabling API communication
 
 `apiCommand.setServerRequestRate(requestRateInSeconds)`
 
-Set how frequently data is uploaded to the server.
+Set the frequency of data uploads to the **SensumAPI**.
 
 ### Parameters
 
@@ -136,13 +122,13 @@ Set how frequently data is uploaded to the server.
 
 `apiCommand.getServerRequestRate()`
 
- Returns how often requests are sent to the API
+Returns how often requests are sent to the **SensumAPI**.
 
 ### Assign Listener
 
 `apiCommand.assignListener(listener)`
 
-Assign a listener to listen for API events
+Assign a listener to listen for **SensumAPI** events.
 
 ### Parameters
 
@@ -152,72 +138,73 @@ Assign a listener to listen for API events
 
 ## Accelerometer Command
 
-All available commands for the Sensum accelerometer SDK
+All available commands for the **SensumSDK** accelerometer component.
 
 
 ### Start Updating
 
 `sdkManager?.accelerometer.startUpdating()`
 
-Start the updates from CoreMotion
+Start the updates from *CoreMotion*.
 
 ### Stop Updating
 
 `sdkManager?accelerometer.stopUpdating()`
 
-Stop the updates from CoreMotion
+Stop the updates from *CoreMotion*.
 
 ### Start Recording
 
 `sdkManager?accelerometer.startRecording()`
 
-Start recording the updates from CoreMotion
+Start recording the updates from *CoreMotion*.
 
 ### Stop Recording
 
 `sdkManager?accelerometer.stopRecording()`
 
-Stop recording the updates from CoreMotion
+Stop recording the updates from *CoreMotion*.
 
 ### Start Sending to API
 
 `sdkManager?accelerometer.startSendingToAPI()`
 
-Start sending the updates of CoreMotion to the Emotion AI service
+Start sending the updates of *CoreMotion* to the **SensumAPI**.
 
 ### Stop Sending to API
 
 `sdkManager?accelerometer.stopSendingToAPI()`
 
-Stop sending the updates of CoreMotion to the Emotion AI service
+Stop sending the updates of *CoreMotion* to the **SensumAPI**.
 
 
 ### Check Module Update Status
 
 `sdkManager?accelerometer.isUpdating()`
 
-Check if module is updating. Returns a boolean value.
+Check if *CoreMotion* Accelerometer is updating. Returns a boolean value.
 
 ### Check Module Recording Status
 
 `sdkManager?accelerometer.isRecording()`
 
-Check if module is recording. Returns a boolean value.
+Check if *CoreMotion* Accelerometer is recording. Returns a boolean value.
 
-### Check Emotion AI Update Status
+### Check SensumAPI Update Status
 
 `sdkManager?accelerometer.isSendingToAPI()`
 
-Check if module is sending to the Emotion AI Service
+Check if *CoreMotion* Accelerometer is sending to the **SensumAPI**.
 
 ### Assign Listener
- 
+
 `sdkManager?accelerometer.assignListener(listener)`
 
-Assign a listener to the accelerometer module to receive accelerometer event updates.
+Assign a listener to the accelerometer module to receive *CoreMotion* event updates.
 
 
 ### Parameters
+
 |Parameter|Type|Description|
 |---------|----|-----------|
 |listener|AccelerometerListener|An instance of a class that conforms to the AccelerometerListener extension|
@@ -229,6 +216,7 @@ Assign a listener to the accelerometer module to receive accelerometer event upd
 Set the frequency of the updates from the accelerometer.
 
 ### Parameters
+
 |Parameter|Type|Description|
 |---------|----|-----------|
 |newIntervalInSeconds|Double|Set the interval time in seconds, (minimum interval is 0.01s)|
@@ -237,44 +225,44 @@ Set the frequency of the updates from the accelerometer.
 
 ## Bluetooth Command
 
-Below are all available commands relating to Bluetooth in the iOS SDK.
+Below are all available commands relating to Bluetooth within the **SensumSDK**.
 
 
 ### Start Updating
 
 `sdkManager?bluetooth.startUpdating()`
 
-Start the updates of any connected heart rate peripheral 
+Start the updates of any connected heart rate peripheral.
 
 ### Stop Updating
 
  `sdkManager?bluetooth.stopUpdating()`
 
-Stop the updates of any connected heart rate peripheral
+Stop the updates of any connected heart rate peripheral.
 
 ### Start Recording
 
  `sdkManager?bluetooth.startRecording()`
 
-Start recording the updates of any connected heart rate peripheral 
+Start recording the updates of any connected heart rate peripheral.
 
 ### Stop Recording
 
 `sdkManager?bluetooth.stopRecording()`
 
-Stop recording the updates of any connected heart rate peripheral
+Stop recording the updates of any connected heart rate peripheral.
 
-### Start Sending to Emotion AI Service
+### Start Sending to SensumAPI
 
 `sdkManager?bluetooth.startSendingToAPI()`
 
-Start sending the updates of any connected heart rate peripheral to the Emotion AI service
+Start sending the updates of any connected heart rate peripheral to the **SensumAPI**.
 
-### Stop Sending to Emotion AI Service
+### Stop Sending to SensumAPI
 
 `sdkManager?bluetooth.stopSendingToAPI()`
 
-Stop sending the updates of any connected heart rate peripheral to the Emotion AI service
+Stop sending the updates of any connected heart rate peripheral to the **SensumAPI**.
 
 ### Check Module Update Status
 
@@ -288,20 +276,21 @@ Check if module is updating. Returns a boolean value.
 
 Check if module is recording. Returns a boolean value.
 
-### Check Emotion AI Update Status
+### Check SensumAPI Update Status
 
 `sdkManager?bluetooth.isSendingToAPI()`
 
-Check if module is sending to the Emotion AI Service
+Check if module is sending to the **SensumAPI**.
 
 ### Assign Listener
- 
+
 `sdkManager?bluetooth.assignListener(listener)`
 
 Assign a listener to the bluetooth module to receive bluetooth event updates.
 
 
 ### Parameters
+
 |Parameter|Type|Description|
 |---------|----|-----------|
 |listener|BluetoothListener|An instance of a class that conforms to the BluetoothListener extension|
@@ -310,15 +299,16 @@ Assign a listener to the bluetooth module to receive bluetooth event updates.
 
 `sdkManager?bluetooth.startScanForDevices()`
 
-Start scanning for discoverable peripheral devices
+Start scanning for discoverable peripheral devices.
 
 ### Connect to peripheral device
 
 `sdkManager?bluetooth.connectTo(peripheralDevice)`
 
-Connect to a discovered peripheral device. Discovered devices can be acquired from the listOfDevices returned by the getDeviceList() function.
+Connect to a discovered peripheral device. Discovered devices can be acquired from the listOfDevices returned by the `getDeviceList()` function.
 
 ### Parameters
+
 |Parameter|Type|Description|
 |---------|----|-----------|
 |peripheralDevice|CBPeripheral|The bluetooth peripheral device you want to connect to|
@@ -327,27 +317,27 @@ Connect to a discovered peripheral device. Discovered devices can be acquired fr
 
 `sdkManager?bluetooth.clearDeviceList()`
 
-Clear the list of devices discovered (equivalent to a refresh)
+Clear the list of devices discovered (equivalent to a refresh).
 
 
 ### Disconnect from Device
 
 `sdkManager?bluetooth.disconnect()`
 
-Disconnect from the currently connected peripheral device
+Disconnect from the currently connected peripheral device.
 
 ### Get Device List
 
 `sdkManager?bluetooth.getDeviceList()`
 
-Return a list of all discovered peripherals. This list is populated when startScanForDevices() is called.
+Return a list of all discovered peripherals. The list will begin populating after `startScanForDevices()` is called.
 
 Returns a list of dictionaries containing bluetooth peripheral information with three fields:
 
 |Field Name|Type|Description|
 |----------|----|-----------|
 |deviceName|String|returns a String of the device name|
-|peripheral|CoreBluetooth CBPeripheral| returns the CoreBluetooth CBPeripheral object (import CoreBluetooth to use this)|
+|peripheral|CoreBluetooth CBPeripheral| returns the CoreBluetooth `CBPeripheral` object (import CoreBluetooth to use this)|
 |type|String|For now all peripherals are of type BLE|
 
 > Example Usage
@@ -359,72 +349,73 @@ Returns a list of dictionaries containing bluetooth peripheral information with 
 ````
 ## Location Command
 
-All available commands for the Sensum location SDK
+All available commands for the **SensumSDK** location component.
 
 
 ### Start Updating
 
 `sdkManager?location.startUpdating()`
 
-Start the updates from CoreLocation
+Start the updates from *CoreLocation*.
 
 ### Stop Updating
 
 `sdkManager?location.stopUpdating()`
 
-Stop the updates from CoreLocation
+Stop the updates from *CoreLocation*.
 
 ### Start Recording
 
 `sdkManager?location.startRecording()`
 
-Start recording the updates from CoreLocation
+Start recording the updates from *CoreLocation*.
 
 ### Stop Recording
 
 `sdkManager?location.stopRecording()`
 
-Stop recording the updates from CoreLocation
+Stop recording the updates from *CoreLocation*.
 
 ### Start Sending to API
 
 `sdkManager?location.startSendingToAPI()`
 
-Start sending the updates of CoreLocation to the Emotion AI service
+Start sending the updates of *CoreLocation* to the **SensumAPI**.
 
 ### Stop Sending to API
 
 `sdkManager?location.stopSendingToAPI()`
 
-Stop sending the updates of CoreLocation to the Emotion AI service
+Stop sending the updates of *CoreLocation* to the **SensumAPI**.
 
 
 ### Check Module Update Status
 
 `sdkManager?location.isUpdating()`
 
-Check if module is updating. Returns a boolean value.
+Check if the location module is updating. Returns a boolean value.
 
 ### Check Module Recording Status
 
 `sdkManager?location.isRecording()`
 
-Check if module is recording. Returns a boolean value.
+Check if the location module is recording. Returns a boolean value.
 
-### Check Emotion AI Update Status
+### Check SensumAPI Update Status
 
 `sdkManager?location.isSendingToAPI()`
 
-Check if module is sending to the Emotion AI Service
+Check if the location module is sending to the **SensumAPI**.
 
 ### Assign Listener
- 
+
 `sdkManager?location.assignListener()`
 
-Assign a listener to the location module to receive location event updates.
+Assign a listener to the location module to receive *CoreLocation* event updates.
 
 
 ### Parameters
+
 |Parameter|Type|Description|
 |---------|----|-----------|
 |listener|LocationListener|An instance of a class that conforms to the LocationListener extension|
@@ -439,65 +430,66 @@ These events are automatically timestamped.
 
 `sdkManager?tag.startUpdating()`
 
-Start the updates from the tag system which notifies listeners of new tags
+Start the updates from the tag system which notifies listeners of new tags.
 
 ### Stop Updating
 
 `sdkManager?tag.stopUpdating()`
 
- Stop the updates from the tag system 
+ Stop the updates from the tag system.
 
 ### Start Recording
 
 `sdkManager?tag.startRecording()`
 
-Start recording tags created
+Start recording tags created.
 
 ### Stop Recording
 
 `sdkManager?tag.stopRecording()`
 
-Stop recording tags created
+Stop recording tags created.
 
-### Start Sending to API
+### Start Sending to SensumAPI
 
 `sdkManager?tag.startSendingToAPI()`
 
- Start sending tags to the Emotion API
+ Start sending tags to the **SensumAPI**.
 
-### Stop Sending to API
+### Stop Sending to SensumAPI
 
 `sdkManager?tag.stopSendingToAPI()`
 
- Stop sending tags to the Emotion API
+ Stop sending tags to the **SensumAPI**.
 
 
 ### Check Module Update Status
 
 `sdkManager?tag.isUpdating()`
 
-Check if module is updating. Returns a boolean value.
+Check if the tag module is updating. Returns a boolean value.
 
 ### Check Module Recording Status
 
 `sdkManager?tag.isRecording()`
 
-Check if module is recording. Returns a boolean value.
+Check if the tag module is recording. Returns a boolean value.
 
-### Check Emotion AI Update Status
+### Check SensumAPI Update Status
 
 `sdkManager?tag.isSendingToAPI()`
 
-Check if module is sending to the Emotion AI Service
+Check if the tag module is sending to the **SensumAPI**.
 
 ### Assign Listener
- 
+
 `sdkManager?tag.assignListener(listener)`
 
 Assign a listener to the tag module to receive tag event updates.
 
 
 ### Parameters
+
 |Parameter|Type|Description|
 |---------|----|-----------|
 |listener|TagListener|An instance of a class that conforms to the TagListener extension|
@@ -506,12 +498,527 @@ Assign a listener to the tag module to receive tag event updates.
 
 `sdkManager?tag.createTag(tag)`
 
-Creates a tag object composed of a string and timestamp pair
+Creates a tag object composed of a string and timestamp pair.
 
 ### Parameters
+
 |Parameter|Type|Description|
 |---------|----|-----------|
 |tag|String|A string object of a message or emoticon|
 
 
+## APIListener
 
+To be able to listen for updates from the API you must extend your class using an extension of type `API Listener` using the following example code.
+
+> APIListener extension
+
+```swift
+ extension RecordingMasterViewController: APIListener {
+
+    func realmResponseSaved() {
+        // saved to Realm, lets query it and print the values
+        if let realmResponse = try? Realm().objects(Response.self).last {
+            print(realmResponse)
+        }
+    }
+
+    func sentimentResponseSaved() {
+        if let realmSentiment = try? Realm().objects(SentimentResponse.self).last {
+            print(realmSentiment)
+        }
+    }
+
+    func arousalReceived(arousalScore: Double) {
+        print("arousalScore \(arousalScore)")
+    }
+
+    func apiRequestFailure(message: String, statusCode: Int?) {
+        print("Failed to send to SensumAPI \(message) \(statusCode)")
+    }
+
+    func apiRequestSuccessful() {
+        print("successfully saved")
+    }
+
+}
+```
+
+### API Listener Functions: API Request Successful
+
+`func apiRequestSuccessful()`
+
+Used to notify listeners that a request made to the **SensumAPI** was successful.
+  Called immediately after a 200 HTTP response is received but not before the data received has been safely saved to *Realm* instance of **SensumKit**.
+
+
+### API Listener Functions: API Request Failure
+
+` func apiRequestFailure(message: String, statusCode: Int?)`
+
+  Used to notify listeners that a request made to the **SensumAPI** was unsuccessful.
+  Called immediately after a HTTP response that was not 200.
+
+### Parameters
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|message|String|The error message from the HTTP request|
+|statusCode|Int?|Optional URLResponse HTTP status code from the HTTP request|
+
+
+### API Listener Functions: *Realm* Response Saved
+
+ `func realmResponseSaved()`
+
+  Used to notify listeners that a successful request body has been parsed and is ready for querying in *Realm*.
+  Called immediately after `response.save()` is called.
+
+
+### API Listener Functions: Arousal Received
+
+ `func arousalReceived(arousalScore: Double)`
+
+  Used to notify listeners that a successful request body has been parsed and an arousal score value is sent to listeners.
+
+### Parameters
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|arousalScore|Double|Double value of the calculated arousal from the **SensumAPI**|
+
+
+### API Listener Functions: Sentiment Response Received
+
+  ` func sentimentResponseReceived()`
+
+  Used to notify listeners that a successful request body for a text/emoji object has been parsed and is ready for querying in *Realm*.
+  Called immediately after `sentimentEmotion.save()` is called.
+
+## AccelerometerListener
+
+Accelerometer listeners handle updates from the **SensumSDK** accelerometer component.
+Subscribers will be notified of updates to the Accelerometer object. To use this listener extend your class using the following example code:
+
+> AccelerometerListener extension
+
+```swift
+extension AccelerometerViewController: AccelerometerListener {
+  func accelerationUpdated(newAcceleration: CMAcceleration, dateTime: Date) {
+        DispatchQueue.main.async {
+            print(newAcceleration)
+        }
+    }
+}
+```
+
+### AccelerometerListener Functions: Acceleration Updated
+
+`func accelerationUpdated(newAcceleration: CMAcceleration, dateTime: Date)`
+
+Called when a new accelerometer value is generated by the device.
+
+### Parameters
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|newAcceleration|CMAcceleration|A raw acceleration object from the CoreMotion framework.|
+|dateTime|Date|The native `Date()` in date time of when the acceleration object was created.|
+
+
+## AuthenticationListener
+
+This listener can be used to handle the Authentication component of the local federated identity sign-in process. This step occurs after the third party login, where the **SensumAPI** will validate the idToken from the end user.
+
+### AuthenticationListener Functions: Sign In Successful
+
+  `func signInSuccesful(message: String)`
+
+Implement to handle the result of a successful login to the **SensumAPI** after the third party identity provider authentication.
+
+
+### Parameters
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|message|String| A success message from a valid sign-in result.|
+
+
+### AuthenticationListener Functions: Sign In Failed
+
+  `func signInFailed(message: String)`
+
+### AuthenticationListener Functions: Sign In Successful
+
+  `func signInSuccesful(message: String)`
+
+Implement to handle the result of a successful login to the **SensumAPI** after the third party identity provider authentication.
+
+### Parameters
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|message|String| A fail message from an invalid sign-in result.|
+
+
+## BluetoothListener
+
+Bluetooth listeners handle updates from the **SensumSDK** bluetooth component.
+Subscribers will be notified of updates to the Bluetooth object.
+
+To use a BluetoothListener extend your class as in the following example code:
+
+>BluetoothListener extension
+
+```swift
+extension BluetoothTableViewController: BluetoothListener {
+
+  public func deviceDiscovered() {
+    DispatchQueue.main.async {
+      self.tableView.reloadData()
+    }
+  }
+
+  public func bpmUpdated(newBpm: Int, dateTime: Date) {}
+  public func deviceConnectionSuccess() {}
+  public func deviceConnectionFailure() {}
+  public func deviceDisconnected(disconnectedPeripheral: CBPeripheral) {}
+}
+```
+
+### BluetoothListener Functions: Device Discovered
+
+  `func deviceDiscovered()`  
+
+  Called when a BLE device has been discovered during a device scan.
+
+### BluetoothListener Functions: Device Connection Success
+
+  `func deviceConnectionSuccess()`  
+
+  Called when the users device has successfully connected to a BLE device.
+
+### BluetoothListener Functions: Device Connection Failure
+
+  `func deviceConnectionFailure()`  
+
+  Called when the users device has failed to connect to a BLE device.
+
+### BluetoothListener Functions: Device Disconnected
+
+  `func deviceDisconnected(disconnectedPeripheral: CBPeripheral)`  
+
+  Called when the users device has been disconnected from a BLE device.
+
+### Parameters
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|disconnectedPeripheral|CBPeripheral|The CoreBluetooth BLE device that disconnected.|
+
+### BluetoothListener Functions: BPM Updated
+
+  `func bpmUpdated(newBpm: Int, dateTime: Date)`
+
+  Called when the BLE device connected to the users device has a processed update value ready.
+
+### Parameters
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|newBpm|Int|A heart rate value in beats per minute.|
+|dateTime|Date|A native `Date()` object of when the reading was generated.|  
+
+
+##LocationListener
+
+Location listeners handles updates from the Location SDK component.
+Subscribers will be notified of updates to the Location object.
+
+To use a LocationListener, extend your class as seen in the following example code:
+
+> LocationListener extension
+
+```swift
+extension GPSViewController: LocationListener {
+    func locationUpdated(newLocation: CLLocation) {
+        DispatchQueue.main.async {
+      print(newLocation)
+        }
+    }
+}
+```
+
+### LocationListener Functions: Location Updated
+
+  `func locationUpdated(newLocation:CLLocation)`
+
+  Called when a new location update has been generated by the device.
+
+### Parameters
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|newLocation|CLLocation|A CoreLocation type location object containing fine values about the device location.|
+
+## TagListener
+
+This listener can be used to handle the response to Tag objects of unicode text/emoji objects.
+
+### TagListener Functions: Tag Created
+
+ `func tagCreated(newTag: String, dateTime: Date)`
+
+ Called when a new tag object is created.
+
+###Parameters
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|newTag|String|The literal string tag that was created.|
+|dateTime|Date|A native `Date()` object representing time and date when the tag was created.|
+
+
+
+## ServerRequestEngine
+
+### ServerRequestEngine Functions: Set Request Interval
+
+`public func setRequestInterval(newUpdateInterval : Int)`
+
+This changes the interval immediately, destroying the old timer and starting a new one counting from time zero.
+
+### Parameters
+
+Parameter|Type|Description|
+|--------|----|-----------|
+|newUpdateInterval|Int|The new update interval in seconds|
+
+## SDKManagedObject
+
+The managed DataSource that custom types must implement to use with the **SensumAPI**.
+
+### SDKManagedObject Functions: Start Updates
+
+  `func startUpdates()`
+
+  Start retrieving updates from the data source.
+
+### SDKManagedObject Functions: Stop Updates
+
+ `func stopUpdates()`
+
+
+  Stop retrieving updates from the data source.
+
+
+### SDKManagedObject Functions: Start Recording
+
+  `func startRecording()`
+
+  Start recording updates from the data source to the local *Realm* store on device.
+
+### SDKManagedObject Functions: Stop Recording
+
+  `func stopRecording()`
+
+  Stop recording updates from the data source to the local *Realm* store on device.
+
+### SDKManagedObject Functions: Start Sending To API    
+
+  `func startSendingToAPI()`
+
+  Start sending updates from the data source to the **SensumAPI**.
+
+### SDKManagedObject Functions: Stop Sending To API
+
+  `func stopSendingToAPI()`
+
+  Stop sending updates from the data source to the **SensumAPI**.
+
+## Database
+
+Database manager handles the key functions of the *Realm* instance used as part of the SDK.
+
+### Database Functions: Delete All Records
+
+`static public func deleteAllRecords()`
+
+  Attempts to delete the default *Realm* database on the device, deleting all **SensumKit** related data.
+
+## BluetoothPeripheral
+
+`public struct BluetoothPeripheral`
+
+> BluetoothPeripheral
+
+```swift
+public struct BluetoothPeripheral {
+    var advertisedName: String = ""
+    var peripheral: CBPeripheral
+    var type: String = "ble"
+}
+```
+
+  Struct composing a Bluetooth Device, including name, type and peripheral value.
+
+## Response
+
+Parent response *Realm* object generated from request data sent from the device.
+
+### Response Functions: Save
+
+ `func save()`
+
+Saves to *Realm*.
+
+## HeartRateResponse
+
+A root heart rate response object generated from the **SensumAPI**.
+
+### Response Functions: Save
+
+ `func save()`
+
+Saves to *Realm*.
+
+## AccelerometerResponse
+
+AccelerometerResponse is a mapping to Accelerometer based data from the device that was sent and processed by the **SensumAPI**.
+*Realm* type object which is persisted under the Response object.
+
+### AccelerometerResponse Functions: Save
+
+ `func save()`
+
+Saves to *Realm*.
+
+## LocationResponse
+
+A root location response object generated from the **SensumAPI**.
+
+### LocationResponse Functions: Save
+
+ `func save()`
+
+Saves to *Realm*.
+
+## ArousalResponse
+
+ArousalResponse is the root object of arousal data generated by the **SensumAPI**.
+
+### ArousalResponse Functions: Save
+
+ `func save()`
+
+Saves to *Realm*.
+
+## SentimentResponse
+
+Sentiment represents the **SensumAPI** analysis of textual and emoji input sent from **SensumKit**.
+
+### SentimentResponse Functions: Save
+
+ `func save()`
+
+Saves to *Realm*.
+
+## HeartRate
+
+A raw heart rate value processed from a BLE device that was connected to the users device.
+
+### HeartRate Functions: Map To Schema
+
+  `public func mapToSchema() -> [RecordTuple]`
+
+Maps the raw Heart rate value to the database record.
+
+## Location
+
+A CLLocation *Realm* type object saved from the location data that was generated by the device.
+
+### HeartRate Functions: Map To Schema
+
+  `public func mapToSchema() -> [RecordTuple]`
+
+Maps the location data to the database record.
+
+## Accelerometer
+
+The *Realm* Accelerometer object class, used for persisting raw accelerometer readings to *Realm*.
+
+### Accelerometer Functions: Map To Schema
+
+  `public func mapToSchema() -> [RecordTuple]`
+
+Maps the location data to the database record.
+
+## UnicodeTag
+
+Local text/emoji unicode objects created that can be used for sentiment analysis completed by the **SensumAPI**.
+
+### UnicodeTag Functions: Map To Schema
+
+  `public func mapToSchema() -> [RecordTuple]`
+
+Maps the location data to the database record.
+
+
+## ArousalStat
+
+Statistical information relating to arousal which is generated by the **SensumAPI**.
+
+### ArousalStat Functions: Save
+
+ `func save()`
+
+Saves to *Realm*.
+
+## ArousalRecord
+
+The arousal record relates to the arousal calculated and sent as a response from the **SensumAPI** which processed heart rate data to generate this object.
+
+### ArousalRecord Functions: Save
+
+ `func save()`
+
+Saves to *Realm*.
+
+## Stat
+
+A generic statistic object that represents related values about a processed data from the **SensumAPI**.
+
+### Stat Functions: Save
+
+ `func save()`
+
+ Saves to *Realm*.
+
+
+## Percentile
+
+A percentile object represents the amount of values that exist as part of a parent reading in a certain percentile. Generated from the **SensumAPI**.
+
+
+### Percentile Functions: Save
+
+ `func save()`
+
+Saves to *Realm*.
+
+## Event
+
+Generic events that can occur relating to the changes of the values coming from a typical data stream.
+
+### Event Functions: Save
+
+ `func save()`
+
+
+## Emotion
+
+Emotion is a collection of inferred emotions from the sentiment analysis performed by the **SensumAPI**.
+
+### Emotion Functions: Save
+
+ `func save()`
