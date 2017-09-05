@@ -4,12 +4,12 @@
 
 ### SDK Module Command Protocol
 
-Every Sensum SDK module conforms to the module command protocol.
-At present these can be switched on and off independently. Every SDK managed object has three states that can be toggled independently:
+Every **SensumSDK** module conforms to the module command protocol.
+At present these can be switched on and off independently. Every SDK-managed object has three states that can be toggled independently:
 
-* Updating: You will get live data updates from the respective managed object. If you have defined a listener for that object it’s update methods will be called by the SDK and you can reflect these and carry out actions in your app.
-* Recording: Data updates will be stored only. If you do not turn on updates no data can be recorded as updates will not be read.
-* Sending To API: Data updates will be recorded and sent to the Emotion AI service.
+* Updating: You will get live data updates from the respective managed object. If you have defined a listener for that object, its update methods will be called by the SDK and you can reflect these and carry out actions in your app.
+* Recording: Data updates will be stored only. If you do not enable updates no data can be recorded as updates will not be read.
+* Sending To API: Data updates will be recorded and sent to the **SensumAPI**.
 
 > Protocol Code - SDK written in Swift 3
 
@@ -36,11 +36,11 @@ To start the SDK you will need:
  * An API Key,
  * A host URL,
  * A stage URL.
-We will provide you with the API Key as a string, all you have to do is pass this string into the SensumSDKManager .
+We will provide you with the API Key as a string, all you have to do is pass this string into the `SensumSDKManager` .
 
-By default, the host URL and stage URL should be api.sensum.co and v0 respectively, unless we have instructed you otherwise.
+By default, the host URL and stage URL should be **"api.sensum.co"** and **"v0"** respectively, unless we have instructed you otherwise.
 
-In order to create a single instance of the SensumSDKManager, follow the example within the code snippet opposite (the example makes use of a ViewController to do this, but this could be achieved within any file)
+In order to create a single instance of the `SensumSDKManager`, follow the example within the code snippet below (the example makes use of a `TabBarController` to do this, but this could be achieved within any file)
 
 > Code Snippet
 
@@ -50,7 +50,7 @@ import SensumKit
 
 class TabBarController: UITabBarController {
 	var sensumSDK : SensumSDKManager?
-	
+
 	override func viewDidLoad() {
            super.viewDidLoad()
            // Do any additional setup after loading the view, typically from a nib.
@@ -61,28 +61,28 @@ class TabBarController: UITabBarController {
                stage: "v0")
 	    startEverythingUpdating()
        }
-	
+
 	func startEverythingUpdating() {
 		sensumSDK?.accelerometer.startUpdating()
 		sensumSDK?.location.startUpdating()
 		sensumSDK?.bluetooth.startUpdating()
 		sensumSDK?.tag.startUpdating()
-	}	
+	}
 }
 ```
 
-This single instance of the SensumSDKManager can then be referenced from elsewhere within your application.
+This single instance of the `SensumSDKManager` can then be referenced from elsewhere within your application.
 
 ## Authentication
 
-To get started working with the Sensum SDK manager you’re going to need a valid Authentication session. Create an instance of this object and give it valid sign in details. When using third-party login providers you must provide us with an Audience ID. In the case of Google Sign-In, you must provide use with the Google Applications Client ID. You can find this id contained inside the plist configuration file generated when you set up the login application. For more details please read Google's documentation <a href="https://developers.google.com/identity/sign-in/ios/start-integrating"> here</a>.
+To get started working with the `SensumSDKManager` you’re going to need a valid Authentication session. Create an instance of this object and give it valid sign-in details. When using third-party login providers you must provide us with an Audience ID. In the case of *Google Sign-In*, you must provide use with the *Google Applications Client ID*. You can find this id contained inside the plist configuration file generated when you set up the login application. For more details please read Google's documentation <a href="https://developers.google.com/identity/sign-in/ios/start-integrating"> here</a>.
 
 
-## Authentication Command 
+## Authentication Command
 
-### Federated sign in 
+### Federated sign in
 
-In order to authenticate you must sign in using Google Sign-in. Once this has been implemented, use this function to sign in to access the Emotion AI service.
+In order to authenticate you must sign in using Google Sign-in. Once this has been implemented, use this function to sign in to access the **SensumAPI**.
 
 `sdkManager?authentication.federatedSignIn(provider: provider, authenticationToken: authenticationToken)`  
 
@@ -91,14 +91,14 @@ In order to authenticate you must sign in using Google Sign-in. Once this has be
 |Name|Description|
 |----|-----------|
 |provider| The URL of the identity provider that you are using this will be 'accounts.google.com' in the case of Google Sign-In|
-|authenticationToken|This is the authentication token generated by successful login with the identity provider| 
+|authenticationToken|This is the authentication token generated by successful login with the identity provider|
 
 
 ## API Command
 
-All available commands for configuring and enabling API communication 
+All available commands for configuring and enabling API communication
 
-### Initialisation 
+### Initialisation
 
 `var apiCommand = APICommand()`
 
@@ -106,7 +106,7 @@ All available commands for configuring and enabling API communication
 
 `apiCommand.setServerRequestRate(requestRateInSeconds)`
 
-Set the frequency of data uploads to the Emotion API.
+Set the frequency of data uploads to the **SensumAPI**.
 
 ### Parameters
 
@@ -118,7 +118,7 @@ Set the frequency of data uploads to the Emotion API.
 
 `apiCommand.getServerRequestRate()`
 
-Returns how often requests are sent to the Emotion API
+Returns how often requests are sent to the **SensumAPI**
 
 ### Assign Listener
 
@@ -165,13 +165,13 @@ Stop recording the updates from CoreMotion
 
 `sdkManager?accelerometer.startSendingToAPI()`
 
-Start sending the updates of CoreMotion to the Emotion AI service
+Start sending the updates of CoreMotion to the **SensumAPI**
 
 ### Stop Sending to API
 
 `sdkManager?accelerometer.stopSendingToAPI()`
 
-Stop sending the updates of CoreMotion to the Emotion AI service
+Stop sending the updates of CoreMotion to the **SensumAPI**
 
 
 ### Check Module Update Status
@@ -186,14 +186,14 @@ Check if CoreMotion Accelerometer is updating. Returns a boolean value.
 
 Check if Check if CoreMotion Accelerometer is recording. Returns a boolean value.
 
-### Check Emotion AI Update Status
+### Check SensumAPI Update Status
 
 `sdkManager?accelerometer.isSendingToAPI()`
 
-Check if Check if CoreMotion Accelerometer is sending to the Emotion AI Service
+Check if Check if CoreMotion Accelerometer is sending to the **SensumAPI** Service
 
 ### Assign Listener
- 
+
 `sdkManager?accelerometer.assignListener(listener)`
 
 Assign a listener to the accelerometer module to receive CoreMotion event updates.
@@ -226,7 +226,7 @@ Below are all available commands relating to Bluetooth in the iOS SDK.
 
 `sdkManager?bluetooth.startUpdating()`
 
-Start the updates of any connected heart rate peripheral 
+Start the updates of any connected heart rate peripheral
 
 ### Stop Updating
 
@@ -238,7 +238,7 @@ Stop the updates of any connected heart rate peripheral
 
  `sdkManager?bluetooth.startRecording()`
 
-Start recording the updates of any connected heart rate peripheral 
+Start recording the updates of any connected heart rate peripheral
 
 ### Stop Recording
 
@@ -246,17 +246,17 @@ Start recording the updates of any connected heart rate peripheral
 
 Stop recording the updates of any connected heart rate peripheral
 
-### Start Sending to Emotion AI Service
+### Start Sending to SensumAPI
 
 `sdkManager?bluetooth.startSendingToAPI()`
 
-Start sending the updates of any connected heart rate peripheral to the Emotion AI service
+Start sending the updates of any connected heart rate peripheral to the **SensumAPI**
 
-### Stop Sending to Emotion AI Service
+### Stop Sending to SensumAPI
 
 `sdkManager?bluetooth.stopSendingToAPI()`
 
-Stop sending the updates of any connected heart rate peripheral to the Emotion AI service
+Stop sending the updates of any connected heart rate peripheral to the **SensumAPI**
 
 ### Check Module Update Status
 
@@ -270,14 +270,14 @@ Check if module is updating. Returns a boolean value.
 
 Check if module is recording. Returns a boolean value.
 
-### Check Emotion AI Update Status
+### Check SensumAPI Update Status
 
 `sdkManager?bluetooth.isSendingToAPI()`
 
-Check if module is sending to the Emotion AI Service
+Check if module is sending to the **SensumAPI**
 
 ### Assign Listener
- 
+
 `sdkManager?bluetooth.assignListener(listener)`
 
 Assign a listener to the bluetooth module to receive bluetooth event updates.
@@ -298,7 +298,7 @@ Start scanning for discoverable peripheral devices
 
 `sdkManager?bluetooth.connectTo(peripheralDevice)`
 
-Connect to a discovered peripheral device. Discovered devices can be acquired from the listOfDevices returned by the getDeviceList() function.
+Connect to a discovered peripheral device. Discovered devices can be acquired from the listOfDevices returned by the `getDeviceList()`` function.
 
 ### Parameters
 |Parameter|Type|Description|
@@ -372,13 +372,13 @@ Stop recording the updates from CoreLocation
 
 `sdkManager?location.startSendingToAPI()`
 
-Start sending the updates of CoreLocation to the Emotion AI service
+Start sending the updates of CoreLocation to the **SensumAPI**
 
 ### Stop Sending to API
 
 `sdkManager?location.stopSendingToAPI()`
 
-Stop sending the updates of CoreLocation to the Emotion AI service
+Stop sending the updates of CoreLocation to the **SensumAPI**
 
 
 ### Check Module Update Status
@@ -393,14 +393,14 @@ Check if the location module is updating. Returns a boolean value.
 
 Check if the location module is recording. Returns a boolean value.
 
-### Check Emotion AI Update Status
+### Check SensumAPI Update Status
 
 `sdkManager?location.isSendingToAPI()`
 
-Check if the location module is sending to the Emotion AI Service
+Check if the location module is sending to the **SensumAPI**
 
 ### Assign Listener
- 
+
 `sdkManager?location.assignListener()`
 
 Assign a listener to the location module to receive CoreLocation event updates.
@@ -427,7 +427,7 @@ Start the updates from the tag system which notifies listeners of new tags
 
 `sdkManager?tag.stopUpdating()`
 
- Stop the updates from the tag system 
+ Stop the updates from the tag system
 
 ### Start Recording
 
@@ -441,17 +441,17 @@ Start recording tags created
 
 Stop recording tags created
 
-### Start Sending to API
+### Start Sending to SensumAPI
 
 `sdkManager?tag.startSendingToAPI()`
 
- Start sending tags to the Emotion API
+ Start sending tags to the **SensumAPI**
 
-### Stop Sending to API
+### Stop Sending to SensumAPI
 
 `sdkManager?tag.stopSendingToAPI()`
 
- Stop sending tags to the Emotion API
+ Stop sending tags to the **SensumAPI**
 
 
 ### Check Module Update Status
@@ -466,14 +466,14 @@ Check if the tag module is updating. Returns a boolean value.
 
 Check if the tag module is recording. Returns a boolean value.
 
-### Check Emotion AI Update Status
+### Check SensumAPI Update Status
 
 `sdkManager?tag.isSendingToAPI()`
 
-Check if the tag module is sending to the Emotion AI Service
+Check if the tag module is sending to the **SensumAPI**
 
 ### Assign Listener
- 
+
 `sdkManager?tag.assignListener(listener)`
 
 Assign a listener to the tag module to receive tag event updates.
@@ -504,32 +504,32 @@ To be able to listen for updates from the API you must extend your class using a
 
 ```swift
  extension RecordingMasterViewController: APIListener {
-    
+
     func realmResponseSaved() {
         // saved to Realm, lets query it and print the values
         if let realmResponse = try? Realm().objects(Response.self).last {
             print(realmResponse)
         }
     }
-    
+
     func sentimentResponseSaved() {
         if let realmSentiment = try? Realm().objects(SentimentResponse.self).last {
             print(realmSentiment)
         }
     }
-    
+
     func arousalReceived(arousalScore: Double) {
         print("arousalScore \(arousalScore)")
     }
-    
+
     func apiRequestFailure(message: String, statusCode: Int?) {
         print("Failed to send to Emotion AI \(message) \(statusCode)")
     }
-    
+
     func apiRequestSuccessful() {
         print("successfully saved")
     }
-    
+
 }
 ```
 
@@ -537,15 +537,15 @@ To be able to listen for updates from the API you must extend your class using a
 
 `func apiRequestSuccessful()`
 
-Used to notify listeners that a request made to the Emotion AI was successful.
-  Called immediately after a 200 HTTP response is received but not before the data received has been safely saved to Realm instance of SensumKit.
+Used to notify listeners that a request made to the **SensumAPI** was successful.
+  Called immediately after a 200 HTTP response is received but not before the data received has been safely saved to Realm instance of **SensumKit**.
 
 
 ###API Listener Functions: API Request Failure
 
 ` func apiRequestFailure(message: String, statusCode: Int?)`
 
-  Used to notify listeners that a request made to the Emotion AI was unsuccessful.
+  Used to notify listeners that a request made to the **SensumAPI** was unsuccessful.
   Called immediately after a HTTP response that was not 200.
 
 ### Parameters
@@ -572,7 +572,7 @@ Used to notify listeners that a request made to the Emotion AI was successful.
 ### Parameters
 |Parameter|Type|Description|
 |---------|----|-----------|
-|arousalScore|Double|Double value of the calculated arousal from the Emotion AI|
+|arousalScore|Double|Double value of the calculated arousal from the **SensumAPI**|
 
 
 ### API Listener Functions: Sentiment Response Received
@@ -614,13 +614,13 @@ Called when a new accelerometer value is generated by the device.
 
 ## AuthenticationListener
 
-This listener can be used to handle the Authentication component of the local federated identity sign in process. This step occurs after the third party login, where the Emotion AI will validate the idToken from the end user.
+This listener can be used to handle the Authentication component of the local federated identity sign in process. This step occurs after the third party login, where the **SensumAPI** will validate the idToken from the end user.
 
 ### AuthenticationListener Functions: Sign In Successful
 
   `func signInSuccesful(message: String)`
 
-Implement to handle the result of a successful login to the Emotion AI after the third party identity provider authentication.
+Implement to handle the result of a successful login to the **SensumAPI** after the third party identity provider authentication.
 
 
  ### Parameters
@@ -636,7 +636,7 @@ Implement to handle the result of a successful login to the Emotion AI after the
 
   `func signInSuccesful(message: String)`
 
-Implement to handle the result of a successful login to the Emotion AI after the third party identity provider authentication.
+Implement to handle the result of a successful login to the **SensumAPI** after the third party identity provider authentication.
 
  ### Parameters
  |Parameter|Type|Description|
@@ -655,13 +655,13 @@ To use a BluetoothListener extend your class as in the example code
 
 ```swift
 extension BluetoothTableViewController: BluetoothListener {
-  
+
   public func deviceDiscovered() {
     DispatchQueue.main.async {
       self.tableView.reloadData()
     }
   }
-  
+
   public func bpmUpdated(newBpm: Int, dateTime: Date) {}
   public func deviceConnectionSuccess() {}
   public func deviceConnectionFailure() {}
@@ -670,25 +670,25 @@ extension BluetoothTableViewController: BluetoothListener {
 ```
 
 ### BluetoothListener Functions: Device Discovered
-  
+
   `func deviceDiscovered()`  
 
   Called when a BLE device has been discovered during a device scan.
 
 ### BluetoothListener Functions: Device Connection Success
-  
+
   `func deviceConnectionSuccess()`  
 
   Called when the users device has successfully connected to a BLE device.
 
 ### BluetoothListener Functions: Device Connection Failure
-  
+
   `func deviceConnectionFailure()`  
 
   Called when the users device has failed to connect to a BLE device.
 
 ### BluetoothListener Functions: Device Disconnected
-  
+
   `func deviceDisconnected(disconnectedPeripheral: CBPeripheral)`  
 
   Called when the users device has been disconnected from a BLE device.
@@ -763,13 +763,13 @@ This listener can be used to handle the response to Tag objects of unicode text/
 
 ## SensumSDKManager
 
- The SDK manager is the root object in the SensumKit which starts the service.
+ The `SensumSDKManager` is the root object in the **SensumKit** which starts the service.
 The manager prepares all objects you can use to interface with your device motion, location and bluetooth peripheral frameworks.
-As well as all the data required to send data to the Emotion API.
+As well as all the data required to send data to the **SensumAPI**.
 
-In order to create a single instance of the SensumSDKManager, follow the example within Code Snippet 9 (the example makes use of a ViewController to do this, but this could be achieved within any file)
+In order to create a single instance of the `SensumSDKManager`, follow the example within Code Snippet 9 (the example makes use of a ViewController to do this, but this could be achieved within any file)
 
-This single instance of the SensumSDKManager can then be referenced from elsewhere within your application.
+This single instance of the `SensumSDKManager` can then be referenced from elsewhere within your application.
 
 > Instantiation of SensumSDKManager
 
@@ -779,7 +779,7 @@ import SensumKit
 
 class TabBarController: UITabBarController {
   var sensumSDK : SensumSDKManager?
-  
+
   override func viewDidLoad() {
            super.viewDidLoad()
            // Do any additional setup after loading the view, typically from a nib.
@@ -790,28 +790,28 @@ class TabBarController: UITabBarController {
                stage: "v0")
       startEverythingUpdating()
        }
-  
+
   func startEverythingUpdating() {
     sensumSDK?.accelerometer.startUpdating()
     sensumSDK?.location.startUpdating()
     sensumSDK?.bluetooth.startUpdating()
     sensumSDK?.tag.startUpdating()
-  } 
+  }
 }
 ```
 ### SensumSDKManager Functions: Initialisation
 
 `public init(requestEngineInternalInSeconds: Int, apiKey: String, host: String, stage: String)`
 
-SensumSDKManager initialiser.
+`SensumSDKManager` initialiser.
 
 ### Parameters
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|requestEngineInternalInSeconds|Int|How often local data is uploaded to the Emotion AI.|
-|apiKey|String|The apiKey to authenticate use with the Emotion AI.|
-|host|String|The host version of the API. Defaults to "api.sensum.co"|
+|requestEngineInternalInSeconds|Int|How often local data is uploaded to the **SensumAPI**.|
+|apiKey|String|The apiKey to authenticate use with the **SensumAPI**.|
+|host|String|The host version of the API. Defaults to **"api.sensum.co"**|
 |stage|String|The version of the API.|
 
 
@@ -831,7 +831,7 @@ Parameter|Type|Description|
 
 ## SDKManagedObject
 
-The managed DataSource that custom types must implement to use with the Emotion AI.
+The managed DataSource that custom types must implement to use with the **SensumAPI**.
 
 ###SDKManagedObject Functions: Start Updates
 
@@ -842,11 +842,11 @@ The managed DataSource that custom types must implement to use with the Emotion 
   ###SDKManagedObject Functions: Stop Updates
 
  `func stopUpdates()`
-  
+
 
   Stop retrieving updates from the data source
 
-  
+
 ###SDKManagedObject Functions: Start Recording
 
   `func startRecording()`
@@ -854,22 +854,22 @@ The managed DataSource that custom types must implement to use with the Emotion 
   Start recording updates from the data source to the local Realm store on device.
 
 ###SDKManagedObject Functions: Stop Recording
-  
+
   `func stopRecording()`
 
   Stop recording updates from the data source to the local Realm store on device.
-    
+
 ###SDKManagedObject Functions: Start Sending To API    
 
   `func startSendingToAPI()`
-  
-  Start sending updates from the data source to the Emotion AI.
+
+  Start sending updates from the data source to the **SensumAPI**.
 
 ###SDKManagedObject Functions: Stop Sending To API
-  
+
   `func stopSendingToAPI()`
 
-  Stop sending updates from the data source to the Emotion AI.
+  Stop sending updates from the data source to the **SensumAPI**.
 
 ## Database
 
@@ -879,7 +879,7 @@ Database manager handles the key functions of the Realm instance used as part of
 
 `static public func deleteAllRecords()`
 
-  Attempts to delete the default Realm database on the device, deleting all SensumKit related data.
+  Attempts to delete the default Realm database on the device, deleting all **SensumKit** related data.
 
 ## BluetoothPeripheral
 
@@ -896,7 +896,7 @@ public struct BluetoothPeripheral {
 ```
 
   Struct composing a Bluetooth Device, including name, type and peripheral value.
-    
+
 ## Response
 
 Parent response Realm object generated from request data sent from the device.
@@ -909,7 +909,7 @@ Saves to Realm
 
 ## HeartRateResponse
 
-A root heart rate response object generated from the Emotion AI
+A root heart rate response object generated from the **SensumAPI**
 
 ### Response Functions: Save
 
@@ -919,7 +919,7 @@ Saves to Realm
 
 ## AccelerometerResponse
 
-AccelerometerResponse is a mapping to Accelerometer based data from the device that was sent and processed by the Emotions API.
+AccelerometerResponse is a mapping to Accelerometer based data from the device that was sent and processed by the **SensumAPI**.
 Realm typeobject which is persisted under the Response object.
 
 ### AccelerometerResponse Functions: Save
@@ -930,7 +930,7 @@ Saves to Realm
 
 ## LocationResponse
 
-A root location response object generated from the Emotion AI.
+A root location response object generated from the **SensumAPI**
 
 ### LocationResponse Functions: Save
 
@@ -940,7 +940,7 @@ Saves to Realm
 
 ## ArousalResponse
 
-ArousalResponse is the root object of arousal data generated by the Emotion AI.
+ArousalResponse is the root object of arousal data generated by the **SensumAPI**
 
 ### ArousalResponse Functions: Save
 
@@ -950,7 +950,7 @@ Saves to Realm
 
 ## SentimentResponse
 
-Sentiment represents the Emotion AI analysis of textual and emoji input sent from SensumKit.
+Sentiment represents the **SensumAPI** analysis of textual and emoji input sent from **SensumKit**.
 
 ### SentimentResponse Functions: Save
 
@@ -964,7 +964,7 @@ A raw heart rate value processed from a BLE device that was connected to the use
 
 ### HeartRate Functions: Map To Schema
 
-  `public func mapToSchema() -> [RecordTuple]` 
+  `public func mapToSchema() -> [RecordTuple]`
 
 Maps the raw Heart rate value to the database record.
 
@@ -974,7 +974,7 @@ A CLLocation realm type object saved from the location data that was generated b
 
 ### HeartRate Functions: Map To Schema
 
-  `public func mapToSchema() -> [RecordTuple]` 
+  `public func mapToSchema() -> [RecordTuple]`
 
 Maps the location data to the database record.
 
@@ -984,24 +984,24 @@ The Realm Accelerometer object class used for persisting raw accelerometer readi
 
 ### Accelerometer Functions: Map To Schema
 
-  `public func mapToSchema() -> [RecordTuple]` 
+  `public func mapToSchema() -> [RecordTuple]`
 
 Maps the location data to the database record.
 
 ## UnicodeTag
 
-Local text/emoji unicode objects created that can be used for sentiment analysis completed on the Emotion AI
+Local text/emoji unicode objects created that can be used for sentiment analysis completed by the **SensumAPI**
 
 ### UnicodeTag Functions: Map To Schema
 
-  `public func mapToSchema() -> [RecordTuple]` 
+  `public func mapToSchema() -> [RecordTuple]`
 
 Maps the location data to the database record.
 
 
 ## ArousalStat
 
-Statistical information relating to arousal which is generated by the Emotion AI.
+Statistical information relating to arousal which is generated by the **SensumAPI**.
 
 ### ArousalStat Functions: Save
 
@@ -1011,7 +1011,7 @@ Saves to Realm
 
 ## ArousalRecord
 
-The arousal record relates to the arousal calculated and sent as a response from the Emotion AI which processed heart rate data to generate this object.
+The arousal record relates to the arousal calculated and sent as a response from the **SensumAPI** which processed heart rate data to generate this object.
 
 ### ArousalRecord Functions: Save
 
@@ -1021,7 +1021,7 @@ Saves to Realm
 
 ## Stat
 
-A generic statistic object that represents related values about a processed data from the Emotion AI.
+A generic statistic object that represents related values about a processed data from the **SensumAPI**.
 
 ### Stat Functions: Save
 
@@ -1032,7 +1032,7 @@ A generic statistic object that represents related values about a processed data
 
 ## Percentile
 
-A percentile object represents the amount of values that exist as part of a parent reading in a certain percentile. Generated from the Emotion AI.
+A percentile object represents the amount of values that exist as part of a parent reading in a certain percentile. Generated from the **SensumAPI**.
 
 
 ### Percentile Functions: Save
@@ -1052,36 +1052,8 @@ Generic events that can occur relating to the changes of the values coming from 
 
 ## Emotion
 
-Emotion is a collection of inferred emotions from the sentiment analysis of the Emotion AI.
+Emotion is a collection of inferred emotions from the sentiment analysis performed by the **SensumAPI**.
 
 ### Emotion Functions: Save
 
  `func save()`
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
