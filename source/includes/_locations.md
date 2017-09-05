@@ -105,7 +105,7 @@ contact-fax | 20 characters max
 number-of-employees | 10 characters max
 year-of-formation | 20 characters max
 extra-business-categories | Json encoded array.
-working-hours | Json encoded array. Available array keys: mon_start, mon_end, tue_start, tue_end, wed_start, wed_end, thu_start, thu_end, fri_start, fri_end, sat_start, sat_end, sun_start, sun_end 
+working-hours | Json encoded array. Available array keys: mon_start, mon_end, tue_start, tue_end, wed_start, wed_end, thu_start, thu_end, fri_start, fri_end, sat_start, sat_end, sun_start, sun_end. Please only use allowed working hours formats such as 2:45 pm, Closed or N/A 
 payment-methods | Json encoded array. Available values: cash, visa, mastercard, amex, cheque, invoice, insurance, atm, travelers, financing, paypal, discover
 short-description | 200 characters max
 long-description | 500 characters max
@@ -218,7 +218,7 @@ contact-fax | 20 characters max
 number-of-employees | 10 characters max
 year-of-formation | 20 characters max
 extra-business-categories | Json encoded array.
-working-hours | Json encoded array. Available array keys: mon_start, mon_end, tue_start, tue_end, wed_start, wed_end, thu_start, thu_end, fri_start, fri_end, sat_start, sat_end, sun_start, sun_end 
+working-hours | Json encoded array. Available array keys: mon_start, mon_end, tue_start, tue_end, wed_start, wed_end, thu_start, thu_end, fri_start, fri_end, sat_start, sat_end, sun_start, sun_end. Please only use allowed working hours formats such as 2:45 pm, Closed or N/A 
 payment-methods | Json encoded array. Available values: cash, visa, mastercard, amex, cheque, invoice, insurance, atm, travelers, financing, paypal, discover
 short-description | 200 characters max
 long-description | 500 characters max
