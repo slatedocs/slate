@@ -40,7 +40,9 @@ We will provide you with the API Key as a string, all you have to do is pass thi
 
 By default, the host URL and stage URL should be **"api.sensum.co"** and **"v0"** respectively, unless we have instructed you otherwise.
 
-<!--- MAYBE PUT the SensumSDKManager section in here??? BEN ???-->
+ The `SensumSDKManager` is the root object in the **SensumKit** which starts the service.
+The manager prepares all objects you can use to interface with your device motion, location and bluetooth peripheral frameworks.
+As well as all the data required to send data to the **SensumAPI**.
 
 In order to create a single instance of the `SensumSDKManager`, follow the example within the Code Snippet below (the example makes use of a `TabBarController` to do this, but this could be achieved within any file).
 
@@ -762,59 +764,6 @@ This listener can be used to handle the response to Tag objects of unicode text/
 |newTag|String|The literal string tag that was created.|
 |dateTime|Date|A native `Date()` object representing time and date when the tag was created.|
 
-
-## SensumSDKManager
-
- The `SensumSDKManager` is the root object in the **SensumKit** which starts the service.
-The manager prepares all objects you can use to interface with your device motion, location and bluetooth peripheral frameworks.
-As well as all the data required to send data to the **SensumAPI**.
-
-In order to create a single instance of the `SensumSDKManager`, follow the example within the code snippet shown below. The example makes use of a `TabBarController` to do this, but this could be achieved within any file.
-
-This single instance of the `SensumSDKManager` can then be referenced from elsewhere within your application.
-
-> Instantiation of SensumSDKManager
-
-```swift
-import UIKit
-import SensumKit
-
-class TabBarController: UITabBarController {
-  var sensumSDK : SensumSDKManager?
-
-  override func viewDidLoad() {
-           super.viewDidLoad()
-           // Do any additional setup after loading the view, typically from a nib.
-           sensumSDK = SensumSDKManager(
-               requestEngineInternalInSeconds: 30,
-               apiKey: "PublicDemoKeyForDocumentation",
-               host: "api.sensum.co",
-               stage: "v0")
-      startEverythingUpdating()
-       }
-
-  func startEverythingUpdating() {
-    sensumSDK?.accelerometer.startUpdating()
-    sensumSDK?.location.startUpdating()
-    sensumSDK?.bluetooth.startUpdating()
-    sensumSDK?.tag.startUpdating()
-  }
-}
-```
-### SensumSDKManager Functions: Initialisation
-
-`public init(requestEngineInternalInSeconds: Int, apiKey: String, host: String, stage: String)`
-
-`SensumSDKManager` initialiser.
-
-### Parameters
-
-|Parameter|Type|Description|
-|---------|----|-----------|
-|requestEngineInternalInSeconds|Int|How often local data is uploaded to the **SensumAPI**.|
-|apiKey|String|The apiKey to authenticate use with the **SensumAPI**.|
-|host|String|The host version of the API. Defaults to **"api.sensum.co"**|
-|stage|String|The version of the API.|
 
 
 ## ServerRequestEngine
