@@ -186,7 +186,7 @@ Check if *CoreMotion* Accelerometer is updating. Returns a boolean value.
 
 `sdkManager?accelerometer.isRecording()`
 
-Check if Check if *CoreMotion* Accelerometer is recording. Returns a boolean value.
+Check if *CoreMotion* Accelerometer is recording. Returns a boolean value.
 
 ### Check SensumAPI Update Status
 
