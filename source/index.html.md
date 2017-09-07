@@ -12,6 +12,7 @@ toc_footers:
 includes:
   - api/api
   - android/android
+  - android/serviceconstants
   - ios/ios
 
 search: true
@@ -22,4 +23,3 @@ search: true
 Welcome to the Sensum Emotion AI API & SDK.
 
 The Sensum API and SDK enables you to build services or products which respond to emotional events in real time.
-
