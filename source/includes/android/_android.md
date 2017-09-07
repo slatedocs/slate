@@ -1,5 +1,31 @@
 # Android SDK
 
+## Android Version Compatibility
+
+The Android version of the SDK can be installed on devices with **5.1.1 (Lollipop)** up to **7.0 (Nougat)**.
+
+We recommend the **Samsung S6**, **S7**, **S8**, **OnePlus X and above** or the **Google Pixel** as suitable devices.
+
+## Accepted Biometric Data Inputs
+
+|Metric Name|Unit|
+|-----------|----|
+|Heart Rate|bpm |
+|GSR|Siemens<sup>*</sup>|
+|GPS latitude|deg|
+|GPS longitude|deg|
+|GPS altitude|m|
+|GPS accuracy|or location_accuracy_h/v if available|
+|GPS speed|m/s|
+|acceleration|linear acceleration in m/s<sup>2**</sup>|
+|acceleration X|m/s<sup>2</sup>|
+|acceleration Y|m/s<sup>2</sup>|
+|acceleration Z|m/s<sup>2</sup>|
+
+<sup>*</sup> The GSR Conductance unit "Siemens" is the inverse of the skin resistance; some devices return GSR as resistance in Ohms and this must be converted before upload, i.e. if a device returns values in x kOhms, the conversion is 1/(1000*x)
+
+<sup>**</sup> All acceleration values should exclude gravity and be in m/s<sup>2</sup>
+
 ## Service Constants
 
 These constants can used to construct message bundled that are then relayed to the Emotion AI service to send and retrieve data.
@@ -310,13 +336,12 @@ This is used to enable the timer for sending the text/emoji data to the API
 ### Login
 `public static final int LOGIN = 124`
 
-This is used to pass a login message to the SDK service
+This is used to pass a login message to the SDK service.
 
 ### Input Text
 `public static final int INPUT_TEXT = 125`
 
-This is used to filter/pass text & emoji message to the SDK service
-
+This is used to filter/pass text & emoji message to the SDK service.
 
 
 ## Example Methods

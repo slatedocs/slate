@@ -1,6 +1,31 @@
 # iOS SDK
 
-## Introduction
+## iOS Version Compatibility
+
+The iOS version of the **SensumSDK** can be installed on devices with **v10.3.3 and up**.
+
+We recommend the **iPhone 5 and up** as devices to use with the SDK.
+
+### Accepted Biometric Data Inputs
+
+|Metric Name|Unit|
+|-----------|----|
+|Heart Rate|bpm |
+|GSR|Siemens<sup>*</sup>|
+|GPS latitude|deg|
+|GPS longitude|deg|
+|GPS altitude|m|
+|GPS accuracy|or location_accuracy_h/v if available|
+|GPS speed|m/s|
+|acceleration|linear acceleration in m/s<sup>2**</sup>|
+|acceleration X|m/s<sup>2</sup>|
+|acceleration Y|m/s<sup>2</sup>|
+|acceleration Z|m/s<sup>2</sup>|
+
+<sup>*</sup> The GSR Conductance unit "Siemens" is the inverse of the skin resistance; some devices return GSR as resistance in Ohms and this must be converted before upload, i.e. if a device returns values in x kOhms, the conversion is 1/(1000*x)
+
+<sup>**</sup> All acceleration values should exclude gravity and be in m/s<sup>2</sup>
+
 
 ### SDK Module Command Protocol
 
