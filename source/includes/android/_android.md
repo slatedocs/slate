@@ -1,17 +1,23 @@
 # Android SDK
 
-## Android Version Compatibility
+## Android Device Compatibility
 
 The Android version of the SDK can be installed on devices with **5.1.1 (Lollipop)** up to **7.0 (Nougat)**.
 
-We recommend the **Samsung S6**, **S7**, **S8**, **OnePlus X and above** or the **Google Pixel** as suitable devices.
+We recommend the **Samsung S6**, **S7**, **S8**, **OnePlus X and above** or the **Google Pixel** as suitable devices
+
+## Bluetooth Device Compatibility
+
+* The Android SDK supports connecting to BLE devices for reading heart rate measurements. For a list of tested compatible devices please view the <a href = "http://help.sensum.co/knowledge_base/topics/what-type-of-sensors-can-i-use"> list of compatible devices</a> at our Knowledge Centre.
+
+**Note:** This document is regularly updated with new devices. Please contact us for integration details. GSR data is only accessible from Shimmer devices at present.
 
 ## Accepted Biometric Data Inputs
 
 |Metric Name|Unit|
 |-----------|----|
-|Heart Rate|bpm |
-|GSR|Siemens<sup>*</sup>|
+|<a href = "http://help.sensum.co/knowledge_base/topics/why-measure-heart-rate">Heart Rate</a>|bpm|
+|<a href = "http://help.sensum.co/knowledge_base/topics/what-is-gsr">GSR</a>|Siemens<sup>*</sup>|
 |GPS latitude|deg|
 |GPS longitude|deg|
 |GPS altitude|m|

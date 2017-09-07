@@ -1,17 +1,23 @@
 # iOS SDK
 
-## iOS Version Compatibility
+## iOS Device Compatibility
 
 The iOS version of the **SensumSDK** can be installed on devices with **v10.3.3 and up**.
 
 We recommend the **iPhone 5 and up** as devices to use with the SDK.
 
-### Accepted Biometric Data Inputs
+## Bluetooth Device Compatibility
+
+* The iOS SDK supports connecting to BLE devices for reading heart rate measurements. For a list of tested compatible devices please view the <a href = "http://help.sensum.co/knowledge_base/topics/what-type-of-sensors-can-i-use"> list of compatible devices</a> at our Knowledge Centre.
+
+**Note:** This document is regularly updated with new devices. Please contact us for integration details. GSR data is only accessible from Shimmer devices at present.
+
+## Accepted Biometric Data Inputs
 
 |Metric Name|Unit|
 |-----------|----|
-|Heart Rate|bpm |
-|GSR|Siemens<sup>*</sup>|
+|<a href = "http://help.sensum.co/knowledge_base/topics/why-measure-heart-rate">Heart Rate</a>|bpm|
+|<a href = "http://help.sensum.co/knowledge_base/topics/what-is-gsr">GSR</a>|Siemens<sup>*</sup>|
 |GPS latitude|deg|
 |GPS longitude|deg|
 |GPS altitude|m|
@@ -27,7 +33,7 @@ We recommend the **iPhone 5 and up** as devices to use with the SDK.
 <sup>**</sup> All acceleration values should exclude gravity and be in m/s<sup>2</sup>
 
 
-### SDK Module Command Protocol
+## SDK Module Command Protocol
 
 Every **SensumSDK** module conforms to the module command protocol.
 At present these can be switched on and off independently. Every SDK-managed object has three states that can be toggled independently:

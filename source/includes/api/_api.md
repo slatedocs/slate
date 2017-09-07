@@ -39,11 +39,11 @@ Below are the metrics that the Emotion AI API can analyse and the units that the
 
 |Metric Name|Unit|
 |-----------|----|
-|heartrate|bpm |
+|<a href = "http://help.sensum.co/knowledge_base/topics/why-measure-heart-rate">heartrate</a>|bpm|
 |breathingrate|bpm|
 |temperature|<sup>o</sup>C, assumed to be ambient/external|
 |skintemperature|<sup>o</sup>C|
-|gsr| Siemens<sup>*</sup>|
+|<a href = "http://help.sensum.co/knowledge_base/topics/what-is-gsr">GSR</a>| Siemens<sup>*</sup>|
 |location_latitude|deg|
 |location_longitude|deg|
 |location_altitude|m|
