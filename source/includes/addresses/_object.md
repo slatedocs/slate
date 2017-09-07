@@ -28,7 +28,7 @@
 | street2     | string |  |
 | city        | string |  |
 | state       | string |  |
-| country     | string |  |
+| country     | string | ISO 3166 country code |
 | zip         | string |  |
 | lat         | string |  |
 | lng         | string |  |
