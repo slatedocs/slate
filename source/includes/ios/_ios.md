@@ -227,6 +227,9 @@ Set the frequency of the updates from the accelerometer.
 
 Below are all available commands relating to Bluetooth within the **SensumSDK**.
 
+* **SensumKit** supports connecting to BLE devices for reading heart rate measurements. For a list of tested compatible devices please view the <a href = "http://help.sensum.co/knowledge_base/topics/what-type-of-sensors-can-i-use"> list of compatible devices</a> at our Knowledge Centre.
+
+**Note:** This document is regularly updated with new devices. Please contact us for integration details. GSR data is only accessible from Shimmer devices at present.
 
 ### Start Updating
 

@@ -1,6 +1,6 @@
 # Android SDK
 
-## Service Constants 
+## Service Constants
 
 These constants can used to construct message bundled that are then relayed to the Emotion AI service to send and retrieve data.
 
@@ -322,7 +322,7 @@ This is used to filter/pass text & emoji message to the SDK service
 ## Example Methods
 
 ## Initiate connection to service
- 
+
 `private final ServiceConnection mConnection = new ServiceConnection()`
 
 Connection made to the service. Once bound to the service, the binder object is passed through to messenger to set it up
@@ -343,7 +343,7 @@ Connection made to the service. Once bound to the service, the binder object is 
     };
 ```
 
-## Submit Credentials to service for authorization (Cognito User Pools) 
+## Submit Credentials to service for authorization (Cognito User Pools)
 
 `void submit()`
 
@@ -375,7 +375,6 @@ Once successfully implemented you must send the Google Id token for the Google S
 Sets up the credential bundle to be sent to the SDK service this needs to be sent first to the SDK service as only authenticated users can use the service
 
 
-
 ```java
     void submit() {
        Bundle bundle = new Bundle();
@@ -387,8 +386,8 @@ Sets up the credential bundle to be sent to the SDK service this needs to be sen
             sendToService(bundle, GOOGLE_LOGIN);
 ```
 
-## Send a data message to the service 
- 
+## Send a data message to the service
+
 `public void sendToService(Bundle bundle, int argValue)`
 
 Send message to the service
@@ -413,8 +412,8 @@ Send message to the service
     }
 ```
 
-## Create new Broadcast Receiver object
- 
+## Create New Broadcast Receiver Object
+
 `private BroadcastReceiver mMessageReceiver = new BroadcastReceiver()`
 
 Broadcast receiver with the list of registered filters
@@ -460,7 +459,7 @@ Broadcast receiver with the list of registered filters
     };
 ```
 
-## Update IntentFilter with new Actions 
+## Update IntentFilter with new Actions
 
 `private IntentFilter updateIntentFilter()`
 
@@ -486,7 +485,7 @@ Broadcast receiver with the list of registered filters
     }
 ```
 
-## Start biometric data capture
+## Start Biometric Data Capture
 
 `private void startCaptureSetUp()`
 
@@ -502,7 +501,7 @@ Starts capturing of biometric/contextual data
     }
 ```
 
-## Get capture bundle
+## Get Capture Bundle
 `private Bundle getCaptureBundle()`
 
 Sets up the bundle data for capture using the service constants
@@ -528,7 +527,7 @@ Sets up the bundle data for capture using the service constants
 
 
 
-## Stop biometric data capture
+## Stop Biometric Data Capture
  `private void stopCaptureSetUp()`
 
 Stops capturing of biometric/contextual data
