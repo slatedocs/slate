@@ -1,9 +1,15 @@
-If this is a question or feature request, make sure to:
+<!--
+⚠️  READ THIS BEFORE SUBMITTING ⚠️
 
-- [ ] The title starts with `Question:` or `Feature:`.
+• Prefix questions and feature requests with either Question: or Feature:
+• If this is a bug report or question about an issue you're having, make sure to include the form below in your issue
+-->
 
-If this is an bug report, not a question, make sure to:
+Operating system: ✍️ TODO
+Last upstream commit (run `git log --author="Robert Lord" | head -n 1`): ✍️ TODO
+Browser version(s): ✍️ TODO
+Ruby version (run `ruby -v`):  ✍️ TODO
 
-- [ ] I'm not running Windows (which is unsupported), or if I am, I can confirm this issue appears on another platform, or Vagrant.
-- [ ] This issue appears in the latest `dev` branch.
-- [ ] I've included my browser and Ruby version in this issue.
+---
+
+✍️ TODO write your issue here
