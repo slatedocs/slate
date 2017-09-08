@@ -47,7 +47,7 @@ discount<p class="dt-data-type">string</p> | El descuento aplicado para este ite
 subtotal_amount<p class="dt-data-type">string</p> | Subtotal antes de impuestos. Se obtiene multiplicando `quantity` por `unit_price` menos `discount`
 total_amount<p class="dt-data-type">string</p> | subtotal_amount + total tax amount
 unit_of_measurement<p class="dt-data-type">string</p> | Unidad de medida, ejemplos: l, kg, cm
-taxes | listado de [impuestos](#item-tax) | Impuestos grabados sobre el producto.
+taxes | listado de [impuestos](#tax) | Impuestos grabados sobre el producto.
 properties<p class="dt-data-type">list de [property objects](#property)</p> | Datos adicionales
 
 

@@ -1,8 +1,11 @@
-### Emisión de una factura
+## Facturas
+
+### Emite una factura
 
 #### Operación
 
-`POST /locations/:location-id/sales/invoices/issues`
+`POST /sales/invoices/issues`
+
 #### Requerimiento
 
 > ##### Requerimiento de ejemplo
@@ -194,7 +197,7 @@ ambiente de pruebas del SRI.
 Parámetros | &nbsp;
 ---------- | -----------
 supplier<p class="dt-data-param-required">requerido</p> | En este campo sólo es necesario proveer "location" con los campos "code" y "point_of_sale". Para el objeto "point_of_sale" es necesario sólo especificar "code"
-sequence | Número entero positivo mayor a cero
+sequence | Número entero positivo mayor a cero. Si no envías esta información se utilizará el siguiente número de factura disponible.
 currency<p class="dt-data-param-required">requerido</p> | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda.
 issue_date | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). Si no es provista, se utilizará la fecha en la que se envía la factura.
 totals<p class="dt-data-param-required">requerido</p> | Totales de la factura
@@ -211,7 +214,7 @@ Retorna un objeto **[invoice](#el-objeto-invoice)** que incluye un nuevo paráme
 el cual identifica de manera única a la factura. El campo `clave_acceso` generado
 también se incluirá como parte de la respuesta.
 
-### Consulta de una factura
+### Consulta una factura
 
 Consulta una factura para obtener toda la información del comprobante,
 incluyendo el estado de autorización del mismo.
@@ -439,7 +442,7 @@ pagos | listado de objetos tipo [pagos](#pagos) | Listado de formas de pago apli
 credito | Objeto de tipo [credito](#cr-dito) | Información del crédito directo otorgado al cliente.
 version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`
 
-### Re-emisión de una factura
+### Re-emite una factura
 
 #### Operación
 
@@ -447,8 +450,7 @@ version | string | Versión de la especificación, opciones válidas: `1.0.0`, `
 
 #### Requerimiento
 
-Esta operación debe ser utilizada para corregir comprobantes NO AUTORIZADOS o
-DEVUELTOS por el Servicio de Rentas Internas.
+Esta operación debe ser utilizada para corregir comprobantes NO AUTORIZADOS.
 
 En la URL de esta opción se debe incluir el `id` de la factura recibida al
 momento de emitirla.

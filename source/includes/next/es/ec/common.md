@@ -31,6 +31,18 @@ El código numérico constituye un mecanismo para brindar seguridad al emisor en
 Ver [aquí](https://es.wikipedia.org/wiki/C%C3%B3digo_de_control) ejemplo de verificación utilizando algoritmo de módulo 11.
 
 
+### Result set
+
+Este objeto siempre se obtiene como respuesta al consultar un listado de recursos
+
+Atributos | &nbsp;
+---------------------------------------------- | -------
+count<p class="dt-data-type">integer</p>       | Número total de elementos en la lista
+results<p class="dt-data-type">array</p>       | Listado de elementos
+next<p class="dt-data-type">string</p>         | URL para obtener la página siguiente de resultados, es `null` si no existe una siguiente página de resultados.
+previous<p class="dt-data-type">string</p>         | URL para obtener la página anterior de resultados, es `null` si no existe una página anterior de resultados.
+
+
 ### Tax
 
 Impuesto aplicado a una transacción o item.
