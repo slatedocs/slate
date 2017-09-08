@@ -13,6 +13,9 @@ includes:
   - api/api
   - android/android
   - ios/ios
+  - android/tutorial
+  - ios/tutorial
+  - functions/summary
 
 search: true
 ---
