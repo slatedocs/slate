@@ -58,16 +58,49 @@ Below are the metrics that the Emotion AI API can analyse and the units that the
 
 <sup>**</sup> All acceleration values should exclude gravity and be in m/s<sup>2</sup> i.e. using the userAcceleration iOS method rather than the acceleration method
 
-## Returned Emotional Data
+## API Analysis Responses
 
-Below is the list of emotions that are returned after analysis. All of these are returned with a value on a scale of 0 to 1, indicating the strength of the emotion.
+| Input Metric(s)        | Generated Events       | Generated Records | Generated Stats                                    |
+|------------------------|------------------------|-------------------|----------------------------------------------------|
+| *any*                  | <a href = "#events">Events for that Metric</a> |                   | [Stats for that event](#stats)                     |
+| `heartrate`            |                        | `arousal`         | `arousal` [(See Fuzzy Class Stats)](#fuzzy-class-stats)  |
+| `gsr`                  |                        | `engagement`      | `engagement` [(See Fuzzy Class Stats)](#fuzzy-class-stats) |
+| `acceleration_[x,y,z]` |                        | `activity`        | `activity` [(See Fuzzy Class Stats)](#fuzzy-class-stats) |
 
- * Excited
- * Alert
- * Calm
- * Passive
- * Relaxed
- * Engagement
+### Events
+| Event Fields 	| Type                                                         	| Meaning                                                                                                                         	|
+|--------------	|--------------------------------------------------------------	|---------------------------------------------------------------------------------------------------------------------------------	|
+| time         	| UTC Timestamp (ms)                                           	| Time of event                                                                                                                   	|
+| value        	| String: One of ['normal', 'rising', 'falling', 'max', 'min'] 	| Type of event (normal is not currently used)                                                                                    	|
+| severity     	| Float                                                        	| Relative severity of the event, i.e. how much of value change between forward/backward events with respect to the average value 	|
+
+### Stats
+
+| Stats Field | Type            | Meaning                                                                            |
+|-------------|-----------------|------------------------------------------------------------------------------------|
+| avg         | Float           | average (mean) value                                                               |
+| duration    | Float (seconds) | time between first and last analysed records                                       |
+| max         | Float           | max value                                                                          |
+| min         | Float           | min value                                                                          |
+| std         | Float           | standard deviation of the record                                                   |
+| percentiles | Object(dict)    | 10th, 50th, and 90th <a href = "https://en.wikipedia.org/wiki/Percentile"> percentile values </a>|
+
+### Fuzzy Class Stats
+
+For <a href = "https://en.wikipedia.org/wiki/Fuzzy_classification">"fuzzy"</a> classification outputs such as `arousal`, `engagement` and `activity`, an additional stats structure is used containing 3 fields:
+
+| Field | Type | Meaning |
+|-------|------|---------|
+| value | Float| [0-1] activation value |
+| dominant | string | label of the dominant classification category |
+| sectors | Object(dict) | per-category-label activivation (`label`:`value`,...)
+
+Current Sector Labels (highest to lowest activation value):
+
+* Activity : 'active', 'inactive'
+* Arousal : 'excited', 'activated', 'calm', 'passive', 'relaxed'
+* Engagement: 'highly engaged', 'engaged', 'activated', 'neutral'
+
 
 ## Send text data to analyse emoji and text sentiment  
 
