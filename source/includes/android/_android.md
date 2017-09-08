@@ -1,36 +1,33 @@
-# Android SDK
+# SensumSDK - Android
 
 ## Android Device Compatibility
 
-The Android version of the SDK can be installed on devices with **5.1.1 (Lollipop)** up to **7.0 (Nougat)**.
+The Android version of **SensumSDK** can be installed on devices with **5.1.1 (Lollipop)** up to **7.0 (Nougat)**.
 
 We recommend the **Samsung S6**, **S7**, **S8**, **OnePlus X and above** or the **Google Pixel** as suitable devices
 
 ## Bluetooth Device Compatibility
 
-* The Android SDK supports connecting to BLE devices for reading heart rate measurements. For a list of tested compatible devices please view the <a href = "http://help.sensum.co/knowledge_base/topics/what-type-of-sensors-can-i-use"> list of compatible devices</a> at our Knowledge Centre.
+* The Android **SensumSDK** supports connecting to BLE devices for reading heart rate measurements. For a list of tested compatible devices please view the <a href = "http://help.sensum.co/knowledge_base/topics/what-type-of-sensors-can-i-use"> list of compatible devices</a> at our Knowledge Centre.
 
 **Note:** This document is regularly updated with new devices. Please contact us for integration details. GSR data is only accessible from Shimmer devices at present.
 
 ## Accepted Biometric Data Inputs
 
-|Metric Name|Unit|
-|-----------|----|
-|<a href = "http://help.sensum.co/knowledge_base/topics/why-measure-heart-rate">Heart Rate</a>|bpm|
-|<a href = "http://help.sensum.co/knowledge_base/topics/what-is-gsr">GSR</a>|Siemens<sup>*</sup>|
-|GPS latitude|deg|
-|GPS longitude|deg|
-|GPS altitude|m|
-|GPS accuracy|or location_accuracy_h/v if available|
-|GPS speed|m/s|
-|acceleration|linear acceleration in m/s<sup>2**</sup>|
-|acceleration X|m/s<sup>2</sup>|
-|acceleration Y|m/s<sup>2</sup>|
-|acceleration Z|m/s<sup>2</sup>|
+The Android **SensumSDK** can accept the following <a href = "#available-metrics">metrics</a>:
 
-<sup>*</sup> The GSR Conductance unit "Siemens" is the inverse of the skin resistance; some devices return GSR as resistance in Ohms and this must be converted before upload, i.e. if a device returns values in x kOhms, the conversion is 1/(1000*x)
+  * Heart Rate
+  * GSR
+  * GPS latitude
+  * GPS longitude
+  * GPS altitude
+  * GPS accuracy
+  * GPS speed
+  * acceleration
+  * acceleration X
+  * acceleration Y
+  * acceleration Z
 
-<sup>**</sup> All acceleration values should exclude gravity and be in m/s<sup>2</sup>
 
 ## Service Constants
 
@@ -42,7 +39,7 @@ One example of a call to the service would be to send credentials in order to au
 ### Enable Scan
 `public static final String ENABLE_SCAN = "enable-scan"`
 
-This passes a message of enabling scan for the devices to the SDK service
+This passes a message of enabling scan for the devices to the **SensumSDK** service
 
 ### Device List
 `public static final String DEVICE_LIST = "device-list"`
@@ -57,32 +54,32 @@ This is used to get request data
 ### Request Filter
 `public static final String REQUEST_FILTER = "request-filter"`
 
-This is used to pass a message from the SDK service which is used as an intent filter at the front end for the request which is made to the SDK service
+This is used to pass a message from the **SensumSDK** service which is used as an intent filter at the front end for the request which is made to the **SensumSDK** service
 
 ### Device filter
 `public static final String DEVICE_FILTER = "device-filter"`
 
-This is used to pass a message from the SDK service which is used as an intent filter at the front end for the connected device
+This is used to pass a message from the **SensumSDK** service which is used as an intent filter at the front end for the connected device
 
 ### Value Filter
 `public static final String VALUE_FILTER = "value-filter"`
 
-This is used to pass a message from the SDK service which is used as an intent filter at the front end for receiving the heart rate value
+This is used to pass a message from the **SensumSDK** service which is used as an intent filter at the front end for receiving the heart rate value
 
 ### Login Filter
 `public static final String LOGIN_FILTER = "login-filter"`
 
-This is used to pass a message from the SDK service which is used as an intent filter at the front end for the user login
+This is used to pass a message from the **SensumSDK** service which is used as an intent filter at the front end for the user login
 
 ### GPS Filter
 `public static final String GPS_FILTER = "gps-filter"`
 
-This is used to pass a message from the SDK service which is used as an intent filter at the front end for receiving the GPS values
+This is used to pass a message from the **SensumSDK** service which is used as an intent filter at the front end for receiving the GPS values
 
 ### Accelerometer Filter
 `public static final String ACC_FILTER = "acc-filter"`
 
-This is used to pass a message from the SDK service which is used as an intent filter at the front end for receiving the accelerometer values
+This is used to pass a message from the **SensumSDK** service which is used as an intent filter at the front end for receiving the accelerometer values
 
 ### Extra Data
 `public static final String EXTRA_DATA = "extra-data"`
@@ -102,22 +99,22 @@ This is used to get the connected device address
 ### User Name
 `public static final String USER_NAME = "user-name"`
 
-This is used to pass the username for authentication to the SDK service, only authenticated users are able to use the SDK service
+This is used to pass the username for authentication to the **SensumSDK** service, only authenticated users are able to use the **SensumSDK** service
 
 ### Password
 `public static final String PASSWORD = "password"`
 
-This is used to pass the password for authentication to the SDK service
+This is used to pass the password for authentication to the **SensumSDK** service
 
 ### Wear HR Value
 `public static final String WEAR_HR_VALUE = "wear-hr-value"`
 
-This is used to pass the Heart Rate value captured using Android Wear to the SDK service
+This is used to pass the Heart Rate value captured using Android Wear to the **SensumSDK** service
 
 ### Text Message
 `public static final String TEXT_MESSAGE = "text-message"`
 
-This is used to pass Text/Emoji value to the SDK service
+This is used to pass Text/Emoji value to the **SensumSDK** service
 
 ### X Value
 `public static final String X_VALUE = "x-value"`
@@ -207,37 +204,37 @@ This is used to pass the interval rate (in milliseconds) for the text/emoji data
 ### Device Disconnected
 `public static final String DEVICE_DISCONNECTED = "com.example.bluetooth.le.ACTION_GATT_DISCONNECTED"`
 
-This is used to pass a message from the SDK service in case of any device disconnection
+This is used to pass a message from the **SensumSDK** service in case of any device disconnection
 
 ### API Response
 `public static final String API_RESPONSE = "api-response"`
 
-This is used to pass message from the SDK service for the API response
+This is used to pass message from the **SensumSDK** service for the API response
 
 ### Toast Message
 `public static final String TOAST_MESSAGE = "toast-message"`
 
-This is used to pass informative toast message from the SDK service
+This is used to pass informative toast message from the **SensumSDK** service
 
 ### API Base URL
 `public static final String API_BASEURL = "api-baseurl"`
 
-This is used to pass the base url for API to the SDK service which is used for setting up communication with the API
+This is used to pass the base url for API to the **SensumSDK** service which is used for setting up communication with the API
 
 ### Auth Token
 `public static final String AUTH_TOKEN = "auth-token"`
 
-This is used to pass the authentication token for API to the SDK service which is used for setting up communication with the API
+This is used to pass the authentication token for API to the **SensumSDK** service which is used for setting up communication with the API
 
 ### User Pool Id
 `public static final String USER_POOL_ID = "user-poolid"`
 
-This is used to pass the user pool id to the SDK service which is used for user authentication
+This is used to pass the user pool id to the **SensumSDK** service which is used for user authentication
 
 ### Client Id
 `public static final String CLIENT_ID = "client-id"`
 
-This is used to pass the client id to the SDK service which is used for user authentication
+This is used to pass the client id to the **SensumSDK** service which is used for user authentication
 
 ### Connect
 `public static final int CONNECT = 101`
@@ -257,7 +254,7 @@ This is used for unbinding from the service
 ### Scan
 `public static final int SCAN = 105`
 
-This is used internally in the SDK service to filter scan for devices
+This is used internally in the **SensumSDK** service to filter scan for devices
 
 ### Devices
 `public static final int DEVICES = 106`
@@ -342,12 +339,12 @@ This is used to enable the timer for sending the text/emoji data to the API
 ### Login
 `public static final int LOGIN = 124`
 
-This is used to pass a login message to the SDK service.
+This is used to pass a login message to the **SensumSDK** service.
 
 ### Input Text
 `public static final int INPUT_TEXT = 125`
 
-This is used to filter/pass text & emoji message to the SDK service.
+This is used to filter/pass text & emoji message to the **SensumSDK** service.
 
 
 ## Example Methods
@@ -378,7 +375,7 @@ Connection made to the service. Once bound to the service, the binder object is 
 
 `void submit()`
 
-Sets up the credential bundle to be sent to the SDK service this needs to be sent first to the SDK service as only authenticated users can use the service
+Sets up the credential bundle to be sent to the **SensumSDK** service this needs to be sent first to the **SensumSDK** service as only authenticated users can use the service
 
 
 
@@ -403,7 +400,7 @@ Once successfully implemented you must send the Google Id token for the Google S
 
 `void submit()`
 
-Sets up the credential bundle to be sent to the SDK service this needs to be sent first to the SDK service as only authenticated users can use the service
+Sets up the credential bundle to be sent to the **SensumSDK** service this needs to be sent first to the **SensumSDK** service as only authenticated users can use the service
 
 
 ```java

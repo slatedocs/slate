@@ -1,26 +1,26 @@
 
-# Emotion AI API
+# SensumAPI
 
 ## Introduction
-The Sensum Emotion AI API enables you to access our emotional intelligence platform.  Our API is designed to be RESTful, responding to HTTP requests with bodies in JSON format. All requests require that the `Content-Type: application/json` header be specified.
-The API is also cross-origin resource sharing ready.
-The Emotion AI SDK handles many of these requests and responses natively. It can however be useful to utilise the API directly.
+**SensumAPI** enables you to access our emotional intelligence platform.  Our API is designed to be RESTful, responding to HTTP requests with bodies in JSON format. All requests require that the `Content-Type: application/json` header be specified.
+**SensumAPI** is also cross-origin resource sharing ready.
+**SensumSDK** handles many of these requests and responses natively. It can however be useful to utilise the **SensumAPI** directly.
 
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
 ## URI Structure
 
-The Sensum Emotion AI API uses URI resources to provide access to its services. To use a RESTful API, your application will use HTTP Methods(GET, POST, etc.) to request and parse a response. The Emotion AI API uses JSON for communication between your application and the server.
+**SensumAPI** uses URI resources to provide access to its services. To use a RESTful API, your application will use HTTP Methods(GET, POST, etc.) to request and parse a response. **SensumAPI** uses JSON for communication between your application and the server.
 
 An example URI:
 <a href="">https://api.sensum.co/v0/testdata</a>
 
 ## Authorization
 
-Sensum Emotion AI uses a combination of an API Key and AWS Signature v4 signing to authorize access to the API. You can register a new API Key by contacting us.
+**SensumAPI** uses a combination of an API Key and AWS Signature v4 signing to authorize access. You can register a new API Key by contacting us.
 
-Sensum Emotion AI expects each call to contain the following headers to gain access:
+**SensumAPI** expects each call to contain the following headers to gain access:
 
  * Content-Type: `application/json`
  * Authorization: `$AWSv4Signature`
@@ -35,7 +35,7 @@ When using the SDK, the signature will be automatically generated when making AP
 
 ## Available Metrics
 
-Below are the metrics that the Emotion AI API can analyse and the units that the data is posted in
+Below are the metrics that **SensumAPI** can analyse and the units that the data is posted in
 
 |Metric Name|Unit|
 |-----------|----|
@@ -43,7 +43,7 @@ Below are the metrics that the Emotion AI API can analyse and the units that the
 |breathingrate|bpm|
 |temperature|<sup>o</sup>C, assumed to be ambient/external|
 |skintemperature|<sup>o</sup>C|
-|<a href = "http://help.sensum.co/knowledge_base/topics/what-is-gsr">GSR</a>| Siemens<sup>*</sup>|
+|<a href = "http://help.sensum.co/knowledge_base/topics/what-is-gsr">gsr</a>| Siemens<sup>*</sup>|
 |location_latitude|deg|
 |location_longitude|deg|
 |location_altitude|m|
@@ -58,7 +58,7 @@ Below are the metrics that the Emotion AI API can analyse and the units that the
 
 <sup>**</sup> All acceleration values should exclude gravity and be in m/s<sup>2</sup> i.e. using the userAcceleration iOS method rather than the acceleration method
 
-## API Analysis Responses
+## SensumAPI Analysis Responses
 
 | Input Metric(s)        | Generated Events       | Generated Records | Generated Stats                                    |
 |------------------------|------------------------|-------------------|----------------------------------------------------|
@@ -1151,7 +1151,7 @@ X-API-Key, Authorization
 
 ## Errors
 
-The Sensum Emotion AI API uses the following error codes:
+**SensumAPI** uses the following error codes:
 
 
 Error Code | Meaning|
