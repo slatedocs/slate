@@ -1,36 +1,38 @@
 # Summary Guide
 
-## API Control: Setting Server Request Rate
+## API Control
 
-### iOS
+### Setting Server Request Rate
+
+#### iOS
 
  * After instantiating the SDK Manager, call the method `sdkManager?.api.setServerRequestRate(requestRateInSeconds)`. The parameter requestRateInSeconds is an integer value.
 
-### Android
+#### Android
 
 When using the `sendToService` method ensure that you send the integer parameters **DATA_RATE_SAMPLE** and **DATA_RATE_SEND** as part of your bundle.
 
 
-## API Control: Getting the Server Request Rate
+### Getting the Server Request Rate
 
-### iOS
+#### iOS
 
 * After instantiating the SDK Manager, call the method `sdkManager?.api.getServerRequestRate()`.
 
-### Android
+#### Android
 
 * There is currently no functionality to return the the current data rate in the Android SDK.
 
 
-## API Control: Listen for API events
+### Listen for API events
 
-### iOS
+#### iOS
 
 * After instantiating the SDK Manager, call the method sdkManager?.api.assignListener(self) to register an apiListener.
 
-### Android
+#### Android
 
-### Use a Broadcast Receiver
+Use a Broadcast Receiver
 
  * A *BroadcastReceiver* ‘listens’ for (receives and handles) *Broadcast Intents*, sent by the *Service*.
  * The *BroadcastReceiver* is essential as it manages messages sent from the **sdk-release**, within the front-end application.
@@ -39,7 +41,7 @@ When using the `sendToService` method ensure that you send the integer parameter
  *BroadcastReceiver* should behave.
  * Table 1 outlines the filters included in the *Service* and the *Intent Extras* they return.
 
-### Table 1
+Table 1
 
 |Action|Description|IntentExtras|
 |------|-----------|------------|
@@ -145,484 +147,488 @@ Code Snippet 4 demonstrates how to achieve this.
 ```
 
 <!-- Accelerometer Control -->
-## Accelerometer Control: Start Updating
+## Accelerometer Control
+### Start Updating
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.accelerometer.startUpdating()`.
 
-### Android
+#### Android
 
 Use the `sendToService` method the the boolean `ACCELERATION_CAPTURE = true` with the constant **START_CAPTURE** to the background service.
 
-## Accelerometer Control: Stop Updating
+### Stop Updating
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.accelerometer.stopUpdating()`.
 
-### Android
+#### Android
 
 Use the `sendToService` method the the boolean `ACCELERATION_CAPTURE = true` with the constant **CANCEL_CAPTURE** to the background service.
 
-## Accelerometer Control: Start Recording
+### Start Recording
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.accelerometer.startRecording()`.
 
-### Android
+#### Android
 
 Use the `sendToService` method the the boolean `ACCELERATION_CAPTURE = true` with the constant **START_CAPTURE** to the background service.
 
-## Accelerometer Control: Stop Recording
+### Stop Recording
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.accelerometer.stopRecording()`.
 
-### Android
+#### Android
 
 Use the `sendToService` method the the boolean `ACCELERATION_CAPTURE = true` with the constant **CANCEL_CAPTURE** to the background service.
 
-## Accelerometer Control: Start SendingTo API
+### Start SendingTo API
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.accelerometer.startSendingToAPI()`.
 
-### Android
+#### Android
 
 Create a <a href = "#use-a-broadcast-receiver">Broadcast Receiver</a>, setting it up to handle Accelerometer data using the **ACC_Filter** intent If not done already.
 
 Use the `sendToService` method the the boolean `ACCELERATION_CAPTURE = true` with the constant **START_CAPTURE** to the background service.
 
-## Accelerometer Control: Stop Sending to the API
+### Stop Sending to the API
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.accelerometer.stopSendingToAPI()`.
 
-### Android
+#### Android
 
 Use the `sendToService` method the the boolean `ACCELERATION_CAPTURE = true` with the constant **CANCEL_CAPTURE** to the background service.
 
-## Accelerometer Control: Check Update status
+### Check Update status
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.accelerometer.isUpdating()`.
 
-### Android
+#### Android
 
 * It is currently not possible to check the update status in Android.
 
-## Accelerometer Control: Check Recording status
+### Check Recording status
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.accelerometer.isRecording()`.
 
-### Android
+#### Android
 
 * It is currently not possible to check the recording status in Android.
 
-## Accelerometer Control: Check API Sending status
+### Check API Sending status
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.accelerometer.isSendingToAPI()`.
 
-### Android
+#### Android
 
 * It is currently not possible to check the API sending status in Android.
 
-## Accelerometer Control: Assign Listener
+### Assign Listener
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.accelerometer.assignListener(self)`.
 
-### Android
+#### Android
 
 * Create a <a href = "#use-a-broadcast-receiver">Broadcast Receiver</a>, setting it up to handle Accelerometer data using the **ACC_Filter** intent.
 
-## Accelerometer Control: Set Read Frequency
+### Set Read Frequency
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.accelerometer.setReadFrequency(newIntervalInSeconds)` where the parameter newIntervalInSeconds is an integer value.
 
-### Android
+#### Android
 
 * When sending the **START_CAPTURE** message to the service using the `sendToService` method, Set the rate of capture using the integer variable DATA_RATE_SAMPLE, while the boolean **ACCELERATION_CAPTURE** is **true**.
 
 
 <!-- Location Control -->
-## Location Control: Start Updating
+## Location Control
+### Start Updating
 
-### iOS  
+#### iOS  
 
-* After instantiating the SDK Manager, call the method `sdkManager?.location.startUpdating()`.
+* After instantiating the SDK Manager, call the methoocation.startUpdating()`.
 
-### Android
+#### Android
 
 Use the `sendToService` method the the boolean `GPS_CAPTURE = true` with the constant **START_CAPTURE** to the background service.
 
-## Location Control: Stop Updating
+### Stop Updating
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.location.stopUpdating()`.
 
-### Android
+#### Android
 
 Use the `sendToService` method the the boolean `GPS_CAPTURE = true` with the constant **CANCEL_CAPTURE** to the background service.
 
-## location Control: Start Recording
+### Start Recording
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.location.startRecording()`.
 
-### Android
+#### Android
 
 Use the `sendToService` method the the boolean `GPS_CAPTURE = true` with the constant **START_CAPTURE** to the background service.
 
-## Location Control: Stop Recording
+### Stop Recording
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.location.stopRecording()`.
 
-### Android
+#### Android
 
 Use the `sendToService` method the the boolean `GPS_CAPTURE = true` with the constant **CANCEL_CAPTURE** to the background service.
 
-## Location Control: Start Sending To API
+### Start Sending To API
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.location.startSendingToAPI()`.
 
-### Android
+#### Android
 
 Create a <a href = "#use-a-broadcast-receiver">Broadcast Receiver</a>, setting it up to handle location data using the **GPS_Filter** intent If not done already.
 
 Use the `sendToService` method the the boolean `GPS_CAPTURE = true` with the constant **START_CAPTURE** to the background service.
 
-## Location Control: Stop Sending to the API
+### Stop Sending to the API
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.location.stopSendingToAPI()`.
 
-### Android
+#### Android
 
 Use the `sendToService` method the the boolean `GPS_CAPTURE = true` with the constant **CANCEL_CAPTURE** to the background service.
 
-## Location Control: Check Update status
+### Check Update status
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.location.isUpdating()`.
 
-### Android
+#### Android
 
 * It is currently not possible to check the update status in Android.
 
-## Location Control: Check Recording status
+### Check Recording status
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.location.isRecording()`.
 
-### Android
+#### Android
 
 * It is currently not possible to check the recording status in Android.
 
-## location Control: Check API Sending status
+### Check API Sending status
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.location.isSendingToAPI()`.
 
-### Android
+#### Android
 
 * It is currently not possible to check the API sending status in Android.
 
-## Location Control: Assign Listener
+### Assign Listener
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.location.assignListener(self)`.
 
-### Android
+#### Android
 
 * Create a <a href = "#use-a-broadcast-receiver">Broadcast Receiver</a>, setting it up to handle location data using the **GPS_Filter** intent.
 
-## Location Control: Set Read Frequency
+### Set Read Frequency
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.location.setReadFrequency(newIntervalInSeconds)` where the parameter newIntervalInSeconds is an integer value.
 
-### Android
+#### Android
 
 * When sending the **START_CAPTURE** message to the service using the `sendToService` method, Set the rate of capture using the integer variable DATA_RATE_SAMPLE, while the boolean **GPS_CAPTURE** is `true`.
 
 <!-- Tag Control -->
-## Tag Control: Start Updating
+## Tag Control
+### Start Updating
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.tag.startUpdating()`.
 
-### Android
+#### Android
 
 Use the `sendToService` method the the boolean `INPUT_CAPTURE = true` with the constant **START_CAPTURE** to the background service.
 
-## Tag Control: Stop Updating
+### Stop Updating
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.tag.stopUpdating()`.
 
-### Android
+#### Android
 
 Use the `sendToService` method the the boolean `INPUT_CAPTURE = true` with the constant **CANCEL_CAPTURE** to the background service.
 
-## Tag Control: Start Recording
+### Start Recording
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.tag.startRecording()`.
 
-### Android
+#### Android
 
 Use the `sendToService` method the the boolean `INPUT_CAPTURE = true` with the constant **START_CAPTURE** to the background service.
 
-## Tag Control: Stop Recording
+### Stop Recording
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.tag.stopRecording()`.
 
-### Android
+#### Android
 
 Use the `sendToService` method the the boolean `INPUT_CAPTURE = true` with the constant **CANCEL_CAPTURE** to the background service.
 
-## Tag Control: Start Sending To API
+### Start Sending To API
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.tag.startSendingToAPI()`.
 
-### Android
+#### Android
 
 Create a <a href = "#use-a-broadcast-receiver">Broadcast Receiver</a>, setting it up to handle tag data using the **TOAST_MESSAGE** intent If not done already.
 
 Use the `sendToService` method the the boolean `INPUT_CAPTURE = true` with the constant **START_CAPTURE** to the background service.
 
-## Tag Control: Stop Sending to the API
+### Stop Sending to the API
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.tag.stopSendingToAPI()`.
 
-### Android
+#### Android
 
 Use the `sendToService` method the the boolean `INPUT_CAPTURE = true` with the constant **CANCEL_CAPTURE** to the background service.
 
-## Tag Control: Check Update status
+### Check Update status
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.tag.isUpdating()`.
 
-### Android
+#### Android
 
 * It is currently not possible to check the update status in Android.
 
-## Tag Control: Check Recording status
+### Check Recording status
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.tag.isRecording()`.
 
-### Android
+#### Android
 
 * It is currently not possible to check the recording status in Android.
 
-## Tag Control: Check API Sending status
+### Check API Sending status
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.tag.isSendingToAPI()`.
 
-### Android
+#### Android
 
 * It is currently not possible to check the API sending status in Android.
 
-## Tag Control: Assign Listener
+### Assign Listener
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.tag.assignListener(self)`.
 
-### Android
+#### Android
 
 * Create a <a href = "#use-a-broadcast-receiver">Broadcast Receiver</a>, setting it up to handle tag data using the **TOAST_MESSAGE** intent.
 
-## Tag Control: Create Tag
+### Create Tag
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.tag.createTag(tag)` where the parameter tag is an String value.
 
-### Android
+#### Android
 
 * When sending the **INPUT_TEXT** message to the service using the `sendToService` method, add the string parameter TEXT_MESSAGE.
 
 
 <!-- Bluetooth Control -->
-## Bluetooth Control: Start Updating
+## Bluetooth Control
+### Start Updating
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.bluetooth.startUpdating()`.
 
-### Android
+#### Android
 
 Use the `sendToService` method the the boolean `HR_CAPTURE = true` with the constant **START_CAPTURE** to the background service.
 
-## Bluetooth Control: Stop Updating
+### Stop Updating
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.bluetooth.stopUpdating()`.
 
-### Android
+#### Android
 
 Use the `sendToService` method the the boolean `HR_CAPTURE = true` with the constant **CANCEL_CAPTURE** to the background service.
 
-## Bluetooth Control: Start Recording
+### Start Recording
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.bluetooth.startRecording()`.
 
-### Android
+#### Android
 
 Use the `sendToService` method the the boolean `HR_CAPTURE = true` with the constant **START_CAPTURE** to the background service.
 
-## Bluetooth Control: Stop Recording
+### Stop Recording
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.bluetooth.stopRecording()`.
 
-### Android
+#### Android
 
 Use the `sendToService` method the the boolean `HR_CAPTURE = true` with the constant **CANCEL_CAPTURE** to the background service.
 
-## Bluetooth Control: Start Sending To API
+### Start Sending To API
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.bluetooth.startSendingToAPI()`.
 
-### Android
+#### Android
 
 Create a <a href = "#use-a-broadcast-receiver">Broadcast Receiver</a>, setting it up to handle bluetooth data using the **BLE_DEVICE_FILTER**, **BLUETOOTH_CONNECTION_FILTER**, **BLUETOOTH_DEVICE_FILTER**, **DEVICE_DISCONNECTED** and **CONNECTION_FILTER** intents if not done already.
 
 Use the `sendToService` method the the boolean `HR_CAPTURE = true` with the constant **START_CAPTURE** to the background service.
 
-## Bluetooth Control: Stop Sending to the API
+### Stop Sending to the API
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.bluetooth.stopSendingToAPI()`.
 
-### Android
+#### Android
 
 Use the `sendToService` method the the boolean `HR_CAPTURE = true` with the constant **CANCEL_CAPTURE** to the background service.
 
-## Bluetooth Control: Check Update status
+### Check Update status
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.bluetooth.isUpdating()`.
 
-### Android
+#### Android
 
 * It is currently not possible to check the update status in Android.
 
-## Bluetooth Control: Check Recording status
+### Check Recording status
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.bluetooth.isRecording()`.
 
-### Android
+#### Android
 
 * It is currently not possible to check the recording status in Android.
 
-## Bluetooth Control: Check API Sending status
+### Check API Sending status
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.bluetooth.isSendingToAPI()`.
 
-### Android
+#### Android
 
 * It is currently not possible to check the API sending status in Android.
 
-## Bluetooth Control: Assign Listener
+### Assign Listener
 
-### iOS  
+#### iOS  
 
 * After instantiating the SDK Manager, call the method `sdkManager?.bluetooth.assignListener(self)`.
 
-### Android
+#### Android
 
 * Create a <a href = "#use-a-broadcast-receiver">Broadcast Receiver</a>, setting it up to handle bluetooth data using the **BLE_DEVICE_FILTER**, **BLUETOOTH_CONNECTION_FILTER**, **BLUETOOTH_DEVICE_FILTER**, **DEVICE_DISCONNECTED** and **CONNECTION_FILTER** intents.
 
-## Bluetooth: Scan for Devices
+### Scan for Devices
 
-### iOS
+#### iOS
 
  * After instantiating the SDK Manager, call the method `sdkManager?.bluetooth.startScanForDevices()` A list of device names and addresses will be generated.
 
-### Android
+#### Android
 
  * Use the `sendToService` method with the constant **BLE_SCAN** or **BLUETOOTH_SCAN**, depending on if the device is compatible with Bluetooth LE or standard, to send the command to the background service.
 
-## Bluetooth: Connect to Device
+### Connect to Device
 
-### iOS
+#### iOS
 
  * After instantiating the SDK Manager, call the method `sdkManager?.bluetooth.connectTo(peripheralDevice)` where peripheralDevice is an object containing the required device's name and address.
 
 
-### Android
+#### Android
  * Use the `sendToService` method with the constant **CONNECT** or **CONNECT_BLUETOOTH_DEVICE**, depending on if the device is compatible with Bluetooth LE or standard, as well a bundle containg the string variables **DEVICE_NAME** and **DEVICE_ADDRESS** to send the command to the background service.
 
-## Bluetooth: Clear List of Discovered Devices
+### Clear List of Discovered Devices
 
-### iOS
+#### iOS
  * After instantiating the SDK Manager, call the method `sdkManager?.bluetooth.clearDeviceList()`.
 
-### Android
+#### Android
 
 There is no equivalent function in the Android SDK. To perform this function perform another scan by using the `sendToService` method with the constant **BLE_SCAN** or **BLUETOOTH_SCAN**, depending on if the device is compatible with Bluetooth LE or standard, to send the command to the background service.
 
- ## Bluetooth: Disconnect From Device
+ ### Disconnect From Device
 
-### iOS
+#### iOS
 
 * After instantiating the SDK Manager, call the method `sdkManager?.bluetooth.disconnect()` to disconnect from the currently connected peripheral.
 
-### Android
+#### Android
 
 * There is currently no functionality to disconnect the current bluetooth device in the Android SDK.
