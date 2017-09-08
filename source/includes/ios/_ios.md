@@ -1,17 +1,43 @@
-# iOS SDK
+# SensumSDK - iOS
 
-## Introduction
+## iOS Device Compatibility
 
-### SDK Module Command Protocol
+The iOS version of the **SensumSDK** can be installed on devices with **v10.3.3 and up**.
+
+We recommend the **iPhone 5 and up** as devices to use with the **SensumSDK**.
+
+## Bluetooth Device Compatibility
+
+* The iOS **SensumSDK** supports connecting to BLE devices for reading heart rate measurements. For a list of tested compatible devices please view the <a href = "http://help.sensum.co/knowledge_base/topics/what-type-of-sensors-can-i-use"> list of compatible devices</a> at our Knowledge Centre.
+
+**Note:** This document is regularly updated with new devices. Please contact us for integration details.
+
+## Accepted Biometric Data Inputs
+
+The iOS **SensumSDK** can accept the following <a href = "#available-metrics">metrics</a>:
+
+  * Heart Rate
+  * GPS latitude
+  * GPS longitude
+  * GPS altitude
+  * GPS accuracy
+  * GPS speed
+  * acceleration
+  * acceleration X
+  * acceleration Y
+  * acceleration Z
+
+
+## SDK Module Command Protocol
 
 Every **SensumSDK** module conforms to the module command protocol.
-At present these can be switched on and off independently. Every SDK-managed object has three states that can be toggled independently:
+At present these can be switched on and off independently. Every **SensumSDK**-managed object has three states that can be toggled independently:
 
 * Updating: You will get live data updates from the respective managed object. If you have defined a listener for that object, its update methods will be called by the SDK and you can reflect these and carry out actions in your app.
 * Recording: Data updates will be stored only. If you do not enable updates no data can be recorded as updates will not be read.
 * Sending To API: Data updates will be recorded and sent to the **SensumAPI**.
 
-> Protocol Code - SDK written in Swift 3
+> Protocol Code - **SensumSDK** written in Swift 3
 
 ```swift
 import foundation
@@ -227,6 +253,9 @@ Set the frequency of the updates from the accelerometer.
 
 Below are all available commands relating to Bluetooth within the **SensumSDK**.
 
+* **SensumKit** supports connecting to BLE devices for reading heart rate measurements. For a list of tested compatible devices please view the <a href = "http://help.sensum.co/knowledge_base/topics/what-type-of-sensors-can-i-use"> list of compatible devices</a> at our Knowledge Centre.
+
+**Note:** This document is regularly updated with new devices. Please contact us for integration details. GSR data is only accessible from Shimmer devices at present.
 
 ### Start Updating
 
@@ -732,7 +761,7 @@ extension BluetoothTableViewController: BluetoothListener {
 
 ##LocationListener
 
-Location listeners handles updates from the Location SDK component.
+Location listeners handles updates from the Location **SensumSDK** component.
 Subscribers will be notified of updates to the Location object.
 
 To use a LocationListener, extend your class as seen in the following example code:
@@ -838,7 +867,7 @@ The managed DataSource that custom types must implement to use with the **Sensum
 
 ## Database
 
-Database manager handles the key functions of the *Realm* instance used as part of the SDK.
+Database manager handles the key functions of the *Realm* instance used as part of the **SensumSDK**.
 
 ### Database Functions: Delete All Records
 

@@ -1,31 +1,31 @@
 
-# Emotion AI API
+# SensumAPI
 
 ## Introduction
-The Sensum Emotion AI API enables you to access our emotional intelligence platform.  Our API is designed to be RESTful, responding to HTTP requests with bodies in JSON format. All requests require that the `Content-Type: application/json` header be specified.
-The API is also cross-origin resource sharing ready.
-The Emotion AI SDK handles many of these requests and responses natively. It can however be useful to utilise the API directly.
+**SensumAPI** enables you to access our emotional intelligence platform.  Our API is designed to be RESTful, responding to HTTP requests with bodies in JSON format. All requests require that the `Content-Type: application/json` header be specified.
+**SensumAPI** is also cross-origin resource sharing ready.
+**SensumSDK** handles many of these requests and responses natively. It can however be useful to utilise the **SensumAPI** directly.
 
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
 ## URI Structure
 
-The Sensum Emotion AI API uses URI resources to provide access to its services. To use a RESTful API, your application will use HTTP Methods(GET, POST, etc.) to request and parse a response. The Emotion AI API uses JSON for communication between your application and the server.
+**SensumAPI** uses URI resources to provide access to its services. To use a RESTful API, your application will use HTTP Methods(GET, POST, etc.) to request and parse a response. **SensumAPI** uses JSON for communication between your application and the server.
 
 An example URI:
 <a href="">https://api.sensum.co/v0/testdata</a>
 
 ## Authorization
 
-Sensum Emotion AI uses a combination of an API Key and AWS Signature v4 signing to authorize access to the API. You can register a new API Key by contacting us.
+**SensumAPI** uses a combination of an API Key and AWS Signature v4 signing to authorize access. You can register a new API Key by contacting us.
 
-Sensum Emotion AI expects each call to contain the following headers to gain access: 
+**SensumAPI** expects each call to contain the following headers to gain access:
 
  * Content-Type: `application/json`
  * Authorization: `$AWSv4Signature`
  * X-API-Key: `$YourAPIKey(For trial usage use "PublicDemoKeyForDocumentation")`
- 
+
 To calculate the value for the Authorization header you must calculate a hash of your request, add extra information, then add the AWS secret key in order to create a signing key and then use this to sign the request.
 To learn more about generating the Signature please read the <a href="https://docs.aws.amazon.com/general/latest/gr/signature-v4-examples.html">AWS Documentation on Signature v4</a>
 
@@ -35,15 +35,15 @@ When using the SDK, the signature will be automatically generated when making AP
 
 ## Available Metrics
 
-Below are the metrics that the Emotion AI API can analyse and the units that the data is posted in
+Below are the metrics that **SensumAPI** can analyse and the units that the data is posted in
 
 |Metric Name|Unit|
 |-----------|----|
-|heartrate|bpm |
+|<a href = "http://help.sensum.co/knowledge_base/topics/why-measure-heart-rate">heartrate</a>|bpm|
 |breathingrate|bpm|
 |temperature|<sup>o</sup>C, assumed to be ambient/external|
 |skintemperature|<sup>o</sup>C|
-|gsr| Siemens<sup>*</sup>|
+|<a href = "http://help.sensum.co/knowledge_base/topics/what-is-gsr">gsr</a>| Siemens<sup>*</sup>|
 |location_latitude|deg|
 |location_longitude|deg|
 |location_altitude|m|
@@ -58,9 +58,53 @@ Below are the metrics that the Emotion AI API can analyse and the units that the
 
 <sup>**</sup> All acceleration values should exclude gravity and be in m/s<sup>2</sup> i.e. using the userAcceleration iOS method rather than the acceleration method
 
+## SensumAPI Analysis Responses
+
+| Input Metric(s)        | Generated Events       | Generated Records | Generated Stats                                    |
+|------------------------|------------------------|-------------------|----------------------------------------------------|
+| *any*                  | <a href = "#events">Events for that Metric</a> |                   | [Stats for that event](#stats)                     |
+| `heartrate`            |                        | `arousal`         | `arousal` [(See Fuzzy Class Stats)](#fuzzy-class-stats)  |
+| `gsr`                  |                        | `engagement`      | `engagement` [(See Fuzzy Class Stats)](#fuzzy-class-stats) |
+| `acceleration_[x,y,z]` |                        | `activity`        | `activity` [(See Fuzzy Class Stats)](#fuzzy-class-stats) |
+
+### Events
+| Event Fields 	| Type                                                         	| Meaning                                                                                                                         	|
+|--------------	|--------------------------------------------------------------	|---------------------------------------------------------------------------------------------------------------------------------	|
+| time         	| UTC Timestamp (ms)                                           	| Time of event                                                                                                                   	|
+| value        	| String: One of ['normal', 'rising', 'falling', 'max', 'min'] 	| Type of event (normal is not currently used)                                                                                    	|
+| severity     	| Float                                                        	| Relative severity of the event, i.e. how much of value change between forward/backward events with respect to the average value 	|
+
+### Stats
+
+| Stats Field | Type            | Meaning                                                                            |
+|-------------|-----------------|------------------------------------------------------------------------------------|
+| avg         | Float           | average (mean) value                                                               |
+| duration    | Float (seconds) | time between first and last analysed records                                       |
+| max         | Float           | max value                                                                          |
+| min         | Float           | min value                                                                          |
+| std         | Float           | standard deviation of the record                                                   |
+| percentiles | Object(dict)    | 10th, 50th, and 90th <a href = "https://en.wikipedia.org/wiki/Percentile"> percentile values </a>|
+
+### Fuzzy Class Stats
+
+For <a href = "https://en.wikipedia.org/wiki/Fuzzy_classification">"fuzzy"</a> classification outputs such as `arousal`, `engagement` and `activity`, an additional stats structure is used containing 3 fields:
+
+| Field | Type | Meaning |
+|-------|------|---------|
+| value | Float| [0-1] activation value |
+| dominant | string | label of the dominant classification category |
+| sectors | Object(dict) | per-category-label activivation (`label`:`value`,...)
+
+Current Sector Labels (highest to lowest activation value):
+
+* Activity : 'active', 'inactive'
+* Arousal : 'excited', 'activated', 'calm', 'passive', 'relaxed'
+* Engagement: 'highly engaged', 'engaged', 'activated', 'neutral'
+
+
 ## Send text data to analyse emoji and text sentiment  
 
-This endpoint allows users to send strings of text to our service for emotional sentiment analysis. 
+This endpoint allows users to send strings of text to our service for emotional sentiment analysis.
 
 The service will return a JSON object that contain Positivity, Negativity and Emotionality values for emojis and text.
 
@@ -83,7 +127,7 @@ API Key, Authorization.
 |Negativity| The level of negative emotion expressed in an input(Scale: 0 to +1)|
 |Emotionality| The overall strength of emotion contained in an input(Scale: -1 to +1)*|
 
-* Values greater than 0 imply positive feelings, values less than 0 imply negative feelings while 0 implies no emotional response. 
+* Values greater than 0 imply positive feelings, values less than 0 imply negative feelings while 0 implies no emotional response.
 
 
 > Code samples
@@ -129,7 +173,7 @@ var data = {
 fetch('https://api.sensum.co/v0/sentiment',
 {
   method: 'POST',
-  body : body, 
+  body : body,
   headers: headers
 })
 .then(function(res) {
@@ -167,7 +211,7 @@ Status|Meaning|Description
 
 ### Examples
 
-Please refer to the code samples for request and response examples 
+Please refer to the code samples for request and response examples
 
 > Text Only - Unemotional
 
@@ -265,7 +309,7 @@ var params = {
 $.ajax({
   url: 'https://api.sensum.co/v0/data/',
   method: 'get',
-  data : params, 
+  data : params,
   headers: headers,
   success: function(data) {
     console.log(JSON.stringify(data));
@@ -441,8 +485,8 @@ Status|Meaning|Description
   },
   "metrics":
     [
-      "acceleration_x","acceleration_y", "acceleration_z", 
-      "location_altitude", "location_horizontalaccuracy", "location_latitude", 
+      "acceleration_x","acceleration_y", "acceleration_z",
+      "location_altitude", "location_horizontalaccuracy", "location_latitude",
       "location_longitude", "location_speed", "location_verticalaccuracy"]
   }
 ```
@@ -657,9 +701,16 @@ X-API-Key, Authorization
 
 ## Send data for events analysis
 
-This endpoint allows the user to send data to the Emotion AI service for analysis. The response will return a series of significant events.   
+This endpoint allows the user to send data to the Emotion AI service for analysis. The response will return a series of significant events.
 
-### HTTP Request 
+An event is triggered when there is a statistically significant timeseries change detected in an incoming data stream, be that from a Bluetooth sensor or internal sensor such as Accelerometer. Depending on the data stream applied, this can indicate a shift or change in emotional or activity state.
+
+The severity of an event is dependent on
+
+How "steep" the event is and  
+How "isolated" the event is with respect to any events identified before / after it.   
+
+### HTTP Request
 
 `POST https://api.sensum.co/v0/events`
 
@@ -718,7 +769,7 @@ var data = {
         }
       ]
     }
-  }; 
+  };
 
 $.ajax({
   url: 'https://api.sensum.co/v0/events',
@@ -778,7 +829,7 @@ const inputBody = '{
         }
       ]
     }
-  } 
+  }
 ';
 const headers = {
   'Content-Type':'application/json',
@@ -853,7 +904,7 @@ data = {
         }
       ]
     }
-  } 
+  }
 
 
 r = requests.post('https://api.sensum.co/v0/events', params = data, headers = headers)
@@ -965,9 +1016,9 @@ X-API-Key, Authorization
 </aside>
 
 
-## Get test data 
+## Get test data
 
-This endpoint allows the user to generate a series of test data streams that can be fed into the events endpoint to test the analysis service. When testing the events endpoint only POST the "records" JSON object in the request body. 
+This endpoint allows the user to generate a series of test data streams that can be fed into the events endpoint to test the analysis service. When testing the events endpoint only POST the "records" JSON object in the request body.
 
 ### HTTP Request
 `GET https://api.sensum.co/v0/testdata`
@@ -1100,7 +1151,7 @@ X-API-Key, Authorization
 
 ## Errors
 
-The Sensum Emotion AI API uses the following error codes:
+**SensumAPI** uses the following error codes:
 
 
 Error Code | Meaning|
@@ -1112,6 +1163,3 @@ Error Code | Meaning|
 429 | Too Many Requests - You have made more requests than is allowed under the usage plan.|
 500 | Internal Server Error - There is an error with our service
 503 | Service Unavailable - Our service is down for maintenance. Please try again later.
-
-
-

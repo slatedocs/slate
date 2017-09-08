@@ -21,5 +21,12 @@ search: true
 
 Welcome to the Sensum Emotion AI API & SDK.
 
-The Sensum API and SDK enables you to build services or products which respond to emotional events in real time.
+The **SensumAPI** and **SensumSDK** enables you to build services or products which respond to emotional events in real time.
 
+# Glossary of Terms
+
+|Term|Description|
+|----|-----------|
+|**SensumSDK**|**SensumSDK** refers to the Android and iOS SDKs|
+|**SensumKit**|**SensumKit** is the framework file that allows an application to use the **SensumSDK**|
+|**SensumAPI**|The **SensumAPI** is the Restful API that is used either directly or through the **SensumSDK**|

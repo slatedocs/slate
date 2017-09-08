@@ -1,4 +1,4 @@
-# Android SDK Service Constants 
+# Android SDK Service Constants
 
 ## Enable Scan
 `public static final String ENABLE_SCAN = "enable-scan"`
@@ -40,7 +40,7 @@ This is used to pass a message from the SDK service which is used as an intent f
 
 This is used to pass a message from the SDK service which is used as an intent filter at the front end for receiving the gps values
 
-## ACC Filter
+## Accelerometer Filter
 `public static final String ACC_FILTER = "acc-filter"`
 
 This is used to pass a message from the SDK service which is used as an intent filter at the front end for receiving the accelerometer values
