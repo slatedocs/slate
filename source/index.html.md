@@ -69,6 +69,7 @@ includes:
   - disable_tamper_switch
   - send_wakeup
   - product_parts
+  - product_change_states
   - parameters
   - parameter_history
   - connectivity_reliability_rate
