@@ -5,20 +5,20 @@
 We strongly recommend using Android Studio v2.3.3 and above. We work on Android Studio v2.3.3 at time of our first public **SensumSDK** release.
 
  * Open Android Studio
- * Select **New Project** displayed in Figure X
+ * Select **New Project** displayed in Figure 1
 
  ![Figure 1 - Start New Project](../../images/figure1_android.png "Figure 1 - Start New Project")
 #### <p style="text-align: center;">Figure 1 - Start New Project</p>
 <br>
 
- * Provide a name for your project, for example: '*SensumTutorialApplication*', then click **Next**.
+ * Provide a name for your project, for example: '*SensumTutorialApplication*', then click **Next** (see Figure 2).
 
  ![Figure 2 - Create New Project](../../images/figure2_android.png "Figure 2 - Create New Project")
 #### <p style="text-align: center;">Figure 2 - Create New Project</p>
 <br>
 
  * Select the **Phone and Tablet**, and **Wear** options from the *Target Android Devices* dialogue window.
- * We recommend you use API 22: Android 5.1 (Lollipop) or greater for best performance.
+ * We recommend you use API 22: Android 5.1 (Lollipop) or greater for best performance (see Figure 3).
 
  ![Figure 3 - Select Platforms](../../images/figure3_android.png "Figure 3 - Select Platforms")
 #### <p style="text-align: center;">Figure 3 - Select Platforms</p>
@@ -30,20 +30,21 @@ We strongly recommend using Android Studio v2.3.3 and above. We work on Android 
 #### <p style="text-align: center;">Figure 4 - Add Activity</p>
 <br>
 
- * Click **Next** in order to configure the Empty Activity, provide an appropriate title for the *Activity* (for example ‘MainActivity’, as shown in Figure 5).
+ * Click **Next** in order to configure the *Empty Activity*, provide an appropriate title for the *Activity* (for example ‘MainActivity’, as shown in Figure 5).
 
  ![Figure 5 - Customize the Activity](../../images/figure5_android.png "Figure 5 - Customize the Activity")
 #### <p style="text-align: center;">Figure 5 - Customize the Activity</p>
 <br>
 
- * Click **Next**, then select **Blank Wear Activity** in the Add an *Activity to Wear* dialogue window(Figure 6).
+ * Click **Next**, then select **Blank Wear Activity** in the Add an *Activity to Wear* dialogue window (Figure 6).
 
 
  ![Figure 6 - Add an Activity to Wear](../../images/figure6_android.png "Figure 6 - Add an Activity to Wear")
 #### <p style="text-align: center;">Figure 6 - Add an Activity to Wear</p>
 <br>
 
- * Click **Next**, you will be presented with the *Customize the Activity* dialogue window.  You may optionally alter the default titles of your: *Activity Name*, *Layout Name*, *Round Layout Name*, and *Rectangular Layout Name* (Figure 7).
+ * Click **Next**, you will be presented with the *Customize the Activity* dialogue window.  
+ * You may optionally alter the default titles of your: *Activity Name*, *Layout Name*, *Round Layout Name*, and *Rectangular Layout Name* (Figure 7).
  * Click **Finish**
 
   ![Figure 7 - Customize the Wear Activity](../../images/figure7_android.png "Figure 7 - Customize the Wear Activity")
@@ -58,7 +59,8 @@ We strongly recommend using Android Studio v2.3.3 and above. We work on Android 
 #### <p style="text-align: center;"> Figure 8 - New Module</p>
 <br>
 
- * The *New Module* dialogue window will appear. Select the **Import .JAR/.AAR Package** option (Figure 9).
+ * The *New Module* dialogue window will appear.
+ * Select the **Import .JAR/.AAR Package** option (Figure 9).
  * Click **Next**
 
   ![ Figure 9 - Import .JAR/.AAR Package](../../images/figure9_android.png " Figure 9 - Import .JAR/.AAR Package")
@@ -66,14 +68,14 @@ We strongly recommend using Android Studio v2.3.3 and above. We work on Android 
 <br>
 
  * The Create New Module dialogue window will appear (shown in Figure 10).
- * In order to successfully create a new module, the developer must locate the necessary **sdk-release** file on their system.
+ * In order to successfully create a new module, the developer must locate the necessary **sdk-release.aar** file on their system.
 
 
   ![ Figure 10 - Create New Module](../../images/figure10_android.png " Figure 10 - Create New Module")
 #### <p style="text-align: center;"> Figure 10 - Create New Module</p>
 <br>
 
- * Once the **sdk-release** file has been located, click *Finish*.
+ * Once the **sdk-release** file has been located, click **Finish**.
 
  * In order to link the **sdk-release** file to the project as a dependency, the developer must navigate to *File* > *Project Structure*, from the *File* menu (Figure 11).
 
@@ -81,7 +83,7 @@ We strongly recommend using Android Studio v2.3.3 and above. We work on Android 
 #### <p style="text-align: center;">Figure 11 - Project Structure</p>
 <br>
 
- * You will be presented with the Project Structure dialogue window.
+ * You will be presented with the *Project Structure* dialogue window.
  * At the left-hand-side of the dialogue, select **mobile** from the *Modules* section.
  * Click the *Dependencies* tab, then click the ‘**+**’ button (top right-hand-side of dialogue), then select the third option: **3 Module Dependency** (Figure 12).
 
@@ -98,6 +100,9 @@ We strongly recommend using Android Studio v2.3.3 and above. We work on Android 
 * Select the **sdk-release**, and click **OK**.
 * You will return to the *Project Structure* dialogue window, once again, click **OK**.
 
+## Implementing the Shimmer library or GSR values
+
+ *  To import the Shimmer library repeat all the same steps that you have followed to import the **sensumsdk-release**, but instead locate the **shimmersdk-release.aar** file.
 
 ## Including Permissions
 
@@ -111,16 +116,18 @@ We strongly recommend using Android Studio v2.3.3 and above. We work on Android 
 <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 <uses-permission android:name="android.permission.INTERNET"/>
- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 ```
 
 ## Creating a Service
 
  * The **SensumSDK** runs in the background of the application.
-The developer is required to create a *ServiceConnection*, that is responsible for communication between the application front-end and the **SensumSDK**.
+ * The developer is required to create a *ServiceConnection*, that is responsible for communication between the application front-end and the **SensumSDK**.
 In order to create this *ServiceConnection*, follow the steps outlined within Code Snippet 2.
- * The developer will need to create an instance of the *Messenger* object. This object has the ability to send *Message* objects to the *Service*. Once the over-ridden `onServiceConnected` method is called, the `Messenger` object is initialised using the passed in `IBinder` object.
+ * The developer will need to create an instance of the *Messenger* object.
+ * This object has the ability to send *Message* objects to the *Service*.
+ * Once the over-ridden `onServiceConnected` method is called, the `Messenger` object is initialised using the passed in `IBinder` object.
 
 > Code Snippet 2
 
@@ -147,12 +154,40 @@ private final ServiceConnection mConnection = new ServiceConnection() {
 <service android:name="co.sensum.sensumservice.SDK.SdkService"/>
 ```
 
+## Binding and Unbinding the Service
+ * To bind the *Service* the developer will have to override the `onStart` method and include the code in Code Snippet 4.
+
+> Code Snippet 4
+
+ ```java
+ @Override
+ protected void onStart() {
+    super.onStart();
+    Intent intent = new Intent(this, SdkService.class);
+    bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+ }
+ ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Using a Broadcast Receiver
 
  * A *BroadcastReceiver* ‘listens’ for (receives and handles) *Broadcast Intents*, sent by the *Service*.
  * The *BroadcastReceiver* is essential as it manages messages sent from the **sdk-release**, within the front-end application.
  * The *BroadcastReceiver* makes use of *Filters*, that determine which events the application should ‘listen’ for.
- * The over-ridden method *.onReceive* takes two arguments: *Context* and *Intent*. The *Intent* parameter has an associated action that specifies how the
+ * The over-ridden method `.onReceive` takes two arguments: *Context* and *Intent*.
+ * The *Intent* parameter has an associated action that specifies how the
  *BroadcastReceiver* should behave.
  * Table 1 outlines the filters included in the *Service* and the *Intent Extras* they return.
 
