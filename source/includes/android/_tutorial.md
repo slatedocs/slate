@@ -155,7 +155,7 @@ private final ServiceConnection mConnection = new ServiceConnection() {
 ```
 
 ## Binding and Unbinding the Service
- * To bind the *Service* the developer will have to override the `onStart` method and include the code in Code Snippet 4.
+ * To bind the *Service* the developer will have to override the `onStart` method and include the lines in Code Snippet 4.
 
 > Code Snippet 4
 
@@ -167,9 +167,22 @@ private final ServiceConnection mConnection = new ServiceConnection() {
     bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
  }
  ```
+ * When the app is closed (destroyed) the *Service*  will need to be unbound, otherwise it will continue running (see Code Snippet 5).
+ * A boolean variable named `mIsBound` is intialised as **true**, once the *Service* is connected.  
+ * When the *Service* is unbound, `mIsBound` is set to **false**.
 
+ > Code Snippet 5
 
-
+  ```java
+  @Override
+  protected void onDestroy() {
+     super.onDestroy();
+     if (mIsBound) {
+         unbindService(mConnection);
+         mIsBound = false;
+     }
+  }
+  ```
 
 
 
@@ -211,9 +224,9 @@ private final ServiceConnection mConnection = new ServiceConnection() {
 
 ## Setting up the Broadcast Receiver
 
-  * Code Snippet 4 contains all necessary code that will allow you to setup a *BroadcastReceiver*.
+  * Code Snippet 6 contains all necessary code that will allow you to setup a *BroadcastReceiver*.
 
-> Code Snippet 4
+> Code Snippet 6
 
   ```java
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
@@ -250,10 +263,10 @@ private final ServiceConnection mConnection = new ServiceConnection() {
 
  * The *BroadcastReceiver* must be registered in order to receive *Intents* from a *Service*.
  * The `registerReceiver` method, takes two arguments: *BroadcastReceiver* and *IntentFilter*.
- * We have included our own method that returns an *IntentFilter:* `getUpdateIntentFilter` (this method is displayed within Code Snippet 6).
- * This method should be called immediately on starting the application, therefore, it is placed within the `.onResume` method, as shown in Code Snippet 5.
+ * We have included our own method that returns an *IntentFilter:* `getUpdateIntentFilter` (this method is displayed within Code Snippet 8).
+ * This method should be called immediately on starting the application, therefore, it is placed within the `.onResume` method, as shown in Code Snippet 7.
 
-> Code Snippet 5
+> Code Snippet 7
 
 ```java
  @Override
@@ -263,7 +276,7 @@ private final ServiceConnection mConnection = new ServiceConnection() {
     }
 ```
 
-> Code Snippet 6
+> Code Snippet 8
 
 ```java
   private IntentFilter getUpdateIntentFilter() {
@@ -280,9 +293,9 @@ private final ServiceConnection mConnection = new ServiceConnection() {
 ```
 
  * When the application is destroyed (on application close/force-close), the *BroadcastReceiver* must be unregistered. This is handled via the `.onDestroy` method.
-Code Snippet 7 demonstrates how to achieve this.
+Code Snippet 9 demonstrates how to achieve this.
 
-> Code Snippet 7
+> Code Snippet 9
 
 ```java
     @Override
@@ -322,10 +335,10 @@ Code Snippet 7 demonstrates how to achieve this.
  * A *Bundle* contains associated data that can be interpreted by the *Service*.
  * Table 2 indicates the relationship between selected Constants, and the requirements for a *Bundle* of a particular type.
   * e.g. If using the CONNECT constant, then the associated *Bundle* should contain two Strings, one for DEVICE_NAME, the other for DEVICE_ADDRESS.
- * Code Snippet 8 illustrates how to construct a *Message* object, and how to send it on to the *Service*.
+ * Code Snippet 10 illustrates how to construct a *Message* object, and how to send it on to the *Service*.
  * The *Messenger* object, `mServiceMessenger`, is able to execute its associated `.send` method. This sends the constructed *Message* object to the *Service*.
 
-> Code Snippet 8
+> Code Snippet 10
 
  ```java
    public void sendToService(Bundle bundle, int argValue){
@@ -349,7 +362,7 @@ Code Snippet 7 demonstrates how to achieve this.
  * The *BroadcastReceiver* will handle the *action* and in this case the *action* will fall under the HELLO_FILTER case.
  * It is up to the developer what they wish to do with the returned *String*.
 
-> Code Snippet 9
+> Code Snippet 11
 
 ```java
   private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
@@ -384,9 +397,9 @@ Code Snippet 7 demonstrates how to achieve this.
     };
 ```
  * Set up a button in your front-end activity/fragment
- * Inside the `onClickListener` include the lines shown in Code Snippet 10.
+ * Inside the `onClickListener` include the lines shown in Code Snippet 12.
 
-> Code Snippet 10
+> Code Snippet 12
 
 ```java
 Button button = (Button) findViewById(R.id.hello_button);
@@ -405,9 +418,9 @@ button.setOnClickListener(new View.OnClickListener() {
  * To scan for Bluetooth Low Energy (BLE) devices, the developer will have to create a Button object that will tell the *Service* to start scanning.
  * As in the <a href ="#testing-the-service">__Testing the Service__</a> section, the developer should execute the `sendToService` method within the *Button’s* `onClickListener` (following Table 2).
  * The first parameter that the `sendToService` method expects in this instance is `null`, as there is no extra data that the Service needs to execute this task.
- * The second parameter that it takes is **BLE_SCAN** (Code Snippet 11).
+ * The second parameter that it takes is **BLE_SCAN** (Code Snippet 13).
 
-> Code Snippet 11
+> Code Snippet 13
 
 ```java
 Button button = (Button) findViewById(R.id.scanButton);
@@ -428,12 +441,12 @@ button.setOnClickListener(new View.OnClickListener() {
 
 ## Connecting a BLE Device
 
- * To connect a BLE device the developer will need to send two *String* objects as part of the *Bundle* object that will be sent to the *Service* as part of the `sendToService` method (Code Snippet 12).
+ * To connect a BLE device the developer will need to send two *String* objects as part of the *Bundle* object that will be sent to the *Service* as part of the `sendToService` method (Code Snippet 14).
  * According to Table 2, the two Strings that are required are the BLE devices’ name and address.
  * These are both required in order to create a connection between the Android device and the BLE device.
  * The developer should include the **CONNECTION_FILTER** constant within the *BroadcastReceiver’s* `onReceive` overridden method. According to Table 1, the data received is of type *String*. This *String* is a connection message sent back from the *Service* to notify the user whether the connection was successful or not.
 
-> Code Snippet 12
+> Code Snippet 14
 
 ```java
 Bundle bundle =  new Bundle();
@@ -500,7 +513,7 @@ sendToService(bundle, CONNECT);
  * To retrieve your device list you will have to include the intent filter in your receiver as like before
  * The intent filter for ble devices is BLE_DEVICE_FILTER
 
-> Code Snippet 13
+> Code Snippet 15
 
 ```java
 case BLE_DEVICE_FILTER:
@@ -516,7 +529,7 @@ case BLE_DEVICE_FILTER:
  * These will be used to create the connection to the BLE device
  * In your *BroadcastReceiver* you should include the **CONNECTION_FILTER** constant to listen for a response from the service in regards to your connection request.
 
-> Code Snippet 14
+> Code Snippet 16
 
 ```java
 case CONNECTION_FILTER:
@@ -527,9 +540,9 @@ case CONNECTION_FILTER:
 
 ## Google Sign-In
 
- * For *Google Sign-In* the following *Play Service* dependency needs to be added to Gradle:
+ * For *Google Sign-In*, a *Play Service* dependency needs to be added to Gradle (Code Snippet 17).
 
-> Code Snippet 14
+> Code Snippet 17
 
 ```java
 compile 'com.google.android.gms:play-services-auth:+'
@@ -538,9 +551,9 @@ compile 'com.google.android.gms:play-services-auth:+'
  * For *Google Sign-In* to work with *AWS* authentication, `OAuth 2.0 client ID` (*Google Android Client ID*) is required by *AWS*. The *Google Android Client ID* is created using *Google Developer Console* by providing your Android application package name and the SHA-1 signing-certificate fingerprint from Android Studio. The generated *Google Android Client ID* needs to be given to us for adding it to *AWS* for authentication.
 
  * In the `onCreate()` method of your sign-in `Activity`, the `GoogleSignInOptions` object should be instantiated which is used to create the `GoogleApiClient` which is used for accessing the *Google Sign-In API*.
- * The *Google Web Client ID* which is created in the *Google Developer Console* is required during the creation of the *Google Sign-In* object (shown in Code Snippet 15 as the `gso` object).
+ * The *Google Web Client ID* which is created in the *Google Developer Console* is required during the creation of the *Google Sign-In* object (shown in Code Snippet 18 as the `gso` object).
 
-> Code Snippet 15
+> Code Snippet 18
 
 ```java
 GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -558,18 +571,18 @@ googleApiClient = new GoogleApiClient.Builder(this)
 ```
 
 
-* The Google Sign-In needs to be triggered, this is achieved via an *Intent*. Code Snippet 16 provides an example of this.
+* The Google Sign-In needs to be triggered, this is achieved via an *Intent*. Code Snippet 19 provides an example of this.
 
-> Code Snippet 16
+> Code Snippet 19
 
 ```java
 Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
 this.startActivityForResult(signInIntent, RC_SIGN_IN);
 ```
 
- * In `onActivityResult`, the *Google Sign-In* results should be handled and upon successful sign-in the *Google Id Token* and *Google Web Client ID* needs to be passed to the **SensumSDK** as a Bundle which is used for maintaining the user session for using the **SensumSDK**. Also for authentication the **SensumAPI** base URL, key and *AWS Identity Pool ID* are also needed to pass as a bundle. The **SensumSDK** ServiceConstants are used to pass the authentication parameters to the **SensumSDK** through Bundle. Code Snippet 17 provides an example of this.
+ * In `onActivityResult`, the *Google Sign-In* results should be handled and upon successful sign-in the *Google Id Token* and *Google Web Client ID* needs to be passed to the **SensumSDK** as a Bundle which is used for maintaining the user session for using the **SensumSDK**. Also for authentication the **SensumAPI** base URL, key and *AWS Identity Pool ID* are also needed to pass as a bundle. The **SensumSDK** ServiceConstants are used to pass the authentication parameters to the **SensumSDK** through Bundle. Code Snippet 20 provides an example of this.
 
-> Code Snippet 17
+> Code Snippet 20
 
 ```java
 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
