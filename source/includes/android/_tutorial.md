@@ -159,30 +159,30 @@ private final ServiceConnection mConnection = new ServiceConnection() {
 
 > Code Snippet 4
 
- ```java
- @Override
- protected void onStart() {
+```java
+@Override
+protected void onStart() {
     super.onStart();
     Intent intent = new Intent(this, SdkService.class);
     bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
- }
- ```
+}
+```
  * When the app is closed (destroyed) the *Service*  will need to be unbound, otherwise it will continue running (see Code Snippet 5).
- * A boolean variable named `mIsBound` is intialised as **true**, once the *Service* is connected.  
+ * A boolean variable named `mIsBound` is initialised as **true**, once the *Service* is connected.  
  * When the *Service* is unbound, `mIsBound` is set to **false**.
 
- > Code Snippet 5
+> Code Snippet 5
 
-  ```java
-  @Override
-  protected void onDestroy() {
-     super.onDestroy();
-     if (mIsBound) {
-         unbindService(mConnection);
-         mIsBound = false;
-     }
-  }
-  ```
+```java
+@Override
+protected void onDestroy() {
+    super.onDestroy();
+    if (mIsBound) {
+        unbindService(mConnection);
+        mIsBound = false;
+    }
+}
+```
 
 
 
@@ -292,8 +292,8 @@ private final ServiceConnection mConnection = new ServiceConnection() {
     }
 ```
 
- * When the application is destroyed (on application close/force-close), the *BroadcastReceiver* must be unregistered. This is handled via the `.onDestroy` method.
-Code Snippet 9 demonstrates how to achieve this.
+ * When the application is destroyed (on application close/force-close), the *BroadcastReceiver* must be unregistered.
+ * This is handled via the `.onDestroy` method. Code Snippet 9 demonstrates how to achieve this.
 
 > Code Snippet 9
 
@@ -312,21 +312,23 @@ Code Snippet 9 demonstrates how to achieve this.
 ## Communicating with the Service
 
  * The application’s communication with the *Service* requires that commands be sent via *Message* objects.
- * The *Message* object contains a property called `arg1` (which is an Integer value). This Integer value represents one of the possible options listed in the Constants column of Table 2 (corresponding to an integer value between 0 and 8). This property (`arg1`) will carry the command you want to request from the *Service*.
+ * The *Message* object contains a property called `arg1` (which is an Integer value).
+ * This Integer value represents one of the possible options listed in the Constants column of Table 2 (corresponding to an integer value between 0 and 8).
+ * This property (`arg1`) will carry the command you want to request from the *Service*.
 
 ### Table 2
 
 |Constants (of type 'Int')|Required Bundle Data|
 |-------------------------|--------------------|
-|**CONNECT**|`String DEVICE_NAME, String DEVICE_ADDRESS`|
+|**CONNECT**|`String DEVICE_NAME`, <br> `String DEVICE_ADDRESS`|
 |**BLE_SCAN**|`null`|
-|**START_CAPTURE**|`boolean ACCELERATION_CAPTURE, boolean HR_CAPTURE, boolean GPS_CAPTURE, boolean INPUT_CAPTURE, int DATA_RATE_SAMPLE, int DATA_RATE_SEND`|
-|**CANCEL_CAPTURE**|`boolean ACCELERATION_CAPTURE, boolean HR_CAPTURE, boolean GPS_CAPTURE, boolean INPUT_CAPTURE`|
-|**LOGIN**|`String USER_NAME, String PASSWORD, String API_BASEURL, String AUTH_TOKEN`|
-|**GOOGLE_LOGIN**|`String API_BASEURL_IAM, String API_KEY, String IDENTITY_POOL_ID, String GOOGLE_ID_TOKEN, String GOOGLE_AUTH_CODE`|
+|**START_CAPTURE**|`boolean ACCELERATION_CAPTURE`,<br> `boolean HR_CAPTURE, boolean GPS_CAPTURE`,<br> `boolean INPUT_CAPTURE`,<br> `int DATA_RATE_SAMPLE`,<br> `int DATA_RATE_SEND`|
+|**CANCEL_CAPTURE**|`boolean ACCELERATION_CAPTURE`,<br> `boolean HR_CAPTURE`, <br> `boolean GPS_CAPTURE`,<br> `boolean INPUT_CAPTURE`|
+|**LOGIN**|`String USER_NAME`,<br> `String PASSWORD`,<br> `String API_BASEURL`,<br> `String AUTH_TOKEN`|
+|**GOOGLE_LOGIN**|`String API_BASEURL_IAM`,<br> `String API_KEY`,<br> `String IDENTITY_POOL_ID`,<br> `String GOOGLE_ID_TOKEN`,<br> `String GOOGLE_AUTH_CODE`|
 |**INPUT_TEXT**|`String TEXT_MESSAGE`|
 |**BLUETOOTH_SCAN**|`null`|
-|**CONNECT_BLUETOOTH_DEVICE**|`String DEVICE_NAME, String DEVICE_ADDRESS`|
+|**CONNECT_BLUETOOTH_DEVICE**|`String DEVICE_NAME`,<br> `String DEVICE_ADDRESS`|
 |**HELLO**|`null`|
 |**EXPORT_DATABASE**|`null`|
 |**DELETE_ALL_DATA**|`null`|
@@ -334,7 +336,7 @@ Code Snippet 9 demonstrates how to achieve this.
  * This *Message* object also has the capacity to transmit data in the form of a *Bundle*.
  * A *Bundle* contains associated data that can be interpreted by the *Service*.
  * Table 2 indicates the relationship between selected Constants, and the requirements for a *Bundle* of a particular type.
-  * e.g. If using the CONNECT constant, then the associated *Bundle* should contain two Strings, one for DEVICE_NAME, the other for DEVICE_ADDRESS.
+  * e.g. If using the **CONNECT** constant, then the associated *Bundle* should contain two Strings, one for **DEVICE_NAME**, the other for **DEVICE_ADDRESS**.
  * Code Snippet 10 illustrates how to construct a *Message* object, and how to send it on to the *Service*.
  * The *Messenger* object, `mServiceMessenger`, is able to execute its associated `.send` method. This sends the constructed *Message* object to the *Service*.
 
@@ -356,7 +358,8 @@ Code Snippet 9 demonstrates how to achieve this.
 ## Testing the Service
 
  * To test the service the developer create a *Button* that will be able to send a *Message* to the *Service*.
- * Within the `onClickListener` make a call to the `sendToService` method. Enter **null** as the first parameter (*Bundle*) and **HELLO** as the second parameter (*int*).
+ * Within the `onClickListener`, make a call to the `sendToService` method.
+ * Enter **null** as the first parameter (*Bundle*) and **HELLO** as the second parameter (*int*).
  * This will send this the *Message* to the *Service*.
  * The *Service* will receive this *Message* and send a *Broadcast* on which the *BroadcastReceiver* will listen for.
  * The *BroadcastReceiver* will handle the *action* and in this case the *action* will fall under the HELLO_FILTER case.
@@ -415,7 +418,7 @@ button.setOnClickListener(new View.OnClickListener() {
 
 ## Setting up BLE
 
- * To scan for Bluetooth Low Energy (BLE) devices, the developer will have to create a Button object that will tell the *Service* to start scanning.
+ * To scan for Bluetooth Low Energy (BLE) devices, the developer will have to create a *Button* object that will tell the *Service* to start scanning.
  * As in the <a href ="#testing-the-service">__Testing the Service__</a> section, the developer should execute the `sendToService` method within the *Button’s* `onClickListener` (following Table 2).
  * The first parameter that the `sendToService` method expects in this instance is `null`, as there is no extra data that the Service needs to execute this task.
  * The second parameter that it takes is **BLE_SCAN** (Code Snippet 13).
@@ -437,14 +440,17 @@ button.setOnClickListener(new View.OnClickListener() {
  * To receive devices from the *Service* the developer will have to set up the *BroadcastReceiver* to listen for the **BLE_DEVICE_FILTER** constant.
  * Table 1 displays the data that the *Intent* received by the *BroadcastReceiver* carries.
  * In this case, the data that is received is an *ArrayList* of *BluetoothDevice’s*.
- * It is then up to the developer as to how they wish to display these devices. We would recommend that the user sets up a *ListView* or *RecyclerView*.
+ * It is then up to the developer as to how they wish to display these devices.
+ * We would recommend that the user sets up a *ListView* or *RecyclerView*.
 
 ## Connecting a BLE Device
 
  * To connect a BLE device the developer will need to send two *String* objects as part of the *Bundle* object that will be sent to the *Service* as part of the `sendToService` method (Code Snippet 14).
- * According to Table 2, the two Strings that are required are the BLE devices’ name and address.
+ * According to Table 2, the two Strings that are required are the BLE device's name and address.
  * These are both required in order to create a connection between the Android device and the BLE device.
- * The developer should include the **CONNECTION_FILTER** constant within the *BroadcastReceiver’s* `onReceive` overridden method. According to Table 1, the data received is of type *String*. This *String* is a connection message sent back from the *Service* to notify the user whether the connection was successful or not.
+ * The developer should include the **CONNECTION_FILTER** constant within the *BroadcastReceiver’s* `onReceive` overridden method.
+ * According to Table 1, the data received is of type *String*.
+ * This *String* is a connection message sent back from the *Service* to notify the user whether the connection was successful or not.
 
 > Code Snippet 14
 
@@ -458,7 +464,8 @@ sendToService(bundle, CONNECT);
 ## Receiving Values
 
  * This version of the **SensumSDK** only returns heart rate values from the BLE device, therefore the developer should ensure that the BLE device that they are using can detect heart rate.
- * On connection the BLE device will send values to the *Service*. The *Service* will then broadcast these values to the application that the developer has built.
+ * On connection the BLE device will send values to the *Service*.
+ * The *Service* will then broadcast these values to the application that the developer has built.
  * The developer should include the **VALUE_FILTER** constant within the *BroadcastReceiver’s* `onReceive` method.
  * According to Table 1, the value received will be of type *String*. This value will be the heart rate.
 
@@ -467,7 +474,7 @@ sendToService(bundle, CONNECT);
  * To scan for, receive, and read values from Bluetooth devices, please follow the steps previously outlined within the <a href = "#setting-up-the-ble">Setting up BLE</a> section of this tutorial.
  * The same steps should be taken, however bear in mind that the constants should change i.e. replace BLE_SCAN with **BLUETOOTH_SCAN**.
  * This version of the **SensumSDK** will only connect to a *Shimmer* device. This device returns GSR values.
- * The developer should include the GSR_FILTER constant within the *BroadcastReceiver’s* `onReceive` method.
+ * The developer should include the **GSR_FILTER** constant within the *BroadcastReceiver’s* `onReceive` method.
  * According to Table 1 the value received will be of type *String*. This value will be the GSR value.
 
 **SensumSDK** supports connecting to BLE devices for reading heart rate measurements. For a list of tested compatible devices please view the <a href = "http://help.sensum.co/knowledge_base/topics/what-type-of-sensors-can-i-use"> list of compatible devices</a> at our Knowledge Centre.
@@ -477,7 +484,7 @@ sendToService(bundle, CONNECT);
 ## Receiving GPS and Acceleration Values
 
 
- * GPS and Acceleration values will automatically be sent from the *Service* to the application’s frontend once the user has started the application and is authenticated (See <a href = "#google-sign-in">Google Sign-In Section</a>).
+ * GPS and Acceleration values will automatically be sent from the *Service* to the application’s frontend once the user has started the application and is authenticated (see <a href = "#google-sign-in">Google Sign-In Section</a>).
  * The developer should include the **GPS_FILTER** and the **ACC_FILTER** constants within the *BroadcastReceiver’s* `onReceive` method.
  * Both of these filters receive a bundle that contains multiple value types.
  * Refer to Table 3 to discover the value types returned from the *Service*.
