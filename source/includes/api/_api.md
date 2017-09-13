@@ -43,7 +43,7 @@ Below are the metrics that **SensumAPI** can analyse and the units that the data
 |breathingrate|bpm|
 |temperature|<sup>o</sup>C, assumed to be ambient/external|
 |skintemperature|<sup>o</sup>C|
-|<a href = "http://help.sensum.co/knowledge_base/topics/what-is-gsr">gsr</a>| Siemens<sup>*</sup>|
+|<a href = "http://help.sensum.co/knowledge_base/topics/what-is-gsr">gsr</a>| microsiemens<sup>*</sup>|
 |location_latitude|deg|
 |location_longitude|deg|
 |location_altitude|m|
@@ -54,7 +54,7 @@ Below are the metrics that **SensumAPI** can analyse and the units that the data
 |acceleration_y|m/s<sup>2</sup>|
 |acceleration_z|m/s<sup>2</sup>|
 
-<sup>*</sup> The GSR Conductance unit "Siemens" is the inverse of the skin resistance; some devices return GSR as resistance in Ohms and this must be converted before upload, i.e. if a device returns values in x kOhms, the conversion is 1/(1000*x)
+<sup>*</sup> The GSR Conductance unit "microsiemens" is the inverse of the skin resistance; some devices return GSR as resistance in Ohms and this must be converted before upload, i.e. if a device returns values in x kOhms, the conversion is 1/(1000*x)
 
 <sup>**</sup> All acceleration values should exclude gravity and be in m/s<sup>2</sup> i.e. using the userAcceleration iOS method rather than the acceleration method
 
