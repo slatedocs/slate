@@ -625,11 +625,121 @@ private void updateArousalStats(ArousalStats arousalStats) {
 * Code Snippet 18 shows the `ArousalStats` object.
 * Each record of the object has associated values attached, displayed in the `updateArousalStats` method.
 
-<!-- * For more information on the **SensumSDK** Realm objects see the..TODO ??? --->
+* Tables 5 - 12 display the *Realm* objects that the **SensumSDK** holds.
+* These objects contain methods and values associated with the response from the **SensumAPI**.
 
-<!-- 130917 CD: ****THIS IS GOING TO CHANGE BUT TIME FRAME FOR THE DEMO APP HAS TAKEN PRIORITY **** -->
+### Table 5
+
+| Realm Object                                  | Associated Methods | Method Type | Description                                                                                |
+|-----------------------------------------------|--------------------|-------------|--------------------------------------------------------------------------------------------|
+| `ResHeartRate` Events associated with Heart Rate | `getValue()`         | String      | Retrieves a value associated with the event event - min, max, normal, rising, falling      |
+|                                               | `getTime()`          | long        | Event time                                                                                 |
+|                                               | `getSeverity()`      | double      | How much of value change between forward/backward events with respect to the average value |
+
+### Table 6
+| Realm Event Objects |
+|---------------------|
+| `ResAccelerometerX`   |
+| `ResAccelerometerY`   |
+| `ResAccelerometerZ`   |
+| `ResGpsAccuracy`      |
+| `ResGpsAltitude`      |
+| `ResGpsBearing`       |
+| `ResGpsLatitude`      |
+| `ResGpsLongitude`     |
+| `ResGpsSpeed`         |
+| `ResGSR`              |
+
+### Table 7: Statistic Example Objects
+
+| Realm Object   | Associated Methods | Method Type | Description                               |
+|----------------|--------------------|-------------|-------------------------------------------|
+| `HeartRateStats` | `getAvg()`           | Double      | Returns an average value                  |
+|                | `getDuration()`      | Double      | Returns duration value                    |
+|                | `getMax()`           | Double      | Returns max value                         |
+|                | `getMin()`           | double      | Returns min value                         |
+|                | `getPercentiles()`   | Percentiles | Returns a percentile object (see Table 9) |
+|                | `getStd()`           | Double      | Returns a standard deviation value        |
+
+### Table 8: Statistics Objects
+
+| Realm Stats Objects |
+|---------------------|
+| `AccelerometerXStats` |
+| `AccelerometerYStats` |
+| `AccelerometerZStats` |
+| `GpsAccuracyStats`    |
+| `GpsAltitudeStats`    |
+| `GpsBearingStats`     |
+| `GpsLatitudeStats`    |
+| `GpsLongitudeStats`   |
+| `GpsSpeedStats`       |
+| `GsrStats`            |
+
+
+
+### Table 9: Percentiles
+
+| Object      | Associated Methods | Type   | Description                   |
+|-------------|--------------------|--------|-------------------------------|
+| `Percentiles` | `get10()`            | double | Returns 10th percentile value |
+|             | `get50()`            | double | Returns 50th percentile value |
+|             | `get90()`            | double | Returns 90th percentile value |
+
+
+### Table 10
+
+| Realm Stats Object | Associated Methods | Type           | Description                                                             |
+|--------------------|--------------------|----------------|-------------------------------------------------------------------------|
+| `ArousalStats`       | `getValue()`         | double         | Returns an activation value                                             |
+|                    | `getDominant()`      | String         | Label of the dominant classification category                           |
+|                    | `getSectors()`       | ArousalSectors | Returns the sectors associated with the arousal stats object (Table 12) |
+
+### Table 11
+
+| Realm Stats Object | Associated Methods | Type              | Description                                                             |
+|--------------------|--------------------|-------------------|-------------------------------------------------------------------------|
+| `EngagementStats`    | `getValue()`         | double            | Returns an activation value                                             |
+|                    | `getDominant()`      | String            | Label of the dominant classification category                           |
+|                    | `getSectors()`       | EngagementSectors | Returns the sectors associated with the arousal stats object (Table 12) |
+
+### Table 12
+
+| Object                            | Associated Methods | Type   | Description                                 |
+|-----------------------------------|--------------------|--------|---------------------------------------------|
+| `ArousalSectors` and `EngagmentSectors` | `getExcited()`       | double | Returns a value associated with excitement  |
+|                                   | `getActivated()`     | double | Returns a value associated with activity    |
+|                                   | `getCalm()`          | double | Returns a value associated with calmness    |
+|                                   | `getPassive()`       | double | Returns a value associated with passiveness |
+|                                   | `getRelaxed()`       | double | Returns a value associated with relaxation  |
+
+
+* Sentiment values are returned via the *BroadcastReceiver* (see Table 4).
+* When the developer sends a message to the service using the **INPUT_TEXT** command, the associated *String* object that is sent to the *Service* (see Table 2) is also sent to the **SensumAPI**, before a value is returned to the **SensumSDK**.
+* Depending on the type of input (i.e. text or emoji), a *Bundle* is returned to the front-end.
+* The **TEXT_EMOJI_SENTIMENT** and **EMOJI_SENTIMENT** are the *BroadcastReceiver*’s action filters where this *Bundle* is returned to.
+
+<!-- NOTE JK - clarify the above from Ciaran 130917 @1808   -->
+<!-- TEST COMMENT FOR GIT ISSUE-->
+
+* The *Bundle* contains three values of type double (see Table 13).
+
+### Table 13
+
+| Object       | Type   | Description                                  |
+|--------------|--------|----------------------------------------------|
+| `EMOTIONALITY` | double | Returns a value associated with emotionality |
+| `POSITIVITY`   | double | Returns a value associated with positivity   |
+| `NEGATIVITY`   | double | Returns a value associated with negativity   |
+
+* These events are returned via a *BroadcastIntent* rather than retrieved from the *Realm* database; therefore they should be listened for in the *BroadcastReceiver*'s `onReceive` method.
+
+
+<!-- NEW EDITS FINISH HERE-->
 * The values returned can be used to display data in a variety of ways.
 * We recommend using a charting library to show this data coming in from the **SensumSDK**.
+* To access these objects the developer should query the *Realm* database (see previous example in Code Snippet 18) to access the desired values.
+
 
 
 
@@ -704,4 +814,25 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
        sendToService(bundle, GOOGLE_LOGIN);
    }
 }
+```
+
+## Gradle Dependencies
+
+* Code Snippet 21 displays the Gradle Dependencies that the developer will need to include to successfully run the application.
+
+> Code Snippet 21
+
+```java
+compile 'com.amazonaws:aws-android-sdk-core:2.4.+'
+compile 'com.amazonaws:aws-android-sdk-s3:2.4.+'
+compile 'com.amazonaws:aws-android-sdk-cognito:2.4.+'
+compile 'com.amazonaws:aws-android-sdk-ddb:2.4.+'
+compile 'com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.4.+'
+compile 'com.squareup.retrofit2:retrofit:2.1.0'
+compile 'com.squareup.retrofit2:converter-moshi:2.1.0'
+compile 'com.squareup.moshi:moshi:1.2.0'
+compile 'com.squareup.okhttp3:okhttp:3.4.1'
+compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+compile 'com.google.code.gson:gson:2.8.0'
+compile 'com.google.guava:guava:19.0'
 ```
