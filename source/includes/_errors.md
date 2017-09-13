@@ -1,4 +1,4 @@
-# Errors
+# API Errors
 
 The API follows HTTP Status Codes for error handling. As a body again JSON is returned. The "message" will provide more information about the specific error.
 
