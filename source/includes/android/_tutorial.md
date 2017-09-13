@@ -359,10 +359,10 @@ protected void onDestroy() {
 
  * To test the service the developer create a *Button* that will be able to send a *Message* to the *Service*.
  * Within the `onClickListener`, make a call to the `sendToService` method.
- * Enter **null** as the first parameter (*Bundle*) and **HELLO** as the second parameter (*int*).
+ * Enter **null** as the first parameter (*Bundle*) and **HELLO** as the second parameter (*Int*).
  * This will send this the *Message* to the *Service*.
- * The *Service* will receive this *Message* and send a *Broadcast* on which the *BroadcastReceiver* will listen for.
- * The *BroadcastReceiver* will handle the *action* and in this case the *action* will fall under the HELLO_FILTER case.
+ * The *Service* will receive this *Message* and send a *Broadcast*, which the *BroadcastReceiver* will listen for.
+ * The *BroadcastReceiver* will handle the *action* and in this case the *action* will fall under the **HELLO_FILTER** case.
  * It is up to the developer what they wish to do with the returned *String*.
 
 > Code Snippet 11
@@ -439,18 +439,18 @@ button.setOnClickListener(new View.OnClickListener() {
 
  * To receive devices from the *Service* the developer will have to set up the *BroadcastReceiver* to listen for the **BLE_DEVICE_FILTER** constant.
  * Table 1 displays the data that the *Intent* received by the *BroadcastReceiver* carries.
- * In this case, the data that is received is an *ArrayList* of *BluetoothDevice’s*.
+ * In this case, the data that is received is an *ArrayList* of *BluetoothDevices*.
  * It is then up to the developer as to how they wish to display these devices.
  * We would recommend that the user sets up a *ListView* or *RecyclerView*.
 
 ## Connecting a BLE Device
 
  * To connect a BLE device the developer will need to send two *String* objects as part of the *Bundle* object that will be sent to the *Service* as part of the `sendToService` method (Code Snippet 14).
- * According to Table 2, the two Strings that are required are the BLE device's name and address.
- * These are both required in order to create a connection between the Android device and the BLE device.
- * The developer should include the **CONNECTION_FILTER** constant within the *BroadcastReceiver’s* `onReceive` overridden method.
+ * According to Table 2, the two Strings required are the BLE device's name and address.
+ * These are necessary in order to create a connection between the Android device and the BLE device.
+ * The developer should include the **CONNECTION_FILTER** constant within the *BroadcastReceiver’s* overridden `onReceive` method.
  * According to Table 1, the data received is of type *String*.
- * This *String* is a connection message sent back from the *Service* to notify the user whether the connection was successful or not.
+ * This *String* provides a connection message, sent back from the *Service*, to notify the user whether the connection was successful or not.
 
 > Code Snippet 14
 
@@ -460,6 +460,8 @@ bundle.putString(ServiceConstants.DEVICE_NAME, deviceName);
 bundle.putString(ServiceConstants.DEVICE_ADDRESS, deviceAddress);
 sendToService(bundle, CONNECT);
 ```
+
+* **SensumSDK** supports connecting to BLE devices for reading heart rate measurements. For a list of tested compatible devices please view the <a href = "http://help.sensum.co/knowledge_base/topics/what-type-of-sensors-can-i-use"> list of compatible devices</a> at our Knowledge Centre.
 
 ## Receiving Values
 
@@ -473,13 +475,13 @@ sendToService(bundle, CONNECT);
 
  * To scan for, receive, and read values from Bluetooth devices, please follow the steps previously outlined within the <a href = "#setting-up-the-ble">Setting up BLE</a> section of this tutorial.
  * The same steps should be taken, however bear in mind that the constants should change i.e. replace BLE_SCAN with **BLUETOOTH_SCAN**.
- * This version of the **SensumSDK** will only connect to a *Shimmer* device. This device returns GSR values.
+ * This version of the **SensumSDK** will only connect to a *Shimmer 2r* device. This device returns GSR values.
  * The developer should include the **GSR_FILTER** constant within the *BroadcastReceiver’s* `onReceive` method.
  * According to Table 1 the value received will be of type *String*. This value will be the GSR value.
 
-**SensumSDK** supports connecting to BLE devices for reading heart rate measurements. For a list of tested compatible devices please view the <a href = "http://help.sensum.co/knowledge_base/topics/what-type-of-sensors-can-i-use"> list of compatible devices</a> at our Knowledge Centre.
 
-**Note:** This document is regularly updated with new devices. Please contact us for integration details. GSR data is only accessible from Shimmer devices at present.
+
+**Note:** This document is regularly updated with new devices. Please contact us for integration details. GSR data is only accessible from *Shimmer 2r* devices at present.
 
 ## Receiving GPS and Acceleration Values
 
@@ -508,59 +510,150 @@ sendToService(bundle, CONNECT);
 
  * Once the developer is able to receive data from the *Service* and is authorised (See <a href ="#google-sign-in">Google Sign-In Section</a>), they can start to send data to the **SensumAPI**.
  * To do this the developer should create a *Button* object that implements the `sendToService` method (See <a href = "testing-the-service">Hello example</a> & <a href ="#table-2">Table 2</a> for more info).
+ * The arguments that this method expects are: a *Bundle* object and the **START_CAPTURE** command.
  * This will send a message to the Service to start sending captured data to the **SensumAPI**.
-
-
- * The API will send back the analysed data to the service.
-
-
- * Within your activity set up a button that will scan for BLE devices
- * Just like the example before and using the table above setup the `sendToService` method within the `onClickListener`
- * To scan for BLE it will take **null** as the first parameter and **BLE_SCAN** for the second
- * To retrieve your device list you will have to include the intent filter in your receiver as like before
- * The intent filter for ble devices is BLE_DEVICE_FILTER
+ * The content of Code Snippet 15 displays a method that we have created that returns a bundle holding data relevant to the **START_CAPTURE** command.
+ * The data held in this bundle informs the **SensumSDK** which metrics are to be recorded, in addition to the frequency at which these metrics should be sent to the **SensumAPI**.
 
 > Code Snippet 15
 
 ```java
-case BLE_DEVICE_FILTER:
-    ArrayList<BluetoothDevice> bleDevices = intent.getParcelableArrayListExtra(EXTRA_DATA);
+public Bundle getCaptureBundle() {
+ Bundle bundle = new Bundle();
+ bundle.putBoolean(ACCELERATION_CAPTURE, isAcc);
+ bundle.putBoolean(HR_CAPTURE, isHr);
+ bundle.putBoolean(GPS_CAPTURE, isGps);
+ bundle.putBoolean(INPUT_CAPTURE, isInput);
+ bundle.putLong(DATA_RATE_SEND, dataRate);
+ return bundle;
+}
 ```
-
- * The bundle which is returned from the broadcast intent includes an *ArrayList* of *BluetoothDevices*.
- * It is up to you how you want to display this list i.e. *ListView* or *RecyclerView*.
-
-## Connecting a BLE Device
-
- * To connect a BLE device you will need to send a bundle to the *Service* which includes two Strings: **DEVICE_NAME** and **DEVICE_ADDRESS**.
- * These will be used to create the connection to the BLE device
- * In your *BroadcastReceiver* you should include the **CONNECTION_FILTER** constant to listen for a response from the service in regards to your connection request.
+* In the same way another *Button* should be created to stop the recording.
+* This *Button* should implement the `sendToService` method, the arguments that it expects are identical to those used for the **START_CAPTURE** command (see Code Snippet 16).
 
 > Code Snippet 16
 
 ```java
-case CONNECTION_FILTER:
-    String connectionMessage = intent.getStringExtra(EXTRA_DATA);
-    if(connectionMessage.equals("connected")){
-    onConnection(true);
+sendToService(getCaptureBundle(), START_CAPTURE);
+...
+sendToService(getCaptureBundle(), CANCEL_CAPTURE);
 ```
 
-## Google Sign-In
+## Receiving Values from SensumAPI
 
- * For *Google Sign-In*, a *Play Service* dependency needs to be added to Gradle (Code Snippet 17).
+* Receiving the value from the **SensumAPI** works in the same way as receiving values from a device.
+* The *BroadcastReceiver* in your `MainActivity` should implement the ‘filters’ shown in Table 4.
+
+### Table 4
+
+|Action|(description)|Intent Extras|
+|------|------|---------|
+|**HR_EVENTS_FILTER**|Filters for heart rate events|`null`|
+|**ACC_EVENT_FILTER**|Filters for acceleration events|`null`|
+|**AROUSAL_EVENT_FILTER**|Filters for arousal events|`null`|
+|**GPS_EVENT_FILTER**|Filters for GPS events|`null`|
+|**GSR_EVENT_FILTER**|Filters for GSR events|`null`|
+|**EMOJI_SENTIMENT_FILTER**|Filters for Emoji Sentiment values|`Bundle`|
+|**TEXT_SENTIMENT_FILTER**|Filters for Text Sentiment values|`Bundle`|
+
+* These filters should also be added to your `getUpdateFilter` method (Code Snippet 17).
 
 > Code Snippet 17
 
 ```java
-compile 'com.google.android.gms:play-services-auth:+'
+private IntentFilter getUpdateIntentFilter() {
+      IntentFilter filter = new IntentFilter();
+      filter.addAction(HELLO_FILTER);
+      filter.addAction(GPS_FILTER);
+      filter.addAction(ACC_FILTER);
+      filter.addAction(VALUE_FILTER);
+      filter.addAction(GSR_FILTER);
+      filter.addAction(API_RESPONSE);
+      filter.addAction(TOAST_MESSAGE);
+      filter.addAction(HR_EVENTS_FILTER);
+      filter.addAction(ACC_EVENT_FILTER);
+      filter.addAction(AROUSAL_EVENT_FILTER);
+      filter.addAction(GPS_EVENT_FILTER);
+      filter.addAction(GSR_EVENT_FILTER);
+      filter.addAction(EMOJI_SENTIMENT_FILTER);
+      filter.addAction(TEXT_SENTIMENT_FILTER);
+      return filter;
+  }
 ```
- * As part of enabling *Google APIs* or *Firebase* services in your Android application the `google-services.json` is processed by the `google-services` plugin. The `google-services.json` is created using *Firebase* during enabling *Google Services* for your Android application and is generally placed in the app/ directory (at the root of the Android Studio app module).
- * For *Google Sign-In* to work with *AWS* authentication, `OAuth 2.0 client ID` (*Google Android Client ID*) is required by *AWS*. The *Google Android Client ID* is created using *Google Developer Console* by providing your Android application package name and the SHA-1 signing-certificate fingerprint from Android Studio. The generated *Google Android Client ID* needs to be given to us for adding it to *AWS* for authentication.
 
- * In the `onCreate()` method of your sign-in `Activity`, the `GoogleSignInOptions` object should be instantiated which is used to create the `GoogleApiClient` which is used for accessing the *Google Sign-In API*.
- * The *Google Web Client ID* which is created in the *Google Developer Console* is required during the creation of the *Google Sign-In* object (shown in Code Snippet 18 as the `gso` object).
+## Realm Queries
+
+* *Realm* is a Mobile Database that provides an alternative to *SQLite* & *Core Data*.
+* We use *Realm* to safely and efficiently store/query data from the response the **SensumAPI** returns. We recommend you take some time to study the RealmDocs <a href = "https://realm.io/docs/java/latest/"> here</a>.
+* A significant advantage for developers using the **SensumSDK** is the ability to query the *Realm* database from the front-end to see what data has been captured/stored.
+* When an event has been received by the *BroadcastReceiver*, the developer can query the *Realm* database to retrieve the values received from the **SensumAPI**.
+* The **AROUSAL_EVENT_FILTER** lets the developer know that the **SensumSDK** has received an ‘arousal event’.
+* Code Snippet 18 displays how the developer could query *Realm* to see the values stored.
 
 > Code Snippet 18
+
+```java
+private void queryRealmForArousalStats() {
+   try {
+       realm = Realm.getDefaultInstance().getDefaultInstance();
+       RealmResults<ArousalStats> realmResults = realm.where(ArousalStats.class).findAll();
+       realmResults.load();
+       if (!realmResults.isEmpty()) {
+           for (ArousalStats realmRecords : realmResults) {
+               updateArousalStats(realmRecords);
+           }
+       } else {
+           Log.d(TAG, "No arousal stats data found in the database");
+       }
+   } catch (Throwable e) {
+       Log.d(TAG, "Unable to get arousal stats data from the database " + e.toString());
+   }
+}
+
+private void updateArousalStats(ArousalStats arousalStats) {
+   ArousalSectors arousalSectors = arousalStats.getArousalSectors();
+   double activated = arousalSectors.getActivated();
+   double calm = arousalSectors.getCalm();
+   double excited = arousalSectors.getExcited();
+   double passive = arousalSectors.getPassive();
+   double relaxed = arousalSectors.getRelaxed();
+
+}
+
+```
+
+* Code Snippet 18 shows the `ArousalStats` object.
+* Each record of the object has associated values attached, displayed in the `updateArousalStats` method.
+
+<!-- * For more information on the **SensumSDK** Realm objects see the..TODO ??? --->
+
+<!-- 130917 CD: ****THIS IS GOING TO CHANGE BUT TIME FRAME FOR THE DEMO APP HAS TAKEN PRIORITY **** -->
+* The values returned can be used to display data in a variety of ways.
+* We recommend using a charting library to show this data coming in from the **SensumSDK**.
+
+
+
+## Google Sign-In
+
+ * For *Google Sign-In*, a *Play Service* dependency needs to be added to Gradle (Code Snippet 19).
+
+> Code Snippet 19
+
+```java
+compile 'com.google.android.gms:play-services-auth:+'
+```
+
+ * As part of enabling *Google APIs* or *Firebase* services in your Android application the `google-services.json` is processed by the `google-services` plugin.
+ * The `google-services.json` is created using *Firebase* during enabling *Google Services* for your Android application and is generally placed in the **app/** directory (at the root of the Android Studio app module).
+ * For *Google Sign-In* to work with *AWS* authentication, `OAuth 2.0 client ID` (*Google Android Client ID*) is required by *AWS*.
+ * The *Google Android Client ID* is created using *Google Developer Console* by providing your Android application package name and the SHA-1 signing-certificate fingerprint from Android Studio.
+ * The generated *Google Android Client ID* needs to be given to us for adding it to *AWS* for authentication.
+
+ * In the `onCreate()` method of your sign-in `Activity`, the `GoogleSignInOptions` object should be instantiated.
+ * This object is used to create the `GoogleApiClient` which is used for accessing the *Google Sign-In API*.
+ * The *Google Web Client ID* which is created in the *Google Developer Console* is required during the creation of the *Google Sign-In* object (shown in Code Snippet 20 as the `gso` object).
+
+> Code Snippet 20
 
 ```java
 GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -578,16 +671,20 @@ googleApiClient = new GoogleApiClient.Builder(this)
 ```
 
 
-* The Google Sign-In needs to be triggered, this is achieved via an *Intent*. Code Snippet 19 provides an example of this.
+* The *Google Sign-In* needs to be triggered, this is achieved via an *Intent*. Code Snippet 21 illustrates this.
 
-> Code Snippet 19
+> Code Snippet 21
 
 ```java
 Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
 this.startActivityForResult(signInIntent, RC_SIGN_IN);
 ```
 
- * In `onActivityResult`, the *Google Sign-In* results should be handled and upon successful sign-in the *Google Id Token* and *Google Web Client ID* needs to be passed to the **SensumSDK** as a Bundle which is used for maintaining the user session for using the **SensumSDK**. Also for authentication the **SensumAPI** base URL, key and *AWS Identity Pool ID* are also needed to pass as a bundle. The **SensumSDK** ServiceConstants are used to pass the authentication parameters to the **SensumSDK** through Bundle. Code Snippet 20 provides an example of this.
+ * In `onActivityResult`, the *Google Sign-In* results should be handled and upon successful sign-in, the *Google Id Token* and *Google Web Client ID* need to be passed to the **SensumSDK** as a *Bundle*.
+ * This *Bundle* is utilised to maintain the capture-session whilst using the **SensumSDK**.  
+ * For authentication the **SensumAPI** base URL, key and *AWS Identity Pool ID* are also needed to pass as a *Bundle*.
+ * The **SensumSDK** *ServiceConstants* are used to pass the authentication parameters to the **SensumSDK** via a *Bundle*.
+ * Code Snippet 20 provides an example of this.
 
 > Code Snippet 20
 
