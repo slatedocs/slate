@@ -20,6 +20,7 @@ includes:
   - channel_history
   - products
   - product_data
+  - process
   - errors
 
 search: true
