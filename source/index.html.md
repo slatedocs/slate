@@ -23,6 +23,7 @@ includes:
   - sets
   - instances
   - runs
+  - issues
   - errors
 
 search: true
