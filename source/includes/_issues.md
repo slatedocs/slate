@@ -182,7 +182,6 @@ This endpoint updates a specific Issue.
 
 Available parameters | Description |
 --------- | ------- |
-
 data/attributes/title | name | true |
 data/attributes/description | description | false |
 data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  | false |
