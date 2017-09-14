@@ -160,7 +160,7 @@ expires | <span class="label label-required">Required</span> [See above for how 
 report-name | <span class="label label-required">Required</span>
 location-id | Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
 white-label-profile-id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
-business-names | <span class="label label-required">Required</span> Supply only one business name as a JSON string. For example, [“Greens Restaurant”].
+business-names | <span class="label label-required">Required</span> Supply only one business name as a JSON string. For example, ["Greens Restaurant"].
 website-address | <span class="label label-required">Required</span> The address for your business website. 256 characters max. 
 address1 | <span class="label label-required">Required</span> 80 characters max. 
 address2 | 80 characters max. 
@@ -325,7 +325,7 @@ report-id | <span class="label label-required">Required</span>
 report-name |
 location-id | Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
 white-label-profile-id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
-business-names | Supply only one business name as a JSON string. For example, [“Greens Restaurant”].
+business-names | Supply only one business name as a JSON string. For example, ["Greens Restaurant"].
 website-address | The address for your business website. 256 characters max. 
 address1 | 80 characters max. 
 address2 | 80 characters max. 
