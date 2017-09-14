@@ -717,9 +717,8 @@ private void updateArousalStats(ArousalStats arousalStats) {
 * Sentiment values are returned via the *BroadcastReceiver* (see Table 4).
 * When the developer sends a message to the service using the **INPUT_TEXT** command, the associated *String* object that is sent to the *Service* (see Table 2) is also sent to the **SensumAPI**, before a value is returned to the **SensumSDK**.
 * Depending on the type of input (i.e. text or emoji), a *Bundle* is returned to the front-end.
-* The **TEXT_EMOJI_SENTIMENT** and **EMOJI_SENTIMENT** are the *BroadcastReceiver*’s action filters where this *Bundle* is returned to.
+* To receive this bundle the developer should include the **TEXT_SENTIMENT_FILTER** and **EMOJI_SENTIMENT_FILTER**  within the BroadcastReceivers `onReceive` method.
 
-<!-- NOTE JK - clarify the above from Ciaran 130917 @1808   -->
 <!-- TEST COMMENT FOR GIT ISSUE-->
 
 * The *Bundle* contains three values of type double (see Table 13).
