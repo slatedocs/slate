@@ -13,7 +13,6 @@ includes:
   - authentication
   - errors
   - users
-  - old_index
 
 search: true
 ---

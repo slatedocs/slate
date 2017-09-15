@@ -3,22 +3,17 @@
 ## Login
 
 ```ruby
-require 'uri'
-require 'net/http'
+require 'rest-client'
 
-url = URI("https://rubberstamp.io/api/v1/login")
+response = RestClient.post(
+  '/api/v1/login',
+  {
+    email: 'api@example.com',
+    password: 'pass1234'
+  }
+)
 
-http = Net::HTTP.new(url.host, url.port)
-http.use_ssl = true
-
-request = Net::HTTP::Post.new(url)
-request.set_form_data({
-  "email": "api@example.com",
-  "password": "strongp@ssw0rd"
-})
-
-response = http.request(request)
-puts response.read_body
+response.body
 ```
 
 ```shell
@@ -26,23 +21,7 @@ curl '/api/v1/login[.json]'
   -X POST
   -H "Content-Type: application/json"
   -d "email=api@example.com"
-  -d "password=strongp@ssw0rd"
-```
-
-```javascript
-import axios from 'axios';
-
-axios
-  .post('https://rubberstamp.io/api/v1/login', {
-    email: 'api@example.com',
-    password: 'strongp@ssw0rd',
-  })
-  .then(function(response) {
-    console.log(response);
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
+  -d "password=pass1234"
 ```
 
 > The above command returns JSON structured like this:
@@ -69,7 +48,7 @@ axios
 This endpoint returns `User` object along with `authentication_token`.
 
 RubberStamp expects for the Authentication token to be included in all API
-requests to the server in a header that looks like the following:
+requests to the server in a header.
 
 
 ### HTTP Request
@@ -84,8 +63,8 @@ requests to the server in a header that looks like the following:
 | password  | string  | strong password               |
 
 <aside class="success">
-Remember — You need to be valid user to get authenticated. Try sign up API if you
-don't have account yet.
+Remember — You need to be valid user to get authenticated. If you haven't
+registered to Rubberstamp yet, try register api.
 </aside>
 
 ## Register
@@ -99,6 +78,23 @@ curl '/api/v1/register[.json]'
   -d "password_confirmation=strongp@ssw0rd"
   -d "name=Api user"
   -d "phone_number=98xxxxxxxx"
+```
+
+```ruby
+require 'rest-client'
+
+response = RestClient.post(
+  '/api/v1/register',
+  {
+    email: 'api@example.com',
+    password: 'pass1234',
+    password_confirmation: 'pass1234',
+    name: 'Api user',
+    phone_number: '98xxxxxx'
+  }
+)
+
+response.body
 ```
 
 > The above command returns JSON structured like this:
