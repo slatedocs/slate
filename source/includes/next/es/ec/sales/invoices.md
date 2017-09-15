@@ -102,19 +102,25 @@ curl -v https://api.datil.co/sales/invoices/issues \
 import requests, json
 
 invoice = {
-      "country": "EC",
-      "location_code": "001",
-      "device_id": "9008edd4-cf56-4435-a387-7bf1d2eb9aef",
-      "sequence": 2,
-      "uuid": "12345-12345-12345-12345-12345",
-      "issue_date": "2016-11-22 23:00:00",
-      "customer": {
+    "supplier": {
+        "location": {
+            "code": "001",
+            "point_of_sale": {
+                "code": "002"
+            }
+        }
+    },
+    "device_id": "9008edd4-cf56-4435-a387-7bf1d2eb9aef",
+    "sequence": 2,
+    "uuid": "12345-12345-12345-12345-12345",
+    "issue_date": "2016-11-22T23:00:00Z",
+    "customer": {
         "tax_identification_type": "31",
         "properties": [],
         "address": "Carrera 10 Calle 1",
         "email": "w@datil.co",
         "phone": "04 555-5555",
-        "locality": "Bogota DC",
+        "locality": "Guayaquil",
         "sublocality": "Centro",
         "tax_identification": "092",
         "tax_level_code": "2",
@@ -123,68 +129,74 @@ invoice = {
                    "last_name": "Argüello"},
         "administrative_district_level_1": "Guayas",
         "country": "EC"
-      },
-      "taxes": [
+    },
+    "taxes": [
         {
-          "amount": 419046.82,
-          "tax_code": "03",
-          "tax_rate": 4.14,
-          "rate_code": "3",
-          "taxable_amount": 10121904.00
+            "amount": "419046.82",
+            "tax_code": "03",
+            "tax_rate": "4.14",
+            "rate_code": "3",
+            "taxable_amount": "10121904.00"
         },
         {
-          "amount": 1619504.64,
-          "tax_code": "01",
-          "tax_rate": 16.00,
-          "rate_code": "3",
-          "taxable_amount": 10121904.00
+            "amount": "1619504.64",
+            "tax_code": "01",
+            "tax_rate": "16.00",
+            "rate_code": "3",
+            "taxable_amount": "10121904.00"
         }
-      ],
-      "totals": {
-        "subtotal_amount": 10121904.00,
-        "total_tax_amount": 2038551.46,
-        "total_amount": 12160455.46,
-      }
-      "currency": "USD",
-      "items": [
+    ],
+    "totals": {
+        "subtotal_amount": "10121904.00",
+        "total_tax_amount": "2038551.46",
+        "total_amount": "12160455.46",
+    }
+    "currency": "USD",
+    "items": [
         {
-          "description": "Apple",
-          "properties": [{
-            "name": "size",
-            "description": "M"
-          }],
-          "unit_discount": 0.00,
-          "unit_code": "units",
-          "unit_price": 43256.00,
-          "id": "ABC",
-          "subtotal_amount": 10121904.00,
-          "total_amount": 1.15,
-          "quantity": 234
+            "description": "Apple",
+            "properties": [{
+                "name": "size",
+                "description": "M"
+            }],
+            "unit_discount": 0.00,
+            "unit_code": "units",
+            "unit_price": 43256.00,
+            "id": "ABC",
+            "subtotal_amount": 10121904.00,
+            "total_amount": 1.15,
+            "quantity": 234
         }
-      ],
-      "properties": [
-         {
-           "name": "Contract Number",
-           "description": "420420"
-         }
-       ],
-       "payments": [
-         {
-           "properties": [{
-             "account_number": "2223XXXX23",
-             "bank": "Bancolombia"
-           }],
-           "amount": 1.09,
-           "method": "42"
-         }
-       ],
-  }
+    ],
+    "properties": [
+        {
+            "name": "Contract Number",
+            "description": "420420"
+        }
+    ],
+    "payments": [
+        {
+            "properties": [
+                {
+                    "name": "account_number",
+                    "description": "2223XXXX23"
+                },
+                {
+                    "name": "bank",
+                    "description": "Trust Bank"
+                }
+            ],
+            "amount": "1.09",
+            "method": "42"
+        }
+    ]
+}
 headers = {
-    'x-api-key': '<clave-del-api>',
+    'x-api-key': '<API-key>',
     'x-password': '<clave-certificado-firma>',
     'content-type': 'application/json'}
 response = requests.post(
-    "https://api.datil.co/sales/invoices/issue",
+    "https://api.datil.co/sales/invoices/issues",
     headers = headers,
     data = json.dumps(invoice))
 ```
@@ -201,7 +213,7 @@ sequence | Número entero positivo mayor a cero. Si no envías esta información
 currency<p class="dt-data-param-required">requerido</p> | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda.
 issue_date | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). Si no es provista, se utilizará la fecha en la que se envía la factura.
 totals<p class="dt-data-param-required">requerido</p> | Totales de la factura
-customer<p class="dt-data-param-required">requerido</p> | Información del comprador.
+customer<p class="dt-data-param-required">requerido</p> | Información del [comprador](#contacto).
 items<p class="dt-data-param-required">requerido</p> | Bienes o servicios vendidos.
 uuid | La clave de acceso de la factura. La clave de acceso es un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 properties | Información adicional adjunta al comprobante.
@@ -236,39 +248,14 @@ se debe examinar el atributos `authorization` de la factura.
 curl -v https://link.datil.co/invoices/<invoice-id> \
 -H "Content-Type: application/json" \
 -H "X-Api-Key: <clave-del-api>" \
--H "X-Password: <clave-certificado-firma>" \
 ```
 
 ```python
 import requests
 cabeceras = {'x-key': '<clave-del-api>'}
 respuesta = requests.get(
-    'https://link.datil.co/invoices/<id-factura>',
+    'https://api.datil.co/sales/invoices/<id-factura>',
     headers = cabeceras)
-```
-
-```c#
-using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace DatilClient {
-  class InvoicingServiceClient {
-    static void Main(string[] args) {
-
-      var client = new RestClient("https://link.datil.co/");
-      var idFactura = "<id-factura>";
-      var request = new RestRequest("invoices/" + idFactura, Method.GET);
-      request.AddHeader("X-Key", "<clave-del-api>");
-
-      IRestResponse response = client.Execute(request);
-
-      Console.WriteLine(response.Content);
-    }
-  }
-}
 ```
 
 Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas consultar.
@@ -280,173 +267,90 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
 
 ```json
 {
-    "id": "abcf12343faad06785",
-    "secuencial": "16",
-    "fecha_emision": "2016-05-15",
-    "version": "1.0.0",
-    "clave_acceso": "1505201501099271255400110011000000000162092727615",
-    "emisor": {
-        "ruc": "0992712554001",
-        "razon_social": "DATILMEDIA S.A.",
-        "nombre_comercial": "Dátil",
-        "direccion": null,
-        "obligado_contabilidad": true,
-        "contribuyente_especial": "",
-        "establecimiento": {
-            "codigo": "001",
-            "direccion": "V.E. 112 Y CIRCUNVALACION NORTE",
-            "punto_emision": "100"
-        }
-    },
-    "estado": "AUTORIZADO",
-    "correos_enviados": [
-        {
-            "fecha_envio": "2015-05-15T16:36:48.274604",
-            "destinatarios": "juanantonioplaza@datilmedia.com"
-        }
-    ],
-    "guia_remision": "",
-    "moneda": "USD",
-    "informacion_adicional": [],
-    "ambiente": "1",
-    "totales": {
-        "total_sin_impuestos": "150.00",
-        "descuento": "0.00",
-        "propina": "0.00",
-        "impuestos": [
-            {
-                "codigo": 2,
-                "codigo_porcentaje": "2",
-                "base_imponible": "150.00",
-                "valor": "18.00"
-            }
-        ],
-        "importe_total": "168.00"
-    },
-    "comprador": {
-        "razon_social": "Carlos L. Plaza",
-        "identificacion": "0900102222",
-        "tipo_identificacion": 1,
-        "email": "cplaza@gye593.com",
-        "direccion": "Calle Uno y Calle Dos",
-        "telefono": "043334445"
-    },
-    "envio_sri": {
-        "mensajes": [],
-        "estado": "RECIBIDA",
-        "fecha": ""
-    },
-    "tipo_emision": "1",
-    "items": [
-        {
-            "detalles_adicionales": {
-                "Estadía": "2 noches",
-                "Habitación": "203"
-            },
-            "cantidad": "1.000000",
-            "codigo_principal": "HAB",
-            "codigo_auxiliar": "DOB",
-            "descripcion": "Habitación doble",
-            "precio_unitario": "150.000000",
-            "descuento": "0.00",
-            "precio_total_sin_impuestos": "",
-            "impuestos": [
-                {
-                    "tarifa": "12.00",
-                    "codigo": "2",
-                    "codigo_porcentaje": "2",
-                    "base_imponible": "150.00",
-                    "valor": "18.00"
-                }
-            ],
-            "unidad_medida": "Kilos"
-        }
-    ],
-    "valor_retenido_iva": 70.40,
-    "valor_retenido_renta": 29.60,
-    "credito": {
-        "fecha_vencimiento": "2016-06-28",
-        "monto": 34.21
-    },
-    "pagos": [
-      {
-        "medio": "cheque",
-        "total": 4882.68,
-        "propiedades": {
-          "numero": "1234567890",
-          "banco": "Banco Pacífico"
-        }
-      }
-    ],
-    "compensaciones": [
-      {
-        "codigo": 1,
-        "tarifa": 2,
-        "valor": 2.00
-      }
-    ],
-    "exportacion": {
-      "incoterm": {
-        "termino": "CIF",
-        "lugar": "Guayaquil",
-        "total_sin_impuestos": "CIF"
-      },
-      "origen": {
-        "codigo_pais":"EC",
-        "puerto": "Guayaquil"
-      },
-      "destino": {
-        "codigo_pais":"CN",
-        "puerto": "China"
-      },
-      "codigo_pais_adquisicion": "EC",
-      "totales": {
-        "flete_internacional": 1000.00,
-        "seguro_internacional": 200.00,
-        "gastos_aduaneros": 800,
-        "otros_gastos_transporte": 350.00
+  "id": "6463427e69b546afb77a75973cc74ce7",
+  "supplier": {
+    "location": {
+      "code": "001",
+      "point_of_sale": {
+        "code": "002"
       }
     }
-    "autorizacion": {
-        "estado": "AUTORIZADO",
-        "mensajes": [
-            {
-                "identificador": "60",
-                "mensaje": "ESTE PROCESO FUE REALIZADO EN EL AMBIENTE DE PRUEBAS",
-                "tipo": "INFORMATIVO",
-                "informacion_adicional": ""
-            }
-        ],
-        "numero": "1505201516323509927125540010266935227",
-        "fecha": "2015-05-15T16:32:35.000380"
+  },
+  "taxes": [{
+    "amount": "3.64",
+    "tax_code": "2",
+    "rate": null,
+    "rate_code": "2",
+    "taxable_amount": "30.36"
+  }],
+  "number": "001-002-000438970",
+  "authorization": {
+    "number": "2308201701099271255400110010020004389701994000000",
+    "date": "2017-08-23T10:09:15-05:00",
+    "status": "AUTORIZADO",
+    "messages": []
+  },
+  "issue_date": "2017-08-23",
+  "customer": {
+    "properties": [],
+    "locality": "Guayaquil",
+    "address": "Av. Primera 123",
+    "email": "clientes@datil.co",
+    "person": {
+      "first_name": "José",
+      "middle_name": "",
+      "last_name": "Pérez"
+    },
+    "phone": "0990289327",
+    "tax_identification_type": "05",
+    "sublocality": "",
+    "tax_identification": "0914617584",
+    "country": "EC",
+    "administrative_district_level_1": ""
+  },
+  "totals": {
+    "subtotal_amount": "30.36",
+    "total_discount_amount": "0.00",
+    "total_tax_amount": "3.64",
+    "total_amount": "34.00"
+  },
+  "currency": "USD",
+  "sequence": 438970,
+  "uuid": "2308201701099271255400110010020004389701994000000",
+  "items": [{
+    "description": "Plan Pro",
+    "properties": [],
+    "unit_discount": "0.00",
+    "unit_of_measurement": "",
+    "unit_price": "30.357000",
+    "subtotal_amount": "30.36",
+    "quantity": "1.000000",
+    "taxes": [{
+      "amount": "3.64",
+      "tax_code": "2",
+      "rate": "12.00",
+      "rate_code": "2",
+      "taxable_amount": "30.36"
+    }]
+  }],
+  "properties": [{
+      "name": "Servicio",
+      "description": "Dátil Facturación Electrónica"
+    },
+    {
+      "name": "Incluye",
+      "description": "Facturas, Retenciones, Notas de Crédito/Débito, Guías de Remisión"
     }
+  ],
+  "payments": []
 }
 ```
-
-Parámetro | Tipo | Descripción
---------- | ------- | -----------
-secuencial | string | Número de secuencia de la factura.
-estado | string | Posibles valores: `AUTORIZADO`, `NO AUTORIZADO`, `ENVIADO`, `DEVUELTO`, `RECIBIDO`
-fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf).
-clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
-envio_sri | objeto tipo [envio sri](#envío-sri) | Información luego de enviar el comprobante.
-autorizacion | objeto tipo [autorizacion sri](#autorización-sri) | Información de la autorización.org/html/rfc3339#section-5.6).
-emisor | objeto tipo [emisor](#emisor) | Información completa del emisor.
-moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda.
-ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>
-totales | objeto tipo [totales](#totales) | Listado de totales.
-comprador | objeto [persona](#persona) | Información del comprador.
-tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>
-items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la factura.
-pagos | listado de objetos tipo [pagos](#pagos) | Listado de formas de pago aplicables a la factura.
-credito | Objeto de tipo [credito](#cr-dito) | Información del crédito directo otorgado al cliente.
-version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`
 
 ### Re-emite una factura
 
 #### Operación
 
-`POST /invoices/:id/reissue`
+`POST /sales/invoices/:id/re-issues`
 
 #### Requerimiento
 
@@ -455,9 +359,88 @@ Esta operación debe ser utilizada para corregir comprobantes NO AUTORIZADOS.
 En la URL de esta opción se debe incluir el `id` de la factura recibida al
 momento de emitirla.
 
-El cuerpo del requerimiento es un objeto [factura](#requerimiento) con los
+El cuerpo del requerimiento es un objeto [factura](#emite-una-factura) con los
 datos corregidos para que pueda ser procesado y autorizado.
 
 #### Respuesta
 
 Retornará un error si el comprobante se encuentra autorizado.
+
+
+### Registra Pagos
+
+#### Operación
+
+`POST /sales/invoices/:id/payments`
+
+#### Requerimiento
+
+> ##### Requerimiento de ejemplo
+
+```shell
+curl -v https://api.datil.co/sales/invoices/6463427e69b546afb77a75973cc74ce7/payments \
+-H "Content-Type: application/json" \
+-H "X-Api-Key: <API-key>" \
+-H "X-Password: <clave-certificado-firma>" \
+-d '{
+      "payments": [
+        {
+          "amount": 114.0,
+          "method": "cash",
+          "date": "2017-05-31T13:50:07-05:00",
+          "properties": [
+            {
+              "name": "account_number",
+              "description": "2223XXXX23"
+            },
+            {
+              "name": "bank",
+              "description": "Banco Guayaquil"
+            }
+          }]
+        }
+      ]
+    }'
+```
+
+```python
+import requests, json
+
+payments = {
+  "payments": [{
+    "amount": "114.0",
+    "method": "cash",
+    "date": "2017-05-31T13:50:07-05:00",
+    "properties": [{
+        "name": "account_number",
+        "description": "2223XXXX23"
+      },
+      {
+        "name": "bank",
+        "description": "Banco Guayaquil"
+      }
+    ]
+  }]
+}
+headers = {
+    'x-api-key': '<clave-del-api>',
+    'content-type': 'application/json'}
+response = requests.post(
+    "https://api.datil.co/sales/invoices/6463427e69b546afb77a75973cc74ce7/payments",
+    headers = headers,
+    data = json.dumps(payments))
+```
+
+Puedes registrar uno o más pagos.
+
+Parámetros | &nbsp;
+---------- | -----------
+payments<p class="dt-data-param-required">requerido</p> | Listado de [pagos](#payment) a registrar
+
+
+Parámetros | &nbsp;
+---------- | -----------
+method<p class="dt-data-param-required">requerido</p> | Código que representa al método.
+amount<p class="dt-data-param-required">requerido</p> | Monto a pagar.
+date | Fecha en la que se realizó el pago en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). Si no es provista, se utilizará la fecha actual.
+properties | Listado de propiedades adicionales
