@@ -1,5 +1,5 @@
 ---
-title: RubberStamp.io | API Documentation
+title: Rubberstamp API References
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -10,16 +10,27 @@ toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
+  - authentication
+  - errors
   - users
   - old_index
-  - errors
 
 search: true
 ---
 
 # Introduction
 
-Welcome to `V1` API documentaiton for RubberStamp.io - A simple Purchase Order solution.
+> API Endpoint
 
-We have language bindings in Shell and Ruby! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+```shell
+https://app.rubberstamp.io
+```
+
+```ruby
+https://app.rubberstamp.io
+```
+
+Welcome to `V1` API documentaiton for **Rubberstamp** - A simple Purchase Order solution.
+
+We currently have language bindings in Shell and Ruby! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
