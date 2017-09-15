@@ -74,7 +74,7 @@ curl '/api/v1/register[.json]'
   -X POST
   -H "Content-Type: application/json"
   -d "email=api@example.com"
-  -d "password=strongp@ssw0rd"
+  -d "password=pass1234"
   -d "password_confirmation=strongp@ssw0rd"
   -d "name=Api user"
   -d "phone_number=98xxxxxxxx"
