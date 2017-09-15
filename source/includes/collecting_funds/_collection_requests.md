@@ -44,6 +44,8 @@ collection | long integer or null | The ID of the collection that fulfilled the 
 success_message | string or null | The confirmation message delivered to the customer upon successful completion of this payment request
 instructions | string or null | Any custom instructions that were delivered to the customer
 send_instructions | boolean | Whether or not Beyonic will attempt to send instructions to the user
+send_instructions | boolean | Whether or not Beyonic will attempt to send instructions to the user
+expiry_date | string or null | Specifies the date and time when this collection request will be marked as expired. Defaults to "24 hours" Examples of valid values for this field include strings such as "tomorrow", "24 hours", "2 minutes", or %d/%m/%Y format e.g 24/05/2019 or %d/%m/%Y %H:%M:%S format e.g 24/05/2019 13:24:12
 
 
 ## Creating a new Collection Request

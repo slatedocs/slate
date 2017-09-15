@@ -20,6 +20,7 @@ Event | Description | Object returned in data
 payment.status.changed | Triggered any time a payment changes status. | Payment object
 collection.received | Triggered any time a collection (an incoming payment) is received from a customer | Collection object
 contact.created | Triggered any time a contact is created in your account | Contact object
+collectionrequest.status.changed | Triggered any time a collection request status changes. | CollectionRequest object
 
 ## The Event object
 
