@@ -308,6 +308,3 @@ parameters not provided will be left unchanged.
 | budget[start_date]                   | date    | Budget start date              |
 | budget[end_date]                     | date    | Budget end date                |
 
-
-
-

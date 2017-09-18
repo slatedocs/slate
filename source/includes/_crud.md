@@ -177,7 +177,7 @@ kitten id, that was returned upon kitten creation.
 require 'rest-client'
 
 RestClient.put(
-  'https://app.rubberstamp.io/api/v1/kittens',
+  'https://app.rubberstamp.io/api/v1/kittens/1',
   {
     field01: 'value'
   },
@@ -189,7 +189,7 @@ RestClient.put(
 ```
 
 ```shell
-curl https://app.rubberstamp.io/api/v1/kittens
+curl https://app.rubberstamp.io/api/v1/kittens/1
   -X PUT
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
