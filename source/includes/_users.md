@@ -574,5 +574,3 @@ authentication_token you need to login again.
 | ----                 | ----   | ---------            |
 | authentication_token | header | Authentication token |
 
-
-
