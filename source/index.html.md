@@ -13,6 +13,7 @@ includes:
   - authentication
   - errors
   - users
+  - crud
 
 search: true
 ---
