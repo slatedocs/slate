@@ -17,7 +17,7 @@ RestClient.post(
     }
   },
   headers = {
-    authentication_token: 'your token',
+    authentication_token: 'your token'
   }
 )
 ```
@@ -91,3 +91,488 @@ Create a new Company and returns the `Company` object that is created.
 | company[company_setting_attributes][budgets_alias]                                  | string  | Budget alias                                    |
 | company[company_setting_attributes][po_fields]                                      | Array[] | PO fields                                       |
 
+
+
+
+## Get all companies
+
+
+```ruby
+require 'rest-client'
+
+response = RestClient.get(
+  'https://app.rubberstamp.io/api/v1/companies',
+  headers = {
+    authentication_token: 'your token'
+  }
+)
+
+response.body
+```
+
+```shell
+curl 'https://app.rubberstamp.io/api/v1/companies'
+  -X GET
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 1,
+    "name": "ABC Corp."
+  },
+  {
+    "id": 2,
+    "name": "Xyz Pvt. Ltd."
+  }
+]
+```
+
+Returns a list of companies for current logged in user.
+
+### HTTP Request
+
+`GET https://app.rubberstamp.io/api/v1/companies`
+
+### Query Parameters
+
+| Params               | Type   | Description          |
+| -----                | ------ | ------------         |
+| authentication_token | header | Authentication token |
+
+
+
+
+## Get a specific company
+
+```ruby
+require 'rest-client'
+
+RestClient.get(
+  'https://app.rubberstamp.io/api/v1/companies/1',
+  headers = {
+    authentication_token: 'your token',
+  }
+)
+```
+
+```shell
+curl 'https://app.rubberstamp.io/api/v1/companies/1'
+  -X GET
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "name": "ABC Corp.",
+  "employees_count": 10,
+  "company_setting": {
+    "id": 1,
+    "show_po_item_number": false,
+    "gross_or_net": "net",
+    "company_id": 1,
+    "fixed_supplier_list": true,
+    "currency_id": 1,
+    "javascript": "",
+    "departments_alias": "",
+    "display_remaining_budget_amount": true,
+    "date_format": "%Y-%m-%d",
+    "tax_label": "VAT",
+    "approvals_require_login": false,
+    "fixed_product_list": false,
+    "show_tax_column": true,
+    "show_company_name": true,
+    "allow_budget_overruns": true,
+    "budgets_alias": "",
+    "allocations_enabled": false,
+    "report_name": null,
+    "user_can_add_supplier": true,
+    "po_fields": [
+      "Date",
+      "Budgets",
+      "From",
+      "PO number",
+      "Net Amount"
+    ],
+    "reserve_po_number": false
+  },
+  "custom_fields": [
+    {
+      "id": 1,
+      "company_id": 1,
+      "name": "Reason for expenditure",
+      "field_type": "select",
+      "active": false,
+      "required": false,
+      "options": [
+        "Acquisition of new donors.",
+        "Existing donors."
+      ],
+      "access_level": "everyone",
+      "position": 0,
+      "on_line_item": false,
+      "display_on_pdf": false,
+      "on_budget": false,
+      "editable_after_approval": null
+    },
+    {
+      "id": 2,
+      "company_id": 1,
+      "name": "Expenditure Breakdown",
+      "field_type": "select",
+      "active": true,
+      "required": true,
+      "options": [
+        "Agency Fees",
+        "Media Expenses",
+        "Consultants",
+        "Telephone",
+        "Travel",
+        "Other"
+      ],
+      "access_level": "everyone",
+      "position": 1,
+      "on_line_item": false,
+      "display_on_pdf": false,
+      "on_budget": false,
+      "editable_after_approval": null
+    }
+  ],
+  "supported_currencies": [
+    {
+      "id": 1,
+      "iso_code": "EUR",
+      "iso_numeric": "978",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    {
+      "id": 2,
+      "iso_code": "GBP",
+      "iso_numeric": "826",
+      "name": "British Pound",
+      "symbol": "£"
+    },
+    {
+      "id": 3,
+      "iso_code": "USD",
+      "iso_numeric": "840",
+      "name": "United States Dollar",
+      "symbol": "$"
+    },
+    {
+      "id": 5,
+      "iso_code": "AUD",
+      "iso_numeric": "036",
+      "name": "Australian Dollar",
+      "symbol": "$"
+    }
+  ]
+}
+```
+
+Retrieves the details of an existing company. You need to send unique company id
+that was returned upon company creation.
+
+### HTTP Request
+
+`GET https://app.rubberstamp.io/api/v1/companies/:id`
+
+### URL Parameters
+
+| Params               | Type    | Description          |
+| -----                | -----   | ------------         |
+| authentication_token | header  | Authentication token |
+| ID                   | integer | Company Id           |
+
+
+
+## Get Details
+
+```ruby
+require 'rest-client'
+
+RestClient.get(
+  'https://app.rubberstamp.io/api/v1/companies/details',
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.rubberstamp.io/api/v1/companies/details'
+  -X GET
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "name": "ABC Corp.",
+  "employees_count": 10,
+  "company_setting": {
+    "id": 1,
+    "show_po_item_number": false,
+    "gross_or_net": "net",
+    "company_id": 1,
+    "fixed_supplier_list": true,
+    "currency_id": 1,
+    "javascript": "",
+    "departments_alias": "",
+    "display_remaining_budget_amount": true,
+    "date_format": "%Y-%m-%d",
+    "tax_label": "VAT",
+    "approvals_require_login": false,
+    "fixed_product_list": false,
+    "show_tax_column": true,
+    "show_company_name": true,
+    "allow_budget_overruns": true,
+    "budgets_alias": "",
+    "allocations_enabled": false,
+    "report_name": null,
+    "user_can_add_supplier": true,
+    "po_fields": [
+      "Date",
+      "Budgets",
+      "From",
+      "PO number",
+      "Net Amount"
+    ],
+    "reserve_po_number": false
+  },
+  "custom_fields": [
+    {
+      "id": 1,
+      "company_id": 1,
+      "name": "Reason for expenditure",
+      "field_type": "select",
+      "active": false,
+      "required": false,
+      "options": [
+        "Acquisition of new donors.",
+        "Existing donors."
+      ],
+      "access_level": "everyone",
+      "position": 0,
+      "on_line_item": false,
+      "display_on_pdf": false,
+      "on_budget": false,
+      "editable_after_approval": null
+    },
+    {
+      "id": 2,
+      "company_id": 1,
+      "name": "Expenditure Breakdown",
+      "field_type": "select",
+      "active": true,
+      "required": true,
+      "options": [
+        "Agency Fees",
+        "Media Expenses",
+        "Consultants",
+        "Telephone",
+        "Travel",
+        "Other"
+      ],
+      "access_level": "everyone",
+      "position": 1,
+      "on_line_item": false,
+      "display_on_pdf": false,
+      "on_budget": false,
+      "editable_after_approval": null
+    }
+  ],
+  "supported_currencies": [
+    {
+      "id": 1,
+      "iso_code": "EUR",
+      "iso_numeric": "978",
+      "name": "Euro",
+      "symbol": "€"
+    },
+    {
+      "id": 2,
+      "iso_code": "GBP",
+      "iso_numeric": "826",
+      "name": "British Pound",
+      "symbol": "£"
+    },
+    {
+      "id": 3,
+      "iso_code": "USD",
+      "iso_numeric": "840",
+      "name": "United States Dollar",
+      "symbol": "$"
+    },
+    {
+      "id": 5,
+      "iso_code": "AUD",
+      "iso_numeric": "036",
+      "name": "Australian Dollar",
+      "symbol": "$"
+    }
+  ]
+}
+```
+
+Retrieves the details of an existing company. You need to send unique company id
+that was returned upon company creation.
+
+### HTTP Request
+
+`GET https://app.rubberstamp.io/api/v1/companies/details`
+
+### URL Parameters
+
+| Params               | Type   | Description          |
+| -----                | -----  | ------------         |
+| authentication_token | header | Authentication token |
+| app_company_id       | header | Company Id           |
+
+
+
+
+## Approvers
+
+```ruby
+require 'rest-client'
+
+RestClient.get(
+  'https://app.rubberstamp.io/api/v1/companies/approvers',
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.rubberstamp.io/api/v1/companies/approvers'
+  -X GET
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1,
+        "email": "admin@example.com",
+        "name": "Admin User",
+        "phone_number": "",
+        "setup_incomplete": false,
+        "employer_id": 1,
+        "authentication_token": "token",
+        "approval_limit": 1000000,
+        "companies": [
+            {
+                "id": 1,
+                "name": "ABC Corp."
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "email": "accountant@example.com",
+        "name": "Accountant User",
+        "phone_number": "",
+        "setup_incomplete": false,
+        "employer_id": 2,
+        "authentication_token": "token",
+        "approval_limit": 1000000,
+        "companies": [
+            {
+                "id": 1,
+                "name": "ABC Corp."
+            }
+        ]
+    }
+]
+```
+
+Retrieves the list of approvers for current company.
+
+### HTTP Request
+
+`GET https://app.rubberstamp.io/api/v1/companies/approvers`
+
+### URL Parameters
+
+| Params               | Type    | Description          |
+| ------               | ------  | -------------        |
+| authentication_token | headers | Authentication token |
+| app_company_id       | headers | Company Id           |
+
+
+
+## Invite User
+
+```ruby
+require 'rest-client'
+
+RestClient.post(
+  'https://app.rubberstamp.io/api/v1/companies/send_user_invite',
+  {
+    invite_user: {
+      email: 'friend@example.com',
+      name: 'Pherrel Williams',
+      roles: ["admin", "accountant"]
+    }
+  },
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.rubberstamp.io/api/v1/companies/send_user_invite'
+  -X POST
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+  -d "invite_user[email]=friend@example.com"
+  -d "invite_user[name]=Pherrel Williams"
+  -d "invite_user[roles]=admin"
+  -d "invite_user[roles]=accountant"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{}
+```
+
+Send invitation to the user.
+
+### HTTP Request
+
+`POST https://app.rubberstamp.io/api/v1/companies/send_user_invite`
+
+### URL Parameters
+
+| Params               | Type    | Description                     |
+| -----                | ------  | ---------                       |
+| authentication_token | headers | Authentication token            |
+| app_company_id       | headers | Company id                      |
+| invite_user[email]   | string  | Email to send invitation to     |
+| invite_user[name]    | string  | User's first name and last name |
+| invite_user[roles]   | Array[] | List of Roles for that user     |
