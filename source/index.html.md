@@ -14,6 +14,7 @@ includes:
   - errors
   - users
   - budgets
+  - comments
   - crud
 
 search: true
