@@ -49,10 +49,10 @@ https://app.rubberstamp.io/api/v1/purchase_order/:purchase_order_id/comments`
 
 ### Query Parameters
 
-| Params               | Type    | Description                |
-| -----                | -----   | ---------                  |
-| authentication_token | header  | Authentication token       |
-| app_company_id       | header  | Registered company id      |
-| purchase_order_id    | integer | Purchase order id          |
-| comment              | string  | Comment for purchase order |
+| Params               | Type    | Description                             |
+| -----                | -----   | ---------                               |
+| authentication_token | header  | Authentication token                    |
+| app_company_id       | header  | Registered company id                   |
+| purchase_order_id    | integer | Purchase order id                       |
+| comment              | string  | `Required` - Comment for purchase order |
 
