@@ -1,0 +1,244 @@
+# Products
+
+## Create a Product
+
+```ruby
+require 'rest-client'
+
+RestClient.post(
+  'https://app.rubberstamp.io/api/v1/products',
+  {
+    product: {
+      description: '1 IPad Charging Station',
+      sku: 'SKU-001',
+      unit_price: 44.23,
+      supplier_id: 1
+    }
+  },
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.rubberstamp.io/api/v1/products'
+  -X POST
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+  -d "product[description]=1 IPad Charging Station"
+  -d "product[sku]=SKU-001"
+  -d "product[unit_price]=44.23"
+  -d "product[supplier_id]=1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "supplier_id": 1,
+  "sku": "SKU-001",
+  "description": "1 IPad Charging Station",
+  "unit_price": "44.23",
+  "currency_id": null,
+  "archived": false
+}
+```
+
+Create a new products and returns the `Product` object that is created.
+
+### HTTP Request
+
+`POST https://app.rubberstamp.io/api/v1/products`
+
+### Query Parameters
+
+| Params               | Type     | Description                      |
+| -------              | -------- | ------------                     |
+| authentication_token | header   | Authentication token             |
+| app_company_id       | header   | Company ID                       |
+| product[description] | string   | `Required` Product Description   |
+| product[sku]         | string   | Product Stock Keeping Unit (sku) |
+| product[unit_price]  | decimal  | Product Unit Price               |
+| product[supplier_id] | integer  | Supplier ID                      |
+
+
+## Get all Products
+
+```ruby
+require 'rest-client'
+
+RestClient.get(
+  'https://app.rubberstamp.io/api/v1/products',
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.rubberstamp.io/api/v1/products'
+  -X GET
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 1,
+    "supplier_id": 1,
+    "sku": "SKU-001",
+    "description": "1 IPad Charging Station",
+    "unit_price": "44.23",
+    "currency_id": null,
+    "archived": false
+  },
+  {
+    "id": 2,
+    "supplier_id": 1,
+    "sku": "SKU-002",
+    "description": "Macbook Air Retina",
+    "unit_price": "1300",
+    "currency_id": null,
+    "archived": false
+  }
+]
+```
+
+Returns a list of your products.
+
+### HTTP Request
+
+`GET https://app.rubberstamp.io/api/v1/products`
+
+### Query Parameters
+
+| Params               | Type   | Description          |
+| -------              | ------ | -----------          |
+| authentication_token | header | Authentication token |
+| app_company_id       | header | Company ID           |
+
+
+
+## Get Product details
+
+```ruby
+require 'rest-client'
+
+RestClient.get(
+  'https://app.rubberstamp.io/api/v1/products/1',
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.rubberstamp.io/api/v1/products/1'
+  -X GET
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "supplier_id": 1,
+  "sku": "SKU-001",
+  "description": "1 IPad Charging Station",
+  "unit_price": "44.23",
+  "currency_id": null,
+  "archived": false
+}
+```
+
+Retrieves the details of an existing products. You need to supply the unique
+product id, that was returned upon product creation.
+
+### HTTP Request
+
+`GET https://app.rubberstamp.io/api/v1/products/:id`
+
+### URL Parameters
+
+| Params               | Type    | Description          |
+| ------               | -----   | -----------          |
+| authentication_token | header  | Authentication token |
+| app_company_id       | header  | Company ID           |
+| ID                   | integer | Product ID           |
+
+
+
+## Update Product
+
+```ruby
+require 'rest-client'
+
+RestClient.put(
+  'https://app.rubberstamp.io/api/v1/products/1',
+  {
+    product: {
+      description: 'updated'
+    }
+  },
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.rubberstamp.io/api/v1/products/1'
+  -X PUT
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+  -d "product[description]=updated"
+```
+
+> the above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "supplier_id": 1,
+  "sku": "SKU-001",
+  "description": "updated",
+  "unit_price": "44.23",
+  "currency_id": null,
+  "archived": false
+}
+```
+
+Update the specified department by setting the value of parameters passed.
+Any parameters not provided will be left unchanged.
+
+### HTTP Request
+
+`PUT https://app.rubberstamp.io/api/v1/products/:id`
+
+### Query Parameters
+
+| Params               | Type    | Description                      |
+| ------               | -----   | -------------                    |
+| authentication_token | header  | Authentication token             |
+| app_company_id       | header  | Company ID                       |
+| ID                   | integer | Product ID                       |
+| product[description] | string  | `Required` Product Description   |
+| product[sku]         | string  | Product Stock Keeping Unit (sku) |
+| product[unit_price]  | decimal | Product Unit Price               |
+| product[supplier_id] | integer | Supplier ID                      |
+

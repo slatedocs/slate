@@ -150,6 +150,8 @@ Returns a list of your departments.
 | authentication_token | header | Authentication token  |
 | app_company_id       | header | Registered company id |
 
+
+
 ## Get a specific Department
 
 ```ruby
@@ -203,6 +205,8 @@ department id, that was returned upon department creation.
 | app_company_id       | header  | Company ID           |
 | ID                   | integer | Department ID        |
 
+
+
 ## Update a department
 
 ```ruby
@@ -247,8 +251,8 @@ curl 'https://app.rubberstamp.io/api/v1/departments/1'
 }
 ```
 
-Update the specified department by setting the value of parameters passed. 
-Any parameters not provoded will be left unchanged.
+Update the specified department by setting the value of parameters passed.
+Any parameters not provided will be left unchanged.
 
 ### HTTP Request
 

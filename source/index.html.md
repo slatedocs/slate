@@ -12,11 +12,12 @@ toc_footers:
 includes:
   - authentication
   - errors
+  - users
   - budgets
   - comments
   - companies
   - departments
-  - users
+  - products
 
 search: true
 ---
