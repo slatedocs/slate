@@ -9,7 +9,6 @@ toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
-=======
   - config
   - products
   - orders
@@ -43,4 +42,3 @@ The API expects for the API key to be included in all API requests to the server
 <aside class="notice">
 You must replace <code>YOUR_ACCESS_TOKEN</code> with your personal API key.
 </aside>
-
