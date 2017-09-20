@@ -15,6 +15,7 @@ includes:
   - budgets
   - comments
   - companies
+  - departments
   - users
 
 search: true
