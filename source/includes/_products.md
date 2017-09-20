@@ -216,3 +216,6 @@ Parameter | Description
 --------- | -----------
 site_name | (required) filter by site
 sku | unique identifier for product it can be a comma separated list, and return a comma separated list of products
+
+
+## Edit a Product
