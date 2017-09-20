@@ -232,6 +232,7 @@ curl 'https://app.rubberstamp.io/api/v1/departments/1'
 ```
 
 > The above command returns JSON structured like this:
+
 ```json
 {
   "id": 1,
