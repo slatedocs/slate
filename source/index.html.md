@@ -18,6 +18,7 @@ includes:
   - companies
   - departments
   - products
+  - purchase_orders
 
 search: true
 ---
