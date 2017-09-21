@@ -139,6 +139,8 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders'
 ```
 
 Create a new Purchase Order and return the `Purchase Order` object that is created.
+You need to pass `commit` param which accepts 2 values for now `Draft` and `Send`,
+these values will determine the status of the Purchase Order.
 
 ### HTTP Request
 
@@ -201,6 +203,7 @@ Create a new Purchase Order and return the `Purchase Order` object that is creat
 
 
 
+
 ## Get all Purchase Orders
 
 ```ruby
@@ -256,23 +259,47 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders'
       "total_net_amount": "50.0",
       "base_gross_amount": "44.564375"
     }
-  ]
+  ],
+  "meta": {
+      "current_page": 1,
+      "next_page": 2,
+      "prev_page": null,
+      "total_pages": 3,
+      "total_count": 25
+  }
 }
 ```
 
-Returns a list of purchase orders.
+Returns a list of purchase orders. The response of purchase orders are paginated,
+so it will only return first 20 records as a response. You can send `page` params
+to load other records e.g: `/api/v1/purchase_orders?page=2`.
+
+### Pagination
+
+You can also see `meta` key in the response you get, that will return informations
+like `current_page`, `next_page`, `previous_page`, `total_pages`, and `total_count`
+to help your write your own logic of pagination.
+
+### Search
+
+You can also search for your `Purchase Order` using `search` params example
+`/api/v1/purchase_orders?search=your search keyword`. It will perform full-text
+search and return result accordingly.
+
+
 
 ### HTTP Request
 
-`GET https://app.rubberstamp.io/api/v1/purchase_orders`
+`GET https://app.rubberstamp.io/api/v1/purchase_orders?page=1&search=something`
 
 ### Query Parameters
 
-| Params               | Type   | Description          |
-| ------               | -----  | -----------          |
-| authentication_token | header | Authentication token |
-| app_company_id       | header | Company ID           |
-
+| Params               | Type    | Description                                         |
+| ------               | -----   | -----------                                         |
+| authentication_token | header  | Authentication token                                |
+| app_company_id       | header  | Company ID                                          |
+| page                 | integer | Used for Loading records from specified page number |
+| search               | string  | Used for searching Purchase Order by search keyword |
 
 
 
