@@ -19,6 +19,7 @@ includes:
   - departments
   - products
   - purchase_orders
+  - uploads
 
 search: true
 ---
