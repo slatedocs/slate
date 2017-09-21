@@ -99,7 +99,7 @@ search: true
       }, 5);
     }
   </script>
-  <div style="position: relative;">
+  <div style="display: inline-block; position: relative;">
     <button type="button" onclick="iaButtonClicked()" id="ia-btn" style="background-color: #4A4A4A; border-width: 0; padding: 0; width: 56px; height: 56px; border-radius:10px;">
       <img src="http://52.26.104.251/upload/image/whitelogo.svg"/>
     </button>
