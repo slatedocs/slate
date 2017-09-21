@@ -271,11 +271,11 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders'
 ```
 
 Returns a list of purchase orders. The response of purchase orders are paginated,
-so it will only return first 20 records as a response. You can send `page` params
-to load other records e.g: `/api/v1/purchase_orders?page=2`.
+so it will only return first 20 records as a response.
 
 ### Pagination
 
+You can send `page` params to load other records e.g: `/api/v1/purchase_orders?page=2`.
 You can also see `meta` key in the response you get, that will return informations
 like `current_page`, `next_page`, `previous_page`, `total_pages`, and `total_count`
 to help your write your own logic of pagination.
