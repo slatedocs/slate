@@ -21,6 +21,7 @@ includes:
   - purchase_orders
   - suppliers
   - uploads
+  - extras
 
 search: true
 ---
