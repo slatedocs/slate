@@ -62,7 +62,7 @@ in json format.
 | uploads_attributes[file]         | file    | File field           |
 
 
-## Purchase Order Comment Upload
+## PO Comment Upload
 
 ```ruby
 require 'rest-client'
@@ -72,7 +72,7 @@ RestClient.post(
   {
     poc_id: '1',
     uploads_attributes: {
-      upload_token: 'myuploadtoken',
+      upload_token: 'myuploadtoken1',
       file: 'file upload field value'
     }
   },
@@ -90,7 +90,7 @@ curl 'https://app.rubberstamp.io/api/v1/uploads/poc'
   -H "authentication_token: your token"
   -H "app_company_id: 1"
   -d "poc_id=1"
-  -d "uploads_attributes[upload_token]=myuploadtoken"
+  -d "uploads_attributes[upload_token]=myuploadtoken1"
   -d "uploads_attributes[file]=file upload field value"
 ```
 
@@ -102,7 +102,7 @@ curl 'https://app.rubberstamp.io/api/v1/uploads/poc'
   "file_file_name": "purchase_order_comment.png",
   "file_content_type": "image/png",
   "url": "https://s3-eu-west-1.amazonaws.com/bucket/uploads/files/001/100/959/original/myAvatar.png?1505993715",
-  "upload_token": "myuploadtoken"
+  "upload_token": "myuploadtoken1"
 }
 ```
 
@@ -125,3 +125,50 @@ in json format.
 
 
 ## Get Status
+
+```ruby
+require 'rest-client'
+
+RestClient.get(
+  'https://app.rubberstamp.io/api/v1/uploads/status?upload_token=myuploadtoken1',
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.rubberstamp.io/api/v1/uploads/status?upload_token=myuploadtoken1'
+  -X GET
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+```
+
+> The above command will returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "file_file_name": "purchase_order_comment.png",
+  "file_content_type": "image/png",
+  "url": "https://s3-eu-west-1.amazonaws.com/bucket/uploads/files/001/100/959/original/myAvatar.png?1505993715",
+  "upload_token": "myuploadtoken1"
+}
+```
+
+Expects `upload_token` to be passed in the url params and return matching upload
+object in JSON format.
+
+### HTTP Request
+
+`GET https://app.rubberstamp.io/api/v1/uploads/status?upload_token=your token`
+
+### URL Parameters
+
+| Params               | Type   | Description                |
+| ------               | ------ | -----------                |
+| authentication_token | header | Authentication token       |
+| app_company_id       | header | Company ID                 |
+| upload_token         | string | Upload Token in url params |
+
