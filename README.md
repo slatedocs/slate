@@ -4,7 +4,7 @@
   alt="Rubberstamp API Documentation" width="226">
 </p>
 
-<p align="center">Rubberstamp is a simple Purchase Order Solution.</p>
+<p align="center"><em>Rubberstamp is a simple Purchase Order Solution.</em></p>
 
 If you are here to view Rubberstamp API documentation then this is not the proper place to view them,
 Please visit [rubberstamp.github.io/slate](https://rubberstamp.github.io/slate) for documentation
