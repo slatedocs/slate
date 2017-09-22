@@ -1,6 +1,6 @@
-# Zoop Seller
+# (Marketplace) - Cadastrar Vendedor
 
-## Criando um Zoop Seller & Parceiro Marketplace
+## Criando um Seller & Parceiro Marketplace
 
 `POST /service/v1`
 
@@ -58,7 +58,7 @@ $result = file_get_contents($url, null, $context);
 echo print_r($result, true);
 ```
 
-````shell
+```shell
 curl --request POST \
   --url https://sandbox.ipag.com.br/service/v1 \
   --header 'authorization: Basic aaaaaYXRoYW46REM4QS00QzE2OUM5NS1EQTZBRUY2OC0wRkQ2RDMy00001' \
@@ -325,7 +325,7 @@ bank[agencynumber] | Número da Agência
 bank[accountnumber] | Número da Conta
 bank[document] | Documento do Titular
 
-## Criando um banco (Zoop Bank)
+## Criando um banco (Bank)
 
 > Exemplo de integração
 
@@ -382,7 +382,7 @@ bank_accountnumber | string | sim | Número da Conta Bancária
 
 * É necessário enviar CPF ou CNPJ.
 
-### Retorno (Zoop Bank)
+### Retorno (Bank)
 
 > Retorno (XML)
 
@@ -413,7 +413,7 @@ bank[agencynumber] | Número da Agência
 bank[accountnumber] | Número da Conta
 bank[document] | Documento do Titular
 
-## Vincular Banco ao Vendedor (Zoop Sync Bank)
+## Vincular Banco ao Vendedor (Sync Bank)
 
 > Exemplo de integração
 
@@ -459,7 +459,7 @@ ctrl  | string | sim | Enviar: **'zoopsyncbank'**
 bank_id | string | sim | ID do Banco
 seller_id | string | sim | ID do Seller
 
-### Retorno Zoop Sync Bank
+### Retorno Sync Bank
 
 > Retorno (XML)
 
@@ -525,7 +525,7 @@ bank[agencynumber] | Número da Agência
 bank[accountnumber] | Número da Conta
 bank[document] | Documento do Titular
 
-## Consultando um vendedor (Zoop Get Seller)
+## Consultando um vendedor (Get Seller)
 
 > Exemplo de integração
 

@@ -12,7 +12,6 @@ toc_footers:
 includes:
   - submission
   - boletoparcelado
-  - split
   - examples
   - errors
   - button
@@ -20,8 +19,10 @@ includes:
   - opencart
   - woocommerce
   - prestashop
+  - autenticacao
   - assinatura
   - zoop
+  - splitzoop
   - integrationphp
 
 search: true

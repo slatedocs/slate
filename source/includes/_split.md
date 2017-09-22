@@ -15,10 +15,6 @@ O login atríbuido ao Parceiro será utilizado para idenficá-lo no momento de e
 Caso venha a fazer uma transação com valor de split errado, o valor na transação não poderá ser alterado, aconselhamos realizar alguns testes antes para checar se está tudo ok.
 </aside>
 
-<aside class="notice">
-Não é possível adicionar um parceiro via API.
-</aside>
-
 ## Integração com Split
 Para enviar uma transação com split é necessário adicionar mais um parâmetro a sua requisição ao iPag (POST)
 Documentação: [Requisição Padrão](#submiss-o-de-pagamentos)
