@@ -167,7 +167,7 @@ tax rate id, that was returned upon tax rate creation.
 
 ### HTTP Request
 
-`GET https://app.rubberstamp.io/api/v1/kittens/:id`
+`GET https://app.rubberstamp.io/api/v1/tax_rates/:id`
 
 ### URL Parameters
 
