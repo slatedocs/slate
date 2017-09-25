@@ -161,16 +161,22 @@ curl 'https://app.rubberstamp.io/api/v1/budgets'
 
 Returns a list of Budgets.
 
+### Filter budgets by department_id
+
+you can pass `department_id` query params to filter budgets by departments like:
+`/api/v1/budgets?department_id=1`
+
 ### HTTP Request
 
 `GET https://app.rubberstamp.io/api/v1/budgets`
 
 ### Query Parameters
 
-| Param                | Type   | Description           |
-| ----                 | -----  | ----------            |
-| authentication_token | header | Authentication token  |
-| app_company_id       | header | registered company id |
+| Param                | Type    | Description                  |
+| ----                 | -----   | ----------                   |
+| authentication_token | header  | Authentication token         |
+| app_company_id       | header  | registered company id        |
+| department_id        | integer | Filter budgets by department |
 
 
 

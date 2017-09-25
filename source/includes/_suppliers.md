@@ -158,6 +158,11 @@ You can paginate records by passing `page` params, example:
 `previous_page`, `total_pages` and `total_count`. You can use these information
 to write your own pagination logic.
 
+### Top n records
+
+You can also find top n suppliers by passing `top` and `from` params like:
+`/api/v1/suppliers?top=10&from=100`
+
 ### Filter Archived Suppliers
 
 You can pass `archived` params with `true` or `false` to filter Archived suppliers.
@@ -174,6 +179,8 @@ You can pass `archived` params with `true` or `false` to filter Archived supplie
 | app_company_id       | header   | Company ID                                     |
 | page                 | integer  | Page number to paginate                        |
 | archived             | boolean  | `true` or `false` to filter archived suppliers |
+| top                  | integer  | top n record                                   |
+| from                 | integer  | top from these manu records                    |
 
 ## Get Supplier details
 

@@ -115,16 +115,28 @@ curl 'https://app.rubberstamp.io/api/v1/products'
 
 Returns a list of your products.
 
+### Filter products by supplier
+
+you can pass `supplier_id` query params to filter products by supplier like:
+`/api/v1/products?supplier_id=1`
+
+### Filter archived products
+
+If you want to filter archived products you can pass `archived` params like:
+`/api/v1/products?archived=true`
+
 ### HTTP Request
 
 `GET https://app.rubberstamp.io/api/v1/products`
 
 ### Query Parameters
 
-| Params               | Type   | Description          |
-| -------              | ------ | -----------          |
-| authentication_token | header | Authentication token |
-| app_company_id       | header | Company ID           |
+| Params               | Type    | Description              |
+| -------              | ------  | -----------              |
+| authentication_token | header  | Authentication token     |
+| app_company_id       | header  | Company ID               |
+| supplier_id          | integer | filter by supplier       |
+| archived             | boolean | filter archived products |
 
 
 

@@ -139,16 +139,23 @@ curl 'https://app.rubberstamp.io/api/v1/departments'
 
 Returns a list of your departments.
 
+### Filter by archived
+
+You can also filter only archived departments by sending `archived` params and
+set it's value to `true` or `false` as your requirements.
+example, `/api/v1/departments?archived=true`
+
 ### HTTP Request
 
 `GET https://app.rubberstamp.io/api/v1/departments`
 
 ### Query Parameters
 
-| Params               | Type   | Description           |
-| -----                | -----  | -----------           |
-| authentication_token | header | Authentication token  |
-| app_company_id       | header | Registered company id |
+| Params               | Type    | Description                    |
+| -----                | -----   | -----------                    |
+| authentication_token | header  | Authentication token           |
+| app_company_id       | header  | Registered company id          |
+| archived             | boolean | Filter departments by archived |
 
 
 
