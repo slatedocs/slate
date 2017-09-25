@@ -20,6 +20,7 @@ includes:
   - products
   - purchase_orders
   - suppliers
+  - tax_rates
   - uploads
   - extras
 
