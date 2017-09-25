@@ -16,7 +16,7 @@ echo $sig;
 
 ```shell
 expiry=$((`date +%s`+1800)) # not more than 1800 seconds
-sig=$(echo -n "<INSERT_API_KEY>$expiry" | openssl dgst -sha1 -binary -hmac "<INSERT_API_KEY>" | base64)
+sig=$(echo -n "<INSERT_API_KEY>$expiry" | openssl dgst -sha1 -binary -hmac "<INSERT_API_SECRET>" | base64)
 ```
 
 ```csharp

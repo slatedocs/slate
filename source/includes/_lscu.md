@@ -195,6 +195,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->put('/v4/lscu', [
+    'report-id'                 => '1',
     'postcode'                  => '10019',
     'telephone'                 => '+1 212-554-1515',
     'country'                   => 'USA',
@@ -210,6 +211,7 @@ curl -X PUT \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'report-id=1' \
  -d 'postcode=10019' \
  -d 'telephone=+1 212-554-1515'
  -d 'country=USA' \
