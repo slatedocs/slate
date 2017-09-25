@@ -4,9 +4,29 @@
 ## Register
 
 ```shell
+# Example Without Tracking Info
+
 curl 'https://app.rubberstamp.io/api/v1/register'
   -X POST
   -H "Content-Type: application/json"
+  -d "email=api@example.com"
+  -d "password=pass1234"
+  -d "password_confirmation=pass1234"
+  -d "name=Api user"
+  -d "phone_number=98xxxxxxxx"
+
+# Example With Tracking Info
+
+curl 'https://app.rubberstamp.io/api/v1/register'
+  -X POST
+  -H "Content-Type: application/json"
+  -H "tracking_info[properties][uuid]=your uuid"
+  -H "tracking_info[properties][is_web_view]=false"
+  -H "tracking_info[properties][is_ipad]=false"
+  -H "tracking_info[properties][is_ios]=true"
+  -H "tracking_info[properties][is_android]=false"
+  -H "tracking_info[properties][platform]=ios"
+  -H "tracking_info[properties][version]=0"
   -d "email=api@example.com"
   -d "password=pass1234"
   -d "password_confirmation=pass1234"
@@ -17,7 +37,9 @@ curl 'https://app.rubberstamp.io/api/v1/register'
 ```ruby
 require 'rest-client'
 
-response = RestClient.post(
+# Example Without Tracking Info
+
+RestClient.post(
   'https://app.rubberstamp.io/api/v1/register',
   {
     email: 'api@example.com',
@@ -28,7 +50,33 @@ response = RestClient.post(
   }
 )
 
-response.body
+# Example With Tracking Info
+
+RestClient.post(
+  'https://app.rubberstamp.io/api/v1/register',
+  {
+    email: 'api@example.com',
+    password: 'pass1234',
+    password_confirmation: 'pass1234',
+    name: 'Api user',
+    phone_number: '98xxxxxx'
+  },
+  headers = {
+    "tracking_info": {
+      {
+        "properties": {
+          "uuid": "your uuid",
+          "is_web_view": false,
+          "is_ipad": false,
+          "is_ios": true,
+          "is_android": false,
+          "platform": "ios",
+          "version": 0
+        }
+      }
+    }
+  }
+)
 ```
 
 > The above command returns JSON structured like this:
@@ -55,15 +103,43 @@ with `authentication_token`.
 
 `POST https://app.rubberstamp.io/api/v1/register`
 
+### Tracking Registration
+
+You can track each registration with [segment.io](https://segment.com) by passing
+`tracking_info` `HEADER` params as shown in the example.
+
+```ruby
+"tracking_info": {
+  {
+    "properties": {
+      "uuid": "your uuid",
+      "is_web_view": false,
+      "is_ipad": false,
+      "is_ios": true,
+      "is_android": false,
+      "platform": "ios",
+      "version": 0
+    }
+  }
+}
+```
+
 ### Query Parameters
 
-| Param                 | Type    | Description                   |
-| ---------             | ------- | -----------                   |
-| email                 | string  | Your registered email address |
-| password              | string  | strong password               |
-| password_confirmation | string  | password confirmation         |
-| name                  | string  | Your First Name and Last Name |
-| phone_number          | string  | Phone number                  |
+| Param                                  | Type    | Description                                              |
+| ---------                              | ------- | -----------                                              |
+| email                                  | string  | Your registered email address                            |
+| password                               | string  | strong password                                          |
+| password_confirmation                  | string  | password confirmation                                    |
+| name                                   | string  | Your First Name and Last Name                            |
+| phone_number                           | string  | Phone number                                             |
+| tracking_info[properties][uuid]        | header  | Pass uuid to track                                       |
+| tracking_info[properties][is_web-view] | header  | `true` if user is using web browsers otherwise `false`   |
+| tracking_info[properties][is_ipad]     | header  | `true` if user is using IPad otherwise `false`           |
+| tracking_info[properties][is_ios]      | header  | `true` if user is using IOS device otherwise `false`     |
+| tracking_info[properties][is_android]  | header  | `true` if user is using android device otherwise `false` |
+| tracking_info[properties][platform]    | header  | device platform                                          |
+| tracking_info[properties][version]     | header  | device version                                           |
 
 
 
@@ -74,7 +150,9 @@ with `authentication_token`.
 ```ruby
 require 'rest-client'
 
-response = RestClient.post(
+# Example Without Tracking info
+
+RestClient.post(
   'https://app.rubberstamp.io/api/v1/login',
   {
     email: 'api@example.com',
@@ -82,13 +160,52 @@ response = RestClient.post(
   }
 )
 
-response.body
+# Example With Tracking Info
+RestClient.post(
+  'https://app.rubberstamp.io/api/v1/login',
+  {
+    email: 'api@example.com',
+    password: 'pass1234'
+  },
+  headers = {
+    "tracking_info": {
+      {
+        "properties": {
+          "uuid": "your uuid",
+          "is_web_view": false,
+          "is_ipad": false,
+          "is_ios": true,
+          "is_android": false,
+          "platform": "ios",
+          "version": 0
+        }
+      }
+    }
+  }
+)
 ```
 
 ```shell
+# Example Without Tracking Info
+
 curl 'https://app.rubberstamp.io/api/v1/login'
   -X POST
   -H "Content-Type: application/json"
+  -d "email=api@example.com"
+  -d "password=pass1234"
+
+# Example With Tracking Info
+
+curl 'https://app.rubberstamp.io/api/v1/login'
+  -X POST
+  -H "Content-Type: application/json"
+  -H "tracking_info[properties][uuid]=your uuid"
+  -H "tracking_info[properties][is_web_view]=false"
+  -H "tracking_info[properties][is_ipad]=false"
+  -H "tracking_info[properties][is_ios]=true"
+  -H "tracking_info[properties][is_android]=false"
+  -H "tracking_info[properties][platform]=ios"
+  -H "tracking_info[properties][version]=0"
   -d "email=api@example.com"
   -d "password=pass1234"
 ```
@@ -122,7 +239,13 @@ requests to the server in a header.
 
 ### HTTP Request
 
-`POST https://app.rubberstamp.io/api/v1/login[.json]`
+`POST https://app.rubberstamp.io/api/v1/login`
+
+### Tracking Registration
+
+You can track each login with [segment.io](https://segment.com) by passing
+`tracking_info` `HEADER` params as shown in the example.
+
 
 ### Query Parameters
 
@@ -130,6 +253,13 @@ requests to the server in a header.
 | --------- | ------- | -----------                   |
 | email     | string  | Your registered email address |
 | password  | string  | strong password               |
+| tracking_info[properties][uuid]        | header  | Pass uuid to track                                       |
+| tracking_info[properties][is_web-view] | header  | `true` if user is using web browsers otherwise `false`   |
+| tracking_info[properties][is_ipad]     | header  | `true` if user is using IPad otherwise `false`           |
+| tracking_info[properties][is_ios]      | header  | `true` if user is using IOS device otherwise `false`     |
+| tracking_info[properties][is_android]  | header  | `true` if user is using android device otherwise `false` |
+| tracking_info[properties][platform]    | header  | device platform                                          |
+| tracking_info[properties][version]     | header  | device version                                           |
 
 <aside class="success">
 Remember — You need to be a valid user to get authenticated. If you haven't
