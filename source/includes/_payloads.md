@@ -13,7 +13,7 @@ Quando um destes eventos ocorre, o webhook envia o payload (para a URL definida 
 Os dois últimos fazem parte da assinatura do payload, detalhada a seguir.
 
 <aside class="notice">
-  A URL definida na criação do Webhook deve estar disponível e respondendo com HTTP 200 ok aos payloads. O Cobrato fará 5 tentativas de notificação. Após a 5ª tentativa sem sucesso, os administradores da conta serão notificados via e-mail e o endpoint deste webhook será marcado como "Com erro" e assim o Cobrato fará mais 5 tentativas em 2, 6, 12, 24 e 48 horas.
+  A URL definida na criação do Webhook deve estar disponível e respondendo com HTTP 200 ok aos payloads. O Cobrato fará 5 tentativas de notificação. Após a 5ª tentativa sem sucesso, os administradores da conta serão notificados via e-mail e o endpoint deste webhook será marcado como "Com erro". O Cobrato fará então mais 5 tentativas no intervalo de 48 horas até não tentar mais.
 </aside>
 
 ### Assinatura do Payload
