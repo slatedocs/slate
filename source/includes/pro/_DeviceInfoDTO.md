@@ -4,7 +4,12 @@
 
 ```xml
 <deviceInfo>
-    IP=10.7.17.104;OS=IOS;APP_VERSION=1.0.23;VENDOR_ID=EDC2C767-31DC-4095-82B1-71890EE2778B;LOCALE=ru-RU
+    IP=10.7.17.104;
+    OS=IOS;
+    APP_VERSION=1.0.23;
+    VENDOR_ID=EDC2C767-31DC-4095-82B1-71890EE2778B;
+    LOCALE=ru-RU;
+    OS_VERSION=10.3
 </deviceInfo>
 ```
 
@@ -12,7 +17,13 @@
 
 ```xml
 <deviceInfo>
-    IP=10.40.116.222;OS=ANDROID;APP_VERSION=3.1.943;VENDOR_ID=353490066235256;MAC=BE:BD:61:2B:F3:B9;LOCALE=RU
+    IP=10.40.116.222;
+    OS=ANDROID;
+    APP_VERSION=3.1.943;
+    VENDOR_ID=353490066235256;
+    MAC=BE:BD:61:2B:F3:B9;
+    LOCALE=RU;
+    OS_VERSION=5.1.1
 </deviceInfo>
 ```
 
@@ -21,12 +32,14 @@
 key | type | status | comment
 --- | ---- | :----: | ---:
 IP | string | 1..1 | IP адрес устройства в случае его доступности или ``0.0.0.0``
-APP_VERSION | string | 1..1 | версия приложения, например ``1.2.3 (456)``
+APP_VERSION | string | 1..1 | версия приложения, например ``1.2.3``
 OS | string | 1..1 | операционная система { IOS, ANDROID }
 VENDOR_ID | string | 1..1 | уникальный идентификатор устройства
 LOCALE | string | 0..1 | локаль телефона
 MAC | string | 0..1 | приходит если доступно получение значения от устройства
 EXTERNAL_IP | string | 0..1 | IP адрес устройства в случае его доступности или ``0.0.0.0``
+OS_VERSION | string | 0..1 | версия операционной системы, например ``1.2.3``
+
 
 <aside class="warning">EXTERNAL_IP: Сервер стандартными средствами получает IP адрес удалённого устройства. Если перед pro стоит nginx - адрес будет получен тоже верно, но необходимо в nginx настроить пробраску заголовка X-FORWARDED)</aside>
 
