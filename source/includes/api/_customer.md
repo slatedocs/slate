@@ -11,7 +11,7 @@
       "id": "tokenex-0016",
       "firstname": "CMS Test",
       "lastname": "last name",
-      "email": "test@yahoo.com",
+      "email": "email@domain.com",
       "company": "Zylun PH",
       "phone": "123-1234-123",
       "fax": "123-1234-123",
@@ -71,7 +71,7 @@ CUSTID | The ID of the customer to retrieve.
         "id": "CUST-199x",
         "firstname": "Kimmy Inc.",
         "lastname": "Bond",
-        "email": "wilsone@zylun.com",
+        "email": "email@domain.com",
         "company": "Zylun PH",
         "phone": "123-1234-123",
         "fax": "123-1234-123",
@@ -110,7 +110,7 @@ CUSTID | The ID of the customer to retrieve.
         "id": "test-235",
         "firstname": "CMS Test",
         "lastname": "Bond",
-        "email": "wilsone@zylun.com",
+        "email": "email@domain.com",
         "company": "Zylun PH",
         "phone": "123-1234-123",
         "fax": "123-1234-123",
@@ -131,7 +131,7 @@ CUSTID | The ID of the customer to retrieve.
         "id": "TESTAGAIN",
         "firstname": "Vault Test",
         "lastname": "Bond",
-        "email": "wilsone@zylun.com",
+        "email": "email@domain.com",
         "company": "Zylun PH",
         "phone": "123-1234-123",
         "fax": "123-1234-123",
@@ -155,8 +155,8 @@ CUSTID | The ID of the customer to retrieve.
           "per_page": 20,
           "current_page": 1,
           "total_pages": 2,
-          "links": {
-            "next": "http://sliceapilocal.cmsonline.com/v2/customers?page=2"
+          "links": { 
+            "next": "http://api.slycepay.com/v2/customers?page=2" 
           }
         }
     }
@@ -187,7 +187,7 @@ page | 1 | Page number.
       "id": "cust-212",
       "firstname": "erwin",
       "lastname": "zylun",
-      "email": "erwins@zylun.com",
+      "email": "email@domain.com",
       "company": "CMS",
       "phone": "1234-1234-1234",
       "fax": "1234-1234-1234",
@@ -243,7 +243,7 @@ zip |  | Zip/Postal code.
       "id": "cust-212",
       "firstname": "marlonx7",
       "lastname": "gallego",
-      "email": "suicoerw@gmail.com",
+      "email": "email@domain.com",
       "company": "Zylun PH",
       "phone": "123-1234-123",
       "fax": "123-1234-123",
@@ -317,7 +317,7 @@ userid  |  | The id of the user account of this customer.
       "clientIP": "127.0.0.1",
       "mid": "513485000208199",
       "userID": 84,
-      "userKey": "slicelocal_nmi",
+      "userKey": "userkeylocal",
       "proccessTime": 0
     }
   }
@@ -497,7 +497,7 @@ METHODID | Method ID.
         "clientIP": "127.0.0.1",
         "mid": "513485000208199",
         "userID": 18,
-        "userKey": "slicelocal",
+        "userKey": "userkeylocal",
         "proccessTime": 0
       }
     },
@@ -522,7 +522,7 @@ METHODID | Method ID.
         "clientIP": "127.0.0.1",
         "mid": "513485000208199",
         "userID": 18,
-        "userKey": "slicelocal",
+        "userKey": "userkeylocal",
         "proccessTime": 0
       }
     },
@@ -547,7 +547,7 @@ METHODID | Method ID.
         "clientIP": "127.0.0.1",
         "mid": "513485000208199",
         "userID": 18,
-        "userKey": "slicelocal",
+        "userKey": "userkeylocal",
         "proccessTime": 0
       }
     },
@@ -572,7 +572,7 @@ METHODID | Method ID.
         "clientIP": "127.0.0.1",
         "mid": "513485000208199",
         "userID": 18,
-        "userKey": "slicelocal",
+        "userKey": "userkeylocal",
         "proccessTime": 0
       }
     },
@@ -597,7 +597,7 @@ METHODID | Method ID.
         "clientIP": "127.0.0.1",
         "mid": "513485000208199",
         "userID": 18,
-        "userKey": "slicelocal",
+        "userKey": "userkeylocal",
         "proccessTime": 0
       }
     }
@@ -644,7 +644,7 @@ CUSTID | The ID of the customer.
       "clientIP": "127.0.0.1",
       "mid": "513485000208199",
       "userID": 84,
-      "userKey": "slicelocal_nmi",
+      "userKey": "userkeylocal",
       "proccessTime": 0
     }
   }
@@ -703,7 +703,7 @@ METHODID | Payment method ID.
         "id": 142968,
         "username": "nbieuser",
         "name": "Newbie Custy",
-        "email": "evelynl@zylun.com",
+        "email": "email@domain.com",
         "recent_login": null,
         "date_added": "2017-06-28 22:20:05"
     }
@@ -732,7 +732,7 @@ CUSTID | The ID of the customer.
         "id": 142968,
         "username": "nbieuser",
         "name": "Newbie Custy",
-        "email": "evelynl@zylun.com",
+        "email": "email@domain.com",
         "recent_login": null,
         "date_added": "2017-06-28 22:20:05"
     }
@@ -771,7 +771,7 @@ password | yes | string |
         "id": 142968,
         "username": "nbieuser",
         "name": "Newbie Custy",
-        "email": "evelynl@zylun.com",
+        "email": "email@domain.com",
         "recent_login": null,
         "date_added": "2017-06-28 22:20:05"
     }

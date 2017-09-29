@@ -89,6 +89,7 @@
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
       <script src="javascripts/all.js"></script>
+    <script src="javascripts/script.js"></script>
   </head>
 
   <body class="index" data-languages="[]">
@@ -99,7 +100,7 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" />
+      <img src="images/logo-slyce.png" />
         <div class="lang-selector">
         </div>
         <div class="search">
@@ -162,23 +163,23 @@ You must replace <code>THEAPIKEY</code> with your own API key.
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2050</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bZh9aU89BMeOeFl1r7AXkVxy6bqZDOoW8aotJuhhZdUL3xZaPm"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TST-EVE03152017"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERATED_INVOICE_HASH"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TST-INV0001"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/slycegateway-files/merchant-754c2f6dfbc8aaa8570096dfe296c9fd.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOGO_URL"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"mail_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mail_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mailto-email@domain.com"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"mail_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An Invoice for your recent medical bill has been created under your account."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"footer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="nt">"include_login"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"login_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://slycegateway-dev.cmsonline.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"login_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOGIN_URL_TO_CUSTOMER_PORTAL"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"include_pdf"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nt">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nt">"medical_invoice"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"send_now"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"send_reminder"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"invoice_preference"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dev-cs.email-invoice.com/response"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEBHOOK_URL"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"date_sent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"322.50"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
@@ -191,7 +192,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Secondary Email"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"secondary-email@domain.com"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{secondary_email}"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -215,7 +216,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="nt">"user_id"</span><span class="p">:</span><span class="mi">142971</span><span class="p">,</span><span class="w">
       </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Savy"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phere"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer-email@domain.com"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="nt">"street1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -693,23 +694,23 @@ You must replace <code>THEAPIKEY</code> with your own API key.
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2050</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bZh9aU89BMeOeFl1r7AXkVxy6bqZDOoW8aotJuhhZdUL3xZaPm"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TST-EVE03152017"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERATED_INVOICE_HASH"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TST-INV0001"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/slycegateway-files/merchant-754c2f6dfbc8aaa8570096dfe296c9fd.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOGO_URL"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"mail_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mail_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mailto-email@domain.com"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"mail_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An Invoice for your recent medical bill has been created under your account."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"footer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="nt">"include_login"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"login_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://slycegateway-dev.cmsonline.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"login_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOGIN_URL_TO_CUSTOMER_PORTAL"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"include_pdf"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nt">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nt">"medical_invoice"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"send_now"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"send_reminder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"invoice_preference"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dev-cs.email-invoice.com/response"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEBHOOK_URL"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"date_sent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"322.50"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
@@ -722,7 +723,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Secondary Email"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer-email@domain.com"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{secondary_email}"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -746,7 +747,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="nt">"user_id"</span><span class="p">:</span><span class="mi">142971</span><span class="p">,</span><span class="w">
       </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Savy"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phere"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer-email@domain.com"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="nt">"street1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -858,22 +859,22 @@ You must replace <code>THEAPIKEY</code> with your own API key.
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2050</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bZh9aU89BMeOeFl1r7AXkVxy6bqZDOoW8aotJuhhZdUL3xZaPm"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TST-EVE03152017"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERATED_INVOICE_HASH"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TST-INV0001"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/slycegateway-files/merchant-754c2f6dfbc8aaa8570096dfe296c9fd.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOGO_URL"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"mail_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mail_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mailto-email@domain.com"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"mail_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An Invoice for your recent medical bill has been created under your account."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"footer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="nt">"include_login"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"login_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://slycegateway-dev.cmsonline.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"login_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOGIN_URL_TO_CUSTOMER_PORTAL"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"include_pdf"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nt">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nt">"medical_invoice"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"send_now"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"invoice_preference"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dev-cs.email-invoice.com/response"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEBHOOK_URL"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"date_sent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"322.50"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
@@ -886,7 +887,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Secondary Email"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"secondary-email@domain.com"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{secondary_email}"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -910,7 +911,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="nt">"user_id"</span><span class="p">:</span><span class="mi">142971</span><span class="p">,</span><span class="w">
       </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Savy"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phere"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer-email@domain.com"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="nt">"street1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -998,13 +999,13 @@ You must replace <code>THEAPIKEY</code> with your own API key.
 <p>Request JSON structure like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TST-EVE03152017"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TST-INV0001"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"mail_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An Invoice for your recent bill has been created under your account."</span><span class="p">,</span><span class="w">
   </span><span class="nt">"footer_id"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"mail_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"mail_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mailto-email@domain.com"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"logo"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="nt">"include_pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"include_login"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
@@ -1012,8 +1013,8 @@ You must replace <code>THEAPIKEY</code> with your own API key.
   </span><span class="nt">"send_now"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"send_reminder"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="nt">"invoice_preference"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"login_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://slycegateway-slycev2.cmsonline.comn"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://email-invoice.com/response"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"login_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOGIN_URL_TO_CUSTOMER_PORTAL"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEBHOOK_URL"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"custom_fields"</span><span class="p">:[</span><span class="w">
       </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Contact Person"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"John Doe"</span><span class="p">,</span><span class="nt">"tag"</span><span class="p">:</span><span class="s2">"{contact_person}"</span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Secondary Email"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"email2@domain.com"</span><span class="p">,</span><span class="nt">"tag"</span><span class="p">:</span><span class="s2">"{secondary_email}"</span><span class="p">}</span><span class="w">
@@ -1023,7 +1024,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="nt">"user_id"</span><span class="p">:</span><span class="mi">142971</span><span class="p">,</span><span class="w">
       </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Savy"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phere"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer-email@domain.com"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="nt">"street1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -1229,23 +1230,23 @@ You must replace <code>THEAPIKEY</code> with your own API key.
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2050</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bZh9aU89BMeOeFl1r7AXkVxy6bqZDOoW8aotJuhhZdUL3xZaPm"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TST-EVE03152017"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERATED_INVOICE_HASH"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TST-INV0001"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/slycegateway-files/merchant-754c2f6dfbc8aaa8570096dfe296c9fd.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOGO_URL"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"mail_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mail_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mailto-email@domain.com"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"mail_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An Invoice for your recent medical bill has been created under your account."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"footer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="nt">"include_login"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"login_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://slycegateway-dev.cmsonline.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"login_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOGIN_URL_TO_CUSTOMER_PORTAL"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"include_pdf"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nt">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nt">"medical_invoice"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"send_now"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"send_reminder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"invoice_preference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dev-cs.email-invoice.com/response"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"webhook_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEBHOOK_URL"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"date_sent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-15"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"322.50"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
@@ -1258,7 +1259,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Secondary Email"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"secondary-email@domain.com"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{secondary_email}"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -1282,7 +1283,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="nt">"user_id"</span><span class="p">:</span><span class="mi">142971</span><span class="p">,</span><span class="w">
       </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Savy"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phere"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer-email@domain.com"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="nt">"street1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -1630,9 +1631,9 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usaepay"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"referrer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"clientIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485000208199"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100000000000088"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"userID"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slicelocal"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"userkeylocal"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"proccessTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="nt">"tranToken"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -1708,9 +1709,9 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usaepay"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"referrer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"clientIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485000208199"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100000000000088"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"userID"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slicelocal"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"userkeylocal"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"proccessTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nt">"tranToken"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
       </span><span class="p">}</span><span class="w">
@@ -1756,9 +1757,9 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usaepay"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"referrer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"clientIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485000208199"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100000000000088"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"userID"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slicelocal"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"userkeylocal"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"proccessTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nt">"tranToken"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
       </span><span class="p">}</span><span class="w">
@@ -1808,9 +1809,9 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usaepay"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"referrer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"clientIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485000208199"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100000000000088"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"userID"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slicelocal"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"userkeylocal"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"proccessTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nt">"tranToken"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
       </span><span class="p">}</span><span class="w">
@@ -1824,7 +1825,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="nt">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w">
       </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sliceapilocal.cmsonline.com/v2/recurring?page=2"</span><span class="w">
+        </span><span class="nt">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://api.slycepay.com/v2/recurring?page=2"</span><span class="w"> 
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -1920,9 +1921,9 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"acapture"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"referrer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"clientIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485000208199"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100000000000088"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"userID"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slicelocal_acapture"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"userkeylocal"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"proccessTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="nt">"tranToken"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -2035,9 +2036,9 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"acapture"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"referrer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"clientIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485000208199"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100000000000088"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"userID"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slicelocal_acapture"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"userkeylocal"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"proccessTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="nt">"tranToken"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -2161,7 +2162,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="nt">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sliceapilocal.cmsonline.com/v2/recurring/559/logs?page=2"</span><span class="w">
+        </span><span class="nt">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://api.slycepay.com/v2/recurring/559/logs?page=2"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -2391,7 +2392,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokenex-0016"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CMS Test"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"last name"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@yahoo.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zylun PH"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-1234-123"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-1234-123"</span><span class="p">,</span><span class="w">
@@ -2459,7 +2460,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUST-199x"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kimmy Inc."</span><span class="p">,</span><span class="w">
         </span><span class="nt">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bond"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wilsone@zylun.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zylun PH"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-1234-123"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-1234-123"</span><span class="p">,</span><span class="w">
@@ -2498,7 +2499,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test-235"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CMS Test"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bond"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wilsone@zylun.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zylun PH"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-1234-123"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-1234-123"</span><span class="p">,</span><span class="w">
@@ -2519,7 +2520,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TESTAGAIN"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vault Test"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bond"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wilsone@zylun.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zylun PH"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-1234-123"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-1234-123"</span><span class="p">,</span><span class="w">
@@ -2543,8 +2544,8 @@ You must replace <code>THEAPIKEY</code> with your own API key.
           </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
           </span><span class="nt">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
           </span><span class="nt">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://sliceapilocal.cmsonline.com/v2/customers?page=2"</span><span class="w">
+          </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> 
+            </span><span class="nt">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://api.slycepay.com/v2/customers?page=2"</span><span class="w"> 
           </span><span class="p">}</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -2589,7 +2590,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cust-212"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"erwin"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zylun"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"erwins@zylun.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CMS"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234-1234-1234"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234-1234-1234"</span><span class="p">,</span><span class="w">
@@ -2703,7 +2704,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cust-212"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"marlonx7"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gallego"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"suicoerw@gmail.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zylun PH"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-1234-123"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-1234-123"</span><span class="p">,</span><span class="w">
@@ -2834,7 +2835,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="nt">"clientIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485000208199"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"userID"</span><span class="p">:</span><span class="w"> </span><span class="mi">84</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slicelocal_nmi"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"userkeylocal"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"proccessTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -3086,7 +3087,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"clientIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485000208199"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"userID"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slicelocal"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"userkeylocal"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"proccessTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -3111,7 +3112,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"clientIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485000208199"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"userID"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slicelocal"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"userkeylocal"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"proccessTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -3136,7 +3137,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"clientIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485000208199"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"userID"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slicelocal"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"userkeylocal"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"proccessTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -3161,7 +3162,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"clientIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485000208199"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"userID"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slicelocal"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"userkeylocal"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"proccessTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -3186,7 +3187,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"clientIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485000208199"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"userID"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slicelocal"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"userkeylocal"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"proccessTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -3241,7 +3242,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
       </span><span class="nt">"clientIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"mid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"513485000208199"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"userID"</span><span class="p">:</span><span class="w"> </span><span class="mi">84</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slicelocal_nmi"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"userKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"userkeylocal"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"proccessTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -3343,7 +3344,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">142968</span><span class="p">,</span><span class="w">
         </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nbieuser"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Newbie Custy"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"recent_login"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"date_added"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-28 22:20:05"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -3380,7 +3381,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">142968</span><span class="p">,</span><span class="w">
         </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nbieuser"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Newbie Custy"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"recent_login"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"date_added"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-28 22:20:05"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -3459,7 +3460,7 @@ You must replace <code>THEAPIKEY</code> with your own API key.
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">142968</span><span class="p">,</span><span class="w">
         </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nbieuser"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Newbie Custy"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evelynl@zylun.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@domain.com"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"recent_login"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"date_added"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-28 22:20:05"</span><span class="w">
     </span><span class="p">}</span><span class="w">
