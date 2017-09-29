@@ -39,6 +39,9 @@ HTTP/1.1 201 CREATED
   "first_name": "Philippe",
   "last_name": "Dionne",
   "time_zone": "UTC",
+  "tags": [
+    "vip"
+  ],
   "unsubscribed": false,
   "billing_address": {
     "id": "64084e6a-6a5c-436f-8888-971eef7c04c0",
@@ -111,6 +114,7 @@ With `confirmation == true`:
 | first_name | no |  |
 | last_name | no |  |
 | email | no |  |
+| tags  | no |  |
 
 ### Returns
 

@@ -30,6 +30,9 @@ HTTP/1.1 200 OK
     "first_name": "Philippe",
     "last_name": "Dionne",
     "time_zone": "America/New_York",
+    "tags": [
+      "vip"
+    ],
     "shipping_rate": 0,
     "unsubscribed": false,
     "billing_address": {

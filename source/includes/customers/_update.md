@@ -39,6 +39,9 @@ HTTP/1.1 200 OK
   "first_name": "Elon",
   "last_name": "Musk",
   "time_zone": "UTC",
+  "tags": [
+    "vip"
+  ],
   "unsubscribed": false,
   "billing_address": {
     "id": "64084e6a-6a5c-436f-8888-971eef7c04c0",

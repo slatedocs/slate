@@ -11,6 +11,9 @@
   "first_name": "Philippe",
   "last_name": "Dionne",
   "time_zone": "America/New_York",
+  "tags": [
+    "vip"
+  ],
   "shipping_rate": 0,
   "unsubscribed": false,
   "billing_address": {
@@ -64,6 +67,7 @@
 | first_name               | string |  |
 | last_name                | string |  |
 | time_zone                | string |  |
+| tags                     | array  |  |
 | shipping_rate            | integer | Applicable shipping rate for the current shipping address |
 | unsubscribed             | boolean |  |
 | billing_address          | hash |  |
