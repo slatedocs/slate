@@ -1,0 +1,76 @@
+---
+title: API Reference
+
+language_tabs:
+  - shell
+  - javascript
+
+toc_footers:
+
+includes:
+  - errors
+
+search: true
+---
+
+<%= partial "includes/introduction" %>
+<%= partial "includes/authentication" %>
+
+<h1 id="events">Events</h1>
+<%= partial "includes/events/object" %>
+<%= partial "includes/events/types" %>
+
+<h1 id="bot">Bot</h1>
+<%= partial "includes/bot/trigger" %>
+<%= partial "includes/bot/trigger_webhook" %>
+
+<h1 id="customers">Customers</h1>
+<%= partial "includes/customers/object" %>
+<%= partial "includes/customers/index" %>
+<%= partial "includes/customers/show" %>
+<%= partial "includes/customers/create" %>
+<%= partial "includes/customers/update" %>
+<%= partial "includes/customers/destroy" %>
+<%= partial "includes/customers/confirm" %>
+<%= partial "includes/customers/generate_confirmation" %>
+<%= partial "includes/customers/subscribe" %>
+<%= partial "includes/customers/unsubscribe" %>
+
+<h1 id="addresses">Addresses</h1>
+<%= partial "includes/addresses/object" %>
+<%= partial "includes/addresses/show" %>
+<%= partial "includes/addresses/create" %>
+<%= partial "includes/addresses/update" %>
+<%= partial "includes/addresses/validate" %>
+
+<%= partial "includes/cards" %>
+
+<h1 id="orders">Orders</h1>
+<%= partial "includes/orders/object" %>
+<%= partial "includes/orders/index" %>
+<%= partial "includes/orders/show" %>
+<%= partial "includes/orders/create" %>
+<%= partial "includes/orders/update" %>
+<%= partial "includes/orders/pay" %>
+<%= partial "includes/orders/confirm" %>
+<%= partial "includes/orders/cancel" %>
+<%= partial "includes/orders/queue" %>
+<%= partial "includes/orders/unqueue" %>
+<%= partial "includes/orders/fulfill" %>
+<%= partial "includes/orders/return" %>
+
+<%= partial "includes/line_items" %>
+<%= partial "includes/shipments" %>
+<%= partial "includes/skus" %>
+<%= partial "includes/coupons" %>
+
+<h1 id="sessions">Sessions</h1>
+<%= partial "includes/sessions/object" %>
+<%= partial "includes/sessions/index" %>
+<%= partial "includes/sessions/show" %>
+<%= partial "includes/sessions/update" %>
+
+<h1 id="messages">Messages</h1>
+<%= partial "includes/messages/object" %>
+<%= partial "includes/messages/index" %>
+<%= partial "includes/messages/create" %>
