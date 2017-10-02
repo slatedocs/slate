@@ -324,10 +324,12 @@ end)
 
 ### Exq
 
-To instrument [Exq](https://github.com/akira/exq) background jobs, add a `@transaction` module attribute to each worker's `perform/` function:
+To instrument [Exq](https://github.com/akira/exq) background jobs, `use ScoutApm.Tracing`, and add a `@transaction` module attribute to each worker's `perform` function:
 
 ```elixir
 defmodule MyWorker do
+  use ScoutApm.Tracing
+
   # Will appear under "Background Jobs" in the UI, named "MyWorker.perform".
   @transaction(type: "background")
   def perform(arg1, arg2) do
