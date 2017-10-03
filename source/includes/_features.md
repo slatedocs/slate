@@ -86,6 +86,53 @@ ScoutProf is a BETA feature. To enable:
 
 A [detailed ScoutProf FAQ](#scoutprof-faq) is available in our reference area.
 
+## Database Monitoring
+
+A database is shared resource: one expensive query can trigger a flood of slow queries that impact many web endpoints and background jobs. Scout's database monitoring helps in three primary areas:
+
+1. Identifying the cause of database capacity issues.
+2. Understanding your query workload and which web endpoints and background jobs are the greatest users of database time.
+3. Highlighting changes in query workload and performance metrics vs. the norm.
+
+Database metrics are available under the "Database" area within the Scout UI:
+
+![database monitoring](db_monitoring.png)
+
+### Overview chart
+
+The database monitoring overview chart helps answer important questions at-a-glance. For example:
+
+* Is time consumed by queries increasing because throughput is increasing?
+* Is one type of query showing a dramatic increase in time consumed?
+* How are query response times changing under load?
+
+The overview chart shows the top 4 most time-consuming queries and an aggregate of all other queries vs. overall query throughput.
+
+### Zooming
+
+The primary interaction point of Scout's database monitoring is the zoom functionality.
+
+If you notice a spike in time spent by database queries, simply click and drag on the overview chart. The queries list will update, showing changes during the zoom window. 
+
+Annotations are added to the queries list when zooming:
+
+* The change in rank, based on % time consumed, of each query. Queries that jump significantly in rank may trigger a dramatic change in database performance.
+* The % change across metrics in the zoom window vs. the larger timeframe. If the % change is not significant, the metric is faded.
+* A bullseye appears next to the max query time if the slowest occurrence of this query was executed during the zoom window. This may indicate a single slow query triggered a problem.
+
+### Queries List
+
+A list of queries, broken down by their ActiveRecord model, operation, and caller (either a web endpoint or background job) is listed below the overview chart.
+
+By default, this list is truncated to display just the most time-consuming queries.
+
+### Database Events
+
+Scout highlights significant events in database performance in the sidebar. For example, if time spent in database queries increases dramatically, you'll find an insight here. Clicking on an insight jumps to the time window referenced by the insight.
+
+### Library Support
+
+Scout currently monitors queries executed via ActiveRecord, which includes most relational databases (PostgreSQL, MySQL, etc).
 
 ## Memory Bloat Detection
 
