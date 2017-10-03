@@ -101,6 +101,44 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 
+## Local directories supported by Local SEO Check-up tool
+
+Directory|Identifier|USA|CAN|GBR|AUS
+---------|-------|---|---|---|---
+AussieWeb|aussieweb| | | |AUS
+Brownbook|brownbook|USA|CAN|GBR|AUS
+dLook|dlook| | | |AUS
+Citysearch|citysearch|USA
+DexKnows|dexknows|USA
+Facebook|facebook|USA|CAN|GBR|AUS
+Factual|factual|USA|CAN|GBR|AUS
+FourSquare|foursquare|USA|CAN|GBR|AUS
+Google Local|google|USA|CAN|GBR|AUS
+HotFrog|hotfrog|USA|CAN|GBR|AUS
+InfoUSA/ExpressUpdate|expressupdate|USA
+Insider Pages|insiderpages|USA
+Kudzu|kudzu|USA
+Local.com|localcom|USA
+Local.com.au|localcomau| | | |AUS
+MapQuest|mapquest|USA
+Neustarlocaleze|neustarlocaleze|USA
+Super Pages|superpages|USA
+StartLocal|startlocal| | | |AUS
+Super Pages Australia|superpagesaus| | | |AUS
+Scoot|scoot| | |GBR
+Yahoo! Local|yahoo|USA| |GBR
+Yellow Bot|yellowbot|USA|
+Yellow Pages|yellowpages|USA|CAN
+Yelp|yelp|USA|CAN|GBR|AUS
+Yell|yell| | |GBR
+411 Canada|411| |CAN
+Canpages|canpages| |CAN
+iBegin|ibegin| |CAN
+PagesJunes|pagesjaunes| |CAN
+Thomson Local|thomsonlocal| | |GBR
+Touch Local|touchlocal| | |GBR
+TrueLocal|truelocal| | | |AUS
+White Pages|whitepagesaus| | | |AUS
 
 ## Business Category IDs
 
