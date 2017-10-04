@@ -1,11 +1,188 @@
-# Config
+# Shopping cart
 
-## Get all Products
+endpoints:
+
+* /v1/cart
+* /v1/cart/[ID]
+* /v1/cart/[ID]/extrainfo
+
+## Create an empty shopping cart
+```shell
+curl -XPOST "https://apibodegas.loadingplay.com/v1/cart" \
+  -H "Authorization: Bearer ACCESS_TOKEN" \
+```
+
+> The above command returns json with cart info, including id:
+
+```json
+{
+    "statuts" : "success",
+    "cart" : {
+        "items": [],
+        "total": 0,
+        "expired": false,
+        "id": "unique string id (GUUID)"
+    }
+}
+```
+
+### HTTP Request
+
+you can post to an unexistent cart id, and the api will create it automatically
+
+`POST https://apibodegas.loadingplay.com/v1/cart`
+
+## Create a new shopping cart with an externally generated GUUID
 
 ```shell
-curl -XGET https://apibodegas.loadingplay.com/v1/product/list \
-    -H 'Authorization: Bearer ACCESS_TOKEN' \
-    -d "site_name=fm"
+curl -XPOST "https://apibodegas.loadingplay.com/v1/cart/[GUUID]" \
+  -H "Authorization: Bearer ACCESS_TOKEN" \
+    -d 'items=[{
+        "sku": "test",
+        "bullet_1": "",
+        "name": "test",
+        "bullet_3": "",
+        "bullet_2": "",
+        "price": 2000.0,
+        "weight": 0.0,
+        "equate": "different",
+        "images": [
+                [
+                    "https://7static.loadingplay.com/static/images/1_ee40a90852bd0608123f3988fb512888_Captura_de_pantalla_2016-11-19_a_las_18.42.41.png.png",
+                    "https://7static.loadingplay.com/static/images/200_ee40a90852bd0608123f3988fb512888_Captura_de_pantalla_2016-11-19_a_las_18.42.41.png.png",
+                    "https://7static.loadingplay.com/static/images/500_ee40a90852bd0608123f3988fb512888_Captura_de_pantalla_2016-11-19_a_las_18.42.41.png.png"
+                ]
+        ],
+        "quantity": 2,
+        "subtotal": 4000.0,
+        "id": 1,
+        "upp": 1,
+        "not_discount_price": 10.0
+    }]'
+```
+
+> The above command returns json with cart info, including id:
+
+```json
+{
+	"status": "success",
+	"cart": {
+		"items": [{
+			"sku": "test",
+			"bullet_1": "",
+			"name": "test",
+			"bullet_3": "",
+			"bullet_2": "",
+			"price": 2000.0,
+			"weight": 0.0,
+			"equate": "different",
+			"images": [
+				["https://7static.loadingplay.com/static/images/1_ee40a90852bd0608123f3988fb512888_Captura_de_pantalla_2016-11-19_a_las_18.42.41.png.png", "https://7static.loadingplay.com/static/images/200_ee40a90852bd0608123f3988fb512888_Captura_de_pantalla_2016-11-19_a_las_18.42.41.png.png", "https://7static.loadingplay.com/static/images/500_ee40a90852bd0608123f3988fb512888_Captura_de_pantalla_2016-11-19_a_las_18.42.41.png.png"]
+			],
+			"quantity": 2,
+			"subtotal": 4000.0,
+			"id": 1,
+			"upp": 1,
+			"not_discount_price": 10.0
+		}],
+		"total": 4000,
+		"expired": false,
+		"id": "GUUID"
+	}
+}
+```
+
+### HTTP Request
+
+`POST https://apibodegas.loadingplay.com/v1/cart/[GUUID]`
+
+
+## Get a Specific Cart
+
+```shell
+curl -XGET "https://apibodegas.loadingplay.com/v1/cart/[GUUID]" \
+  -H "Authorization: Bearer ACCESS_TOKEN" \
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"status": "success",
+	"cart": {
+		"items": [{
+			"sku": "test",
+			"bullet_1": "",
+			"name": "test",
+			"bullet_3": "",
+			"bullet_2": "",
+			"price": 2000.0,
+			"weight": 0.0,
+			"equate": "different",
+			"images": [
+				["https://7static.loadingplay.com/static/images/1_ee40a90852bd0608123f3988fb512888_Captura_de_pantalla_2016-11-19_a_las_18.42.41.png.png", "https://7static.loadingplay.com/static/images/200_ee40a90852bd0608123f3988fb512888_Captura_de_pantalla_2016-11-19_a_las_18.42.41.png.png", "https://7static.loadingplay.com/static/images/500_ee40a90852bd0608123f3988fb512888_Captura_de_pantalla_2016-11-19_a_las_18.42.41.png.png"]
+			],
+			"quantity": 2,
+			"subtotal": 4000.0,
+			"id": 1,
+			"upp": 1,
+			"not_discount_price": 10.0
+		}],
+		"total": 4000,
+		"expired": false,
+		"id": "GUUID"
+	}
+}
+```
+
+### HTTP Request
+
+This endpoint retrieves a specific cart.
+
+`GET https://apibodegas.loadingplay.com/v1/cart/[GUUID]`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+GUUID | (required) cart unique global identifier
+
+
+## Add some extra data to a shopping cart
+
+```shell
+curl -XPOST "https://apibodegas.loadingplay.com/v1/cart/[GUUID]/extrainfo" \
+  -H "Authorization: Bearer ACCESS_TOKEN" \
+    -d 'data=some arbitrary data'
+```
+
+> The above command returns json with cart extra info, including id:
+
+```json
+{
+    "status": "success",
+    "data": "some arbitrary data"
+}
+```
+
+### HTTP Request
+
+sometimes you may want to show some extra data in the shopping cart, you can use this field
+
+`POST https://apibodegas.loadingplay.com/v1/cart/[GUUID]/extrainfo`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+GUUID | (required) cart unique global identifier
+
+
+## Get extrainfo from a shopping cart
+
+```shell
+curl -XGET "https://apibodegas.loadingplay.com/v1/cart/[GUUID]/extrainfo" \
+  -H "Authorization: Bearer ACCESS_TOKEN" \
 ```
 
 > The above command returns JSON structured like this:
@@ -13,209 +190,17 @@ curl -XGET https://apibodegas.loadingplay.com/v1/product/list \
 ```json
 {
     "status": "success",
-    "metadata": { "total_records": 169, "records_filtered": 100 },  // only if enabled
-    "products": [
-        {
-            "balance_units": 44,
-            "brand": "CAT CHOW",
-            "bulk_price": 1,
-            "bullet_1": "Alimento para gato adulto, Pescado y Mariscos",
-            "bullet_2": "15k",
-            "bullet_3": "",
-            "cost_price": 29277,
-            "critical_stock": 1,
-            "description": "product description",
-            "enabled": false,
-            "for_sale": true,
-            "id": 1237,
-            "images": [
-                "https://7static.loadingplay.com/static/images/4799bd4dd9fdc1599355e6743ed9580c_PESCADO2.png.png",
-                "https://84static.loadingplay.com/static/images/1_4799bd4dd9fdc1599355e6743ed9580c_PESCADO2.png.png",
-                "https://7static.loadingplay.com/static/images/200_4799bd4dd9fdc1599355e6743ed9580c_PESCADO2.png.png",
-                "https://7static.loadingplay.com/static/images/500_4799bd4dd9fdc1599355e6743ed9580c_PESCADO2.png.png"
-            ],
-            "main_price": 29277,
-            "manufacturer": "Nestle",
-            "name": "Cat Chow Adultos",
-            "position": 0,
-            "profit_margin": 0,
-            "promotion_price": 0,
-            "site_id": 2,
-            "sku": "2212110",
-            "tags": "gato",
-            "upp": 1,
-            "weight": 0
-        },
-        ....
-    ]
+    "data": "some arbitrary data"
 }
 ```
 
-This endpoint retrieves a Products list.
 
 ### HTTP Request
 
-`GET https://apibodegas.loadingplay.com/v1/product/list`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-site_name | (required) | filter by site
-page | 1 | startig page
-items | 10 | items to show per page
-metadata | false | true if you need to return total rows
-search | '' | perform a search in products
-column | 'main_price' | column for sorting items
-order | 'ASC' | type of orden DESC|ASC default "ASC"
-
-## Get a Specific Product
-
-```shell
-curl -XGET "https://apibodegas.loadingplay.com/v1/product" \
-  -H "Authorization: Bearer ACCESS_TOKEN" \
-  -d "site_name=fm" \
-  -d "sku=2212110"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-    "status" : "success",
-    "product" : [
-        {
-            "balance_units": 44,
-            "brand": "CAT CHOW",
-            "bulk_price": 1,
-            "bullet_1": "Alimento para gato adulto, Pescado y Mariscos",
-            "bullet_2": "15k",
-            "bullet_3": "",
-            "cost_price": 29277,
-            "critical_stock": 1,
-            "description": "product description",
-            "enabled": false,
-            "for_sale": true,
-            "id": 1237,
-            "images": [
-                "https://7static.loadingplay.com/static/images/4799bd4dd9fdc1599355e6743ed9580c_PESCADO2.png.png",
-                "https://84static.loadingplay.com/static/images/1_4799bd4dd9fdc1599355e6743ed9580c_PESCADO2.png.png",
-                "https://7static.loadingplay.com/static/images/200_4799bd4dd9fdc1599355e6743ed9580c_PESCADO2.png.png",
-                "https://7static.loadingplay.com/static/images/500_4799bd4dd9fdc1599355e6743ed9580c_PESCADO2.png.png"
-            ],
-            "main_price": 29277,
-            "manufacturer": "Nestle",
-            "name": "Cat Chow Adultos",
-            "position": 0,
-            "profit_margin": 0,
-            "promotion_price": 0,
-            "site_id": 2,
-            "sku": "2212110",
-            "tags": "gato",
-            "upp": 1,
-            "weight": 0
-        },
-        ...
-    ]
-}
-```
-
-This endpoint retrieves a specific product.
-
-### HTTP Request
-
-`GET https://apibodegas.loadingplay.com/v1/product`
+`GET https://apibodegas.loadingplay.com/v1/cart/[GUUID]/extrainfo`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-site_name | (required) filter by site
-sku | unique identifier for product it can be a comma separated list, and return a comma separated list of products
-
-## Create a Product
-```shell
-curl -XPOST "https://apibodegas.loadingplay.com/v1/product" \
-  -H "Authorization: Bearer ACCESS_TOKEN" \
-    -d "sku=2212110" \
-    -d "site_name=fm" \
-    -d "name=" \
-    -d "description=" \
-    -d "main_price=" \
-    -d "cost_price=" \
-    -d "promotion_price=" \
-    -d "bulk_price=" \
-    -d "brand=" \
-    -d "manufacturer=" \
-    -d "bullet_1=" \
-    -d "bullet_2=" \
-    -d "bullet_3="
-```
-
-> The above command returns json with product info, including id:
-
-```json
-{
-    "statuts" : "success",
-    "product" : {
-        "id" : [product_id],
-        "sku" : [product_sku]
-    }
-}
-```
-
-### HTTP Request
-
-`POST https://apibodegas.loadingplay.com/v1/product`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-site_name | (required) filter by site
-sku | unique identifier for product it can be a comma separated list, and return a comma separated list of products
-
-## Edit a Product
-```shell
-curl -XPUT "https://apibodegas.loadingplay.com/v1/product" \
-  -H "Authorization: Bearer ACCESS_TOKEN" \
-    -d "sku=2212110" \
-    -d "site_name=fm" \
-    -d "name=" \
-    -d "description=" \
-    -d "main_price=" \
-    -d "cost_price=" \
-    -d "promotion_price=" \
-    -d "bulk_price=" \
-    -d "brand=" \
-    -d "manufacturer=" \
-    -d "bullet_1=" \
-    -d "bullet_2=" \
-    -d "bullet_3="
-```
-
-> The above command returns json with product info, including id:
-
-```json
-{
-    "statuts" : "success",
-    "product" : {
-        "id" : [product_id],
-        "sku" : [product_sku]
-    }
-}
-```
-
-### HTTP Request
-
-`PUT https://apibodegas.loadingplay.com/v1/product`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-site_name | (required) filter by site
-sku | unique identifier for product it can be a comma separated list, and return a comma separated list of products
-
-
-## Edit a Product
+GUUID | (required) cart unique global identifier
