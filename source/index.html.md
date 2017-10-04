@@ -11,11 +11,11 @@ toc_footers:
 includes:
   - carts
   - discounts
-  - errors
   - hooks
   - orders
   - products
   - variants
+  - errors
 
 search: true
 ---
