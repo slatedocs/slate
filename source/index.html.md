@@ -1,7 +1,7 @@
 ---
 title: API Reference
 
-home_link: https://github.com/lord/slate
+home_link: # replace this comment with url to add link to the logo
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
