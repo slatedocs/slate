@@ -10,7 +10,7 @@ toc_footers:
 
 includes:
   - carts
-  - discount
+  - discounts
   - errors
   - hooks
   - orders
