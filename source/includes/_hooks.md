@@ -43,9 +43,9 @@ HOOK_ID   | (required) | identificador unico para hook
 ```shell
 curl -XPOST https://apibodegas.loadingplay.com/v1/hook \
     -H 'Authorization: Bearer ACCESS_TOKEN' \
-    -d "url=www.testaddhook.cl" \
     -d "action=addProducts" \
-    -d "site_name=test"
+    -d "site_name=test" \
+    -d "url=www.testaddhook.cl"
 ```
 
 > The above command returns JSON structured like this:
@@ -55,7 +55,7 @@ curl -XPOST https://apibodegas.loadingplay.com/v1/hook \
     "status": "success",
     "hooks": [
         {
-            "id": "CREATED_HOOK_ID",
+            "id": CREATED_HOOK_ID,
             "url": "www.testaddhook.cl",
             "action": "addProduct",
             "site_name": "test"
@@ -80,13 +80,14 @@ url       | (optional) | url del cual hook realiza la accion
 
 
 
+
 ## Edit a Hook
 
 ```shell
 curl -XPUT https://apibodegas.loadingplay.com/v1/hook/HOOK_ID \
     -H 'Authorization: Bearer ACCESS_TOKEN' \
-    -d "url=www.testedithook.cl" \
-    -d "action=editProduct"
+    -d "action=editProduct" \
+    -d "url=www.testedithook.cl"
 ```
 
 > The above command returns JSON structured like this:
@@ -96,7 +97,7 @@ curl -XPUT https://apibodegas.loadingplay.com/v1/hook/HOOK_ID \
     "status": "success",
     "hooks": [
         {
-            "id": "HOOK_ID",
+            "id": HOOK_ID,
             "url": "www.testedithook.cl",
             "action": "editProduct"
         }
@@ -115,8 +116,8 @@ This endpoint edit a Hook.
 Parameter | Default    | Description
 --------- | -------    | -----------
 HOOK_ID   | (required) | identificador unico para hook
-url       | (optional) | url del cual hook realiza la accion
 action    | (optional) | Accion que dispara el hook
+url       | (optional) | url del cual hook realiza la accion
 
 
 
@@ -135,7 +136,7 @@ curl -XDELETE https://apibodegas.loadingplay.com/v1/hook/HOOK_ID \
     "status": "success",
     "hooks": [
         {
-            "id": "HOOK_ID",
+            "id": HOOK_ID,
             "url": "www.testedithook.cl",
             "action": "editProduct",
             "site_name": "test"
@@ -174,7 +175,7 @@ curl -XGET https://apibodegas.loadingplay.com/v1/hook \
     "status": "success",
     "hooks": [
         {
-            "id": "42",
+            "id": 42,
             "url": "https://www.test.cl",
             "action": "addProduct",
             "site_name": "test"

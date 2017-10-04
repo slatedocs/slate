@@ -3,7 +3,7 @@
 ## Get a Discount
 
 ```shell
-curl -XGET https://apibodegas.loadingplay.com/v1/discount/DISCOUNT_ID \
+curl -XGET https://apibodegas.loadingplay.com/v1/discount/1 \
     -H 'Authorization: Bearer ACCESS_TOKEN'
 ```
 
@@ -14,11 +14,11 @@ curl -XGET https://apibodegas.loadingplay.com/v1/discount/DISCOUNT_ID \
     "status" : "success",
     "discounts" : [
         {
-            "id" : "...",
-            "percentage": "...",
-            "code": "...",
-            "site_name": "...",
-            "activate": ""
+            "id" : 1,
+            "percentage": 20,
+            "code": "testCode",
+            "site_name": "test",
+            "activate": true
         }
     ]
 }
@@ -37,16 +37,16 @@ Parameter     | Default    | Description
 DISCOUNT_ID   | (required) | identificador unico para discount
 
 
-POR HACER POR HACER POR HACER
+
 
 ## Add a discount
 
 ```shell
 curl -XPOST https://apibodegas.loadingplay.com/v1/discount \
     -H 'Authorization: Bearer ACCESS_TOKEN' \
-    -d "percentage=PORBUSCAR" \
-    -d "code=PORBUSCAR" \
-    -d "site_name=PORBUSCAR" \
+    -d "site_name=test" \
+    -d "percentage=10" \
+    -d "code=addTestCode" \
     -d "activate=False"
 ```
 
@@ -57,11 +57,11 @@ curl -XPOST https://apibodegas.loadingplay.com/v1/discount \
     "status" : "success",
     "discounts" : [
         {
-            "id" : "...",
-            "percentage": "...",
-            "code": "...",
-            "site_name": "...",
-            "activate": ""
+            "id" : CRAETED_DISCOUNT_ID,
+            "percentage": 10,
+            "code": "addTestCode",
+            "site_name": "test",
+            "activate": false
         }
     ]
 }
@@ -75,11 +75,13 @@ This endpoint add a Discount.
 
 ### URL Parameters
 
-Parameter | Default    | Description
---------- | -------    | -----------
-action    | (required) | Accion que ejecuta el discount
-site_name | (required) | nombre del sitio del cual pertenece discount
-url       | (optional) | url del cual discount realiza la accion
+Parameter  | Default    | Description
+---------  | -------    | -----------
+site_name  | (required) | nombre del sitio del cual pertenece discount
+percentage | (optional) | porcentaje de descuento
+code       | (optional) | codigo con el cual se obtiene descuento
+activate   | (optional) | valor que indica si el codigo de descuento esta activado
+
 
 
 
@@ -88,8 +90,9 @@ url       | (optional) | url del cual discount realiza la accion
 ```shell
 curl -XPUT https://apibodegas.loadingplay.com/v1/discount/DISCOUNT_ID \
     -H 'Authorization: Bearer ACCESS_TOKEN' \
-    -d "url=PORBUSCAR" \
-    -d "action=PORBUSCAR"
+    -d "percentage=20" \
+    -d "code=editTestCode" \
+    -d "activate=True"
 
 ```
 
@@ -100,9 +103,10 @@ curl -XPUT https://apibodegas.loadingplay.com/v1/discount/DISCOUNT_ID \
     "status" : "success",
     "discounts" : [
         {
-            "id" : "...",
-            "url": "...",
-            "action": "..."
+            "id" : DISCOUNT_ID,
+            "percentage": 20,
+            "code": "editTestCode",
+            "activate": true
         }
     ]
 }
@@ -116,11 +120,12 @@ This endpoint edit a Discount.
 
 ### URL Parameters
 
-Parameter | Default    | Description
---------- | -------    | -----------
+Parameter     | Default    | Description
+---------     | -------    | -----------
 DISCOUNT_ID   | (required) | identificador unico para discount
-url       | (optional) | url del cual discount realiza la accion
-action    | (optional) | Accion que ejecuta el discount
+percentage    | (optional) | porcentaje de descuento
+code          | (optional) | codigo con el cual se obtiene descuento
+activate      | (optional) | valor que indica si el codigo de descuento esta activado
 
 
 
@@ -139,11 +144,11 @@ curl -XDELETE https://apibodegas.loadingplay.com/v1/discount/DISCOUNT_ID \
     "status" : "success",
     "discounts" : [
         {
-            "id" : "...",
-            "percentage": "...",
-            "code": "...",
-            "site_name": "...",
-            "activate": ""
+            "id" : DISCOUNT_ID,
+            "percentage": 20,
+            "code": "editTestCode",
+            "site_name": "test",
+            "activate": true
         }
     ]
 }
@@ -157,8 +162,8 @@ This endpoint delete a discount.
 
 ### URL Parameters
 
-Parameter | Default    | Description
---------- | -------    | -----------
+Parameter     | Default    | Description
+---------     | -------    | -----------
 DISCOUNT_ID   | (required) | identificador unico para discount
 
 
@@ -169,7 +174,7 @@ DISCOUNT_ID   | (required) | identificador unico para discount
 ```shell
 curl -XGET https://apibodegas.loadingplay.com/v1/discount \
     -H 'Authorization: Bearer ACCESS_TOKEN' \
-    -d "site_name=PORBUSCAR"
+    -d "site_name=test"
 ```
 
 > The above command returns JSON structured like this:
@@ -179,11 +184,11 @@ curl -XGET https://apibodegas.loadingplay.com/v1/discount \
     "status" : "success",
     "discounts" : [
         {
-            "id" : "...",
-            "percentage": "...",
-            "code": "...",
-            "site_name": "...",
-            "activate": ""
+            "id" : 1,
+            "percentage": 20,
+            "code": "testCode",
+            "site_name": "test",
+            "activate": true
         },
         {
             "id" : "...",
