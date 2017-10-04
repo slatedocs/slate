@@ -3,7 +3,7 @@
 ## Get a Hook
 
 ```shell
-curl -XGET https://apibodegas.loadingplay.com/v1/hook/HOOK_ID \
+curl -XGET https://apibodegas.loadingplay.com/v1/hook/42 \
     -H 'Authorization: Bearer ACCESS_TOKEN'
 ```
 
@@ -11,13 +11,13 @@ curl -XGET https://apibodegas.loadingplay.com/v1/hook/HOOK_ID \
 
 ```json
 {
-    "status" : "success",
-    "hooks" : [
+    "status": "success",
+    "hooks": [
         {
-            "id" : "...",
-            "url": "...",
-            "action": "...",
-            "site_name": "..."
+            "id": 42,
+            "url": "https://www.test.cl",
+            "action": "addProduct",
+            "site_name": "test"
         }
     ]
 }
@@ -43,22 +43,22 @@ HOOK_ID   | (required) | identificador unico para hook
 ```shell
 curl -XPOST https://apibodegas.loadingplay.com/v1/hook \
     -H 'Authorization: Bearer ACCESS_TOKEN' \
-    -d "url=PORBUSCAR" \
+    -d "url=www.testaddhook.cl" \
     -d "action=addProducts" \
-    -d "site_name=PORBUSCAR"
+    -d "site_name=test"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-    "status" : "success",
-    "hooks" : [
+    "status": "success",
+    "hooks": [
         {
-            "id" : "...",
-            "url": "...",
-            "action": "...",
-            "site_name": "..."
+            "id": "CREATED_HOOK_ID",
+            "url": "www.testaddhook.cl",
+            "action": "addProduct",
+            "site_name": "test"
         }
     ]
 }
@@ -74,7 +74,7 @@ This endpoint add a Hook.
 
 Parameter | Default    | Description
 --------- | -------    | -----------
-action    | (required) | Accion que ejecuta el hook
+action    | (required) | Accion que dispara el hook
 site_name | (required) | nombre del sitio del cual pertenece hook
 url       | (optional) | url del cual hook realiza la accion
 
@@ -85,21 +85,20 @@ url       | (optional) | url del cual hook realiza la accion
 ```shell
 curl -XPUT https://apibodegas.loadingplay.com/v1/hook/HOOK_ID \
     -H 'Authorization: Bearer ACCESS_TOKEN' \
-    -d "url=PORBUSCAR" \
-    -d "action=PORBUSCAR"
-
+    -d "url=www.testedithook.cl" \
+    -d "action=editProduct"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-    "status" : "success",
-    "hooks" : [
+    "status": "success",
+    "hooks": [
         {
-            "id" : "...",
-            "url": "...",
-            "action": "..."
+            "id": "HOOK_ID",
+            "url": "www.testedithook.cl",
+            "action": "editProduct"
         }
     ]
 }
@@ -117,7 +116,7 @@ Parameter | Default    | Description
 --------- | -------    | -----------
 HOOK_ID   | (required) | identificador unico para hook
 url       | (optional) | url del cual hook realiza la accion
-action    | (optional) | Accion que ejecuta el hook
+action    | (optional) | Accion que dispara el hook
 
 
 
@@ -133,13 +132,13 @@ curl -XDELETE https://apibodegas.loadingplay.com/v1/hook/HOOK_ID \
 
 ```json
 {
-    "status" : "success",
-    "hooks" : [
+    "status": "success",
+    "hooks": [
         {
-            "id" : "...",
-            "url": "...",
-            "action": "...",
-            "site_name": "..."
+            "id": "HOOK_ID",
+            "url": "www.testedithook.cl",
+            "action": "editProduct",
+            "site_name": "test"
         }
     ]
 }
@@ -165,23 +164,23 @@ HOOK_ID   | (required) | identificador unico para hook
 ```shell
 curl -XGET https://apibodegas.loadingplay.com/v1/hook \
     -H 'Authorization: Bearer ACCESS_TOKEN' \
-    -d "site_name=PORBUSCAR"
+    -d "site_name=test"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-    "status" : "success",
-    "hooks" : [
+    "status": "success",
+    "hooks": [
         {
-            "id" : "...",
-            "url": "...",
-            "action": "...",
-            "site_name": "..."
+            "id": "42",
+            "url": "https://www.test.cl",
+            "action": "addProduct",
+            "site_name": "test"
         },
         {
-            "id" : "...",
+            "id": "...",
             "url": "...",
             "action": "...",
             "site_name": "..."
