@@ -507,7 +507,8 @@ curl 'https://app.rubberstamp.io/api/v1/companies/approvers'
 ]
 ```
 
-Retrieves the list of approvers for current company.
+Retrieves the list of approvers for current company. It will not return approver
+lists if it is an auto approval PO.
 
 ### HTTP Request
 
@@ -519,8 +520,6 @@ Retrieves the list of approvers for current company.
 | ------               | ------  | -------------                                              |
 | authentication_token | headers | Authentication token                                       |
 | app_company_id       | headers | Company Id                                                 |
-| budget_id            | integer | Approvers list won't display if already assigned to budget |
-| show_approvers       | boolean | Will display approvers for budget                          |
 
 
 ## Existing Approvers
