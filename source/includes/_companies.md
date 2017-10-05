@@ -509,19 +509,6 @@ curl 'https://app.rubberstamp.io/api/v1/companies/approvers'
 
 Retrieves the list of approvers for current company.
 
-### Populate approvers list depending on approval routing
-
-if you pass `budget_id` as an extra params then it will check if it is match auto
-approval routing and if yes, it won't return approvers list. example:
-`https://app.rubberstamp.io/api/v1/companies/approvers?budget_id=1`
-
-### Filter approvers by budget
-
-if you pass both `budget_id` and `show_approvers` then it will display list of
-approvers for that budget if any.
-
-`https://app.rubberstamp.io/api/v1/companies/approvers?budget_id=1&show_approvers=true`
-
 ### HTTP Request
 
 `GET https://app.rubberstamp.io/api/v1/companies/approvers`
