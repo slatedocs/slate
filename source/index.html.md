@@ -23,6 +23,7 @@ includes:
   - tax_rates
   - uploads
   - extras
+  - webhooks
 
 search: true
 ---
