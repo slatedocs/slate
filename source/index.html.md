@@ -3,6 +3,7 @@ title: Mobius API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
+  - javascript
 
 toc_footers:
   - <a href='https://mobius.network/store/developer'>Sign Up for a Developer Key</a>
@@ -18,14 +19,22 @@ search: true
 
 Welcome to the Mobius API! The Mobius API provides simple access to the Mobius DApp Store and multiple blockchains.
 
-We currently have language examples in Shell using curl with JavaScript, Ruby, and Python examples coming soon! You can view code examples in the dark area to the right, and you can switch the language of the examples with the tabs in the top right.
+We currently have language examples in Shell using curl and JavaScript using our [node library](https://github.com/mobius-network/mobius-node). Ruby and Python examples coming soon! You can view code examples in the dark area to the right, and you can switch the language of the examples with the tabs in the top right.
 
 # Authentication
 
-> To authorize, always include an api_key parameter:
+> To authorize, always include an api_key parameter, or provide it to constructor if your using library:
 
 ```shell
 curl "https://mobius.network/api/v1/ENDPOINT?api_key=API_KEY_HERE"
+```
+
+```javascript
+import Mobius from '@mobius-network/mobius-node';
+
+const mobius = new Mobius({
+  apiKey: 'API_KEY_HERE',
+});
 ```
 
 Mobius uses API keys to allow access to the API. You can view your API key at our [developer portal](https://mobius.network/store/developer).
@@ -46,7 +55,16 @@ You must replace <code>API_KEY_HERE</code> with your personal API key.
 curl "https://mobius.network/api/v1/app_store/balance?api_key=API_KEY_HERE&app_uid=APP_UID&email=EMAIL"
 ```
 
-> Returned JSON
+```javascript
+mobius.appStore
+  .balance({
+    appUid: 'APP_UID',
+    email: 'EMAIL',
+  })
+  .then(data => { ... });
+```
+
+> Returned JSON (in JavaScript all keys converted to `camelCase`)
 
 ```json
 {
@@ -73,7 +91,17 @@ email | The email of the user whose balance you want to query.
 curl -X POST "https://mobius.network/api/v1/app_store/balance?api_key=API_KEY_HERE&app_uid=APP_UID&email=EMAIL&num_credits=NUM_CREDITS"
 ```
 
-> Returned JSON
+```javascript
+mobius.appStore
+  .use({
+    appUid: 'APP_UID',
+    email: 'EMAIL',
+    numCredits: 'NUM_CREDITS',
+  })
+  .then(data => { ... });
+```
+
+> Returned JSON (in JavaScript all keys converted to `camelCase`)
 
 ```json
 {
@@ -104,7 +132,18 @@ num_credits | The number of credits to use.
 curl -X POST "https://mobius.network/api/v1/tokens/register?api_key=API_KEY_HERE&token_type=ERC20&name=Augur&symbol=REP&address=0x48c80F1f4D53D5951e5D5438B54Cba84f29F32a5"
 ```
 
-> Returned JSON
+```javascript
+mobius.tokens
+  .register({
+    tokenType: 'ERC20',
+    name: 'Augur',
+    symbol: 'REP',
+    address: '0x48c80F1f4D53D5951e5D5438B54Cba84f29F32a5',
+  })
+  .then(data => { ... });
+```
+
+> Returned JSON (in JavaScript all keys converted to `camelCase`)
 
 ```json
 {
@@ -133,7 +172,16 @@ address | The address of the token.
 curl "https://mobius.network/api/v1/tokens/balance?api_key=API_KEY_HERE&token_uid=TOKEN_UID&address=0x48c80F1f4D53D5951e5D5438B54Cba84f29F32a5"
 ```
 
-> Returned JSON
+```javascript
+mobius.tokens
+  .balance({
+    tokenUid: 'TOKEN_UID',
+    address: '0x48c80F1f4D53D5951e5D5438B54Cba84f29F32a5',
+  })
+  .then(data => { ... });
+```
+
+> Returned JSON (in JavaScript all keys converted to `camelCase`)
 
 ```json
 {
@@ -160,7 +208,16 @@ address | The address whose balance you want to query.
 curl -X POST "https://mobius.network/api/v1/tokens/create_address?api_key=API_KEY_HERE&token_uid=TOKEN_UID"
 ```
 
-> Returned JSON
+```javascript
+mobius.tokens
+  .createAddress({
+    tokenUid: 'TOKEN_UID',
+    managed: true,
+  })
+  .then(data => { ... });
+```
+
+> Returned JSON (in JavaScript all keys converted to `camelCase`)
 
 ```json
 {
@@ -190,7 +247,16 @@ managed | True if you want Mobius to manage the private key. False if you want t
 curl -X POST "https://mobius.network/api/v1/tokens/register_address?api_key=API_KEY_HERE&token_uid=TOKEN_UID&address=ADDRESS"
 ```
 
-> Returned JSON
+```javascript
+mobius.tokens
+  .registerAddress({
+    tokenUid: 'TOKEN_UID',
+    address: 'ADDRESS',
+  })
+  .then(data => { ... });
+```
+
+> Returned JSON (in JavaScript all keys converted to `camelCase`)
 
 ```json
 {
@@ -217,7 +283,17 @@ address | The address to register
 curl -X POST "https://mobius.network/api/v1/tokens/transfer/managed?api_key=API_KEY_HERE&token_address_uid=TOKEN_ADDRESS_UID&address_to=ADDRESS&num_tokens=NUM_TOKENS"
 ```
 
-> Returned JSON
+```javascript
+mobius.tokens
+  .transferManaged({
+    tokenAddressUid: 'TOKEN_ADDRESS_UID',
+    addressTo: 'ADDRESS',
+    numTokens: 'NUM_TOKENS',
+  })
+  .then(data => { ... });
+```
+
+> Returned JSON (in JavaScript all keys converted to `camelCase`)
 
 ```json
 {
@@ -245,7 +321,17 @@ num_tokens | The number of tokens to trasnfer.
 curl -X POST "https://mobius.network/api/v1/tokens/transfer/unmanaged?api_key=API_KEY_HERE&address_to=ADDRESS&num_tokens=NUM_TOKENS&private_key=PRIVATE_KEY&token_uid=TOKEN_UID"
 ```
 
-> Returned JSON
+```javascript
+mobius.tokens
+  .transferUnmanaged({
+    addressTo: 'ADDRESS',
+    numTokens: 'NUM_TOKENS',
+    privateKey: 'PRIVATE_KEY',
+  })
+  .then(data => { ... });
+```
+
+> Returned JSON (in JavaScript all keys converted to `camelCase`)
 
 ```json
 {
@@ -277,7 +363,15 @@ gas_limit (optional) | Default = 55,000
 curl "https://mobius.network/api/v1/tokens/transfer/info?api_key=API_KEY_HERE&token_address_transfer_uid=UID"
 ```
 
-> Returned JSON
+```javascript
+mobius.tokens
+  .transferInfo({
+    tokenAddressTransferUid: 'UID',
+  })
+  .then(data => { ... });
+```
+
+> Returned JSON (in JavaScript all keys converted to `camelCase`)
 
 ```json
 {
