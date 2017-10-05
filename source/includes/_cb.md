@@ -150,7 +150,7 @@ campaign_country | <span class="label label-required">Required</span>
 campaign_state | <span class="label label-required">Required</span>
 campaign_city | <span class="label label-required">Required</span>	
 business_category_id | <span class="label label-required">Required</span>	
-business_categories	| <span class="label label-required">Required</span>	
+extra_business_categories_ids	| <span class="label label-required">Required</span> JSON encoded array. For example, [“1234”,“5678”,“9012”]. [See here for a full list of valid business category IDs.](#business-categories) 	
 address1 | <span class="label label-required">Required</span>	
 address2 |			
 postcode | <span class="label label-required">Required</span>	
@@ -306,7 +306,7 @@ campaign_name |
 website_address	| 		
 campaign_state |
 campaign_city | 		
-business_categories	| 	
+extra_business_categories_ids	| JSON encoded array. For example, [“1234”,“5678”,“9012”]. [See here for a full list of valid business category IDs.](#business-categories)	
 address1 | 	
 address2 |		 	
 postcode | 	
@@ -726,6 +726,11 @@ var campaign = request.Get("/v2/cb/get", parameters);
             "campaign_city": "San Diego",
             "business_category_id": "2291",
             "business_category_name": "bar, liquor store, restaurant, food, store",
+            "extra_business_categories_ids": [
+            	"1058",
+                "1160",
+                "5376"
+            ],
             "address": {
                 "street_address_1": "505 Laurel Street",
                 "street_address_2": null,
