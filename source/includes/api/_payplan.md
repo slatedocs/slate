@@ -49,9 +49,9 @@ Recurring handles all types of recurring plans.
       "name": "usaepay",
       "referrer": null,
       "clientIP": "127.0.0.1",
-      "mid": "513485000208199",
+      "mid": "100000000000088",
       "userID": 18,
-      "userKey": "slicelocal",
+      "userKey": "userkeylocal",
       "proccessTime": 0,
       "tranToken": null
     }
@@ -119,9 +119,9 @@ PLANID | The ID of the recurring plan to retrieve.
         "name": "usaepay",
         "referrer": null,
         "clientIP": "127.0.0.1",
-        "mid": "513485000208199",
+        "mid": "100000000000088",
         "userID": 18,
-        "userKey": "slicelocal",
+        "userKey": "userkeylocal",
         "proccessTime": 0,
         "tranToken": null
       }
@@ -167,9 +167,9 @@ PLANID | The ID of the recurring plan to retrieve.
         "name": "usaepay",
         "referrer": null,
         "clientIP": "127.0.0.1",
-        "mid": "513485000208199",
+        "mid": "100000000000088",
         "userID": 18,
-        "userKey": "slicelocal",
+        "userKey": "userkeylocal",
         "proccessTime": 0,
         "tranToken": null
       }
@@ -219,9 +219,9 @@ PLANID | The ID of the recurring plan to retrieve.
         "name": "usaepay",
         "referrer": null,
         "clientIP": "127.0.0.1",
-        "mid": "513485000208199",
+        "mid": "100000000000088",
         "userID": 18,
-        "userKey": "slicelocal",
+        "userKey": "userkeylocal",
         "proccessTime": 0,
         "tranToken": null
       }
@@ -235,7 +235,7 @@ PLANID | The ID of the recurring plan to retrieve.
       "current_page": 1,
       "total_pages": 27,
       "links": {
-        "next": "https://sliceapilocal.cmsonline.com/v2/recurring?page=2"
+        "next": "http://api.slycepay.com/v2/recurring?page=2" 
       }
     }
   }
@@ -305,9 +305,9 @@ page | 1 | Page number.
       "name": "acapture",
       "referrer": null,
       "clientIP": "127.0.0.1",
-      "mid": "513485000208199",
+      "mid": "100000000000088",
       "userID": 32,
-      "userKey": "slicelocal_acapture",
+      "userKey": "userkeylocal",
       "proccessTime": 0,
       "tranToken": null
     }
@@ -385,9 +385,9 @@ total | Total amount that will be charge for the entire plan period. Applies onl
       "name": "acapture",
       "referrer": null,
       "clientIP": "127.0.0.1",
-      "mid": "513485000208199",
+      "mid": "100000000000088",
       "userID": 32,
-      "userKey": "slicelocal_acapture",
+      "userKey": "userkeylocal",
       "proccessTime": 0,
       "tranToken": null
     }
@@ -477,7 +477,7 @@ PLANID | The ID of the recurring plan to be cancelled.
       "current_page": 1,
       "total_pages": 2,
       "links": {
-        "next": "https://sliceapilocal.cmsonline.com/v2/recurring/559/logs?page=2"
+        "next": "http://api.slycepay.com/v2/recurring/559/logs?page=2"
       }
     }
   }
