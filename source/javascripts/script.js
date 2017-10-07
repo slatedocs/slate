@@ -6,8 +6,8 @@ $( document ).ready(function() {
 
 	//we will replace the words slyce with emvio
 	if( (domain.search("emvio") >= 0) || (param.search("emvio") >= 0) ){
-		var newtitle = document.title.replace(/Slyce API Documentation/g, "emvio api documentation");
-		document.title = newtitle;
+		//var newtitle = document.title.replace(/Slyce API Documentation/g, "emvio api documentation");
+		//document.title = newtitle;
 
 		walkText(document.body);
 	}  

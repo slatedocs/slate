@@ -1,5 +1,5 @@
 ---
-title: Slyce API Documentation
+title: API Documentation
 
 
 
