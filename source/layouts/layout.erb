@@ -61,10 +61,23 @@ under the License.
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-      // This sends traffic to the blog-specific GA account. Segment is responsible for sending
+      // This sends traffic to the help-specific GA account. Segment is responsible for sending
       // data to the Scout overall property.
       ga('create', 'UA-3212349-13', 'auto', 'help_tracker');
       ga('help_tracker.send', 'pageview');
+
+      //This does hash-click tracking (inspired by http://stackoverflow.com/a/4813223)
+      $(document).ready(function() {
+        $('.tocify-item a').on('click', function(){
+          ga('help_tracker.send', 'pageview', {'page': location.pathname + location.search  + location.hash});
+          // not seeing the path in our Segement data...was this related to custom GA filter? See it in Help-specific
+          // tracking.
+          analytics.page({"properties": {
+              path: location.pathname + location.hash
+            }
+          });
+        });
+      });
     </script>
   </head>
 
