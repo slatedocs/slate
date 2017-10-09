@@ -70,12 +70,7 @@ under the License.
       $(document).ready(function() {
         $('.tocify-item a').on('click', function(){
           ga('help_tracker.send', 'pageview', {'page': location.pathname + location.search  + location.hash});
-          // not seeing the path in our Segement data...was this related to custom GA filter? See it in Help-specific
-          // tracking.
-          analytics.page({"properties": {
-              path: location.pathname + location.hash
-            }
-          });
+          analytics.page({'path': location.pathname + location.search  + location.hash});
         });
       });
     </script>
