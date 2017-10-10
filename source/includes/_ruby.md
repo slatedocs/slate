@@ -986,7 +986,7 @@ There are a couple of approaches to ignore web requests and background jobs you 
 
 ### By the web endpoint path name
 
-You can ignore requests to web endpoints that match specific paths (like `/health_check`). See the `ignore` setting in the [configuration options](http://localhost:4567/#ruby-configuration-options).
+You can ignore requests to web endpoints that match specific paths (like `/health_check`). See the `ignore` setting in the [configuration options](#ruby-configuration-options).
 
 ### In your code
 
@@ -999,4 +999,4 @@ req.ignore_request!
 
 ### Ignoring all background jobs
 
-You can ignore all background jobs by setting `enable_background_jobs: false` in your configuration file. See the [configuration options](http://localhost:4567/#ruby-configuration-options).
+You can ignore all background jobs by setting `enable_background_jobs: false` in your configuration file. See the [configuration options](#ruby-configuration-options).
