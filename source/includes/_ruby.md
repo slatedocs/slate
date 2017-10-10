@@ -396,6 +396,20 @@ The following configuration settings are available:
       </td>
     </tr>
     <tr>
+      <th>
+        enable_background_jobs
+      </th>
+      <td>
+        Indicates if background jobs should be monitored.
+      </td>
+      <td>
+        <code>true</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
       <th>dev_trace</th>
       <td>
         Indicates if DevTrace, the Scout development profiler, should be enabled. Note this setting only applies
@@ -965,3 +979,24 @@ production:
 ```
 
 Aft you've disabled a node in your configuration file and restarted your app server, the node show up as inactive in the UI after 10 minutes.
+
+## Ignoring transactions
+
+There are a couple of approaches to ignore web requests and background jobs you don't care to instrument. These approaches are listed below.
+
+### By the web endpoint path name
+
+You can ignore requests to web endpoints that match specific paths (like `/health_check`). See the `ignore` setting in the [configuration options](http://localhost:4567/#ruby-configuration-options).
+
+### In your code
+
+To selectively ignore a web request or background job in your code, add the following within the transaction:
+
+```ruby
+req = ScoutApm::RequestManager.lookup
+req.ignore_request!
+```
+
+### Ignoring all background jobs
+
+You can ignore all background jobs by setting `enable_background_jobs: false` in your configuration file. See the [configuration options](http://localhost:4567/#ruby-configuration-options).
