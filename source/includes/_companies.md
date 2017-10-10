@@ -532,7 +532,7 @@ RestClient.post(
     invite_user: {
       email: 'friend@example.com',
       name: 'Pherrel Williams',
-      roles: ["admin", "accountant"]
+      roles: ["approver", "teammember"]
     }
   },
   headers = {
@@ -550,8 +550,8 @@ curl 'https://app.rubberstamp.io/api/v1/companies/send_user_invite'
   -H "app_company_id: 1"
   -d "invite_user[email]=friend@example.com"
   -d "invite_user[name]=Pherrel Williams"
-  -d "invite_user[roles]=admin"
-  -d "invite_user[roles]=accountant"
+  -d "invite_user[roles]=approver"
+  -d "invite_user[roles]=teammember"
 ```
 
 > The above command returns JSON structured like this:
@@ -568,10 +568,10 @@ Send invitation to the user.
 
 ### URL Parameters
 
-| Params               | Type    | Description                     |
-| -----                | ------  | ---------                       |
-| authentication_token | headers | Authentication token            |
-| app_company_id       | headers | Company id                      |
-| invite_user[email]   | string  | Email to send invitation to     |
-| invite_user[name]    | string  | User's first name and last name |
-| invite_user[roles]   | Array[] | List of Roles for that user     |
+| Params               | Type    | Description                                                                                                          |
+| -----                | ------  | ---------                                                                                                            |
+| authentication_token | headers | Authentication token                                                                                                 |
+| app_company_id       | headers | Company id                                                                                                           |
+| invite_user[email]   | string  | Email to send invitation to                                                                                          |
+| invite_user[name]    | string  | User's first name and last name                                                                                      |
+| invite_user[roles]   | Array[] | List of Roles for that user. Available roles are: <br/> - companyadmin <br/> - approver <br/> - finance <br/> - teammember |
