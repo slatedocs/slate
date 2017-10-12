@@ -65,6 +65,7 @@ isRequired | bool | 1..1 | признак обязательности поля
 type | [FieldClass](#fieldclass) | 1..1 | тип поля формы, определяющий формат данных
 hint | string | 0..1 | подсказка
 key | string | 0..1 | ключ для привязки к типу в email
+placeholder | string | 0..1 | отображаемое внутри поля
 
 ### FieldClass
 
