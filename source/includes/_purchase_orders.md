@@ -72,7 +72,7 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders'
   "status": "pending",
   "creator_id": 1,
   "currency_id": 1,
-  "creator_name": "James Kennedy",
+  "creator_name": "Robert W.",
   "amount": "50.55",
   "created_at": 1505972258,
   "updated_at": 1505972258,
@@ -134,7 +134,15 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders'
   "custom_field_values": [],
   "payments": [],
   "purchase_order_item_payments": [],
-  "uploads": []
+  "uploads": [],
+  "approver_requests": [
+    {
+      "id": 1,
+      "status": "pending",
+      "approver_name": "Gillian Neary",
+      "approver_id": 2
+    }
+  ]
 }
 ```
 
@@ -401,12 +409,24 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1'
   "custom_field_values": [],
   "payments": [],
   "purchase_order_item_payments": [],
-  "uploads": []
+  "uploads": [],
+  "approver_requests": [
+    {
+      "id": 1,
+      "status": "pending",
+      "approver_name": "Gillian Neary",
+      "approver_id": 2
+    }
+  ]
 }
 ```
 
 Retrieves the details of an existing purchase orders. you need to supply the
 unique purchase order id, that was returned upon product creation.
+
+PurchaseOrder's `status` will be `approved` if all of the approvers have already
+approved this purchase order. You can find list of approvers in `approver_requests`
+attribute.
 
 ### HTTP Request
 
