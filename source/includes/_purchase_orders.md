@@ -530,3 +530,103 @@ them in JSON format.
 | authentication_token | header  | Authentication token |
 | app_company_id       | header  | Company ID           |
 
+
+## Approve
+
+```ruby
+require 'rest-client'
+
+RestClient.get(
+  'https://app.rubberstamp.io/api/v1/purchase_orders/1/approve',
+  {
+    token: 'accept-token'
+  },
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1/approve'
+  -X GET
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+  -d "token=accept-token"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "response": "Approved"
+}
+```
+
+Approve purchase order. You must pass valid accept token to approve the Purchase
+order.
+
+### HTTP Request
+
+`GET https://app.rubberstamp.io/api/v1/purchase_orders/:id/approve`
+
+### URL Parameters
+
+| Params               | Type   | Description             |
+| ------               | ------ | -----------             |
+| authentication_token | header | Authentication token    |
+| app_company_id       | header | Company ID              |
+| token                | string | Approver's accept token |
+
+
+## Reject
+
+```ruby
+require 'rest-client'
+
+RestClient.get(
+  'https://app.rubberstamp.io/api/v1/purchase_orders/1/reject',
+  {
+    token: 'reject-token'
+  },
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1/reject'
+  -X GET
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+  -d "token=reject-token"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "response": "Rejected"
+}
+```
+
+Reject purchase order. You must pass valid reject token to reject the Purchase
+order.
+
+### HTTP Request
+
+`GET https://app.rubberstamp.io/api/v1/purchase_orders/:id/reject`
+
+### URL Parameters
+
+| Params               | Type   | Description             |
+| ------               | ------ | -----------             |
+| authentication_token | header | Authentication token    |
+| app_company_id       | header | Company ID              |
+| token                | string | Approver's reject token |
+
