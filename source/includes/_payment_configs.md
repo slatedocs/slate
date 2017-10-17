@@ -7,7 +7,6 @@ EXEMPLO
 
   {
     "id": 1,
-    "payee_id": 1,
     "bank_account_id": 1,
     "name": "Configuração de Pagamento",
     "_links":
@@ -15,8 +14,7 @@ EXEMPLO
         {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/payment_configs/1"},
         {"rel":"update","method":"PUT","href":"https://app.cobrato.com/api/v1/payment_configs/1"},
         {"rel":"destroy","method":"DELETE","href":"https://app.cobrato.com/api/v1/payment_configs/1"},
-        {"rel":"bank_account","method":"GET","href":"https://app.cobrato.com/api/v1/bank_accounts/1"},
-        {"rel":"payee","method":"GET","href":"https://app.cobrato.com/api/v1/payee/1"}
+        {"rel":"bank_account","method":"GET","href":"https://app.cobrato.com/api/v1/bank_accounts/1"}
       ]
   }
 
@@ -47,7 +45,6 @@ EXEMPLO DE CORPO DA RESPOSTA
 
   {
     "id": 1,
-    "payee_id": 1,
     "bank_account_id": 1,
     "name": "Configuração de Pagamento",
     "_links":
@@ -55,8 +52,7 @@ EXEMPLO DE CORPO DA RESPOSTA
         {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/payment_configs/1"},
         {"rel":"update","method":"PUT","href":"https://app.cobrato.com/api/v1/payment_configs/1"},
         {"rel":"destroy","method":"DELETE","href":"https://app.cobrato.com/api/v1/payment_configs/1"},
-        {"rel":"bank_account","method":"GET","href":"https://app.cobrato.com/api/v1/bank_accounts/1"},
-        {"rel":"payee","method":"GET","href":"https://app.cobrato.com/api/v1/payees/1"}
+        {"rel":"bank_account","method":"GET","href":"https://app.cobrato.com/api/v1/bank_accounts/1"}
       ]
   }
 
@@ -153,7 +149,6 @@ Cria uma nova Configuração de Pagamento, retornando as informações da mesma 
 
 | Campo                     | Tipo    | Comentário                                                                                                                                                                                                      |
 |---------------------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| payee_id                  | integer | **(requerido)** código de identificação do dono da conta ao qual a configuração de pagamento irá pertencer                                                                                                        |
 | bank_account_id           | integer | **(requerido)** código de identificação da conta bancária em que a configuração de pagamento irá pertencer                                                                                                       |
 | name                      | string  | **(requerido)** nome que identifica esta configuração de pagamento                                                                                                                                               |
 
