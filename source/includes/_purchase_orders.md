@@ -531,6 +531,134 @@ them in JSON format.
 | app_company_id       | header  | Company ID           |
 
 
+
+## Pending Requests
+
+```ruby
+require 'rest-client'
+
+RestClient.get(
+  'https://app.rubberstamp.io/api/v1/purchase_orders/pending_requests',
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.rubberstamp.io/api/v1/purchase_orders/pending_requests'
+  -X GET
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "purchase_orders": [
+    {
+      "id": 1,
+      "creator_name": "James Kennedy",
+      "amount": "50.55",
+      "status": "pending",
+      "supplier_name": "John Doe",
+      "keywords": "John doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
+      "created_at": 1505972258000,
+      "currency_id": 1,
+      "currency_symbol": "$",
+      "total_gross_amount": "50.55",
+      "total_net_amount": "50.0",
+      "base_gross_amount": "44.564375"
+    },
+    {
+      "id": 2,
+      "creator_name": "James Kennedy",
+      "amount": "50.55",
+      "status": "pending",
+      "supplier_name": "John Doe",
+      "keywords": "John Doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
+      "created_at": 1505972227000,
+      "currency_id": 1,
+      "currency_symbol": "$",
+      "total_gross_amount": "50.55",
+      "total_net_amount": "50.0",
+      "base_gross_amount": "44.564375"
+    }
+  ],
+  "meta": {
+      "current_page": 1,
+      "next_page": 2,
+      "prev_page": null,
+      "total_pages": 3,
+      "total_count": 25
+  }
+}
+```
+
+Retrieves the list of Pending requests for current authentication_token.
+
+### HTTP Request
+
+`GET https://app.rubberstamp.io/api/v1/purchase_orders/pending_requests`
+
+### URL Parameters
+
+| Params               | Type    | Description          |
+| ------               | -----   | ---------            |
+| authentication_token | header  | Authentication token |
+| app_company_id       | header  | Company ID           |
+
+
+
+
+## Pending Requests Count
+
+```ruby
+require 'rest-client'
+
+RestClient.get(
+  'https://app.rubberstamp.io/api/v1/purchase_orders/pending_request_count',
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.rubberstamp.io/api/v1/purchase_orders/pending_request_count'
+  -X GET
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "total_pending_request": 2
+}
+```
+
+Count total number of pending requests for current authentication_token.
+
+### HTTP Request
+
+`GET https://app.rubberstamp.io/api/v1/purchase_orders/pending_request_count`
+
+### URL Parameters
+
+| Params               | Type    | Description          |
+| ------               | -----   | ---------            |
+| authentication_token | header  | Authentication token |
+| app_company_id       | header  | Company ID           |
+
+
+
 ## Approve
 
 ```ruby
