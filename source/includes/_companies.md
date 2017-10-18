@@ -557,7 +557,7 @@ curl 'https://app.rubberstamp.io/api/v1/companies/send_user_invite'
 > The above command returns JSON structured like this:
 
 ```json
-{}
+{ "status": true }
 ```
 
 Send invitation to the user.

@@ -689,7 +689,7 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1/approve'
 
 ```json
 {
-  "response": "Approved"
+  "status": true
 }
 ```
 
@@ -739,7 +739,7 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1/reject'
 
 ```json
 {
-  "response": "Rejected"
+  "status": true
 }
 ```
 
