@@ -160,7 +160,7 @@ expires | <span class="label label-required">Required</span> [See above for how 
 report-name | <span class="label label-required">Required</span>
 location-id | Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
 white-label-profile-id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
-business-names | <span class="label label-required">Required</span> Supply one or more busines names (max 5) as a JSON string. For example, ["Greens Restaurant","Greens"].
+business-names | <span class="label label-required">Required</span> Supply only one business name as a JSON string. For example, ["Greens Restaurant"].
 website-address | <span class="label label-required">Required</span> The address for your business website. 256 characters max. 
 address1 | <span class="label label-required">Required</span> 80 characters max. 
 address2 | 80 characters max. 
@@ -173,8 +173,8 @@ country | <span class="label label-required">Required</span> One of USA, CAN:EN,
 business-category | <span class="label label-required">Required</span> The type of business - for example, Plumber (not Plumbing &amp; Heating Services).
 primary-business-location | <span class="label label-required">Required</span> The primary location served by the business. Enter town name and state code - for example, Chicago, IL.
 search-terms | <span class="label label-required">Required</span> Supply one or more search terms (max 5) as a JSON string. For example, ["restaurant san francisco","cafe san francisco"].
-google-location | A valid google search location. Please refer to our location check method.
-bing-location | A valid bing search location. Please refer to our location check method.
+google-location | <span class="label label-required">Required</span> A valid google search location. Please refer to our location check method.
+bing-location | <span class="label label-required">Required</span> A valid bing search location. Please refer to our location check method.
 notify | One of yes or no. If set to yes we will send report alerts to all email addresses specified (see field below). If you include customer email addresses when setting up your report we'll also email them the alerts so please be sure this is what you want before adding their addresses. Default is no.
 email-addresses | Supply one or more (max 5) email addresses for us to send report alerts to. This only takes effect if notify is set to yes.
 facebook-url | If known, please supply the Facebook URL for the business. If not supplied we'll try and find it on the business website or through a direct search of Facebook.
@@ -325,7 +325,7 @@ report-id | <span class="label label-required">Required</span>
 report-name |
 location-id | Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
 white-label-profile-id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
-business-names | Supply one or more busines names (max 5) as a JSON string. For example, ["Greens Restaurant","Greens"].
+business-names | Supply only one business name as a JSON string. For example, ["Greens Restaurant"].
 website-address | The address for your business website. 256 characters max. 
 address1 | 80 characters max. 
 address2 | 80 characters max. 
