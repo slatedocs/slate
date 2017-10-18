@@ -415,7 +415,9 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1'
       "id": 1,
       "status": "pending",
       "approver_name": "Gillian Neary",
-      "approver_id": 2
+      "approver_id": 2,
+      "accept_token": "17943-344853-20171017053411......",
+      "reject_token": "17943-344853-20171017053411......"
     }
   ]
 }
