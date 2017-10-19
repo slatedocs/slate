@@ -54,7 +54,7 @@ Para saber si la versión de su equipo es de 32 o 64 bits en Windows, siga los p
 
 Link puede conectarse a los siguientes motores de bases de datos relacionales:
 
-**SQL Server** 
+**SQL Server**
 
 * SQL Server 2000
 * SQL Server 2005
@@ -73,25 +73,23 @@ Link también puede  extraer información de los siguientes archivos de base de 
 
 
 
-
 # Descargas
 
-Instaladores del programa Link de Dátil:
+Integra Dátil a tu sistema en minutos.
 
-__Windows__
+### 4.7.0
 
-Windows 32 bits: [linkapp-windows-32bits]
-Windows 64 bits: [linkapp-windows-64bits]
+- [Windows 32 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_4.7.0_32bit.exe)
+- [Windows 64 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_4.7.0_64bit.exe)
 
-__Linux__
+# Notas de la versión
 
-Centos 32 bits (próximamente)
+### <strong>4.7.0</strong><br><small><strong>Octubre 19, 2017</strong></small>
 
-Centos 64 bits (próximamente)
-
-Ubuntu 32 bits (próximamente)
-
-Ubuntu 64 bits (próximamente)
+#### Nuevo
+Emisión de facturas de reembolso. Se agregaron tres nuevas entradas al archivo
+de configuración `config/receipts/invoice.ini`: invoice_reimbursement,
+invoice_reimbursement_document, invoice_reimbursement_document_tax
 
 
 # Instalación
@@ -150,7 +148,7 @@ CREATE TABLE
 Abrir el Bloc de Notas con permisos de administrador, dando click derecho y escogiendo
 **Ejecutar como administrador**. Escoger `Archivo` -> `Abrir` -> `C:\Archivos de Programa\Datil\Link\config`, en la opción `Tipo` de la ventana seleccionar _Todos los archivos_ y seleccionar `environment.ini`
 
-### General 
+### General
 
 Es la configuración general de la aplicación
 
@@ -175,7 +173,7 @@ En la sección `[DatabaseSource]` editar los parámetros:
 * `version` con la versión de SQL Server.
 * `api` con el valor `odbc`.
 
-Dejar `datasource`  y `provider` con el valor `None` porque no aplican para la conexión con 
+Dejar `datasource`  y `provider` con el valor `None` porque no aplican para la conexión con
 SQL Server
 
 ### Constraints
@@ -207,7 +205,7 @@ Abrir el Bloc de Notas con permisos de administrador, dando click derecho y esco
 En la sección `[General]` configurar el parámetro `ruc` con el ruc de la empresa.
 
 ### Api
-En la sección `[Api]` configurar el parámetro `xkey` con el _API key_ de Dátil y 
+En la sección `[Api]` configurar el parámetro `xkey` con el _API key_ de Dátil y
 `xpassword` con la clave del certificado de firma electrónica, `environment` con el valor `1` para emisión en modo de pruebas o `2` para emitir en producción.
 
 ### DatabaseSource
@@ -227,7 +225,7 @@ En la sección `[DatabaseSource]` editar los parámetros:
 * `version` con la versión de SQL Server.
 * `api` con el valor `odbc`.
 
-Dejar `datasource`  y `provider` con el valor `None` porque no aplican para la conexión con 
+Dejar `datasource`  y `provider` con el valor `None` porque no aplican para la conexión con
 SQL Server
 
 #### DBF (Visual Fox Pro)
@@ -239,7 +237,7 @@ SQL Server
 `driver`, `server`, `name`, `user`, `password` y `version`, no aplican para la conexión con archivos DBF
 
 
-Al terminar la edición del archivo se puede cambiar el nombre del mismo por el de la compañía, el nombre no debe llevar espacios, solo letras, números y subguiones. Ejemplo: 
+Al terminar la edición del archivo se puede cambiar el nombre del mismo por el de la compañía, el nombre no debe llevar espacios, solo letras, números y subguiones. Ejemplo:
 `seguros_secomsap`
 
 # Ejecutar el servicio
@@ -662,7 +660,7 @@ invoice_compensation = SELECT
   id_factura = ?
 ```
 
-### Exportación 
+### Exportación
 
 Obligatorio __solo__ para facturas de exportación
 
@@ -674,7 +672,7 @@ incoterm_lugar   | string  | Lugar Incoterm . __Requerido__
 incoterm_total_sin_impuestos   | string  | Total sin impuestos pagado por el incoterm. __Requerido__
 codigo_pais_origen   | string  | Código de dos letras del país origen según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)  . __Requerido__
 codigo_pais_destino   | string  | Código de dos letras del país origen según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)  
-codigo_pais_adquisicion   | string  | Código de dos letras del país origen según[ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) 
+codigo_pais_adquisicion   | string  | Código de dos letras del país origen según[ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
 puerto_origen   | string  | Puerto de origen. __Requerido__
 puerto_destino   | string  | Puerto de destino. __Requerido__
 total_flete_internacional   | float  | Total del flete internacional
@@ -704,7 +702,7 @@ invoice_export = SELECT
 
 ### Tablas recomendadas
 
-Estructura recomendada para las tablas o vistas con información de la factura. 
+Estructura recomendada para las tablas o vistas con información de la factura.
 
 Ejemplo en SQL Server:
 
@@ -776,7 +774,7 @@ CREATE TABLE [facturas].[item](
 
 )
 
--- FACTURA: IMPUESTOS DE ITEMS 
+-- FACTURA: IMPUESTOS DE ITEMS
 CREATE TABLE [facturas].[item_impuesto](
     [id_item] [bigint] NOT NULL FOREIGN KEY REFERENCES [facturas].[item](id),
     [codigo] [varchar](2) NOT NULL,
@@ -795,7 +793,7 @@ CREATE TABLE [facturas].[item_detalle_adicional](
     CONSTRAINT pk_items_detalles_adicionales PRIMARY KEY (id_item, nombre)
 )
 
--- FACTURA: IMPUESTOS TOTALES 
+-- FACTURA: IMPUESTOS TOTALES
 CREATE TABLE [facturas].[total_impuesto](
     [id_factura] bigint NOT NULL FOREIGN KEY REFERENCES [facturas].[factura](id),
     [codigo] [varchar](2) NOT NULL,
@@ -831,7 +829,7 @@ CREATE TABLE [facturas].[pago_propiedad](
   CONSTRAINT PK_pago_propiedad PRIMARY KEY (id_pago, nombre)
 )
 
--- FACTURA: CREDITO 
+-- FACTURA: CREDITO
 CREATE TABLE [facturas].[credito](
   [id] bigint IDENTITY(1,1) PRIMARY KEY,
   [id_factura] bigint NOT NULL FOREIGN KEY REFERENCES [facturas].[factura](id),
@@ -969,7 +967,7 @@ Campo | Tipo | Descripción
 razon_social | string | Razón social. Máximo 300 caracteres. __Requerido__
 identificacion | string | De 5 a 20 caracteres. __Requerido__
 tipo_identificacion | string | Ver [tabla](#tipo-de-identificaci-n) de tipos de identificación __Requerido__
-email | string | Correo electrónico. Máximo 300 caracteres. 
+email | string | Correo electrónico. Máximo 300 caracteres.
 telefono | string | Teléfono
 direccion | string | Dirección
 
@@ -1172,7 +1170,7 @@ nombre | string | Nombre del detalle adicional del ítem
 valor | string | Valor del detalle adicional del ítem
 ### Tablas recomendadas
 
-Estructura recomendada para las tablas o vistas con información de la nota de crédito. 
+Estructura recomendada para las tablas o vistas con información de la nota de crédito.
 
 Ejemplo en SQL Server:
 
@@ -1190,7 +1188,7 @@ DROP TABLE [notas_de_credito].[nota_de_credito]
 
 CREATE TABLE [notas_de_credito].[nota_de_credito](
     [id] bigint IDENTITY(1,1) PRIMARY KEY,
-    [ambiente] [int] NOT NULL, 
+    [ambiente] [int] NOT NULL,
     [tipo_emision] [int] NOT NULL,
     [secuencial] [bigint] NOT NULL,
     [fecha_emision] [datetime] NULL,
@@ -1236,7 +1234,7 @@ CREATE TABLE [notas_de_credito].[item](
     [descuento] [decimal](14,2)  NULL
 )
 
--- NOTA DE CRÉDITO: IMPUESTOS DE ITEMS 
+-- NOTA DE CRÉDITO: IMPUESTOS DE ITEMS
 CREATE TABLE [notas_de_credito].[item_impuesto](
     [id_item] [bigint] NOT NULL FOREIGN KEY REFERENCES [notas_de_credito].[item](id),
     [codigo] [varchar](2) NOT NULL,
@@ -1255,7 +1253,7 @@ CREATE TABLE [notas_de_credito].[item_detalle_adicional](
     CONSTRAINT pk_items_detalles_adicionales PRIMARY KEY (id_item, nombre)
 )
 
--- NOTA DE CRÉDITO: IMPUESTOS TOTALES 
+-- NOTA DE CRÉDITO: IMPUESTOS TOTALES
 CREATE TABLE [notas_de_credito].[total_impuesto](
     [id_nota_credito] bigint NOT NULL FOREIGN KEY REFERENCES [notas_de_credito].[nota_de_credito](id),
     [codigo] [varchar](2) NOT NULL,
@@ -1389,7 +1387,7 @@ retention_taxes  = SELECT
     tipo_documento_sustento,
     numero_documento_sustento,
     fecha_emision_documento_sustento
-    FROM 
+    FROM
     DocElectronicoRetencion.impuesto
     WHERE
     id_retencion = ?
@@ -1440,7 +1438,7 @@ Campo | Tipo | Descripción
 
 ### Tablas recomendadas
 
-Estructura recomendada para las tablas o vistas con información de la retención. 
+Estructura recomendada para las tablas o vistas con información de la retención.
 
 Ejemplo en SQL Server:
 
@@ -1456,7 +1454,7 @@ DROP TABLE [retenciones].[retencion]
 
 CREATE TABLE [retenciones].[retencion](
     [id] bigint IDENTITY(1,1) PRIMARY KEY,
-    [ambiente] [int] NOT NULL, 
+    [ambiente] [int] NOT NULL,
     [tipo_emision] [int] NOT NULL,
     [secuencial] [bigint] NOT NULL,
     [fecha_emision] [datetime] NULL,
@@ -1749,7 +1747,7 @@ Campo | Tipo | Descripción
 
 ### Tablas recomendadas
 
-Estructura recomendada para las tablas o vistas con información de la guía de remisión. 
+Estructura recomendada para las tablas o vistas con información de la guía de remisión.
 
 Ejemplo en SQL Server:
 
@@ -1849,12 +1847,12 @@ Para actualizar el programa Link de Dátil
 
 `net stop datilink`
 
-* Respalde la carpeta de configuración  `config` 
+* Respalde la carpeta de configuración  `config`
 
 Windows: `C:\Archivos de Programa\Datil\Link\config` .
 
 * Doble click en el desinstalador:
- 
+
 Windows: `C:\Archivos de Programa\Datil\Link\unins`
 
 Dentro del directorio de instalación solo debe quedar la carpeta `logs`. Si otro
