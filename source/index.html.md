@@ -2,8 +2,8 @@
 title: Mobius API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - javascript
+  - shell: curl
+  - javascript: javascript
 
 toc_footers:
   - <a href='https://mobius.network/store/developer'>Sign Up for a Developer Key</a>
@@ -23,10 +23,13 @@ We currently have language examples in Shell using curl and JavaScript using our
 
 # Authentication
 
-> To authorize, always include an api_key parameter, or provide it to constructor if your using library:
-
 ```shell
+# You can pass API key as a query parameter
 curl "https://mobius.network/api/v1/ENDPOINT?api_key=API_KEY_HERE"
+
+# or via request header
+curl "https://mobius.network/api/v1/ENDPOINT" \
+     -H "X-Api-Key: API_KEY_HERE"
 ```
 
 ```javascript
@@ -39,9 +42,8 @@ const mobius = new Mobius({
 
 Mobius uses API keys to allow access to the API. You can view your API key at our [developer portal](https://mobius.network/store/developer).
 
-Mobius expects for the API key to be included in all API requests to the server in a parameter that looks like the following:
-
-api_key=API_KEY_HERE
+Mobius expects for the API key to be included in all API requests to the server in a query parameter `api_key`, or
+using `X-Api-Key` http header.
 
 <aside class="notice">
 You must replace <code>API_KEY_HERE</code> with your personal API key.
@@ -52,7 +54,10 @@ You must replace <code>API_KEY_HERE</code> with your personal API key.
 ## Balance
 
 ```shell
-curl "https://mobius.network/api/v1/app_store/balance?api_key=API_KEY_HERE&app_uid=APP_UID&email=EMAIL"
+curl -G "https://mobius.network/api/v1/app_store/balance" \
+     -H "x-api-key: API_KEY_HERE" \
+     -d "app_uid=APP_UID" \
+     -d "email=EMAIL"
 ```
 
 ```javascript
@@ -88,7 +93,11 @@ email | The email of the user whose balance you want to query.
 ## Use
 
 ```shell
-curl -X POST "https://mobius.network/api/v1/app_store/balance?api_key=API_KEY_HERE&app_uid=APP_UID&email=EMAIL&num_credits=NUM_CREDITS"
+curl "https://mobius.network/api/v1/app_store/balance" \
+     -H "x-api-key: API_KEY_HERE" \
+     -d "app_uid=APP_UID" \
+     -d "email=EMAIL" \
+     -d "num_credits=NUM_CREDITS"
 ```
 
 ```javascript
@@ -126,19 +135,24 @@ num_credits | The number of credits to use.
 
 # Tokens
 
-## Register
+## Register token
 
 ```shell
-curl -X POST "https://mobius.network/api/v1/tokens/register?api_key=API_KEY_HERE&token_type=ERC20&name=Augur&symbol=REP&address=0x48c80F1f4D53D5951e5D5438B54Cba84f29F32a5"
+curl "https://mobius.network/api/v1/tokens/register" \
+     -H "x-api-key: API_KEY_HERE" \
+     -d "token_type=erc20" \
+     -d "name=Augur" \
+     -d "symbol=REP" \
+     -d "issuer=0xE94327D07Fc17907b4DB788E5aDf2ed424adDff6"
 ```
 
 ```javascript
 mobius.tokens
   .register({
-    tokenType: 'ERC20',
+    tokenType: 'erc20',
     name: 'Augur',
     symbol: 'REP',
-    address: '0x48c80F1f4D53D5951e5D5438B54Cba84f29F32a5',
+    address: '0xE94327D07Fc17907b4DB788E5aDf2ed424adDff6',
   })
   .then(data => { ... });
 ```
@@ -147,7 +161,11 @@ mobius.tokens
 
 ```json
 {
-  "token_uid": "THE_UID_OF_THE_TOKEN"
+  "token_uid": "THE_UID_OF_THE_TOKEN",
+  "token_type":"erc20",
+  "name":"Augur",
+  "symbol":"REP",
+  "issuer":"0xE94327D07Fc17907b4DB788E5aDf2ed424adDff6"
 }
 ```
 
@@ -159,53 +177,19 @@ Register a token so you can use it with the other Token API calls.
 
 ### Parameters
 
-Parameter | Description
---------- | -----------
-token_type | Currently only supports ERC20.
-name | The name of the token.
-symbol | The symbol of the token.
-address | The address of the token.
+Parameter  | Description
+---------- | -----------
+token_type | Supported values: "erc20" or "stellar"
+name       | The name of the token.
+symbol     | The symbol of the token.
+issuer    | The issuer of the token.
 
-## Balance
-
-```shell
-curl "https://mobius.network/api/v1/tokens/balance?api_key=API_KEY_HERE&token_uid=TOKEN_UID&address=0x48c80F1f4D53D5951e5D5438B54Cba84f29F32a5"
-```
-
-```javascript
-mobius.tokens
-  .balance({
-    tokenUid: 'TOKEN_UID',
-    address: '0x48c80F1f4D53D5951e5D5438B54Cba84f29F32a5',
-  })
-  .then(data => { ... });
-```
-
-> Returned JSON (in JavaScript all keys converted to `camelCase`)
-
-```json
-{
-  "balance": "0x00000000000000000000000000000000000000000000000c9da89f50739987d4"
-}
-```
-
-Query the number of tokens specified by the token with token_uid that address has.
-
-### HTTP Request
-
-`GET https://mobius.network/api/v1/tokens/balance`
-
-### Parameters
-
-Parameter | Description
---------- | -----------
-token_uid | The UID of the token - returned by /register.
-address | The address whose balance you want to query.
-
-## Create Address
+## Create address
 
 ```shell
-curl -X POST "https://mobius.network/api/v1/tokens/create_address?api_key=API_KEY_HERE&token_uid=TOKEN_UID"
+curl "https://mobius.network/api/v1/tokens/create_address" \
+     -H "x-api-key: API_KEY_HERE" \
+     -d "token_uid=TOKEN_UID"
 ```
 
 ```javascript
@@ -222,9 +206,7 @@ mobius.tokens
 ```json
 {
   "uid": "8bf6f217-c641-47bc-86da-006b76687da7", // UID of the new address
-  "address": "0xe89bb230b39f11e9c870e3115b9e0f569952a2fd",
-  "public_key": "the public key", // only if managed=false
-  "private_key": "the private key" // only if managed=false
+  "address": "0xe89bb230b39f11e9c870e3115b9e0f569952a2fd"
 }
 ```
 
@@ -239,12 +221,15 @@ Create an address for the token specified by token_uid.
 Parameter | Description
 --------- | -----------
 token_uid | The UID of the token - returned by /register.
-managed | True if you want Mobius to manage the private key. False if you want to manage the private key. If false, the public and private keys will be returned and never stored by Mobius. Store the private key securely and do not lose it! If you lose the private key any Ether or tokens sent to the address are lost!
 
-## Register Address
+
+## Register address
 
 ```shell
-curl -X POST "https://mobius.network/api/v1/tokens/register_address?api_key=API_KEY_HERE&token_uid=TOKEN_UID&address=ADDRESS"
+curl "https://mobius.network/api/v1/tokens/register_address" \
+     -H "x-api-key: API_KEY_HERE" \
+     -d "token_uid=TOKEN_UID" \
+     -d "address=ADDRESS"
 ```
 
 ```javascript
@@ -277,10 +262,61 @@ Parameter | Description
 token_uid | The UID of the token - returned by /register.
 address | The address to register
 
-## Transfer Managed
+
+## Get address balance
 
 ```shell
-curl -X POST "https://mobius.network/api/v1/tokens/transfer/managed?api_key=API_KEY_HERE&token_address_uid=TOKEN_ADDRESS_UID&address_to=ADDRESS&num_tokens=NUM_TOKENS"
+curl -G 'https://mobius.network/api/v1/tokens/balance' \
+     -H "x-api-key: API_KEY_HERE" \
+     -d "token_uid=TOKEN_UID" \
+     -d "address=0x48c80F1f4D53D5951e5D5438B54Cba84f29F32a5"
+```
+
+```javascript
+mobius.tokens
+  .balance({
+    tokenUid: 'TOKEN_UID',
+    address: '0x48c80F1f4D53D5951e5D5438B54Cba84f29F32a5',
+  })
+  .then(data => { ... });
+```
+
+> Returned JSON (in JavaScript all keys converted to `camelCase`)
+
+```json
+{
+  "address":"0xE94327D07Fc17907b4DB788E5aDf2ed424adDff6",
+  "balance":"31.531687",
+  "token": {
+    "type_type":"erc20",
+    "name": "Augur",
+    "symbol": "REP",
+    "issuer":"0xE94327D07Fc17907b4DB788E5aDf2ed424adDff6"
+  }
+}
+```
+
+Query the number of tokens specified by the token with token_uid that address has.
+
+### HTTP Request
+
+`GET https://mobius.network/api/v1/tokens/balance`
+
+### Parameters
+
+Parameter | Description
+--------- | -----------
+token_uid | The UID of the token - returned by /register.
+address   | The address whose balance you want to query.
+
+## Create transfer
+
+```shell
+curl "https://mobius.network/api/v1/tokens/transfer/managed" \
+     -H "x-api-key: API_KEY_HERE" \
+     -d "token_address_uid=TOKEN_ADDRESS_UID" \
+     -d "address_to=ADDRESS" \
+     -d "num_tokens=NUM_TOKENS"
 ```
 
 ```javascript
@@ -301,7 +337,8 @@ mobius.tokens
 }
 ```
 
-Transfer tokens from a Mobius managed address to a specified address. You must have a high enough balance to cover the transaction fees  - on Ethereum this means paying the gas costs. Currently Mobius does not charge any fees itself.
+Transfer tokens from a Mobius managed address to a specified address. You must have a high enough balance to cover the
+transaction fees — on Ethereum this means paying the gas costs. Currently Mobius does not charge any fees itself.
 
 ### HTTP Request
 
@@ -311,56 +348,16 @@ Transfer tokens from a Mobius managed address to a specified address. You must h
 
 Parameter | Description
 --------- | -----------
-token_address_uid | The UID of the token - returned by /register.
+token_address_uid | Token Address UID (returned by `/create_address`)
 address_to | The address to send the tokens to.
 num_tokens | The number of tokens to trasnfer.
 
-## Transfer Unmanaged
+## Get transfer info
 
 ```shell
-curl -X POST "https://mobius.network/api/v1/tokens/transfer/unmanaged?api_key=API_KEY_HERE&address_to=ADDRESS&num_tokens=NUM_TOKENS&private_key=PRIVATE_KEY&token_uid=TOKEN_UID"
-```
-
-```javascript
-mobius.tokens
-  .transferUnmanaged({
-    addressTo: 'ADDRESS',
-    numTokens: 'NUM_TOKENS',
-    privateKey: 'PRIVATE_KEY',
-  })
-  .then(data => { ... });
-```
-
-> Returned JSON (in JavaScript all keys converted to `camelCase`)
-
-```json
-{
-  "tx_hash": "TRANSACTION_HASH" // The transaction hash
-}
-```
-
-Perform an ERC20 transfer call sending tokens from the address identified by the private_key to address_to.
-
-### HTTP Request
-
-`POST https://mobius.network/api/v1/tokens/transfer/unmanaged`
-
-### Parameters
-
-Parameter | Description
---------- | -----------
-address_to | The address to send the tokens to.
-num_tokens | The number of tokens to trasnfer.
-private_key | The private key to sign the transaction with - this is the address that sends the tokens and pays the transaction fees. This is never stored by Mobius.
-token_uid (optional) | Must specify this or the token_address. If the token is registered in Mobius you can specify the token_uid so the transaction is logged under it.
-token_address (optional) | Must specify this or token_uid. If the token is not registered with Mobius you can specify the address of the token here.
-gas_price (optional) | Default = 10,000,000,000
-gas_limit (optional) | Default = 55,000
-
-## Info
-
-```shell
-curl "https://mobius.network/api/v1/tokens/transfer/info?api_key=API_KEY_HERE&token_address_transfer_uid=UID"
+curl -G "https://mobius.network/api/v1/tokens/transfer/info"
+     -H "x-api-key: API_KEY_HERE"
+     -d "token_address_transfer_uid=UID"
 ```
 
 ```javascript

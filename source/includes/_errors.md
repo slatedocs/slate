@@ -5,7 +5,6 @@ The Mobius API uses the following error codes:
 
 Error Code | Meaning
 ---------- | -------
-<<<<<<< HEAD
 400 | Bad Request -- Parameters are incorrect
 401 | Unauthorized -- Your API key is wrong
 403 | Forbidden -- You do not have access
