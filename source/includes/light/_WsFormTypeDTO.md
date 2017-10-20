@@ -41,7 +41,7 @@
 key | type | status | comment
 --- | ---- | :----: | ---:
 id | string | 1..1 | идентификатор
-name | string | 0..1 | название
+name | string | 1..1 | название
 emailBodyFormat | string | 0..1 | формат для текста сообщения (применимо к контактным формам)
 position | [FormPosition](#formposition) | 1..1 | положение формы
 fields | [WsFieldDTO](#wsfielddto) | 0..1 | список полей
