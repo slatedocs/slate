@@ -1,6 +1,6 @@
 ### Networks
 
-A network is an isolated network with its own VLANs and CIDR list, where you can place groups of resources, such as [instances](#cloudstack-instances).
+A network is an isolated network with its own VLANs and CIDR list, where you can place groups of resources, such as [instances](#cloudstack-instances). They can exist as VPC subnets, or as simple isolated networks, provided the appropriate network offerings exist.
 
 <!-------------------- LIST NETWORK -------------------->
 
@@ -160,14 +160,18 @@ curl -X POST \
 
 Create a network in an [environment](#administration-environments)
 
-Required | &nbsp;
------- | -----------
-`name`<br/>*string* | The name of the new network
-`description`<br/>*string* | The description of the new network
-`vpcId`<br/>*UUID* | The id of the VPC where to create the network
-`networkOfferingId`<br/>*UUID* | The id of the [network offering](#cloudstack-network-offerings) to use for the network
-`networkAclId`<br/>*UUID* | The id of the [network ACL](#cloudstack-network-acls) to use for the network
+If the network offering is a VPC subnet offering (indicated by the `vpcOnly` flag on the offering), the vpcId and networkAclId are required fields.
 
+Required                       | &nbsp;
+------------------------------ | ------
+`name`<br/>*string*            | The name of the new network
+`description`<br/>*string*     | The description of the new network
+`networkOfferingId`<br/>*UUID* | The id of the [network offering](#cloudstack-network-offerings) to use for the network
+
+Required (if VPC subnet)  | &nbsp;
+------------------------- | ------
+`vpcId`<br/>*UUID*        | The id of the VPC where to create the network
+`networkAclId`<br/>*UUID* | The id of the [network ACL](#cloudstack-network-acls) to use for the network
 
 <!-------------------- UPDATE A NETWORK -------------------->
 
@@ -251,7 +255,10 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks/9572d2ea-a60d-478a-a75e-8ed31f2641f1?operation=replace</code>
 
-Replace the [network ACL](#cloudstack-network-acls).
+Replace the [network ACL](#cloudstack-network-acls) for a VPC subnet.
+<aside class="caution">
+  This operation is not allowed on isolated networks.
+</aside>
 
 Required | &nbsp;
 ------ | -----------

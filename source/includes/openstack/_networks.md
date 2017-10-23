@@ -1,6 +1,6 @@
 ### Networks
 
-Networks are privisioned to be able to control data flow to instances. To communicate with the external network, the network must be connected to a [router](#openstack-routers)
+Networks are provisioned to be able to control data flow to instances. To communicate with the external network, the network must be connected to a [router](#openstack-routers)
 
 #### List networks
 
