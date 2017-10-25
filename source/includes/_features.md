@@ -94,11 +94,16 @@ A database is shared resource: one expensive query can trigger a flood of slow q
 2. Understanding your query workload and which web endpoints and background jobs are the greatest users of database time.
 3. Highlighting changes in query workload and performance metrics vs. the norm.
 
-Database metrics are available under the "Database" area within the Scout UI:
+Database metrics appear in two areas of the UI:
+
+1. [Database Overview](#database-overview)
+2. [Web Endpoint & Background Job Breakdown](#endpoint-database-breakdown)
+
+### Database Overview
 
 ![database monitoring](db_monitoring.png)
 
-### Overview chart
+#### Overview chart
 
 The database monitoring overview chart helps answer important questions at-a-glance. For example:
 
@@ -108,7 +113,7 @@ The database monitoring overview chart helps answer important questions at-a-gla
 
 The overview chart shows the top 4 most time-consuming queries and an aggregate of all other queries vs. overall query throughput.
 
-### Zooming
+#### Zooming
 
 The primary interaction point of Scout's database monitoring is the zoom functionality.
 
@@ -120,17 +125,27 @@ Annotations are added to the queries list when zooming:
 * The % change across metrics in the zoom window vs. the larger timeframe. If the % change is not significant, the metric is faded.
 * A bullseye appears next to the max query time if the slowest occurrence of this query was executed during the zoom window. This may indicate a single slow query triggered a problem.
 
-### Queries List
+#### Queries List
 
 A list of queries, broken down by their ActiveRecord model, operation, and caller (either a web endpoint or background job) is listed below the overview chart.
 
 By default, this list is truncated to display just the most time-consuming queries.
 
-### Database Events
+#### Database Events
 
 Scout highlights significant events in database performance in the sidebar. For example, if time spent in database queries increases dramatically, you'll find an insight here. Clicking on an insight jumps to the time window referenced by the insight.
 
-### Library Support
+### Endpoint Database Breakdown
+
+A breakdown of time spent per-transaction appears beneath the overview chart for both web endpoints and database metrics. Database queries are broken out in this breakdown:
+
+![database breakdown](db_monitoring_endpoint.png)
+
+### Pricing
+
+Database Monitoring is available as an addon. See your billing page for pricing information.
+
+### Database Monitoring Library Support
 
 Scout currently monitors queries executed via ActiveRecord, which includes most relational databases (PostgreSQL, MySQL, etc).
 
