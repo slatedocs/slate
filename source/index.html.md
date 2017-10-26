@@ -15,6 +15,10 @@ includes:
 
   - sav/schedule_a_visit_overview
 
+  - entities/entities
+  - entities/states
+  - entities/provider_types
+
 search: true
 ---
 
