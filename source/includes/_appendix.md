@@ -132,7 +132,7 @@ expires | <span class="label label-required">Required</span> [See above for how 
 
 | Directory | Identifier |
 |--------------|---------------|
-| 411 Canada | 411 |
+| 411 Canada | can411 |
 | Brownbook | brownbook |
 | Canpages | canpages |
 | Facebook | facebook |
@@ -140,7 +140,7 @@ expires | <span class="label label-required">Required</span> [See above for how 
 | FourSquare | foursquare |
 | Google Local | google |
 | HotFrog | hotfrog |
-| iBegin | ibegin |
+| iBegin | ibegincan |
 | PagesJunes | pagesjaunes |
 | Yellow Pages | yellowpagesca |
 | Yelp | yelp |
