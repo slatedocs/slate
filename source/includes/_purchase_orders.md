@@ -600,7 +600,21 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/pending_requests'
 }
 ```
 
-Retrieves the list of Pending requests for current authentication_token.
+Retrieves the list of Pending requests in Chronological Order
+for current authentication_token.
+
+### Sorting
+
+You can sort requests by column with `asc` and `desc` directions.
+Example if you want to sort requests in `asc` order by `created_at` column then:
+`GET https://app.rubberstamp.io/api/v1/purchase_orders/pending_requests?sort=created_at&direction=asc`
+
+### Pagination
+
+You can send `page` params to load paginated records e.g: `/api/v1/purchase_orders?page=2`.
+You can also see `meta` key in the response you get, that will return
+informations like `current_page`, `next_page`, `previous_page`, `total_pages`,
+and `total_count` to help your write your own logic of pagination.
 
 ### HTTP Request
 
@@ -608,11 +622,12 @@ Retrieves the list of Pending requests for current authentication_token.
 
 ### URL Parameters
 
-| Params               | Type    | Description          |
-| ------               | -----   | ---------            |
-| authentication_token | header  | Authentication token |
-| app_company_id       | header  | Company ID           |
-
+| Params               | Type   | Description                                           |
+| ------               | -----  | ---------                                             |
+| authentication_token | header | Authentication token                                  |
+| app_company_id       | header | Company ID                                            |
+| sort                 | string | sorting column name                                   |
+| direction            | string | sorting direction. values are: - `asc` <br/> - `desc` |
 
 
 
