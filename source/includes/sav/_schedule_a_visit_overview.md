@@ -9,4 +9,4 @@ The type of appointment you can schedule for your user changes based on their st
 
 To learn more about state restrictions, please see our [states documentation](#states).
 
-To learn more about provider type restrictions, please see our provider types page.
+To learn more about provider type restrictions, please see our [provider types documentation](#provider-types).

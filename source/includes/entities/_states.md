@@ -1,6 +1,6 @@
 ## States
 
-MDLIVE is offered to our customers across all states in the USA.
+MDLIVE is offered to our patients across all states in the USA.
 However, each state has different regulations regarding how a patient
 may have an appointment with a provider.
 
