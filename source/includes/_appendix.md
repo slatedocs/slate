@@ -103,42 +103,86 @@ expires | <span class="label label-required">Required</span> [See above for how 
 
 ## Local directories supported by Local SEO Check-up tool
 
-Directory|Identifier|USA|CAN|GBR|AUS
----------|-------|---|---|---|---
-AussieWeb|aussieweb| | | |AUS
-Brownbook|brownbook|USA|CAN|GBR|AUS
-dLook|dlook| | | |AUS
-Citysearch|citysearch|USA
-DexKnows|dexknows|USA
-Facebook|facebook|USA|CAN|GBR|AUS
-Factual|factual|USA|CAN|GBR|AUS
-FourSquare|foursquare|USA|CAN|GBR|AUS
-Google Local|google|USA|CAN|GBR|AUS
-HotFrog|hotfrog|USA|CAN|GBR|AUS
-InfoUSA/ExpressUpdate|expressupdate|USA
-Insider Pages|insiderpages|USA
-Kudzu|kudzu|USA
-Local.com|localcom|USA
-Local.com.au|localcomau| | | |AUS
-MapQuest|mapquest|USA
-Neustarlocaleze|neustarlocaleze|USA
-Super Pages|superpages|USA
-StartLocal|startlocal| | | |AUS
-Super Pages Australia|superpagesaus| | | |AUS
-Scoot|scoot| | |GBR
-Yahoo! Local|yahoo|USA| |GBR
-Yellow Bot|yellowbot|USA|
-Yellow Pages|yellowpages|USA|CAN
-Yelp|yelp|USA|CAN|GBR|AUS
-Yell|yell| | |GBR
-411 Canada|411| |CAN
-Canpages|canpages| |CAN
-iBegin|ibegin| |CAN
-PagesJunes|pagesjaunes| |CAN
-Thomson Local|thomsonlocal| | |GBR
-Touch Local|touchlocal| | |GBR
-TrueLocal|truelocal| | | |AUS
-White Pages|whitepagesaus| | | |AUS
+### USA
+
+| Directory | Identifier |
+|-----------------------|-----------------|
+| Brownbook | brownbook |
+| Citysearch | citysearch |
+| DexKnows | dexknows |
+| Facebook | facebook |
+| Factual | factual |
+| FourSquare | foursquare |
+| Google Local | google |
+| HotFrog | hotfrog |
+| InfoUSA/ExpressUpdate | expressupdate |
+| Insider Pages | insiderpages |
+| Kudzu | kudzu |
+| Local.com | localcom |
+| MapQuest | mapquest |
+| Neustarlocaleze | neustarlocaleze |
+| Super Pages | superpages |
+| Yahoo! Local | yahoo |
+| Yellow Bot | yellowbot |
+| Yellow Pages | yellowpages |
+| Yelp | yelp |
+
+
+### Canada
+
+| Directory | Identifier |
+|--------------|---------------|
+| 411 Canada | 411 |
+| Brownbook | brownbook |
+| Canpages | canpages |
+| Facebook | facebook |
+| Factual | factual |
+| FourSquare | foursquare |
+| Google Local | google |
+| HotFrog | hotfrog |
+| iBegin | ibegin |
+| PagesJunes | pagesjaunes |
+| Yellow Pages | yellowpagesca |
+| Yelp | yelp |
+
+
+### United Kingdom
+
+| Directory | Identifier |
+|---------------|--------------|
+| Brownbook | brownbook |
+| Facebook | facebook |
+| Factual | factual |
+| FourSquare | foursquare |
+| Google Local | google |
+| HotFrog | hotfrog |
+| Scoot | scoot |
+| Thomson Local | thomsonlocal |
+| Touch Local | touchlocal |
+| Yahoo! Local | yahoo |
+| Yell | yell |
+| Yelp | yelp |
+
+
+### Australia
+
+| Directory | Identifier |
+|-----------------------|---------------|
+| AussieWeb | aussieweb |
+| Brownbook | brownbook |
+| dLook | dlook |
+| Facebook | facebook |
+| Factual | factual |
+| FourSquare | foursquare |
+| Google Local | google |
+| HotFrog | hotfrog |
+| Local.com.au | localcomau |
+| StartLocal | startlocal |
+| Super Pages Australia | superpagesaus |
+| TrueLocal | truelocal |
+| White Pages | whitepagesaus |
+| Yelp | yelp |
+
 
 ## Business Category IDs
 
