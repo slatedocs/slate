@@ -85,6 +85,21 @@ All submitted scorecards ordered by candidate.
       "id": null,
       "question": "Private Notes",
       "answer": "Seems like a decent candidate."
+    },
+    {
+      "id": 1234567,
+      "question": "Does the candidate have experience with APIs?",
+      "answer": "Yes"
+    },
+        {
+      "id": 1234568,
+      "question": "Which team would be the best fit?",
+      "answer": "Team Alpha"
+    },
+    {
+      "id": 1234569,
+      "question": "Which office or offices would the candidate work at?",
+      "answer": "London, San Francisco, New York"
     }
   ]
 }
@@ -191,6 +206,21 @@ curl 'https://harvest.greenhouse.io/v1/scorecards'
         "id": null,
         "question": "Private Notes",
         "answer": "Seems like a decent candidate."
+      },
+      {
+      "id": 1234567,
+      "question": "Does the candidate have experience with APIs?",
+      "answer": "Yes"
+      },
+      {
+      "id": 1234568,
+      "question": "Which team would be the best fit?",
+      "answer": "Team Alpha"
+      },
+      {
+      "id": 1234569,
+      "question": "Which office or offices would the candidate work at?",
+      "answer": "London, San Francisco, New York"
       }
     ]
   },
@@ -307,6 +337,21 @@ curl 'https://harvest.greenhouse.io/v1/applications/{id}/scorecards'
         "id": null,
         "question": "Private Notes",
         "answer": "Seems like a decent candidate."
+      },
+      {
+      "id": 1234567,
+      "question": "Does the candidate have experience with APIs?",
+      "answer": "Yes"
+      },
+      {
+      "id": 1234568,
+      "question": "Which team would be the best fit?",
+      "answer": "Team Alpha"
+      },
+      {
+      "id": 1234569,
+      "question": "Which office or offices would the candidate work at?",
+      "answer": "London, San Francisco, New York"
       }
     ]
   },
@@ -419,6 +464,21 @@ curl 'https://harvest.greenhouse.io/v1/scorecards/{id}'
       "id": null,
       "question": "Private Notes",
       "answer": "Seems like a decent candidate."
+    },
+    {
+      "id": 1234567,
+      "question": "Does the candidate have experience with APIs?",
+      "answer": "Yes"
+      },
+      {
+      "id": 1234568,
+      "question": "Which team would be the best fit?",
+      "answer": "Team Alpha"
+      },
+      {
+      "id": 1234569,
+      "question": "Which office or offices would the candidate work at?",
+      "answer": "London, San Francisco, New York"
     }
   ]
 }
