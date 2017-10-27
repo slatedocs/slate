@@ -622,13 +622,13 @@ and `total_count` to help your write your own logic of pagination.
 
 ### URL Parameters
 
-| Params               | Type    | Description                                           |
-| ------               | -----   | ---------                                             |
-| authentication_token | header  | Authentication token                                  |
-| app_company_id       | header  | Company ID                                            |
-| sort                 | string  | sorting column name                                   |
-| direction            | string  | sorting direction. values are: - `asc` <br/> - `desc` |
-| page                 | integer | page number                                           |
+| params               | Type    | Description                                                 |
+| ------               | -----   | ---------                                                   |
+| authentication_token | header  | Authentication token                                        |
+| app_company_id       | header  | Company ID                                                  |
+| sort                 | string  | sorting column name                                         |
+| direction            | string  | sorting direction. values are: <br/> - `asc` <br/> - `desc` |
+| page                 | integer | page number                                                 |
 
 
 
