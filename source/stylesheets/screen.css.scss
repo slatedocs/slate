@@ -72,7 +72,7 @@ html, body {
   }
 
   // This is the logo at the top of the ToC
-  &>img {
+  &>img, &>a.logo-link img {
     display: block;
     max-width: 100%;
   }
