@@ -23,7 +23,7 @@ We have language bindings in Shell and Ruby!
 
 # Authentication
 
-> To authorize, use this code:
+> To authorize for JSON format feed, use this code:
 
 ```ruby
 uri = URI.parse("https://<your_program_subdomain>.redii.com/api/recognition/v1/moments")
@@ -37,6 +37,8 @@ request['authorization'] = "Token token=#{your_program_token}"
 curl -H "Authorization: Token token=your_program_token" \
 https://<your_program_subdomain>.redii.com/api/recognition/v1/moments
 ```
+> To authorize for RSS format feed, add this link to your rss reader:
+```https://x:<your_program_token>@<your_program_subdomain>.redii.com/api/recognition/v1/moments.rss```
 
 > Make sure to replace `your_program_token` and `your_program_subdomain` with your relevent key and subdomain.
 
@@ -53,7 +55,7 @@ Redii expects for the API key to be included in all API requests to the server i
 # Recognition
 
 ## Get All moments
-
+> for JSON format:
 ```ruby
 uri = URI.parse("https://<your_program_subdomain>.redii.com/api/recognition/v1/moments?limit=2")
 http = Net::HTTP.new(uri.host, uri.port)
@@ -149,9 +151,10 @@ https://<your_program_subdomain>.redii.com/api/recognition/v1/moments?limit=2
 This endpoint retrieves (default of) the 10 most recent moments of recognition.
 
 ### HTTP Request
-
+> for JSON format:
 `GET https://<your_program_subdomain>.redii.com/api/recognition/v1/moments`
-
+> for RSS format:
+```https://x:<your_program_token>@<your_program_subdomain>.redii.com/api/recognition/v1/moments.rss```
 ### Query Parameters
 
 Parameter | Default | Description
