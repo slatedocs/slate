@@ -55,6 +55,23 @@ global | boolean | Returns whether this organization is a part of Affinity's glo
 
 ## Search for organizations
 
+`GET /organizations`
+
+Searches your team's data and fetches all the organizations that meet the search criteria.
+The search term can be a part of an organization's name or domain.
+
+This result is paginated. An initial request returns an object with two fields:
+`organizations` and `next_page_token`. `organizations` contains an array of organization
+resources. The value of `next_page_token` should be sent as the query parameter
+`page_token` in another request to retrieve the next page of results. While paginating
+through results each request must have identical query parameters other than the changing
+`page_token`, otherwise an `Invalid page_token variable` error will be returned.
+
+The absence of a `next_page_token` indicates that all the records have been fetched,
+though its presence does not necessarily indicated that there are _more_ resources to be
+fetched. The next page may be empty (but then would `next_page_token` would be `null` to
+confirm that there are no more resources).
+
 > Example Request
 
 ```shell
@@ -63,36 +80,46 @@ curl "https://api.affinity.vc/organizations?term=affinity" -u :<API-KEY>
 > Example Response
 
 ```json
-[
-  {
-    "id":64779194,
-    "name":"Affinity",
-    "domain":"affinity.co",
-    "global":false
-  },
-  {
-    "id":1513682,
-    "name":"Brand Affinity Technologies",
-    "domain":"brandaffinity.net",
-    "global":true
-  },
-  ...
-]
+{
+  "organizations": [
+    {
+      "id":64779194,
+      "name":"Affinity",
+      "domain":"affinity.co",
+      "global":false
+    },
+    {
+      "id":1513682,
+      "name":"Brand Affinity Technologies",
+      "domain":"brandaffinity.net",
+      "global":true
+    },
+    ...
+  ],
+  "next_page_token": "eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9",
+}
 ```
 
-`GET /organizations`
+> Example pagination
 
-Searches your team's data and fetches all the organizations that meet the search criteria.
-The search term can be a part of an organization's name or domain.
+```shell
+# To get the second page of results, issue the following query:
+curl "https://api.affinity.vc/organizations?term=affinity&page_token=eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9" -u :<API-KEY>
+```
 
 ### Query Parameters
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
 term | string | false | A string used to search all the organizations in your team's address book. This could be a name or a domain name.
+page_size | number | false | How many results to return per page. (Default is the maximum value of 500.)
+page_token | string | false | The `next_page_token` from the previous response required to retrieve the next page of results.
 
 ### Returns
-An array of all the organization objects that match the search criteria.
+An object with two fields: `organizations` and `next_page_token`. `organizations` maps to
+an array of all the organization resources that match the search criteria.
+`next_page_token` includes a token to be sent along with the next request as the
+`page_token` parameter to fetch the next page of results.
 
 ## Get a specific organization
 

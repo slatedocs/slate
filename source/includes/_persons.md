@@ -75,6 +75,18 @@ internal | 1 | All people on your team that have Affinity accounts will have thi
 Searches your teams data and fetches all the persons that meet the search criteria.
 The search term can be part of an email address, a first name or a last name.
 
+This result is paginated. An initial request returns an object with two fields: `persons`
+and `next_page_token`. `persons` contains an array of person resources. The value of
+`next_page_token` should be sent as the query parameter `page_token` in another request to
+retrieve the next page of results. While paginating through results each request must have
+identical query parameters other than the changing `page_token`, otherwise an `Invalid
+page_token variable` error will be returned.
+
+The absence of a `next_page_token` indicates that all the records have been fetched,
+though its presence does not necessarily indicated that there are _more_ resources to be
+fetched. The next page may be empty (but then would `next_page_token` would be `null` to
+confirm that there are no more resources).
+
 > Example Request
 
 ```shell
@@ -83,44 +95,61 @@ curl "https://api.affinity.vc/persons?term=doe" -u :<API-KEY>
 > Example Response
 
 ```json
-[
-  {
-    "id": 38706,
-    "type": 0,
-    "first_name": "John",
-    "last_name": "Doe",
-    "phone_numbers": ["123-456-7890"],
-    "primary_email": "john@affinity.co",
-    "emails": [
-      "john@affinity.co",
-      "john@affinity.vc",
-      "jdoe@alumni.stanford.edu",
-      "johnjdoe@gmail.com",
-    ]
-  },
-  {
-    "id": 624289,
-    "type": 1,
-    "first_name": "Jane",
-    "last_name": "Doe",
-    "phone_numbers": ["098-765-4321"],
-    "primary_email": "jane@gmail.com",
-    "emails": [
-      "jane@gmail.com"
-    ]
-  },
-  ...
-]
+{
+  "persons": [
+    {
+      "id": 38706,
+      "type": 0,
+      "first_name": "John",
+      "last_name": "Doe",
+      "phone_numbers": ["123-456-7890"],
+      "primary_email": "john@affinity.co",
+      "emails": [
+        "john@affinity.co",
+        "john@affinity.vc",
+        "jdoe@alumni.stanford.edu",
+        "johnjdoe@gmail.com",
+      ]
+    },
+    {
+      "id": 624289,
+      "type": 1,
+      "first_name": "Jane",
+      "last_name": "Doe",
+      "phone_numbers": ["098-765-4321"],
+      "primary_email": "jane@gmail.com",
+      "emails": [
+        "jane@gmail.com"
+      ]
+    },
+    ...
+  ],
+  "next_page_token": "eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9"
+}
 ```
+
+> Example pagination
+
+```shell
+# To get the second page of results, issue the following query:
+curl "https://api.affinity.vc/persons?term=doe&page_token=eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9" -u :<API-KEY>
+```
+
+
 
 ### Query Parameters
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
 term | string | true | A string used to search all the persons in your team's address book. This could be an email address, a first name or a last name.
+page_size | number | false | How many results to return per page. (Default is the maximum value of 500.)
+page_token | string | false | The `next_page_token` from the previous response required to retrieve the next page of results.
 
 ### Returns
-An array of all the person resources that match the search criteria. Does not include the associated `organization_ids`.
+An object with two fields: `persons` and `next_page_token`. `persons` maps to an array of
+all the person resources that match the search criteria. Does not include the associated
+`organization_ids`. `next_page_token` includes a token to be sent along with the next
+request as the `page_token` parameter to fetch the next page of results.
 
 ## Get a specific person
 
