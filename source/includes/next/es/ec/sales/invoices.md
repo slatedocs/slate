@@ -16,178 +16,195 @@ curl -v https://api.datil.co/sales/invoices/issues \
 -H "X-Api-Key: <API-key>" \
 -H "X-Password: <clave-certificado-firma>" \
 -d '{
-      "supplier": {
-        "location": {
-          "code": "001",
-          "point_of_sale": {
-            "code": "002"
-          }
-        }
-      },
-      "sequence": 2,
-      "uuid": "2003201701099999999900110011000000000022100020017",
-      "issue_date": "2016-11-22 23:00:00",
-      "customer": {
-        "tax_identification_type": "31",
-        "properties": [],
-        "address": "Carrera 10 Calle 1",
-        "email": "compras@datil.co",
-        "phone": "57122222222222",
-        "locality": "Guayaquil",
-        "sublocality": "Centro",
-        "tax_identification": "0924447900",
-        "person": {
-          "first_name": "Juan",
-          "middle_name": "A.",
-          "last_name": "Pérez"
+  "live": false,
+  "properties": [
+    {
+      "description": "420420",
+      "name": "Contract Number"
+    }
+  ],
+  "payments": [
+    {
+      "properties": [
+        {
+          "description": "2223XXXX23",
+          "name": "account_number"
         },
-        "administrative_district_level_1": "Guayas",
-        "country": "EC"
+        {
+          "description": "Banco Huancavilva",
+          "name": "bank"
+        }
+      ],
+      "amount": "114.00",
+      "method": "efectivo"
+    }
+  ],
+  "supplier": {
+    "location": {
+      "point_of_sale": {
+        "code": "002"
       },
+      "code": "001"
+    }
+  },
+  "sequence": 1000,
+  "taxes": [
+    {
+      "amount": "14.00",
+      "tax_code": "2",
+      "rate_code": "3",
+      "tax_rate": "14.0",
+      "taxable_amount": "100.00"
+    }
+  ],
+  "issue_date": "2017-11-01T09:00:00-05:00",
+  "customer": {
+    "properties": [],
+    "locality": "Guayaquil",
+    "address": "Carrera 10 Calle 1",
+    "email": "compras@datil.co",
+    "person": {
+      "first_name": "Juan",
+      "middle_name": "A.",
+      "last_name": "Pérez"
+    },
+    "phone": "57122222222222",
+    "tax_identification_type": "05",
+    "sublocality": "Centro",
+    "tax_identification": "0924447956",
+    "country": "EC",
+    "administrative_district_level_1": "Guayas"
+  },
+  "totals": {
+    "total_tax_amount": "14.00",
+    "subtotal_amount": "100.00",
+    "total_discount_amount": "100.00",
+    "total_amount": "114.00"
+  },
+  "currency": "USD",
+  "items": [
+    {
+      "description": "Apple",
+      "properties": [
+        {
+          "description": "red",
+          "name": "color"
+        }
+      ],
+      "unit_price": "2.00",
       "taxes": [
         {
           "amount": "14.00",
           "tax_code": "2",
-          "tax_rate": "14.0",
           "rate_code": "3",
+          "tax_rate": "14.00",
           "taxable_amount": "100.00"
         }
       ],
-      "totals": {
-        "subtotal_amount": 100.00,
-        "total_tax_amount": 14.00,
-        "total_amount": 114.00,
-      }
-      "currency": "USD",
-      "items": [
-        {
-          "description": "Apple",
-          "properties": [{
-            "name": "color",
-            "description": "red"
-          }],
-          "unit_discount": "1.00",
-          "unit_code": "units",
-          "unit_price": "2.00",
-          "subtotal_amount": "100.00",
-          "quantity": "100"
-        }
-      ],
-      "properties": [
-         {
-           "name": "Contract Number",
-           "description": "420420"
-         }
-      ],
-      "payments": [
-        {
-          "properties": [
-            {
-              "name": "account_number",
-              "description": "2223XXXX23"
-            },
-            {
-              "name": "bank",
-              "description": "Banco Guayaquil"
-            }
-          }],
-          "amount": 114.0,
-          "method": "42"
-        }
-      ],
-  }'
+      "subtotal_amount": "100.00",
+      "unit_code": "units",
+      "unit_discount": "1.00",
+      "quantity": "100"
+    }
+  ]
+}'
 ```
 
 ```python
 import requests, json
 
 invoice = {
-    "supplier": {
-        "location": {
-            "code": "001",
-            "point_of_sale": {
-                "code": "002"
-            }
-        }
-    },
-    "device_id": "9008edd4-cf56-4435-a387-7bf1d2eb9aef",
-    "sequence": 2,
-    "uuid": "12345-12345-12345-12345-12345",
-    "issue_date": "2016-11-22T23:00:00Z",
-    "customer": {
-        "tax_identification_type": "31",
-        "properties": [],
-        "address": "Carrera 10 Calle 1",
-        "email": "w@datil.co",
-        "phone": "04 555-5555",
-        "locality": "Guayaquil",
-        "sublocality": "Centro",
-        "tax_identification": "092",
-        "tax_level_code": "2",
-        "person": {"first_name": "Juan",
-                   "middle_name": "A.",
-                   "last_name": "Argüello"},
-        "administrative_district_level_1": "Guayas",
-        "country": "EC"
-    },
-    "taxes": [
-        {
-            "amount": "419046.82",
-            "tax_code": "03",
-            "tax_rate": "4.14",
-            "rate_code": "3",
-            "taxable_amount": "10121904.00"
-        },
-        {
-            "amount": "1619504.64",
-            "tax_code": "01",
-            "tax_rate": "16.00",
-            "rate_code": "3",
-            "taxable_amount": "10121904.00"
-        }
-    ],
-    "totals": {
-        "subtotal_amount": "10121904.00",
-        "total_tax_amount": "2038551.46",
-        "total_amount": "12160455.46",
-    }
-    "currency": "USD",
-    "items": [
-        {
-            "description": "Apple",
-            "properties": [{
-                "name": "size",
-                "description": "M"
-            }],
-            "unit_discount": 0.00,
-            "unit_code": "units",
-            "unit_price": 43256.00,
-            "id": "ABC",
-            "subtotal_amount": 10121904.00,
-            "total_amount": 1.15,
-            "quantity": 234
-        }
-    ],
+    "live": False,
     "properties": [
         {
-            "name": "Contract Number",
-            "description": "420420"
+            "description": "420420",
+            "name": "Contract Number"
         }
     ],
     "payments": [
         {
             "properties": [
                 {
-                    "name": "account_number",
-                    "description": "2223XXXX23"
+                    "description": "2223XXXX23",
+                    "name": "account_number"
                 },
                 {
-                    "name": "bank",
-                    "description": "Trust Bank"
+                    "description": "Banco Huancavilva",
+                    "name": "bank"
                 }
             ],
-            "amount": "1.09",
-            "method": "42"
+            "amount": "114.00",
+            "method": "efectivo"
+        }
+    ],
+    "supplier": {
+        "location": {
+            "point_of_sale": {
+                "code": "002"
+            },
+            "code": "001"
+        }
+    },
+    "sequence": 1000,
+    "taxes": [
+        {
+            "amount": "14.00",
+            "tax_code": "2",
+            "rate_code": "3",
+            "tax_rate": "14.0",
+            "taxable_amount": "100.00"
+        }
+    ],
+    "issue_date": "2017-11-01T09:00:00-05:00",
+    "customer": {
+        "properties": [
+
+        ],
+        "locality": "Guayaquil",
+        "address": "Carrera 10 Calle 1",
+        "email": "compras@datil.co",
+        "person": {
+            "first_name": "Juan",
+            "middle_name": "A.",
+            "last_name": "Pérez"
+        },
+        "phone": "57122222222222",
+        "tax_identification_type": "05",
+        "sublocality": "Centro",
+        "tax_identification": "0924447956",
+        "country": "EC",
+        "administrative_district_level_1": "Guayas"
+    },
+    "totals": {
+        "total_tax_amount": "14.00",
+        "subtotal_amount": "100.00",
+        "total_discount_amount": "100.00",
+        "total_amount": "114.00"
+    },
+    "currency": "USD",
+    "items": [
+        {
+            "description": "Apple",
+            "properties": [
+                {
+                    "description": "red",
+                    "name": "color"
+                }
+            ],
+            "unit_price": "2.00",
+            "taxes": [
+                {
+                    "amount": "14.00",
+                    "tax_code": "2",
+                    "rate_code": "3",
+                    "tax_rate": "14.00",
+                    "taxable_amount": "100.00"
+                }
+            ],
+            "subtotal_amount": "100.00",
+            "unit_code": "units",
+            "unit_discount": "1.00",
+            "quantity": "100"
         }
     ]
 }
@@ -212,13 +229,13 @@ supplier<p class="dt-data-param-required">requerido</p> | En este campo sólo es
 sequence | Número entero positivo mayor a cero. Si no envías esta información se utilizará el siguiente número de factura disponible.
 currency<p class="dt-data-param-required">requerido</p> | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda.
 issue_date | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). Si no es provista, se utilizará la fecha en la que se envía la factura.
-totals<p class="dt-data-param-required">requerido</p> | Totales de la factura
+totals<p class="dt-data-param-required">requerido</p> | Totales de la factura. Ver [objeto totales](#invoice-totals)
 customer<p class="dt-data-param-required">requerido</p> | Información del [comprador](#contacto).
-items<p class="dt-data-param-required">requerido</p> | Bienes o servicios vendidos.
+items<p class="dt-data-param-required">requerido</p> | Bienes o servicios vendidos. Lista de [items](#invoice-item)
 uuid | La clave de acceso de la factura. La clave de acceso es un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
-properties | Información adicional adjunta al comprobante.
-payments | Pagos realizados a la factura.
-payment_methods | Listado de formas de pago aplicables a la factura. Si alguno de los métodos de pago tienen un "due_date" Datil entenderá esto como una factura a crédito.
+properties | Información adicional adjunta al comprobante. Listado de objetos tipo [property](#property)
+payments | Pagos realizados a la factura. Listado de objetos tipo [payment](#payment)
+payment_methods | Listado de formas de pago aplicables a la factura. Si alguno de los métodos de pago tienen un "due_date" Datil entenderá esto como una factura a crédito. Listado de objectos tipo [payment_method](#payment-method)
 
 #### Retorna
 
@@ -395,7 +412,7 @@ curl -v https://api.datil.co/sales/invoices/6463427e69b546afb77a75973cc74ce7/pay
             },
             {
               "name": "bank",
-              "description": "Banco Guayaquil"
+              "description": "Banco Huancavilva"
             }
           }]
         }
@@ -417,7 +434,7 @@ payments = {
       },
       {
         "name": "bank",
-        "description": "Banco Guayaquil"
+        "description": "Banco Huancavilva"
       }
     ]
   }]
