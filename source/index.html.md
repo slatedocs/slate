@@ -214,8 +214,8 @@ When user approved the request over IA App, the Callback URL will be called with
 
 Parameter | Description
 --------- | -----------
-code | the Authorization Code that use to fetch the user’s token from IA System
-state | this is string represent the username and user email concatenated with '@@' you can split them and use them.
+code | the Authorization Code that used to fetch the user’s token from IA
+state | this string contains the username and email concatenated with '@@', you can split them and use them.
 
 ## fetching token for this user from IA System
 
@@ -306,7 +306,7 @@ if($result !== FALSE) {
   $json = json_decode($result);
   $data = $json->data
 
-  // Save it in your DB is the best choice :)
+  // Save it in your DB is the best choice :)
   file_put_contents('ANY FILE PATH', json_encode($data));
 }
 ```
