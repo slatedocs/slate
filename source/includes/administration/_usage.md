@@ -49,8 +49,8 @@ Attributes | &nbsp;
 `serviceConnectionPricingId`<br/>*UUID* | Id of the service connection pricing
 `utilityCost`<br/>*string* | Utility cost of the record (aggregated per the period)
 `utilityUsage`<br/>*string* | Utility usage of the record
-`startDate`<br/>*string* | Start date of the record in [ISO 8601](#https://en.wikipedia.org/wiki/ISO_8601)
-`endDate`<br/>*string* | End date of the record in [ISO 8601](#https://en.wikipedia.org/wiki/ISO_8601)
+`startDate`<br/>*string* | Start date of the record in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+`endDate`<br/>*string* | End date of the record in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
 `usageType`<br/>*string* | Usage type of the record.
 `secondaryType`<br/>*string* | Secondary type of the record.
 

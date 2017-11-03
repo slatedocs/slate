@@ -95,6 +95,11 @@ Required attributes                | Description
 `description`<br/>*string*         | The volume description
 `sizeInGB`<br/>*integer*           | The volume's size in GB
 
+
+Optional | &nbsp;
+------ | -----------
+`volume`<br/>*Volume* | A volume object containing either `id` or `sizeInGB`. If an `id` is provided, it will attach the existing volume to the instance after creation. If the `sizeInGB` is provided, it will create a new volume and attach it to the instance after creation.
+
 #### Delete a volume
 
 ```shell
