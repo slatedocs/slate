@@ -17,6 +17,7 @@ curl -X GET \
         {
             "id": "89724d35-b69c-418c-be81-7d83fcfc9da9",
             "name": "Load Balanced Tier",
+            "vpcOnly": true,
             "services": [
                 "PortForwarding",
                 "Vpn",
@@ -33,6 +34,7 @@ curl -X GET \
         {
             "id": "087502ea-cb42-421b-9bd9-9cf9ae5d1b89",
             "name": "Standard Tier",
+            "vpcOnly": true,
             "services": [
                 "PortForwarding",
                 "Vpn",
@@ -44,10 +46,24 @@ curl -X GET \
                 "StaticNat"
             ],
             "state": "ENABLED"
+        },
+        {
+            "id": "0f1b9d72-b842-11e7-abc4-cec278b6b50a",
+            "name": "Isolated network",
+            "vpcOnly": false,
+            "services": [
+                "PortForwarding",
+                "SourceNat",
+                "Dhcp",
+                "Dns",
+                "UserData",
+                "StaticNat"
+            ],
+            "state": "ENABLED"
         }
     ],
     "metadata": {
-        "recordCount": 2
+        "recordCount": 3
     }
 }
 ```
@@ -56,12 +72,13 @@ curl -X GET \
 
 Retrieve a list of available network offerings.
 
-Attributes | &nbsp;
----------- | -----
-`id`<br/>*UUID* | The id of the network offering
-`name`<br/>*string* | The name of the network offering
+Attributes                     | &nbsp;
+------------------------------ | ------
+`id`<br/>*UUID*                | The id of the network offering
+`name`<br/>*string*            | The name of the network offering
+`vpcOnly`<br/>*boolean*        | Whether or not the offering is for VPC subnets
 `services`<br/>*Array[string]* | The services provided by the offering
-`state`<br/>*string* | The state of the offering
+`state`<br/>*string*           | The state of the offering
 
 #### Retrieve a network offering
 
@@ -77,6 +94,7 @@ curl -X GET \
     "data": {
         "id": "89724d35-b69c-418c-be81-7d83fcfc9da9",
         "name": "Load Balanced Tier",
+        "vpcOnly": true,
         "services": [
             "PortForwarding",
             "Lb",
@@ -97,9 +115,10 @@ curl -X GET \
 
 Retrieve a network offering.
 
-Attributes | &nbsp;
----------- | -----
-`id`<br/>*UUID* | The id of the network offering
-`name`<br/>*string* | The name of the network offering
+Attributes                     | &nbsp;
+------------------------------ | ------
+`id`<br/>*UUID*                | The id of the network offering
+`name`<br/>*string*            | The name of the network offering
+`vpcOnly`<br/>*boolean*        | Whether or not the offering is for VPC subnets
 `services`<br/>*Array[string]* | The services provided by the offering
-`state`<br/>*string* | The state of the offering
+`state`<br/>*string*           | The state of the offering
