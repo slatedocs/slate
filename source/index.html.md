@@ -6,13 +6,19 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - php
 
 toc_footers:
-  - <a href='http://instantaccess.io/partner.php'>Partner Sing Up</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='http://instantaccess.io/partner'>Partner Sign Up</a>
 
 search: true
 ---
 
 # IA Documentation
+
+<img src="images/headerImg.svg" width="100%"/>
+
+Before you start, you will need 2 keys<br/>
+- Client ID Key<br/>
+- Client Secret Key<br/><br/>
+Contact us at [yo@instantaccess.io](email:yo@instantaccess.io) if you do not have these. You will need to provide us with a callback url to receive user info from our server.
 
 
 # IA Partner Integration
@@ -118,10 +124,7 @@ search: true
 ```
 
 
-IA uses client id and client secret keys to allow using of IA service.
-You can register and get your new Partner keys by contacting us on [yo@instantaccess.io](email:yo@instantaccess.io) and provide use with the callback url to send the authorization code for the authenticated user to your website..
-
-In order to complete the IA integration, you need to add the `code snippet` in your own website in the place you want to use IA in
+Once you are ready, simple add the `code snippet` where you want IA button to appear.
 
 <aside class="notice">
 You must replace <code>IA_PARTNER_CLIENT_ID_KEY</code> with your IA partner client id key.
@@ -134,7 +137,7 @@ You must replace <code>IA_PARTNER_CLIENT_SECRET_KEY</code> with your IA partner 
 
 # Handling IA Authentication
 
-IA System call one of three methods when finish IA Authentication according to the process status (success, denied or fail, timeout)
+IA System will call one of this three methods when finish IA Authentication according to the status (success, denied or fail, timeout)
 
 ## Success
 
@@ -144,10 +147,11 @@ IA System call one of three methods when finish IA Authentication according to t
       // Example: window.location = 'IACompleteRegisteration.php?iaUser='+usernameOrEmail
     }
 ```
-This method called if your website user finish IA Authentication request successfully and approve your website request
-You must implement this method and continue your user signup proccess, IA system will provide all authorized information of the user that your website requested to your callback endpoint with the username & user email before calling this method, You must implement the callback to save these data to use it later, Please check 'Callback Implementation Section'.
+This method will be called when user finished IA Authentication successfully and approved the request on their IA app.
 
-You can fetch the user data by ajax from your system or you can reditect for another page in this method and continue Sign Up process because the authorized information for the user must be saved now on your system via your callback url
+Simply implement this method and continue your user flow, IA will provide all approved user info to your callback endpoint with the username and user email before calling this method. You can implement the callback to save these data for later use. Please refer to 'Callback Implementation Section'.
+
+You can fetch user data using ajax or reditect to another page in this method and continue your user process. All authorized user info must be saved now on your system via your callback url.
 
 ### Query Parameters
 
@@ -162,8 +166,9 @@ usernameOrEmail | This is the username or email that the user used it to authent
         alert(message);
       }
 ```
-This method called if your website user deny your IA Authentication request on his IA mobile App or the request fail for any other reason.
-by default this method is implemented to alert the user with message why it fails, You can change it as you want
+This method will be called if your website user denied the IA Authentication request on the IA App or the request fail for any other reason.
+
+By default, this method alerts the user with a failing message, however you can change this to suit your need.
 
 ### Query Parameters
 
@@ -178,8 +183,9 @@ message | It contains the reason of failure if the user denied the process, ...e
         alert(message);
       }
 ```
-This method called if your website user didn't take any actions on his IA mobile app to authenticate your service.
-by default this method is implemented to alert the user with timeout message
+This method will be called if user failed to respond to IA request over IA App.
+
+By default, this method alerts the user with a timeout message.
 
 ### Query Parameters
 
@@ -190,7 +196,7 @@ message | It contains timeout message.
 
 # Callback Implementation
 
-## IA System Call your callback after successful approval from the user
+## Callback
 
 ```php
 $authorizationCode = $_GET['code'];
@@ -200,7 +206,7 @@ $username = $stateArr[0];
 $email = $stateArr[1];
 ```
 
-IA System Call your provided callback URL when the user approve your website request on IA mobile App with two parameters.
+When user approved the request over IA App, the Callback URL will be called with two parameters.
 
 ### HTTP Request
 
@@ -252,10 +258,10 @@ if($result !== FALSE) {
 }
 ```
 
-Your website must use the provided authorization code in last step to fetch user token and save it in your records of users (database, files, ...etc)
+Please use the authorization code provided previously to fetch user token and save it in your users record. (database, files, ...etc)
 
 <aside class="success">
-Remember — This token you will use everytime you request data for this user from IA system, Please check the next section to know how to use it.
+This token is required everytime your system requests user info from IA. 
 </aside>
 
 ### HTTP Request
@@ -271,7 +277,7 @@ redirect_uri | your callback url
 grant_type | always with string value 'authorization_code'
 
 
-## fetching user Information for this user from IA System
+## Fetch User Token
 
 ```php
 if($result !== FALSE) {
@@ -318,10 +324,10 @@ if($result !== FALSE) {
 }
 ```
 
-Your website must use user token that provided in last step for authentication to fetch user authorized information and save it in your records of users (database, files, ...etc)
+Please use the user token to fetch user info from IA system. You can process these info as you usually do (e.g. save in database).
 
 <aside class="success">
-Remember — You can use this token and fetch the information many times via this api call.
+You can fetch user info with the user token via this api call at anytime.
 </aside>
 
 ### HTTP Request
