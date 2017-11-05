@@ -16,6 +16,9 @@ test-ids | filters runs that are related to a certain test_id/ids, separated by 
 set-ids | filter by TestSets ids, separated by comma (NOT display-id) |
 instance-ids | filter by Instances ids, separated by comma (NOT display-id) |
 run-type: 'AutomatedRun |ManualRun' | filters run by Run Type: Automated or Manual  |
+set-filter-id | the testSet's filter id -> showing runs of TestSets which are in this filter |
+updated-hours-ago | showing runs that were updated # hours ago |
+
 
 * None of the parameters are required. You can also combine multiple parameters if needed.
 You can see examples in the dark area to the right.
