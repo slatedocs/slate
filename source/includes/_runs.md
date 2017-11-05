@@ -17,6 +17,7 @@ set-ids | filter by TestSets ids, separated by comma (NOT display-id) |
 instance-ids | filter by Instances ids, separated by comma (NOT display-id) |
 run-type: 'AutomatedRun |ManualRun' | filters run by Run Type: Automated or Manual  |
 set-filter-id | the testSet's filter id -> showing runs of TestSets which are in this filter |
+set-filter-user-id | if filter uses current_user criteria in it, you should provide which is the this user ([list of user ids](#users)) |
 updated-hours-ago | showing runs that were updated # hours ago |
 
 
