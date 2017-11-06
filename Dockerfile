@@ -1,9 +1,9 @@
-FROM ruby:2.2.6-onbuild
-MAINTAINER Adrian Perez <adrian@adrianperez.org>
-VOLUME /usr/src/app/source
+FROM ruby:2.3-alpine
+VOLUME /usr/src/app
 EXPOSE 4567
 
-RUN apt-get update && apt-get install -y nodejs \
-&& apt-get clean && rm -rf /var/lib/apt/lists/*
+WORKDIR /usr/src/app
 
-CMD ["bundle", "exec", "middleman", "server", "--watcher-force-polling"]
+RUN apk add --update nodejs g++ make
+
+CMD bundle install && bundle exec middleman server --watcher-force-polling
