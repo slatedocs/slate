@@ -223,6 +223,11 @@ The following configuration settings are available:
 
 </div>
 
+<h2 id="elixir-deploy-tracking-config">Deploy Tracking Config</h2>
+
+The Elixir agent doesn't support deploy tracking yet. Contact [support@scoutapp.com](support@scoutapp.com) to be notified of updates.
+
+
 <h2 id="elixir-instrumented-libaries">Auto-Instrumented Libraries</h2>
 
 Our [install instructions](#elixir-install) walk through instrumenting the following libraries:

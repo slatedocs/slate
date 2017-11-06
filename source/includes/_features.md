@@ -99,6 +99,12 @@ Database metrics appear in two areas of the UI:
 1. [Database Overview](#database-overview)
 2. [Web Endpoint & Background Job Breakdown](#endpoint-database-breakdown)
 
+The video below shows the two areas in action. There is a detailed description of each area beneath the video.
+
+<iframe src="https://player.vimeo.com/video/241390934" width="640" height="400" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+
+
 ### Database Overview
 
 ![database monitoring](db_monitoring.png)

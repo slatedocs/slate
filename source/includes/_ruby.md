@@ -452,7 +452,7 @@ Environment variables have the same names as those in the Yaml config file, but 
 ```ruby
 export SCOUT_KEY=YOURKEY
 ```
-## Deploy Tracking Config
+<h2 id="ruby-deploy-tracking-config">Deploy Tracking Config</h2>
 
 Scout can [track deploys](#deploy-tracking), making it easier to correlate changes in your app to performance. To enable deploy tracking, first ensure you are on the latest version of `scout_apm`. See our [upgrade instructions](#updating-to-the-newest-version).
 
