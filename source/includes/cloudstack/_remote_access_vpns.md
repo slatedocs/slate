@@ -47,6 +47,7 @@ Attributes | &nbsp;
 Query Parameters | &nbsp;
 ---------- | -----
 `vpc_id`<br/>*UUID* | Filter the list to only retrieve the VPN information of a specific [VPC](#cloudstack-vpcs)
+`network_id`<br/>*UUID* | Filter the list to only retrieve the VPN information of a specific [Network](#cloudstack-networks)
 
 #### Retrieve a remote access VPN
 ```shell
