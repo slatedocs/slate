@@ -28,14 +28,17 @@ Quintype APIs list
 
 
 # API name
-/api/v1/stories
+
+## /api/v1/stories
 
 **Description**
 
 Returns a list of stories and the story details, such as the author name and author ID, story headline, story slug, the list of sections ID and section name that the story belongs to, story template, metadata, and so on.
 
 
-| Parameter | Data Type | Description|
+**Input Parameters**
+
+| Name | Data Type | Description|
 |--|--|--|
 | section-ids | integer | The section ID of a story |
 | section | string | The name of a section |
@@ -57,7 +60,10 @@ Returns a list of stories and the story details, such as the author name and aut
 
 Returns the story by the story slug. The output contains information such as the story author name, author ID, tags, sections, cards, and the metadata associated with that story.
 
-| Parameter | Data Type | Description|
+
+**Input Parameters**
+
+| Name | Data Type | Description|
 |--|--|--|
 |slug| string| The slug for the desired story|
 
@@ -65,15 +71,45 @@ Returns the story by the story slug. The output contains information such as the
 ## /api/v1/authors/
 
 **Description**
-Returns the list of authors
 
-| Parameter | Data Type | Description|
+Returns the list of authors with the author name and author ID, along with details such as the author's biodata, gender, twitter handle and so on.
+
+**Input Parameters**
+
+| Name | Data Type | Description|
 |--|--|--|
 |author-id| integer| The author ID |
 
 
-* https:/*publisher_URL*/api/v1/collections/*collection_name*aaa
 
+## /api/v1/search/
+
+**Description**
+
+Returns a list of stories.
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|author| string| The author name to search|
+|author-id| integer| The author ID|
+|fields| string| The parameters of a story, such as headline, slug, section, author ID, story ID, and so on.|
+|limit |integer |The number of stories to display. The default is 20. |
+|offset |integer |The distance from the start of the array of stories to the reference point in the array. |
+|sort| string| Returns stories based on ascending or descending order| 
+|q| string|  The search string.... 
+|published-before| integer| The date
+|published-after| integer | The date
+
+
+
+## /api/v1/collections/
+
+**Description**
+
+
+**Input Parameters**
 
 <!--Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
 
