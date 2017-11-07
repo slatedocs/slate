@@ -42,10 +42,9 @@ modified | string | The date that the collection request was last modified, in t
 updated_by | string | The ID of the user who last updated the collection request
 collection | long integer or null | The ID of the collection that fulfilled the collection request, if any
 success_message | string or null | The confirmation message delivered to the customer upon successful completion of this payment request
-instructions | string or null | Any custom instructions that were delivered to the customer
-send_instructions | boolean | Whether or not Beyonic will attempt to send instructions to the user
-send_instructions | boolean | Whether or not Beyonic will attempt to send instructions to the user
-expiry_date | string or null | Specifies the date and time when this collection request will be marked as expired. Defaults to "24 hours" Examples of valid values for this field include strings such as "tomorrow", "24 hours", "2 minutes", or %d/%m/%Y format e.g 24/05/2019 or %d/%m/%Y %H:%M:%S format e.g 24/05/2019 13:24:12
+send_instructions | boolean | *New in V2.* Defaults to False (but you probably want to set this to True). Indicates whether we should send payment instructions to the subscriber via SMS. Note that this field defaults to False, so if you want the collection request to actually notify the customer (with a USSD popup and an SMS), you must set this field to True. Omitting the field will prevent collection requests from being sent out to the customer.
+instructions | string or null | *New in V2.* Allows overriding of the default instructions sent to the subscriber. If omitted, default network-specific instructions will be sent to the subscriber via SMS. If you want to skip sending ANY sms instructions and turn off even the default instructions, set this parameter to "skip" (instructions = "skip")
+expiry_date | string or null | Defaults to "24 hours". Specifies the date and time when this collection request will be marked as expired. Examples of valid values for this field include strings such as "tomorrow", "24 hours", "2 minutes", or %d/%m/%Y format e.g 24/05/2019 or %d/%m/%Y %H:%M:%S format e.g 24/05/2019 13:24:12
 
 
 ## Creating a new Collection Request
@@ -219,9 +218,9 @@ currency | Yes | String | BXC | 3 letter ISO currency code. No currency conversi
 reason | No | String | Transaction Fees | The reason for this collection request. This is used when sending automated instructions to the customer. If you omit this field, it will be set to your company name. Please keep this field below 20 characters because some networks may truncate it. You are also advised to include your company name so that it's clear who is requesting the funds.
 metadata | No | JSON String | "{'my_id': '123ASDAsd123'}" | Custom attributes to store with this object. See the Metadata section for more information.
 success_message | No | String (Max 140 characters) | "Thank you for your payment!" | *New in V2.* This message will be sent via SMS to the subscriber when they make a payment for this collection request. '-Powered by Beyonic' shall be appended to this message. If you leave this message out, a default message shall be sent by Beyonic. You can include {amount} and {customer} placeholders - these will be replaced with the amount and customer name or number details before the message is sent.
-send_instructions | No | Boolean | False | *New in V2.* Defaults to False. Indicates whether we should send payment instructions to the subscriber via SMS. Note that this field defaults to False, so if you want the collection request to actually be sent out, you must set this field to True. Omitting the field will prevent collection requests from being sent out.
+send_instructions | No | Boolean | False | *New in V2.* Defaults to False (but you probably want to set this to True). Indicates whether we should send payment instructions to the subscriber via SMS. Note that this field defaults to False, so if you want the collection request to actually notify the customer (with a USSD popup and an SMS), you must set this field to True. Omitting the field will prevent collection requests from being sent out to the customer.
 instructions | No | String (Max 140 characters) | "Use #1234 as the reference" | *New in V2.* Allows overriding of the default instructions sent to the subscriber. If omitted, default network-specific instructions will be sent to the subscriber via SMS. If you want to skip sending ANY sms instructions and turn off even the default instructions, set this parameter to "skip" (instructions = "skip")
-
+expiry_date | No | Date String | 24 hours | Defaults to "24 hours". Specifies the date and time when this collection request will be marked as expired. Examples of valid values for this field include strings such as "tomorrow", "24 hours", "2 minutes", or %d/%m/%Y format e.g 24/05/2019 or %d/%m/%Y %H:%M:%S format e.g 24/05/2019 13:24:12
 ## Retrieving a single Collection Request
 
 > Sample Request:
