@@ -1,1 +1,1 @@
-# Front End Topics
+# Implementing a Front End Application

@@ -6,12 +6,12 @@ The Black Knight application is a tool to deploy your front end code across the 
 
 The deployment process has three steps
 
-#### Compilation Steps
+### Compilation Steps
 
 * Changes to the app are made locally, and pushed up to [GitHub](https://github.com).
 * [Docker Hub](https://hub.docker.com) picks up the changes from GitHub, and builds a docker tag.
 
-#### Deployment Steps
+### Deployment Steps
 
 * Enter the docker tag that is to be deployed. And click deploy.
 * Black Knight will automatically [copy in config files](#setting-up-configuration), and create an 'immutable tag'

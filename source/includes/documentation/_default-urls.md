@@ -25,11 +25,9 @@ Production urls typically have the editor and API server on the quintype domains
 
 ### Black Knight
 
-During the process of creating your account, the Quintype team will also create a publisher (The Foobar) on the [Black Knight](./black-knight) application. You will be able to deploy all your front end applications from the same place.
+During the process of creating your account, the Quintype team will also create a publisher (The Foobar) on the [Black Knight](#black-knight) application. You will be able to deploy all your front end applications from the same place.
 
 ### Production DNS Entries
-
-The following is an example for the DNS entries to be made
 
 ```dns
 www.thefoobar.com   CNAME thefoobar.publisher.quintype.io
@@ -38,16 +36,19 @@ beta.thefoobar.com  CNAME thefoobar.publisher.quintype.io
 thefoobar.com       A     174.129.25.170 # Redirect to www.thefoobar.com using http://wwwizer.com/naked-domain-redirect
 ```
 
+The ON the right is an example for the DNS entries to be made
+
 We strongly recommend that you serve your content off a `www` domain, and use the apex to forward 301 to your www domain. However, do use a provider that sets a `Cache-Control` header with the redirect (like GoDaddy).
 
-If your main site is on an APEX domain, then you may use the following entries:
-
 ```dns
+# If you serve domain from an APEX domain
 thefoobar.com A 151.101.0.204
 thefoobar.com A 151.101.64.204
 thefoobar.com A 151.101.128.204
 thefoobar.com A 151.101.192.204
 ```
+
+If your main site is on an APEX domain, then you must configure A records to our CDN.
 
 ### SSL / HTTPS
 
