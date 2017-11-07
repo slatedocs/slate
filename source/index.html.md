@@ -54,6 +54,7 @@ Returns a list of stories and the story details, such as the author name and aut
 
 
 **Description**
+
 Returns the story by the story slug. The output contains information such as the story author name, author ID, tags, sections, cards, and the metadata associated with that story.
 
 | Parameter | Data Type | Description|
@@ -63,7 +64,7 @@ Returns the story by the story slug. The output contains information such as the
 
 ## /api/v1/authors/
 
-**Description **
+**Description**
 Returns the list of authors
 
 | Parameter | Data Type | Description|
