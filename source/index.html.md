@@ -27,8 +27,17 @@ Quintype APIs list
 * Configuration
 
 
-# Making the API calls 
-(simply filling up...)
+# API name
+/api/v1/stories
+
+Description
+Returns a list of stories and the story details, such as the author name and author ID, story headline, story slug, the list of sections ID and section name that the story belongs to, story template, metadata, and so on.
+
+
+| Parameter | Data Type | Description|
+|--|--|--|
+| section-ids | integer | The section ID of a story
+| section | string | The name of a section 
 
 * /api/v1/config
 * /api/v1/stories-by-slug
@@ -37,7 +46,7 @@ Quintype APIs list
 
 ## Examples
 
-* https:/*publisher_URL*/api/v1/collections/*collection_name*
+* https:/*publisher_URL*/api/v1/collections/*collection_name*aaa
 
 
 <!--Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
