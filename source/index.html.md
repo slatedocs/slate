@@ -37,8 +37,16 @@ Returns a list of stories and the story details, such as the author name and aut
 
 | Parameter | Data Type | Description|
 |--|--|--|
-| section-ids | integer | The section ID of a story
-| section | string | The name of a section 
+| section-ids | integer | The section ID of a story |
+| section | string | The name of a section |
+|fields|string|The parameters of a story, such as headline, slug, section, author ID, story ID, and so on. |
+|limit|integer|The number of stories to display. The default is 20. |
+|offset|integer|The distance from the start of the array of stories to the reference point in the array. |
+|story-order|string|Displays stories in the specified order, such as top, last-updated, and so on. |
+|template|string|The name of the story template. For example, video, live-blog, photo-story, and so on. |
+|tag|string|The name of the tags. |
+|randomize|string|Displays list of random stories. |
+|no-story-content-ids | string|The stories other than the mentioned story IDs. |
 
 * /api/v1/config
 * /api/v1/stories-by-slug
