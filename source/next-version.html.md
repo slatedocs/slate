@@ -29,7 +29,7 @@ Quintype APIs list
 
 # API name
 
-## /api/v1/stories
+## /api/v1/stories/
 
 **Description**
 
@@ -53,7 +53,7 @@ Returns a list of stories and the story details, such as the author name and aut
 
 
 
-## /api/v1/stories-by-slug
+## /api/v1/stories-by-slug/
 
 
 **Description**
@@ -114,7 +114,11 @@ Returns the list of collections.
 
 | Name | Data Type | Description|
 |--|--|--|
-|
+|slug| string| The slug for the desired collection|
+|item-type| string| |
+|exclude-story-ids|integer| The story IDs to be excluded from displaying|
+
+
 
 <!--Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
 
