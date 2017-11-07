@@ -30,7 +30,8 @@ Quintype APIs list
 # API name
 /api/v1/stories
 
-Description
+**Description**
+
 Returns a list of stories and the story details, such as the author name and author ID, story headline, story slug, the list of sections ID and section name that the story belongs to, story template, metadata, and so on.
 
 
