@@ -48,12 +48,28 @@ Returns a list of stories and the story details, such as the author name and aut
 |randomize|string|Displays list of random stories. |
 |no-story-content-ids | string|The stories other than the mentioned story IDs. |
 
-* /api/v1/config
-* /api/v1/stories-by-slug
-* /api/v1/search
-* /api/v1/bulk
 
-## Examples
+
+## /api/v1/stories-by-slug
+
+
+** Description **
+Returns the story by the story slug. The output contains information such as the story author name, author ID, tags, sections, cards, and the metadata associated with that story.
+
+| Parameter | Data Type | Description|
+|--|--|--|
+|slug| string| The slug for the desired story|
+
+
+## /api/v1/authors/
+
+** Description **
+Returns the list of authors
+
+| Parameter | Data Type | Description|
+|--|--|--|
+|author-id| integer| The author ID |
+
 
 * https:/*publisher_URL*/api/v1/collections/*collection_name*aaa
 
