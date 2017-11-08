@@ -117,13 +117,25 @@ This API can be used to create a subscription
 ## PATCH update attributes
 
 ```shell
-curl -H "X-SUBAUTH: <auth-token>" -X "PATCH" -H "Content-Type: application/json" https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscriptions.json -d '{
-  "id": "322",
+curl -H "X-SUBAUTH: <auth-token>" -X "PATCH" -H "Content-Type: application/json" https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscriptions/<id>.json -d '{
   "subscription": {
     "metadata":  {
         "full-name": "hello-world",
         "email": "hello@quintype.com"
     }
+  }
+}`
+```
+
+This API can be used to update the attributes for a subscription of a subscriber
+
+## PATCH bulk update attributes
+
+```shell
+curl -H "X-SUBAUTH: <auth-token>" -X "PATCH" -H "Content-Type: application/json" https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscriptions.json -d '{
+  "metadata":  {
+    "full-name": "hello-world",
+    "email": "hello@quintype.com"
   }
 }`
 ```
