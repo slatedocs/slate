@@ -60,13 +60,13 @@ Attributes | &nbsp;
 `networkId`<br/>*string* | The id of the network the rule applies to
 `sourceCidr`<br/>*string* | The source cidr
 `destinationCidr`<br/>*string* | The destination cidr
-`protocol`<br/>*string* | The protocol the rule applies to
+`protocol`<br/>*string* | The protocol the rule applies to. <br/>*Possible values:* `TCP`, `UDP`, `ICMP`, `ALL`
 `startPort`<br/>*string* | The start port (for TCP/UDP protocols only)
 `endPort`<br/>*string* | The end port (for TCP/UDP protocols only)
 `allPortsAllowed`<br/>*boolean* | The flag indicating all the port range selection (for TCP/UDP protocols only)
 `icmpType`<br/>*string* | The ICMP type (for ICMP protocol only)
 `icmpCode`<br/>*string* | The ICMP code (for ICMP protocol only)
-`state`<br/>*string* | The state.<br/>*Possible values:* `Active`, `Inactive.`
+`state`<br/>*string* | The state.<br/>*Possible values:* `Active`, `Inactive`
 
 Query Parameters | &nbsp;
 ---------- | -----
@@ -111,7 +111,7 @@ Attributes | &nbsp;
 `allPortsAllowed`<br/>*boolean* | The flag indicating all the port range selection (for TCP/UDP protocols only)
 `icmpType`<br/>*string* | The ICMP message type (for ICMP protocol only)
 `icmpCode`<br/>*string* | The ICMP message error code (for ICMP protocol only)
-`state`<br/>*string* | The state.<br/>*Possible values:* `Active`, `Inactive.`
+`state`<br/>*string* | The state.<br/>*Possible values:* `Active`, `Inactive`
 
 #### Create an egress rule
 
