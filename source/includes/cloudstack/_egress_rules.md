@@ -18,8 +18,7 @@ curl -H "MC-Api-Key: your_api_key" \
             "sourceCidr": "10.2.1.0/25",
             "destinationCidr": "",
             "protocol": "ALL",
-            "state": "Active",
-            "allPortsAllowed": false
+            "state": "Active"
         },
         {
             "id": "d860f2e7-ad15-4cb0-8477-6aa439245d1f",
