@@ -119,6 +119,16 @@ Returns the list of collections.
 |exclude-story-ids|integer| The story IDs to be excluded from displaying|
 
 
+## /api/v1/stories/{story-id}/related-stories
+
+**Description**
+Returns the stories that are related to the mentioned story ID.
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
 
 <!--Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
 
