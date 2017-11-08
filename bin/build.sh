@@ -6,6 +6,6 @@ TAG_NAME="$GO_PIPELINE_NAME-$GO_PIPELINE_COUNTER-$GO_STAGE_NAME-$GO_STAGE_COUNTE
 FULL_IMAGE="$REPO_NAME:$TAG_NAME"
 
 ./bin/docker-build.sh $FULL_IMAGE
-echo $TAG_NAME > image-name
+echo $TAG_NAME > image-tag
 docker push $FULL_IMAGE
 docker rmi $FULL_IMAGE
