@@ -6,43 +6,43 @@
 $ curl -H "X-SUBAUTH: <auth-token>" https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscriptions.json
 {
  "subscriptions":[
-    {
-       "id":713,
-       "subscriber_id":453,
-       "subscription_plan_id":16,
-       "created_at":"2017-10-30T10:55:42.201Z",
-       "updated_at":"2017-10-30T10:55:42.201Z",
-       "assets":[
+  {
+     "id":713,
+     "subscriber_id":453,
+     "subscription_plan_id":16,
+     "created_at":"2017-10-30T10:55:42.201Z",
+     "updated_at":"2017-10-30T10:55:42.201Z",
+     "assets":[
 
-       ],
-       "start_timestamp":"2017-10-30T10:55:42.176Z",
-       "end_timestamp":"2017-11-13T10:55:42.176Z",
-       "deleted_at":null,
-       "payment_id":668,
-       "metadata":{
-          "Name":"Sample User",
-          "Address":"Sample add",
-          "Phone Number":"1111111111"
-       },
-       "external_id":null,
-       "trial_period_length":null,
-       "trial_period_unit":null,
-       "coupon_code":null,
-       "subscription_group_id":21,
-       "preferred_identity":{
-          "provider":"email",
-          "value":"sample@gmail.com"
-       },
-       "group_name":"Sub Group 1",
-       "plan_name":"Sub Plan 1",
-       "duration_length":2,
-       "duration_unit":"weeks",
-       "subscription_type":"individual",
-       "active":true,
-       "payment_amount":"0.00",
-       "payment_type":"manual"
+     ],
+     "start_timestamp":"2017-10-30T10:55:42.176Z",
+     "end_timestamp":"2017-11-13T10:55:42.176Z",
+     "deleted_at":null,
+     "payment_id":668,
+     "metadata":{
+        "Name":"Sample User",
+        "Address":"Sample add",
+        "Phone Number":"1111111111"
+     },
+     "external_id":null,
+     "trial_period_length":null,
+     "trial_period_unit":null,
+     "coupon_code":null,
+     "subscription_group_id":21,
+     "preferred_identity":{
+        "provider":"email",
+        "value":"sample@gmail.com"
+     },
+     "group_name":"Sub Group 1",
+     "plan_name":"Sub Plan 1",
+     "duration_length":2,
+     "duration_unit":"weeks",
+     "subscription_type":"individual",
+     "active":true,
+     "payment_amount":"0.00",
+     "payment_type":"manual"
     }
- ]
+  ]
 }
 ```
 
@@ -70,6 +70,7 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" https://su
   "alternate_provider": "email",
   "alternate_identity": "hey@quintype.com"
 }'
+
 {
     "subscription": {
       "id": 322,
@@ -113,7 +114,7 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" https://su
 
 This API can be used to create a subscription
 
-### PATCH update attributes
+## PATCH update attributes
 
 ```shell
 curl -H "X-SUBAUTH: <auth-token>" -X "PATCH" -H "Content-Type: application/json" https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscriptions.json -d '{
@@ -129,7 +130,7 @@ curl -H "X-SUBAUTH: <auth-token>" -X "PATCH" -H "Content-Type: application/json"
 
 This API can be used to update the attributes of **all** active subscriptions of a subscriber
 
-### DELETE a subscription
+## DELETE a subscription
 
 ```shell
 curl -H "X-SUBAUTH: <auth-token>" -X "DELETE" -H "Content-Type: application/json" https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscriptions/<subscription-id>.json
@@ -145,6 +146,7 @@ In order to register a recurring subscription with some providers (such as razor
 
 ```shell
 curl -H "X-SUBAUTH: <auth-token>" https://subtype.quintype.com/api/v1/subscription_plans/<subscription-plan-id>/external_subscription_token.json?type=razorpay
+
 {
   "subscription": {
     "id": "sub_8tQNd3qURQJiK5"
