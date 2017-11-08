@@ -20,6 +20,7 @@ GEM
     concurrent-ruby (1.0.4)
     contracts (0.13.0)
     dotenv (2.2.0)
+    duktape (1.6.1.0)
     erubis (2.7.0)
     execjs (2.7.0)
     fast_blank (1.0.0)
@@ -118,6 +119,7 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
+  duktape
   middleman (~> 4.2.1)
   middleman-autoprefixer (~> 2.7.0)
   middleman-sprockets (~> 4.1.0)
