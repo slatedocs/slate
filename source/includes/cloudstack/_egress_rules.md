@@ -70,8 +70,7 @@ Attributes | &nbsp;
 
 Query Parameters | &nbsp;
 ---------- | -----
-`id`<br/>*UUID* | Filter the list to only retrieve the information of a specific [egress rule](#cloudstack-egress-rules)
-`networkId`<br/>*UUID* | Filter the list to only retrieve the egress rules of a specific [Network](#cloudstack-networks)
+`network_id`<br/>*UUID* | Filter the list to only retrieve the egress rules of a specific [Network](#cloudstack-networks)
 
 #### Retrieve an egress rule
 ```shell
