@@ -139,7 +139,7 @@ Protocol-specific       | &nbsp;
 ------------------------|-------
 `startPort`<br/>*string* | The start of the port range targeted by this rule. Required if the protocol is TCP or UDP
 `endPort`<br/>*string*   | The end of the port range targeted by this rule. Required if the protocol is TCP or UDP
-`allPortsAllowed`<br/>*boolean* | The flag indicating the selection of all the port range, 1-65535  (for TCP/UDP protocols only)
+`allPortsAllowed`<br/>*boolean* | The flag indicating the selection of all the port range, i.e. 1-65535. Required if the protocol is TCP or UDP. <br/>*Default value:* `false`
 `icmpType`<br/>*string*  | ICMP message type. Required if the protocol is ICMP
 `icmpCode`<br/>*string*  | ICMP message error code. Required if the protocol is ICMP
 
