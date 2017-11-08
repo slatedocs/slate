@@ -15,12 +15,12 @@ There are three endpoints to access entities:
 
 ### 1. Getting all the entities
 
-Use the [GET ENTITIES API](/swagger/#/entity/get_api_v1_entities) to get all the entities created.
+Use the [GET ENTITIES API](/swagger#/entity/get_api_v1_entities) to get all the entities created.
 
 ### 2. Getting particular entity details.
 
-Use the [GET ENTITY API](/swagger/#/entity/get_api_v1_entities__id_) with the entity-id.
+Use the [GET ENTITY API](/swagger#/entity/get_api_v1_entities__id_) with the entity-id.
 
 ### 3. Getting the nested entities linked to an entity
 
-Use the [GET ENTITY API](/swagger/#/entity/get_api_v1_entities__id___subentity__) with the root entity-id followed by the nested-entity key.
+Use the [GET ENTITY API](/swagger#/entity/get_api_v1_entities__id___subentity__) with the root entity-id followed by the nested-entity key.

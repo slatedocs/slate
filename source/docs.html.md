@@ -38,4 +38,4 @@ includes:
 
 # Introduction to Quintype APIs
 
-This repository is a knowledge base for developers working on projects backed by the Quintype platform. The live documentation is available as [Swagger](/swagger/)
+This repository is a knowledge base for developers working on projects backed by the Quintype platform. The live documentation is available as [Swagger](/swagger)

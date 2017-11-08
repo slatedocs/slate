@@ -8,5 +8,5 @@ Stacks can have stories in the "Home" section (global), as well as within a sect
 
 ### API requests
 
-A stack can be requested using the *story-group* parameter to the stories API. The [Swagger Documentation](/swagger/) contains information on how to fetch stories within a stack.
+A stack can be requested using the *story-group* parameter to the stories API. The [Swagger Documentation](/swagger) contains information on how to fetch stories within a stack.
 
