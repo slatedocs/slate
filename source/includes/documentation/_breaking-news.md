@@ -12,4 +12,4 @@ The breaking news API accepts a *story-group* parameter, to give access to anoth
 
 ### API Documentation
 
-Please see the [swagger documentation](/swagger/#/breaking-news/get_api_v1_breaking_news) for details on how to use the API.
+Please see the [swagger documentation](/swagger#/breaking-news/get_api_v1_breaking_news) for details on how to use the API.

@@ -1,5 +1,11 @@
 #! /bin/sh -e
 
-bundle install
-bundle exec middleman build
-docker build -t quay.io/quintype/documentation .
+# Move this bit into trojan rabbit
+REPO_NAME="$1"
+TAG_NAME="$GO_PIPELINE_NAME-$GO_PIPELINE_COUNTER-$GO_STAGE_NAME-$GO_STAGE_COUNTER"
+FULL_IMAGE="$REPO_NAME:$TAG_NAME"
+
+./bin/docker-build.sh $FULL_IMAGE
+echo $TAG_NAME > docker-tag.txt
+docker push $FULL_IMAGE
+docker rmi $FULL_IMAGE
