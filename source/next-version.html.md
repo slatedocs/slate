@@ -35,8 +35,15 @@ Returns a list of stories.
 | Name | Data Type | Description|
 |--|--|--|
 |q| string|  The search string, for example |
+|author| string| The author name to search|
+|author-id| integer| The author ID|
+|fields| string| The parameters of a story, such as headline, slug, section, author ID, story ID, and so on.|
+|limit |integer |The number of stories to display. The default is 20. |
+|offset |integer |The distance from the start of the array of stories to the reference point in the array. |
+|sort| string| Returns stories based on ascending or descending order|  
+|published-before| integer| The date in Epoch format
+|published-after| integer | The date in Epoch format
 
-code goes here
 
 ```
 
@@ -142,15 +149,6 @@ code goes here
 
 ```
 
-
-|author| string| The author name to search|
-|author-id| integer| The author ID|
-|fields| string| The parameters of a story, such as headline, slug, section, author ID, story ID, and so on.|
-|limit |integer |The number of stories to display. The default is 20. |
-|offset |integer |The distance from the start of the array of stories to the reference point in the array. |
-|sort| string| Returns stories based on ascending or descending order|  
-|published-before| integer| The date in Epoch format
-|published-after| integer | The date in Epoch format
 
 
 ## /api/v1/stories/
