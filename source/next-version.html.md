@@ -40,7 +40,7 @@ Returns a list of stories and the story details, such as the author name and aut
 
 | Name | Data Type | Description|
 |--|--|--|
-| section-ids | integer | The section ID of a story |
+| section-id | integer | The section ID of a story |
 | section | string | The name of a section |
 |fields|string|The parameters of a story, such as headline, slug, section, author ID, story ID, and so on. |
 |limit|integer|The number of stories to display. The default is 20. |
@@ -49,7 +49,7 @@ Returns a list of stories and the story details, such as the author name and aut
 |template|string|The name of the story template. For example, video, live-blog, photo-story, and so on. |
 |tag|string|The name of the tags. |
 |randomize|string|Displays list of random stories. |
-|no-story-content-ids | string|The stories other than the mentioned story IDs. |
+|not-story-content-ids | string |The stories other than the mentioned story IDs. |
 
 
 
