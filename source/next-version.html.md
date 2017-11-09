@@ -45,6 +45,10 @@ Returns a list of stories.
 |published-after| integer | The date in Epoch format
 
 
+
+API request 
+
+http://sketches.quintype.com/api/v1/search?fields=headline%2C%20tags%2Cslug%2C%20last-published-at%2C&limit=5&q=Indian%20cricket" -H "accept: json"
 ```
 
 {  
