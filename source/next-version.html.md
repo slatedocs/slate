@@ -38,7 +38,109 @@ Returns a list of stories.
 
 code goes here
 
+```
 
+{  
+   "results":{  
+      "from":0,
+      "size":5,
+      "total":45,
+      "stories":[  
+         {  
+            "headline":"L&T to build world\u2019s biggest cricket stadium at Motera",
+            "tags":[  
+               {  
+                  "id":275035,
+                  "name":"National",
+                  "meta-description":null,
+                  "slug":"national"
+               }
+            ],
+            "slug":"national/2016/12/09/storystadiumabc",
+            "last-published-at":1482220906320
+         },
+         {  
+            "headline":"When is Tesla entering the Indian market?",
+            "tags":[  
+               {  
+                  "id":331448,
+                  "name":"Tesla",
+                  "meta-description":null,
+                  "slug":"tesla"
+               }
+            ],
+            "slug":"technology/2017/02/23/When-is-Tesla-entering-the-Indian-market",
+            "last-published-at":1487840302541
+         },
+         {  
+            "headline":"Viewpoint: How a \u2018breaking\u2019 murder has exposed Indian media",
+            "tags":[  
+               {  
+                  "id":15158,
+                  "name":"Murder",
+                  "meta-description":null,
+                  "slug":"murder"
+               },
+               {  
+                  "id":15496,
+                  "name":"Peter Mukherjea",
+                  "meta-description":null,
+                  "slug":"peter-mukherjea"
+               },
+               {  
+                  "id":15495,
+                  "name":"Indrani Mukherjea",
+                  "meta-description":null,
+                  "slug":"indrani-mukherjea"
+               }
+            ],
+            "slug":"current-affairs/2015/09/03/viewpoint-how-a-breaking-murder-has-exposed-indian-media",
+            "last-published-at":1441254770109
+         },
+         {  
+            "headline":"9/11 and the unsolvable Afghan drama  \u00A0",
+            "tags":[  
+               {  
+                  "id":17518,
+                  "name":"Dhoni",
+                  "meta-description":null,
+                  "slug":"dhoni"
+               },
+               {  
+                  "id":505844,
+                  "name":"indiabq",
+                  "meta-description":null,
+                  "slug":"indiabq"
+               }
+            ],
+            "slug":"politics/2017/09/13/afghan-drama",
+            "last-published-at":1505284207024
+         },
+         {  
+            "headline":"Okuhara reigns at Glasgow",
+            "tags":[  
+               {  
+                  "id":496336,
+                  "name":"Sindhu",
+                  "meta-description":null,
+                  "slug":"sindhu"
+               },
+               {  
+                  "id":496337,
+                  "name":"Badminton",
+                  "meta-description":null,
+                  "slug":"badminton"
+               }
+            ],
+            "slug":"sports/2017/08/30/okuhara-reigns-at-glasgow",
+            "last-published-at":1508911796773
+         }
+      ],
+      "term":"Indian cricket"
+   }
+}
+
+```
 
 
 |author| string| The author name to search|
