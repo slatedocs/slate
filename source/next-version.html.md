@@ -36,6 +36,8 @@ Returns a list of stories.
 |--|--|--|
 |q| string|  The search string, for example |
 
+code goes here
+
 ```
 {  
    "results":{  
