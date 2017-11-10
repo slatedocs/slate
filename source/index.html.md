@@ -26,6 +26,7 @@ includes:
   - cloudstack/public_ips
   - cloudstack/port_forwarding_rules
   - cloudstack/load_balancer_rules
+  - cloudstack/firewall_rules
   - cloudstack/nics
   - cloudstack/remote_access_vpns
   - cloudstack/vpn_users
