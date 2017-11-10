@@ -206,16 +206,6 @@ Returns the story details having the mentioned story ID.
 |story-id | string| The story ID |
 
 
-API request
-
-```
-curl -X GET "http://sketches.quintype.com/api/v1/stories/8ff85a7d-7726-49b4-892e-1e05c0ccea73" -H "accept: json"
-```
-
-
-```
-
-```
 
 
 ## /api/v1/stories/{story-id}/related-stories
