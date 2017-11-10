@@ -41,15 +41,13 @@ Returns a list of stories.
 |limit |integer |The number of stories to display. The default is 20. |
 |offset |integer |The distance from the start of the array of stories to the reference point in the array. |
 |sort| string| Returns stories based on ascending or descending order|  
-|published-before| integer| The date in Epoch format
-|published-after| integer | The date in Epoch format
+|published-before| integer| The date in Epoch format|
+|published-after| integer | The date in Epoch format|
 
 
 
-API request 
-
-http://sketches.quintype.com/api/v1/search?fields=headline%2C%20tags%2Cslug%2C%20last-published-at%2C&limit=5&q=Indian%20cricket" -H "accept: json"
 ```
+http://sketches.quintype.com/api/v1/search?fields=headline%2C%20tags%2Cslug%2C%20last-published-at%2C&limit=5&q=Indian%20cricket" -H "accept: json"
 
 {  
    "results":{  
@@ -223,7 +221,7 @@ Returns the stories that are related to the mentioned story ID.
 |fields| string | The parameters of a story, such as headline, slug, sections, author ID, and so on.|
 
 
-API request
+**API request**
 
 
 
