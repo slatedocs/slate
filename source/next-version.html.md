@@ -184,7 +184,7 @@ Returns a list of stories and the story details, such as the author name and aut
 
 **Description**
 
-Returns the story by the story slug. The output contains information such as the story author name, author ID, tags, sections, cards, and the metadata associated with that story.
+Returns the story having the mentioned slug. The output contains information such as the story author name, author ID, tags, sections, cards, and the metadata associated with that story.
 
 
 **Input Parameters**
@@ -192,6 +192,30 @@ Returns the story by the story slug. The output contains information such as the
 | Name | Data Type | Description|
 |--|--|--|
 |slug| string| The slug for the desired story|
+
+
+## /api/v1/stories/{story-id}
+
+Returns the story details having the mentioned story ID.
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|story-id | string| The story ID |
+
+
+API request
+
+```
+curl -X GET "http://sketches.quintype.com/api/v1/stories/8ff85a7d-7726-49b4-892e-1e05c0ccea73" -H "accept: json"
+```
+
+
+```
+
+```
 
 
 ## /api/v1/stories/{story-id}/related-stories
@@ -204,6 +228,13 @@ Returns the stories that are related to the mentioned story ID.
 
 | Name | Data Type | Description|
 |--|--|--|
+|story-id |string | The story ID|
+|section ID |string | The section ID of a story|
+|fields| string | The parameters of a story, such as headline, slug, sections, author ID, and so on.|
+
+
+API request
+
 
 
 ## /api/v1/collections/
