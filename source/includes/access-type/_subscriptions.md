@@ -47,6 +47,7 @@ $ curl -H "X-SUBAUTH: <auth-token>" https://subtype.quintype.com/api/v1/subscrib
 ```
 
 This API will list out all the subscriptions for a user.
+In order to get only active subscriptions, param `active_only=true` can be used.
 
 ## POST Create a Subscription
 
