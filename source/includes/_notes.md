@@ -61,14 +61,26 @@ curl "https://api.affinity.vc/notes" \
 
 Creates a new note with the supplied parameters.
 
+Affinity's Gmail Chrome Extension allows users to save an email as a note in Affinity.
+This same functionality is exposed in our API via the `gmail_id` parameter. Passing in the
+`id` of a Gmail
+[message](https://developers.google.com/gmail/api/v1/reference/users/messages) will
+automatically sync the email to Affinity (if it hasn't synced with Affinity already)
+and associate it with the newly created note. (Make sure that Affinity has access to the
+account that owns the Gmail mesage.) A note associated with an email cannot have any
+`content`.
+
 ### Path Parameters
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
 person_ids | integer[] | false | An array of unique identifiers of person objects that are associated with the new note.
 organization_ids | integer[] | false | An array of unique identifiers of organization objects that are associated with the new note.
-content | string | true | The string containing the content of the new note.
+content | string | false | The string containing the content of the new note.
+gmail_id | string | false | An id of an email an Gmail to save as the content of the note.
 creator_id | integer | false | The id of a Person resource who should be recorded as the author of the note. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key.
+
+Note that either `content` or `gmail_id` must be specified.
 
 ### Returns
 The note resource created through this request.
