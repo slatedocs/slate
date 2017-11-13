@@ -77,7 +77,7 @@ Parameter | Type | Required | Description
 person_ids | integer[] | false | An array of unique identifiers of person objects that are associated with the new note.
 organization_ids | integer[] | false | An array of unique identifiers of organization objects that are associated with the new note.
 content | string | false | The string containing the content of the new note.
-gmail_id | string | false | An id of a Gmail message to save as the content of the note.
+gmail_id | string | false | The id of a Gmail message to save as the content of the note.
 creator_id | integer | false | The id of a Person resource who should be recorded as the author of the note. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key.
 
 Note that either `content` or `gmail_id` must be specified.
