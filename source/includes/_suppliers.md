@@ -161,7 +161,7 @@ to write your own pagination logic.
 ### Top n records
 
 You can also find top n suppliers by passing `top` and `from` params like:
-`/api/v1/suppliers?top=10&from=100`
+`/api/v1/suppliers/top?top=10&from=100`
 
 ### Filter Archived Suppliers
 
