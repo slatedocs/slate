@@ -201,6 +201,7 @@ Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
 list_id | integer | true | The unique id of the list whose list entries are to be retrieved.
 entity_id | integer | true| The unique id of the entity (person or company) to add to this list.
+creator_id | integer | false | The id of a Person resource who should be recorded as adding the entry to the list. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key.
 
 ### Returns
 The list entry resource that was just created through this request.

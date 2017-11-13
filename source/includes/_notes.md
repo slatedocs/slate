@@ -68,6 +68,7 @@ Parameter | Type | Required | Description
 person_ids | integer[] | false | An array of unique identifiers of person objects that are associated with the new note.
 organization_ids | integer[] | false | An array of unique identifiers of organization objects that are associated with the new note.
 content | string | true | The string containing the content of the new note.
+creator_id | integer | false | The id of a Person resource who should be recorded as the author of the note. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key.
 
 ### Returns
 The note resource created through this request.
