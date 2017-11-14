@@ -106,6 +106,8 @@ We put popular languages code examples under Github. Please feel free to view, a
 
 <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/runs.rb" target="blank">POST example (with attachments)</a> for uploading test results to PractiTest with files
 
+<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/selenium_example.rb" target="blank">Selenium example with POST request </a> for uploading test results to PractiTest with steps
+
 
 
 ## Java
