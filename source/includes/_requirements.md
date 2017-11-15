@@ -99,8 +99,8 @@ Parameters | Description | required? |
 --------- | ------- |------- |
 data/attributes/name | name | true |
 data/attributes/description | description | false |
-data/attributes/author-id | user author-id  | true |
-data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  | false |
+data/attributes/author-id | user-id of author | true |
+data/attributes/assigned-to-id | user-id of assigned-to user (not Display ID) - [users list](#users)  | false |
 data/attributes/version | string of the requirement's version | false |
 data/attributes/priority | string of the requirement's priority | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |

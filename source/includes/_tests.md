@@ -104,7 +104,7 @@ This endpoint creates a test in your project.
 Parameters | Description | required? |
 --------- | ------- |------- |
 data/attributes/name | name | true |
-data/attributes/author-id | author id - [users list](#users) | true |
+data/attributes/author-id | user-id of author - [users list](#users) | true |
 data/attributes/description | Test description | false |
 data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  | false |
 data/attributes/planned-execution | date field of planned-execution | false |
