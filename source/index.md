@@ -12,6 +12,7 @@ toc_footers:
 includes:
   - intro
   - auth
+  - version
   - projects
   - sites
   - site_errors
