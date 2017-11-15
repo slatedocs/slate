@@ -776,3 +776,95 @@ order.
 | app_company_id       | header | Company ID              |
 | token                | string | Approver's reject token |
 
+
+
+
+## Cancel
+
+```ruby
+require 'rest-client'
+
+RestClient.post(
+  'https://app.rubberstamp.io/api/v1/purchase_orders/1/cancel',
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1/cancel'
+  -X POST
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": true
+}
+```
+
+Ability to Cancel purchase order.
+
+### HTTP Request
+
+`POST https://app.rubberstamp.io/api/v1/purchase_orders/:id/cancel`
+
+### URL Parameters
+
+| Params               | Type   | Description             |
+| ------               | ------ | -----------             |
+| authentication_token | header | Authentication token    |
+| app_company_id       | header | Company ID              |
+
+
+
+
+## Archive
+
+```ruby
+require 'rest-client'
+
+RestClient.post(
+  'https://app.rubberstamp.io/api/v1/purchase_orders/1/archive',
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1/archive'
+  -X POST
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": true
+}
+```
+
+Ability to Archive purchase order.
+
+### HTTP Request
+
+`POST https://app.rubberstamp.io/api/v1/purchase_orders/:id/archive`
+
+### URL Parameters
+
+| Params               | Type   | Description             |
+| ------               | ------ | -----------             |
+| authentication_token | header | Authentication token    |
+| app_company_id       | header | Company ID              |
+
