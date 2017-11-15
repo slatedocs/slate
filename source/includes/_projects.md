@@ -2,9 +2,10 @@
 Projects are used to group your [Sites](#sites).
 <aside class="info">Authentication is not included in the examples, see [Authentication](#authentication)</aside>
 
-
 ## Get
-Lists all projects of your account.
+Lists all or one projects of your account.
+
+For both requests the response looks identical. Except when request a specific project it will just list the one project.
 
 ```php
 <?php
@@ -31,7 +32,12 @@ Array
 # requesting a list of all your projects
 curl https://platform-api.productsup.io/platform/v1/projects
 ```
-    
+
+```shell
+# requesting one of projects
+curl https://platform-api.productsup.io/platform/v1/projects/1
+```
+
 ```shell    
 response: 
 {
@@ -50,12 +56,32 @@ response:
 
 `GET https://platform-api.productsup.io/platform/v1/projects`
 
+`GET https://platform-api.productsup.io/platform/v1/projects/<projectId>`
+
+### URL parameters
+Field | Type | Description
+------ | -------- | --------------
+projectId | integer | Project to list
+
 ### Response fields
 Field | Type | Description
 ------ | -------- | --------------
-id | Integer | Internal ID
-name | String | Name of the project
-created_at | Date | Date of creation
+status | boolean | Indicates request status
+projects | array | List of projects
+
+#### <a name="project-response-project"></a> Project fields
+Field | Type | Description
+--- | --- | ---
+id | integer | Internal ID
+name | string | Name of the project
+created_at | date | Date of creation
+links | array | References to project related endpoints
+
+#### <a name="project-response-links"></a> Links fields and values
+Name | Description
+--- | ---
+self | Link to the project detail endpoint
+sites | Link to a list of sites belonging to the project
 
 ## Create
 To create a new project, you can use a POST request (or the insert method).
@@ -100,18 +126,46 @@ Productsup\Platform\Project Object
 
 `POST https://platform-api.productsup.io/platform/v1/projects`
 
-The data to insert has to be provided as a JSON-Object
-### Request fields
+#### HTTP headers
+Name | Description
+--- | ---
+Content-Type | application/json
+
+The data to be inserted has to be provided as a JSON-Object.
+
+### Request body fields
 Field | Type | Description
 ------ | -------- | --------------
 name | String | Name of the project
 
 `ID` and `created_at` have to be empty, otherwise the values get overwritten, or the request may result in an error.
 
+### Response fields
+Field | Type | Description
+------ | -------- | --------------
+status | boolean | Indicates request status
+Sites | array | Details of the created project
+
+#### Project fields
+See [project fields](#project-response-project)
+
+#### Links fields and values
+See [link fields](#project-response-links)
+
 ## Delete
 ### HTTP Request
 
-`DELETE https://platform-api.productsup.io/platform/v1/projects/125`
+`DELETE https://platform-api.productsup.io/platform/v1/projects/<projectId>`
+
+### URL parameters
+Field | Type | Description
+--- | --- | ---
+projectId | integer | Project to delete
+
+### Response body fields
+Field | Type | Description
+--- | --- | ---
+success | boolean | Indicates the success of the action
 
 ```shell
 curl -X DELETE https://platform-api.productsup.io/platform/v1/projects/125
