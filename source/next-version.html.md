@@ -505,7 +505,38 @@ Returns the stories that are related to the mentioned story ID.
 |fields| string | The parameters of a story, such as headline, slug, sections, author ID, and so on.|
 
 
-**API request**
+```
+
+{  
+   "related-stories":[  
+      {  
+         "headline":"Okuhara reigns at Glasgow",
+         "id":"496b653b-cb45-4843-9f1d-273b7a81900b",
+         "slug":"sports/2017/08/30/okuhara-reigns-at-glasgow",
+         "author-name":"Tapan Bhat"
+      },
+      {  
+         "headline":"\u092A\u0930\u092E\u093E\u0923\u0941 \u0939\u0925\u093F\u092F\u093E\u0930\u094B\u0902 \u0915\u094B \u092A\u094D\u0930\u0924\u093F\u092C\u0902\u0927\u093F\u0924 \u0915\u0930\u0928\u0947 \u0915\u0947 \u0932\u093F\u090F \u0938\u0902\u0927\u093F \u092A\u0930 \u0939\u0938\u094D\u0924\u093E\u0915\u094D\u0937\u0930",
+         "id":"db09a326-3af2-4286-a92b-8ffbc9bb3c4f",
+         "slug":"politics/2017/09/21/-",
+         "author-name":"Vineet Panjabi"
+      },
+      {  
+         "headline":"iPhone X vs Samsung Galaxy Note 8",
+         "id":"ef91900e-2a7d-42c6-8ccc-fb75db2a4504",
+         "slug":"technology/2017/09/14/iphone-x-vs-samsung-galaxy-note-8",
+         "author-name":"Vineet Panjabi"
+      },
+      {  
+         "headline":"9/11 and the unsolvable Afghan drama  \u00A0",
+         "id":"8339b599-3eab-4428-9486-9139d28bb1ba",
+         "slug":"politics/2017/09/13/afghan-drama",
+         "author-name":"Sriram Krishnaswamy"
+      }
+   ]
+}
+
+```
 
 
 
