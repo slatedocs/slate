@@ -64,15 +64,31 @@ response:
 }
 ```
 ### HTTP Request
-`GET https://platform-api.productsup.io/platform/v1/sites/123/importhistory`
+`GET https://platform-api.productsup.io/platform/v1/sites/<siteId>/importhistory`
+
+### URL parameters
+Field | Type | Description
+------ | -------- | --------------
+siteID | integer | Site to list import history for
 
 ### Response fields
 Field | Type | Description
 ------ | -------- | --------------
-id | Integer | Internal ID
-site_id | Integer | ID of the referenced site
-import_time | Date | Date of the import
-product_count | Integer | Count of imported products
-links | Array | Array of relevant resources
+status | boolean | Indicates request status
+Sites | array | List of imports
+
+#### Site fields
+Field | Type | Description
+------ | -------- | --------------
+id | integer | Internal ID
+site_id | integer | ID of the referenced site
+import_time | date | Date of the import
+product_count | integer | Total amount of imported products
+links | array | List of relevant resources
+
+#### Links fields and values
+Name | Description
+--- | ---
+site | Link to site
 
 <aside class="notice">Creating and deleting import history are not available</aside>
