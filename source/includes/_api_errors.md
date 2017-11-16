@@ -3,11 +3,11 @@
 The API follows HTTP Status Codes for error handling. As a body again JSON is returned. The "message" will provide more information about the specific error.
 
 
-The API uses the following error codes:
+The API can return the following status codes:
 
-> example error response:
 
-```json
+```shell
+example error response:
 {
     "success": false,
     "message": "Forbidden, your auth token seems to be invalid"
