@@ -19,10 +19,10 @@ includes:
   - importhistory
   - channels
   - channel_history
-  - products
-  - product_data
+  - product_write
+  - product_read
   - process
-  - errors
+  - api_errors
 
 search: true
 ---
