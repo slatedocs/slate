@@ -50,7 +50,7 @@ curl https://platform-api.productsup.io/platform/v1/sites/123/channels
 # requesting a specific channel
 curl https://platform-api.productsup.io/platform/v1/sites/123/channels/321
 ```
-    
+
 ```shell    
 response: 
 {
@@ -73,15 +73,34 @@ response:
 ```
 ### HTTP Request
 
-`GET https://platform-api.productsup.io/platform/v1/sites/123/channels`
+`GET https://platform-api.productsup.io/platform/v1/sites/<siteId>/channels`
 
-`GET https://platform-api.productsup.io/platform/v1/sites/123/channels/321`
+`GET https://platform-api.productsup.io/platform/v1/sites/<siteId>/channels/<channelId>`
+
+### URL parameters
+Field | Type | Description
+------ | -------- | --------------
+siteId | integer | Site to list
+channelId | integer | Optional channel id, when given only lists corresponding channel
 
 ### Response fields
 Field | Type | Description
 ------ | -------- | --------------
-id | Integer | Internal ID
-site_id | String | ID of the referenced site
-name | String | Name of the export you provided while creating the channel
-export_name | String | Generic name of the export in the productsup system
-history | Array | see [channel history](#channel-history)
+status | boolean | Indicates request status
+Channels | array | List of channels
+
+#### Channel fields
+Field | Type | Description
+------ | -------- | --------------
+id | integer | Internal ID
+site_id | integer | ID of the referenced site
+channel_id | integer | ID of the referenced site
+name | string | Name of the export you provided while creating the channel
+export_name | string | Generic name of the export in the productsup system
+links | array | List of relevant resources
+
+#### <a name="sites-response-links"></a> Links fields and values
+Name | Description
+--- | ---
+self | Link channel detail
+site | Link to [site](#sites-request-by-id) 
