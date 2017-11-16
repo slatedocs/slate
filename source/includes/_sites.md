@@ -74,21 +74,56 @@ response:
     ]
 }
 ```
-### HTTP Request
-
+### HTTP Request - All sites for your account
 `GET https://platform-api.productsup.io/platform/v1/sites`
 
-`GET https://platform-api.productsup.io/platform/v1/projects/321/sites`
+### HTTP Request - All sites for a specific project
+`GET https://platform-api.productsup.io/platform/v1/projects/<projectId>/sites`
 
-### Response fields
+#### URL parameters
 Field | Type | Description
 ------ | -------- | --------------
-id | Integer | Internal ID
-title | String | Name of the site
-created_at | Date | Date of creation
-project_id | Integer | ID of the project this site belongs to
-links | Array | Array of relevant resources
+projectId | integer | Project to list sites for
 
+### HTTP Request - Get a site by it's tag
+`GET https://platform-api.productsup.io/platform/v1/sites/<tagName>:<tagValue>`
+
+#### URL parameters
+Field | Type | Description
+------ | -------- | --------------
+tagName | string | Name of the tag for the site
+tagValue | string | Value of the tag for the site
+
+### HTTP Request - Get a site by it's identifier
+`GET https://platform-api.productsup.io/platform/v1/sites/<siteId>`
+
+#### URL parameters
+Field | Type | Description
+------ | -------- | --------------
+siteID | integer | Site to list
+
+### <a name="sites-response"></a> Response fields
+Field | Type | Description
+------ | -------- | --------------
+status | boolean | Indicates request status
+Sites | array | List of projects
+
+#### <a name="sites-response-site"></a> Site fields
+Field | Type | Description
+------ | -------- | --------------
+id | integer | Site identifier
+title | string | Name of the site
+created_at | date | Date of creation
+project_id | integer | Identifier of the project this site belongs to
+import_schedule | string | Import schedule
+links | array | List of relevant resources
+
+#### <a name="sites-response-links"></a> Links fields and values
+Name | Description
+--- | ---
+self | Link to the site detail endpoint
+tags | Link to a list of tags belonging to the site
+project | Link to project, to which this site belongs, detail endpoint
 
 ## Create
 To create a new site, you can use a POST request (or the insert method).
@@ -144,22 +179,54 @@ Productsup\Platform\Site Object
 
 ### HTTP Request
 
-`POST https://platform-api.productsup.io/platform/v1/projects/321/sites`
+`POST https://platform-api.productsup.io/platform/v1/sites`
 
-The data to insert has to be provided as a JSON-Object
-### Request fields
+`POST https://platform-api.productsup.io/platform/v1/projects/<projectId>/sites`
+
+#### URL parameters
 Field | Type | Description
 ------ | -------- | --------------
-title | String | Name of the site
-project_id | Integer | ID of the project this site belongs to
+projectId | integer | Project under which to add the site. Required unless set in request body.
+
+#### HTTP headers
+Name | Description
+--- | ---
+Content-Type | application/json
+
+The data to insert has to be provided as a JSON-Object
+
+#### Request body fields
+Field | Type | Description
+------ | -------- | --------------
+title | string | Name of the site
+reference | string | Textual site reference, consisting of tagName and tagValue
+project_id | integer | Project under which to add the site. Required unless provided in URL.
 
 `ID` and `created_at` have to be empty, otherwise the values get overwritten, or the request may result in an error.
-The `project_id` may be also included in the URL, like in the example above.
+
+### Response fields
+See [response fields](#sites-response)
+
+#### <a name="sites-response-site"></a> Site fields
+See [site fields](#sites-response-site)
+
+#### <a name="sites-response-links"></a> Links fields and values
+See [link fields](#sites-response-links)
 
 ## Delete
 ### HTTP Request
 
-`DELETE https://platform-api.productsup.io/platform/v1/sites/125`
+`DELETE https://platform-api.productsup.io/platform/v1/sites/<siteId>`
+
+#### URL parameters
+Field | Type | Description
+--- | --- | ---
+siteId | integer | Site to delete
+
+### Response body fields
+Field | Type | Description
+--- | --- | ---
+success | boolean | Indicates the success of the action
 
 ```shell
 curl -X DELETE https://platform-api.productsup.io/platform/v1/sites/125
