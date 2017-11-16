@@ -47,6 +47,7 @@ key | comment
 id | любое значение, может быть не уникальное, например TRANSFER, PAYMENT
 TRANSFER_CURRENCY_EXCHANGE | форма для обмена валют через раздел курсы банка
 TRANSFER_BY_PHONE | форма для раздела оплаты по номеру телефона (всегда HIDDEN), при ее наличии появляется раздел перевода по номеру телефона
+TRANSFER_FROM_MENU | форма отобразится в боковом меню
 
 ### FormPosition
 key | comment
