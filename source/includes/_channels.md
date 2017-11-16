@@ -71,17 +71,24 @@ response:
                 "links": [...]
             }
 ```
-### HTTP Request
+### HTTP Request - Get all channels for a site
 
 `GET https://platform-api.productsup.io/platform/v1/sites/<siteId>/channels`
 
-`GET https://platform-api.productsup.io/platform/v1/sites/<siteId>/channels/<channelId>`
-
-### URL parameters
+#### URL parameters
 Field | Type | Description
 ------ | -------- | --------------
-siteId | integer | Site to list
-channelId | integer | Optional channel id, when given only lists corresponding channel
+siteId | integer | Site to list channels for
+
+### <a name="channel-request-by-id"></a> HTTP Request - Get a channel by it's identifier
+
+`GET https://platform-api.productsup.io/platform/v1/sites/<siteId>/channels/<channelId>`
+
+#### URL parameters
+Field | Type | Description
+------ | -------- | --------------
+siteId | integer | Site under which channel exists
+channelId | integer | Channel to get
 
 ### Response fields
 Field | Type | Description
@@ -102,5 +109,5 @@ links | array | List of relevant resources
 #### <a name="sites-response-links"></a> Links fields and values
 Name | Description
 --- | ---
-self | Link channel detail
+self | Link to [channel detail](#channel-request-by-id)
 site | Link to [site](#sites-request-by-id) 

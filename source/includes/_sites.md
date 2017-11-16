@@ -77,7 +77,7 @@ response:
 ### HTTP Request - All sites for your account
 `GET https://platform-api.productsup.io/platform/v1/sites`
 
-### HTTP Request - All sites for a specific project
+### <a name="sites-request-by-project"></a> HTTP Request - All sites for a specific project
 `GET https://platform-api.productsup.io/platform/v1/projects/<projectId>/sites`
 
 #### URL parameters
@@ -94,7 +94,7 @@ Field | Type | Description
 tagName | string | Name of the tag for the site
 tagValue | string | Value of the tag for the site
 
-### HTTP Request - Get a site by it's identifier
+### <a name="sites-request-by-id"></a> HTTP Request - Get a site by it's identifier
 `GET https://platform-api.productsup.io/platform/v1/sites/<siteId>`
 
 #### URL parameters
@@ -121,9 +121,9 @@ links | array | List of relevant resources
 #### <a name="sites-response-links"></a> Links fields and values
 Name | Description
 --- | ---
-self | Link to the site detail endpoint
+self | Link to [current site detail](#sites-request-by-id)
 tags | Link to a list of tags belonging to the site
-project | Link to project, to which this site belongs, detail endpoint
+project | Link to [project](#project-request-by-id)
 
 ## Create
 To create a new site, you can use a POST request (or the insert method).

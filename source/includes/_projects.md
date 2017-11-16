@@ -52,13 +52,15 @@ response:
     ]
 }
 ```
-### HTTP Request
+### HTTP Request - All projects for your account
 
 `GET https://platform-api.productsup.io/platform/v1/projects`
 
+### <a name="project-request-by-id"></a> HTTP Request - Get a project by it's identifier
+
 `GET https://platform-api.productsup.io/platform/v1/projects/<projectId>`
 
-### URL parameters
+#### URL parameters
 Field | Type | Description
 ------ | -------- | --------------
 projectId | integer | Project to list
@@ -80,8 +82,8 @@ links | array | References to project related endpoints
 #### <a name="project-response-links"></a> Links fields and values
 Name | Description
 --- | ---
-self | Link to the project detail endpoint
-sites | Link to a list of sites belonging to the project
+self | Link to the [project detail endpoint](#project-request-by-id)
+sites | Link to a [list of sites belonging to the project](#sites-request-by-project)
 
 ## Create
 To create a new project, you can use a POST request (or the insert method).

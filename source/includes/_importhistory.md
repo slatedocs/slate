@@ -89,6 +89,6 @@ links | array | List of relevant resources
 #### Links fields and values
 Name | Description
 --- | ---
-site | Link to site
+site | Link to [site](#sites-request-by-id)
 
 <aside class="notice">Creating and deleting import history are not available</aside>
