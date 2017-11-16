@@ -1615,7 +1615,9 @@ PersonResponsible@odata.bind | the @odata.id of the employee you want to assign 
 
 ## Object Attachments
 
-### Requesting Private Doc Attachments
+There are two types of file attachments on records. Files can be attached to the Private Document Attachment grid on a record or to the File type field of an object.  To access files in the Private Document Attachment grid use the system reserved property: ILX.Attachments.  To access files in the File type field use the system name of the field.  Currently, only downloading files from the File type field is available. Document Control uses this file type field and an example is added below showing how to access the released and effective version of document control files. 
+
+### Requesting Private Documents
 
 > Example Request
 
@@ -1660,6 +1662,7 @@ IRestResponse response = client.Execute(request);
 
 This request returns a list of all private document attachments belonging to a given record. ILX.Attachments is a system reserved property for working with private document attachments. Any object that has private document attachments enabled will be able to access this property and request the private documents that belong to a record.
 
+
 #### GET /object/{intelex_object}({id})/ILX.Attachments
 
 ##### URL Parameters
@@ -1669,7 +1672,7 @@ Parameter | Description
 intelex_object | The Intelex system name of the object eg. IncidentsObject
 id|The Intelex UID of the record being accessed 
 
-### Downloading Attachments
+### Downloading Private Documents
 
 > Example Request
 
@@ -1731,7 +1734,63 @@ Parameter | Description | Example Value
 Accept|Provide the content type in order to download the file|application/octet-stream
 Prefer|Used to request a thumbnail version of an image file|attachment=thumbnail
 
-### Attaching Files
+### Downloading Document Control Files - Beta
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://intelex_url/api/v2/object/DocDocumentEntity(UID)/CurrentRevision/File',
+  headers: 
+   { accept: 'application/octet-stream' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/object/DocDocumentEntity%28UID%29/CurrentRevision/File");
+var request = new RestRequest(Method.GET);
+request.AddHeader("accept", "application/octet-stream");
+IRestResponse response = client.Execute(request);
+```
+
+> Example Response
+
+```json
+{
+    "Id": "string",
+    "DateModified": "string",
+    "DateCreated": "string",
+    "Content@odata.mediaReadLink": "string",
+    "FileExtension": "string",
+    "Name": "string",
+    "Size": 0
+}
+```
+
+By default, this request returns the metadata of a released and effective document of a document control record. When you provide the Accept header value of octet-stream, then the file will be downloaded instead.  Document Control files use the File field type. This field type is available on any object and can be accessed like any other navigation property to download files. The example below is specific to Document Control.
+
+#### GET /object/DocDocumentEntity({id})/CurrentRevision/File
+
+##### URL Parameters
+
+Parameter | Description
+--------- | -----------
+id|The Intelex UID of the record being accessed
+
+##### Header Parameters
+
+Parameter | Description | Example Value
+--------- | ------------| -----------
+Accept|Provide the content type in order to download the file|application/octet-stream
+
+### Attaching Private Documents
 
 > Example Request
 
@@ -1796,6 +1855,7 @@ id|The Intelex UID of the record being accessed
 Parameter | Type | Description
 --------- | ----------- | --------- 
 multipart/formData | file | The file you want to attach to the record. Cannot exceed 10MB.
+
 
 ### Detaching Documents
 

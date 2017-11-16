@@ -238,7 +238,8 @@ IRestResponse response = client.Execute(request);
 ```json
 {
 	"Login": "string",
-	"FullName": "string"
+	"FullName": "string",
+	"DefaultToolbar": []
 }
 ```
 
@@ -250,4 +251,5 @@ Attribute | Description
 --------- | -----------
 Login | Username
 FullName | User's full name
+DefaultToolbar | Details of the user's default toolbar
 

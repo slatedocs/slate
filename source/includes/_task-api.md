@@ -147,7 +147,8 @@ IRestResponse response = client.Execute(request);
 		"LegacyRecordId": "string",
 		"LegacyRecordIdname": "string",
 		"LegacyRespEmployeeId": "string",
-		"LegacyTaskId": "string"
+		"LegacyTaskId": "string",
+		"WebLink": "string"
 	  }
 	]
 }
@@ -175,6 +176,7 @@ LegacyRecordId | Intelex v5 task ID
 LegacyRecordIdName | Intelex v5 task name
 LegacyRespEmployeeId | Intelex v5 employee ID
 LegacyTaskId | Intelex v5 record ID
+WebLink | Web URL to access task view
 
 ### Requesting My Staff's Tasks
 
@@ -222,7 +224,8 @@ IRestResponse response = client.Execute(request);
 		"LegacyRecordId": "string",
 		"LegacyRecordIdname": "string",
 		"LegacyRespEmployeeId": "string",
-		"LegacyTaskId": "string"
+		"LegacyTaskId": "string",
+		"WebLink": "string"
 	  }
 	]
 }
@@ -250,6 +253,7 @@ LegacyRecordId | Intelex v5 task ID
 LegacyRecordIdName | Intelex v5 task name
 LegacyRespEmployeeId | Intelex v5 employee ID
 LegacyTaskId | Intelex v5 record ID
+WebLink | Web URL to access task view
 
 ### Requesting Location Tasks
 
@@ -296,7 +300,8 @@ IRestResponse response = client.Execute(request);
 		"LegacyRecordId": "string",
 		"LegacyRecordIdname": "string",
 		"LegacyRespEmployeeId": "string",
-		"LegacyTaskId": "string"
+		"LegacyTaskId": "string",
+		"WebLink": "string"
 	  }
 	]
 }
@@ -324,6 +329,7 @@ LegacyRecordId | Intelex v5 task ID
 LegacyRecordIdName | Intelex v5 task name
 LegacyRespEmployeeId | Intelex v5 employee ID
 LegacyTaskId | Intelex v5 record ID
+WebLink | Web URL to access task view
 
 ##### Header Parameters
 
@@ -378,7 +384,8 @@ IRestResponse response = client.Execute(request);
 		"LegacyRecordId": "string",
 		"LegacyRecordIdname": "string",
 		"LegacyRespEmployeeId": "string",
-		"LegacyTaskId": "string"
+		"LegacyTaskId": "string",
+		"WebLink": "string"
 	  }
 	]
 }
@@ -406,6 +413,7 @@ LegacyRecordId | Intelex v5 task ID
 LegacyRecordIdName | Intelex v5 task name
 LegacyRespEmployeeId | Intelex v5 employee ID
 LegacyTaskId | Intelex v5 record ID
+WebLink | Web URL to access task view
 
 ### Requesting Task Types
 
@@ -575,7 +583,8 @@ IRestResponse response = client.Execute(request);
 		"LegacyRecordId": "string",
 		"LegacyRecordIdname": "string",
 		"LegacyRespEmployeeId": "string",
-		"LegacyTaskId": "string"
+		"LegacyTaskId": "string",
+		"WebLink": "string"
 	  }
 	]
 }
@@ -631,7 +640,8 @@ IRestResponse response = client.Execute(request);
 		"LegacyRecordId": "string",
 		"LegacyRecordIdname": "string",
 		"LegacyRespEmployeeId": "string",
-		"LegacyTaskId": "string"
+		"LegacyTaskId": "string",
+		"WebLink": "string"
 	  }
 	]
 }
@@ -694,7 +704,8 @@ IRestResponse response = client.Execute(request);
 		"LegacyRecordId": "string",
 		"LegacyRecordIdname": "string",
 		"LegacyRespEmployeeId": "string",
-		"LegacyTaskId": "string"
+		"LegacyTaskId": "string",
+		"WebLink": "string"
 	  }
 	]
 }
@@ -764,7 +775,8 @@ IRestResponse response = client.Execute(request);
 		"LegacyRecordId": "string",
 		"LegacyRecordIdname": "string",
 		"LegacyRespEmployeeId": "string",
-		"LegacyTaskId": "string"
+		"LegacyTaskId": "string",
+		"WebLink": "string"
 	  }
 	]
 }
@@ -861,6 +873,7 @@ IRestResponse response = client.Execute(request);
 		"LegacyRecordIdname": "string",
 		"LegacyRespEmployeeId": "string",
 		"LegacyTaskId": "string",
+		"WebLink": "string",
 		"Location": {
 			"@odata.type": "string",
 			"@odata.id": "string",
