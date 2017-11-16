@@ -129,7 +129,7 @@ Productsup\Platform\Project Object
 `POST https://platform-api.productsup.io/platform/v1/projects`
 
 #### HTTP headers
-Name | Description
+Name | Value
 --- | ---
 Content-Type | application/json
 

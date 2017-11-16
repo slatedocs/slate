@@ -167,11 +167,11 @@ Name | Type | Description
 siteId | integer | Site to which the error will be added
 
 #### HTTP headers
-Name | Description
+Name | Value
 --- | ---
 Content-Type | application/json
 
-The data to insert has to be provided as a JSON-Object.
+The data to be inserted has to be provided as a JSON-Object.
 
 #### Request body parameters
 Field | Type | Description

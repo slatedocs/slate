@@ -189,11 +189,11 @@ Field | Type | Description
 projectId | integer | Project under which to add the site. Required unless set in request body.
 
 #### HTTP headers
-Name | Description
+Name | Value
 --- | ---
 Content-Type | application/json
 
-The data to insert has to be provided as a JSON-Object
+The data to be inserted has to be provided as a JSON-Object.
 
 #### Request body fields
 Field | Type | Description
