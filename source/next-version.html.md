@@ -177,6 +177,105 @@ Returns a list of stories and the story details, such as the author name and aut
 
 
 
+```
+
+{  
+   "stories":[  
+      {  
+         "author-name":"Michele Maguire",
+         "headline":"Dangal reviews: Aamir Khan gets a salute from all of Bollywood",
+         "slug":"entertainment/2016/12/23/storyabcphoto",
+         "last-published-at":1504268716413,
+         "alternative":{  
+
+         },
+         "sections":[  
+            {  
+               "id":81,
+               "name":"Entertainment",
+               "display-name":"Entertainment",
+               "slug":"entertainment",
+               "parent-id":null,
+               "collection":null
+            }
+         ],
+         "hero-image-metadata":{  
+            "width":640,
+            "height":480,
+            "mime-type":"image/jpeg",
+            "focus-point":[  
+               326,
+               240
+            ]
+         },
+         "published-at":1504268716413,
+         "id":"01436fae-fb15-42e5-9b3b-e57b93de21f0",
+         "hero-image-s3-key":"quintype-demo/2016-12/f6c8408d-0d2d-46e8-8818-6c481f13365e/dangal.jpg",
+         "author-id":5278,
+         "first-published-at":1482482240320,
+         "story-template":"photo",
+         "metadata":{  
+            "card-share":{  
+               "shareable":true
+            }
+         }
+      },
+      {  
+         "author-name":"Sriram Krishnaswamy",
+         "headline":"9/11 and the unsolvable Afghan drama  \u00A0",
+         "slug":"politics/2017/09/13/afghan-drama",
+         "last-published-at":1505284207024,
+         "alternative":{  
+
+         },
+         "sections":[  
+            {  
+               "id":83,
+               "name":"Politics",
+               "display-name":null,
+               "slug":"politics",
+               "parent-id":null,
+               "collection":{  
+                  "id":4364,
+                  "name":"The Quint",
+                  "slug":"the-quint"
+               }
+            },
+            {  
+               "id":98,
+               "name":"Current Affairs",
+               "display-name":null,
+               "slug":"current-affairs",
+               "parent-id":null,
+               "collection":null
+            }
+         ],
+         "hero-image-metadata":{  
+            "width":5120,
+            "height":3620,
+            "focus-point":[  
+               3977,
+               737
+            ]
+         },
+         "published-at":1505284207024,
+         "id":"8339b599-3eab-4428-9486-9139d28bb1ba",
+         "hero-image-s3-key":"quintype-demo/2016-07/1910bb30-b118-475c-aced-9304968c69c8/G-1.jpg",
+         "author-id":61657,
+         "first-published-at":1505284207024,
+         "story-template":null,
+         "metadata":{  
+            "card-share":{  
+               "shareable":true
+            }
+         }
+      }
+   ]
+}
+
+```
+
+
 ## /api/v1/stories-by-slug/
 
 
@@ -192,6 +291,13 @@ Returns the story having the mentioned slug. The output contains information suc
 |slug| string| The slug for the desired story|
 
 
+```
+
+
+
+```
+
+
 ## /api/v1/stories/{story-id}
 
 Returns the story details having the mentioned story ID.
@@ -203,7 +309,185 @@ Returns the story details having the mentioned story ID.
 |--|--|--|
 |story-id | string| The story ID |
 
+```
 
+{  
+   "story":{  
+      "updated-at":1505384172777,
+      "seo":{  
+         "meta-description":"comparison between iphone X and galaxy s8",
+         "meta-title":"smartphone, apple vs samsung",
+         "meta-keywords":[  
+
+         ],
+         "meta-google-news-standout":false,
+         "claim-reviews":{  
+            "story":null
+         }
+      },
+      "assignee-id":323432,
+      "author-name":"Vineet Panjabi",
+      "tags":[  
+         {  
+            "id":257701,
+            "name":"iphone;",
+            "meta-description":null,
+            "slug":"iphone"
+         },
+         {  
+            "id":506781,
+            "name":"smartphone",
+            "meta-description":null,
+            "slug":"smartphone"
+         }
+      ],
+      "headline":"iPhone X vs Samsung Galaxy Note 8",
+      "storyline-id":null,
+      "votes":{  
+
+      },
+      "story-content-id":"ef91900e-2a7d-42c6-8ccc-fb75db2a4504",
+      "slug":"technology/2017/09/14/iphone-x-vs-samsung-galaxy-note-8",
+      "last-published-at":1505384184330,
+      "subheadline":"A battle for smartphone dominance",
+      "alternative":{  
+
+      },
+      "sections":[  
+         {  
+            "id":84,
+            "name":"Technology",
+            "display-name":null,
+            "slug":"technology",
+            "parent-id":null,
+            "collection":null
+         }
+      ],
+      "content-created-at":1505383805868,
+      "owner-name":"Vineet Panjabi",
+      "custom-slug":null,
+      "push-notification":null,
+      "publisher-id":15,
+      "hero-image-metadata":{  
+         "width":616,
+         "height":347,
+         "mime-type":"image/jpeg",
+         "focus-point":[  
+            418,
+            169
+         ]
+      },
+      "comments":null,
+      "entities":{  
+
+      },
+      "published-at":1505384184330,
+      "breaking-news-linked-story-id":null,
+      "storyline-title":null,
+      "summary":"Iphone vs Samsung",
+      "canonical-url":null,
+      "autotags":[  
+
+      ],
+      "linked-entities":[  
+
+      ],
+      "status":"published",
+      "hero-image-attribution":null,
+      "bullet-type":"123",
+      "id":"ef91900e-2a7d-42c6-8ccc-fb75db2a4504",
+      "hero-image-s3-key":"quintype-demo/2016-11/20d960e9-cbb4-46c0-a6cc-3819c326f766/pixelxl-iphone7plus-30.jpg",
+      "cards":[  
+         {  
+            "story-elements":[  
+               {  
+                  "description":"",
+                  "page-url":"/story/ef91900e-2a7d-42c6-8ccc-fb75db2a4504/element/690b7304-d875-484a-9850-33c9eb360537",
+                  "type":"youtube-video",
+                  "family-id":"7267f6e8-808c-455b-81aa-6bd0dd8c7ad5",
+                  "title":"",
+                  "id":"690b7304-d875-484a-9850-33c9eb360537",
+                  "url":"https://www.youtube.com/watch?v=iGpVs3wFKF0#action=share",
+                  "embed-url":"https://www.youtube.com/embed/iGpVs3wFKF0#action=share",
+                  "metadata":{  
+
+                  },
+                  "subtype":null
+               },
+               {  
+                  "description":"",
+                  "embed-js":"PGJsb2NrcXVvdGUgY2xhc3M9InR3aXR0ZXItdHdlZXQiPjxwIGxhbmc9ImVuIiBkaXI9Imx0ciI+U2F5IGhlbGxvIHRvIHRoZSBmdXR1cmUuIGlQaG9uZSBYLjwvcD4mbWRhc2g7IEFwcGxlIChAQXBwbGUpIDxhIGhyZWY9Imh0dHBzOi8vdHdpdHRlci5jb20vQXBwbGUvc3RhdHVzLzkwNzcwMDk0MjcxNTIyODE2MCI+U2VwdGVtYmVyIDEyLCAyMDE3PC9hPjwvYmxvY2txdW90ZT4KPHNjcmlwdCBhc3luYyBzcmM9Ii8vcGxhdGZvcm0udHdpdHRlci5jb20vd2lkZ2V0cy5qcyIgY2hhcnNldD0idXRmLTgiPjwvc2NyaXB0Pg==",
+                  "page-url":"/story/ef91900e-2a7d-42c6-8ccc-fb75db2a4504/element/f693466d-2c8f-49fa-9d10-d26ff4f05ae3",
+                  "type":"jsembed",
+                  "family-id":"93146ad5-d1d1-4302-84aa-270696ba144c",
+                  "title":"",
+                  "id":"f693466d-2c8f-49fa-9d10-d26ff4f05ae3",
+                  "metadata":{  
+                     "tweet-url":"https://twitter.com/Apple/status/907700942715228160",
+                     "provider":"twitter",
+                     "tweet-id":"907700942715228160"
+                  },
+                  "subtype":"tweet"
+               }
+            ],
+            "card-updated-at":1505384055361,
+            "content-version-id":"6445d74d-1079-4244-a5a1-5b8403cf88cc",
+            "card-added-at":1505383805931,
+            "status":"draft",
+            "id":"afce3ef4-1036-4c1f-9d0e-997cde4dda4d",
+            "content-id":"afce3ef4-1036-4c1f-9d0e-997cde4dda4d",
+            "version":3,
+            "metadata":{  
+               "social-share":{  
+                  "shareable":true,
+                  "title":"iPhone X vs Samsung Galaxy Note 8",
+                  "message":"Iphone vs Samsung",
+                  "image":{  
+                     "key":"quintype-demo/2016-11/20d960e9-cbb4-46c0-a6cc-3819c326f766/pixelxl-iphone7plus-30.jpg",
+                     "url":null,
+                     "attribution":null,
+                     "caption":"Best in class.",
+                     "metadata":{  
+                        "width":616,
+                        "height":347,
+                        "mime-type":"image/jpeg",
+                        "focus-point":[  
+                           418,
+                           169
+                        ]
+                     }
+                  }
+               }
+            }
+         }
+      ],
+      "story-version-id":"1603c682-699e-48ea-9354-7e265ca7c1f8",
+      "content-type":"story",
+      "content-updated-at":1509011137120,
+      "author-id":323432,
+      "owner-id":323432,
+      "linked-story-ids":[  
+
+      ],
+      "access":null,
+      "first-published-at":1505384184330,
+      "hero-image-caption":"Best in class.",
+      "version":4,
+      "story-template":"video",
+      "sequence-no":null,
+      "created-at":1505384127930,
+      "authors":null,
+      "metadata":{  
+         "card-share":{  
+            "shareable":true
+         }
+      },
+      "publish-at":null,
+      "assignee-name":"Vineet Panjabi"
+   }
+}
+
+```
 
 
 ## /api/v1/stories/{story-id}/related-stories
@@ -225,10 +509,10 @@ Returns the stories that are related to the mentioned story ID.
 
 
 
-## /api/v1/collections/
+## /api/v1/collections/{slug}
 
 **Description**
-Returns the list of collections.
+Returns the collection based on the slug.
 
 
 **Input Parameters**
@@ -236,10 +520,8 @@ Returns the list of collections.
 | Name | Data Type | Description|
 |--|--|--|
 |slug| string| The slug for the desired collection|
-|item-type| string| |
+|item-type| string| POssible values are story and collection|
 |exclude-story-ids|integer| The story IDs to be excluded from displaying|
-
-
 
 
 
@@ -255,6 +537,29 @@ Returns the list of authors with the author name and author ID, along with detai
 |--|--|--|
 |author-id| integer| The author ID |
 
+
+## /api/v1/authors/{author-id}
+
+**Description**
+
+Returns the list of authors with the author name and author ID, along with details such as the author's biodata, gender, twitter handle and so on.
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|author-id| integer| The author ID |
+
+## /api/v1/config
+
+
+**Description**
+
+Displays the publisher's configurations, such as the publisher name and ID, SEO metadata, the sections and menu items, and so on.
+
+**Input Parameters**
+
+None.
 
 
 
