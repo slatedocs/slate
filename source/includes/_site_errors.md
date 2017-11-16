@@ -12,7 +12,6 @@ To list errors for one site, you can use get. See [Sites](#sites) for how to ide
 $site = new \Productsup\Platform\Site();
 $site->id = 123;
 
-
 $errorService = new \Productsup\Service\Errors($client);
 $errorService->setSite($site);
 
@@ -68,7 +67,7 @@ response:
                  "links": [{...}]
                  }, ....
 ```
-### HTTP Request
+### <a name="siteerrors-request"></a> HTTP Request
 
 `GET https://platform-api.productsup.io/platform/v1/sites/<siteId>/errors`
 
@@ -90,7 +89,7 @@ offset | `20` | `0` | Results begin at this position
 Field | Type | Description
 ------ | -------- | --------------
 status | boolean | Indicates request status
-Errors | array | List of errors
+Errors | array | List of [errors](#siteerrors-response-error)
 
 #### <a name="siteerrors-response-error"></a> Error fields
 Field | Type | Description
@@ -100,12 +99,12 @@ pid | string | Process identifier
 error | integer | Error identifier
 data | array | Additional information about the error
 site_id | integer | Site identifier
-links | array | List of relevant resources
+links | array | List of  [relevant resources](#siteerrors-response-link)
 
 #### <a name="siteerrors-response-link"></a> Links fields and values
 Name | Description
 --- | ---
-self | Link to the error endpoint
+self | Link to the [error endpoint](#siteerrors-request)
 
 ## Create
 To create a new error (information) for one site, you can use a POST request (or the insert method).
@@ -167,7 +166,14 @@ Name | Type | Description
 ----- | -------| -----------
 siteId | integer | Site to which the error will be added
 
-### Request body parameters
+#### HTTP headers
+Name | Description
+--- | ---
+Content-Type | application/json
+
+The data to insert has to be provided as a JSON-Object.
+
+#### Request body parameters
 Field | Type | Description
 ------ | -------- | --------------
 pid | string | Process identifier

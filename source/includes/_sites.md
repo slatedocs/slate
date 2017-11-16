@@ -106,7 +106,7 @@ siteID | integer | Site to list
 Field | Type | Description
 ------ | -------- | --------------
 status | boolean | Indicates request status
-Sites | array | List of projects
+Sites | array | List of [sites](#sites-response-site)
 
 #### <a name="sites-response-site"></a> Site fields
 Field | Type | Description
@@ -116,7 +116,7 @@ title | string | Name of the site
 created_at | date | Date of creation
 project_id | integer | Identifier of the project this site belongs to
 import_schedule | string | Import schedule
-links | array | List of relevant resources
+links | array | List of [relevant resources](#sites-response-links)
 
 #### <a name="sites-response-links"></a> Links fields and values
 Name | Description

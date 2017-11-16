@@ -94,9 +94,9 @@ channelId | integer | Channel to get
 Field | Type | Description
 ------ | -------- | --------------
 status | boolean | Indicates request status
-Channels | array | List of channels
+Channels | array | List of [channels](#channel-response-channel)
 
-#### Channel fields
+#### <a name="channel-response-channel"></a> Channel fields
 Field | Type | Description
 ------ | -------- | --------------
 id | integer | Internal ID
@@ -104,9 +104,9 @@ site_id | integer | ID of the referenced site
 channel_id | integer | ID of the referenced site
 name | string | Name of the export you provided while creating the channel
 export_name | string | Generic name of the export in the productsup system
-links | array | List of relevant resources
+links | array | List of [relevant resources](#channel-response-links)
 
-#### <a name="sites-response-links"></a> Links fields and values
+#### <a name="channel-response-links"></a> Links fields and values
 Name | Description
 --- | ---
 self | Link to [channel detail](#channel-request-by-id)

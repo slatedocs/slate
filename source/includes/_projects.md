@@ -69,7 +69,7 @@ projectId | integer | Project to list
 Field | Type | Description
 ------ | -------- | --------------
 status | boolean | Indicates request status
-projects | array | List of projects
+projects | array | List of [projects](#project-response-project)
 
 #### <a name="project-response-project"></a> Project fields
 Field | Type | Description
@@ -77,7 +77,7 @@ Field | Type | Description
 id | integer | Internal ID
 name | string | Name of the project
 created_at | date | Date of creation
-links | array | References to project related endpoints
+links | array | List of [relevant resources](#project-response-links)
 
 #### <a name="project-response-links"></a> Links fields and values
 Name | Description
@@ -146,7 +146,7 @@ name | String | Name of the project
 Field | Type | Description
 ------ | -------- | --------------
 status | boolean | Indicates request status
-Sites | array | Details of the created project
+Sites | array | Details of the [created project](#project-response-project)
 
 #### Project fields
 See [project fields](#project-response-project)

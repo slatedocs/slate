@@ -120,9 +120,9 @@ channelId | integer | Channel to get
 Field | Type | Description
 ------ | -------- | --------------
 status | boolean | Indicates request status
-Channels | array | List of channels
+Channels | array | List of [channels](#channel-history-response-channel)
 
-#### Channel fields
+#### <a name="channel-history-response-channel"></a> Channel fields
 Field | Type | Description
 ------ | -------- | --------------
 id | integer | Internal ID

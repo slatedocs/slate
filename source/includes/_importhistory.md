@@ -75,20 +75,20 @@ siteID | integer | Site to list import history for
 Field | Type | Description
 ------ | -------- | --------------
 status | boolean | Indicates request status
-Sites | array | List of imports
+Sites | array | List of [imports](#importhistory-response-site)
 
-#### Site fields
+#### <a name="importhistory-response-site"></a> Site fields
 Field | Type | Description
 ------ | -------- | --------------
 id | integer | Internal ID
 site_id | integer | ID of the referenced site
 import_time | date | Date of the import
 product_count | integer | Total amount of imported products
-links | array | List of relevant resources
+links | array | List of [relevant resources](#importhistory-response-links)
 
-#### Links fields and values
+#### <a name="importhistory-response-links"></a> Links fields and values
 Name | Description
 --- | ---
 site | Link to [site](#sites-request-by-id)
 
-<aside class="notice">Creating and deleting import history are not available</aside>
+<aside class="notice">Creating and deleting import history are not available.</aside>
