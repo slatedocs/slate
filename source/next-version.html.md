@@ -514,13 +514,7 @@ Returns the stories that are related to the mentioned story ID.
          "id":"496b653b-cb45-4843-9f1d-273b7a81900b",
          "slug":"sports/2017/08/30/okuhara-reigns-at-glasgow",
          "author-name":"Tapan Bhat"
-      },
-      {  
-         "headline":"\u092A\u0930\u092E\u093E\u0923\u0941 \u0939\u0925\u093F\u092F\u093E\u0930\u094B\u0902 \u0915\u094B \u092A\u094D\u0930\u0924\u093F\u092C\u0902\u0927\u093F\u0924 \u0915\u0930\u0928\u0947 \u0915\u0947 \u0932\u093F\u090F \u0938\u0902\u0927\u093F \u092A\u0930 \u0939\u0938\u094D\u0924\u093E\u0915\u094D\u0937\u0930",
-         "id":"db09a326-3af2-4286-a92b-8ffbc9bb3c4f",
-         "slug":"politics/2017/09/21/-",
-         "author-name":"Vineet Panjabi"
-      },
+      },ff
       {  
          "headline":"iPhone X vs Samsung Galaxy Note 8",
          "id":"ef91900e-2a7d-42c6-8ccc-fb75db2a4504",
@@ -568,6 +562,66 @@ Returns the list of authors with the author name and author ID, along with detai
 |--|--|--|
 |author-id| integer| The author ID |
 
+```
+
+{  
+   "limit":4,
+   "offset":0,
+   "total":67
+},
+"authors":[  
+   {  
+      "id":2038,
+      "name":"Tejas Dinkar",
+      "avatar-url":"https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50",
+      "avatar-s3-key":null,
+      "twitter-handle":null,
+      "bio":null,
+      "metadata":{  
+
+      },
+      "slug":"tejas-dinkar"
+   },
+   {  
+      "id":2039,
+      "name":"Amit Rathore",
+      "avatar-url":"https://lh5.googleusercontent.com/-nXlfvt-YsVw/AAAAAAAAAAI/AAAAAAAAAI0/uo5Y2_mFdWc/photo.jpg?sz=50",
+      "avatar-s3-key":null,
+      "twitter-handle":null,
+      "bio":null,
+      "metadata":{  
+
+      },
+      "slug":"amit-rathore"
+   },
+   {  
+      "id":2040,
+      "name":"Kuruvilla Choolackal",
+      "avatar-url":null,
+      "avatar-s3-key":null,
+      "twitter-handle":null,
+      "bio":null,
+      "metadata":{  
+
+      },
+      "slug":"kuruvilla-choolackal"
+   },
+   {  
+      "id":2041,
+      "name":"Tapan Bhat",
+      "avatar-url":null,
+      "avatar-s3-key":null,
+      "twitter-handle":null,
+      "bio":null,
+      "metadata":{  
+
+      },
+      "slug":"tapan-bhat"
+   }
+]
+}
+
+```
 
 ## /api/v1/authors/{author-id}
 
@@ -580,6 +634,28 @@ Returns the list of authors with the author name and author ID, along with detai
 | Name | Data Type | Description|
 |--|--|--|
 |author-id| integer| The author ID |
+
+
+```
+
+5{  
+   "author":{  
+      "id":20294,
+      "name":"Abhishek Sharma",
+      "slug":"abhishek-sharma",
+      "avatar-url":"https://lh3.googleusercontent.com/--u4t1uGUkrY/AAAAAAAAAAI/AAAAAAAAABI/i-YkR_YtYio/photo.jpg?sz=50",
+      "avatar-s3-key":null,
+      "twitter-handle":null,
+      "bio":null,
+      "metadata":{  
+
+      }
+   }
+}
+
+
+```
+
 
 ## /api/v1/config
 
