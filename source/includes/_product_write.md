@@ -1,39 +1,6 @@
 # Product Data (Write)
-## URL
-```php
-<?php
-// our php client builds the urls for you, but you have to set the infos to the classes:
-$ProductService = new Productsup\Service\ProductData($Client);
-$Reference = new Productsup\Platform\Site\Reference();
 
-/**
- * You have to specify the site the products belong to.
- * This is done by references to the site.
- *
- * In case you have a productsup site id, you can pass it like this:
- **/
-$Reference->setKey($Reference::REFERENCE_SITE);
-$Reference->setValue(123); // Site ID
-$ProductService->setReference($Reference);
-
-```
-The URL for the uploading is looking like this:
-
-`/platform/v1/sites/Identifier:123/products/md5string32chars/upload`
-
-It consists of the folowing parts:
-
-example | description
-------- | -----------
-sites/Identifier:123 | the entity the upload is related to.
-/products | tells the api that you are about to upload products
-md5string32chars | is an identifier (batch id) you can create. It is only used during the upload and tells the API that all actions belong to this batch
-upload | is the action you want to perform.
-
-
-
-## Upload
-
+## Uploading
 ```shell
 curl -d '[{
    "id": 123,
@@ -50,6 +17,26 @@ https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/md5
 
 ```php
 <?php
+// our php client builds the urls for you, but you have to set the info in the classes:
+$ProductService = new Productsup\Service\ProductData($Client);
+$Reference = new Productsup\Platform\Site\Reference();
+
+/**
+ * You have to specify the site the products belong to.
+ * This is done by references to the site.
+ **/
+// In case you have a productsup site id, you can pass it like this:
+$Reference->setKey($Reference::REFERENCE_SITE);
+$Reference->setValue(123); // Site ID
+
+// In case you have a custom reference, you can use the follow logic
+$Reference->setKey($siteTagName);
+$Reference->setValue($siteTagValue);
+
+// Assign the reference to the endpoint class
+$ProductService->setReference($Reference);
+
+// Actual creating of upload data
 $ProductService->insert(array(
         'id' => 123,
         'price' => 1.23,
@@ -65,20 +52,56 @@ $ProductService->insert(array(
     )
 );
 ```
-To upload products, you can simply add an json encoded array of arrays as post body of the url from above:
-<aside class="notice">The key `id` is mandatory, all other keys end up as columns</aside>
 
+Uploading to the API works via batches. A batch is a collection of products,
+potentially delivered by multiple requests. The batch can, once all product 
+data is delivered, be committed or discarded. 
 
-The example would result in a import that looks like this:
+### HTTP Request
+`POST https://platform-api.productsup.io/platform/v1/sites/<siteIdentifier>/products/<batchId>/upload`
 
+#### <a name="product-write-request-url-parameters"></a> URL parameters
+Field | Type | Description
+------ | -------- | --------------
+siteIdentifier | mixed | Either a [siteId or siteTags](#product-write-request-site-identifier)
+batchId | string (32 characters) | Any sequence of characters which indicate a unique batch. It should be exactly 32 characters long. A possible idea is to generate a unique number and then hash it with the md5 algorithm.
 
-id | title | price | shipping
--------------- | -------------- | -------------- | ----------
-123 |test title | 1.23
-124 | next title | 3.21 | 0.99
+#### <a name="product-write-request-site-identifier"></a> Site identifier values
+Type | Data type | Description
+------ | -------- | --------------
+siteId | integer | Using a site identifier (numeric value)
+siteTags | string (format: `tagName:tagValue`) | A combination of a tag name and tag value for a site, see also [site tags]()
 
-## Delete
-If you do "delta" or "incremental" uploads (see commit action) you may want to delete old products you already uploaded. To do so, just add the key ```pup:isdeleted``` with value ```1``` and the id of the product:
+#### <a name="product-write-request-http-headers"></a> HTTP headers
+Name | Value
+--- | ---
+Content-Type | application/json
+
+The data to be inserted has to be provided as a JSON-Object.
+
+### Product format
+
+When uploading products the following rules apply:
+
+- Columns can be named freely, but ideally should be in lowercase and not contain any spaces or special characters. Our technology relies on SQLite databases so that's where our limits lie.
+- When columns are added:
+ - Existing data will have an empty value for these columns.
+- When columns are not uploaded (removed):
+ - If any existing data has a value for that column, it will remain and the new data will just have an empty value.
+ - If no existing data has a value, that column will be automatically removed.
+- The amount of products per upload request is limited to 10000. We recommend sending multiple upload requests with the same batch id, if you reach this limit.
+
+<aside class="notice">The key `id` is mandatory, all other keys end up as columns.</aside>
+
+A list of example product data:
+
+id | title | price | shipping | pup:isdeleted
+--- | --- | --- | --- | ---
+123 | my first product | 1.23 | | 
+124 | my second product | 3.21 | 0.99 | 
+125 | my other product | 5.99 | - | 1 
+
+### Deleting products
 
 ```shell
 curl -d '[{
@@ -96,15 +119,12 @@ $ProductService->delete(array(
 );
 ```
 
+Deleting products can be achieved either by:
 
-## Commit
-When you finished all uploads into one batch, you can tell the API that it is done and the "batch" can be started to be processed.
+- Sending a *full* upload, this will override all existing data
+- Or when using a *delta* upload, add a column _pup:isdeleted_: and set it's value to 1 for products that should be deleted.
 
-Url in this case would be
-
- `/platform/v1/sites/Identifier:123/products/md5string32chars/commit`
-
-> As body of the POST request you have to provide again a JSON, this time with only one parameter:
+## Committing
 
 ```shell
 curl -d '{"type":"full"}'
@@ -122,16 +142,31 @@ $productsService->setImportType(\Productsup\Service\ProductData::TYPE_FULL);
 $result = $ProductService->commit();
 ```
 
-There are two types for commits:
+Once you are finished with uploading all product data, you can start the processing 
+of the data. This is done batch by batch, so it's advisable to use one batch ID
+per upload (even if it consists of multiple upload requests).
 
+### HTTP Request
+`POST https://platform-api.productsup.io/platform/v1/sites/<siteIdentifier>/products/<batchId>/commit`
 
-type | description
+#### URL parameters
+See [url parameters](#product-write-request-url-parameters)
+
+#### HTTP Headers
+See [HTTP headers](#product-write-request-http-headers)
+
+#### Request body fields
+Field | Type | Description
+------ | -------- | --------------
+type | string | Type of [upload](#products-write-request-type)
+
+#### Type values     
+Value| Description
 ---- | -----------
-full | tells the API that the current upload are all products for the given entity, all past uploads are removed
-delta | tells the API that the current upload is only a part of all your products, in case you plan to send incremental uploads
+full | The current upload are all products for the given site, all data from past uploads will be removed.
+delta | The current upload is only a part of all your products. Use this in case you plan to send incremental uploads.
 
-## Discard
-The third action "discard" is only to abort a started upload. This removes all uploads for the given batch id and you can start over.
+## Discarding
 
 ```shell
 curl https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/md5string32chars/discard
@@ -141,3 +176,16 @@ curl https://platform-api.productsup.io/platform/v1/sites/Identifier:123/product
 <?php
 $result = $ProductService->discard();
 ```
+
+If something has gone wrong during the upload process, it is possible to cancel 
+the whole batch. This allows you be more strict with your data integrity. This 
+is achieved by calling the discard endpoint on a batch id.
+
+### HTTP Request
+`POST https://platform-api.productsup.io/platform/v1/sites/<siteIdentifier>/products/<batchId>/discard`
+
+#### URL parameters
+See [url parameters](#product-write-request-url-parameters)
+
+#### HTTP Headers
+See [HTTP headers](#product-write-request-http-headers)
