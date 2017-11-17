@@ -13,6 +13,8 @@ includes:
   - authentication/apis
   - authentication/users
 
+  - register_patient/register_patient
+
   - sav/schedule_a_visit_overview
 
   - entities/entities
