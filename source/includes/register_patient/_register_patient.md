@@ -62,6 +62,7 @@ RestClient::Request.new(
     "address2": null,
     "city": "FORT LAUDERDALE",
     "zip": "33327",
+    "jwt_token" : "1123-jwttoken",
     "phone": "9546666666",
     "work_phone": null,
     "state": "FL",
@@ -82,10 +83,24 @@ Your credentials allow you to register patient's under your affiliation,
 if the services you provide for your patient's through MDLIVE are subsidized. You must
 perform an eligibility check before registering them.
 
-In order to register a patient, you must have a valid JWT token, please see our [documentation](#api-tokens)
+In order to register a patient, you must make a request to:
 
-Once you have successfully authenticated and received a JWT token, the next step is to gather the necessary attributes
-from the patient:
+### HTTP Request
+
+POST {server_url}/api/v1/patients
+
+This request must include a valid JWT token, please see our [documentation](#api-tokens)
+
+### Header Parameter
+
+Parameter | Default
+--------- | -------
+Content-type | application/json
+Authorization| Bearer example.jwttoken
+
+The following parameters are required to register a patient.
+
+### Request Body
 
  |Attribute | Required | Description
 -|--------- | -------  | -----------
@@ -101,14 +116,14 @@ patient |  |true     | parent attribute
  |birthdate | true     | The patient's date of birth, must be in '%m/%d/%Y" format
  |phone     | true     | The phone the patient will use to sign in to MDLIVE
 
-
 <aside id="password-restrictions" class="warning">
   TODO: Explain the password restrictions MDLIVE has in place.
 </aside>
 
 <aside id="patient-username-validation" class="warning">
-  Before attempting to create the patient,
-  The patient's username needs to be validated usin
-  To obtain an API JWT Token
+  Before attempting to create the patient, The patient's username needs to be validated using the username [validation
+  endpoint](#).
 </aside>
 
+A successful response will include the JWT token for the patient, this JWT token is required for all future requests made
+on behalf of the patient.
