@@ -13,6 +13,7 @@ includes:
   - access-type/subscriber-identities
   - access-type/subscription-groups
   - access-type/subscriptions
+  - access-type/for-platform-customers
 ---
 
 # Introduction To AccessType
