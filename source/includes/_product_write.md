@@ -166,6 +166,16 @@ Value| Description
 full | The current upload are all products for the given site, all data from past uploads will be removed.
 delta | The current upload is only a part of all your products. Use this in case you plan to send incremental uploads.
 
+<aside class="info">When setting up the API as a Data Source in our 
+<a target="blank" href="https://platform.productsup.com">Platform</a>, the field <i>Product 
+Update Mode</i> represents the mode of handling products.</aside>
+Values should be set accordingly:
+
+Commit value| Product Update Mode value
+--- | ---
+full | replace
+delta | update
+
 ## Discarding
 
 ```shell
