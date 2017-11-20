@@ -101,6 +101,88 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 
+## Local directories supported by Local SEO Check-up tool
+
+### USA
+
+| Directory | Identifier |
+|-----------------------|-----------------|
+| Brownbook | brownbook |
+| Citysearch | citysearch |
+| DexKnows | dexknows |
+| Facebook | facebook |
+| Factual | factual |
+| FourSquare | foursquare |
+| Google Local | google |
+| HotFrog | hotfrog |
+| InfoUSA/ExpressUpdate | expressupdate |
+| Insider Pages | insiderpages |
+| Kudzu | kudzu |
+| Local.com | localcom |
+| MapQuest | mapquest |
+| Neustarlocaleze | neustarlocaleze |
+| Super Pages | superpages |
+| Yahoo! Local | yahoo |
+| Yellow Bot | yellowbot |
+| Yellow Pages | yellowpages |
+| Yelp | yelp |
+
+
+### Canada
+
+| Directory | Identifier |
+|--------------|---------------|
+| 411 Canada | can411 |
+| Brownbook | brownbook |
+| Canpages | canpages |
+| Facebook | facebook |
+| Factual | factual |
+| FourSquare | foursquare |
+| Google Local | google |
+| HotFrog | hotfrog |
+| iBegin | ibegincan |
+| PagesJunes | pagesjaunes |
+| Yellow Pages | yellowpagesca |
+| Yelp | yelp |
+
+
+### United Kingdom
+
+| Directory | Identifier |
+|---------------|--------------|
+| Brownbook | brownbook |
+| Facebook | facebook |
+| Factual | factual |
+| FourSquare | foursquare |
+| Google Local | google |
+| HotFrog | hotfrog |
+| Scoot | scoot |
+| Thomson Local | thomsonlocal |
+| Touch Local | touchlocal |
+| Yahoo! Local | yahoo |
+| Yell | yell |
+| Yelp | yelp |
+
+
+### Australia
+
+| Directory | Identifier |
+|-----------------------|---------------|
+| AussieWeb | aussieweb |
+| Brownbook | brownbook |
+| dLook | dlook |
+| Facebook | facebook |
+| Factual | factual |
+| FourSquare | foursquare |
+| Google Local | google |
+| HotFrog | hotfrog |
+| Local.com.au | localcomau |
+| StartLocal | startlocal |
+| Super Pages Australia | superpagesaus |
+| TrueLocal | truelocal |
+| White Pages | whitepagesaus |
+| Yelp | yelp |
+
 
 ## Business Category IDs
 
