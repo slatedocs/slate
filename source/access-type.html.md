@@ -10,10 +10,10 @@ toc_footers:
 search: true
 
 includes:
-  - access-type/subscriber-identities
-  - access-type/subscription-groups
-  - access-type/subscriptions
-  - access-type/for-platform-customers
+  - accesstype/subscriber-identities
+  - accesstype/subscription-groups
+  - accesstype/subscriptions
+  - accesstype/for-platform-customers
 ---
 
 # Introduction To AccessType

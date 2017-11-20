@@ -45,9 +45,9 @@ curl -H "X-QT-AUTH: sample-auth" -H "Content-Type: application/json" http://sket
 '
 
 ```
-`gateway-name` can be any valid payment-type suppored by Access-type.
+`gateway-name` can be any valid payment-type suppored by Accesstype.
 
-`accesstype-plan-id` is the Id of plan in Access-type.
+`accesstype-plan-id` is the Id of plan in Accesstype.
 
 
 ## POST Subscribe Without Login
@@ -85,9 +85,9 @@ curl -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/sub
 '
 
 ```
-`gateway-name` can be any valid payment-type suppored by Access-type.
+`gateway-name` can be any valid payment-type suppored by Accesstype.
 
-`accesstype-plan-id` is the Id of plan in Access-type
+`accesstype-plan-id` is the Id of plan in Accesstype
 
 
 ## LIST All subscriptions of a user
