@@ -637,8 +637,7 @@ Returns the list of authors with the author name and author ID, along with detai
 
 
 ```
-
-5{  
+{  
    "author":{  
       "id":20294,
       "name":"Abhishek Sharma",
@@ -652,8 +651,6 @@ Returns the list of authors with the author name and author ID, along with detai
       }
    }
 }
-
-
 ```
 
 
@@ -669,6 +666,63 @@ Displays the publisher's configurations, such as the publisher name and ID, SEO 
 None.
 
 
+## /api/v1/breaking-news
+
+**Description**
+
+Returns the list of breaking news.
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|
+
+
+```
+{
+  "stories": [
+    {
+    "author-name": "Pragati Saxena",
+    "headline": "7 killed in Kabul suicide bombing  ",
+    "slug": "{{section}}/{{slug}}",
+    "last-published-at": 1510830370210,
+    "alternative": {},
+    "sections": [],
+    "hero-image-metadata": null,
+    "published-at": 1510830370210,
+    "id": "f3932791-c827-4e88-be67-6e9af6505e3c",
+    "hero-image-s3-key": null,
+    "author-id": 117631,
+    "first-published-at": 1510830370210,
+    "story-template": "breaking-news",
+    "metadata": {
+      "card-share": {
+        "shareable": false
+      }
+    },
+    "author-name": "Pragati Saxena",
+    "headline": "Notorious cult leader Charles Manson dead  ",
+    "slug": "{{section}}/{{slug}}",
+    "last-published-at": 1511164690641,
+    "alternative": {},
+    "sections": [],
+    "hero-image-metadata": null,
+    "published-at": 1511164690641,
+    "id": "83b5d292-31ae-452f-98e7-5d7b05a06f2a",
+    "hero-image-s3-key": null,
+    "author-id": 117631,
+    "first-published-at": 1511164690641,
+    "story-template": "breaking-news",
+    "metadata": {
+      "card-share": {
+        "shareable": false
+      }
+    }
+  ]
+}
+
+```
 
 
 <!--Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
