@@ -1,5 +1,7 @@
 # Product Data (Write)
 
+<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication).</aside>
+
 ## Uploading
 ```shell
 curl -d '[{

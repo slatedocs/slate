@@ -1,7 +1,7 @@
 # Site Errors
  
 With site errors, you can see the last errors or add new custom errors for a site.
-<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication)</aside>
+<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication).</aside>
 
 
 ## Get

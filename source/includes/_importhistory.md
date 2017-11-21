@@ -1,7 +1,7 @@
 # Import History
  
 With the endpoint import history, you may query for meta information about the last imports.
-<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication)</aside>
+<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication).</aside>
 
 
 ## Get

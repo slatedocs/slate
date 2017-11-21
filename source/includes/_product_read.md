@@ -1,5 +1,7 @@
 # Product Data (Read)
 
+<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication).</aside>
+
 ## Get
 
 ```shell

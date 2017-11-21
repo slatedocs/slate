@@ -1,7 +1,7 @@
 # Sites
 
 Sites are the smallest entity, below projects and have one data source and may have several exports/channels
-<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication)</aside>
+<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication).</aside>
 
 
 ## Get

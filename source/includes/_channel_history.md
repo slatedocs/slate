@@ -1,6 +1,7 @@
 # Channel History
  
 With the channel history, you can get information on the last exports of a channel
+<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication).</aside>
 
 ## Get
 To list the history, you can use get.

@@ -1,6 +1,6 @@
 # Projects
 Projects are used to group your [Sites](#sites).
-<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication)</aside>
+<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication).</aside>
 
 ## Get
 Lists all or one projects of your account.

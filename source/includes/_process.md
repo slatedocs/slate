@@ -2,7 +2,7 @@
 Process can be used to trigger processing actions on your site. You can can use 
 the Platform API Client with the Process object or make the call to the endpoint
 yourself.
-<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication)</aside>
+<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication).</aside>
 
 ## Post
 Trigger a processing action on your site.

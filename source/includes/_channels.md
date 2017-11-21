@@ -1,7 +1,7 @@
 # Channels
  
 Channels are targets of the data (like "Google Shopping", Amazon,..)
-<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication)</aside>
+<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication).</aside>
 
 
 ## Get
