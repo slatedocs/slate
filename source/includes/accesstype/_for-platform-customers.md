@@ -167,11 +167,9 @@ This API is safe to call from the front end JS, where it will read session-cooki
 
 ```shell
 curl -H "X-QT-AUTH: <your-auth-token>" -X "PATCH" http://sketches.quintype.com/api/v1/members/me/subscriptions/<id> -d '{
-  "subscription": {
-    "metadata":  {
-        "full-name": "hello-world",
-        "email": "hello@quintype.com"
-    }
+  "metadata":  {
+    "full-name": "hello-world",
+    "email": "hello@quintype.com"
   }
 }`
 
