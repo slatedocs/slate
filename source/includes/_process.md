@@ -36,7 +36,7 @@ bool(true)
 
 ```shell
 # Triggering an action on your site
-curl -X POST H "Content-Type:application/json" -d '{"action": "import"}' https://platform-api.productsup.io/platform/v1/process/<siteId>
+curl -X POST H "Content-Type:application/json" -d '{"action": "import"}' https://platform-api.productsup.io/platform/v2/process/<siteId>
 ```
     
 ```shell    
@@ -46,7 +46,7 @@ curl -X POST H "Content-Type:application/json" -d '{"action": "import"}' https:/
 ```
 ### HTTP Request
 
-`POST https://platform-api.productsup.io/platform/v1/process/<siteId>`
+`POST https://platform-api.productsup.io/platform/v2/process/<siteId>`
 
 #### URL parameters
 Field | Type | Description

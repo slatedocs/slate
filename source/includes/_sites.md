@@ -45,16 +45,16 @@ Array
 
 ```shell
 # requesting a list of all your sites
-curl https://platform-api.productsup.io/platform/v1/sites
+curl https://platform-api.productsup.io/platform/v2/sites
 
 # requesting a list of all your sites within one project
-curl https://platform-api.productsup.io/platform/v1/projects/321/sites
+curl https://platform-api.productsup.io/platform/v2/projects/321/sites
 
 # requesting sites by tag
-curl https://platform-api.productsup.io/platform/v1/sites/tagname:tagValue
+curl https://platform-api.productsup.io/platform/v2/sites/tagname:tagValue
 
 # requesting one site by its ID
-curl https://platform-api.productsup.io/platform/v1/sites/123
+curl https://platform-api.productsup.io/platform/v2/sites/123
 
 
 ```
@@ -75,10 +75,10 @@ response:
 }
 ```
 ### HTTP Request - All sites for your account
-`GET https://platform-api.productsup.io/platform/v1/sites`
+`GET https://platform-api.productsup.io/platform/v2/sites`
 
 ### <a name="sites-request-by-project"></a> HTTP Request - All sites for a specific project
-`GET https://platform-api.productsup.io/platform/v1/projects/<projectId>/sites`
+`GET https://platform-api.productsup.io/platform/v2/projects/<projectId>/sites`
 
 #### URL parameters
 Field | Type | Description
@@ -86,7 +86,7 @@ Field | Type | Description
 projectId | integer | Project to list sites for
 
 ### HTTP Request - Get a site by it's tag
-`GET https://platform-api.productsup.io/platform/v1/sites/<tagName>:<tagValue>`
+`GET https://platform-api.productsup.io/platform/v2/sites/<tagName>:<tagValue>`
 
 #### URL parameters
 Field | Type | Description
@@ -95,7 +95,7 @@ tagName | string | Name of the tag for the site
 tagValue | string | Value of the tag for the site
 
 ### <a name="sites-request-by-id"></a> HTTP Request - Get a site by it's identifier
-`GET https://platform-api.productsup.io/platform/v1/sites/<siteId>`
+`GET https://platform-api.productsup.io/platform/v2/sites/<siteId>`
 
 #### URL parameters
 Field | Type | Description
@@ -131,7 +131,7 @@ To create a new site, you can use a POST request (or the insert method).
 ```shell
  curl
     -d '{"title":"example site","reference":"myReferenceKey:myReference1234"}'
-    https://platform-api.productsup.io/platform/v1/projects/321/sites
+    https://platform-api.productsup.io/platform/v2/projects/321/sites
 
 
 # result:
@@ -179,9 +179,9 @@ Productsup\Platform\Site Object
 
 ### HTTP Request
 
-`POST https://platform-api.productsup.io/platform/v1/sites`
+`POST https://platform-api.productsup.io/platform/v2/sites`
 
-`POST https://platform-api.productsup.io/platform/v1/projects/<projectId>/sites`
+`POST https://platform-api.productsup.io/platform/v2/projects/<projectId>/sites`
 
 #### URL parameters
 Field | Type | Description
@@ -216,7 +216,7 @@ See [link fields](#sites-response-links)
 ## Delete
 ### HTTP Request
 
-`DELETE https://platform-api.productsup.io/platform/v1/sites/<siteId>`
+`DELETE https://platform-api.productsup.io/platform/v2/sites/<siteId>`
 
 #### URL parameters
 Field | Type | Description
@@ -229,7 +229,7 @@ Field | Type | Description
 success | boolean | Indicates the success of the action
 
 ```shell
-curl -X DELETE https://platform-api.productsup.io/platform/v1/sites/125
+curl -X DELETE https://platform-api.productsup.io/platform/v2/sites/125
 # response:
 {"success":true}
 ```

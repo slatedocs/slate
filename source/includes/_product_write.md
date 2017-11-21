@@ -12,7 +12,7 @@ curl -d '[{
    "price": 3.21,
    "shipping": "0.99"
 }]'
-https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/md5string32chars/upload
+https://platform-api.productsup.io/platform/v2/sites/Identifier:123/products/md5string32chars/upload
 ```
 
 ```php
@@ -58,7 +58,7 @@ potentially delivered by multiple requests. The batch can, once all product
 data is delivered, be committed or discarded. 
 
 ### HTTP Request
-`POST https://platform-api.productsup.io/platform/v1/sites/<siteIdentifier>/products/<batchId>/upload`
+`POST https://platform-api.productsup.io/platform/v2/sites/<siteIdentifier>/products/<batchId>/upload`
 
 #### <a name="product-write-request-url-parameters"></a> URL parameters
 Field | Type | Description
@@ -108,7 +108,7 @@ curl -d '[{
     "id": 124,
     "pup:isdeleted": 1
 }]'
-https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/md5string32chars/upload
+https://platform-api.productsup.io/platform/v2/sites/Identifier:123/products/md5string32chars/upload
 ```
 
 ```php
@@ -128,7 +128,7 @@ Deleting products can be achieved either by:
 
 ```shell
 curl -d '{"type":"full"}'
-https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/md5string32chars/commit
+https://platform-api.productsup.io/platform/v2/sites/Identifier:123/products/md5string32chars/commit
 ```
 
 ```php
@@ -147,7 +147,7 @@ of the data. This is done batch by batch, so it's advisable to use one batch ID
 per upload (even if it consists of multiple upload requests).
 
 ### HTTP Request
-`POST https://platform-api.productsup.io/platform/v1/sites/<siteIdentifier>/products/<batchId>/commit`
+`POST https://platform-api.productsup.io/platform/v2/sites/<siteIdentifier>/products/<batchId>/commit`
 
 #### URL parameters
 See [url parameters](#product-write-request-url-parameters)
@@ -179,7 +179,7 @@ delta | update
 ## Discarding
 
 ```shell
-curl https://platform-api.productsup.io/platform/v1/sites/Identifier:123/products/md5string32chars/discard
+curl https://platform-api.productsup.io/platform/v2/sites/Identifier:123/products/md5string32chars/discard
 ```
 
 ```php
@@ -192,7 +192,7 @@ the whole batch. This allows you be more strict with your data integrity. This
 is achieved by calling the discard endpoint on a batch id.
 
 ### HTTP Request
-`POST https://platform-api.productsup.io/platform/v1/sites/<siteIdentifier>/products/<batchId>/discard`
+`POST https://platform-api.productsup.io/platform/v2/sites/<siteIdentifier>/products/<batchId>/discard`
 
 #### URL parameters
 See [url parameters](#product-write-request-url-parameters)

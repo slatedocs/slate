@@ -30,12 +30,12 @@ Array
 
 ```shell
 # requesting a list of all your projects
-curl https://platform-api.productsup.io/platform/v1/projects
+curl https://platform-api.productsup.io/platform/v2/projects
 ```
 
 ```shell
 # requesting one of projects
-curl https://platform-api.productsup.io/platform/v1/projects/1
+curl https://platform-api.productsup.io/platform/v2/projects/1
 ```
 
 ```shell    
@@ -54,11 +54,11 @@ response:
 ```
 ### HTTP Request - All projects for your account
 
-`GET https://platform-api.productsup.io/platform/v1/projects`
+`GET https://platform-api.productsup.io/platform/v2/projects`
 
 ### <a name="project-request-by-id"></a> HTTP Request - Get a project by it's identifier
 
-`GET https://platform-api.productsup.io/platform/v1/projects/<projectId>`
+`GET https://platform-api.productsup.io/platform/v2/projects/<projectId>`
 
 #### URL parameters
 Field | Type | Description
@@ -91,7 +91,7 @@ To create a new project, you can use a POST request (or the insert method).
 ```shell
  curl 
     -d '{"name":"test project"}' 
-    https://platform-api.productsup.io/platform/v1/projects
+    https://platform-api.productsup.io/platform/v2/projects
 
 
 # result:
@@ -126,7 +126,7 @@ Productsup\Platform\Project Object
 
 ### HTTP Request
 
-`POST https://platform-api.productsup.io/platform/v1/projects`
+`POST https://platform-api.productsup.io/platform/v2/projects`
 
 #### HTTP headers
 Name | Value
@@ -157,7 +157,7 @@ See [link fields](#project-response-links)
 ## Delete
 ### HTTP Request
 
-`DELETE https://platform-api.productsup.io/platform/v1/projects/<projectId>`
+`DELETE https://platform-api.productsup.io/platform/v2/projects/<projectId>`
 
 ### URL parameters
 Field | Type | Description
@@ -170,7 +170,7 @@ Field | Type | Description
 success | boolean | Indicates the success of the action
 
 ```shell
-curl -X DELETE https://platform-api.productsup.io/platform/v1/projects/125
+curl -X DELETE https://platform-api.productsup.io/platform/v2/projects/125
 # response:
 {"success":true}
 ```

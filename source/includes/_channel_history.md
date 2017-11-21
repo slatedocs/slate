@@ -70,7 +70,7 @@ Array
 
 ```shell
 # requesting the history of one channel
-curl https://platform-api.productsup.io/platform/v1/sites/123/channels/321/history
+curl https://platform-api.productsup.io/platform/v2/sites/123/channels/321/history
 
 
 ```
@@ -108,7 +108,7 @@ curl https://platform-api.productsup.io/platform/v1/sites/123/channels/321/histo
 ```
 ### HTTP Request
 
-`GET https://platform-api.productsup.io/platform/v1/sites/<siteId>/channels/<channelId>/history`
+`GET https://platform-api.productsup.io/platform/v2/sites/<siteId>/channels/<channelId>/history`
 
 #### URL parameters
 Field | Type | Description

@@ -3,7 +3,7 @@
 ## Get
 
 ```shell
-curl  https://platform-api.productsup.io/product/v1/site/123/stage/intermediate/
+curl  https://platform-api.productsup.io/product/v2/site/123/stage/intermediate/
     ?filter=id+%3C%3E+%27%27
     &limit=5000
     &offset=0
@@ -64,7 +64,7 @@ Array
 ```
 
 ### HTTP Request - Get product data
-`GET https://platform-api.productsup.io/product/v1/site/<siteId>/stage/<stageName>/<stageId>?limit=<limit>&ofset=<offset>&fields=<fields>&hidden=<hidden>&filter=<filter>`
+`GET https://platform-api.productsup.io/product/v2/site/<siteId>/stage/<stageName>/<stageId>?limit=<limit>&ofset=<offset>&fields=<fields>&hidden=<hidden>&filter=<filter>`
 
 #### <a name="product-read-request-url-parameters"></a> URL parameters
 Field | Type | Description
@@ -134,7 +134,7 @@ Array (
 ```
 
 ```shell
-curl https://platform-api.productsup.io/product/v1/site/123/stage/intermediate/0/properties/
+curl https://platform-api.productsup.io/product/v2/site/123/stage/intermediate/0/properties/
 ```
 ```shell
 result: 
@@ -146,7 +146,7 @@ result:
 ```
 
 ### HTTP Request - Get product data properties 
-`GET https://platform-api.productsup.io/product/v1/site/<siteId>/stage/<stageName>/<stageId>/properties`
+`GET https://platform-api.productsup.io/product/v2/site/<siteId>/stage/<stageName>/<stageId>/properties`
 
 #### URL parameters
 See [url parameters](#product-read-request-url-parameters)

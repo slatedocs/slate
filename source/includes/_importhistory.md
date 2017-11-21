@@ -31,7 +31,7 @@ Array
             [product_count] => 18370
             [links:protected] => Array
                 (
-                    [site] => http://api.productsup.com/platform/v1/sites/123
+                    [site] => http://api.productsup.com/platform/v2/sites/123
                 )
 
             [reference:protected] => 
@@ -43,7 +43,7 @@ Array
 
 ```shell
 # requesting one site by its ID
-curl https://platform-api.productsup.io/platform/v1/sites/123/importhistory
+curl https://platform-api.productsup.io/platform/v2/sites/123/importhistory
 
 
 ```
@@ -64,7 +64,7 @@ response:
 }
 ```
 ### HTTP Request
-`GET https://platform-api.productsup.io/platform/v1/sites/<siteId>/importhistory`
+`GET https://platform-api.productsup.io/platform/v2/sites/<siteId>/importhistory`
 
 ### URL parameters
 Field | Type | Description

@@ -45,10 +45,10 @@ Array
 
 ```shell
 # requesting all channels of one site
-curl https://platform-api.productsup.io/platform/v1/sites/123/channels
+curl https://platform-api.productsup.io/platform/v2/sites/123/channels
 
 # requesting a specific channel
-curl https://platform-api.productsup.io/platform/v1/sites/123/channels/321
+curl https://platform-api.productsup.io/platform/v2/sites/123/channels/321
 ```
 
 ```shell    
@@ -73,7 +73,7 @@ response:
 ```
 ### HTTP Request - Get all channels for a site
 
-`GET https://platform-api.productsup.io/platform/v1/sites/<siteId>/channels`
+`GET https://platform-api.productsup.io/platform/v2/sites/<siteId>/channels`
 
 #### URL parameters
 Field | Type | Description
@@ -82,7 +82,7 @@ siteId | integer | Site to list channels for
 
 ### <a name="channel-request-by-id"></a> HTTP Request - Get a channel by it's identifier
 
-`GET https://platform-api.productsup.io/platform/v1/sites/<siteId>/channels/<channelId>`
+`GET https://platform-api.productsup.io/platform/v2/sites/<siteId>/channels/<channelId>`
 
 #### URL parameters
 Field | Type | Description

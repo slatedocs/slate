@@ -50,7 +50,7 @@ Array
 
 ```shell
 # requesting all channels of one site
-curl https://platform-api.productsup.io/platform/v1/sites/123/errors
+curl https://platform-api.productsup.io/platform/v2/sites/123/errors
 ls/321
 ```
     
@@ -69,9 +69,9 @@ response:
 ```
 ### <a name="siteerrors-request"></a> HTTP Request
 
-`GET https://platform-api.productsup.io/platform/v1/sites/<siteId>/errors`
+`GET https://platform-api.productsup.io/platform/v2/sites/<siteId>/errors`
 
-`GET https://platform-api.productsup.io/platform/v1/sites/<siteid>/errors?pid=<pid>&limit=<limit>&offset=<offset>`
+`GET https://platform-api.productsup.io/platform/v2/sites/<siteid>/errors?pid=<pid>&limit=<limit>&offset=<offset>`
 
 ### URL parameters
 Name | Type | Description
@@ -112,7 +112,7 @@ To create a new error (information) for one site, you can use a POST request (or
 ```shell
  curl 
     -d '{"pid":"abd456def","error":123,"data":{"foo":"bar"}}' 
-    https://platform-api.productsup.io/platform/v1/sites/123/errors
+    https://platform-api.productsup.io/platform/v2/sites/123/errors
 
 
 # result:
@@ -159,7 +159,7 @@ Productsup\Platform\Error Object
 
 ### HTTP Request
 
-`POST https://platform-api.productsup.io/platform/v1/sites/<siteId>/errors`
+`POST https://platform-api.productsup.io/platform/v2/sites/<siteId>/errors`
 
 ### URL parameters
 Name | Type | Description
