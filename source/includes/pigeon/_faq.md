@@ -38,8 +38,12 @@ pigeon server - [http://dev.idamob.ru/pigeon/services/SBIInboundWebService?wsdl]
 
 Следующие порты используются сервером для доставке сообщений
 
-- Apple : [support.apple.com/en-us/HT203609](https://support.apple.com/en-us/HT203609)
-- Google : [android.googleapis.com/gcm/send](https://android.googleapis.com/gcm/send)
+Apple : [support.apple.com/en-us/HT203609](https://support.apple.com/en-us/HT203609)
+Google : accesses the GCM servers on ports 5228-5230
+
+<aside class="error">
+Google Note: If your organization has a firewall that restricts the traffic to or from the Internet, you'll need to configure it to allow connectivity with GCM. The ports to open are: 5228, 5229, and 5230. GCM typically only uses 5228, but it sometimes uses 5229 and 5230. GCM doesn't provide specific IPs. It changes IPs frequently. We recommend against using ACLs but if you must use them, take a broad approach such as the method suggested in this support link.
+</aside>
 
 **Конфигурирование сервиса**
 
