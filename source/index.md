@@ -12,16 +12,17 @@ toc_footers:
 includes:
   - intro
   - auth
+  - version
   - projects
   - sites
   - site_errors
   - importhistory
   - channels
   - channel_history
-  - products
-  - product_data
+  - product_write
+  - product_read
   - process
-  - errors
+  - api_errors
 
 search: true
 ---

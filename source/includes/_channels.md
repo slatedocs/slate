@@ -1,7 +1,7 @@
 # Channels
  
 Channels are targets of the data (like "Google Shopping", Amazon,..)
-<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication)</aside>
+<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication).</aside>
 
 
 ## Get
@@ -45,12 +45,12 @@ Array
 
 ```shell
 # requesting all channels of one site
-curl https://platform-api.productsup.io/platform/v1/sites/123/channels
+curl https://platform-api.productsup.io/platform/v2/sites/123/channels
 
 # requesting a specific channel
-curl https://platform-api.productsup.io/platform/v1/sites/123/channels/321
+curl https://platform-api.productsup.io/platform/v2/sites/123/channels/321
 ```
-    
+
 ```shell    
 response: 
 {
@@ -71,17 +71,43 @@ response:
                 "links": [...]
             }
 ```
-### HTTP Request
+### HTTP Request - Get all channels for a site
 
-`GET https://platform-api.productsup.io/platform/v1/sites/123/channels`
+`GET https://platform-api.productsup.io/platform/v2/sites/<siteId>/channels`
 
-`GET https://platform-api.productsup.io/platform/v1/sites/123/channels/321`
+#### URL parameters
+Field | Type | Description
+------ | -------- | --------------
+siteId | integer | Site to list channels for
+
+### <a name="channel-request-by-id"></a> HTTP Request - Get a channel by it's identifier
+
+`GET https://platform-api.productsup.io/platform/v2/sites/<siteId>/channels/<channelId>`
+
+#### URL parameters
+Field | Type | Description
+------ | -------- | --------------
+siteId | integer | Site under which channel exists
+channelId | integer | Channel to get
 
 ### Response fields
 Field | Type | Description
 ------ | -------- | --------------
-id | Integer | Internal ID
-site_id | String | ID of the referenced site
-name | String | Name of the export you provided while creating the channel
-export_name | String | Generic name of the export in the productsup system
-history | Array | see [channel history](#channel-history)
+status | boolean | Indicates request status
+Channels | array | List of [channels](#channel-response-channel)
+
+#### <a name="channel-response-channel"></a> Channel fields
+Field | Type | Description
+------ | -------- | --------------
+id | integer | Internal ID
+site_id | integer | ID of the referenced site
+channel_id | integer | ID of the referenced site
+name | string | Name of the export you provided while creating the channel
+export_name | string | Generic name of the export in the productsup system
+links | array | List of [relevant resources](#channel-response-links)
+
+#### <a name="channel-response-links"></a> Links fields and values
+Name | Description
+--- | ---
+self | Link to [channel detail](#channel-request-by-id)
+site | Link to [site](#sites-request-by-id) 

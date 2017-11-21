@@ -1,7 +1,7 @@
 # Import History
  
 With the endpoint import history, you may query for meta information about the last imports.
-<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication)</aside>
+<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication).</aside>
 
 
 ## Get
@@ -31,7 +31,7 @@ Array
             [product_count] => 18370
             [links:protected] => Array
                 (
-                    [site] => http://api.productsup.com/platform/v1/sites/123
+                    [site] => http://api.productsup.com/platform/v2/sites/123
                 )
 
             [reference:protected] => 
@@ -43,7 +43,7 @@ Array
 
 ```shell
 # requesting one site by its ID
-curl https://platform-api.productsup.io/platform/v1/sites/123/importhistory
+curl https://platform-api.productsup.io/platform/v2/sites/123/importhistory
 
 
 ```
@@ -64,15 +64,31 @@ response:
 }
 ```
 ### HTTP Request
-`GET https://platform-api.productsup.io/platform/v1/sites/123/importhistory`
+`GET https://platform-api.productsup.io/platform/v2/sites/<siteId>/importhistory`
+
+### URL parameters
+Field | Type | Description
+------ | -------- | --------------
+siteID | integer | Site to list import history for
 
 ### Response fields
 Field | Type | Description
 ------ | -------- | --------------
-id | Integer | Internal ID
-site_id | Integer | ID of the referenced site
-import_time | Date | Date of the import
-product_count | Integer | Count of imported products
-links | Array | Array of relevant resources
+status | boolean | Indicates request status
+Sites | array | List of [imports](#importhistory-response-site)
 
-<aside class="notice">Creating and deleting import history are not available</aside>
+#### <a name="importhistory-response-site"></a> Site fields
+Field | Type | Description
+------ | -------- | --------------
+id | integer | Internal ID
+site_id | integer | ID of the referenced site
+import_time | date | Date of the import
+product_count | integer | Total amount of imported products
+links | array | List of [relevant resources](#importhistory-response-links)
+
+#### <a name="importhistory-response-links"></a> Links fields and values
+Name | Description
+--- | ---
+site | Link to [site](#sites-request-by-id)
+
+<aside class="notice">Creating and deleting import history are not available.</aside>

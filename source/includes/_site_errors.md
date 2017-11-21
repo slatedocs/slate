@@ -1,27 +1,16 @@
 # Site Errors
  
 With site errors, you can see the last errors or add new custom errors for a site.
-<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication)</aside>
+<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication).</aside>
 
 
 ## Get
 To list errors for one site, you can use get. See [Sites](#sites) for how to identify sites.
 
-### Optional Params for get requests
-
-param | example | default | description
------ | ------- | ------- | -----------
-pid | `abc456def` | (latest) | process id, by default the latest process is shown
-limit | `10` | `50` | maximum number of results
-offset | `20` | `0` | results begin at this position
-
-
-
 ```php
 <?php
 $site = new \Productsup\Platform\Site();
 $site->id = 123;
-
 
 $errorService = new \Productsup\Service\Errors($client);
 $errorService->setSite($site);
@@ -61,7 +50,7 @@ Array
 
 ```shell
 # requesting all channels of one site
-curl https://platform-api.productsup.io/platform/v1/sites/123/errors
+curl https://platform-api.productsup.io/platform/v2/sites/123/errors
 ls/321
 ```
     
@@ -78,19 +67,44 @@ response:
                  "links": [{...}]
                  }, ....
 ```
-### HTTP Request
+### <a name="siteerrors-request"></a> HTTP Request
 
-`GET https://platform-api.productsup.io/platform/v1/sites/123/errors`
+`GET https://platform-api.productsup.io/platform/v2/sites/<siteId>/errors`
 
-`GET https://platform-api.productsup.io/platform/v1/sites/123/errors?pid=abc456def&limit=10&offset=20`
+`GET https://platform-api.productsup.io/platform/v2/sites/<siteid>/errors?pid=<pid>&limit=<limit>&offset=<offset>`
 
-### Response fields
+### URL parameters
+Name | Type | Description
+----- | -------| -----------
+siteId | integer | Site to get the errors for
+
+### Optional query parameters
+Name | Example | Default | Description
+----- | ------- | ------- | -----------
+pid | `abc456def` | (latest) | Process id, by default the latest process is shown
+limit | `10` | `50` | Maximum number of results
+offset | `20` | `0` | Results begin at this position
+
+### <a name="siteerrors-response"></a> Response fields
 Field | Type | Description
 ------ | -------- | --------------
-id | Integer | Internal ID
-pid | String | Process ID
-error | Integer | Error ID
-data | JSON/Array | additional infos about the error
+status | boolean | Indicates request status
+Errors | array | List of [errors](#siteerrors-response-error)
+
+#### <a name="siteerrors-response-error"></a> Error fields
+Field | Type | Description
+------ | -------- | --------------
+id | integer | Internal identifier
+pid | string | Process identifier
+error | integer | Error identifier
+data | array | Additional information about the error
+site_id | integer | Site identifier
+links | array | List of  [relevant resources](#siteerrors-response-link)
+
+#### <a name="siteerrors-response-link"></a> Links fields and values
+Name | Description
+--- | ---
+self | Link to the [error endpoint](#siteerrors-request)
 
 ## Create
 To create a new error (information) for one site, you can use a POST request (or the insert method).
@@ -98,7 +112,7 @@ To create a new error (information) for one site, you can use a POST request (or
 ```shell
  curl 
     -d '{"pid":"abd456def","error":123,"data":{"foo":"bar"}}' 
-    https://platform-api.productsup.io/platform/v1/sites/123/errors
+    https://platform-api.productsup.io/platform/v2/sites/123/errors
 
 
 # result:
@@ -141,7 +155,36 @@ Productsup\Platform\Error Object
 )
 */
 
-
 ```
 
+### HTTP Request
 
+`POST https://platform-api.productsup.io/platform/v2/sites/<siteId>/errors`
+
+### URL parameters
+Name | Type | Description
+----- | -------| -----------
+siteId | integer | Site to which the error will be added
+
+#### HTTP headers
+Name | Value
+--- | ---
+Content-Type | application/json
+
+The data to be inserted has to be provided as a JSON-Object.
+
+#### Request body parameters
+Field | Type | Description
+------ | -------- | --------------
+pid | string | Process identifier
+error | integer | Error id, this should be a valid identifier according to our error codes
+data | array | Additional information about the error
+
+### Response fields
+See [response fields](#siteerrors-response)
+
+#### Error fields
+See [error fields](#siteerrors-response-error)
+
+#### Link fields and values
+See [link fields](#siteerrors-response-link)

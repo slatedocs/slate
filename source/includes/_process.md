@@ -2,7 +2,7 @@
 Process can be used to trigger processing actions on your site. You can can use 
 the Platform API Client with the Process object or make the call to the endpoint
 yourself.
-<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication)</aside>
+<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication).</aside>
 
 ## Post
 Trigger a processing action on your site.
@@ -36,7 +36,7 @@ bool(true)
 
 ```shell
 # Triggering an action on your site
-curl -X POST H "Content-Type:application/json" -d '{"action": "import"}' https://platform-api.productsup.io/platform/v1/process/<siteId>
+curl -X POST H "Content-Type:application/json" -d '{"action": "import"}' https://platform-api.productsup.io/platform/v2/process/<siteId>
 ```
     
 ```shell    
@@ -46,20 +46,27 @@ curl -X POST H "Content-Type:application/json" -d '{"action": "import"}' https:/
 ```
 ### HTTP Request
 
-`POST https://platform-api.productsup.io/platform/v1/process/<siteId>`
+`POST https://platform-api.productsup.io/platform/v2/process/<siteId>`
 
-### URL parameters
+#### URL parameters
 Field | Type | Description
 ------ | -------- | --------------
-siteId | Int | Id of the site you want to trigger processing for.
+siteId | integer | Site you want to trigger processing for
 
-### Request body fields
+#### HTTP headers
+Name | Value
+--- | ---
+Content-Type | application/json
+
+The data to be inserted has to be provided as a JSON-Object.
+
+#### Request body fields
 Field | Type | Description
 ------ | -------- | --------------
-action | String | Action, valid values are: import, export, channel, export-all, all
-id | Int | Export or channel id, only required for action types _export_ and _channel_
+action | string | [Action value](#process-request-action)
+id | integer | Export or channel id, only required for action types _export_ and _channel_
 
-#### Action value explanation
+#### <a name="process-request-action"></a> Action value explanation
 Action value | Description
 ------ | ------
 import | Trigger an import on the site

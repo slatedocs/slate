@@ -1,7 +1,7 @@
 # Sites
 
 Sites are the smallest entity, below projects and have one data source and may have several exports/channels
-<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication)</aside>
+<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication).</aside>
 
 
 ## Get
@@ -45,16 +45,16 @@ Array
 
 ```shell
 # requesting a list of all your sites
-curl https://platform-api.productsup.io/platform/v1/sites
+curl https://platform-api.productsup.io/platform/v2/sites
 
 # requesting a list of all your sites within one project
-curl https://platform-api.productsup.io/platform/v1/projects/321/sites
+curl https://platform-api.productsup.io/platform/v2/projects/321/sites
 
 # requesting sites by tag
-curl https://platform-api.productsup.io/platform/v1/sites/tagname:tagValue
+curl https://platform-api.productsup.io/platform/v2/sites/tagname:tagValue
 
 # requesting one site by its ID
-curl https://platform-api.productsup.io/platform/v1/sites/123
+curl https://platform-api.productsup.io/platform/v2/sites/123
 
 
 ```
@@ -74,21 +74,56 @@ response:
     ]
 }
 ```
-### HTTP Request
+### HTTP Request - All sites for your account
+`GET https://platform-api.productsup.io/platform/v2/sites`
 
-`GET https://platform-api.productsup.io/platform/v1/sites`
+### <a name="sites-request-by-project"></a> HTTP Request - All sites for a specific project
+`GET https://platform-api.productsup.io/platform/v2/projects/<projectId>/sites`
 
-`GET https://platform-api.productsup.io/platform/v1/projects/321/sites`
-
-### Response fields
+#### URL parameters
 Field | Type | Description
 ------ | -------- | --------------
-id | Integer | Internal ID
-title | String | Name of the site
-created_at | Date | Date of creation
-project_id | Integer | ID of the project this site belongs to
-links | Array | Array of relevant resources
+projectId | integer | Project to list sites for
 
+### HTTP Request - Get a site by it's tag
+`GET https://platform-api.productsup.io/platform/v2/sites/<tagName>:<tagValue>`
+
+#### URL parameters
+Field | Type | Description
+------ | -------- | --------------
+tagName | string | Name of the tag for the site
+tagValue | string | Value of the tag for the site
+
+### <a name="sites-request-by-id"></a> HTTP Request - Get a site by it's identifier
+`GET https://platform-api.productsup.io/platform/v2/sites/<siteId>`
+
+#### URL parameters
+Field | Type | Description
+------ | -------- | --------------
+siteID | integer | Site to list
+
+### <a name="sites-response"></a> Response fields
+Field | Type | Description
+------ | -------- | --------------
+status | boolean | Indicates request status
+Sites | array | List of [sites](#sites-response-site)
+
+#### <a name="sites-response-site"></a> Site fields
+Field | Type | Description
+------ | -------- | --------------
+id | integer | Site identifier
+title | string | Name of the site
+created_at | date | Date of creation
+project_id | integer | Identifier of the project this site belongs to
+import_schedule | string | Import schedule
+links | array | List of [relevant resources](#sites-response-links)
+
+#### <a name="sites-response-links"></a> Links fields and values
+Name | Description
+--- | ---
+self | Link to [current site detail](#sites-request-by-id)
+tags | Link to a list of tags belonging to the site
+project | Link to [project](#project-request-by-id)
 
 ## Create
 To create a new site, you can use a POST request (or the insert method).
@@ -96,7 +131,7 @@ To create a new site, you can use a POST request (or the insert method).
 ```shell
  curl
     -d '{"title":"example site","reference":"myReferenceKey:myReference1234"}'
-    https://platform-api.productsup.io/platform/v1/projects/321/sites
+    https://platform-api.productsup.io/platform/v2/projects/321/sites
 
 
 # result:
@@ -144,25 +179,57 @@ Productsup\Platform\Site Object
 
 ### HTTP Request
 
-`POST https://platform-api.productsup.io/platform/v1/projects/321/sites`
+`POST https://platform-api.productsup.io/platform/v2/sites`
 
-The data to insert has to be provided as a JSON-Object
-### Request fields
+`POST https://platform-api.productsup.io/platform/v2/projects/<projectId>/sites`
+
+#### URL parameters
 Field | Type | Description
 ------ | -------- | --------------
-title | String | Name of the site
-project_id | Integer | ID of the project this site belongs to
+projectId | integer | Project under which to add the site. Required unless set in request body.
+
+#### HTTP headers
+Name | Value
+--- | ---
+Content-Type | application/json
+
+The data to be inserted has to be provided as a JSON-Object.
+
+#### Request body fields
+Field | Type | Description
+------ | -------- | --------------
+title | string | Name of the site
+reference | string | Textual site reference, consisting of tagName and tagValue
+project_id | integer | Project under which to add the site. Required unless provided in URL.
 
 `ID` and `created_at` have to be empty, otherwise the values get overwritten, or the request may result in an error.
-The `project_id` may be also included in the URL, like in the example above.
+
+### Response fields
+See [response fields](#sites-response)
+
+#### <a name="sites-response-site"></a> Site fields
+See [site fields](#sites-response-site)
+
+#### <a name="sites-response-links"></a> Links fields and values
+See [link fields](#sites-response-links)
 
 ## Delete
 ### HTTP Request
 
-`DELETE https://platform-api.productsup.io/platform/v1/sites/125`
+`DELETE https://platform-api.productsup.io/platform/v2/sites/<siteId>`
+
+#### URL parameters
+Field | Type | Description
+--- | --- | ---
+siteId | integer | Site to delete
+
+### Response body fields
+Field | Type | Description
+--- | --- | ---
+success | boolean | Indicates the success of the action
 
 ```shell
-curl -X DELETE https://platform-api.productsup.io/platform/v1/sites/125
+curl -X DELETE https://platform-api.productsup.io/platform/v2/sites/125
 # response:
 {"success":true}
 ```

@@ -1,9 +1,10 @@
 # Channel History
  
 With the channel history, you can get information on the last exports of a channel
+<aside class="info">Authentication is not included in the examples, see [Authentication](#authentication).</aside>
 
 ## Get
-To list the history, you can 
+To list the history, you can use get.
 
 ```php
 <?php
@@ -70,7 +71,7 @@ Array
 
 ```shell
 # requesting the history of one channel
-curl https://platform-api.productsup.io/platform/v1/sites/123/channels/321/history
+curl https://platform-api.productsup.io/platform/v2/sites/123/channels/321/history
 
 
 ```
@@ -108,23 +109,51 @@ curl https://platform-api.productsup.io/platform/v1/sites/123/channels/321/histo
 ```
 ### HTTP Request
 
-`GET https://platform-api.productsup.io/platform/v1/sites/123/channels/321/history`
+`GET https://platform-api.productsup.io/platform/v2/sites/<siteId>/channels/<channelId>/history`
+
+#### URL parameters
+Field | Type | Description
+------ | -------- | --------------
+siteId | integer | Site under which channel exists
+channelId | integer | Channel to get
 
 ### Response fields
 Field | Type | Description
 ------ | -------- | --------------
-id | Integer | Internal ID
-site_id | Integer | ID of the referenced site
-site_channel_id | String | Internal id for the combination of an [Export](#channels) and [Site](#sites)
-export_time | DateTime | Time when the process was finished
-export_start | DateTime | Time when the process was started
-product_count | Integer | Number of products exported
-pid | String | Internal ID for the process
-product_count_new | Integer | Only for delta exports, number of new products
-product_count_modified | Integer | Only for delta exports, number of updated products
-product_count_deleted | Integer | Only for delta exports, number of deleted products
-product_count_unchanged | Integer | Only for delta exports, number of unchanged products
-uploaded | Integer | Indicator if the export was uploaded to it's destination
+status | boolean | Indicates request status
+Channels | array | List of [channels](#channel-history-response-channel)
 
+#### <a name="channel-history-response-channel"></a> Channel fields
+Field | Type | Description
+------ | -------- | --------------
+id | integer | Internal ID
+site_id | integer | ID of the referenced site
+channel_id | integer | ID of the referenced site
+name | string | Name of the export you provided while creating the channel
+export_name | string | Generic name of the export in the productsup system
+links | array | List of [relevant resources](#channel-history-response-links)
+history | array | List of [channel history](#channel-history-response-history)
 
-<aside class="notice">Creating and deleting import history are not available</aside>
+#### <a name="channel-history-response-links"></a> Links fields and values
+Name | Description
+--- | ---
+self | Link to [channel detail](#channel-request-by-id)
+site | Link to [site](#sites-request-by-id) 
+
+#### <a name="channel-history-response-history"></a> History fields
+Field | Type | Description
+------ | -------- | --------------
+id | integer | Internal identifier
+site_id | integer | Identifier of the referenced site
+site_channel_id | string | Internal id for the combination of an [Export](#channels) and [Site](#sites)
+export_time | dateTime | Time when the process was finished
+export_start | dateTime | Time when the process was started
+product_count | integer | Number of products exported
+pid | string | Internal identifier for the process
+product_count_new | integer | Number of new products (only for delta exports)
+product_count_modified | integer | Number of updated products (only for delta exports)
+product_count_deleted | integer | Number of deleted products (only for delta exports)
+product_count_unchanged | integer | Number of unchanged products (only for delta exports)
+uploaded | integer | Indicator if the export was uploaded to it's destination
+
+<aside class="notice">Creating and deleting channel history are not available.</aside>

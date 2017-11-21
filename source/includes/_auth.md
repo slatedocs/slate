@@ -1,7 +1,10 @@
 # Authentication
-For every request to our API you have to provide authorization. The token gets issued by our team and you need to provide it as X-Auth-Token header for every request.
-
-> To authorize, use this code:
+All requests to our API require valid authorization. The  authentication token
+can be built with the _client ID_ and _client secret_, which will be issued 
+by our team. The token has the following format: `client_id:client_secret`, it 
+needs to be sent as value for the _X-Auth-Token_ header.  
+The client id and secret are account specific, so you can only access projects,
+sites and other resources which lie under your account.
 
 ```php
 <?php
