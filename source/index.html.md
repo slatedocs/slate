@@ -3,7 +3,7 @@ title: Mobius API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell: curl
-  - javascript: Javascript
+  - javascript: Node
   - php: PHP
   - python: Python
   - react: React Native
@@ -22,14 +22,14 @@ search: true
 
 Welcome to the Mobius API! The Mobius API provides simple access to the Mobius DApp Store and multiple blockchains.
 
-# Available Libraries
+## Available Libraries
 
-Mobius is available for Javascript, PHP, Python, React Native, and Shell using
+Mobius is available for Node.js, PHP, Python, React Native, and Shell using
 curl. Ruby library coming soon!
 
 You can view code examples in the dark area to the right, and you can switch the language of the examples with the tabs in the top right.
 
-## Javascript
+### Node.js
 
 Available as a [package](https://www.npmjs.com/package/@mobius-network/mobius-node) with `npm`:
 
@@ -41,7 +41,7 @@ or with `yarn`:
 
 See the source on [Github](https://github.com/mobius-network/mobius-node)
 
-## PHP
+### PHP
 
 Available as a [package](https://packagist.org/packages/zulucrypto/mobius-php) with `composer`:
 
@@ -49,7 +49,7 @@ Available as a [package](https://packagist.org/packages/zulucrypto/mobius-php) w
 
 See the source on [Github](https://github.com/zulucrypto/mobius-php)
 
-## Python
+### Python
 
 Available as a [package](https://pypi.org/project/pymobius) with `pip`:
 
@@ -57,7 +57,7 @@ Available as a [package](https://pypi.org/project/pymobius) with `pip`:
 
 See the source on [Github](https://github.com/mobius-network/mobius-python)
 
-## React Native
+### React Native
 
 Available as a [package](https://www.npmjs.com/package/@mobius-network/mobius-reactnative) with
 `npm`:
@@ -71,7 +71,7 @@ or with `yarn`:
 See the source on [Github](https://github.com/mobius-network/mobius-react-native)
 
 
-# Authentication
+## Authentication
 
 ```shell
 # You can pass API key as a query parameter
