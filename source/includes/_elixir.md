@@ -98,6 +98,16 @@ config :scout_apm,
   key: "YOUR SCOUT KEY"
 ```
 
+Alternately, you can also use environment variables of your choosing by formatting your configuration as a tuple
+with :system as the first value and the environment variable expected as the second.
+
+```
+config :scout_apm,
+  name: { :system, "SCOUT_APP_NAME" },
+  key: { :system, "SCOUT_APP_KEY" }
+```
+
+
 ### Configuration Reference
 
 The following configuration settings are available:
