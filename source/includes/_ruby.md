@@ -549,17 +549,20 @@ General Nginx usage:
 proxy_set_header X-Request-Start "t=${msec}";
 ````
 
+
 Passenger 5+:
 
 ````
-passenger_set_header X_REQUEST_START "t=${msec}";
+passenger_set_header X-Request-Start "t=${msec}";
 ````
 
 Older Passsenger versions:
 
 ````
-passenger_set_cgi_param X_REQUEST_START "t=${msec}";
+passenger_set_cgi_param X-REQUEST-START "t=${msec}";
 ````
+
+Note: The Nginx option is local to the <a href="https://www.phusionpassenger.com/library/config/nginx/reference/#this-configuration-option-is-not-inherited-across-contexts">location block</a>, and isn't inherited.
 
 ## ActionController::Metal
 
