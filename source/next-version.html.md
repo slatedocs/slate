@@ -683,47 +683,54 @@ Returns the list of breaking news.
 {
   "stories": [
     {
-    "author-name": "Pragati Saxena",
-    "headline": "7 killed in Kabul suicide bombing  ",
-    "slug": "{{section}}/{{slug}}",
-    "last-published-at": 1510830370210,
-    "alternative": {},
-    "sections": [],
-    "hero-image-metadata": null,
-    "published-at": 1510830370210,
-    "id": "f3932791-c827-4e88-be67-6e9af6505e3c",
-    "hero-image-s3-key": null,
-    "author-id": 117631,
-    "first-published-at": 1510830370210,
-    "story-template": "breaking-news",
-    "metadata": {
-      "card-share": {
-        "shareable": false
-      }
+      "author-name": "Pragati Saxena",
+      "headline": "7 killed in Kabul suicide bombing  ",
+      "slug": "{{section}}/{{slug}}",
+      "last-published-at": 1510830370210,
+      "alternative": {},
+      "sections": [],
+      "hero-image-metadata": null,
+      "published-at": 1510830370210,
+      "id": "f3932791-c827-4e88-be67-6e9af6505e3c",
+      "hero-image-s3-key": null,
+      "author-id": 117631,
+      "first-published-at": 1510830370210,
+      "story-template": "breaking-news",
+      "metadata": {
+        "card-share": {
+          "shareable": false
+        }
     },
-    "author-name": "Pragati Saxena",
-    "headline": "Notorious cult leader Charles Manson dead  ",
-    "slug": "{{section}}/{{slug}}",
-    "last-published-at": 1511164690641,
-    "alternative": {},
-    "sections": [],
-    "hero-image-metadata": null,
-    "published-at": 1511164690641,
-    "id": "83b5d292-31ae-452f-98e7-5d7b05a06f2a",
-    "hero-image-s3-key": null,
-    "author-id": 117631,
-    "first-published-at": 1511164690641,
-    "story-template": "breaking-news",
-    "metadata": {
-      "card-share": {
-        "shareable": false
-      }
+      "author-name": "Pragati Saxena",
+      "headline": "Notorious cult leader Charles Manson dead  ",
+      "slug": "{{section}}/{{slug}}",
+      "last-published-at": 1511164690641,
+      "alternative": {},
+      "sections": [],
+      "hero-image-metadata": null,
+      "published-at": 1511164690641,
+      "id": "83b5d292-31ae-452f-98e7-5d7b05a06f2a",
+      "hero-image-s3-key": null,
+      "author-id": 117631,
+      "first-published-at": 1511164690641,
+      "story-template": "breaking-news",
+      "metadata": {
+        "card-share": {
+         "shareable": false
+       }
     }
   ]
 }
 
 ```
 
+
+
+this is testing only
+
+* open in new tab
+
+<a href="https://github.com/gja/rack-delete_cookies_from_public_requests" target="_blank">PHP </a>in GitHub
 
 <!--Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
 
