@@ -3,7 +3,10 @@ title: Mobius API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell: curl
-  - javascript: javascript
+  - javascript: Javascript
+  - php: PHP
+  - python: Python
+  - react: React Native
 
 toc_footers:
   - <a href='https://mobius.network/store/developer'>Sign Up for a Developer Key</a>
@@ -19,7 +22,54 @@ search: true
 
 Welcome to the Mobius API! The Mobius API provides simple access to the Mobius DApp Store and multiple blockchains.
 
-We currently have language examples in Shell using curl and JavaScript using our [node library](https://github.com/mobius-network/mobius-node). Ruby and Python examples coming soon! You can view code examples in the dark area to the right, and you can switch the language of the examples with the tabs in the top right.
+# Available Libraries
+
+Mobius is available for Javascript, PHP, Python, React Native, and Shell using
+curl. Ruby library coming soon!
+
+You can view code examples in the dark area to the right, and you can switch the language of the examples with the tabs in the top right.
+
+## Javascript
+
+Available as a [package](https://www.npmjs.com/package/@mobius-network/mobius-node) with `npm`:
+
+`npm install @mobius-network/mobius-node --save`
+
+or with `yarn`:
+
+`yarn add @mobius-network/mobius-node`
+
+See the source on [Github](https://github.com/mobius-network/mobius-node)
+
+## PHP
+
+Available as a [package](https://packagist.org/packages/zulucrypto/mobius-php) with `composer`:
+
+`composer require zulucrypto/mobius-php`
+
+See the source on [Github](https://github.com/zulucrypto/mobius-php)
+
+## Python
+
+Available as a [package](https://pypi.org/project/pymobius) with `pip`:
+
+`pip install pymobius`
+
+See the source on [Github](https://github.com/mobius-network/mobius-python)
+
+## React Native
+
+Available as a [package](https://www.npmjs.com/package/@mobius-network/mobius-reactnative) with
+`npm`:
+
+`npm install @mobius-network/mobius-reactnative --save`
+
+or with `yarn`:
+
+`yarn add @mobius-network/mobius-reactnative`
+
+See the source on [Github](https://github.com/mobius-network/mobius-react-native)
+
 
 # Authentication
 
@@ -38,6 +88,12 @@ import Mobius from '@mobius-network/mobius-node';
 const mobius = new Mobius({
   apiKey: 'API_KEY_HERE',
 });
+```
+
+```php
+<?php
+$API_KEY = "API_KEY_HERE";
+$mobius = new Mobius($API_KEY);
 ```
 
 Mobius uses API keys to allow access to the API. You can view your API key at our [developer portal](https://mobius.network/store/developer).
@@ -132,6 +188,128 @@ Parameter | Description
 app_uid | The UID of the app. Get it at https://mobius.network/store/developer
 email | The email of the user whose credits you want to use.
 num_credits | The number of credits to use.
+
+# Data Marketplace
+
+## Data Feed
+
+```shell
+curl -G "https://mobius.network/api/v1/data_marketplace/data_feed" \
+     -H "x-api-key: API_KEY_HERE" \
+     -d "data_feed_uid=DATA_FEED_UID"
+```
+
+> Returned JSON (in JavaScript all keys converted to `camelCase`)
+
+```json
+{
+  "data_feed": {
+    "uid": "DATA_FEED_UID",
+    "name": "Palo Alto Temperature",
+    "description": "Palo Alto Temperature updated every hour",
+    "image_url": "https://mobius.network/data_marketplace/palo-temperature.jpg",
+    "price": "1.0",
+    "descriptor": {
+      "name": "temperature",
+      "type": "integer"
+    }
+  },
+  "last_updated": "Tue, 21 Nov 2017 18:15:07 UTC +00:00"
+}
+```
+
+Returns DataFeed and last update timestamp, updated when new DataPoints are added.
+
+### HTTP Request
+
+`GET https://mobius.network/api/v1/data_marketplace/data_feed`
+
+### Parameters
+
+Parameter     | Description
+------------- | -----------
+data_feed_uid | The UID of the Data Feed
+
+## Create Data Point
+
+```shell
+curl "https://mobius.network/api/v1/data_marketplace/data_feed" \
+     -H "x-api-key: API_KEY_HERE" \
+     -H "Content-Type: application/json" \
+     -d '{ "data_feed_uid": "DATA_FEED_UID", "values": { "temperature": "95" }}'
+```
+
+> Returned JSON (in JavaScript all keys converted to `camelCase`)
+
+```json
+{
+  "data_feed": {
+    "uid": "DATA_FEED_UID",
+    "name": "Palo Alto Temperature",
+    "description": "Palo Alto Temperature updated every hour",
+    "image_url": "https://mobius.network/data_marketplace/palo-temperature.jpg",
+    "price": "1.0",
+    "descriptor": {
+      "name": "temperature",
+      "type": "integer"
+    }
+  }
+}
+```
+
+Creates a new DataPoint for the DataFeed with JSON values. Only the Data Feed
+owner is allowed to use this endpoint.
+
+### HTTP Request
+
+`POST https://mobius.network/api/v1/data_marketplace/data_feed`
+
+### Parameters
+
+Parameter     | Description
+------------- | -----------
+data_feed_uid | The UID of the Data Feed
+values        | JSON object representing the DataPoint
+
+## Buy
+
+```shell
+curl "https://mobius.network/api/v1/data_marketplace/buy" \
+     -H "x-api-key: API_KEY_HERE" \
+     -d "data_feed_uid=DATA_FEED_UID" \
+     -d "address=ECA_ADDRESS"
+```
+
+> Returned JSON (in JavaScript all keys converted to `camelCase`)
+
+```json
+{
+  "data_feed": {
+    "uid": "DATA_FEED_UID",
+    "name": "Palo Alto Temperature",
+    "description": "Palo Alto Temperature updated every hour",
+    "image_url": "https://mobius.network/data_marketplace/palo-temperature.jpg",
+    "price": "1.0",
+    "descriptor": {
+      "name": "temperature",
+      "type": "integer"
+    }
+  }
+}
+```
+
+Buys a Data Feed and sends its data to a Ethereum Contract Address.
+
+### HTTP Request
+
+`POST https://mobius.network/api/v1/data_marketplace/buy`
+
+### Parameters
+
+Parameter     | Description
+------------- | -----------
+data_feed_uid | The UID of the Data Feed
+address       | Ethereum Contract Address that will receive data
 
 # Tokens
 
