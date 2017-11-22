@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: WCX Api Docs
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
