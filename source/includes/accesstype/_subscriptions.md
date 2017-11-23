@@ -113,7 +113,8 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" https://su
 }
 ```
 
-This API can be used to create a subscription
+This API can be used to create a subscription.
+Here `payment-type` can be one of `razorpay`, `razorpay_recurring`, `androidpay`, `androidpay_recurring`.
 
 ## PATCH update attributes
 
