@@ -4,8 +4,6 @@ The customers of Quintype platform can use below APIs for subscriptions in Acces
 
 ## POST Register And Subscribe a user
 
-Registers a member and creates subscription in Accesstype. It returns X-QT-AUTH in response headers.
-
 ```shell
 curl -H "X-QT-AUTH: sample-auth" -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/register-and-subscribe -d '{
    "member": {
@@ -45,13 +43,14 @@ curl -H "X-QT-AUTH: sample-auth" -H "Content-Type: application/json" http://sket
 '
 
 ```
+Registers a member and creates subscription in Accesstype. It returns X-QT-AUTH in response headers.
+
 `gateway-name` can be any valid payment-type suppored by Accesstype.
 
 `accesstype-plan-id` is the Id of plan in Accesstype.
 
 
 ## POST Subscribe Without Login
-It create subscription for a already registered user.
 
 ```shell
 curl -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/subscribe-without-login?email=example@gmail.com -d '{
@@ -85,15 +84,13 @@ curl -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/sub
 '
 
 ```
+It create subscription for a already registered user.
 `gateway-name` can be any valid payment-type suppored by Accesstype.
 
 `accesstype-plan-id` is the Id of plan in Accesstype
 
 
 ## LIST All subscriptions of a user
-It gives all subscriptions for a user.
-
-This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
 
 ```shell
 curl -H "X-QT-AUTH: <your-auth-token>" http://sketches.quintype.com/api/v1/members/me/subscriptions
@@ -139,11 +136,11 @@ curl -H "X-QT-AUTH: <your-auth-token>" http://sketches.quintype.com/api/v1/membe
   ]
 }
 ```
-
-## LIST All Assets accessible to a user
-It gives all assets accessible to a user.
+It gives all subscriptions for a user.
 
 This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
+
+## LIST All Assets accessible to a user
 
 ```shell
 curl -H "X-QT-AUTH: <your-auth-token>" http://sketches.quintype.com/api/v1/members/me/assets
@@ -159,11 +156,11 @@ curl -H "X-QT-AUTH: <your-auth-token>" http://sketches.quintype.com/api/v1/membe
    ]
 }
 ```
-
-## PATCH Update a subscription
-It updates a subscription for user.
+It gives all assets accessible to a user.
 
 This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
+
+## PATCH Update a subscription
 
 ```shell
 curl -H "X-QT-AUTH: <your-auth-token>" -X "PATCH" http://sketches.quintype.com/api/v1/members/me/subscriptions/<id> -d '{
@@ -174,12 +171,11 @@ curl -H "X-QT-AUTH: <your-auth-token>" -X "PATCH" http://sketches.quintype.com/a
 }`
 
 ```
-
-
-## PATCH Update all subscriptions
-It bulk updates all subscriptions for user.
+It updates a subscription for user.
 
 This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
+
+## PATCH Update all subscriptions
 
 ```shell
 curl -H "X-QT-AUTH: <your-auth-token>" -X "PATCH" http://sketches.quintype.com/api/v1/members/me/subscriptions -d '{
@@ -190,3 +186,6 @@ curl -H "X-QT-AUTH: <your-auth-token>" -X "PATCH" http://sketches.quintype.com/a
 }`
 
 ```
+It bulk updates all subscriptions for user.
+
+This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
