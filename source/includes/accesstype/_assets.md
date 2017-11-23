@@ -12,7 +12,7 @@ $ curl -H "X-SUBAUTH: <auth-token>" https://subtype.quintype.com/api/v1/subscrib
       },
       {
          "type":"site"
-      },
+      }
    ]
 }
 
