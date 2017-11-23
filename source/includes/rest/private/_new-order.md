@@ -2,101 +2,31 @@
 
 ## Place a New Order
 
-> Open a 100BTC EUR/USD long position at market price, with a stop-loss and take-profit:
+> **Place a limit order to sell 10 ETH at 0.04BTC.**
 
-```shell
-curl "https://api.whaleclub.co/v1/position/new" \
-  -H "Authorization: Bearer API_TOKEN" \
-  -X POST \
-  -d 'direction=long' \
-  -d 'market=EUR-USD' \
-  -d 'leverage=100' \
-  -d 'size=10000000000' \
-  -d 'stop_loss=1.07676' \
-  -d 'take_profit=1.08316'
-```
+> Request
+
 ```json
 {
-  "id": "22bCNkWhiwxF7qAMs",
-  "slug": "vCDQah7Hv",
-  "direction": "long",
-  "market": "EUR-USD",
-  "leverage": 100,
-  "type": "market",
-  "state": "active",
-  "size": 10000000000,
-  "margin_size": 10000000000,
-  "entry_price": 1.07876,
-  "stop_loss": 1.07676,
-  "take_profit": 1.08316,
-  "created_at": 1486327152,
-  "entered_at": 1486327152,
-  "liquidation_price": 1.07013,
-  "currency": "BTC"
+  "product": "ETH-BTC",
+  "side": "sell",
+  "size": "10",
+  "price": "0.04"
 }
 ```
 
-> Submit a 50BTC Gold sell stop position at 1050:
+> Response
 
-```shell
-curl "https://api.whaleclub.co/v1/position/new" \
-  -H "Authorization: Bearer API_TOKEN" \
-  -X POST \
-  -d 'direction=short' \
-  -d 'market=XAU-USD' \
-  -d 'leverage=10' \
-  -d 'size=5000000000' \
-  -d 'entry_price=1050'
-```
 ```json
 {
-  "id": "d7gAxDSeLtdYtZsEd",
-  "slug": "GaK75ndGm",
-  "direction": "short",
-  "market": "XAU-USD",
-  "leverage": 10,
-  "type": "stop",
-  "state": "pending",
-  "size": 5000000000,
-  "margin_size": 500000000,
-  "entry_price": 1050,
-  "created_at": 1486307187,
-  "liquidation_price": 1150,
-  "currency": "BTC"
-}
-```
-
-> Submit a 20BTC Netflix limit long position at 99:
-
-```shell
-curl "https://api.whaleclub.co/v1/position/new" \
-  -H "Authorization: Bearer API_TOKEN" \
-  -X POST \
-  -d 'direction=long' \
-  -d 'market=NFLX' \
-  -d 'leverage=10' \
-  -d 'size=2000000000' \
-  -d 'entry_price=99' \
-  -d 'stop_loss=96.5' \
-  -d 'take_profit=126'
-```
-```json
-{
-  "id": "22Eov6G9gXb7cC7n7",
-  "slug": "47n2728b3",
-  "direction": "long",
-  "market": "NFLX",
-  "leverage": 10,
+  "id": "9d335cce-d581-45f6-8efc-bdab3d61c6e2",
+  "product": "ETH-BTC",
   "type": "limit",
-  "state": "pending",
-  "size": 2000000000,
-  "margin_size": 200000000,
-  "entry_price": 99,
-  "stop_loss": 96.5,
-  "take_profit": 126,
-  "created_at": 1465795498,
-  "liquidation_price": 91.08,
-  "currency": "BTC"
+  "side": "sell",
+  "size": "5.00000000",
+  "price": "0.04",
+  "filled": "0.00000000",
+  "timestamp": "1511467005839.417"
 }
 ```
 
@@ -117,23 +47,25 @@ price | \*\* Entry price of your order.
 
 \* `funds` must be specified for `buy` `market` and `buy` `stop` orders. In all other cases, `size` must be specified. Only one of `funds` or `size` can be set.
 
-\*\* Price can be ignored for `market` orders.
+\*\* Price can be ignored for `market` orders, but is required for all other order types.
+
+As an alternative to market orders, you can use limit orders with price set deep in the opposite book. This allows you to set a size in base asset and your price, which gives you an execution price guarantee.
 
 #### Limit order conditions
 
-Additionally, you can specify execution policy conditions for limit orders.
+Additionally, you can specify an execution policy condition for limit orders. This parameter is optional.
 
 Param | Description
 ---------- | -------
 condition | Can be `GTC` (default), `IOC`, or `PO`.
 
-`GTC` Good till cancelled orders will remain on the book until they're cancelled. This is the default behavior.
+`GTC` Good till cancelled orders will remain on the book until they're cancelled. This is the default order placement behavior.
 
 `IOC` Immediate-or-cancel orders will only remove liquidity from the book. When submitted, the order will fill partially or fully, and cancel any outstanding amount that is not matched so that no part of the order appears on the book.
 
 `PO` Post-only orders will only add liquidity to the book. If any part of the order results in taking liquidity, the order will be rejected and no part of it will execute.
 
-#### Stop-limit specific parameters
+#### Stop-limit order parameters
 
 For stop-limit orders, `limit_price` must be specified in addition to the default request parameters.
 
@@ -147,10 +79,12 @@ Your account must have sufficient balance to submit an order. An order that is s
 
 If any part of the order results in adding liquidity to the book, it will be marked as `open`. 
 
-Stop orders do not appear on the book. A successfully submitted stop order will be marked as `set`.
+Stop orders do not appear on the book. A successfully submitted stop order will be marked as `set` and triggered at `price`.
 
-An order that is completely filled will be marked as `done`.
+An order that is completely filled and off the book will be marked as `done`.
 
 ### Response
 
 An order accepted by the matching engine will be assigned an order `id`.
+
+The response will also contain a `filled` field which specifies the amount, in base asset, that was filled as a result of your order.
