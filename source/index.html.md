@@ -5,79 +5,45 @@ toc_footers:
   - <a href='https://wcex.com/'>WCX</a>
 
 includes:
-  - overview
-  - rest 
-  - rest/rate-limit
-  - websocket
-  - price_turbo
-  - balance
-  - transactions
-  - positions/object
-  - positions/new
-  - positions/get
-  - positions/update
-  - positions/close
-  - positions/cancel
-  - positions/split
-  - positions/list
-  - positions_turbo/object
-  - positions_turbo/contracts
-  - positions_turbo/new
-  - positions_turbo/get
-  - positions_turbo/list
+  - overview/introduction
+  - overview/client-libraries
+  - overview/data-types
+  - rest/requests/authentication
+  - rest/requests/rate-limits
+  - rest/requests/errors
+  - rest/requests/pagination
+  - rest/private/new-order
+  - rest/private/cancel-order
+  - rest/private/balances
+  - rest/private/orders
+  - rest/private/fills
+  - rest/private/transactions
+  - rest/private/deposit
+  - rest/private/user
+  - rest/public/products
+  - rest/public/ticker
+  - rest/public/order-book
+  - rest/public/trade-history
+  - rest/public/candles
+  - websocket/requests/subscribe
+  - websocket/requests/sequence
+  - websocket/requests/authentication
+  - websocket/requests/rate-limits
+  - websocket/requests/errors
+  - websocket/private/orders/received
+  - websocket/private/orders/open
+  - websocket/private/orders/set
+  - websocket/private/orders/triggered
+  - websocket/private/orders/done
+  - websocket/private/orders/cancelled
+  - websocket/private/balances
+  - websocket/private/deposits
+  - websocket/public/heartbeat
+  - websocket/public/ticker
+  - websocket/public/order-book
+  - websocket/public/trades
+  - websocket/public/stats
+  - websocket/public/candles
 
 search: true
 ---
-
-- Overview
-    - Introduction
-    - Client Libraries
-    - Data types
-        - Timestamp
-        - Numbers (as strings)
-        - IDs
-- REST
-    - Requests
-        - Authentication
-        - Rate limits
-        - Errors
-        - Pagination
-    - Private
-        - New Order
-        - Cancel Order
-        - Balances
-        - Orders
-        - Fills
-        - Transactions
-        - Deposit
-        - User Info
-    - Public
-        - Products
-        - Ticker
-        - Order Book
-        - Trade History
-        - Candles
-- WebSocket
-    - Requests
-        - Subscribe
-        - Sequence
-        - Authentication
-        - Rate Limits
-        - Errors
-    - Private
-        - Orders
-            - Received
-            - Open
-            - Set
-            - Triggered
-            - Done
-            - Cancelled
-        - Balances
-        - Deposits
-    - Public
-        - Heartbeat
-        - Ticker
-        - Order Book
-        - Trades
-        - Stats
-        - Candles
