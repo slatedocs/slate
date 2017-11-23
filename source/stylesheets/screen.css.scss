@@ -455,6 +455,7 @@ html, body {
     background-color: rgba(0,0,0,0.05);
     padding: 3px;
     border-radius: 3px;
+    white-space: nowrap;
     @extend %break-words;
     @extend %code-font;
   }
@@ -462,6 +463,7 @@ html, body {
   pre>code {
     background-color: transparent;
     padding: 0;
+    white-space: pre;
   }
 
   aside {

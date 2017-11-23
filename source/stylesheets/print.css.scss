@@ -50,6 +50,7 @@ body {
   pre {
     code {
       border: 0;
+      white-space: pre;
     }
   }
 
@@ -59,6 +60,7 @@ body {
 
   code {
     padding: 0.2em;
+    white-space: nowrap;
   }
 
   table {

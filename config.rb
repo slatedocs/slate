@@ -1,6 +1,8 @@
 # Unique header generation
 require './lib/unique_head.rb'
 
+activate :livereload
+
 # Markdown
 set :markdown_engine, :redcarpet
 set :markdown,
