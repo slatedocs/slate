@@ -93,7 +93,7 @@ It create subscription for a already registered user.
 ## LIST All subscriptions of a user
 
 ```shell
-curl -H "X-QT-AUTH: <your-auth-token>" http://sketches.quintype.com/api/v1/members/me/subscriptions
+curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/members/me/subscriptions
 
 {
  "subscriptions":[
@@ -143,7 +143,7 @@ This API is safe to call from the front end JS, where it will read session-cooki
 ## LIST All Assets accessible to a user
 
 ```shell
-curl -H "X-QT-AUTH: <your-auth-token>" http://sketches.quintype.com/api/v1/members/me/assets
+curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/members/me/assets
 
 {
    "assets":[
@@ -163,7 +163,7 @@ This API is safe to call from the front end JS, where it will read session-cooki
 ## PATCH Update a subscription
 
 ```shell
-curl -H "X-QT-AUTH: <your-auth-token>" -X "PATCH" http://sketches.quintype.com/api/v1/members/me/subscriptions/<id> -d '{
+curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" -X PATCH http://sketches.quintype.com/api/v1/members/me/subscriptions/<id> -d '{
   "metadata":  {
     "full-name": "hello-world",
     "email": "hello@quintype.com"
@@ -178,7 +178,7 @@ This API is safe to call from the front end JS, where it will read session-cooki
 ## PATCH Update all subscriptions
 
 ```shell
-curl -H "X-QT-AUTH: <your-auth-token>" -X "PATCH" http://sketches.quintype.com/api/v1/members/me/subscriptions -d '{
+curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" -X PATCH http://sketches.quintype.com/api/v1/members/me/subscriptions -d '{
   "metadata":  {
       "full-name": "hello-world",
       "email": "hello@quintype.com"
