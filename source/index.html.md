@@ -14,6 +14,7 @@ includes:
   - rest/private/deposit
   - rest/public/products
   - rest/public/ticker
+  - rest/public/order-book
 
 search: true
 ---

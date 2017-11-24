@@ -20,6 +20,8 @@
 
 **`GET /ticker/:product`**
 
+### Parameters
+
 Name | Description
 ---------- | -------
 product | A valid product
