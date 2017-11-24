@@ -15,6 +15,8 @@ includes:
   - rest/public/products
   - rest/public/ticker
   - rest/public/order-book
+  - rest/public/trade-history
+  - rest/public/candles
 
 search: true
 ---
