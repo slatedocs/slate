@@ -29,12 +29,7 @@ includes:
   - websocket/requests/authentication
   - websocket/requests/rate-limits
   - websocket/requests/errors
-  - websocket/private/orders/received
-  - websocket/private/orders/open
-  - websocket/private/orders/set
-  - websocket/private/orders/triggered
-  - websocket/private/orders/done
-  - websocket/private/orders/cancelled
+  - websocket/private/orders
   - websocket/private/balances
   - websocket/private/deposits
   - websocket/public/heartbeat

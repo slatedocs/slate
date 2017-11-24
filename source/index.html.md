@@ -17,6 +17,7 @@ includes:
   - rest/public/order-book
   - rest/public/trade-history
   - rest/public/candles
+  - websocket/private/orders
 
 search: true
 ---
