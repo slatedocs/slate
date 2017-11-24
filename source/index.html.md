@@ -18,6 +18,8 @@ includes:
   - rest/public/trade-history
   - rest/public/candles
   - websocket/private/orders
+  - websocket/private/balances
+  - websocket/private/deposits
 
 search: true
 ---
