@@ -6,7 +6,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript: Node
   - php: PHP
   - python: Python
-  - react: React Native
+  - jsx: React Native
 
 toc_footers:
   - <a href='https://mobius.network/store/developer'>Sign Up for a Developer Key</a>
@@ -92,8 +92,21 @@ const mobius = new Mobius({
 
 ```php
 <?php
-$API_KEY = "API_KEY_HERE";
-$mobius = new Mobius($API_KEY);
+$mobius = new Mobius("API_KEY_HERE");
+```
+
+```python
+from pymobius import Mobius
+
+mobius = Mobius(api_key='API_KEY_HERE')
+```
+
+```jsx
+import Mobius from '@mobius-network/mobius-reactnative';
+
+const mobius = new Mobius({
+  apiKey: 'API_KEY_HERE',
+});
 ```
 
 Mobius uses API keys to allow access to the API. You can view your API key at our [developer portal](https://mobius.network/store/developer).
@@ -117,6 +130,22 @@ curl -G "https://mobius.network/api/v1/app_store/balance" \
 ```
 
 ```javascript
+mobius.appStore
+  .balance({
+    appUid: 'APP_UID',
+    email: 'EMAIL',
+  })
+  .then(data => { ... });
+```
+
+```php
+```
+
+```python
+mobius.app_store.balance(app_uid='APP_UID', email='EMAIL')
+```
+
+```jsx
 mobius.appStore
   .balance({
     appUid: 'APP_UID',
@@ -166,6 +195,23 @@ mobius.appStore
   .then(data => { ... });
 ```
 
+```php
+```
+
+```python
+mobius.app_store.use(app_uid='APP_UID', email='EMAIL', num_credits=NUM_CREDITS)
+```
+
+```jsx
+mobius.appStore
+  .use({
+    appUid: 'APP_UID',
+    email: 'EMAIL',
+    numCredits: 'NUM_CREDITS',
+  })
+  .then(data => { ... });
+```
+
 > Returned JSON (in JavaScript all keys converted to `camelCase`)
 
 ```json
@@ -197,6 +243,18 @@ num_credits | The number of credits to use.
 curl -G "https://mobius.network/api/v1/data_marketplace/data_feed" \
      -H "x-api-key: API_KEY_HERE" \
      -d "data_feed_uid=DATA_FEED_UID"
+```
+
+```javascript
+```
+
+```php
+```
+
+```python
+```
+
+```jsx
 ```
 
 > Returned JSON (in JavaScript all keys converted to `camelCase`)
@@ -239,6 +297,18 @@ curl "https://mobius.network/api/v1/data_marketplace/data_feed" \
      -d '{ "data_feed_uid": "DATA_FEED_UID", "values": { "temperature": "95" }}'
 ```
 
+```javascript
+```
+
+```php
+```
+
+```python
+```
+
+```jsx
+```
+
 > Returned JSON (in JavaScript all keys converted to `camelCase`)
 
 ```json
@@ -278,6 +348,18 @@ curl "https://mobius.network/api/v1/data_marketplace/buy" \
      -H "x-api-key: API_KEY_HERE" \
      -d "data_feed_uid=DATA_FEED_UID" \
      -d "address=ECA_ADDRESS"
+```
+
+```javascript
+```
+
+```php
+```
+
+```python
+```
+
+```jsx
 ```
 
 > Returned JSON (in JavaScript all keys converted to `camelCase`)
@@ -335,6 +417,25 @@ mobius.tokens
   .then(data => { ... });
 ```
 
+```php
+```
+
+```python
+mobius.register(token_type='erc20', name='Augur', symbol='REP',
+                address='0xE94327D07Fc17907b4DB788E5aDf2ed424adDff6')
+```
+
+```jsx
+mobius.tokens
+  .register({
+    tokenType: 'erc20',
+    name: 'Augur',
+    symbol: 'REP',
+    address: '0xE94327D07Fc17907b4DB788E5aDf2ed424adDff6',
+  })
+  .then(data => { ... });
+```
+
 > Returned JSON (in JavaScript all keys converted to `camelCase`)
 
 ```json
@@ -371,6 +472,22 @@ curl "https://mobius.network/api/v1/tokens/create_address" \
 ```
 
 ```javascript
+mobius.tokens
+  .createAddress({
+    tokenUid: 'TOKEN_UID',
+    managed: true,
+  })
+  .then(data => { ... });
+```
+
+```php
+```
+
+```python
+mobius.tokens.create_address(token_uid='TOKEN_UID', managed=true)
+```
+
+```jsx
 mobius.tokens
   .createAddress({
     tokenUid: 'TOKEN_UID',
@@ -419,6 +536,22 @@ mobius.tokens
   .then(data => { ... });
 ```
 
+```php
+```
+
+```python
+mobius.tokens.register_address(token_uid='TOKEN_UID', address='ADDRESS')
+```
+
+```jsx
+mobius.tokens
+  .registerAddress({
+    tokenUid: 'TOKEN_UID',
+    address: 'ADDRESS',
+  })
+  .then(data => { ... });
+```
+
 > Returned JSON (in JavaScript all keys converted to `camelCase`)
 
 ```json
@@ -451,6 +584,22 @@ curl -G 'https://mobius.network/api/v1/tokens/balance' \
 ```
 
 ```javascript
+mobius.tokens
+  .balance({
+    tokenUid: 'TOKEN_UID',
+    address: '0x48c80F1f4D53D5951e5D5438B54Cba84f29F32a5',
+  })
+  .then(data => { ... });
+```
+
+```php
+```
+
+```python
+mobius.tokens.balance(token_uid='TOKEN_UID', address='ADDRESS')
+```
+
+```jsx
 mobius.tokens
   .balance({
     tokenUid: 'TOKEN_UID',
@@ -507,6 +656,24 @@ mobius.tokens
   .then(data => { ... });
 ```
 
+```php
+```
+
+```python
+mobius.tokens.transfer_managed(token_address_uid='TOKEN_ADDRESS_UID',
+                               address_to='ADDRESS', num_tokens=NUM_TOKENS)
+```
+
+```jsx
+mobius.tokens
+  .transferManaged({
+    tokenAddressUid: 'TOKEN_ADDRESS_UID',
+    addressTo: 'ADDRESS',
+    numTokens: 'NUM_TOKENS',
+  })
+  .then(data => { ... });
+```
+
 > Returned JSON (in JavaScript all keys converted to `camelCase`)
 
 ```json
@@ -539,6 +706,21 @@ curl -G "https://mobius.network/api/v1/tokens/transfer/info"
 ```
 
 ```javascript
+mobius.tokens
+  .transferInfo({
+    tokenAddressTransferUid: 'UID',
+  })
+  .then(data => { ... });
+```
+
+```php
+```
+
+```python
+mobius.tokens.transfer_info(token_address_transfer_uid='UID')
+```
+
+```jsx
 mobius.tokens
   .transferInfo({
     tokenAddressTransferUid: 'UID',
