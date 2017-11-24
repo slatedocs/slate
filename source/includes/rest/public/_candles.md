@@ -1,7 +1,5 @@
 # Candles
 
-## Get Candles
-
 > Response
 
 ```json

@@ -1,8 +1,6 @@
-# Balance Events
+# Balance
 
-You receive the events below when you're subscribed to the private `balances` channel.
-
-## Balance Update
+You receive the event below when you're subscribed to the private `balances` channel.
 
 ```json
 {
@@ -22,6 +20,6 @@ You receive the events below when you're subscribed to the private `balances` ch
 }
 ```
 
-A `balance` event is sent whenever one or more of your balances changes.
+A `balance` event is a balance update notification sent whenever one or more of your balances changes.
 
 The `total` balance value will appear only if it has changed.

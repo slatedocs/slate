@@ -1,6 +1,4 @@
-# Deposit
-
-## Get Deposit Address
+# Deposit Address
 
 > Response
 

@@ -1,7 +1,5 @@
 # Order Book
 
-## Get Order Book
-
 > Response
 
 ```json

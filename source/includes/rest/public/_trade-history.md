@@ -1,7 +1,5 @@
 # Trade History
 
-## Get Trade History
-
 > Response
 
 ```json

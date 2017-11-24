@@ -1,7 +1,5 @@
 # Balances
 
-## List Balances
-
 > Response
 
 ```json

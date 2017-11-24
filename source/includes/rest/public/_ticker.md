@@ -1,7 +1,5 @@
 # Ticker
 
-## Get Ticker
-
 > Response
 
 ```json

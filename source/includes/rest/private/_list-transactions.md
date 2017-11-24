@@ -1,7 +1,5 @@
 # Transactions
 
-## List Transactions
-
 > Response
 
 ```json

@@ -1,8 +1,6 @@
-# Deposit Events
+# Deposit
 
-You receive the events below when you're subscribed to the private `deposits` channel.
-
-## Deposit Notification
+You receive the event below when you're subscribed to the private `deposits` channel.
 
 ```json
 {

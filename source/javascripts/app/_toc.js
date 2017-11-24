@@ -29,6 +29,7 @@
     var windowHeight = 0;
     var originalTitle = document.title;
 
+    console.log($toc.html());
     var recacheHeights = function() {
       headerHeights = {};
       pageHeight = $(document).height();

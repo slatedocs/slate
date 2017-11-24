@@ -24,7 +24,7 @@ includes:
   - rest/public/order-book
   - rest/public/trade-history
   - rest/public/candles
-  - websocket/requests/subscribe
+  - websocket/requests/subscribe (and channels)
   - websocket/requests/sequence
   - websocket/requests/authentication
   - websocket/requests/rate-limits

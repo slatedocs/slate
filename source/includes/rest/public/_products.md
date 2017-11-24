@@ -2,8 +2,6 @@
 
 # Products
 
-## List Products
-
 > Response
 
 ```json

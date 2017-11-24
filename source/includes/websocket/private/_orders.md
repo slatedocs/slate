@@ -1,8 +1,8 @@
 # WebSocket
 
-# Private
+# Private Events
 
-# Order Events
+# Order
 
 You receive the events below when you're subscribed to the private `orders` channel.
 
