@@ -46,7 +46,7 @@ Name | Default | Description
 ---------- | ---- | -------
 product | *all* | Limit fills returned to this product.
 limit | 100 | Number of orders to return. Max is 100.
-timestamp | *N/A* | Get fills that occurred before this timestamp.
+timestamp | *N/A* | Return fills that occurred before this time.
 
 E.g. `/fills?product=LTC-BTC&limit=50&timestamp=1511481127561`.
 
