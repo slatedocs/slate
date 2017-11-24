@@ -13,6 +13,7 @@ includes:
   - rest/private/list-balances
   - rest/private/deposit
   - rest/public/products
+  - rest/public/ticker
 
 search: true
 ---
