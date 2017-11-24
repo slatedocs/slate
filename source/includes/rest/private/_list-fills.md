@@ -43,7 +43,7 @@ List your recent fills, ordered by fill time.
 Name | Default | Description
 ---------- | ---- | -------
 product | *all* | Limit fills returned to this product
-limit | 100 | Number of orders to return (max is 100)
+limit | 100 | Number of fills to return (max is 100)
 timestamp | *N/A* | Return fills that occurred before this time
 
 E.g. `/fills?product=LTC-BTC&limit=50&timestamp=1511481127561`.

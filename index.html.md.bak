@@ -36,8 +36,6 @@ includes:
   - websocket/public/ticker
   - websocket/public/order-book
   - websocket/public/trades
-  - websocket/public/stats
-  - websocket/public/candles
 
 search: true
 ---

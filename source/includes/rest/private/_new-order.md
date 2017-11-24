@@ -1,5 +1,3 @@
-# REST
-
 # Private
 
 # Orders

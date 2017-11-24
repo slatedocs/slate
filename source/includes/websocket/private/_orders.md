@@ -1,10 +1,6 @@
-# WebSocket
-
 # Private Events
 
 # Order
-
-You receive the events below when you're subscribed to the private `orders` channel.
 
 ## Received
 
@@ -23,7 +19,7 @@ You receive the events below when you're subscribed to the private `orders` chan
 
 A `received` event is an acknowledgement by the matching engine that your order has been accepted for initial processing, regardless of whether it has filled or not.
 
-Received orders that begin to fill trigger one or more `match` events. RReceived orders that result in an open order on the book trigger an `open` event.
+Received orders that begin to fill trigger one or more `match` events. Received orders that result in an open order on the book trigger an `open` event.
 
 
 ## Open

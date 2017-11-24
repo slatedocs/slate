@@ -5,6 +5,7 @@ toc_footers:
   - <a href='https://wcex.com/'>WCX</a>
 
 includes:
+  - rest/requests/authentication
   - rest/private/new-order
   - rest/private/cancel-order
   - rest/private/list-orders
@@ -17,6 +18,7 @@ includes:
   - rest/public/order-book
   - rest/public/trade-history
   - rest/public/candles
+  - websocket/requests/subscribe
   - websocket/private/orders
   - websocket/private/balances
   - websocket/private/deposits

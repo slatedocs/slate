@@ -48,11 +48,8 @@ product | A valid product
 Name | Default | Description
 ---------- | ---- | -------
 resolution | *N/A* | (required) Candle resolution to return. Can be `1`, `5`, `15`, `30`, `60`, `240`, `720`, `1D`, or `1W`.
-start | *N/A* | The time after which to fetch candles, in ms
-end | *N/A* | The time before which to fetch candles, in ms
-
-If `start` is not required, `0` is used.
-If `end` is not provided, the current time is used.
+start | 0 | The time after which to fetch candles, in ms
+end | Current time | The time before which to fetch candles, in ms
 
 E.g. `/candles/ETH-BTC?resolution=60&start=1511480127561&end=1511480129513` fetches 1h candles between the start and end timestamps.
 
