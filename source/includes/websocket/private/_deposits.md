@@ -5,6 +5,7 @@ You receive the event below when you're subscribed to the private `deposits` cha
 ```json
 {
 	"event": "deposit",
+	"sequence": 661,
 	"amount": "3.556",
 	"asset": "BTC",
 	"timestamp": "1511482279491"

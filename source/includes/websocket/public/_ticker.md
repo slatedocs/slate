@@ -23,6 +23,7 @@ When you first subscribe to the `ticker` channel, you'll receive a snapshot of t
 ```json
 {
 	"event": "ticker",
+	"sequence": 211,
 	"product": "ETH-BTC",
 	"price": "0.04771",
 	"bid": "0.04770",

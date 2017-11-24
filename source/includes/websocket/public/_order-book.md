@@ -29,6 +29,7 @@ When you first subscribe to the `book` channel, you'll receive a snapshot of the
 ```json
 {
 	"event": "book",
+	"sequence": 991,
 	"product": "ETH-BTC",
 	"updates": [
 		["0.04771", "1.44543", 1, 0],

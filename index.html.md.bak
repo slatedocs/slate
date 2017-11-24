@@ -25,8 +25,7 @@ includes:
   - rest/public/trade-history
   - rest/public/candles
   - websocket/requests/subscribe (and channels)
-  - websocket/requests/sequence
-  - websocket/requests/authentication
+  - websocket/requests/sequence-numbers
   - websocket/requests/rate-limits
   - websocket/requests/errors
   - websocket/private/orders

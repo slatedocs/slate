@@ -6,6 +6,8 @@ toc_footers:
 
 includes:
   - rest/requests/authentication
+  - rest/requests/rate-limits
+  - rest/requests/errors
   - rest/private/new-order
   - rest/private/cancel-order
   - rest/private/list-orders
@@ -19,6 +21,8 @@ includes:
   - rest/public/trade-history
   - rest/public/candles
   - websocket/requests/subscribe
+  - websocket/requests/sequence-numbers
+  - websocket/requests/rate-limits
   - websocket/private/orders
   - websocket/private/balances
   - websocket/private/deposits

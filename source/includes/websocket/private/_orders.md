@@ -7,6 +7,7 @@
 ```json
 {
 	"event": "received",
+	"sequence": 43,
 	"id": "bf2b704c-010a-48ca-93fb-d0193f24420a",
 	"product": "ETH-BTC",
 	"size": "0.77942322",
@@ -27,6 +28,7 @@ Received orders that begin to fill trigger one or more `match` events. Received 
 ```json
 {
 	"event": "open",
+	"sequence": 44,
 	"id": "bf2b704c-010a-48ca-93fb-d0193f24420a",
 	"product": "ETH-BTC",
 	"size": "0.77942322",
@@ -50,6 +52,7 @@ Market and stop orders will never trigger an `open` event.
 ```json
 {
 	"event": "set",
+	"sequence": 45,
 	"id": "c6023aca-333a-44d9-98fe-279e279f3a86",
 	"product": "ETH-BTC",
 	"size": "0.88210022",
@@ -67,6 +70,7 @@ A `set` event indicates that a stop or stop-limit order has been set successfull
 ```json
 {
 	"event": "triggered",
+	"sequence": 48,
 	"id": "c6023aca-333a-44d9-98fe-279e279f3a86",
 	"product": "ETH-BTC",
 	"size": "0.88210022",
@@ -85,6 +89,7 @@ A `triggered` event indicates that your stop or stop-limit order has been trigge
 ```json
 {
 	"event": "match",
+	"sequence": 66,
 	"product": "ETH-BTC",
 	"taker_order_id": "7ec97c53-75b2-4e9b-bdfa-6eca818f8c8d",
 	"maker_order_id": "5d818156-fc9a-4bfe-b0e3-1ef3f3f5d799",
@@ -103,6 +108,7 @@ A `match` event indicates that a trade occurred concerning one of your orders. `
 ```json
 {
 	"event": "done",
+	"sequence": 91,
 	"id": "bf2b704c-010a-48ca-93fb-d0193f24420a",
 	"product": "ETH-BTC",
 	"price": "0.05132",
@@ -119,6 +125,7 @@ A `done` event indicates that your order has been fully filled and is no longer 
 ```json
 {
 	"event": "cancelled",
+	"sequence": 812,
 	"id": "31bf3a89-2a0a-40b0-9327-ec0a5cc3ce3c",
 	"product": "ETH-BTC",
 	"size": "1.22393981",

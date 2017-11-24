@@ -5,6 +5,7 @@ You receive the event below when you're subscribed to the private `balances` cha
 ```json
 {
 	"event": "balance",
+	"sequence": 42,
 	"updates": [
 		{
 			"asset": "ETH",

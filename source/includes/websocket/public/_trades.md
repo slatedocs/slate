@@ -37,6 +37,7 @@ When you first subscribe to the `trades` channel, you'll receive a snapshot of t
 ```json
 {
 	"event": "trade",
+	"sequence": 439,
 	"product": "ETH-BTC",
 	"taker_order_id": "7ec97c53-75b2-4e9b-bdfa-6eca818f8c8d",
 	"maker_order_id": "5d818156-fc9a-4bfe-b0e3-1ef3f3f5d799",
