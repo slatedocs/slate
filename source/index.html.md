@@ -12,6 +12,7 @@ includes:
   - rest/private/list-transactions
   - rest/private/list-balances
   - rest/private/deposit
+  - rest/public/products
 
 search: true
 ---

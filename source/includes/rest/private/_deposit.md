@@ -11,8 +11,6 @@
 }
 ```
 
-Get a deposit address.
-
 ### HTTP Request
 
 **`GET /deposit/:asset`**
