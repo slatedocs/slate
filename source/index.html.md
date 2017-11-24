@@ -20,6 +20,10 @@ includes:
   - websocket/private/orders
   - websocket/private/balances
   - websocket/private/deposits
+  - websocket/public/heartbeat
+  - websocket/public/ticker
+  - websocket/public/order-book
+  - websocket/public/trades
 
 search: true
 ---

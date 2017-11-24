@@ -84,6 +84,24 @@ A `set` event indicates that a stop or stop-limit order has been set successfull
 A `triggered` event indicates that your stop or stop-limit order has been triggered and will become visible on the book.
 
 
+## Match
+
+```json
+{
+	"event": "match",
+	"product": "ETH-BTC",
+	"taker_order_id": "7ec97c53-75b2-4e9b-bdfa-6eca818f8c8d",
+	"maker_order_id": "5d818156-fc9a-4bfe-b0e3-1ef3f3f5d799",
+	"size": "11.774650",
+	"price": "0.04771",
+	"side": "buy",
+	"timestamp": "1511434619393.320"
+}
+```
+
+A `match` event indicates that a trade occurred concerning one of your orders. `side` represents the taker side: a `buy` side match is an up-tick and a `sell` side match is a down-tick.
+
+
 ## Done
 
 ```json
