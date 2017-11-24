@@ -43,7 +43,7 @@ A transaction is an entry in your account ledger that affects your account balan
 
 Name | Description
 --------- | -------
-asset | Asset for which to return transactions.
+asset | Asset for which to return transactions
 
 `asset` is required. E.g. `BTC`, `LTC`, `ETH`, etc.
 
@@ -51,9 +51,9 @@ asset | Asset for which to return transactions.
 
 Name | Default | Description
 ---------- | ---- | -------
-type | all | Optional. Can be `all`, `deposit`, `withdraw`, `trade`, or `fee`.
-limit | 100 | Number of transactions to return. Max is 100.
-timestamp | *N/A* | Return transactions that occurred before this time.
+type | all | (optional) Can be `all`, `deposit`, `withdraw`, `trade`, or `fee`
+limit | 100 | Number of transactions to return (max is 100)
+timestamp | *N/A* | Return transactions that occurred before this time
 
 E.g. `/transactions/BTC?type=deposit&limit=50&timestamp=1511481127561`.
 

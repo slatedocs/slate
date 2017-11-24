@@ -8,13 +8,13 @@
 [ 
     {
         "asset": "ETH",
-        "available": "9987.50070583",
-        "total": "9996.72128261"
+        "available": "887.50070583",
+        "total": "996.72128261"
     },
     {
         "asset": "BTC",
-        "available": "145.16729606",
-        "total": "101.33222695"
+        "available": "45.16729606",
+        "total": "91.33222695"
     }
 ]
 ```
@@ -29,7 +29,7 @@ List your balances, grouped by asset.
 
 Name | Description
 --------- | -------
-asset(s) | Optional. One or more comma-separated assets.
+asset(s) | (optional) One or more comma-separated assets
 
 Omitting `asset(s)` will return all balances on your account.
 

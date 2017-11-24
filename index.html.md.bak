@@ -19,7 +19,6 @@ includes:
   - rest/private/transactions 
   - rest/private/balances
   - rest/private/deposit
-  - rest/private/user
   - rest/public/products
   - rest/public/ticker
   - rest/public/order-book

@@ -41,7 +41,7 @@ You can optionally pass a `limit` query parameter to limit the number of orders 
 
 Name | Default | Description
 ---------- | ---- | -------
-limit | 100 | Number of orders to return. Max is 100.
+limit | 100 | Number of orders to return (max is 100)
 
 E.g. `/orders?limit=50`.
 
