@@ -14,10 +14,10 @@ includes:
   - rest/requests/pagination
   - rest/private/new-order
   - rest/private/cancel-order
-  - rest/private/balances
   - rest/private/orders
   - rest/private/fills
-  - rest/private/transactions
+  - rest/private/transactions 
+  - rest/private/balances
   - rest/private/deposit
   - rest/private/user
   - rest/public/products

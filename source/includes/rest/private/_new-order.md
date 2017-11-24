@@ -1,8 +1,10 @@
 # Private
 
+# Orders
+
 ## Place a New Order
 
-> **Place a limit order to sell 10 ETH at 0.04BTC.**
+> **Place a post-only limit order to sell 10 ETH at 0.04BTC.**
 
 > Request
 
@@ -11,7 +13,8 @@
   "product": "ETH-BTC",
   "side": "sell",
   "size": "10",
-  "price": "0.04"
+  "price": "0.04",
+  "condition": "PO"
 }
 ```
 
@@ -25,6 +28,7 @@
   "side": "sell",
   "size": "5.00000000",
   "price": "0.04",
+  "condition": "PO",
   "filled": "0.00000000",
   "timestamp": "1511467005839.417"
 }
@@ -32,36 +36,38 @@
 
 ### HTTP Request
 
-`POST https://api.wcex.com/new-order`
+**`POST /new-order`**
 
 ### Parameters
 
-Param | Description
+Name | Description
 ---------- | -------
-product | A valid product.
-side | Can be `buy` or `sell`.
-type | Can be `market`, `limit` (default), `stop`, or `stop-limit`.
-size | \* Amount of base asset to buy or sell.
-funds | \* Amount of counter asset to buy or sell. 
-price | \*\* Entry price of your order.
+product | A valid product
+side | Can be `buy` or `sell`
+type | Can be `limit` (default), `market`, `stop`, or `stop-limit`
+size | \* Amount of base asset to buy or sell
+funds | \* Amount of counter asset to buy or sell
+price | \*\* Price of your order
 
 \* `funds` must be specified for `buy` `market` and `buy` `stop` orders. In all other cases, `size` must be specified. Only one of `funds` or `size` can be set.
 
-\*\* Price can be ignored for `market` orders, but is required for all other order types.
+\*\* Price can be ignored for `market` orders, but is required for all other order types. For `stop` orders, this is the price at which the stop order triggers.
 
-As an alternative to market orders, you can use limit orders with price set deep in the opposite book. This allows you to set a size in base asset and your price, which gives you an execution price guarantee.
+As an alternative to market orders, you can use limit orders with price set deep in the opposite book. This allows you to set a size in base asset and a price, which gives you an execution price guarantee.
 
-#### Limit order conditions
+A list of products can be found by querying the [`/products`](#products) endpoint.
 
-Additionally, you can specify an execution policy condition for limit orders. This parameter is optional.
+#### Limit order parameters
 
-Param | Description
+For limit orders, you can specify an execution policy condition. This parameter is optional.
+
+Name | Description
 ---------- | -------
-condition | Can be `GTC` (default), `IOC`, or `PO`.
+condition | Can be `GTC` (default), `IOC`, or `PO`
 
 `GTC` Good till cancelled orders will remain on the book until they're cancelled. This is the default order placement behavior.
 
-`IOC` Immediate-or-cancel orders will only remove liquidity from the book. When submitted, the order will fill partially or fully, and cancel any outstanding amount that is not matched so that no part of the order appears on the book.
+`IOC` Immediate-or-cancel orders will only remove liquidity from the book. When submitted, the order will fill partially or fully and any outstanding amount that is not matched is cancelled, so that no part of the order appears on the book.
 
 `PO` Post-only orders will only add liquidity to the book. If any part of the order results in taking liquidity, the order will be rejected and no part of it will execute.
 
@@ -69,22 +75,24 @@ condition | Can be `GTC` (default), `IOC`, or `PO`.
 
 For stop-limit orders, `limit_price` must be specified in addition to the default request parameters.
 
-Param | Description
+Name | Description
 ---------- | -------
-limit_price | The limit price of a stop-limit order.
+limit_price | The limit price of a stop-limit order
 
 ### Order lifecycle
 
-Your account must have sufficient balance to submit an order. An order that is successfully received by the matching engine will be marked as `received`. 
+Your account must have sufficient balance to submit an order. An order that is successfully received by the matching engine will be marked as **received**. 
 
-If any part of the order results in adding liquidity to the book, it will be marked as `open`. 
+If any part of the order results in adding liquidity to the book, it will be marked as **open**. 
 
-Stop orders do not appear on the book. A successfully submitted stop order will be marked as `set` and triggered at `price`.
+Stop orders do not appear on the book. A successfully submitted stop order will be marked as **set**.
 
-An order that is completely filled and off the book will be marked as `done`.
+An order that is completely filled and off the book will be marked as **done**.
 
 ### Response
 
-An order accepted by the matching engine will be assigned an order `id`.
+An order accepted by the matching engine will be assigned an order `id` present in the response.
 
-The response will also contain a `filled` field which specifies the amount, in base asset, that was filled as a result of your order.
+`filled` specifies the amount, in base asset, that was matched as a result of your order.
+
+`timestamp` is the time your order was received by the matching engine.
