@@ -1,6 +1,6 @@
-# REST
+<h1 id='REST' class='section-header'>REST</h1>
 
-# Requests
+<h1 id='Requests' class='section-subheader'>Requests</h1>
 
 # Authentication
 

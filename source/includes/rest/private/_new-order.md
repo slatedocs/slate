@@ -1,4 +1,4 @@
-# Private
+<h1 id='REST-Private' class='section-subheader'>Private</h1>
 
 # Orders
 

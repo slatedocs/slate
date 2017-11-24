@@ -1,4 +1,4 @@
-# Private Events
+<h1 id='Private-Events' class='section-subheader'>Private Events</h1>
 
 # Order
 

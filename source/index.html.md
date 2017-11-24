@@ -5,6 +5,7 @@ toc_footers:
   - <a href='https://wcex.com/'>WCX</a>
 
 includes:
+  - overview/data-types
   - rest/requests/authentication
   - rest/requests/rate-limits
   - rest/requests/errors

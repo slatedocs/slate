@@ -154,6 +154,14 @@ html, body {
     transition-duration: 200ms;
   }
 
+  .toc-link.section-header {
+    background-color: red;
+  }
+
+  .toc-link.section-subheader {
+    background-color: blue;
+  }
+
   // This is the currently selected ToC entry
   .toc-link.active {
     background-color: $nav-active-bg;

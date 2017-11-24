@@ -1,4 +1,4 @@
-# Public
+<h1 id='REST-Public' class='section-subheader'>Public</h1>
 
 # Products
 

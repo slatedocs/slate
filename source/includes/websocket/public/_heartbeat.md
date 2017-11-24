@@ -1,4 +1,4 @@
-# Public Events
+<h1 id='Public-Events' class='section-subheader'>Public Events</h1>
 
 # Heartbeat
 
