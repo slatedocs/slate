@@ -19,6 +19,7 @@ includes:
   - rest/public/order-book
   - rest/public/trade-history
   - rest/public/candles
+  - rest/public/time
   - websocket/requests/subscribe
   - websocket/requests/sequence-numbers
   - websocket/requests/rate-limits
