@@ -1,6 +1,8 @@
 <h1 id='WebSocket' class='section-header'>WebSocket</h1>
 
-<h1 id='WS-Requests' class='section-subheader'>Requests</h1>
+### Endpoint URL
+
+`wss://data.wcex.com`
 
 # Subscribe
 

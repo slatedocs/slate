@@ -155,11 +155,12 @@ html, body {
   }
 
   .toc-link.section-header {
-    background-color: red;
+    background-color: #111;
+    border-bottom: 1px solid #777;
   }
 
   .toc-link.section-subheader {
-    background-color: blue;
+    background-color: #666;
   }
 
   // This is the currently selected ToC entry

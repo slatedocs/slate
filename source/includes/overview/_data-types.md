@@ -1,6 +1,6 @@
-# Data Types
+## Data Types
 
-## Timestamp
+### Timestamp
 
 All timestamps are in milliseconds since UNIX epoch. Many endpoints, particularly those around the matching engine, will return millisecond timestamps with microsecond precision, e.g.
 
@@ -8,7 +8,7 @@ All timestamps are in milliseconds since UNIX epoch. Many endpoints, particularl
 
 All date libraries in modern languages should be able to handle this without issue.
 
-## Numbers
+### Numbers
 
 We recommend passing all numbers as strings, instead of integer or floats, to preserve float precision and processing.
 

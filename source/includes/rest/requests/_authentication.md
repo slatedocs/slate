@@ -1,6 +1,9 @@
 <h1 id='REST' class='section-header'>REST</h1>
 
-<h1 id='Requests' class='section-subheader'>Requests</h1>
+### Endpoint URL
+
+`https://api.wcex.com`
+
 
 # Authentication
 

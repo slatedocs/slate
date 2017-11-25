@@ -1,10 +1,8 @@
 ---
 title: WCX API Documentation
 
-toc_footers:
-  - <a href='https://wcex.com/'>WCX</a>
-
 includes:
+  - overview/introduction
   - overview/data-types
   - rest/requests/authentication
   - rest/requests/rate-limits
