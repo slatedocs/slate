@@ -7,12 +7,14 @@
 	"type": "snapshot",
 	"channel": "ticker",
 	"product": "ETH-BTC",
-	"price": "0.04771",
-	"bid": "0.04770",
-	"ask": "0.04773",
-	"bid_size": "33.881",
-	"ask_size": "12.913",
-	"timestamp": "1511482279491.883"
+	"data": {
+		"price": "0.04771",
+		"bid": "0.04770",
+		"ask": "0.04773",
+		"bid_size": "33.881",
+		"ask_size": "12.913",
+		"timestamp": "1511482279491.883"
+	}
 }
 ```
 

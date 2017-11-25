@@ -32,5 +32,5 @@ includes:
   - websocket/public/order-book
   - websocket/public/trades
 
-search: true
+search: false
 ---
