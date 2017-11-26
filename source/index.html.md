@@ -90,7 +90,10 @@ We put popular languages code examples under Github. Please feel free to view, a
 
 <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/delete_request.py" target="blank">DELETE example</a> for deleting a specific instance
 
-<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/create_run_attachmnets.py" target="blank">POST example (with attachments)</a> for uploading test results to PractiTest with files
+<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/create_run_attachments_v2.py" target="blank">POST example (with attachments) for Python version 2</a> for uploading test results to PractiTest with files
+
+<a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/create_run_attachments_v3.py" target="blank">POST example (with attachments) for Python version 3</a> for uploading test results to PractiTest with files
+
 
 
 
