@@ -47,7 +47,13 @@ Returns a list of stories.
 
 
 ```
+
+Example Request
+
 http://sketches.quintype.com/api/v1/search?fields=headline%2C%20tags%2Cslug%2C%20last-published-at%2C&limit=5&q=Indian%20cricket" -H "accept: json"
+
+
+Example Response
 
 {  
    "results":{  
@@ -178,6 +184,8 @@ Returns a list of stories and the story details, such as the author name and aut
 
 
 ```
+
+Example Response
 
 {  
    "stories":[  
@@ -310,6 +318,8 @@ Returns the story details having the mentioned story ID.
 |story-id | string| The story ID |
 
 ```
+
+Example Response
 
 {  
    "story":{  
@@ -506,7 +516,7 @@ Returns the stories that are related to the mentioned story ID.
 
 
 ```
-
+Example Response
 {  
    "related-stories":[  
       {  
@@ -562,7 +572,10 @@ Returns the list of authors with the author name and author ID, along with detai
 |--|--|--|
 |author-id| integer| The author ID |
 
+
 ```
+
+Example Response
 
 {  
    "limit":4,
@@ -637,6 +650,8 @@ Returns the list of authors with the author name and author ID, along with detai
 
 
 ```
+
+Example Response
 {  
    "author":{  
       "id":20294,
@@ -680,6 +695,9 @@ Returns the list of breaking news.
 
 
 ```
+
+Example Response
+
 {
   "stories": [
     {
@@ -726,7 +744,7 @@ Returns the list of breaking news.
 
 
 
-this is testing only
+#(H1) this is testing only
 
 * open in new tab
 
