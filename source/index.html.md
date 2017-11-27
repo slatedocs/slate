@@ -92,7 +92,18 @@ const mobius = new Mobius({
 
 ```php
 <?php
-$mobius = new Mobius("API_KEY_HERE");
+
+require_once '../vendor/autoload.php';
+
+use \ZuluCrypto\MobiusApi\Mobius;
+use \ZuluCrypto\MobiusApi\Exception\MobiusApiException;
+
+$API_KEY ='API_KEY_HERE';
+$APP_UID = 'APP_UID_HERE';
+$EMAIL   = 'YOUR_EMAIL_HERE';
+
+$mobius = new Mobius($API_KEY);
+$appStore = $mobius->getAppStore($APP_UID);
 ```
 
 ```python
@@ -139,6 +150,10 @@ mobius.appStore
 ```
 
 ```php
+<?php
+
+$userBalance = $appStore->getBalance($EMAIL);
+printf(PHP_EOL.'Balance for %s is : %s' .PHP_EOL,$EMAIL,$userBalance);
 ```
 
 ```python
@@ -196,6 +211,10 @@ mobius.appStore
 ```
 
 ```php
+<?php
+
+$newBalance = $appStore->useBalance($EMAIL, 1);
+echo 'After spending it becomes: '.$newBalance.PHP_EOL;
 ```
 
 ```python
@@ -418,6 +437,10 @@ mobius.tokens
 ```
 
 ```php
+<?php
+
+$token = $mobius->registerToken('erc20', 'Augur', 'REP', '0xE94327D07Fc17907b4DB788E5aDf2ed424adDff6');
+printf('Registered token with UID : %s'.PHP_EOL, $token->getTokenUid());
 ```
 
 ```python
@@ -481,6 +504,10 @@ mobius.tokens
 ```
 
 ```php
+<?php
+
+$address = $token->createAddress(true); // managed (bool) true/false
+printf('Address created from token created by `registerToken` method : %s'.PHP_EOL,$address['address']);
 ```
 
 ```python
@@ -537,6 +564,11 @@ mobius.tokens
 ```
 
 ```php
+<?php
+
+$response = $token->registerAddress($address['address']); // address obtained from `createAddress` method
+printf('`UID` of the new address created from address created `createAddress` method  :  %s'.PHP_EOL,$response);
+$newAdd=$response;
 ```
 
 ```python
@@ -593,6 +625,10 @@ mobius.tokens
 ```
 
 ```php
+<?php
+
+$response = $token->getBalance($address['address']);
+printf('`Balance` of the new address created or address registered  :  %s'.PHP_EOL,$response);
 ```
 
 ```python
@@ -657,6 +693,10 @@ mobius.tokens
 ```
 
 ```php
+<?php
+
+$response = $token->transferManaged($address['address'], 0);
+printf('`Transfer` tokens from a Mobius managed address :  %s'.PHP_EOL,$response);
 ```
 
 ```python
@@ -714,6 +754,10 @@ mobius.tokens
 ```
 
 ```php
+<?php
+
+$response = $token->getTransferInfo($token_address_uid);
+printf('Get the `transaction` hash of a Mobius managed token transfer. :  %s'.PHP_EOL,$response);
 ```
 
 ```python
