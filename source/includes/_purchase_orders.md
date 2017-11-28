@@ -365,6 +365,8 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1'
   "self_approved": false,
   "xero_id": null,
   "synced_with_xero": false,
+  "can_cancel": true,
+  "can_archive": false,
   "purchase_order_items": [
     {
       "id": 507638,
