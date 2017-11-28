@@ -174,6 +174,13 @@ tail -n1000 log/production.log | grep "Processing"
   </tbody>
 </table>
 
+### Significant time spent in "Controller" or "Job"
+
+When viewing a transaction trace, you may see time spent in the "controller" or "job" layers. This is time that falls outside of Scout's default instrumentation. There are two options for gathering additional instrumentation:
+
+1. [Custom Instrumentation](#ruby-custom-instrumentation) - use our API to instrument pieces of code that are potential bottlenecks.
+2. [ScoutProf](#scoutprof) - install our BETA agent which adds ScoutProf. ScoutProf breaks down time spent within the controller layer. Note that ScoutProf does not instrument background jobs.
+
 ### Missing memory metrics
 
 Memory allocation metrics require the following:
@@ -437,6 +444,17 @@ The following configuration settings are available:
       </td>
       <td>
         <a href="#deploy-tracking-config">See docs</a>
+      </td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>detailed_middleware</th>
+      <td>
+        When true, the time spent in each middleware is visible in transaction traces vs. an aggregrate across all middlewares. This
+        adds additional overhead and is disabled by default as middleware is an uncommon bottleneck.
+      </td>
+      <td>
+        <code>false</code>
       </td>
       <td>No</td>
     </tr>
