@@ -259,6 +259,20 @@ DevTrace is our development profiler: it's included with our Ruby and Elixir lib
 
 View our [Ruby](#ruby-devtrace) and [Elixir](#elixir-devtrace) instructions.
 
+## Chart Embeds
+
+You can embed an app's overview chart inside another web page (ex: an internal key metrics dashboard):
+
+1. Access the application dashboard within the Scout UI.
+2. Adjust the timeframe and metrics to those you'd like to include in the embedded chart.
+3. Click the embed icon and copy the relevant code.
+
+![chart_embed](chart_embed.png)
+
+Note that you'll need to update the provided iframe url with a Scout API key. 
+
+When clicking on an embedded chart, you'll be redirected to the relevant application.
+
 ## Data Retention
 
 Scout stores 30 days of metrics and seven days of transaction traces.
