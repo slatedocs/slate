@@ -558,7 +558,41 @@ Returns the collection based on the slug.
 |item-type| string| POssible values are story and collection|
 |exclude-story-ids|integer| The story IDs to be excluded from displaying|
 
+```
+Example Request
 
+$ curl -X GET "http://sketches.quintype.com/api/v1/collections/history-trails  -H "accept: json"
+
+Example Response
+
+{
+   "updated-at": 1506933499956,
+   "slug": "history-trails",
+   "name": "History Trails",
+   "automated": false,
+   "template": "default",
+   "rules": {
+      "content-type": "story",
+      "collection-id": 7587
+   },
+   "summary": "History Trails",
+   "id": 7587,
+   "total-count": 1,
+   "items": [
+      {
+         "id": 7584,
+         "type": "collection",
+         "name": "History Trails Main",
+         "slug": "history-trails-main",
+         "template": "default"
+      }
+   ],
+   "created-at": 1493208539891,
+   "metadata": {
+   "cover-image": {}
+   }
+}
+```
 
 ## /api/v1/authors/
 
@@ -574,6 +608,9 @@ Returns the list of authors with the author name and author ID, along with detai
 
 
 ```
+Example Request
+
+$ curl -X GET "http://sketches.quintype.com/api/v1/authors -H "accept: json"
 
 Example Response
 
@@ -651,13 +688,16 @@ Returns the list of authors with the author name and author ID, along with detai
 
 ```
 
+Example Request
+
+$ curl -X GET "http://sketches.quintype.com/api/v1/authors/20294 -H "accept: json"
+
 Example Response
 {  
    "author":{  
       "id":20294,
       "name":"Abhishek Sharma",
       "slug":"abhishek-sharma",
-      "avatar-url":"https://lh3.googleusercontent.com/--u4t1uGUkrY/AAAAAAAAAAI/AAAAAAAAABI/i-YkR_YtYio/photo.jpg?sz=50",
       "avatar-s3-key":null,
       "twitter-handle":null,
       "bio":null,
@@ -695,6 +735,9 @@ Returns the list of breaking news.
 
 
 ```
+Example Request
+
+$ curl -X GET "http://sketches.quintype.com/api/v1/breaking-news" -H "accept: json"
 
 Example Response
 
@@ -761,6 +804,13 @@ Lists all entities.
 
 
 ```
+Example Request
+
+curl -X GET "http://sketches.quintype.com/api/v1/entities?limit=2&type=book" -H "accept: json"
+
+
+Example Response
+
 {  
    "entities":[  
       {  
@@ -771,7 +821,6 @@ Lists all entities.
          "entity-type-id":1,
          "deleted-at":null,
          "created-by":61657,
-         "link":"https://www.amazon.in/Five-Point-Someone-Chetan-Bhagat-ebook/dp/B013VO02QI?_encoding=UTF8&keywords=3%20idiots%20book&portal-device-attributes=desktop&qid=1494914950&ref_=sr_1_2&sr=8-2",
          "id":12,
          "last-updated-by":61657,
          "created-at":1494924456440
@@ -784,8 +833,6 @@ Lists all entities.
          "entity-type-id":1,
          "deleted-at":null,
          "created-by":94890,
-         "link":"http://www.amazon.in/Old-Man-Sea-Ernest-Hemingway/dp/0099908409/ref=pd_sim_14_6?_encoding=UTF8&psc=1&refRID=1V1575WNWBBDZ9X7PBFK",
-         "id":11,
          "last-updated-by":94890,
          "created-at":1494921231049
       }
@@ -812,6 +859,12 @@ Lists the entity having the specified ID.
 
 ```
 
+Example Request
+
+curl -X GET "http://sketches.quintype.com/api/v1/entities?id=12" -H "accept: json"
+
+
+Example Response
 {  
    "entity":{  
       "updated-at":1494924456440,
