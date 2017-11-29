@@ -780,6 +780,74 @@ order.
 
 
 
+## Mark as Delivered
+
+```ruby
+require 'rest-client'
+
+RestClient.post(
+  'https://app.rubberstamp.io/api/v1/purchase_orders/1/mark_as_delivered',
+  {
+    purchase_order: {
+      item_ids: [1,2,3],
+      item_quantities: [10, 10, 20.00],
+      notes: 'Item delivered successfully!',
+      delivered_on: '2017-1-1'
+    }
+  }
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1/mark_as_delivered'
+  -X POST
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+  -d "purchase_order[item_ids][]=1"
+  -d "purchase_order[item_ids][]=2"
+  -d "purchase_order[item_ids][]=3"
+  -d "purchase_order[item_quantities][]=10"
+  -d "purchase_order[item_quantities][]=10"
+  -d "purchase_order[item_quantities][]=20.00"
+  -d "purchase_order[delivered_on]=2017-1-1"
+  -d "purchase_order[notes]=Item delivered successfully!"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": true
+}
+```
+
+Ability to mark purchase order as delivered. Please make sure to pass item_ids
+and item_quantities in same array index. for example `item_ids=[1,2]` and 
+`item_quantities=[10,20]` in this example, item with `id=1` have `quantity=10` and
+item with `id=2` have `quantity=20`.
+
+### HTTP Request
+
+`POST https://app.rubberstamp.io/api/v1/purchase_orders/:id/mark_as_delivered`
+
+### URL Parameters
+
+| Params               | Type    | Description                        |
+| ------               | ------  | -----------                        |
+| authentication_token | header  | Authentication token               |
+| app_company_id       | header  | Company ID                         |
+| notes                | string  | comment/notes                      |
+| delivered_on         | string  | value must be in valid date format |
+| item_ids             | array[] | list of item ids                   |
+| item_quantities      | array[] | list of item quantities            |
+
+
+
 
 ## Cancel
 
@@ -869,4 +937,3 @@ Ability to Archive purchase order.
 | ------               | ------ | -----------             |
 | authentication_token | header | Authentication token    |
 | app_company_id       | header | Company ID              |
-
