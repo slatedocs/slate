@@ -742,7 +742,92 @@ Example Response
 
 ```
 
+##/api/v1/entities/
 
+**Description**
+
+Lists all entities.
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|q| string|  The search string, for example |
+|limit|integer|The number of stories to display. The default is 20. |
+|offset|integer|The distance from the start of the array of stories to the reference point in the array. |
+|id | integer| The ID of an entity|
+|ids| string | A list of entity IDs |
+
+
+```
+{  
+   "entities":[  
+      {  
+         "updated-at":1494924456440,
+         "publisher-id":15,
+         "name":"Five Point Someone",
+         "type":"book",
+         "entity-type-id":1,
+         "deleted-at":null,
+         "created-by":61657,
+         "link":"https://www.amazon.in/Five-Point-Someone-Chetan-Bhagat-ebook/dp/B013VO02QI?_encoding=UTF8&keywords=3%20idiots%20book&portal-device-attributes=desktop&qid=1494914950&ref_=sr_1_2&sr=8-2",
+         "id":12,
+         "last-updated-by":61657,
+         "created-at":1494924456440
+      },
+      {  
+         "updated-at":1494921231049,
+         "publisher-id":15,
+         "name":"The Old Man and the Sea",
+         "type":"book",
+         "entity-type-id":1,
+         "deleted-at":null,
+         "created-by":94890,
+         "link":"http://www.amazon.in/Old-Man-Sea-Ernest-Hemingway/dp/0099908409/ref=pd_sim_14_6?_encoding=UTF8&psc=1&refRID=1V1575WNWBBDZ9X7PBFK",
+         "id":11,
+         "last-updated-by":94890,
+         "created-at":1494921231049
+      }
+   ],
+   "total":7
+}
+
+
+```
+
+##/api/v1/entities/{id}
+
+**Description**
+
+Lists the entity having the specified ID.
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+| ID | integer| The entity ID|
+
+
+```
+
+{  
+   "entity":{  
+      "updated-at":1494924456440,
+      "publisher-id":15,
+      "name":"Five Point Someone",
+      "type":"book",
+      "entity-type-id":1,
+      "deleted-at":null,
+      "created-by":61657,
+      "id":12,
+      "last-updated-by":61657,
+      "created-at":1494924456440
+   }
+}
+
+```
 
 #(H1) this is testing only
 
