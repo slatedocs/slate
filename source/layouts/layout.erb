@@ -136,6 +136,14 @@ under the License.
     </div>
   </body>
   <script>
+    /* From AnchorJS docs: Don't add anchors on later events, like $(document).ready() or window.onload as some browsers will attempt to jump to your ID before AnchorJS can add it to the page. 
+    */
+    /**
+     * AnchorJS v3.2.0 options and selector
+     */
+    anchors.options.placement = 'right';
+    anchors.add('.content > h2, .content > h3, .content > h4');
+
     $.ajax({
       url: "http://apm.scoutapp.com/latest_gem_version",
       dataType: "jsonp"
@@ -147,13 +155,13 @@ under the License.
      * AnchorJS v3.2.0 options and selector
      */
 
-    (function (global) {
-      'use strict';
-      anchors.options.placement = 'right';
+    // (function (global) {
+    //   'use strict';
+    //   anchors.options.placement = 'right';
 
-      anchors.add('.content > h2, .content > h3, .content > h4');
+    //   anchors.add('.content > h2, .content > h3, .content > h4');
 
-    })(window);
+    // })(window);
 
   </script>
 </html>

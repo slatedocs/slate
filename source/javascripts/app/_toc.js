@@ -21,7 +21,13 @@
       ignoreSelector: '.toc-ignore',
       highlightOffset: 60,
       scrollTo: -1,
-      scrollHistory: true,
+      /* 
+       * Changed to false. Otherwise, when accesing a URL w/an anchor that doesn't appear in the TOC, the URL is adjusted to the closest
+       * parent anchor that appears in the TOC.
+       * Downside: the closest TOC element isn't highlighted immediately but it is the first scroll. Highlighting works if the anchor references
+       * an item in the TOC.
+       */
+      scrollHistory: false,
       hashGenerator: function (text, element) {
         return element.prop('id');
       }
