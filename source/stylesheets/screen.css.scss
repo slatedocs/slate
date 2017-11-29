@@ -89,7 +89,7 @@ html, body {
     margin: $nav-padding 0;
 
     input {
-      background: $nav-active-bg;
+      background: $base-grey-5;
       padding: $nav-padding 0 $nav-padding 30px;
       box-sizing: border-box;
       width: $nav-width - ($nav-padding * 2);
@@ -166,7 +166,7 @@ html, body {
   // This is the currently selected ToC entry
   .toc-link.active {
     background-color: $nav-active-bg;
-    color: $nav-active-text;
+    color: $nav-active-parent-text;
     border-radius: $border-radius;
   }
 
@@ -174,6 +174,7 @@ html, body {
   .toc-link.active-parent {
     background-color: $nav-active-parent-bg;
     color: $nav-active-parent-text;
+    border-radius: $border-radius;
   }
 
   .toc-list-h2 {
@@ -363,9 +364,7 @@ html, body {
     padding-top: 1.0em;
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
-    margin-top: 2em;
-    border-top: $solid-border;
-    background-color: #fdfdfd;
+    margin-top: 5em;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -480,10 +479,14 @@ html, body {
   aside {
     padding-top: 1em;
     padding-bottom: 1em;
-    margin-top: 1.5em;
-    margin-bottom: 1.5em;
+    margin-bottom: 28px;
+    margin-left: 28px;
+    width: 47%;
     background: $aside-notice-bg;
     line-height: 1.6;
+    border-radius: $border-radius;
+    color: $white;
+    display: inline-table;
 
     &.warning {
       background-color: $aside-warning-bg;
@@ -502,17 +505,14 @@ html, body {
 
   aside.notice:before {
     @extend %icon-info-sign;
-    color: $base-grey-70;
   }
 
   aside.warning:before {
     @extend %icon-exclamation-sign;
-    color: $tg-red;
   }
 
   aside.success:before {
     @extend %icon-ok-sign;
-    color: $tg-green;
   }
 
   .search-highlight {
@@ -657,7 +657,7 @@ a[data-title=Resources] {
   font-weight: 100;
   text-transform: uppercase;
   font-size: 0.9em;
-  padding-top: 15px;
+  padding-top: 30px;
 }
 
 #resources {
@@ -676,9 +676,21 @@ a[data-title=Resources] {
 .content pre.tab-json--inline {
   float: left;
   clear: none;
-  background-color: $nav-bg;
+  background-color: $examples-bg;
+  border-radius: $border-radius;
   margin-bottom: 15px;
+  margin-left: 28px;
+  width: 47%;
   .w {
-    background-color: $nav-bg;
+    background-color: $examples-bg;
+  }
+  .p {
+    color: $white;
+  }
+  .s2 {
+    color: #a6e22e;
+  }
+  .mi {
+    color: #f6574d;
   }
 }
