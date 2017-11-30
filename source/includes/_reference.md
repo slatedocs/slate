@@ -15,7 +15,7 @@ Don't hesitate to contact us at [support@scoutapp.com](mailto:support@scoutapp.c
 
 Scout is engineered to monitor the performance of mission-critical production applications. Here's a short overview of how this happens:
 
-* Embed our agent in your application (ex: for Ruby apps, add our gem to your Gemfile).
+* Our agent is added as an application dependency (ex: for Ruby apps, add our gem to your Gemfile).
 * The agent instruments key libraries (database access, controllers, views, etc) automatically using low-overhead instrumentation.
 * Every minute, the agent connects over HTTPS through a 256-bit secure, encrypted connection and sends metrics to our servers.
 
