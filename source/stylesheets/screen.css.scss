@@ -71,10 +71,11 @@ html, body {
     }
   }
 
-  // This is the logo at the top of the ToC
-  &>img {
-    display: block;
-    max-width: 100%;
+  .logo-wrapper {
+    padding: 20px 15px;
+    img {
+      max-width: 90px;
+    }
   }
 
   &>.search {
@@ -378,16 +379,20 @@ html, body {
     margin-bottom: $h1-margin-bottom;
     margin-top: 3em;
     border-top: 2px solid #f2f2f2;
-    //border-top: 1px solid #f6f6f6;
 
     &.section-header {
-      //border-bottom: 1px solid #f6f6f6;
       border-top: none;
-      background-color: #f8f8f8;
+      background-color: $nav-bg;
       color: #555;
       font-size: 30px;
       padding-top: 2em;
       padding-bottom: 2em;
+    }
+
+    &.section-subheader {
+      padding-top: 2em;
+      padding-bottom: 2em;
+      margin-bottom: -3em;
     }
   }
 
