@@ -12,4 +12,4 @@ Code | Description
 429 | Rate Limit Exceeded – too many requests
 500 | Internal Server Error – there was a problem with our servers
 
-If the request is successful, a `200` (OK) staus code is returned, along with an optional body as documented in this API reference.
+If the request is successful, a `200` (OK) status code is returned, along with an optional body as documented in this API reference.
