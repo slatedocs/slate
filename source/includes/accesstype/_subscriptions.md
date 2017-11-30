@@ -1,5 +1,9 @@
 # Subscriptions
 
+Subscription plan and Payment information is required to create a subscription for a user.
+`payment-type` can be one of `razorpay`, `razorpay_recurring`, `androidpay`, `androidpay_recurring`.
+It can also be set to `manual` to create subscriptions not involving payments.
+
 ## LIST Subscriptions for a user
 
 ```shell
@@ -40,7 +44,8 @@ $ curl -H "X-SUBAUTH: <auth-token>" https://subtype.quintype.com/api/v1/subscrib
      "subscription_type":"individual",
      "active":true,
      "payment_amount":"0.00",
-     "payment_type":"manual"
+     "payment_type":"manual",
+     "renewable": true
     }
   ]
 }
@@ -71,50 +76,10 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" https://su
   "alternate_provider": "email",
   "alternate_identity": "hey@quintype.com"
 }'
-
-{
-    "subscription": {
-      "id": 322,
-      "subscriber_id": 311,
-      "subscription_plan_id": 11,
-      "created_at": "2017-10-31T16:56:08.949Z",
-      "updated_at": "2017-10-31T16:56:08.949Z",
-      "assets": [
-          {
-              "type": "site"
-          }
-      ],
-      "start_timestamp": "2017-09-21T00:00:00.000Z",
-      "end_timestamp": "2017-12-21T00:00:00.000Z",
-      "deleted_at": null,
-      "payment_id": 322,
-      "metadata": {
-          "full-name": "hello",
-          "email": "hello@quintype.com"
-      },
-      "external_id": null,
-      "trial_period_length": null,
-      "trial_period_unit": null,
-      "coupon_code": "",
-      "subscription_group_id": 6,
-      "preferred_identity": {
-          "provider": "email",
-          "value": "hello@quintype.com"
-      },
-      "group_name": "abroad",
-      "plan_name": "abroad-3",
-      "duration_length": 3,
-      "duration_unit": "months",
-      "subscription_type": "individual",
-      "active": true,
-      "payment_amount": "999.00",
-      "payment_type": "razorpay"
-    }
-}
 ```
 
 This API can be used to create a subscription.
-Here `payment-type` can be one of `razorpay`, `razorpay_recurring`, `androidpay`, `androidpay_recurring`.
+It returns a Subscription Object in response
 
 ## PATCH update attributes
 
@@ -151,6 +116,35 @@ curl -H "X-SUBAUTH: <auth-token>" -X "DELETE" -H "Content-Type: application/json
 ```
 
 This API can be used to delete a subscription
+
+## POST renew a subscription
+
+```shell
+curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscription/<subscription_id>.json -d '{
+  "subscription": {
+    "coupon_code": "",
+    "payment": {
+        "payment_type": "razorpay",
+        "payment_token": "pay_test_8tNiqdiajurOkj",
+        "amount_cents": "99900",
+        "amount_currency": "INR"
+    },
+    "metadata":  {
+        "full-name": "hello",
+        "email": "hello@quintype.com"
+    }
+  },
+  "alternate_provider": "email",
+  "alternate_identity": "hey@quintype.com"
+}'
+```
+
+This API can be used to renew any renewable subscription.
+Subscriptions to recurring-plans are not renewable.
+The new subscription starts immediately or at the end of active subscription.
+
+It returns a Subscription Object in response
+
 
 # Recurring Subscriptions
 

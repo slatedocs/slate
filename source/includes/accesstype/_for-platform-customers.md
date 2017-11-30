@@ -184,6 +184,6 @@ curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" -X PA
 }`
 
 ```
-It bulk updates all subscriptions for user.
+It bulk updates **all** subscriptions for user.
 
 This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
