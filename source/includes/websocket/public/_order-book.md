@@ -1,6 +1,6 @@
 # Book
 
-## Snapshot
+### Snapshot
 
 ```json
 {
@@ -26,7 +26,7 @@
 
 When you first subscribe to the `book` channel, you'll receive a snapshot of the order book containing up to 100 bids and 100 asks.
 
-## Event
+### Event
 
 ```json
 {

@@ -1,4 +1,4 @@
-# Ticker
+<h1 id='ticker-rest'>Ticker</h1>
 
 > Response
 

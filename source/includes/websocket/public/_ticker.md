@@ -1,6 +1,6 @@
-# Ticker
+<h1 id='ticker-websocket'>Ticker</h1>
 
-## Snapshot
+### Snapshot
 
 ```json
 {
@@ -20,7 +20,7 @@
 
 When you first subscribe to the `ticker` channel, you'll receive a snapshot of the ticker.
 
-## Event
+### Event
 
 ```json
 {

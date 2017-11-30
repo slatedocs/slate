@@ -1,6 +1,6 @@
 ## Data Types
 
-### Timestamp
+<h3 id='data-types-timestamp'>Timestamp</h3>
 
 All timestamps are in milliseconds since UNIX epoch. Many endpoints, particularly those relating to the matching engine, will return millisecond timestamps with microsecond precision, encoded as string.
 

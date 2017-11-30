@@ -1,6 +1,6 @@
 # Trades
 
-## Snapshot
+### Snapshot
 
 ```json
 {
@@ -32,7 +32,7 @@
 
 When you first subscribe to the `trades` channel, you'll receive a snapshot of the most recent trades (up to 100).
 
-## Event
+### Event
 
 ```json
 {

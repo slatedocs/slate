@@ -1,7 +1,5 @@
 # Balance
 
-You receive the event below when you're subscribed to the private `balances` channel.
-
 ```json
 {
 	"event": "balance",

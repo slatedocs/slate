@@ -1,7 +1,5 @@
 # Deposit
 
-You receive the event below when you're subscribed to the private `deposits` channel.
-
 ```json
 {
 	"event": "deposit",
