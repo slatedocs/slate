@@ -128,10 +128,6 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" https://su
         "payment_token": "pay_test_8tNiqdiajurOkj",
         "amount_cents": "99900",
         "amount_currency": "INR"
-    },
-    "metadata":  {
-        "full-name": "hello",
-        "email": "hello@quintype.com"
     }
   },
   "alternate_provider": "email",
@@ -142,6 +138,8 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" https://su
 This API can be used to renew any renewable subscription.
 Subscriptions to recurring-plans are not renewable.
 The new subscription starts immediately or at the end of active subscription.
+
+One can use the optional `metadata` field to set it different from that of the existing subsription. If not passed, it is set to be same as existing subscription.
 
 It returns a Subscription Object in response
 
