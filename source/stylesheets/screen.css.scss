@@ -2,6 +2,7 @@
 @import 'normalize';
 @import 'variables';
 @import 'icon-font';
+
 // @import 'rtl'; // uncomment to switch to RTL format
 
 /*
@@ -49,7 +50,6 @@ html, body {
 
 .toc-wrapper {
   transition: left 0.3s ease-in-out;
-
   overflow-y: auto;
   overflow-x: hidden;
   position: fixed;
@@ -60,7 +60,7 @@ html, body {
   width: $nav-width;
   background-color: $nav-bg;
   font-size: 13px;
-  font-weight: bold;
+  border-right: 1px solid #f2f2f2;
 
   // language selector for mobile devices
   .lang-selector {
@@ -155,18 +155,24 @@ html, body {
   }
 
   .toc-link.section-header {
-    background-color: #111;
-    border-bottom: 1px solid #777;
+    color: #888;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding-top: 1.2rem;
   }
 
   .toc-link.section-subheader {
-    background-color: #666;
+    color: #888;
+    font-size: 95%;
+    text-transform: uppercase;
+    padding-top: 0.6rem;
   }
 
   // This is the currently selected ToC entry
   .toc-link.active {
     background-color: $nav-active-bg;
     color: $nav-active-text;
+    font-weight: 600;
   }
 
   // this is parent links of the currently selected ToC entry
@@ -178,7 +184,7 @@ html, body {
   .toc-list-h2 {
     display: none;
     background-color: $nav-subitem-bg;
-    font-weight: 500;
+    font-weight: 400;
   }
 
   .toc-h2 {
@@ -215,7 +221,7 @@ html, body {
   white-space: nowrap;
   text-overflow: ellipsis;
   text-decoration: none;
-  color: #fff;
+  color: $nav-text;
   transition-property: background;
   transition-timing-function: linear;
   transition-duration: 130ms;
@@ -356,16 +362,26 @@ html, body {
     clear:both;
   }
 
+  a {
+    color: $nav-active-text;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   h1 {
     @extend %header-font;
     font-size: 25px;
-    padding-top: 0.5em;
+    padding-top: 3em;
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    background-color: #fdfdfd;
+    //border-top: 1px solid #f6f6f6;
+
+    &.section-header {
+      border-bottom: 1px solid #f6f6f6;
+    }
   }
 
   h1:first-child, div:first-child + h1 {
@@ -375,13 +391,13 @@ html, body {
 
   h2 {
     @extend %header-font;
-    font-size: 19px;
+    font-size: 21px;
     margin-top: 4em;
     margin-bottom: 0;
-    border-top: 1px solid #ccc;
-    padding-top: 1.2em;
+    border-top: 2px solid #f2f2f2;
+    padding-top: 2.2em;
     padding-bottom: 1.2em;
-    background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
+    font-weight: 500;
   }
 
   // h2s right after h1s should bump right up
