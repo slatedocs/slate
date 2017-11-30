@@ -61,7 +61,10 @@ You can subscribe to the following channels:
   "channels": [
   	"ticker",
   	"orders",
-  	{name: "balances", products: ["ETH-BTC", "LTC-BTC"]}
+  	{
+      "name": "balances", 
+      "products": ["ETH-BTC", "LTC-BTC"]
+    }
   ],
   "auth": {
   	"key": "8b6bcdc6-5ef8-463b-833f-3681dc2c90d3",

@@ -29,7 +29,7 @@ Name | Description
 --------- | -------
 asset(s) | (optional) One or more comma-separated assets
 
-Omitting `asset(s)` will return all balances on your account.
+Omitting `asset(s)` will return all balances on your account. Only non-zero balances, or assets for which you have made at least one deposit will be returned.
 
 ### Available balance
 

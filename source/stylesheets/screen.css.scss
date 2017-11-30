@@ -382,7 +382,7 @@ html, body {
 
     &.section-header {
       border-top: none;
-      background-color: $nav-bg;
+      //background-color: $nav-bg;
       color: #555;
       font-size: 30px;
       padding-top: 2em;
@@ -423,7 +423,7 @@ html, body {
     @extend %header-font;
     font-size: 13px;
     margin-top: 2.5em;
-    margin-bottom: 0.4em;
+    margin-bottom: 0.8em;
     text-transform: uppercase;
   }
 
@@ -450,9 +450,12 @@ html, body {
     }
 
     th {
-      padding: 5px 10px;
+      padding: 5px 15px;
       border-bottom: 2px solid #f2f2f2;
       vertical-align: bottom;
+      font-size: 94%;
+      color: #777;
+      font-weight: 500;
     }
 
     tr {
@@ -519,6 +522,8 @@ html, body {
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
     line-height: 1.6;
+    color: #fff;
+    font-size: 14px;
 
     &.warning {
       background-color: $aside-warning-bg;

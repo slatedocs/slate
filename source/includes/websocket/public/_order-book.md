@@ -49,4 +49,4 @@ Each delta array contains:
 * order count at this level. '0' means the price level was removed
 * bid (0) or ask (1)
 
-This event is batched and sent every 0.5 seconds at most.
+This event is batched and sent every 500 milliseconds at most.

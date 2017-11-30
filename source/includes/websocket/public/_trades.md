@@ -9,22 +9,22 @@
 	"product": "ETH-BTC",
 	"data": [
 		{
-			"timestamp":"1511507963627.726",
-			"product":"ETH-BTC",
-			"taker_order_id":"605aa534-aa09-4c9d-bef5-9d8f70c00a72",
-			"maker_order_id":"9d335cce-d581-45f6-8efc-bdab3d61c6e2",
-			"size":"0.10000000",
-			"price":0.04,
-			"side":"sell"
+			"timestamp": "1511507963627.726",
+			"product": "ETH-BTC",
+			"taker_order_id": "605aa534-aa09-4c9d-bef5-9d8f70c00a72",
+			"maker_order_id": "9d335cce-d581-45f6-8efc-bdab3d61c6e2",
+			"size": "0.10000000",
+			"price": "0.04",
+			"side": "sell"
 		},
 		{
-			"timestamp":"1511507893098.827",
-			"product":"ETH-BTC",
-			"taker_order_id":"be9f10c6-166c-4c45-bcc0-f7f34d10399b",
-			"maker_order_id":"380e9304-091c-4ca7-852d-19ddf5ccc925",
-			"size":"0.10000000",
-			"price":0.051313,
-			"side":"sell"
+			"timestamp": "1511507893098.827",
+			"product": "ETH-BTC",
+			"taker_order_id": "be9f10c6-166c-4c45-bcc0-f7f34d10399b",
+			"maker_order_id": "380e9304-091c-4ca7-852d-19ddf5ccc925",
+			"size": "0.10000000",
+			"price": "0.051313",
+			"side": "sell"
 		}
 	]
 }

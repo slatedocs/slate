@@ -14,13 +14,13 @@
 		"timestamp": "1511482279492.417"
 	},
 	{
-		"product":"ETH-BTC",
-		"taker_order_id":"c6023aca-333a-44d9-98fe-279e279f3a86",
-		"maker_order_id":"7f66a16c-0b47-4bd6-8add-6b2c33366082",
-		"size":"0.97422208",
-		"price":0.051323,
-		"side":"buy",
-		"timestamp":"1511482127569.335"
+		"product": "ETH-BTC",
+		"taker_order_id": "c6023aca-333a-44d9-98fe-279e279f3a86",
+		"maker_order_id": "7f66a16c-0b47-4bd6-8add-6b2c33366082",
+		"size": "0.97422208",
+		"price": "0.051323",
+		"side": "buy",
+		"timestamp": "1511482127569.335"
 	}
 ]
 ```

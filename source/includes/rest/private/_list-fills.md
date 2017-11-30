@@ -61,4 +61,4 @@ An array of your recent fills.
 
 `is_self_trade` is set to true if your fill results from a self-trade.
 
-`is_taker` is set to **true** when your fill results in taking liquidity from the book. This field is set to true for self-trades.
+`is_taker` is set to true when your fill results in taking liquidity from the book. This field is always set to true for self-trades.

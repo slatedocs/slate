@@ -4,7 +4,7 @@
 
 ## Place a New Order
 
-> **Place a post-only limit order to sell 10 ETH at 0.04BTC.**
+> **Place a post-only limit order to sell 10 ETH at 0.04.**
 
 > Request
 
@@ -51,9 +51,9 @@ price | \*\* Price of your order
 
 \* `funds` must be specified for `buy` `market` and `buy` `stop` orders. In all other cases, `size` must be specified. Only one of `funds` or `size` can be set.
 
-\*\* Price can be ignored for `market` orders, but is required for all other order types. For `stop` orders, this is the price at which the stop order triggers.
+\*\* Price can be ignored for `market` orders, but is required for all other order types. For `stop` orders, this is the price at which the stop order triggers, otherwise known as the stop price.
 
-As an alternative to market orders, you can use limit orders with price set deep in the opposite book. This allows you to set a size in base asset and a price, which gives you an execution price guarantee.
+As an alternative to market orders, you can use limit orders with price set deep in the opposite book. This allows you to set a size in base asset and a price, giving you an execution price guarantee.
 
 A list of products can be found by querying the [`/products`](#products) endpoint.
 

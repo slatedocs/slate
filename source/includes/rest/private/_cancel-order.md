@@ -1,7 +1,5 @@
 ## Cancel an Order
 
-> **Cancel an order.**
-
 > Request
 
 ```json
