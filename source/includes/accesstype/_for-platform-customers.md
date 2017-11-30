@@ -27,8 +27,6 @@ curl -H "X-QT-AUTH: sample-auth" -H "Content-Type: application/json" http://sket
     },
     "subscription": {
         "accesstype-plan-id": 4,
-        "currency": "INR",
-        "amount": 100,
         "metadata": {
           "city": "Bangalore",
           "state": "Karnataka",
