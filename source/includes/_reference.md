@@ -13,12 +13,11 @@ Don't hesitate to contact us at [support@scoutapp.com](mailto:support@scoutapp.c
 
 ## How we collect metrics
 
-Scout is engineered to monitor the performance of your mission-critical production applications by providing an easy-install, low-overhead monitoring agent with a hosted SaaS service that values your security. The basic flow:
+Scout is engineered to monitor the performance of mission-critical production applications. Here's a short overview of how this happens:
 
-* Embed our agent in your application. You don't access to the servers your app is deployed on.
-* The agent instruments key libraries (database access, controllers, views, etc) using low-overhead instrumentation.
-* Every minute, the agent connects over https (always) through a 256-bit secure, encrypted connection (the same encryption your bank uses) and sends metrics to our servers.
-* Over servers store the data.
+* Embed our agent in your application (ex: for Ruby apps, add our gem to your Gemfile).
+* The agent instruments key libraries (database access, controllers, views, etc) automatically using low-overhead instrumentation.
+* Every minute, the agent connects over HTTPS through a 256-bit secure, encrypted connection and sends metrics to our servers.
 
 ## Performance Overhead
 
