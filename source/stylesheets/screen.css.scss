@@ -155,7 +155,7 @@ html, body {
   }
 
   .toc-link.section-header {
-    color: #888;
+    color: #555;
     text-transform: uppercase;
     font-weight: 600;
     padding-top: 1.2rem;
@@ -376,11 +376,18 @@ html, body {
     padding-top: 3em;
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
-    margin-top: 2em;
+    margin-top: 3em;
+    border-top: 2px solid #f2f2f2;
     //border-top: 1px solid #f6f6f6;
 
     &.section-header {
-      border-bottom: 1px solid #f6f6f6;
+      //border-bottom: 1px solid #f6f6f6;
+      border-top: none;
+      background-color: #f8f8f8;
+      color: #555;
+      font-size: 30px;
+      padding-top: 2em;
+      padding-bottom: 2em;
     }
   }
 
@@ -394,7 +401,7 @@ html, body {
     font-size: 21px;
     margin-top: 4em;
     margin-bottom: 0;
-    border-top: 2px solid #f2f2f2;
+    border-top: 1px solid #f2f2f2;
     padding-top: 2.2em;
     padding-bottom: 1.2em;
     font-weight: 500;
@@ -409,13 +416,14 @@ html, body {
 
   h3, h4, h5, h6 {
     @extend %header-font;
-    font-size: 15px;
+    font-size: 13px;
     margin-top: 2.5em;
-    margin-bottom: 0.8em;
+    margin-bottom: 0.4em;
+    text-transform: uppercase;
   }
 
   h4, h5, h6 {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   hr {
@@ -438,16 +446,21 @@ html, body {
 
     th {
       padding: 5px 10px;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 2px solid #f2f2f2;
       vertical-align: bottom;
     }
 
+    tr {
+      border-bottom: 1px solid #f2f2f2;
+    }
+
     td {
-      padding: 10px;
+      padding: 15px;
+      font-size: 94%;
     }
 
     tr:last-child {
-      border-bottom: 1px solid #ccc;
+      border-bottom: 2px solid #f2f2f2;
     }
 
     tr:nth-child(odd)>td {
@@ -468,8 +481,9 @@ html, body {
   }
 
   p, li, dt, dd {
-    line-height: 1.6;
+    line-height: 1.7;
     margin-top: 0;
+    padding-top: 12px;
   }
 
   img {
@@ -477,10 +491,12 @@ html, body {
   }
 
   code {
-    background-color: rgba(0,0,0,0.05);
-    padding: 3px;
-    border-radius: 3px;
+    background-color: rgba(0,0,0,0.03);
+    padding: 3px 4px 2px;
+    border-radius: 2px;
     white-space: nowrap;
+    color: #d13713;
+    border: 1px solid rgba(0,0,0,0.08);
     @extend %break-words;
     @extend %code-font;
   }
@@ -574,7 +590,7 @@ html, body {
   blockquote {
     &>p {
       background-color: $code-annotation-bg;
-      padding: $code-annotation-padding 2em;
+      padding: 3em 2em 1em;
       color: #eee;
     }
   }
@@ -636,8 +652,17 @@ html, body {
   }
 }
 
-.highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {
-  color: #909090;
+.highlight code {
+  font-size: 120%;
+  color: #d0d4d7 !important;
+}
+
+.highlight .s2 {
+  color: #c1ef65 !important;
+}
+
+.highlight .mi, .highlight .mf {
+  color: #66d9ef !important;
 }
 
 .highlight, .highlight .w {

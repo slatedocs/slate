@@ -27,13 +27,13 @@ under the License.
 ////////////////////
 $nav-bg: #f7f7f7 !default;
 $examples-bg: #2d3134 !default;
-$code-bg: #222426 !default;
-$code-annotation-bg: #191D1F !default;
+$code-bg: #272b2d !default;
+$code-annotation-bg: #2d3134 !default;
 $nav-subitem-bg: transparent !default;
 $nav-active-bg: transparent !default;
 $nav-active-parent-bg: transparent !default; // parent links of the current section
 $lang-select-border: #000 !default;
-$lang-select-bg: #0099e5 !default;
+$lang-select-bg: #0284DB !default;
 $lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
 $main-bg: #fff !default;
@@ -46,9 +46,9 @@ $search-notice-bg: #c97a7e !default;
 // TEXT COLORS
 ////////////////////
 $main-text: #333 !default; // main content text color
-$nav-text: #333 !default;
-$nav-active-text: #0099e5 !default;
-$nav-active-parent-text: #0099e5 !default; // parent links of the current section
+$nav-text: #444 !default;
+$nav-active-text: #0284DB !default;
+$nav-active-parent-text: inherit !default; // parent links of the current section
 $lang-select-text: #fff !default; // color of unselected language tab text
 $lang-select-active-text: #fff !default; // color of selected language tab text
 $lang-select-pressed-text: #fff !default; // color of language tab text when mouse is pressed
@@ -56,14 +56,14 @@ $lang-select-pressed-text: #fff !default; // color of language tab text when mou
 
 // SIZES
 ////////////////////
-$nav-width: 230px !default; // width of the navbar
+$nav-width: 215px !default; // width of the navbar
 $examples-width: 45% !default; // portion of the screen taken up by code examples
 $logo-margin: 0px !default; // margin below logo
-$main-padding: 28px !default; // padding to left and right of content & examples
-$nav-padding: 15px !default; // padding to left and right of navbar
-$nav-v-padding: 10px !default; // padding used vertically around search boxes and results
+$main-padding: 32px !default; // padding to left and right of content & examples
+$nav-padding: 18px !default; // padding to left and right of navbar
+$nav-v-padding: 20px !default; // padding used vertically around search boxes and results
 $nav-indent: 10px !default; // extra padding for ToC subitems
-$code-annotation-padding: 13px !default; // padding inside code annotations
+$code-annotation-padding: 25px !default; // padding inside code annotations
 $h1-margin-bottom: 21px !default; // padding under the largest header tags
 $tablet-width: 930px !default; // min width before reverting to tablet size
 $phone-width: $tablet-width - $nav-width !default; // min width before reverting to mobile size
