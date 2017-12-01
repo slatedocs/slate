@@ -136,4 +136,4 @@ A `done` event indicates that your order has been fully filled and is no longer 
 }
 ```
 
-A `cancelled` event indicates that your order was manually cancelled.
+A `cancelled` event indicates that your cancel request has been processed by the matching engine.

@@ -43,8 +43,8 @@
 Name | Description
 ---------- | -------
 product | A valid product
-side | Can be `buy` or `sell`
 type | Can be `limit` (default), `market`, `stop`, or `stop-limit`
+side | Can be `buy` or `sell`
 size | \* Amount of base asset to buy or sell
 funds | \* Amount of counter asset to buy or sell
 price | \*\* Price of your order

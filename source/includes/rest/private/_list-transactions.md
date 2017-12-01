@@ -29,7 +29,7 @@
 ]
 ```
 
-List your transactions, ordered by time.
+List your transactions.
 
 A transaction is an entry in your account ledger that affects your account balance. It can be an external transfer, such as a deposit or withdrawal, or an internal transfer, such as a trade or a fee.
 
@@ -49,7 +49,7 @@ asset | Asset for which to return transactions
 
 Name | Default | Description
 ---------- | ---- | -------
-type | all | (optional) Can be `all`, `deposit`, `withdraw`, `trade`, or `fee`
+type | all | Can be `all`, `deposit`, `withdraw`, `trade`, or `fee`
 limit | 100 | Number of transactions to return (max is 100)
 timestamp | *N/A* | Return transactions that occurred before this time
 

@@ -4,6 +4,7 @@ title: WCX API Documentation
 includes:
   - overview/introduction
   - overview/data-types
+  - overview/terminology
   - rest/requests/authentication
   - rest/requests/rate-limits
   - rest/requests/errors

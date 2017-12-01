@@ -79,5 +79,5 @@ To receive events from private channels, you must authenticate when sending the 
 Authentication is similar to REST request signing and authentication. Pass in an `auth` field in your `subscribe` message containing:
 
 * `key` Your API key
-* `sig` The signed message for the `GET /ws-auth` request
+* `sig` The signed message for the `GET /ws-auth` request, with no body. See [Signing a Request](#signing-a-request)
 * `timestamp` The current time in milliseconds since UNIX epoch
