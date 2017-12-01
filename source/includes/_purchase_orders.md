@@ -830,7 +830,7 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1/mark_as_delivered'
 
 Ability to mark purchase order as delivered. Before marking purchase order as delivered
 You might need to check whether given user have enough permission to perform this action.
-You can find `can_mark_as_delivered` in [Purchase Order Details](/#get-purchase-order-details)
+You can find `can_mark_as_delivered` in [Purchase Order Details](/slate/#get-purchase-order-details)
 page. Please make sure to pass item_ids and item_quantities in same array index.
 for example `item_ids=[1,2]` and `item_quantities=[10,20]` in this example,
 item with `id=1` have `quantity=10` and item with `id=2` have `quantity=20`.
@@ -884,7 +884,7 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1/cancel'
 ```
 
 Ability to Cancel purchase order. You can check if user can mark purchase order as
-cancel or not by checking `can_cancel` value in [Purchase Order Details](/#get-purchase-order-details) page
+cancel or not by checking `can_cancel` value in [Purchase Order Details](/slate/#get-purchase-order-details) page
 
 ### HTTP Request
 
@@ -931,7 +931,7 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1/archive'
 ```
 
 Ability to Archive purchase order. You can check if current logged in user can archive
-purchase or or not by checking `can_archive` value in [Purchase Order Details page](#get-purchase-order-details)
+purchase or or not by checking `can_archive` value in [Purchase Order Details page](/slate/#get-purchase-order-details)
 
 ### HTTP Request
 
@@ -949,5 +949,5 @@ purchase or or not by checking `can_archive` value in [Purchase Order Details pa
 To mark Purchase Order as paid you need to check out [Payments](/#create-a-payment)
 API endpoint. Before marking purchase order as paid You might need to check whether
 given user have enough permission to perform this action. You can find `can_mark_as_paid`
-in [Purchase Order Details](/#get-purchase-order-details)
+in [Purchase Order Details](/slate/#get-purchase-order-details)
 

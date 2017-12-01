@@ -52,7 +52,7 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1/payments'
 
 Use this api endpoint to mark purchase order as paid. To check if authentication_token
 have enough permission to mark purchase order as paid or not, you need to first check
-`can_mark_po_as_paid` in the [Purchase Order Detail](/#get-purchase-order-details) endpoint.
+`can_mark_po_as_paid` in the [Purchase Order Detail](/slate/#get-purchase-order-details) endpoint.
 
 ### HTTP Request
 
