@@ -19,6 +19,7 @@ includes:
   - departments
   - products
   - purchase_orders
+  - payments
   - suppliers
   - tax_rates
   - uploads

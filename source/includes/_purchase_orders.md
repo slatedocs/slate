@@ -367,6 +367,8 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1'
   "synced_with_xero": false,
   "can_cancel": true,
   "can_archive": false,
+  "can_mark_as_delivered": true,
+  "can_mark_as_paid": true,
   "purchase_order_items": [
     {
       "id": 507638,
@@ -826,10 +828,12 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1/mark_as_delivered'
 }
 ```
 
-Ability to mark purchase order as delivered. Please make sure to pass item_ids
-and item_quantities in same array index. for example `item_ids=[1,2]` and 
-`item_quantities=[10,20]` in this example, item with `id=1` have `quantity=10` and
-item with `id=2` have `quantity=20`.
+Ability to mark purchase order as delivered. Before marking purchase order as delivered
+You might need to check whether given user have enough permission to perform this action.
+You can find `can_mark_as_delivered` in [Purchase Order Details](/#get-purchase-order-details)
+page. Please make sure to pass item_ids and item_quantities in same array index.
+for example `item_ids=[1,2]` and `item_quantities=[10,20]` in this example,
+item with `id=1` have `quantity=10` and item with `id=2` have `quantity=20`.
 
 ### HTTP Request
 
@@ -879,7 +883,8 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1/cancel'
 }
 ```
 
-Ability to Cancel purchase order.
+Ability to Cancel purchase order. You can check if user can mark purchase order as
+cancel or not by checking `can_cancel` value in [Purchase Order Details](/#get-purchase-order-details) page
 
 ### HTTP Request
 
@@ -925,7 +930,8 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1/archive'
 }
 ```
 
-Ability to Archive purchase order.
+Ability to Archive purchase order. You can check if current logged in user can archive
+purchase or or not by checking `can_archive` value in [Purchase Order Details page](#get-purchase-order-details)
 
 ### HTTP Request
 
@@ -937,3 +943,11 @@ Ability to Archive purchase order.
 | ------               | ------ | -----------             |
 | authentication_token | header | Authentication token    |
 | app_company_id       | header | Company ID              |
+
+## Mark as Paid
+
+To mark Purchase Order as paid you need to check out [Payments](/#create-a-payment)
+API endpoint. Before marking purchase order as paid You might need to check whether
+given user have enough permission to perform this action. You can find `can_mark_as_paid`
+in [Purchase Order Details](/#get-purchase-order-details)
+
