@@ -452,7 +452,7 @@ that was returned upon company creation.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.rubberstamp.io/api/v1/companies/approvers',
+  'https://app.rubberstamp.io/api/v1/companies/approvers?department_id=1',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -461,7 +461,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/companies/approvers'
+curl 'https://app.rubberstamp.io/api/v1/companies/approvers?department_id=1'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -509,16 +509,22 @@ curl 'https://app.rubberstamp.io/api/v1/companies/approvers'
 
 Retrieves the list of approvers for current company. It will return `[]` if it is an auto approval PO.
 
+### Filter By Department
+
+You can filter approvers list with department by passing `department_id` query
+params.
+
 ### HTTP Request
 
-`GET https://app.rubberstamp.io/api/v1/companies/approvers`
+`GET https://app.rubberstamp.io/api/v1/companies/approvers?department_id=:id`
 
 ### URL Parameters
 
-| Params               | Type    | Description                                                |
-| ------               | ------  | -------------                                              |
-| authentication_token | headers | Authentication token                                       |
-| app_company_id       | headers | Company Id                                                 |
+| Params               | Type    | Description                                             |
+| ------               | ------  | -------------                                           |
+| authentication_token | headers | Authentication token                                    |
+| app_company_id       | headers | Company Id                                              |
+| department_id        | integer | Optional, if you want to filter approvers by department |
 
 
 ## Invite User
