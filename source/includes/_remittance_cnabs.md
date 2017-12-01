@@ -7,23 +7,24 @@ EXEMPLO
 
   {
     "id": 1,
-    "charge_config_id": 1,
+    "config_id": 1,
+    "type": "charge",
     "status": "processed",
     "_links":
       [
         {"rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/remittance_cnabs/1"},
         {"rel": "destroy", "method": "DELETE", "href": "https://app.cobrato.com/api/v1/remittance_cnabs/1"},
-        {"rel": "charge_config", "method": "GET", "href": "https://app.cobrato.com/api/v1/charge_configs/1"},
+        {"rel": "config", "method": "GET", "href": "https://app.cobrato.com/api/v1/charge_configs/1"},
         {"rel": "file", "method": "GET", "href": "https://app.cobrato.com/api/v1/remittance_cnabs/1/file"},
-        {"rel": "charges", "method": "GET", "href": "http://localhost:3000/api/v1/remittance_cnabs/1/charges"}
+        {"rel": "items", "method": "GET", "href": "http://localhost:3000/api/v1/remittance_cnabs/1/items"}
       ]
   }
 ```
 
-Os Arquivos CNAB de Remessa são arquivos enviados para o banco com o objetivo de registrar novos títulos, podendo ser gerado a partir de uma ou mais Cobranças. Se forem enviadas Cobranças de Configurações de Cobranças diferentes, será gerado um CNAB de remessa para cada Configuração de Cobrança.
+Os Arquivos CNAB de Remessa são arquivos enviados para o banco com o objetivo de registrar novos títulos/pagamentos, podendo ser gerado a partir de um ou mais items (Cobranças ou Pagamentos). Se forem enviados items de Configurações diferentes, será gerado um CNAB de remessa para cada Configuração.
 
 <aside class="warning">
-A utilização desta API não é autorizada a contas com o plano <strong>Gratuito</strong>, resultando na resposta com o estado <strong>403 Forbidden</strong>!
+Se seu plano não er direito a utilização desta API, a resposta com será com o status <strong>403 Forbidden</strong>!
 </aside>
 
 **Parâmetros**
@@ -31,7 +32,9 @@ A utilização desta API não é autorizada a contas com o plano <strong>Gratuit
 | Campo            | Tipo            | Comentário                                                                                                                         |
 |------------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------|
 | id               | integer         | identificador do CNAB de remessa                                                                                                   |
-| charge_config_id | string          | identificador da configuração de cobrança no Cobrato                                                                               |
+| type             | string          | indica o tipo de arquivo de remessa ('charge' ou 'payment')                                                                        |
+| config_id        | string          | identificador da configuração no Cobrato relacionada ao arquivo de remessa                                                         |
+| charge_config_id | string          | (DEPRECATED: use config_id) identificador da configuração de cobrança no Cobrato                                                   |
 | status           | string          | situação da remessa, podendo ser "processing" (processando), "processed" (processado) e "processing_error" (erro de processamento) |
 | _links           | array of object | links relacionado CNAB de remessa                                                                                                  |
 
@@ -60,15 +63,16 @@ EXEMPLO DE CORPO DA RESPOSTA
 
   {
     "id": 1,
-    "charge_config_id": 1,
+    "config_id": 1,
+    "type": "charge",
     "status": "processed",
     "_links":
       [
         {"rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/remittance_cnabs/1"},
         {"rel": "destroy", "method": "DELETE", "href": "https://app.cobrato.com/api/v1/remittance_cnabs/1"},
-        {"rel": "charge_config", "method": "GET", "href": "https://app.cobrato.com/api/v1/charge_configs/1"},
+        {"rel": "config", "method": "GET", "href": "https://app.cobrato.com/api/v1/charge_configs/1"},
         {"rel": "file", "method": "GET", "href": "https://app.cobrato.com/api/v1/remittance_cnabs/1/file"},
-        {"rel": "charges", "method": "GET", "href": "http://localhost:3000/api/v1/remittance_cnabs/1/charges"}
+        {"rel": "items", "method": "GET", "href": "http://localhost:3000/api/v1/remittance_cnabs/1/items"}
       ]
   }
 
@@ -133,12 +137,12 @@ EXEMPLO DE REQUISIÇÃO
     -H 'Content-type: application/json' \
     -X POST https://app.cobrato.com/api/v1/remittance_cnabs \
     -D '{
-        "charge_ids": [12, 13, 15, 18]
+        "item_ids": [12, 13, 15, 18]
       }'
 
 EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
-    201 Criated
+    201 Created
 
 EXEMPLO DE ESTADO DA RESPOSTA COM INSUCESSO
 
@@ -148,28 +152,31 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
   {
     "errors":{
-      "charge_ids": ["não pode ficar em branco"],
+      "item_ids": ["não pode ficar em branco"],
     }
   }
 
 ```
 
-Cria novo(s) Arquivo(s) CNAB de Remessa, retornando as informações do mesmo caso haja sucesso. Se houverem erros, eles serão informados no corpo da resposta. 
+Cria novo(s) Arquivo(s) CNAB de Remessa, retornando as informações do mesmo caso haja sucesso. Se houverem erros, eles serão informados no corpo da resposta.
 
-Um Arquivo de remessa sempre está associado à uma Configuração de Cobrança. Sendo assim, será gerado um CNAB de remessa para cada Configuração de Cobrança envolvida na solicitação de criação, e esse arquivo irá incluir todas as cobranças passíveis de remessa, seja para registrar a entrada da cobrança, cancelamento ou alteração.
+Um Arquivo de remessa sempre está associado à uma Configuração. Sendo assim, será gerado um CNAB de remessa para cada Configuração envolvida na solicitação de criação, e esse arquivo irá incluir todos os items passíveis de remessa, seja para registrar a inclusão, cancelamento ou alteração.
 
 **Parâmetros**
 
 <aside class="warning">
-  Ao menos um dos parâmetros abaixo é requerido. Se mais de um for enviado, será considerado apenas um deles, sendo a ordem de precedência a mesma em que aparecem na lista abaixo.
+  Com exceção do parâmetro <i>type</i>, o menos um dos parâmetros abaixo é requerido. Se mais de um for enviado, será considerado apenas um deles, sendo a ordem de precedência a mesma em que aparecem na lista abaixo.
 </aside>
 
-| Campo                      | Tipo              | Comentário                                                                                                                                                                       |
-|----------------------------|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| charge_ids                 | array of integers | **(requerido, veja a nota acima)** Lista com os ids das cobranças que devem estar incluídas no(s) arquivo(s) CNAB de Remessa                                                     |
-| charge_config_ids          | array of integers | **(requerido, veja a nota acima)** Lista com os ids das configurações de cobranças para as quais devem ser criados os Arquivos CNAB de Remessa                                   |
-| payee_ids                  | array of integers | **(requerido, veja a nota acima)** Lista com os ids dos beneficiários das configurações de cobrança para as quais devem ser criados os Arquivos CNAB de Remessa                  |
-| payee_national_identifiers | array of strings  | **(requerido, veja a nota acima)** Lista com os números de documento dos beneficiários das configurações de cobrança para as quais devem ser criados os Arquivos CNAB de Remessa |
+| Campo                      | Tipo              | Comentário                                                                                                                                                                            |
+|----------------------------|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| type                       | string            | (optional) Define o tipo de arquivo(s) CNAB de Remessa a ser(em) criado(s). Os possíveis valores são 'charge' para Cobrança e 'payment' para Pagamento, sendo que o padrão é 'charge' |
+| item_ids                   | array of integers | **(requerido, veja a nota acima)** Lista com os ids dos itens (cobranças ou pagamentos) que devem estar incluídos no(s) arquivo(s) CNAB de Remessa                                    |
+| charge_ids                 | array of integers | (DEPRECATED: use item_ids) **(requerido, veja a nota acima)** Lista com os ids das cobranças que devem estar incluídas no(s) arquivo(s) CNAB de Remessa                               |
+| config_ids                 | array of integers | **(requerido, veja a nota acima)** Lista com os ids das configurações para as quais devem ser criados os Arquivos CNAB de Remessa                                                     |
+| charge_config_ids          | array of integers | (DEPRECATED: use config_ids) **(requerido, veja a nota acima)** Lista com os ids das configurações de cobranças para as quais devem ser criados os Arquivos CNAB de Remessa           |
+| payee_ids                  | array of integers | **(requerido, veja a nota acima)** Lista com os ids dos beneficiários das configurações para as quais devem ser criados os Arquivos CNAB de Remessa                                   |
+| payee_national_identifiers | array of strings  | **(requerido, veja a nota acima)** Lista com os números de documento dos beneficiários das configurações para as quais devem ser criados os Arquivos CNAB de Remessa                  |
 
 ## Exclusão de CNAB de Remessa
 
@@ -240,9 +247,12 @@ As URLs disponibilizadas são válidas por apenas 60 minutos. Sendo assim, não 
 
 ## Lista de Todas as Cobrança do Arquivo de Remessa
 
+<aside class="warning">
+<b>DEPRECATED</b>: usar o endpoint <i>/api/v1/remittance_cnabs/:id/items</i> para listar os <b>items</b>
+</aside>
+
+
 ```shell
-
-
 DEFINIÇÃO
 
   GET https://app.cobrato.com/api/v1/remittance_cnabs/:id/charges
@@ -277,3 +287,41 @@ EXEMPLO DE CORPO DA RESPOSTA
 ```
 
 Retorna uma lista em JSON contendo todos as cobranças que pertencem ao CNAB de remessa informado.
+
+## Lista de Todos os items do Arquivo de Remessa
+
+```shell
+DEFINIÇÃO
+
+  GET https://app.cobrato.com/api/v1/remittance_cnabs/:id/items
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X GET https://app.cobrato.com/api/v1/remittance_cnabs/:id/items
+
+EXEMPLO DE ESTADO DA RESPOSTA
+
+    200 OK
+
+EXEMPLO DE CORPO DA RESPOSTA
+
+  {
+    "items":
+      [
+        {
+          // informações do item 1
+        },
+        {
+          // informações do item 2
+        },
+        ...
+      ]
+  }
+
+```
+
+Retorna uma lista em JSON contendo todos os items que pertencem ao CNAB de remessa informado.

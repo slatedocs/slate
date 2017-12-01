@@ -147,8 +147,6 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 Cria uma nova Configuração de Pagamento, retornando as informações da mesma em caso de sucesso. Se houverem erros eles serão informados no corpo da resposta.
 
-### Boleto
-
 **Parâmetros**
 
 | Campo                     | Tipo    | Comentário                                                                                                                                                                                                      |
