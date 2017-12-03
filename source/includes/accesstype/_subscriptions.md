@@ -120,7 +120,7 @@ This API can be used to delete a subscription
 ## POST renew a subscription
 
 ```shell
-curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscription/<subscription_id>.json -d '{
+curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscription/<subscription_id>/renewals.json -d '{
   "subscription": {
     "coupon_code": "",
     "payment": {
