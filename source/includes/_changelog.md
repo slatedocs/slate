@@ -1,5 +1,18 @@
 # Changelog
 
+### 4.4
+
+- updated info for obsolete event calendar
+- updated events detail section
+- updated calendar section
+- updated global dates list section
+- updated ticket calendar section, note that param "ticket_ids" is obsolete, use "by_ticket_ids" filter instead
+- updated ticket calendar, capacities and capacity section to handle reservations
+- update reservation section, provide hint about ticket's bookablility for making a reservation
+- update tour section
+- add equipment section for tours
+- updated order section for tour items containing equipment bookings
+
 ### 4.2
 
 - added documentation for new by_bookable filters

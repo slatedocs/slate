@@ -223,6 +223,8 @@ curl "https://demo.gomus.de/api/v4/events"
             "title": "El Siglo de Oro | Öffentliche Führung",
             "sub_title": "60 Minuten | 4 EUR zzg. Eintritt<br>Di – Fr / 16:00 Uhr, Sa und So / 14:30 und 16:00 Uhr<br>",
             "featured": false,
+            "bookable": true,
+            "registerable": true,
             "category": {
                 "id": 3,
                 "name": "öffentliche Führung"
@@ -325,71 +327,7 @@ registration form.
 curl "https://demo.gomus.de/api/v4/events/1/calendar"
 ```
 
-> The above command returns JSON structured like this (with `depth=any`, the default):
-
-```json
-{
-    "data": {
-        "2016-07-24": true,
-        "2016-07-25": false,
-        "2016-07-26": true,
-        "2016-07-27": true,
-        "2016-07-28": true,
-        "2016-07-29": true,
-        "2016-07-30": true,
-        "2016-07-31": true
-    }
-}
-```
-
-
-> Example output with `depth=all`:
-
-```json
-{
-    "data": {
-        "2016-07-10": [
-        {
-            "date": {
-                "id": 22973,
-                "event_id": 101174,
-                "title": "El Siglo de Oro",
-                "sub_title": null,
-                "start_time": "2016-07-10T16:00:00+02:00",
-                "seats": {
-                    "min": 1,
-                    "max": 20,
-                    "booked": 0,
-                    "available": 20,
-                    "max_per_registration": null
-                }
-            }
-        }
-        ],
-        "2016-07-11": [],
-
-        ...
-    }
-}
-
-```
-
-The calender for a single event provides a fast way to check when the event has dates or not. With the default mode, returns a simple boolean as the value for each day in the range specified. With depth `all` we get the details of the dates available for each day as well. However, this calculation will take longer.
-
-
-### Available filters:
-
-- by_language_ids (Array of language ids), filter by language, see languages section
-- by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)
-
-### Available parameters:
-
-- start_at (`YYYY-MM-DD`), defaults to today
-- end_at (`YYYY-MM-DD`), defaults to end of month
-- opening_hours_start, in minutes from beginning of day, defaults to `8 * 60`
-- opening_hours_end, in minutes from beginning of day, defaults to `22 * 60`
-- depth: string, one of `any|all`, defaults to `any`
-
+**Note**: This route is obsolete. Please use `api/v4/calendar?by_event_ids[]=:id`
 
 ## Dates for a single event
 
@@ -406,21 +344,31 @@ curl "https://demo.gomus.de/api/v4/events/1/dates"
 {
     "dates": [
         {
-            "id": 22974,
-            "event_id": 101174,
-            "exhibition_id": 2057,
-            "museum_id": 20,
+            "id": 1065,
+            "event_id": 10,
+            "exhibition_id": null,
+            "museum_id": 1,
             "category": {
-               "id": 23,
-               "name": "öffentliche Führung"
+              "id": 7,
+              "name": "Öffentliche Führung",
+              "filtername": ""
             },
-            "title": "El Siglo de Oro",
+            "bookable": true,
+            "registerable": false,
+            "title": "Termin #241",
             "sub_title": null,
-            "start_time": "2016-07-10T14:30:00+02:00",
-            "duration": 60,
+            "start_time": "2017-12-03T13:00:00+01:00",
+            "duration": 90,
+            "seats": {
+                "min": 1,
+                "max": 30,
+                "booked": 0,
+                "available": 30,
+                "max_per_registration": null
+            },
             "language": {
-                "id": 1,
-                "name": "Deutsch"
+              "id": 1,
+              "name": "Deutsch"
             }
         }
     ],
@@ -434,6 +382,11 @@ curl "https://demo.gomus.de/api/v4/events/1/dates"
 
 Queries the available dates for a specific event. The default shows only dates for today, or specified by the `date` parameter. A range of up to 31 days can be queried by using the `start_at` and `end_at` parameter.
 
+
+### Available filters:
+
+- by_language_ids (Array of language ids), filter by date language, see languages section
+- by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)
 
 ### Available parameters:
 
@@ -457,7 +410,9 @@ The json response contains a list of dates as an array and a meta block.
 - sub_title (string), the sub title of the date
 - start_time (iso8601), the date's timestamp
 - language, with id and name
-- registerable, boolean flag of whether the date is public registerable or not
+- bookable, boolean flag of whether the event is bookable in the current scope or not
+- registerable, boolean flag of whether the event is public registerable or not
+- seats, further information for available seats. `max_per_registration` indicates the limit for seats per order
 
 ## Details for a single date
 
@@ -481,6 +436,8 @@ curl "https://demo.gomus.de/api/v4/events/1/dates/1"
             "id": 23,
             "name": "öffentliche Führung"
         },
+        "bookable": true,
+        "registerable": false,
         "title": "El Siglo de Oro",
         "sub_title": null,
         "description": null,
@@ -675,7 +632,5 @@ The global calender provides a nice way to check wether dates are available for 
 
 - start_at (`YYYY-MM-DD`), defaults to today
 - end_at (`YYYY-MM-DD`), defaults to end of month
-- opening_hours_start, in minutes from beginning of day, defaults to `8 * 60`
-- opening_hours_end, in minutes from beginning of day, defaults to `22 * 60`
 - depth: string, one of `any|all`, defaults to `any`
 

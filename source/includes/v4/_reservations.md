@@ -1,7 +1,7 @@
 # Ticket Reservations
 
 Tickets can be (short term) reserved for 5 minutes each. The reservation can be updated (and refreshed) for a max of 60 minutes 
-reservation time.
+reservation time. Note that the ticket itself must be bookable for the time of reservation.
 
 ### Creating a reservation
 

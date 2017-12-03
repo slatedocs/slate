@@ -382,6 +382,18 @@ The location is provided as street adress and geo-coordinates. Mind that most mu
 
 The price of a tour booking depends on several pricing factors like surcharges and other fees. The `prices` array holds all single price items which are summed up to the order items `price_cents` total.
 
+### Equipments
+
+The tour item may contain an additional block for booking equipment at the **same** start time:
+
+```json
+    equipment: [
+      {
+        id: 1,
+        quantity: 3
+      }
+    ]
+```
 
 # Creating an Order
 

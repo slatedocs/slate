@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.4
+
+*December 3, 2017*
+
+Update documentation for API Version 4.4
+
 ## Version 1.3.2
 
 *February 3, 2016*

@@ -39,7 +39,8 @@ curl "https://demo.gomus.de/api/v4/tickets"
         "first_entry": 660,
         "last_entry": 990,
         "personalizeable": false,
-        "attendees": "required"
+        "attendees": "required",
+        "identification": false
         }
     ],
     "meta": {
@@ -59,7 +60,9 @@ curl "https://demo.gomus.de/api/v4/tickets"
 - by_museum_ids (Array of museum ids), filter by museums, see museums section
 - by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section
 - by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)
-
+- by_ticket_type, (String) (annual, time_slot, normal, default: all but annual)
+- by_ticket_types, (Array of annual, time_slot, normal, default: all but annual)
+  
 ### Available parameters:
 
 - valid_at (`YYYY-MM-DD`), defaults to today
@@ -81,13 +84,14 @@ The json response contains a list of tickets as an array and a meta block.
 - price_cents (integer), price of the ticket in EUR cents
 - vat_pct (float), the tickets tax rate
 - tax_included (boolean), whether the tax (if any) is included in price_cents or not
-- first_entry (integer), first possible entry in minutes from beginning of day
-- last_entry (integer), last possible entry in minutes from beginning of day
+- first_entry (integer), first possible entry in minutes from beginning of day, can be combined with `valid_at` parameter
+- last_entry (integer), last possible entry in minutes from beginning of day, can be combined with `valid_at` parameter
 - entry_duration (integer), if ticket type is a time slot, the slot duration in minutes, else null
 - min_persons (integer), minimum quantity to buy per order
 - max_persons (integer), maximum quantity to buy per order
 - personalizeable (boolean), weather the ticket can be personalised (e.g. annual tickets)
 - attendees (string), when required, the attendees needs to be set on purchase
+- identification (string), info attribute for entry system to require manual identification document (e.g. for reduced tickets)
 
 ## Details of single ticket
 
@@ -134,6 +138,7 @@ curl "https://demo.gomus.de/api/v4/tickets/1"
         },
         "personalizeable": false,
         "attendees": "required",
+        "identification": false,
         "location": {
             "name": "Gemäldegalerie",
             "city": "Berlin",
@@ -146,6 +151,9 @@ curl "https://demo.gomus.de/api/v4/tickets/1"
     }
 }
 ```
+### Available parameters:
+
+- valid_at (`YYYY-MM-DD`), defaults to today
 
 ### Response
 
@@ -194,12 +202,17 @@ tickets, the time range is up untill the end of the day.
 ### Available parameters:
 
 - date (`YYYY-MM-DD`), defaults to today
+- reservations, defaults to none
 
 ### Response
 
 The json response contains a data block of available time slots and capacities as a hash (key/value pairs). For day tickets, the first possible entry will be returned.
 
 The capacity check takes all quotas that the ticket belongs to into account. Zero values are not returned.
+
+### Reservations
+
+Provide an array of reservation tokens to be considered in calculation
 
 
 ## Calendar - for tickets
@@ -259,23 +272,30 @@ curl "https://demo.gomus.de/api/v4/tickets/calendar"
 
 ### Available filters:
 
+- by_ticket_ids (Array of ticket ids), filter by specific tickets
 - by_museum_ids (Array of museum ids), filter by museums, see museums section
 - by_exhibition_ids (Array of exhibition ids), filter by exhibitions, see exhibitions section
-
+- by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)
+- by_ticket_type, (String) (annual, time_slot, normal, default: all but annual)
+- by_ticket_types, (Array of annual, time_slot, normal, default: all but annual)
+  
+  
 ### Available parameters:
 
-- ticket_ids (Array), set of tickets to restrict the calendar response to
 - start_at (`YYYY-MM-DD`), defaults to today
 - end_at (`YYYY-MM-DD`), defaults to end of month
-- opening_hours_start, in minutes from beginning of day, defaults to `8 * 60`
-- opening_hours_end, in minutes from beginning of day, defaults to `22 * 60`
 - depth: string, one of `any|all`, defaults to `any`
+- reservations, array of reservations made before, defaults to none
 
 ### Response
 
 The `depth` parameter defines the depth of search and the amount of detail in the result. On `any` the search will quit the loop for each day as soon as a bookable ticket is found and will provide a boolean (true or false) for the bookability as the result. This is a lot faster than the `all` mode, where the result is an array of `quota` objects and the relevant capacity information.
 
 The maximum time frame is 31 days.
+
+### Reservations
+
+Provide an array of reservation tokens to be considered in calculation
 
 ## Capacities for a set of tickets
 
@@ -373,8 +393,13 @@ In general tickets that do not have a defined total capacity can be excluded fro
 ### Available parameters:
 
 - date (`YYYY-MM-DD`), defaults to today
+- reservations, array of reservations made before, defaults to none
 
 ### Response
 
 The response is a data block, which contains a hash with quota ids as keys, a list of ticket ids affected by the quota (as a subset of the query) and a list of (still available) capacities as well as the total capacities.
 
+
+### Reservations
+
+Provide an array of reservation tokens to be considered in calculation

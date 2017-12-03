@@ -1,8 +1,6 @@
 ## Version
 
-the go~mus API version is _4.2_
-
-Note: the current API version is a release candidate, features and specs might change until final release.
+the go~mus API version is _4.4_
 
 The system and api version is available at each instance:
 
@@ -18,8 +16,9 @@ curl "https://demo.gomus.de/api/v4/version"
 {
     "version": {
         "system": "2.9.1",
-        "api": "4.2",
-        "time": "2017-07-13T19:49:15+02:00",
+        "api": "4.4",
+        "release": "Bubbles",
+        "time": "2017-12-03T10:49:15+02:00",
         "zone": "Europe/Berlin",
         "currency": "EUR"
     }
