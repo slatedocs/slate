@@ -399,6 +399,7 @@ In general tickets that do not have a defined total capacity can be excluded fro
 
 The response is a data block, which contains a hash with quota ids as keys, a list of ticket ids affected by the quota (as a subset of the query) and a list of (still available) capacities as well as the total capacities.
 
+Note that the ticket response block may not contain all of your requested ticket ids. It only contains tickets bookable for your current user.
 
 ### Reservations
 
