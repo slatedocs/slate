@@ -840,6 +840,12 @@ Example Response
    "total":7
 }
 
+Example Request
+
+curl -X GET "http://sketches.quintype.com/api/v1/entities?limit=2&type=book" -H "accept: json"
+
+
+Example Response
 
 ```
 
@@ -861,7 +867,7 @@ Lists the entity having the specified ID.
 
 Example Request
 
-curl -X GET "http://sketches.quintype.com/api/v1/entities?id=12" -H "accept: json"
+curl -X GET "http://sketches.quintype.com/api/v1/entities/12" -H "accept: json"
 
 
 Example Response
@@ -881,6 +887,68 @@ Example Response
 }
 
 ```
+
+
+##/api/v1/entities/{id}/{subentity+}
+
+**Description**
+
+Lists the entity having the specified ID.
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+| ID | integer| The entity ID|
+|subentity |string | A nested entity name|
+
+
+```
+Example Request
+curl -X GET "http://sketches.quintype.com/api/v1/entities/15557/most-powerful-women-list-year
+
+Example Response
+
+{
+   "relationships": {
+      "self": [
+         {
+            "entity-type": "year",
+            "name": "2015",
+            "rank": 1,
+            "relationship": "self",
+            "deleted-at": null,
+            "created-by": 232469,
+            "id": 15557,
+            "last-updated-by": 232469,
+            "created-at": 1498647361780
+         }
+      ],
+      "most-powerful-women-list-year": [
+         {
+            "entity-type": "most-powerful-women-list",
+            "name": "Most powerful women 2015",
+            "rank": 2,
+            "relationship": "most-powerful-women-list-year",
+            "deleted-at": null,
+            "created-by": 232469,
+            "id": 21697,
+            "most-powerful-women-list-most-powerful-women-snapshot": [], {An array of 10 monst powerful women}
+            "most-powerful-women-list-year": {
+            "id": 15557,
+            "name": "2015"
+         },
+         "last-updated-by": 232469,
+         "created-at": 1498648880350,
+         "sidebar-image": []
+         }
+      ]
+   }
+}
+
+``` 
+
 
 #(H1) this is testing only
 
