@@ -307,16 +307,31 @@ EXEMPLO DE ESTADO DA RESPOSTA
 
     200 OK
 
-EXEMPLO DE CORPO DA RESPOSTA
+EXEMPLO DE CORPO DA RESPOSTA (COBRANÇAS)
 
   {
-    "items":
+    "charges":
       [
         {
-          // informações do item 1
+          // informações do item 1 (charge)
         },
         {
-          // informações do item 2
+          // informações do item 2 (charge)
+        },
+        ...
+      ]
+  }
+
+EXEMPLO DE CORPO DA RESPOSTA (PAGAMENTOS)
+
+  {
+    "payments":
+      [
+        {
+          // informações do item 1 (payment)
+        },
+        {
+          // informações do item 2 (payment)
         },
         ...
       ]
