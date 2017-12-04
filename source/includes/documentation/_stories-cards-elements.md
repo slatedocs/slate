@@ -1,16 +1,17 @@
-## Stories Cards and Elements
+## Stories- Cards and Elements
 
-Quintype is a structured CMS system. A story is comprised of cards, and cards of story elements.
+Quintype provides a structured CMS system.
+A story is comprised of cards, and cards contain story elements.
 
 ### Cards
 
-Cardification is a new paradigm targetted towards mobile-first consumption of news. In this age of information bormbardment, short and concise chunked blocks of content tend to have much higher engagement. Quintype stories are split into multiple cards. Front end apps can choose to represent these cards visually, allowing users to interact with these cards directly.
+Cardification is a new paradigm targetted towards mobile-first consumption of news. Short and concise chunked blocks of content tend to have much higher engagement. Quintype stories are split into multiple cards. Frontend applications can choose to represent these cards visually, allowing users to interact with these cards directly.
 
-Any API request for stories will contain the cards that comprise the story in the *"cards"* field (as an array). These cards comprise the body of the story.
+Any API request for stories contain the cards that comprise the story in the *"cards"* field (as an array). These cards comprise the body of the story.
 
 ###  Story Elements
 
-Story elements are the smallest logical unit in the Quintype platform. Each story element represents a single paragraph of text, image, video, or other unit of content. Story elements come together to form a card. Quintype also tracks these story elements and derives analytics reports based on user engagement on stories containing specific elements.
+Story elements are the smallest logical unit in the Quintype platform. Each story element represents a single paragraph of text, image, video, or other unit of content. Story elements form a card. Quintype also tracks these story elements and derives analytics reports based on user engagement on stories containing specific elements.
 
 For eg: A story on tennis containing more photo story elements might get higher engagement.
 
@@ -18,7 +19,7 @@ The story elements can be found in the *"story-elements"* field of individual ca
 
 #### Story Element Types
 
-Each story element will have a *"type"*, and optionally a *"subtype"*. There are currently five major types of story elements, which all front end applications must support. They are
+Each story element has a *"type"*, and optionally a *"subtype"*. There are currently five major types of story elements, which all front end applications must support. They are as follows:
 
 * text - a paragraph of text
 * image - an image
@@ -34,6 +35,6 @@ Story elements may also have a *"subtype"* field, which gives hints on rendering
 
 ### Story Types
 
-Story type are predefined templates which can be used to write articles of various domains ranging from photo blogs, listicles, video stories, blogs etc. Story types give a definite structure and a "starting point" to authors when they starts writing a story. Apart from this, they also help in predictive analytics. Data can be derived and studied based on audience engagement on various story types for different domains (eg: A photo story on wildlife may get higher engagement than a text story).
+Story type are predefined templates which can be used to write articles of various domains ranging from photo blogs, listicles, video stories, blogs etc. Story types give a definite structure and a "starting point" to authors when they start writing a story. They also help in predictive analytics. Data can be derived and studied based on audience engagement on various story types for different domains, for example, a photo story on wildlife may get higher engagement than a text story.
 
 A story type may give subtle hints to the behaviour of the story. For example, a *live-blog* may choose to auto update every 30seconds.

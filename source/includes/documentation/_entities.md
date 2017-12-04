@@ -1,15 +1,14 @@
 ## Entities
 
-Entity is a new feature introduced in the editor to maintain structured information relevant for the publisher and refer them in relevant stories.
+Entity provide structured information which is relevant to a publisher. An entity can be referred in relevant stories.
 
 The representation of linked entities on the front end is contextual to the purpose for which it is referred in stories.
-Example of entity will be Person (referred to as ‘entity type’) which will have the structure not limited to name, avatar, email address, social handle, bio, company associated to it.
+Example of entity is a person (referred to as ‘entity type’) which has the structure such as name, avatar, email address, social handle, bio, company associated with it.
 
-Entity types can only be created by the technical team based on the requirement.
-Entity type can contain text, numerics, image and another entity.
+Entity types can only be created by the Quintype team, based on a publisher's requirement.
+Entity type can contain text, numerics, image, or another entity.
 
-Publishers can create various values (referred to as entities) for the entity type using the ‘Entity Manager’ and these values can be referred to in stories.
-Entity manager can also be used to modify existing entities.
+Publishers can add values (referred to as entities) to the entity type by using the ‘Entity Manager’ and these values can be referred to in stories. The Entity manager can also be used to modify existing entities.
 
 There are three endpoints to access entities:
 

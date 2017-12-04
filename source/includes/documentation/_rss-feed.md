@@ -4,7 +4,7 @@ The stories RSS feed can be used to syndicate stories out from the CMS
 
 ### End point
 * `/stories.rss` -> end point for RSS feed
-* This end point by default generates RSS feed for last four hours
+* This end point generates RSS feed for last four hours
 
 ### Supported parameters
 1. Parameter to fetch stories with different time durations
