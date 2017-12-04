@@ -129,7 +129,8 @@ curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" http:
      "subscription_type":"individual",
      "active":true,
      "payment_amount":"0.00",
-     "payment_type":"manual"
+     "payment_type":"manual",
+     "renewable": true
     }
   ]
 }
@@ -178,8 +179,8 @@ This API is safe to call from the front end JS, where it will read session-cooki
 ```shell
 curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" -X PATCH http://sketches.quintype.com/api/v1/members/me/subscriptions -d '{
   "metadata":  {
-      "full-name": "hello-world",
-      "email": "hello@quintype.com"
+    "full-name": "hello-world",
+    "email": "hello@quintype.com"
   }
 }`
 
@@ -187,3 +188,26 @@ curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" -X PA
 It bulk updates **all** subscriptions for user.
 
 This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
+
+## POST Renew a subscription
+
+```shell
+curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" -X POST http://sketches.quintype.com/api/v1/members/me/subscriptions/<id>/renewal -d '{
+  "coupon_code": "",
+  "payment": {
+      "payment_type": "razorpay",
+      "payment_token": "pay_test_8tNiqdiajurOkj",
+      "amount_cents": "99900",
+      "amount_currency": "INR"
+  }
+}`
+
+```
+This API can be used to renew any renewable subscription.
+
+One can use the optional `metadata` field to set it different from that of the existing subsription. If not passed, it is set to be same as existing subscription.
+
+This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
+
+
+
