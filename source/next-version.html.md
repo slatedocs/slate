@@ -905,8 +905,11 @@ Lists the entity having the specified ID.
 
 
 ```
+
+The following request gets the list of companies established in the year 2015. A relationship had been created between the entities (entity-type) `year` and `companies-created`  
+
 Example Request
-curl -X GET "http://sketches.quintype.com/api/v1/entities/15557/most-powerful-women-list-year
+curl -X GET "http://sketches.quintype.com/api/v1/entities/15557/companies-established-year
 
 Example Response
 
@@ -925,23 +928,22 @@ Example Response
             "created-at": 1498647361780
          }
       ],
-      "most-powerful-women-list-year": [
+      "companies-established-year": [
          {
-            "entity-type": "most-powerful-women-list",
-            "name": "Most powerful women 2015",
+            "entity-type": "companies-established",
+            "name": "The companies established in 2015",
             "rank": 2,
-            "relationship": "most-powerful-women-list-year",
-            "deleted-at": null,
-            "created-by": 232469,
+            "relationship": "companies-established-year",
             "id": 21697,
-            "most-powerful-women-list-most-powerful-women-snapshot": [], {An array of 10 monst powerful women}
-            "most-powerful-women-list-year": {
-            "id": 15557,
-            "name": "2015"
-         },
+            "companies-established-year": [
+               ....  // A list of companies established in 2015
+            ],
+            "companies-established-year": {
+               "id": 15557,
+               "name": "2015"
+            },
          "last-updated-by": 232469,
          "created-at": 1498648880350,
-         "sidebar-image": []
          }
       ]
    }
