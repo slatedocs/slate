@@ -57,7 +57,7 @@ In order to get only active subscriptions, param `active_only=true` can be used.
 ## POST Create a Subscription
 
 ```shell
-curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscriptions.json -d '{
+curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscriptions.json -d '{
   "subscription": {
     "subscription_plan_id": "11",
     "coupon_code": "",
@@ -84,7 +84,7 @@ It returns a Subscription Object in response
 ## PATCH update attributes
 
 ```shell
-curl -H "X-SUBAUTH: <auth-token>" -X "PATCH" -H "Content-Type: application/json" https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscriptions/<id>.json -d '{
+curl -H "X-SUBAUTH: <auth-token>" -X PATCH -H "Content-Type: application/json" https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscriptions/<id>.json -d '{
   "subscription": {
     "metadata":  {
         "full-name": "hello-world",
@@ -99,7 +99,7 @@ This API can be used to update the attributes for a subscription of a subscriber
 ## PATCH bulk update attributes
 
 ```shell
-curl -H "X-SUBAUTH: <auth-token>" -X "PATCH" -H "Content-Type: application/json" https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscriptions.json -d '{
+curl -H "X-SUBAUTH: <auth-token>" -X PATCH -H "Content-Type: application/json" https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscriptions.json -d '{
   "metadata":  {
     "full-name": "hello-world",
     "email": "hello@quintype.com"
@@ -120,7 +120,7 @@ This API can be used to delete a subscription
 ## POST renew a subscription
 
 ```shell
-curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscription/<subscription_id>/renewals.json -d '{
+curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscriptions/<subscription_id>/renewals.json -d '{
   "subscription": {
     "coupon_code": "",
     "payment": {
