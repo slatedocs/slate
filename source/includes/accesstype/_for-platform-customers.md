@@ -167,7 +167,7 @@ curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" -X PA
     "full-name": "hello-world",
     "email": "hello@quintype.com"
   }
-}`
+}'
 
 ```
 It updates a subscription for user.
@@ -182,7 +182,7 @@ curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" -X PA
     "full-name": "hello-world",
     "email": "hello@quintype.com"
   }
-}`
+}'
 
 ```
 It bulk updates **all** subscriptions for user.
@@ -192,7 +192,7 @@ This API is safe to call from the front end JS, where it will read session-cooki
 ## POST Renew a subscription
 
 ```shell
-curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" -X POST http://sketches.quintype.com/api/v1/members/me/subscriptions/<id>/renewal -d '{
+curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" -X POST http://sketches.quintype.com/api/v1/members/me/subscriptions/<id>/renewals -d '{
   "coupon_code": "",
   "payment": {
       "payment_type": "razorpay",
@@ -200,7 +200,7 @@ curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" -X PO
       "amount_cents": "99900",
       "amount_currency": "INR"
   }
-}`
+}'
 
 ```
 This API can be used to renew any renewable subscription.
