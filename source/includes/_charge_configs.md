@@ -24,6 +24,7 @@ EXEMPLO
     "initial_remittance_number": 1,
     "transmission_code": "987655",
     "pre_released_billet": false,
+    "writing_off_deadline": null,
     "_links":
       [
         {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/charge_configs/1"},
@@ -51,8 +52,8 @@ As Configurações de Cobrança do tipo **Boleto** (billet), pertencem as suas c
 
 <aside class="info">
   Para homologar a Configuração de Cobrança existe uma série de passos que você encontra em
-  <a href="https://app.cobrato.com/charge_configs">nossa interface web</a>. Até 
-  que a Configuração tenha o status "ok" (Homologado), todas as cobranças criadas para esta Configuração 
+  <a href="https://app.cobrato.com/charge_configs">nossa interface web</a>. Até
+  que a Configuração tenha o status "ok" (Homologado), todas as cobranças criadas para esta Configuração
   deverão ser para homologação.
 </aside>
 
@@ -78,6 +79,7 @@ As Configurações de Cobrança do tipo **Boleto** (billet), pertencem as suas c
 | initial_remittance_number | integer         | número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco)                              |
 | transmission_code         | string          | código de transmissão (apenas para o Santander)                                                                                                               |
 | pre_released_billet       | boolean         | caso a configuração de cobrança utilize boletos registrados, este atributo indica se os boletos podem ser acessados antes do registro no banco ser confirmado |
+| writing_off_deadline      | integer         | número de dias após o vencimento da cobrança para que seja feita a baixa automática do título no banco (apenas para cobranças registradas com padrão 240)     |
 | _links                    | array of object | links da configuração de cobrança e de sua conta bancária                                                                                                     |
 
 
@@ -85,8 +87,8 @@ As Configurações de Cobrança do tipo **Boleto** (billet), pertencem as suas c
 
 <aside class="info">
   Para homologar a Configuração de Cobrança existe uma série de passos que você encontra em
-  <a href="https://app.cobrato.com/wizard/payment_gateway/configs/new">nossa interface web</a>. Até 
-  que a Configuração tenha o status "ok" (Homologado), todas as cobranças criadas para esta Configuração 
+  <a href="https://app.cobrato.com/wizard/payment_gateway/configs/new">nossa interface web</a>. Até
+  que a Configuração tenha o status "ok" (Homologado), todas as cobranças criadas para esta Configuração
   serão consideradas Cobranças para homologação.
 </aside>
 
@@ -147,6 +149,7 @@ EXEMPLO DE CORPO DA RESPOSTA (BOLETO)
     "initial_remittance_number": 1,
     "transmission_code": "987655",
     "pre_released_billet": false,
+    "writing_off_deadline": null,
     "_links":
       [
         {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/charge_configs/1"},
@@ -288,6 +291,7 @@ Cria uma nova Configuração de Cobrança, retornando as informações da mesma 
 | transmission_code         | string  | (opcional, requerido apenas se registered_charges for `true`) código de transmissão (apenas para o Santander)                                                                                                   |
 | initial_remittance_number | integer | (opcional) número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco). Por padrão o valor é 1                                             |
 | pre_released_billet       | boolean | (opcional) caso a configuração de cobrança utilize boletos registrados, este atributo indica se os boletos podem ser acessados antes do registro no banco ser confirmado. Por padrão é `false`                  |
+| writing_off_deadline      | integer | (opcional) número de dias após o vencimento da cobrança para que seja feita a baixa automática do título no banco. Valor pode variar entre 7 e 90. (apenas para cobranças registradas com padrão 240)           |
 
 <aside class="warning">
   <strong>ATENÇÃO!</strong> Caso seu cliente pague o boleto antes do banco ter confirmado seu registro, <strong>o pagamento pode ser devolvido</strong> e/ou o banco pode te cobrar uma sobretaxa. Ao definir o campo <code>pre_released_billet</code> como <code>true</code>, você está assumindo este risco.
@@ -374,22 +378,23 @@ Atualiza a Configuração de Cobrança determinada, retornando as informações 
 
 **Parâmetros**
 
-| Campo                     | Tipo    | Comentário                                                                                                                                                                                     |
-|---------------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| payee_id                  | integer | **(requerido)** código de identificação do beneficiário ao qual a configuração de cobrança irá pertencer                                                                                       |
-| portfolio_code            | string  | **(requerido)** código de portfólio, validação conforme o banco                                                                                                                                |
-| agreement_code            | string  | **(requerido, com exceção do Itaú onde é preenchido automaticamente)** código de convênio ou do beneficiário, de acordo com o banco                                                            |
-| agreement_code_digit      | string  | **(requerido, com exceção do HSBC e Itaú, sendo preenchido automaticamente para o último)** verificador do código de convênio, de acordo com o banco                                           |
-| name                      | string  | **(requerido)** nome que identifica esta configuração de cobrança                                                                                                                              |
-| initial_number            | integer | **(requerido)** número inicial do nosso número, sendo atribuído automaticamente e sequencialmente às cobranças                                                                                 |
-| end_number                | integer | (opcional) número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada                                                                             |
-| next_number               | integer | (opcional) próximo nosso número a ser atribuído a uma cobrança criada a partir desta configuração de cobrança (é incrementado automatica e sequencialmente)                                    |
-| registered_charges        | boolean | (opcional) informa se a configuração de cobrança utiliza boletos registrados ou não, sendo false por padrão                                                                                    |
-| remittance_agreement_code | integer | (opcional, requerido apenas se registered_charges for `true`) número do convênio com o banco (apenas para o Bradesco)                                                                          |
-| remittance_cnab_pattern   | integer | (opcional, requerido apenas se registered_charges for `true`) padrão utilizado no arquivo CNAB de remessa. Os valores permitidos são 240 ou 400                                                |
-| transmission_code         | string  | (opcional, requerido apenas se registered_charges for `true`) código de transmissão (apenas para o Santander)                                                                                  |
-| initial_remittance_number | integer | (opcional) número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco). Por padrão o valor é 1                            |
-| pre_released_billet       | boolean | (opcional) caso a configuração de cobrança utilize boletos registrados, este atributo indica se os boletos podem ser acessados antes do registro no banco ser confirmado. Por padrão é `false` |
+| Campo                     | Tipo    | Comentário                                                                                                                                                                                            |
+|---------------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| payee_id                  | integer | **(requerido)** código de identificação do beneficiário ao qual a configuração de cobrança irá pertencer                                                                                              |
+| portfolio_code            | string  | **(requerido)** código de portfólio, validação conforme o banco                                                                                                                                       |
+| agreement_code            | string  | **(requerido, com exceção do Itaú onde é preenchido automaticamente)** código de convênio ou do beneficiário, de acordo com o banco                                                                   |
+| agreement_code_digit      | string  | **(requerido, com exceção do HSBC e Itaú, sendo preenchido automaticamente para o último)** verificador do código de convênio, de acordo com o banco                                                  |
+| name                      | string  | **(requerido)** nome que identifica esta configuração de cobrança                                                                                                                                     |
+| initial_number            | integer | **(requerido)** número inicial do nosso número, sendo atribuído automaticamente e sequencialmente às cobranças                                                                                        |
+| end_number                | integer | (opcional) número final do nosso número, sendo o último número a ser atribuído, após isso a sequência é reiniciada                                                                                    |
+| next_number               | integer | (opcional) próximo nosso número a ser atribuído a uma cobrança criada a partir desta configuração de cobrança (é incrementado automatica e sequencialmente)                                           |
+| registered_charges        | boolean | (opcional) informa se a configuração de cobrança utiliza boletos registrados ou não, sendo false por padrão                                                                                           |
+| remittance_agreement_code | integer | (opcional, requerido apenas se registered_charges for `true`) número do convênio com o banco (apenas para o Bradesco)                                                                                 |
+| remittance_cnab_pattern   | integer | (opcional, requerido apenas se registered_charges for `true`) padrão utilizado no arquivo CNAB de remessa. Os valores permitidos são 240 ou 400                                                       |
+| transmission_code         | string  | (opcional, requerido apenas se registered_charges for `true`) código de transmissão (apenas para o Santander)                                                                                         |
+| initial_remittance_number | integer | (opcional) número inicial de remessa, ou seja, qual foi o último número sequencial de remessa enviado para o banco (apenas para o Bradesco). Por padrão o valor é 1                                   |
+| pre_released_billet       | boolean | (opcional) caso a configuração de cobrança utilize boletos registrados, este atributo indica se os boletos podem ser acessados antes do registro no banco ser confirmado. Por padrão é `false`        |
+| writing_off_deadline      | integer | (opcional) número de dias após o vencimento da cobrança para que seja feita a baixa automática do título no banco. Valor pode variar entre 7 e 90. (apenas para cobranças registradas com padrão 240) |
 
 <aside class="warning">
   <strong>ATENÇÃO!</strong> Caso seu cliente pague o boleto antes do banco ter confirmado seu registro, <strong>o pagamento pode ser devolvido</strong> e/ou o banco pode te cobrar uma sobretaxa. Ao definir o campo <code>pre_released_billet</code> como <code>true</code>, você está assumindo este risco.
