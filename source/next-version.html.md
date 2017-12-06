@@ -521,7 +521,7 @@ Returns the stories that are related to the mentioned story ID.
 | Name | Data Type | Description|
 |--|--|--|
 |story-id |string | The story ID|
-|section ID |string | The section ID of a story|
+|section-id |string | The section ID of a story|
 |fields| string | The parameters of a story, such as headline, slug, sections, author ID, and so on.|
 
 
@@ -616,9 +616,7 @@ Returns the list of authors with the author name and author ID, along with detai
 
 **Input Parameters**
 
-| Name | Data Type | Description|
-|--|--|--|
-|author-id| integer| The author ID |
+None.
 
 
 ```
@@ -743,10 +741,7 @@ Returns the list of breaking news.
 
 **Input Parameters**
 
-| Name | Data Type | Description|
-|--|--|--|
-|
-
+None.
 
 ```
 Example Request
@@ -901,7 +896,7 @@ Example Response
 
 **Description**
 
-Lists the entity having the specified ID.
+Lists the subentity details in relation to the entity ID.
 
 
 **Input Parameters**
