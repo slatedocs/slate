@@ -34,8 +34,8 @@ Returns a list of stories.
 
 | Name | Data Type | Description|
 |--|--|--|
-|q| string|  The search string, for example |
-|author| string| The author name to search|
+|q| string|  The search string |
+|author| string| The author name |
 |author-id| integer| The author ID|
 |fields| string| The parameters of a story, such as headline, slug, section, author ID, story ID, and so on.|
 |limit |integer |The number of stories to display. The default is 20. |
@@ -50,7 +50,7 @@ Returns a list of stories.
 
 Example Request
 
-http://sketches.quintype.com/api/v1/search?fields=headline%2C%20tags%2Cslug%2C%20last-published-at%2C&limit=5&q=Indian%20cricket" -H "accept: json"
+$ curl -X GET "http://sketches.quintype.com/api/v1/search?fields=headline%2C%20tags%2Cslug%2C%20last-published-at%2C&limit=5&q=Indian%20cricket" -H "accept: json"
 
 
 Example Response
@@ -67,7 +67,6 @@ Example Response
                {  
                   "id":275035,
                   "name":"National",
-                  "meta-description":null,
                   "slug":"national"
                }
             ],
@@ -80,37 +79,11 @@ Example Response
                {  
                   "id":331448,
                   "name":"Tesla",
-                  "meta-description":null,
                   "slug":"tesla"
                }
             ],
             "slug":"technology/2017/02/23/When-is-Tesla-entering-the-Indian-market",
             "last-published-at":1487840302541
-         },
-         {  
-            "headline":"Viewpoint: How a \u2018breaking\u2019 murder has exposed Indian media",
-            "tags":[  
-               {  
-                  "id":15158,
-                  "name":"Murder",
-                  "meta-description":null,
-                  "slug":"murder"
-               },
-               {  
-                  "id":15496,
-                  "name":"Peter Mukherjea",
-                  "meta-description":null,
-                  "slug":"peter-mukherjea"
-               },
-               {  
-                  "id":15495,
-                  "name":"Indrani Mukherjea",
-                  "meta-description":null,
-                  "slug":"indrani-mukherjea"
-               }
-            ],
-            "slug":"current-affairs/2015/09/03/viewpoint-how-a-breaking-murder-has-exposed-indian-media",
-            "last-published-at":1441254770109
          },
          {  
             "headline":"9/11 and the unsolvable Afghan drama  \u00A0",
@@ -184,13 +157,16 @@ Returns a list of stories and the story details, such as the author name and aut
 
 
 ```
+Example Request
+
+$ curl -X GET "http://sketches.quintype.com/api/v1/stories?limit=2  -H "accept: json"
 
 Example Response
 
 {  
    "stories":[  
       {  
-         "author-name":"Michele Maguire",
+         "author-name":"Michele Mag",
          "headline":"Dangal reviews: Aamir Khan gets a salute from all of Bollywood",
          "slug":"entertainment/2016/12/23/storyabcphoto",
          "last-published-at":1504268716413,
@@ -203,7 +179,6 @@ Example Response
                "name":"Entertainment",
                "display-name":"Entertainment",
                "slug":"entertainment",
-               "parent-id":null,
                "collection":null
             }
          ],
@@ -229,8 +204,8 @@ Example Response
          }
       },
       {  
-         "author-name":"Sriram Krishnaswamy",
-         "headline":"9/11 and the unsolvable Afghan drama  \u00A0",
+         "author-name":"Sriram K",
+         "headline":"9/11 and the unsolvable Afghan drama",
          "slug":"politics/2017/09/13/afghan-drama",
          "last-published-at":1505284207024,
          "alternative":{  
@@ -300,8 +275,66 @@ Returns the story having the mentioned slug. The output contains information suc
 
 
 ```
+Example Request
 
+$ curl -X GET "http://sketches.quintype.com/api/v1/stories-by-slug?slug=columns/2017/12/05/what-we-do"  -H "accept: json"
 
+Example Response
+
+{  
+   "story":{  
+      "updated-at":1512455351309,
+      "assignee-id":181082,
+      "author-name":"Mohan",
+      "headline":"What we do",
+      "story-content-id":"d0cd42fd-43dd-45b9-8f72-b0e8bfe5fed5",
+      "slug":"columns/2017/12/05/test-what-we-do",
+      "last-published-at":1512455358961,
+      "content-created-at":1512455051337,
+      "owner-name":"Mohan",
+      "publisher-id":78,
+      "published-at":1512455358961,
+      "status":"published",
+      "cards":[  
+         {  
+            "story-elements":[  
+               {  
+                  "description":"",
+                  "page-url":"/story/d0cd42fd-43dd-45b9-8f72-b0e8bfe5fed5/element/8cce4630-31d7-4ea0-8950-82aad9c8d33a",
+                  "type":"text",
+                  "id":"8cce4630-31d7-4ea0-8950-82aad9c8d33a",
+                  "metadata":{  
+                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer feugiat nisi sed elementum egestas. Duis ut pretium neque. Mauris vestibulum suscipit purus vestibulum semper. Donec elementum augue sem. Sed id eros accumsan, elementum ipsum eu, mattis arcu. Vestibulum eget ipsum est. Proin dapibus ornare odio, eget placerat justo placerat eu."
+                  },
+                  "subtype":"blurb",
+                  "text":"<blockquote>This is a note.</blockquote>",
+
+               },
+               {  
+                  "description":"",
+                  "page-url":"/story/d0cd42fd-43dd-45b9-8f72-b0e8bfe5fed5/element/3aef7afc-83a3-42ae-b41a-efe2896c5a2f",
+                  "type":"text",
+                  "id":"3aef7afc-83a3-42ae-b41a-efe2896c5a2f",
+
+               },
+               "card-updated-at":1512455301695,
+               "content-version-id":"da0ed0a6-c26a-46cc-b185-8e2f3fe2f128",
+               "card-added-at":1512455301695,
+               "status":"draft",
+               "id":"de9aa0cf-0d3c-4fcf-86d6-4a25bac857fe",
+               "version":1,
+               "story-version-id":"e06cef66-0926-4652-9358-b7c27b5f44f3",
+               "content-type":"story",
+               "author-id":181082,
+               "version":4,
+               "created-at":1512455344038,
+               "assignee-name":"Mohan",
+
+            ]
+         }
+      ]
+   }
+}
 
 ```
 
@@ -318,6 +351,7 @@ Returns the story details having the mentioned story ID.
 |story-id | string| The story ID |
 
 ```
+$ curl -X GET "http://sketches.quintype.com/api/v1/stories/ef91900e-2a7d-42c6-8ccc-fb75db2a4504"  -H "accept: json"
 
 Example Response
 
@@ -336,7 +370,7 @@ Example Response
          }
       },
       "assignee-id":323432,
-      "author-name":"Vineet Panjabi",
+      "author-name":"Vineet",
       "tags":[  
          {  
             "id":257701,
@@ -417,28 +451,7 @@ Example Response
                   "family-id":"7267f6e8-808c-455b-81aa-6bd0dd8c7ad5",
                   "title":"",
                   "id":"690b7304-d875-484a-9850-33c9eb360537",
-                  "url":"https://www.youtube.com/watch?v=iGpVs3wFKF0#action=share",
-                  "embed-url":"https://www.youtube.com/embed/iGpVs3wFKF0#action=share",
-                  "metadata":{  
-
-                  },
-                  "subtype":null
                },
-               {  
-                  "description":"",
-                  "embed-js":"PGJsb2NrcXVvdGUgY2xhc3M9InR3aXR0ZXItdHdlZXQiPjxwIGxhbmc9ImVuIiBkaXI9Imx0ciI+U2F5IGhlbGxvIHRvIHRoZSBmdXR1cmUuIGlQaG9uZSBYLjwvcD4mbWRhc2g7IEFwcGxlIChAQXBwbGUpIDxhIGhyZWY9Imh0dHBzOi8vdHdpdHRlci5jb20vQXBwbGUvc3RhdHVzLzkwNzcwMDk0MjcxNTIyODE2MCI+U2VwdGVtYmVyIDEyLCAyMDE3PC9hPjwvYmxvY2txdW90ZT4KPHNjcmlwdCBhc3luYyBzcmM9Ii8vcGxhdGZvcm0udHdpdHRlci5jb20vd2lkZ2V0cy5qcyIgY2hhcnNldD0idXRmLTgiPjwvc2NyaXB0Pg==",
-                  "page-url":"/story/ef91900e-2a7d-42c6-8ccc-fb75db2a4504/element/f693466d-2c8f-49fa-9d10-d26ff4f05ae3",
-                  "type":"jsembed",
-                  "family-id":"93146ad5-d1d1-4302-84aa-270696ba144c",
-                  "title":"",
-                  "id":"f693466d-2c8f-49fa-9d10-d26ff4f05ae3",
-                  "metadata":{  
-                     "tweet-url":"https://twitter.com/Apple/status/907700942715228160",
-                     "provider":"twitter",
-                     "tweet-id":"907700942715228160"
-                  },
-                  "subtype":"tweet"
-               }
             ],
             "card-updated-at":1505384055361,
             "content-version-id":"6445d74d-1079-4244-a5a1-5b8403cf88cc",
@@ -453,7 +466,7 @@ Example Response
                   "title":"iPhone X vs Samsung Galaxy Note 8",
                   "message":"Iphone vs Samsung",
                   "image":{  
-                     "key":"quintype-demo/2016-11/20d960e9-cbb4-46c0-a6cc-3819c326f766/pixelxl-iphone7plus-30.jpg",
+                     "key":"pixelxl-iphone7plus-30.jpg",
                      "url":null,
                      "attribution":null,
                      "caption":"Best in class.",
@@ -476,9 +489,6 @@ Example Response
       "content-updated-at":1509011137120,
       "author-id":323432,
       "owner-id":323432,
-      "linked-story-ids":[  
-
-      ],
       "access":null,
       "first-published-at":1505384184330,
       "hero-image-caption":"Best in class.",
@@ -493,7 +503,7 @@ Example Response
          }
       },
       "publish-at":null,
-      "assignee-name":"Vineet Panjabi"
+      "assignee-name":"Vineet
    }
 }
 
@@ -516,6 +526,10 @@ Returns the stories that are related to the mentioned story ID.
 
 
 ```
+Example Request
+
+$ curl -X GET "http://sketches.quintype.com/api/v1/stories/db09a326-3af2-4286-a92b-8ffbc9bb3c4f/related-stories?fields=headline,id,slug,author-name"  -H "accept: json"
+
 Example Response
 {  
    "related-stories":[  
@@ -523,19 +537,19 @@ Example Response
          "headline":"Okuhara reigns at Glasgow",
          "id":"496b653b-cb45-4843-9f1d-273b7a81900b",
          "slug":"sports/2017/08/30/okuhara-reigns-at-glasgow",
-         "author-name":"Tapan Bhat"
+         "author-name":"Tapan"
       },ff
       {  
          "headline":"iPhone X vs Samsung Galaxy Note 8",
          "id":"ef91900e-2a7d-42c6-8ccc-fb75db2a4504",
          "slug":"technology/2017/09/14/iphone-x-vs-samsung-galaxy-note-8",
-         "author-name":"Vineet Panjabi"
+         "author-name":"Vineet"
       },
       {  
-         "headline":"9/11 and the unsolvable Afghan drama  \u00A0",
+         "headline":"9/11 and the unsolvable Afghan drama",
          "id":"8339b599-3eab-4428-9486-9139d28bb1ba",
          "slug":"politics/2017/09/13/afghan-drama",
-         "author-name":"Sriram Krishnaswamy"
+         "author-name":"Sriram"
       }
    ]
 }
@@ -622,7 +636,7 @@ Example Response
 "authors":[  
    {  
       "id":2038,
-      "name":"Tejas Dinkar",
+      "name":"Dinjas,
       "avatar-url":"https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50",
       "avatar-s3-key":null,
       "twitter-handle":null,
@@ -630,11 +644,11 @@ Example Response
       "metadata":{  
 
       },
-      "slug":"tejas-dinkar"
+      "slug":"dinjas"
    },
    {  
       "id":2039,
-      "name":"Amit Rathore",
+      "name":"Ramit",
       "avatar-url":"https://lh5.googleusercontent.com/-nXlfvt-YsVw/AAAAAAAAAAI/AAAAAAAAAI0/uo5Y2_mFdWc/photo.jpg?sz=50",
       "avatar-s3-key":null,
       "twitter-handle":null,
@@ -642,11 +656,11 @@ Example Response
       "metadata":{  
 
       },
-      "slug":"amit-rathore"
+      "slug":"ramit"
    },
    {  
       "id":2040,
-      "name":"Kuruvilla Choolackal",
+      "name":"Villackal",
       "avatar-url":null,
       "avatar-s3-key":null,
       "twitter-handle":null,
@@ -654,11 +668,11 @@ Example Response
       "metadata":{  
 
       },
-      "slug":"kuruvilla-choolackal"
+      "slug":"villackal"
    },
    {  
       "id":2041,
-      "name":"Tapan Bhat",
+      "name":"Tapan",
       "avatar-url":null,
       "avatar-s3-key":null,
       "twitter-handle":null,
@@ -666,7 +680,7 @@ Example Response
       "metadata":{  
 
       },
-      "slug":"tapan-bhat"
+      "slug":"tapan"
    }
 ]
 }
@@ -840,12 +854,6 @@ Example Response
    "total":7
 }
 
-Example Request
-
-curl -X GET "http://sketches.quintype.com/api/v1/entities?limit=2&type=book" -H "accept: json"
-
-
-Example Response
 
 ```
 
@@ -906,7 +914,7 @@ Lists the entity having the specified ID.
 
 ```
 
-The following request gets the list of companies established in the year 2015. A relationship had been created between the entities (entity-type) `year` and `companies-created`  
+The following request fetches the list of companies established in the year 2015. A relationship had been created between the entities (entity-type) `year` and `companies` 
 
 Example Request
 curl -X GET "http://sketches.quintype.com/api/v1/entities/15557/companies-established-year
@@ -928,7 +936,7 @@ Example Response
             "created-at": 1498647361780
          }
       ],
-      "companies-established-year": [
+      "companies-year": [
          {
             "entity-type": "companies-established",
             "name": "The companies established in 2015",
