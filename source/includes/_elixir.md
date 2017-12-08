@@ -1,9 +1,5 @@
 # Elixir Agent
 
-<aside class="warning">
-Elixir support is in BETA.
-</aside>
-
 <h2 id="elixir-requirements">Requirements</h2>
 
 Our Elixir agent supports Phoenix 1.2.0+ and Elixir 1.4+.

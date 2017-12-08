@@ -51,7 +51,7 @@ Here's an overview of the key functionality in our application monitoring servic
 
 ### Agents
 
-We support Ruby on Rails apps and have beta support for Elixir.
+We support Ruby on Rails and Elixir apps.
 
 Our agent is designed to run in production environments and has low overhead. Every minute, the agent transmits metrics to our service over SSL. 
 
