@@ -59,8 +59,7 @@ html, body {
   bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
-  font-size: 13px;
-  font-weight: bold;
+  font-size: 14px;
 
   // language selector for mobile devices
   .lang-selector {
@@ -74,7 +73,9 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
-    max-width: 100%;
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 20px;
   }
 
   &>.search {
@@ -131,7 +132,8 @@ html, body {
       text-decoration: none;
 
       &:hover {
-        text-decoration: underline;
+        text-decoration: none;
+        color: #0099e5;
       }
     }
   }
@@ -159,6 +161,9 @@ html, body {
     background-color: $nav-active-bg;
     color: $nav-active-text;
   }
+  .toc-link:hover {
+    color: $nav-active-text;
+  }
 
   // this is parent links of the currently selected ToC entry
   .toc-link.active-parent {
@@ -169,12 +174,11 @@ html, body {
   .toc-list-h2 {
     display: none;
     background-color: $nav-subitem-bg;
-    font-weight: 500;
   }
 
   .toc-h2 {
     padding-left: $nav-padding + $nav-indent;
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .toc-footer {
@@ -206,7 +210,7 @@ html, body {
   white-space: nowrap;
   text-overflow: ellipsis;
   text-decoration: none;
-  color: #fff;
+  color: #50585d;
   transition-property: background;
   transition-timing-function: linear;
   transition-duration: 130ms;
@@ -283,24 +287,46 @@ html, body {
 .lang-selector {
   background-color: $lang-select-bg;
   width: 100%;
-  font-weight: bold;
+  padding-left: 15px;
+  text-transform: capitalize !important;
   a {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
     display: block;
     float:left;
     color: $lang-select-text;
     text-decoration: none;
     padding: 0 10px;
-    line-height: 30px;
+    font-size: 14px;
+    line-height: 29px;
     outline: 0;
+    text-shadow: 0 0 0 hsla(0,0%,100%,.5), 0 1px 1px #0e74c3 !important;
 
     &:active, &:focus {
-      background-color: $lang-select-pressed-bg;
-      color: $lang-select-pressed-text;
+      background: linear-gradient(180deg,#5abaf0,#4aafed);
+      border-color: transparent;
+      color: #fff;
+      text-shadow: 0 0 0 hsla(0,0%,100%,.5), 0 1px 1px #0e74c3 !important;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      line-height: 29px;
+      padding: 0 10px;
     }
 
     &.active {
-      background-color: $lang-select-active-bg;
-      color: $lang-select-active-text;
+      background: linear-gradient(180deg,#5abaf0,#4aafed);
+      border-color: transparent;
+      color: #fff;
+      text-shadow: 0 0 0 hsla(0,0%,100%,.5), 0 1px 1px #0e74c3 !important;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      line-height: 29px;
+      padding: 0 10px;
     }
   }
 
@@ -349,14 +375,14 @@ html, body {
 
   h1 {
     @extend %header-font;
-    font-size: 25px;
-    padding-top: 0.5em;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    padding-top: 2.5em;
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
     border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    background-color: #fdfdfd;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -443,8 +469,17 @@ html, body {
   }
 
   p, li, dt, dd {
-    line-height: 1.6;
+    line-height: 26px;
     margin-top: 0;
+  }
+
+  p > a {
+    color: $nav-active-text;
+    text-decoration: none;
+  }
+  p > a:hover {
+    color: #000;
+    text-decoration: none;
   }
 
   img {
@@ -516,7 +551,7 @@ html, body {
 .content {
   pre, blockquote {
     background-color: $code-bg;
-    color: #fff;
+    color: #50585d;
 
     margin: 0;
     width: $examples-width;
@@ -531,7 +566,7 @@ html, body {
     &>p { margin: 0; }
 
     a {
-      color: #fff;
+      color: #0399e5;
       text-decoration: none;
       border-bottom: dashed 1px #ccc;
     }
