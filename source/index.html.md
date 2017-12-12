@@ -463,7 +463,7 @@ mobius.tokens
 
 ```json
 {
-  "token_uid": "THE_UID_OF_THE_TOKEN",
+  "uid": "THE_UID_OF_THE_TOKEN",
   "token_type":"erc20",
   "name":"Augur",
   "symbol":"REP",
