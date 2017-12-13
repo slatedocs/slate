@@ -122,7 +122,7 @@ payed_date | Data que foi realizada a transação
 
 ##Ativar Assinatura
 
-`PUT /service/v1`
+`POST /service/v1`
 
 > Exemplo para Ativar Assinatura
 
@@ -130,7 +130,7 @@ payed_date | Data que foi realizada a transação
 curl --include --header "accept: application/xml" \
 -u <login_ipag>:<API_KEY> \
 --url https://sandbox.ipag.com.br/service/v1 \
---request PUT \
+--request POST \
 --data 'ctrl=assinatura&action=ativar&id_assinatura=1000'
 ```
 
@@ -145,7 +145,7 @@ curl_setopt_array($curl, array(
   CURLOPT_USERPWD => "<login_ipag>:<API_KEY>"
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
-  CURLOPT_CUSTOMREQUEST => "PUT",
+  CURLOPT_CUSTOMREQUEST => "POST",
   CURLOPT_POSTFIELDS => "ctrl=assinatura&action=ativar&id_assinatura=1000",
   CURLOPT_HTTPHEADER => array(
     "accept: application/xml",
@@ -218,7 +218,7 @@ brand | Operadora do cartão
 
 ##Inativar Assinatura
 
-`PUT /service/v1`
+`POST /service/v1`
 
 > Exemplo para Inativar Assinatura
 
@@ -226,7 +226,7 @@ brand | Operadora do cartão
 curl --include --header "accept: application/xml" \
 -u <login_ipag>:<API_KEY> \
 --url https://sandbox.ipag.com.br/service/v1 \
---request PUT \
+--request POST \
 --data 'ctrl=assinatura&action=inativar&id_assinatura=1000'
 ```
 
@@ -241,7 +241,7 @@ curl_setopt_array($curl, array(
   CURLOPT_USERPWD => "<login_ipag>:<API_KEY>"
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
-  CURLOPT_CUSTOMREQUEST => "PUT",
+  CURLOPT_CUSTOMREQUEST => "POST",
   CURLOPT_POSTFIELDS => "ctrl=assinatura&action=inativar&id_assinatura=1000",
   CURLOPT_HTTPHEADER => array(
     "accept: application/xml",
@@ -314,7 +314,7 @@ brand | Operadora do cartão
 
 ##Alterar Data de Vencimento da Assinatura
 
-`PUT /service/v1`
+`POST /service/v1`
 
 > Exemplo para Alterar Data de Vencimento da Assinatura
 
@@ -322,7 +322,7 @@ brand | Operadora do cartão
 curl --include --header "accept: application/xml" \
 -u <login_ipag>:<API_KEY> \
 --url https://sandbox.ipag.com.br/service/v1 \
---request PUT \
+--request POST \
 --data 'ctrl=assinatura&action=vencto&id_assinatura=1000&data=2017-02-10'
 ```
 
@@ -337,7 +337,7 @@ curl_setopt_array($curl, array(
   CURLOPT_USERPWD => "<login_ipag>:<API_KEY>"
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
-  CURLOPT_CUSTOMREQUEST => "PUT",
+  CURLOPT_CUSTOMREQUEST => "POST",
   CURLOPT_POSTFIELDS => "ctrl=assinatura&action=vencto&id_assinatura=1000&data=2017-02-10",
   CURLOPT_HTTPHEADER => array(
     "accept: application/xml",
@@ -412,7 +412,7 @@ brand | Operadora do cartão
 
 ##Alterar Valor da Assinatura
 
-`PUT /service/v1`
+`POST /service/v1`
 
 > Exemplo para Alterar Valor da Assinatura
 
@@ -420,7 +420,7 @@ brand | Operadora do cartão
 curl --include --header "accept: application/xml" \
 -u <login_ipag>:<API_KEY> \
 --url https://sandbox.ipag.com.br/service/v1 \
---request PUT \
+--request POST \
 --data 'ctrl=assinatura&action=valor&id_assinatura=1000&valor=99.00'
 ```
 
@@ -435,7 +435,7 @@ curl_setopt_array($curl, array(
   CURLOPT_USERPWD => "<login_ipag>:<API_KEY>"
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
-  CURLOPT_CUSTOMREQUEST => "PUT",
+  CURLOPT_CUSTOMREQUEST => "POST",
   CURLOPT_POSTFIELDS => "ctrl=assinatura&action=valor&id_assinatura=1000&valor=99.00",
   CURLOPT_HTTPHEADER => array(
     "accept: application/xml",
@@ -517,7 +517,7 @@ brand | Operadora do cartão
 curl --include --header "accept: application/xml" \
 -u <login_ipag>:<API_KEY> \
 --url https://sandbox.ipag.com.br/service/v1 \
---request PUT \
+--request POST \
 --data 'ctrl=token&action=novo&numero_cartao=4024007109760958&nome_cartao=fulano
 &mes_cartao=10&ano_cartao=2021'
 ```
@@ -582,7 +582,7 @@ token | Token único do cartão
 
 ##Alterar Token da Assinatura
 
-`PUT /service/v1`
+`POST /service/v1`
 
 > Exemplo para Alterar Token da Assinatura
 
@@ -590,7 +590,7 @@ token | Token único do cartão
 curl --include --header "accept: application/xml" \
 -u <login_ipag>:<API_KEY> \
 --url https://sandbox.ipag.com.br/service/v1 \
---request PUT \
+--request POST \
 --data 'ctrl=assinatura&action=token&id_assinatura=1000&token=fa59-7b796cff-ed8b9bca-f8600ac9-1328'
 ```
 
@@ -605,7 +605,7 @@ curl_setopt_array($curl, array(
   CURLOPT_USERPWD => "<login_ipag>:<API_KEY>"
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
-  CURLOPT_CUSTOMREQUEST => "PUT",
+  CURLOPT_CUSTOMREQUEST => "POST",
   CURLOPT_POSTFIELDS => "ctrl=assinatura&action=token&id_assinatura=1000&token=fa59-7b796cff-ed8b9bca-f8600ac9-1328",
   CURLOPT_HTTPHEADER => array(
     "accept: application/xml",
@@ -679,7 +679,7 @@ brand | Operadora do cartão
 
 ##Alterar Valor e/ou Vencimento de uma Parcela da Assinatura
 
-`PUT /service/v1`
+`POST /service/v1`
 
 > Exemplo para Alterar Valor e/ou Vencimento de uma Parcela da Assinatura
 
@@ -687,7 +687,7 @@ brand | Operadora do cartão
 curl --include --header "accept: application/xml" \
 -u <login_ipag>:<API_KEY> \
 --url https://sandbox.ipag.com.br/service/v1 \
---request PUT \
+--request POST \
 --data 'ctrl=assinatura&action=parcela&id_assinatura=1000&valor=19.00&vencto=2017-12-25'
 ```
 
@@ -702,7 +702,7 @@ curl_setopt_array($curl, array(
   CURLOPT_USERPWD => "<login_ipag>:<API_KEY>"
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
-  CURLOPT_CUSTOMREQUEST => "PUT",
+  CURLOPT_CUSTOMREQUEST => "POST",
   CURLOPT_POSTFIELDS => "ctrl=assinatura&action=parcela&id_assinatura=1000&valor=19.00&vencto=2017-12-25",
   CURLOPT_HTTPHEADER => array(
     "accept: application/xml",
