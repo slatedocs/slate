@@ -173,6 +173,15 @@ Required (if VPC subnet)  | &nbsp;
 `vpcId`<br/>*UUID*        | The id of the VPC where to create the network
 `networkAclId`<br/>*UUID* | The id of the [network ACL](#cloudstack-network-acls) to use for the network
 
+For isolated networks  | &nbsp;
+-----------------------|-------
+`netmask`<br/>*string* | The netmask to use for this network. e.g. 255.255.255.0
+`gateway`<br/>*string* | The network's gateway. e.g. 10.0.0.1
+
+<aside class="notice">
+  Note that netmask and gateway are optional, but they must either both be omitted, or both be provided.
+</aside>
+
 <!-------------------- UPDATE A NETWORK -------------------->
 
 
