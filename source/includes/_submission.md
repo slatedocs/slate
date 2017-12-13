@@ -219,7 +219,7 @@ token_cartao | 37 | string | Obrigatório na utilização do token | Quando o
 <b>Para compras via OneClick e Assinaturas é necessário entrar em contato com a Adquirente e solicitar a liberação de transações sem a necessidade do CVV (Código de Segurança do Cartão).</b>
 </aside>
 
-## Campos adicionais para recorrência
+## Campos adicionais para Recorrência (Assinatura)
 
 > Exemplo de recorrência com TRIAL
 
@@ -261,6 +261,7 @@ $fields = array(
       'ciclos'         => urlencode('12'),
       'trial'          => urlencode(true),
       'valor_rec'      => urlencode('30.00'),
+      'assinatura_parcela'      => urlencode(3),
 );
 $fields_string ='';
 foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
@@ -293,6 +294,7 @@ frequencia | 2 | number | sim | Utilizado na criação de uma transação re
 intervalo | 5 | string | sim | Utilizado na criação de uma transação recorrente. Define a unidade de intervalo que será utilizada. ('day', 'week' ou 'month')
 inicio | 10 | date | sim | Utilizado na criação de uma transação recorrente. A primeira cobrança ocorre no dia da criação da recorrência. As próximas cobranças ocorrerão no dia especificado no inicio + (frequencia*intervalo). FORMATO: "DD/MM/YYYY"
 valor_rec | 12 | decimal | não | Valor que será cobrado no primeiro vencimento da recorrência. Não é obrigatório, caso não informado será utilizado o valor da transação (valor).
+assinatura_parcela | 2 | integer | não | Parcelamento que será utilizado na cobrança da Assinatura.
 ciclos | 2 | number | não | Define o número de ciclos de transações recorrentes que serão realizadas.
 trial | 1 | boolean | não | Se trial = 1 ou true então a primeira cobrança (valor da transação) será de R$1,00 afim de realizar uma transação de validação para geração do token.
 trial_ciclos | 2 | number | não | Define o número de ciclos de transações recorrentes em período trial.

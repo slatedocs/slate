@@ -129,7 +129,7 @@ payed_date | Data que foi realizada a transação
 ```shell
 curl --include --header "accept: application/xml" \
 -u <login_ipag>:<API_KEY> \
---url http://sandbox.ipag.com.br/service/v1 \
+--url https://sandbox.ipag.com.br/service/v1 \
 --request PUT \
 --data 'ctrl=assinatura&action=ativar&id_assinatura=1000'
 ```
@@ -139,7 +139,7 @@ curl --include --header "accept: application/xml" \
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "http://sandbox.ipag.com.br/service/v1",
+  CURLOPT_URL => "https://sandbox.ipag.com.br/service/v1",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_USERPWD => "<login_ipag>:<API_KEY>"
@@ -225,7 +225,7 @@ brand | Operadora do cartão
 ```shell
 curl --include --header "accept: application/xml" \
 -u <login_ipag>:<API_KEY> \
---url http://sandbox.ipag.com.br/service/v1 \
+--url https://sandbox.ipag.com.br/service/v1 \
 --request PUT \
 --data 'ctrl=assinatura&action=inativar&id_assinatura=1000'
 ```
@@ -235,7 +235,7 @@ curl --include --header "accept: application/xml" \
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "http://sandbox.ipag.com.br/service/v1",
+  CURLOPT_URL => "https://sandbox.ipag.com.br/service/v1",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_USERPWD => "<login_ipag>:<API_KEY>"
@@ -321,7 +321,7 @@ brand | Operadora do cartão
 ```shell
 curl --include --header "accept: application/xml" \
 -u <login_ipag>:<API_KEY> \
---url http://sandbox.ipag.com.br/service/v1 \
+--url https://sandbox.ipag.com.br/service/v1 \
 --request PUT \
 --data 'ctrl=assinatura&action=vencto&id_assinatura=1000&data=2017-02-10'
 ```
@@ -331,7 +331,7 @@ curl --include --header "accept: application/xml" \
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "http://sandbox.ipag.com.br/service/v1",
+  CURLOPT_URL => "https://sandbox.ipag.com.br/service/v1",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_USERPWD => "<login_ipag>:<API_KEY>"
@@ -419,7 +419,7 @@ brand | Operadora do cartão
 ```shell
 curl --include --header "accept: application/xml" \
 -u <login_ipag>:<API_KEY> \
---url http://sandbox.ipag.com.br/service/v1 \
+--url https://sandbox.ipag.com.br/service/v1 \
 --request PUT \
 --data 'ctrl=assinatura&action=valor&id_assinatura=1000&valor=99.00'
 ```
@@ -429,7 +429,7 @@ curl --include --header "accept: application/xml" \
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "http://sandbox.ipag.com.br/service/v1",
+  CURLOPT_URL => "https://sandbox.ipag.com.br/service/v1",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_USERPWD => "<login_ipag>:<API_KEY>"
@@ -516,7 +516,7 @@ brand | Operadora do cartão
 ```shell
 curl --include --header "accept: application/xml" \
 -u <login_ipag>:<API_KEY> \
---url http://sandbox.ipag.com.br/service/v1 \
+--url https://sandbox.ipag.com.br/service/v1 \
 --request PUT \
 --data 'ctrl=token&action=novo&numero_cartao=4024007109760958&nome_cartao=fulano
 &mes_cartao=10&ano_cartao=2021'
@@ -527,7 +527,7 @@ curl --include --header "accept: application/xml" \
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "http://sandbox.ipag.com.br/service/v1",
+  CURLOPT_URL => "https://sandbox.ipag.com.br/service/v1",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_USERPWD => "<login_ipag>:<API_KEY>"
@@ -589,7 +589,7 @@ token | Token único do cartão
 ```shell
 curl --include --header "accept: application/xml" \
 -u <login_ipag>:<API_KEY> \
---url http://sandbox.ipag.com.br/service/v1 \
+--url https://sandbox.ipag.com.br/service/v1 \
 --request PUT \
 --data 'ctrl=assinatura&action=token&id_assinatura=1000&token=fa59-7b796cff-ed8b9bca-f8600ac9-1328'
 ```
@@ -599,7 +599,7 @@ curl --include --header "accept: application/xml" \
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "http://sandbox.ipag.com.br/service/v1",
+  CURLOPT_URL => "https://sandbox.ipag.com.br/service/v1",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_USERPWD => "<login_ipag>:<API_KEY>"
@@ -677,12 +677,160 @@ last4 | Last4 do cartão de crédito
 expiry | Data de validade do cartão de crédito
 brand | Operadora do cartão
 
+##Alterar Valor e/ou Vencimento de uma Parcela da Assinatura
+
+`PUT /service/v1`
+
+> Exemplo para Alterar Valor e/ou Vencimento de uma Parcela da Assinatura
+
+```shell
+curl --include --header "accept: application/xml" \
+-u <login_ipag>:<API_KEY> \
+--url https://sandbox.ipag.com.br/service/v1 \
+--request PUT \
+--data 'ctrl=assinatura&action=parcela&id_assinatura=1000&valor=19.00&vencto=2017-12-25'
+```
+
+```php
+<?php
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => "https://sandbox.ipag.com.br/service/v1",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_USERPWD => "<login_ipag>:<API_KEY>"
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_CUSTOMREQUEST => "PUT",
+  CURLOPT_POSTFIELDS => "ctrl=assinatura&action=parcela&id_assinatura=1000&valor=19.00&vencto=2017-12-25",
+  CURLOPT_HTTPHEADER => array(
+    "accept: application/xml",
+  ),
+));
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
+```
+
+Parâmetro | valor  | type  | Obrigatório | Descrição
+--------- | ----- | ----- | ----------- | ---------
+ctrl      | assinatura | string| sim | controlador selecionado
+action    | parcela | string| sim | ação selecionada
+parcela | Ex.: 1 | int | sim | Número da Parcela a ser alterada
+valor     | Ex.: 19.99 | double | sim/não | Valor da Parcela
+vencto | Ex.: 2017-12-25 (AAAA-MM-DD) | string | sim/não | Data de cobrança da Parcela
+profile_id | Ex.: 99282 | string | não | ID de referência da assinatura, criado pelo usuário (obrigatório caso não tenha id_assinatura)
+id_assinatura | Ex.: 1000 | int | não/sim | ID de referência da assinatura, criado pelo iPag (obrigatório caso não tenha profile_id)
+
+##Resposta - Alterar Valor e/ou Vencimento de uma Parcela da Assinatura (XML)
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<retorno>
+    <code>000</code>
+    <message>success</message>
+    <id>1000</id>
+    <profile_id/>
+    <is_active>1</is_active>
+    <description>Assinatura #</description>
+    <value>1.50</value>
+    <billing_date>12</billing_date>
+    <frequency>1</frequency>
+    <interval>month</interval>
+    <token>a440-d1bc21ae-c00dc795-f088acb6-00bd</token>
+    <credit_card>
+        <bin>406655</bin>
+        <last4>8107</last4>
+        <expiry>12-2017</expiry>
+        <brand>visa</brand>
+    </credit_card>
+    <billing>
+        <payment_1>
+            <number>1</number>
+            <expiry_date>2017-12-06</expiry_date>
+            <value>1.00</value>
+            <is_payed>1</is_payed>
+            <payed_value>1.00</payed_value>
+            <payed_date>2017-12-06</payed_date>
+            <description>Assinatura # 1</description>
+            <transaction>
+                <installment_number>1</installment_number>
+                <transaction_id>995117</transaction_id>
+                <payed_value>1.00</payed_value>
+                <payed_date>2017-12-06</payed_date>
+            </transaction>
+        </payment_1>
+        <payment_2>
+            <number>2</number>
+            <expiry_date>2017-12-25</expiry_date>
+            <value>19.99</value>
+            <is_payed>0</is_payed>
+            <payed_value>0.00</payed_value>
+            <payed_date>0000-00-00</payed_date>
+            <description>Assinatura # 2</description>
+            <transaction/>
+        </payment_2>
+    </billing>
+</retorno>
+```
+
+Parâmetro | Descrição
+--------- | ---------
+retorno | *Container*
+code | Código de retorno (000 = sucesso)
+message | Mensagem de retorno
+id | ID da assinatura criado pelo iPag
+profile_id | ID da assinatura criado pelo usuário
+is_active | Status atual da assinatura (1 = ativo, 0 = inativo)
+description | Descrição da assinatura
+value | Valor recorrente cobrado no período
+billing_date | Dia de vencimento
+frequency | Frequência que ocorrem as cobranças
+interval | Intevalo de tempo que ocorrem as cobranças (day, week, month)
+token | Token de cartão vinculado a assinatura
+credit_card | *Container*
+bin | Bin do cartão de crédito
+last4 | Last4 do cartão de crédito
+expiry | Data de validade do cartão de crédito
+brand | Operadora do cartão
+billing | *Container*
+payment_1* | *Container* (Poderá repetir)
+number | Número do pagamento
+expiry_date | Vencimento do pagamento
+value | Valor do pagamento
+is_payed | 1 = Pago, 0 = Não pago
+payed_value | Valor Pago
+payed_date | Data que foi realizado o pagamento
+description | Descrição do pagamento
+transaction | *Container*
+installment_number | Número de parcelas escolhido no pagamento
+transaction_id | ID da transação vinculada no iPag
+payed_value | Valor pago na transação
+payed_date | Data que foi realizada a transação
+
+<aside class="notice">
+    * Para cada pagamento/parcela na assinatura terá um container <b>payment_</b>
+</aside>
+
 ##Tabela de Erros (Integração Assinatura)
 
 HTTP Code | Code | Mensagem
 ----| ----| ---------
 404 | 001 | Assinatura não encontrada.
+
 406 | 002 | Valor não informado na requisição.
+406 | 002 | Número da parcela não informado na requisição.
+406 | 002 | Parcela não encontrada.
+
 406 | 003 | Data não informada ou não está no formato yyyy-mm-dd.
 404 | 004 | Ação não é válida.
 406 | 005 | Token não é válido.
