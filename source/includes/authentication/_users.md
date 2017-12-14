@@ -122,34 +122,34 @@ Content-type | application/json
   | Attribute | Required | Description
 - | --------- | ------- | -----------
 auth | | true | parent attribute specifying user information to update or create in MDLIVE
- | first_name | true | user's first name
- | last_name | true | user's last name
- | gender | true | user's gender, specified as 'M' for male, 'F' for female
- | birthdate | true | user's birthdate, specified as year-month-day
- | subscriber_id | true | user's subscriber id
+ | first_name | true | User's first name
+ | last_name | true | User's last name
+ | gender | true | User's gender, specified as 'M' for male, 'F' for female
+ | birthdate | true | User's birthdate, specified as year-month-day
+ | subscriber_id | true | User's subscriber id
  | member_id | false | user's member id
- | phone | true | user's contact phone number
- | email | true | user's email address
- | address1 | true | first line of user's mailing address
- | address2 | false | second line of user's mailing address, if needed
- | city | true | city of user's mailing address
- | state | true | state of user's mailing address
- | zip | true | zip code of user's mailing address
+ | phone | true | User's contact phone number
+ | email | true | User's email address
+ | address1 | true | First line of user's mailing address
+ | address2 | false | Second line of user's mailing address, if needed
+ | city | true | City of user's mailing address
+ | state | true | State of user's mailing address
+ | zip | true | Zip code of user's mailing address
  | relationship | true | Relationship of user to primary account holder. Specified as either 'Self', 'Spouse', 'Child', or 'Other Adult'
- | primary_first_name | false | first name of primary account holder, if user is not primary
- | primary_last_name | false | last name of primary account holder, if user is not primary
- | primary_gender | false | gender of primary account holder, if user is not primary, specified as 'M' for male, 'F' for female
- | primary_birthdate | false | birthdate of primary account holder, if user is not primary, specified as day-month-year
- | primary_subscriber_id | false | subscriber id of primary account holder, if user is not primary
- | primary_member_id | false | member id of primary account holder, if user is not primary
- | primary_address1 | false | first line of mailing address for primary account holder, if user is not primary
- | primary_address2 | false | second line of mailing address for primary account holder, if user is not primary
- | primary_city | false | city of mailing address for primary account holder, if user is not primary
- | primary_state | false | state of mailing address for primary account holder, if user is not primary
- | primary_zip| false | zip code of mailing address for primary account holder, if user is not primary
+ | primary_first_name | false | First name of primary account holder, if user is not primary
+ | primary_last_name | false | Last name of primary account holder, if user is not primary
+ | primary_gender | false | Gender of primary account holder, if user is not primary, specified as 'M' for male, 'F' for female
+ | primary_birthdate | false | Birthdate of primary account holder, if user is not primary, specified as day-month-year
+ | primary_subscriber_id | false | Subscriber id of primary account holder, if user is not primary
+ | primary_member_id | false | Member id of primary account holder, if user is not primary
+ | primary_address1 | false | First line of mailing address for primary account holder, if user is not primary
+ | primary_address2 | false | Second line of mailing address for primary account holder, if user is not primary
+ | primary_city | false | City of mailing address for primary account holder, if user is not primary
+ | primary_state | false | State of mailing address for primary account holder, if user is not primary
+ | primary_zip| false | Zip code of mailing address for primary account holder, if user is not primary
 org | | true | parent attribute for calling organizational information
- | ou | true | organizational unit identifier assigned by MDLIVE
- | request_timestamp | false | timestamp of request, specified as floating point number of seconds since the Epoch
+ | ou | true | Organizational unit identifier assigned by MDLIVE
+ | request_timestamp | false | Timestamp of request, specified as floating point number of seconds since the Epoch
  | enterprise_hash | false | Base64 encoded SHA-256 digest of memberid, request_timestamp, and a shared secret digest key
 api |  | true | parent attribute of api_key and password
  | api_key | true | Unique key assigned to you by your account manager

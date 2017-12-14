@@ -18,8 +18,9 @@ includes:
   - sav/schedule_a_visit_overview
 
   - entities/entities
-  - entities/states
+  - entities/chief_complaints
   - entities/provider_types
+  - entities/states
 
 search: true
 ---
