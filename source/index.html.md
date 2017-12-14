@@ -23,6 +23,7 @@ includes:
   - entities/medical_conditions/create
   - entities/medical_conditions/delete
   - entities/medical_conditions/list
+  - entities/patients
   - entities/provider_types
   - entities/states
 
