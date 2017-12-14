@@ -139,36 +139,6 @@ RestClient::Request.new(
     "availability_type": [
       "phone",
       "video"
-    ],
-    "languages": [
-      {
-        "id": 14,
-        "name": "Arabic"
-      },
-      {
-        "id": 12,
-        "name": "Chinese"
-      },
-      {
-        "id": 1,
-        "name": "English"
-      },
-      {
-        "id": 3,
-        "name": "French"
-      },
-      {
-        "id": 4,
-        "name": "German"
-      },
-      {
-        "id": 20,
-        "name": "Greek"
-      },
-      {
-        "id": 18,
-        "name": "Hebrew"
-      }
     ]
   }
 }
@@ -203,7 +173,6 @@ search_params |                | true      | Hash with specific search filters
               | availability_type| false   | Can be either 'phone' or 'video', use to specify the preferred type of appointment for the patient
               | gender         | false     | Preferred Provider gender (Male or Female string)
               | provider_type  | false     | Provider Type ID, from the provider types list (or the endpoint response)
-              | language_id    | false     | Language the provider speaks
               | specific_date  | false     | Date in YYYY-mm-dd format
               | speciality_id  | false     | Provider Specialty for filtering, obtained from this endpoint response
               
