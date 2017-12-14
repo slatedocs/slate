@@ -72,11 +72,8 @@ RestClient::Request.new(
       "availability_type": null
     }
   ],
-  "doctor_on_call": true,
   "video_waiting_room_open": true,
-  "is_telemedicine_restricted": false,
   "refine_search_options": {
-    "disable_24_hour_rule": true,
     "default_provider_types": [
       {
         "id": 3,
@@ -97,43 +94,6 @@ RestClient::Request.new(
         "id": 12,
         "name": "Dermatologist",
         "had_consult_24_hr": false
-      }
-    ],
-    "specialties": [
-      {
-        "id": 1,
-        "name": "Abdominal Surgery",
-        "code": "AS",
-        "created_at": "2008-02-17T14:20:38.000-05:00",
-        "updated_at": "2008-02-17T14:20:38.000-05:00"
-      },
-      {
-        "id": 4,
-        "name": "Adolescent Medicine (Internal Medicine)",
-        "code": "AMI",
-        "created_at": "2008-02-17T14:20:38.000-05:00",
-        "updated_at": "2008-02-17T14:20:38.000-05:00"
-      },
-      {
-        "id": 6,
-        "name": "Adult Reconstructive Orthopedics",
-        "code": "OAR",
-        "created_at": "2008-02-17T14:20:38.000-05:00",
-        "updated_at": "2008-02-17T14:20:38.000-05:00"
-      },
-      {
-        "id": 7,
-        "name": "Aerospace Medicine",
-        "code": "AM",
-        "created_at": "2008-02-17T14:20:38.000-05:00",
-        "updated_at": "2008-02-17T14:20:38.000-05:00"
-      },
-      {
-        "id": 9,
-        "name": "Allergy and Immunology",
-        "code": "AI",
-        "created_at": "2008-02-17T14:20:38.000-05:00",
-        "updated_at": "2008-02-17T14:20:38.000-05:00"
       }
     ],
     "availability_type": [
