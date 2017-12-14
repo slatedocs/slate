@@ -15,6 +15,8 @@ includes:
   - api/payplan
   - api/customer
   - api/transaction
+  - api/reporting
+  - api/representatives
   - errors
 
 search: true
