@@ -41,7 +41,7 @@ bundle install
     </tr>
     <tr>
      	<td><span class="step">2</span></td>
-     	<td><p>Download your customized config file, placing it at <code>config/scout_apm.yml</code>.</p>
+     	<td><p>Download your customized config file*, placing it at <code>config/scout_apm.yml</code>.</p>
         <p class="smaller">Your customized config file is available within your Scout account.</p>
       </td>
     </tr>
@@ -51,6 +51,10 @@ bundle install
     </tr>
  	</tbody>
 </table>
+
+<p>
+* - If you've installed Scout via the Heroku Addon, the provisioning process automatically sets the required  settings via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a> and a configuration file isn't required.
+</p>
 
 <h2 id="ruby-troubleshooting">Troubleshooting</h2>
 
