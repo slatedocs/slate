@@ -53,7 +53,7 @@ bundle install
 </table>
 
 <p>
-* - If you've installed Scout via the Heroku Addon, the provisioning process automatically sets the required  settings via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a> and a configuration file isn't required.
+* - If you've installed Scout via the Heroku Addon, the provisioning process automatically sets the required settings via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a> and a configuration file isn't required.
 </p>
 
 <h2 id="ruby-troubleshooting">Troubleshooting</h2>
