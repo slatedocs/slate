@@ -569,7 +569,7 @@ Returns the collection based on the slug.
 | Name | Data Type | Description|
 |--|--|--|
 |slug| string| The slug for the desired collection|
-|item-type| string| POssible values are story and collection|
+|item-type| string| Possible values are story and collection|
 |exclude-story-ids|integer| The story IDs to be excluded from displaying|
 
 ```
@@ -954,6 +954,184 @@ Example Response
 
 ``` 
 
+##/api/v1/bulk
+
+**Description**
+
+Sends a batch of API requests. 
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+
+
+
+##/api/stories/{story-id}/votes
+
+**Description**
+
+ Adds vote to the specified story. Note that the user has to be logged in.
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|story-id | String| The story ID|
+
+
+
+##/api/stories/{story-id}/votes
+
+**Description**
+
+Fetches the total number of votes for the specified ID. Note that the user has to be logged in.
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|story-id | String| The story ID|
+
+
+
+##/stories.rss
+
+**Description**
+
+
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+
+
+```
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/">
+    <channel> 
+        <title>Platform</title> 
+        <link>http://platform.rio.staging.quintype.io</link> 
+        <description>Platform</description> 
+        <atom:link href="http://platform.rio.staging.quintype.io/stories.rss?time-period=last-1-month" rel="self" type="application/rss+xml"></atom:link> 
+        <language>en-US</language> 
+        <lastBuildDate>Tue,
+19Dec 2017 04:40:45+0000</lastBuildDate> 
+        <sy:updatePeriod>hourly</sy:updatePeriod> 
+        <sy:updateFrequency>1</sy:updateFrequency> 
+        <item> 
+    <title>Indian opener Rohit Sharma’s record-setting third career double hundred.</title> 
+    <link>http://platform.rio.staging.quintype.io/southnews/2017/12/18/indian-opener-rohit-sharmas-record-setting-third-career-double-hundred</link> 
+    <comments>http://platform.rio.staging.quintype.io/southnews/2017/12/18/indian-opener-rohit-sharmas-record-setting-third-career-double-hundred#comments</comments> 
+    <guid isPermaLink="false">d6cde3a3-eb2b-4eb3-8fff-cd746a4f0d19</guid> 
+    <pubDate>Mon,
+18Dec 2017 11:31:48+0000</pubDate> 
+    <atom:updated>2017-12-18T11:31:48.852Z</atom:updated> 
+    <atom:author> 
+        <atom:name>tester</atom:name> 
+        <atom:uri>/api/author/178214</atom:uri> 
+    </atom:author> 
+    <description></description> 
+    <media:keywords></media:keywords> 
+    <category>SouthNews</category> 
+    <category>cricket</category> 
+    <content:encoded> 
+        <![  
+   CDATA   [  
+      <p>Indian opener Rohit Sharma’s record-setting third career double hundred.</p>
+   ]
+]> 
+    </content:encoded> 
+</item> 
+<item> 
+<title> 
+GST Network Brings In Option For Filing Of Forms On Monthly Or Quarterly Basis 
+</title> 
+<link> 
+https://swarajyamag.com/insta/gst-network-brings-in-option-for-filing-of-forms-on-monthly-or-quarterly-basis 
+</link> 
+<comments> 
+https://swarajyamag.com/insta/gst-network-brings-in-option-for-filing-of-forms-on-monthly-or-quarterly-basis#comments 
+</comments> 
+<guid isPermaLink="false">20a996a0-80ba-4bed-b961-a3d5064bff40</guid> 
+<pubDate>Tue,
+19Dec 2017 03:13:36+0000</pubDate> 
+<atom:updated>2017-12-19T03:13:36.812Z</atom:updated> 
+<atom:author> 
+<atom:name>Swarajya Staff</atom:name> 
+<atom:uri>/api/author/17513</atom:uri> 
+</atom:author> 
+<description> 
+<![  
+   CDATA   [  
+      Taxpayers with annual aggregate turnover up to Rs1.5 crore in the previous financial year can avail the option of filing quarterly returns.
+   ]
+]> 
+</description> 
+<media:keywords>GSTN,
+GST Return,
+Quarterly</media:keywords> 
+<media:content height="249" url="https://images.assettype.com/swarajya/2017-11/8b4f08c4-c333-4953-b649-330641d1b341/unnamed.jpg" width="448"> 
+<media:title type="html"> 
+<![  
+   CDATA   [  
+      GSTN logo
+   ]
+]> 
+</media:title> 
+</media:content> 
+<media:thumbnail url="https://images.assettype.com/swarajya/2017-11/8b4f08c4-c333-4953-b649-330641d1b341/unnamed.jpg?w=280" width="280"/> 
+<category>Insta</category> 
+<content:encoded> 
+<![  
+   CDATA   [  
+      <p>Goods and services tax network (GSTN),
+      the IT backbone of the new tax regime,
+      on Monday said it has put a new function on its portal to allow taxpayers choose the frequency of filing GSTR 1 form on quarterly or monthly basis.</p><p>Taxpayers with annual aggregate turnover up to Rs1.5 crore in the previous financial year or anticipated in the current financial year can avail the option of filing quarterly returns. Form GSTR 1 summarises all the sales of a taxpayer.</p><p>This has been done as per decision taken in the 23rd GST Council meeting. After giving their option,
+      taxpayers can file GSTR 1 for the relevant return periods,
+      the GSTN said in a statement.</p><p>It further said that taxpayers who opt for quarterly filing will have to select the last month of the quarter from the drop down menu. Further,
+      all taxpayers who opt for monthly filing can now file GSTR 1 from August onwards till November. Filing of return of previous month is mandatory.</p><p>GSTN has been set up to provide IT infrastructure and services to the central as well as state governments,
+      taxpayers and other stakeholders for implementation of the GST,
+      which came into force on 1 July this year. <strong>(PTI)</strong></p>
+   ]
+]> 
+</content:encoded> 
+</item> 
+</channel> 
+</rss>
+
+```
+
+
+##/api/v1/bulk
+
+**Description**
+
+
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+
+
+
+##/api/v1/bulk
+
+**Description**
+
+
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
 
 #(H1) this is testing only
 
