@@ -39,7 +39,7 @@ Scout captures a sanitized version of SQL queries. Click the "SQL" button next t
 
 Scout collects a sanitized version of SQL queries and displays these in transaction traces. To limit agent overhead sanitizing queries, we do not collect query statements with more than 16k characters.
 
-This limit was raised to 16k characters from 4k characters in version 2.3.3 of the Ruby agent after determining the higher threshold was safe for production environments. If you have an older version of `scout_apm`, [update to the latest](#updating-to-the-newest-version).
+This limit was raised to 16k characters from 4k characters in version 2.4.0 of the Ruby agent after determining the higher threshold was safe for production environments. If you have an older version of `scout_apm`, [update to the latest](#updating-to-the-newest-version).
 
 ### Code Backtraces
 
