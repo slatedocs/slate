@@ -35,9 +35,11 @@ Scout captures a sanitized version of SQL queries. Click the "SQL" button next t
 
 ![stream show sql](stream_show_sql_annotated.png)
 
-#### Don't see the query next to an SQL call?
+#### Don't an SQL query next to an SQL call?
 
-For performance reasons, Scout doesn't attempt to sanitize large SQL queries. When this occurs, you won't see an "SQL" button to view the raw query next to an SQL method call.
+Scout collects a sanitized version of SQL queries and displays these in transaction traces. To limit agent overhead sanitizing queries, we do not collect query statements with more than 16k characters.
+
+This limit was raised to 16k characters from 4k characters in version 2.3.3 of the Ruby agent after determining the higher threshold was safe for production environments. If you have an older version of `scout_apm`, [update to the latest](#updating-to-the-newest-version).
 
 ### Code Backtraces
 
