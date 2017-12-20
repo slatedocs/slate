@@ -375,7 +375,7 @@ Inscrições são retornadas em lote de 10, ordenadas pela última atualização
 | cursor | string | código para pegar os próximos passos |
 
 
-## Informações de um único vestibular GET /api/applications/{id}
+## Informações de um único vestibular
 
 > Requisição
 
