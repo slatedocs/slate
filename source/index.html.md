@@ -345,7 +345,7 @@ Inscrições são retornadas em lote de 10, ordenadas pela última atualização
 | items | array| lista de objetos com dados de inscrições de vestibular |
 | id | number | id do vestibular |
 | student | object | objeto com dados do aluno |
-| id | number | id do aluno. |
+| id (student) | number | id do aluno. |
 | name | string | nome do aluno |
 | cpf | string | cpf do aluno |
 | birth_date | string | data de nascimento do aluno |
@@ -371,7 +371,7 @@ Inscrições são retornadas em lote de 10, ordenadas pela última atualização
 | times | string | hora da realização do vestibular |
 | status | string | status do vestibular |
 | result | string | resultado do vestibular |
-| type | string | tipo de exame (vestibular ou enem) |
+| type | string | tipo de exame (exam ou enem) |
 | cursor | string | código para pegar os próximos passos |
 
 
@@ -448,7 +448,41 @@ Inscrições são retornadas em lote de 10, ordenadas pela última atualização
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-|`id` | Path | ID da inscrição |
+| id | Path | ID da inscrição |
+
+### Informações de resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | number | id do vestibular |
+| student | object | objeto com dados do aluno |
+| id (student) | number | id do aluno. |
+| name | string | nome do aluno |
+| cpf | string | cpf do aluno |
+| birth_date | string | data de nascimento do aluno |
+| emails | array de string | lista de emails do aluno |
+| phones | array de string | lista de telefones do aluno |
+| address_information | object | objeto com dados onde aluno reside |
+| address | string | endereço onde aluno reside |
+| number | string | número onde aluno reside |
+| neighborhood | string | bairro onde aluno reside |
+| city | string | cidade onde aluno reside |
+| state | string | estado onde aluno reside |
+| postal_code | string | código postal onde aluno reside |
+| exam | object | objeto com informações do exame |
+| course_skus | array | lista com os cursos pertencentes a este exame |
+| local | object | objeto com dados do exame |
+| address | string | endereço da localização do vestibular |
+| number | string | número da localização do vestibular |
+| neighborhood | string | bairro da localização do vestibular |
+| city | string | cidade da localização do vestibular |
+| state | string | estado da localização do vestibular |
+| postal_code | string | código postal da localização do vestibular |
+| dates | string | data da realização do vestibular |
+| times | string | hora da realização do vestibular |
+| status | string | status do vestibular |
+| result | string | resultado do vestibular |
+| type | string | tipo de exame (exam ou enem) |
 
 
 ## Atualização de processo seletivo
@@ -532,7 +566,49 @@ Atualiza o progresso no processo seletivo de um dado aluno.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| `status` | Form | Situação do aluno entre `registered`, `approved`, `failed` |
+| status | Form | Situação do aluno entre `registered`, `approved`, `failed` |
+
+### Informações de resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | number | id do vestibular |
+| student | object | objeto com dados do aluno |
+| id (student) | number | id do aluno. |
+| name | string | nome do aluno |
+| cpf | string | cpf do aluno |
+| birth_date | string | data de nascimento do aluno |
+| emails | array de string | lista de emails do aluno |
+| phones | array de string | lista de telefones do aluno |
+| address_information | object | objeto com dados onde aluno reside |
+| address | string | endereço onde aluno reside |
+| number | string | número onde aluno reside |
+| neighborhood | string | bairro onde aluno reside |
+| city | string | cidade onde aluno reside |
+| state | string | estado onde aluno reside |
+| postal_code | string | código postal onde aluno reside |
+| exam | object | objeto com informações do exame |
+| course_skus | array | lista com os cursos pertencentes a este exame |
+| local | object | objeto com dados do exame |
+| address | string | endereço da localização do vestibular |
+| number | string | número da localização do vestibular |
+| neighborhood | string | bairro da localização do vestibular |
+| city | string | cidade da localização do vestibular |
+| state | string | estado da localização do vestibular |
+| postal_code | string | código postal da localização do vestibular |
+| dates | string | data da realização do vestibular |
+| times | string | hora da realização do vestibular |
+| status | string | status do vestibular |
+| result | string | resultado do vestibular |
+| type | string | tipo de exame (exam ou enem) |
+
+### Significado do retorno de status
+
+| Status | Descrição |
+| ------ | --------- |
+| registered | Registrado para realizar vestibular |
+| approved | Aprovado no vestibular |
+| failed | Recusado no vestibular |
 
 
 # Notificações
