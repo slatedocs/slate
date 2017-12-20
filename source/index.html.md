@@ -610,6 +610,384 @@ Atualiza o progresso no processo seletivo de um dado aluno.
 | approved | Aprovado no vestibular |
 | failed | Recusado no vestibular |
 
+# Informações de admissões
+
+## Listar todas admissões
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/admissions
+```
+
+> Resposta
+
+```json
+{
+  "items": [
+    {
+      "id": 123456,
+      "course_sku": "ADM-TARDE-EAD-91119",
+      "status": "pending_docs",
+      "application": {
+        "id": 123456,
+        "student": {
+          "id": 394932,
+          "name": "José da Silva",
+          "cpf": "111.222.333-44",
+          "birth_date": "1991-01-01",
+          "emails": [
+            "teste@exemplo.com"
+          ],
+          "phones": [
+            "(11) 98888-7777"
+          ],
+          "address_information": {
+            "address": "Rua Sandra",
+            "number": "432S",
+            "neighborhood": "Chácara Dora",
+            "city": "Araçariguama",
+            "state": "SP",
+            "postal_code": "18147-000"
+          }
+        },
+        "exam": {
+          "course_skus": [
+            "ADM-MANHA-SP",
+            "DIR-MANHA-SP",
+            "ADM-NOITE-RJ"
+          ],
+          "local": {
+            "address": "Rua Márcia",
+            "number": "4231",
+            "neighborhood": "Morro do Barreto",
+            "city": "São Roque",
+            "state": "SP",
+            "postal_code": "19110-000"
+          },
+          "dates": "2016-11-01",
+          "times": "18:30",
+          "status": "active"
+        },
+        "result": "registered",
+        "type": "exam"
+      }
+    }
+  ],
+  "cursor": "ASAKDSaldlwp20"
+}
+```
+
+Retorna todas as admissões da faculdade.
+
+Admissões são retornadas em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, retorna um valor `cursor` adicional que deve ser utilizado de parâmetro na próxima requisição para continuar.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| `cursor` | Query | valor cursor utilizado para continuar uma paginação anterior |
+
+### Informações de resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| items | array | lista de objetos com dados de inscrições de vestibular |
+| id | number | id da admissão |
+| course_sku | string | status atual da admissão do aluno |
+| status | string | status da admissão do aluno |
+| application | object | objeto do vestibular referente a essa admissão |
+| application[id] | number | id do vestibular |
+| application[student] | object | objeto com os dados do aluno |
+| student[id] | number | id do aluno |
+| student[name] | string | nome do aluno |
+| student[cpf] | string | cpf do aluno |
+| student[birth_date] | string | data de nascimento do aluno |
+| student[emails] | array de string | lista de emails do aluno |
+| student[phones] | array de string | lista de telefones do aluno |
+| student[address_information] | object | objeto com dados onde aluno reside |
+| address_information[address] | string | endereço onde aluno reside |
+| address_information[number] | string | número onde aluno reside |
+| address_information[neighborhood] | string | bairro onde aluno reside |
+| address_information[city] | string | cidade onde aluno reside |
+| address_information[state] | string | estado onde aluno reside |
+| address_information[postal_code] | string | código postal onde aluno reside |
+| exam | object | objeto com informações do exame |
+| exam[course_skus] | array | lista com os cursos pertencentes a este exame |
+| exam[local] | object | objeto com dados do exame |
+| local[address] | string | endereço da localização do vestibular |
+| local[number] | string | número da localização do vestibular |
+| local[neighborhood] | string | bairro da localização do vestibular |
+| local[city] | string | cidade da localização do vestibular |
+| local[state] | string | estado da localização do vestibular |
+| local[postal_code] | string | código postal da localização do vestibular |
+| exam[dates] | string | data da realização do vestibular |
+| exam[times] | string | hora da realização do vestibular |
+| exam[status] | string | status do vestibular |
+| application[result] | string | resultado do vestibular |
+| application[type] | string | tipo de exame (exam ou enem) |
+| cursor | string | código para pegar os próximos passos |
+
+## Informações de uma única admissão
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/admissions/123456
+```
+
+> Resposta
+
+```json
+{
+  "id": 123456,
+  "course_sku": "ADM-TARDE-EAD-91119",
+  "status": "pending_docs",
+  "application": {
+    "id": 123456,
+    "student": {
+      "id": 394932,
+      "name": "José da Silva",
+      "cpf": "111.222.333-44",
+      "birth_date": "1991-01-01",
+      "emails": [
+        "teste@exemplo.com"
+      ],
+      "phones": [
+        "(11) 98888-7777"
+      ],
+      "address_information": {
+        "address": "Rua Sandra",
+        "number": "432S",
+        "neighborhood": "Chácara Dora",
+        "city": "Araçariguama",
+        "state": "SP",
+        "postal_code": "18147-000"
+      }
+    },
+    "exam": {
+      "course_skus": [
+        "ADM-MANHA-SP",
+        "DIR-MANHA-SP",
+        "ADM-NOITE-RJ"
+      ],
+      "local": {
+        "address": "Rua Márcia",
+        "number": "4231",
+        "neighborhood": "Morro do Barreto",
+        "city": "São Roque",
+        "state": "SP",
+        "postal_code": "19110-000"
+      },
+      "dates": "2016-11-01",
+      "times": "18:30",
+      "status": "active"
+    },
+    "result": "registered",
+    "type": "exam"
+  }
+}
+```
+
+> Resposta quando não encontra nenhuma admissão
+
+```json
+{
+  "error": true,
+  "message": "ID não encontrado"
+}
+```
+
+Retorna uma admissão específica da faculdade.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | path | id da admissão |
+
+### Informações de resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| items | array | lista de objetos com dados de inscrições de vestibular |
+| id | number | id da admissão |
+| course_sku | string | status atual da admissão do aluno |
+| status | string | status da admissão do aluno |
+| application | object | objeto do vestibular referente a essa admissão |
+| application[id] | number | id do vestibular |
+| application[student] | object | objeto com os dados do aluno |
+| student[id] | number | id do aluno |
+| student[name] | string | nome do aluno |
+| student[cpf] | string | cpf do aluno |
+| student[birth_date] | string | data de nascimento do aluno |
+| student[emails] | array de string | lista de emails do aluno |
+| student[phones] | array de string | lista de telefones do aluno |
+| student[address_information] | object | objeto com dados onde aluno reside |
+| address_information[address] | string | endereço onde aluno reside |
+| address_information[number] | string | número onde aluno reside |
+| address_information[neighborhood] | string | bairro onde aluno reside |
+| address_information[city] | string | cidade onde aluno reside |
+| address_information[state] | string | estado onde aluno reside |
+| address_information[postal_code] | string | código postal onde aluno reside |
+| exam | object | objeto com informações do exame |
+| exam[course_skus] | array | lista com os cursos pertencentes a este exame |
+| exam[local] | object | objeto com dados do exame |
+| local[address] | string | endereço da localização do vestibular |
+| local[number] | string | número da localização do vestibular |
+| local[neighborhood] | string | bairro da localização do vestibular |
+| local[city] | string | cidade da localização do vestibular |
+| local[state] | string | estado da localização do vestibular |
+| local[postal_code] | string | código postal da localização do vestibular |
+| exam[dates] | string | data da realização do vestibular |
+| exam[times] | string | hora da realização do vestibular |
+| exam[status] | string | status do vestibular |
+| application[result] | string | resultado do vestibular |
+| application[type] | string | tipo de exame (exam ou enem) |
+
+## Atualização de admissão
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/admissions/123456 \
+  -d status="submitted_docs"
+```
+
+> Resposta
+
+```json
+{
+  "id": 123456,
+  "course_sku": "ADM-TARDE-EAD-91119",
+  "status": "submitted_docs",
+  "application": {
+    "id": 123456,
+    "student": {
+      "id": 394932,
+      "name": "José da Silva",
+      "cpf": "111.222.333-44",
+      "birth_date": "1991-01-01",
+      "emails": [
+        "teste@exemplo.com"
+      ],
+      "phones": [
+        "(11) 98888-7777"
+      ],
+      "address_information": {
+        "address": "Rua Sandra",
+        "number": "432S",
+        "neighborhood": "Chácara Dora",
+        "city": "Araçariguama",
+        "state": "SP",
+        "postal_code": "18147-000"
+      }
+    },
+    "exam": {
+      "course_skus": [
+        "ADM-MANHA-SP",
+        "DIR-MANHA-SP",
+        "ADM-NOITE-RJ"
+      ],
+      "local": {
+        "address": "Rua Márcia",
+        "number": "4231",
+        "neighborhood": "Morro do Barreto",
+        "city": "São Roque",
+        "state": "SP",
+        "postal_code": "19110-000"
+      },
+      "dates": "2016-11-01",
+      "times": "18:30",
+      "status": "active"
+    },
+    "result": "registered",
+    "type": "exam"
+  }
+}
+```
+
+> Retorno quando parâmetros estão incorretos
+
+```json
+{
+  "error": true,
+  "message": "Situação fornecida não é válida"
+}
+```
+
+> Retorno quando não encontra a admissão
+
+```json
+{
+  "error": true,
+  "message": "ID não encontrado"
+}
+```
+
+Atualiza o status admissão específica.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| status | form | situação da admissão |
+
+### Informações de resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| items | array | lista de objetos com dados de inscrições de vestibular |
+| id | number | id da admissão |
+| course_sku | string | status atual da admissão do aluno |
+| status | string | status da admissão do aluno |
+| application | object | objeto do vestibular referente a essa admissão |
+| application[id] | number | id do vestibular |
+| application[student] | object | objeto com os dados do aluno |
+| student[id] | number | id do aluno |
+| student[name] | string | nome do aluno |
+| student[cpf] | string | cpf do aluno |
+| student[birth_date] | string | data de nascimento do aluno |
+| student[emails] | array de string | lista de emails do aluno |
+| student[phones] | array de string | lista de telefones do aluno |
+| student[address_information] | object | objeto com dados onde aluno reside |
+| address_information[address] | string | endereço onde aluno reside |
+| address_information[number] | string | número onde aluno reside |
+| address_information[neighborhood] | string | bairro onde aluno reside |
+| address_information[city] | string | cidade onde aluno reside |
+| address_information[state] | string | estado onde aluno reside |
+| address_information[postal_code] | string | código postal onde aluno reside |
+| exam | object | objeto com informações do exame |
+| exam[course_skus] | array | lista com os cursos pertencentes a este exame |
+| exam[local] | object | objeto com dados do exame |
+| local[address] | string | endereço da localização do vestibular |
+| local[number] | string | número da localização do vestibular |
+| local[neighborhood] | string | bairro da localização do vestibular |
+| local[city] | string | cidade da localização do vestibular |
+| local[state] | string | estado da localização do vestibular |
+| local[postal_code] | string | código postal da localização do vestibular |
+| exam[dates] | string | data da realização do vestibular |
+| exam[times] | string | hora da realização do vestibular |
+| exam[status] | string | status do vestibular |
+| application[result] | string | resultado do vestibular |
+| application[type] | string | tipo de exame (exam ou enem) |
+
+### Significado do retorno de status
+
+| Status | Descrição |
+| ---- | --------- |
+| initiated | Processo Seletivo Pendente |
+| pre_registered | Agendamento Solicitado |
+| registered | Agendamento Confirmado |
+| failed | Reprovado |
+| approved | Aprovado |
+| pending_docs | Documentação Pendente |
+| submitted_docs | Documentação Enviada |
+| rejected_docs | Documentação Rejeitada |
+| enrolled | Matriculado |
+| dropped_out | Desistente |
+| dropping_out | Desistindo |
+| drop_out_confirmed | Desistência confirmada |
 
 # Notificações
 
