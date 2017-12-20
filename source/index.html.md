@@ -173,8 +173,6 @@ Somente busca por usuários que tenham pré-matrícula na faculdade pertencente 
 | dropping_out | Desistindo |
 | drop_out_confirmed | Desistência confirmada |
 
-
-
 ## Busca de aluno por ID
 
 > Requisição
@@ -230,7 +228,42 @@ Somente busca por usuários que tenham pré-matrícula na faculdade pertencente 
 | id | Path | ID do aluno procurado. |
 
 ### Informações de resultado
-As informações de retorno e definições de status pode ser encontrado em [busca de alunos](#busca-de-alunos)
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | number | id do aluno. |
+| name | string | nome do aluno |
+| cpf | string | cpf do aluno |
+| birth_date | string | data de nascimento do aluno |
+| emails | array de string | lista de emails do aluno |
+| phones | array de string | lista de telefones do aluno |
+| address_information | object | objeto com dados onde aluno reside |
+| address | string | endereço onde aluno reside |
+| number | string | número onde aluno reside |
+| neighborhood | string | bairro onde aluno reside |
+| city | string | cidade onde aluno reside |
+| state | string | estado onde aluno reside |
+| postal_code | string | código postal onde aluno reside |
+| admissions | object | objeto com informações de processo de matricula |
+| id (admissions) | number | id do processo de matricula |
+| course_sku | string | código do curso fornecido pela universidade |
+| status | string | status que se encontra o processo de matricula |
+
+### Significado dos status
+| Nome | Descrição |
+| ---- | --------- |
+| initiated | Processo Seletivo Pendente |
+| pre_registered | Agendamento Solicitado |
+| registered | Agendamento Confirmado |
+| failed | Reprovado |
+| approved | Aprovado |
+| pending_docs | Documentação Pendente |
+| submitted_docs | Documentação Enviada |
+| rejected_docs | Documentação Rejeitada |
+| enrolled | Matriculado |
+| dropped_out | Desistente |
+| dropping_out | Desistindo |
+| drop_out_confirmed | Desistência confirmada |
 
 # Inscrições em vestibular
 
