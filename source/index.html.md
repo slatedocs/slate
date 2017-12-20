@@ -2,238 +2,580 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
-
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
+  -
 
 search: true
 ---
 
-# Introduction
+# Começando com API da Quero Alunos
+Seja bem vindo a docuentação da Quero Alunos. Aqui você encontrará guias e referencias sobre como usar nossa API. Qualquer dúvida pode estar enviando email para devs-integracao@queroeducacao.com
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+## Informações básicas
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Todas as respostas da API são feitas em JSON
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Endpoint utilizado
 
-# Authentication
+`https://queroalunos.com/api/{version}/`
 
-> To authorize, use this code:
 
-```ruby
-require 'kittn'
+# Autentificação
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+```
+POST https://queroalunos.com/api/v1/{action} HTTP/1.1
+Content-Type: application/json
+authorization: Basic ••••••••••••
 ```
 
-```python
-import kittn
+Todas as requisições são autenticadas por um token adicionado ao header.
+Caso não tenha o token solicite-o ao setor de desenvolvimento da QE.
 
-api = kittn.authorize('meowmeowmeow')
+## Requisição sem token
+```
+Ausência de Token
+Status Code: 401 UNAUTHORIZED
+www-authenticate: 'Basic realm="University Panel"'
 ```
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+Em caso de requisição sem o envio do token será retornado status 401 - UNAUTHORIZED.
+
+## Requisição com token inválido
+
+```
+Formato de token inválido
+Status Code: 400 NOT FOUND
 ```
 
-```javascript
-const kittn = require('kittn');
+Em caso de token em formato inválido será retornado status 400 - NOT FOUND.
 
-let api = kittn.authorize('meowmeowmeow');
+## Requisição com token não autorizado
+
+```
+Não autorizado
+Status Code: 403 Forbidden
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+Em caso de token não autorizado será retornado erro 403 - Forbidden.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+## Requisição com token sem permissão
+```
+Sem permissão
+Status Code: 200 OK
+```
+```json
+{
+  "status": "error",
+  "errors": [{
+    "title": "Invalid Permission",
+    "detail": "You are not authorized to access this resource with this params"
+  }]
+}
 ```
 
-```python
-import kittn
+Em caso de token válido mas sem permissão de acesso ao recurso especifico
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+# Informações de alunos
+
+## Busca de alunos por CPF
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/students?cpf=111.222.333-44
 ```
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+> Retorno
 
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "id": 123456,
+    "name": "José da Silva",
+    "cpf": "111.222.333-44",
+    "birth_date": "1991-01-01",
+    "emails": [
+      "teste@exemplo.com"
+    ],
+    "phones": [
+      "(11) 98888-7777"
+    ],
+    "address_information": {
+      "address": "Rua Sandra",
+      "number": "432S",
+      "neighborhood": "Chácara Dora",
+      "city": "Araçariguama",
+      "state": "SP",
+      "postal_code": "18147-000"
+    },
+    "admissions": {
+      "id": 12345,
+      "course_sku": "ADM-NOITE-EAD",
+      "status": "pending_docs"
+    }
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> Resposta quando não encontra nenhum aluno
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "error": true,
+  "message": "CPF não encontrado"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+Encontra um ou mais alunos na base do QueroAlunos a partir de um dado CPF.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+Somente busca por usuários que tenham pré-matrícula na faculdade pertencente ao usuário fazendo pesquisa.
 
-### HTTP Request
+### Parâmetros
 
-`GET http://example.com/kittens/<ID>`
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| cpf | Query| CPF do aluno procurado. Exige CPF completamente formatado (ex: 123.456.789-10). |
 
-### URL Parameters
+### Informações de resultado
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | number | id do aluno. |
+| name | string | nome do aluno |
+| cpf | string | cpf do aluno |
+| birth_date | string | data de nascimento do aluno |
+| emails | array de string | lista de emails do aluno |
+| phones | array de string | lista de telefones do aluno |
+| address_information | object | objeto com dados onde aluno reside |
+| address | string | endereço onde aluno reside |
+| number | string | número onde aluno reside |
+| neighborhood | string | bairro onde aluno reside |
+| city | string | cidade onde aluno reside |
+| state | string | estado onde aluno reside |
+| postal_code | string | código postal onde aluno reside |
+| admissions | object | objeto com informações de processo de matricula |
+| id (admissions) | number | id do processo de matricula |
+| course_sku | string | código do curso fornecido pela universidade |
+| status | string | status que se encontra o processo de matricula |
 
-## Delete a Specific Kitten
+### Significado dos status
+| Nome | Descrição |
+| ---- | --------- |
+| initiated | Processo Seletivo Pendente |
+| pre_registered | Agendamento Solicitado |
+| registered | Agendamento Confirmado |
+| failed | Reprovado |
+| approved | Aprovado |
+| pending_docs | Documentação Pendente |
+| submitted_docs | Documentação Enviada |
+| rejected_docs | Documentação Rejeitada |
+| enrolled | Matriculado |
+| dropped_out | Desistente |
+| dropping_out | Desistindo |
+| drop_out_confirmed | Desistência confirmada |
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
+
+## Busca de aluno por ID
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/students/{id}
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
+> Resposta
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "id": 394932,
+  "name": "José da Silva",
+  "cpf": "111.222.333-44",
+  "birth_date": "1991-01-01",
+  "emails": [
+    "teste@exemplo.com"
+  ],
+  "phones": [
+    "(11) 98888-7777"
+  ],
+  "address_information": {
+    "address": "Rua Sandra",
+    "number": "432S",
+    "neighborhood": "Chácara Dora",
+    "city": "Araçariguama",
+    "state": "SP",
+    "postal_code": "18147-000"
+  },
+  "admissions": {
+    "id": 12345,
+    "course_sku": "ADM-NOITE-EAD",
+    "status": "pending_docs"
+  }
+}
+```
+> Resposta quando não encontra nenhum aluno
+
+```json
+{
+  "error": true,
+  "message": "CPF não encontrado"
 }
 ```
 
-This endpoint deletes a specific kitten.
+Somente busca por usuários que tenham pré-matrícula na faculdade pertencente ao usuário fazendo pesquisa.
 
-### HTTP Request
+### Parâmetros
 
-`DELETE http://example.com/kittens/<ID>`
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | Path | ID do aluno procurado. |
 
-### URL Parameters
+### Informações de resultado
+As informações de retorno e definições de status pode ser encontrado em [busca de alunos](#busca-de-alunos)
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+# Inscrições em vestibular
 
+## Listar todas inscrições
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/applications
+```
+
+> Resposta
+
+```json
+{
+  "items": [
+    {
+      "id": 123456,
+      "student": {
+        "id": 394932,
+        "name": "José da Silva",
+        "cpf": "111.222.333-44",
+        "birth_date": "1991-01-01",
+        "emails": [
+          "teste@exemplo.com"
+        ],
+        "phones": [
+          "(11) 98888-7777"
+        ],
+        "address_information": {
+          "address": "Rua Sandra",
+          "number": "432S",
+          "neighborhood": "Chácara Dora",
+          "city": "Araçariguama",
+          "state": "SP",
+          "postal_code": "18147-000"
+        }
+      },
+      "exam": {
+        "course_skus": [
+          "ADM-MANHA-SP",
+          "DIR-MANHA-SP",
+          "ADM-NOITE-RJ"
+        ],
+        "local": {
+          "address": "Rua Márcia",
+          "number": "4231",
+          "neighborhood": "Morro do Barreto",
+          "city": "São Roque",
+          "state": "SP",
+          "postal_code": "19110-000"
+        },
+        "dates": "2016-11-01",
+        "times": "18:30",
+        "status": "active"
+      },
+      "result": "registered",
+      "type": "exam"
+    }
+  ],
+  "cursor": "ASAKDSaldlwp20"
+}
+```
+
+Retorna todas as inscrições de processo seletivo da faculdade.
+
+Inscrições são retornadas em lote de 10, ordenadas pela última atualização realizada no processo seletivo. Se houver mais resultados, retorna um valor `cursor` adicional que deve ser utilizado de parâmetro na próxima requisição para continuar.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+|`cursor` | Query | valor cursor utilizado para continuar uma paginação anterior |
+
+### Informações de resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| items | array| lista de objetos com dados de inscrições de vestibular |
+| id | number | id do vestibular |
+| student | object | objeto com dados do aluno |
+| id | number | id do aluno. |
+| name | string | nome do aluno |
+| cpf | string | cpf do aluno |
+| birth_date | string | data de nascimento do aluno |
+| emails | array de string | lista de emails do aluno |
+| phones | array de string | lista de telefones do aluno |
+| address_information | object | objeto com dados onde aluno reside |
+| address | string | endereço onde aluno reside |
+| number | string | número onde aluno reside |
+| neighborhood | string | bairro onde aluno reside |
+| city | string | cidade onde aluno reside |
+| state | string | estado onde aluno reside |
+| postal_code | string | código postal onde aluno reside |
+| exam | object | objeto com informações do exame |
+| course_skus | array | lista com os cursos pertencentes a este exame |
+| local | object | objeto com dados do exame |
+| address | string | endereço da localização do vestibular |
+| number | string | número da localização do vestibular |
+| neighborhood | string | bairro da localização do vestibular |
+| city | string | cidade da localização do vestibular |
+| state | string | estado da localização do vestibular |
+| postal_code | string | código postal da localização do vestibular |
+| dates | string | data da realização do vestibular |
+| times | string | hora da realização do vestibular |
+| status | string | status do vestibular |
+| result | string | resultado do vestibular |
+| type | string | tipo de exame (vestibular ou enem) |
+| cursor | string | código para pegar os próximos passos |
+
+
+## Informações de um único vestibular GET /api/applications/{id}
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/applications/123456
+```
+
+> Resposta
+
+```json
+{
+  "id": 123456,
+  "student": {
+    "id": 394932,
+    "name": "José da Silva",
+    "cpf": "111.222.333-44",
+    "birth_date": "1991-01-01",
+    "emails": [
+      "teste@exemplo.com"
+    ],
+    "phones": [
+      "(11) 98888-7777"
+    ],
+    "address_information": {
+      "address": "Rua Sandra",
+      "number": "432S",
+      "neighborhood": "Chácara Dora",
+      "city": "Araçariguama",
+      "state": "SP",
+      "postal_code": "18147-000"
+    }
+  },
+  "exam": {
+    "course_skus": [
+      "ADM-MANHA-SP",
+      "DIR-MANHA-SP",
+      "ADM-NOITE-RJ"
+    ],
+    "address": {
+      "address": "Rua Márcia",
+      "number": "4231",
+      "neighborhood": "Morro do Barreto",
+      "city": "São Roque",
+      "state": "SP",
+      "postal_code": "19110-000"
+    },
+    "dates": "2016-11-01",
+    "times": "18:30",
+    "status": "active"
+  },
+  "result": "registered",
+  "type": "exam"
+}
+```
+
+> Resposta quando não encontra nenhum aluno
+
+```json
+{
+  "error": true,
+  "message": "ID não encontrado"
+}
+```
+
+Retorna uma inscrição específica no processo seletivo da faculdade.
+
+Inscrições são retornadas em lote de 10, ordenadas pela última atualização realizada no processo seletivo. Se houver mais resultados, rota retorna um valor cursor adicional que deve ser utilizado de parâmetro na próxima requisição para continuar.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+|`id` | Path | ID da inscrição |
+
+
+## Atualização de processo seletivo
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/applications/123456 \
+  -d status="approved"
+```
+
+> Resposta
+
+```json
+{
+  "id": 123456,
+  "student": {
+    "id": 394932,
+    "name": "José da Silva",
+    "cpf": "111.222.333-44",
+    "birth_date": "1991-01-01",
+    "emails": [
+      "teste@exemplo.com"
+    ],
+    "phones": [
+      "(11) 98888-7777"
+    ],
+    "address_information": {
+      "address": "Rua Sandra",
+      "number": "432S",
+      "neighborhood": "Chácara Dora",
+      "city": "Araçariguama",
+      "state": "SP",
+      "postal_code": "18147-000"
+    }
+  },
+  "exam": {
+    "course_skus": [
+      "ADM-MANHA-SP",
+      "DIR-MANHA-SP",
+      "ADM-NOITE-RJ"
+    ],
+    "address": {
+      "address": "Rua Márcia",
+      "number": "4231",
+      "neighborhood": "Morro do Barreto",
+      "city": "São Roque",
+      "state": "SP",
+      "postal_code": "19110-000"
+    },
+    "dates": "2016-11-01",
+    "times": "18:30",
+    "status": "active"
+  },
+  "result": "approved",
+  "type": "exam"
+}
+```
+
+> Retorno quando parâmetros estão incorretos
+
+```json
+{
+  "error": true,
+  "message": "Situação fornecida não é válida"
+}
+```
+
+> Retorno quando não encontra o vestibular
+
+```json
+{
+  "error": true,
+  "message": "ID não encontrado"
+}
+```
+
+Atualiza o progresso no processo seletivo de um dado aluno.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| `status` | Form | Situação do aluno entre `registered`, `approved`, `failed` |
+
+
+# Notificações
+
+Notificações utilizam uma rota única de callback, que deve ser fornecida pela faculdade, junto de uma combinação usuário/senha para autenticação via HTTP Basic.
+
+A rota deve aceitar JSON.
+
+A rota deve aceitar apenas POSTs.
+
+## Definição base do evento
+
+```
+BaseEvent = {
+  event_type: string,
+  created: timestamp,
+  api_version: string,
+  data: object
+}
+```
+
+Todos os eventos possuem um tipo associado, um timestamp UTC de criação do evento, a versão atual da API como string, e um objeto de dados efetivamente representando a notificação, que varia com o tipo.
+
+## Notificação de nova inscrição de vestibular
+
+```json
+{
+  "event_type": "NewApplication",
+  "created": "2017-12-15T17:34:26.173",
+  "api_version": "1.0.0",
+  "data": {
+    "application": {
+      "id": 123456,
+      "student": {
+        "id": 394932,
+        "name": "José da Silva",
+        "cpf": "111.222.333-44",
+        "birth_date": "1991-01-01",
+        "emails": [
+          "teste@exemplo.com"
+        ],
+        "phones": [
+          "(11) 98888-7777"
+        ],
+        "address_information": {
+          "address": "Rua Sandra",
+          "number": "432S",
+          "neighborhood": "Chácara Dora",
+          "city": "Araçariguama",
+          "state": "SP",
+          "postal_code": "18147-000"
+        }
+      },
+      "exam": {
+        "course_skus": [
+          "ADM-MANHA-SP",
+          "DIR-MANHA-SP",
+          "ADM-NOITE-RJ"
+        ],
+        "address": {
+          "address": "Rua Márcia",
+          "number": "4231",
+          "neighborhood": "Morro do Barreto",
+          "city": "São Roque",
+          "state": "SP",
+          "postal_code": "19110-000"
+        },
+        "dates": "2016-11-01",
+        "times": "18:30",
+        "status": "active"
+      },
+      "result": "preregistered",
+      "type": "exam"
+    }
+  }
+}
+```
+
+Indica que uma nova inscrição foi feita.
