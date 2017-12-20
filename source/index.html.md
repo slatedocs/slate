@@ -1000,7 +1000,7 @@ A rota deve aceitar apenas POSTs.
 ## Definição base do evento
 
 ```
-BaseEvent = {
+ {
   event_type: string,
   created: timestamp,
   api_version: string,
@@ -1008,7 +1008,14 @@ BaseEvent = {
 }
 ```
 
-Todos os eventos possuem um tipo associado, um timestamp UTC de criação do evento, a versão atual da API como string, e um objeto de dados efetivamente representando a notificação, que varia com o tipo.
+Estrutura base das notificações:
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| created | string | data que foi criado o evento (timestamp UTC)
+| api_version | string | informação da versão atual da API
+| event_type | string | tipo de evento |
+| data | object | Objeto com informações de acordo com o tipo de evento |
 
 ## Notificação de nova inscrição de vestibular
 
@@ -1065,4 +1072,43 @@ Todos os eventos possuem um tipo associado, um timestamp UTC de criação do eve
 }
 ```
 
-Indica que uma nova inscrição foi feita.
+Indica que uma nova inscrição para vestibular foi feita
+
+### Parametros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| created | string | data que foi criado o evento (timestamp UTC)
+| api_version | string | informação da versão atual da API
+| event_type | string | tipo de evento, no caso `NewApplication` |
+| data | object | Objeto com informações de acordo com o tipo de evento |
+| application | object | objeto com informações do vestibular |
+| id | number | id do vestibular |
+| student | object | objeto com dados do aluno |
+| id (student) | number | id do aluno. |
+| name | string | nome do aluno |
+| cpf | string | cpf do aluno |
+| birth_date | string | data de nascimento do aluno |
+| emails | array de string | lista de emails do aluno |
+| phones | array de string | lista de telefones do aluno |
+| address_information | object | objeto com dados onde aluno reside |
+| address | string | endereço onde aluno reside |
+| number | string | número onde aluno reside |
+| neighborhood | string | bairro onde aluno reside |
+| city | string | cidade onde aluno reside |
+| state | string | estado onde aluno reside |
+| postal_code | string | código postal onde aluno reside |
+| exam | object | objeto com informações do exame |
+| course_skus | array | lista com os cursos pertencentes a este exame |
+| local | object | objeto com dados do exame |
+| address | string | endereço da localização do vestibular |
+| number | string | número da localização do vestibular |
+| neighborhood | string | bairro da localização do vestibular |
+| city | string | cidade da localização do vestibular |
+| state | string | estado da localização do vestibular |
+| postal_code | string | código postal da localização do vestibular |
+| dates | string | data da realização do vestibular |
+| times | string | hora da realização do vestibular |
+| status | string | status do vestibular |
+| result | string | resultado do vestibular |
+| type | string | tipo de exame (exam ou enem) |
