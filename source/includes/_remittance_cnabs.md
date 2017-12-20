@@ -21,10 +21,10 @@ EXEMPLO
   }
 ```
 
-Os Arquivos CNAB de Remessa são arquivos enviados para o banco com o objetivo de registrar novos títulos/pagamentos, podendo ser gerado a partir de um ou mais items (Cobranças ou Pagamentos). Se forem enviados items de Configurações diferentes, será gerado um CNAB de remessa para cada Configuração.
+Os Arquivos CNAB de Remessa são arquivos enviados para o banco com o objetivo de registrar novas cobranças/pagamentos, podendo ser gerado a partir de um ou mais items (Cobranças ou Pagamentos). Se forem enviados items de Configurações diferentes, será gerado um CNAB de remessa para cada Configuração.
 
 <aside class="warning">
-Se seu plano não er direito a utilização desta API, a resposta com será com o status <strong>403 Forbidden</strong>!
+Se seu plano não der direito a utilização desta API, a resposta com será com o status <strong>403 Forbidden</strong>!
 </aside>
 
 **Parâmetros**

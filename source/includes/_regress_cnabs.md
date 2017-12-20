@@ -7,33 +7,24 @@ EXEMPLO
 
   {
     "id": 1,
-    "charge_config_id": 9,
+    "charge_config_id": 9, # DEPRECATED
+    "config_id": 9,
     "status": "processed",
-    "report": {
-      "charges_not_found": 0,
-      "received_charges": [{
-        "id": 46,
-        "_links": [{ "rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/charges/46" }]
-      }],
-      "registered_charges": [{
-        "id": 45,
-        "_links": [{ "rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/charges/45" }]
-      }]
-    },
+    "type": "charge",
     "_links":
       [
         {"rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1"},
         {"rel": "destroy", "method": "DELETE", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1"},
-        {"rel": "charge_config", "method": "GET", "href": "https://app.cobrato.com/api/v1/charge_config/1"},
+        {"rel": "config", "method": "GET", "href": "https://app.cobrato.com/api/v1/charge_config/1"},
         {"rel": "file", "method": "GET", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1/file"}
       ]
   }
 ```
 
-Os arquivos CNABs de retorno, pertencem a uma determinada configuração de cobrança, contendo informações de uma ou mais cobranças desta conta.
+Os Arquivos CNAB de retorno são arquivos disponibilizados pelo banco com as informações de ocorrências relacionadas às cobranças/pagamentos. Os arquivos CNABs de retorno é relacionado à uma determinada Configuração e o cobrato tentará encontrar os itens relacionados e aplicar as informações enviadas pelo banco.
 
 <aside class="warning">
-A utilização desta API não é autorizada a contas com o plano <strong>Gratuito</strong>, resultando na resposta com o estado <strong>403 Forbidden</strong>!
+Se seu plano não der direito a utilização desta API, a resposta com será com o status <strong>403 Forbidden</strong>!
 </aside>
 
 **Parâmetros**
@@ -41,18 +32,11 @@ A utilização desta API não é autorizada a contas com o plano <strong>Gratuit
 | Campo            | Tipo            | Comentário                                                                                                                              |
 |------------------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | id               | integer         | identificador do CNAB de retorno                                                                                                        |
-| charge_config_id | string          | identificador da configuração de cobrança no Cobrato                                                                                    |
+| type             | string          | indica o tipo de arquivo de remessa ('charge' ou 'payment')                                                                             |
+| config_id        | string          | identificador da configuração no Cobrato relacionada ao arquivo de remessa                                                              |
+| charge_config_id | string          | (DEPRECATED: use config_id) identificador da configuração de cobrança no Cobrato                                                        |
 | status           | string          | situação do arquivo CNAB, podendo ser "processing" (processando), "processed" (processado) e "processing_error" (erro de processamento) |
-| report           | string          | relatório de processamento do arquivo CNAB, os parâmetros do relatório se encontram na tabela abaixo                                    |
 | _links           | array of object | links relacionado CNAB de retorno                                                                                                       |
-
-**Parâmetros do Relatório de Processamento**
-
-| Campo              | Tipo             | Comentário                                                                              |
-|--------------------|------------------|-----------------------------------------------------------------------------------------|
-| charges_not_found  | integer          | Quantidade de cobranças que estavam no CNAB, mas não foram localizadas no sistema       |
-| received_charges   | array of objects | Informações das cobranças recebidas pelo CNAB, contendo o código identificador e link   |
-| registered_charges | array of objects | Informações das cobranças registradas pelo CNAB, contendo o código identificador e link |
 
 ## Informações do CNAB de Retorno
 
@@ -79,19 +63,9 @@ EXEMPLO DE CORPO DA RESPOSTA
 
   {
     "id": 1,
-    "charge_config_id": 9,
+    "charge_config_id": 9, # DEPRECATED
+    "config_id": 9,
     "status": "processed",
-    "report": {
-      "charges_not_found": 0,
-      "received_charges": [{
-        "id": 46,
-        "_links": [{ "rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/charges/46" }]
-      }],
-      "registered_charges": [{
-        "id": 45,
-        "_links": [{ "rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/charges/45" }]
-      }]
-    },
     "_links":
       [
         {"rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1"},
@@ -105,7 +79,7 @@ EXEMPLO DE CORPO DA RESPOSTA
 
 Retorna as informações detalhadas em JSON do CNAB de retorno informado.
 
-## Lista de Todas as CNABs de Retorno
+## Lista de Todos os CNABs de Retorno
 
 ```shell
 Listar CNABs de Retorno
@@ -162,7 +136,8 @@ EXEMPLO DE REQUISIÇÃO
     -H 'Content-type: application/json' \
     -X POST https://app.cobrato.com/api/v1/regress_cnabs \
     -d '{
-          "charge_config_id": 1,
+          "config_id": 1,
+          "type": "charge",
           "cnabs": {
             "content":      "MDJSRVRPUk5PMDFDT0JSQU5DQSAgICAgICAzMTMwMDAyMjY5OTAgICA...",
             "content_type": "text/plain"
@@ -182,7 +157,7 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
   {
     "errors":{
-      "charge_config_id": ["não pode ficar em branco"],
+      "config_id": ["não pode ficar em branco"],
       "cnabs": ["não pode ficar em branco"]
     }
   }
@@ -193,10 +168,12 @@ Cria um CNAB de retorno inicia o processamento do arquivo.
 
 **Parâmetros**
 
-| Campo            | Tipo   | Comentário                                                                                                                       |
-|------------------|--------|----------------------------------------------------------------------------------------------------------------------------------|
-| charge_config_id | string | **(requerido)** identificador da configuração de cobrança à qual o arquivo CNAB de retorno pertence                              |
-| cnabs            | object | **(requerido)** dados do arquivo CNAB de retorno. O "content" deve ser uma string com o conteúdo do arquivo codificado em Base64 |
+| Campo            | Tipo   | Comentário                                                                                                                                                                  |
+|------------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| type             | string | (optional) Define o tipo de arquivo CNAB de Retorno a ser criado. Os possíveis valores são 'charge' para Cobrança e 'payment' para Pagamento, sendo que o padrão é 'charge' |
+| config_id        | string | **(requerido)** identificador da configuração à qual o arquivo CNAB de retorno pertence                                                                                     |
+| charge_config_id | string | (DEPRECATED: use config_id) **(requerido)** identificador da configuração de cobrança à qual o arquivo CNAB de retorno pertence                                             |
+| cnabs            | object | **(requerido)** dados do arquivo CNAB de retorno. O "content" deve ser uma string com o conteúdo do arquivo codificado em Base64                                            |
 
 ## Exclusão de CNAB de retorno
 
@@ -219,7 +196,7 @@ EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
     204 No Content
 
-EXEMPLO DE ESTADO DA RESPOSTA COM CONTA BANCÁRIA INEXISTENTE
+EXEMPLO DE ESTADO DA RESPOSTA COM ARQUIVO DE RETORNO INEXISTENTE
 
     404 Not Found
 
@@ -248,7 +225,7 @@ EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
 
     200 OK
 
-EXEMPLO DE ESTADO DA RESPOSTA COM COBRANÇA INEXISTENTE
+EXEMPLO DE ESTADO DA RESPOSTA COM ARQUIVO DE RETORNO INEXISTENTE
 
     404 Not Found
 
