@@ -626,8 +626,8 @@ curl --user secretary:password http://queroalunos.com/api/admissions
 {
   "items": [
     {
-      "id": 123456,
-      "course_sku": "ADM-TARDE-EAD-91119",
+      "id": 12345,
+      "course_sku": "ADM-MANHA-SP",
       "status": "pending_docs",
       "application": {
         "id": 123456,
@@ -733,15 +733,15 @@ Admissões são retornadas em lote de 10, ordenadas pela última atualização r
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/admissions/123456
+curl --user secretary:password http://queroalunos.com/api/admissions/12345
 ```
 
 > Resposta
 
 ```json
 {
-  "id": 123456,
-  "course_sku": "ADM-TARDE-EAD-91119",
+  "id": 12345,
+  "course_sku": "ADM-MANHA-SP",
   "status": "pending_docs",
   "application": {
     "id": 123456,
@@ -850,7 +850,7 @@ Retorna uma admissão específica da faculdade.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/admissions/123456 \
+curl --user secretary:password http://queroalunos.com/api/admissions/12345 \
   -d status="submitted_docs"
 ```
 
@@ -858,8 +858,8 @@ curl --user secretary:password http://queroalunos.com/api/admissions/123456 \
 
 ```json
 {
-  "id": 123456,
-  "course_sku": "ADM-TARDE-EAD-91119",
+  "id": 12345,
+  "course_sku": "ADM-MANHA-SP",
   "status": "submitted_docs",
   "application": {
     "id": 123456,
