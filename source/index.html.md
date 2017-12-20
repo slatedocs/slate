@@ -694,11 +694,11 @@ Admissões são retornadas em lote de 10, ordenadas pela última atualização r
 | ---- | ---- | --------- |
 | items | array | lista de objetos com dados de inscrições de vestibular |
 | id | number | id da admissão |
-| course_sku | string | status atual da admissão do aluno |
+| course_sku | string | código do curso referente a essa matrícula |
 | status | string | status da admissão do aluno |
 | application | object | objeto do vestibular referente a essa admissão |
 | application[id] | number | id do vestibular |
-| application[student] | object | objeto com os dados do aluno |
+| application[student] | object | objeto com os dados do aluno referente a essa matrícula |
 | student[id] | number | id do aluno |
 | student[name] | string | nome do aluno |
 | student[cpf] | string | cpf do aluno |
@@ -712,9 +712,9 @@ Admissões são retornadas em lote de 10, ordenadas pela última atualização r
 | address_information[city] | string | cidade onde aluno reside |
 | address_information[state] | string | estado onde aluno reside |
 | address_information[postal_code] | string | código postal onde aluno reside |
-| exam | object | objeto com informações do exame |
+| exam | object | objeto com informações do exame referente a essa matrícula |
 | exam[course_skus] | array | lista com os cursos pertencentes a este exame |
-| exam[local] | object | objeto com dados do exame |
+| exam[local] | object | objeto com dados do local do exame |
 | local[address] | string | endereço da localização do vestibular |
 | local[number] | string | número da localização do vestibular |
 | local[neighborhood] | string | bairro da localização do vestibular |
@@ -812,11 +812,11 @@ Retorna uma admissão específica da faculdade.
 | ---- | ---- | --------- |
 | items | array | lista de objetos com dados de inscrições de vestibular |
 | id | number | id da admissão |
-| course_sku | string | status atual da admissão do aluno |
+| course_sku | string | código do curso referente a essa matrícula |
 | status | string | status da admissão do aluno |
 | application | object | objeto do vestibular referente a essa admissão |
 | application[id] | number | id do vestibular |
-| application[student] | object | objeto com os dados do aluno |
+| application[student] | object | objeto com os dados do aluno referente a essa matrícula |
 | student[id] | number | id do aluno |
 | student[name] | string | nome do aluno |
 | student[cpf] | string | cpf do aluno |
@@ -830,9 +830,9 @@ Retorna uma admissão específica da faculdade.
 | address_information[city] | string | cidade onde aluno reside |
 | address_information[state] | string | estado onde aluno reside |
 | address_information[postal_code] | string | código postal onde aluno reside |
-| exam | object | objeto com informações do exame |
+| exam | object | objeto com informações do exame referente a essa matrícula |
 | exam[course_skus] | array | lista com os cursos pertencentes a este exame |
-| exam[local] | object | objeto com dados do exame |
+| exam[local] | object | objeto com dados do local do exame |
 | local[address] | string | endereço da localização do vestibular |
 | local[number] | string | número da localização do vestibular |
 | local[neighborhood] | string | bairro da localização do vestibular |
@@ -939,11 +939,11 @@ Atualiza o status admissão específica.
 | ---- | ---- | --------- |
 | items | array | lista de objetos com dados de inscrições de vestibular |
 | id | number | id da admissão |
-| course_sku | string | status atual da admissão do aluno |
+| course_sku | string | código do curso referente a essa matrícula |
 | status | string | status da admissão do aluno |
 | application | object | objeto do vestibular referente a essa admissão |
 | application[id] | number | id do vestibular |
-| application[student] | object | objeto com os dados do aluno |
+| application[student] | object | objeto com os dados do aluno referente a essa matrícula |
 | student[id] | number | id do aluno |
 | student[name] | string | nome do aluno |
 | student[cpf] | string | cpf do aluno |
@@ -957,9 +957,9 @@ Atualiza o status admissão específica.
 | address_information[city] | string | cidade onde aluno reside |
 | address_information[state] | string | estado onde aluno reside |
 | address_information[postal_code] | string | código postal onde aluno reside |
-| exam | object | objeto com informações do exame |
+| exam | object | objeto com informações do exame referente a essa matrícula |
 | exam[course_skus] | array | lista com os cursos pertencentes a este exame |
-| exam[local] | object | objeto com dados do exame |
+| exam[local] | object | objeto com dados do local do exame |
 | local[address] | string | endereço da localização do vestibular |
 | local[number] | string | número da localização do vestibular |
 | local[neighborhood] | string | bairro da localização do vestibular |
