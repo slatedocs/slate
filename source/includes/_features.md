@@ -39,7 +39,7 @@ Scout captures a sanitized version of SQL queries. Click the "SQL" button next t
 
 Scout collects a sanitized version of SQL queries and displays these in transaction traces. To limit agent overhead sanitizing queries, we do not collect query statements with more than 16k characters.
 
-This limit was raised to 16k characters from 4k characters in version 2.4.0 of the Ruby agent after determining the higher threshold was safe for production environments. If you have an older version of `scout_apm`, [update to the latest](#updating-to-the-newest-version).
+This limit was raised to 16k characters from 4k characters in version 2.3.3 of the Ruby agent after determining the higher threshold was safe for production environments. If you have an older version of `scout_apm`, [update to the latest](#updating-to-the-newest-version).
 
 ### Code Backtraces
 
@@ -90,72 +90,63 @@ A [detailed ScoutProf FAQ](#scoutprof-faq) is available in our reference area.
 
 ## Database Monitoring
 
-A database is shared resource: one expensive query can trigger a flood of slow queries that impact many web endpoints and background jobs. Scout's database monitoring helps in three primary areas:
+When the database monitoring addon is enabled, you'll gain access to both a high-level overview of your database query performance and detailed information on specific queries. Together, these pieces make it easier to get to the source of slow query performance.
 
-1. Identifying the cause of database capacity issues.
-2. Understanding your query workload and which web endpoints and background jobs are the greatest users of database time.
-3. Highlighting changes in query workload and performance metrics vs. the norm.
+### Database Queries Overview
 
-Database metrics appear in two areas of the UI:
+The high-level view helps you identify where to start:
 
-1. [Database Overview](#database-overview)
-2. [Web Endpoint & Background Job Breakdown](#endpoint-database-breakdown)
+<a href="https://s3-us-west-1.amazonaws.com/scout-blog/db_monitoring/overview.png"><img alt="overview" src="https://s3-us-west-1.amazonaws.com/scout-blog/db_monitoring/overview.png"/></a>
 
-The video below shows the two areas in action. There is a detailed description of each area beneath the video.
+The chart at the top shows your app's most time-consuming queries over time. Beneath the chart, you'll find a sortable list of queries grouped by a label (for Rails apps, this is the ActiveRecord model and operation) and the caller (a web endpoint or a background job):
 
-<iframe src="https://player.vimeo.com/video/241390934" width="640" height="400" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+This high-level view is engineered to reduce the investigation time required to:
 
-
-
-### Database Overview
-
-![database monitoring](db_monitoring.png)
-
-#### Overview chart
-
-The database monitoring overview chart helps answer important questions at-a-glance. For example:
-
-* Is time consumed by queries increasing because throughput is increasing?
-* Is one type of query showing a dramatic increase in time consumed?
-* How are query response times changing under load?
-
-The overview chart shows the top 4 most time-consuming queries and an aggregate of all other queries vs. overall query throughput.
+* __identify slow queries__: it's easy for queries to become more inefficient over time as the size of your data grows. Sorting queries by "95th percentile response time" and "mean response time" makes it easy to identify your slowest queries.
+* __solve capacity issues__: an overloaded database can have a dramatic impact on your app's performance. Sorting the list of queries by "% time consumed" shows you which queries are consuming the most time in your database.
 
 #### Zooming
 
-The primary interaction point of Scout's database monitoring is the zoom functionality.
+__If there is a spike in time consumed or throughput, you can easily see what changed during that period__. Click and drag over the area of interest on the chart:
 
-If you notice a spike in time spent by database queries, simply click and drag on the overview chart. The queries list will update, showing changes during the zoom window. 
+<a href="https://s3-us-west-1.amazonaws.com/scout-blog/db_monitoring/zoom.png"><img alt="zoom" src="https://s3-us-west-1.amazonaws.com/scout-blog/db_monitoring/zoom.png" /></a>
 
 Annotations are added to the queries list when zooming:
 
 * The change in rank, based on % time consumed, of each query. Queries that jump significantly in rank may trigger a dramatic change in database performance.
 * The % change across metrics in the zoom window vs. the larger timeframe. If the % change is not significant, the metric is faded.
-* A bullseye appears next to the max query time if the slowest occurrence of this query was executed during the zoom window. This may indicate a single slow query triggered a problem.
-
-#### Queries List
-
-A list of queries, broken down by their ActiveRecord model, operation, and caller (either a web endpoint or background job) is listed below the overview chart.
-
-By default, this list is truncated to display just the most time-consuming queries.
 
 #### Database Events
 
 Scout highlights significant events in database performance in the sidebar. For example, if time spent in database queries increases dramatically, you'll find an insight here. Clicking on an insight jumps to the time window referenced by the insight.
 
-### Endpoint Database Breakdown
+### Database Query Details
 
-A breakdown of time spent per-transaction appears beneath the overview chart for both web endpoints and database metrics. Database queries are broken out in this breakdown:
+After identifying an expensive query, you need to see where the query is called and the underlying SQL. Click on a query to reveal details:
 
-![database breakdown](db_monitoring_endpoint.png)
+<a href="https://s3-us-west-1.amazonaws.com/scout-blog/db_monitoring/detail.png"><img alt="detail" src="https://s3-us-west-1.amazonaws.com/scout-blog/db_monitoring/detail.png"/></a>
+
+You'll see the raw SQL and a list of individual query execution times that appeared in transaction traces. Scout collects backtraces on queries consuming more than 500 ms. If we've collected a backtrace for the query, you'll see an icon next to the timing information. Click on one of the traces to reveal that trace in a new window:
+
+<a href="https://s3-us-west-1.amazonaws.com/scout-blog/db_monitoring/trace.png"><img alt="trace" src="https://s3-us-west-1.amazonaws.com/scout-blog/db_monitoring/trace.png"/></a>
+
+The source of that trace is immediately displayed.
 
 ### Pricing
 
 Database Monitoring is available as an addon. See your billing page for pricing information.
 
+### Database Addon Installation
+
+[Update](#updating-to-the-newest-version) - or install - the `scout_apm` gem in your application. There's no special libraries to install on your database servers.
+
 ### Database Monitoring Library Support
 
 Scout currently monitors queries executed via ActiveRecord, which includes most relational databases (PostgreSQL, MySQL, etc).
+
+### What does SQL#other mean?
+
+Some queries may be identified by a generic `SQL#other` label. This indicates our agent was unable to generate a friendly label from the raw SQL query. Ensure you are running version 2.3.3 of the `scout_apm` gem or higher as this release includes more advanced query labeling logic.
 
 ## Memory Bloat Detection
 
