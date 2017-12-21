@@ -28,7 +28,7 @@ __UNMONITORED__ | MONITORED, IN_REPAIR_SYSTEM, TERMINATED
 __IN_REPAIR_SYSTEM__ | ACTIVATED, TERMINATED
 __TERMINATED__ | 
 
-For example, a unit in `IN_REPAR_SYSTEM` can only be moved into `ACTIVATED` or `TERMINATED`, all other transitions are disallowed.
+For example, a unit in `IN_REPAIR_SYSTEM` can only be moved into `ACTIVATED` or `TERMINATED`, all other transitions are disallowed.
 
 `State Type` transitions are recorded in `State` with each `State` record containing `product_imei`, `prev_state_type`, `current_state_type` along with associated meta-data. For a full explanation of `States` see <a href=/#states>States</a>
 
