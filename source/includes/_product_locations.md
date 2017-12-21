@@ -68,7 +68,7 @@ The format of the data returned by this endpoint is a dictionary containing a si
           "product_imei": { imei },         
           "latitude": { latitude },         
           "longitude": { longitude },
-          "error_radius": { error_radius }    
+          "error_radius": { error_radius },    
       }</code>
 
 
