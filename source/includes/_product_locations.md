@@ -44,6 +44,8 @@
         }
 ```
 
+This endpoint will return a complete list of products and their latest recorded locations.
+
 
 ### Endpoint
 

@@ -70,6 +70,7 @@ includes:
   - send_wakeup
   - product_parts
   - product_change_states
+  - product_locations
   - parameters
   - parameter_history
   - connectivity_reliability_rate
