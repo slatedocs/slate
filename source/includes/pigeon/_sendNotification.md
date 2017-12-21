@@ -49,7 +49,7 @@ key | type | status | comment
 --- | --- | :---: | ---:
 **Request:** | | |
 id | string | 1..1 | уникальный идентификатор
-recipients | string | 1..1 | bankClientId получателя сообщения
+recipients | string | 1..1 | получатель сообщения
 timeout | int | 1..1 | время жизни сообщения в секундах
 pushContent | [pushContent](#pushcontent) | 1..1 | обязательная часть пуш сообщения
 pushDetails | [pushDetails](#pushdetails) | 0..1 | дополнительные детали запрашиваемые мобильным устройством по необходимости
