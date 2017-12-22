@@ -1484,7 +1484,7 @@ curl --user secretary:password http://queroalunos.com/api/exam_groups/new
 }
 ```
 
-Cria um exame na estrutura de exame em lote (está certo, mesmo se criar apenas um exame, o que precisa ser criado é um exam_group).
+Cria um exame na estrutura de exames em lote (está certo, mesmo se criar apenas um exame, o que precisa ser criado é um exam_group).
 
 ### Informações dos argumentos
 
