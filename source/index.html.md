@@ -1508,9 +1508,9 @@ Cria um exame na estrutura de exame em lote (está certo, mesmo se criar apenas 
 
 | Status | Descrição |
 | ------ | --------- |
-| active | Todas as combinações de exame neste grupo estão ativas para serem escolhidas |
-| inactive | Nenhuma combinação de exame neste grupo está ativa para ser escolhida |
-| partially_active | Algumas combinações de exame neste grupo não estão ativas para serem escolhidas |
+| active | Todas as combinações de exame nesse lote estão ativas para serem escolhidas |
+| inactive | Nenhuma combinação de exame nesse lote está ativa para ser escolhida |
+| partially_active | Algumas combinações de exame nesse lote não estão ativas para serem escolhidas |
 
 # Notificações
 
