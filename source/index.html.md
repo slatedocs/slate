@@ -989,9 +989,9 @@ Atualiza o status admissão específica.
 | dropping_out | Desistindo |
 | drop_out_confirmed | Desistência confirmada |
 
-# Grupos de exames
+# Exames em lote
 
-## Listar todos os grupos de exames
+## Listar todos os exames em lote
 
 > Requisição
 
@@ -1034,9 +1034,9 @@ curl --user secretary:password http://queroalunos.com/api/exam_groups
 }
 ```
 
-Retorna todos os grupos de exames.
+Retorna todos os exames em lote.
 
-Grupos de exames são retornadas em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, retorna um valor `cursor` adicional que deve ser utilizado de parâmetro na próxima requisição para continuar.
+Exames em lote são retornados de 10 em 10, ordenadas pela última atualização realizada. Se houver mais resultados, retorna um valor `cursor` adicional que deve ser utilizado de parâmetro na próxima requisição para continuar.
 
 ### Parâmetros
 
@@ -1048,9 +1048,9 @@ Grupos de exames são retornadas em lote de 10, ordenadas pela última atualiza�
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do grupo de exames |
-| course_skus | array | cursos que usam como entrada esses exames |
-| addresses | object array | lista dos objetos dos endereços dos exames |
+| id | number | id do lote de exames |
+| course_skus | array | cursos que usam como entrada algum exame desse lote |
+| addresses | object array | lista dos objetos dos endereços dos exames desse lote |
 | addresses[address] | string | endereço onde será feito o exame |
 | addresses[number] | string | número de onde será feito o exame |
 | addresses[neighborhood] | string | bairro onde será feito o exame |
@@ -1060,10 +1060,10 @@ Grupos de exames são retornadas em lote de 10, ordenadas pela última atualiza�
 | dates | array | lista das datas dos exames |
 | times | array | lista dos horários de aplicações dos exames |
 | status | string | situação dos exames entre `active`, `inactive` e `partially_active` |
-| kind | string | tipo dos exames referentes a esse grupo de exames |
+| kind | string | tipo dos exames desse lote |
 | cursor | string | código para pegar os próximos passos |
 
-## Informações de um único grupo de exames
+## Informações de um único lote de exames
 
 > Requisição
 
@@ -1101,7 +1101,7 @@ curl --user secretary:password http://queroalunos.com/api/exam_groups/1234
 }
 ```
 
-> Resposta quando não encontra nenhum grupo de exames
+> Resposta quando não encontra nenhum lote de exames
 
 ```json
 {
@@ -1110,21 +1110,21 @@ curl --user secretary:password http://queroalunos.com/api/exam_groups/1234
 }
 ```
 (No arquivo do ruerro nao tinha id nessa tabela, mas to considerando que tenha, pq essa parte só vai fazer sentido se tiver)
-Retorna uma admissão específica da faculdade.
+Retorna um lote de exames específico.
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | path | id do grupo de exames |
+| id | path | id do lote de exames |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do grupo de exames |
-| course_skus | array | cursos que usam como entrada esses exames |
-| addresses | object array | lista dos objetos dos endereços dos exames |
+| id | number | id do lote de exames |
+| course_skus | array | cursos que usam como entrada algum exame desse lote |
+| addresses | object array | lista dos objetos dos endereços dos exames desse lote |
 | addresses[address] | string | endereço onde será feito o exame |
 | addresses[number] | string | número de onde será feito o exame |
 | addresses[neighborhood] | string | bairro onde será feito o exame |
@@ -1134,9 +1134,9 @@ Retorna uma admissão específica da faculdade.
 | dates | array | lista das datas dos exames |
 | times | array | lista dos horários de aplicações dos exames |
 | status | string | situação dos exames entre `active`, `inactive` e `partially_active` |
-| kind | string | tipo dos exames referentes a esse grupo de exames |
+| kind | string | tipo dos exames desse lote |
 
-## Criação de grupo de exames
+## Criação de exames em lote
 
 > Requisição
 
@@ -1184,21 +1184,21 @@ curl --user secretary:password http://queroalunos.com/api/exam_groups/new
 }
 ```
 
-Cria um grupo de exames
+Cria um lote de exames.
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| status | form | novo status do grupo de exame |
+| *.json | json | arquivo json com as informações do lote de exames |
 
 ### Informações dos argumentos
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do grupo de exames |
-| course_skus | array | cursos que usam como entrada esses exames |
-| addresses | object array | lista dos objetos dos endereços dos exames |
+| id | number | id do lote de exames |
+| course_skus | array | cursos que usam como entrada algum exame desse lote |
+| addresses | object array | lista dos objetos dos endereços dos exames desse lote |
 | addresses[address] | string | endereço onde será feito o exame |
 | addresses[number] | string | número de onde será feito o exame |
 | addresses[neighborhood] | string | bairro onde será feito o exame |
@@ -1208,17 +1208,17 @@ Cria um grupo de exames
 | dates | array | lista das datas dos exames |
 | times | array | lista dos horários de aplicações dos exames |
 | status | string | situação dos exames entre `active`, `inactive` e `partially_active` |
-| kind | string | tipo dos exames referentes a esse grupo de exames |
+| kind | string | tipo dos exames desse lote |
 
 ### Significado dos status
 
 | Status | Descrição |
 | ------ | --------- |
-| active | Todas as combinações de exame neste grupo estão ativas para serem escolhidas |
-| inactive | Nenhuma combinação de exame neste grupo está ativa para ser escolhida |
-| partially_active | Algumas combinações de exame neste grupo não estão ativas para serem escolhidas |
+| active | Todas as combinações de exame nesse lote estão ativas para serem escolhidas |
+| inactive | Nenhuma combinação de exame nesse lote está ativa para ser escolhida |
+| partially_active | Algumas combinações de exame nesse lote não estão ativas para serem escolhidas |
 
-## Suspender um grupo de exames
+## Suspender lote de exames
 
 > Requisição
 
@@ -1275,21 +1275,21 @@ curl -X PUT --user secretary:password http://queroalunos.com/api/exam_groups/123
 }
 ```
 
-Suspende um grupo de exames.
+Suspende um lote de exames.
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| status | form | novo status do grupo de exame |
+| status | form | novo status do lote de exames |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do grupo de exames |
-| course_skus | array | cursos que usam como entrada esses exames |
-| addresses | object array | lista dos objetos dos endereços dos exames |
+| id | number | id do lote de exames |
+| course_skus | array | cursos que usam como entrada algum exame desse lote |
+| addresses | object array | lista dos objetos dos endereços dos exames desse lote |
 | addresses[address] | string | endereço onde será feito o exame |
 | addresses[number] | string | número de onde será feito o exame |
 | addresses[neighborhood] | string | bairro onde será feito o exame |
@@ -1299,15 +1299,15 @@ Suspende um grupo de exames.
 | dates | array | lista das datas dos exames |
 | times | array | lista dos horários de aplicações dos exames |
 | status | string | situação dos exames entre `active`, `inactive` e `partially_active` |
-| kind | string | tipo dos exames referentes a esse grupo de exames |
+| kind | string | tipo dos exames desse lote |
 
 ### Significado do retorno de status
 
 | Status | Descrição |
 | ------ | --------- |
-| active | Todas as combinações de exame neste grupo estão ativas para serem escolhidas |
-| inactive | Nenhuma combinação de exame neste grupo está ativa para ser escolhida |
-| partially_active | Algumas combinações de exame neste grupo não estão ativas para serem escolhidas |
+| active | Todas as combinações de exame nesse lote estão ativas para serem escolhidas |
+| inactive | Nenhuma combinação de exame nesse lote está ativa para ser escolhida |
+| partially_active | Algumas combinações de exame nesse lote não estão ativas para serem escolhidas |
 
 # Informações de exames
 
@@ -1348,7 +1348,7 @@ curl --user secretary:password http://queroalunos.com/api/exams
 }
 ```
 
-Retorna todos os exames inscritos e cancelados.
+Retorna todos os exames (ativos e suspensos).
 
 Exames são retornadas em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, retorna um valor `cursor` adicional que deve ser utilizado de parâmetro na próxima requisição para continuar.
 
@@ -1362,10 +1362,10 @@ Exames são retornadas em lote de 10, ordenadas pela última atualização reali
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| items | array | lista de objetos com dados de inscrições de vestibular |
+| items | array | lista de objetos dos exames |
 | id | number | id do exame |
 | course_skus | array | cursos que usam como entrada esse exame |
-| address | object | lista dos objetos dos endereços referentes a esse grupo de exames |
+| address | object | objeto do endereço onde será feito o exame |
 | address[address] | string | endereço onde será feito o exame |
 | address[number] | string | número de onde será feito o exame |
 | address[neighborhood] | string | bairro onde será feito o exame |
@@ -1418,7 +1418,7 @@ curl --user secretary:password http://queroalunos.com/api/exams/456
 }
 ```
 (No arquivo do ruerro nao tinha id nessa tabela, mas to considerando que tenha, pq essa parte só vai fazer sentido se tiver)
-Retorna uma admissão específica da faculdade.
+Retorna um exame específico.
 
 ### Parâmetros
 
@@ -1432,7 +1432,7 @@ Retorna uma admissão específica da faculdade.
 | ---- | ---- | --------- |
 | id | number | id do exame |
 | course_skus | array | cursos que usam como entrada esse exame |
-| address | object | lista dos objetos dos endereços referentes a esse grupo de exames |
+| address | object | objeto do endereço onde será feito o exame |
 | address[address] | string | endereço onde será feito o exame |
 | address[number] | string | número de onde será feito o exame |
 | address[neighborhood] | string | bairro onde será feito o exame |
@@ -1443,7 +1443,7 @@ Retorna uma admissão específica da faculdade.
 | times | string | horário do exame |
 | status | string | situação do exame entre `active` e `inactive` |
 
-## Criação de grupo de exames
+## Criação de exame
 
 > Requisição
 
@@ -1484,21 +1484,15 @@ curl --user secretary:password http://queroalunos.com/api/exam_groups/new
 }
 ```
 
-Cria um grupo de exames (isso mesmo, mesmo se criar apenas um exame, o que precisa ser criado é um examgroup)
-
-### Parâmetros
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| status | form | novo status do grupo de exame |
+Cria um exame na estrutura de exames em lote (está certo, mesmo se criar apenas um exame, o que precisa ser criado é um exam_group).
 
 ### Informações dos argumentos
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do grupo de exames |
-| course_skus | array | cursos que usam como entrada esses exames |
-| addresses | object array | lista dos objetos dos endereços dos exames |
+| id | number | id do lote de exames |
+| course_skus | array | cursos que usam como entrada algum exame desse lote |
+| addresses | object array | lista dos objetos dos endereços dos exames desse lote |
 | addresses[address] | string | endereço onde será feito o exame |
 | addresses[number] | string | número de onde será feito o exame |
 | addresses[neighborhood] | string | bairro onde será feito o exame |
@@ -1508,15 +1502,15 @@ Cria um grupo de exames (isso mesmo, mesmo se criar apenas um exame, o que preci
 | dates | array | lista das datas dos exames |
 | times | array | lista dos horários de aplicações dos exames |
 | status | string | situação dos exames entre `active`, `inactive` e `partially_active` |
-| kind | string | tipo dos exames referentes a esse grupo de exames |
+| kind | string | tipo dos exames desse lote |
 
 ### Significado dos status
 
 | Status | Descrição |
 | ------ | --------- |
-| active | Todas as combinações de exame neste grupo estão ativas para serem escolhidas |
-| inactive | Nenhuma combinação de exame neste grupo está ativa para ser escolhida |
-| partially_active | Algumas combinações de exame neste grupo não estão ativas para serem escolhidas |
+| active | Todas as combinações de exame nesse lote estão ativas para serem escolhidas |
+| inactive | Nenhuma combinação de exame nesse lote está ativa para ser escolhida |
+| partially_active | Algumas combinações de exame nesse lote não estão ativas para serem escolhidas |
 
 # Notificações
 
