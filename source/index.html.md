@@ -975,7 +975,7 @@ Atualiza o status admissão específica.
 ### Significado do retorno de status
 
 | Status | Descrição |
-| ---- | --------- |
+| ------ | --------- |
 | initiated | Processo Seletivo Pendente |
 | pre_registered | Agendamento Solicitado |
 | registered | Agendamento Confirmado |
@@ -988,6 +988,535 @@ Atualiza o status admissão específica.
 | dropped_out | Desistente |
 | dropping_out | Desistindo |
 | drop_out_confirmed | Desistência confirmada |
+
+# Grupos de exames
+
+## Listar todos os grupos de exames
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/exam_groups
+```
+
+> Resposta
+
+```json
+{
+  "items": [
+    {
+      "id": 1234,
+      "course_skus": [
+        "ADM-MANHA-SP",
+        "DIR-MANHA-SP",
+        "ADM-NOITE-RJ"
+      ],
+      "addresses": [
+        {
+          "address": "Rua Márcia",
+          "number": "4231",
+          "neighborhood": "Morro do Barreto",
+          "city": "São Roque",
+          "state": "SP",
+          "postal_code": "19110-000"
+        }
+      ],
+      "dates": [
+        "2016-11-01", "2016-11-01",
+        "2016-11-01", "2016-11-01"
+      ],
+      "times": [ "18:30", "19:30"],
+      "status": "active",
+      "kind": "scheduled"
+    }
+  ],
+  "cursor": "ASAKDSaldlwp20"
+}
+```
+
+Retorna todos os grupos de exames.
+
+Grupos de exames são retornadas em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, retorna um valor `cursor` adicional que deve ser utilizado de parâmetro na próxima requisição para continuar.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| `cursor` | Query | valor cursor utilizado para continuar uma paginação anterior |
+
+### Informações de resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | number | id do grupo de exames |
+| course_skus | array | cursos que usam como entrada esses exames |
+| addresses | object array | lista dos objetos dos endereços dos exames |
+| addresses[address] | string | endereço onde será feito o exame |
+| addresses[number] | string | número de onde será feito o exame |
+| addresses[neighborhood] | string | bairro onde será feito o exame |
+| addresses[city] | string | cidade onde será feito o exame |
+| addresses[state] | string | estado onde será feito o exame |
+| addresses[postal_code] | string | código postal de onde será feito o exame |
+| dates | array | lista das datas dos exames |
+| times | array | lista dos horários de aplicações dos exames |
+| status | string | situação dos exames entre `active`, `inactive` e `partially_active` |
+| kind | string | tipo dos exames referentes a esse grupo de exames |
+| cursor | string | código para pegar os próximos passos |
+
+## Informações de um único grupo de exames
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/exam_groups/1234
+```
+
+> Resposta
+
+```json
+{
+  "id": 1234,
+  "course_skus": [
+    "ADM-MANHA-SP",
+    "DIR-MANHA-SP",
+    "ADM-NOITE-RJ"
+  ],
+  "addresses": [
+    {
+      "address": "Rua Márcia",
+      "number": "4231",
+      "neighborhood": "Morro do Barreto",
+      "city": "São Roque",
+      "state": "SP",
+      "postal_code": "19110-000"
+    }
+  ],
+  "dates": [
+    "2016-11-01", "2016-11-01",
+    "2016-11-01", "2016-11-01"
+  ],
+  "times": [ "18:30", "19:30"],
+  "status": "active",
+  "kind": "scheduled"
+}
+```
+
+> Resposta quando não encontra nenhum grupo de exames
+
+```json
+{
+  "error": true,
+  "message": "ID não encontrado"
+}
+```
+(No arquivo do ruerro nao tinha id nessa tabela, mas to considerando que tenha, pq essa parte só vai fazer sentido se tiver)
+Retorna uma admissão específica da faculdade.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | path | id do grupo de exames |
+
+### Informações de resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | number | id do grupo de exames |
+| course_skus | array | cursos que usam como entrada esses exames |
+| addresses | object array | lista dos objetos dos endereços dos exames |
+| addresses[address] | string | endereço onde será feito o exame |
+| addresses[number] | string | número de onde será feito o exame |
+| addresses[neighborhood] | string | bairro onde será feito o exame |
+| addresses[city] | string | cidade onde será feito o exame |
+| addresses[state] | string | estado onde será feito o exame |
+| addresses[postal_code] | string | código postal de onde será feito o exame |
+| dates | array | lista das datas dos exames |
+| times | array | lista dos horários de aplicações dos exames |
+| status | string | situação dos exames entre `active`, `inactive` e `partially_active` |
+| kind | string | tipo dos exames referentes a esse grupo de exames |
+
+## Criação de grupo de exames
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/exam_groups/new
+  \ -d "data.json"
+```
+
+> data.json
+
+```json
+{
+  "id": 1234,
+  "course_skus": [
+    "ADM-MANHA-SP",
+    "DIR-MANHA-SP",
+    "ADM-NOITE-RJ"
+  ],
+  "addresses": [
+    {
+      "address": "Rua Márcia",
+      "number": "4231",
+      "neighborhood": "Morro do Barreto",
+      "city": "São Roque",
+      "state": "SP",
+      "postal_code": "19110-000"
+    }
+  ],
+  "dates": [
+    "2016-11-01", "2016-11-01",
+    "2016-11-01", "2016-11-01"
+  ],
+  "times": [ "18:30", "19:30"],
+  "status": "active",
+  "kind": "scheduled"
+}
+```
+
+> Retorno quando parâmetros estão incorretos
+
+```json
+{
+  "error": true,
+  "message": "(Mensagem do SQL?)"
+}
+```
+
+Cria um grupo de exames
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| status | form | novo status do grupo de exame |
+
+### Informações dos argumentos
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | number | id do grupo de exames |
+| course_skus | array | cursos que usam como entrada esses exames |
+| addresses | object array | lista dos objetos dos endereços dos exames |
+| addresses[address] | string | endereço onde será feito o exame |
+| addresses[number] | string | número de onde será feito o exame |
+| addresses[neighborhood] | string | bairro onde será feito o exame |
+| addresses[city] | string | cidade onde será feito o exame |
+| addresses[state] | string | estado onde será feito o exame |
+| addresses[postal_code] | string | código postal de onde será feito o exame |
+| dates | array | lista das datas dos exames |
+| times | array | lista dos horários de aplicações dos exames |
+| status | string | situação dos exames entre `active`, `inactive` e `partially_active` |
+| kind | string | tipo dos exames referentes a esse grupo de exames |
+
+### Significado dos status
+
+| Status | Descrição |
+| ------ | --------- |
+| active | Todas as combinações de exame neste grupo estão ativas para serem escolhidas |
+| inactive | Nenhuma combinação de exame neste grupo está ativa para ser escolhida |
+| partially_active | Algumas combinações de exame neste grupo não estão ativas para serem escolhidas |
+
+## Suspender um grupo de exames
+
+> Requisição
+
+```bash
+curl -X PUT --user secretary:password http://queroalunos.com/api/exam_groups/1234/status
+  \ -d 'inactive'
+```
+
+> Resposta
+
+```json
+{
+  "id": 1234,
+  "course_skus": [
+    "ADM-MANHA-SP",
+    "DIR-MANHA-SP",
+    "ADM-NOITE-RJ"
+  ],
+  "addresses": [
+    {
+      "address": "Rua Márcia",
+      "number": "4231",
+      "neighborhood": "Morro do Barreto",
+      "city": "São Roque",
+      "state": "SP",
+      "postal_code": "19110-000"
+    }
+  ],
+  "dates": [
+    "2016-11-01", "2016-11-01",
+    "2016-11-01", "2016-11-01"
+  ],
+  "times": [ "18:30", "19:30"],
+  "status": "inactive",
+  "kind": "scheduled"
+}
+```
+
+> Retorno quando parâmetros estão incorretos
+
+```json
+{
+  "error": true,
+  "message": "Situação fornecida não é válida"
+}
+```
+
+> Retorno quando não encontra a admissão
+
+```json
+{
+  "error": true,
+  "message": "ID não encontrado"
+}
+```
+
+Suspende um grupo de exames.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| status | form | novo status do grupo de exame |
+
+### Informações de resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | number | id do grupo de exames |
+| course_skus | array | cursos que usam como entrada esses exames |
+| addresses | object array | lista dos objetos dos endereços dos exames |
+| addresses[address] | string | endereço onde será feito o exame |
+| addresses[number] | string | número de onde será feito o exame |
+| addresses[neighborhood] | string | bairro onde será feito o exame |
+| addresses[city] | string | cidade onde será feito o exame |
+| addresses[state] | string | estado onde será feito o exame |
+| addresses[postal_code] | string | código postal de onde será feito o exame |
+| dates | array | lista das datas dos exames |
+| times | array | lista dos horários de aplicações dos exames |
+| status | string | situação dos exames entre `active`, `inactive` e `partially_active` |
+| kind | string | tipo dos exames referentes a esse grupo de exames |
+
+### Significado do retorno de status
+
+| Status | Descrição |
+| ------ | --------- |
+| active | Todas as combinações de exame neste grupo estão ativas para serem escolhidas |
+| inactive | Nenhuma combinação de exame neste grupo está ativa para ser escolhida |
+| partially_active | Algumas combinações de exame neste grupo não estão ativas para serem escolhidas |
+
+# Informações de exames
+
+## Listar todos os exames
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/exams
+```
+
+> Resposta
+
+```json
+{
+  "items": [
+    {
+      "id": 456,
+      "course_skus": [
+        "ADM-MANHA-SP",
+        "DIR-MANHA-SP",
+        "ADM-NOITE-RJ"
+      ],
+      "address": {
+        "address": "Rua Márcia",
+        "number": "4231",
+        "neighborhood": "Morro do Barreto",
+        "city": "São Roque",
+        "state": "SP",
+        "postal_code": "19110-000"
+      },
+      "dates": "2016-11-01",
+      "times": "18:30",
+      "status": "active"
+    }
+  ]
+  "cursor": "ASAKDSaldlwp20"
+}
+```
+
+Retorna todos os exames inscritos e cancelados.
+
+Exames são retornadas em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, retorna um valor `cursor` adicional que deve ser utilizado de parâmetro na próxima requisição para continuar.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| `cursor` | Query | valor cursor utilizado para continuar uma paginação anterior |
+
+### Informações de resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| items | array | lista de objetos com dados de inscrições de vestibular |
+| id | number | id do exame |
+| course_skus | array | cursos que usam como entrada esse exame |
+| address | object | lista dos objetos dos endereços referentes a esse grupo de exames |
+| address[address] | string | endereço onde será feito o exame |
+| address[number] | string | número de onde será feito o exame |
+| address[neighborhood] | string | bairro onde será feito o exame |
+| address[city] | string | cidade onde será feito o exame |
+| address[state] | string | estado onde será feito o exame |
+| address[postal_code] | string | código postal de onde será feito o exame |
+| dates | string | data do exame |
+| times | string | horário do exame |
+| status | string | situação do exame entre `active` e `inactive` |
+| cursor | string | código para pegar os próximos passos |
+
+## Informações de um único exame
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/exams/456
+```
+
+> Resposta
+
+```json
+{
+  "id": 456,
+  "course_skus": [
+    "ADM-MANHA-SP",
+    "DIR-MANHA-SP",
+    "ADM-NOITE-RJ"
+  ],
+  "address": {
+    "address": "Rua Márcia",
+    "number": "4231",
+    "neighborhood": "Morro do Barreto",
+    "city": "São Roque",
+    "state": "SP",
+    "postal_code": "19110-000"
+  },
+  "dates": "2016-11-01",
+  "times": "18:30",
+  "status": "active"
+}
+```
+
+> Resposta quando não encontra nenhum exame
+
+```json
+{
+  "error": true,
+  "message": "ID não encontrado"
+}
+```
+(No arquivo do ruerro nao tinha id nessa tabela, mas to considerando que tenha, pq essa parte só vai fazer sentido se tiver)
+Retorna uma admissão específica da faculdade.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | path | id do exame |
+
+### Informações de resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | number | id do exame |
+| course_skus | array | cursos que usam como entrada esse exame |
+| address | object | lista dos objetos dos endereços referentes a esse grupo de exames |
+| address[address] | string | endereço onde será feito o exame |
+| address[number] | string | número de onde será feito o exame |
+| address[neighborhood] | string | bairro onde será feito o exame |
+| address[city] | string | cidade onde será feito o exame |
+| address[state] | string | estado onde será feito o exame |
+| address[postal_code] | string | código postal de onde será feito o exame |
+| dates | string | data do exame |
+| times | string | horário do exame |
+| status | string | situação do exame entre `active` e `inactive` |
+
+## Criação de grupo de exames
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/exam_groups/new
+  \ -d "data.json"
+```
+
+> data.json
+
+```json
+{
+  "id": 1234,
+  "course_skus": [ "ADM-MANHA-SP" ],
+  "addresses": [
+    {
+      "address": "Rua Márcia",
+      "number": "4231",
+      "neighborhood": "Morro do Barreto",
+      "city": "São Roque",
+      "state": "SP",
+      "postal_code": "19110-000"
+    }
+  ],
+  "dates": [ "2016-11-01" ],
+  "times": [ "18:30" ],
+  "status": "active",
+  "kind": "scheduled"
+}
+```
+
+> Retorno quando parâmetros estão incorretos
+
+```json
+{
+  "error": true,
+  "message": "(Mensagem do SQL?)"
+}
+```
+
+Cria um grupo de exames (isso mesmo, mesmo se criar apenas um exame, o que precisa ser criado é um examgroup)
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| status | form | novo status do grupo de exame |
+
+### Informações dos argumentos
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | number | id do grupo de exames |
+| course_skus | array | cursos que usam como entrada esses exames |
+| addresses | object array | lista dos objetos dos endereços dos exames |
+| addresses[address] | string | endereço onde será feito o exame |
+| addresses[number] | string | número de onde será feito o exame |
+| addresses[neighborhood] | string | bairro onde será feito o exame |
+| addresses[city] | string | cidade onde será feito o exame |
+| addresses[state] | string | estado onde será feito o exame |
+| addresses[postal_code] | string | código postal de onde será feito o exame |
+| dates | array | lista das datas dos exames |
+| times | array | lista dos horários de aplicações dos exames |
+| status | string | situação dos exames entre `active`, `inactive` e `partially_active` |
+| kind | string | tipo dos exames referentes a esse grupo de exames |
+
+### Significado dos status
+
+| Status | Descrição |
+| ------ | --------- |
+| active | Todas as combinações de exame neste grupo estão ativas para serem escolhidas |
+| inactive | Nenhuma combinação de exame neste grupo está ativa para ser escolhida |
+| partially_active | Algumas combinações de exame neste grupo não estão ativas para serem escolhidas |
 
 # Notificações
 
