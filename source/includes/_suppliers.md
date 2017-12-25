@@ -163,6 +163,11 @@ to write your own pagination logic.
 You can also find top n suppliers by passing `top` and `from` params like:
 `/api/v1/suppliers/top?top=10&from=100`
 
+### Filter Suppliers by department
+
+To filter suppliers for specific department you can pass `department_id` in
+queryparams. example: `/api/v1/suppliers?department_id=1`.
+
 ### Filter Archived Suppliers
 
 You can pass `archived` params with `true` or `false` to filter Archived suppliers.
@@ -178,6 +183,7 @@ You can pass `archived` params with `true` or `false` to filter Archived supplie
 | authentication_token | header   | Authentication token                           |
 | app_company_id       | header   | Company ID                                     |
 | page                 | integer  | Page number to paginate                        |
+| department_id        | integer  | filter suppliers by department                 |
 | archived             | boolean  | `true` or `false` to filter archived suppliers |
 | top                  | integer  | top n record                                   |
 | from                 | integer  | top from these manu records                    |
