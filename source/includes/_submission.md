@@ -375,6 +375,24 @@ O iPag retorna os seguintes parâmetros via POST à URL informada pelo parâm
 
 Caso o retorno tenha sido solicitado em XML, os mesmo parâmetros serão retornados, mas em formato XML.
 
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<retorno>
+    <id_transacao>123456789</id_transacao>
+    <valor>10.00</valor>
+    <num_pedido>123456</num_pedido>
+    <status_pagamento>8</status_pagamento>
+    <mensagem_transacao>Transação Autorizada</mensagem_transacao>
+    <metodo>visa</metodo>
+    <operadora>cielo</operadora>
+    <operadora_mensagem>Transação autorizada</operadora_mensagem>
+    <id_librepag>12345</id_librepag>
+    <autorizacao_id>123456</autorizacao_id>
+    <redirect>false</redirect>
+    <url_autenticacao>https://minhaloja.com.br/ipag/retorno</url_autenticacao>
+</retorno>
+```
+
 Parâmetros | Descrição
 --------- | ----------------
 id_transacao | TID (Número emitido pela adquirente para identificar a transação)
