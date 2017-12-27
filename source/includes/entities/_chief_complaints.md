@@ -32,38 +32,40 @@ RestClient::Request.new(
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "concept_id": 64,
-    "alternate_term": "Throat Hurts",
-    "title": "Throat Pain (Sore Throat)",
-    "icd9": "784.1",
-    "icd10": "R07.0",
-    "snomed": "267102003",
-    "request_image": null,
-    "image_required": false
-  },
-  {
-    "concept_id": 3539,
-    "alternate_term": "Throat is Red",
-    "title": "Throat Redness (or Red Spots)",
-    "icd9": "462",
-    "icd10": "J02.9",
-    "snomed": "126662008",
-    "request_image": null,
-    "image_required": false
-  },
-  {
-    "concept_id": 3544,
-    "alternate_term": "Throat is Swollen",
-    "title": "Throat Swelling or Lump",
-    "icd9": "784.2",
-    "icd10": "R22.1",
-    "snomed": "421581006",
-    "request_image": null,
-    "image_required": false
-  }
-]
+{
+  chief_complaints: [
+    {
+      "concept_id": 64,
+      "alternate_term": "Throat Hurts",
+      "title": "Throat Pain (Sore Throat)",
+      "icd9": "784.1",
+      "icd10": "R07.0",
+      "snomed": "267102003",
+      "request_image": null,
+      "image_required": false
+    },
+    {
+      "concept_id": 3539,
+      "alternate_term": "Throat is Red",
+      "title": "Throat Redness (or Red Spots)",
+      "icd9": "462",
+      "icd10": "J02.9",
+      "snomed": "126662008",
+      "request_image": null,
+      "image_required": false
+    },
+    {
+      "concept_id": 3544,
+      "alternate_term": "Throat is Swollen",
+      "title": "Throat Swelling or Lump",
+      "icd9": "784.2",
+      "icd10": "R22.1",
+      "snomed": "421581006",
+      "request_image": null,
+      "image_required": false
+    }
+  ]
+}
 ```
 MDLIVE offers the ability to search against a list chief complaints to be used for offering auto-complete suggestions as a patient is scheduling a visit.
 
