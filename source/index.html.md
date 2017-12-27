@@ -19,6 +19,10 @@ includes:
 
   - entities/entities
   - entities/chief_complaints
+  - entities/medical_conditions/clinical_concepts_search
+  - entities/medical_conditions/create
+  - entities/medical_conditions/delete
+  - entities/medical_conditions/list
   - entities/provider_types
   - entities/states
 
