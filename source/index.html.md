@@ -23,7 +23,7 @@ includes:
   - entities/medical_conditions/create
   - entities/medical_conditions/delete
   - entities/medical_conditions/list
-  - entities/patients
+  - entities/patients/get
   - entities/pharmacies/current_pharmacy
   - entities/pharmacies/update
   - entities/pharmacies/search

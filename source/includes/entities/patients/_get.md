@@ -1,6 +1,4 @@
-# Patients
-
-## Retrieve a patient
+## Patients - Retrieve a patient
 
 ```shell
 curl {server_url}/api/v2/patients/{id}
