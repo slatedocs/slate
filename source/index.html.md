@@ -13,7 +13,7 @@ search: true
 
 # Scout Help Docs
 
-Welcome to the help site for __[Scout Application Monitoring](https://scoutapp.com)__. Don't have an account? <a href="https://scoutapp.com/info/pricing" target="_blank">Get started - it's free</a>.
+Welcome to the help site for __[Scout Application Monitoring](https://scoutapp.com)__. Don't have an account? <a href="https://scoutapp.com/info/pricing" target="_blank">Get started</a>.
 
 Browse through the sidebar, search, [email us](mailto:support@scoutapp.com), or <a href="http://slack.scoutapp.com" target="_blank">join our Slack community</a>. We're here to help.
 
@@ -34,10 +34,10 @@ Browse through the sidebar, search, [email us](mailto:support@scoutapp.com), or 
   </div>
 
   <div>
-    <h3><a href="https://scoutapp.com/info/pricing" target="_blank">Signup - it's free</a></h3>
+    <h3><a href="https://docs.google.com/forms/d/e/1FAIpQLSfZtTYaAtbbAveQ5j2wcR5UJeDnH5KUiHc6DwnH1Qjk_OBtYA/viewform" target="_blank">Python Agent</a></h3>
     <p>
-      Don't have an account? <a href="https://scoutapp.com/info/pricing" target="_blank">Signup</a> - our free plan
-      monitors apps both large and small.
+      Python support is coming soon. 
+      <br/><br/><a href="https://docs.google.com/forms/d/e/1FAIpQLSfZtTYaAtbbAveQ5j2wcR5UJeDnH5KUiHc6DwnH1Qjk_OBtYA/viewform" target="_blank">Signup for early access</a>.
     </p>
   </div>
 </div>

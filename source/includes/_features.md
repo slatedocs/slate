@@ -244,6 +244,14 @@ You can easily compare the performance of your application between different tim
 
 ![time compare](time_compare_annotated.png)
 
+## Digest Email
+
+At a frequency of your choice (daily or weekly), Scout crunches the numbers on your app's performance (both web endpoints and background jobs). Performance is compared to the previous week, and highlights are mentioned in the email.
+
+![digest](digest_screenshot.png)
+
+The email identifies performance trends, slow outliers, and attempts to narrow down issues to a specific cause (like slow HTTP requests to another service).
+
 ## DevTrace
 
 DevTrace is our development profiler: it's included with our Ruby and Elixir libraries. DevTrace can be used for free without signup. Enabling DevTrace adds a speed badge when navigating your app in development. Clicking the speed badge reveals a shareable transaction trace of the request.
