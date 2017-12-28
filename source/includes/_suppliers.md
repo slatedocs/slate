@@ -160,8 +160,8 @@ to write your own pagination logic.
 
 ### Top n records
 
-You can also find top n suppliers by passing `top` and `from` params like:
-`/api/v1/suppliers/top?top=10&from=100`
+You can also find top n suppliers by passing `top` params.
+`/api/v1/suppliers/top?top=10`
 
 ### Filter Suppliers by department
 
@@ -185,8 +185,7 @@ You can pass `archived` params with `true` or `false` to filter Archived supplie
 | page                 | integer  | Page number to paginate                        |
 | department_id        | integer  | filter suppliers by department                 |
 | archived             | boolean  | `true` or `false` to filter archived suppliers |
-| top                  | integer  | top n record                                   |
-| from                 | integer  | top from these manu records                    |
+| top                  | integer  | limit n record                                 |
 
 ## Get Supplier details
 
