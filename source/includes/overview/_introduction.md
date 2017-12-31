@@ -11,4 +11,4 @@ All request and response bodies are encoded in JSON (`application/json`). All re
 
 ### Notice
 
-The API is currently in **closed beta** and not accepting requests. It's planned to launch publicly along with WCX this December.
+The API is currently in **closed beta** and not accepting requests. It's planned to launch publicly along with WCX.
