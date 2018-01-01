@@ -72,7 +72,7 @@ html, body {
   }
 
   // This is the logo at the top of the ToC
-  &>img {
+  &>a>img {
     display: block;
     max-width: 100%;
   }
@@ -615,4 +615,64 @@ html, body {
 
 .highlight, .highlight .w {
   background-color: $code-bg;
+}
+
+// Additional Styles
+table.arguments {
+  tr {
+    td:first-of-type, th:first-of-type {
+      text-align: right;
+    }
+  }
+  .field {
+    font-weight: 500;
+  }
+  .type {
+    color: #777;
+    white-space: nowrap;
+  }
+  .type.required {
+    color: #003ca6;
+    font-weight: 600;
+  }
+  .type.deprecated {
+    color: #ff4040;
+  }
+}
+
+table.reference {
+  tr:nth-child(even)>td {
+    background-color: #f8fafd;
+  }
+}
+
+table.connectors {
+  td:first-of-type, th:first-of-type {
+    text-align: left;
+  }
+  td:last-of-type, th:last-of-type {
+    text-align: center;
+  }
+}
+
+table.levels {
+  td:first-of-type, th:first-of-type {
+    text-align: center;
+  }
+}
+
+p.header-image {
+  padding: 0;
+  margin-bottom: -56px;
+  img {
+    width: 100%;
+  }
+}
+
+
+// Per page overwrites
+body.index {
+  p.header-image {
+    margin-bottom: 25px;
+  }
 }
