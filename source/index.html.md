@@ -1180,8 +1180,8 @@ Retorna um lote de exames específico.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/exam_groups/new
-  \ -d "data.json"
+curl --user secretary:password http://queroalunos.com/api/exam_groups/new \
+  -d "data.json"
 ```
 
 > data.json
@@ -1262,8 +1262,8 @@ Cria um lote de exames.
 > Requisição
 
 ```bash
-curl -X PUT --user secretary:password http://queroalunos.com/api/exam_groups/1234/status
-  \ -d 'inactive'
+curl -X PUT --user secretary:password http://queroalunos.com/api/exam_groups/1234/status \
+  -d "inactive"
 ```
 
 > Resposta
@@ -1487,8 +1487,8 @@ Retorna um exame específico.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/exam_groups/new
-  \ -d "data.json"
+curl --user secretary:password http://queroalunos.com/api/exam_groups/new \
+  -d "data.json"
 ```
 
 > data.json
@@ -1556,8 +1556,8 @@ Cria um exame na estrutura de exames em lote (está certo, mesmo se criar apenas
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/exam/suspend
-  \ -d "data.json"
+curl --user secretary:password http://queroalunos.com/api/exam/suspend \
+  -d "data.json"
 ```
 
 > data.json
@@ -1623,8 +1623,8 @@ Suspende um exame.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/exams/456
-  \ -d 'active'
+curl --user secretary:password http://queroalunos.com/api/exams/456 \
+  -d status="active"
 ```
 
 > Resposta
