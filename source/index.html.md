@@ -1522,15 +1522,6 @@ A rota deve aceitar apenas POSTs.
 
 ## Definição base do evento
 
-```
- {
-  event_type: string,
-  created: timestamp,
-  api_version: string,
-  data: object
-}
-```
-
 Estrutura base das notificações:
 
 | Nome | Tipo | Descrição |
@@ -1540,7 +1531,7 @@ Estrutura base das notificações:
 | event_type | string | tipo de evento |
 | data | object | Objeto com informações de acordo com o tipo de evento |
 
-## Notificação de nova inscrição de vestibular
+## Notificação de novo processo seletivo via vestibular
 
 ```json
 {
@@ -1595,7 +1586,7 @@ Estrutura base das notificações:
 }
 ```
 
-Indica que uma nova inscrição para vestibular foi feita
+Esta notificação informando uma nova inscrição para o processo seletivo via vestibular.
 
 ### Parametros
 
@@ -1634,4 +1625,122 @@ Indica que uma nova inscrição para vestibular foi feita
 | times | string | hora da realização do vestibular |
 | status | string | status do vestibular |
 | result | string | resultado do vestibular |
-| type | string | tipo de exame (exam ou enem) |
+| type | string | tipo de exame (_neste caso, sempre será exam_) |
+
+## Notificação de novo processo seletivo via ENEM
+
+```json
+{
+  "event_type": "NewApplication",
+  "created": "2017-12-15T17:34:26.173",
+  "api_version": "1.0.0",
+  "data": {
+    "application": {
+      "id": 123456,
+      "student": {
+        "id": 394932,
+        "name": "José da Silva",
+        "cpf": "111.222.333-44",
+        "birth_date": "1991-01-01",
+        "emails": [
+          "teste@exemplo.com"
+        ],
+        "phones": [
+          "(11) 98888-7777"
+        ],
+        "address_information": {
+          "address": "Rua Sandra",
+          "number": "432S",
+          "neighborhood": "Chácara Dora",
+          "city": "Araçariguama",
+          "state": "SP",
+          "postal_code": "18147-000"
+        }
+      },
+      "exam_application_info": {
+        "grades": {
+          "redacao": 600.0,
+          "humanas": 600.0,
+          "natureza": 600.0,
+          "linguagens": 600.0,
+          "matematica": 600.0
+        }
+      },
+      "exam": {
+        "course_skus": [
+          "ADM-MANHA-SP",
+          "DIR-MANHA-SP",
+          "ADM-NOITE-RJ"
+        ],
+        "minimum_grades": {
+          "redacao": 600.0,
+          "humanas": 600.0,
+          "natureza": 600.0,
+          "linguagens": 600.0,
+          "matematica": 600.0
+        },
+        "status": "active"
+      },
+      "result": "preregistered",
+      "type": "exam_enem"
+    }
+  }
+}
+```
+
+Esta notificação informando uma nova inscrição para o processo seletivo via ENEM.
+
+### Parametros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| created | string | data que foi criado o evento (timestamp UTC)
+| api_version | string | informação da versão atual da API
+| event_type | string | tipo de evento, no caso `NewApplication` |
+| data | object | Objeto com informações de acordo com o tipo de evento |
+| application | object | objeto com informações do vestibular |
+| id | number | id do vestibular |
+| student | object | objeto com dados do aluno |
+| id (student) | number | id do aluno. |
+| name | string | nome do aluno |
+| cpf | string | cpf do aluno |
+| birth_date | string | data de nascimento do aluno |
+| emails | array de string | lista de emails do aluno |
+| phones | array de string | lista de telefones do aluno |
+| address_information | object | objeto com dados onde aluno reside |
+| address | string | endereço onde aluno reside |
+| number | string | número onde aluno reside |
+| neighborhood | string | bairro onde aluno reside |
+| city | string | cidade onde aluno reside |
+| state | string | estado onde aluno reside |
+| postal_code | string | código postal onde aluno reside |
+| grades | object | objeto com informações de nota obtida pelo aluno no enem |
+| redacao | float | nota obtida pelo aluno na redação |
+| humanas | float | nota obtida pelo aluno em humanas |
+| natureza | float | nota obtida pelo aluno em natureza |
+| linguagens | float | nota obtida pelo aluno em linguagens |
+| matematica | float | nota obtida pelo aluno em matemática |
+| exam | object | objeto com informações do exame |
+| course_skus | array | lista com os cursos pertencentes a este exame |
+| minimum_grades | object | objeto com informações de nota mínima exigida pela faculdade |
+| redacao | float | nota mínima de redação exigida pela faculdade |
+| humanas | float | nota mínima de humanas exigida pela faculdade |
+| natureza | float | nota mínima de natureza exigida pela faculdade |
+| linguagens | float | nota mínima de linguagens exigida pela faculdade |
+| matematica | float | nota mínima de matemática exigida pela faculdade |
+| status | string | status do vestibular |
+| result | string | resultado do vestibular |
+| type | string | tipo de exame (_neste caso, sempre será enem_) |
+
+
+## Notificação de novo processo de admissão
+
+```json
+{
+  "id": 12345,
+  "course_sku": "ADM-TARDE-EAD-91119",
+  "status": "pending_docs"
+}
+```
+
+Esta notificação informando uma novo aluno para admissão na universidade.
