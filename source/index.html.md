@@ -1109,7 +1109,6 @@ curl --user secretary:password http://queroalunos.com/api/exam_groups/1234
   "message": "ID não encontrado"
 }
 ```
-(No arquivo do ruerro nao tinha id nessa tabela, mas to considerando que tenha, pq essa parte só vai fazer sentido se tiver)
 Retorna um lote de exames específico.
 
 ### Parâmetros
@@ -1417,7 +1416,7 @@ curl --user secretary:password http://queroalunos.com/api/exams/456
   "message": "ID não encontrado"
 }
 ```
-(No arquivo do ruerro nao tinha id nessa tabela, mas to considerando que tenha, pq essa parte só vai fazer sentido se tiver)
+
 Retorna um exame específico.
 
 ### Parâmetros
@@ -1511,6 +1510,140 @@ Cria um exame na estrutura de exames em lote (está certo, mesmo se criar apenas
 | active | Todas as combinações de exame nesse lote estão ativas para serem escolhidas |
 | inactive | Nenhuma combinação de exame nesse lote está ativa para ser escolhida |
 | partially_active | Algumas combinações de exame nesse lote não estão ativas para serem escolhidas |
+
+## Suspenção de um exame
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/exam/suspend
+  \ -d "data.json"
+```
+
+> data.json
+
+```json
+{
+  "exam_group_id": 1234,
+  "course_skus": [
+    "ADM-MANHA-SP",
+    "DIR-MANHA-SP",
+    "ADM-NOITE-RJ"
+  ],
+  "address": {
+    "address": "Rua Márcia",
+    "number": "4231",
+    "neighborhood": "Morro do Barreto",
+    "city": "São Roque",
+    "state": "SP",
+    "postal_code": "19110-000"
+  },
+  "dates": "2016-11-01",
+  "times": "18:30",
+  "status": "inactive"
+}
+```
+
+> Retorno quando parâmetros estão incorretos
+
+```json
+{
+  "error": true,
+  "message": "(Mensagem do SQL?)"
+}
+```
+
+Suspende um exame.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | path | id do exame |
+
+### Informações de resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| exam_group_id | number | id do lote de exames |
+| course_skus | array | cursos que usam como entrada esse exame |
+| address | object | objeto do endereço onde será feito o exame |
+| address[address] | string | endereço onde será feito o exame |
+| address[number] | string | número de onde será feito o exame |
+| address[neighborhood] | string | bairro onde será feito o exame |
+| address[city] | string | cidade onde será feito o exame |
+| address[state] | string | estado onde será feito o exame |
+| address[postal_code] | string | código postal de onde será feito o exame |
+| dates | string | data do exame |
+| times | string | horário do exame |
+| status | string | situação do exame entre `active` e `inactive` |
+
+## Reativar um exame
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/exams/456
+  \ -d 'active'
+```
+
+> Resposta
+
+```json
+{
+  "id": 456,
+  "course_skus": [
+    "ADM-MANHA-SP",
+    "DIR-MANHA-SP",
+    "ADM-NOITE-RJ"
+  ],
+  "address": {
+    "address": "Rua Márcia",
+    "number": "4231",
+    "neighborhood": "Morro do Barreto",
+    "city": "São Roque",
+    "state": "SP",
+    "postal_code": "19110-000"
+  },
+  "dates": "2016-11-01",
+  "times": "18:30",
+  "status": "active"
+}
+```
+
+> Resposta quando não encontra nenhum exame
+
+```json
+{
+  "error": true,
+  "message": "ID não encontrado"
+}
+```
+
+Reativa um exame que estava com status `inactive`.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | path | id do exame |
+
+### Informações de resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | number | id do exame |
+| course_skus | array | cursos que usam como entrada esse exame |
+| address | object | objeto do endereço onde será feito o exame |
+| address[address] | string | endereço onde será feito o exame |
+| address[number] | string | número de onde será feito o exame |
+| address[neighborhood] | string | bairro onde será feito o exame |
+| address[city] | string | cidade onde será feito o exame |
+| address[state] | string | estado onde será feito o exame |
+| address[postal_code] | string | código postal de onde será feito o exame |
+| dates | string | data do exame |
+| times | string | horário do exame |
+| status | string | situação do exame entre `active` e `inactive` |
 
 # Notificações
 
