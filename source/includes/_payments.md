@@ -41,7 +41,7 @@ EXEMPLO
 | payment_config_id         | integer | código de identificação da configuração de pagamento à qual o pagamento irá pertencer                                                                                                                                                                                                                  |
 | amount                    | decimal | valor do pagamento                                                                                                                                                                                                                                                                                     |
 | date                      | date    | data do pagamento                                                                                                                                                                                                                                                                                      |
-| payment_method            | string  | forma de pagamento ('credit_other_ownership', 'credit_same_ownership', 'credit_savings_account', 'doc_other_ownership', 'doc_same_ownership', 'ted_other_ownership', 'ted_same_ownership')                                                                                                             |
+| payment_method            | string  | forma de pagamento ('credit_other_ownership', 'credit_same_ownership', 'credit_savings_account', 'doc_other_ownership', 'doc_same_ownership', 'ted_other_ownership', 'ted_same_ownership', 'dealership', 'billet_same_bank', 'billet_other_bank')                                                      |
 | payment_type              | string  | tipo de pagamento. Os possíveis valores variam de acordo com o "payment_method" (vide tabela 1)                                                                                                                                                                                                        |
 | bank_code                 | string  | código de 3 dígitos do banco da conta bancária para o pagamento                                                                                                                                                                                                                                        |
 | account                   | string  | número da conta bancária para o pagamento                                                                                                                                                                                                                                                              |
@@ -53,6 +53,10 @@ EXEMPLO
 | doc_goal                  | string  | código referente ao objetivo do DOC. Possíveis valores na tabela 2                                                                                                                                                                                                                                     |
 | ted_goal                  | string  | código referente ao objetivo do TED. Possíveis valores na tabela 3                                                                                                                                                                                                                                     |
 | our_number                | string  | número que identifica o pagamento no banco                                                                                                                                                                                                                                                             |
+| discount_amount           | decimal | valor do desconto                                                                                                                                                                                                                                                                                      |
+| extra_amount              | decimal | valor Extra                                                                                                                                                                                                                                                                                            |
+| barcode                   | string  | código de barras                                                                                                                                                                                                                                                                                       |
+| due_date                  | date    | data de vencimento                                                                                                                                                                                                                                                                                     |
 | registration_status       | string  | status de registro do pagamento ('without_remittance', 'remitted', 'registered', 'canceled', 'edit_amount_started', 'edit_date_started', 'registered_with_error', 'cancelation_started', 'canceled_awaiting_confirmation', 'amount_edited_awaiting_confirmation', 'date_edited_awaiting_confirmation') |
 
 ## Informações do Pagamento
@@ -198,26 +202,78 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 Cria um novo Pagamento, retornando as informações do mesmo em caso de sucesso. Se houverem erros eles serão informados no corpo da resposta.
 
+**Parâmetros comuns a todos as formas de pagamento**
+
+| Campo                     | Tipo    | Comentário                         |
+|---------------------------|---------|------------------------------------|
+| amount                    | decimal | **(requerido)** valor do pagamento |
+| date                      | date    | **(requerido)** data do pagamento  |
+| payment_type              | string  | **(requerido)** Tipo de pagamento  |
+| payment_method            | string  | **(requerido)** Modo de pagamento  |
+
 ### Transferências (DOC, TED, Crédito)
 
-**Parâmetros**
+Além dos parâmetros comuns à todos as formas de pagamento, temos parâmetros comuns aos pagamentos via transferência, além de alguns espefíficos para cada modo de pagamento.
 
-| Campo                     | Tipo    | Comentário                                                                                                                                                                                                 |
-|---------------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| payment_config_id         | integer | **(requerido)** código de identificação da configuração de pagamento à qual o pagamento irá pertencer                                                                                                      |
-| amount                    | decimal | **(requerido)** valor do pagamento                                                                                                                                                                         |
-| date                      | date    | **(requerido)** data do pagamento                                                                                                                                                                          |
-| payment_method            | string  | **(requerido)** forma de pagamento ('credit_other_ownership', 'credit_same_ownership', 'credit_savings_account', 'doc_other_ownership', 'doc_same_ownership', 'ted_other_ownership', 'ted_same_ownership') |
-| payment_type              | string  | **(requerido)** tipo de pagamento. Os possíveis valores variam de acordo com o "payment_method" (vide tabela 1)                                                                                            |
-| bank_code                 | string  | **(requerido)** código de 3 dígitos do banco da conta bancária para o pagamento                                                                                                                            |
-| account                   | string  | **(requerido)** número da conta bancária para o pagamento                                                                                                                                                  |
-| account_digit             | string  | **(requerido)** dígito da conta bancária para fazer o pagamento                                                                                                                                            |
-| agency                    | string  | **(requerido)** número da agência da conta bancária para fazer o pagamento                                                                                                                                 |
-| payee_name                | string  | **(requerido)** nome do beneficiário                                                                                                                                                                       |
-| payee_document_type       | string  | **(requerido)** tipo do documento do beneficiário                                                                                                                                                          |
-| payee_document            | string  | **(requerido)** número do documento do beneficiário                                                                                                                                                        |
-| doc_goal                  | string  | (opcional e apenas utilizado quando payment_method é 'doc_other_ownership' ou 'doc_same_ownership') código referente ao objetivo do DOC. Possíveis valores na tabela 2                                     |
-| ted_goal                  | string  | (opcional e apenas utilizado quando payment_method é 'ted_other_ownership') código referente ao objetivo do TED. Possíveis valores na tabela 3                                                             |
+**Parâmetros comuns à todos os pagamentos via transferência**
+
+| Campo                     | Tipo    | Comentário                                                                      |
+|---------------------------|---------|---------------------------------------------------------------------------------|
+| account                   | string  | **(requerido)** número da conta bancária para o pagamento                       |
+| account_digit             | string  | **(requerido)** dígito da conta bancária para fazer o pagamento                 |
+| agency                    | string  | **(requerido)** número da agência da conta bancária para fazer o pagamento      |
+| payee_name                | string  | **(requerido)** nome do beneficiário                                            |
+| payee_document_type       | string  | **(requerido)** tipo do documento do beneficiário                               |
+| payee_document            | string  | **(requerido)** número do documento do beneficiário                             |
+
+**Parâmetros quando payment_method é 'doc_other_ownership' ou 'doc_same_ownership'**
+
+| Campo                     | Tipo    | Comentário                                                                      |
+|---------------------------|---------|---------------------------------------------------------------------------------|
+| bank_code                 | string  | **(requerido)** código de 3 dígitos do banco da conta bancária para o pagamento |
+| doc_goal                  | string  | (opcional) código referente ao objetivo do DOC. Possíveis valores na tabela 2   |
+
+**Parâmetros quando payment_method é 'ted_other_ownership'**
+
+| Campo                     | Tipo    | Comentário                                                                      |
+|---------------------------|---------|---------------------------------------------------------------------------------|
+| bank_code                 | string  | **(requerido)** código de 3 dígitos do banco da conta bancária para o pagamento |
+| ted_goal                  | string  | (opcional) código referente ao objetivo do TED. Possíveis valores na tabela 3   |
+
+### Boleto Bancário (Boleto de mesmo banco, Boleto de outro Banco)
+
+Além dos parâmetros comuns à todos as formas de pagamento, temos parâmetros espefíficos para o pagamento de boletos bancários.
+
+<aside class="info">
+O attributo <code>amount</code> nesse caso é opcional, pois ele é identificado a partir do código de barras.
+</aside>
+
+**Parâmetros quando payment_method é 'billet_same_bank' ou 'billet_other_bank'**
+
+| Campo                     | Tipo    | Comentário                                                                          |
+|---------------------------|---------|-------------------------------------------------------------------------------------|
+| barcode                   | string  | **(requerido)** Código de barras do boleto bancário                                 |
+| payee_name                | string  | **(requerido)** nome do beneficiário                                                |
+| payee_document_type       | string  | **(requerido)** tipo do documento do beneficiário ('cpf' ou 'cnpj')                 |
+| payee_document            | string  | **(requerido)** número do documento do beneficiário                                 |
+| due_date                  | date    | (opicional, já que é identificado no código de barras) Data de vencimento do boleto |
+| discount_amount           | decimal | (opcional) valor do desconto                                                        |
+| extra_amount              | decimal | (opcional) valor extra                                                              |
+
+### Boleto de Tributo (Concecionárias, Tributo com código de barras)
+
+Além dos parâmetros comuns à todos as formas de pagamento, temos parâmetros espefíficos para o pagamento de boletos de concecionárias ou tributos.
+
+<aside class="info">
+O attributo <code>amount</code> nesse caso é opcional, pois ele é identificado a partir do código de barras.
+</aside>
+
+**Parâmetros quando payment_method é 'dealdership' ou 'tribute_with_barcode'**
+
+| Campo                     | Tipo    | Comentário                                          |
+|---------------------------|---------|-----------------------------------------------------|
+| barcode                   | string  | **(requerido)** Código de barras do boleto bancário |
+| due_date                  | date    | **(requerido)** Data de vencimento do boleto        |
 
 ## Atualização de Pagamento
 
@@ -265,21 +321,67 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 Atualiza um determinado Pagamento, retornando as informações do mesmo em caso de sucesso. Se houverem erros, eles serão informados no corpo da resposta. A requisição não diferencia a utilização dos verbos PUT e PATCH.
 
-**Parâmetros**
+**Parâmetros comuns a todos as formas de pagamento**
 
-| Campo                     | Tipo    | Comentário                                                                                                                                                                                                 |
-|---------------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| amount                    | decimal | **(requerido)** valor do pagamento                                                                                                                                                                         |
-| date                      | date    | **(requerido)** data do pagamento                                                                                                                                                                          |
-| bank_code                 | string  | **(requerido)** código de 3 dígitos do banco da conta bancária para o pagamento                                                                                                                            |
-| account                   | string  | **(requerido)** número da conta bancária para o pagamento                                                                                                                                                  |
-| account_digit             | string  | **(requerido)** dígito da conta bancária para fazer o pagamento                                                                                                                                            |
-| agency                    | string  | **(requerido)** número da agência da conta bancária para fazer o pagamento                                                                                                                                 |
-| payee_name                | string  | **(requerido)** nome do beneficiário                                                                                                                                                                       |
-| payee_document_type       | string  | **(requerido)** tipo do documento do beneficiário                                                                                                                                                          |
-| payee_document            | string  | **(requerido)** número do documento do beneficiário                                                                                                                                                        |
-| doc_goal                  | string  | (opcional e apenas utilizado quando payment_method é 'doc_other_ownership' ou 'doc_same_ownership') código referente ao objetivo do DOC. Possíveis valores na tabela 2                                     |
-| ted_goal                  | string  | (opcional e apenas utilizado quando payment_method é 'ted_other_ownership') código referente ao objetivo do TED. Possíveis valores na tabela 3                                                             |
+| Campo                     | Tipo    | Comentário                         |
+|---------------------------|---------|------------------------------------|
+| amount                    | decimal | **(requerido)** valor do pagamento |
+| date                      | date    | **(requerido)** data do pagamento  |
+| payment_type              | string  | **(requerido)** Tipo de pagamento  |
+| payment_method            | string  | **(requerido)** Modo de pagamento  |
+
+### Transferências (DOC, TED, Crédito)
+
+Além dos parâmetros comuns à todos as formas de pagamento, temos parâmetros comuns aos pagamentos via transferência, além de alguns espefíficos para cada modo de pagamento.
+
+**Parâmetros comuns à todos os pagamentos via transferência**
+
+| Campo                     | Tipo    | Comentário                                                                      |
+|---------------------------|---------|---------------------------------------------------------------------------------|
+| bank_code                 | string  | **(requerido)** código de 3 dígitos do banco da conta bancária para o pagamento |
+| account                   | string  | **(requerido)** número da conta bancária para o pagamento                       |
+| account_digit             | string  | **(requerido)** dígito da conta bancária para fazer o pagamento                 |
+| agency                    | string  | **(requerido)** número da agência da conta bancária para fazer o pagamento      |
+| payee_name                | string  | **(requerido)** nome do beneficiário                                            |
+| payee_document_type       | string  | **(requerido)** tipo do documento do beneficiário                               |
+| payee_document            | string  | **(requerido)** número do documento do beneficiário                             |
+
+**Parâmetros quando payment_method é 'doc_other_ownership' ou 'doc_same_ownership'**
+
+| Campo                     | Tipo    | Comentário                                                                    |
+|---------------------------|---------|-------------------------------------------------------------------------------|
+| doc_goal                  | string  | (opcional) código referente ao objetivo do DOC. Possíveis valores na tabela 2 |
+
+**Parâmetros quando payment_method é 'ted_other_ownership'**
+
+| Campo                     | Tipo    | Comentário                                                                    |
+|---------------------------|---------|-------------------------------------------------------------------------------|
+| ted_goal                  | string  | (opcional) código referente ao objetivo do TED. Possíveis valores na tabela 3 |
+
+### Boleto Bancário (Boleto de mesmo banco, Boleto de outro Banco)
+
+Além dos parâmetros comuns à todos as formas de pagamento, temos parâmetros espefíficos para o pagamento de boletos bancários.
+
+**Parâmetros quando payment_method é 'billet_same_bank' ou 'billet_other_bank'**
+
+| Campo                     | Tipo    | Comentário                                                          |
+|---------------------------|---------|---------------------------------------------------------------------|
+| payee_name                | string  | **(requerido)** nome do beneficiário                                |
+| payee_document_type       | string  | **(requerido)** tipo do documento do beneficiário ('cpf' ou 'cnpj') |
+| payee_document            | string  | **(requerido)** número do documento do beneficiário                 |
+| due_date                  | date    | **(requerido)** Data de vencimento do boleto                        |
+| discount_amount           | decimal | (opcional) valor do desconto                                        |
+| extra_amount              | decimal | (opcional) valor extra                                              |
+
+### Boleto de Tributo (Concecionárias, Tributo com código de barras)
+
+Além dos parâmetros comuns à todos as formas de pagamento, temos parâmetros espefíficos para o pagamento de boletos de concecionárias ou tributos.
+
+**Parâmetros quando payment_method é 'dealdership' ou 'tribute_with_barcode'**
+
+| Campo                     | Tipo    | Comentário                                          |
+|---------------------------|---------|-----------------------------------------------------|
+| due_date                  | date    | **(requerido)** Data de vencimento do boleto        |
 
 ## Exclusão de Pagamento
 
@@ -316,13 +418,17 @@ Exclui determinado Pagamento. As mudanças são irreversíveis.
 
 | payment_type ⟶ <br> payment_method ↴ | salary <br>&nbsp; | dividend <br>&nbsp; | debenture <br>&nbsp; | traveling_expense <br>&nbsp; | authorized_representative <br>&nbsp; | provider <br>&nbsp; | benefit <br>&nbsp; | insurance_claim <br>&nbsp; | investment_fund <br>&nbsp; | other <br>&nbsp; | tribute <br>&nbsp; |
 |---------------------------------------:|:-----------------:|:-------------------:|:--------------------:|:----------------------------:|:------------------------------------:|:-------------------:|:------------------:|:--------------------------:|:--------------------------:|:----------------:|:------------------:|
-| credit_other_ownership                 | X                 | X                   | X                    | X                            | X                                    | X                   | X                  | X                          | X                          | X     |                    |
-| credit_same_ownership                  |                   |                     |                      |                              |                                      | X                   |                    |                            |                            | X     |                    |
-| credit_savings_account                 |                   | X                   |                      |                              |                                      | X                   | X                  | X                          |                            | X     |                    |
-| doc_other_ownership                    |                   | X                   | X                    | X                            | X                                    | X                   | X                  | X                          |                            | X     |                    |
-| doc_same_ownership                     |                   |                     |                      |                              |                                      | X                   |                    |                            |                            | X     |                    |
-| ted_other_ownership                    |                   | X                   | X                    | X                            | X                                    | X                   | X                  | X                          |                            | X     |                    |
-| ted_same_ownership                     |                   |                     |                      |                              |                                      | X                   |                    |                            |                            | X     |                    |
+| credit_other_ownership                 | X                 | X                   | X                    | X                            | X                                    | X                   | X                  | X                          | X                          | X                |                    |
+| credit_same_ownership                  |                   |                     |                      |                              |                                      | X                   |                    |                            |                            | X                |                    |
+| credit_savings_account                 |                   | X                   |                      |                              |                                      | X                   | X                  | X                          |                            | X                |                    |
+| doc_other_ownership                    |                   | X                   | X                    | X                            | X                                    | X                   | X                  | X                          |                            | X                |                    |
+| doc_same_ownership                     |                   |                     |                      |                              |                                      | X                   |                    |                            |                            | X                |                    |
+| ted_other_ownership                    |                   | X                   | X                    | X                            | X                                    | X                   | X                  | X                          |                            | X                |                    |
+| ted_same_ownership                     |                   |                     |                      |                              |                                      | X                   |                    |                            |                            | X                |                    |
+| tribute_with_barcode                   |                   |                     |                      |                              |                                      |                     |                    |                            |                            |                  | X                  |
+| dealdership                            |                   |                     |                      |                              |                                      | X                   |                    |                            |                            | X                |                    |
+| billet_other_bank                      |                   |                     |                      |                              |                                      | X                   |                    |                            |                            | X                |                    |
+| billet_same_bank                       |                   |                     |                      |                              |                                      | X                   |                    |                            |                            | X                |                    |
 
 ### Possíveis valores para doc_goal (tabela 2)
 
