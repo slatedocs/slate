@@ -48,7 +48,7 @@ To create an allergy for a patient, make a request to:
 
 ### HTTP Request
 
-`POST {server}/api/v1/patients/{patient_id}/allergies`
+`POST {server}/api/v2/patients/{patient_id}/allergies`
 
 This request must include a valid User JWT token, please see our [documentation](#user-tokens)
 

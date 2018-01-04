@@ -33,6 +33,10 @@ includes:
   - entities/pharmacies/search
   - entities/provider_types
   - entities/states
+  - entities/surgeries/create
+  - entities/surgeries/delete
+  - entities/surgeries/list
+  - entities/surgeries/surgery_names
 
 search: true
 ---
