@@ -262,7 +262,7 @@ This clones a single TestSet, with new empty instances. Additional parameters ca
 
 ### HTTP Request
 
-`POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/sets/clone.json`
+`POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/sets/SET_ID/clone.json`
 
 ### Parameters
 
