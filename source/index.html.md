@@ -57,8 +57,8 @@ The idea behind this policy is to help users detect possible issues where the AP
 If you have any reason to believe that you need a higher rate limit, please contact our support.
 
 ## A small note about API V2 vs V1
-We wrote this API V2 based on our experience from V1, trying to make it simpler and more robust.
-Eventually, this V2 API will support all current V1 API methods, and later on V1 will be depreciated.
+As of December 31st, 2017, API V1 is depreciated.
+We wrote the API V2 based on our experience from V1, trying to make it simpler and more robust.
 
 We changed many things from V1:
 
@@ -70,10 +70,6 @@ We changed many things from V1:
 
 * Better Documentation - a specific tool for API documentation (slate). We hope you can see the difference.
 
-If you're new to PractiTest and you're just starting to write API code, you should use this V2, and not the V1. If you need anything that is still missing, please email us to support, as we'd like to reduce the number of V1 users.
-
-### Current API V1 users
-If you already have V1 code, then you must change /api/resource_name to /api/v1/resource_name. Also, when you write new code, try to use V2, since V1 will depreciate.
 
 
 # Code examples
