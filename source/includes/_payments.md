@@ -41,7 +41,7 @@ EXEMPLO
 | payment_config_id         | integer | código de identificação da configuração de pagamento à qual o pagamento irá pertencer                                                                                                                                                                                                                  |
 | amount                    | decimal | valor do pagamento                                                                                                                                                                                                                                                                                     |
 | date                      | date    | data do pagamento                                                                                                                                                                                                                                                                                      |
-| payment_method            | string  | forma de pagamento ('credit_other_ownership', 'credit_same_ownership', 'credit_savings_account', 'doc_other_ownership', 'doc_same_ownership', 'ted_other_ownership', 'ted_same_ownership', 'dealership', 'billet_same_bank', 'billet_other_bank', 'gps')                                               |
+| payment_method            | string  | forma de pagamento ('credit_other_ownership', 'credit_same_ownership', 'credit_savings_account', 'doc_other_ownership', 'doc_same_ownership', 'ted_other_ownership', 'ted_same_ownership', 'dealership', 'billet_same_bank', 'billet_other_bank', 'gps', 'darf')                                       |
 | payment_type              | string  | tipo de pagamento. Os possíveis valores variam de acordo com o "payment_method" (vide tabela 1)                                                                                                                                                                                                        |
 | bank_code                 | string  | código de 3 dígitos do banco da conta bancária para o pagamento                                                                                                                                                                                                                                        |
 | account                   | string  | número da conta bancária para o pagamento                                                                                                                                                                                                                                                              |
@@ -282,9 +282,13 @@ O attributo <code>amount</code> nesse caso é opcional, pois ele é identificado
 | barcode                   | string  | **(requerido)** Código de barras do boleto bancário |
 | due_date                  | date    | **(requerido)** Data de vencimento do boleto        |
 
-### Tributos sem código de barras (GPS)
+### Tributos sem código de barras (GPS, DARF)
 
 Além dos parâmetros comuns à todas as formas de pagamento, temos parâmetros específicos para cada tipo de tributo:
+
+<aside class="info">
+O attributo <code>payment_type</code> é automaticamente definido como <code>"tribute"</code>.
+</aside>
 
 **Parâmetros quando payment_method é 'gps'**
 
@@ -295,6 +299,17 @@ Além dos parâmetros comuns à todas as formas de pagamento, temos parâmetros 
 | competency_year           | string  | **(requerido)** ano de competência do GPS, repesentado por 4 dígitos |
 | other_entities_amount     | decimal | (opcional) valor extra para outras entidades                         |
 | monetary_update           | decimal | (opcional) atualização monetária, incluindo valores de juros e multa |
+
+**Parâmetros quando payment_method é 'darf'**
+
+| Campo                     | Tipo    | Comentário                                              |
+|---------------------------|---------|---------------------------------------------------------|
+| due_date                  | date    | **(requerido)** data de vencimento                      |
+| calculation_period        | date    | **(requerido)** período de apuração                     |
+| receita_federal_code      | string  | **(requerido)** código da receita federal, de 4 dígitos |
+| reference_number          | string  | (opcional) número de referência                         |
+| mulct_amount              | decimal | (opcional) valor da multa                               |
+| interest_amount           | decimal | (opcional) valor do juros                               |
 
 ## Atualização de Pagamento
 
@@ -402,7 +417,7 @@ Além dos parâmetros comuns à todas as formas de pagamento, temos parâmetros 
 |---------------------------|---------|-----------------------------------------------------|
 | due_date                  | date    | **(requerido)** Data de vencimento do boleto        |
 
-### Tributos sem código de barras (GPS)
+### Tributos sem código de barras (GPS, DARF)
 
 Além dos parâmetros comuns à todas as formas de pagamento, temos parâmetros específicos para cada tipo de tributo:
 
@@ -415,6 +430,17 @@ Além dos parâmetros comuns à todas as formas de pagamento, temos parâmetros 
 | competency_year           | string  | **(requerido)** ano de competência do GPS, repesentado por 4 dígitos |
 | other_entities_amount     | decimal | (opcional) valor extra para outras entidades                         |
 | monetary_update           | decimal | (opcional) atualização monetária, incluindo valores de juros e multa |
+
+**Parâmetros quando payment_method é 'darf'**
+
+| Campo                     | Tipo    | Comentário                                              |
+|---------------------------|---------|---------------------------------------------------------|
+| due_date                  | date    | **(requerido)** data de vencimento                      |
+| calculation_period        | date    | **(requerido)** período de apuração                     |
+| receita_federal_code      | string  | **(requerido)** código da receita federal, de 4 dígitos |
+| reference_number          | string  | (opcional) número de referência                         |
+| mulct_amount              | decimal | (opcional) valor da multa                               |
+| interest_amount           | decimal | (opcional) valor do juros                               |
 
 ## Exclusão de Pagamento
 
@@ -463,6 +489,7 @@ Exclui determinado Pagamento. As mudanças são irreversíveis.
 | dealdership                            |                   |                     |                      |                              |                                      | X                   |                    |                            |                            | X                |                    |
 | tribute_with_barcode                   |                   |                     |                      |                              |                                      |                     |                    |                            |                            |                  | X                  |
 | gps                                    |                   |                     |                      |                              |                                      |                     |                    |                            |                            |                  | X                  |
+| darf                                   |                   |                     |                      |                              |                                      |                     |                    |                            |                            |                  | X                  |
 
 ### Possíveis valores para doc_goal (tabela 2)
 
