@@ -46,8 +46,6 @@ timestamp | *N/A* | Return trades that occurred before this time
 
 E.g. `/trades/ETH-BTC?limit=50&timestamp=1511481127561`.
 
-This endpoint will return the latest 5,000 trades per product. If you need older data, you can use the `/candles` endpoint.
-
 Polling this endpoint is discouraged in favor of subscribing to WebSocket events.
 
 ### Response

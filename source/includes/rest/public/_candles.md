@@ -47,13 +47,13 @@ product | A valid product
 
 Name | Default | Description
 ---------- | ---- | -------
-resolution | *N/A* | (required) Candle resolution to return. Can be `1`, `5`, `15`, `30`, `60`, `240`, `720`, `1D`, or `1W`.
+resolution | *N/A* | (required) Candle resolution to return. Can be `5`, `15`, `60`, `240`, or `1D`.
 start | 0 | The time after which to fetch candles, in ms
 end | Current time | The time before which to fetch candles, in ms
 
 E.g. `/candles/ETH-BTC?resolution=60&start=1511480127561&end=1511480129513` fetches 1h candles between the start and end timestamps.
 
-A maximum of 500 candles are returned per request.
+A maximum of 100 candles are returned per request.
 
 ### Response
 

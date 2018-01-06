@@ -26,7 +26,6 @@
         "fee_maker": "0.00002500",
         "fee_taker": "0.00146133",
         "is_taker": true,
-        "is_self_trade": true,
         "timestamp": "1511482127568.782"
     }
 ]
@@ -58,7 +57,5 @@ Polling this endpoint is highly discouraged.
 ### Response
 
 An array of your recent fills.
-
-`is_self_trade` is set to true if your fill results from a self-trade.
 
 `is_taker` is set to true when your fill results in taking liquidity from the book. This field is always set to true for self-trades.
