@@ -15,9 +15,14 @@ Options:
                            deploy branch.
   -n, --no-hash            Don't append the source commit's hash to the deploy
                            commit's message.
+      --source-only        Only build but not push
+      --push-only          Only push but not build
 "
 
-bundle exec middleman build --clean
+
+run_build() {
+  bundle exec middleman build --clean
+}
 
 parse_args() {
   # Set args from a local environment file.
@@ -200,4 +205,11 @@ sanitize() {
   "$@" 2> >(filter 1>&2) | filter
 }
 
-[[ $1 = --source-only ]] || main "$@"
+if [[ $1 = --source-only ]]; then
+  run_build
+elif [[ $1 = --push-only ]]; then
+  main "$@"
+else
+  run_build
+  main "$@"
+fi

@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 2.1.0
+
+*October 30, 2017*
+
+- Right-to-left text stylesheet option, thanks to [Mohammad Hossein Rabiee](https://github.com/mhrabiee)
+- Fix for HTML5 history state bug, thanks to [Zach Toolson](https://github.com/ztoolson)
+- Small styling changes, typo fixes, small bug fixes from [Marian Friedmann](https://github.com/rnarian), [Ben Wilhelm](https://github.com/benwilhelm), [Fouad Matin](https://github.com/fouad), [Nicolas Bonduel](https://github.com/NicolasBonduel), [Christian Oliff](https://github.com/coliff)
+
+Thanks to everyone who submitted PRs for this version!
+
 ## Version 2.0.0
 
 *July 17, 2017*
