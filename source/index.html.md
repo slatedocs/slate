@@ -980,25 +980,24 @@ Response: On success, if either the account or date parameters is an array, an e
 
 ### availability.delete
 
-#### Request example:
+> Request example:
 
-`{
+```JSON
+{
      id: "2753"
- }`
+}
+```
 
-#### Response example:
+> Response example:
 
-`{
-
+```JSON
+{
      seconds: "0.058344", 
-
      jsonrpc: "2.0", 
-
      id: "67", 
-
      result: {}
-
- } `
+}
+```
 
 Deletes an availability record.
 
@@ -1030,115 +1029,70 @@ id, first_name, last_name, and screen_name attributes are provided.
 
 ### availability.list 
 
-#### Request example:
+> Request example:
 
- `{
-
+```JSON
+{
      select: {
-
-         account`: 1
-
+         account: 1
      }
- }`
+}
+```
 
-#### Response example:
 
-`{
+> Response example:
 
-    seconds`: "0.089939", 
-
+```JSON
+{
+    seconds: "0.089939", 
      jsonrpc: "2.0", 
-
      id: "10", 
-
     result: {
-
         count: "5", 
-
         availability: [
-
              {
-
                  account: "1", 
-
                  busy: true, 
-
                  start_time: "11:00:00", 
-
-
                  end_date: null, 
-
                  monday: true, 
-
                  tuesday: true, 
-
                  friday: true, 
-
                  wednesday: true, 
-
                  thursday: true, 
-
                  saturday: false, 
-
                  sunday: false, 
-
                  end_time: "12:00:00", 
-
                  id: "236471", 
-
                 start_date: "2013-04-01"
-
              }, 
-
              {
-
                  account: "1", 
-
                  busy: false, 
-
                 start_time: "05:00:00", 
-
                  end_date: null, 
-
                 monday: false, 
-
                 tuesday: false, 
-
                friday: false, 
-
                wednesday: false, 
-
                 thursday: false, 
-
                  saturday: true, 
-
                 sunday: false, 
-
                  end_time: "11:00:00", 
-
                  id: "237006", 
-
                 start_date: null
-
              }
-
          ], 
-
          page: {
-
             this: {
-
                  start: 1, 
-
                  batch: 10
-
             }
-
          }
-
     }
+}
+```
 
- }
 
 Returns information about account availability data. Uses select criteria. Uses [pagination](https://api.shiftboard.com/api-documentation/req_resp.html#pagination).
 
@@ -1344,10 +1298,12 @@ The starting date for querying the calendar object.
 
 The ending date for querying the calendar object.
 
-### Calendar.summary
+### calendar.summary
 
-Request example:
-`
+> Request example:
+
+```JSON
+
 {
     "include_timeOff": true, 
     end_date: "2017-02-28", 
@@ -1369,9 +1325,13 @@ Request example:
         status: 0, 
         member: 1
     }
-}`
-####Response example:
-`{
+}
+```
+
+> Response example:
+
+```JSON
+{
     seconds: "0.391969", 
     jsonrpc: "2.0", 
     id: "3", 
@@ -1404,7 +1364,9 @@ Request example:
         ]
     }
 }
-`
+```
+
+
 Get a summarized list of data for a given date range.
 
 Required parameters:
@@ -1745,19 +1707,11 @@ The workgroup identifier for this membership.
 
 ####level
 
-Level for this membership:
-
-2
-
-####member
-
-3
-
-####coordinator
-
-4
-
-####manager
+Level|Membership Type
+--|--
+2|member
+3|coordinator
+4|manager
 
 ### membership.create 
 
@@ -1873,43 +1827,33 @@ Response: On success, empty results will be returned.
 
 ### news.get 
 
-#### Request example:
+> Request example:
 
-`{}`
+```JSON
+{}
+```
 
-#### Response example:
+> Response example:
 
- {
-
+```JSON
+{
      seconds: "0.065741", 
-
     jsonrpc: "2.0", 
-
     id: "7", 
-
      result: {
-
          news: {
-
              member: "Member news goes here", 
-
              manager: "Manager news goes here", 
-
             team: {
-
                  "Example": {
-
                      news: "This is the news section for my Workgroup"
-
                  }
-
              }
-
          }
-
      }
+}
+```
 
- }
 
 Returns the news for managers, teams, and members.
 
@@ -2103,98 +2047,61 @@ value of this profile item, or if the profile item has more than one value, an a
 
 ### profileData.list 
 
-#### Request example:
-`
- {
+> Request example:
 
+```JSON
+ {
      select: {
-
          account: 1
-
      }
+}
+```
 
- }
-`
-#### Response example:
-`
+> Response example:
+
+```JSON
  {
-
      seconds: "0.105116", 
-
      jsonrpc: "2.0", 
-
      id: "", 
-
      result: {
-
          count: 4, 
-
          page: {
-
              this: {
-
                  start: 1, 
-
                  batch: 10
-
              }
-
          }, 
-
          profile_data: [
-
              {
-
                  account: "1", 
-
                 value: "(encrypted)", 
-
                  profile_option: "620"
-
              }, 
-
              {
-
                  account: "1", 
-
                  value: "206-555-1234", 
-
                  profile_option: "16"
-
              }, 
-
              {
-
                  account: "1", 
-
                 value: "Brother", 
-
                 profile_option: "186"
-
             }, 
-
              {
-
                  account: "1", 
-
                  value: [
-
                      "Data Entry", 
-
                      "Driver"
-
                  ], 
-
                  profile_option: "37"
-
              }
-
          ]
-
      }
+}
+```
 
- }
-`
+
 Returns information about account profile data. Uses select criteria. Uses [pagination](https://api.shiftboard.com/api-documentation/req_resp.html#pagination).
 
 Parameters:
@@ -2231,48 +2138,39 @@ The response results `profile_data` attribute will be an array of the current pa
 
 ### profileData.update 
 
-#### Request example:
-`
- {
+> Request example:
 
+```JSON
+
+ {
      account: 1, 
-
      profile_data: [
-
          {
-
              value: "Sister", 
-
              profile_option: 186
-
          }, 
-
          {
-
              value: "206-555-4321", 
-
              profile_option: 16
-
          }
-
      ]
+}
+```
 
- }
-`
-#### Response example:
-`
+
+> Response example:
+
+```JSON
+
  {
-
      seconds: "0.204804", 
-
      jsonrpc: "2.0", 
-
      id: "", 
-
      result: {}
+}
+```
 
- }
-`
+
 Updates multiple profileData objects for a given account.
 
 Required parameters:
@@ -2357,83 +2255,72 @@ The name of this role. Maximum length 48 characters.
 
 ### role.create 
 
-#### Request example:
-`
- {
+> Request example:
 
+```JSON
+
+ {
      workgroup: "226086", 
-
      name: "Test Role 0.699796458722442"
-
  }
+```
 
-#### Response example:
+> Response example:
 
+```JSON
  {
-
      seconds: "0.319621", 
-
      jsonrpc: "2.0", 
-
      id: "51", 
-
      result: {
-
          id: "2282"
-
      }
-
  }
+```
 
 Creates a new role record.
 
-Parameters: Any attributes of a role object (except `id`) may be specified. A unique `name` parameter must be specified. Additionally, a `workgroup` parameter must be specified to create initial workgroup relationships for this role. It may be either a single workgroup identifier or an array of identifiers of workgroups that use this role.
+Parameters: Any attributes of a role object (except id) may be specified. A unique name parameter must be specified. Additionally, a workgroup parameter must be specified to create initial workgroup relationships for this role. It may be either a single workgroup identifier or an array of identifiers of workgroups that use this role.
 
-Response: On success, an `id` attribute will provide the identifier for the new role.
+Response: On success, an id attribute will provide the identifier for the new role.
 
 ### role.delete
 
 Deletes a role.
 
-Required parameter: `id`.
+Required parameter: id.
 
 On success, empty results will be returned.
 
 ### role.get
 
-#### Request example:
+> Request example:
 
- {
-
+```JSON
+{
      id: "2281"
-
 }
+```
 
-#### Response example:
+> Response example:
 
- {
-
+```JSON
+{
      seconds: "0.115639", 
-
      jsonrpc: "2.0", 
-
      id: "4", 
-
-    result: {
-
+     result: {
         name: "role 813", 
-
         id: "2281"
-
     }
-
- }
+}
+```
 
 Returns information about roles. Uses [pagination](https://api.shiftboard.com/api-documentation/req_resp.html#pagination).
 
-Optional parameters: `select` object with a `role` attribute identifying a single role or array of roles to be returned. E.g. `{select:{role:12345}}`
+Optional parameters: select object with a role attribute identifying a single role or array of roles to be returned. E.g. {select:{role:12345}}
 
-The response results `roles` attribute will be an array of the current page of roles. Each element of the array may have the following attributes:
+The response results roles attribute will be an array of the current page of roles. Each element of the array may have the following attributes:
 
 ####id
 
@@ -2445,40 +2332,35 @@ The name of this role.
 
 ### role.assign 
 
-#### Request example:
-`
- {
+> Request example:
 
+```JSON
+
+ {
      account: 12345, 
-
      role: [
-
          1, 
-
          2, 
-
          3
-
      ], 
-
      workgroup: 56789
+}
+```
 
- }
-`
-#### Response example:
-`
+
+> Response example:
+
+```JSON
+
  {
-
      seconds: "0.115639", 
-
      jsonrpc: "2.0", 
-
      id: "4", 
-
      result: {}
+}
+```
 
- }
-`
+
 Assigns a role or multiple roles to a member of a given workgroup. This method can be used to assign or unassign roles.
 
 Required Parameters:
@@ -2496,60 +2378,45 @@ workgroup the member belongs to
 One or more role ids to be assigned to the workgroup member.
 
 ### role.list
-#### Request example:
-`
- {
+> Request example:
 
+```JSON
+
+ {
     select: {
-
          role: "2281"
-
      }
+}
+```
 
- }
-`
-#### Response example:
-`
+
+> Response example:
+
+```JSON
+
  {
-
      seconds: "0.115639", 
-
      jsonrpc: "2.0", 
-
      id: "4", 
-
      result: {
-
          count: "1", 
-
          page: {
-
              this: {
-
                  start: 1, 
-
                  batch: 25
-
              }
-
          }, 
-
          roles: [
-
              {
-
                  name: "role 813", 
-
                  id: "2281"
-
              }
-
          ]
-
      }
+}
+```
 
- }
-`
+
 Returns information about roles. Uses [pagination](https://api.shiftboard.com/api-documentation/req_resp.html#pagination).
 
 Optional parameters: `select` object with a `role` attribute identifying a single role or array of roles to be returned. E.g. `{select:{role:12345}}`
@@ -2566,32 +2433,30 @@ The name of this role.
 
 ### role.update 
 
-#### Request example:
+> Request example:
 
-`{
-
+```JSON
+{
     id: "2282", 
-
      workgroup: "226086", 
-
     name: "Test Role 2282"
+}
+```
 
- }
-`
-#### Response example:
-`
+
+> Response example:
+
+```JSON
+
  {
-
      seconds: "0.141744", 
-
      jsonrpc: "2.0", 
-
     id: "52", 
-
      result: {}
+}
+```
 
- }
-`
+
 Updates a role object.
 
 Required parameter: `id`. Any other role object attributes may be specified.
@@ -2718,11 +2583,11 @@ The workStatusType id for the shift, if specified.
 
 ####extra_credit
 
-custom_text_1
+####custom_text_1
 
-custom_text_2
+####custom_text_2
 
-custom_text_3
+####custom_text_3
 
 ####custom_multipick
 
@@ -2746,11 +2611,11 @@ Decline reason identifier; present only if declined.
 
 Array of resource identifiers for this shift
 
-custom_dropdown_1
+####custom_dropdown_1
 
-custom_dropdown_2
+####custom_dropdown_2
 
-custom_dropdown_3
+####custom_dropdown_3
 
 ####custom_textarea
 
@@ -2788,32 +2653,27 @@ Not all fields will be configured to be used for all organizations or set for al
 
 ### shift.acknowledge 
 
-#### Request example:
-`
+> Request example:
+
+```JSON
  {
-
     id: 2753501
-
- }
-`
-#### Response example:
-
-`{
-
-     seconds: "0.280633", 
-
-     jsonrpc: "2.0", 
-
-    id: "3", 
-
-    result: {
-
-        message: "You have acknowledged this position:\n\nWednesday, May 20, 2015, 9:55am to 11:55am\nFront Desk"
-
-    }
-
 }
-`
+```
+
+> Response example:
+
+```JSON
+{
+     seconds: "0.280633", 
+     jsonrpc: "2.0", 
+    id: "3", 
+    result: {
+        message: "You have acknowledged this position:\n\nWednesday, May 20, 2015, 9:55am to 11:55am\nFront Desk"
+    }
+}
+```
+
 Acknowledges a shift.
 
 Required parameter: `id`.
@@ -2830,32 +2690,31 @@ Response: On success, a `message` attribute will provide a brief notification me
 
 ### shift.confirm 
 
-#### Request example:
-`
- {
+> Request example:
 
+```JSON
+
+ {
      id: 2753501
+}
+```
 
- }
 
-#### Response example:
-`
+> Response example:
+
+```JSON
+
  {
-
      seconds: "0.443989", 
-
     jsonrpc: "2.0", 
-
      id: "2", 
-
      result: {
-
          message: "You have accepted this position:\n\nWednesday, May 20, 2015, 9:55am to 11:55am\nFront Desk"
-
      }
+}
+```
 
- }
-`
+
 Confirms a shift.
 
 Required parameter: `id`.
@@ -2864,40 +2723,35 @@ Response: On success, a `message` attribute will provide a brief notification me
 
 ### shift.create 
 
-#### Request example:
-`
- {
+> Request example:
 
+```JSON
+
+ {
      department: "949", 
-
      start_date: "2010-09-17T12:00:00", 
-
      role: "2282", 
-
      workgroup: "226085", 
-
     location: "29118"
+}
+```
 
- }
-`
-#### Response example:
-`
+
+> Response example:
+
+```JSON
+
  {
-
     seconds: "1.007354", 
-
     jsonrpc: "2.0", 
-
     id: "57", 
-
     result: {
-
         id: 2753502
-
      }
+}
+```
 
- }
-`
+
 Creates a new shift record.
 
 Parameters: Most attributes of a shift object except `id` may be specified. Minimally, `workgroup` and `start_date` parameters must be specified. `timezone` will default to the organization's timezone. `location` will default to the workgroup's default location, if set. "external_covering_member/covering_member" and `covering_workgroup` are mutually exclusive, and may only be specified if the shift is covered. `tentative` may only true if the shift is covered, and `covered` may only be true if the shift is published. Start and end dates may only fall on even five minute times. Either `count` or `qty` may be specified and both will be set for the new shift, defaulting to 1; if both are specified, they must be equal. `count` must be 1 for a covered shift.
@@ -2906,28 +2760,29 @@ Response: On success, an `id` attribute will provide the identifier for the new 
 
 ### shift.delete 
 
-#### Request example:
-`
+> Request example:
+
+```JSON
+
  {
-
      id: "2753500"
+}
+```
 
- }
-`
-#### Response example:
-`
+
+> Response example:
+
+```JSON
+
 {
-
     seconds: "0.058344", 
-
      jsonrpc: "2.0", 
-
      id: "67", 
-
     result: {}
+}
+```
 
- }
-`
+
 Deletes a shift record.
 
 Required parameter: `id`.
@@ -2960,71 +2815,51 @@ Response: On success, empty results will be returned.
 
 ### shift.get 
 
-#### Request example:
-`
+> Request example:
+
+```JSON
+
 {
-
     id: 2753499
+}
+```
 
- }
-`
-#### Response example:
-`
+
+> Response example:
+
+```JSON
+
  {
-
     seconds: "0.062897", 
-
     jsonrpc: "2.0", 
-
     id: "25", 
-
      result: {
-
          shift: {
-
             count: "1", 
-
              linktitle: "", 
-
             signup_list: false, 
             details: "", 
-
             room_floor: "", 
-
              qty: "1", 
-
              zipcode: "60616", 
-             
             start_date: "2010-09-17T12:00:00", 
-
             urgent: false, 
-
             workgroup: "226081", 
-            
              reference_id: "", 
-
            published: false, 
-
             covered: false, 
-
              timezone: "Pacific Time (US/Can) (GMT-08:00)", 
-
              subject: "", 
-
            linkurl: "", 
-
              id: "2753499", 
-
              no_pick_up: false, 
-
              work_status_type: "0"
-
         }
-
      }
+}
+```
 
- }
-`
+
 Returns information about a coverage shift.
 
 Parameters:
@@ -3131,50 +2966,40 @@ id, name, and label attributes are provided.
 
 ### shift.getAssignmentList 
 
-#### Request example:
-`
- {
+> Request example:
 
+```JSON
+
+ {
      shift: {
-
         id: 123456789
-        
      }, 
-
     workgroup: 12345
-
- }
-`
-#### Response example:
-`
- {
-
-    seconds: "0.058344", 
-
-    jsonrpc: "2.0", 
-
-    id: "67", 
-
-     result: {
-
-        assignable: {
-
-            "1": "Bob Doe", 
-            
-            "2": "Jane Doe"
-
-        }, 
-
-        unassignable: {
-
-            "5": "John Smith - Has Conflicts (My Team)"
-
-       }
-
-    }
-
 }
-`
+```
+
+
+> Response example:
+
+```JSON
+
+ {
+    seconds: "0.058344", 
+    jsonrpc: "2.0", 
+    id: "67", 
+     result: {
+        assignable: {
+            "1": "Bob Doe", 
+            "2": "Jane Doe"
+        }, 
+        unassignable: {
+            "5": "John Smith - Has Conflicts (My Team)"
+       }
+    }
+}
+```
+
+
 Returns availability information as to who is and is not assignable to a shift. The shift in this case could be one that currently exists, or a shift to be created later.
 
 Required parameters:
@@ -3353,210 +3178,120 @@ Allow shifts that have a short (N hours) turnaround if beta feature is enabled (
 
 ### shift.getOfferedTrade 
 
-#### Request example:
-`
+> Request example:
+
+```JSON
+
  {
-
     extended: true, 
-
     id: "56789012"
-
 }
-`
-#### Response example:
-`
+```
+
+
+> Response example:
+
+```JSON
+
 {
-
     seconds: "0.128193", 
-
     jsonrpc: "2.0", 
-
     id: "15", 
-
     result: {
-
          tradeboard: {
-
             traded_by: "39", 
-
             shift: "56789012", 
-
             notes: "Need to see the dentist; please take this trade", 
-
             traded_to: "47", 
-
             trade_completed: "2014-01-21T20:40:38Z", 
-
              id: "12345", 
-
             trade_complete: true
-
          }, 
-
          referenced_objects: {
-
              account: [
-
                  {
-
                      first_name: "Joanie", 
-
                      last_name: "Foster", 
-
                      id: "39", 
-
                      screen_name: null
-
                  }, 
-
                  {
-
                      first_name: "Stan", 
-
                      last_name: "Wilson", 
-
                      screen_name: "Stan Wilson", 
-
                      profile_type: "3", 
-
                      seniority_order: "19999-12-31 23:59:59", 
-
                      id: "47"
-
                  }
-
              ], 
-
              workgroup: [
-
                  {
-
                      name: "Help Desk", 
-
                      id: "412345"
-
                  }
-
              ], 
-
              shift: [
-
                {
-
                      display_date: "January 29, 2014", 
-
                     qty: "1", 
-
                      urgent: false, 
-
                     no_trade: false, 
-
                     timezone: "Pacific Time (US/Can) (GMT-08:00)", 
-
                     room_floor: "room/floor", 
-
                      id: "56789012", 
-
                     subject: "", 
-
                     signup_list: false, 
-
                     work_status_type: "5", 
-
                     linkurl: "", 
-
                     zipcode: "94132", 
-
                     location: "92580", 
-
                     department: "9942", 
-
                     covered: true, 
-
                     covering_member: "47", 
-
                     start_date: "2014-01-29T13:00:00", 
-
                     details: "details!", 
-
                     display_time: "1pm to 2pm", 
-
                      workgroup: "412345", 
-
                      end_date: "2014-01-29T14:00:00", 
-
                     reference_id: "", 
-
                     linktitle: "", 
-
                     no_pick_up: false, 
-
                      count: "1", 
-
                     no_credit: false, 
-
                     published: true
-
                }
-
             ], 
-
             location: [
-
                 {
-
                     name: "Training / Meetings", 
-
                     id: "92580"
-
                 }
-
             ], 
-
             department: [
-
                 {
-
                     label: "Distribution", 
-
                      id: "9942", 
-
                     name: "Distribution"
-
                 }
-
             ], 
-
             timezone: [
-
                  {
-
                     name: "Pacific Time (US/Can) (GMT-08:00)", 
-
                     olson_timezone: "America/Los_Angeles"
-
                 }
-
             ], 
-
             "workStatusType": [
-
                 {
-
                     name: "Salary/Exempt", 
-
                      id: "5"
-
                 }
-
             ]
-
         }
-
     }
+}
+```
 
- }
-`
+
 Returns information about a tradeboard posting for a coverage shift.
 
 Parameters:
@@ -3615,78 +3350,54 @@ id and name attributes are provided.
 
 ### shift.list 
 
-#### Request example:
-`
- {
+> Request example:
 
+```JSON
+
+ {
      select: {
-
          workgroup: "226084"
-
      }
+}
+```
 
- }
-`
-#### Response example:
-`
+
+> Response example:
+
+```JSON
+
  {
-
      seconds: "0.081433", 
-
      jsonrpc: "2.0", 
-
      id: "44", 
-
      result: {
-
          count: "1", 
-
          shifts: [
-
              {
-
                  count: "1", 
-
                  covering_workgroup: "226084", 
-
                  workgroup: "226084", 
-
                  end_date: "2010-09-17T14:30:00", 
-
                  id: "2753501", 
-
                  qty: "1", 
-
                  published: true, 
-
                  covered: true, 
-
                  timezone: "Greenwich Mean Time : Dublin, Lisbon, London (GMT)", 
-
                  start_date: "2010-09-17T14:00:00", 
-
                  subject: updated
-
              }
-
          ], 
-
          page: {
-
              this: {
-
                  start: 1, 
-
                  batch: 25
-
              }
-
          }
-
      }
+}
+```
 
- }
-`
+
 Returns information about coverage shifts. Uses [pagination](https://api.shiftboard.com/api-documentation/req_resp.html#pagination). Uses select criteria.
 
 Optional parameters:
@@ -3975,74 +3686,52 @@ id, name, and label attributes are provided.
 
 ### shift.listUpdated
 
-#### Request example:
-`
- {
+> Request example:
 
+```JSON
+
+ {
      select: {
-
          updated_since: 1284656001
-
      }
+}
+```
 
- }
-`
-#### Response example:
-`
+
+> Response example:
+
+```JSON
+
  {
-
      seconds: "0.056182", 
-
      jsonrpc: "2.0", 
-
      id: "36", 
-
      result: {
-
          count: "1", 
-
          shifts: [
-
              {
-
                  count: "1", 
-
                  workgroup: "226082", 
-
                  id: "2753500", 
-
                  qty: "1", 
-
                  published: false, 
-
                  covered: false, 
-
                  timezone: "Pacific Time (US/Can) (GMT-08:00)", 
-
                  start_date: "2010-09-17T12:00:00", 
-
                  subject: updated
-
              }
-
          ], 
-
          page: {
-
              this: {
-
                  start: 1, 
-
                  batch: 25
-
              }
-
          }
-
      }
+}
+```
 
- }
-`
+
 Returns information about coverage shifts created or updated since a given date. Uses [pagination](https://api.shiftboard.com/api-documentation/req_resp.html#pagination). Uses select criteria.
 
 Optional parameters:
@@ -4162,153 +3851,89 @@ id, first_name, last_name, and screen_name attributes are provided.
 
 ### shift.summary 
 
-## This method is experimental and subject to change.
+**This method is experimental and subject to change.**
 
-#### Request example:
-`
+> Request example:
+
+```JSON
  {
-
      aggregate: start_date, 
-
      exists: {
-
          available: {
-
              urgent: false, 
-
              covered: false, 
-
              published: true
-
          }, 
-
          confirmed: {
-
              exclude_covering_member: 123, 
-
              covered: true, 
-
              published: true
-
          }, 
-
          critical: {
-
              urgent: true, 
-
              covered: false, 
-
              published: true
-
          }, 
-
          mine: {
-
              covered: true, 
-
              published: true, 
-
              covering_member: 123
-
          }, 
-
          unpublished: {
-
              published: false
-
          }
-
      }, 
-
      select: {
-
          workgroup: [
-
              123456, 
-
              234567
-
          ], 
-
          end_date: "2015-06-30", 
-
          start_date: "2015-06-01"
-
      }
+}
+```
 
- }
-`
-#### Response example:
-`
+
+> Response example:
+
+```JSON
+
  {
-
      seconds: "0.362897", 
-
      jsonrpc: "2.0", 
-
      id: "25", 
-
      result: {
-
          referenced_objects: {}, 
-
          summary: [
-
              {
-
                  available: false, 
-
                  confirmed: false, 
-
                  unpublished: false, 
-
                  mine: true, 
-
                  critical: false, 
-
                  start_date: "2015-06-03"
-
              }, 
-
              {
-
                  available: true, 
-
                  confirmed: false, 
-
                  unpublished: false, 
-
                  mine: true, 
-
                  critical: true, 
-
                  start_date: "2015-06-08"
-
              }, 
-
              {
-
                  available: true, 
-
                  confirmed: false, 
-
                  unpublished: true, 
-
                  mine: false, 
-
                  critical: false, 
-
                  start_date: "2015-06-12"
-
              }
-
          ]
-
      }
-
- }
-`
-## This method is experimental and subject to change.
+}
+```
 
 Returns summary information about selected shifts.
 
@@ -4334,28 +3959,29 @@ The response results `summary` attribute will provide an array containing an ele
 
 ### shift.unconfirm 
 
-#### Request example:
-`
- {
+> Request example:
 
+```JSON
+
+ {
      id: 2753501
+}
+```
 
- }
-`
-#### Response example:
-`
+
+> Response example:
+
+```JSON
+
  {
-
      seconds: "0.123864", 
-
      jsonrpc: "2.0", 
-
      id: "46", 
-
      result: {}
+}
+```
 
- }
-`
+
 Confirms a shift.
 
 Required parameter: `id`.
@@ -4364,48 +3990,39 @@ Response: On success, empty results will be returned. Note that if the shift had
 
 ### shift.update 
 
-#### Request example:
-`
- {
+> Request example:
 
+```JSON
+
+ {
      count: 1, 
-
      covering_workgroup: "226084", 
-
      workgroup: "226084", 
-
      end_date: "2010-09-17T14:30:00", 
-
      qty: 1, 
-
      start_date: "2010-09-17T14:00:00", 
-
      published: true, 
-
      covered: true, 
-
      timezone: "Greenwich Mean Time : Dublin, Lisbon, London (GMT)", 
-
      id: 2753501, 
-
      subject: updated
+}
+```
 
- }
-`
-#### Response example:
-`
+
+> Response example:
+
+```JSON
+
  {
-
      seconds: "0.178901", 
-
      jsonrpc: "2.0", 
-
      id: "43", 
-
      result: {}
+}
+```
 
- }
-`
+
 Updates a shift object.
 
 Required parameter: `id`. Most other shift object attributes may be specified.
@@ -4418,122 +4035,113 @@ Response: On success, if the shift was updated, empty results will be returned. 
 
 ### system.echo
 
-#### Request example:
-`
- {
+> Request example:
 
+```JSON
+{
      true: true, 
-
      null: null, 
-
      false: false
+}
+```
 
- }
-`
-#### Response example:
-`
+> Response example:
+
+```JSON
  {
-
      seconds: "0.040819", 
-
      jsonrpc: "2.0", 
-
      id: "3", 
-
      result: {
-
          true: true, 
-
          null: null, 
-
          false: false
-
      }
+}
+```
 
- }
-`
 For use in client testing only. Returns the object passed as params as its result.
 
 ### system.endBatch 
 
-#### Request example:
-`
- {}
-`
-#### Response example:
-`
+> Request example:
+
+```JSON
+{}
+```
+
+> Response example:
+
+```JSON
+
  {
-
      seconds: "0.273929", 
-
      jsonrpc: "2.0", 
-
      id: "41", 
-
      result: {}
+}
+```
 
- }
-`
+
 Ends a batch of requests.
 
-[Request Batches](https://api.shiftboard.com/api-documentation/req_resp.html#batch)
+See [Request Batches](https://api.shiftboard.com/api-documentation/req_resp.html#batch) for more
+details.
 
 ### system.timestamp 
 
-#### Request example:
-`
+> Request example:
+
+```JSON
+
  {}
-`
-#### Response example:
-`
+```JSON
+
+> Response example:
+
+```JSON
  {
-
      seconds: "0.039812", 
-
      jsonrpc: "2.0", 
-
      id: "2", 
-
      result: {
-
          timezone: "America/Los_Angeles", 
-
          timestamp: 1410988108, 
-
          "24_hour_clock": true, 
-
          localtime: "2014-09-17T14:08:28-0700"
-
      }
+}
+```
 
- }
-`
-Returns the current time. The `timestamp` attribute is epoch seconds, for later use as the `updated_since` select criterion by some methods. The `localtime` attribute is the RFC 3339 date-time for the current time in the organization's timezone. The "24_hour_clock" attribute is true if the organization is configured to display time in a 24-hour format. The `timezone` attribute is the organization's selected time zone.
+Returns the current time.  The `timestamp` attribute is epoch
+seconds, for later use as the `updated_since` select criterion by
+some methods.  The `localtime` attribute is the RFC 3339 date-time
+for the current time in the organization's timezone.  The "24_hour_clock"
+attribute is true if the organization is configured to display time
+in a 24-hour format.  The `timezone` attribute is the organization's
+selected time zone.
 
 ### system.whoami 
 
-#### Request example:
-`
+> Request example:
+
+```JSON
  {}
-`
-#### Response example:
-`
+```JSON
+
+> Response example:
+
+```JSON
  {
-
      seconds: "0.04893", 
-
      jsonrpc: "2.0", 
-
      id: "1", 
-
      result: {
-
          account: "2"
-
      }
+}
+```
 
- }
-`
 Returns account, the account id for the registered API used.
 
 ## teamCategory object
@@ -4769,28 +4377,29 @@ Response: On success, an `id` attribute will provide the identifier for the new 
 
 ### timecard.delete 
 
-#### Request example:
-`
- {
+> Request example:
 
+```JSON
+
+ {
      id: "226089"
+}
+```
 
- }
-`
-#### Response example:
-`
+
+> Response example:
+
+```JSON
+
  {
-
      seconds: "0.052778", 
-
      jsonrpc: "2.0", 
-
      id: "48", 
-
      result: {}
+}
+```
 
- }
-`
+
 Deletes a timecard record.
 
 Required parameter: `id`.
@@ -5175,28 +4784,25 @@ meters of 68% confidence of latitude/longitude
 
 ### timeclock.clockIn
 
-#### Request example:
-`
+> Request example:
+
+```JSON
  {}
-`
-#### Response example:
-`
- {
+```
 
+> Response example:
+
+```JSON
+{
      seconds: "2.903725", 
-
      jsonrpc: "2.0", 
-
      id: "37", 
-
      result: {
-
          id: 62064
-
      }
+}
+```
 
- }
-`
 Clocks in a given account.
 
 Parameters:
@@ -5263,28 +4869,25 @@ Response: On success, returns `id` of the newly created timeclock object.
 
 ### timeclock.clockOut 
 
-#### Request example:
-`
+> Request example:
+
+```JSON
  {}
-`
-#### Response example:
-`
+```
+
+> Response example:
+
+```JSON
  {
-
      seconds: "2.944529", 
-
      jsonrpc: "2.0", 
-
      id: "43", 
-
      result: {
-
          timecard: 111673
-
      }
+}
+```
 
- }
-`
 Clocks out a given account and creates a timecard for the clock in.
 
 Parameters:
@@ -5443,40 +5046,35 @@ id and name attributes are provided.
 
 ### timeclock.report 
 
-#### Request example:
-`
- {
+> Request example:
 
+```JSON
+
+ {
      select: {
-
          start_date: "2012-10-01"
-
      }, 
-
      report_type: total_hour, 
-
      format: xls
+}
+```
 
- }
-`
-#### Response example:
-`
+
+> Response example:
+
+```JSON
+
  {
-
      seconds: "2.811506", 
-
      jsonrpc: "2.0", 
-
      id: "21", 
-
      result: {
-
          url: "https://www.shiftboard.com/servola/fetch.cgi?ss=14;type=report;key=5085a260feff2760;signature=kRMtQqcLl0SULDYifhdg3OH4uIU;format=excel"
-
      }
+}
+```
 
- }
-`
+
 Generates a pre-authorized link to download a timeclock report.
 
 Parameters:
@@ -5513,48 +5111,46 @@ Single workgroup identifier or array of workgroup identifiers to report
 
 Single account identifier or array of account identifiers to report
 
-**NOTE:** If you are calling this method with the account parameter, external_account is not required, and will be ignored.
+**NOTE:** If you are calling this method with the account parameter,
+external_account is not required, and will be ignored.
 
 ####external_account
 
-Single external account identifier or array of external account identifiers to report
+Single external account identifier or array of external account
+identifiers to report
 
-**NOTE:** If you are calling this method with the account parameter, external_account is not required, and will be ignored.
+**NOTE:** If you are calling this method with the account parameter,
+external_account is not required, and will be ignored.
 
-Response: A `url` attribute giving a link that may be used one time only, within 5 minutes of the API request, to generate the requested report.
+Response: A `url` attribute giving a link that may be used one time
+only, within 5 minutes of the API request, to generate the requested
+report.
 
 ### timeclock.status 
 
-#### Request example:
-`
+> Request example:
+
+```JSON
  {}
-`
-#### Response example:
-`
+```
+
+> Response example:
+
+```JSON
  {
-
      seconds: "2.811506", 
-
      jsonrpc: "2.0", 
-
      id: "21", 
-
      result: {
-
          shift: null, 
-
          account: "4826", 
-
          clocked_out: null, 
-
          workgroup: null, 
-
          clocked_in: null
-
      }
-
  }
-`
+```
+
 Reports clocked in/out status of an account.
 
 Parameters: `account` (optional, defaults to current user).
@@ -5623,19 +5219,11 @@ Summary information about this request
 
 ####status
 
-One of the following
-
-0
-
-New
-
-2
-
-Approved
-
-3
-
-Denied
+Value|Meaning
+--|--
+0|New
+2|Approved
+3|Denied
 
 ####paid
 
@@ -5822,141 +5410,73 @@ timezone objects have the following minimal attributes:
 A unique displayable name used to identify this timezone. Currently, one of the following strings:
 
 * "International Date Line West (GMT-12:00)"
-
 * "Midway Island, Samoa (GMT-11:00)"
-
 * "Hawaii (GMT-10:00)"
-
 * "Alaska (GMT-09:00)"
-
 * "Pacific Time (US/Can) (GMT-08:00)"
-
 * "Arizona (GMT-07:00)"
-
 * "Mountain Time (US/Can) (GMT-07:00)"
-
 * "Chihuahua, La Paz, Mazatlan (GMT-07:00)"
-
 * "Saskatchewan (GMT-06:00)"
-
 * "Central Time (US/Can) (GMT-06:00)"
-
 * "Guadalajara, Mexico City, Monterrey (GMT-06:00)"
-
 * "Indiana (East) (GMT-05:00)"
-
 * "Bogota, Lima, Quito (GMT-05:00)"
-
 * "Eastern Time (US/Can) (GMT-05:00)"
-
 * "Caracas, La Paz (GMT-04:30)"
-
 * "Atlantic Time (Can) (GMT-04:00)"
-
 * "Santiago (GMT-04:00)"
-
 * "Newfoundland (GMT-03:30)"
-
 * "Buenos Aires, Georgetown (GMT-03:00)"
-
 * "Mid-Atlantic (GMT-02:00)"
-
 * "Cape Verde Is. (GMT-01:00)"
-
 * "Azores (GMT-01:00)"
-
 * "Casablanca, Monrovia (GMT)"
-
 * "Greenwich Mean Time : Dublin, Lisbon, London (GMT)"
-
 * "Brussels, Copenhagen, Madrid, Paris (GMT+01:00)"
-
 * "Belgrade, Bratislava, Budapest, Prague (GMT+01:00)"
-
 * "Amsterdam, Berlin, Bern, Rome, Vienna (GMT+01:00)"
-
 * "Sarajevo, Skopje, Warsaw, Zagreb (GMT+01:00)"
-
 * "Harare, Pretoria (GMT+02:00)"
-
 * "Cairo (GMT+02:00)"
-
 * "Jerusalem (GMT+02:00)"
-
 * "Athens, Beirut, Istanbul, Minsk (GMT+02:00)"
-
 * "Bucharest (GMT+02:00)"
-
 * "Helsinki, Kyiv, Riga, Sofia, Vilnius (GMT+02:00)"
-
 * "Nairobi (GMT+03:00)"
-
 * "Kuwait, Riyadh (GMT+03:00)"
-
 * "Moscow, St. Petersburg, Volgograd (GMT+03:00)"
-
 * "Baghdad (GMT+03:00)"
-
 * "Tehran (GMT+03:30)"
-
 * "Abu Dhabi, Muscat (GMT+04:00)"
-
 * "Baku, Tbilisi, Yerevan (GMT+04:00)"
-
 * "Kabul (GMT+04:30)"
-
 * "Islamabad, Karachi, Tashkent (GMT+05:00)"
-
 * "Chennai, Kolkata, Mumbai, New Delhi (GMT+05:30)"
-
 * "Kathmandu (GMT+05:45)"
-
 * "Astana, Dhaka (GMT+06:00)"
-
 * "Almaty, Novosibirsk (GMT+06:00)"
-
 * "Rangoon (GMT+06:30)"
-
 * "Bangkok, Hanoi, Jakarta (GMT+07:00)"
-
 * "Krasnoyarsk (GMT+07:00)"
-
 * "Beijing, Chongqing, Hong Kong, Urumqi (GMT+08:00)"
-
 * "Kuala Lumpur, Singapore (GMT+08:00)"
-
 * "Taipei (GMT+08:00)"
-
 * "Perth (GMT+08:00)"
-
 * "Irkutsk, Ulaan Bataar (GMT+08:00)"
-
 * "Seoul (GMT+09:00)"
-
 * "Osaka, Sapporo, Tokyo (GMT+09:00)"
-
 * "Yakutsk (GMT+09:00)"
-
 * "Darwin (GMT+09:30)"
-
 * "Adelaide (GMT+09:30)"
-
 * "Brisbane (GMT+10:00)"
-
 * "Guam, Port Moresby (GMT+10:00)"
-
 * "Vladivostok (GMT+10:00)"
-
 * "Hobart (GMT+10:00)"
-
 * "Canberra, Melbourne, Sydney (GMT+10:00)"
-
 * "Magadan, Solomon Is., New Caledonia (GMT+11:00)"
-
 * "Fiji, Kamchatka, Marshall Is. (GMT+12:00)"
-
 * "Auckland, Wellington (GMT+12:00)"
-
 * "Nuku'alofa (GMT+13:00)"
 
 ####olson_timezone
