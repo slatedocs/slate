@@ -1,26 +1,16 @@
 ---
-title: Shiftboard API Reference
+title: Shiftboard Web Services API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+  - json
 
 toc_footers:
   - <a href='https://github.com/shiftboard/slate'>Shiftboard Documentation Powered by Slate</a>
 
-includes:
-  - errors
-
 search: true
 ---
 
-# Shiftboard Web Services API version 2.1 
-
- 
-
-#### Overview
+# Overview
 
 **Shiftdata**, the Shiftboard Application Programming Interface
 (API), is designed to allow simple transactions with the Shiftboard
@@ -49,17 +39,25 @@ Signature Key should NEVER be transmitted or shared with anyone.
 Please see the [Requests](#requests) section for details on making
 digitally signed requests.
 
-#### Scope
+# Scope
 
-For the most part, the Shiftboard API represents features already available throughout the Web UI. However, the Shiftboard API may expose features that are new, beta, or do not have a UI counterpart.
+For the most part, the Shiftboard API represents features already
+available throughout the Web UI.  However, the Shiftboard API may
+expose features that are new, beta, or do not have a UI counterpart.
 
-This documentation, the API and the Web UI are revised regularly as we respond to new customer requirements. If you have any questions or new requirements, please contact our Partner program for the latest information.
+This documentation, the API and the Web UI are revised regularly
+as we respond to new customer requirements.  If you have any questions
+or new requirements, please contact our Partner program for the
+latest information.
 
-The Shiftboard API is currently evolving. Please ask about any objects or extended functionality that can help meet the requirements of your project.
+The Shiftboard API is currently evolving.  Please ask about any
+objects or extended functionality that can help meet the requirements
+of your project.
 
-## Getting Set Up
+# Getting Set Up
 
-Before you use the Shiftboard Web Services API, you must register with Shiftboard and obtain:
+Before you use the Shiftboard Web Services API, you must register
+with Shiftboard and obtain:
 
 * an Access Key ID (a 36 character sequence)
 
@@ -69,35 +67,65 @@ Before you use the Shiftboard Web Services API, you must register with Shiftboar
 
     * For example: bkvqNVSokbDZVHvt+RzqsrVzI0w7fhcU/jo/eUcY
 
-* Caution: Your Signature Key is a secret, which only you and Shiftboard should know. It is important to keep it confidential to protect your account. Store it securely in a safe place. Never include it in your requests to Shiftboard, and never e-mail it to anyone. Do not share it outside your organization, even if an inquiry appears to come from Shiftboard. No one who legitimately represents Shiftboard will ever ask you for your secret Signature Key.
+<aside class="notice">
+Caution: Your Signature Key is a secret, which only you and Shiftboard
+should know.  It is important to keep it confidential to protect
+your account.  Store it securely in a safe place.  Never include
+it in your requests to Shiftboard, and never e-mail it to anyone.
+Do not share it outside your organization, even if an inquiry appears
+to come from Shiftboard.  No one who legitimately represents
+Shiftboard will ever ask you for your secret Signature Key.
+</aside>
 
-The Access Key ID is associated with an API Account which will be added to your organization's Shiftboard. You include the Access Key ID in all requests to the Shiftboard Web Services API to identify yourself as the sender of the request, and the associated API Account is used to authorize the requested action.
+The Access Key ID is associated with an API Account which will be
+added to your organization's Shiftboard.  You include the Access
+Key ID in all requests to the Shiftboard Web Services API to identify
+yourself as the sender of the request, and the associated API Account
+is used to authorize the requested action.
 
-The Access Key ID is not a secret. To provide proof that you truly are the sender of the request, you also include a digital signature calculated using your secret Signature Key.
+The Access Key ID is not a secret.  To provide proof that you truly
+are the sender of the request, you also include a digital signature
+calculated using your secret Signature Key.
 
-## Requests and Responses
+# Requests and Responses
 
-Shiftboard Web Services are based on the [JSON-RPC 2.0 specification](http://jsonrpc.org/spec.html), with some extensions. At this time, only GET requests are accepted, with formatting based on the [JSON-RPC Over HTTP specification's GET request](http://jsonrpc.org/historical/json-rpc-over-http.html#get).
+Shiftboard Web Services are based on the [JSON-RPC 2.0
+specification](http://jsonrpc.org/spec.html), with some extensions.
+At this time, only GET requests are accepted, with formatting based
+on the [JSON-RPC Over HTTP specification's GET
+request](http://jsonrpc.org/historical/json-rpc-over-http.html#get).
 
-### Pagination
+## Pagination
 
-Methods that return paginated results optionally take a page attribute. The value of this attribute is an object with `batch` and `start` attributes. `batch` specifies the number of records to be returned with each request and must be between 1 and 1000. If not specified, the default is 10. `start` specifies the record number with which results should start. If not specified, the default is 1.
+Methods that return paginated results optionally take a page
+attribute.  The value of this attribute is an object with `batch`
+and `start` attributes.  `batch` specifies the number of records
+to be returned with each request and must be between 1 and 1000.
+If not specified, the default is 10.  `start` specifies the record
+number with which results should start.  If not specified, the
+default is 1.
 
-The response results may include a `count` attribute giving the total number of records matching the selection criteria, if available.
+The response results may include a `count` attribute giving the
+total number of records matching the selection criteria, if available.
 
-If records were found, it will include a `page` attribute giving a pagination object (in the format used by the page request attribute) for `this` page, the `next` page, and/or the `prev` page, as applicable.
+If records were found, it will include a `page` attribute giving a
+pagination object (in the format used by the page request attribute)
+for `this` page, the `next` page, and/or the `prev` page, as
+applicable.
 
-For example, to perform an initial request with a page size of 25, include a `page` attribute in your request:
+For example, to perform an initial request with a page size of 25,
+include a `page` attribute in your request:
 
- `page: {batch:25} `
+`page: {batch:25}`
 
-If there is more than one page of results available, the response will include a page attribute like this:
+If there is more than one page of results available, the response
+will include a page attribute like this:
 
- `page: {next: {batch:"25",start:26},this: {batch:"25",start:1}} `
+`page: {next: {batch:"25",start:26}, this: {batch:"25",start:1}}`
 
 Use the value of the `next` attribute as the `page` attribute to get another page:
 
- `page: {batch:"25",start:26}`
+`page: {batch:"25",start:26}`
 
 and you will get a response including this:
 
@@ -107,127 +135,146 @@ prev: {batch:"25",start:1},
 this: {batch:"25",start:26}
 `
 
-(The `next` attribute will only be present if in fact there is yet another page of data available.)
+(The `next` attribute will only be present if in fact there is yet
+another page of data available.)
 
-### Selection Criteria
+## Selection Criteria
 
-Methods that may apply selection criteria take a select attribute. The value of this attribute is an object with method-dependent attributes. The `select` attribute is optional for some methods and required for others. Default values may apply for some methods.
+Methods that may apply selection criteria take a `select` attribute.
+The value of this attribute is an object with method-dependent
+attributes.  The `select` attribute is optional for some methods
+and required for others.  Default values may apply for some methods.
 
-### Request Batches
+## Request Batches
 
-If a large number of non-interdependent requests will be sent, a batch attribute can be specified to enable them to be processed more quickly, with a system.endBatch request sent at the end to perform necessary operations that were deferred. Example:
-`
+```JSON
 location.add
-
 {
-
  workgroup:1,
-
  name:"General Electric",
-
  zip:"12345",
-
  batch:true
-
 }
 
 location.add
-
 {
-
  workgroup:1,
-
  name:"White House",
-
  address:"1600 Pennsylvania Ave NW",
-
  city:"Washington",
-
  state:"District of Columbia",
-
  batch:true
-
 }
 
 system.endBatch
-
 {}
-`
-This mode should not be used when processing interdependent requests, for example, adding locations and also adding shifts that use those locations or adding workgroup relationships to those locations.
+```
+
+If a large number of non-interdependent requests will be sent, a
+batch attribute can be specified to enable them to be processed
+more quickly, with a system.endBatch request sent at the end to
+perform necessary operations that were deferred.  Example:
+
+This mode should not be used when processing interdependent requests,
+for example, adding locations and also adding shifts that use those
+locations or adding workgroup relationships to those locations.
 
 ## Requests
 
 ### Request Format
 
-A Shiftboard Web Services API request is issued via an HTTP GET request to https://api.shiftdata.com. Each request may have the following components:
+A Shiftboard Web Services API request is issued via an HTTP GET
+request to https://api.shiftdata.com.  Each request may have the
+following components:
 
-###id
+####id
 
-An integer or string. Not used except in that a response should return the same value as passed in the request. This field can be used by the client to correlate a response with its request.
+An integer or string.  Not used except in that a response should
+return the same value as passed in the request.  This field can be
+used by the client to correlate a response with its request.
 
-###jsonrpc
+####jsonrpc
 
 Version of the JSON-RPC specification for this request. Should always be the string "2.0".
 
-###method
+####method
 
 A string giving the name of the procedure to be invoked.
 
-###params
+####params
 
-A object ([RFC 4627](http://www.ietf.org/rfc/rfc4627.txt)) that holds the actual parameter values for the invocation of the procedure. All Shiftboard Web Services API methods require params, minimally an empty object ({}). See [individual object documentation](#individual-object-documentation) and Common Attributes.
+A object ([RFC 4627](http://www.ietf.org/rfc/rfc4627.txt)) that
+holds the actual parameter values for the invocation of the procedure.
+All Shiftboard Web Services API methods require params, minimally
+an empty object (`{}`).  See [individual object
+documentation](#individual-object-documentation) and Common Attributes.
 
-###access_key_id
+####access_key_id
 
-A 36 character string identifying the client to the Shiftboard Web Services API. May be provided either in the GET request query string or in a cookie.
+A 36 character string identifying the client to the Shiftboard Web
+Services API.  May be provided either in the GET request query
+string or in a cookie.
 
-###signature
+####signature
 
-A 28 character digital signature authenticating the source of this request, computed as described below. May be provided either in the GET request query string or in a cookie.
+A 28 character digital signature authenticating the source of this
+request, computed as described below.  May be provided either in
+the GET request query string or in a cookie.
 
-Those components that may contain characters other than alphanumerics, '-', '.', '_', or '~' should be URI encoded ([RFC 3986](http://www.ietf.org/rfc/rfc3986.txt)), as is normal for an HTTP GET request query string.
+Those components that may contain characters other than alphanumerics,
+'-', '.', '_', or '~' should be URI encoded ([RFC
+3986](http://www.ietf.org/rfc/rfc3986.txt)), as is normal for an
+HTTP GET request query string.
 
 ### Request Signature
 
-Each request is digitally signed by taking components of the request and computing an HMAC SHA1 signature for them using a secret Signature Key (which itself should never be transmitted). The calculated signature is then base64 encoded. The HMAC SHA1 algorithm is described in [RFC 2104](http://www.ietf.org/rfc/rfc2104.txt).
+Each request is digitally signed by taking components of the request
+and computing an HMAC SHA1 signature for them using a secret Signature
+Key (which itself should never be transmitted).  The calculated
+signature is then base64 encoded.  The HMAC SHA1 algorithm is
+described in [RFC 2104](http://www.ietf.org/rfc/rfc2104.txt).
 
 The data to be signed is composed of four parts concatenated with no separator:
 
 * The 6 character string `method`
-
 * The name of the method being called
-
 * The 6 character string `params`
-
 * The text being passed as params, prior to any base64 or URI encoding
 
-Example: given the method name `echo`, the params "{ }", the data to be signed is "methodechoparams{ }". Given a signature key "*Xuzh+MDxcW9/CLPD1Z2wiSX51LVrQrStEZPQWk0P*", the resulting base64-encoded HMAC SHA1 signature is "*gJ5Oy1E5W4u9XpjWyMoJytlScU8=*". Given an API access key of "*g57a67b3b-34e4-4c07-a8ca-e7ecb77a7f33*", a complete request would be
+Example: given the method name `echo`, the params "{ }", the data
+to be signed is "methodechoparams{ }".  Given a signature key
+"*Xuzh+MDxcW9/CLPD1Z2wiSX51LVrQrStEZPQWk0P*", the resulting
+base64-encoded HMAC SHA1 signature is "*gJ5Oy1E5W4u9XpjWyMoJytlScU8=*".
+Given an API access key of "*g57a67b3b-34e4-4c07-a8ca-e7ecb77a7f33*",
+a complete request would be
 
-[https://api.shiftdata.com/?id=885&jsonrpc=2.0&method=echo&params=eyB9&signature=gJ5Oy1E5W4u9XpjWyMoJytlScU8%3D&access_key_id=57a67b3b-34e4-4c07-a8ca-e7ecb77a7f33](https://api.shiftdata.com/?id=885&jsonrpc=2.0&method=echo&params=eyB9&signature=gJ5Oy1E5W4u9XpjWyMoJytlScU8%3D&access_key_id=57a67b3b-34e4-4c07-a8ca-e7ecb77a7f33)
+`https://api.shiftdata.com/?id=885&jsonrpc=2.0&method=echo&params=eyB9&signature=gJ5Oy1E5W4u9XpjWyMoJytlScU8%3D&access_key_id=57a67b3b-34e4-4c07-a8ca-e7ecb77a7f33`
 
 ## Responses
 
 ### Response Format
 
-The response to a Shiftboard Web Services API request is a object ([RFC 4627](http://www.ietf.org/rfc/rfc4627.txt)) with the following attributes:
+The response to a Shiftboard Web Services API request is a object
+([RFC 4627](http://www.ietf.org/rfc/rfc4627.txt)) with the following
+attributes:
 
-###id
+####id
 
 The id provided in the request. If an error prevented the request from being parsed, this attribute may be null.
 
-###jsonrpc
+####jsonrpc
 
 Version of the JSON-RPC specification for this response. Should always be the string "*2.0*".
 
-###result
+####result
 
 A object providing the results of the request. Only present when the request was successful. Contents are method-dependent: see [individual object documentation](#individual-object-documentation) and Common Attributes.
 
-###error
+####error
 
 A object providing error information. Only present when the request failed.
 
-###seconds
+####seconds
 
 If provided, number of seconds spent processing the request and formatting a response.
 
@@ -1285,7 +1332,7 @@ Required parameter: `id`. Any other client object attributes may be specified.
 
 Response: On success, empty results will be returned.
 
-# calendar object
+## calendar object
 
 calendar objects have the following attributes:
 
@@ -1822,7 +1869,7 @@ If one or more of the specified memberships doesn't exist, the remaining members
 
 Response: On success, empty results will be returned.
 
-# News object
+## news object
 
 ### news.get 
 
