@@ -36,6 +36,10 @@ includes:
   - entities/medical_conditions/create
   - entities/medical_conditions/delete
   - entities/medical_conditions/list
+  - entities/medications/create
+  - entities/medications/delete
+  - entities/medications/list
+  - entities/medications/search
   - entities/messages/get_system
   - entities/messages/get_contacts
   - entities/messages/get_conversations
