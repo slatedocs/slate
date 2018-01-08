@@ -18,6 +18,10 @@ includes:
   - sav/schedule_a_visit_overview
 
   - entities/entities
+  - entities/allergies/create
+  - entities/allergies/delete
+  - entities/allergies/list
+  - entities/allergies/search
   - entities/chief_complaints
   - entities/medical_conditions/clinical_concepts_search
   - entities/medical_conditions/create
