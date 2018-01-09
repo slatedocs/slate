@@ -41,7 +41,7 @@ EXEMPLO
 | payment_config_id         | integer | código de identificação da configuração de pagamento à qual o pagamento irá pertencer                                                                                                                                                                                                                  |
 | amount                    | decimal | valor do pagamento                                                                                                                                                                                                                                                                                     |
 | date                      | date    | data do pagamento                                                                                                                                                                                                                                                                                      |
-| payment_method            | string  | forma de pagamento ('credit_other_ownership', 'credit_same_ownership', 'credit_savings_account', 'doc_other_ownership', 'doc_same_ownership', 'ted_other_ownership', 'ted_same_ownership', 'dealership', 'billet_same_bank', 'billet_other_bank', 'gps', 'darf', 'das')                                |
+| payment_method            | string  | forma de pagamento ('credit_other_ownership', 'credit_same_ownership', 'credit_savings_account', 'doc_other_ownership', 'doc_same_ownership', 'ted_other_ownership', 'ted_same_ownership', 'dealership', 'billet_same_bank', 'billet_other_bank', 'gps', 'darf', 'das', 'ipva')                        |
 | payment_type              | string  | tipo de pagamento. Os possíveis valores variam de acordo com o "payment_method" (vide tabela 1)                                                                                                                                                                                                        |
 | bank_code                 | string  | código de 3 dígitos do banco da conta bancária para o pagamento                                                                                                                                                                                                                                        |
 | account                   | string  | número da conta bancária para o pagamento                                                                                                                                                                                                                                                              |
@@ -282,7 +282,7 @@ O attributo <code>amount</code> nesse caso é opcional, pois ele é identificado
 | barcode                   | string  | **(requerido)** Código de barras do boleto bancário |
 | due_date                  | date    | **(requerido)** Data de vencimento do boleto        |
 
-### Tributos sem código de barras (GPS, DARF, DAS)
+### Tributos sem código de barras (GPS, DARF, DAS, IPVA)
 
 Além dos parâmetros comuns à todas as formas de pagamento, temos parâmetros específicos para cada tipo de tributo:
 
@@ -323,6 +323,19 @@ O attributo <code>payment_type</code> é automaticamente definido como <code>"tr
 | mulct_amount              | decimal | (opcional) valor da multa                               |
 | interest_amount           | decimal | (opcional) valor do juros                               |
 
+
+**Parâmetros quando payment_method é 'ipva'**
+
+| Campo                     | Tipo    | Comentário                                                                                  |
+|---------------------------|---------|---------------------------------------------------------------------------------------------|
+| due_date                  | date    | **(requerido)** data de vencimento                                                          |
+| city_code                 | integer | **(requerido)** código da cidade                                                            |
+| competency_year           | string  | **(requerido)** ano de competência do IPVA, repesentado por 4 dígitos                       |
+| license_plate             | string  | **(requerido)** placa do carro                                                              |
+| payment_option            | string  | **(requerido)** opção de pagamento. Possíveis valores na tabela 4                           |
+| renavam                   | string  | **(requerido)** número do Renavam                                                           |
+| uf                        | string  | **(requerido)** estado, representado por seu acrônimo (RJ, SC, etc)                         |
+| discount_amount           | decimal | (opcional, requerido quando `payment_option` for 'single_with_discount') valor do desconto. |
 
 ## Atualização de Pagamento
 
@@ -430,7 +443,7 @@ Além dos parâmetros comuns à todas as formas de pagamento, temos parâmetros 
 |---------------------------|---------|-----------------------------------------------------|
 | due_date                  | date    | **(requerido)** Data de vencimento do boleto        |
 
-### Tributos sem código de barras (GPS, DARF)
+### Tributos sem código de barras (GPS, DARF, DAS, IPVA)
 
 Além dos parâmetros comuns à todas as formas de pagamento, temos parâmetros específicos para cada tipo de tributo:
 
@@ -466,6 +479,20 @@ Além dos parâmetros comuns à todas as formas de pagamento, temos parâmetros 
 | gross_revenue_percentage  | decimal | **(requerido)** Valor da porcentagem da receita bruta   |
 | mulct_amount              | decimal | (opcional) valor da multa                               |
 | interest_amount           | decimal | (opcional) valor do juros                               |
+
+**Parâmetros quando payment_method é 'ipva'**
+
+| Campo                     | Tipo    | Comentário                                                                                  |
+|---------------------------|---------|---------------------------------------------------------------------------------------------|
+| due_date                  | date    | **(requerido)** data de vencimento                                                          |
+| city_code                 | integer | **(requerido)** código da cidade                                                            |
+| competency_year           | string  | **(requerido)** ano de competência do IPVA, repesentado por 4 dígitos                       |
+| license_plate             | string  | **(requerido)** placa do carro                                                              |
+| payment_option            | string  | **(requerido)** opção de pagamento. Possíveis valores na tabela 4                           |
+| renavam                   | string  | **(requerido)** número do Renavam                                                           |
+| uf                        | string  | **(requerido)** estado, representado por seu acrônimo (RJ, SC, etc)                         |
+| discount_amount           | decimal | (opcional, requerido quando `payment_option` for 'single_with_discount') valor do desconto. |
+
 
 ## Exclusão de Pagamento
 
@@ -516,6 +543,7 @@ Exclui determinado Pagamento. As mudanças são irreversíveis.
 | gps                                    |                   |                     |                      |                              |                                      |                     |                    |                            |                            |                  | X                  |
 | darf                                   |                   |                     |                      |                              |                                      |                     |                    |                            |                            |                  | X                  |
 | das                                    |                   |                     |                      |                              |                                      |                     |                    |                            |                            |                  | X                  |
+| ipva                                   |                   |                     |                      |                              |                                      |                     |                    |                            |                            |                  | X                  |
 
 ### Possíveis valores para doc_goal (tabela 2)
 
@@ -582,3 +610,16 @@ Quando *payment_method* for 'doc_other_ownership' todos os valores são aceitos.
 | 00518  | Pagamento de Resgate Previdenciário                                        |
 | 00519  | Pagamento de Comissão de Corretagem                                        |
 | 00520  | Pagamento de Transferências/Portabilidade de Reserva de Seguro/Previdência |
+
+### Possíveis valores para payment_option (tabela 4)
+
+| Opção de pagamento       | Descrição              |
+|--------------------------|------------------------|
+| single_with_discount     | Simples com desconto   |
+| single_without_discount  | Simples sem desconto   |
+| installment_1            | Primeira prestação     |
+| installment_2            | Segunda prestação      |
+| installment_3            | Terceira prestação     |
+| installment_4            | Quarta prestação       |
+| installment_5            | Quinta prestação       |
+| installment_6            | Sexta prestação        |
