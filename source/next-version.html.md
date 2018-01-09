@@ -556,6 +556,76 @@ Example Response
 
 ```
 
+##/api/v1/bulk
+
+**Description**
+
+Send a batch of API requests.
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+
+```
+Exmaple Request
+
+curl 'http://sketches.quintype.com/api/v1/bulk' -H 'Content-Type: application/json' --data-binary '{"requests":{"sports":{"slug":"sports","limit":"4","_type":"collection"},"history":{"slug":"history","limit":"4","_type":"collection"}}}' --compressed;
+
+Example Response
+
+{  
+   "results":{  
+      "sports":{  
+         "updated-at":1507616006917,
+         "slug":"sports",
+         "name":"Sports",
+         "automated":false,
+         "template":"default",
+         "rules":{  
+
+         },
+         "summary":"Sports",
+         "id":7595,
+         "total-count":1,
+         "items":[  
+            {  
+               "id":7595,
+               "type":"collection",
+               "name":"Sports Main",
+               "slug":"sports-main",
+               "template":"default"
+            }
+         ],
+      },
+      "history":{  
+         "updated-at":1506933499956,
+         "slug":"history",
+         "name":"History ",
+         "automated":false,
+         "template":"default",
+         "rules":{  
+            "content-type":"story",
+            "collection-id":7585
+         },
+         "summary":"History ",
+         "id":7587,
+         "total-count":1,
+         "items":[  
+            {  
+               "id":7585,
+               "type":"collection",
+               "name":"History Main",
+               "slug":"history-main",
+               "template":"default"
+            }
+         ],
+      }
+   }
+}
+
+```
 
 
 ## /api/v1/collections/{slug}
@@ -608,7 +678,7 @@ Example Response
 }
 ```
 
-## /api/v1/authors/
+## /api/v1/authors
 
 **Description**
 
@@ -635,7 +705,7 @@ Example Response
    {  
       "id":2038,
       "name":"Dinjas,
-      "avatar-url":"https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50",
+      "avatar-url":"https://lh3.googleusercontent.com/-XdUIqdMkCWA/4252rscbv5M/photo.jpg?sz=50",
       "avatar-s3-key":null,
       "twitter-handle":null,
       "bio":null,
@@ -647,7 +717,7 @@ Example Response
    {  
       "id":2039,
       "name":"Ramit",
-      "avatar-url":"https://lh5.googleusercontent.com/-nXlfvt-YsVw/AAAAAAAAAAI/AAAAAAAAAI0/uo5Y2_mFdWc/photo.jpg?sz=50",
+      "avatar-url":"https://lh5.googleusercontent.com/-nXlfvt-YsVw/uo5Y2_mFdWc/photo.jpg?sz=50",
       "avatar-s3-key":null,
       "twitter-handle":null,
       "bio":null,
@@ -912,7 +982,7 @@ Lists the subentity details in relation to the entity ID.
 The following request fetches the list of companies established in the year 2015. A relationship had been created between the entities (entity-type) `year` and `companies` 
 
 Example Request
-curl -X GET "http://sketches.quintype.com/api/v1/entities/15557/companies-established-year
+curl -X GET "http://sketches.quintype.com/api/v1/entities/15557/companies-established-year" -H "accept: json"
 
 Example Response
 
@@ -954,19 +1024,6 @@ Example Response
 
 ``` 
 
-##/api/v1/bulk
-
-**Description**
-
-Sends a batch of API requests. 
-
-
-**Input Parameters**
-
-| Name | Data Type | Description|
-|--|--|--|
-
-
 
 ##/api/stories/{story-id}/votes
 
@@ -982,13 +1039,20 @@ Sends a batch of API requests.
 |story-id | String| The story ID|
 
 
+```
+Example Request
+
+curl 'http://sketches.quintype.com/api/stories/8f9538f2-1972-4c7a-b1eb-7f8942dd0606/votes' -H 'Content-Type: application/json' --data-binary '{'magnitude': 'yes'}';
+
+
+```
+
 
 ##/api/stories/{story-id}/votes
 
 **Description**
 
 Fetches the total number of votes for the specified ID. Note that the user has to be logged in.
-
 
 **Input Parameters**
 
@@ -997,27 +1061,37 @@ Fetches the total number of votes for the specified ID. Note that the user has t
 |story-id | String| The story ID|
 
 
+```
+Example Request
+
+curl -X GET "http://sketches.quintype.com/api/stories/8f9538f2-1972-4c7a-b1eb-7f8942dd0606/votes" -H "accept: json"
+
+
+Example Response
+
+
+
+```
+
 
 ##/stories.rss
 
 **Description**
 
-
-
-
-**Input Parameters**
-
-| Name | Data Type | Description|
-|--|--|--|
+Displays the RSS feeds of a publisher.
 
 
 ```
+Example Request
+curl -X GET "http://sketches.quintype.com/stories.rss" -H "accept: json"
+
+Example Response
+
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/">
     <channel> 
         <title>Platform</title> 
-        <link>http://platform.rio.staging.quintype.io</link> 
         <description>Platform</description> 
-        <atom:link href="http://platform.rio.staging.quintype.io/stories.rss?time-period=last-1-month" rel="self" type="application/rss+xml"></atom:link> 
+        <atom:link href="http://sketches.quintype.com/stories.rss?time-period=last-1-month" rel="self" type="application/rss+xml"></atom:link> 
         <language>en-US</language> 
         <lastBuildDate>Tue,
 19Dec 2017 04:40:45+0000</lastBuildDate> 
@@ -1025,23 +1099,13 @@ Fetches the total number of votes for the specified ID. Note that the user has t
         <sy:updateFrequency>1</sy:updateFrequency> 
         <item> 
     <title>Indian opener Rohit Sharma’s record-setting third career double hundred.</title> 
-    <link>http://platform.rio.staging.quintype.io/southnews/2017/12/18/indian-opener-rohit-sharmas-record-setting-third-career-double-hundred</link> 
-    <comments>http://platform.rio.staging.quintype.io/southnews/2017/12/18/indian-opener-rohit-sharmas-record-setting-third-career-double-hundred#comments</comments> 
-    <guid isPermaLink="false">d6cde3a3-eb2b-4eb3-8fff-cd746a4f0d19</guid> 
-    <pubDate>Mon,
-18Dec 2017 11:31:48+0000</pubDate> 
+    <link>http://www.southmagnews.com/2017/12/18/indian-opener-rohit-sharmas-record-setting-third-career-double-hundred</link> 
+    <comments>http://www.southmagnews.com/2017/12/18/indian-opener-rohit-sharmas-record-setting-third-career-double-hundred#comments</comments> 
     <atom:updated>2017-12-18T11:31:48.852Z</atom:updated> 
-    <atom:author> 
-        <atom:name>tester</atom:name> 
-        <atom:uri>/api/author/178214</atom:uri> 
-    </atom:author> 
-    <description></description> 
-    <media:keywords></media:keywords> 
-    <category>SouthNews</category> 
     <category>cricket</category> 
     <content:encoded> 
         <![  
-   CDATA   [  
+      CDATA   [  
       <p>Indian opener Rohit Sharma’s record-setting third career double hundred.</p>
    ]
 ]> 
@@ -1052,17 +1116,15 @@ Fetches the total number of votes for the specified ID. Note that the user has t
 GST Network Brings In Option For Filing Of Forms On Monthly Or Quarterly Basis 
 </title> 
 <link> 
-https://swarajyamag.com/insta/gst-network-brings-in-option-for-filing-of-forms-on-monthly-or-quarterly-basis 
+https://magzinenew.com/insta/gst-network-brings-in-option-for-filing-of-forms-on-monthly-or-quarterly-basis 
 </link> 
 <comments> 
-https://swarajyamag.com/insta/gst-network-brings-in-option-for-filing-of-forms-on-monthly-or-quarterly-basis#comments 
+https://magzinenew.com/insta/gst-network-brings-in-option-for-filing-of-forms-on-monthly-or-quarterly-basis#comments 
 </comments> 
 <guid isPermaLink="false">20a996a0-80ba-4bed-b961-a3d5064bff40</guid> 
-<pubDate>Tue,
-19Dec 2017 03:13:36+0000</pubDate> 
 <atom:updated>2017-12-19T03:13:36.812Z</atom:updated> 
 <atom:author> 
-<atom:name>Swarajya Staff</atom:name> 
+<atom:name>Staff</atom:name> 
 <atom:uri>/api/author/17513</atom:uri> 
 </atom:author> 
 <description> 
@@ -1091,12 +1153,7 @@ Quarterly</media:keywords>
    CDATA   [  
       <p>Goods and services tax network (GSTN),
       the IT backbone of the new tax regime,
-      on Monday said it has put a new function on its portal to allow taxpayers choose the frequency of filing GSTR 1 form on quarterly or monthly basis.</p><p>Taxpayers with annual aggregate turnover up to Rs1.5 crore in the previous financial year or anticipated in the current financial year can avail the option of filing quarterly returns. Form GSTR 1 summarises all the sales of a taxpayer.</p><p>This has been done as per decision taken in the 23rd GST Council meeting. After giving their option,
-      taxpayers can file GSTR 1 for the relevant return periods,
-      the GSTN said in a statement.</p><p>It further said that taxpayers who opt for quarterly filing will have to select the last month of the quarter from the drop down menu. Further,
-      all taxpayers who opt for monthly filing can now file GSTR 1 from August onwards till November. Filing of return of previous month is mandatory.</p><p>GSTN has been set up to provide IT infrastructure and services to the central as well as state governments,
-      taxpayers and other stakeholders for implementation of the GST,
-      which came into force on 1 July this year. <strong>(PTI)</strong></p>
+      on Monday said it has put a new function on its portal to allow taxpayers choose the frequency of filing GSTR 1 form on quarterly or monthly basis.</p>
    ]
 ]> 
 </content:encoded> 
@@ -1107,31 +1164,126 @@ Quarterly</media:keywords>
 ```
 
 
-##/api/v1/bulk
+##/api/v1/tags/slug
 
 **Description**
 
-
+Displays the tag ID, name, and the meta description that matches the given slug.
 
 
 **Input Parameters**
 
 | Name | Data Type | Description|
 |--|--|--|
+|slug| string| The desired tag slug|
 
 
+```
 
-##/api/v1/bulk
+Example Request
+
+curl -X GET "http://sketches.quintype.com/api/v1/tags/temple" -H "accept: json"
+
+Example Response
+
+{  
+   "tags":[  
+      {  
+         "id":407427,
+         "name":"temples",
+         "meta-description":null,
+         "slug":"temples"
+      },
+      {  
+         "id":388924,
+         "name":"#temples",
+         "meta-description":null,
+         "slug":"temples"
+      }
+   ]
+}
+
+```
+
+
+##/api/member/metadata
 
 **Description**
 
+Displays the meta description of the current user.
 
+
+**Input Parameters**
+
+None.
+
+
+```
+
+Example Request
+
+curl -X GET "http://sketches.quintype.com/api/member/metadata" -H "accept: json"
+
+Example Response
+
+
+
+```
+
+##/api/v1/stories/{story-id}/comments
+
+
+**Description**
+
+Displays the commments in the specified story ID.
 
 
 **Input Parameters**
 
 | Name | Data Type | Description|
 |--|--|--|
+|story-id| string| The desired story ID|
+
+
+```
+
+Example Request
+
+curl -X GET "http://sketches.quintype.com/api/v1/stories/8f9538f2-1972-4c7a-b1eb-7f8942dd0606/comments" -H "accept: json"
+
+Example Response
+
+
+
+```
+
+
+##/api/v1/stories/{story-id}/comments
+
+
+**Description**
+
+Posts commments on the specified story ID.
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|story-id| string| The desired story ID|
+
+
+```
+
+Example Request
+
+curl 'http://sketches.quintype.com/api/stories/8f9538f2-1972-4c7a-b1eb-7f8942dd0606/votes' -H 'Content-Type: application/json' --data-binary '{'': ''}';
+
+Example Response
+
+
+```
+
 
 #(H1) this is testing only
 
