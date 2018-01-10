@@ -1786,7 +1786,7 @@ Suspende ou ativa um exame.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/enem_exam
+curl --user secretary:password http://queroalunos.com/api/enem_exams
 ```
 
 > Resposta
