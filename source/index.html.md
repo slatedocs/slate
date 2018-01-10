@@ -338,19 +338,21 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/admissio
       ]
     }
   ],
-  "cursor": "ASAKDSaldlwp20"
+  "next_page": "12345",
+  "previous_page": null
 }
 ```
 
 Retorna todas as admissões da faculdade.
 
-Admissões são retornadas em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, retorna um valor `cursor` adicional que deve ser utilizado de parâmetro na próxima requisição para continuar.
+Admissões são retornadas em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da pagina anterior.
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| `cursor` | Query | valor cursor utilizado para continuar uma paginação anterior |
+| `next_page` | Query | valor utilizado para continuar uma paginação anterior |
+| `previous_page` | Query | valor utilizado para retornar na paginação anterior |
 
 ### Informações de resultado
 
@@ -391,7 +393,8 @@ Admissões são retornadas em lote de 10, ordenadas pela última atualização r
 | [exam] status | string | status do exame vestibular |
 | [application] result | string | resultado do exame vestibular |
 | [application] type | string | tipo de exame vestibular (exam ou enem) |
-| cursor | string | código para pegar os próximos passos |
+| next_page | string | código para pegar os próximos passos |
+| previous_page | string | código para pegar os passos anteriores |
 
 ## Dados de um único processo de admissão
 
@@ -724,19 +727,21 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/applicat
       "type": "exam"
     }
   ],
-  "cursor": "ASAKDSaldlwp20"
+  "next_page": "12345",
+  "previous_page": null
 }
 ```
 
 Retorna todas as inscrições de exame da faculdade.
 
-Inscrições são retornadas em lote de 10, ordenadas pela última atualização realizada em inscrição para exame. Se houver mais resultados, retorna um valor `cursor` adicional que deve ser utilizado de parâmetro na próxima requisição para continuar.
+Inscrições são retornadas em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da pagina anterior.
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-|`cursor` | Query | valor cursor utilizado para continuar uma paginação anterior |
+| `next_page` | Query | valor utilizado para continuar uma paginação anterior |
+| `previous_page` | Query | valor utilizado para retornar na paginação anterior |
 
 ### Informações de resultado
 
@@ -777,8 +782,8 @@ Inscrições são retornadas em lote de 10, ordenadas pela última atualização
 | [exam] status | string | status do exame vestibular |
 | result | string | resultado do exame vestibular |
 | type | string | tipo de exame vestibular (exam ou enem) |
-| cursor | string | código para pegar os próximos passos |
-
+| next_page | string | código para pegar os próximos passos |
+| previous_page | string | código para pegar os passos anteriores |
 
 ## Dados de uma única inscrição para exame
 
@@ -1076,19 +1081,21 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/exam_gro
       "kind": "scheduled"
     }
   ],
-  "cursor": "ASAKDSaldlwp20"
+  "next_page": "12345",
+  "previous_page": null
 }
 ```
 
 Retorna todos os exames em lote.
 
-Exames em lote são retornados de 10 em 10, ordenadas pela última atualização realizada. Se houver mais resultados, retorna um valor `cursor` adicional que deve ser utilizado de parâmetro na próxima requisição para continuar.
+Exames em lote são retornados em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da pagina anterior.
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| `cursor` | Query | valor cursor utilizado para continuar uma paginação anterior |
+| `next_page` | Query | valor utilizado para continuar uma paginação anterior |
+| `previous_page` | Query | valor utilizado para retornar na paginação anterior |
 
 ### Informações de resultado
 
@@ -1107,7 +1114,8 @@ Exames em lote são retornados de 10 em 10, ordenadas pela última atualização
 | times | array | lista dos horários de aplicações dos exames |
 | status | string | situação dos exames entre `active` e `inactive` |
 | kind | string | tipo dos exames desse lote |
-| cursor | string | código para pegar os próximos passos |
+| next_page | string | código para pegar os próximos passos |
+| previous_page | string | código para pegar os passos anteriores |
 
 ### Significado dos status
 
@@ -1487,19 +1495,21 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/exams
       "status": "active"
     }
   ],
-  "cursor": "ASAKDSaldlwp20"
-}
+  "next_page": "12345",
+  "previous_page": null
+  }
 ```
 
 Retorna todos os exames (ativos e suspensos).
 
-Exames são retornadas em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, retorna um valor `cursor` adicional que deve ser utilizado de parâmetro na próxima requisição para continuar.
+Exames são retornados em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da pagina anterior.
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| `cursor` | Query | valor cursor utilizado para continuar uma paginação anterior |
+| `next_page` | Query | valor utilizado para continuar uma paginação anterior |
+| `previous_page` | Query | valor utilizado para retornar na paginação anterior |
 
 ### Informações de resultado
 
@@ -1519,7 +1529,8 @@ Exames são retornadas em lote de 10, ordenadas pela última atualização reali
 | date | string | data do exame vestibular |
 | time | string | horário do exame vestibular |
 | status | string | situação do exame entre `active` e `inactive` |
-| cursor | string | código para pegar os próximos passos |
+| next_page | string | código para pegar os próximos passos |
+| previous_page | string | código para pegar os passos anteriores |
 
 ## Informações de um único exame
 
@@ -1807,19 +1818,21 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/enem_exa
       "status": "active"
     }
   ],
-  "cursor": "ASAKDSaldlwp20"
-}
+  "next_page": "12345",
+  "previous_page": null
+  }
 ```
 
 Retorna todos os exames de enem.
 
-Exames de enem são retornados de 10 em 10, ordenadas pela última atualização realizada. Se houver mais resultados, retorna um valor `cursor` adicional que deve ser utilizado de parâmetro na próxima requisição para continuar.
+Exames de ENEM são retornados em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da pagina anterior.
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| `cursor` | Query | valor cursor utilizado para continuar uma paginação anterior |
+| `next_page` | Query | valor utilizado para continuar uma paginação anterior |
+| `previous_page` | Query | valor utilizado para retornar na paginação anterior |
 
 ### Informações de resultado
 
@@ -1834,7 +1847,8 @@ Exames de enem são retornados de 10 em 10, ordenadas pela última atualização
 | [minimum_grades] linguagens | float | nota mínima de linguagens exigida pela faculdade |
 | [minimum_grades] matematica | float | nota mínima de matemática exigida pela faculdade |
 | status | string | situação do exame de enem entre `active` e `inactive` |
-| cursor | string | código para pegar os próximos passos |
+| next_page | string | código para pegar os próximos passos |
+| previous_page | string | código para pegar os passos anteriores |
 
 ## Informações de um único exame de Enem
 
