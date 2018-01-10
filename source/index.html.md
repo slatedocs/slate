@@ -1693,6 +1693,302 @@ Reativa um exame que estava com status `inactive`.
 | times | string | horário do exame |
 | status | string | situação do exame entre `active` e `inactive` |
 
+# Exame de Enem
+
+## Listar todos os exames de Enem
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/enem_exam
+```
+
+> Resposta
+
+```json
+{
+  "items": [
+    {
+      "id": 789,
+      "course_skus": [
+        "ADM-MANHA-SP",
+        "DIR-MANHA-SP",
+        "ADM-NOITE-RJ"
+      ],
+      "minimum_grades": {
+        "redacao": 600.0,
+        "humanas": 600.0,
+        "natureza": 600.0,
+        "linguagens": 600.0,
+        "matematica": 600.0
+      },
+      status: "active"
+    }
+  ],
+  "cursor": "ASAKDSaldlwp20"
+}
+```
+
+Retorna todos os exames de enem.
+
+Exames de enem são retornados de 10 em 10, ordenadas pela última atualização realizada. Se houver mais resultados, retorna um valor `cursor` adicional que deve ser utilizado de parâmetro na próxima requisição para continuar.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| `cursor` | Query | valor cursor utilizado para continuar uma paginação anterior |
+
+### Informações de resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | number | id do exame de enem |
+| course_skus | array | cursos que usam como entrada esse exame de enem |
+| minimum_grades | object | objeto com informações de nota mínima exigida pela faculdade |
+| minimum_grades[redacao] | float | nota mínima de redação exigida pela faculdade |
+| minimum_grades[humanas] | float | nota mínima de humanas exigida pela faculdade |
+| minimum_grades[natureza] | float | nota mínima de natureza exigida pela faculdade |
+| minimum_grades[linguagens] | float | nota mínima de linguagens exigida pela faculdade |
+| minimum_grades[matematica] | float | nota mínima de matemática exigida pela faculdade |
+| status | string | situação do exame de enem entre `active` e `inactive` |
+| cursor | string | código para pegar os próximos passos |
+
+## Informações de um único exame de Enem
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/enem_exam/789
+```
+
+> Resposta
+
+```json
+{
+  "id": 789,
+  "course_skus": [
+    "ADM-MANHA-SP",
+    "DIR-MANHA-SP",
+    "ADM-NOITE-RJ"
+  ],
+  "minimum_grades": {
+    "redacao": 600.0,
+    "humanas": 600.0,
+    "natureza": 600.0,
+    "linguagens": 600.0,
+    "matematica": 600.0
+  },
+  status: "active"
+}
+```
+
+> Retorno quando não encontra o exame de enem
+
+```json
+{
+  "error": true,
+  "message": "ID não encontrado"
+}
+```
+
+Retorna um exame de enem específico.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | number | id do exame de enem |
+
+### Informações de resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | number | id do exame de enem |
+| course_skus | array | cursos que usam como entrada esse exame de enem |
+| minimum_grades | object | objeto com informações de nota mínima exigida pela faculdade |
+| minimum_grades[redacao] | float | nota mínima de redação exigida pela faculdade |
+| minimum_grades[humanas] | float | nota mínima de humanas exigida pela faculdade |
+| minimum_grades[natureza] | float | nota mínima de natureza exigida pela faculdade |
+| minimum_grades[linguagens] | float | nota mínima de linguagens exigida pela faculdade |
+| minimum_grades[matematica] | float | nota mínima de matemática exigida pela faculdade |
+| status | string | situação do exame de enem entre `active` e `inactive` |
+
+## Criação de exame de Enem
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/enem_exam/new \
+  -d "data.json"
+```
+
+> data.json
+
+```json
+{
+  "id": 789,
+  "course_skus": [
+    "ADM-MANHA-SP",
+    "DIR-MANHA-SP",
+    "ADM-NOITE-RJ"
+  ],
+  "minimum_grades": {
+    "redacao": 600.0,
+    "humanas": 600.0,
+    "natureza": 600.0,
+    "linguagens": 600.0,
+    "matematica": 600.0
+  },
+  status: "active"
+}
+```
+
+> Resposta quando não encontra nenhum exame
+
+```json
+{
+  "error": true,
+  "message": "(Mensagem do SQL?)"
+}
+```
+
+Cria um exame de enem.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| *.json | json | arquivo json com as informações do exame de enem |
+
+### Informações dos argumentos
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | number | id do exame de enem |
+| course_skus | array | cursos que usam como entrada esse exame de enem |
+| minimum_grades | object | objeto com informações de nota mínima exigida pela faculdade |
+| minimum_grades[redacao] | float | nota mínima de redação exigida pela faculdade |
+| minimum_grades[humanas] | float | nota mínima de humanas exigida pela faculdade |
+| minimum_grades[natureza] | float | nota mínima de natureza exigida pela faculdade |
+| minimum_grades[linguagens] | float | nota mínima de linguagens exigida pela faculdade |
+| minimum_grades[matematica] | float | nota mínima de matemática exigida pela faculdade |
+| status | string | situação do exame de enem entre `active` e `inactive` |
+
+## Suspender um exame de Enem inteiro
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/enem_exam/789/status \
+  -d "inactive"
+```
+
+> Resposta
+
+```json
+{
+  "id": 789,
+  "course_skus": [
+    "ADM-MANHA-SP",
+    "DIR-MANHA-SP",
+    "ADM-NOITE-RJ"
+  ],
+  "minimum_grades": {
+    "redacao": 600.0,
+    "humanas": 600.0,
+    "natureza": 600.0,
+    "linguagens": 600.0,
+    "matematica": 600.0
+  },
+  status: "inactive"
+}
+```
+
+> Retorno quando parâmetros estão incorretos
+
+```json
+{
+  "error": true,
+  "message": "Situação fornecida não é válida"
+}
+```
+
+> Retorno quando não encontra o exame de enem
+
+```json
+{
+  "error": true,
+  "message": "ID não encontrado"
+}
+```
+
+Suspende um exame de Enem específico.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | number | id do exame de enem |
+| status | string | situação do exame de enem |
+
+### Informações do resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | number | id do exame de enem |
+| course_skus | array | cursos que usam como entrada esse exame de enem |
+| minimum_grades | object | objeto com informações de nota mínima exigida pela faculdade |
+| minimum_grades[redacao] | float | nota mínima de redação exigida pela faculdade |
+| minimum_grades[humanas] | float | nota mínima de humanas exigida pela faculdade |
+| minimum_grades[natureza] | float | nota mínima de natureza exigida pela faculdade |
+| minimum_grades[linguagens] | float | nota mínima de linguagens exigida pela faculdade |
+| minimum_grades[matematica] | float | nota mínima de matemática exigida pela faculdade |
+| status | string | situação do exame de enem entre `active` e `inactive` |
+
+## Suspender um exame de Enem parcialmente
+
+> Requisição
+
+```bash
+curl --user secretary:password http://queroalunos.com/api/enem_exam/suspend \
+  -d "data.json"
+```
+
+> data.json
+
+```json
+{
+  "course_skus": [
+    "ADM-MANHA-SP",
+    "DIR-MANHA-SP"
+  ]
+}
+```
+
+> Retorno quando parâmetros estão incorretos
+
+```json
+{
+  "error": true,
+  "message": "Situação fornecida não é válida"
+}
+```
+
+Suspende um exame de Enem específico.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| *.json | json | id do exame de enem |
+
+### Informações dos argumentos
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| course_skus | array | cursos que usam como entrada esse exame de enem |
+
 # Notificações
 
 Notificações utilizam uma rota única de callback, que deve ser fornecida pela faculdade, junto de uma combinação usuário/senha para autenticação via HTTP Basic.
