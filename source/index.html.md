@@ -160,7 +160,7 @@ Somente busca por usuários que tenham pré-matrícula na faculdade pertencente 
 | course_sku (admissions) | string | código do curso fornecido pela universidade |
 | status (admissions) | string | status que se encontra o processo de matricula |
 
-### Significado dos status
+### Significado dos valores em status
 | Nome | Descrição |
 | ---- | --------- |
 | initiated | Inscrição para exame Pendente |
@@ -254,7 +254,7 @@ Somente busca por usuários que tenham pré-matrícula na faculdade pertencente 
 | [admissions] course_sku | string | código do curso fornecido pela universidade |
 | [admissions] status | string | status que se encontra o processo de matricula |
 
-### Significado dos status
+### Significado dos valores em status
 | Nome | Descrição |
 | ---- | --------- |
 | initiated | Inscrição para exame Pendente |
@@ -396,6 +396,29 @@ Admissões são retornadas em lote de 10, ordenadas pela última atualização r
 | next_page | string | código para pegar os próximos passos |
 | previous_page | string | código para pegar os passos anteriores |
 
+### Significado dos valores em status
+| Nome | Descrição |
+| ---- | --------- |
+| initiated | Inscrição para exame Pendente |
+| pre_registered | Agendamento solicitado para exame vestibular |
+| registered | Agendamento confirmado no exame vestibular |
+| failed | Reprovado no exame vestibular |
+| approved | Aprovado no exame vestibular |
+| pending_docs | Documentação Pendente |
+| submitted_docs | Documentação Enviada |
+| rejected_docs | Documentação Rejeitada |
+| enrolled | Matriculado |
+| dropped_out | Desistente |
+| dropping_out | Desistindo |
+| drop_out_confirmed | Desistência confirmada |
+
+### Significado dos valores em result
+| Nome | Descrição |
+| ---- | --------- |
+| null | Inscrição para exame Pendente |
+| failed | Reprovado no exame vestibular |
+| approved | Aprovado no exame vestibular |
+
 ## Dados de um único processo de admissão
 
 > Requisição
@@ -516,6 +539,29 @@ Retorna uma admissão específica da faculdade.
 | [exam] status | string | status do exame vestibular |
 | [application] result | string | resultado do exame vestibular |
 | [application] type | string | tipo de exame vestibular (exam ou enem) |
+
+### Significado dos valores em status
+| Nome | Descrição |
+| ---- | --------- |
+| initiated | Inscrição para exame Pendente |
+| pre_registered | Agendamento solicitado para exame vestibular |
+| registered | Agendamento confirmado no exame vestibular |
+| failed | Reprovado no exame vestibular |
+| approved | Aprovado no exame vestibular |
+| pending_docs | Documentação Pendente |
+| submitted_docs | Documentação Enviada |
+| rejected_docs | Documentação Rejeitada |
+| enrolled | Matriculado |
+| dropped_out | Desistente |
+| dropping_out | Desistindo |
+| drop_out_confirmed | Desistência confirmada |
+
+### Significado dos valores em result
+| Nome | Descrição |
+| ---- | --------- |
+| null | Inscrição para exame Pendente |
+| failed | Reprovado no exame vestibular |
+| approved | Aprovado no exame vestibular |
 
 ## Atualizar processo de admissão
 
@@ -662,6 +708,29 @@ Realiza atualização de um processo de admissão específico.
 | [application] result | string | resultado do exame vestibular |
 | [application] type | string | tipo de exame vestibular (exam ou enem) |
 
+### Significado dos valores em status
+| Nome | Descrição |
+| ---- | --------- |
+| initiated | Inscrição para exame Pendente |
+| pre_registered | Agendamento solicitado para exame vestibular |
+| registered | Agendamento confirmado no exame vestibular |
+| failed | Reprovado no exame vestibular |
+| approved | Aprovado no exame vestibular |
+| pending_docs | Documentação Pendente |
+| submitted_docs | Documentação Enviada |
+| rejected_docs | Documentação Rejeitada |
+| enrolled | Matriculado |
+| dropped_out | Desistente |
+| dropping_out | Desistindo |
+| drop_out_confirmed | Desistência confirmada |
+
+### Significado dos valores em result
+| Nome | Descrição |
+| ---- | --------- |
+| null | Inscrição para exame Pendente |
+| failed | Reprovado no exame vestibular |
+| approved | Aprovado no exame vestibular |
+
 # Informações de inscrição para exame
 
 ## Listar todos inscrição para exame
@@ -785,6 +854,29 @@ Inscrições são retornadas em lote de 10, ordenadas pela última atualização
 | next_page | string | código para pegar os próximos passos |
 | previous_page | string | código para pegar os passos anteriores |
 
+### Significado dos valores em status
+| Nome | Descrição |
+| ---- | --------- |
+| initiated | Inscrição para exame Pendente |
+| pre_registered | Agendamento solicitado para exame vestibular |
+| registered | Agendamento confirmado no exame vestibular |
+| failed | Reprovado no exame vestibular |
+| approved | Aprovado no exame vestibular |
+| pending_docs | Documentação Pendente |
+| submitted_docs | Documentação Enviada |
+| rejected_docs | Documentação Rejeitada |
+| enrolled | Matriculado |
+| dropped_out | Desistente |
+| dropping_out | Desistindo |
+| drop_out_confirmed | Desistência confirmada |
+
+### Significado dos valores em result
+| Nome | Descrição |
+| ---- | --------- |
+| null | Inscrição para exame Pendente |
+| failed | Reprovado no exame vestibular |
+| approved | Aprovado no exame vestibular |
+
 ## Dados de uma única inscrição para exame
 
 > Requisição
@@ -902,6 +994,29 @@ Retorna uma inscrição específica na inscrição do exame da faculdade.
 | [exam] status | string | status do exame vestibular |
 | result | string | resultado do exame vestibular |
 | type | string | tipo de exame vestibular (exam ou enem) |
+
+### Significado dos valores em status
+| Nome | Descrição |
+| ---- | --------- |
+| initiated | Inscrição para exame Pendente |
+| pre_registered | Agendamento solicitado para exame vestibular |
+| registered | Agendamento confirmado no exame vestibular |
+| failed | Reprovado no exame vestibular |
+| approved | Aprovado no exame vestibular |
+| pending_docs | Documentação Pendente |
+| submitted_docs | Documentação Enviada |
+| rejected_docs | Documentação Rejeitada |
+| enrolled | Matriculado |
+| dropped_out | Desistente |
+| dropping_out | Desistindo |
+| drop_out_confirmed | Desistência confirmada |
+
+### Significado dos valores em result
+| Nome | Descrição |
+| ---- | --------- |
+| null | Inscrição para exame Pendente |
+| failed | Reprovado no exame vestibular |
+| approved | Aprovado no exame vestibular |
 
 ## Atualizar inscrição para exame
 
@@ -1039,6 +1154,28 @@ Atualiza a situação de agendamento ou resultado de uma inscrição de exame.
 | result | string | resultado do exame vestibular |
 | type | string | tipo de exame vestibular (exam ou enem) |
 
+### Significado dos valores em status
+| Nome | Descrição |
+| ---- | --------- |
+| initiated | Inscrição para exame Pendente |
+| pre_registered | Agendamento solicitado para exame vestibular |
+| registered | Agendamento confirmado no exame vestibular |
+| failed | Reprovado no exame vestibular |
+| approved | Aprovado no exame vestibular |
+| pending_docs | Documentação Pendente |
+| submitted_docs | Documentação Enviada |
+| rejected_docs | Documentação Rejeitada |
+| enrolled | Matriculado |
+| dropped_out | Desistente |
+| dropping_out | Desistindo |
+| drop_out_confirmed | Desistência confirmada |
+
+### Significado dos valores em result
+| Nome | Descrição |
+| ---- | --------- |
+| null | Inscrição para exame Pendente |
+| failed | Reprovado no exame vestibular |
+| approved | Aprovado no exame vestibular |
 
 # Exames em lote
 
@@ -2146,7 +2283,7 @@ Estrutura base das notificações:
     "admission": {
       "id": 12345,
       "course_sku": "ADM-MANHA-SP",
-      "status": "pending_docs",
+      "status": "initiated",
       "student": {
         "id": 394932,
         "name": "José da Silva",
@@ -2200,6 +2337,13 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
 | [address_information] city | string | cidade onde aluno reside |
 | [address_information] state | string | estado onde aluno reside |
 | [address_information] postal_code | string | código postal onde aluno reside |
+
+### Significado dos valores em status
+
+| Nome | Descrição |
+| ---- | --------- |
+| initiated | Inscrição para exame Pendente |
+| pending_docs | Documentação Pendente |
 
 ## Nova "inscrição de exame" (Vestibular)
 
@@ -2278,7 +2422,7 @@ Esta notificação informando uma nova inscrição para exame via vestibular.
 | [application] admission | object | objeto com dados do processo de admissão do aluno |
 | [admission] id | number | id do processo de admissão |
 | [admission] course_sku | string | código do curso referente a essa matrícula |
-| [admission] status | string | status da admissão do aluno |
+| [admission] status | string | status da admissão do aluno (_neste evento o valor sempre será `pre-registered`_) |
 | [admission] student | object | objeto com dados do aluno |
 | [student] id | number | id do aluno |
 | [student] name | string | nome do aluno |
@@ -2307,8 +2451,8 @@ Esta notificação informando uma nova inscrição para exame via vestibular.
 | [exam] date | string | data da realização do exame vestibular |
 | [exam] time | string | hora da realização do exame vestibular |
 | [exam] status | string | status do exame vestibular |
-| [application] result | string | resultado do exame vestibular |
-| [application] type | string | tipo de exame vestibular (_neste caso, sempre será exam_) |
+| [application] result | string | resultado do exame vestibular (_neste evento o valor sempre será `null`_) |
+| [application] type | string | tipo de exame vestibular (_neste evento o valor sempre será `exam`_) |
 
 ## Nova "inscrição de exame" (ENEM)
 
@@ -2393,7 +2537,7 @@ Esta notificação informando uma nova inscrição para exame via ENEM.
 | [application] admission | object | objeto com dados do processo de admissão do aluno |
 | [admission] id | number | id do processo de admissão |
 | [admission] course_sku | string | código do curso referente a essa matrícula |
-| [admission] status | string | status da admissão do aluno |
+| [admission] status | string | status da admissão do aluno (_neste evento o valor sempre será `pre-registered`_) |
 | [admission] student | object | objeto com dados do aluno |
 | [student] id | number | id do aluno |
 | [student] name | string | nome do aluno |
@@ -2426,5 +2570,5 @@ Esta notificação informando uma nova inscrição para exame via ENEM.
 | [minimum_grades] linguagens | float | nota mínima de linguagens exigida pela faculdade |
 | [minimum_grades] matematica | float | nota mínima de matemática exigida pela faculdade |
 | [exam] status | string | status do exame vestibular |
-| [application] result | string | resultado do exame vestibular |
-| [application] type | string | tipo de exame vestibular (_neste caso, sempre será enem_) |
+| [application] result | string | resultado do exame vestibular (_neste evento o valor sempre será `null`_) |
+| [application] type | string | tipo de exame vestibular (_neste evento o valor sempre será `enem`_) |
