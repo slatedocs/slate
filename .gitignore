@@ -22,3 +22,8 @@ build/
 _yardoc
 doc/
 .idea/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
