@@ -7,8 +7,9 @@ language_tabs: # must be one of https://git.io/vQNgJ
 search: true
 ---
 
-# Começando com API da Quero Alunos
-Seja bem vindo a docuentação da Quero Alunos. Aqui você encontrará guias e referencias sobre como usar nossa API. Qualquer dúvida pode estar enviando email para devs-integracao@queroeducacao.com
+# Começando com API de Admissões do Quero Alunos
+
+Bem vindo a documentação do Quero Alunos. Você encontrará guias e referências sobre como utilizar nossa API. Qualquer dúvida pode entrar em contato pelo email api-admissoes@quero.education.
 
 ## Informações básicas
 
@@ -81,7 +82,7 @@ Em caso de token válido mas sem permissão de acesso ao recurso especifico
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/students?cpf=111.222.333-44
+curl --header "Authorization: Base ########" http://queroalunos.com/api/students?cpf=111.222.333-44
 ```
 
 > Retorno
@@ -180,7 +181,7 @@ Somente busca por usuários que tenham pré-matrícula na faculdade pertencente 
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/students/{id}
+curl --header "Authorization: Base ########" http://queroalunos.com/api/students/{id}
 ```
 
 > Resposta
@@ -277,7 +278,7 @@ Somente busca por usuários que tenham pré-matrícula na faculdade pertencente 
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/admissions
+curl --header "Authorization: Base ########" http://queroalunos.com/api/admissions
 ```
 
 > Resposta
@@ -397,7 +398,7 @@ Admissões são retornadas em lote de 10, ordenadas pela última atualização r
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/admissions/12345
+curl --header "Authorization: Base ########" http://queroalunos.com/api/admissions/12345
 ```
 
 > Resposta
@@ -518,8 +519,8 @@ Retorna uma admissão específica da faculdade.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/admissions/12345 \
-  -d status="submitted_docs"
+curl --header "Authorization: Base ########" http://queroalunos.com/api/admissions/12345 \
+  --data status="submitted_docs"
 ```
 
 > Resposta
@@ -571,7 +572,7 @@ curl --user secretary:password http://queroalunos.com/api/admissions/12345 \
         "times": "18:30",
         "status": "active"
       },
-      "result": "registered",
+      "result": "approved",
       "type": "exam"
     }
   ]
@@ -648,7 +649,7 @@ Realiza atualização de um processo de admissão específico.
 
 | Status | Descrição |
 | ------ | --------- |
-| initiated | Processo Seletivo Pendente |
+| initiated | Inscrição para exame Pendente |
 | pre_registered | Agendamento Solicitado |
 | registered | Agendamento Confirmado |
 | failed | Reprovado |
@@ -670,7 +671,7 @@ Realiza atualização de um processo de admissão específico.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/applications
+curl --header "Authorization: Base ########" http://queroalunos.com/api/applications
 ```
 
 > Resposta
@@ -734,7 +735,7 @@ curl --user secretary:password http://queroalunos.com/api/applications
 
 Retorna todas as inscrições de exame da faculdade.
 
-Inscrições são retornadas em lote de 10, ordenadas pela última atualização realizada em processo seletivo. Se houver mais resultados, retorna um valor `cursor` adicional que deve ser utilizado de parâmetro na próxima requisição para continuar.
+Inscrições são retornadas em lote de 10, ordenadas pela última atualização realizada em inscrição para exame. Se houver mais resultados, retorna um valor `cursor` adicional que deve ser utilizado de parâmetro na próxima requisição para continuar.
 
 ### Parâmetros
 
@@ -789,7 +790,7 @@ Inscrições são retornadas em lote de 10, ordenadas pela última atualização
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/applications/123456
+curl --header "Authorization: Base ########" http://queroalunos.com/api/applications/123456
 ```
 
 > Resposta
@@ -907,8 +908,8 @@ Retorna uma inscrição específica na inscrição do exame da faculdade.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/applications/123456 \
-  -d status="approved"
+curl --header "Authorization: Base ########" http://queroalunos.com/api/applications/123456 \
+  --data status="approved"
 ```
 
 > Resposta
@@ -1046,7 +1047,7 @@ Atualiza a situação de agendamento ou resultado de uma inscrição de exame.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/exam_groups
+curl --header "Authorization: Base ########" http://queroalunos.com/api/exam_groups
 ```
 
 > Resposta
@@ -1125,7 +1126,7 @@ Exames em lote são retornados de 10 em 10, ordenadas pela última atualização
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/exam_groups/1234
+curl --header "Authorization: Base ########" http://queroalunos.com/api/exam_groups/1234
 ```
 
 > Resposta
@@ -1204,8 +1205,8 @@ Retorna um lote de exames específico.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/exam_groups/new \
-  -d "data.json"
+curl --header "Authorization: Base ########" http://queroalunos.com/api/exam_groups/new \
+  --data "data.json"
 ```
 
 > estrutura de data.json
@@ -1362,8 +1363,8 @@ Cria um lote de exames.
 > Requisição
 
 ```bash
-curl -X PUT --user secretary:password http://queroalunos.com/api/exam_groups/1234/status \
-  -d "active"
+curl -X PUT --header "Authorization: Base ########" http://queroalunos.com/api/exam_groups/1234/status \
+  --data "active"
 ```
 
 > Resposta
@@ -1462,7 +1463,7 @@ Suspende ou ativa um lote de exames.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/exams
+curl --header "Authorization: Base ########" http://queroalunos.com/api/exams
 ```
 
 > Resposta
@@ -1530,7 +1531,7 @@ Exames são retornadas em lote de 10, ordenadas pela última atualização reali
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/exams/456
+curl --header "Authorization: Base ########" http://queroalunos.com/api/exams/456
 ```
 
 > Resposta
@@ -1598,8 +1599,8 @@ Retorna um exame específico.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/exams/new \
-  -d "data.json"
+curl --header "Authorization: Base ########" http://queroalunos.com/api/exams/new \
+  --data "data.json"
 ```
 
 > estrutura de data.json
@@ -1707,8 +1708,8 @@ Cria um novo exame.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/exams/456 \
-  -d status="active"
+curl --header "Authorization: Base ########" http://queroalunos.com/api/exams/456 \
+  --data status="active"
 ```
 
 > Resposta
@@ -1786,7 +1787,7 @@ Suspende ou ativa um exame.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/enem_exams
+curl --header "Authorization: Base ########" http://queroalunos.com/api/enem_exams
 ```
 
 > Resposta
@@ -1808,7 +1809,7 @@ curl --user secretary:password http://queroalunos.com/api/enem_exams
         "linguagens": 600.0,
         "matematica": 600.0
       },
-      "status": "active"
+      status: "active"
     }
   ],
   "cursor": "ASAKDSaldlwp20"
@@ -1845,7 +1846,7 @@ Exames de enem são retornados de 10 em 10, ordenadas pela última atualização
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/enem_exams/789
+curl --header "Authorization: Base ########" http://queroalunos.com/api/enem_exams/789
 ```
 
 > Resposta
@@ -1865,7 +1866,7 @@ curl --user secretary:password http://queroalunos.com/api/enem_exams/789
     "linguagens": 600.0,
     "matematica": 600.0
   },
-  "status": "active"
+  status: "active"
 }
 ```
 
@@ -1905,8 +1906,8 @@ Retorna um exame de enem específico.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/enem_exams/new \
-  -d "data.json"
+curl --header "Authorization: Base ########" http://queroalunos.com/api/enem_exams/new \
+  --data "data.json"
 ```
 
 > data.json
@@ -1944,7 +1945,7 @@ curl --user secretary:password http://queroalunos.com/api/enem_exams/new \
     "linguagens": 600.0,
     "matematica": 600.0
   },
-  "status": "active"
+  status: "active"
 }
 ```
 
@@ -1997,8 +1998,8 @@ Cria um exame de enem.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/enem_exams/789/status \
-  -d "inactive"
+curl --header "Authorization: Base ########" http://queroalunos.com/api/enem_exams/789/status \
+  --data "inactive"
 ```
 
 > Resposta
@@ -2018,7 +2019,7 @@ curl --user secretary:password http://queroalunos.com/api/enem_exams/789/status 
     "linguagens": 600.0,
     "matematica": 600.0
   },
-  "status": "inactive"
+  status: "inactive"
 }
 ```
 
@@ -2068,8 +2069,8 @@ Suspende um exame de Enem específico.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/enem_exams/suspend \
-  -d "data.json"
+curl --header "Authorization: Base ########" http://queroalunos.com/api/enem_exams/suspend \
+  --data "data.json"
 ```
 
 > data.json
