@@ -162,7 +162,7 @@ Somente busca por usuários que tenham pré-matrícula na faculdade pertencente 
 ### Significado dos status
 | Nome | Descrição |
 | ---- | --------- |
-| initiated | Processo Seletivo Pendente |
+| initiated | Inscrição para exame Pendente |
 | pre_registered | Agendamento Solicitado |
 | registered | Agendamento Confirmado |
 | failed | Reprovado |
@@ -256,7 +256,7 @@ Somente busca por usuários que tenham pré-matrícula na faculdade pertencente 
 ### Significado dos status
 | Nome | Descrição |
 | ---- | --------- |
-| initiated | Processo Seletivo Pendente |
+| initiated | Inscrição para exame Pendente |
 | pre_registered | Agendamento Solicitado |
 | registered | Agendamento Confirmado |
 | failed | Reprovado |
@@ -372,7 +372,7 @@ Admissões são retornadas em lote de 10, ordenadas pela última atualização r
 | address_information[city] | string | cidade onde aluno reside |
 | address_information[state] | string | estado onde aluno reside |
 | address_information[postal_code] | string | código postal onde aluno reside |
-| application | array | lista de objetos de processo seletivo (pode estar vazio) |
+| application | array | lista de objetos de inscrições de exame (pode estar vazio) |
 | application[id] | number | id da inscrição para exame |
 | application[student] | object | objeto com os dados do aluno referente a essa matrícula |
 | exam | object | objeto com informações do exame referente a essa matrícula |
@@ -494,7 +494,7 @@ Retorna uma admissão específica da faculdade.
 | address_information[city] | string | cidade onde aluno reside |
 | address_information[state] | string | estado onde aluno reside |
 | address_information[postal_code] | string | código postal onde aluno reside |
-| application | array | lista de objetos de processo seletivo (pode estar vazio) |
+| application | array | lista de objetos de inscrição para exame (pode estar vazio) |
 | application[id] | number | id da inscrição para exame |
 | application[student] | object | objeto com os dados do aluno referente a essa matrícula |
 | exam | object | objeto com informações do exame referente a essa matrícula |
@@ -625,7 +625,7 @@ Realiza atualização de um processo de admissão específico.
 | address_information[city] | string | cidade onde aluno reside |
 | address_information[state] | string | estado onde aluno reside |
 | address_information[postal_code] | string | código postal onde aluno reside |
-| application | array | lista de objetos de processo seletivo (pode estar vazio) |
+| application | array | lista de objetos de inscrição para exame (pode estar vazio) |
 | application[id] | number | id da inscrição para exame |
 | application[student] | object | objeto com os dados do aluno referente a essa matrícula |
 | exam | object | objeto com informações do exame referente a essa matrícula |
@@ -663,9 +663,9 @@ Realiza atualização de um processo de admissão específico.
 
 
 
-# Informações de processos seletivos
+# Informações de inscrição para exame
 
-## Listar todos processos seletivos
+## Listar todos inscrição para exame
 
 > Requisição
 
@@ -732,9 +732,9 @@ curl --user secretary:password http://queroalunos.com/api/applications
 }
 ```
 
-Retorna todas as inscrições de processo seletivo da faculdade.
+Retorna todas as inscrições de exame da faculdade.
 
-Inscrições são retornadas em lote de 10, ordenadas pela última atualização realizada no processo seletivo. Se houver mais resultados, retorna um valor `cursor` adicional que deve ser utilizado de parâmetro na próxima requisição para continuar.
+Inscrições são retornadas em lote de 10, ordenadas pela última atualização realizada em processo seletivo. Se houver mais resultados, retorna um valor `cursor` adicional que deve ser utilizado de parâmetro na próxima requisição para continuar.
 
 ### Parâmetros
 
@@ -749,42 +749,42 @@ Inscrições são retornadas em lote de 10, ordenadas pela última atualização
 | items | array| lista de objetos com dados de inscrições de vestibular |
 | id | number | id da inscrição para exame |
 | admission | object | objeto com dados do processo de admissão do aluno |
-| id (admission) | number | id do processo de admissão |
-| course_sku | string | código do curso referente a essa matrícula |
-| status | string | status da admissão do aluno |
-| student | object | objeto com dados do aluno |
-| id (student) | number | id do aluno |
-| name | string | nome do aluno |
-| cpf | string | cpf do aluno |
-| birth_date | string | data de nascimento do aluno |
-| emails | array de string | lista de emails do aluno |
-| phones | array de string | lista de telefones do aluno |
-| address_information | object | objeto com dados onde aluno reside |
-| address | string | endereço onde aluno reside |
-| number | string | número onde aluno reside |
-| neighborhood | string | bairro onde aluno reside |
-| city | string | cidade onde aluno reside |
-| state | string | estado onde aluno reside |
-| postal_code | string | código postal onde aluno reside |
+| [admission] id | number | id do processo de admissão |
+| [admission] course_sku | string | código do curso referente a essa matrícula |
+| [admission] status | string | status da admissão do aluno |
+| [admission] student | object | objeto com dados do aluno |
+| [student] id | number | id do aluno |
+| [student] name | string | nome do aluno |
+| [student] cpf | string | cpf do aluno |
+| [student] birth_date | string | data de nascimento do aluno |
+| [student] emails | array de string | lista de emails do aluno |
+| [student] phones | array de string | lista de telefones do aluno |
+| [student] address_information | object | objeto com dados onde aluno reside |
+| [address_information] address | string | endereço onde aluno reside |
+| [address_information] number | string | número onde aluno reside |
+| [address_information] neighborhood | string | bairro onde aluno reside |
+| [address_information] city | string | cidade onde aluno reside |
+| [address_information] state | string | estado onde aluno reside |
+| [address_information] postal_code | string | código postal onde aluno reside |
 | exam | object | objeto com informações do exame |
-| exam[id] | number | id do exame vestibular |
-| exam[course_skus] | array | lista com os cursos pertencentes a este exame vestibular |
-| exam[local] | object | objeto com dados do exame |
-| exam_location[address] | string | endereço da localização do exame |
-| exam_location[number] | string | número da localização do exame |
-| exam_location[neighborhood] | string | bairro da localização do exame |
-| exam_location[city] | string | cidade da localização do exame |
-| exam_location[state] | string | estado da localização do exame |
-| exam_location[postal_code] | string | código postal da localização do exame |
-| exam[dates] | string | data da realização do exame |
-| exam[times] | string | hora da realização do exame |
-| exam[status] | string | status do exame |
-| exam[result] | string | resultado do exame |
-| exam[type] | string | tipo de exame vestibular (exam ou enem) |
+| [exam] id | number | id do exame vestibular |
+| [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
+| [exam] local | object | objeto com dados do exame |
+| [exam_location] address | string | endereço da localização do exame |
+| [exam_location] number | string | número da localização do exame |
+| [exam_location] neighborhood | string | bairro da localização do exame |
+| [exam_location] city | string | cidade da localização do exame |
+| [exam_location] state | string | estado da localização do exame |
+| [exam_location] postal_code | string | código postal da localização do exame |
+| [exam] date | string | data da realização do exame |
+| [exam] time | string | hora da realização do exame |
+| [exam] status | string | status do exame |
+| result | string | resultado do exame |
+| type | string | tipo de exame vestibular (exam ou enem) |
 | cursor | string | código para pegar os próximos passos |
 
 
-## Dados de um único processo seletivo
+## Dados de uma única inscrição para exame
 
 > Requisição
 
@@ -823,12 +823,13 @@ curl --user secretary:password http://queroalunos.com/api/applications/123456
     },
   },
   "exam": {
+    "id": 456,
     "course_skus": [
       "ADM-MANHA-SP",
       "DIR-MANHA-SP",
       "ADM-NOITE-RJ"
     ],
-    "address": {
+    "exam_location": {
       "address": "Rua Márcia",
       "number": "4231",
       "neighborhood": "Morro do Barreto",
@@ -836,8 +837,8 @@ curl --user secretary:password http://queroalunos.com/api/applications/123456
       "state": "SP",
       "postal_code": "19110-000"
     },
-    "dates": "2016-11-01",
-    "times": "18:30",
+    "date": "2016-11-01",
+    "time": "18:30",
     "status": "active"
   },
   "result": "registered",
@@ -854,9 +855,7 @@ curl --user secretary:password http://queroalunos.com/api/applications/123456
 }
 ```
 
-Retorna uma inscrição específica no processo seletivo da faculdade.
-
-Inscrições são retornadas em lote de 10, ordenadas pela última atualização realizada no processo seletivo. Se houver mais resultados, rota retorna um valor cursor adicional que deve ser utilizado de parâmetro na próxima requisição para continuar.
+Retorna uma inscrição específica na inscrição do exame da faculdade.
 
 ### Parâmetros
 
@@ -870,40 +869,40 @@ Inscrições são retornadas em lote de 10, ordenadas pela última atualização
 | ---- | ---- | --------- |
 | id | number | id da inscrição para exame |
 | admission | object | objeto com dados do processo de admissão do aluno |
-| id (admission) | number | id do processo de admissão |
-| course_sku | string | código do curso referente a essa matrícula |
-| status | string | status da admissão do aluno |
-| student | object | objeto com dados do aluno |
-| id (student) | number | id do aluno |
-| name | string | nome do aluno |
-| cpf | string | cpf do aluno |
-| birth_date | string | data de nascimento do aluno |
-| emails | array de string | lista de emails do aluno |
-| phones | array de string | lista de telefones do aluno |
-| address_information | object | objeto com dados onde aluno reside |
-| address | string | endereço onde aluno reside |
-| number | string | número onde aluno reside |
-| neighborhood | string | bairro onde aluno reside |
-| city | string | cidade onde aluno reside |
-| state | string | estado onde aluno reside |
-| postal_code | string | código postal onde aluno reside |
+| [admission] id | number | id do processo de admissão |
+| [admission] course_sku | string | código do curso referente a essa matrícula |
+| [admission] status | string | status da admissão do aluno |
+| [admission] student | object | objeto com dados do aluno |
+| [student] id | number | id do aluno |
+| [student] name | string | nome do aluno |
+| [student] cpf | string | cpf do aluno |
+| [student] birth_date | string | data de nascimento do aluno |
+| [student] emails | array de string | lista de emails do aluno |
+| [student] phones | array de string | lista de telefones do aluno |
+| [student] address_information | object | objeto com dados onde aluno reside |
+| [address_information] address | string | endereço onde aluno reside |
+| [address_information] number | string | número onde aluno reside |
+| [address_information] neighborhood | string | bairro onde aluno reside |
+| [address_information] city | string | cidade onde aluno reside |
+| [address_information] state | string | estado onde aluno reside |
+| [address_information] postal_code | string | código postal onde aluno reside |
 | exam | object | objeto com informações do exame |
-| course_skus | array | lista com os cursos pertencentes a este exame vestibular |
-| local | object | objeto com dados do exame |
-| address | string | endereço da localização do exame vestibular |
-| number | string | número da localização do exame vestibular |
-| neighborhood | string | bairro da localização do exame vestibular |
-| city | string | cidade da localização do exame vestibular |
-| state | string | estado da localização do exame vestibular |
-| postal_code | string | código postal da localização do exame vestibular |
-| dates | string | data da realização do exame vestibular |
-| times | string | hora da realização do exame vestibular |
-| status | string | status do exame vestibular |
+| [exam] id | number | id do exame vestibular |
+| [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
+| [exam] exam_location | object | objeto com dados do exame |
+| [exam_location] address | string | endereço da localização do exame vestibular |
+| [exam_location] number | string | número da localização do exame vestibular |
+| [exam_location] neighborhood | string | bairro da localização do exame vestibular |
+| [exam_location] city | string | cidade da localização do exame vestibular |
+| [exam_location] state | string | estado da localização do exame vestibular |
+| [exam_location] postal_code | string | código postal da localização do exame vestibular |
+| [exam] date | string | data da realização do exame vestibular |
+| [exam] time | string | hora da realização do exame vestibular |
+| [exam] status | string | status do exame vestibular |
 | result | string | resultado do exame vestibular |
 | type | string | tipo de exame vestibular (exam ou enem) |
 
-
-## Atualizar processo seletivo
+## Atualizar inscrição para exame
 
 > Requisição
 
@@ -943,12 +942,13 @@ curl --user secretary:password http://queroalunos.com/api/applications/123456 \
     },
   },
   "exam": {
+    "id": 456,
     "course_skus": [
       "ADM-MANHA-SP",
       "DIR-MANHA-SP",
       "ADM-NOITE-RJ"
     ],
-    "address": {
+    "exam_location": {
       "address": "Rua Márcia",
       "number": "4231",
       "neighborhood": "Morro do Barreto",
@@ -956,8 +956,8 @@ curl --user secretary:password http://queroalunos.com/api/applications/123456 \
       "state": "SP",
       "postal_code": "19110-000"
     },
-    "dates": "2016-11-01",
-    "times": "18:30",
+    "date": "2016-11-01",
+    "time": "18:30",
     "status": "active"
   },
   "result": "approved",
@@ -991,6 +991,14 @@ Atualiza a situação de agendamento ou resultado de uma inscrição de exame.
 | ---- | ---- | --------- |
 | status | Form | Situação do aluno entre `registered`, `approved`, `failed` |
 
+### Possíveis valores para o parâmetro status
+
+| Status | Descrição |
+| ------ | --------- |
+| registered | Registrado para realizar vestibular |
+| approved | Aprovado no vestibular |
+| failed | Recusado no vestibular |
+
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
@@ -1015,6 +1023,7 @@ Atualiza a situação de agendamento ou resultado de uma inscrição de exame.
 | [address_information] state | string | estado onde aluno reside |
 | [address_information] postal_code | string | código postal onde aluno reside |
 | exam | object | objeto com informações do exame |
+| [exam] id | number | id do exame vestibular |
 | [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
 | [exam] local | object | objeto com dados do exame |
 | [exam] exam_location | string | endereço da localização do exame vestibular |
@@ -1029,13 +1038,6 @@ Atualiza a situação de agendamento ou resultado de uma inscrição de exame.
 | result | string | resultado do exame vestibular |
 | type | string | tipo de exame vestibular (exam ou enem) |
 
-### Possíveis status a ser enviado
-
-| Status | Descrição |
-| ------ | --------- |
-| registered | Registrado para realizar vestibular |
-| approved | Aprovado no vestibular |
-| failed | Recusado no vestibular |
 
 # Exames em lote
 
@@ -2150,7 +2152,7 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
 }
 ```
 
-Esta notificação informando uma nova inscrição para o processo seletivo via vestibular.
+Esta notificação informando uma nova inscrição para exame via vestibular.
 
 ### Parâmetros
 
@@ -2265,7 +2267,7 @@ Esta notificação informando uma nova inscrição para o processo seletivo via 
 }
 ```
 
-Esta notificação informando uma nova inscrição para o processo seletivo via ENEM.
+Esta notificação informando uma nova inscrição para exame via ENEM.
 
 ### Parâmetros
 
