@@ -605,6 +605,20 @@ Realiza atualização de um processo de admissão específico.
 | ---- | ---- | --------- |
 | status | form | situação da admissão |
 
+### Possíveis valores para o parâmetro status
+
+| Status | Descrição |
+| ------ | --------- |
+| initiated | Inscrição para exame Pendente |
+| pre_registered | Agendamento Solicitado |
+| registered | Agendamento Confirmado |
+| failed | Reprovado |
+| approved | Aprovado |
+| pending_docs | Documentação Pendente |
+| submitted_docs | Documentação Enviada |
+| rejected_docs | Documentação Rejeitada |
+| enrolled | Matriculado |
+
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
@@ -644,25 +658,6 @@ Realiza atualização de um processo de admissão específico.
 | [exam] status | string | status do exame vestibular |
 | [application] result | string | resultado do exame vestibular |
 | [application] type | string | tipo de exame vestibular (exam ou enem) |
-
-### Possíveis status a ser enviado
-
-| Status | Descrição |
-| ------ | --------- |
-| initiated | Inscrição para exame Pendente |
-| pre_registered | Agendamento Solicitado |
-| registered | Agendamento Confirmado |
-| failed | Reprovado |
-| approved | Aprovado |
-| pending_docs | Documentação Pendente |
-| submitted_docs | Documentação Enviada |
-| rejected_docs | Documentação Rejeitada |
-| enrolled | Matriculado |
-| dropped_out | Desistente |
-| dropping_out | Desistindo |
-| drop_out_confirmed | Desistência confirmada |
-
-
 
 # Informações de inscrição para exame
 
