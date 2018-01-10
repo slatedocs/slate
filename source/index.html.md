@@ -164,10 +164,10 @@ Somente busca por usuários que tenham pré-matrícula na faculdade pertencente 
 | Nome | Descrição |
 | ---- | --------- |
 | initiated | Inscrição para exame Pendente |
-| pre_registered | Agendamento Solicitado |
-| registered | Agendamento Confirmado |
-| failed | Reprovado |
-| approved | Aprovado |
+| pre_registered | Agendamento solicitado para exame vestibular |
+| registered | Agendamento confirmado no exame vestibular |
+| failed | Reprovado no exame vestibular |
+| approved | Aprovado no exame vestibular |
 | pending_docs | Documentação Pendente |
 | submitted_docs | Documentação Enviada |
 | rejected_docs | Documentação Rejeitada |
@@ -258,10 +258,10 @@ Somente busca por usuários que tenham pré-matrícula na faculdade pertencente 
 | Nome | Descrição |
 | ---- | --------- |
 | initiated | Inscrição para exame Pendente |
-| pre_registered | Agendamento Solicitado |
-| registered | Agendamento Confirmado |
-| failed | Reprovado |
-| approved | Aprovado |
+| pre_registered | Agendamento solicitado para exame vestibular |
+| registered | Agendamento confirmado no exame vestibular |
+| failed | Reprovado no exame vestibular |
+| approved | Aprovado no exame vestibular |
 | pending_docs | Documentação Pendente |
 | submitted_docs | Documentação Enviada |
 | rejected_docs | Documentação Rejeitada |
@@ -610,10 +610,10 @@ Realiza atualização de um processo de admissão específico.
 | Status | Descrição |
 | ------ | --------- |
 | initiated | Inscrição para exame Pendente |
-| pre_registered | Agendamento Solicitado |
-| registered | Agendamento Confirmado |
-| failed | Reprovado |
-| approved | Aprovado |
+| pre_registered | Agendamento solicitado para exame vestibular |
+| registered | Agendamento confirmado no exame vestibular |
+| failed | Reprovado no exame vestibular |
+| approved | Aprovado no exame vestibular |
 | pending_docs | Documentação Pendente |
 | submitted_docs | Documentação Enviada |
 | rejected_docs | Documentação Rejeitada |
