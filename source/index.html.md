@@ -332,7 +332,7 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/admissio
             "times": "18:30",
             "status": "active"
           },
-          "result": "registered",
+          "result": "approved",
           "type": "exam"
         }
       ]
@@ -450,7 +450,7 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/admissio
         "times": "18:30",
         "status": "active"
       },
-      "result": "registered",
+      "result": "approved",
       "type": "exam"
     }
   ]
@@ -520,7 +520,7 @@ Retorna uma admissão específica da faculdade.
 
 ```bash
 curl --header "Authorization: Base ########" http://queroalunos.com/api/admissions/12345 \
-  --data status="submitted_docs"
+  --data status="enrolled"
 ```
 
 > Resposta
@@ -529,7 +529,7 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/admissio
 {
   "id": 12345,
   "course_sku": "ADM-MANHA-SP",
-  "status": "submitted_docs",
+  "status": "enrolled",
   "student": {
     "id": 394932,
     "name": "José da Silva",
@@ -720,7 +720,7 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/applicat
         "times": "18:30",
         "status": "active"
       },
-      "result": "registered",
+      "result": "approved",
       "type": "exam"
     }
   ],
@@ -837,7 +837,7 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/applicat
     "time": "18:30",
     "status": "active"
   },
-  "result": "registered",
+  "result": "approved",
   "type": "exam"
 }
 ```
@@ -985,7 +985,7 @@ Atualiza a situação de agendamento ou resultado de uma inscrição de exame.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| status | Form | Situação do aluno entre `registered`, `approved`, `failed` |
+| result | Form | Situação do aluno entre `registered`, `approved`, `failed` |
 
 ### Possíveis valores para o parâmetro status
 
@@ -993,7 +993,7 @@ Atualiza a situação de agendamento ou resultado de uma inscrição de exame.
 | ------ | --------- |
 | registered | Registrado para realizar vestibular |
 | approved | Aprovado no vestibular |
-| failed | Recusado no vestibular |
+| failed | Reprovado no vestibular |
 
 ### Informações de resultado
 
@@ -2242,7 +2242,7 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
         "time": "18:30",
         "status": "active"
       },
-      "result": "noshow",
+      "result": null,
       "type": "exam"
     }
   }
@@ -2357,7 +2357,7 @@ Esta notificação informando uma nova inscrição para exame via vestibular.
         },
         "status": "active"
       },
-      "result": "noshow",
+      "result": "pre-registered",
       "type": "exam_enem"
     }
   }
