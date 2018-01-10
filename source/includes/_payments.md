@@ -41,7 +41,7 @@ EXEMPLO
 | payment_config_id         | integer | código de identificação da configuração de pagamento à qual o pagamento irá pertencer                                                                                                                                                                                                                  |
 | amount                    | decimal | valor do pagamento                                                                                                                                                                                                                                                                                     |
 | date                      | date    | data do pagamento                                                                                                                                                                                                                                                                                      |
-| payment_method            | string  | forma de pagamento ('credit_other_ownership', 'credit_same_ownership', 'credit_savings_account', 'doc_other_ownership', 'doc_same_ownership', 'ted_other_ownership', 'ted_same_ownership', 'dealership', 'billet_same_bank', 'billet_other_bank', 'gps', 'darf', 'das', 'ipva', 'icms_sp')             |
+| payment_method            | string  | forma de pagamento ('credit_other_ownership', 'credit_same_ownership', 'credit_savings_account', 'doc_other_ownership', 'doc_same_ownership', 'ted_other_ownership', 'ted_same_ownership', 'dealership', 'billet_same_bank', 'billet_other_bank', 'gps', 'darf', 'das', 'ipva', 'icms_sp', 'dpvat')    |
 | payment_type              | string  | tipo de pagamento. Os possíveis valores variam de acordo com o "payment_method" (vide tabela 1)                                                                                                                                                                                                        |
 | bank_code                 | string  | código de 3 dígitos do banco da conta bancária para o pagamento                                                                                                                                                                                                                                        |
 | account                   | string  | número da conta bancária para o pagamento                                                                                                                                                                                                                                                              |
@@ -282,7 +282,7 @@ O attributo <code>amount</code> nesse caso é opcional, pois ele é identificado
 | barcode                   | string  | **(requerido)** Código de barras do boleto bancário |
 | due_date                  | date    | **(requerido)** Data de vencimento do boleto        |
 
-### Tributos sem código de barras (GPS, DARF, DAS, IPVA, ICMS-SP)
+### Tributos sem código de barras (GPS, DARF, DAS, IPVA, ICMS-SP, DPVAT)
 
 Além dos parâmetros comuns à todas as formas de pagamento, temos parâmetros específicos para cada tipo de tributo:
 
@@ -350,6 +350,18 @@ O attributo <code>payment_type</code> é automaticamente definido como <code>"tr
 | installment_number        | string  | **(requerido)** número da prestação                                      |
 | mulct_amount              | decimal | (opcional) valor da multa                                                |
 | interest_amount           | decimal | (opcional) valor do juros                                                |
+
+**Parâmetros quando payment_method é 'dpvat'**
+
+| Campo                     | Tipo    | Comentário                                                             |
+|---------------------------|---------|------------------------------------------------------------------------|
+| competency_year           | string  | **(requerido)** ano de competência do DPVAT, repesentado por 4 dígitos |
+| license_plate             | string  | **(requerido)** placa do carro                                         |
+| renavam                   | string  | **(requerido)** número do Renavam                                      |
+| uf                        | string  | **(requerido)** estado, representado por seu acrônimo (RJ, SC, etc)    |
+| discount_amount           | decimal | (opcional) valor do desconto.                                          |
+| due_date                  | date    | (opcional) data de vencimento                                          |
+| city_code                 | integer | (opcional) código da cidade                                            |
 
 ## Atualização de Pagamento
 
@@ -521,6 +533,17 @@ Além dos parâmetros comuns à todas as formas de pagamento, temos parâmetros 
 | mulct_amount              | decimal | (opcional) valor da multa                                                |
 | interest_amount           | decimal | (opcional) valor do juros                                                |
 
+**Parâmetros quando payment_method é 'dpvat'**
+
+| Campo           | Tipo    | Comentário                                                             |
+|-----------------|---------|------------------------------------------------------------------------|
+| competency_year | string  | **(requerido)** ano de competência do DPVAT, repesentado por 4 dígitos |
+| license_plate   | string  | **(requerido)** placa do carro                                         |
+| renavam         | string  | **(requerido)** número do Renavam                                      |
+| uf              | string  | **(requerido)** estado, representado por seu acrônimo (RJ, SC, etc)    |
+| discount_amount | decimal | (opcional) valor do desconto.                                          |
+| due_date        | date    | (opcional) data de vencimento                                          |
+| city_code       | integer | (opcional) código da cidade                                            |
 
 ## Exclusão de Pagamento
 
@@ -573,6 +596,7 @@ Exclui determinado Pagamento. As mudanças são irreversíveis.
 | das                                    |                   |                     |                      |                              |                                      |                     |                    |                            |                            |                  | X                  |
 | ipva                                   |                   |                     |                      |                              |                                      |                     |                    |                            |                            |                  | X                  |
 | icms_sp                                |                   |                     |                      |                              |                                      |                     |                    |                            |                            |                  | X                  |
+| dpvat                                  |                   |                     |                      |                              |                                      |                     |                    |                            |                            |                  | X                  |
 
 ### Possíveis valores para doc_goal (tabela 2)
 
