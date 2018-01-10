@@ -646,7 +646,7 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/admissio
 }
 ```
 
-Realiza atualização de um processo de admissão específico.
+Realiza atualização de um processo de admissão específico de um aluno. Para isso é preciso enviar a informação atual dele pelo parâmetro `status`.
 
 ### Parâmetros
 
@@ -1024,7 +1024,7 @@ Retorna uma inscrição específica na inscrição do exame da faculdade.
 
 ```bash
 curl --header "Authorization: Base ########" http://queroalunos.com/api/applications/123456 \
-  --data status="approved"
+  --data result="approved"
 ```
 
 > Resposta
@@ -1105,13 +1105,12 @@ Atualiza a situação de agendamento ou resultado de uma inscrição de exame.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| result | Form | Situação do aluno entre `registered`, `approved`, `failed` |
+| result | Form | Situação do aluno entre `approved` e `failed` |
 
-### Possíveis valores para o parâmetro status
+### Possíveis valores para o parâmetro result
 
 | Status | Descrição |
 | ------ | --------- |
-| registered | Registrado para realizar vestibular |
 | approved | Aprovado no vestibular |
 | failed | Reprovado no vestibular |
 
