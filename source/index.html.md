@@ -1783,25 +1783,30 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
   "data": {
     "application": {
       "id": 123456,
-      "student": {
-        "id": 394932,
-        "name": "José da Silva",
-        "cpf": "111.222.333-44",
-        "birth_date": "1991-01-01",
-        "emails": [
-          "teste@exemplo.com"
-        ],
-        "phones": [
-          "(11) 98888-7777"
-        ],
-        "address_information": {
-          "address": "Rua Sandra",
-          "number": "432S",
-          "neighborhood": "Chácara Dora",
-          "city": "Araçariguama",
-          "state": "SP",
-          "postal_code": "18147-000"
-        }
+      "admission": {
+        "id": 12345,
+        "course_sku": "ADM-MANHA-SP",
+        "status": "pending_docs",
+        "student": {
+          "id": 394932,
+          "name": "José da Silva",
+          "cpf": "111.222.333-44",
+          "birth_date": "1991-01-01",
+          "emails": [
+            "teste@exemplo.com"
+          ],
+          "phones": [
+            "(11) 98888-7777"
+          ],
+          "address_information": {
+            "address": "Rua Sandra",
+            "number": "432S",
+            "neighborhood": "Chácara Dora",
+            "city": "Araçariguama",
+            "state": "SP",
+            "postal_code": "18147-000"
+          }
+        },
       },
       "exam": {
         "course_skus": [
@@ -1840,8 +1845,12 @@ Esta notificação informando uma nova inscrição para o processo seletivo via 
 | data | object | Objeto com informações de acordo com o tipo de evento |
 | application | object | objeto com informações do vestibular |
 | id | number | id da inscrição para exame |
+| admission | object | objeto com dados do processo de admissão do aluno |
+| id (admission) | number | id do processo de admissão |
+| course_sku | string | código do curso referente a essa matrícula |
+| status | string | status da admissão do aluno |
 | student | object | objeto com dados do aluno |
-| id (student) | number | id do aluno. |
+| id (student) | number | id do aluno |
 | name | string | nome do aluno |
 | cpf | string | cpf do aluno |
 | birth_date | string | data de nascimento do aluno |
