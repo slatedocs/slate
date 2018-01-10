@@ -983,7 +983,7 @@ curl --user secretary:password http://queroalunos.com/api/applications/123456 \
 }
 ```
 
-Atualiza o progresso no processo seletivo de um dado aluno.
+Atualiza a situação de agendamento ou resultado de uma inscrição de exame.
 
 ### Parâmetros
 
@@ -997,35 +997,35 @@ Atualiza o progresso no processo seletivo de um dado aluno.
 | ---- | ---- | --------- |
 | id | number | id da inscrição para exame |
 | admission | object | objeto com dados do processo de admissão do aluno |
-| id (admission) | number | id do processo de admissão |
-| course_sku | string | código do curso referente a essa matrícula |
-| status | string | status da admissão do aluno |
-| student | object | objeto com dados do aluno |
-| id (student) | number | id do aluno |
-| name | string | nome do aluno |
-| cpf | string | cpf do aluno |
-| birth_date | string | data de nascimento do aluno |
-| emails | array de string | lista de emails do aluno |
-| phones | array de string | lista de telefones do aluno |
-| address_information | object | objeto com dados onde aluno reside |
-| address | string | endereço onde aluno reside |
-| number | string | número onde aluno reside |
-| neighborhood | string | bairro onde aluno reside |
-| city | string | cidade onde aluno reside |
-| state | string | estado onde aluno reside |
-| postal_code | string | código postal onde aluno reside |
+| [admission] id | number | id do processo de admissão |
+| [admission] course_sku | string | código do curso referente a essa matrícula |
+| [admission] status | string | status da admissão do aluno |
+| [admission] student | object | objeto com dados do aluno |
+| [student] id | number | id do aluno |
+| [student] name | string | nome do aluno |
+| [student] cpf | string | cpf do aluno |
+| [student] birth_date | string | data de nascimento do aluno |
+| [student] emails | array de string | lista de emails do aluno |
+| [student] phones | array de string | lista de telefones do aluno |
+| [student] address_information | object | objeto com dados onde aluno reside |
+| [address_information] address | string | endereço onde aluno reside |
+| [address_information] number | string | número onde aluno reside |
+| [address_information] neighborhood | string | bairro onde aluno reside |
+| [address_information] city | string | cidade onde aluno reside |
+| [address_information] state | string | estado onde aluno reside |
+| [address_information] postal_code | string | código postal onde aluno reside |
 | exam | object | objeto com informações do exame |
-| course_skus | array | lista com os cursos pertencentes a este exame vestibular |
-| local | object | objeto com dados do exame |
-| address | string | endereço da localização do exame vestibular |
-| number | string | número da localização do exame vestibular |
-| neighborhood | string | bairro da localização do exame vestibular |
-| city | string | cidade da localização do exame vestibular |
-| state | string | estado da localização do exame vestibular |
-| postal_code | string | código postal da localização do exame vestibular |
-| dates | string | data da realização do exame vestibular |
-| times | string | hora da realização do exame vestibular |
-| status | string | status do exame vestibular |
+| [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
+| [exam] local | object | objeto com dados do exame |
+| [exam] exam_location | string | endereço da localização do exame vestibular |
+| [exam_location] number | string | número da localização do exame vestibular |
+| [exam_location] neighborhood | string | bairro da localização do exame vestibular |
+| [exam_location] city | string | cidade da localização do exame vestibular |
+| [exam_location] state | string | estado da localização do exame vestibular |
+| [exam_location] postal_code | string | código postal da localização do exame vestibular |
+| [exam] date | string | data da realização do exame vestibular |
+| [exam] time | string | hora da realização do exame vestibular |
+| [exam] status | string | status do exame vestibular |
 | result | string | resultado do exame vestibular |
 | type | string | tipo de exame vestibular (exam ou enem) |
 
@@ -1059,7 +1059,7 @@ curl --user secretary:password http://queroalunos.com/api/exam_groups
         "DIR-MANHA-SP",
         "ADM-NOITE-RJ"
       ],
-      "addresses": [
+      "exam_locations": [
         {
           "address": "Rua Márcia",
           "number": "4231",
@@ -1098,18 +1098,25 @@ Exames em lote são retornados de 10 em 10, ordenadas pela última atualização
 | ---- | ---- | --------- |
 | id | number | id do lote de exames |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
-| addresses | object array | lista dos objetos dos endereços dos exames desse lote |
-| addresses[address] | string | endereço onde será feito o exame |
-| addresses[number] | string | número de onde será feito o exame |
-| addresses[neighborhood] | string | bairro onde será feito o exame |
-| addresses[city] | string | cidade onde será feito o exame |
-| addresses[state] | string | estado onde será feito o exame |
-| addresses[postal_code] | string | código postal de onde será feito o exame |
+| exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
+| [exam_locations] address | string | endereço onde será feito o exame |
+| [exam_locations] number | string | número de onde será feito o exame |
+| [exam_locations] neighborhood | string | bairro onde será feito o exame |
+| [exam_locations] city | string | cidade onde será feito o exame |
+| [exam_locations] state | string | estado onde será feito o exame |
+| [exam_locations] postal_code | string | código postal de onde será feito o exame |
 | dates | array | lista das datas dos exames |
 | times | array | lista dos horários de aplicações dos exames |
-| status | string | situação dos exames entre `active`, `inactive` e `partially_active` |
+| status | string | situação dos exames entre `active` e `inactive` |
 | kind | string | tipo dos exames desse lote |
 | cursor | string | código para pegar os próximos passos |
+
+### Significado dos status
+
+| Status | Descrição |
+| ------ | --------- |
+| active | Todas as combinações de exame nesse lote estão ativas para serem escolhidas |
+| inactive | Nenhuma combinação de exame nesse lote está ativa para ser escolhida |
 
 ## Informações de um único lote de exames
 
@@ -1129,7 +1136,7 @@ curl --user secretary:password http://queroalunos.com/api/exam_groups/1234
     "DIR-MANHA-SP",
     "ADM-NOITE-RJ"
   ],
-  "addresses": [
+  "exam_locations": [
     {
       "address": "Rua Márcia",
       "number": "4231",
@@ -1171,17 +1178,24 @@ Retorna um lote de exames específico.
 | ---- | ---- | --------- |
 | id | number | id do lote de exames |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
-| addresses | object array | lista dos objetos dos endereços dos exames desse lote |
-| addresses[address] | string | endereço onde será feito o exame |
-| addresses[number] | string | número de onde será feito o exame |
-| addresses[neighborhood] | string | bairro onde será feito o exame |
-| addresses[city] | string | cidade onde será feito o exame |
-| addresses[state] | string | estado onde será feito o exame |
-| addresses[postal_code] | string | código postal de onde será feito o exame |
+| exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
+| [exam_locations] address | string | endereço onde será feito o exame |
+| [exam_locations] number | string | número de onde será feito o exame |
+| [exam_locations] neighborhood | string | bairro onde será feito o exame |
+| [exam_locations] city | string | cidade onde será feito o exame |
+| [exam_locations] state | string | estado onde será feito o exame |
+| [exam_locations] postal_code | string | código postal de onde será feito o exame |
 | dates | array | lista das datas dos exames |
 | times | array | lista dos horários de aplicações dos exames |
-| status | string | situação dos exames entre `active`, `inactive` e `partially_active` |
+| status | string | situação dos exames entre `active` e `inactive` |
 | kind | string | tipo dos exames desse lote |
+
+### Significado dos status
+
+| Status | Descrição |
+| ------ | --------- |
+| active | Todas as combinações de exame nesse lote estão ativas para serem escolhidas |
+| inactive | Nenhuma combinação de exame nesse lote está ativa para ser escolhida |
 
 ## Criação de exames em lote
 
@@ -1192,17 +1206,16 @@ curl --user secretary:password http://queroalunos.com/api/exam_groups/new \
   -d "data.json"
 ```
 
-> data.json
+> estrutura de data.json
 
 ```json
 {
-  "id": 1234,
   "course_skus": [
     "ADM-MANHA-SP",
     "DIR-MANHA-SP",
     "ADM-NOITE-RJ"
   ],
-  "addresses": [
+  "exam_locations": [
     {
       "address": "Rua Márcia",
       "number": "4231",
@@ -1227,7 +1240,7 @@ curl --user secretary:password http://queroalunos.com/api/exam_groups/new \
 ```json
 {
   "error": true,
-  "message": "(Mensagem do SQL?)"
+  "message": "Situação fornecida não é válida"
 }
 ```
 
@@ -1243,18 +1256,17 @@ Cria um lote de exames.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do lote de exames |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
-| addresses | object array | lista dos objetos dos endereços dos exames desse lote |
-| addresses[address] | string | endereço onde será feito o exame |
-| addresses[number] | string | número de onde será feito o exame |
-| addresses[neighborhood] | string | bairro onde será feito o exame |
-| addresses[city] | string | cidade onde será feito o exame |
-| addresses[state] | string | estado onde será feito o exame |
-| addresses[postal_code] | string | código postal de onde será feito o exame |
+| exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
+| [exam_locations] address | string | endereço onde será feito o exame |
+| [exam_locations] number | string | número de onde será feito o exame |
+| [exam_locations] neighborhood | string | bairro onde será feito o exame |
+| [exam_locations] city | string | cidade onde será feito o exame |
+| [exam_locations] state | string | estado onde será feito o exame |
+| [exam_locations] postal_code | string | código postal de onde será feito o exame |
 | dates | array | lista das datas dos exames |
 | times | array | lista dos horários de aplicações dos exames |
-| status | string | situação dos exames entre `active`, `inactive` e `partially_active` |
+| status | string | situação dos exames entre `active` e `inactive` |
 | kind | string | tipo dos exames desse lote |
 
 ### Significado dos status
@@ -1263,28 +1275,18 @@ Cria um lote de exames.
 | ------ | --------- |
 | active | Todas as combinações de exame nesse lote estão ativas para serem escolhidas |
 | inactive | Nenhuma combinação de exame nesse lote está ativa para ser escolhida |
-| partially_active | Algumas combinações de exame nesse lote não estão ativas para serem escolhidas |
-
-## Suspender lote de exames
-
-> Requisição
-
-```bash
-curl -X PUT --user secretary:password http://queroalunos.com/api/exam_groups/1234/status \
-  -d "inactive"
-```
 
 > Resposta
 
 ```json
 {
-  "id": 1234,
+  "id": 123,
   "course_skus": [
     "ADM-MANHA-SP",
     "DIR-MANHA-SP",
     "ADM-NOITE-RJ"
   ],
-  "addresses": [
+  "exam_locations": [
     {
       "address": "Rua Márcia",
       "number": "4231",
@@ -1299,7 +1301,65 @@ curl -X PUT --user secretary:password http://queroalunos.com/api/exam_groups/123
     "2016-11-01", "2016-11-01"
   ],
   "times": [ "18:30", "19:30"],
-  "status": "inactive",
+  "status": "active",
+  "kind": "scheduled"
+}
+```
+
+### Informações de resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | number | id do lote de exames |
+| course_skus | array | cursos que usam como entrada algum exame desse lote |
+| exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
+| [exam_locations] address | string | endereço onde será feito o exame |
+| [exam_locations] number | string | número de onde será feito o exame |
+| [exam_locations] neighborhood | string | bairro onde será feito o exame |
+| [exam_locations] city | string | cidade onde será feito o exame |
+| [exam_locations] state | string | estado onde será feito o exame |
+| [exam_locations] postal_code | string | código postal de onde será feito o exame |
+| dates | array | lista das datas dos exames |
+| times | array | lista dos horários de aplicações dos exames |
+| status | string | situação dos exames entre `active` e `inactive` |
+| kind | string | tipo dos exames desse lote |
+
+
+## Suspender ou ativar lote de exames
+
+> Requisição
+
+```bash
+curl -X PUT --user secretary:password http://queroalunos.com/api/exam_groups/1234/status \
+  -d "active"
+```
+
+> Resposta
+
+```json
+{
+  "id": 1234,
+  "course_skus": [
+    "ADM-MANHA-SP",
+    "DIR-MANHA-SP",
+    "ADM-NOITE-RJ"
+  ],
+  "exam_locations": [
+    {
+      "address": "Rua Márcia",
+      "number": "4231",
+      "neighborhood": "Morro do Barreto",
+      "city": "São Roque",
+      "state": "SP",
+      "postal_code": "19110-000"
+    }
+  ],
+  "dates": [
+    "2016-11-01", "2016-11-01",
+    "2016-11-01", "2016-11-01"
+  ],
+  "times": [ "18:30", "19:30"],
+  "status": "active",
   "kind": "scheduled"
 }
 ```
@@ -1313,7 +1373,7 @@ curl -X PUT --user secretary:password http://queroalunos.com/api/exam_groups/123
 }
 ```
 
-> Retorno quando não encontra a admissão
+> Retorno quando não encontra o grupo de exame
 
 ```json
 {
@@ -1322,13 +1382,21 @@ curl -X PUT --user secretary:password http://queroalunos.com/api/exam_groups/123
 }
 ```
 
-Suspende um lote de exames.
+Suspende ou ativa um lote de exames.
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| status | form | novo status do lote de exames |
+| id | path | id do grupo de exame vestibular |
+| status | string | status a ser alterado |
+
+### Possíveis valores para o parâmetro status
+
+| Nome | Descrição |
+| ---- | --------- |
+| active | status ativado |
+| inactive | status inativo |
 
 ### Informações de resultado
 
@@ -1336,16 +1404,16 @@ Suspende um lote de exames.
 | ---- | ---- | --------- |
 | id | number | id do lote de exames |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
-| addresses | object array | lista dos objetos dos endereços dos exames desse lote |
-| addresses[address] | string | endereço onde será feito o exame |
-| addresses[number] | string | número de onde será feito o exame |
-| addresses[neighborhood] | string | bairro onde será feito o exame |
-| addresses[city] | string | cidade onde será feito o exame |
-| addresses[state] | string | estado onde será feito o exame |
-| addresses[postal_code] | string | código postal de onde será feito o exame |
+| exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
+| [exam_locations] address | string | endereço onde será feito o exame |
+| [exam_locations] number | string | número de onde será feito o exame |
+| [exam_locations] neighborhood | string | bairro onde será feito o exame |
+| [exam_locations] city | string | cidade onde será feito o exame |
+| [exam_locations] state | string | estado onde será feito o exame |
+| [exam_locations] postal_code | string | código postal de onde será feito o exame |
 | dates | array | lista das datas dos exames |
 | times | array | lista dos horários de aplicações dos exames |
-| status | string | situação dos exames entre `active`, `inactive` e `partially_active` |
+| status | string | situação dos exames entre `active` e `inactive` |
 | kind | string | tipo dos exames desse lote |
 
 ### Significado do retorno de status
@@ -1354,7 +1422,6 @@ Suspende um lote de exames.
 | ------ | --------- |
 | active | Todas as combinações de exame nesse lote estão ativas para serem escolhidas |
 | inactive | Nenhuma combinação de exame nesse lote está ativa para ser escolhida |
-| partially_active | Algumas combinações de exame nesse lote não estão ativas para serem escolhidas |
 
 # Informações de exames
 
@@ -1373,12 +1440,13 @@ curl --user secretary:password http://queroalunos.com/api/exams
   "items": [
     {
       "id": 456,
+      "exam_group_id": 123,
       "course_skus": [
         "ADM-MANHA-SP",
         "DIR-MANHA-SP",
         "ADM-NOITE-RJ"
       ],
-      "address": {
+      "exam_location": {
         "address": "Rua Márcia",
         "number": "4231",
         "neighborhood": "Morro do Barreto",
@@ -1386,11 +1454,11 @@ curl --user secretary:password http://queroalunos.com/api/exams
         "state": "SP",
         "postal_code": "19110-000"
       },
-      "dates": "2016-11-01",
-      "times": "18:30",
+      "date": "2016-11-01",
+      "time": "18:30",
       "status": "active"
     }
-  ]
+  ],
   "cursor": "ASAKDSaldlwp20"
 }
 ```
@@ -1411,16 +1479,17 @@ Exames são retornadas em lote de 10, ordenadas pela última atualização reali
 | ---- | ---- | --------- |
 | items | array | lista de objetos dos exames |
 | id | number | id do exame vestibular |
+| exam_group_id | number | id referente ao grupo de exame pertencente |
 | course_skus | array | cursos que usam como entrada esse exame |
-| address | object | objeto do endereço onde será feito o exame |
-| address[address] | string | endereço onde será feito o exame |
-| address[number] | string | número de onde será feito o exame |
-| address[neighborhood] | string | bairro onde será feito o exame |
-| address[city] | string | cidade onde será feito o exame |
-| address[state] | string | estado onde será feito o exame |
-| address[postal_code] | string | código postal de onde será feito o exame |
-| dates | string | data do exame |
-| times | string | horário do exame |
+| exam_location | object | objeto do endereço onde será feito o exame |
+| [exam_location] address | string | endereço onde será feito o exame |
+| [exam_location] number | string | número de onde será feito o exame |
+| [exam_location] neighborhood | string | bairro onde será feito o exame |
+| [exam_location] city | string | cidade onde será feito o exame |
+| [exam_location] state | string | estado onde será feito o exame |
+| [exam_location] postal_code | string | código postal de onde será feito o exame |
+| date | string | data do exame |
+| time | string | horário do exame |
 | status | string | situação do exame entre `active` e `inactive` |
 | cursor | string | código para pegar os próximos passos |
 
@@ -1437,12 +1506,13 @@ curl --user secretary:password http://queroalunos.com/api/exams/456
 ```json
 {
   "id": 456,
+  "exam_group_id": 123,
   "course_skus": [
     "ADM-MANHA-SP",
     "DIR-MANHA-SP",
     "ADM-NOITE-RJ"
   ],
-  "address": {
+  "exam_location": {
     "address": "Rua Márcia",
     "number": "4231",
     "neighborhood": "Morro do Barreto",
@@ -1450,8 +1520,8 @@ curl --user secretary:password http://queroalunos.com/api/exams/456
     "state": "SP",
     "postal_code": "19110-000"
   },
-  "dates": "2016-11-01",
-  "times": "18:30",
+  "date": "2016-11-01",
+  "time": "18:30",
   "status": "active"
 }
 ```
@@ -1478,16 +1548,17 @@ Retorna um exame específico.
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
 | id | number | id do exame vestibular |
+| exam_group_id | number | id referente ao grupo de exame pertencente |
 | course_skus | array | cursos que usam como entrada esse exame |
-| address | object | objeto do endereço onde será feito o exame |
-| address[address] | string | endereço onde será feito o exame |
-| address[number] | string | número de onde será feito o exame |
-| address[neighborhood] | string | bairro onde será feito o exame |
-| address[city] | string | cidade onde será feito o exame |
-| address[state] | string | estado onde será feito o exame |
-| address[postal_code] | string | código postal de onde será feito o exame |
-| dates | string | data do exame |
-| times | string | horário do exame |
+| exam_location | object | objeto do endereço onde será feito o exame |
+| [exam_location] address | string | endereço onde será feito o exame |
+| [exam_location] number | string | número de onde será feito o exame |
+| [exam_location] neighborhood | string | bairro onde será feito o exame |
+| [exam_location] city | string | cidade onde será feito o exame |
+| [exam_location] state | string | estado onde será feito o exame |
+| [exam_location] postal_code | string | código postal de onde será feito o exame |
+| date | string | data do exame |
+| time | string | horário do exame |
 | status | string | situação do exame entre `active` e `inactive` |
 
 ## Criação de exame
@@ -1499,13 +1570,13 @@ curl --user secretary:password http://queroalunos.com/api/exam_groups/new \
   -d "data.json"
 ```
 
-> data.json
+> estrutura de data.json
 
 ```json
 {
   "id": 1234,
   "course_skus": [ "ADM-MANHA-SP" ],
-  "addresses": [
+  "exam_location": [
     {
       "address": "Rua Márcia",
       "number": "4231",
@@ -1527,28 +1598,29 @@ curl --user secretary:password http://queroalunos.com/api/exam_groups/new \
 ```json
 {
   "error": true,
-  "message": "(Mensagem do SQL?)"
+  "message": "Situação fornecida não é válida"
 }
 ```
 
-Cria um exame na estrutura de exames em lote (está certo, mesmo se criar apenas um exame, o que precisa ser criado é um exam_group).
+Cria um novo exame.
 
 ### Informações dos argumentos
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
 | id | number | id do lote de exames |
+| exam_group_id | number | id referente ao grupo de exame pertencente |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
-| addresses | object array | lista dos objetos dos endereços dos exames desse lote |
-| addresses[address] | string | endereço onde será feito o exame |
-| addresses[number] | string | número de onde será feito o exame |
-| addresses[neighborhood] | string | bairro onde será feito o exame |
-| addresses[city] | string | cidade onde será feito o exame |
-| addresses[state] | string | estado onde será feito o exame |
-| addresses[postal_code] | string | código postal de onde será feito o exame |
+| exam_location | array de objects | lista dos objetos dos endereços dos exames desse lote |
+| [exam_location] address | string | endereço onde será feito o exame |
+| [exam_location] number | string | número de onde será feito o exame |
+| [exam_location] neighborhood | string | bairro onde será feito o exame |
+| [exam_location] city | string | cidade onde será feito o exame |
+| [exam_location] state | string | estado onde será feito o exame |
+| [exam_location] postal_code | string | código postal de onde será feito o exame |
 | dates | array | lista das datas dos exames |
 | times | array | lista dos horários de aplicações dos exames |
-| status | string | situação dos exames entre `active`, `inactive` e `partially_active` |
+| status | string | situação dos exames entre `active` ou `inactive` |
 | kind | string | tipo dos exames desse lote |
 
 ### Significado dos status
@@ -1557,76 +1629,8 @@ Cria um exame na estrutura de exames em lote (está certo, mesmo se criar apenas
 | ------ | --------- |
 | active | Todas as combinações de exame nesse lote estão ativas para serem escolhidas |
 | inactive | Nenhuma combinação de exame nesse lote está ativa para ser escolhida |
-| partially_active | Algumas combinações de exame nesse lote não estão ativas para serem escolhidas |
 
-## Suspenção de um exame
-
-> Requisição
-
-```bash
-curl --user secretary:password http://queroalunos.com/api/exam/suspend \
-  -d "data.json"
-```
-
-> data.json
-
-```json
-{
-  "exam_group_id": 1234,
-  "course_skus": [
-    "ADM-MANHA-SP",
-    "DIR-MANHA-SP",
-    "ADM-NOITE-RJ"
-  ],
-  "address": {
-    "address": "Rua Márcia",
-    "number": "4231",
-    "neighborhood": "Morro do Barreto",
-    "city": "São Roque",
-    "state": "SP",
-    "postal_code": "19110-000"
-  },
-  "dates": "2016-11-01",
-  "times": "18:30",
-  "status": "inactive"
-}
-```
-
-> Retorno quando parâmetros estão incorretos
-
-```json
-{
-  "error": true,
-  "message": "(Mensagem do SQL?)"
-}
-```
-
-Suspende um exame.
-
-### Parâmetros
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| id | path | id do exame vestibular |
-
-### Informações de resultado
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| exam_group_id | number | id do lote de exames |
-| course_skus | array | cursos que usam como entrada esse exame |
-| address | object | objeto do endereço onde será feito o exame |
-| address[address] | string | endereço onde será feito o exame |
-| address[number] | string | número de onde será feito o exame |
-| address[neighborhood] | string | bairro onde será feito o exame |
-| address[city] | string | cidade onde será feito o exame |
-| address[state] | string | estado onde será feito o exame |
-| address[postal_code] | string | código postal de onde será feito o exame |
-| dates | string | data do exame |
-| times | string | horário do exame |
-| status | string | situação do exame entre `active` e `inactive` |
-
-## Reativar um exame
+## Suspender ou ativar um exame
 
 > Requisição
 
@@ -1640,12 +1644,13 @@ curl --user secretary:password http://queroalunos.com/api/exams/456 \
 ```json
 {
   "id": 456,
+  "exam_group_id": 123,
   "course_skus": [
     "ADM-MANHA-SP",
     "DIR-MANHA-SP",
     "ADM-NOITE-RJ"
   ],
-  "address": {
+  "exam_location": {
     "address": "Rua Márcia",
     "number": "4231",
     "neighborhood": "Morro do Barreto",
@@ -1653,8 +1658,8 @@ curl --user secretary:password http://queroalunos.com/api/exams/456 \
     "state": "SP",
     "postal_code": "19110-000"
   },
-  "dates": "2016-11-01",
-  "times": "18:30",
+  "date": "2016-11-01",
+  "time": "18:30",
   "status": "active"
 }
 ```
@@ -1668,34 +1673,43 @@ curl --user secretary:password http://queroalunos.com/api/exams/456 \
 }
 ```
 
-Reativa um exame que estava com status `inactive`.
+Suspende ou ativa um exame.
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
 | id | path | id do exame vestibular |
+| status | string | status a ser alterado |
+
+### Possíveis valores para o parâmetro status
+
+| Nome | Descrição |
+| ---- | --------- |
+| active | status ativado |
+| inactive | status inativo |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
 | id | number | id do exame vestibular |
+| exam_group_id | number | id referente ao grupo de exame pertencente |
 | course_skus | array | cursos que usam como entrada esse exame |
-| address | object | objeto do endereço onde será feito o exame |
-| address[address] | string | endereço onde será feito o exame |
-| address[number] | string | número de onde será feito o exame |
-| address[neighborhood] | string | bairro onde será feito o exame |
-| address[city] | string | cidade onde será feito o exame |
-| address[state] | string | estado onde será feito o exame |
-| address[postal_code] | string | código postal de onde será feito o exame |
-| dates | string | data do exame |
-| times | string | horário do exame |
+| exam_location | object | objeto do endereço onde será feito o exame |
+| [exam_location] address | string | endereço onde será feito o exame |
+| [exam_location] number | string | número de onde será feito o exame |
+| [exam_location] neighborhood | string | bairro onde será feito o exame |
+| [exam_location] city | string | cidade onde será feito o exame |
+| [exam_location] state | string | estado onde será feito o exame |
+| [exam_location] postal_code | string | código postal de onde será feito o exame |
+| date | string | data do exame |
+| time | string | horário do exame |
 | status | string | situação do exame entre `active` e `inactive` |
 
 # Notificações
 
-Notificações utilizam uma rota única de callback, que deve ser fornecida pela faculdade, junto de uma combinação usuário/senha para autenticação via HTTP Basic.
+Notificações utilizam uma rota única de callback, que deve ser fornecida pela faculdade, de um token para autenticação via HTTP Basic.
 
 A rota deve aceitar JSON.
 
@@ -1751,29 +1765,34 @@ Estrutura base das notificações:
 
 Esta notificação informando uma novo aluno para o processo de admissão na universidade.
 
-### Parametros
+### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| items | array | lista de objetos com dados de inscrições de vestibular |
-| id | number | id da admissão |
-| course_sku | string | código do curso referente a essa matrícula |
-| status | string | status da admissão do aluno |
-| student[id] | number | id do aluno |
-| student[name] | string | nome do aluno |
-| student[cpf] | string | cpf do aluno |
-| student[birth_date] | string | data de nascimento do aluno |
-| student[emails] | array de string | lista de emails do aluno |
-| student[phones] | array de string | lista de telefones do aluno |
-| student[address_information] | object | objeto com dados onde aluno reside |
-| address_information[address] | string | endereço onde aluno reside |
-| address_information[number] | string | número onde aluno reside |
-| address_information[neighborhood] | string | bairro onde aluno reside |
-| address_information[city] | string | cidade onde aluno reside |
-| address_information[state] | string | estado onde aluno reside |
-| address_information[postal_code] | string | código postal onde aluno reside |
+| created | string | data que foi criado o evento (timestamp UTC)
+| api_version | string | informação da versão atual da API
+| event_type | string | tipo de evento, no caso `NewAdmission` |
+| data | object | objeto com informações de acordo com o tipo de evento |
+| admission | object | objeto com dados do processo de admissão do aluno |
+| [admission] id | number | id do processo de admissão |
+| [admission] course_sku | string | código do curso referente a essa matrícula |
+| [admission] status | string | status da admissão do aluno |
+| [admission] student | object | objeto com dados do aluno |
+| [student] id | number | id do aluno |
+| [student] name | string | nome do aluno |
+| [student] cpf | string | cpf do aluno |
+| [student] birth_date | string | data de nascimento do aluno |
+| [student] emails | array de string | lista de emails do aluno |
+| [student] phones | array de string | lista de telefones do aluno |
+| [student] address_information | object | objeto com dados onde aluno reside |
+| [address_information] address | string | endereço onde aluno reside |
+| [address_information] number | string | número onde aluno reside |
+| [address_information] neighborhood | string | bairro onde aluno reside |
+| [address_information] city | string | cidade onde aluno reside |
+| [address_information] state | string | estado onde aluno reside |
+| [address_information] postal_code | string | código postal onde aluno reside |
 
-## Notificar novo processo seletivo (vestibular)
+## Nova "inscrição de exame" (Vestibular)
 
 ```json
 {
@@ -1786,7 +1805,7 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
       "admission": {
         "id": 12345,
         "course_sku": "ADM-MANHA-SP",
-        "status": "pending_docs",
+        "status": "pre-registered",
         "student": {
           "id": 394932,
           "name": "José da Silva",
@@ -1809,12 +1828,14 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
         },
       },
       "exam": {
+        "id": 456,
+        "exam_group_id": 123,
         "course_skus": [
           "ADM-MANHA-SP",
           "DIR-MANHA-SP",
           "ADM-NOITE-RJ"
         ],
-        "address": {
+        "exam_location": {
           "address": "Rua Márcia",
           "number": "4231",
           "neighborhood": "Morro do Barreto",
@@ -1822,11 +1843,11 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
           "state": "SP",
           "postal_code": "19110-000"
         },
-        "dates": "2016-11-01",
-        "times": "18:30",
+        "date": "2016-11-01",
+        "time": "18:30",
         "status": "active"
       },
-      "result": "preregistered",
+      "result": "noshow",
       "type": "exam"
     }
   }
@@ -1835,50 +1856,52 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
 
 Esta notificação informando uma nova inscrição para o processo seletivo via vestibular.
 
-### Parametros
+### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
 | created | string | data que foi criado o evento (timestamp UTC)
 | api_version | string | informação da versão atual da API
 | event_type | string | tipo de evento, no caso `NewApplication` |
-| data | object | Objeto com informações de acordo com o tipo de evento |
+| data | object | objeto com informações de acordo com o tipo de evento |
 | application | object | objeto com informações do vestibular |
-| id | number | id da inscrição para exame |
-| admission | object | objeto com dados do processo de admissão do aluno |
-| id (admission) | number | id do processo de admissão |
-| course_sku | string | código do curso referente a essa matrícula |
-| status | string | status da admissão do aluno |
-| student | object | objeto com dados do aluno |
-| id (student) | number | id do aluno |
-| name | string | nome do aluno |
-| cpf | string | cpf do aluno |
-| birth_date | string | data de nascimento do aluno |
-| emails | array de string | lista de emails do aluno |
-| phones | array de string | lista de telefones do aluno |
-| address_information | object | objeto com dados onde aluno reside |
-| address | string | endereço onde aluno reside |
-| number | string | número onde aluno reside |
-| neighborhood | string | bairro onde aluno reside |
-| city | string | cidade onde aluno reside |
-| state | string | estado onde aluno reside |
-| postal_code | string | código postal onde aluno reside |
-| exam | object | objeto com informações do exame |
-| course_skus | array | lista com os cursos pertencentes a este exame vestibular |
-| local | object | objeto com dados do exame |
-| address | string | endereço da localização do exame vestibular |
-| number | string | número da localização do exame vestibular |
-| neighborhood | string | bairro da localização do exame vestibular |
-| city | string | cidade da localização do exame vestibular |
-| state | string | estado da localização do exame vestibular |
-| postal_code | string | código postal da localização do exame vestibular |
-| dates | string | data da realização do exame vestibular |
-| times | string | hora da realização do exame vestibular |
-| status | string | status do exame vestibular |
-| result | string | resultado do exame vestibular |
-| type | string | tipo de exame vestibular (_neste caso, sempre será exam_) |
+| [application] id | number | id da inscrição para exame |
+| [application] admission | object | objeto com dados do processo de admissão do aluno |
+| [admission] id | number | id do processo de admissão |
+| [admission] course_sku | string | código do curso referente a essa matrícula |
+| [admission] status | string | status da admissão do aluno |
+| [admission] student | object | objeto com dados do aluno |
+| [student] id | number | id do aluno |
+| [student] name | string | nome do aluno |
+| [student] cpf | string | cpf do aluno |
+| [student] birth_date | string | data de nascimento do aluno |
+| [student] emails | array de string | lista de emails do aluno |
+| [student] phones | array de string | lista de telefones do aluno |
+| [student] address_information | object | objeto com dados onde aluno reside |
+| [address_information] address | string | endereço onde aluno reside |
+| [address_information] number | string | número onde aluno reside |
+| [address_information] neighborhood | string | bairro onde aluno reside |
+| [address_information] city | string | cidade onde aluno reside |
+| [address_information] state | string | estado onde aluno reside |
+| [address_information] postal_code | string | código postal onde aluno reside |
+| [application] exam | object | objeto com informações do exame |
+| [exam] id | number | id do exame vestibular |
+| [exam] exam_group_id | number | id referente ao grupo de exame pertencente |
+| [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
+| [exam] exam_location | object | objeto com dados do exame |
+| [exam_location] address | string | endereço da localização do exame vestibular |
+| [exam_location] number | string | número da localização do exame vestibular |
+| [exam_location] neighborhood | string | bairro da localização do exame vestibular |
+| [exam_location] city | string | cidade da localização do exame vestibular |
+| [exam_location] state | string | estado da localização do exame vestibular |
+| [exam_location] postal_code | string | código postal da localização do exame vestibular |
+| [exam] date | string | data da realização do exame vestibular |
+| [exam] time | string | hora da realização do exame vestibular |
+| [exam] status | string | status do exame vestibular |
+| [application] result | string | resultado do exame vestibular |
+| [application] type | string | tipo de exame vestibular (_neste caso, sempre será exam_) |
 
-## Notificar novo processo seletivo (ENEM)
+## Nova "inscrição de exame" (ENEM)
 
 ```json
 {
@@ -1888,25 +1911,30 @@ Esta notificação informando uma nova inscrição para o processo seletivo via 
   "data": {
     "application": {
       "id": 123456,
-      "student": {
-        "id": 394932,
-        "name": "José da Silva",
-        "cpf": "111.222.333-44",
-        "birth_date": "1991-01-01",
-        "emails": [
-          "teste@exemplo.com"
-        ],
-        "phones": [
-          "(11) 98888-7777"
-        ],
-        "address_information": {
-          "address": "Rua Sandra",
-          "number": "432S",
-          "neighborhood": "Chácara Dora",
-          "city": "Araçariguama",
-          "state": "SP",
-          "postal_code": "18147-000"
-        }
+      "admission": {
+        "id": 12345,
+        "course_sku": "ADM-MANHA-SP",
+        "status": "pre-registered",
+        "student": {
+          "id": 394932,
+          "name": "José da Silva",
+          "cpf": "111.222.333-44",
+          "birth_date": "1991-01-01",
+          "emails": [
+            "teste@exemplo.com"
+          ],
+          "phones": [
+            "(11) 98888-7777"
+          ],
+          "address_information": {
+            "address": "Rua Sandra",
+            "number": "432S",
+            "neighborhood": "Chácara Dora",
+            "city": "Araçariguama",
+            "state": "SP",
+            "postal_code": "18147-000"
+          }
+        },
       },
       "exam_application_info": {
         "grades": {
@@ -1918,6 +1946,8 @@ Esta notificação informando uma nova inscrição para o processo seletivo via 
         }
       },
       "exam": {
+        "id": 456,
+        "exam_group_id": 123,
         "course_skus": [
           "ADM-MANHA-SP",
           "DIR-MANHA-SP",
@@ -1932,7 +1962,7 @@ Esta notificação informando uma nova inscrição para o processo seletivo via 
         },
         "status": "active"
       },
-      "result": "preregistered",
+      "result": "noshow",
       "type": "exam_enem"
     }
   }
@@ -1941,44 +1971,51 @@ Esta notificação informando uma nova inscrição para o processo seletivo via 
 
 Esta notificação informando uma nova inscrição para o processo seletivo via ENEM.
 
-### Parametros
+### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
 | created | string | data que foi criado o evento (timestamp UTC)
 | api_version | string | informação da versão atual da API
 | event_type | string | tipo de evento, no caso `NewApplication` |
-| data | object | Objeto com informações de acordo com o tipo de evento |
+| data | object | objeto com informações de acordo com o tipo de evento |
 | application | object | objeto com informações do vestibular |
-| id | number | id da inscrição para exame |
-| student | object | objeto com dados do aluno |
-| id (student) | number | id do aluno. |
-| name | string | nome do aluno |
-| cpf | string | cpf do aluno |
-| birth_date | string | data de nascimento do aluno |
-| emails | array de string | lista de emails do aluno |
-| phones | array de string | lista de telefones do aluno |
-| address_information | object | objeto com dados onde aluno reside |
-| address | string | endereço onde aluno reside |
-| number | string | número onde aluno reside |
-| neighborhood | string | bairro onde aluno reside |
-| city | string | cidade onde aluno reside |
-| state | string | estado onde aluno reside |
-| postal_code | string | código postal onde aluno reside |
-| grades | object | objeto com informações de nota obtida pelo aluno no enem |
-| redacao | float | nota obtida pelo aluno na redação |
-| humanas | float | nota obtida pelo aluno em humanas |
-| natureza | float | nota obtida pelo aluno em natureza |
-| linguagens | float | nota obtida pelo aluno em linguagens |
-| matematica | float | nota obtida pelo aluno em matemática |
-| exam | object | objeto com informações do exame |
-| course_skus | array | lista com os cursos pertencentes a este exame vestibular |
-| minimum_grades | object | objeto com informações de nota mínima exigida pela faculdade |
-| redacao | float | nota mínima de redação exigida pela faculdade |
-| humanas | float | nota mínima de humanas exigida pela faculdade |
-| natureza | float | nota mínima de natureza exigida pela faculdade |
-| linguagens | float | nota mínima de linguagens exigida pela faculdade |
-| matematica | float | nota mínima de matemática exigida pela faculdade |
-| status | string | status do exame vestibular |
-| result | string | resultado do exame vestibular |
-| type | string | tipo de exame vestibular (_neste caso, sempre será enem_) |
+| [application] id | number | id da inscrição para exame |
+| [application] admission | object | objeto com dados do processo de admissão do aluno |
+| [admission] id | number | id do processo de admissão |
+| [admission] course_sku | string | código do curso referente a essa matrícula |
+| [admission] status | string | status da admissão do aluno |
+| [admission] student | object | objeto com dados do aluno |
+| [student] id | number | id do aluno |
+| [student] name | string | nome do aluno |
+| [student] cpf | string | cpf do aluno |
+| [student] birth_date | string | data de nascimento do aluno |
+| [student] emails | array de string | lista de emails do aluno |
+| [student] phones | array de string | lista de telefones do aluno |
+| [student] address_information | object | objeto com dados onde aluno reside |
+| [address_information] address | string | endereço onde aluno reside |
+| [address_information] number | string | número onde aluno reside |
+| [address_information] neighborhood | string | bairro onde aluno reside |
+| [address_information] city | string | cidade onde aluno reside |
+| [address_information] state | string | estado onde aluno reside |
+| [address_information] postal_code | string | código postal onde aluno reside |
+| [application] exam_application_info | object | objeto com informações da grade de notas obtida pelo aluno no enem |
+| [exam_application_info] grades | object | objeto com informações de notas obtida pelo aluno no enem |
+| [grades] redacao | float | nota obtida pelo aluno na redação |
+| [grades] humanas | float | nota obtida pelo aluno em humanas |
+| [grades] natureza | float | nota obtida pelo aluno em natureza |
+| [grades] linguagens | float | nota obtida pelo aluno em linguagens |
+| [grades] matematica | float | nota obtida pelo aluno em matemática |
+| [application] exam | object | objeto com informações do exame |
+| [exam] id | number | id do exame vestibular |
+| [exam] exam_group_id | number | id referente ao grupo de exame pertencente |
+| [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
+| [exam] minimum_grades | object | objeto com informações de nota mínima exigida pela faculdade |
+| [minimum_grades] redacao | float | nota mínima de redação exigida pela faculdade |
+| [minimum_grades] humanas | float | nota mínima de humanas exigida pela faculdade |
+| [minimum_grades] natureza | float | nota mínima de natureza exigida pela faculdade |
+| [minimum_grades] linguagens | float | nota mínima de linguagens exigida pela faculdade |
+| [minimum_grades] matematica | float | nota mínima de matemática exigida pela faculdade |
+| [exam] status | string | status do exame vestibular |
+| [application] result | string | resultado do exame vestibular |
+| [application] type | string | tipo de exame vestibular (_neste caso, sempre será enem_) |
