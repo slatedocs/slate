@@ -762,20 +762,20 @@ Inscrições são retornadas em lote de 10, ordenadas pela última atualização
 | [address_information] city | string | cidade onde aluno reside |
 | [address_information] state | string | estado onde aluno reside |
 | [address_information] postal_code | string | código postal onde aluno reside |
-| exam | object | objeto com informações do exame |
+| exam | object | objeto com informações do exame vestibular |
 | [exam] id | number | id do exame vestibular |
 | [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
-| [exam] local | object | objeto com dados do exame |
-| [exam_location] address | string | endereço da localização do exame |
-| [exam_location] number | string | número da localização do exame |
-| [exam_location] neighborhood | string | bairro da localização do exame |
-| [exam_location] city | string | cidade da localização do exame |
-| [exam_location] state | string | estado da localização do exame |
-| [exam_location] postal_code | string | código postal da localização do exame |
-| [exam] date | string | data da realização do exame |
-| [exam] time | string | hora da realização do exame |
-| [exam] status | string | status do exame |
-| result | string | resultado do exame |
+| [exam] local | object | objeto com dados do exame vestibular |
+| [exam_location] address | string | endereço da localização do exame vestibular |
+| [exam_location] number | string | número da localização do exame vestibular |
+| [exam_location] neighborhood | string | bairro da localização do exame vestibular |
+| [exam_location] city | string | cidade da localização do exame vestibular |
+| [exam_location] state | string | estado da localização do exame vestibular |
+| [exam_location] postal_code | string | código postal da localização do exame vestibular |
+| [exam] date | string | data da realização do exame vestibular |
+| [exam] time | string | hora da realização do exame vestibular |
+| [exam] status | string | status do exame vestibular |
+| result | string | resultado do exame vestibular |
 | type | string | tipo de exame vestibular (exam ou enem) |
 | cursor | string | código para pegar os próximos passos |
 
@@ -882,10 +882,10 @@ Retorna uma inscrição específica na inscrição do exame da faculdade.
 | [address_information] city | string | cidade onde aluno reside |
 | [address_information] state | string | estado onde aluno reside |
 | [address_information] postal_code | string | código postal onde aluno reside |
-| exam | object | objeto com informações do exame |
+| exam | object | objeto com informações do exame vestibular |
 | [exam] id | number | id do exame vestibular |
 | [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
-| [exam] exam_location | object | objeto com dados do exame |
+| [exam] exam_location | object | objeto com dados do exame vestibular |
 | [exam_location] address | string | endereço da localização do exame vestibular |
 | [exam_location] number | string | número da localização do exame vestibular |
 | [exam_location] neighborhood | string | bairro da localização do exame vestibular |
@@ -1018,10 +1018,10 @@ Atualiza a situação de agendamento ou resultado de uma inscrição de exame.
 | [address_information] city | string | cidade onde aluno reside |
 | [address_information] state | string | estado onde aluno reside |
 | [address_information] postal_code | string | código postal onde aluno reside |
-| exam | object | objeto com informações do exame |
+| exam | object | objeto com informações do exame vestibular |
 | [exam] id | number | id do exame vestibular |
 | [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
-| [exam] local | object | objeto com dados do exame |
+| [exam] local | object | objeto com dados do exame vestibular |
 | [exam] exam_location | string | endereço da localização do exame vestibular |
 | [exam_location] number | string | número da localização do exame vestibular |
 | [exam_location] neighborhood | string | bairro da localização do exame vestibular |
@@ -1097,12 +1097,12 @@ Exames em lote são retornados de 10 em 10, ordenadas pela última atualização
 | id | number | id do lote de exames |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
 | exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
-| [exam_locations] address | string | endereço onde será feito o exame |
-| [exam_locations] number | string | número de onde será feito o exame |
-| [exam_locations] neighborhood | string | bairro onde será feito o exame |
-| [exam_locations] city | string | cidade onde será feito o exame |
-| [exam_locations] state | string | estado onde será feito o exame |
-| [exam_locations] postal_code | string | código postal de onde será feito o exame |
+| [exam_locations] address | string | endereço onde será feito o exame vestibular |
+| [exam_locations] number | string | número de onde será feito o exame vestibular |
+| [exam_locations] neighborhood | string | bairro onde será feito o exame vestibular |
+| [exam_locations] city | string | cidade onde será feito o exame vestibular |
+| [exam_locations] state | string | estado onde será feito o exame vestibular |
+| [exam_locations] postal_code | string | código postal de onde será feito o exame vestibular |
 | dates | array | lista das datas dos exames |
 | times | array | lista dos horários de aplicações dos exames |
 | status | string | situação dos exames entre `active` e `inactive` |
@@ -1177,12 +1177,12 @@ Retorna um lote de exames específico.
 | id | number | id do lote de exames |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
 | exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
-| [exam_locations] address | string | endereço onde será feito o exame |
-| [exam_locations] number | string | número de onde será feito o exame |
-| [exam_locations] neighborhood | string | bairro onde será feito o exame |
-| [exam_locations] city | string | cidade onde será feito o exame |
-| [exam_locations] state | string | estado onde será feito o exame |
-| [exam_locations] postal_code | string | código postal de onde será feito o exame |
+| [exam_locations] address | string | endereço onde será feito o exame vestibular |
+| [exam_locations] number | string | número de onde será feito o exame vestibular |
+| [exam_locations] neighborhood | string | bairro onde será feito o exame vestibular |
+| [exam_locations] city | string | cidade onde será feito o exame vestibular |
+| [exam_locations] state | string | estado onde será feito o exame vestibular |
+| [exam_locations] postal_code | string | código postal de onde será feito o exame vestibular |
 | dates | array | lista das datas dos exames |
 | times | array | lista dos horários de aplicações dos exames |
 | status | string | situação dos exames entre `active` e `inactive` |
@@ -1286,12 +1286,12 @@ Cria um lote de exames.
 | ---- | ---- | --------- |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
 | exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
-| [exam_locations] address | string | endereço onde será feito o exame |
-| [exam_locations] number | string | número de onde será feito o exame |
-| [exam_locations] neighborhood | string | bairro onde será feito o exame |
-| [exam_locations] city | string | cidade onde será feito o exame |
-| [exam_locations] state | string | estado onde será feito o exame |
-| [exam_locations] postal_code | string | código postal de onde será feito o exame |
+| [exam_locations] address | string | endereço onde será feito o exame vestibular |
+| [exam_locations] number | string | número de onde será feito o exame vestibular |
+| [exam_locations] neighborhood | string | bairro onde será feito o exame vestibular |
+| [exam_locations] city | string | cidade onde será feito o exame vestibular |
+| [exam_locations] state | string | estado onde será feito o exame vestibular |
+| [exam_locations] postal_code | string | código postal de onde será feito o exame vestibular |
 | dates | array | lista das datas dos exames |
 | times | array | lista dos horários de aplicações dos exames |
 | status | string | situação dos exames entre `active` e `inactive` |
@@ -1341,12 +1341,12 @@ Cria um lote de exames.
 | id | number | id do lote de exames |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
 | exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
-| [exam_locations] address | string | endereço onde será feito o exame |
-| [exam_locations] number | string | número de onde será feito o exame |
-| [exam_locations] neighborhood | string | bairro onde será feito o exame |
-| [exam_locations] city | string | cidade onde será feito o exame |
-| [exam_locations] state | string | estado onde será feito o exame |
-| [exam_locations] postal_code | string | código postal de onde será feito o exame |
+| [exam_locations] address | string | endereço onde será feito o exame vestibular |
+| [exam_locations] number | string | número de onde será feito o exame vestibular |
+| [exam_locations] neighborhood | string | bairro onde será feito o exame vestibular |
+| [exam_locations] city | string | cidade onde será feito o exame vestibular |
+| [exam_locations] state | string | estado onde será feito o exame vestibular |
+| [exam_locations] postal_code | string | código postal de onde será feito o exame vestibular |
 | dates | array | lista das datas dos exames |
 | times | array | lista dos horários de aplicações dos exames |
 | status | string | situação dos exames entre `active` e `inactive` |
@@ -1433,12 +1433,12 @@ Suspende ou ativa um lote de exames.
 | id | number | id do lote de exames |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
 | exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
-| [exam_locations] address | string | endereço onde será feito o exame |
-| [exam_locations] number | string | número de onde será feito o exame |
-| [exam_locations] neighborhood | string | bairro onde será feito o exame |
-| [exam_locations] city | string | cidade onde será feito o exame |
-| [exam_locations] state | string | estado onde será feito o exame |
-| [exam_locations] postal_code | string | código postal de onde será feito o exame |
+| [exam_locations] address | string | endereço onde será feito o exame vestibular |
+| [exam_locations] number | string | número de onde será feito o exame vestibular |
+| [exam_locations] neighborhood | string | bairro onde será feito o exame vestibular |
+| [exam_locations] city | string | cidade onde será feito o exame vestibular |
+| [exam_locations] state | string | estado onde será feito o exame vestibular |
+| [exam_locations] postal_code | string | código postal de onde será feito o exame vestibular |
 | dates | array | lista das datas dos exames |
 | times | array | lista dos horários de aplicações dos exames |
 | status | string | situação dos exames entre `active` e `inactive` |
@@ -1508,16 +1508,16 @@ Exames são retornadas em lote de 10, ordenadas pela última atualização reali
 | items | array | lista de objetos dos exames |
 | id | number | id do exame vestibular |
 | exam_group_id | number | id referente ao grupo de exame pertencente |
-| course_skus | array | cursos que usam como entrada esse exame |
-| exam_location | object | objeto do endereço onde será feito o exame |
-| [exam_location] address | string | endereço onde será feito o exame |
-| [exam_location] number | string | número de onde será feito o exame |
-| [exam_location] neighborhood | string | bairro onde será feito o exame |
-| [exam_location] city | string | cidade onde será feito o exame |
-| [exam_location] state | string | estado onde será feito o exame |
-| [exam_location] postal_code | string | código postal de onde será feito o exame |
-| date | string | data do exame |
-| time | string | horário do exame |
+| course_skus | array | cursos que usam como entrada esse exame vestibular |
+| exam_location | object | objeto do endereço onde será feito o exame vestibular |
+| [exam_location] address | string | endereço onde será feito o exame vestibular |
+| [exam_location] number | string | número de onde será feito o exame vestibular |
+| [exam_location] neighborhood | string | bairro onde será feito o exame vestibular |
+| [exam_location] city | string | cidade onde será feito o exame vestibular |
+| [exam_location] state | string | estado onde será feito o exame vestibular |
+| [exam_location] postal_code | string | código postal de onde será feito o exame vestibular |
+| date | string | data do exame vestibular |
+| time | string | horário do exame vestibular |
 | status | string | situação do exame entre `active` e `inactive` |
 | cursor | string | código para pegar os próximos passos |
 
@@ -1577,16 +1577,16 @@ Retorna um exame específico.
 | ---- | ---- | --------- |
 | id | number | id do exame vestibular |
 | exam_group_id | number | id referente ao grupo de exame pertencente |
-| course_skus | array | cursos que usam como entrada esse exame |
-| exam_location | object | objeto do endereço onde será feito o exame |
-| [exam_location] address | string | endereço onde será feito o exame |
-| [exam_location] number | string | número de onde será feito o exame |
-| [exam_location] neighborhood | string | bairro onde será feito o exame |
-| [exam_location] city | string | cidade onde será feito o exame |
-| [exam_location] state | string | estado onde será feito o exame |
-| [exam_location] postal_code | string | código postal de onde será feito o exame |
-| date | string | data do exame |
-| time | string | horário do exame |
+| course_skus | array | cursos que usam como entrada esse exame vestibular |
+| exam_location | object | objeto do endereço onde será feito o exame vestibular |
+| [exam_location] address | string | endereço onde será feito o exame vestibular |
+| [exam_location] number | string | número de onde será feito o exame vestibular |
+| [exam_location] neighborhood | string | bairro onde será feito o exame vestibular |
+| [exam_location] city | string | cidade onde será feito o exame vestibular |
+| [exam_location] state | string | estado onde será feito o exame vestibular |
+| [exam_location] postal_code | string | código postal de onde será feito o exame vestibular |
+| date | string | data do exame vestibular |
+| time | string | horário do exame vestibular |
 | status | string | situação do exame entre `active` e `inactive` |
 
 ## Criação de exame
@@ -1661,14 +1661,14 @@ Cria um novo exame.
 | ---- | ---- | --------- |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
 | exam_location | array de objects | lista dos objetos dos endereços dos exames desse lote |
-| [exam_location] address | string | endereço onde será feito o exame |
-| [exam_location] number | string | número de onde será feito o exame |
-| [exam_location] neighborhood | string | bairro onde será feito o exame |
-| [exam_location] city | string | cidade onde será feito o exame |
-| [exam_location] state | string | estado onde será feito o exame |
-| [exam_location] postal_code | string | código postal de onde será feito o exame |
-| date | string | data do exame |
-| time | string | horário do exame |
+| [exam_location] address | string | endereço onde será feito o exame vestibular |
+| [exam_location] number | string | número de onde será feito o exame vestibular |
+| [exam_location] neighborhood | string | bairro onde será feito o exame vestibular |
+| [exam_location] city | string | cidade onde será feito o exame vestibular |
+| [exam_location] state | string | estado onde será feito o exame vestibular |
+| [exam_location] postal_code | string | código postal de onde será feito o exame vestibular |
+| date | string | data do exame vestibular |
+| time | string | horário do exame vestibular |
 | status | string | situação dos exames entre `active` ou `inactive` |
 | kind | string | tipo dos exames desse lote |
 
@@ -1680,14 +1680,14 @@ Cria um novo exame.
 | exam_group_id | number | id referente ao grupo de exame pertencente |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
 | exam_location | array de objects | lista dos objetos dos endereços dos exames desse lote |
-| [exam_location] address | string | endereço onde será feito o exame |
-| [exam_location] number | string | número de onde será feito o exame |
-| [exam_location] neighborhood | string | bairro onde será feito o exame |
-| [exam_location] city | string | cidade onde será feito o exame |
-| [exam_location] state | string | estado onde será feito o exame |
-| [exam_location] postal_code | string | código postal de onde será feito o exame |
-| date | string | data do exame |
-| time | string | horário do exame |
+| [exam_location] address | string | endereço onde será feito o exame vestibular |
+| [exam_location] number | string | número de onde será feito o exame vestibular |
+| [exam_location] neighborhood | string | bairro onde será feito o exame vestibular |
+| [exam_location] city | string | cidade onde será feito o exame vestibular |
+| [exam_location] state | string | estado onde será feito o exame vestibular |
+| [exam_location] postal_code | string | código postal de onde será feito o exame vestibular |
+| date | string | data do exame vestibular |
+| time | string | horário do exame vestibular |
 | status | string | situação dos exames entre `active` ou `inactive` |
 | kind | string | tipo dos exames desse lote |
 
@@ -1763,16 +1763,16 @@ Suspende ou ativa um exame.
 | ---- | ---- | --------- |
 | id | number | id do exame vestibular |
 | exam_group_id | number | id referente ao grupo de exame pertencente |
-| course_skus | array | cursos que usam como entrada esse exame |
-| exam_location | object | objeto do endereço onde será feito o exame |
-| [exam_location] address | string | endereço onde será feito o exame |
-| [exam_location] number | string | número de onde será feito o exame |
-| [exam_location] neighborhood | string | bairro onde será feito o exame |
-| [exam_location] city | string | cidade onde será feito o exame |
-| [exam_location] state | string | estado onde será feito o exame |
-| [exam_location] postal_code | string | código postal de onde será feito o exame |
-| date | string | data do exame |
-| time | string | horário do exame |
+| course_skus | array | cursos que usam como entrada esse exame vestibular |
+| exam_location | object | objeto do endereço onde será feito o exame vestibular |
+| [exam_location] address | string | endereço onde será feito o exame vestibular |
+| [exam_location] number | string | número de onde será feito o exame vestibular |
+| [exam_location] neighborhood | string | bairro onde será feito o exame vestibular |
+| [exam_location] city | string | cidade onde será feito o exame vestibular |
+| [exam_location] state | string | estado onde será feito o exame vestibular |
+| [exam_location] postal_code | string | código postal de onde será feito o exame vestibular |
+| date | string | data do exame vestibular |
+| time | string | horário do exame vestibular |
 | status | string | situação do exame entre `active` e `inactive` |
 
 # Exame de Enem
@@ -2279,11 +2279,11 @@ Esta notificação informando uma nova inscrição para exame via vestibular.
 | [address_information] city | string | cidade onde aluno reside |
 | [address_information] state | string | estado onde aluno reside |
 | [address_information] postal_code | string | código postal onde aluno reside |
-| [application] exam | object | objeto com informações do exame |
+| [application] exam | object | objeto com informações do exame vestibular|
 | [exam] id | number | id do exame vestibular |
 | [exam] exam_group_id | number | id referente ao grupo de exame pertencente |
 | [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
-| [exam] exam_location | object | objeto com dados do exame |
+| [exam] exam_location | object | objeto com dados do exame vestibular|
 | [exam_location] address | string | endereço da localização do exame vestibular |
 | [exam_location] number | string | número da localização do exame vestibular |
 | [exam_location] neighborhood | string | bairro da localização do exame vestibular |
@@ -2401,7 +2401,7 @@ Esta notificação informando uma nova inscrição para exame via ENEM.
 | [grades] natureza | float | nota obtida pelo aluno em natureza |
 | [grades] linguagens | float | nota obtida pelo aluno em linguagens |
 | [grades] matematica | float | nota obtida pelo aluno em matemática |
-| [application] exam | object | objeto com informações do exame |
+| [application] exam | object | objeto com informações do exame vestibular|
 | [exam] id | number | id do exame vestibular |
 | [exam] exam_group_id | number | id referente ao grupo de exame pertencente |
 | [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
