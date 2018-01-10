@@ -1231,7 +1231,37 @@ curl --user secretary:password http://queroalunos.com/api/exam_groups/new \
     "2016-11-01", "2016-11-01",
     "2016-11-01", "2016-11-01"
   ],
-  "times": [ "18:30", "19:30"],
+  "times": [ "18:30", "19:30" ],
+  "status": "active",
+  "kind": "scheduled"
+}
+```
+
+> Resposta
+
+```json
+{
+  "id": 1234,
+  "course_skus": [
+    "ADM-MANHA-SP",
+    "DIR-MANHA-SP",
+    "ADM-NOITE-RJ"
+  ],
+  "exam_locations": [
+    {
+      "address": "Rua Márcia",
+      "number": "4231",
+      "neighborhood": "Morro do Barreto",
+      "city": "São Roque",
+      "state": "SP",
+      "postal_code": "19110-000"
+    }
+  ],
+  "dates": [
+    "2016-11-01", "2016-11-01",
+    "2016-11-01", "2016-11-01"
+  ],
+  "times": [ "18:30", "19:30" ],
   "status": "active",
   "kind": "scheduled"
 }
@@ -1508,7 +1538,7 @@ curl --user secretary:password http://queroalunos.com/api/exams/456
 ```json
 {
   "id": 456,
-  "exam_group_id": 123,
+  "exam_group_id": 1234,
   "course_skus": [
     "ADM-MANHA-SP",
     "DIR-MANHA-SP",
@@ -1568,7 +1598,7 @@ Retorna um exame específico.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/exam_groups/new \
+curl --user secretary:password http://queroalunos.com/api/exams/new \
   -d "data.json"
 ```
 
@@ -1576,7 +1606,6 @@ curl --user secretary:password http://queroalunos.com/api/exam_groups/new \
 
 ```json
 {
-  "id": 1234,
   "course_skus": [ "ADM-MANHA-SP" ],
   "exam_location": [
     {
@@ -1588,8 +1617,32 @@ curl --user secretary:password http://queroalunos.com/api/exam_groups/new \
       "postal_code": "19110-000"
     }
   ],
-  "dates": [ "2016-11-01" ],
-  "times": [ "18:30" ],
+  "date": "2016-11-01",
+  "time": "18:30",
+  "status": "active",
+  "kind": "scheduled"
+}
+```
+
+> Resposta
+
+```json
+{
+  "id": 456,
+  "exam_group_id": 1234,
+  "course_skus": [ "ADM-MANHA-SP" ],
+  "exam_location": [
+    {
+      "address": "Rua Márcia",
+      "number": "4231",
+      "neighborhood": "Morro do Barreto",
+      "city": "São Roque",
+      "state": "SP",
+      "postal_code": "19110-000"
+    }
+  ],
+  "date": "2016-11-01",
+  "time": "18:30",
   "status": "active",
   "kind": "scheduled"
 }
@@ -1610,6 +1663,23 @@ Cria um novo exame.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
+| course_skus | array | cursos que usam como entrada algum exame desse lote |
+| exam_location | array de objects | lista dos objetos dos endereços dos exames desse lote |
+| [exam_location] address | string | endereço onde será feito o exame |
+| [exam_location] number | string | número de onde será feito o exame |
+| [exam_location] neighborhood | string | bairro onde será feito o exame |
+| [exam_location] city | string | cidade onde será feito o exame |
+| [exam_location] state | string | estado onde será feito o exame |
+| [exam_location] postal_code | string | código postal de onde será feito o exame |
+| date | string | data do exame |
+| time | string | horário do exame |
+| status | string | situação dos exames entre `active` ou `inactive` |
+| kind | string | tipo dos exames desse lote |
+
+### Informações da resposta
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
 | id | number | id do lote de exames |
 | exam_group_id | number | id referente ao grupo de exame pertencente |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
@@ -1620,8 +1690,8 @@ Cria um novo exame.
 | [exam_location] city | string | cidade onde será feito o exame |
 | [exam_location] state | string | estado onde será feito o exame |
 | [exam_location] postal_code | string | código postal de onde será feito o exame |
-| dates | array | lista das datas dos exames |
-| times | array | lista dos horários de aplicações dos exames |
+| date | string | data do exame |
+| time | string | horário do exame |
 | status | string | situação dos exames entre `active` ou `inactive` |
 | kind | string | tipo dos exames desse lote |
 
@@ -1775,7 +1845,7 @@ Exames de enem são retornados de 10 em 10, ordenadas pela última atualização
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/enem_exam/789
+curl --user secretary:password http://queroalunos.com/api/enem_exams/789
 ```
 
 > Resposta
@@ -1835,11 +1905,29 @@ Retorna um exame de enem específico.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/enem_exam/new \
+curl --user secretary:password http://queroalunos.com/api/enem_exams/new \
   -d "data.json"
 ```
 
 > data.json
+
+```json
+{
+  "course_skus": [
+    "ADM-MANHA-SP",
+    "DIR-MANHA-SP",
+    "ADM-NOITE-RJ"
+  ],
+  "minimum_grades": {
+    "redacao": 600.0,
+    "humanas": 600.0,
+    "natureza": 600.0,
+    "linguagens": 600.0,
+    "matematica": 600.0
+  },
+  "status": "active"
+}
+```
 
 ```json
 {
@@ -1865,7 +1953,7 @@ curl --user secretary:password http://queroalunos.com/api/enem_exam/new \
 ```json
 {
   "error": true,
-  "message": "(Mensagem do SQL?)"
+  "message": "Situação fornecida não é válida."
 }
 ```
 
@@ -1878,6 +1966,19 @@ Cria um exame de enem.
 | *.json | json | arquivo json com as informações do exame de enem |
 
 ### Informações dos argumentos
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| course_skus | array | cursos que usam como entrada esse exame de enem |
+| minimum_grades | object | objeto com informações de nota mínima exigida pela faculdade |
+| minimum_grades[redacao] | float | nota mínima de redação exigida pela faculdade |
+| minimum_grades[humanas] | float | nota mínima de humanas exigida pela faculdade |
+| minimum_grades[natureza] | float | nota mínima de natureza exigida pela faculdade |
+| minimum_grades[linguagens] | float | nota mínima de linguagens exigida pela faculdade |
+| minimum_grades[matematica] | float | nota mínima de matemática exigida pela faculdade |
+| status | string | situação do exame de enem entre `active` e `inactive` |
+
+### Informações da resposta
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
@@ -1896,7 +1997,7 @@ Cria um exame de enem.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/enem_exam/789/status \
+curl --user secretary:password http://queroalunos.com/api/enem_exams/789/status \
   -d "inactive"
 ```
 
@@ -1967,7 +2068,7 @@ Suspende um exame de Enem específico.
 > Requisição
 
 ```bash
-curl --user secretary:password http://queroalunos.com/api/enem_exam/suspend \
+curl --user secretary:password http://queroalunos.com/api/enem_exams/suspend \
   -d "data.json"
 ```
 
