@@ -1736,7 +1736,7 @@ curl --user secretary:password http://queroalunos.com/api/enem_exam
         "linguagens": 600.0,
         "matematica": 600.0
       },
-      status: "active"
+      "status": "active"
     }
   ],
   "cursor": "ASAKDSaldlwp20"
@@ -1793,7 +1793,7 @@ curl --user secretary:password http://queroalunos.com/api/enem_exam/789
     "linguagens": 600.0,
     "matematica": 600.0
   },
-  status: "active"
+  "status": "active"
 }
 ```
 
@@ -1854,7 +1854,7 @@ curl --user secretary:password http://queroalunos.com/api/enem_exam/new \
     "linguagens": 600.0,
     "matematica": 600.0
   },
-  status: "active"
+  "status": "active"
 }
 ```
 
@@ -1915,7 +1915,7 @@ curl --user secretary:password http://queroalunos.com/api/enem_exam/789/status \
     "linguagens": 600.0,
     "matematica": 600.0
   },
-  status: "inactive"
+  "status": "inactive"
 }
 ```
 
