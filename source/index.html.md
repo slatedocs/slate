@@ -1804,7 +1804,7 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/enem_exa
         "linguagens": 600.0,
         "matematica": 600.0
       },
-      status: "active"
+      "status": "active"
     }
   ],
   "cursor": "ASAKDSaldlwp20"
@@ -1861,7 +1861,7 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/enem_exa
     "linguagens": 600.0,
     "matematica": 600.0
   },
-  status: "active"
+  "status": "active"
 }
 ```
 
@@ -1940,7 +1940,7 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/enem_exa
     "linguagens": 600.0,
     "matematica": 600.0
   },
-  status: "active"
+  "status": "active"
 }
 ```
 
@@ -2014,7 +2014,7 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/enem_exa
     "linguagens": 600.0,
     "matematica": 600.0
   },
-  status: "inactive"
+  "status": "inactive"
 }
 ```
 
