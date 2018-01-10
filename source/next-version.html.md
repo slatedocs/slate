@@ -23,34 +23,11 @@ search: true
 
 # API name
 
-
-## /api/v1/search/
-
-**Description**
-
-Returns a list of stories.
-
-**Input Parameters**
-
-| Name | Data Type | Description|
-|--|--|--|
-|q| string|  The search string |
-|author| string| The author name |
-|author-id| integer| The author ID|
-|fields| string| The parameters of a story, such as headline, slug, section, author ID, story ID, and so on.|
-|limit |integer |The number of stories to display. The default is 20. |
-|offset |integer |The distance from the start of the array of stories to the reference point in the array. |
-|sort| string| Returns stories based on ascending or descending order|  
-|published-before| integer| The date in Epoch format|
-|published-after| integer | The date in Epoch format|
-
-
-
 ```
 
 Example Request
 
-$ curl -X GET "http://sketches.quintype.com/api/v1/search?fields=headline%2C%20tags%2Cslug%2C%20last-published-at%2C&limit=5&q=Indian%20cricket" -H "accept: json"
+$ curl -X GET "http://sketches.quintype.com/api/v1/search?fields=headline%2C%20tags%2Cslug%2C%20last-published-at%2C&limit=5&q=Indian%20cricket" -H "Accept: application/json"
 
 
 Example Response
@@ -130,36 +107,34 @@ Example Response
 
 ```
 
-
-
-## /api/v1/stories/
+## /api/v1/search/
 
 **Description**
 
-Returns a list of stories and the story details, such as the author name and author ID, story headline, story slug, the list of sections ID and section name that the story belongs to, story template, metadata, and so on.
-
+Returns a list of stories.
 
 **Input Parameters**
 
 | Name | Data Type | Description|
 |--|--|--|
-| section-id | integer | The section ID of a story |
-| section | string | The name of a section |
-|fields|string|The parameters of a story, such as headline, slug, section, author ID, story ID, and so on. |
-|limit|integer|The number of stories to display. The default is 20. |
-|offset|integer|The distance from the start of the array of stories to the reference point in the array. |
-|story-order|string|Displays stories in the specified order, such as top, last-updated, and so on. |
-|template|string|The name of the story template. For example, video, live-blog, photo-story, and so on. |
-|tag|string|The name of the tags. |
-|randomize|string|Displays list of random stories. |
-|not-story-content-ids | string |The stories other than the mentioned story IDs. |
+|q| string|  The search string |
+|author| string| The author name |
+|author-id| integer| The author ID|
+|fields| string| The parameters of a story, such as headline, slug, section, author ID, story ID, and so on.|
+|limit |integer |The number of stories to display. The default is 20. |
+|offset |integer |The distance from the start of the array of stories to the reference point in the array. |
+|sort| string| Returns stories based on ascending or descending order|  
+|published-before| integer| The date in Epoch format|
+|published-after| integer | The date in Epoch format|
+
+
 
 
 
 ```
 Example Request
 
-$ curl -X GET "http://sketches.quintype.com/api/v1/stories?limit=2  -H "accept: json"
+$ curl -X GET "http://sketches.quintype.com/api/v1/stories?limit=2  -H "Accept: application/json"
 
 Example Response
 
@@ -258,26 +233,33 @@ Example Response
 
 ```
 
-
-## /api/v1/stories-by-slug/
-
+## /api/v1/stories/
 
 **Description**
 
-Returns the story having the mentioned slug. The output contains information such as the story author name, author ID, tags, sections, cards, and the metadata associated with that story.
+Returns a list of stories and the story details, such as the author name and author ID, story headline, story slug, the list of sections ID and section name that the story belongs to, story template, metadata, and so on.
 
 
 **Input Parameters**
 
 | Name | Data Type | Description|
 |--|--|--|
-|slug| string| The slug for the desired story|
+| section-id | integer | The section ID of a story |
+| section | string | The name of a section |
+|fields|string|The parameters of a story, such as headline, slug, section, author ID, story ID, and so on. |
+|limit|integer|The number of stories to display. The default is 20. |
+|offset|integer|The distance from the start of the array of stories to the reference point in the array. |
+|story-order|string|Displays stories in the specified order, such as top, last-updated, and so on. |
+|template|string|The name of the story template. For example, video, live-blog, photo-story, and so on. |
+|tag|string|The name of the tags. |
+|randomize|string|Displays list of random stories. |
+|not-story-content-ids | string |The stories other than the mentioned story IDs. |
 
 
 ```
 Example Request
 
-$ curl -X GET "http://sketches.quintype.com/api/v1/stories-by-slug?slug=columns/2017/12/05/what-we-do"  -H "accept: json"
+$ curl -X GET "http://sketches.quintype.com/api/v1/stories-by-slug?slug=columns/2017/12/05/what-we-do"  -H "Accept: application/json"
 
 Example Response
 
@@ -338,20 +320,23 @@ Example Response
 
 ```
 
+## /api/v1/stories-by-slug/
 
-## /api/v1/stories/{story-id}
 
-Returns the story details having the mentioned story ID.
+**Description**
+
+Returns the story having the mentioned slug. The output contains information such as the story author name, author ID, tags, sections, cards, and the metadata associated with that story.
 
 
 **Input Parameters**
 
 | Name | Data Type | Description|
 |--|--|--|
-|story-id | string| The story ID |
+|slug| string| The slug for the desired story|
+
 
 ```
-$ curl -X GET "http://sketches.quintype.com/api/v1/stories/ef91900e-2a7d-42c6-8ccc-fb75db2a4504"  -H "accept: json"
+curl -X GET "http://sketches.quintype.com/api/v1/stories/ef91900e-2a7d-42c6-8ccc-fb75db2a4504"  -H "Accept: application/json"
 
 Example Response
 
@@ -509,26 +494,22 @@ Example Response
 
 ```
 
+## /api/v1/stories/{story-id}
 
-## /api/v1/stories/{story-id}/related-stories
-
-**Description**
-Returns the stories that are related to the mentioned story ID.
+Returns the story details having the mentioned story ID.
 
 
 **Input Parameters**
 
 | Name | Data Type | Description|
 |--|--|--|
-|story-id |string | The story ID|
-|section-id |string | The section ID of a story|
-|fields| string | The parameters of a story, such as headline, slug, sections, author ID, and so on.|
+|story-id | string| The story ID |
 
 
 ```
 Example Request
 
-$ curl -X GET "http://sketches.quintype.com/api/v1/stories/db09a326-3af2-4286-a92b-8ffbc9bb3c4f/related-stories?fields=headline,id,slug,author-name"  -H "accept: json"
+$ curl -X GET "http://sketches.quintype.com/api/v1/stories/db09a326-3af2-4286-a92b-8ffbc9bb3c4f/related-stories?fields=headline,id,slug,author-name"  -H "Accept: application/json"
 
 Example Response
 {  
@@ -556,17 +537,20 @@ Example Response
 
 ```
 
-##/api/v1/bulk
+## /api/v1/stories/{story-id}/related-stories
 
 **Description**
-
-Send a batch of API requests.
+Returns the stories that are related to the mentioned story ID.
 
 
 **Input Parameters**
 
 | Name | Data Type | Description|
 |--|--|--|
+|story-id |string | The story ID|
+|section-id |string | The section ID of a story|
+|fields| string | The parameters of a story, such as headline, slug, sections, author ID, and so on.|
+
 
 ```
 Exmaple Request
@@ -627,25 +611,23 @@ Example Response
 
 ```
 
-
-## /api/v1/collections/{slug}
+##/api/v1/bulk
 
 **Description**
-Returns the collection based on the slug.
+
+Send a batch of API requests.
 
 
 **Input Parameters**
 
 | Name | Data Type | Description|
 |--|--|--|
-|slug| string| The slug for the desired collection|
-|item-type| string| Possible values are story and collection|
-|exclude-story-ids|integer| The story IDs to be excluded from displaying|
+
 
 ```
 Example Request
 
-$ curl -X GET "http://sketches.quintype.com/api/v1/collections/history-trails  -H "accept: json"
+$ curl -X GET "http://sketches.quintype.com/api/v1/collections/history-trails  -H "Accept: application/json"
 
 Example Response
 
@@ -678,21 +660,25 @@ Example Response
 }
 ```
 
-## /api/v1/authors
+## /api/v1/collections/{slug}
 
 **Description**
+Returns the collection based on the slug.
 
-Returns the list of authors with the author name and author ID, along with details such as the author's biodata, gender, twitter handle and so on.
 
 **Input Parameters**
 
-None.
+| Name | Data Type | Description|
+|--|--|--|
+|slug| string| The slug for the desired collection|
+|item-type| string| Possible values are story and collection|
+|exclude-story-ids|integer| The story IDs to be excluded from displaying|
 
 
 ```
 Example Request
 
-$ curl -X GET "http://sketches.quintype.com/api/v1/authors -H "accept: json"
+$ curl -X GET "http://sketches.quintype.com/api/v1/authors -H "Accept: application/json"
 
 Example Response
 
@@ -755,7 +741,7 @@ Example Response
 
 ```
 
-## /api/v1/authors/{author-id}
+## /api/v1/authors
 
 **Description**
 
@@ -763,16 +749,14 @@ Returns the list of authors with the author name and author ID, along with detai
 
 **Input Parameters**
 
-| Name | Data Type | Description|
-|--|--|--|
-|author-id| integer| The author ID |
+None.
 
 
 ```
 
 Example Request
 
-$ curl -X GET "http://sketches.quintype.com/api/v1/authors/20294 -H "accept: json"
+$ curl -X GET "http://sketches.quintype.com/api/v1/authors/20294 -H "Accept: application/json"
 
 Example Response
 {  
@@ -790,6 +774,19 @@ Example Response
 }
 ```
 
+## /api/v1/authors/{author-id}
+
+**Description**
+
+Returns the list of authors with the author name and author ID, along with details such as the author's biodata, gender, twitter handle and so on.
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|author-id| integer| The author ID |
+
+
 
 ## /api/v1/config
 
@@ -803,20 +800,10 @@ Displays the publisher's configurations, such as the publisher name and ID, SEO 
 None.
 
 
-## /api/v1/breaking-news
-
-**Description**
-
-Returns the list of breaking news.
-
-**Input Parameters**
-
-None.
-
 ```
 Example Request
 
-$ curl -X GET "http://sketches.quintype.com/api/v1/breaking-news" -H "accept: json"
+$ curl -X GET "http://sketches.quintype.com/api/v1/breaking-news" -H "Accept: application/json"
 
 Example Response
 
@@ -864,28 +851,20 @@ Example Response
 
 ```
 
-##/api/v1/entities/
+## /api/v1/breaking-news
 
 **Description**
 
-Lists all entities.
-
+Returns the list of breaking news.
 
 **Input Parameters**
 
-| Name | Data Type | Description|
-|--|--|--|
-|q| string|  The search string, for example |
-|limit|integer|The number of stories to display. The default is 20. |
-|offset|integer|The distance from the start of the array of stories to the reference point in the array. |
-|id | integer| The ID of an entity|
-|ids| string | A list of entity IDs |
-
+None.
 
 ```
 Example Request
 
-curl -X GET "http://sketches.quintype.com/api/v1/entities?limit=2&type=book" -H "accept: json"
+curl -X GET "http://sketches.quintype.com/api/v1/entities?limit=2&type=book" -H "Accept: application/json"
 
 
 Example Response
@@ -922,25 +901,29 @@ Example Response
 
 ```
 
-##/api/v1/entities/{id}
+##/api/v1/entities/
 
 **Description**
 
-Lists the entity having the specified ID.
+Lists all entities.
 
 
 **Input Parameters**
 
 | Name | Data Type | Description|
 |--|--|--|
-| ID | integer| The entity ID|
+|q| string|  The search string, for example |
+|limit|integer|The number of stories to display. The default is 20. |
+|offset|integer|The distance from the start of the array of stories to the reference point in the array. |
+|id | integer| The ID of an entity|
+|ids| string | A list of entity IDs |
 
 
 ```
 
 Example Request
 
-curl -X GET "http://sketches.quintype.com/api/v1/entities/12" -H "accept: json"
+curl -X GET "http://sketches.quintype.com/api/v1/entities/12" -H "Accept: application/json"
 
 
 Example Response
@@ -961,12 +944,11 @@ Example Response
 
 ```
 
-
-##/api/v1/entities/{id}/{subentity+}
+##/api/v1/entities/{id}
 
 **Description**
 
-Lists the subentity details in relation to the entity ID.
+Lists the entity having the specified ID.
 
 
 **Input Parameters**
@@ -974,7 +956,7 @@ Lists the subentity details in relation to the entity ID.
 | Name | Data Type | Description|
 |--|--|--|
 | ID | integer| The entity ID|
-|subentity |string | A nested entity name|
+
 
 
 ```
@@ -982,7 +964,7 @@ Lists the subentity details in relation to the entity ID.
 The following request fetches the list of companies established in the year 2015. A relationship had been created between the entities (entity-type) `year` and `companies` 
 
 Example Request
-curl -X GET "http://sketches.quintype.com/api/v1/entities/15557/companies-established-year" -H "accept: json"
+curl -X GET "http://sketches.quintype.com/api/v1/entities/15557/companies-established-year" -H "Accept: application/json"
 
 Example Response
 
@@ -1024,6 +1006,29 @@ Example Response
 
 ``` 
 
+##/api/v1/entities/{id}/{subentity+}
+
+**Description**
+
+Lists the subentity details in relation to the entity ID.
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+| ID | integer| The entity ID|
+|subentity |string | A nested entity name|
+
+
+```
+Example Request
+
+curl 'http://sketches.quintype.com/api/stories/8f9538f2-1972-4c7a-b1eb-7f8942dd0606/votes' -H 'Content-Type: application/json' --data-binary '{'magnitude': 'yes'}';
+
+
+```
+
 
 ##/api/stories/{story-id}/votes
 
@@ -1042,7 +1047,11 @@ Example Response
 ```
 Example Request
 
-curl 'http://sketches.quintype.com/api/stories/8f9538f2-1972-4c7a-b1eb-7f8942dd0606/votes' -H 'Content-Type: application/json' --data-binary '{'magnitude': 'yes'}';
+curl -X GET "http://sketches.quintype.com/api/stories/8f9538f2-1972-4c7a-b1eb-7f8942dd0606/votes" -H "Accept: application/json"
+
+
+Example Response
+
 
 
 ```
@@ -1061,29 +1070,10 @@ Fetches the total number of votes for the specified ID. Note that the user has t
 |story-id | String| The story ID|
 
 
-```
-Example Request
-
-curl -X GET "http://sketches.quintype.com/api/stories/8f9538f2-1972-4c7a-b1eb-7f8942dd0606/votes" -H "accept: json"
-
-
-Example Response
-
-
-
-```
-
-
-##/stories.rss
-
-**Description**
-
-Displays the RSS feeds of a publisher.
-
 
 ```
 Example Request
-curl -X GET "http://sketches.quintype.com/stories.rss" -H "accept: json"
+curl -X GET "http://sketches.quintype.com/stories.rss" -H "Accept: application/json"
 
 Example Response
 
@@ -1163,26 +1153,19 @@ Quarterly</media:keywords>
 
 ```
 
-
-##/api/v1/tags/slug
+##/stories.rss
 
 **Description**
 
-Displays the tag ID, name, and the meta description that matches the given slug.
+Displays the RSS feeds of a publisher.
 
-
-**Input Parameters**
-
-| Name | Data Type | Description|
-|--|--|--|
-|slug| string| The desired tag slug|
 
 
 ```
 
 Example Request
 
-curl -X GET "http://sketches.quintype.com/api/v1/tags/temple" -H "accept: json"
+curl -X GET "http://sketches.quintype.com/api/v1/tags/temple" -H "Accept: application/json"
 
 Example Response
 
@@ -1204,6 +1187,19 @@ Example Response
 }
 
 ```
+
+##/api/v1/tags/slug
+
+**Description**
+
+Displays the tag ID, name, and the meta description that matches the given slug.
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|slug| string| The desired tag slug|
 
 
 ```
@@ -1284,7 +1280,7 @@ Returns the current user
 
 Example Request
 
-curl -X POST "http://sketches.quintype.com/api/member/forgot-password" -H "accept: json" -H "Content-Type: json" -d "{ \"email\": \"string\"}"
+curl -X POST "http://sketches.quintype.com/api/member/forgot-password" -H "Accept: application/json" -H "Content-Type: json" -d "{ \"email\": \"string\"}"
 
 Example Response
 
@@ -1312,7 +1308,7 @@ Example Response
 ```
 Example Request
 
-curl -X POST "http://sketches.quintype.com/api/member" -H "accept: json" -H "Content-Type: json" -d "{"name":"John Doe","username":"johndoe","email":"john@doe.com","password":"mypassword"}"
+curl -X POST "http://sketches.quintype.com/api/member" -H "Accept: application/json" -H "Content-Type: json" -d "{"name":"John Doe","username":"johndoe","email":"john@doe.com","password":"mypassword"}"
 
 ```
 
@@ -1322,7 +1318,7 @@ curl -X POST "http://sketches.quintype.com/api/member" -H "accept: json" -H "Con
 ```
 Example Request
 
-curl -X POST "http://sketches.quintype.com/api/member/forgot-password" -H "accept: json" -H "Content-Type: json" -d {"email":"john@doe.com","password":"mypassword"}
+curl -X POST "http://sketches.quintype.com/api/member/forgot-password" -H "Accept: application/json" -H "Content-Type: json" -d {"email":"john@doe.com","password":"mypassword"}
 
 ```
 
