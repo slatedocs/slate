@@ -86,7 +86,7 @@ Example Response
             "last-published-at":1487840302541
          },
          {  
-            "headline":"9/11 and the unsolvable Afghan drama  \u00A0",
+            "headline":"9/11 and the unsolvable Afghan drama",
             "tags":[  
                {  
                   "id":17518,
@@ -1206,6 +1206,18 @@ Example Response
 ```
 
 
+```
+
+Example Request
+
+curl -X GET "http://sketches.quintype.com/api/member/metadata" -H "Accept: application/json"
+
+Example Response
+
+
+
+```
+
 ##/api/member/metadata
 
 **Description**
@@ -1222,7 +1234,7 @@ None.
 
 Example Request
 
-curl -X GET "http://sketches.quintype.com/api/member/metadata" -H "accept: json"
+curl -X POST "http://sketches.quintype.com/api/member/metadata" -H "Accept: application/json" -H "Content-Type: json" -d "{}"
 
 Example Response
 
@@ -1230,12 +1242,35 @@ Example Response
 
 ```
 
-##/api/v1/stories/{story-id}/comments
+##/api/member/metadata
+
+**Description**
+
+Enters the meta description of the current user.
+
+
+**Input Parameters**
+
+None.
+
+```
+
+Example Request
+
+
+
+Example Response
+
+
+
+```
+
+##/api/v1/members/me
 
 
 **Description**
 
-Displays the commments in the specified story ID.
+Returns the current user
 
 
 **Input Parameters**
@@ -1249,38 +1284,45 @@ Displays the commments in the specified story ID.
 
 Example Request
 
-curl -X GET "http://sketches.quintype.com/api/v1/stories/8f9538f2-1972-4c7a-b1eb-7f8942dd0606/comments" -H "accept: json"
+curl -X POST "http://sketches.quintype.com/api/member/forgot-password" -H "accept: json" -H "Content-Type: json" -d "{ \"email\": \"string\"}"
 
 Example Response
 
 
-
 ```
 
-
-##/api/v1/stories/{story-id}/comments
+##/api/member/forgot-password
 
 
 **Description**
 
-Posts commments on the specified story ID.
+
 
 
 **Input Parameters**
 
 | Name | Data Type | Description|
 |--|--|--|
-|story-id| string| The desired story ID|
+|| | |
 
+
+
+##/api/member
+
+```
+Example Request
+
+curl -X POST "http://sketches.quintype.com/api/member" -H "accept: json" -H "Content-Type: json" -d "{"name":"John Doe","username":"johndoe","email":"john@doe.com","password":"mypassword"}"
 
 ```
 
+
+##/api/member/login
+
+```
 Example Request
 
-curl 'http://sketches.quintype.com/api/stories/8f9538f2-1972-4c7a-b1eb-7f8942dd0606/votes' -H 'Content-Type: application/json' --data-binary '{'': ''}';
-
-Example Response
-
+curl -X POST "http://sketches.quintype.com/api/member/forgot-password" -H "accept: json" -H "Content-Type: json" -d {"email":"john@doe.com","password":"mypassword"}
 
 ```
 
