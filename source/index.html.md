@@ -16,7 +16,7 @@ includes:
   - register_patient/register_patient
 
   - sav/schedule_a_visit_overview
-
+  - sav/provider_search
   - entities/entities
   - entities/allergies/create
   - entities/allergies/delete
