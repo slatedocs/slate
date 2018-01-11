@@ -107,7 +107,7 @@ RestClient::Request.new(
 
 The first step in scheduling a visit is searching for available providers for a patient.
 
-A patient token is required to access this endpoint.
+This request must include a valid User JWT token, please see our [documentation](#user-tokens)
 
 
 ### HTTP Request
