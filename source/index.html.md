@@ -91,7 +91,7 @@ calculated using your secret Signature Key.
 
 Shiftboard Web Services are based on the [JSON-RPC 2.0
 specification](http://jsonrpc.org/spec.html), with some extensions.
-At this time, only GET requests are accepted, with formatting based
+At this time, only GET requests are supported (except for [batch requests](#batch-requests), which use POST), with formatting based
 on the [JSON-RPC Over HTTP specification's GET
 request](http://jsonrpc.org/historical/json-rpc-over-http.html#get).
 
@@ -145,10 +145,14 @@ The value of this attribute is an object with method-dependent
 attributes.  The `select` attribute is optional for some methods
 and required for others.  Default values may apply for some methods.
 
-## Request Batches
+## Batches
+
+There are three kinds of "batching" in the API.  The first is covered under [Pagination](#pagination), where a `batch` attribute of the `page` attribute specifies the number of records to return.
+
+### Performance Batching
 
 ```JSON
-location.add
+location.create
 {
  workgroup:1,
  name:"General Electric",
@@ -156,7 +160,7 @@ location.add
  batch:true
 }
 
-location.add
+location.create
 {
  workgroup:1,
  name:"White House",
@@ -170,28 +174,90 @@ system.endBatch
 {}
 ```
 
-If a large number of non-interdependent requests will be sent, a
-batch attribute can be specified to enable them to be processed
-more quickly, with a system.endBatch request sent at the end to
-perform necessary operations that were deferred.  Example:
+This second type of batching involves speeding up requests: if a large number of non-interdependent requests will be sent, a batch attribute can be specified to enable them to be processed more quickly, with a system.endBatch request sent at the end to perform necessary operations that were deferred.
 
-This mode should not be used when processing interdependent requests,
-for example, adding locations and also adding shifts that use those
-locations or adding workgroup relationships to those locations.
+This mode should not be used when processing interdependent requests, for example, adding locations and also adding shifts that use those locations or adding workgroup relationships to those locations.
+
+### Batch Requests
+
+> Request example:
+
+```JSON
+[
+  {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "shift.list",
+    "params": {
+      "select": {
+        "end_date": "2018-01-31",
+        "start_date": "2018-01-01"
+      }
+    }
+  },
+  {
+    "id": 2,
+    "jsonrpc": "2.0",
+    "method": "location.create",
+    "params": {
+      "workgroup": 1,
+      "name": "General Electric",
+      "zip": "12345"
+    }
+  }
+]
+```
+
+> Response example (abbreviated):
+
+```JSON
+[
+  {
+    "id": "1",
+    "jsonrpc": "2.0",
+    "result": {
+      "shifts": [
+        {
+          "end_date": "2018-01-08T17:00:00",
+          "id": "1111111",
+          "start_date": "2018-01-08T09:00:00",
+          "timezone": "Pacific Time (US/Can) (GMT-08:00)",
+          "workgroup": "1"
+        }
+      ]
+    },
+  },
+  {
+    "id": "2",
+    "jsonrpc": "2.0",
+    "result": {
+      "id": "284442"
+    }
+  }
+]
+
+```
+
+The third type of batching is for sending multiple individual API calls in a single request. The API supports the [JSON-RPC 2.0
+specification for batches](http://www.jsonrpc.org/specification#batch), using [POST requests](http://jsonrpc.org/historical/json-rpc-over-http.html#post), where instead of supplying a JSON object of parameters, an array of objects is supplied.
+
+Each object in the array contains the [jsonrpc](#jsonrpc), [id](#id), [method](#method), and [params](#params) keys.  The [access_key_id](#access_key_id) and [signature](#signature) parameters are put in the query string, not in the POST contents. The [request signature](#request-signature) is for the entire POST contents.
+
+Responses will also be an array, with the "id" in the response object matching the "id" in the request object. If no "id" is supplied in a request object, no response will be given for that part of the request.
 
 ## Requests
 
 ### Request Format
 
-A Shiftboard Web Services API request is issued via an HTTP GET
-request to https://api.shiftdata.com.  Each request may have the
-following components:
+A Shiftboard Web Services API request is issued via an HTTP GET request (or POST, for batch requests) to https://api.shiftdata.com.  Each request may have the following components:
 
 ####id
 
 An integer or string.  Not used except in that a response should
 return the same value as passed in the request.  This field can be
 used by the client to correlate a response with its request.
+
+For [batch requests](#batch-requests), no results will be returned for an individual request unless an id is supplied for that request.
 
 ####jsonrpc
 
@@ -234,7 +300,7 @@ Key (which itself should never be transmitted).  The calculated
 signature is then base64 encoded.  The HMAC SHA1 algorithm is
 described in [RFC 2104](http://www.ietf.org/rfc/rfc2104.txt).
 
-The data to be signed is composed of four parts concatenated with no separator:
+The data to be signed for GET requests is composed of four parts concatenated with no separator:
 
 * The 6 character string `method`
 * The name of the method being called
@@ -249,6 +315,8 @@ Given an API access key of "*g57a67b3b-34e4-4c07-a8ca-e7ecb77a7f33*",
 a complete request would be
 
 `https://api.shiftdata.com/?id=885&jsonrpc=2.0&method=echo&params=eyB9&signature=gJ5Oy1E5W4u9XpjWyMoJytlScU8%3D&access_key_id=57a67b3b-34e4-4c07-a8ca-e7ecb77a7f33`
+
+For POST requests, the data to be signed is simply the entire contents of the POST request.
 
 ## Responses
 
