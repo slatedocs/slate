@@ -16,12 +16,18 @@ curl -X GET \
     "id": "0b3fea04-b1ed-48cf-921d-96795dfe9a81",
     "name": "ubuntu",
     "description": "Example ISO",
+    "architectureWidth": 64,
     "size": 52428800,
     "ready": true,
     "bootable": true,
+    "availablePublicly": false,
+    "extractable": false,
     "osTypeId":"d38dc1d9-dd34-4fdd-8f51-a973f8fe5f3b",
     "osTypeName": "Other (64-bit)",
-    "zoneId":"ea901007-056b-4c50-bb3a-2dd635fce2ab"
+    "zoneId":"ea901007-056b-4c50-bb3a-2dd635fce2ab",
+    "zoneName": "zone1",
+    "created": "2017-12-21 4:41:33 PM Z",
+    "availableInZones": ["ea901007-056b-4c50-bb3a-2dd635fce2ab"]
   }],
   "metadata": {
     "recordCount": 1
@@ -38,12 +44,16 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the ISO
 `name`<br/>*string* | The name of the ISO
 `description`<br/>*string* | The description of the ISO
+`architectureWidth`<br/>*string* | Number of bits
 `size`<br/>*long* | The size of the ISO in bytes
 `ready`<br/>*boolean* | true if the ISO is ready to be used
 `bootable`<br/>*boolean* | true if the ISO can be used for a new [instance](#cloudstack-instances)
 `osTypeId`<br/>*UUID* | Id of th OS type
 `osTypeName`<br/>*string* | The OS type of the ISO (e.g. Ubuntu, CentOS...)
-`zoneId`<br/>*UUID* |The [zone id](#cloudstack-zones) that the ISO is available in
+`zoneId`<br/>*UUID* |The [zone id](#cloudstack-zones) that the ISO is available in. Empty if available in multiple zones
+`zoneName`<br/>*string* |The [zone id](#cloudstack-zones) that the ISO is available in. Empty if available in multiple zones
+`created`<br/>*string* | The date the template was created
+`availableInZones`<br/>*List[String]* | The list of [zone ids](#cloudstack-zones)  that the ISO is available in
 
 #### Retrieve a ISO
 
@@ -60,12 +70,18 @@ curl -X GET \
     "id": "0b3fea04-b1ed-48cf-921d-96795dfe9a81",
     "name": "ubuntu",
     "description": "Example ISO",
+    "architectureWidth": 64,
     "size": 52428800,
     "ready": true,
     "bootable": true,
+    "availablePublicly": false,
+    "extractable": false,
     "osTypeId":"d38dc1d9-dd34-4fdd-8f51-a973f8fe5f3b",
     "osTypeName": "Other (64-bit)",
-    "zoneId":"ea901007-056b-4c50-bb3a-2dd635fce2ab"
+    "zoneId":"ea901007-056b-4c50-bb3a-2dd635fce2ab",
+    "zoneName": "zone1",
+    "created": "2017-12-21 4:41:33 PM Z",
+    "availableInZones": ["ea901007-056b-4c50-bb3a-2dd635fce2ab"]
   }
 }
 ```
@@ -79,9 +95,14 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the ISO
 `name`<br/>*string* | The name of the ISO
 `description`<br/>*string* | The description of the ISO
+`architectureWidth`<br/>*string* | Number of bits
 `size`<br/>*long* | The size of the ISO in bytes
 `ready`<br/>*boolean* | true if the ISO is ready to be used
 `bootable`<br/>*boolean* | true if the ISO can be used for a new [instance](#cloudstack-instances)
+`extractable`<br/>*boolean* | true if the template allows download from a generated URL
 `osTypeId`<br/>*UUID* | Id of th OS type
 `osTypeName`<br/>*string* | The OS type of the ISO (e.g. Ubuntu, CentOS...)
-`zoneId`<br/>*UUID* |The [zone id](#cloudstack-zones) that the ISO is available in
+`zoneId`<br/>*UUID* |The [zone id](#cloudstack-zones) that the ISO is available in. Empty if available in multiple zones
+`zoneName`<br/>*string* |The [zone id](#cloudstack-zones) that the ISO is available in. Empty if available in multiple zones
+`created`<br/>*string* | The date the template was created
+`availableInZones`<br/>*List[String]* | The list of [zone ids](#cloudstack-zones)  that the ISO is available in

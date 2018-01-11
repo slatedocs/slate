@@ -21,8 +21,8 @@ curl -X GET \
       "state": "Running",
       "zoneId": "04afdbd1-e32d-4999-86d0-96703736dded",
       "zoneName": "QC-1",
-      "templateId": "5f968ad6-56d0-4d0d-ad7e-f8f4a5b5d986",
-      "templateName": "CentOS 6.8 PV",
+      "imageId": "5f968ad6-56d0-4d0d-ad7e-f8f4a5b5d986",
+      "imageName": "CentOS 6.8 PV",
       "computeOfferingId": "3caab5ed-b5a2-4d8a-82e4-51c46168ee6c",
       "computeOfferingName": "1vCPU.512MB",
       "networkId": "d5a68379-a9ee-404f-9492-a1964b374d6f",
@@ -54,8 +54,8 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the instance
 `name`<br/>*string* | The display name of the instance
 `state`<br/>*string* | The current state of the instance
-`templateId`<br/>*UUID* | The [template](#cloudstack-templates) id of the instance
-`templateName`<br/>*string* | The [template](#cloudstack-templates) name of the instance
+`imageId`<br/>*UUID* | The [image](#cloudstack-images) id of the instance
+`imageName`<br/>*string* | The [image](#cloudstack-images) name of the instance
 `computeOfferingId`<br/>*UUID* | The [compute offering](#cloudstack-compute-offerings) id of the instance
 `computeOfferingName`<br/>*string* | The [compute offering](#cloudstack-compute-offerings) name of the instance
 `cpuCount`<br/>*int* | The number of vCPUs associated with the instance's [compute offering](#cloudstack-compute-offerings)
@@ -93,8 +93,8 @@ curl -X GET \
     "state": "Running",
     "zoneId": "04afdbd1-e32d-4999-86d0-96703736dded",
     "zoneName": "QC-1",
-    "templateId": "5f968ad6-56d0-4d0d-ad7e-f8f4a5b5d986",
-    "templateName": "CentOS 6.8 PV",
+    "imageId": "5f968ad6-56d0-4d0d-ad7e-f8f4a5b5d986",
+    "imageName": "CentOS 6.8 PV",
     "computeOfferingId": "3caab5ed-b5a2-4d8a-82e4-51c46168ee6c",
     "computeOfferingName": "1vCPU.512MB",
     "networkId": "d5a68379-a9ee-404f-9492-a1964b374d6f",
@@ -138,8 +138,8 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the instance
 `name`<br/>*string* | The display name of the instance
 `state`<br/>*string* | The current state of the instance
-`templateId`<br/>*UUID* | The [template](#cloudstack-templates) id of the instance
-`templateName`<br/>*string* | The [template](#cloudstack-templates) name of the instance
+`imageId`<br/>*UUID* | The image id of the instance
+`imageName`<br/>*string* | The image name of the instance
 `computeOfferingId`<br/>*UUID* | The [compute offering](#cloudstack-compute-offerings) id of the instance
 `computeOfferingName`<br/>*string* | The [compute offering](#cloudstack-compute-offerings) name of the instance
 `cpuCount`<br/>*int* | The number of vCPUs associated with the instance's [compute offering](#cloudstack-compute-offerings)
