@@ -85,10 +85,3 @@ Attribute   |                           |Required | Description
 coordinates |                           | false   | Hash with latitude and longitude
             | latitude                  | true    | Latitude as string
             | longitude                 | true    | Longitude as string
-            
-### Response codes
-
-HTTP Status Code | Reason
----------------- | ------
-200              | Successful operation
-422              | Coordinates

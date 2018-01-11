@@ -17,6 +17,8 @@ includes:
 
   - sav/schedule_a_visit_overview
   - sav/provider_search
+  - sav/provider_profile
+
   - entities/entities
   - entities/allergies/create
   - entities/allergies/delete
@@ -37,6 +39,8 @@ includes:
   - entities/surgeries/delete
   - entities/surgeries/list
   - entities/surgeries/surgery_names
+
+  - response_codes
 
 search: true
 ---

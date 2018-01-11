@@ -109,11 +109,9 @@ The first step in scheduling a visit is searching for available providers for a 
 
 This request must include a valid User JWT token, please see our [documentation](#user-tokens)
 
-
 ### HTTP Request
 
 `POST {server_url}/api/v1/patients/{patient_id}/providers/search`
-
 
 ### Header Parameter
 
@@ -122,12 +120,15 @@ Parameter     | Default          | Description
 Content-type  | application/json | Expected content type, currently only JSON is supported
 Authorization | Bearer {TOKEN}   | Auth Token, should be the string "Bearer {TOKEN}" where {Token} is the token received from the patient auth endpoint
 
+### URL Parameter
+Attribute | Required | Description
+--------- | ------- | -----------
+patient_id | true| MDLIVE ID for patient
 
 ### Request Body
 
 Attribute     |                | Required  | Description
 ---------     |---------       | --------  | -----------
-patient_id    |                | true      | Send as part of the URL, Should contain the MDLIVE id of the patient, this is returned by the User Auth endpoint
 search_params |                | true      | Hash with specific search filters
               | state_abbrev   | true      | 2 Letter state abbreviated, from the states list
               | availability_type| false   | Can be either 'phone' or 'video', use to specify the preferred type of appointment for the patient
@@ -135,12 +136,4 @@ search_params |                | true      | Hash with specific search filters
               | provider_type  | false     | Provider Type ID, from the provider types list (or the endpoint response)
               | specific_date  | false     | Date in YYYY-mm-dd format
               | speciality_id  | false     | Provider Specialty for filtering, obtained from this endpoint response
-              
-### Response codes
-
-HTTP Status Code | 	Reason
-----             |  ------  
-200	             |  Successful operation
-401	             |  Not authorized or invalid token data
-404	             |  Patient not found
 

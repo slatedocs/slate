@@ -194,11 +194,3 @@ The following parameters are required to retrieve a patient.
 Attribute | Required | Description
 --------- | -------- | -----------
 id        | true     | ID of the patient to be retrieved
-
-### Response codes
-
-HTTP Status Code | Reason
----------------- | ------
-200              | Successful operation
-401              | Not authorized or invalid token data
-404              | Patient not found
