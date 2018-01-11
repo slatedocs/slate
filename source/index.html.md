@@ -9,7 +9,7 @@ search: true
 
 # Começando com API de Admissões do Quero Alunos
 
-Bem vindo a documentação do Quero Alunos. Você encontrará guias e referências sobre como utilizar nossa API. Qualquer dúvida pode entrar em contato pelo email api-admissoes@quero.education.
+Bem-vindo à documentação da API de Admissões do Quero Alunos. Aqui você encontrará guias e referências sobre como utilizar nossa API. Qualquer dúvida, entre em contato pelo email api-admissoes@quero.education.
 
 ## Informações básicas
 
@@ -20,7 +20,7 @@ Endpoint utilizado
 `https://queroalunos.com/api/{version}/`
 
 
-# Autentificação
+# Autenticação
 
 ```
 POST https://queroalunos.com/api/v1/{action} HTTP/1.1
@@ -29,7 +29,7 @@ authorization: Basic ••••••••••••
 ```
 
 Todas as requisições são autenticadas por um token adicionado ao header.
-Caso não tenha o token solicite-o ao setor de desenvolvimento da QE.
+Caso não tenha o token, solicite-o ao setor de desenvolvimento da Quero Educação.
 
 ## Requisição sem token
 ```
@@ -59,6 +59,7 @@ Status Code: 403 Forbidden
 Em caso de token não autorizado será retornado erro 403 - Forbidden.
 
 ## Requisição com token sem permissão
+
 ```
 Sem permissão
 Status Code: 200 OK
@@ -68,12 +69,13 @@ Status Code: 200 OK
   "status": "error",
   "errors": [{
     "title": "Invalid Permission",
-    "detail": "You are not authorized to access this resource with this params"
+    "detail": "You are not authorized to access this resource with these paramaters"
   }]
 }
 ```
 
-Em caso de token válido mas sem permissão de acesso ao recurso especifico
+Em caso de token válido mas sem permissão de acesso ao recurso específico
+
 
 # Informações de alunos
 
@@ -82,7 +84,7 @@ Em caso de token válido mas sem permissão de acesso ao recurso especifico
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" http://queroalunos.com/api/students?cpf=111.222.333-44
+curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/students?cpf=111.222.333-44
 ```
 
 > Retorno
@@ -128,9 +130,9 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/students
 }
 ```
 
-Encontra um ou mais alunos na base do QueroAlunos a partir de um dado CPF.
+Encontra um ou mais alunos a partir de um dado CPF.
 
-Somente busca por usuários que tenham pré-matrícula na faculdade pertencente ao usuário fazendo pesquisa.
+Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao usuário fazendo pesquisa.
 
 ### Parâmetros
 
@@ -181,7 +183,7 @@ Somente busca por usuários que tenham pré-matrícula na faculdade pertencente 
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" http://queroalunos.com/api/students/{id}
+curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/students/{id}
 ```
 
 > Resposta
@@ -224,7 +226,7 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/students
 }
 ```
 
-Somente busca por usuários que tenham pré-matrícula na faculdade pertencente ao usuário fazendo pesquisa.
+Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao usuário fazendo pesquisa.
 
 ### Parâmetros
 
@@ -278,7 +280,7 @@ Somente busca por usuários que tenham pré-matrícula na faculdade pertencente 
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" http://queroalunos.com/api/admissions
+curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/admissions
 ```
 
 > Resposta
@@ -345,7 +347,7 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/admissio
 
 Retorna todas as admissões da faculdade.
 
-Admissões são retornadas em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da pagina anterior.
+Admissões são retornadas em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da página anterior.
 
 ### Parâmetros
 
@@ -424,7 +426,7 @@ Admissões são retornadas em lote de 10, ordenadas pela última atualização r
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" http://queroalunos.com/api/admissions/12345
+curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/admissions/12345
 ```
 
 > Resposta
@@ -568,8 +570,8 @@ Retorna uma admissão específica da faculdade.
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" http://queroalunos.com/api/admissions/12345 \
-  --data status="enrolled"
+curl -X PUT --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/admissions/12345 \
+  --data '{"status": "enrolled"}'
 ```
 
 > Resposta
@@ -731,14 +733,14 @@ Realiza atualização de um processo de admissão específico de um aluno. Para 
 | failed | Reprovado no exame vestibular |
 | approved | Aprovado no exame vestibular |
 
-# Informações de inscrição para exame
+# Informações de inscrição de exame
 
-## Listar todos inscrição para exame
+## Listar todas as inscrições de exame
 
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" http://queroalunos.com/api/applications
+curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/applications
 ```
 
 > Resposta
@@ -803,7 +805,7 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/applicat
 
 Retorna todas as inscrições de exame da faculdade.
 
-Inscrições são retornadas em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da pagina anterior.
+Inscrições são retornadas em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da página anterior.
 
 ### Parâmetros
 
@@ -877,12 +879,12 @@ Inscrições são retornadas em lote de 10, ordenadas pela última atualização
 | failed | Reprovado no exame vestibular |
 | approved | Aprovado no exame vestibular |
 
-## Dados de uma única inscrição para exame
+## Dados de uma única inscrição de exame
 
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" http://queroalunos.com/api/applications/123456
+curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/applications/123456
 ```
 
 > Resposta
@@ -1023,8 +1025,8 @@ Retorna uma inscrição específica na inscrição do exame da faculdade.
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" http://queroalunos.com/api/applications/123456 \
-  --data result="approved"
+curl -X PUT --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/applications/123456 \
+  --data '{"result":"approved"}'
 ```
 
 > Resposta
@@ -1183,7 +1185,7 @@ Atualiza a situação de agendamento ou resultado de uma inscrição de exame.
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" http://queroalunos.com/api/exam_groups
+curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/exam_groups
 ```
 
 > Resposta
@@ -1224,7 +1226,7 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/exam_gro
 
 Retorna todos os exames em lote.
 
-Exames em lote são retornados em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da pagina anterior.
+Exames em lote são retornados em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da página anterior.
 
 ### Parâmetros
 
@@ -1265,7 +1267,7 @@ Exames em lote são retornados em lote de 10, ordenadas pela última atualizaç�
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" http://queroalunos.com/api/exam_groups/1234
+curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/exam_groups/1234
 ```
 
 > Resposta
@@ -1344,8 +1346,8 @@ Retorna um lote de exames específico.
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" http://queroalunos.com/api/exam_groups/new \
-  --data "data.json"
+curl -X POST --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/exam_groups \
+  --file "data.json"
 ```
 
 > estrutura de data.json
@@ -1502,8 +1504,8 @@ Cria um lote de exames.
 > Requisição
 
 ```bash
-curl -X PUT --header "Authorization: Base ########" http://queroalunos.com/api/exam_groups/1234/status \
-  --data "active"
+curl -X PUT --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/exam_groups/1234 \
+  --data '{"status": "active"}'
 ```
 
 > Resposta
@@ -1602,7 +1604,7 @@ Suspende ou ativa um lote de exames.
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" http://queroalunos.com/api/exams
+curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/exams
 ```
 
 > Resposta
@@ -1638,7 +1640,7 @@ curl --header "Authorization: Base ########" http://queroalunos.com/api/exams
 
 Retorna todos os exames (ativos e suspensos).
 
-Exames são retornados em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da pagina anterior.
+Exames são retornados em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da página anterior.
 
 ### Parâmetros
 
@@ -1673,7 +1675,7 @@ Exames são retornados em lote de 10, ordenadas pela última atualização reali
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" http://queroalunos.com/api/exams/456
+curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/exams/456
 ```
 
 > Resposta
@@ -1741,8 +1743,8 @@ Retorna um exame específico.
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" http://queroalunos.com/api/exams/new \
-  --data "data.json"
+curl -X POST --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/exams \
+  --file "data.json"
 ```
 
 > estrutura de data.json
@@ -1850,8 +1852,8 @@ Cria um novo exame.
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" http://queroalunos.com/api/exams/456 \
-  --data status="active"
+curl -X PUT --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/exams/456 \
+  --data '{"status":"active"}'
 ```
 
 > Resposta
@@ -1929,7 +1931,7 @@ Suspende ou ativa um exame.
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" http://queroalunos.com/api/enem_exams
+curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/enem_exams
 ```
 
 > Resposta
@@ -1991,7 +1993,7 @@ Exames de ENEM são retornados em lote de 10, ordenadas pela última atualizaç�
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" http://queroalunos.com/api/enem_exams/789
+curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/enem_exams/789
 ```
 
 > Resposta
@@ -2051,8 +2053,8 @@ Retorna um exame de enem específico.
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" http://queroalunos.com/api/enem_exams/new \
-  --data "data.json"
+curl -X POST --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/enem_exams \
+  --file "data.json"
 ```
 
 > data.json
@@ -2143,8 +2145,8 @@ Cria um exame de enem.
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" http://queroalunos.com/api/enem_exams/789/status \
-  --data "inactive"
+curl -X PUT --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/enem_exams/789 \
+  --data '{"status":"inactive"}'
 ```
 
 > Resposta
@@ -2214,8 +2216,8 @@ Suspende um exame de Enem específico.
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" http://queroalunos.com/api/enem_exams/suspend \
-  --data "data.json"
+curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/enem_exams/suspend \
+  --file "data.json"
 ```
 
 > data.json
@@ -2521,7 +2523,7 @@ Esta notificação informando uma nova inscrição para exame via vestibular.
 }
 ```
 
-Esta notificação informando uma nova inscrição para exame via ENEM.
+Esta notificação informa uma nova inscrição para exame via ENEM.
 
 ### Parâmetros
 
