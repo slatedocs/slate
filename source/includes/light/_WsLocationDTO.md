@@ -30,7 +30,7 @@ key | type | status | comment
 --- | ---- | :----: | ---:
 id | string | 1..1 | идентификатор
 name | string | 0..1 | наименование
-city | string | 0..1 | город
+city | string | 1..1 | город
 address | string | 0..1 | адрес
 lat | string | 1..1 | широта
 lng | string | 1..1 | долгота
