@@ -1379,36 +1379,6 @@ curl -X POST --header "Authorization: Base ########" --header "Content-Type: app
 }
 ```
 
-> Resposta
-
-```json
-{
-  "id": 1234,
-  "course_skus": [
-    "ADM-MANHA-SP",
-    "DIR-MANHA-SP",
-    "ADM-NOITE-RJ"
-  ],
-  "exam_locations": [
-    {
-      "address": "Rua Márcia",
-      "number": "4231",
-      "neighborhood": "Morro do Barreto",
-      "city": "São Roque",
-      "state": "SP",
-      "postal_code": "19110-000"
-    }
-  ],
-  "dates": [
-    "2016-11-01", "2016-11-01",
-    "2016-11-01", "2016-11-01"
-  ],
-  "times": [ "18:30", "19:30" ],
-  "status": "active",
-  "kind": "scheduled"
-}
-```
-
 > Retorno quando parâmetros estão incorretos
 
 ```json
@@ -1769,30 +1739,6 @@ curl -X POST --header "Authorization: Base ########" --header "Content-Type: app
 }
 ```
 
-> Resposta
-
-```json
-{
-  "id": 456,
-  "exam_group_id": 1234,
-  "course_skus": [ "ADM-MANHA-SP" ],
-  "exam_location": [
-    {
-      "address": "Rua Márcia",
-      "number": "4231",
-      "neighborhood": "Morro do Barreto",
-      "city": "São Roque",
-      "state": "SP",
-      "postal_code": "19110-000"
-    }
-  ],
-  "date": "2016-11-01",
-  "time": "18:30",
-  "status": "active",
-  "kind": "scheduled"
-}
-```
-
 > Retorno quando parâmetros estão incorretos
 
 ```json
@@ -1820,6 +1766,30 @@ Cria um novo exame.
 | time | string | horário do exame vestibular |
 | status | string | situação dos exames entre `active` ou `inactive` |
 | kind | string | tipo dos exames desse lote |
+
+> Resposta
+
+```json
+{
+  "id": 456,
+  "exam_group_id": 1234,
+  "course_skus": [ "ADM-MANHA-SP" ],
+  "exam_location": [
+    {
+      "address": "Rua Márcia",
+      "number": "4231",
+      "neighborhood": "Morro do Barreto",
+      "city": "São Roque",
+      "state": "SP",
+      "postal_code": "19110-000"
+    }
+  ],
+  "date": "2016-11-01",
+  "time": "18:30",
+  "status": "active",
+  "kind": "scheduled"
+}
+```
 
 ### Informações da resposta
 
@@ -2077,25 +2047,6 @@ curl -X POST --header "Authorization: Base ########" --header "Content-Type: app
 }
 ```
 
-```json
-{
-  "id": 789,
-  "course_skus": [
-    "ADM-MANHA-SP",
-    "DIR-MANHA-SP",
-    "ADM-NOITE-RJ"
-  ],
-  "minimum_grades": {
-    "redacao": 600.0,
-    "humanas": 600.0,
-    "natureza": 600.0,
-    "linguagens": 600.0,
-    "matematica": 600.0
-  },
-  "status": "active"
-}
-```
-
 > Resposta quando não encontra nenhum exame
 
 ```json
@@ -2125,6 +2076,27 @@ Cria um exame de enem.
 | [minimum_grades] linguagens | float | nota mínima de linguagens exigida pela faculdade |
 | [minimum_grades] matematica | float | nota mínima de matemática exigida pela faculdade |
 | status | string | situação do exame de enem entre `active` e `inactive` |
+
+> Resposta
+
+```json
+{
+  "id": 789,
+  "course_skus": [
+    "ADM-MANHA-SP",
+    "DIR-MANHA-SP",
+    "ADM-NOITE-RJ"
+  ],
+  "minimum_grades": {
+    "redacao": 600.0,
+    "humanas": 600.0,
+    "natureza": 600.0,
+    "linguagens": 600.0,
+    "matematica": 600.0
+  },
+  "status": "active"
+}
+```
 
 ### Informações da resposta
 
