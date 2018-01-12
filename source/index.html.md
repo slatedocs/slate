@@ -1,5 +1,5 @@
 ---
-title: Bird.i | API Reference
+title: Bird.i – Docs
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
