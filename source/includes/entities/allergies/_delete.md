@@ -15,7 +15,7 @@ RestClient::Request.new(
 ).execute
 ```
 
-To remove an allergy for a patient, make a request to:
+To remove an allergy from a patient's list of allergies, make a request to:
 
 ### HTTP Request
 

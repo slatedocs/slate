@@ -51,7 +51,7 @@ To search, make a request to:
 
 `POST {server_url}/api/v1/allergies/search`
 
-This request must include a valid User JWT token, please see our [documentation](#user-tokens)
+This request must include a valid JWT token, please see our [documentation](#api-tokens)
 
 ### Header Parameter
 
