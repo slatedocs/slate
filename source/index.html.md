@@ -173,7 +173,7 @@ mobius.appStore
 
 ```json
 {
-  "num_credits": 900
+  "num_credits": "900"
 }
 ```
 
@@ -236,7 +236,7 @@ mobius.appStore
 ```json
 {
   "success": true,
-  "num_credits": 900 // number of credits user has after the use
+  "num_credits": "900" // number of credits user has after the use
 }
 ```
 
