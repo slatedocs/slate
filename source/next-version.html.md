@@ -23,34 +23,11 @@ search: true
 
 # API name
 
-
-## /api/v1/search/
-
-**Description**
-
-Returns a list of stories.
-
-**Input Parameters**
-
-| Name | Data Type | Description|
-|--|--|--|
-|q| string|  The search string, for example |
-|author| string| The author name to search|
-|author-id| integer| The author ID|
-|fields| string| The parameters of a story, such as headline, slug, section, author ID, story ID, and so on.|
-|limit |integer |The number of stories to display. The default is 20. |
-|offset |integer |The distance from the start of the array of stories to the reference point in the array. |
-|sort| string| Returns stories based on ascending or descending order|  
-|published-before| integer| The date in Epoch format|
-|published-after| integer | The date in Epoch format|
-
-
-
 ```
 
 Example Request
 
-http://sketches.quintype.com/api/v1/search?fields=headline%2C%20tags%2Cslug%2C%20last-published-at%2C&limit=5&q=Indian%20cricket" -H "accept: json"
+$ curl -X GET "http://sketches.quintype.com/api/v1/search?fields=headline%2C%20tags%2Cslug%2C%20last-published-at%2C&limit=5&q=Indian%20cricket" -H "Accept: application/json"
 
 
 Example Response
@@ -67,7 +44,6 @@ Example Response
                {  
                   "id":275035,
                   "name":"National",
-                  "meta-description":null,
                   "slug":"national"
                }
             ],
@@ -80,7 +56,6 @@ Example Response
                {  
                   "id":331448,
                   "name":"Tesla",
-                  "meta-description":null,
                   "slug":"tesla"
                }
             ],
@@ -88,32 +63,7 @@ Example Response
             "last-published-at":1487840302541
          },
          {  
-            "headline":"Viewpoint: How a \u2018breaking\u2019 murder has exposed Indian media",
-            "tags":[  
-               {  
-                  "id":15158,
-                  "name":"Murder",
-                  "meta-description":null,
-                  "slug":"murder"
-               },
-               {  
-                  "id":15496,
-                  "name":"Peter Mukherjea",
-                  "meta-description":null,
-                  "slug":"peter-mukherjea"
-               },
-               {  
-                  "id":15495,
-                  "name":"Indrani Mukherjea",
-                  "meta-description":null,
-                  "slug":"indrani-mukherjea"
-               }
-            ],
-            "slug":"current-affairs/2015/09/03/viewpoint-how-a-breaking-murder-has-exposed-indian-media",
-            "last-published-at":1441254770109
-         },
-         {  
-            "headline":"9/11 and the unsolvable Afghan drama  \u00A0",
+            "headline":"9/11 and the unsolvable Afghan drama",
             "tags":[  
                {  
                   "id":17518,
@@ -157,40 +107,41 @@ Example Response
 
 ```
 
-
-
-## /api/v1/stories/
+## /api/v1/search/
 
 **Description**
 
-Returns a list of stories and the story details, such as the author name and author ID, story headline, story slug, the list of sections ID and section name that the story belongs to, story template, metadata, and so on.
-
+Returns a list of stories.
 
 **Input Parameters**
 
 | Name | Data Type | Description|
 |--|--|--|
-| section-id | integer | The section ID of a story |
-| section | string | The name of a section |
-|fields|string|The parameters of a story, such as headline, slug, section, author ID, story ID, and so on. |
-|limit|integer|The number of stories to display. The default is 20. |
-|offset|integer|The distance from the start of the array of stories to the reference point in the array. |
-|story-order|string|Displays stories in the specified order, such as top, last-updated, and so on. |
-|template|string|The name of the story template. For example, video, live-blog, photo-story, and so on. |
-|tag|string|The name of the tags. |
-|randomize|string|Displays list of random stories. |
-|not-story-content-ids | string |The stories other than the mentioned story IDs. |
+|q| string|  The search string |
+|author| string| The author name |
+|author-id| integer| The author ID|
+|fields| string| The parameters of a story, such as headline, slug, section, author ID, story ID, and so on.|
+|limit |integer |The number of stories to display. The default is 20. |
+|offset |integer |The distance from the start of the array of stories to the reference point in the array. |
+|sort| string| Returns stories based on ascending or descending order|  
+|published-before| integer| The date in Epoch format|
+|published-after| integer | The date in Epoch format|
+
+
 
 
 
 ```
+Example Request
+
+$ curl -X GET "http://sketches.quintype.com/api/v1/stories?limit=2  -H "Accept: application/json"
 
 Example Response
 
 {  
    "stories":[  
       {  
-         "author-name":"Michele Maguire",
+         "author-name":"Michele Mag",
          "headline":"Dangal reviews: Aamir Khan gets a salute from all of Bollywood",
          "slug":"entertainment/2016/12/23/storyabcphoto",
          "last-published-at":1504268716413,
@@ -203,7 +154,6 @@ Example Response
                "name":"Entertainment",
                "display-name":"Entertainment",
                "slug":"entertainment",
-               "parent-id":null,
                "collection":null
             }
          ],
@@ -229,8 +179,8 @@ Example Response
          }
       },
       {  
-         "author-name":"Sriram Krishnaswamy",
-         "headline":"9/11 and the unsolvable Afghan drama  \u00A0",
+         "author-name":"Sriram K",
+         "headline":"9/11 and the unsolvable Afghan drama",
          "slug":"politics/2017/09/13/afghan-drama",
          "last-published-at":1505284207024,
          "alternative":{  
@@ -283,6 +233,92 @@ Example Response
 
 ```
 
+## /api/v1/stories/
+
+**Description**
+
+Returns a list of stories and the story details, such as the author name and author ID, story headline, story slug, the list of sections ID and section name that the story belongs to, story template, metadata, and so on.
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+| section-id | integer | The section ID of a story |
+| section | string | The name of a section |
+|fields|string|The parameters of a story, such as headline, slug, section, author ID, story ID, and so on. |
+|limit|integer|The number of stories to display. The default is 20. |
+|offset|integer|The distance from the start of the array of stories to the reference point in the array. |
+|story-order|string|Displays stories in the specified order, such as top, last-updated, and so on. |
+|template|string|The name of the story template. For example, video, live-blog, photo-story, and so on. |
+|tag|string|The name of the tags. |
+|randomize|string|Displays list of random stories. |
+|not-story-content-ids | string |The stories other than the mentioned story IDs. |
+
+
+```
+Example Request
+
+$ curl -X GET "http://sketches.quintype.com/api/v1/stories-by-slug?slug=columns/2017/12/05/what-we-do"  -H "Accept: application/json"
+
+Example Response
+
+{  
+   "story":{  
+      "updated-at":1512455351309,
+      "assignee-id":181082,
+      "author-name":"Mohan",
+      "headline":"What we do",
+      "story-content-id":"d0cd42fd-43dd-45b9-8f72-b0e8bfe5fed5",
+      "slug":"columns/2017/12/05/test-what-we-do",
+      "last-published-at":1512455358961,
+      "content-created-at":1512455051337,
+      "owner-name":"Mohan",
+      "publisher-id":78,
+      "published-at":1512455358961,
+      "status":"published",
+      "cards":[  
+         {  
+            "story-elements":[  
+               {  
+                  "description":"",
+                  "page-url":"/story/d0cd42fd-43dd-45b9-8f72-b0e8bfe5fed5/element/8cce4630-31d7-4ea0-8950-82aad9c8d33a",
+                  "type":"text",
+                  "id":"8cce4630-31d7-4ea0-8950-82aad9c8d33a",
+                  "metadata":{  
+                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer feugiat nisi sed elementum egestas. Duis ut pretium neque. Mauris vestibulum suscipit purus vestibulum semper. Donec elementum augue sem. Sed id eros accumsan, elementum ipsum eu, mattis arcu. Vestibulum eget ipsum est. Proin dapibus ornare odio, eget placerat justo placerat eu."
+                  },
+                  "subtype":"blurb",
+                  "text":"<blockquote>This is a note.</blockquote>",
+
+               },
+               {  
+                  "description":"",
+                  "page-url":"/story/d0cd42fd-43dd-45b9-8f72-b0e8bfe5fed5/element/3aef7afc-83a3-42ae-b41a-efe2896c5a2f",
+                  "type":"text",
+                  "id":"3aef7afc-83a3-42ae-b41a-efe2896c5a2f",
+
+               },
+               "card-updated-at":1512455301695,
+               "content-version-id":"da0ed0a6-c26a-46cc-b185-8e2f3fe2f128",
+               "card-added-at":1512455301695,
+               "status":"draft",
+               "id":"de9aa0cf-0d3c-4fcf-86d6-4a25bac857fe",
+               "version":1,
+               "story-version-id":"e06cef66-0926-4652-9358-b7c27b5f44f3",
+               "content-type":"story",
+               "author-id":181082,
+               "version":4,
+               "created-at":1512455344038,
+               "assignee-name":"Mohan",
+
+            ]
+         }
+      ]
+   }
+}
+
+```
 
 ## /api/v1/stories-by-slug/
 
@@ -300,24 +336,7 @@ Returns the story having the mentioned slug. The output contains information suc
 
 
 ```
-
-
-
-```
-
-
-## /api/v1/stories/{story-id}
-
-Returns the story details having the mentioned story ID.
-
-
-**Input Parameters**
-
-| Name | Data Type | Description|
-|--|--|--|
-|story-id | string| The story ID |
-
-```
+curl -X GET "http://sketches.quintype.com/api/v1/stories/ef91900e-2a7d-42c6-8ccc-fb75db2a4504"  -H "Accept: application/json"
 
 Example Response
 
@@ -336,7 +355,7 @@ Example Response
          }
       },
       "assignee-id":323432,
-      "author-name":"Vineet Panjabi",
+      "author-name":"Vineet",
       "tags":[  
          {  
             "id":257701,
@@ -417,28 +436,7 @@ Example Response
                   "family-id":"7267f6e8-808c-455b-81aa-6bd0dd8c7ad5",
                   "title":"",
                   "id":"690b7304-d875-484a-9850-33c9eb360537",
-                  "url":"https://www.youtube.com/watch?v=iGpVs3wFKF0#action=share",
-                  "embed-url":"https://www.youtube.com/embed/iGpVs3wFKF0#action=share",
-                  "metadata":{  
-
-                  },
-                  "subtype":null
                },
-               {  
-                  "description":"",
-                  "embed-js":"PGJsb2NrcXVvdGUgY2xhc3M9InR3aXR0ZXItdHdlZXQiPjxwIGxhbmc9ImVuIiBkaXI9Imx0ciI+U2F5IGhlbGxvIHRvIHRoZSBmdXR1cmUuIGlQaG9uZSBYLjwvcD4mbWRhc2g7IEFwcGxlIChAQXBwbGUpIDxhIGhyZWY9Imh0dHBzOi8vdHdpdHRlci5jb20vQXBwbGUvc3RhdHVzLzkwNzcwMDk0MjcxNTIyODE2MCI+U2VwdGVtYmVyIDEyLCAyMDE3PC9hPjwvYmxvY2txdW90ZT4KPHNjcmlwdCBhc3luYyBzcmM9Ii8vcGxhdGZvcm0udHdpdHRlci5jb20vd2lkZ2V0cy5qcyIgY2hhcnNldD0idXRmLTgiPjwvc2NyaXB0Pg==",
-                  "page-url":"/story/ef91900e-2a7d-42c6-8ccc-fb75db2a4504/element/f693466d-2c8f-49fa-9d10-d26ff4f05ae3",
-                  "type":"jsembed",
-                  "family-id":"93146ad5-d1d1-4302-84aa-270696ba144c",
-                  "title":"",
-                  "id":"f693466d-2c8f-49fa-9d10-d26ff4f05ae3",
-                  "metadata":{  
-                     "tweet-url":"https://twitter.com/Apple/status/907700942715228160",
-                     "provider":"twitter",
-                     "tweet-id":"907700942715228160"
-                  },
-                  "subtype":"tweet"
-               }
             ],
             "card-updated-at":1505384055361,
             "content-version-id":"6445d74d-1079-4244-a5a1-5b8403cf88cc",
@@ -453,7 +451,7 @@ Example Response
                   "title":"iPhone X vs Samsung Galaxy Note 8",
                   "message":"Iphone vs Samsung",
                   "image":{  
-                     "key":"quintype-demo/2016-11/20d960e9-cbb4-46c0-a6cc-3819c326f766/pixelxl-iphone7plus-30.jpg",
+                     "key":"pixelxl-iphone7plus-30.jpg",
                      "url":null,
                      "attribution":null,
                      "caption":"Best in class.",
@@ -476,9 +474,6 @@ Example Response
       "content-updated-at":1509011137120,
       "author-id":323432,
       "owner-id":323432,
-      "linked-story-ids":[  
-
-      ],
       "access":null,
       "first-published-at":1505384184330,
       "hero-image-caption":"Best in class.",
@@ -493,12 +488,54 @@ Example Response
          }
       },
       "publish-at":null,
-      "assignee-name":"Vineet Panjabi"
+      "assignee-name":"Vineet
    }
 }
 
 ```
 
+## /api/v1/stories/{story-id}
+
+Returns the story details having the mentioned story ID.
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|story-id | string| The story ID |
+
+
+```
+Example Request
+
+$ curl -X GET "http://sketches.quintype.com/api/v1/stories/db09a326-3af2-4286-a92b-8ffbc9bb3c4f/related-stories?fields=headline,id,slug,author-name"  -H "Accept: application/json"
+
+Example Response
+{  
+   "related-stories":[  
+      {  
+         "headline":"Okuhara reigns at Glasgow",
+         "id":"496b653b-cb45-4843-9f1d-273b7a81900b",
+         "slug":"sports/2017/08/30/okuhara-reigns-at-glasgow",
+         "author-name":"Tapan"
+      },ff
+      {  
+         "headline":"iPhone X vs Samsung Galaxy Note 8",
+         "id":"ef91900e-2a7d-42c6-8ccc-fb75db2a4504",
+         "slug":"technology/2017/09/14/iphone-x-vs-samsung-galaxy-note-8",
+         "author-name":"Vineet"
+      },
+      {  
+         "headline":"9/11 and the unsolvable Afghan drama",
+         "id":"8339b599-3eab-4428-9486-9139d28bb1ba",
+         "slug":"politics/2017/09/13/afghan-drama",
+         "author-name":"Sriram"
+      }
+   ]
+}
+
+```
 
 ## /api/v1/stories/{story-id}/related-stories
 
@@ -511,57 +548,86 @@ Returns the stories that are related to the mentioned story ID.
 | Name | Data Type | Description|
 |--|--|--|
 |story-id |string | The story ID|
-|section ID |string | The section ID of a story|
+|section-id |string | The section ID of a story|
 |fields| string | The parameters of a story, such as headline, slug, sections, author ID, and so on.|
 
 
 ```
+Exmaple Request
+
+curl 'http://sketches.quintype.com/api/v1/bulk' -H 'Content-Type: application/json' --data-binary '{"requests":{"sports":{"slug":"sports","limit":"4","_type":"collection"},"history":{"slug":"history","limit":"4","_type":"collection"}}}' --compressed;
+
 Example Response
+
 {  
-   "related-stories":[  
-      {  
-         "headline":"Okuhara reigns at Glasgow",
-         "id":"496b653b-cb45-4843-9f1d-273b7a81900b",
-         "slug":"sports/2017/08/30/okuhara-reigns-at-glasgow",
-         "author-name":"Tapan Bhat"
-      },ff
-      {  
-         "headline":"iPhone X vs Samsung Galaxy Note 8",
-         "id":"ef91900e-2a7d-42c6-8ccc-fb75db2a4504",
-         "slug":"technology/2017/09/14/iphone-x-vs-samsung-galaxy-note-8",
-         "author-name":"Vineet Panjabi"
+   "results":{  
+      "sports":{  
+         "updated-at":1507616006917,
+         "slug":"sports",
+         "name":"Sports",
+         "automated":false,
+         "template":"default",
+         "rules":{  
+
+         },
+         "summary":"Sports",
+         "id":7595,
+         "total-count":1,
+         "items":[  
+            {  
+               "id":7595,
+               "type":"collection",
+               "name":"Sports Main",
+               "slug":"sports-main",
+               "template":"default"
+            }
+         ],
       },
-      {  
-         "headline":"9/11 and the unsolvable Afghan drama  \u00A0",
-         "id":"8339b599-3eab-4428-9486-9139d28bb1ba",
-         "slug":"politics/2017/09/13/afghan-drama",
-         "author-name":"Sriram Krishnaswamy"
+      "history":{  
+         "updated-at":1506933499956,
+         "slug":"history",
+         "name":"History ",
+         "automated":false,
+         "template":"default",
+         "rules":{  
+            "content-type":"story",
+            "collection-id":7585
+         },
+         "summary":"History ",
+         "id":7587,
+         "total-count":1,
+         "items":[  
+            {  
+               "id":7585,
+               "type":"collection",
+               "name":"History Main",
+               "slug":"history-main",
+               "template":"default"
+            }
+         ],
       }
-   ]
+   }
 }
 
 ```
 
-
-
-## /api/v1/collections/{slug}
+##/api/v1/bulk
 
 **Description**
-Returns the collection based on the slug.
+
+Send a batch of API requests.
 
 
 **Input Parameters**
 
 | Name | Data Type | Description|
 |--|--|--|
-|slug| string| The slug for the desired collection|
-|item-type| string| POssible values are story and collection|
-|exclude-story-ids|integer| The story IDs to be excluded from displaying|
+
 
 ```
 Example Request
 
-$ curl -X GET "http://sketches.quintype.com/api/v1/collections/history-trails  -H "accept: json"
+$ curl -X GET "http://sketches.quintype.com/api/v1/collections/history-trails  -H "Accept: application/json"
 
 Example Response
 
@@ -594,23 +660,25 @@ Example Response
 }
 ```
 
-## /api/v1/authors/
+## /api/v1/collections/{slug}
 
 **Description**
+Returns the collection based on the slug.
 
-Returns the list of authors with the author name and author ID, along with details such as the author's biodata, gender, twitter handle and so on.
 
 **Input Parameters**
 
 | Name | Data Type | Description|
 |--|--|--|
-|author-id| integer| The author ID |
+|slug| string| The slug for the desired collection|
+|item-type| string| Possible values are story and collection|
+|exclude-story-ids|integer| The story IDs to be excluded from displaying|
 
 
 ```
 Example Request
 
-$ curl -X GET "http://sketches.quintype.com/api/v1/authors -H "accept: json"
+$ curl -X GET "http://sketches.quintype.com/api/v1/authors -H "Accept: application/json"
 
 Example Response
 
@@ -622,31 +690,31 @@ Example Response
 "authors":[  
    {  
       "id":2038,
-      "name":"Tejas Dinkar",
-      "avatar-url":"https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50",
+      "name":"Dinjas,
+      "avatar-url":"https://lh3.googleusercontent.com/-XdUIqdMkCWA/4252rscbv5M/photo.jpg?sz=50",
       "avatar-s3-key":null,
       "twitter-handle":null,
       "bio":null,
       "metadata":{  
 
       },
-      "slug":"tejas-dinkar"
+      "slug":"dinjas"
    },
    {  
       "id":2039,
-      "name":"Amit Rathore",
-      "avatar-url":"https://lh5.googleusercontent.com/-nXlfvt-YsVw/AAAAAAAAAAI/AAAAAAAAAI0/uo5Y2_mFdWc/photo.jpg?sz=50",
+      "name":"Ramit",
+      "avatar-url":"https://lh5.googleusercontent.com/-nXlfvt-YsVw/uo5Y2_mFdWc/photo.jpg?sz=50",
       "avatar-s3-key":null,
       "twitter-handle":null,
       "bio":null,
       "metadata":{  
 
       },
-      "slug":"amit-rathore"
+      "slug":"ramit"
    },
    {  
       "id":2040,
-      "name":"Kuruvilla Choolackal",
+      "name":"Villackal",
       "avatar-url":null,
       "avatar-s3-key":null,
       "twitter-handle":null,
@@ -654,11 +722,11 @@ Example Response
       "metadata":{  
 
       },
-      "slug":"kuruvilla-choolackal"
+      "slug":"villackal"
    },
    {  
       "id":2041,
-      "name":"Tapan Bhat",
+      "name":"Tapan",
       "avatar-url":null,
       "avatar-s3-key":null,
       "twitter-handle":null,
@@ -666,14 +734,14 @@ Example Response
       "metadata":{  
 
       },
-      "slug":"tapan-bhat"
+      "slug":"tapan"
    }
 ]
 }
 
 ```
 
-## /api/v1/authors/{author-id}
+## /api/v1/authors
 
 **Description**
 
@@ -681,16 +749,14 @@ Returns the list of authors with the author name and author ID, along with detai
 
 **Input Parameters**
 
-| Name | Data Type | Description|
-|--|--|--|
-|author-id| integer| The author ID |
+None.
 
 
 ```
 
 Example Request
 
-$ curl -X GET "http://sketches.quintype.com/api/v1/authors/20294 -H "accept: json"
+$ curl -X GET "http://sketches.quintype.com/api/v1/authors/20294 -H "Accept: application/json"
 
 Example Response
 {  
@@ -708,6 +774,19 @@ Example Response
 }
 ```
 
+## /api/v1/authors/{author-id}
+
+**Description**
+
+Returns the list of authors with the author name and author ID, along with details such as the author's biodata, gender, twitter handle and so on.
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|author-id| integer| The author ID |
+
+
 
 ## /api/v1/config
 
@@ -721,23 +800,10 @@ Displays the publisher's configurations, such as the publisher name and ID, SEO 
 None.
 
 
-## /api/v1/breaking-news
-
-**Description**
-
-Returns the list of breaking news.
-
-**Input Parameters**
-
-| Name | Data Type | Description|
-|--|--|--|
-|
-
-
 ```
 Example Request
 
-$ curl -X GET "http://sketches.quintype.com/api/v1/breaking-news" -H "accept: json"
+$ curl -X GET "http://sketches.quintype.com/api/v1/breaking-news" -H "Accept: application/json"
 
 Example Response
 
@@ -785,28 +851,20 @@ Example Response
 
 ```
 
-##/api/v1/entities/
+## /api/v1/breaking-news
 
 **Description**
 
-Lists all entities.
-
+Returns the list of breaking news.
 
 **Input Parameters**
 
-| Name | Data Type | Description|
-|--|--|--|
-|q| string|  The search string, for example |
-|limit|integer|The number of stories to display. The default is 20. |
-|offset|integer|The distance from the start of the array of stories to the reference point in the array. |
-|id | integer| The ID of an entity|
-|ids| string | A list of entity IDs |
-
+None.
 
 ```
 Example Request
 
-curl -X GET "http://sketches.quintype.com/api/v1/entities?limit=2&type=book" -H "accept: json"
+curl -X GET "http://sketches.quintype.com/api/v1/entities?limit=2&type=book" -H "Accept: application/json"
 
 
 Example Response
@@ -840,34 +898,32 @@ Example Response
    "total":7
 }
 
-Example Request
-
-curl -X GET "http://sketches.quintype.com/api/v1/entities?limit=2&type=book" -H "accept: json"
-
-
-Example Response
 
 ```
 
-##/api/v1/entities/{id}
+##/api/v1/entities/
 
 **Description**
 
-Lists the entity having the specified ID.
+Lists all entities.
 
 
 **Input Parameters**
 
 | Name | Data Type | Description|
 |--|--|--|
-| ID | integer| The entity ID|
+|q| string|  The search string, for example |
+|limit|integer|The number of stories to display. The default is 20. |
+|offset|integer|The distance from the start of the array of stories to the reference point in the array. |
+|id | integer| The ID of an entity|
+|ids| string | A list of entity IDs |
 
 
 ```
 
 Example Request
 
-curl -X GET "http://sketches.quintype.com/api/v1/entities/12" -H "accept: json"
+curl -X GET "http://sketches.quintype.com/api/v1/entities/12" -H "Accept: application/json"
 
 
 Example Response
@@ -888,8 +944,7 @@ Example Response
 
 ```
 
-
-##/api/v1/entities/{id}/{subentity+}
+##/api/v1/entities/{id}
 
 **Description**
 
@@ -901,15 +956,15 @@ Lists the entity having the specified ID.
 | Name | Data Type | Description|
 |--|--|--|
 | ID | integer| The entity ID|
-|subentity |string | A nested entity name|
+
 
 
 ```
 
-The following request gets the list of companies established in the year 2015. A relationship had been created between the entities (entity-type) `year` and `companies-created`  
+The following request fetches the list of companies established in the year 2015. A relationship had been created between the entities (entity-type) `year` and `companies` 
 
 Example Request
-curl -X GET "http://sketches.quintype.com/api/v1/entities/15557/companies-established-year
+curl -X GET "http://sketches.quintype.com/api/v1/entities/15557/companies-established-year" -H "Accept: application/json"
 
 Example Response
 
@@ -928,7 +983,7 @@ Example Response
             "created-at": 1498647361780
          }
       ],
-      "companies-established-year": [
+      "companies-year": [
          {
             "entity-type": "companies-established",
             "name": "The companies established in 2015",
@@ -950,6 +1005,322 @@ Example Response
 }
 
 ``` 
+
+##/api/v1/entities/{id}/{subentity+}
+
+**Description**
+
+Lists the subentity details in relation to the entity ID.
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+| ID | integer| The entity ID|
+|subentity |string | A nested entity name|
+
+
+```
+Example Request
+
+curl 'http://sketches.quintype.com/api/stories/8f9538f2-1972-4c7a-b1eb-7f8942dd0606/votes' -H 'Content-Type: application/json' --data-binary '{'magnitude': 'yes'}';
+
+
+```
+
+
+##/api/stories/{story-id}/votes
+
+**Description**
+
+ Adds vote to the specified story. Note that the user has to be logged in.
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|story-id | String| The story ID|
+
+
+```
+Example Request
+
+curl -X GET "http://sketches.quintype.com/api/stories/8f9538f2-1972-4c7a-b1eb-7f8942dd0606/votes" -H "Accept: application/json"
+
+
+Example Response
+
+
+
+```
+
+
+##/api/stories/{story-id}/votes
+
+**Description**
+
+Fetches the total number of votes for the specified ID. Note that the user has to be logged in.
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|story-id | String| The story ID|
+
+
+
+```
+Example Request
+curl -X GET "http://sketches.quintype.com/stories.rss" -H "Accept: application/json"
+
+Example Response
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/">
+    <channel> 
+        <title>Platform</title> 
+        <description>Platform</description> 
+        <atom:link href="http://sketches.quintype.com/stories.rss?time-period=last-1-month" rel="self" type="application/rss+xml"></atom:link> 
+        <language>en-US</language> 
+        <lastBuildDate>Tue,
+19Dec 2017 04:40:45+0000</lastBuildDate> 
+        <sy:updatePeriod>hourly</sy:updatePeriod> 
+        <sy:updateFrequency>1</sy:updateFrequency> 
+        <item> 
+    <title>Indian opener Rohit Sharma’s record-setting third career double hundred.</title> 
+    <link>http://www.southmagnews.com/2017/12/18/indian-opener-rohit-sharmas-record-setting-third-career-double-hundred</link> 
+    <comments>http://www.southmagnews.com/2017/12/18/indian-opener-rohit-sharmas-record-setting-third-career-double-hundred#comments</comments> 
+    <atom:updated>2017-12-18T11:31:48.852Z</atom:updated> 
+    <category>cricket</category> 
+    <content:encoded> 
+        <![  
+      CDATA   [  
+      <p>Indian opener Rohit Sharma’s record-setting third career double hundred.</p>
+   ]
+]> 
+    </content:encoded> 
+</item> 
+<item> 
+<title> 
+GST Network Brings In Option For Filing Of Forms On Monthly Or Quarterly Basis 
+</title> 
+<link> 
+https://magzinenew.com/insta/gst-network-brings-in-option-for-filing-of-forms-on-monthly-or-quarterly-basis 
+</link> 
+<comments> 
+https://magzinenew.com/insta/gst-network-brings-in-option-for-filing-of-forms-on-monthly-or-quarterly-basis#comments 
+</comments> 
+<guid isPermaLink="false">20a996a0-80ba-4bed-b961-a3d5064bff40</guid> 
+<atom:updated>2017-12-19T03:13:36.812Z</atom:updated> 
+<atom:author> 
+<atom:name>Staff</atom:name> 
+<atom:uri>/api/author/17513</atom:uri> 
+</atom:author> 
+<description> 
+<![  
+   CDATA   [  
+      Taxpayers with annual aggregate turnover up to Rs1.5 crore in the previous financial year can avail the option of filing quarterly returns.
+   ]
+]> 
+</description> 
+<media:keywords>GSTN,
+GST Return,
+Quarterly</media:keywords> 
+<media:content height="249" url="https://images.assettype.com/swarajya/2017-11/8b4f08c4-c333-4953-b649-330641d1b341/unnamed.jpg" width="448"> 
+<media:title type="html"> 
+<![  
+   CDATA   [  
+      GSTN logo
+   ]
+]> 
+</media:title> 
+</media:content> 
+<media:thumbnail url="https://images.assettype.com/swarajya/2017-11/8b4f08c4-c333-4953-b649-330641d1b341/unnamed.jpg?w=280" width="280"/> 
+<category>Insta</category> 
+<content:encoded> 
+<![  
+   CDATA   [  
+      <p>Goods and services tax network (GSTN),
+      the IT backbone of the new tax regime,
+      on Monday said it has put a new function on its portal to allow taxpayers choose the frequency of filing GSTR 1 form on quarterly or monthly basis.</p>
+   ]
+]> 
+</content:encoded> 
+</item> 
+</channel> 
+</rss>
+
+```
+
+##/stories.rss
+
+**Description**
+
+Displays the RSS feeds of a publisher.
+
+
+
+```
+
+Example Request
+
+curl -X GET "http://sketches.quintype.com/api/v1/tags/temple" -H "Accept: application/json"
+
+Example Response
+
+{  
+   "tags":[  
+      {  
+         "id":407427,
+         "name":"temples",
+         "meta-description":null,
+         "slug":"temples"
+      },
+      {  
+         "id":388924,
+         "name":"#temples",
+         "meta-description":null,
+         "slug":"temples"
+      }
+   ]
+}
+
+```
+
+##/api/v1/tags/slug
+
+**Description**
+
+Displays the tag ID, name, and the meta description that matches the given slug.
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|slug| string| The desired tag slug|
+
+
+```
+
+Example Request
+
+curl -X GET "http://sketches.quintype.com/api/member/metadata" -H "Accept: application/json"
+
+Example Response
+
+
+
+```
+
+##/api/member/metadata
+
+**Description**
+
+Displays the meta description of the current user.
+
+
+**Input Parameters**
+
+None.
+
+
+```
+
+Example Request
+
+curl -X POST "http://sketches.quintype.com/api/member/metadata" -H "Accept: application/json" -H "Content-Type: json" -d "{}"
+
+Example Response
+
+
+
+```
+
+##/api/member/metadata
+
+**Description**
+
+Enters the meta description of the current user.
+
+
+**Input Parameters**
+
+None.
+
+```
+
+Example Request
+
+
+
+Example Response
+
+
+
+```
+
+##/api/v1/members/me
+
+
+**Description**
+
+Returns the current user
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|story-id| string| The desired story ID|
+
+
+```
+
+Example Request
+
+curl -X POST "http://sketches.quintype.com/api/member/forgot-password" -H "Accept: application/json" -H "Content-Type: json" -d "{ \"email\": \"string\"}"
+
+Example Response
+
+
+```
+
+##/api/member/forgot-password
+
+
+**Description**
+
+
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|| | |
+
+
+
+##/api/member
+
+```
+Example Request
+
+curl -X POST "http://sketches.quintype.com/api/member" -H "Accept: application/json" -H "Content-Type: json" -d "{"name":"John Doe","username":"johndoe","email":"john@doe.com","password":"mypassword"}"
+
+```
+
+
+##/api/member/login
+
+```
+Example Request
+
+curl -X POST "http://sketches.quintype.com/api/member/forgot-password" -H "Accept: application/json" -H "Content-Type: json" -d {"email":"john@doe.com","password":"mypassword"}
+
+```
 
 
 #(H1) this is testing only
