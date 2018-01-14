@@ -13,6 +13,7 @@ includes:
   - accesstype/subscriber-identities
   - accesstype/subscription-groups
   - accesstype/subscriptions
+  - accesstype/subscription_gifts
   - accesstype/for-platform-customers
 ---
 
