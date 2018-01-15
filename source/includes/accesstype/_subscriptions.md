@@ -91,7 +91,7 @@ curl -H "X-SUBAUTH: <auth-token>" -X PATCH -H "Content-Type: application/json" h
         "email": "hello@quintype.com"
     }
   }
-}`
+}'
 ```
 
 This API can be used to update the attributes for a subscription of a subscriber
@@ -104,7 +104,7 @@ curl -H "X-SUBAUTH: <auth-token>" -X PATCH -H "Content-Type: application/json" h
     "full-name": "hello-world",
     "email": "hello@quintype.com"
   }
-}`
+}'
 ```
 
 This API can be used to update the attributes of **all** active subscriptions of a subscriber
