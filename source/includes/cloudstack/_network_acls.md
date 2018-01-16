@@ -125,6 +125,7 @@ curl -X GET \
       "id": "3247167a-e7e7-11e3-9187-06669c0000ad",
       "networkAclId": "3246de94-e7e7-11e3-9187-06669c0000ad",
       "ruleNumber": "2",
+      "description":"Allow all egress",
       "cidr": "0.0.0.0/0",
       "action": "Allow",
       "protocol": "ALL",
@@ -135,6 +136,7 @@ curl -X GET \
       "id": "3246fdb6-e7e7-11e3-9187-06669c0000ad",
       "networkAclId": "3246de94-e7e7-11e3-9187-06669c0000ad",
       "ruleNumber": "1",
+      "description":"Allow all ingress",
       "cidr": "0.0.0.0/0",
       "action": "Allow",
       "protocol": "ALL",
@@ -161,6 +163,7 @@ Attributes                 | &nbsp;
 `protocol`<br/>*string*    | The protocols targeted by this rule. TCP, UDP, ICMP, or ALL
 `trafficType`<br/>*string* | The direction of traffic targeted by this rule. Either Ingress or Egress
 `state`<br/>*string*       | The state of this rule. Either Active or Inactive
+`description`<br/>*string* | The description of the rule
 
 Query Parameters | &nbsp;
 ---------- | -----
@@ -179,6 +182,7 @@ curl -X GET \
     "id": "3247167a-e7e7-11e3-9187-06669c0000ad",
     "networkAclId": "3246de94-e7e7-11e3-9187-06669c0000ad",
     "ruleNumber": "2",
+    "description":"Allow all egress",
     "cidr": "0.0.0.0/0",
     "action": "Allow",
     "protocol": "ALL",
@@ -199,6 +203,7 @@ Attributes                 | &nbsp;
 `protocol`<br/>*string*    | The protocols targeted by this rule. TCP, UDP, ICMP, or ALL
 `trafficType`<br/>*string* | The direction of traffic targeted by this rule. Either Ingress or Egress
 `state`<br/>*string*       | The state of this rule. Either Active or Inactive
+`description`<br/>*string* | The description of the rule
 
 #### Create a network ACL rule
 
@@ -231,6 +236,10 @@ Protocol-specific       | &nbsp;
 `icmpType`<br/>*int*  | ICMP message type. Required if the protocol is ICMP
 `icmpCode`<br/>*int*  | ICMP message error code. Required if the protocol is ICMP
 
+Optional                   | &nbsp;
+---------------------------|-------
+`description`<br/>*string* | The description of the rule
+
 #### Update a network ACL rule
 
 ```shell
@@ -252,6 +261,7 @@ Optional                   | &nbsp;
 ---------------------------|-------
 `ruleNumber`<br/>*int* | The relative position of this rule in its ACL
 `cidr`<br/>*CIDR*          | The network addresses targeted by this rule
+`description`<br/>*string* | The description of the rule
 `action`<br/>*string*      | What to do with traffic matched by this rule. Either Allow or Deny
 `protocol`<br/>*string*    | The protocols targeted by this rule. TCP, UDP, ICMP, or ALL
 `trafficType`<br/>*string* | The direction of traffic targeted by this rule. Either Ingress or Egress
