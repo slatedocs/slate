@@ -17,6 +17,7 @@ filter-user-id | if filter uses current_user criteria in it, you should provide 
 display-ids | filter TestSets with display-ids (separated by commas) |
 name_exact | filter by TestSet name exact match; case sensitive! |
 name_like | filter by TestSet name: case insensitive, phrase can be inside the name |
+show_tags | showing tags|
 
 * none of the parameters are required. If you combine multiple parameters, it will do AND
 You can see examples in the dark area to the right.
@@ -107,6 +108,7 @@ data/attributes/version | string of TestSet version | false |
 data/attributes/priority | string of TestSet priority | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
 data/instances/test-ids | an array of test-ids to add as instances to the new TestSet | false |
+data/attributes/tags | an array of tags | false |
 
 * To update / view and delete instances, refer to [instances resource](#instances)
 
@@ -135,6 +137,10 @@ This endpoint shows a specific TestSet in your project.
 ### HTTP Request
 
 `GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/sets/YOUR_SET_ID.json`
+
+Parameters | Description | required? |
+--------- | ------- |------- |
+data/attributes/tags | an array of tags | false |
 
 Here's the example of the JSON request and response
 
@@ -192,6 +198,7 @@ data/attributes/planned-execution | date field of planned-execution |
 data/attributes/version | string of TestSet version |
 data/attributes/priority | string of TestSet priority |
 data/attributes/custom-fields | a hash of custom-fields with their value |
+data/attributes/tags | an array of tags | false |
 
 You can find at the right area an example of the JSON request and response
 
@@ -274,6 +281,7 @@ data/attributes/planned-execution | date field of planned-execution |
 data/attributes/version | string of TestSet version |
 data/attributes/priority | string of TestSet priority |
 data/attributes/custom-fields | a hash of custom-fields with their value |
+data/attributes/tags | an array of tags | false |
 
 You can find at the right area an example of the JSON request and response
 

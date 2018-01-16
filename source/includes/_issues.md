@@ -17,6 +17,8 @@ filter-user-id | if filter uses current_user criteria in it, you should provide 
 display-ids | filter Issues with display-ids (separated by commas) |
 title_exact | filter by Issue name exact match; case sensitive! |
 title_like | filter by Issue name: case insensitive, phrase can be inside the name |
+show_tags | showing tags|
+
 
 * none of the parameters are required. If you combine multiple parameters, it will do AND
 You can see examples in the dark area to the right.
@@ -105,7 +107,7 @@ data/attributes/version | string of the issue's version | false |
 data/attributes/priority | string of the issue's priority | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
 data/attributes/issue-type | issue type | false |
-
+data/attributes/tags | an array of tags | false |
 
 You can find at the [right area](#create-an-Issue) (shell) an example of the request
 
@@ -131,6 +133,10 @@ This endpoint shows a specific Issue in your project.
 ### HTTP Request
 
 `GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues/YOUR_ISSUE_ID.json`
+
+Parameters | Description | required? |
+--------- | ------- |------- |
+data/attributes/tags | an array of tags | false |
 
 Here's the example of the JSON request and response
 
@@ -189,6 +195,7 @@ data/attributes/version | string of the issue's version | false |
 data/attributes/priority | string of the issue's priority | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
 data/attributes/issue-type | issue type | false |
+data/attributes/tags | an array of tags | false |
 
 You can find at the right area an example of the JSON request and response
 

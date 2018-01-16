@@ -17,6 +17,7 @@ filter-user-id | if filter uses current_user criteria in it, you should provide 
 display-ids | filter tests with display-ids (separated by commas) |
 name_exact | filter by test name exact match; case sensitive! |
 name_like | filter by test name: case insensitive, phrase can be inside the name |
+show_tags | showing tags|
 
 * none of the parameters are required. If you combine multiple parameters, it will do AND
 You can see examples in the dark area to the right.
@@ -113,6 +114,7 @@ data/attributes/version | string of test version | false |
 data/attributes/priority | string of test priority | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
 data/steps/data* | an array of steps override the exit code | false |
+data/attributes/tags | an array of tags | false |
 
 * Steps array includes steps json hash, with these attributes: name, description, expected-results.
 To update / view and delete steps, refer to steps resources (to be released)
@@ -142,6 +144,10 @@ This endpoint shows a specific test in your project.
 ### HTTP Request
 
 `GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/YOUR_TEST_ID.json`
+
+Parameters | Description | required? |
+--------- | ------- |------- |
+data/attributes/tags | an array of tags | false |
 
 Here's the example of the JSON request and response
 
@@ -206,6 +212,7 @@ data/attributes/status | string of status (not run status) |
 data/attributes/version | string of test version |
 data/attributes/priority | string of test priority |
 data/attributes/custom-fields | a hash of custom-fields with their value |
+data/attributes/tags | an array of tags | false |
 
 
 You can find at the right area an example of the JSON request and response
