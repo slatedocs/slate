@@ -593,6 +593,50 @@ EXEMPLO DE ESTADO DA RESPOSTA COM PAGAMENTO INEXISTENTE
 
 Exclui determinado Pagamento. As mudanças são irreversíveis.
 
+## Cancelamento de Pagamento
+
+```shell
+Cancelar Pagamento
+
+DEFINIÇÃO
+
+  POST https://app.cobrato.com/api/v1/payment/:id/cancel
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X POST https://app.cobrato.com/api/v1/payment/:id/cancel
+
+EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
+
+    200 OK
+
+EXEMPLO DE ESTADO DA RESPOSTA COM PAGAMENTO INEXISTENTE
+
+    404 Not Found
+
+EXEMPLO DE ESTADO DA RESPOSTA COM INSUCESSO
+
+    422 Unprocessable Entity
+
+EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
+
+  {
+    "errors":
+      {
+        "registration_status": ["não permite cancelamento. Somente pagamentos com status 'Pagamento registrado' podem ser cancelados"]
+      }
+  }
+
+```
+
+Inicia o processo de cancelamento de um determinado Pagamento, retornando JSON contendo as informações do pagamento em caso de sucesso ou os erros, caso haja algum.
+
+Após iniciar o processo de cancelamento será necessário gerar um arquivo de remessa, enviar para o banco e esperar o arquivo de retorno confirmando o cancelamento.
+
 ## Tabelas
 
 ### Possíveis valores para payment_type (tabela 1)
