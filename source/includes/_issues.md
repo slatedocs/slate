@@ -136,7 +136,7 @@ This endpoint shows a specific Issue in your project.
 
 Parameters | Description | required? |
 --------- | ------- |------- |
-data/attributes/tags | an array of tags | false |
+show_tags | showing tags| false |
 
 Here's the example of the JSON request and response
 
