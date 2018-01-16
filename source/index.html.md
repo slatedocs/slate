@@ -31,6 +31,7 @@ includes:
   - entities/customer_documents/delete
   - entities/customer_documents/list
   - entities/customer_documents/show
+  - entities/health_conditions/list
   - entities/medical_conditions/clinical_concepts_search
   - entities/medical_conditions/create
   - entities/medical_conditions/delete
