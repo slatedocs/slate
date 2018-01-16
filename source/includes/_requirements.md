@@ -17,6 +17,7 @@ filter-user-id | if filter uses current_user criteria in it, you should provide 
 display-ids | filter Requirements with display-ids (separated by commas) |
 name_exact | filter by Requirement name exact match; case sensitive! |
 name_like | filter by Requirement name: case insensitive, phrase can be inside the name |
+show_tags | showing tags|
 
 * none of the parameters are required. If you combine multiple parameters, it will do AND
 You can see examples in the dark area to the right.
@@ -106,6 +107,7 @@ data/attributes/priority | string of the requirement's priority | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
 data/attributes/parent-id | a parent's requirement id  | false |
 data/traceability/test-ids | an array of test-ids to add to the traceability of the new requirement | false |
+data/attributes/tags | an array of tags | false |
 
 
 You can find at the [right area](#create-a-Requirement) (shell) an example of the request
@@ -132,6 +134,10 @@ This endpoint shows a specific Requirement in your project.
 ### HTTP Request
 
 `GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/requirements/YOUR_REQUIREMENT_ID.json`
+
+Parameters | Description | required? |
+--------- | ------- |------- |
+show_tags | showing tags| false |
 
 Here's the example of the JSON request and response
 
@@ -190,6 +196,7 @@ data/attributes/version | string of the requirement's version | false |
 data/attributes/priority | string of the requirement's priority | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
 data/attributes/parent-id | a parent's requirement id  | false |
+data/attributes/tags | an array of tags | false |
 
 You can find at the right area an example of the JSON request and response
 
