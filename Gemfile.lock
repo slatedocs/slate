@@ -124,7 +124,7 @@ DEPENDENCIES
   rouge (~> 2.0.5)
 
 RUBY VERSION
-   ruby 2.3.5p376
+   ruby 2.5.0
 
 BUNDLED WITH
    1.15.4
