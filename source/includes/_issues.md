@@ -17,7 +17,7 @@ filter-user-id | if filter uses current_user criteria in it, you should provide 
 display-ids | filter Issues with display-ids (separated by commas) |
 title_exact | filter by Issue name exact match; case sensitive! |
 title_like | filter by Issue name: case insensitive, phrase can be inside the name |
-show_tags | showing tags|
+show_tags=true | showing tags|
 
 
 * none of the parameters are required. If you combine multiple parameters, it will do AND
@@ -136,7 +136,7 @@ This endpoint shows a specific Issue in your project.
 
 Parameters | Description | required? |
 --------- | ------- |------- |
-show_tags | showing tags| false |
+show_tags=true | showing tags| false |
 
 Here's the example of the JSON request and response
 
