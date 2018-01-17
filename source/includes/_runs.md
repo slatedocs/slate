@@ -129,7 +129,8 @@ Status can be one of the following: PASSED, FAILED, BLOCKED, NO RUN, N/A
 When using steps, the exit-code is ignored, and it calculates it according to the steps status.
 
 ** files would be as an attachments in your automated tests. It's a json hash that has two attributes: filename, and content_encoded.
-We expect to get the file content encoded as BASE64. See code examples: shell with curl to your right, <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/runs.rb" target="blank">Ruby example here</a>, <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/create_run_attachmnets.py" target="blank">Python example here</a>, <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/java/src/main/java/com/practitest/examples/RunWithAttachments.java" target="blank">Java example here</a>, <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/csharp/create_run_attachments.cs" target="blank">C sharp (.Net) example here</a>.
+We expect to get the file content encoded as BASE64. See code examples: shell with curl to your right, <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/runs.rb" target="blank">Ruby example here</a>, <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/create_run_attachments_v2.py" target="blank">Python version 2 example here</a>,
+href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/create_run_attachments_v3.py" target="blank">Python version 3 example here</a>, <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/java/src/main/java/com/practitest/examples/RunWithAttachments.java" target="blank">Java example here</a>, <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/csharp/create_run_attachments.cs" target="blank">C sharp (.Net) example here</a>.
 
 ```shell
 # upload test results with a file attachment
