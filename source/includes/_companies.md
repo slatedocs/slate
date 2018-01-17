@@ -174,6 +174,7 @@ curl 'https://app.rubberstamp.io/api/v1/companies/1'
   "id": 1,
   "name": "ABC Corp.",
   "employees_count": 10,
+  "default_tax_rate": "13.0",
   "company_setting": {
     "id": 1,
     "show_po_item_number": false,
@@ -324,6 +325,7 @@ curl 'https://app.rubberstamp.io/api/v1/companies/details'
   "id": 1,
   "name": "ABC Corp.",
   "employees_count": 10,
+  "default_tax_rate": "13.0",
   "company_setting": {
     "id": 1,
     "show_po_item_number": false,
