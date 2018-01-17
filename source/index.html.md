@@ -25,6 +25,10 @@ includes:
   - entities/allergies/list
   - entities/allergies/search
   - entities/chief_complaints
+  - entities/customer_documents/create
+  - entities/customer_documents/delete
+  - entities/customer_documents/list
+  - entities/customer_documents/show
   - entities/medical_conditions/clinical_concepts_search
   - entities/medical_conditions/create
   - entities/medical_conditions/delete
