@@ -8,7 +8,7 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST ht
   "recipient_subscriber": {
     "recipient_identity_provider": "email",
     "recipient_identity": "somefriend@foo.com"
-  }
+  },
   "subscription": {
     "subscription_plan_id": "11",
     "coupon_code": "",

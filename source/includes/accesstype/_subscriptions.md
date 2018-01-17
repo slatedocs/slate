@@ -151,7 +151,7 @@ In order to register a recurring subscription with some providers (such as razor
 ## POST register a recurring subscription
 
 ```shell
-curl -H "X-SUBAUTH: <auth-token>" https://subtype.quintype.com/api/v1/subscription_plans/<subscription-plan-id>/external_subscription_token.json?type=razorpay
+curl -H "X-SUBAUTH: <auth-token>" -X POST https://subtype.quintype.com/api/v1/subscription_plans/<subscription-plan-id>/external_subscription_token.json?type=razorpay
 
 {
   "subscription": {
