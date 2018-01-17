@@ -56,7 +56,7 @@ RestClient::Request.new(
   ]
 }
 ```
-MDLIVE offers the ability to search against medical conditions to be used for offering auto-complete suggestions as a patient is creating a medical condition.
+MDLIVE offers the ability to search against medical conditions to be used for offering auto-complete suggestions as a patient is creating an appointment or a medical condition.
 To search, make a request to:
 
 ### HTTP Request

@@ -51,5 +51,5 @@ Content-type | application/json
 Attribute | Required | Description
 --------- | ------- | -----------
 auth | true | parent attribute of api_key and password
-api_key | true | Unique key assigned to you by your account manager
-password | true | Unique password assigned to key by your account manager
+↳&nbsp;api_key | true | Unique key assigned to you by your account manager
+↳&nbsp;password | true | Unique password assigned to key by your account manager

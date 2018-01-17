@@ -119,41 +119,41 @@ Content-type | application/json
 
 ### Request Body
 
-  | Attribute | Required | Description
-- | --------- | ------- | -----------
-auth | | true | parent attribute specifying user information to update or create in MDLIVE
- | first_name | true | User's first name
- | last_name | true | User's last name
- | gender | true | User's gender, specified as 'M' for male, 'F' for female
- | birthdate | true | User's birthdate, specified as year-month-day
- | subscriber_id | true | User's subscriber id
- | member_id | false | user's member id
- | phone | true | User's contact phone number
- | email | true | User's email address
- | address1 | true | First line of user's mailing address
- | address2 | false | Second line of user's mailing address, if needed
- | city | true | City of user's mailing address
- | state | true | State of user's mailing address
- | zip | true | Zip code of user's mailing address
- | relationship | true | Relationship of user to primary account holder. Specified as either 'Self', 'Spouse', 'Child', or 'Other Adult'
- | primary_first_name | false | First name of primary account holder, if user is not primary
- | primary_last_name | false | Last name of primary account holder, if user is not primary
- | primary_gender | false | Gender of primary account holder, if user is not primary, specified as 'M' for male, 'F' for female
- | primary_birthdate | false | Birthdate of primary account holder, if user is not primary, specified as day-month-year
- | primary_subscriber_id | false | Subscriber id of primary account holder, if user is not primary
- | primary_member_id | false | Member id of primary account holder, if user is not primary
- | primary_address1 | false | First line of mailing address for primary account holder, if user is not primary
- | primary_address2 | false | Second line of mailing address for primary account holder, if user is not primary
- | primary_city | false | City of mailing address for primary account holder, if user is not primary
- | primary_state | false | State of mailing address for primary account holder, if user is not primary
- | primary_zip| false | Zip code of mailing address for primary account holder, if user is not primary
-org | | true | parent attribute for calling organizational information
- | ou | true | Organizational unit identifier assigned by MDLIVE
- | request_timestamp | false | Timestamp of request, specified as floating point number of seconds since the Epoch
- | enterprise_hash | false | Base64 encoded SHA-256 digest of memberid, request_timestamp, and a shared secret digest key
-api |  | true | parent attribute of api_key and password
- | api_key | true | Unique key assigned to you by your account manager
- | password | true | Unique password assigned to key by your account manager
+Attribute | Required | Description
+--------- | ------- | -----------
+auth | true | parent attribute specifying user information to update or create in MDLIVE
+↳&nbsp;first_name | true | User's first name
+↳&nbsp;last_name | true | User's last name
+↳&nbsp;gender | true | User's gender, specified as 'M' for male, 'F' for female
+↳&nbsp;birthdate | true | User's birthdate, specified as year-month-day
+↳&nbsp;subscriber_id | true | User's subscriber id
+↳&nbsp;member_id | false | user's member id
+↳&nbsp;phone | true | User's contact phone number
+↳&nbsp;email | true | User's email address
+↳&nbsp;address1 | true | First line of user's mailing address
+↳&nbsp;address2 | false | Second line of user's mailing address, if needed
+↳&nbsp;city | true | City of user's mailing address
+↳&nbsp;state | true | State of user's mailing address
+↳&nbsp;zip | true | Zip code of user's mailing address
+↳&nbsp;relationship | true | Relationship of user to primary account holder. Specified as either 'Self', 'Spouse', 'Child', or 'Other Adult'
+↳&nbsp;primary_first_name | false | First name of primary account holder, if user is not primary
+↳&nbsp;primary_last_name | false | Last name of primary account holder, if user is not primary
+↳&nbsp;primary_gender | false | Gender of primary account holder, if user is not primary, specified as 'M' for male, 'F' for female
+↳&nbsp;primary_birthdate | false | Birthdate of primary account holder, if user is not primary, specified as day-month-year
+↳&nbsp;primary_subscriber_id | false | Subscriber id of primary account holder, if user is not primary
+↳&nbsp;primary_member_id | false | Member id of primary account holder, if user is not primary
+↳&nbsp;primary_address1 | false | First line of mailing address for primary account holder, if user is not primary
+↳&nbsp;primary_address2 | false | Second line of mailing address for primary account holder, if user is not primary
+↳&nbsp;primary_city | false | City of mailing address for primary account holder, if user is not primary
+↳&nbsp;primary_state | false | State of mailing address for primary account holder, if user is not primary
+↳&nbsp;primary_zip| false | Zip code of mailing address for primary account holder, if user is not primary
+org | true | parent attribute for calling organizational information
+↳&nbsp;ou | true | Organizational unit identifier assigned by MDLIVE
+↳&nbsp;request_timestamp | false | Timestamp of request, specified as floating point number of seconds since the Epoch
+↳&nbsp;enterprise_hash | false | Base64 encoded SHA-256 digest of memberid, request_timestamp, and a shared secret digest key
+api | true | parent attribute of api_key and password
+↳&nbsp;api_key | true | Unique key assigned to you by your account manager
+↳&nbsp;password | true | Unique password assigned to key by your account manager
 
 <aside class="notice">
  Although making use of the enterprise hash is optional, it does offer a higher level of security against the requests being replayed by a third party.

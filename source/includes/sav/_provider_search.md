@@ -127,13 +127,13 @@ patient_id | true| MDLIVE ID for patient
 
 ### Request Body
 
-Attribute     |                | Required  | Description
----------     |---------       | --------  | -----------
-search_params |                | true      | Hash with specific search filters
-              | state_abbrev   | true      | 2 Letter state abbreviated, from the states list
-              | availability_type| false   | Can be either 'phone' or 'video', use to specify the preferred type of appointment for the patient
-              | gender         | false     | Preferred Provider gender (Male or Female string)
-              | provider_type  | false     | Provider Type ID, from the provider types list (or the endpoint response)
-              | specific_date  | false     | Date in YYYY-mm-dd format
-              | speciality_id  | false     | Provider Specialty for filtering, obtained from this endpoint response
+Attribute     | Required  | Description
+---------     | --------  | -----------
+search_params | true      | Hash with specific search filters
+↳&nbsp;state_abbrev   | true      | 2 Letter state abbreviated, from the states list
+↳&nbsp;availability_type| false   | Can be either 'phone' or 'video', use to specify the preferred type of appointment for the patient
+↳&nbsp;gender         | false     | Preferred Provider gender (Male or Female string)
+↳&nbsp;provider_type  | false     | Provider Type ID, from the provider types list (or the endpoint response)
+↳&nbsp;specific_date  | false     | Date in YYYY-mm-dd format
+↳&nbsp;speciality_id  | false     | Provider Specialty for filtering, obtained from this endpoint response
 

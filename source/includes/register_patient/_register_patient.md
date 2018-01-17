@@ -102,19 +102,19 @@ The following parameters are required to register a patient.
 
 ### Request Body
 
- |Attribute | Required | Description
--|--------- | -------  | -----------
-patient |  |true     | parent attribute
- |first_name| true     | The patient's first name
- |last_name | true     | The patient's last name
- |username  | true     | The username the patient will use to sign in to MDLIVE [*](#patient-username-validation)
- |email     | true     | The email the patient will use to receive notifications from MDLIVE
- |password  | true     | The password the patient will use to sign in to MDLIVE  [*](#password-restrictions)
- |password_confirmation | true     | Confirmation of the password he patient will use to sign in to MDLIVE
- |zip       | true     | The patient's zip code of residence
- |gender    | true     | The patient's gender, must be either male or female
- |birthdate | true     | The patient's date of birth, must be in '%m/%d/%Y" format
- |phone     | true     | The phone the patient will use to sign in to MDLIVE
+Attribute | Required | Description
+--------- | -------  | -----------
+patient | true     | parent attribute
+↳&nbsp;first_name| true     | The patient's first name
+↳&nbsp;last_name | true     | The patient's last name
+↳&nbsp;username  | true     | The username the patient will use to sign in to MDLIVE [*](#patient-username-validation)
+↳&nbsp;email     | true     | The email the patient will use to receive notifications from MDLIVE
+↳&nbsp;password  | true     | The password the patient will use to sign in to MDLIVE  [*](#password-restrictions)
+↳&nbsp;password_confirmation | true     | Confirmation of the password he patient will use to sign in to MDLIVE
+↳&nbsp;zip       | true     | The patient's zip code of residence
+↳&nbsp;gender    | true     | The patient's gender, must be either male or female
+↳&nbsp;birthdate | true     | The patient's date of birth, must be in '%m/%d/%Y" format
+↳&nbsp;phone     | true     | The phone the patient will use to sign in to MDLIVE
 
 <aside id="password-restrictions" class="warning">
   TODO: Explain the password restrictions MDLIVE has in place.

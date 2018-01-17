@@ -82,9 +82,9 @@ provider_id | true| MDLIVE ID for provider
 
 ### Query String Parameters
 
-Attribute     | Required  | Description
----------     |---------       | --------  | -----------
-patient_id   | false      | MDLIVE ID for patient scheduling a visit, use to specify patient only if the token provided is an [API token](#api-tokens) instead of a [User token](#user-tokens)
+Attribute | Required  | Description
+---------  |---------  | -----------
+patient_id   | false | MDLIVE ID for patient scheduling a visit, use to specify patient only if the token provided is an [API token](#api-tokens) instead of a [User token](#user-tokens)
 availability_type| false   | Can be either 'phone' or 'video', use to specify the preferred type of appointment for the patient
 provider_type  | false     | Provider Type ID, from the [provider types list](#provider-types) (or the endpoint response). Use to specify the preferred doctor type for an appointment.
 specific_date  | false     | Date in YYYY-mm-dd format, use to specify a preferred date for an appointment. Default is today.
