@@ -56,8 +56,7 @@ For use in client testing only. Returns the object passed as params as its resul
 
 Ends a batch of requests.
 
-See [Request Batches](#batch) for more
-details.
+See [Performance Batching](#performance-batching) for more details.
 
 ### system.timestamp
 
@@ -117,5 +116,5 @@ selected time zone.
 }
 ```
 
-Returns account, the account id for the registered API used.
+Returns account, the account id for the registered API account used.
 

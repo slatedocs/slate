@@ -1,2 +1,2 @@
-# Individual Object Documentation
+# Objects
 

@@ -183,8 +183,7 @@ A string giving the name of the procedure to be invoked.
 A object ([RFC 4627](http://www.ietf.org/rfc/rfc4627.txt)) that
 holds the actual parameter values for the invocation of the procedure.
 All Shiftboard Web Services API methods require params, minimally
-an empty object (`{}`).  See [individual object
-documentation](#individual-object-documentation) and Common Attributes.
+an empty object (`{}`).  See [Objects](#objects) and Common Attributes.
 
 ####access_key_id
 
@@ -247,7 +246,7 @@ Version of the JSON-RPC specification for this response. Will always be the stri
 
 ####result
 
-A object providing the results of the request. Only present when the request was successful. Contents are method-dependent: see [individual object documentation](#individual-object-documentation) and Common Attributes.
+A object providing the results of the request. Only present when the request was successful. Contents are method-dependent: see [Objects](#objects) and Common Attributes.
 
 ####error
 
@@ -259,7 +258,7 @@ If provided, number of seconds spent processing the request and formatting a res
 
 ### Successful Responses
 
-The attributes returned in response results vary; see [individual object documentation](#individual-object-documentation).
+The attributes returned in response results vary; see [Objects](#objects).
 
 ### Error Responses
 

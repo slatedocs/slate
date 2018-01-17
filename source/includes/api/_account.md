@@ -488,11 +488,11 @@ Boolean; if specified and true, the results returned will include an extended se
 
 ####select
 
-An object specifying selection criteria for this request. Note that updated_since will have a default value if not specified. The available criteria include all [account.list](#heading=h.pr9gtag9yl1z) selection criteria with the addition of:
+An object specifying selection criteria for this request. Note that updated_since will have a default value if not specified. The available criteria include all [account.list](#account-list) selection criteria with the addition of:
 
 ####updated_since
 
-A system.timestamp previously returned by the [system.timestamp](#heading=h.59hbqqcwd5tr) method. Only accounts updated since this date will be selected. Defaults to 24 hours ago. If more than 30 days ago, only accounts updated in the last 30 days will be selected.
+A system.timestamp previously returned by the [system.timestamp](#system-timestamp) method. Only accounts updated since this date will be selected. Defaults to 24 hours ago. If more than 30 days ago, only accounts updated in the last 30 days will be selected.
 
 ####profile_update
 
