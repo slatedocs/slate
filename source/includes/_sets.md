@@ -17,7 +17,7 @@ filter-user-id | if filter uses current_user criteria in it, you should provide 
 display-ids | filter TestSets with display-ids (separated by commas) |
 name_exact | filter by TestSet name exact match; case sensitive! |
 name_like | filter by TestSet name: case insensitive, phrase can be inside the name |
-show_tags | set to 'true' to show the tags in the results|
+show_tags=true | set to 'true' to show the tags in the results|
 
 * none of the parameters are required. If you combine multiple parameters, it will do AND
 You can see examples in the dark area to the right.
@@ -140,7 +140,7 @@ This endpoint shows a specific TestSet in your project.
 
 Parameters | Description | required? |
 --------- | ------- |------- |
-show_tags | set to 'true' to show the tags in the results| false |
+show_tags=true | set to 'true' to show the tags in the results| false |
 
 
 Here's the example of the JSON request and response
