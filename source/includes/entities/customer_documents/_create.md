@@ -1,7 +1,7 @@
 ## Customer Documents - Create
 
 ```shell
-curl -v -X POST https://INSERT_SERVER_HOSTNAME_HERE/api/v1/patients/INSERT_PATIENT_ID_HERE/documents \
+curl -v -X POST https://INSERT_SERVER_HOSTNAME_HERE/api/v2/patients/INSERT_PATIENT_ID_HERE/documents \
   -H 'Authorization: Bearer INSERT_JWT_TOKEN_HERE' \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -18,7 +18,7 @@ curl -v -X POST https://INSERT_SERVER_HOSTNAME_HERE/api/v1/patients/INSERT_PATIE
 ```ruby
 RestClient::Request.new(
   :method => :post,
-  :url => 'https://INSERT_SERVER_HOSTNAME_HERE/api/v1/patients/INSERT_PATIENT_ID_HERE/documents',
+  :url => 'https://INSERT_SERVER_HOSTNAME_HERE/api/v2/patients/INSERT_PATIENT_ID_HERE/documents',
   :headers => {
     'Authorization' => 'Bearer INSERT_JWT_TOKEN_HERE',
     'Content-type'  => 'application/json',
@@ -39,7 +39,7 @@ RestClient::Request.new(
 
 ```json
 {
-  "upload":{
+  "doc":{
     "id":1,
     "mime_type":"image/png",
     "record_type":"Patient Record",
@@ -57,7 +57,7 @@ An example of a customer document is a photo of a symptom that a patient takes b
 
 To create a customer document, make a request to:
 
-`POST https://INSERT_SERVER_HOSTNAME_HERE/api/v1/patients/INSERT_PATIENT_ID_HERE/documents`
+`POST https://INSERT_SERVER_HOSTNAME_HERE/api/v2/patients/INSERT_PATIENT_ID_HERE/documents`
 
 ### Headers
 
