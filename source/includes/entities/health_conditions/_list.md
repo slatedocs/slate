@@ -1,9 +1,10 @@
 ## Health Conditions - List
 
 ```shell
-curl -X GET {server_url}/api/v1/patients/{patient_id}/health_conditions
--H "Content-type: application/json"
--H "Authorization: Bearer 34a2sample-user-token"
+curl -X GET {server_url}/api/v1/patients/{patient_id}/health_conditions \
+  -H 'Authorization: Bearer {jwt_token}' \
+  -H 'Content-type: application/json' \
+  -H 'Accept: application/json'
 ```
 
 ```ruby
@@ -11,8 +12,9 @@ RestClient::Request.new(
   :method => :get,
   :url => "{server_url}/api/v1/patients/{patient_id}/health_conditions",
   :headers => {
-    "Content-type" => "application/json",
-    "Authorization" => "Bearer 34a2sample-user-token"
+    'Authorization' => 'Bearer {jwt_token}',
+    'Content-type' => 'application/json',
+    'Accept' => 'application/json'
   }
 ).execute
 ```
@@ -319,16 +321,18 @@ Returns an aggregate health conditions report for a given patient.
 
 This request must include a valid User JWT token, please see our [documentation](#user-tokens)
 
-### Header Parameter
 
-Parameter | Default
---------- | -------
-Content-type | application/json
-Authorization| Bearer example.jwttoken
+### Header Parameters
+
+Parameter     | Default
+------------- | -------
+Authorization | Bearer {jwt_token}
+Content-type  | application/json
+Accept        | application/json
 
 
-### URL Parameter
+### URL Parameters
 
-Parameter | Required | Description
---------- | -------  | -----------
-patient_id | true | ID of the patient
+Parameter  | Required | Description
+---------- | -------- | -----------
+patient_id | true     | MDLIVE ID for patient
