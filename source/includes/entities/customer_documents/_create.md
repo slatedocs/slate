@@ -1,8 +1,8 @@
 ## Customer Documents - Create
 
 ```shell
-curl -v -X POST https://INSERT_SERVER_HOSTNAME_HERE/api/v2/patients/INSERT_PATIENT_ID_HERE/documents \
-  -H 'Authorization: Bearer INSERT_JWT_TOKEN_HERE' \
+curl -v -X POST {server}/api/v2/patients/{patient_id}/documents \
+  -H 'Authorization: Bearer {jwt_token}' \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -d '{
@@ -18,9 +18,9 @@ curl -v -X POST https://INSERT_SERVER_HOSTNAME_HERE/api/v2/patients/INSERT_PATIE
 ```ruby
 RestClient::Request.new(
   :method => :post,
-  :url => 'https://INSERT_SERVER_HOSTNAME_HERE/api/v2/patients/INSERT_PATIENT_ID_HERE/documents',
+  :url => '{server}/api/v2/patients/{patient_id}/documents',
   :headers => {
-    'Authorization' => 'Bearer INSERT_JWT_TOKEN_HERE',
+    'Authorization' => 'Bearer {jwt_token}',
     'Content-type'  => 'application/json',
     'Accept'  => 'application/json',
   },
@@ -57,13 +57,13 @@ An example of a customer document is a photo of a symptom that a patient takes b
 
 To create a customer document, make a request to:
 
-`POST https://INSERT_SERVER_HOSTNAME_HERE/api/v2/patients/INSERT_PATIENT_ID_HERE/documents`
+`POST {server}/api/v2/patients/{patient_id}/documents`
 
 ### Headers
 
 Parameter     | Default
 --------------|------------------------
-Authorization | Bearer INSERT_JWT_TOKEN_HERE
+Authorization | Bearer {jwt_token}
 Accept        | application/json
 Content-type  | application/json
 
@@ -75,7 +75,7 @@ The following parameters need to be included in the URL of the request:
 
 Attribute  | Required | Description
 -----------|----------|----------------------
-patient id | true     | MDLIVE ID for patient
+patient_id | true     | MDLIVE ID for patient
 
 ### Request Body Parameters
 

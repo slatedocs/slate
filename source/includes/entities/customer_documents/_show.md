@@ -1,8 +1,8 @@
 ## Customer Documents - Show
 
 ```shell
-curl -X GET https://INSERT_SERVER_HOSTNAME_HERE/api/v1/patients/INSERT_PATIENT_ID_HERE/documents/INSERT_DOCUMENT_ID_HERE \
-  -H 'Authorization: Bearer INSERT_JWT_TOKEN_HERE' \
+curl -X GET {server}/api/v1/patients/{patient_id}/documents/{document_id} \
+  -H 'Authorization: Bearer {jwt_token}' \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json'
 ```
@@ -10,9 +10,9 @@ curl -X GET https://INSERT_SERVER_HOSTNAME_HERE/api/v1/patients/INSERT_PATIENT_I
 ```ruby
 RestClient::Request.new(
   :method => :get,
-  :url => 'https://INSERT_SERVER_HOSTNAME_HERE/api/v1/patients/INSERT_PATIENT_ID_HERE/documents/INSERT_DOCUMENT_ID_HERE',
+  :url => '{server}/api/v1/patients/{patient_id}/documents/{document_id}',
   :headers => {
-    'Authorization' => 'Bearer INSERT_JWT_TOKEN_HERE',
+    'Authorization' => 'Bearer {jwt_token}',
     'Content-type' => 'application/json',
     'Accept' => 'application/json'
   }
@@ -38,13 +38,13 @@ RestClient::Request.new(
 
 To retrieve a specific document, make a request to:
 
-`GET https://INSERT_SERVER_HOSTNAME_HERE/api/v1/patients/INSERT_PATIENT_ID_HERE/documents/INSERT_DOCUMENT_ID_HERE`
+`GET {server}/api/v1/patients/{patient_id}/documents/{document_id}`
 
 ### Headers
 
 Parameter     | Default
 --------------|------------------------
-Authorization | Bearer INSERT_JWT_TOKEN_HERE
+Authorization | Bearer {jwt_token}
 Accept        | application/json
 Content-type  | application/json
 
@@ -56,5 +56,5 @@ The following parameters need to be included in the URL of the request:
 
 Attribute   | Required | Description
 ------------|----------|----------------------
-patient id  | true     | MDLIVE ID for patient
-document id | true     | MDLIVE ID for document
+patient_id  | true     | MDLIVE ID for patient
+document_id | true     | MDLIVE ID for document

@@ -1,17 +1,17 @@
 ## Customer Documents - Delete
 
 ```shell
-curl -v -X DELETE https://INSERT_SERVER_HOSTNAME_HERE/api/v1/patients/INSERT_PATIENT_ID_HERE/documents/INSERT_DOCUMENT_ID_HERE \
-  -H 'Authorization: Bearer INSERT_JWT_TOKEN_HERE' \
+curl -v -X DELETE {server}/api/v1/patients/{patient_id}/documents/{document_id} \
+  -H 'Authorization: Bearer {jwt_token}' \
   -H 'Content-Type: application/json'
 ```
 
 ```ruby
 RestClient::Request.new(
   :method => :delete,
-  :url => 'https://INSERT_SERVER_HOSTNAME_HERE/api/v1/patients/INSERT_PATIENT_ID_HERE/documents/INSERT_DOCUMENT_ID_HERE',
+  :url => '{server}/api/v1/patients/{patient_id}/documents/{document_id}',
   :headers => {
-    'Authorization' => 'Bearer INSERT_JWT_TOKEN_HERE',
+    'Authorization' => 'Bearer {jwt_token}',
     'Content-type' => 'application/json'
   }
 ).execute
@@ -21,13 +21,13 @@ RestClient::Request.new(
 
 To remove a customer document, make a request to:
 
-`DELETE https://INSERT_SERVER_HOSTNAME_HERE/api/v1/patients/INSERT_PATIENT_ID_HERE/documents/INSERT_DOCUMENT_ID_HERE`
+`DELETE {server}/api/v1/patients/{patient_id}/documents/{document_id}`
 
 ### Headers
 
 Parameter     | Default
 --------------|------------------------
-Authorization | Bearer INSERT_JWT_TOKEN_HERE
+Authorization | Bearer {jwt_token}
 Content-type  | application/json
 
 This request must include a valid User JWT token, please see our [documentation](#user-tokens).
@@ -38,5 +38,5 @@ The following parameters need to be included in the URL of the request:
 
 Attribute   | Required | Description
 ------------|----------|----------------------
-patient id  | true     | MDLIVE ID for patient
-document id | true     | MDLIVE ID for patient
+patient_id  | true     | MDLIVE ID for patient
+document_id | true     | MDLIVE ID for patient

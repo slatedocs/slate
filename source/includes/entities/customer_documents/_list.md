@@ -1,8 +1,8 @@
 ## Customer Documents - List
 
 ```shell
-curl -X GET https://INSERT_SERVER_HOSTNAME_HERE/api/v1/patients/INSERT_PATIENT_ID_HERE/documents \
-  -H 'Authorization: Bearer INSERT_JWT_TOKEN_HERE' \
+curl -X GET {server}/api/v1/patients/{patient_id}/documents \
+  -H 'Authorization: Bearer {jwt_token}' \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json'
 ```
@@ -10,9 +10,9 @@ curl -X GET https://INSERT_SERVER_HOSTNAME_HERE/api/v1/patients/INSERT_PATIENT_I
 ```ruby
 RestClient::Request.new(
   :method => :get,
-  :url => 'https://INSERT_SERVER_HOSTNAME_HERE/api/v1/patients/INSERT_PATIENT_ID_HERE/documents',
+  :url => '{server}/api/v1/patients/{patient_id}/documents',
   :headers => {
-    'Authorization' => 'Bearer INSERT_JWT_TOKEN_HERE',
+    'Authorization' => 'Bearer {jwt_token}',
     'Content-type' => 'application/json',
     'Accept' => 'application/json'
   }
@@ -42,13 +42,13 @@ RestClient::Request.new(
 
 To retrieve the list of a patient's current list of documents, make a request to:
 
-`GET https://INSERT_SERVER_HOSTNAME_HERE/api/v1/patients/INSERT_PATIENT_ID_HERE/documents`
+`GET {server}/api/v1/patients/{patient_id}/documents`
 
 ### Headers
 
 Parameter     | Default
 --------------|------------------------
-Authorization | Bearer INSERT_JWT_TOKEN_HERE
+Authorization | Bearer {jwt_token}
 Accept        | application/json
 Content-type  | application/json
 
@@ -60,4 +60,4 @@ The following parameters need to be included in the URL of the request:
 
 Attribute  | Required | Description
 -----------|----------|----------------------
-patient id | true     | MDLIVE ID for patient
+patient_id | true     | MDLIVE ID for patient
