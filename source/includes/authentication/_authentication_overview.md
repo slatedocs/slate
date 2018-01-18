@@ -13,7 +13,7 @@ require a patient id | User token
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
-  -H "Authorization: Bearer 34a2sample-api-token"
+  -H "Authorization: Bearer {jwt_token}"
 ```
 
 ```ruby
@@ -22,18 +22,18 @@ RestClient::Request.new(
   :method => :get,
   :url => "sample_url",
   :headers => {
-    'Authorization' => 'Bearer 34a2sample-api-token'
+    'Authorization' => 'Bearer {jwt_token}'
   }
 ).execute
 ```
-> Make sure to replace `34a2sample-api-token` with your JWT Token.
+> Make sure to replace `{jwt_token}` with your JWT Token.
 
 MDLIVE expects for the token to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: Bearer 34a2sample-api-token`
+`Authorization: Bearer {jwt_token}`
 
 <aside class="notice">
-Always include 'Bearer', and you must replace <code>34a2sample-api-token</code> with your token obtained from one of the token endpoints.
+Always include 'Bearer', and you must replace <code>{jwt_token}</code> with your token obtained from one of the token endpoints.
 </aside>
 
 <aside class="notice">

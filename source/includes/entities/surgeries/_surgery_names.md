@@ -2,7 +2,7 @@
 ```shell
 curl -X GET {server_url}/api/v2/surgery_names
 -H "Content-type: application/json"
--H "Authorization: Bearer 34a2sample-api-token"
+-H "Authorization: Bearer {jwt_token}"
 ```
 ```ruby
 RestClient::Request.new(
@@ -10,7 +10,7 @@ RestClient::Request.new(
   :url => "{server_url}/api/v2/surgery_names",
   :headers => {
     "Content-type" => "application/json",
-    "Authorization" => "Bearer 34a2sample-api-token"
+    "Authorization" => "Bearer {jwt_token}"
   }
 ).execute
 ```
@@ -49,4 +49,4 @@ This request must include a valid JWT token, please see our [documentation](#api
 Parameter | Default
 --------- | -------
 Content-type | application/json
-Authorization| Bearer example.jwttoken
+Authorization| Bearer {jwt_token}

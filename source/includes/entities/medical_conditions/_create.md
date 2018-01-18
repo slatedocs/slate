@@ -3,7 +3,7 @@
 ```shell
 curl -X POST {server_url}/api/v1/patients/{patient_id}/medical_conditions
 -H "Content-type: application/json"
--H "Authorization: Bearer 34a2sample-api-token"
+-H "Authorization: Bearer {jwt_token}"
 -d '{
       "medical_condition": {
         "condition": "Throat Pain",
@@ -20,7 +20,7 @@ RestClient::Request.new(
   :url => "{server_url}/api/v1/patients/{patient_id}/medical_conditions",
   :headers => {
     "Content-type" => "application/json",
-    "Authorization" => "Bearer 34a2sample-api-token"
+    "Authorization" => "Bearer {jwt_token}"
   },
   :payload => {
                  "medical_condition"=> {
@@ -62,7 +62,7 @@ This request must include a valid User JWT token, please see our [documentation]
 Parameter | Default
 --------- | -------
 Content-type | application/json
-Authorization| Bearer example.jwttoken
+Authorization| Bearer {jwt_token}
 
 The following parameters are required when creating a medical condition. To search for the condition and retrieve needed parameter values, reference [clinical concepts - search](#clinical-concepts-search).
 

@@ -2,7 +2,7 @@
 ```shell
 curl -X GET {server_url}/api/v2/patients/{patient_id}/surgeries
 -H "Content-type: application/json"
--H "Authorization: Bearer 34a2sample-api-token"
+-H "Authorization: Bearer {jwt_token}"
 ```
 
 ```ruby
@@ -11,7 +11,7 @@ RestClient::Request.new(
   :url => "{server_url}/api/v2/patients/{patient_id}/surgeries",
   :headers => {
     "Content-type" => "application/json",
-    "Authorization" => "Bearer 34a2sample-api-token"
+    "Authorization" => "Bearer {jwt_token}"
   }
 ).execute
 ```
@@ -47,7 +47,7 @@ This request must include a valid User JWT token, please see our [documentation]
 Parameter | Default
 --------- | -------
 Content-type | application/json
-Authorization| Bearer example.jwttoken
+Authorization| Bearer {jwt_token}
 
 The following parameters are required to retrieve the list of patient's surgeries and procedures.
 

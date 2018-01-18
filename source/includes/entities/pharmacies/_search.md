@@ -64,7 +64,7 @@ This request must include a valid User JWT token, please see our [documentation]
 Parameter    | Default
 ---------    | -------
 Content-type | application/json
-Authorization| Bearer example.jwttoken
+Authorization| Bearer {jwt_token}
 
 
 ### Request Body

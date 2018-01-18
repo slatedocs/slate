@@ -3,7 +3,7 @@
 ```shell
 curl -X POST {server_url}/api/v1/allergies/search
 -H "Content-type: application/json"
--H "Authorization: Bearer 34a2sample-api-token"
+-H "Authorization: Bearer {jwt_token}"
 -d '{ "search": {
         "term": "pen",
         "limit": "2"
@@ -17,7 +17,7 @@ RestClient::Request.new(
   :url => "{server_url}/api/v1/allergies/search",
   :headers => {
     "Content-type" => "application/json",
-    "Authorization" => "Bearer 34a2sample-api-token"
+    "Authorization" => "Bearer {jwt_token}"
   },
   :payload => { "search"=> {
                   "term"=> "pen",
@@ -58,7 +58,7 @@ This request must include a valid JWT token, please see our [documentation](#api
 Parameter | Default
 --------- | -------
 Content-type | application/json
-Authorization| Bearer example.jwttoken
+Authorization| Bearer {jwt_token}
 
 The following parameters are accepted when searching medical conditions.
 

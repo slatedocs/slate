@@ -3,7 +3,7 @@
 ```shell
 curl -X GET {server_url}/api/v1/patients/chief_complaints
 -H "Content-type: application/json"
--H "Authorization: Bearer 34a2sample-api-token"
+-H "Authorization: Bearer {jwt_token}"
 -d '{ "search": {
         "term": "throat",
         "language": "EN",
@@ -18,7 +18,7 @@ RestClient::Request.new(
   :url => "{server_url}/api/v1/patients/chief_complaints",
   :headers => {
     "Content-type" => "application/json",
-    "Authorization" => "Bearer 34a2sample-api-token"
+    "Authorization" => "Bearer {jwt_token}"
   },
   :payload => { "search"=> {
                     "term"=> "throat",
@@ -80,7 +80,7 @@ This request must include a valid User JWT token, please see our [documentation]
 Parameter | Default
 --------- | -------
 Content-type | application/json
-Authorization| Bearer example.jwttoken
+Authorization| Bearer {jwt_token}
 
 The following parameters are accepted when searching chief complaints.
 
