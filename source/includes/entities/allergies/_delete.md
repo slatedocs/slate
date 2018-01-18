@@ -19,7 +19,7 @@ To remove an allergy from a patient's list of allergies, make a request to:
 
 ### HTTP Request
 
-`DELETE {server}/api/v1/patients/{patient_id}/allergies/{id}`
+`DELETE {server_url}/api/v1/patients/{patient_id}/allergies/{id}`
 
 This request must include a valid User JWT token, please see our [documentation](#user-tokens)
 

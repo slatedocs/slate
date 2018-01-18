@@ -20,7 +20,7 @@ To remove a medical condition from a patient's list of conditions, make a reques
 
 ### HTTP Request
 
-`DELETE {server}/api/v1/patients/{patient_id}/medical_conditions/{id}`
+`DELETE {server_url}/api/v1/patients/{patient_id}/medical_conditions/{id}`
 
 This request must include a valid User JWT token, please see our [documentation](#user-tokens)
 

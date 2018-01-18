@@ -1,7 +1,7 @@
 ## Customer Documents - List
 
 ```shell
-curl -X GET {server}/api/v1/patients/{patient_id}/documents \
+curl -X GET {server_url}/api/v1/patients/{patient_id}/documents \
   -H 'Authorization: Bearer {jwt_token}' \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json'
@@ -10,7 +10,7 @@ curl -X GET {server}/api/v1/patients/{patient_id}/documents \
 ```ruby
 RestClient::Request.new(
   :method => :get,
-  :url => '{server}/api/v1/patients/{patient_id}/documents',
+  :url => '{server_url}/api/v1/patients/{patient_id}/documents',
   :headers => {
     'Authorization' => 'Bearer {jwt_token}',
     'Content-type' => 'application/json',
@@ -42,7 +42,7 @@ RestClient::Request.new(
 
 To retrieve the list of a patient's current list of documents, make a request to:
 
-`GET {server}/api/v1/patients/{patient_id}/documents`
+`GET {server_url}/api/v1/patients/{patient_id}/documents`
 
 ### Headers
 

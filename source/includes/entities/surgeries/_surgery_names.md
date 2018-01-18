@@ -40,7 +40,7 @@ To retrieve the full list of names for surgeries of interest on patient history 
 
 ### HTTP Request
 
-`GET {server}/api/v2/surgery_names`
+`GET {server_url}/api/v2/surgery_names`
 
 This request must include a valid JWT token, please see our [documentation](#api-tokens)
 

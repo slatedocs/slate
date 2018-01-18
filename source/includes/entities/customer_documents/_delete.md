@@ -1,7 +1,7 @@
 ## Customer Documents - Delete
 
 ```shell
-curl -v -X DELETE {server}/api/v1/patients/{patient_id}/documents/{document_id} \
+curl -v -X DELETE {server_url}/api/v1/patients/{patient_id}/documents/{document_id} \
   -H 'Authorization: Bearer {jwt_token}' \
   -H 'Content-Type: application/json'
 ```
@@ -9,7 +9,7 @@ curl -v -X DELETE {server}/api/v1/patients/{patient_id}/documents/{document_id} 
 ```ruby
 RestClient::Request.new(
   :method => :delete,
-  :url => '{server}/api/v1/patients/{patient_id}/documents/{document_id}',
+  :url => '{server_url}/api/v1/patients/{patient_id}/documents/{document_id}',
   :headers => {
     'Authorization' => 'Bearer {jwt_token}',
     'Content-type' => 'application/json'
@@ -21,7 +21,7 @@ RestClient::Request.new(
 
 To remove a customer document, make a request to:
 
-`DELETE {server}/api/v1/patients/{patient_id}/documents/{document_id}`
+`DELETE {server_url}/api/v1/patients/{patient_id}/documents/{document_id}`
 
 ### Headers
 

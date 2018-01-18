@@ -1,7 +1,7 @@
 ## Customer Documents - Show
 
 ```shell
-curl -X GET {server}/api/v1/patients/{patient_id}/documents/{document_id} \
+curl -X GET {server_url}/api/v1/patients/{patient_id}/documents/{document_id} \
   -H 'Authorization: Bearer {jwt_token}' \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json'
@@ -10,7 +10,7 @@ curl -X GET {server}/api/v1/patients/{patient_id}/documents/{document_id} \
 ```ruby
 RestClient::Request.new(
   :method => :get,
-  :url => '{server}/api/v1/patients/{patient_id}/documents/{document_id}',
+  :url => '{server_url}/api/v1/patients/{patient_id}/documents/{document_id}',
   :headers => {
     'Authorization' => 'Bearer {jwt_token}',
     'Content-type' => 'application/json',
@@ -38,7 +38,7 @@ RestClient::Request.new(
 
 To retrieve a specific document, make a request to:
 
-`GET {server}/api/v1/patients/{patient_id}/documents/{document_id}`
+`GET {server_url}/api/v1/patients/{patient_id}/documents/{document_id}`
 
 ### Headers
 

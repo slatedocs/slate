@@ -1,7 +1,7 @@
 ## Customer Documents - Create
 
 ```shell
-curl -v -X POST {server}/api/v2/patients/{patient_id}/documents \
+curl -v -X POST {server_url}/api/v2/patients/{patient_id}/documents \
   -H 'Authorization: Bearer {jwt_token}' \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -18,7 +18,7 @@ curl -v -X POST {server}/api/v2/patients/{patient_id}/documents \
 ```ruby
 RestClient::Request.new(
   :method => :post,
-  :url => '{server}/api/v2/patients/{patient_id}/documents',
+  :url => '{server_url}/api/v2/patients/{patient_id}/documents',
   :headers => {
     'Authorization' => 'Bearer {jwt_token}',
     'Content-type'  => 'application/json',
@@ -57,7 +57,7 @@ An example of a customer document is a photo of a symptom that a patient takes b
 
 To create a customer document, make a request to:
 
-`POST {server}/api/v2/patients/{patient_id}/documents`
+`POST {server_url}/api/v2/patients/{patient_id}/documents`
 
 ### Headers
 

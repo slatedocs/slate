@@ -50,7 +50,7 @@ To retrieve the list of a patient's current list of medical conditions, make a r
 
 ### HTTP Request
 
-`GET {server}/api/v1/patients/{patient_id}/medical_conditions`
+`GET {server_url}/api/v1/patients/{patient_id}/medical_conditions`
 
 This request must include a valid User JWT token, please see our [documentation](#user-tokens)
 

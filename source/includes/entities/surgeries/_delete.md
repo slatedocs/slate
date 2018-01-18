@@ -19,7 +19,7 @@ To remove a surgery or procedure from a patient's list of surgeries, make a requ
 
 ### HTTP Request
 
-`DELETE {server}/api/v1/patients/{patient_id}/surgeries/{id}`
+`DELETE {server_url}/api/v1/patients/{patient_id}/surgeries/{id}`
 
 This request must include a valid User JWT token, please see our [documentation](#user-tokens)
 

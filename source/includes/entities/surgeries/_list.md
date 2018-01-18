@@ -38,7 +38,7 @@ To retrieve the list of a patient's current list of surgeries and procedures, ma
 
 ### HTTP Request
 
-`GET {server}/api/v2/patients/{patient_id}/surgeries`
+`GET {server_url}/api/v2/patients/{patient_id}/surgeries`
 
 This request must include a valid User JWT token, please see our [documentation](#user-tokens)
 

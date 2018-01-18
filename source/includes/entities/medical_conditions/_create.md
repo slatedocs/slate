@@ -53,7 +53,7 @@ To create a medical condition for a patient, make a request to:
 
 ### HTTP Request
 
-`POST {server}/api/v1/patients/{patient_id}/medical_conditions`
+`POST {server_url}/api/v1/patients/{patient_id}/medical_conditions`
 
 This request must include a valid User JWT token, please see our [documentation](#user-tokens)
 

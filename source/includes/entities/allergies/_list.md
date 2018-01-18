@@ -49,7 +49,7 @@ To retrieve the list of a patient's current list of allergies, make a request to
 
 ### HTTP Request
 
-`GET {server}/api/v1/patients/{patient_id}/allergies`
+`GET {server_url}/api/v1/patients/{patient_id}/allergies`
 
 This request must include a valid User JWT token, please see our [documentation](#user-tokens)
 
