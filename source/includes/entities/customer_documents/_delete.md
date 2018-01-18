@@ -30,7 +30,7 @@ Parameter     | Default
 Authorization | Bearer INSERT_JWT_TOKEN_HERE
 Content-type  | application/json
 
-Please see our [documentation](#user-tokens) for detailed instructions on how to generate a JWT token.
+This request must include a valid User JWT token, please see our [documentation](#user-tokens).
 
 ### URL Parameters
 
