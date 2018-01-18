@@ -17,6 +17,7 @@ includes:
   - cloudstack/compute # Compute section
   - cloudstack/instances
   - cloudstack/templates
+  - cloudstack/isos
   - cloudstack/ssh_keys
   - cloudstack/affinity_groups
   - cloudstack/networking # Networking section
