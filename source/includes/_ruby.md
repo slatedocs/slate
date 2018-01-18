@@ -862,7 +862,7 @@ class BaseWorker
   include Sneakers::Worker
 
   def work(attributes)
-   # Do work
+    # Do work
   end
   # This MUST be included AFTER the work method is defined.
   include ScoutApm::BackgroundJobIntegrations::Sneakers::Instruments
