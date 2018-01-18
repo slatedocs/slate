@@ -62,8 +62,8 @@ The following parameters are required when creating a surgery. To search for sur
 
 ### Request Body Parameters
 
- | Attribute | Required | Description
- -|--------- | ------- | -----------
- surgery | | true | parent attribute for surgery/procedure
- | name | true | Description of surgery/procedure from [surgery names list](#surgeries-procedures-names-list)
- | surgery_year | true | Four digit year when the surgery/procedure took place
+ Attribute           | Required | Description
+ --------------------|----------|-------------
+ surgery             | true     | Parent attribute for surgery/procedure
+ ↳&nbsp;name         | true     | Description of surgery/procedure from [surgery names list](#surgeries-procedures-names-list)
+ ↳&nbsp;surgery_year | true     | Four digit year when the surgery/procedure took place

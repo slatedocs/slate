@@ -86,9 +86,9 @@ The following parameters are accepted when searching chief complaints.
 
 ### Request Body
 
- | Attribute | Required | Description
--|--------- | -------  | -----------
-search |  |true     | parent attribute for search criteria
- | term | true | The term to match (string)
- | language | false | Options are 'EN' (English) and 'ES' (Spanish), default language is English
- | limit | false | Limit size of the result set, default size is 10
+Attribute       | Required | Description
+----------------|----------|------------
+search          | true     | Parent attribute for search criteria
+↳&nbsp;term     | true     | The term to match (string)
+↳&nbsp;language | false    | Options are 'EN' (English) and 'ES' (Spanish), default language is English
+↳&nbsp;limit    | false    | Limit size of the result set, default size is 10

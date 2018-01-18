@@ -73,11 +73,11 @@ The following parameters are required when creating a medical condition. To sear
 
 ### Request Body Parameters
 
- | Attribute | Required | Description
- -|--------- | ------- | -----------
- medical_condition | | true | parent attribute for condition
- | condition | true | Description of condition
- | source | false | 'Self Reported'
- | concept_id | false | Concept ID returned in Clinical Concepts search
- | snomed | false | SNOMED returned in Clinical Concepts search
- | icd10 | false | ICD-10 code returned in Clinical Concepts search
+Attribute         | Required | Description
+------------------|---------|-------------
+medical_condition | true    | Parent attribute for condition
+↳&nbsp;condition  | true    | Description of condition
+↳&nbsp;source     | false   | 'Self Reported'
+↳&nbsp;concept_id | false   | Concept ID returned in Clinical Concepts search
+↳&nbsp;snomed     | false   | SNOMED returned in Clinical Concepts search
+↳&nbsp;icd10      | false   | ICD-10 code returned in Clinical Concepts search

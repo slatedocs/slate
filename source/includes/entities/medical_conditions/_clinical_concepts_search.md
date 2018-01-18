@@ -76,8 +76,8 @@ The following parameters are accepted when searching medical conditions.
 
 ### Query String Parameters
 
- | Attribute | Required | Description
- -|--------- | ------- | -----------
- search | |true | parent attribute for search criteria
- | term | true | The term to match (string)
- | limit | false | Limit size of the result set, default size is 10
+Attribute    | Required | Description
+-------------|----------|------------
+search       | true     | Parent attribute for search criteria
+↳&nbsp;term  | true     | The term to match (string)
+↳&nbsp;limit | false    | Limit size of the result set, default size is 10

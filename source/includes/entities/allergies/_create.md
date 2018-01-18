@@ -68,8 +68,8 @@ The following parameters are required when creating an allergy. To search for th
 
 ### Request Body Parameters
 
- | Attribute | Required | Description
- -|--------- | ------- | -----------
- allergy | | true | parent attribute for allergy
- | name | true | Description of allergy retrieved from search
- | severity | false | Description of severity. Should be one of: 'Not Sure', 'Mild', 'Moderate', or 'Severe'
+Attribute         | Required | Description
+------------------|----------|---------------
+allergy           | true     | Parent attribute for allergy
+↳&nbsp;name       | true     | Description of allergy retrieved from search
+↳&nbsp;severity   | false    | Description of severity. Should be one of: <ul><li>Not Sure</li><li>Mild</li><li>Moderate</li><li>Severe</li></ul>
