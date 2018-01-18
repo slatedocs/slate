@@ -845,6 +845,30 @@ After restarting your dev server with DevTrace enabled, refresh the browser page
 
 ![custom devtrace](custom_devtrace.png)
 
+## Sneakers
+
+Scout doesn't instrument [Sneakers](https://github.com/jondot/sneakers) (a background processing framework for Ruby and RabbitMQ) automatically. To add Sneakers instrumentation:
+
+* [Download the contents of this gist](https://gist.github.com/itsderek23/685c7485a3bd020b6cdd9b1d61cb847f). Place the file inside your application's `/lib` folder or similar.
+* In `config/boot.rb`, add: `require File.expand_path('lib/scout_sneakers.rb', __FILE__)`
+* In your `Worker` class, immediately following the `work` method, add<br/>`include ScoutApm::BackgroundJobIntegrations::Sneakers::Instruments`.
+
+This treats calls to the `work` method as distinct transactions, named with the worker class.
+
+Example usage:
+
+```ruby
+class BaseWorker
+  include Sneakers::Worker
+
+  def work(attributes)
+   # Do work
+  end
+  # This MUST be included AFTER the work method is defined.
+  include ScoutApm::BackgroundJobIntegrations::Sneakers::Instruments
+end
+```
+
 ## Docker <img src="images/docker.png" style="float:right;width: 150px" />
 
 Scout runs within Docker containers without any special configuration.
