@@ -19,6 +19,37 @@ There are three kinds of "batching" in the API: [Pagination](#pagination), [Perf
 
 ### Pagination
 
+> For example, to perform an initial request with a page size of 25,
+include a `page` attribute in your request:
+
+```JSON
+page: {batch:25}
+```
+
+> If there is more than one page of results available, the response
+will include a page attribute like this:
+
+```JSON
+page: {next: {batch:"25",start:26}, this: {batch:"25",start:1}}
+```
+
+> Use the value of the `next` attribute as the `page` attribute to get another page:
+
+```JSON
+page: {batch:"25",start:26}
+```
+
+> and you will get a response including this:
+
+```JSON
+page: {next: {batch:"25",start:51},
+prev: {batch:"25",start:1},
+this: {batch:"25",start:26}
+```
+
+> (The `next` attribute will only be present if in fact there is yet
+another page of data available.)
+
 Methods that return paginated results optionally take a page
 attribute.  The value of this attribute is an object with `batch`
 and `start` attributes.  `batch` specifies the number of records
@@ -35,32 +66,9 @@ pagination object (in the format used by the page request attribute)
 for `this` page, the `next` page, and/or the `prev` page, as
 applicable.
 
-For example, to perform an initial request with a page size of 25,
-include a `page` attribute in your request:
-
-`page: {batch:25}`
-
-If there is more than one page of results available, the response
-will include a page attribute like this:
-
-`page: {next: {batch:"25",start:26}, this: {batch:"25",start:1}}`
-
-Use the value of the `next` attribute as the `page` attribute to get another page:
-
-`page: {batch:"25",start:26}`
-
-and you will get a response including this:
-
-`
-page: {next: {batch:"25",start:51},
-prev: {batch:"25",start:1},
-this: {batch:"25",start:26}
-`
-
-(The `next` attribute will only be present if in fact there is yet
-another page of data available.)
-
 ### Performance Batching
+
+> Two requests in one batch. Note `batch:true` in each, and `system.endBatch` call at end.
 
 ```JSON
 location.create
