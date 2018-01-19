@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - json
 
 toc_footers:
-  - <a href='https://github.com/shiftboard/slate'>Shiftboard Documentation Powered by Slate</a>
+  - <a href='https://github.com/shiftboard/slate'>Powered by Slate</a>
 
 search: true
 
