@@ -1,7 +1,7 @@
 ## Patients - Retrieve a patient
 
 ```shell
-curl {server_url}/api/v2/patients/{id}
+curl {server_url}/api/v2/patients/{patient_id}
 -H "Content-type: application/json"
 -H "Authorization: Bearer 34a2sample-user-token"
 ```
@@ -9,7 +9,7 @@ curl {server_url}/api/v2/patients/{id}
 ```ruby
 RestClient::Request.new(
   :method => :get,
-  :url => "{server_url}/api/v2/patients/{id}",
+  :url => "{server_url}/api/v2/patients/{patient_id}",
   :headers => {
     "Content-type" => "application/json",
     "Authorization" => "Bearer 34a2sample-user-token"
@@ -176,7 +176,7 @@ patient identifier that was returned upon patient registration.
 
 ### HTTP Request
 
-`GET {server_url}/api/v2/patients/{id}`
+`GET {server_url}/api/v2/patients/{patient_id}`
 
 This request must include a valid User JWT token, please see our [documentation](#user-tokens).
 
@@ -191,6 +191,6 @@ Authorization| Bearer {jwt_token}
 
 The following parameters are required to retrieve a patient.
 
-Attribute | Required | Description
---------- | -------- | -----------
-id        | true     | ID of the patient to be retrieved
+Attribute  | Required | Description
+-----------|----------|------------
+patient_id | true     | ID of the patient to be retrieved

@@ -6,7 +6,7 @@ Set the given pharmacy as the patient's current pharmacy.
 
 ### HTTP Request
 
-`PUT {server_url}/api/v1/patients/{id}/pharmacies/{pharmacy_id}`
+`PUT {server_url}/api/v1/patients/{patient_id}/pharmacies/{pharmacy_id}`
 
 This request must include a valid User JWT token, please see our [documentation](#user-tokens).
 

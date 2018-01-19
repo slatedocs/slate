@@ -8,7 +8,7 @@ Retrieve the patient's current pharmacy.
 
 ### HTTP Request
 
-`GET {server_url}/api/v1/patients/{id}/pharmacies/current_pharmacy`
+`GET {server_url}/api/v1/patients/{patient_id}/pharmacies/current_pharmacy`
 
 This request must include a valid User JWT token, please see our [documentation](#user-tokens).
 

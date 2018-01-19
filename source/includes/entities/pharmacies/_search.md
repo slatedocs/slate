@@ -1,7 +1,7 @@
 ## Pharmacies - Search
 
 ```shell
-curl -X POST {server_url}/api/v1/patients/{id}/pharmacies/search
+curl -X POST {server_url}/api/v1/patients/{patient_id}/pharmacies/search
 -H "Content-type: application/json"
 -H "Authorization: Bearer 34a2sample-user-token"
 -d '{ "city": "Sunrise", "state": "FL", "zipcode":"33351", "page": 1, "per_page": 10, "radius": 10, "name": "CVS/pharmacy #7900", "twenty_four_hour_pharmacy": false, "coordinates": { "latitude": "26.19", "longitude": "-80.12" }}'
@@ -10,7 +10,7 @@ curl -X POST {server_url}/api/v1/patients/{id}/pharmacies/search
 ```ruby
 RestClient::Request.new(
   :method => :post,
-  :url => "{server_url}/api/v1/patients/{id}/pharmacies/search",
+  :url => "{server_url}/api/v1/patients/{patient_id}/pharmacies/search",
   :headers => {
     "Content-type" => "application/json",
     "Authorization" => "Bearer 34a2sample-user-token"
@@ -55,7 +55,7 @@ Searches for pharmacies nearby to the given patient.
 
 ### HTTP Request
 
-`POST {server_url}/api/v1/patients/{id}/pharmacies/search`
+`POST {server_url}/api/v1/patients/{patient_id}/pharmacies/search`
 
 This request must include a valid User JWT token, please see our [documentation](#user-tokens).
 

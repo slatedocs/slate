@@ -1,7 +1,7 @@
 ## Getting a Provider's Profile
 
 ```shell
-curl {server_url}/api/v2/providers/{id}/profile
+curl {server_url}/api/v2/providers/{provider_id}/profile
 -H "Content-type: application/json"
 -H "Authorization: Bearer 34a2sample-user-token"
 ```
@@ -9,7 +9,7 @@ curl {server_url}/api/v2/providers/{id}/profile
 ```ruby
 RestClient::Request.new(
   :method => :get,
-  :url => "{server_url}/api/v2/providers/{id}/profile}",
+  :url => "{server_url}/api/v2/providers/{provider_id}/profile}",
   :headers => {
     "Content-type" => "application/json",
     "Authorization" => "Bearer 34a2sample-user-token"
@@ -66,7 +66,7 @@ This request must include a valid JWT token, please see our [documentation](#api
 
 ### HTTP Request
 
-`GET {server_url}/api/v2/providers/{id}/profile`
+`GET {server_url}/api/v2/providers/{provider_id}/profile`
 
 ### Header Parameter
 
