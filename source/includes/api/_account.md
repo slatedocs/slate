@@ -210,12 +210,6 @@ If the specified email address is already in use for an account on Shiftboard fo
 
 If true, the new account will be added to any workgroups marked as organization default workgroups.
 
-### account.sendWelcomeLetter
-
-<script>tryit('account.sendWelcomeLetter')</script>
-
-If true, a welcome email is sent to the new account's email address, giving them their password.
-
 ####temp_password
 
 Normally, a random password is generated for the new account which is only revealed to the new user in the welcome email. If specified, temp_password is used instead.
@@ -576,12 +570,20 @@ Response: On success, empty results will be returned.
 
 ### account.sendWelcomeLetter
 
-<script>tryit('account.sendWelcomeLetter')</script> 
+<script>tryit('account.sendWelcomeLetter')</script>
 
-Sends a welcome letter to an account's email address. If the account has no email address or is not receiving email, no error will result.
+Send a welcome email to the account's email address, giving them their password.  If the account has no email address or is not receiving email, no error will result.
 
-Required parameter: account, a single account identifier or an array of identifiers of accounts for which to send a welcome letter.
+Required Parameters: account or external_account
 
+####account
+
+A single account identifier or an array of identifiers to select.
+No more than 10000 accounts may be specified in a single request.
+
+####external_account
+
+A single external ID (or an array of them if used by the site).
 No more than 10000 accounts may be specified in a single request.
 
 Response: On success, empty results will be returned.
