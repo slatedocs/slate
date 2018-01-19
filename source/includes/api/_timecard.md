@@ -1,6 +1,6 @@
 ## timecard object
 
-timecard objects have the following basic attributes:
+### Basic Attributes
 
 ####id
 
@@ -44,7 +44,7 @@ Start time in RFC 3339 partial-time format (e.g. "23:55:00") or null if no start
 
 Duration in HHH:MM:SS format (e.g. "1:05:00" or "120:00:00")
 
-timecard objects have the following extended attributes:
+### Extended Attributes
 
 ####work_status_type
 

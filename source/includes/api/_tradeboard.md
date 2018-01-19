@@ -1,6 +1,6 @@
 ## tradeboard object
 
-tradeboard objects have the following basic attributes:
+### Basic Attributes
 
 ####id
 
@@ -42,7 +42,7 @@ Unapproved - Trade is awaiting approval of completion
 
 Complete - Trade is completed
 
-tradeboard objects have the following extended attributes:
+### Extended Attributes
 
 ####notes
 

@@ -1,6 +1,6 @@
 ## timeclock object
 
-timeclock objects have the following basic attributes:
+### Basic Attributes
 
 ####id
 
@@ -30,7 +30,7 @@ Time that the user clocked out or null if not clocked out
 
 shift identifier or null if there is no shift associated with this timeclock object
 
-timeclock objects have the following extended attributes:
+### Extended Attributes
 
 ####clocked_in_local
 

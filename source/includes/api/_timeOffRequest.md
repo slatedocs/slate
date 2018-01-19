@@ -1,6 +1,6 @@
 ## timeOffRequest object
 
-timeOffRequest objects have the following basic attributes:
+### Basic Attributes
 
 ####id
 
@@ -44,7 +44,7 @@ Boolean; indicates whether this time off is paid or unpaid
 
 Category for this time off request, or null if the request has no category.
 
-timeOffRequest objects have the following extended attributes:
+### Extended Attributes
 
 ####details
 

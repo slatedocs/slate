@@ -1,6 +1,6 @@
 ## account object
 
-account objects have the following basic attributes:
+### Basic Attributes
 
 ####id
 
@@ -106,7 +106,9 @@ System-defined pending codes are:
 
 * "*1001*" Expired Certification
 
-account objects may have the following extended attributes (not all attributes are available for all organizations):
+### Extended Attributes
+
+(not all attributes are available for all organizations)
 
 ####external_id
 

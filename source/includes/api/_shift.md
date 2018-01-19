@@ -1,6 +1,6 @@
 ## shift object
 
-shift objects have the following basic attributes:
+### Basic Attributes
 
 ####id
 
@@ -78,7 +78,7 @@ If the shift is covered by a member, the external id of the member's account.
 
 If the shift is covered by a workgroup, the workgroup id (currently, never different from the shift's workgroup)
 
-shift objects have the following extended attributes:
+### Extended Attributes
 
 ####details
 
@@ -273,7 +273,7 @@ Response: On success, a `message` attribute will provide a brief notification me
      start_date: "2010-09-17T12:00:00", 
      role: "2282", 
      workgroup: "226085", 
-    location: "29118"
+     location: "29118"
 }
 ```
 
@@ -495,15 +495,15 @@ id and label attributes are provided.
 
 id and name attributes are provided.
 
-custom_dropdown_1
+####custom_dropdown_1
 
 id and name attributes are provided.
 
-custom_dropdown_2
+####custom_dropdown_2
 
 id and name attributes are provided.
 
-custom_dropdown_3
+####custom_dropdown_3
 
 id and name attributes are provided.
 
@@ -1007,6 +1007,22 @@ Boolean; if specified and true, the results returned will include shifts that do
 
 ####select
 
+> Select shifts which start between January 1st, 2018 and January 7th, 2018 (inclusive), are
+published, and have not been filled.
+
+```JSON
+
+ {
+     select: {
+         start_date: "2018-01-01",
+         end_date: "2018-01-07",
+         published: true,
+         covered: false
+     }
+}
+```
+
+
 An object specifying selection criteria for this request. Note that start_date and end_date will have default values if not specified. The available criteria include:
 
 ####start_date
@@ -1133,15 +1149,15 @@ If specified and true, only shifts that have been marked "No Show" will be selec
 
 If true, select shifts where the workgroup OR covering_member/covering_workgroup filter applies. Otherwise, select shifts for which both filters (if specified) apply.
 
-custom_dropdown_1
+####custom_dropdown_1
 
 If specified, only shifts with the given custom_dropdown_1 identifiers will be selected. May be a single identifier or an array of identifiers.
 
-custom_dropdown_2
+####custom_dropdown_2
 
 If specified, only shifts with the given custom_dropdown_2 identifiers will be selected. May be a single identifier or an array of identifiers.
 
-custom_dropdown_3
+####custom_dropdown_3
 
 If specified, only shifts with the given custom_dropdown_3 identifiers will be selected. May be a single identifier or an array of identifiers.
 
@@ -1169,11 +1185,11 @@ If tradeboard is enabled, this will return a boolean value if a shift is availab
 
 If specified, only shifts with the given room_floor (case insensitive) will be selected. May be a single value or an array of values.
 
-custom_text_1
+####custom_text_1
 
-custom_text_2
+####custom_text_2
 
-custom_text_3
+####custom_text_3
 
 If specified, only shifts with the given custom text value (case insensitive) will be selected. May be a single value or an array of values. Ignored unless the user is a site administrator or, if the custom text field is readable by managers, you have specified a scope of `report` or `managed_workgroups` (see `scope` above) and the user is a manager.
 
@@ -1221,15 +1237,15 @@ id and label attributes are provided.
 
 id and name attributes are provided.
 
-custom_dropdown_1
+####custom_dropdown_1
 
 id and name attributes are provided.
 
-custom_dropdown_2
+####custom_dropdown_2
 
 id and name attributes are provided.
 
-custom_dropdown_3
+####custom_dropdown_3
 
 id and name attributes are provided.
 
