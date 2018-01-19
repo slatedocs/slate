@@ -6,7 +6,18 @@ At this time, only GET requests are supported (except for [batch requests](#batc
 on the [JSON-RPC Over HTTP specification's GET
 request](http://jsonrpc.org/historical/json-rpc-over-http.html#get).
 
-## Pagination
+## Selection Criteria
+
+Methods that may apply selection criteria take a `select` attribute.
+The value of this attribute is an object with method-dependent
+attributes.  The `select` attribute is optional for some methods
+and required for others.  Default values may apply for some methods.
+
+## Batches
+
+There are three kinds of "batching" in the API: [Pagination](#pagination), [Performance Batching](#performance-batching), and [Batch Requests](#batch-requests).
+
+### Pagination
 
 Methods that return paginated results optionally take a page
 attribute.  The value of this attribute is an object with `batch`
@@ -48,17 +59,6 @@ this: {batch:"25",start:26}
 
 (The `next` attribute will only be present if in fact there is yet
 another page of data available.)
-
-## Selection Criteria
-
-Methods that may apply selection criteria take a `select` attribute.
-The value of this attribute is an object with method-dependent
-attributes.  The `select` attribute is optional for some methods
-and required for others.  Default values may apply for some methods.
-
-## Batches
-
-There are three kinds of "batching" in the API.  The first is covered under [Pagination](#pagination), where a `batch` attribute of the `page` attribute specifies the number of records to return.
 
 ### Performance Batching
 
