@@ -198,7 +198,7 @@ Alerts are sent to a notification group, which is composed of notification chann
 
 Correlate deploys with your app's performance: Scout's GitHub-enhanced deploy tracking makes it easy to identify the Git branch or tag running now and which team members contributed to every deploy.
 
-Scout tracks your deploys without additional configuration if you are running Capistrano. If you aren't using Capistrano or deploying your app to Heroku, see our [deploy tracking configuration docs](#deploy-tracking-config).
+Scout tracks your deploys without additional configuration if you are running Capistrano. If you aren't using Capistrano or deploying your app to Heroku, see our [deploy tracking configuration docs](#ruby-deploy-tracking-config).
 
 ### Sorting
 
