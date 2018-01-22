@@ -286,9 +286,7 @@ The response results `timeclock` attribute will be the selected timeclock object
 
 If requested, the response results `referenced_objects` attribute will be an object containing one or more object type names as attributes; for each object type the value will be an array of those instances of that type of object which are referred to in the `timeclocks` results, with only selected minimal attributes provided:
 
-####account
-
-id, first_name, last_name, and screen_name attributes are provided.
++<dt>account</dt><dd>id, first_name, last_name, and screen_name attributes are provided.<br><b>NOTE:</b> external_id will also be returned in the results if external ids are enabled for the site</dd>
 
 ####timezone
 
@@ -475,7 +473,7 @@ report.
 
 Reports clocked in/out status of an account.
 
-Parameters: `account` (optional, defaults to current user).
++<p>Parameters: "account" (optional, defaults to current user) or "external_account" (optional, defaults to current user; can only be used if external ids are enabled for the site)</p>
 
 Response: On success, returns basic timeclock attributes. If the account is clocked in, they will reflect that timeclock object; otherwise, timeclock attributes other than `account` will be null.
 

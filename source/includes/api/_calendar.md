@@ -122,7 +122,8 @@ Additional configuration for what time off information to display. Options are a
 * member
 
 * Accepts a member ID
-
++			<dt>external_member</dt>
++            <dd>Accepts an external member ID for this account, if this organization uses external IDs.
 ####include_tradeboard
 
 Include tradeboard information. If not defined, this property is set to true

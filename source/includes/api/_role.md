@@ -128,7 +128,7 @@ The name of this role.
 
 Assigns a role or multiple roles to a member of a given workgroup. This method can be used to assign or unassign roles.
 
-Required Parameters:
++        <dt>external_account</dt><dd>external account ID to be updated, if this organization uses external IDs.
 
 ####account
 

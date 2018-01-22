@@ -6,6 +6,16 @@
 
 A unique identifier for this account.
 
++<dt>external_id</dt>
+
++<dd>
+
++    The external identifier for this account.
+
++    <br><b>NOTE:</b> This field is only used or returned when external ids are enabled for the site.
+
++</dd>
+
 ####first_name
 
 ####last_name
@@ -234,7 +244,7 @@ Response: On success, an `id` attribute will provide the identifier for the new 
 
 Deletes an account record.
 
-Required parameter: `id`.
++<p>Required parameters:  &quot;<span class="code">id</span>&quot; or &quot;<span class="code">external_id</span>&quot;
 
 Optional boolean parameter: `notify` (defaults to false) to indicate a notification email should be sent to the owner of the deleted account.
 
@@ -246,7 +256,7 @@ Response: On success, empty results will be returned.
 
 Deletes an account document for a given account.
 
-Required parameters: `id` and `document_number`.
++<p>Required parameters:  &quot;<span class="code">id</span>&quot; or &quot;<span class="code">external_id</span>&quot; and &quot;<span class="code">document_number</span>&quot;
 
 Response: On success, empty results will be returned.
 
@@ -256,7 +266,7 @@ Response: On success, empty results will be returned.
 
 Deletes the user image for a given account.
 
-Required parameter: `id`
++<p>Required parameters:  &quot;<span class="code">id</span>&quot; or &quot;<span class="code">external_id</span>&quot;
 
 Response: On success, empty results will be returned.
 
@@ -264,9 +274,9 @@ Response: On success, empty results will be returned.
 
 <script>tryit('account.deleteResume')</script>
 
-Deletes the resume for a given account.
+Deletes the resume for a given account.'
 
-Required parameter: `id`
++<p>Required parameters:  &quot;<span class="code">id</span>&quot; or &quot;<span class="code">external_id</span>&quot;
 
 Response: On success, empty results will be returned.
 
@@ -276,7 +286,7 @@ Response: On success, empty results will be returned.
 
 Returns information about a single account.
 
-Required parameter: `id`
++<p>Required parameters:  &quot;<span class="code">id</span>&quot; or &quot;<span class="code">external_id</span>&quot;
 
 Optional parameters
 
@@ -320,7 +330,7 @@ The response results will be an account object containing basic or basic and ext
 
 Returns an account document for a single account.
 
-Required parameters: `id` and `document_number`.
++<p>Required parameters:  &quot;<span class="code">id</span>&quot; or &quot;<span class="code">external_id</span>&quot; and &quot;<span class="code">document_number</span>&quot;
 
 Optional parameter: `expiration` (defaults to 300) to specify valid lifetime of the returned URL in seconds. Maximum 604800 (1 week).
 
@@ -332,7 +342,7 @@ The response results will have an attribute `url` whose value can be used to fet
 
 Returns image information about a single account.
 
-Required parameter: `id`
++<p>Required parameters:  &quot;<span class="code">id</span>&quot; or &quot;<span class="code">external_id</span>&quot;
 
 Optional parameter: `expiration` (defaults to 300) to specify valid lifetime of the returned URL in seconds. Maximum 604800 (1 week).
 
@@ -344,7 +354,7 @@ The response results will have an attribute `url` whose value can be used to fet
 
 Returns resume information about a single account.
 
-Required parameter: `id`
++<p>Required parameters:  &quot;<span class="code">id</span>&quot; or &quot;<span class="code">external_id</span>&quot;
 
 Optional parameter: `expiration` (defaults to 300) to specify valid lifetime of the returned URL in seconds. Maximum 604800 (1 week).
 
@@ -424,6 +434,12 @@ Returns information about accounts with membership in a workgroup. Uses [paginat
 
 Required parameters: `select` object with a `workgroup` attribute identifying the workgroup whose members should be returned. E.g. `{select:{workgroup:12345}}`.
 
++<p>Optional parameters:</p>
+
++<dt>extended</dt>
+
++<dd>Boolean; if specified and true, the results returned will include an extended set of attributes; otherwise a basic set of attributes will be returned for each account.</dd>
+
 The response results `members` attribute will be an array of the current page of members. Each element of the array will be a member object.
 
 Currently, this method only returns members with `org_hold` false and org_pending code "0" (Current).
@@ -443,6 +459,9 @@ An object specifying selection criteria for this request:
 ####member
 
 The member for which to select workgroups; defaults to the current user.
+
++<dt>external_member</dt>
++<dd>The member for which to select workgroups, identified by their <span class="code">external_id</span>; defaults to the current user.</dd>
 
 ####search
 
@@ -466,7 +485,7 @@ id, first_name, last_name, and screen_name attributes are provided.
 
 Returns information about account_openid objects for a given account.
 
-Required Parameter: `account`.
++<p>Required parameters:  &quot;<span class="code">account</span>&quot; or &quot;<span class="code">external_account</span>&quot;
 
 The response results `account_openids` attribute will be an array of the account_openid objects for the designated account.
 
@@ -502,7 +521,7 @@ The response results `accounts` attribute will be an array of the current page o
 
 Resets the password for an account to a randomly chosen value and sends the new password to the account's email address. If the account has no email address or is not receiving email, no error will result and the password will be changed.
 
-Required parameter: account, a single account identifier or an array of identifiers of accounts for which to reset the password.
++<p>Required parameters: &quot;<span class="code">account</span>&quot; or &quot;<span class="code">external_account</span>&quot;, a single account identifier or an array of identifiers of accounts for which to reset the password.</p>
 
 No more than 10000 accounts may be specified in a single request.
 
@@ -562,7 +581,7 @@ If user_actions were requested, a `user_actions` attribute will also be returned
 
 Sends a password reset link for an account to the account's email address. If the account has no email address or is not receiving email, no error will result.
 
-Required parameter: account, a single account identifier or an array of identifiers of accounts for which to send the password reset.
++<p>Required parameters: &quot;<span class="code">account</span>&quot; or &quot;<span class="code">external_account</span>&quot;, a single account identifier or an array of identifiers of accounts for which to send the password reset.</p>
 
 No more than 10000 accounts may be specified in a single request.
 
@@ -574,7 +593,7 @@ Response: On success, empty results will be returned.
 
 Send a welcome email to the account's email address, giving them their password.  If the account has no email address or is not receiving email, no error will result.
 
-Required Parameters: account or external_account
++<p>Required parameters: &quot;<span class="code">account</span>&quot; or &quot;<span class="code">external_account</span>&quot;, a single account identifier or an array of identifiers of accounts for which to send a welcome letter.</p>
 
 ####account
 
@@ -594,7 +613,9 @@ Response: On success, empty results will be returned.
 
 Updates an account object.
 
-Required parameter: `id`. Other account object attributes may be specified. Updating another account's email address or notification options is not allowed if the account is active with more than one organization's Shiftboard.
++<p>Required parameters:  &quot;<span class="code">id</span>&quot; or &quot;<span class="code">external_id</span>&quot;.
+
++<p>Other account object attributes may be specified.  Updating another account's email address or notification options is not allowed if the account is active with more than one organization's Shiftboard.</p>
 
 Response: On success, empty results will be returned.
 
@@ -604,7 +625,7 @@ Response: On success, empty results will be returned.
 
 Updates an account document for a single account.
 
-Required parameters: `id` and `document_number`.
++<p>Required parameters:  &quot;<span class="code">id</span>&quot; or &quot;<span class="code">external_id</span>&quot; and &quot;<span class="code">document_number</span>&quot;
 
 Optional parameter: `expiration` (defaults to 300) to specify valid lifetime of the returned URL in seconds. Maximum 3600 (1 hour).
 
@@ -618,7 +639,7 @@ Upon success, the request to the url will return an HTTP 204 status code.
 
 Updates the user image for a single account.
 
-Required parameter: `id`
++<p>Required parameters:  &quot;<span class="code">id</span>&quot; or &quot;<span class="code">external_id</span>&quot;
 
 Optional parameter: `expiration` (defaults to 300) to specify valid lifetime of the returned URL in seconds. Maximum 3600 (1 hour).
 
@@ -632,7 +653,7 @@ Upon success, the request to the url will return an HTTP 204 status code.
 
 Updates the resume for a single account.
 
-Required parameter: `id`
++<p>Required parameters:  &quot;<span class="code">id</span>&quot; or &quot;<span class="code">external_id</span>&quot;
 
 Optional parameter: `expiration` (defaults to 300) to specify valid lifetime of the returned URL in seconds. Maximum 3600 (1 hour).
 

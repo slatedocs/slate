@@ -66,6 +66,12 @@ Required Parameters:
 
 account identifier or array of account identifiers
 
++<dd><b>NOTE:</b> If you are calling this method with the <span class="code">account</span> parameter, <span class="code">external_account</span> will be ignored (if included).</dd>
+
++<dt>external_account</dt><dd>external account identifier or array of external account identifiers</dd>
+
++<dd><b>NOTE:</b> If you are calling this method with the <span class="code">external_account</span> parameter, <span class="code">account</span> will be ignored (if included).</dd>
+
 **NOTE:** If you are calling this method with the account parameter, external_account will be ignored (if included).
 
 ####external_account

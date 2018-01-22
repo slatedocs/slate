@@ -20,6 +20,16 @@ Required Parameters:
 
 ####account
 
++<dd>A single account identifier or an array of identifiers of accounts.</dd>
+
++<dd><b>NOTE:</b> If you are calling this method with the <span class="code">external_account</span> parameter, <span class="code">account</span> is not required.</dd>
+
++<dt>external_account</dt>
+
++<dd>A single external account identifier or an array of external identifiers of accounts.
+
++<dd><b>NOTE:</b> If you are calling this method with the <span class="code">account</span> parameter, <span class="code">external_account</span> is not required.</dd>
+
 ####openid
 
 An openid url that will allow authentication to this account via

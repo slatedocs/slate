@@ -30,6 +30,14 @@ Required parameters:
 
 A single account identifier or an array of identifiers of accounts for which to create memberships for each specified workgroup.
 
++<dd><b>NOTE:</b> If you are calling this method with the <span class="code">external_member</span> parameter, <span class="code">member</span> is not required.</dd>
+
++<dt>external_member</dt>
+
++<dd>A single external account identifier or an array of external identifiers of accounts for which to create memberships for each specified workgroup.
+
++<dd><b>NOTE:</b> If you are calling this method with the <span class="code">member</span> parameter, <span class="code">external_member</span> is not required, and will be ignored.</dd>
+
 ####workgroup
 
 A single workgroup identifier or an array of identifiers of workgroups for which to create memberships for each specified account. Currently, only a single workgroup may be specified.
@@ -56,6 +64,14 @@ Required parameters:
 
 A single account identifier or an array of identifiers of accounts for which to delete memberships for each specified workgroup.
 
++<dd><b>NOTE:</b> If you are calling this method with the <span class="code">external_member</span> parameter, <span class="code">member</span> is not required.</dd>
+
++<dt>external_member</dt>
+
++<dd>A single external account identifier or an array of external identifiers of accounts for which to delete memberships for each specified workgroup.
+
++<dd><b>NOTE:</b> If you are calling this method with the <span class="code">member</span> parameter, <span class="code">external_member</span> is not required.</dd>
+
 ####workgroup
 
 A single workgroup identifier or an array of identifiers of workgroups for which to delete memberships for each specified account. Currently, only a single workgroup may be specified.
@@ -79,6 +95,14 @@ An object specifying selection criteria for this request. Either `member` or `wo
 ####member
 
 A single account identifier or an array of account identifiers indicating accounts for whom to return memberships.
+
++<dd><b>NOTE:</b> If you are calling this method with the <span class="code">external_member</span> parameter, <span class="code">member</span> is not required.</dd>
+
++<dt>external_member</dt>
+
++<dd>A single external account identifier or an array of external account identifiers indicating accounts for whom to return memberships.</dd>
+
++<dd><b>NOTE:</b> If you are calling this method with the <span class="code">external_member</span> parameter, <span class="code">member</span> is not required.</dd>
 
 ####workgroup
 
@@ -123,6 +147,14 @@ Required parameters:
 ####member
 
 A single account identifier or an array of identifiers of accounts for which to update memberships for each specified workgroup.
+
++<dd><b>NOTE:</b> If you are calling this method with the <span class="code">external_member</span> parameter, <span class="code">member</span> is not required.</dd>
+
++<dt>external_member</dt>
+
++<dd>A single external account identifier or an array of external identifiers of accounts for which to update memberships for each specified workgroup.
+
++<dd><b>NOTE:</b> If you are calling this method with the <span class="code">member</span> parameter, <span class="code">external_member</span> is not required.</dd>
 
 ####workgroup
 

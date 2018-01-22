@@ -116,5 +116,7 @@ selected time zone.
 }
 ```
 
-Returns account, the account id for the registered API account used.
++<p>Returns account, the account id for the registered API user.</p>
++<p><b>NOTE:</b> external_account, the external account id for the registered API user will be included if external ids are enabled for the site.</p>
+
 
