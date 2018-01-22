@@ -447,7 +447,7 @@ The following configuration settings are available:
         The Git SHA that corresponds to the version of the app being deployed.
       </td>
       <td>
-        <a href="#deploy-tracking-config">See docs</a>
+        <a href="#ruby-deploy-tracking-config">See docs</a>
       </td>
       <td>No</td>
     </tr>
