@@ -112,7 +112,6 @@ The name of this role.
 }
 ```
 
-
 > Response example:
 
 ```JSON
@@ -125,10 +124,11 @@ The name of this role.
 }
 ```
 
-
 Assigns a role or multiple roles to a member of a given workgroup. This method can be used to assign or unassign roles.
 
-+        <dt>external_account</dt><dd>external account ID to be updated, if this organization uses external IDs.
+        ####external_account
+
+external account ID to be updated, if this organization uses external IDs.
 
 ####account
 
@@ -157,7 +157,6 @@ One or more role ids to be assigned to the workgroup member.
 }
 ```
 
-
 > Response example:
 
 ```JSON
@@ -183,7 +182,6 @@ One or more role ids to be assigned to the workgroup member.
      }
 }
 ```
-
 
 Returns information about roles. Uses [pagination](#pagination).
 
@@ -213,7 +211,6 @@ The name of this role.
 }
 ```
 
-
 > Response example:
 
 ```JSON
@@ -225,7 +222,6 @@ The name of this role.
      result: {}
 }
 ```
-
 
 Updates a role object.
 

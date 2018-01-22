@@ -31,7 +31,6 @@
 }
 ```
 
-
 Returns the news for managers, teams, and members.
 
 Optional parameters:

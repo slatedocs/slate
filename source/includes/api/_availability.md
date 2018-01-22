@@ -10,6 +10,12 @@ Unique identifier for this availability.
 
 Account identifier for this availability.
 
+####external_account
+
+The external account identifier for this object.
+
+**NOTE:** This field is only used or returned when external ids are enabled for the site.
+
 ####busy
 
 false if the availability record indicates availability; true if it indicates unavailability.
@@ -66,11 +72,13 @@ Required Parameters:
 
 account identifier or array of account identifiers
 
-+<dd><b>NOTE:</b> If you are calling this method with the <span class="code">account</span> parameter, <span class="code">external_account</span> will be ignored (if included).</dd>
+**NOTE:** If you are calling this method with the `account` parameter, `external_account` will be ignored (if included).
 
-+<dt>external_account</dt><dd>external account identifier or array of external account identifiers</dd>
+####external_account
 
-+<dd><b>NOTE:</b> If you are calling this method with the <span class="code">external_account</span> parameter, <span class="code">account</span> will be ignored (if included).</dd>
+external account identifier or array of external account identifiers
+
+**NOTE:** If you are calling this method with the `external_account` parameter, `account` will be ignored (if included).
 
 **NOTE:** If you are calling this method with the account parameter, external_account will be ignored (if included).
 
@@ -157,7 +165,6 @@ id, first_name, last_name, and screen_name attributes are provided.
 }
 ```
 
-
 > Response example:
 
 ```JSON
@@ -210,7 +217,6 @@ id, first_name, last_name, and screen_name attributes are provided.
     }
 }
 ```
-
 
 Returns information about account availability data. Uses select criteria. Uses [pagination](#pagination).
 

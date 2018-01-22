@@ -22,6 +22,10 @@ The nickname or code for this workgroup.
 
 The account identifier of the primary contact for this workgroup.
 
+####external_contact_account
+
+The external account identifier of the primary contact for this workgroup. This field is optional, and should be used instead of `contact_account` if your site is configured to support external identifiers and you wish to key off of the external id instead.
+
 Extended workgroup objects may also have these attributes:
 
 ####org_default
@@ -93,10 +97,6 @@ Number of minutes of overlap between shifts with the same location and workgroup
 ####location
 
 Default location identifier for this workgroup's shifts.
-
-####contact_account
-
-Member identifier for this workgroup's contact person.
 
 ####url
 

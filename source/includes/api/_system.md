@@ -53,7 +53,6 @@ For use in client testing only. Returns the object passed as params as its resul
 }
 ```
 
-
 Ends a batch of requests.
 
 See [Performance Batching](#performance-batching) for more details.
@@ -116,7 +115,6 @@ selected time zone.
 }
 ```
 
-+<p>Returns account, the account id for the registered API user.</p>
-+<p><b>NOTE:</b> external_account, the external account id for the registered API user will be included if external ids are enabled for the site.</p>
+Returns account, the account id for the registered API user.
 
-
+**NOTE:** external_account, the external account id for the registered API user will be included if external ids are enabled for the site.

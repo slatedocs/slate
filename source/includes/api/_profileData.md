@@ -72,7 +72,6 @@ value of this profile item, or if the profile item has more than one value, an a
 }
 ```
 
-
 Returns information about account profile data. Uses select criteria. Uses [pagination](#pagination).
 
 Parameters:
@@ -130,7 +129,6 @@ The response results `profile_data` attribute will be an array of the current pa
 }
 ```
 
-
 > Response example:
 
 ```JSON
@@ -142,7 +140,6 @@ The response results `profile_data` attribute will be an array of the current pa
      result: {}
 }
 ```
-
 
 Updates multiple profileData objects for a given account.
 

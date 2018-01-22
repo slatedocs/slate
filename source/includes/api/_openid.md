@@ -8,6 +8,8 @@ A unique identifier for this openid object.
 
 ####account
 
+####external_account
+
 ####openid
 
 ### openid.create
@@ -20,15 +22,15 @@ Required Parameters:
 
 ####account
 
-+<dd>A single account identifier or an array of identifiers of accounts.</dd>
+A single account identifier or an array of identifiers of accounts.
 
-+<dd><b>NOTE:</b> If you are calling this method with the <span class="code">external_account</span> parameter, <span class="code">account</span> is not required.</dd>
+**NOTE:** If you are calling this method with the `external_account` parameter, `account` is not required.
 
-+<dt>external_account</dt>
+####external_account
 
-+<dd>A single external account identifier or an array of external identifiers of accounts.
+A single external account identifier or an array of external identifiers of accounts.
 
-+<dd><b>NOTE:</b> If you are calling this method with the <span class="code">account</span> parameter, <span class="code">external_account</span> is not required.</dd>
+**NOTE:** If you are calling this method with the `account` parameter, `external_account` is not required.
 
 ####openid
 

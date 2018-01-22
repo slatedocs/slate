@@ -24,8 +24,6 @@ Boolean.
 
 ####status
 
-
-
 ####pending
 
 Pending - Trade is awaiting permission to be offered
@@ -112,7 +110,11 @@ The response results `tradeboard` attribute will be the selected tradeboard obje
 
 If requested, the response results `referenced_objects` attribute will be an object containing one or more object type names as attributes; for each object type the value will be an array of those instances of that type of object which are referred to in the `tradeboard` results or in its associated shift, with only selected minimal attributes provided:
 
-+<dt>account</dt><dd>id, first_name, last_name, and screen_name attributes are provided. <br><b>NOTE:</b> external_id will also be returned in the results if external ids are enabled for the site.</dd>
+####account
+
+id, first_name, last_name, and screen_name attributes are provided. 
+
+**NOTE:** external_id will also be returned in the results if external ids are enabled for the site.
 
 ####client
 
@@ -182,7 +184,11 @@ The response results `tradeboard` attribute will be an array of the current page
 
 If requested, the response results `referenced_objects` attribute will be an object containing one or more object type names as attributes; for each object type the value will be an array of those instances of that type of object which are referred to in the `tradeboard` results or their associated shifts, with only selected minimal attributes provided:
 
-+<dt>account</dt><dd>id, first_name, last_name, and screen_name attributes are provided. <br><b>NOTE:</b> external_id will also be returned in the results if external ids are enabled for the site.</dd>
+####account
+
+id, first_name, last_name, and screen_name attributes are provided. 
+
+**NOTE:** external_id will also be returned in the results if external ids are enabled for the site.
 
 ####shift
 

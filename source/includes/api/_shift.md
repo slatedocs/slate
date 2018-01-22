@@ -238,7 +238,6 @@ Response: On success, a `message` attribute will provide a brief notification me
 }
 ```
 
-
 > Response example:
 
 ```JSON
@@ -252,7 +251,6 @@ Response: On success, a `message` attribute will provide a brief notification me
      }
 }
 ```
-
 
 Confirms a shift.
 
@@ -277,7 +275,6 @@ Response: On success, a `message` attribute will provide a brief notification me
 }
 ```
 
-
 > Response example:
 
 ```JSON
@@ -291,7 +288,6 @@ Response: On success, a `message` attribute will provide a brief notification me
      }
 }
 ```
-
 
 Creates a new shift record.
 
@@ -312,7 +308,6 @@ Response: On success, an `id` attribute will provide the identifier for the new 
 }
 ```
 
-
 > Response example:
 
 ```JSON
@@ -324,7 +319,6 @@ Response: On success, an `id` attribute will provide the identifier for the new 
     result: {}
 }
 ```
-
 
 Deletes a shift record.
 
@@ -371,7 +365,6 @@ Response: On success, empty results will be returned.
 }
 ```
 
-
 > Response example:
 
 ```JSON
@@ -405,7 +398,6 @@ Response: On success, empty results will be returned.
      }
 }
 ```
-
 
 Returns information about a coverage shift.
 
@@ -527,7 +519,6 @@ id, name, and label attributes are provided.
 }
 ```
 
-
 > Response example:
 
 ```JSON
@@ -547,7 +538,6 @@ id, name, and label attributes are provided.
     }
 }
 ```
-
 
 Returns availability information as to who is and is not assignable to a shift. The shift in this case could be one that currently exists, or a shift to be created later.
 
@@ -596,6 +586,10 @@ If specified, requests only shifts with the given reference IDs (case insensitiv
 ####covering_member
 
 If specified, requests only shifts covered by the workgroup member.
+
+####external_covering_member
+
+If the shift is covered by a member, the external id of the member's account.
 
 ####limit
 
@@ -739,7 +733,6 @@ Allow shifts that have a short (N hours) turnaround if beta feature is enabled (
 }
 ```
 
-
 > Response example:
 
 ```JSON
@@ -842,7 +835,6 @@ Allow shifts that have a short (N hours) turnaround if beta feature is enabled (
 }
 ```
 
-
 Returns information about a tradeboard posting for a coverage shift.
 
 Parameters:
@@ -863,7 +855,11 @@ The response results `tradeboard` attribute will be the selected tradeboard obje
 
 If requested, the response results `referenced_objects` attribute will be an object containing one or more object type names as attributes; for each object type the value will be an array of those instances of that type of object which are referred to in the `tradeboard` results or in its associated shift, with only selected minimal attributes provided:
 
-+        <dt>account</dt><dd>id, first_name, last_name, and screen_name attributes are provided. <br><b>NOTE:</b> external_id will also be returned in the results if external ids are enabled for the site.</dd>
+####account
+
+id, first_name, last_name, and screen_name attributes are provided. 
+
+**NOTE:** external_id will also be returned in the results if external ids are enabled for the site.
 
 ####client
 
@@ -912,7 +908,6 @@ id and name attributes are provided.
 }
 ```
 
-
 > Response example:
 
 ```JSON
@@ -947,7 +942,6 @@ id and name attributes are provided.
      }
 }
 ```
-
 
 Returns information about coverage shifts. Uses [pagination](#pagination). Uses select criteria.
 
@@ -1019,7 +1013,6 @@ published, and have not been filled.
      }
 }
 ```
-
 
 An object specifying selection criteria for this request. Note that start_date and end_date will have default values if not specified. The available criteria include:
 
@@ -1266,7 +1259,6 @@ id, name, and label attributes are provided.
 }
 ```
 
-
 > Response example:
 
 ```JSON
@@ -1299,7 +1291,6 @@ id, name, and label attributes are provided.
      }
 }
 ```
-
 
 Returns information about coverage shifts created or updated since a given date. Uses [pagination](#pagination). Uses select criteria.
 
@@ -1472,7 +1463,6 @@ id, first_name, last_name, and screen_name attributes are provided.
 }
 ```
 
-
 > Response example:
 
 ```JSON
@@ -1548,7 +1538,6 @@ The response results `summary` attribute will provide an array containing an ele
 }
 ```
 
-
 > Response example:
 
 ```JSON
@@ -1560,7 +1549,6 @@ The response results `summary` attribute will provide an array containing an ele
      result: {}
 }
 ```
-
 
 Confirms a shift.
 
@@ -1591,7 +1579,6 @@ Response: On success, empty results will be returned. Note that if the shift had
 }
 ```
 
-
 > Response example:
 
 ```JSON
@@ -1603,7 +1590,6 @@ Response: On success, empty results will be returned. Note that if the shift had
      result: {}
 }
 ```
-
 
 Updates a shift object.
 

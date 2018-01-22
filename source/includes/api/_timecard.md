@@ -109,7 +109,6 @@ Response: On success, an `id` attribute will provide the identifier for the new 
 }
 ```
 
-
 > Response example:
 
 ```JSON
@@ -121,7 +120,6 @@ Response: On success, an `id` attribute will provide the identifier for the new 
      result: {}
 }
 ```
-
 
 Deletes a timecard record.
 
@@ -221,7 +219,11 @@ The response results `timecard` attribute will be the selected timecard object.
 
 If requested, the response results `referenced_objects` attribute will be an object containing one or more object type names as attributes; for each object type the value will be an array of those instances of that type of object which are referred to in the `timecard` results, with only selected minimal attributes provided:
 
-+<dt>account</dt><dd>id, first_name, last_name, and screen_name attributes are provided. <br><b>NOTE:</b> external_id will also be returned in the results if external ids are enabled for the site</dd>
+####account
+
+id, first_name, last_name, and screen_name attributes are provided. 
+
+**NOTE:** external_id will also be returned in the results if external ids are enabled for the site
 
 ####client
 

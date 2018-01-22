@@ -24,6 +24,10 @@ The timeOffRequest's workgroup or null if no workgroup
 
 The account for which this is a request
 
+####external_member
+
+The external account identifier for which this is a request
+
 ####summary
 
 Summary information about this request
@@ -84,7 +88,12 @@ Response: On success, empty results will be returned.
 
 Creates a new timeOffRequest record.
 
-+<p>Parameters: Any attributes of a timeOffRequest object except "id", "last_status_update", or "status_update_by" may be specified.  Minimally, "start_date" and "member/external_member" must be specified.  "timezone" defaults to the organization's timezone.  "status" defaults to "0" (New).  "paid" defaults to false.  Start and end dates may only fall on even five minute times.</p>
+Parameters: Any attributes of a timeOffRequest object except "id",
+"last_status_update", or "status_update_by" may be specified.
+Minimally, "start_date" and "member/external_member" must be
+specified.  "timezone" defaults to the organization's timezone.
+"status" defaults to "0" (New).  "paid" defaults to false.  Start
+and end dates may only fall on even five minute times.
 
 Response: On success, an `id` attribute will provide the identifier for the new timeOffRequest.
 
@@ -144,7 +153,11 @@ If user_actions were requested, a `user_actions` attribute will also be returned
 
 If requested, the response results `referenced_objects` attribute will be an object containing one or more object type names as attributes; for each object type the value will be an array of those instances of that type of object which are referred to in the "timeOffRequest" results, with only selected minimal attributes provided:
 
-+<dt>account</dt><dd>id, first_name, last_name, and screen_name attributes are provided. <br><b>NOTE:</b> external_id will also be returned in the results if external ids are enabled for the site.</dd>
+####account
+
+id, first_name, last_name, and screen_name attributes are provided. 
+
+**NOTE:** external_id will also be returned in the results if external ids are enabled for the site.
 
 id, first_name, last_name, and screen_name attributes are provided.
 
@@ -204,13 +217,14 @@ The response results "timeOffRequests" attribute will be an array of the current
 
 If requested, the response results `referenced_objects` attribute will be an object containing one or more object type names as attributes; for each object type the value will be an array of those instances of that type of object which are referred to in the "timeOffRequest" results, with only selected minimal attributes provided:
 
-+<dd><b>NOTE:</b> If you are calling this method with the <span class="code">external_member</span> parameter, <span class="code">member</span> is not required.</dd>
+**NOTE:** If you are calling this method with the `external_member` parameter, `member` is not required.
 
-+<dt>external_member</dt>
+####external_member
 
-+<dd>If specified, requests only timeOffRequests for the given account.</dd>
+If specified, requests only timeOffRequests for the given account.
 
-+<dd><b>NOTE:</b> If you are calling this method with the <span class="code">member</span> parameter, <span class="code">external_member</span> is not required, and will be ignored.</dd>
+**NOTE:** If you are calling this method with the `member` parameter, `external_member` is not required, and will be ignored.
+
  
 ####account
 
