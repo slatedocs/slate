@@ -1154,7 +1154,7 @@ Specify true if, when org_hold is being changed to true and/or org_pending is be
 
 Specify true if shifts being unconfirmed should also be unpublished.
 
-Updating another account's email address or notification options is not allowed if the account is active with more than one organization's Shiftboard.
+Other account object attributes may be specified.  Updating another account's email address or notification options is not allowed if the account is active with more than one organization's Shiftboard.
 
 Response: On success, empty results will be returned.
 

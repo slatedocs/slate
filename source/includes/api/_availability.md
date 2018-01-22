@@ -77,9 +77,7 @@ account identifier or array of account identifiers
 
 external account identifier or array of external account identifiers
 
-**NOTE:** If you are calling this method with the `external_account` parameter, `account` will be ignored (if included).
-
-**NOTE:** If you are calling this method with the account parameter, external_account will be ignored (if included).
+**NOTE:** If you are calling this method with the `account parameter`, `external_account` will be ignored (if included).
 
 ####external_account
 
@@ -214,6 +212,7 @@ id, first_name, last_name, and screen_name attributes are provided.
 ```
 
 <span class="tryit" id="availability-list-tryit"></span>
+
 Returns information about account availability data. Uses select criteria. Uses [pagination](#pagination).
 
 Parameters:

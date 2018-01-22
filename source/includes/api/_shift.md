@@ -598,6 +598,10 @@ If specified, requests only shifts with the given reference IDs (case insensitiv
 
 If specified, requests only shifts covered by the workgroup member.
 
+####external_covering_member
+
+If the shift is covered by a member, the external id of the member's account.
+
 ####limit
 
 Maximum number of results to return; default site dropdown list limit.
