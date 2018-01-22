@@ -6,6 +6,7 @@ includes:
   - elixir
   - api
   - features
+  - integrations
   - reference
 
 search: true

@@ -43,7 +43,7 @@ This limit was raised to 16k characters from 4k characters in version 2.3.3 of t
 
 ### Code Backtraces
 
-You'll see "CODE" buttons next to method calls that are >= 500 ms. If you've enabled the GitHub integration, you can see the line-of-code, associated SQL or HTTP endpoint (if applicable), author, commit date, and deploy time for the relevant slow code.
+You'll see "CODE" buttons next to method calls that are >= 500 ms. [If you've enabled the GitHub integration](#github), you can see the line-of-code, associated SQL or HTTP endpoint (if applicable), author, commit date, and deploy time for the relevant slow code.
 
 ![stream show git](stream_slow_git_annotated.png)
 
@@ -205,18 +205,6 @@ Scout tracks your deploys without additional configuration if you are running Ca
 You can sort by memory allocations throughout the UI: from the list of endpoints, to our pulldowns, to transaction traces.
 
 ![memory sort](memory_sort.png)
-
-## Git Integration
-
-If your code is hosted at GitHub, you can see the [relevant slow line-of-code within the Scout user interface](#code-backtraces) when viewing a transaction trace. Additionally, you'll also see the:
-
-* author
-* commit time
-* deploy time
-
-Git integration must be configured on the settings page for each app. Scout integrates with GitHub via OAuth. Pick the repository name and branch name used for your application.
-
-![git settings](git_settings_annotated.png)
 
 ## Context
 
