@@ -42,7 +42,7 @@ $content = http_build_query(array(
     "bank_accountnumber"   => '12345-4'
 ));
 
-$username = 'SEU_LOGIN';
+$username = 'API_ID';
 $password = 'API_KEY';
 
 $context = stream_context_create(array(
@@ -60,8 +60,8 @@ echo print_r($result, true);
 
 ```shell
 curl --request POST \
+  -u <IPAG_ID>:<IPAG_KEY> \
   --url https://sandbox.ipag.com.br/service/v1 \
-  --header 'authorization: Basic aaaaaYXRoYW46REM4QS00QzE2OUM5NS1EQTZBRUY2OC0wRkQ2RDMy00001' \
   --header 'content-type: application/x-www-form-urlencoded' \
   --data 'ctrl=zoopbusiness&owner_phone=1112345678&owner_cpf=64028478286&owner_email=test%40owner.com&owner_birthdate=1987-11-11&owner_firstname=Test&owner_lastname=Seller&address_street=P%20Sherman&address_number=42&address_neighborhood=Wallaby%20Way&address_postalcode=01000000&address_city=Sydney&address_state=SP&bank_name=Test%20Seller&bank_cnpj=77441655000120&bank_code=341&bank_agencynumber=1234&bank_accountnumber=12345-4&business_name=Test%20Co.&business_phone=1187654321&business_email=test%40business.com&business_description=A%20test%20business&business_cnpj=05533862000101'
 ```
@@ -211,7 +211,7 @@ $content = http_build_query(array(
     "bank_accountnumber"   => '12345-4'
 ));
 
-$username = 'SEU_LOGIN_IPAG';
+$username = 'API_ID';
 $password = 'API_KEY';
 
 $context = stream_context_create(array(
@@ -229,8 +229,8 @@ echo print_r($result, true);
 
 ```shell
 curl --request POST \
+  -u <IPAG_ID>:<IPAG_KEY> \
   --url https://sandbox.ipag.com.br/service/v1 \
-  --header 'authorization: Basic aaaaaYXRoYW46REM4QS00QzE2OUM5NS1EQTZBRUY2OC0wRkQ2RDMy00001' \
   --header 'content-type: application/x-www-form-urlencoded' \
   --data 'ctrl=zoopindividual&owner_phone=1112345678&owner_cpf=08935742449&owner_email=test%40owner.com&owner_birthdate=1987-11-11&owner_firstname=Test&owner_lastname=Seller&address_street=P%20Sherman&address_number=42&address_neighborhood=Wallaby%20Way&address_postalcode=01000000&address_city=Sydney&address_state=SP&bank_name=Test%20Seller&bank_cnpj=77441655000120&bank_code=341&bank_agencynumber=1234&bank_accountnumber=12345-4'
 ```
@@ -331,8 +331,8 @@ bank[document] | Documento do Titular
 
 ```shell
 curl -X POST \
-https://sandbox.ipag.com.br/service/v1 \
--H 'authorization: Basic aaaaaYXRoYW46REM4QS00QzE2OUM5NS1EQTZBRUY2OC0wRkQ2RDMy00001' \
+-u <IPAG_ID>:<IPAG_KEY> \
+--url https://sandbox.ipag.com.br/service/v1 \
 -F ctrl=zoopbank \
 -F bank_name=Teste \
 -F bank_code=341 \
@@ -354,7 +354,7 @@ $content = http_build_query(array(
     "bank_accountnumber" => '0110233-3',
 ));
 
-$username = 'SEU_LOGIN';
+$username = 'API_ID';
 $password = 'API_KEY';
 
 $context = stream_context_create(array(
@@ -419,8 +419,8 @@ bank[document] | Documento do Titular
 
 ```shell
 curl -X POST \
-https://sandbox.ipag.com.br/service/v1 \
--H 'authorization: Basic aaaaaYXRoYW46REM4QS00QzE2OUM5NS1EQTZBRUY2OC0wRkQ2RDMy00001' \
+-u <IPAG_ID>:<IPAG_KEY> \
+--url https://sandbox.ipag.com.br/service/v1 \
 -F ctrl=zoopsyncbank \
 -F bank_id=313f5e0174df42548e8eae97c202f4a7 \
 -F seller_id=31883d1a2bbe4b728f3fde175b74447c
@@ -437,7 +437,7 @@ $content = http_build_query(array(
     "seller_id" => '31883d1a2bbe4b728f3fde175b74447c'
 ));
 
-$username = 'SEU_LOGIN';
+$username = 'API_ID';
 $password = 'API_KEY';
 
 $context = stream_context_create(array(
@@ -532,8 +532,8 @@ bank[document] | Documento do Titular
 
 ```shell
 curl -X POST \
-https://sandbox.ipag.com.br/service/v1 \
--H 'authorization: Basic aaaaaYXRoYW46REM4QS00QzE2OUM5NS1EQTZBRUY2OC0wRkQ2RDMy00001' \
+-u <IPAG_ID>:<IPAG_KEY> \
+--url https://sandbox.ipag.com.br/service/v1 \
 -F ctrl=zoopgetseller \
 -F seller_id=4c2048c8c4414cd0abd29ad7716fee03
 ```
@@ -548,7 +548,7 @@ $content = http_build_query(array(
     "seller_id" => '4c2048c8c4414cd0abd29ad7716fee03',
 ));
 
-$username = 'SEU_LOGIN';
+$username = 'API_ID';
 $password = 'API_KEY';
 
 $context = stream_context_create(array(

@@ -12,72 +12,77 @@ Para integrar sua Loja Virtual ou Site ao iPag, envie os seguintes parâmetros 
 
 `Faça a requisição para suporte@ipag.com.br`
 
-##Realizar Pagamento (Criar transação)
+##Realizar Pagamento (Criar Transação)
 
-`POST https://sandbox.ipag.com.br/pagamento`
+`POST /service/payment`
 
-> Exemplo via PHP (cURL)
+> Exemplo via [SDK PHP](https://github.com/jhernandes/ipag-sdk-php)
 
 ```php
 <?php
-//URL do iPag
-$url = 'https://sandbox.ipag.com.br/pagamento';
+// VIA IPAG-SDK-PHP
+require 'vendor/autoload.php';
 
-//os dados abaixo são apenas de exemplo
-//preencha com os dados necessários para relizar os testes
-$fields = array(
-    'identificacao'  => urlencode('identificacao'),
-    'pedido'         => urlencode('111111'),
-    'operacao'       => urlencode('Pagamento'),//manter
-    'url_retorno'    => urlencode('http://minhaloja.com/retorno'),
-    'retorno_tipo'   => urlencode('xml'),
-    'valor'          => urlencode('1.00'),
-    'nome'           => urlencode('Jose da Silva'),
-    'doc'            => urlencode('12312312300'),
-    'email'          => urlencode('jose@teste.com.br'),
-    'fone'           => urlencode('11111111111'),
-    'endereco'       => urlencode('Rua 1'),
-    'numero_endereco' => urlencode('1111'),
-    'complemento'    => urlencode('Complemento'),
-    'bairro'         => urlencode('Bairro 1'),
-    'cidade'         => urlencode('São paulo'),
-    'estado'         => urlencode('SP'),
-    'pais'           => urlencode('Brasil'),
-    'cep'            => urlencode('07500000'),
-    'metodo'         => urlencode('mastercard'),
-    'parcelas'       => urlencode('1'),
-    'nome_cartao'    => urlencode('jose da silva'),
-    'num_cartao'     => urlencode('3333333333333333'),
-    'cvv_cartao'     => urlencode('444'),
-    'mes_cartao'     => urlencode('07'),
-    'ano_cartao'     => urlencode('20'),
-);
-//url-ify the data for the POST
-$fields_string ='';
-foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
-rtrim($fields_string, '&');
+use Ipag\Ipag;
+use Ipag\Classes\Authentication;
+use Ipag\Classes\Endpoint;
 
-$ch = curl_init();
-curl_setopt( $ch, CURLOPT_URL, $url );
-curl_setopt( $ch, CURLOPT_POST, true );
-curl_setopt( $ch, CURLOPT_POSTFIELDS, $fields_string );
-curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-curl_setopt( $ch, CURLOPT_HEADER, true);
-curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-curl_setopt( $ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)' );
-curl_setopt( $ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1 );
+try {
+    $ipag = new Ipag(new Authentication('my_ipag_id', 'my_ipag_key'), Endpoint::SANDBOX);
 
-$result = curl_exec( $ch );
+    $customer = $ipag->customer()
+        ->setName('Fulano da Silva')
+        ->setTaxpayerId('799.993.388-01')
+        ->setPhone('11', '98888-3333')
+        ->setEmail('fulanodasilva@gmail.com')
+        ->setAddress($ipag->address()
+            ->setStreet('Rua Júlio Gonzalez')
+            ->setNumber('1000')
+            ->setNeighborhood('Barra Funda')
+            ->setCity('São Paulo')
+            ->setState('SP')
+            ->setZipCode('01156-060')
+    );
 
-echo $result;
+    $creditCard = $ipag->creditCard()
+        ->setNumber('4066553613548107')
+        ->setHolder('FULANO')
+        ->setExpiryMonth('10')
+        ->setExpiryYear('2025')
+        ->setCvc('123');
 
-curl_close( $ch );
-?>
+    $ipag->transaction()->getOrder()
+        ->setOrderId($orderId)
+        ->setCallbackUrl('https://minha_loja.com.br/ipag/callback')
+        ->setAmount(10.00)
+        ->setInstallments(1)
+        ->setPayment($ipag->payment()
+            ->setMethod(Method::VISA)
+            ->setCreditCard($creditCard)
+        )
+        ->setCustomer($customer);
+
+    $response = $ipag->transaction()->execute();
+
+    //Retornou algum erro?
+    if (!empty($response->error)) {
+        throw new \Exception($response->errorMessage);
+    }
+
+    //Pagamento Aprovado (5) ou Aprovado e Capturado(8) ?
+    if ($response->payment->status == '5' || $response->payment->status == '8') {
+        //Faz alguma coisa...
+        return $response;
+    }
+} catch(\Exception $e) {
+    print_r($e->__toString());
+}
 ```
 
 Campo | Tamanho | Tipo | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
 identificacao | 60 | string | sim | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
+identificacao2 | 60 | string | sim | Código de identificação do parceiro no iPag (Marketplace)
 metodo | 15 | string | sim | Forma de Pagamento * veja os valores possíveis na seção Métodos deste documento
 operacao | 10 | string | sim | Operação * veja os valores possíveis na seção Operações deste documento
 pedido| 20 | string | sim | Número do pedido (única restrição é que não pode ser igual a outro já enviado ao iPag, aconselhamos numeral sequencial)
@@ -135,14 +140,18 @@ frameborder="0">
 
 O TransferBlock é um iFrame disponibilizado pela Stelo para que eles consigam ter uma melhor análise de risco, a inserção do iFrame é obrigatória e deve ser inserida dentro **BODY** da página de checkout.
 
-O campo **IdUnico** deve ser substituído sempre por um valor único nas ultimas 24 horas. Este **IdUnico** deve ser enviado no campo *stelo_fingerprint* do POST para aprovar a transação.
+O campo **IdUnico** deve ser substituído sempre por um valor único. Este **IdUnico** deve ser enviado no campo *stelo_fingerprint* do POST para aprovar a transação.
 
 > Exemplo para gerar o stelo_fingerprint:
 
 ```php
 <?php
-
+// VIA IPAG-SDK-PHP
 $stelo_fingerprint = md5(uniqid(rand(), true));
+
+//...
+ $ipag->transaction()->getOrder()->setFingerprint($stelo_fingerprint);
+//...
 ```
 
 Além do *stelo_fingerprint*, é necessário enviar os dados do produto no campo *descricao_pedido* em formato JSON.
@@ -179,15 +188,21 @@ id | 20 | alfanúmrico | não | SKU/Código do produto
 }
 ```
 
+> Informando os dados dos Produtos
+
 ```php
 <?php
+// VIA IPAG-SDK-PHP
+// ...
+$cart = $ipag->cart(
+    // Nome do Produto, Valor Unitário, Quantidade, SKU (Código do Produto)
+    ['Produto 1', 5.00, 1, 'ABDC1'],
+    ['Produto 2', 3.50, 2, 'ABDC2'],
+    ['Produto 3', 5.50, 1, 'ABDC3'],
+    ['Produto 4', 8.50, 5, 'ABDC4']
+);
 
-$stelo_fingerprint = md5(uniqid(rand(), true));
-
-//...
-'descricao_pedido' => urlencode('{"1":{"quant":"1","descr":"Produto Teste","valor":"1.00","id":"001"},"2":{"quant":"2","descr":"Produto Teste 2","valor":"1.50","id":"002"}}'),
-'stelo_fingerprint' => urlencode($stelo_fingerprint),
-//...
+// ...
 ```
 
 ### Dados obrigátorios para trancionar via Stelo
@@ -206,9 +221,25 @@ estado | 2 | string | sim | Estado do cliente
 pais | 15 | string | sim | País do cliente
 cep | 8 | string | sim | Cep do cliente
 stelo_fingerprint | 32 | string | sim | ID Unico gerado para o pedido
-descricao_pedido | ... | text | sim | Descrição dos produtos do pedido
+descricao_pedido | ... | json | sim | Descrição dos produtos do pedido
 
 ## Campos adicionais para 1-click buy
+
+> Exemplo:
+
+```php
+<?php
+// VIA IPAG-SDK-PHP
+// ...
+$creditCard = $ipag->creditCard()
+    ->setNumber('4066553613548107')
+    ->setHolder('FULANO')
+    ->setExpiryMonth('10')
+    ->setExpiryYear('2025')
+    ->setCvc('123')
+    ->setSave(true); //True para gerar o token do cartão (one-click-buy)
+// ...
+```
 
 Campo | Tamanho | Tipo | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
@@ -221,71 +252,22 @@ token_cartao | 37 | string | Obrigatório na utilização do token | Quando o
 
 ## Campos adicionais para Recorrência (Assinatura)
 
-> Exemplo de recorrência com TRIAL
+> Exemplo de Recorrência (Assinatura)
 
 ```php
 <?php
-$url = 'https://sandbox.ipag.com.br/pagamento';
+// VIA IPAG-SDK-PHP
+// ...
 
-$fields = array(
-      'identificacao'  => urlencode('identificacao'),
-      'pedido'         => urlencode('111111'),
-      'operacao'       => urlencode('Pagamento'),
-      'url_retorno'    => urlencode('http://minhaloja.com/profile_id/1234'),
-      'retorno_tipo'   => urlencode('xml'),
-      'boleto_tipo'    => urlencode('xml'),
-      'valor'          => urlencode('10.00'),
-      'nome'           => urlencode('José Teste'),
-      'email'          => urlencode('ipag@teste.com.br'),
-      'doc'            => urlencode('11111111100'),
-      'fone'           => urlencode('1839161627'),
-      'endereco'       => urlencode('Rua Teste'),
-      'numero_endereco' => urlencode('1000'),
-      'complemento'    => urlencode(''),
-      'bairro'         => urlencode('Bairro Teste'),
-      'cidade'         => urlencode('São Paulo'),
-      'estado'         => urlencode('SP'),
-      'pais'           => urlencode('Brasil'),
-      'cep'            => urlencode('01156060'),
-      'metodo'         => urlencode('visa'),
-      'parcelas'       => urlencode('1'),
-      'nome_cartao'    => urlencode('José Teste'),
-      'num_cartao'     => urlencode('4704556510746680'),
-      'cvv_cartao'     => urlencode('123'),
-      'mes_cartao'     => urlencode('12'),
-      'ano_cartao'     => urlencode('21'),
-
-      'frequencia'     => urlencode('1'),
-      'intervalo'      => urlencode('month'),
-      'inicio'         => urlencode('10/12/2016'),
-      'ciclos'         => urlencode('12'),
-      'trial'          => urlencode(true),
-      'valor_rec'      => urlencode('30.00'),
-      'assinatura_parcela'      => urlencode(3),
+$ipag->transaction()->getOrder()
+    ->setSubscription($ipag->subscription()
+      ->setProfileId('1000000')
+      ->setFrequency(1)
+      ->setInterval('month')
+      ->setStart('10/10/2018')
 );
-$fields_string ='';
-foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
-rtrim($fields_string, '&');
 
-$ch = curl_init();
-curl_setopt( $ch, CURLOPT_URL, $url );
-curl_setopt( $ch, CURLOPT_POST, true );
-curl_setopt( $ch, CURLOPT_POSTFIELDS, $fields_string );
-curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-curl_setopt( $ch, CURLOPT_HEADER, false);
-curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-curl_setopt( $ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)' );
-curl_setopt( $ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1 );
-
-$result = curl_exec( $ch );
-if (curl_errno($ch)) {
-      throw new Exception('Curl error: '.curl_error($ch));
-}
-
-echo $result;
-
-curl_close( $ch );
-?>
+$response = $ipag->transaction()->execute();
 ```
 
 Parâmetro | size | type | Obrigatório | Descrição
@@ -373,7 +355,7 @@ Quando houver uma atualização de pagamento o iPag irá tentar enviar um POST c
 
 O iPag retorna os seguintes parâmetros via POST à URL informada pelo parâmetro “url_retorno”.
 
-Caso o retorno tenha sido solicitado em XML, os mesmo parâmetros serão retornados, mas em formato XML.
+Caso o retorno tenha sido solicitado em XML, os mesmo parâmetros serão retornados, mas em formato XML.
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -424,13 +406,12 @@ id_assinatura | Id da assinatura criado pelo iPag.
 
 Operações | Descrição
 --------- | ----------------
-Pagamento | https://sandbox.ipag.com.br/pagamento
-Consulta | https://sandbox.ipag.com.br/consulta
-Captura | https://sandbox.ipag.com.br/captura
-Cancela | https://sandbox.ipag.com.br/cancela
+Pagamento | POST /service/payment
+Consulta | POST /service/consult
+Captura | POST /service/capture
+Cancela | POST /service/cancel
 
 ## Métodos
-
 ###Cartões
 
 **Método** | Tipo
@@ -451,22 +432,19 @@ Cancela | https://sandbox.ipag.com.br/cancela
 
 **Método** | Tipo
 -----------|--------
-**boleto_itau** | boleto impresso
-**boleto_cef** | boleto impresso
-**boleto_bb** | boleto impresso
 **boleto_banespasantander** | boleto impresso
-**boleto_bradesco** | boleto impresso
+**boletobb** | boleto impresso
 **boletostelo** | boleto impresso
 **boletocielo** | boleto impresso
 **boletostone** | boleto impresso
 **boletozoop** | boleto impresso
 **boletoitaushopline** | boleto impresso
+**boletoshopfacil** | boleto impresso
 
 ###Transferência (Office Bank)
 
 **Método** | Tipo
 -----------|--------
-**bradescopf** | Transferência
 **itaushopline** | Transferência e Boleto
 **bancobrasil** | Transferência e Boleto
 
@@ -480,6 +458,6 @@ Código | Descrição
 3 | Cancelado
 4 | Em análise
 5 | Aprovado
-6 | Aprovado valor parcial
+6 | Aprovado valor parcial (Status Reservado pelo iPag)
 7 | Recusado
 8 | Aprovado e Capturado

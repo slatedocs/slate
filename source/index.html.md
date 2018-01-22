@@ -10,6 +10,7 @@ toc_footers:
   - <a href='http://www.ipag.com.br'>iPag &copy; 2016</a>
 
 includes:
+  - autenticacao
   - submission
   - boletoparcelado
   - examples
@@ -19,9 +20,8 @@ includes:
   - opencart
   - woocommerce
   - prestashop
-  - autenticacao
   - assinatura
-  - zoop
+  - marketplace
   - splitzoop
   - integrationphp
 

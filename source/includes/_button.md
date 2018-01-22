@@ -32,6 +32,9 @@
 </form>
 ```
 
+**Endpoint:**
+`POST /vpos`
+
 Com o **Checkout do iPag** você não precisa desenvolver seu próprio Checkout, apenas envie um POST com as informações abaixo para criar uma transação no iPag em seu nome.
 
 Para configurar o Checkout iPag acesse o

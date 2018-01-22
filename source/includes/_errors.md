@@ -1,12 +1,19 @@
 # Erros
-Caso seja retornado erro, ele terá o seguinte formato em xml:
+Caso seja retornado erro, ele terá o seguinte formato:
 
-```xml
+```shell
 <?xml version="1.0" encoding="utf-8" ?>
 <error>
     <code>002</code>
     <message>Método de pagamento não configurado ou inativo no iPag.Acesse o Painel para verificar.</message>
 </error>
+```
+
+```php
+<?php
+
+$response->error; // Código do erro
+$response->errorMessage; // Mensagem do erro
 ```
 
 ## Erros de Submissão

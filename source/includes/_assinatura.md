@@ -16,8 +16,8 @@ curl -X GET \
 <?php
 
 $url = 'https://sandbox.ipag.com.br/service/v1?ctrl=assinatura&action=consultar&id_assinatura=105';
-$username = <LOGIN_IPAG>;
-$password = <API_KEY>;
+$username = <IPAG_ID>;
+$password = <IPAG_KEY>;
 
 $options  = array(
     'http' => array(
@@ -128,7 +128,7 @@ payed_date | Data que foi realizada a transação
 
 ```shell
 curl --include --header "accept: application/xml" \
--u <login_ipag>:<API_KEY> \
+-u <IPAG_ID>:<IPAG_KEY> \
 --url https://sandbox.ipag.com.br/service/v1 \
 --request POST \
 --data 'ctrl=assinatura&action=ativar&id_assinatura=1000'
@@ -142,7 +142,7 @@ curl_setopt_array($curl, array(
   CURLOPT_URL => "https://sandbox.ipag.com.br/service/v1",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
-  CURLOPT_USERPWD => "<login_ipag>:<API_KEY>"
+  CURLOPT_USERPWD => "<IPAG_ID>:<IPAG_KEY>"
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
   CURLOPT_CUSTOMREQUEST => "POST",
@@ -224,7 +224,7 @@ brand | Operadora do cartão
 
 ```shell
 curl --include --header "accept: application/xml" \
--u <login_ipag>:<API_KEY> \
+-u <IPAG_ID>:<IPAG_KEY> \
 --url https://sandbox.ipag.com.br/service/v1 \
 --request POST \
 --data 'ctrl=assinatura&action=inativar&id_assinatura=1000'
@@ -238,7 +238,7 @@ curl_setopt_array($curl, array(
   CURLOPT_URL => "https://sandbox.ipag.com.br/service/v1",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
-  CURLOPT_USERPWD => "<login_ipag>:<API_KEY>"
+  CURLOPT_USERPWD => "<IPAG_ID>:<IPAG_KEY>"
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
   CURLOPT_CUSTOMREQUEST => "POST",
@@ -320,7 +320,7 @@ brand | Operadora do cartão
 
 ```shell
 curl --include --header "accept: application/xml" \
--u <login_ipag>:<API_KEY> \
+-u <IPAG_ID>:<IPAG_KEY> \
 --url https://sandbox.ipag.com.br/service/v1 \
 --request POST \
 --data 'ctrl=assinatura&action=vencto&id_assinatura=1000&data=2017-02-10'
@@ -418,7 +418,7 @@ brand | Operadora do cartão
 
 ```shell
 curl --include --header "accept: application/xml" \
--u <login_ipag>:<API_KEY> \
+-u <IPAG_ID>:<IPAG_KEY> \
 --url https://sandbox.ipag.com.br/service/v1 \
 --request POST \
 --data 'ctrl=assinatura&action=valor&id_assinatura=1000&valor=99.00'
@@ -432,7 +432,7 @@ curl_setopt_array($curl, array(
   CURLOPT_URL => "https://sandbox.ipag.com.br/service/v1",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
-  CURLOPT_USERPWD => "<login_ipag>:<API_KEY>"
+  CURLOPT_USERPWD => "<IPAG_ID>:<IPAG_KEY>"
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
   CURLOPT_CUSTOMREQUEST => "POST",
@@ -515,7 +515,7 @@ brand | Operadora do cartão
 
 ```shell
 curl --include --header "accept: application/xml" \
--u <login_ipag>:<API_KEY> \
+-u <IPAG_ID>:<IPAG_KEY> \
 --url https://sandbox.ipag.com.br/service/v1 \
 --request POST \
 --data 'ctrl=token&action=novo&numero_cartao=4024007109760958&nome_cartao=fulano
@@ -530,7 +530,7 @@ curl_setopt_array($curl, array(
   CURLOPT_URL => "https://sandbox.ipag.com.br/service/v1",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
-  CURLOPT_USERPWD => "<login_ipag>:<API_KEY>"
+  CURLOPT_USERPWD => "<IPAG_ID>:<IPAG_KEY>"
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
   CURLOPT_CUSTOMREQUEST => "POST",
@@ -588,7 +588,7 @@ token | Token único do cartão
 
 ```shell
 curl --include --header "accept: application/xml" \
--u <login_ipag>:<API_KEY> \
+-u <IPAG_ID>:<IPAG_KEY> \
 --url https://sandbox.ipag.com.br/service/v1 \
 --request POST \
 --data 'ctrl=assinatura&action=token&id_assinatura=1000&token=fa59-7b796cff-ed8b9bca-f8600ac9-1328'
@@ -602,7 +602,7 @@ curl_setopt_array($curl, array(
   CURLOPT_URL => "https://sandbox.ipag.com.br/service/v1",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
-  CURLOPT_USERPWD => "<login_ipag>:<API_KEY>"
+  CURLOPT_USERPWD => "<IPAG_ID>:<IPAG_KEY>"
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
   CURLOPT_CUSTOMREQUEST => "POST",
@@ -685,7 +685,7 @@ brand | Operadora do cartão
 
 ```shell
 curl --include --header "accept: application/xml" \
--u <login_ipag>:<API_KEY> \
+-u <IPAG_ID>:<IPAG_KEY> \
 --url https://sandbox.ipag.com.br/service/v1 \
 --request POST \
 --data 'ctrl=assinatura&action=parcela&id_assinatura=1000&valor=19.00&vencto=2017-12-25'
@@ -699,7 +699,7 @@ curl_setopt_array($curl, array(
   CURLOPT_URL => "https://sandbox.ipag.com.br/service/v1",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
-  CURLOPT_USERPWD => "<login_ipag>:<API_KEY>"
+  CURLOPT_USERPWD => "<IPAG_ID>:<IPAG_KEY>"
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
   CURLOPT_CUSTOMREQUEST => "POST",
