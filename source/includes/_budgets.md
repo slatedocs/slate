@@ -211,17 +211,18 @@ curl 'https://app.rubberstamp.io/api/v1/budgets/1'
   "id": 1,
   "company_id": 1,
   "name": "Advocacy",
-  "amount": "50000.0",
+  "amount": 50000.0,
   "cost_code": "2017",
   "cost_type": null,
   "archived": false,
   "currency_id": 1,
-  "base_amount": "50000.0",
+  "base_amount": 50000.0,
   "base_rate": "1.0",
   "allow_anyone_to_approve_a_po": false,
   "start_date": 1483401600,
   "end_date": 1519862400,
-  "summary": "Advocacy : 2017"
+  "summary": "Advocacy : 2017",
+  "remaining_amount": 50000.0
 }
 ```
 
