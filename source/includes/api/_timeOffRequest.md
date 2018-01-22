@@ -154,9 +154,11 @@ If requested, the response results `referenced_objects` attribute will be an obj
 
 ####account
 
+id, first_name, last_name, and screen_name attributes are provided. 
+
+**NOTE:** external_id will also be returned in the results if external ids are enabled for the site.
+
 id, first_name, last_name, and screen_name attributes are provided.
-
-
 
 ####timezone
 
@@ -220,7 +222,6 @@ If requested, the response results `referenced_objects` attribute will be an obj
 If specified, requests only timeOffRequests for the given account.
 
 **NOTE:** If you are calling this method with the `member` parameter, `external_member` is not required, and will be ignored.
-
 
 ####account
 
