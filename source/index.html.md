@@ -4,9 +4,9 @@ title: Help Docs ~ Scout APM
 includes:
   - ruby
   - elixir
-  - api
   - features
   - integrations
+  - api
   - reference
 
 search: true
