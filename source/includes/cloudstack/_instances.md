@@ -504,3 +504,17 @@ Associate a new [SSH key](#cloudstack-ssh-keys) to the default user of an existi
 Required | &nbsp;
 ------ | -----------
 `sshKeyName`<br/>*string* | The name of the [SSH key](#cloudstack-ssh-keys) to associate to the instance
+
+#### Detach the ISO from an instance
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/compute-on/testing/instances/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=detachIso"
+
+# No parameters required
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=detachIso</code>
+
+Detach the currently attached [ISO](#cloudstack-isos) from an instance.
