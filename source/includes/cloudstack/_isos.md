@@ -107,6 +107,41 @@ Attributes | &nbsp;
 `created`<br/>*string* | The date the template was created
 `availableInZones`<br/>*List[String]* | The list of [zone ids](#cloudstack-zones)  that the ISO is available in
 
+#### Import ISO
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/compute-on/test_area/isos"
+
+# Request should look like this
+```json
+{
+   "name": "windows",
+   "description":"This is my ISO",
+   "url":"http://somewhere.com/somefile.iso",
+   "zoneId":"d342520b-94aa-4e44-b066-6c18c9e4d65b"
+}
+```
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/isos</code>
+
+Import an ISO
+
+Required                   | &nbsp;
+---------------------------|-------
+`name`<br/>*string*        | The name of the ISO
+`description`<br/>*string* | The description of the ISO
+`url`<br/>*string*         | The URL where the ISO is hosted. N.B. only `http` protocol is supported
+`zoneId`<br/>*UUID*        | The zone where it will be available. If there is only 1 zone, the field is optional
+
+Optional                   | &nbsp;
+---------------------------|-------
+`bootable`<br/>*boolean*   | Indicates if the ISO is bootable or not. If provided, the `osTypeId` must be provided.
+`osTypeId`<br/>*UUID*      | The OS type of the image. Must only be provided if `bootable` is `true`.
+
+
 #### Attach an ISO to an instance
 
 ```shell
@@ -145,11 +180,19 @@ curl -X POST \
    "https://cloudmc_endpoint/v1/services/compute-on/testing/isos/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=generateDownloadUrl"
 
 # No parameters required
+```
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/isos/:id?operation=generateDownloadUrl</code>
 
 Generate a URL that can be used to download an extractable ISO. The URL may also be used to import the ISO into another region. To be able to generate the download URL, the ISO must have been imported with the `extractable` flag set to `true`. The download URL will be placed in the `url` field of the task result.
 
+#### Delete an ISO
 
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/compute-on/test_area/isos/84fc07a8-c6a3-4538-b493-11ce69ea3c88"
+```
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/isos/:id</code>
 
-
+Delete an ISO

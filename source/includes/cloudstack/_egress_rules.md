@@ -16,7 +16,7 @@ curl -H "MC-Api-Key: your_api_key" \
             "id": "f6c7f86f-1e28-42fd-804f-0416a201a778",
             "networkId": "858d3ab6-04c9-43ef-9e83-07f28df59323",
             "sourceCidr": "10.2.1.0/25",
-            "destinationCidr": "",
+            "destinationCidr": "0.0.0.0/0",
             "protocol": "ALL",
             "state": "Active"
         },
@@ -128,6 +128,10 @@ Required                   | &nbsp;
 `networkId`<br/>*string* | The id of the network the rule applies to
 `sourceCidr`<br/>*string* | The source cidr
 `protocol`<br/>*string*    | The protocols targeted by this rule. TCP, UDP, ICMP, or ALL
+
+Optional                   | &nbsp;
+---------------------------|-------
+`destinationCidr`<br/>*string* | The destination cidr
 
 <aside class="notice">
 For rules with protocol <code>ALL</code>, no protocol-specific information is required. For all other protocols, see the protocol-specific fields below.
