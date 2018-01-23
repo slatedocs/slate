@@ -150,16 +150,12 @@ If you have a smaller application or have many smaller instances or Docker conta
 
 ## Replacing New Relic
 
-Scout is an attractive <a href="https://scoutapp.com/newrelic-alternative" target="_blank">alternative to New Relic</a> for modern dev teams (frequent deploys, using Git, deploying to many micro instances & containers, using vendors for key infrastructure services like Amazon RDS, etc). We provide a laser-focus on getting to slow custom application code fast vs. wide breadth as debugging slow custom application code is typically the most time-intensive performance optimization work.
+Scout is an attractive <a href="https://scoutapp.com/newrelic-alternative" target="_blank">alternative to New Relic</a> for modern dev teams. We provide a laser-focus on getting to slow custom application code fast vs. wide breadth as debugging slow custom application code is typically the most time-intensive performance optimization work.
 
 In many cases, Scout is able to replace New Relic as-is. However, there are cases where your app has specific needs we currently don't provide. Don't fret - here's some of the more common scenarios and our suggestions for building a monitoring stack you'll love:
 
-* __Exception Monitoring__ - we provide metrics on the rate of exceptions but we don't currently provide details on exceptions. Our favorite tool for this is [Sentry](http://getsentry.com):
-  * Affordable: starts @ $29/mo.
-  * Realtime exceptions: you'll see new exceptions coming through as-they-happen (every second).
-  * Great UI
-  * Context tracking (easy to see how an exception is impacting which users). We implemented a similar API for our slow request tracking.
-* __Browser Monitoring (Real User Monitoring)__ - there are a number of dedicated tools for both Real User Monitoring (RUM) and synthetic monitoring. You can also continue to use New Relic for browser monitoring and use Scout for application monitoring.
+* __Exception Monitoring__ - Scout doesn't provide exception monitoring, but we do integrate with ([Rollbar](#rollbar) and [Sentry](#sentry)) to provide a side-by-side view of your performance metrics and errors within the Scout UI.
+* __Browser Monitoring (Real User Monitoring)__ - there are a number of dedicated tools for both Real User Monitoring (RUM) and synthetic monitoring. We've [reviewed Raygun Pulse](http://blog.scoutapp.com/articles/2017/12/22/real-user-monitoring-with-raygun), an attractive RUM product. You can also continue to use New Relic for browser monitoring and use Scout for application monitoring.
 
 ### Our Monitoring Stack
 
