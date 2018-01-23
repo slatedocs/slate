@@ -129,8 +129,8 @@ curl -X POST \
 Attach an existing, non-bootable ISO to an [instance](#cloudstack-instances). Each instance may have only one ISO attached at a time.
 
 Required                | &nbsp;                                                  
-------------------------|---------------------------------------------------------
-`instanceId`<br/>*UUID* | The id of the instance to which to attach the ISO to
+------------------------|----------------------------------------------------------
+`instanceId`<br/>*UUID* | The id of the instance to which the ISO will be attached
 
 #### Detach the ISO from an instance
 
@@ -148,7 +148,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/isos/:id?operation=generateDownloadUrl</code>
 
-Generate a URL that can be used to download an ISO. The "Allow generation of download URL" (`extractable`) option must have been selected when the ISO was imported. The download URL will be placed in the `url` field of the task result.
+Generate a URL that can be used to download an extractable ISO. The URL may also be used to import the ISO into another region. To be able to generate the download URL, the ISO must have been imported with the `extractable` flag set to `true`. The download URL will be placed in the `url` field of the task result.
 
 
 
