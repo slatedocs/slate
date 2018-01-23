@@ -26,8 +26,31 @@ Level|Membership Type
 
 ### membership.create
 
-<script>tryit('membership.create')</script> 
+> Request example:
 
+```JSON
+{
+   "workgroup" : "226094",
+   "level" : 4,
+   "member" : [
+      949,
+      950
+   ]
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.064361",
+   "jsonrpc" : "2.0",
+   "id" : "34",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="membership-create-tryit"></span>
 Creates new workgroup/account memberships.
 
 Required parameters:
@@ -60,8 +83,27 @@ Response: On success, empty results will be returned.
 
 ### membership.delete
 
-<script>tryit('membership.delete')</script> 
+> Request example:
 
+```JSON
+{
+   "workgroup" : "226094",
+   "member" : 950
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.055246",
+   "jsonrpc" : "2.0",
+   "id" : "37",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="membership-delete-tryit"></span>
 Deletes workgroup/account memberships.
 
 Required parameters:
@@ -88,8 +130,149 @@ Response: On success, empty results will be returned.
 
 ### membership.list
 
-<script>tryit('membership.list')</script> 
+> Request example:
 
+```JSON
+{
+   "select" : {
+      "workgroup" : [
+         2,
+         1171
+      ]
+   }
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.035573",
+   "jsonrpc" : "2.0",
+   "id" : "",
+   "result" : {
+      "memberships" : [
+         {
+            "workgroup" : "2",
+            "level" : "2",
+            "member" : "4912"
+         },
+         {
+            "workgroup" : "1171",
+            "level" : "2",
+            "member" : "4912"
+         },
+         {
+            "workgroup" : "2",
+            "level" : "2",
+            "member" : "2"
+         },
+         {
+            "workgroup" : "1171",
+            "level" : "2",
+            "member" : "2"
+         },
+         {
+            "workgroup" : "2",
+            "level" : "2",
+            "member" : "3"
+         },
+         {
+            "workgroup" : "1171",
+            "level" : "2",
+            "member" : "3"
+         },
+         {
+            "workgroup" : "2",
+            "level" : "2",
+            "member" : "4"
+         },
+         {
+            "workgroup" : "1171",
+            "level" : "2",
+            "member" : "4"
+         },
+         {
+            "workgroup" : "2",
+            "level" : "2",
+            "member" : "5"
+         },
+         {
+            "workgroup" : "1171",
+            "level" : "2",
+            "member" : "5"
+         }
+      ],
+      "referenced_objects" : {
+         "workgroup" : [
+            {
+               "name" : "Front Desk",
+               "id" : "1171"
+            },
+            {
+               "name" : "Ushers",
+               "id" : "2"
+            }
+         ],
+         "account" : [
+            {
+               "email" : "pjones@example.com",
+               "external_id" : "42648",
+               "id" : "4",
+               "first_name" : "Paul",
+               "last_name" : "Jones",
+               "screen_name" : "Paul Jones"
+            },
+            {
+               "email" : "susana@example.com",
+               "external_id" : "46037",
+               "id" : "3",
+               "first_name" : "Susan",
+               "last_name" : "Adams",
+               "screen_name" : "Susan Adams"
+            },
+            {
+               "email" : "sfs@example.com",
+               "external_id" : "0",
+               "id" : "4912",
+               "first_name" : "Scott",
+               "last_name" : "Smith",
+               "screen_name" : "Scott Smith"
+            },
+            {
+               "email" : "linda.wilson@example.com",
+               "external_id" : "16917",
+               "id" : "2",
+               "first_name" : "Linda",
+               "last_name" : "Wilson",
+               "screen_name" : "Linda R Wilson"
+            },
+            {
+               "email" : "ricky@example.com",
+               "external_id" : "40089",
+               "id" : "5",
+               "first_name" : "Richard",
+               "last_name" : "Garcia",
+               "screen_name" : "Ricky Garcia"
+            }
+         ]
+      },
+      "count" : "9569",
+      "page" : {
+         "next" : {
+            "batch" : 10,
+            "start" : 11
+         },
+         "this" : {
+            "batch" : 10,
+            "start" : 1
+         }
+      }
+   }
+}
+```
+
+<span class="tryit" id="membership-list-tryit"></span>
 Returns information about workgroup/account memberships. Uses [pagination](#pagination). Uses select criteria.
 
 Required parameters:
@@ -144,8 +327,28 @@ id and name attributes are provided.
 
 ### membership.update
 
-<script>tryit('membership.update')</script> 
+> Request example:
 
+```JSON
+{
+   "workgroup" : 132994,
+   "level" : 4,
+   "member" : 946
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.068018",
+   "jsonrpc" : "2.0",
+   "id" : "3",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="membership-update-tryit"></span>
 Updates user levels for workgroup/account memberships.
 
 Required parameters:

@@ -72,8 +72,7 @@ account that last updated this request's status
 
 ### timeOffRequest.approve
 
-<script>tryit('timeOffRequest.approve')</script> 
-
+<span class="tryit" id="timeoffrequest-approve-tryit"></span>
 Approves a time off request.
 
 Required parameter: `id`.
@@ -84,8 +83,7 @@ Response: On success, empty results will be returned.
 
 ### timeOffRequest.create
 
-<script>tryit('timeOffRequest.create')</script> 
-
+<span class="tryit" id="timeoffrequest-create-tryit"></span>
 Creates a new timeOffRequest record.
 
 Parameters: Any attributes of a timeOffRequest object except "id",
@@ -99,8 +97,7 @@ Response: On success, an `id` attribute will provide the identifier for the new 
 
 ### timeOffRequest.delete
 
-<script>tryit('timeOffRequest.delete')</script> 
-
+<span class="tryit" id="timeoffrequest-delete-tryit"></span>
 Deletes a timeOffRequest record.
 
 Required parameter: `id`.
@@ -109,8 +106,7 @@ Response: On success, empty results will be returned.
 
 ### timeOffRequest.deny
 
-<script>tryit('timeOffRequest.deny')</script> 
-
+<span class="tryit" id="timeoffrequest-deny-tryit"></span>
 Denies a time off request.
 
 Required parameter: `id`.
@@ -121,8 +117,7 @@ Response: On success, empty results will be returned.
 
 ### timeOffRequest.get
 
-<script>tryit('timeOffRequest.get')</script> 
-
+<span class="tryit" id="timeoffrequest-get-tryit"></span>
 Returns information about a timeOffRequest.
 
 Parameters:
@@ -171,8 +166,7 @@ id and name attributes are provided.
 
 ### timeOffRequest.list
 
-<script>tryit('timeOffRequest.list')</script> 
-
+<span class="tryit" id="timeoffrequest-list-tryit"></span>
 Returns information about timeOffRequests. Uses [pagination](#pagination). Uses select criteria.
 
 Optional parameters:
@@ -240,8 +234,7 @@ id and name attributes are provided.
 
 ### timeOffRequest.update
 
-<script>tryit('timeOffRequest.update')</script> 
-
+<span class="tryit" id="timeoffrequest-update-tryit"></span>
 Updates a timeOffRequest object.
 
 Required parameter: `id`. Any timeOffRequest object attributes other than `last_status_update` and `status_update_by` may be specified.

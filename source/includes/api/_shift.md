@@ -188,13 +188,11 @@ Not all fields will be configured to be used for all organizations or set for al
 
 ### shift.acknowledge
 
-<script>tryit('shift.acknowledge')</script> 
-
 > Request example:
 
 ```JSON
- {
-    id: 2753501
+{
+   "id" : 2753501
 }
 ```
 
@@ -202,15 +200,16 @@ Not all fields will be configured to be used for all organizations or set for al
 
 ```JSON
 {
-     seconds: "0.280633", 
-     jsonrpc: "2.0", 
-    id: "3", 
-    result: {
-        message: "You have acknowledged this position:\n\nWednesday, May 20, 2015, 9:55am to 11:55am\nFront Desk"
-    }
+   "seconds" : "0.280633",
+   "jsonrpc" : "2.0",
+   "id" : "3",
+   "result" : {
+      "message" : "You have acknowledged this position:\n\nWednesday, May 20, 2015, 9:55am to 11:55am\nFront Desk"
+   }
 }
 ```
 
+<span class="tryit" id="shift-acknowledge-tryit"></span>
 Acknowledges a shift.
 
 Required parameter: `id`.
@@ -227,31 +226,28 @@ Response: On success, a `message` attribute will provide a brief notification me
 
 ### shift.confirm
 
-<script>tryit('shift.confirm')</script> 
-
 > Request example:
 
 ```JSON
-
- {
-     id: 2753501
+{
+   "id" : 2753501
 }
 ```
 
 > Response example:
 
 ```JSON
-
- {
-     seconds: "0.443989", 
-    jsonrpc: "2.0", 
-     id: "2", 
-     result: {
-         message: "You have accepted this position:\n\nWednesday, May 20, 2015, 9:55am to 11:55am\nFront Desk"
-     }
+{
+   "seconds" : "0.443989",
+   "jsonrpc" : "2.0",
+   "id" : "2",
+   "result" : {
+      "message" : "You have accepted this position:\n\nWednesday, May 20, 2015, 9:55am to 11:55am\nFront Desk"
+   }
 }
 ```
 
+<span class="tryit" id="shift-confirm-tryit"></span>
 Confirms a shift.
 
 Required parameter: `id`.
@@ -260,35 +256,32 @@ Response: On success, a `message` attribute will provide a brief notification me
 
 ### shift.create
 
-<script>tryit('shift.create')</script> 
-
 > Request example:
 
 ```JSON
-
- {
-     department: "949", 
-     start_date: "2010-09-17T12:00:00", 
-     role: "2282", 
-     workgroup: "226085", 
-     location: "29118"
+{
+   "workgroup" : "226085",
+   "department" : "949",
+   "location" : "29118",
+   "start_date" : "2010-09-17T12:00:00",
+   "role" : "2282"
 }
 ```
 
 > Response example:
 
 ```JSON
-
- {
-    seconds: "1.007354", 
-    jsonrpc: "2.0", 
-    id: "57", 
-    result: {
-        id: 2753502
-     }
+{
+   "seconds" : "1.007354",
+   "jsonrpc" : "2.0",
+   "id" : "57",
+   "result" : {
+      "id" : 2753502
+   }
 }
 ```
 
+<span class="tryit" id="shift-create-tryit"></span>
 Creates a new shift record.
 
 Parameters: Most attributes of a shift object except `id` may be specified. Minimally, `workgroup` and `start_date` parameters must be specified. `timezone` will default to the organization's timezone. `location` will default to the workgroup's default location, if set. "external_covering_member/covering_member" and `covering_workgroup` are mutually exclusive, and may only be specified if the shift is covered. `tentative` may only true if the shift is covered, and `covered` may only be true if the shift is published. Start and end dates may only fall on even five minute times. Either `count` or `qty` may be specified and both will be set for the new shift, defaulting to 1; if both are specified, they must be equal. `count` must be 1 for a covered shift.
@@ -297,29 +290,26 @@ Response: On success, an `id` attribute will provide the identifier for the new 
 
 ### shift.delete
 
-<script>tryit('shift.delete')</script> 
-
 > Request example:
 
 ```JSON
-
- {
-     id: "2753500"
+{
+   "id" : "2753500"
 }
 ```
 
 > Response example:
 
 ```JSON
-
 {
-    seconds: "0.058344", 
-     jsonrpc: "2.0", 
-     id: "67", 
-    result: {}
+   "seconds" : "0.058344",
+   "jsonrpc" : "2.0",
+   "id" : "67",
+   "result" : {}
 }
 ```
 
+<span class="tryit" id="shift-delete-tryit"></span>
 Deletes a shift record.
 
 Required parameter: `id`.
@@ -328,8 +318,7 @@ Response: On success, empty results will be returned.
 
 ### shift.deleteSignup
 
-<script>tryit('shift.deleteSignup')</script> 
-
+<span class="tryit" id="shift-deletesignup-tryit"></span>
 Deletes a member from a shift's signup list.
 
 Parameters:
@@ -354,51 +343,48 @@ Response: On success, empty results will be returned.
 
 ### shift.get
 
-<script>tryit('shift.get')</script> 
-
 > Request example:
 
 ```JSON
-
 {
-    id: 2753499
+   "id" : 2753499
 }
 ```
 
 > Response example:
 
 ```JSON
-
- {
-    seconds: "0.062897", 
-    jsonrpc: "2.0", 
-    id: "25", 
-     result: {
-         shift: {
-            count: "1", 
-             linktitle: "", 
-            signup_list: false, 
-            details: "", 
-            room_floor: "", 
-             qty: "1", 
-             zipcode: "60616", 
-            start_date: "2010-09-17T12:00:00", 
-            urgent: false, 
-            workgroup: "226081", 
-             reference_id: "", 
-           published: false, 
-            covered: false, 
-             timezone: "Pacific Time (US/Can) (GMT-08:00)", 
-             subject: "", 
-           linkurl: "", 
-             id: "2753499", 
-             no_pick_up: false, 
-             work_status_type: "0"
-        }
-     }
+{
+   "seconds" : "0.062897",
+   "jsonrpc" : "2.0",
+   "id" : "25",
+   "result" : {
+      "shift" : {
+         "reference_id" : "",
+         "linkurl" : "",
+         "work_status_type" : "0",
+         "signup_list" : false,
+         "id" : "2753499",
+         "start_date" : "2010-09-17T12:00:00",
+         "count" : "1",
+         "timezone" : "Pacific Time (US/Can) (GMT-08:00)",
+         "subject" : "",
+         "urgent" : false,
+         "zipcode" : "60616",
+         "details" : "",
+         "qty" : "1",
+         "workgroup" : "226081",
+         "published" : false,
+         "covered" : false,
+         "no_pick_up" : false,
+         "room_floor" : "",
+         "linktitle" : ""
+      }
+   }
 }
 ```
 
+<span class="tryit" id="shift-get-tryit"></span>
 Returns information about a coverage shift.
 
 Parameters:
@@ -505,40 +491,37 @@ id, name, and label attributes are provided.
 
 ### shift.getAssignmentList
 
-<script>tryit('shift.getAssignmentList')</script> 
-
 > Request example:
 
 ```JSON
-
- {
-     shift: {
-        id: 123456789
-     }, 
-    workgroup: 12345
+{
+   "workgroup" : 12345,
+   "shift" : {
+      "id" : 123456789
+   }
 }
 ```
 
 > Response example:
 
 ```JSON
-
- {
-    seconds: "0.058344", 
-    jsonrpc: "2.0", 
-    id: "67", 
-     result: {
-        assignable: {
-            "1": "Bob Doe", 
-            "2": "Jane Doe"
-        }, 
-        unassignable: {
-            "5": "John Smith - Has Conflicts (My Team)"
-       }
-    }
+{
+   "seconds" : "0.058344",
+   "jsonrpc" : "2.0",
+   "id" : "67",
+   "result" : {
+      "unassignable" : {
+         "5" : "John Smith - Has Conflicts (My Team)"
+      },
+      "assignable" : {
+         "1" : "Bob Doe",
+         "2" : "Jane Doe"
+      }
+   }
 }
 ```
 
+<span class="tryit" id="shift-getassignmentlist-tryit"></span>
 Returns availability information as to who is and is not assignable to a shift. The shift in this case could be one that currently exists, or a shift to be created later.
 
 Required parameters:
@@ -721,120 +704,117 @@ Allow shifts that have a short (N hours) turnaround if beta feature is enabled (
 
 ### shift.getOfferedTrade
 
-<script>tryit('shift.getOfferedTrade')</script> 
-
 > Request example:
 
 ```JSON
-
- {
-    extended: true, 
-    id: "56789012"
+{
+   "id" : "56789012",
+   "extended" : true
 }
 ```
 
 > Response example:
 
 ```JSON
-
 {
-    seconds: "0.128193", 
-    jsonrpc: "2.0", 
-    id: "15", 
-    result: {
-         tradeboard: {
-            traded_by: "39", 
-            shift: "56789012", 
-            notes: "Need to see the dentist; please take this trade", 
-            traded_to: "47", 
-            trade_completed: "2014-01-21T20:40:38Z", 
-             id: "12345", 
-            trade_complete: true
-         }, 
-         referenced_objects: {
-             account: [
-                 {
-                     first_name: "Joanie", 
-                     last_name: "Foster", 
-                     id: "39", 
-                     screen_name: null
-                 }, 
-                 {
-                     first_name: "Stan", 
-                     last_name: "Wilson", 
-                     screen_name: "Stan Wilson", 
-                     profile_type: "3", 
-                     seniority_order: "19999-12-31 23:59:59", 
-                     id: "47"
-                 }
-             ], 
-             workgroup: [
-                 {
-                     name: "Help Desk", 
-                     id: "412345"
-                 }
-             ], 
-             shift: [
-               {
-                     display_date: "January 29, 2014", 
-                    qty: "1", 
-                     urgent: false, 
-                    no_trade: false, 
-                    timezone: "Pacific Time (US/Can) (GMT-08:00)", 
-                    room_floor: "room/floor", 
-                     id: "56789012", 
-                    subject: "", 
-                    signup_list: false, 
-                    work_status_type: "5", 
-                    linkurl: "", 
-                    zipcode: "94132", 
-                    location: "92580", 
-                    department: "9942", 
-                    covered: true, 
-                    covering_member: "47", 
-                    start_date: "2014-01-29T13:00:00", 
-                    details: "details!", 
-                    display_time: "1pm to 2pm", 
-                     workgroup: "412345", 
-                     end_date: "2014-01-29T14:00:00", 
-                    reference_id: "", 
-                    linktitle: "", 
-                    no_pick_up: false, 
-                     count: "1", 
-                    no_credit: false, 
-                    published: true
-               }
-            ], 
-            location: [
-                {
-                    name: "Training / Meetings", 
-                    id: "92580"
-                }
-            ], 
-            department: [
-                {
-                    label: "Distribution", 
-                     id: "9942", 
-                    name: "Distribution"
-                }
-            ], 
-            timezone: [
-                 {
-                    name: "Pacific Time (US/Can) (GMT-08:00)", 
-                    olson_timezone: "America/Los_Angeles"
-                }
-            ], 
-            "workStatusType": [
-                {
-                    name: "Salary/Exempt", 
-                     id: "5"
-                }
-            ]
-        }
-    }
+   "seconds" : "0.128193",
+   "jsonrpc" : "2.0",
+   "id" : "15",
+   "result" : {
+      "referenced_objects" : {
+         "workgroup" : [
+            {
+               "name" : "Help Desk",
+               "id" : "412345"
+            }
+         ],
+         "department" : [
+            {
+               "name" : "Distribution",
+               "label" : "Distribution",
+               "id" : "9942"
+            }
+         ],
+         "timezone" : [
+            {
+               "name" : "Pacific Time (US/Can) (GMT-08:00)",
+               "olson_timezone" : "America/Los_Angeles"
+            }
+         ],
+         "location" : [
+            {
+               "name" : "Training / Meetings",
+               "id" : "92580"
+            }
+         ],
+         "shift" : [
+            {
+               "display_time" : "1pm to 2pm",
+               "department" : "9942",
+               "reference_id" : "",
+               "linkurl" : "",
+               "work_status_type" : "5",
+               "start_date" : "2014-01-29T13:00:00",
+               "signup_list" : false,
+               "id" : "56789012",
+               "count" : "1",
+               "timezone" : "Pacific Time (US/Can) (GMT-08:00)",
+               "display_date" : "January 29, 2014",
+               "location" : "92580",
+               "subject" : "",
+               "covering_member" : "47",
+               "urgent" : false,
+               "zipcode" : "94132",
+               "qty" : "1",
+               "details" : "details!",
+               "workgroup" : "412345",
+               "published" : true,
+               "no_credit" : false,
+               "end_date" : "2014-01-29T14:00:00",
+               "covered" : true,
+               "no_pick_up" : false,
+               "no_trade" : false,
+               "room_floor" : "room/floor",
+               "linktitle" : ""
+            }
+         ],
+         "account" : [
+            {
+               "id" : "39",
+               "screen_name" : null,
+               "last_name" : "Foster",
+               "first_name" : "Joanie"
+            },
+            {
+               "seniority_order" : "19999-12-31 23:59:59",
+               "id" : "47",
+               "profile_type" : "3",
+               "screen_name" : "Stan Wilson",
+               "last_name" : "Wilson",
+               "first_name" : "Stan"
+            }
+         ],
+         "workStatusType" : [
+            {
+               "name" : "Salary/Exempt",
+               "id" : "5"
+            }
+         ]
+      },
+      "tradeboard" : {
+         "trade_completed" : "2014-01-21T20:40:38Z",
+         "shift" : "56789012",
+         "notes" : "Need to see the dentist; please take this trade",
+         "id" : "12345",
+         "traded_to" : "47",
+         "traded_by" : "39",
+         "trade_complete" : true
+      }
+   }
 }
 ```
 
+<span class="tryit" id="shift-getofferedtrade-tryit"></span>
 Returns information about a tradeboard posting for a coverage shift.
 
 Parameters:
@@ -895,54 +875,51 @@ id and name attributes are provided.
 
 ### shift.list
 
-<script>tryit('shift.list')</script> 
-
 > Request example:
 
 ```JSON
-
- {
-     select: {
-         workgroup: "226084"
-     }
+{
+   "select" : {
+      "workgroup" : "226084"
+   }
 }
 ```
 
 > Response example:
 
 ```JSON
-
- {
-     seconds: "0.081433", 
-     jsonrpc: "2.0", 
-     id: "44", 
-     result: {
-         count: "1", 
-         shifts: [
-             {
-                 count: "1", 
-                 covering_workgroup: "226084", 
-                 workgroup: "226084", 
-                 end_date: "2010-09-17T14:30:00", 
-                 id: "2753501", 
-                 qty: "1", 
-                 published: true, 
-                 covered: true, 
-                 timezone: "Greenwich Mean Time : Dublin, Lisbon, London (GMT)", 
-                 start_date: "2010-09-17T14:00:00", 
-                 subject: updated
-             }
-         ], 
-         page: {
-             this: {
-                 start: 1, 
-                 batch: 25
-             }
+{
+   "seconds" : "0.081433",
+   "jsonrpc" : "2.0",
+   "id" : "44",
+   "result" : {
+      "shifts" : [
+         {
+            "count" : "1",
+            "timezone" : "Greenwich Mean Time : Dublin, Lisbon, London (GMT)",
+            "subject" : "updated",
+            "qty" : "1",
+            "workgroup" : "226084",
+            "covering_workgroup" : "226084",
+            "published" : true,
+            "covered" : true,
+            "end_date" : "2010-09-17T14:30:00",
+            "id" : "2753501",
+            "start_date" : "2010-09-17T14:00:00"
          }
-     }
+      ],
+      "count" : "1",
+      "page" : {
+         "this" : {
+            "batch" : 25,
+            "start" : 1
+         }
+      }
+   }
 }
 ```
 
+<span class="tryit" id="shift-list-tryit"></span>
 Returns information about coverage shifts. Uses [pagination](#pagination). Uses select criteria.
 
 Optional parameters:
@@ -1246,52 +1223,49 @@ id, name, and label attributes are provided.
 
 ### shift.listUpdated
 
-<script>tryit('shift.listUpdated')</script>
-
 > Request example:
 
 ```JSON
-
- {
-     select: {
-         updated_since: 1284656001
-     }
+{
+   "select" : {
+      "updated_since" : 1284656001
+   }
 }
 ```
 
 > Response example:
 
 ```JSON
-
- {
-     seconds: "0.056182", 
-     jsonrpc: "2.0", 
-     id: "36", 
-     result: {
-         count: "1", 
-         shifts: [
-             {
-                 count: "1", 
-                 workgroup: "226082", 
-                 id: "2753500", 
-                 qty: "1", 
-                 published: false, 
-                 covered: false, 
-                 timezone: "Pacific Time (US/Can) (GMT-08:00)", 
-                 start_date: "2010-09-17T12:00:00", 
-                 subject: updated
-             }
-         ], 
-         page: {
-             this: {
-                 start: 1, 
-                 batch: 25
-             }
+{
+   "seconds" : "0.056182",
+   "jsonrpc" : "2.0",
+   "id" : "36",
+   "result" : {
+      "shifts" : [
+         {
+            "count" : "1",
+            "timezone" : "Pacific Time (US/Can) (GMT-08:00)",
+            "subject" : "updated",
+            "qty" : "1",
+            "published" : false,
+            "workgroup" : "226082",
+            "covered" : false,
+            "start_date" : "2010-09-17T12:00:00",
+            "id" : "2753500"
          }
-     }
+      ],
+      "count" : "1",
+      "page" : {
+         "this" : {
+            "batch" : 25,
+            "start" : 1
+         }
+      }
+   }
 }
 ```
 
+<span class="tryit" id="shift-listupdated-tryit"></span>
 Returns information about coverage shifts created or updated since a given date. Uses [pagination](#pagination). Uses select criteria.
 
 Optional parameters:
@@ -1316,8 +1290,7 @@ The response results `shifts` attribute will be an array of the current page of 
 
 ### shift.notification
 
-<script>tryit('shift.notification')</script> 
-
+<span class="tryit" id="shift-notification-tryit"></span>
 Returns notification information about a coverage shift. This method is experimental and subject to change without notice.
 
 Parameters:
@@ -1332,8 +1305,7 @@ The response results `accounts` attribute will be an array of objects with selec
 
 ### shift.signup
 
-<script>tryit('shift.signup')</script>
-
+<span class="tryit" id="shift-signup-tryit"></span>
 Signs up a member to a shift's signup list.
 
 Parameters:
@@ -1362,8 +1334,7 @@ Response: On success, empty results will be returned.
 
 ### shift.signupList
 
-<script>tryit('shift.signupList')</script> 
-
+<span class="tryit" id="shift-signuplist-tryit"></span>
 Returns information about signups for a coverage shift.
 
 Parameters:
@@ -1418,90 +1389,88 @@ id, first_name, last_name, and screen_name attributes are provided.
 
 ### shift.summary
 
-<script>tryit('shift.summary')</script> 
-
-**This method is experimental and subject to change.**
-
 > Request example:
 
 ```JSON
- {
-     aggregate: start_date, 
-     exists: {
-         available: {
-             urgent: false, 
-             covered: false, 
-             published: true
-         }, 
-         confirmed: {
-             exclude_covering_member: 123, 
-             covered: true, 
-             published: true
-         }, 
-         critical: {
-             urgent: true, 
-             covered: false, 
-             published: true
-         }, 
-         mine: {
-             covered: true, 
-             published: true, 
-             covering_member: 123
-         }, 
-         unpublished: {
-             published: false
-         }
-     }, 
-     select: {
-         workgroup: [
-             123456, 
-             234567
-         ], 
-         end_date: "2015-06-30", 
-         start_date: "2015-06-01"
-     }
+{
+   "aggregate" : "start_date",
+   "exists" : {
+      "critical" : {
+         "published" : true,
+         "covered" : false,
+         "urgent" : true
+      },
+      "unpublished" : {
+         "published" : false
+      },
+      "confirmed" : {
+         "published" : true,
+         "covered" : true,
+         "exclude_covering_member" : 123
+      },
+      "mine" : {
+         "published" : true,
+         "covered" : true,
+         "covering_member" : 123
+      },
+      "available" : {
+         "published" : true,
+         "covered" : false,
+         "urgent" : false
+      }
+   },
+   "select" : {
+      "workgroup" : [
+         123456,
+         234567
+      ],
+      "end_date" : "2015-06-30",
+      "start_date" : "2015-06-01"
+   }
 }
 ```
 
 > Response example:
 
 ```JSON
-
- {
-     seconds: "0.362897", 
-     jsonrpc: "2.0", 
-     id: "25", 
-     result: {
-         referenced_objects: {}, 
-         summary: [
-             {
-                 available: false, 
-                 confirmed: false, 
-                 unpublished: false, 
-                 mine: true, 
-                 critical: false, 
-                 start_date: "2015-06-03"
-             }, 
-             {
-                 available: true, 
-                 confirmed: false, 
-                 unpublished: false, 
-                 mine: true, 
-                 critical: true, 
-                 start_date: "2015-06-08"
-             }, 
-             {
-                 available: true, 
-                 confirmed: false, 
-                 unpublished: true, 
-                 mine: false, 
-                 critical: false, 
-                 start_date: "2015-06-12"
-             }
-         ]
-     }
+{
+   "seconds" : "0.362897",
+   "jsonrpc" : "2.0",
+   "id" : "25",
+   "result" : {
+      "referenced_objects" : {},
+      "summary" : [
+         {
+            "critical" : false,
+            "unpublished" : false,
+            "confirmed" : false,
+            "start_date" : "2015-06-03",
+            "mine" : true,
+            "available" : false
+         },
+         {
+            "critical" : true,
+            "unpublished" : false,
+            "confirmed" : false,
+            "start_date" : "2015-06-08",
+            "mine" : true,
+            "available" : true
+         },
+         {
+            "critical" : false,
+            "unpublished" : true,
+            "confirmed" : false,
+            "start_date" : "2015-06-12",
+            "mine" : false,
+            "available" : true
+         }
+      ]
+   }
 }
 ```
+
+<span class="tryit" id="shift-summary-tryit"></span>
+**This method is experimental and subject to change.**
 
 Returns summary information about selected shifts.
 
@@ -1527,29 +1496,26 @@ The response results `summary` attribute will provide an array containing an ele
 
 ### shift.unconfirm
 
-<script>tryit('shift.unconfirm')</script> 
-
 > Request example:
 
 ```JSON
-
- {
-     id: 2753501
+{
+   "id" : 2753501
 }
 ```
 
 > Response example:
 
 ```JSON
-
- {
-     seconds: "0.123864", 
-     jsonrpc: "2.0", 
-     id: "46", 
-     result: {}
+{
+   "seconds" : "0.123864",
+   "jsonrpc" : "2.0",
+   "id" : "46",
+   "result" : {}
 }
 ```
 
+<span class="tryit" id="shift-unconfirm-tryit"></span>
 Confirms a shift.
 
 Required parameter: `id`.
@@ -1558,39 +1524,36 @@ Response: On success, empty results will be returned. Note that if the shift had
 
 ### shift.update
 
-<script>tryit('shift.update')</script> 
-
 > Request example:
 
 ```JSON
-
- {
-     count: 1, 
-     covering_workgroup: "226084", 
-     workgroup: "226084", 
-     end_date: "2010-09-17T14:30:00", 
-     qty: 1, 
-     start_date: "2010-09-17T14:00:00", 
-     published: true, 
-     covered: true, 
-     timezone: "Greenwich Mean Time : Dublin, Lisbon, London (GMT)", 
-     id: 2753501, 
-     subject: updated
+{
+   "count" : 1,
+   "timezone" : "Greenwich Mean Time : Dublin, Lisbon, London (GMT)",
+   "subject" : "updated",
+   "qty" : 1,
+   "covering_workgroup" : "226084",
+   "published" : true,
+   "workgroup" : "226084",
+   "end_date" : "2010-09-17T14:30:00",
+   "covered" : true,
+   "start_date" : "2010-09-17T14:00:00",
+   "id" : 2753501
 }
 ```
 
 > Response example:
 
 ```JSON
-
- {
-     seconds: "0.178901", 
-     jsonrpc: "2.0", 
-     id: "43", 
-     result: {}
+{
+   "seconds" : "0.178901",
+   "jsonrpc" : "2.0",
+   "id" : "43",
+   "result" : {}
 }
 ```
 
+<span class="tryit" id="shift-update-tryit"></span>
 Updates a shift object.
 
 Required parameter: `id`. Most other shift object attributes may be specified.

@@ -30,8 +30,44 @@ Internally used string unique to each profile_option
 
 ### profileConfiguration.list
 
-<script>tryit('profileConfiguration.list')</script> 
+> Request example:
 
+```JSON
+{
+   "select" : {
+      "profile_option" : 130,
+      "page" : 1,
+      "profile_type" : 1
+   }
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.012632",
+   "jsonrpc" : "2.0",
+   "id" : "10",
+   "result" : {
+      "profile_configuration" : [
+         {
+            "page" : "1",
+            "constraint_list" : "",
+            "profile_type" : "1",
+            "profile_option" : "130",
+            "write_authorization" : "Managers and higher",
+            "label" : "First Name of Reference",
+            "type" : "varchar100",
+            "id" : "2692",
+            "read_authorization" : "Members and higher"
+         }
+      ]
+   }
+}
+```
+
+<span class="tryit" id="profileconfiguration-list-tryit"></span>
 Returns information about profile configuration. Uses select criteria.
 
 Parameters:

@@ -16,62 +16,61 @@ value of this profile item, or if the profile item has more than one value, an a
 
 ### profileData.list
 
-<script>tryit('profileData.list')</script> 
-
 > Request example:
 
 ```JSON
- {
-     select: {
-         account: 1
-     }
+{
+   "select" : {
+      "account" : 1
+   }
 }
 ```
 
 > Response example:
 
 ```JSON
- {
-     seconds: "0.105116", 
-     jsonrpc: "2.0", 
-     id: "", 
-     result: {
-         count: 4, 
-         page: {
-             this: {
-                 start: 1, 
-                 batch: 10
-             }
-         }, 
-         profile_data: [
-             {
-                 account: "1", 
-                value: "(encrypted)", 
-                 profile_option: "620"
-             }, 
-             {
-                 account: "1", 
-                 value: "206-555-1234", 
-                 profile_option: "16"
-             }, 
-             {
-                 account: "1", 
-                value: "Brother", 
-                profile_option: "186"
-            }, 
-             {
-                 account: "1", 
-                 value: [
-                     "Data Entry", 
-                     "Driver"
-                 ], 
-                 profile_option: "37"
-             }
-         ]
-     }
+{
+   "seconds" : "0.105116",
+   "jsonrpc" : "2.0",
+   "id" : "",
+   "result" : {
+      "count" : 4,
+      "page" : {
+         "this" : {
+            "batch" : 10,
+            "start" : 1
+         }
+      },
+      "profile_data" : [
+         {
+            "profile_option" : "620",
+            "account" : "1",
+            "value" : "(encrypted)"
+         },
+         {
+            "profile_option" : "16",
+            "account" : "1",
+            "value" : "206-555-1234"
+         },
+         {
+            "profile_option" : "186",
+            "account" : "1",
+            "value" : "Brother"
+         },
+         {
+            "profile_option" : "37",
+            "account" : "1",
+            "value" : [
+               "Data Entry",
+               "Driver"
+            ]
+         }
+      ]
+   }
 }
 ```
 
+<span class="tryit" id="profiledata-list-tryit"></span>
 Returns information about account profile data. Uses select criteria. Uses [pagination](#pagination).
 
 Parameters:
@@ -108,39 +107,36 @@ The response results `profile_data` attribute will be an array of the current pa
 
 ### profileData.update
 
-<script>tryit('profileData.update')</script> 
-
 > Request example:
 
 ```JSON
-
- {
-     account: 1, 
-     profile_data: [
-         {
-             value: "Sister", 
-             profile_option: 186
-         }, 
-         {
-             value: "206-555-4321", 
-             profile_option: 16
-         }
-     ]
+{
+   "account" : 1,
+   "profile_data" : [
+      {
+         "profile_option" : 186,
+         "value" : "Sister"
+      },
+      {
+         "profile_option" : 16,
+         "value" : "206-555-4321"
+      }
+   ]
 }
 ```
 
 > Response example:
 
 ```JSON
-
- {
-     seconds: "0.204804", 
-     jsonrpc: "2.0", 
-     id: "", 
-     result: {}
+{
+   "seconds" : "0.204804",
+   "jsonrpc" : "2.0",
+   "id" : "",
+   "result" : {}
 }
 ```
 
+<span class="tryit" id="profiledata-update-tryit"></span>
 Updates multiple profileData objects for a given account.
 
 Required parameters:

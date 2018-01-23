@@ -62,8 +62,7 @@ true for all days of the week (within the date range, if specified) to which thi
 
 ### availability.create
 
-<script>tryit('availability.create')</script>
-
+<span class="tryit" id="availability-create-tryit"></span>
 Creates a new availability record.
 
 Required Parameters:
@@ -100,13 +99,11 @@ Response: On success, if either the account or date parameters is an array, an e
 
 ### availability.delete
 
-<script>tryit('availability.delete')</script>
-
 > Request example:
 
 ```JSON
 {
-     id: "2753"
+   "id" : "2753"
 }
 ```
 
@@ -114,13 +111,14 @@ Response: On success, if either the account or date parameters is an array, an e
 
 ```JSON
 {
-     seconds: "0.058344", 
-     jsonrpc: "2.0", 
-     id: "67", 
-     result: {}
+   "seconds" : "0.058344",
+   "jsonrpc" : "2.0",
+   "id" : "67",
+   "result" : {}
 }
 ```
 
+<span class="tryit" id="availability-delete-tryit"></span>
 Deletes an availability record.
 
 Required parameter: `id`.
@@ -129,8 +127,7 @@ Response: On success, empty results will be returned.
 
 ### availability.get
 
-<script>tryit('availability.get')</script>
-
+<span class="tryit" id="availability-get-tryit"></span>
 Returns information about an availability record.
 
 Parameters:
@@ -153,15 +150,13 @@ id, first_name, last_name, and screen_name attributes are provided.
 
 ### availability.list
 
-<script>tryit('availability.list')</script> 
-
 > Request example:
 
 ```JSON
 {
-     select: {
-         account: 1
-     }
+   "select" : {
+      "account" : 1
+   }
 }
 ```
 
@@ -169,55 +164,56 @@ id, first_name, last_name, and screen_name attributes are provided.
 
 ```JSON
 {
-    seconds: "0.089939", 
-     jsonrpc: "2.0", 
-     id: "10", 
-    result: {
-        count: "5", 
-        availability: [
-             {
-                 account: "1", 
-                 busy: true, 
-                 start_time: "11:00:00", 
-                 end_date: null, 
-                 monday: true, 
-                 tuesday: true, 
-                 friday: true, 
-                 wednesday: true, 
-                 thursday: true, 
-                 saturday: false, 
-                 sunday: false, 
-                 end_time: "12:00:00", 
-                 id: "236471", 
-                start_date: "2013-04-01"
-             }, 
-             {
-                 account: "1", 
-                 busy: false, 
-                start_time: "05:00:00", 
-                 end_date: null, 
-                monday: false, 
-                tuesday: false, 
-               friday: false, 
-               wednesday: false, 
-                thursday: false, 
-                 saturday: true, 
-                sunday: false, 
-                 end_time: "11:00:00", 
-                 id: "237006", 
-                start_date: null
-             }
-         ], 
-         page: {
-            this: {
-                 start: 1, 
-                 batch: 10
-            }
+   "seconds" : "0.089939",
+   "jsonrpc" : "2.0",
+   "id" : "10",
+   "result" : {
+      "availability" : [
+         {
+            "sunday" : false,
+            "friday" : true,
+            "account" : "1",
+            "start_time" : "11:00:00",
+            "tuesday" : true,
+            "monday" : true,
+            "end_time" : "12:00:00",
+            "end_date" : null,
+            "wednesday" : true,
+            "saturday" : false,
+            "thursday" : true,
+            "id" : "236471",
+            "start_date" : "2013-04-01",
+            "busy" : true
+         },
+         {
+            "sunday" : false,
+            "friday" : false,
+            "account" : "1",
+            "start_time" : "05:00:00",
+            "tuesday" : false,
+            "monday" : false,
+            "end_time" : "11:00:00",
+            "end_date" : null,
+            "wednesday" : false,
+            "saturday" : true,
+            "thursday" : false,
+            "id" : "237006",
+            "start_date" : null,
+            "busy" : false
          }
-    }
+      ],
+      "count" : "5",
+      "page" : {
+         "this" : {
+            "batch" : 10,
+            "start" : 1
+         }
+      }
+   }
 }
 ```
 
+<span class="tryit" id="availability-list-tryit"></span>
 Returns information about account availability data. Uses select criteria. Uses [pagination](#pagination).
 
 Parameters:

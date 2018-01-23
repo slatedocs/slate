@@ -12,8 +12,7 @@ A displayable name used to identify this workStatusType.
 
 ### workStatusType.get
 
-<script>tryit('workStatusType.get')</script> 
-
+<span class="tryit" id="workstatustype-get-tryit"></span>
 Returns information about a workStatusType.
 
 Parameters:
@@ -26,8 +25,7 @@ The response results "workStatusType" attribute will be the selected workStatusT
 
 ### workStatusType.list
 
-<script>tryit('workStatusType.list')</script> 
-
+<span class="tryit" id="workstatustype-list-tryit"></span>
 Returns information about workStatusTypes. Uses [pagination](#pagination).
 
 Parameters: None

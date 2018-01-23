@@ -14,8 +14,29 @@ A unique identifier for this openid object.
 
 ### openid.create
 
-<script>tryit('openid.create')</script> 
+> Request example:
 
+```JSON
+{
+   "openid" : "http://openid4.example.com/",
+   "account" : 918
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.064778",
+   "jsonrpc" : "2.0",
+   "id" : "43",
+   "result" : {
+      "id" : 785
+   }
+}
+```
+
+<span class="tryit" id="openid-create-tryit"></span>
 Adds an openid to an existing account.
 
 Required Parameters:
@@ -48,8 +69,26 @@ Response: On success, an `id` attribute will provide the identifier for the new 
 
 ### openid.delete
 
-<script>tryit('openid.delete')</script> 
+> Request example:
 
+```JSON
+{
+   "id" : "785"
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.051149",
+   "jsonrpc" : "2.0",
+   "id" : "46",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="openid-delete-tryit"></span>
 Deletes an account_openid object.
 
 Required Parameter: `id`. Deleting an account_openid object is not allowed if the account is active with more than one organization's Shiftboard.
@@ -58,8 +97,27 @@ Response: On success, empty results will be returned.
 
 ### openid.update
 
-<script>tryit('openid.update')</script> 
+> Request example:
 
+```JSON
+{
+   "openid" : "http://openid4.example.com/new",
+   "id" : 785
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.064496",
+   "jsonrpc" : "2.0",
+   "id" : "45",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="openid-update-tryit"></span>
 Updates an account_openid object.
 
 Required Parameter: `id`. Any other account_openid object attributes may be specified. If openid is updated and the new openid is already in use for any account in Shiftboard, an error will be returned. Updating an account_openid object is not allowed if the account is active with more than one organization's Shiftboard.

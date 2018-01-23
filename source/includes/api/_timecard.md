@@ -88,8 +88,7 @@ Not all fields will be configured to be used for all organizations or set for al
 
 ### timecard.create
 
-<script>tryit('timecard.create')</script> 
-
+<span class="tryit" id="timecard-create-tryit"></span>
 Creates a new timecard record.
 
 Parameters: Any attributes of a timecard object (except `id`) may be specified.
@@ -98,29 +97,26 @@ Response: On success, an `id` attribute will provide the identifier for the new 
 
 ### timecard.delete
 
-<script>tryit('timecard.delete')</script> 
-
 > Request example:
 
 ```JSON
-
- {
-     id: "226089"
+{
+   "id" : "226089"
 }
 ```
 
 > Response example:
 
 ```JSON
-
- {
-     seconds: "0.052778", 
-     jsonrpc: "2.0", 
-     id: "48", 
-     result: {}
+{
+   "seconds" : "0.052778",
+   "jsonrpc" : "2.0",
+   "id" : "48",
+   "result" : {}
 }
 ```
 
+<span class="tryit" id="timecard-delete-tryit"></span>
 Deletes a timecard record.
 
 Required parameter: `id`.
@@ -129,8 +125,7 @@ Response: On success, empty results will be returned.
 
 ### timecard.exportTRAXPayroll
 
-<script>tryit('timecard.exportTRAXPayroll')</script> 
-
+<span class="tryit" id="timecard-exporttraxpayroll-tryit"></span>
 Initiates a TRAXPayroll timecard export.
 
 Parameters:
@@ -193,8 +188,7 @@ Response: If `inline_content` is true, a `content` attribute will provide an arr
 
 ### timecard.get
 
-<script>tryit('timecard.get')</script> 
-
+<span class="tryit" id="timecard-get-tryit"></span>
 Returns information about a timecard object.
 
 Parameters:
@@ -251,8 +245,7 @@ id and name attributes are provided.
 
 ### timecard.list
 
-<script>tryit('timecard.list')</script> 
-
+<span class="tryit" id="timecard-list-tryit"></span>
 Returns information about timecard objects. Uses [pagination](#pagination). Uses select criteria.
 
 Optional parameters:
@@ -345,8 +338,7 @@ id and name attributes are provided.
 
 ### timecard.report
 
-<script>tryit('timecard.report')</script> 
-
+<span class="tryit" id="timecard-report-tryit"></span>
 Generates a pre-authorized link to download a timecard report.
 
 Parameters:
@@ -409,8 +401,7 @@ Response: A `url` attribute giving a link that may be used one time only, within
 
 ### timecard.update
 
-<script>tryit('timecard.update')</script> 
-
+<span class="tryit" id="timecard-update-tryit"></span>
 Updates a timecard object.
 
 Required parameter: `id`. Any other timecard object attributes may be specified.
@@ -419,7 +410,6 @@ Response: On success, empty results will be returned.
 
 ### timecard.customDropdownList
 
-<script>tryit('timecard.customDropdownList')</script> 
-
+<span class="tryit" id="timecard-customdropdownlist-tryit"></span>
 Returns information about custom dropdown list objects.
 
