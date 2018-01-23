@@ -86,7 +86,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ISOs/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/isos/:id</code>
 
 Retrieve information about a public or private ISO of an [environment](#administration-environments)
 
@@ -106,3 +106,50 @@ Attributes | &nbsp;
 `zoneName`<br/>*string* |The [zone id](#cloudstack-zones) that the ISO is available in. Empty if available in multiple zones
 `created`<br/>*string* | The date the template was created
 `availableInZones`<br/>*List[String]* | The list of [zone ids](#cloudstack-zones)  that the ISO is available in
+
+#### Attach an ISO to an instance
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/compute-on/testing/isos/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=attach"
+
+# Request should look like this
+```
+```json
+{
+   "instanceId": "c043e651-8b3f-4941-b47f-5ecb77f3423b"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/isos/:id?operation=attach</code>
+
+Attach an existing, non-bootable ISO to an [instance](#cloudstack-instances). Each instance may have only one ISO attached at a time.
+
+Required                | &nbsp;                                                  
+------------------------|---------------------------------------------------------
+`instanceId`<br/>*UUID* | The id of the instance to which to attach the ISO to
+
+#### Detach the ISO from an instance
+
+See the [*Detach the ISO from an instance* endpoint](#cloudstack-instances-detach-iso-from-instance) under *Instances*.
+
+#### Generate a download URL for an ISO
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/compute-on/testing/isos/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=generateDownloadUrl"
+
+# No parameters required
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/isos/:id?operation=generateDownloadUrl</code>
+
+Generate a URL that can be used to download an ISO. The "Allow generation of download URL" (`extractable`) option must have been selected when the ISO was imported. The download URL will be placed in the `url` field of the task result.
+
+
+
+
