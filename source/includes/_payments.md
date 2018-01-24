@@ -59,7 +59,6 @@ EXEMPLO
 | other_entities_amount     | decimal | valor extra para outras entidades                                                                                                                                                                                                                                                                           |
 | monetary_update           | decimal | atualização monetária, incluindo valores de juros e multa                                                                                                                                                                                                                                                   |
 | discount_amount           | decimal | valor do desconto                                                                                                                                                                                                                                                                                           |
-| extra_amount              | decimal | valor Extra                                                                                                                                                                                                                                                                                                 |
 | barcode                   | string  | código de barras                                                                                                                                                                                                                                                                                            |
 | due_date                  | date    | data de vencimento                                                                                                                                                                                                                                                                                          |
 | registration_status       | string  | status de registro do pagamento ('without_remittance', 'remitted', 'registered', 'canceled', 'edit_amount_started', 'edit_date_started', 'registered_with_error', 'cancelation_started', 'canceled_awaiting_confirmation', 'amount_edited_awaiting_confirmation', 'date_edited_awaiting_confirmation')      |
@@ -265,7 +264,6 @@ O attributo <code>amount</code> nesse caso é opcional, pois ele é identificado
 | payee_document            | string  | **(requerido)** número do documento do beneficiário                                 |
 | due_date                  | date    | (opicional, já que é identificado no código de barras) Data de vencimento do boleto |
 | discount_amount           | decimal | (opcional) valor do desconto                                                        |
-| extra_amount              | decimal | (opcional) valor extra                                                              |
 
 ### Boleto de Tributo (Concecionárias, Tributo com código de barras, FGTS)
 
@@ -467,7 +465,6 @@ Além dos parâmetros comuns à todas as formas de pagamento, temos parâmetros 
 | payee_document            | string  | **(requerido)** número do documento do beneficiário                 |
 | due_date                  | date    | **(requerido)** Data de vencimento do boleto                        |
 | discount_amount           | decimal | (opcional) valor do desconto                                        |
-| extra_amount              | decimal | (opcional) valor extra                                              |
 
 ### Boleto de Tributo (Concecionárias, Tributo com código de barras, FGTS)
 
