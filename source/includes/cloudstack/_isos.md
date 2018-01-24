@@ -117,6 +117,7 @@ curl -X POST \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/isos"
 
 # Request should look like this
+```
 ```json
 {
    "name": "windows",

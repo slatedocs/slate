@@ -540,6 +540,7 @@ curl -X POST \
    "https://cloudmc_endpoint/v1/services/compute-on/testing/instances/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=detachIso"
 
 # No parameters required
+```
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=detachIso</code>
 
