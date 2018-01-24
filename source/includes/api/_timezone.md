@@ -92,8 +92,7 @@ The standard abbreviation(s) for this timezone (e.g. *PST/PDT*).
 
 ### timezone.get
 
-<script>tryit('timezone.get')</script> 
-
+<span class="tryit" id="timezone-get-tryit"></span>
 Returns information about a timezone.
 
 Parameters:
@@ -106,8 +105,7 @@ The response results `timezone` attribute will be the selected timezone object.
 
 ### timezone.list
 
-<script>tryit('timezone.list')</script> 
-
+<span class="tryit" id="timezone-list-tryit"></span>
 Returns information about timezones. Uses [pagination](#pagination).
 
 Parameters: None

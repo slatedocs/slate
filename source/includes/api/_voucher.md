@@ -32,8 +32,7 @@ Date credit was earned (UTC)
 
 ### voucher.balance
 
-<script>tryit('voucher.balance')</script> 
-
+<span class="tryit" id="voucher-balance-tryit"></span>
 Checks the user's voucher balance of available credit.
 
 Parameters:
@@ -46,8 +45,7 @@ Response: On success, returns a `balance` attribute and a `voucher_product` attr
 
 ### voucher.refund
 
-<script>tryit('voucher.refund')</script> 
-
+<span class="tryit" id="voucher-refund-tryit"></span>
 Refunds credit to the user's voucher balance.
 
 Parameters:
@@ -92,8 +90,7 @@ Response: On success, returns empty results.
 
 ### voucher.use
 
-<script>tryit('voucher.use')</script> 
-
+<span class="tryit" id="voucher-use-tryit"></span>
 Uses credit from the user's voucher balance.
 
 Parameters:

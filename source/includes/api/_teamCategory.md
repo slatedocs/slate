@@ -16,14 +16,59 @@ The label for this team category.
 
 ### teamCategory.list
 
-<script>tryit('teamCategory.list')</script>
+> Request example:
 
+```JSON
+{}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.051276",
+   "jsonrpc" : "2.0",
+   "id" : "21",
+   "result" : [
+      {
+         "label" : "Sales",
+         "category" : 1,
+         "id" : 2743
+      }
+   ]
+}
+```
+
+<span class="tryit" id="teamcategory-list-tryit"></span>
 Lists all current team categories.
 
 ### teamCategory.create
 
-<script>tryit('teamCategory.create')</script> 
+> Request example:
 
+```JSON
+{
+   "label" : "Sales",
+   "category" : 1
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.051276",
+   "jsonrpc" : "2.0",
+   "id" : "21",
+   "result" : {
+      "label" : "Sales",
+      "category" : 1,
+      "id" : 2351
+   }
+}
+```
+
+<span class="tryit" id="teamcategory-create-tryit"></span>
 Creates a new team category.
 
 Only five (5) team categories are allowed.
@@ -42,8 +87,31 @@ Response: On success, the created teamCategory will be returned.
 
 ### teamCategory.update
 
-<script>tryit('teamCategory.update')</script> 
+> Request example:
 
+```JSON
+{
+   "label" : "Corporate Relations",
+   "id" : 2334
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.051276",
+   "jsonrpc" : "2.0",
+   "id" : "21",
+   "result" : {
+      "label" : "Corporate Relations",
+      "category" : 3,
+      "id" : 2334
+   }
+}
+```
+
+<span class="tryit" id="teamcategory-update-tryit"></span>
 Updates the label on a team category.
 
 Required parameters:
@@ -60,8 +128,26 @@ Response: On success, the updated teamCategory will be returned
 
 ### teamCategory.delete
 
-<script>tryit('teamCategory.delete')</script> 
+> Request example:
 
+```JSON
+{
+   "id" : 2313
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.051276",
+   "jsonrpc" : "2.0",
+   "id" : "21",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="teamcategory-delete-tryit"></span>
 Deletes a team category.
 
 Required parameters:

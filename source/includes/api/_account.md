@@ -200,8 +200,31 @@ Time non-profile information for this account was last updated
 
 ### account.create
 
-<script>tryit('account.create')</script>
+> Request example:
 
+```JSON
+{
+   "bad_email" : 1,
+   "temp_password" : "test_password",
+   "first_name" : "Joe",
+   "last_name" : "Tester"
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.482992",
+   "jsonrpc" : "2.0",
+   "id" : "30",
+   "result" : {
+      "id" : 952
+   }
+}
+```
+
+<span class="tryit" id="account-create-tryit"></span>
 Creates a new account record.
 
 Required Parameters: first_name, last_name, and either email or the bad_email flag set true.
@@ -236,8 +259,26 @@ Response: On success, an `id` attribute will provide the identifier for the new 
 
 ### account.delete
 
-<script>tryit('account.delete')</script>
+> Request example:
 
+```JSON
+{
+   "id" : "947"
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.173293",
+   "jsonrpc" : "2.0",
+   "id" : "49",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="account-delete-tryit"></span>
 Deletes an account record.
 
 Required parameters:  `id` or `external_id`
@@ -248,8 +289,7 @@ Response: On success, empty results will be returned.
 
 ### account.deleteDocument
 
-<script>tryit('account.deleteDocument')</script> 
-
+<span class="tryit" id="account-deletedocument-tryit"></span>
 Deletes an account document for a given account.
 
 Required parameters:  `id` or `external_id` and `document_number`
@@ -258,8 +298,7 @@ Response: On success, empty results will be returned.
 
 ### account.deleteImage
 
-<script>tryit('account.deleteImage')</script> 
-
+<span class="tryit" id="account-deleteimage-tryit"></span>
 Deletes the user image for a given account.
 
 Required parameters:  `id` or `external_id`
@@ -268,8 +307,7 @@ Response: On success, empty results will be returned.
 
 ### account.deleteResume
 
-<script>tryit('account.deleteResume')</script>
-
+<span class="tryit" id="account-deleteresume-tryit"></span>
 Deletes the resume for a given account.'
 
 Required parameters:  `id` or `external_id`
@@ -278,8 +316,51 @@ Response: On success, empty results will be returned.
 
 ### account.get
 
-<script>tryit('account.get')</script> 
+> Request example:
 
+```JSON
+{
+   "id" : 911
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.057072",
+   "jsonrpc" : "2.0",
+   "id" : "3",
+   "result" : {
+      "home_phone" : "",
+      "bad_email" : false,
+      "state" : "",
+      "last_name" : "Tester",
+      "email" : "test911@93.julian.example.com",
+      "city" : "",
+      "fax" : "",
+      "url" : "",
+      "address" : "",
+      "id" : "911",
+      "country" : "",
+      "org_hold" : false,
+      "timezone" : "",
+      "middle_name" : "",
+      "region" : "",
+      "surname" : "",
+      "profile_type" : "1",
+      "other_phone" : "",
+      "zip" : "",
+      "org_pending" : "0",
+      "pager" : "",
+      "mobile_phone" : "",
+      "title" : "",
+      "first_name" : "Joe"
+   }
+}
+```
+
+<span class="tryit" id="account-get-tryit"></span>
 Returns information about a single account.
 
 Required parameters:  `id` or `external_id`
@@ -322,8 +403,7 @@ The response results will be an account object containing basic or basic and ext
 
 ### account.getDocument
 
-<script>tryit('account.getDocument')</script> 
-
+<span class="tryit" id="account-getdocument-tryit"></span>
 Returns an account document for a single account.
 
 Required parameters:  `id` or `external_id` and `document_number`
@@ -334,8 +414,29 @@ The response results will have an attribute `url` whose value can be used to fet
 
 ### account.getImage
 
-<script>tryit('account.getImage')</script> 
+> Request example:
 
+```JSON
+{
+   "expiration" : 600,
+   "id" : 911
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.057072",
+   "jsonrpc" : "2.0",
+   "id" : "3",
+   "result" : {
+      "url" : "https://www.shiftboard.com/servola/fetch.cgi?ss=269071;id=269119;expires=1355314332;signature=k_dWIcZ9Mk3HPSzkHgWvtOghFj8"
+   }
+}
+```
+
+<span class="tryit" id="account-getimage-tryit"></span>
 Returns image information about a single account.
 
 Required parameters:  `id` or `external_id`
@@ -346,8 +447,7 @@ The response results will have an attribute `url` whose value can be used to fet
 
 ### account.getResume
 
-<script>tryit('account.getResume')</script> 
-
+<span class="tryit" id="account-getresume-tryit"></span>
 Returns resume information about a single account.
 
 Required parameters:  `id` or `external_id`
@@ -358,8 +458,60 @@ The response results will have an attribute `url` whose value can be used to fet
 
 ### account.list
 
-<script>tryit('account.list')</script> 
+> Request example:
 
+```JSON
+{}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.015316",
+   "jsonrpc" : "2.0",
+   "id" : "3",
+   "result" : {
+      "count" : "1",
+      "page" : {
+         "this" : {
+            "batch" : 25,
+            "start" : 1
+         }
+      },
+      "accounts" : [
+         {
+            "home_phone" : "18007467531",
+            "bad_email" : false,
+            "state" : "Washington",
+            "last_name" : "Testing 2",
+            "email" : "132997@servola.org",
+            "city" : "Seattle",
+            "fax" : "",
+            "url" : "",
+            "address" : "720 3rd Ave, Suite 2200",
+            "id" : "2",
+            "country" : "United States",
+            "org_hold" : false,
+            "timezone" : "Pacific Time (US/Can) (GMT-08:00)",
+            "region" : "",
+            "middle_name" : "",
+            "profile_type" : "1",
+            "surname" : "",
+            "other_phone" : "",
+            "zip" : "98104",
+            "org_pending" : "0",
+            "pager" : "",
+            "mobile_phone" : "",
+            "title" : "",
+            "first_name" : "Auto"
+         }
+      ]
+   }
+}
+```
+
+<span class="tryit" id="account-list-tryit"></span>
 Returns information about accounts. Uses [pagination](#pagination). Uses select criteria.
 
 Optional parameters:
@@ -424,8 +576,142 @@ The response results `accounts` attribute will be an array of the current page o
 
 ### account.listByWorkgroup
 
-<script>tryit('account.listByWorkgroup')</script> 
+> Request example:
 
+```JSON
+{
+   "select" : {
+      "workgroup" : "226094"
+   }
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.045885",
+   "jsonrpc" : "2.0",
+   "id" : "35",
+   "result" : {
+      "members" : [
+         {
+            "home_phone" : "18007467531",
+            "bad_email" : false,
+            "state" : "Washington",
+            "last_name" : "Testing 1",
+            "email" : "132995@servola.org",
+            "city" : "Seattle",
+            "fax" : "",
+            "url" : "",
+            "address" : "720 3rd Ave, Suite 2200",
+            "id" : "2",
+            "country" : "United States",
+            "org_hold" : false,
+            "timezone" : "Pacific Time (US/Can) (GMT-08:00)",
+            "region" : "",
+            "middle_name" : "",
+            "profile_type" : "1",
+            "surname" : "",
+            "other_phone" : "",
+            "zip" : "98104",
+            "org_pending" : "0",
+            "pager" : "",
+            "mobile_phone" : "",
+            "title" : "",
+            "first_name" : "Auto"
+         },
+         {
+            "home_phone" : "",
+            "bad_email" : false,
+            "state" : "",
+            "last_name" : "Tester",
+            "email" : "test949@69.julian.example.com",
+            "city" : "",
+            "fax" : "",
+            "url" : "",
+            "address" : "",
+            "id" : "949",
+            "country" : "",
+            "org_hold" : false,
+            "timezone" : "",
+            "middle_name" : "",
+            "region" : "",
+            "surname" : "",
+            "profile_type" : "1",
+            "other_phone" : "",
+            "zip" : "",
+            "org_pending" : "0",
+            "pager" : "",
+            "mobile_phone" : "",
+            "title" : "",
+            "first_name" : "Joe"
+         },
+         {
+            "home_phone" : "",
+            "bad_email" : false,
+            "state" : "",
+            "last_name" : "Tester",
+            "email" : "test950@69.julian.example.com",
+            "city" : "",
+            "fax" : "",
+            "url" : "",
+            "address" : "",
+            "id" : "950",
+            "country" : "",
+            "org_hold" : false,
+            "timezone" : "",
+            "middle_name" : "",
+            "region" : "",
+            "surname" : "",
+            "profile_type" : "1",
+            "other_phone" : "",
+            "zip" : "",
+            "org_pending" : "0",
+            "pager" : "",
+            "mobile_phone" : "",
+            "title" : "",
+            "first_name" : "Joe"
+         },
+         {
+            "home_phone" : "",
+            "bad_email" : false,
+            "state" : "",
+            "last_name" : "Tester",
+            "email" : "test951@69.julian.example.com",
+            "city" : "",
+            "fax" : "",
+            "url" : "",
+            "address" : "",
+            "id" : "951",
+            "country" : "",
+            "org_hold" : false,
+            "timezone" : "",
+            "middle_name" : "",
+            "region" : "",
+            "surname" : "",
+            "profile_type" : "1",
+            "other_phone" : "",
+            "zip" : "",
+            "org_pending" : "0",
+            "pager" : "",
+            "mobile_phone" : "",
+            "title" : "",
+            "first_name" : "Joe"
+         }
+      ],
+      "count" : "4",
+      "page" : {
+         "this" : {
+            "batch" : 25,
+            "start" : 1
+         }
+      }
+   }
+}
+```
+
+<span class="tryit" id="account-listbyworkgroup-tryit"></span>
 Returns information about accounts with membership in a workgroup. Uses [pagination](#pagination).
 
 Required parameters: `select` object with a `workgroup` attribute identifying the workgroup whose members should be returned. E.g. `{select:{workgroup:12345}}`.
@@ -442,8 +728,44 @@ Currently, this method only returns members with `org_hold` false and org_pendin
 
 ### account.listMemberships
 
-<script>tryit('account.listMemberships')</script> 
+> Request example:
 
+```JSON
+{
+   "select" : {
+      "member" : 950
+   }
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.058298",
+   "jsonrpc" : "2.0",
+   "id" : "36",
+   "result" : {
+      "count" : "1",
+      "page" : {
+         "this" : {
+            "batch" : 25,
+            "start" : 1
+         }
+      },
+      "workgroups" : [
+         {
+            "zip" : "60616",
+            "name" : "Test Workgroup 226094",
+            "id" : "226094",
+            "code" : "A001"
+         }
+      ]
+   }
+}
+```
+
+<span class="tryit" id="account-listmemberships-tryit"></span>
 Returns information about workgroups to which a member belongs. Uses [pagination](#pagination). Uses select criteria.
 
 Optional parameters:
@@ -478,8 +800,34 @@ id, first_name, last_name, and screen_name attributes are provided.
 
 ### account.listOpenids
 
-<script>tryit('account.listOpenids')</script> 
+> Request example:
 
+```JSON
+{
+   "account" : 918
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.050461",
+   "jsonrpc" : "2.0",
+   "id" : "44",
+   "result" : {
+      "count" : 1,
+      "account_openids" : [
+         {
+            "openid" : "http://openid4.example.com/",
+            "id" : "785"
+         }
+      ]
+   }
+}
+```
+
+<span class="tryit" id="account-listopenids-tryit"></span>
 Returns information about account_openid objects for a given account.
 
 Required parameters:  `account` or `external_account`
@@ -488,8 +836,64 @@ The response results `account_openids` attribute will be an array of the account
 
 ### account.listUpdated
 
-<script>tryit('account.listUpdated')</script> 
+> Request example:
 
+```JSON
+{
+   "select" : {
+      "updated_since" : 1284655937
+   }
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.057788",
+   "jsonrpc" : "2.0",
+   "id" : "19",
+   "result" : {
+      "count" : "1",
+      "page" : {
+         "this" : {
+            "batch" : 25,
+            "start" : 1
+         }
+      },
+      "accounts" : [
+         {
+            "home_phone" : "",
+            "bad_email" : false,
+            "state" : "",
+            "last_name" : "Tester",
+            "email" : "test913@93.julian.example.com",
+            "city" : "",
+            "fax" : "",
+            "url" : "",
+            "address" : "",
+            "id" : "913",
+            "country" : "",
+            "org_hold" : false,
+            "timezone" : "",
+            "middle_name" : "",
+            "region" : "",
+            "surname" : "",
+            "profile_type" : "1",
+            "other_phone" : "",
+            "zip" : "",
+            "org_pending" : "0",
+            "pager" : "",
+            "mobile_phone" : "",
+            "title" : "",
+            "first_name" : "Updated"
+         }
+      ]
+   }
+}
+```
+
+<span class="tryit" id="account-listupdated-tryit"></span>
 Returns information about accounts created or updated since a given date. Uses [pagination](#pagination). Uses select criteria.
 
 Optional parameters:
@@ -514,8 +918,26 @@ The response results `accounts` attribute will be an array of the current page o
 
 ### account.resetPassword
 
-<script>tryit('account.resetPassword')</script> 
+> Request example:
 
+```JSON
+{
+   "account" : 945
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.060454",
+   "jsonrpc" : "2.0",
+   "id" : "6",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="account-resetpassword-tryit"></span>
 Resets the password for an account to a randomly chosen value and sends the new password to the account's email address. If the account has no email address or is not receiving email, no error will result and the password will be changed.
 
 Required parameters: `account` or `external_account`, a single account identifier or an array of identifiers of accounts for which to reset the password.
@@ -528,8 +950,49 @@ Note that this method may be deprecated in the future and replaced with a method
 
 ### account.self
 
-<script>tryit('account.self')</script> 
+> Request example:
 
+```JSON
+{}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.04608",
+   "jsonrpc" : "2.0",
+   "id" : "4",
+   "result" : {
+      "home_phone" : "18007467531",
+      "bad_email" : false,
+      "state" : "Washington",
+      "last_name" : "Testing 1",
+      "email" : "132995@servola.org",
+      "city" : "Seattle",
+      "fax" : "",
+      "url" : "",
+      "address" : "720 3rd Ave, Suite 2200",
+      "id" : "2",
+      "country" : "United States",
+      "org_hold" : false,
+      "timezone" : "Pacific Time (US/Can) (GMT-08:00)",
+      "region" : "",
+      "middle_name" : "",
+      "profile_type" : "1",
+      "surname" : "",
+      "other_phone" : "",
+      "zip" : "98104",
+      "org_pending" : "0",
+      "pager" : "",
+      "mobile_phone" : "",
+      "title" : "",
+      "first_name" : "Auto"
+   }
+}
+```
+
+<span class="tryit" id="account-self-tryit"></span>
 Returns information about the account associated with the API key making the request.
 
 Optional parameters:
@@ -574,8 +1037,26 @@ If user_actions were requested, a `user_actions` attribute will also be returned
 
 ### account.sendPassword
 
-<script>tryit('account.sendPassword')</script> 
+> Request example:
 
+```JSON
+{
+   "account" : 944
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.075872",
+   "jsonrpc" : "2.0",
+   "id" : "3",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="account-sendpassword-tryit"></span>
 Sends a password reset link for an account to the account's email address. If the account has no email address or is not receiving email, no error will result.
 
 Required parameters: `account` or `external_account`, a single account identifier or an array of identifiers of accounts for which to send the password reset.
@@ -586,8 +1067,26 @@ Response: On success, empty results will be returned.
 
 ### account.sendWelcomeLetter
 
-<script>tryit('account.sendWelcomeLetter')</script>
+> Request example:
 
+```JSON
+{
+   "account" : 917
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.081154",
+   "jsonrpc" : "2.0",
+   "id" : "40",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="account-sendwelcomeletter-tryit"></span>
 Send a welcome email to the account's email address, giving them their password.  If the account has no email address or is not receiving email, no error will result.
 
 Required parameters: `account` or `external_account`, a single account identifier or an array of identifiers of accounts for which to send a welcome letter.
@@ -606,8 +1105,29 @@ Response: On success, empty results will be returned.
 
 ### account.update
 
-<script>tryit('account.update')</script> 
+> Request example:
 
+```JSON
+{
+   "email" : "test952@69.julian.example.com",
+   "bad_email" : 0,
+   "notification_preference" : 1,
+   "id" : 952
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.157625",
+   "jsonrpc" : "2.0",
+   "id" : "31",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="account-update-tryit"></span>
 Updates an account object.
 
 Required parameters:  `id` or `external_id`.
@@ -618,8 +1138,7 @@ Response: On success, empty results will be returned.
 
 ### account.updateDocument
 
-<script>tryit('account.updateDocument')</script> 
-
+<span class="tryit" id="account-updatedocument-tryit"></span>
 Updates an account document for a single account.
 
 Required parameters:  `id` or `external_id` and `document_number`
@@ -632,8 +1151,7 @@ Upon success, the request to the url will return an HTTP 204 status code.
 
 ### account.updateImage
 
-<script>tryit('account.updateImage')</script> 
-
+<span class="tryit" id="account-updateimage-tryit"></span>
 Updates the user image for a single account.
 
 Required parameters:  `id` or `external_id`
@@ -646,8 +1164,7 @@ Upon success, the request to the url will return an HTTP 204 status code.
 
 ### account.updateResume
 
-<script>tryit('account.updateResume')</script> 
-
+<span class="tryit" id="account-updateresume-tryit"></span>
 Updates the resume for a single account.
 
 Required parameters:  `id` or `external_id`

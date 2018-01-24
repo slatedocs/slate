@@ -94,27 +94,26 @@ meters of 68% confidence of latitude/longitude
 
 ### timeclock.clockIn
 
-<script>tryit('timeclock.clockIn')</script>
-
 > Request example:
 
 ```JSON
- {}
+{}
 ```
 
 > Response example:
 
 ```JSON
 {
-     seconds: "2.903725", 
-     jsonrpc: "2.0", 
-     id: "37", 
-     result: {
-         id: 62064
-     }
+   "seconds" : "2.903725",
+   "jsonrpc" : "2.0",
+   "id" : "37",
+   "result" : {
+      "id" : 62064
+   }
 }
 ```
 
+<span class="tryit" id="timeclock-clockin-tryit"></span>
 Clocks in a given account.
 
 Parameters:
@@ -181,27 +180,26 @@ Response: On success, returns `id` of the newly created timeclock object.
 
 ### timeclock.clockOut
 
-<script>tryit('timeclock.clockOut')</script> 
-
 > Request example:
 
 ```JSON
- {}
+{}
 ```
 
 > Response example:
 
 ```JSON
- {
-     seconds: "2.944529", 
-     jsonrpc: "2.0", 
-     id: "43", 
-     result: {
-         timecard: 111673
-     }
+{
+   "seconds" : "2.944529",
+   "jsonrpc" : "2.0",
+   "id" : "43",
+   "result" : {
+      "timecard" : 111673
+   }
 }
 ```
 
+<span class="tryit" id="timeclock-clockout-tryit"></span>
 Clocks out a given account and creates a timecard for the clock in.
 
 Parameters:
@@ -264,8 +262,7 @@ Response: On success, returns `timecard`, the id of the newly created timecard o
 
 ### timeclock.get
 
-<script>tryit('timeclock.get')</script>
-
+<span class="tryit" id="timeclock-get-tryit"></span>
 Returns information about a timeclock object.
 
 Parameters:
@@ -302,8 +299,7 @@ id and name attributes are provided.
 
 ### timeclock.list
 
-<script>tryit('timeclock.list')</script> 
-
+<span class="tryit" id="timeclock-list-tryit"></span>
 Returns information about timeclock objects. Uses [pagination](#pagination). Uses select criteria.
 
 Optional parameters:
@@ -366,35 +362,32 @@ id and name attributes are provided.
 
 ### timeclock.report
 
-<script>tryit('timeclock.report')</script> 
-
 > Request example:
 
 ```JSON
-
- {
-     select: {
-         start_date: "2012-10-01"
-     }, 
-     report_type: total_hour, 
-     format: xls
+{
+   "format" : "xls",
+   "report_type" : "total_hour",
+   "select" : {
+      "start_date" : "2012-10-01"
+   }
 }
 ```
 
 > Response example:
 
 ```JSON
-
- {
-     seconds: "2.811506", 
-     jsonrpc: "2.0", 
-     id: "21", 
-     result: {
-         url: "https://www.shiftboard.com/servola/fetch.cgi?ss=14;type=report;key=5085a260feff2760;signature=kRMtQqcLl0SULDYifhdg3OH4uIU;format=excel"
-     }
+{
+   "seconds" : "2.811506",
+   "jsonrpc" : "2.0",
+   "id" : "21",
+   "result" : {
+      "url" : "https://www.shiftboard.com/servola/fetch.cgi?ss=14;type=report;key=5085a260feff2760;signature=kRMtQqcLl0SULDYifhdg3OH4uIU;format=excel"
+   }
 }
 ```
 
+<span class="tryit" id="timeclock-report-tryit"></span>
 Generates a pre-authorized link to download a timeclock report.
 
 Parameters:
@@ -448,31 +441,30 @@ report.
 
 ### timeclock.status
 
-<script>tryit('timeclock.status')</script> 
-
 > Request example:
 
 ```JSON
- {}
+{}
 ```
 
 > Response example:
 
 ```JSON
- {
-     seconds: "2.811506", 
-     jsonrpc: "2.0", 
-     id: "21", 
-     result: {
-         shift: null, 
-         account: "4826", 
-         clocked_out: null, 
-         workgroup: null, 
-         clocked_in: null
-     }
- }
+{
+   "seconds" : "2.811506",
+   "jsonrpc" : "2.0",
+   "id" : "21",
+   "result" : {
+      "workgroup" : null,
+      "account" : "4826",
+      "shift" : null,
+      "clocked_in" : null,
+      "clocked_out" : null
+   }
+}
 ```
 
+<span class="tryit" id="timeclock-status-tryit"></span>
 Reports clocked in/out status of an account.
 
 Parameters: "account" (optional, defaults to current user) or "external_account" (optional, defaults to current user; can only be used if external ids are enabled for the site)

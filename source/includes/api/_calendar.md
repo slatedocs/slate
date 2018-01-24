@@ -12,33 +12,30 @@ The ending date for querying the calendar object.
 
 ### calendar.summary
 
-<script>tryit('calendar.summary')</script>
-
 > Request example:
 
 ```JSON
-
 {
-    "include_timeOff": true, 
-    end_date: "2017-02-28", 
-    include_shifts: true, 
-    tradeboard: {
-        trade_complete: true
-    }, 
-    workgroups: [], 
-    shifts: {
-        coverage_type: [
-            mine, 
-            available, 
-            confirmed
-        ]
-    }, 
-    include_tradeboard: true, 
-    start_date: "2017-02-01", 
-    "timeOffRequests": {
-        status: 0, 
-        member: 1
-    }
+   "shifts" : {
+      "coverage_type" : [
+         "mine",
+         "available",
+         "confirmed"
+      ]
+   },
+   "include_shifts" : true,
+   "include_tradeboard" : true,
+   "timeOffRequests" : {
+      "member" : 1,
+      "status" : 0
+   },
+   "workgroups" : [],
+   "include_timeOff" : true,
+   "tradeboard" : {
+      "trade_complete" : true
+   },
+   "end_date" : "2017-02-28",
+   "start_date" : "2017-02-01"
 }
 ```
 
@@ -46,40 +43,41 @@ The ending date for querying the calendar object.
 
 ```JSON
 {
-    seconds: "0.391969", 
-    jsonrpc: "2.0", 
-    id: "3", 
-    result: {
-        summaries: [
-            {
-                available: true, 
-                confirmed: true, 
-                trades: false, 
-                mine: true, 
-                date: "2017-04-01", 
-                "timeOffRequest": false
-            }, 
-            {
-                available: true, 
-                confirmed: true, 
-                trades: true, 
-                mine: true, 
-                date: "2017-04-02", 
-                "timeOffRequest": true
-            }, 
-            {
-                available: true, 
-                confirmed: true, 
-                trades: true, 
-                mine: true, 
-                date: "2017-04-03", 
-                "timeOffRequest": true
-            }
-        ]
-    }
+   "seconds" : "0.391969",
+   "jsonrpc" : "2.0",
+   "id" : "3",
+   "result" : {
+      "summaries" : [
+         {
+            "trades" : false,
+            "confirmed" : true,
+            "date" : "2017-04-01",
+            "timeOffRequest" : false,
+            "mine" : true,
+            "available" : true
+         },
+         {
+            "trades" : true,
+            "confirmed" : true,
+            "date" : "2017-04-02",
+            "timeOffRequest" : true,
+            "mine" : true,
+            "available" : true
+         },
+         {
+            "trades" : true,
+            "confirmed" : true,
+            "date" : "2017-04-03",
+            "timeOffRequest" : true,
+            "mine" : true,
+            "available" : true
+         }
+      ]
+   }
 }
 ```
 
+<span class="tryit" id="calendar-summary-tryit"></span>
 Get a summarized list of data for a given date range.
 
 Required parameters:

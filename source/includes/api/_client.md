@@ -60,8 +60,29 @@ Notes
 
 ### client.create
 
-<script>tryit('client.create')</script> 
+> Request example:
 
+```JSON
+{
+   "workgroup" : "226072",
+   "name" : "client 887"
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.391969",
+   "jsonrpc" : "2.0",
+   "id" : "3",
+   "result" : {
+      "id" : "988"
+   }
+}
+```
+
+<span class="tryit" id="client-create-tryit"></span>
 Creates a new client record.
 
 Parameters: Any attributes of a client object (except `id`) may be specified. A unique `name` parameter must be specified. Additionally, a `workgroup` parameter must be specified to create initial workgroup relationships for this client. It may be either a single workgroup identifier or an array of identifiers of workgroups that use this client.
@@ -70,8 +91,7 @@ Response: On success, an `id` attribute will provide the identifier for the new 
 
 ### client.delete
 
-<script>tryit('client.delete')</script> 
-
+<span class="tryit" id="client-delete-tryit"></span>
 Deletes a client.
 
 Required parameter: `id`.
@@ -80,8 +100,42 @@ On success, empty results will be returned.
 
 ### client.get
 
-<script>tryit('client.get')</script> 
+> Request example:
 
+```JSON
+{
+   "id" : "988"
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.065741",
+   "jsonrpc" : "2.0",
+   "id" : "7",
+   "result" : {
+      "special_instructions" : "test special instructions",
+      "country" : "USA",
+      "contact_phone" : "5555551212",
+      "contact_last_name" : "test",
+      "name" : "client 887",
+      "contact_first_name" : "client",
+      "state" : "WA",
+      "city" : "testmetro",
+      "zip" : "90210",
+      "notes" : "test note",
+      "address_second" : "apt 1 test",
+      "contact_email" : "test@example.com",
+      "id" : "988",
+      "address" : "123 test st",
+      "business_name" : "test"
+   }
+}
+```
+
+<span class="tryit" id="client-get-tryit"></span>
 Returns information about a single client.
 
 Required parameter: `id`
@@ -90,8 +144,55 @@ The response results will be a client object.
 
 ### client.list
 
-<script>tryit('client.list')</script> 
+> Request example:
 
+```JSON
+{
+   "select" : {
+      "client" : "988"
+   }
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.065741",
+   "jsonrpc" : "2.0",
+   "id" : "7",
+   "result" : {
+      "count" : "1",
+      "page" : {
+         "this" : {
+            "batch" : 25,
+            "start" : 1
+         }
+      },
+      "clients" : [
+         {
+            "special_instructions" : "test special instructions",
+            "country" : "USA",
+            "contact_phone" : "5555551212",
+            "contact_last_name" : "test",
+            "name" : "client 887",
+            "contact_first_name" : "client",
+            "state" : "WA",
+            "city" : "testmetro",
+            "zip" : "90210",
+            "notes" : "test note",
+            "address_second" : "apt 1 test",
+            "contact_email" : "test@example.com",
+            "id" : "988",
+            "address" : "123 test st",
+            "business_name" : "test"
+         }
+      ]
+   }
+}
+```
+
+<span class="tryit" id="client-list-tryit"></span>
 Returns information about clients. Uses [pagination](#pagination).
 
 Optional parameters: `select` object with a `client` attribute identifying a single client or array of clients to be returned. E.g. `{select:{client:12345}}.`
@@ -108,8 +209,39 @@ The name of this client.
 
 ### client.update
 
-<script>tryit('client.update')</script> 
+> Request example:
 
+```JSON
+{
+   "special_instructions" : "test special instructions",
+   "contact_phone" : "5555551212",
+   "contact_last_name" : "test",
+   "country" : "USA",
+   "contact_first_name" : "client",
+   "state" : "WA",
+   "city" : "testmetro",
+   "zip" : 90210,
+   "notes" : "test note",
+   "contact_email" : "test@example.com",
+   "address_second" : "apt 1 test",
+   "address" : "123 test st",
+   "id" : "988",
+   "business_name" : "test"
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.04165",
+   "jsonrpc" : "2.0",
+   "id" : "6",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="client-update-tryit"></span>
 Updates a client object.
 
 Required parameter: `id`. Any other client object attributes may be specified.

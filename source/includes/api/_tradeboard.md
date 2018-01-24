@@ -50,8 +50,26 @@ time at which this trade was completed.
 
 ### tradeboard.accept
 
-<script>tryit('tradeboard.accept')</script> 
+> Request example:
 
+```JSON
+{
+   "id" : 2753501
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.188065",
+   "jsonrpc" : "2.0",
+   "id" : "45",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="tradeboard-accept-tryit"></span>
 Takes a shift offered on the tradeboard.
 
 Required parameter: `id`.
@@ -60,8 +78,28 @@ Response: On success, empty results will be returned.
 
 ### tradeboard.create
 
-<script>tryit('tradeboard.create')</script> 
+> Request example:
 
+```JSON
+{
+   "shift" : 12345678
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.207354",
+   "jsonrpc" : "2.0",
+   "id" : "59",
+   "result" : {
+      "id" : 92873
+   }
+}
+```
+
+<span class="tryit" id="tradeboard-create-tryit"></span>
 Creates a new tradeboard posting.
 
 Required Parameter:
@@ -78,8 +116,26 @@ Response: On success, an `id` attribute will provide the identifier for the new 
 
 ### tradeboard.delete
 
-<script>tryit('tradeboard.delete')</script> 
+> Request example:
 
+```JSON
+{
+   "id" : "2753"
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.058344",
+   "jsonrpc" : "2.0",
+   "id" : "67",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="tradeboard-delete-tryit"></span>
 Deletes a tradeboard posting.
 
 Required parameter: `id`.
@@ -88,8 +144,117 @@ Response: On success, empty results will be returned.
 
 ### tradeboard.get
 
-<script>tryit('tradeboard.get')</script> 
+> Request example:
 
+```JSON
+{
+   "id" : "123456",
+   "extended" : true
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.128193",
+   "jsonrpc" : "2.0",
+   "id" : "15",
+   "result" : {
+      "referenced_objects" : {
+         "workgroup" : [
+            {
+               "name" : "Help Desk",
+               "id" : "412345"
+            }
+         ],
+         "department" : [
+            {
+               "name" : "Distribution",
+               "label" : "Distribution",
+               "id" : "9942"
+            }
+         ],
+         "timezone" : [
+            {
+               "name" : "Pacific Time (US/Can) (GMT-08:00)",
+               "olson_timezone" : "America/Los_Angeles"
+            }
+         ],
+         "location" : [
+            {
+               "name" : "Training / Meetings",
+               "id" : "92580"
+            }
+         ],
+         "shift" : [
+            {
+               "display_time" : "1pm to 2pm",
+               "department" : "9942",
+               "reference_id" : "",
+               "linkurl" : "",
+               "work_status_type" : "5",
+               "start_date" : "2014-01-29T13:00:00",
+               "signup_list" : false,
+               "id" : "56789012",
+               "count" : "1",
+               "timezone" : "Pacific Time (US/Can) (GMT-08:00)",
+               "display_date" : "January 29, 2014",
+               "location" : "92580",
+               "subject" : "",
+               "covering_member" : "47",
+               "urgent" : false,
+               "zipcode" : "94132",
+               "qty" : "1",
+               "details" : "details!",
+               "workgroup" : "412345",
+               "published" : true,
+               "no_credit" : false,
+               "end_date" : "2014-01-29T14:00:00",
+               "covered" : true,
+               "no_pick_up" : false,
+               "no_trade" : false,
+               "room_floor" : "room/floor",
+               "linktitle" : ""
+            }
+         ],
+         "account" : [
+            {
+               "id" : "39",
+               "screen_name" : null,
+               "last_name" : "Foster",
+               "first_name" : "Joanie"
+            },
+            {
+               "seniority_order" : "19999-12-31 23:59:59",
+               "id" : "47",
+               "profile_type" : "3",
+               "screen_name" : "Stan Wilson",
+               "last_name" : "Wilson",
+               "first_name" : "Stan"
+            }
+         ],
+         "workStatusType" : [
+            {
+               "name" : "Salary/Exempt",
+               "id" : "5"
+            }
+         ]
+      },
+      "tradeboard" : {
+         "trade_completed" : "2014-01-21T20:40:38Z",
+         "shift" : "56789012",
+         "notes" : "Need to see the dentist; please take this trade",
+         "id" : "123456",
+         "traded_to" : "47",
+         "traded_by" : "39",
+         "trade_complete" : true
+      }
+   }
+}
+```
+
+<span class="tryit" id="tradeboard-get-tryit"></span>
 Returns information about a tradeboard posting.
 
 Parameters:
@@ -150,8 +315,70 @@ id and name attributes are provided.
 
 ### tradeboard.list
 
-<script>tryit('tradeboard.list')</script> 
+> Request example:
 
+```JSON
+{
+   "select" : {
+      "end_date" : "2014-07-18",
+      "start_date" : "2014-07-12"
+   }
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.087686",
+   "jsonrpc" : "2.0",
+   "id" : "3",
+   "result" : {
+      "referenced_objects" : {
+         "workgroup" : [
+            {
+               "name" : "Floor Staff",
+               "id" : "226093"
+            }
+         ],
+         "account" : [
+            {
+               "id" : "20",
+               "screen_name" : "Johnny Smith",
+               "last_name" : "John",
+               "first_name" : "Smith"
+            }
+         ],
+         "shift" : [
+            {
+               "workgroup" : "226093",
+               "display_time" : "10am to 11am",
+               "display_date" : "July 13, 2014",
+               "id" : "25687871"
+            }
+         ]
+      },
+      "tradeboard" : [
+         {
+            "shift" : "25687871",
+            "id" : "1123",
+            "trade_complete" : false,
+            "traded_by" : "20",
+            "traded_to" : null
+         }
+      ],
+      "count" : "1",
+      "page" : {
+         "this" : {
+            "batch" : 10,
+            "start" : 1
+         }
+      }
+   }
+}
+```
+
+<span class="tryit" id="tradeboard-list-tryit"></span>
 Returns information about tradeboard postings. Uses [pagination](#pagination). Uses select criteria.
 
 Optional parameters:
@@ -200,8 +427,27 @@ id and name attributes are provided.
 
 ### tradeboard.update
 
-<script>tryit('tradeboard.update')</script> 
+> Request example:
 
+```JSON
+{
+   "notes" : "I'd like to trade for a shift the following Wednesday",
+   "id" : 2345
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.178901",
+   "jsonrpc" : "2.0",
+   "id" : "43",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="tradeboard-update-tryit"></span>
 Updates a tradeboard posting's notes.
 
 Required parameter: `id`.

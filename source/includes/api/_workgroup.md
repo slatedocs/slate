@@ -132,8 +132,7 @@ Full name of mailing address country.
 
 ### workgroup.create_clients
 
-<script>tryit('workgroup.create_clients')</script> 
-
+<span class="tryit" id="workgroup-create_clients-tryit"></span>
 Creates new workgroup/client relationships.
 
 Required parameters:
@@ -154,8 +153,27 @@ Response: On success, empty results will be returned.
 
 ### workgroup.addDepartments
 
-<script>tryit('workgroup.addDepartments')</script> 
+> Request example:
 
+```JSON
+{
+   "workgroup" : "226073",
+   "department" : "948"
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.041209",
+   "jsonrpc" : "2.0",
+   "id" : "6",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="workgroup-adddepartments-tryit"></span>
 Creates new workgroup/department relationships.
 
 Required parameters:
@@ -176,8 +194,27 @@ Response: On success, empty results will be returned.
 
 ### workgroup.addLocations
 
-<script>tryit('workgroup.addLocations')</script> 
+> Request example:
 
+```JSON
+{
+   "workgroup" : "226074",
+   "location" : "29117"
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.792919",
+   "jsonrpc" : "2.0",
+   "id" : "12",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="workgroup-addlocations-tryit"></span>
 Creates new workgroup/location relationships.
 
 Required parameters:
@@ -198,8 +235,27 @@ Response: On success, empty results will be returned.
 
 ### workgroup.addRoles
 
-<script>tryit('workgroup.addRoles')</script> 
+> Request example:
 
+```JSON
+{
+   "workgroup" : "226077",
+   "role" : "2281"
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.067753",
+   "jsonrpc" : "2.0",
+   "id" : "6",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="workgroup-addroles-tryit"></span>
 Creates new workgroup/role relationships.
 
 Required parameters:
@@ -220,8 +276,30 @@ Response: On success, empty results will be returned.
 
 ### workgroup.create
 
-<script>tryit('workgroup.create')</script> 
+> Request example:
 
+```JSON
+{
+   "zip" : 60616,
+   "name" : "Test Workgroup 48659",
+   "code" : "A001"
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.358585",
+   "jsonrpc" : "2.0",
+   "id" : "22",
+   "result" : {
+      "id" : "226094"
+   }
+}
+```
+
+<span class="tryit" id="workgroup-create-tryit"></span>
 Creates a new workgroup record.
 
 Parameters: Any attributes of a workgroup object (except `id`) may be specified. A unique `name` parameter must be specified. Some workgroup attributes will default from organization values or configuration settings if not specified or invalid.
@@ -230,14 +308,51 @@ Response: On success, an `id` attribute will provide the identifier for the new 
 
 ### workgroup.delete
 
-<script>tryit('workgroup.delete')</script> 
+> Request example:
 
+```JSON
+{
+   "id" : "226089"
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.052778",
+   "jsonrpc" : "2.0",
+   "id" : "48",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="workgroup-delete-tryit"></span>
 Deletes a workgroup record.
 
 ### workgroup.deleteClients
 
-<script>tryit('workgroup.deleteClients')</script> 
+> Request example:
 
+```JSON
+{
+   "client" : "988",
+   "workgroup" : "226072"
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.056321",
+   "jsonrpc" : "2.0",
+   "id" : "10",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="workgroup-deleteclients-tryit"></span>
 Required parameter: `id`.
 
 Response: On success, empty results will be returned.
@@ -262,8 +377,27 @@ Response: On success, empty results will be returned.
 
 ### workgroup.deleteDepartments
 
-<script>tryit('workgroup.deleteDepartments')</script> 
+> Request example:
 
+```JSON
+{
+   "workgroup" : "226073",
+   "department" : "948"
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.061248",
+   "jsonrpc" : "2.0",
+   "id" : "8",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="workgroup-deletedepartments-tryit"></span>
 Deletes workgroup/department relationships.
 
 Required parameters:
@@ -284,8 +418,27 @@ Response: On success, empty results will be returned.
 
 ### workgroup.deleteLocations
 
-<script>tryit('workgroup.deleteLocations')</script> 
+> Request example:
 
+```JSON
+{
+   "workgroup" : "226074",
+   "location" : "29117"
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.809674",
+   "jsonrpc" : "2.0",
+   "id" : "8",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="workgroup-deletelocations-tryit"></span>
 Deletes workgroup/location relationships.
 
 Required parameters:
@@ -306,8 +459,27 @@ Response: On success, empty results will be returned.
 
 ### workgroup.deleteRoles
 
-<script>tryit('workgroup.deleteRoles')</script> 
+> Request example:
 
+```JSON
+{
+   "workgroup" : "226077",
+   "role" : "2281"
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.067934",
+   "jsonrpc" : "2.0",
+   "id" : "8",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="workgroup-deleteroles-tryit"></span>
 Deletes workgroup/role relationships.
 
 Required parameters:
@@ -328,8 +500,7 @@ Response: On success, empty results will be returned.
 
 ### workgroup.get
 
-<script>tryit('workgroup.get')</script> 
-
+<span class="tryit" id="workgroup-get-tryit"></span>
 Returns information about a workgroup.
 
 Parameters:
@@ -356,8 +527,74 @@ id, first_name, last_name, and screen_name attributes are provided.
 
 ### workgroup.list
 
-<script>tryit('workgroup.list')</script> 
+> Request example:
 
+```JSON
+{
+   "select" : {
+      "workgroup" : "226093"
+   },
+   "extended" : true
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.051276",
+   "jsonrpc" : "2.0",
+   "id" : "21",
+   "result" : {
+      "count" : "1",
+      "page" : {
+         "this" : {
+            "batch" : 25,
+            "start" : 1
+         }
+      },
+      "workgroups" : [
+         {
+            "contact_account" : "948",
+            "public_info" : "some public info",
+            "state" : "California",
+            "org_default" : true,
+            "url" : "http://www.servola.org/",
+            "address" : "1 Main St",
+            "id" : "226093",
+            "allowed_conflict_mins" : "90",
+            "code" : "thecode",
+            "location" : "29120",
+            "timezone" : "Greenwich Mean Time : Dublin, Lisbon, London (GMT)",
+            "public_phone" : "5555551212",
+            "view_public" : true,
+            "show_confirmed" : true,
+            "name" : "Test Workgroup 226093",
+            "description" : "some info",
+            "zip" : "90210",
+            "mobile_phone" : "5555551212",
+            "view_public_non_org" : true,
+            "auto_add" : true,
+            "public_email" : "test@servola.org",
+            "public_code" : "public code",
+            "city" : "Beverly Hills",
+            "fax" : "5555551212",
+            "allow_shared" : true,
+            "self_remove" : true,
+            "country" : "USA",
+            "office_phone" : "5555551212",
+            "cancel_period" : "5",
+            "member_add_shift" : false,
+            "show_open" : true,
+            "other_phone" : "5555551212",
+            "pager" : "5555551212"
+         }
+      ]
+   }
+}
+```
+
+<span class="tryit" id="workgroup-list-tryit"></span>
 Returns information about workgroups. Uses [pagination](#pagination). Uses select criteria.
 
 Optional parameters:
@@ -392,8 +629,42 @@ id, first_name, last_name, and screen_name attributes are provided.
 
 ### workgroup.listClients
 
-<script>tryit('workgroup.listClients')</script> 
+> Request example:
 
+```JSON
+{
+   "select" : {
+      "workgroup" : "226072"
+   }
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.040039",
+   "jsonrpc" : "2.0",
+   "id" : "9",
+   "result" : {
+      "count" : "1",
+      "page" : {
+         "this" : {
+            "batch" : 25,
+            "start" : 1
+         }
+      },
+      "workgroup_clients" : [
+         {
+            "client" : "988",
+            "workgroup" : "226072"
+         }
+      ]
+   }
+}
+```
+
+<span class="tryit" id="workgroup-listclients-tryit"></span>
 Returns information about workgroup/client relationships. Uses [pagination](#pagination).
 
 Optional parameters: `select` object with the following optional attributes:
@@ -418,8 +689,42 @@ A workgroup identifier.
 
 ### workgroup.listDepartments
 
-<script>tryit('workgroup.listDepartments')</script> 
+> Request example:
 
+```JSON
+{
+   "select" : {
+      "workgroup" : "226085"
+   }
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.050097",
+   "jsonrpc" : "2.0",
+   "id" : "60",
+   "result" : {
+      "count" : "1",
+      "page" : {
+         "this" : {
+            "batch" : 25,
+            "start" : 1
+         }
+      },
+      "workgroup_departments" : [
+         {
+            "workgroup" : "226085",
+            "department" : "949"
+         }
+      ]
+   }
+}
+```
+
+<span class="tryit" id="workgroup-listdepartments-tryit"></span>
 Returns information about workgroup/department relationships. Uses [pagination](#pagination).
 
 Optional parameters: `select` object with the following optional attributes:
@@ -444,8 +749,42 @@ A workgroup identifier.
 
 ### workgroup.listLocations
 
-<script>tryit('workgroup.listLocations')</script> 
+> Request example:
 
+```JSON
+{
+   "select" : {
+      "workgroup" : "226085"
+   }
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.056378",
+   "jsonrpc" : "2.0",
+   "id" : "59",
+   "result" : {
+      "count" : "1",
+      "page" : {
+         "this" : {
+            "batch" : 25,
+            "start" : 1
+         }
+      },
+      "workgroup_locations" : [
+         {
+            "workgroup" : "226085",
+            "location" : "29118"
+         }
+      ]
+   }
+}
+```
+
+<span class="tryit" id="workgroup-listlocations-tryit"></span>
 Returns information about workgroup/location relationships. Uses [pagination](#pagination).
 
 Optional parameters: `select` object with the following optional attributes:
@@ -470,8 +809,42 @@ A workgroup identifier.
 
 ### workgroup.listRoles
 
-<script>tryit('workgroup.listRoles')</script> 
+> Request example:
 
+```JSON
+{
+   "select" : {
+      "workgroup" : "226085"
+   }
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.148687",
+   "jsonrpc" : "2.0",
+   "id" : "58",
+   "result" : {
+      "count" : "1",
+      "workgroup_roles" : [
+         {
+            "workgroup" : "226085",
+            "role" : "2282"
+         }
+      ],
+      "page" : {
+         "this" : {
+            "batch" : 25,
+            "start" : 1
+         }
+      }
+   }
+}
+```
+
+<span class="tryit" id="workgroup-listroles-tryit"></span>
 Returns information about workgroup/role relationships. Uses [pagination](#pagination).
 
 Optional parameters: `select` object with the following optional attributes:
@@ -496,8 +869,27 @@ A workgroup identifier.
 
 ### workgroup.update
 
-<script>tryit('workgroup.update')</script> 
+> Request example:
 
+```JSON
+{
+   "name" : "Test Workgroup 226094",
+   "id" : "226094"
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.542458",
+   "jsonrpc" : "2.0",
+   "id" : "23",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="workgroup-update-tryit"></span>
 Updates a workgroup record.
 
 Required parameter: `id`. Any other workgroup object attributes may be specified.
