@@ -2545,3 +2545,40 @@ Esta notificação informa uma nova inscrição para exame via ENEM.
 | [exam] status | string | status do exame vestibular |
 | [application] result | string | resultado do exame vestibular (_neste evento o valor sempre será `null`_) |
 | [application] type | string | tipo de exame vestibular (_neste evento o valor sempre será `enem`_) |
+
+## Listagem de notificações
+
+> Requisição
+
+```bash
+curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/{version}/notifications/search
+```
+
+> Resposta
+
+```json
+{
+  "has_more": true,
+  "notifications": [
+    {...}
+  ]
+}
+```
+
+Lista eventos enviados
+
+### Parâmetros
+
+| Nome | Tipo | Descrição | Formato |
+| ---- | ---- | --------- | ------- |
+| start_date     | string | Data inicial do filtro | DD/MM/AAAA
+| end_date       | string | Data final do filtro | DD/MM/AAAA
+| starting_after | string | Cursor para a proxima página
+| ending_before  | string | Cursor para a página anterior
+
+### Informações de retorno
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| has_more      | boolean          | indica a existência de outras paginas |
+| notifications | array de objetos | lista de notificações: [referência](#definicao-base-do-evento)
