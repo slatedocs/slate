@@ -7,6 +7,7 @@ includes:
   - features
   - integrations
   - api
+  - compliance
   - reference
 
 search: true
