@@ -111,6 +111,8 @@ Pending code indicating on-boarding status of this account. Site configurable pe
 System-defined pending codes are:
 
 * "*1001*" Expired Certification
+* "*1002*" Documents Missing
+* "*1003*" Documents Verified
 
 ### Extended Attributes
 
