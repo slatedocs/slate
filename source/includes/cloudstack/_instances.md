@@ -505,6 +505,32 @@ Required | &nbsp;
 ------ | -----------
 `sshKeyName`<br/>*string* | The name of the [SSH key](#cloudstack-ssh-keys) to associate to the instance
 
+#### Attach an ISO to an instance
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/compute-on/testing/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=attachIso"
+
+# Request should look like this
+```
+```json
+{
+   "isoId": "f092a051-8b3f-4941-b47f-5ecb77f3423b"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=attachIso</code>
+
+Attach an existing, non-bootable [ISO](#cloudstack-isos) to an instance. Each instance may have only one ISO attached at a time.
+
+Required                | &nbsp;                                                  
+------------------------|----------------------------------------------------------
+`isoId`<br/>*UUID*      | The id of the ISO to attach
+
+
 #### Detach the ISO from an instance
 
 ```shell
