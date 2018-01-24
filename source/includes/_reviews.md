@@ -161,7 +161,7 @@ batch-id | <span class="label label-required">Required</span>
 profile-url | <span class="label label-required">Required</span> For requests to fetch Google reviews please see [constructing Google URLs](#constructing-google+-urls).
 country | <span class="label label-required">Required</span>
 sort | 'rating' or 'date'. By default 'date'.
-reviews-limit | Positive number or 'all'. By default 250.
+reviews-limit | Positive number or 'all'. By default 100.
 date-from | Date Format: Y-m-d or Y-m-d H:i:s. By default not specified.
 
 ## Fetch Reviews (by business data)
@@ -504,5 +504,5 @@ street-address |
 country | <span class="label label-required">Required</span> Only USA.
 telephone | A valid telephone number. Providing this will improve the quality of results returned.
 sort | 'rating' or 'date'. By default 'date'.
-reviews-limit | Positive number or 'all'. By default 250.
+reviews-limit | Positive number or 'all'. By default 100.
 date-from | Date Format: Y-m-d or Y-m-d H:i:s. By default not specified.
