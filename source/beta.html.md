@@ -34,20 +34,20 @@ Caso não tenha o token, solicite-o ao setor de desenvolvimento da Quero Educaç
 ## Requisição sem token
 ```
 Ausência de Token
-Status Code: 401 UNAUTHORIZED
+Status Code: 401 Unauthorized
 www-authenticate: 'Token realm="University Panel"'
 ```
 
-Em caso de requisição sem o envio do token será retornado status 401 - UNAUTHORIZED.
+Em caso de requisição sem o envio do token será retornado status `401 - Unauthorized`.
 
 ## Requisição com token inválido
 
 ```
 Formato de token inválido
-Status Code: 400 NOT FOUND
+Status Code: 400 Bad Request
 ```
 
-Em caso de token em formato inválido será retornado status 400 - NOT FOUND.
+Em caso de token em formato inválido será retornado status `400 - Bad Request`.
 
 ## Requisição com token não autorizado
 
@@ -56,7 +56,7 @@ Não autorizado
 Status Code: 403 Forbidden
 ```
 
-Em caso de token não autorizado será retornado erro 403 - Forbidden.
+Em caso de token não autorizado será retornado erro `403 - Forbidden`.
 
 ## Requisição com token sem permissão
 
