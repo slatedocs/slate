@@ -17,7 +17,7 @@ Todas as respostas da API são feitas em JSON
 
 Endpoint utilizado
 
-`https://queroalunos.com/api/{version}/`
+`https://queroalunos.com/api/v1`
 
 
 # Autenticação
@@ -25,7 +25,7 @@ Endpoint utilizado
 ```
 POST https://queroalunos.com/api/v1/{action} HTTP/1.1
 Content-Type: application/json
-authorization: Basic ••••••••••••
+authorization: Token ••••••••••••
 ```
 
 Todas as requisições são autenticadas por um token adicionado ao header.
@@ -35,7 +35,7 @@ Caso não tenha o token, solicite-o ao setor de desenvolvimento da Quero Educaç
 ```
 Ausência de Token
 Status Code: 401 UNAUTHORIZED
-www-authenticate: 'Basic realm="University Panel"'
+www-authenticate: 'Token realm="University Panel"'
 ```
 
 Em caso de requisição sem o envio do token será retornado status 401 - UNAUTHORIZED.
@@ -84,7 +84,7 @@ Em caso de token válido mas sem permissão de acesso ao recurso específico
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/students?cpf=111.222.333-44
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/students?cpf=111.222.333-44
 ```
 
 > Retorno
@@ -183,7 +183,7 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/students/{id}
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/students/{id}
 ```
 
 > Resposta
@@ -280,7 +280,7 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/admissions
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/admissions
 ```
 
 > Resposta
@@ -426,7 +426,7 @@ Admissões são retornadas em lote de 10, ordenadas pela última atualização r
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/admissions/12345
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/admissions/12345
 ```
 
 > Resposta
@@ -570,7 +570,7 @@ Retorna uma admissão específica da faculdade.
 > Requisição
 
 ```bash
-curl -X PUT --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/admissions/12345 \
+curl -X PUT --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/admissions/12345 \
   --data '{"status": "enrolled"}'
 ```
 
@@ -740,7 +740,7 @@ Realiza atualização de um processo de admissão específico de um aluno. Para 
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/applications
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/applications
 ```
 
 > Resposta
@@ -884,7 +884,7 @@ Inscrições são retornadas em lote de 10, ordenadas pela última atualização
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/applications/123456
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/applications/123456
 ```
 
 > Resposta
@@ -1025,7 +1025,7 @@ Retorna uma inscrição específica na inscrição do exame da faculdade.
 > Requisição
 
 ```bash
-curl -X PUT --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/applications/123456 \
+curl -X PUT --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/applications/123456 \
   --data '{"result":"approved"}'
 ```
 
@@ -1185,7 +1185,7 @@ Atualiza a situação de agendamento ou resultado de uma inscrição de exame.
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/exam_groups
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/exam_groups
 ```
 
 > Resposta
@@ -1267,7 +1267,7 @@ Exames em lote são retornados em lote de 10, ordenadas pela última atualizaç�
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/exam_groups/1234
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/exam_groups/1234
 ```
 
 > Resposta
@@ -1346,7 +1346,7 @@ Retorna um lote de exames específico.
 > Requisição
 
 ```bash
-curl -X POST --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/exam_groups \
+curl -X POST --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/exam_groups \
   --file "data.json"
 ```
 
@@ -1474,7 +1474,7 @@ Cria um lote de exames.
 > Requisição
 
 ```bash
-curl -X PUT --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/exam_groups/1234 \
+curl -X PUT --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/exam_groups/1234 \
   --data '{"status": "active"}'
 ```
 
@@ -1574,7 +1574,7 @@ Suspende ou ativa um lote de exames.
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/exams
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/exams
 ```
 
 > Resposta
@@ -1645,7 +1645,7 @@ Exames são retornados em lote de 10, ordenadas pela última atualização reali
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/exams/456
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/exams/456
 ```
 
 > Resposta
@@ -1713,7 +1713,7 @@ Retorna um exame específico.
 > Requisição
 
 ```bash
-curl -X POST --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/exams \
+curl -X POST --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/exams \
   --file "data.json"
 ```
 
@@ -1822,7 +1822,7 @@ Cria um novo exame.
 > Requisição
 
 ```bash
-curl -X PUT --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/exams/456 \
+curl -X PUT --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/exams/456 \
   --data '{"status":"active"}'
 ```
 
@@ -1901,7 +1901,7 @@ Suspende ou ativa um exame.
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/enem_exams
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/enem_exams
 ```
 
 > Resposta
@@ -1963,7 +1963,7 @@ Exames de ENEM são retornados em lote de 10, ordenadas pela última atualizaç�
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/enem_exams/789
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/enem_exams/789
 ```
 
 > Resposta
@@ -2023,7 +2023,7 @@ Retorna um exame de enem específico.
 > Requisição
 
 ```bash
-curl -X POST --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/enem_exams \
+curl -X POST --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/enem_exams \
   --file "data.json"
 ```
 
@@ -2117,7 +2117,7 @@ Cria um exame de enem.
 > Requisição
 
 ```bash
-curl -X PUT --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/enem_exams/789 \
+curl -X PUT --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/enem_exams/789 \
   --data '{"status":"inactive"}'
 ```
 
@@ -2188,7 +2188,7 @@ Suspende um exame de Enem específico.
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/enem_exams/suspend \
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/enem_exams/suspend \
   --file "data.json"
 ```
 

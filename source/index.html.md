@@ -17,7 +17,7 @@ Todas as respostas da API são feitas em JSON
 
 Endpoint utilizado
 
-`https://queroalunos.com/api/{version}/`
+`https://queroalunos.com/api/v1`
 
 
 # Autenticação
@@ -25,7 +25,7 @@ Endpoint utilizado
 ```
 POST https://queroalunos.com/api/v1/{action} HTTP/1.1
 Content-Type: application/json
-authorization: Basic ••••••••••••
+authorization: Token ••••••••••••
 ```
 
 Todas as requisições são autenticadas por um token adicionado ao header.
@@ -35,7 +35,7 @@ Caso não tenha o token, solicite-o ao setor de desenvolvimento da Quero Educaç
 ```
 Ausência de Token
 Status Code: 401 UNAUTHORIZED
-www-authenticate: 'Basic realm="University Panel"'
+www-authenticate: 'Token realm="University Panel"'
 ```
 
 Em caso de requisição sem o envio do token será retornado status 401 - UNAUTHORIZED.
@@ -84,7 +84,7 @@ Em caso de token válido mas sem permissão de acesso ao recurso específico
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/students?cpf=111.222.333-44
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/students?cpf=111.222.333-44
 ```
 
 > Retorno
@@ -183,7 +183,7 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/students/{id}
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/students/{id}
 ```
 
 > Resposta
@@ -279,7 +279,7 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/admissions
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/admissions
 ```
 
 > Resposta
@@ -425,7 +425,7 @@ Admissões são retornadas em lote de 10, ordenadas pela última atualização r
 > Requisição
 
 ```bash
-curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/admissions/12345
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/admissions/12345
 ```
 
 > Resposta
@@ -569,7 +569,7 @@ Retorna uma admissão específica da faculdade.
 > Requisição
 
 ```bash
-curl -X PUT --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/admissions/12345 \
+curl -X PUT --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/admissions/12345 \
   --data '{"status": "enrolled"}'
 ```
 
