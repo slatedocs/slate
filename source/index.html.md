@@ -12,6 +12,7 @@ includes:
   - authentication/authentication_overview
   - authentication/apis
   - authentication/users
+  - authentication/extend
 
   - register_patient/register_patient
 
