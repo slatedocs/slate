@@ -126,7 +126,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 ```json
 {
   "error": true,
-  "message": "CPF não encontrado"
+  "message": "CPF not found",
+  "description": "Could not find any student by given CPF. Make sure you are following the pattern: xxx.xxx.xxx-xx"
 }
 ```
 
@@ -222,7 +223,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 ```json
 {
   "error": true,
-  "message": "ID não encontrado"
+  "message": "ID not found",
+  "description": "Could not find any student by given ID."
 }
 ```
 
@@ -314,6 +316,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "applications": [
         {
           "id": 123456,
+          "type": "exam",
           "exam": {
             "id":456,
             "course_skus": [
@@ -333,8 +336,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
             "times": "18:30",
             "status": "active"
           },
-          "result": "approved",
-          "type": "exam"
+          "result": "approved"
         }
       ]
     }
@@ -378,6 +380,7 @@ Admissões são retornadas em lote de 10, ordenadas pela última atualização r
 | [address_information] postal_code | string | código postal onde aluno reside |
 | application | array | lista de objetos de inscrições de exame (pode estar vazio) |
 | [application] id | number | id da inscrição para exame |
+| [application] type | string | tipo de exame vestibular (exam ou enem) |
 | [application] student | object | objeto com os dados do aluno referente a essa matrícula |
 | exam | object | objeto com informações do exame referente a essa matrícula |
 | [exam] id | number | id do exame vestibular |
@@ -393,7 +396,6 @@ Admissões são retornadas em lote de 10, ordenadas pela última atualização r
 | [exam] times | string | hora da realização do exame vestibular |
 | [exam] status | string | status do exame vestibular |
 | [application] result | string | resultado do exame vestibular |
-| [application] type | string | tipo de exame vestibular (exam ou enem) |
 | next_page | string | código para pegar os próximos passos |
 | previous_page | string | código para pegar os passos anteriores |
 
@@ -458,6 +460,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
   "applications": [
     {
       "id": 123456,
+      "type": "exam",
       "exam": {
         "id":456,
         "course_skus": [
@@ -477,8 +480,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
         "times": "18:30",
         "status": "active"
       },
-      "result": "approved",
-      "type": "exam"
+      "result": "approved"
     }
   ]
 }
@@ -489,7 +491,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 ```json
 {
   "error": true,
-  "message": "ID não encontrado"
+  "message": "ID not found",
+  "description": "Could not find any admission by given ID."
 }
 ```
 
@@ -524,6 +527,7 @@ Retorna uma admissão específica da faculdade.
 | [address_information] postal_code | string | código postal onde aluno reside |
 | application | array | lista de objetos de inscrição para exame (pode estar vazio) |
 | [application] id | number | id da inscrição para exame |
+| [application] type | string | tipo de exame vestibular (exam ou enem) |
 | [application] student | object | objeto com os dados do aluno referente a essa matrícula |
 | exam | object | objeto com informações do exame referente a essa matrícula |
 | [exam] id | number | id do exame vestibular |
@@ -539,7 +543,6 @@ Retorna uma admissão específica da faculdade.
 | [exam] times | string | hora da realização do exame vestibular |
 | [exam] status | string | status do exame vestibular |
 | [application] result | string | resultado do exame vestibular |
-| [application] type | string | tipo de exame vestibular (exam ou enem) |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -603,6 +606,7 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
   "applications": [
     {
       "id": 123456,
+      "type": "exam",
       "exam": {
         "id":456,
         "course_skus": [
@@ -622,8 +626,7 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
         "times": "18:30",
         "status": "active"
       },
-      "result": "approved",
-      "type": "exam"
+      "result": "approved"
     }
   ]
 }
@@ -634,7 +637,8 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
 ```json
 {
   "error": true,
-  "message": "Situação fornecida não é válida"
+  "message": "Invalid parameters",
+  "description": "Unknown status. Please check the API manual at http://docs.queroalunos.com/"
 }
 ```
 
@@ -643,7 +647,8 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
 ```json
 {
   "error": true,
-  "message": "ID não encontrado"
+  "message": "ID not found",
+  "description": "Could not find any admission by given ID."
 }
 ```
 
@@ -692,6 +697,7 @@ Realiza atualização de um processo de admissão específico de um aluno. Para 
 | [address_information] postal_code | string | código postal onde aluno reside |
 | application | array | lista de objetos de inscrição para exame (pode estar vazio) |
 | [application] id | number | id da inscrição para exame |
+| [application] type | string | tipo de exame vestibular (exam ou enem) |
 | [application] student | object | objeto com os dados do aluno referente a essa matrícula |
 | exam | object | objeto com informações do exame referente a essa matrícula |
 | [exam] id | number | id do exame vestibular |
@@ -707,7 +713,6 @@ Realiza atualização de um processo de admissão específico de um aluno. Para 
 | [exam] times | string | hora da realização do exame vestibular |
 | [exam] status | string | status do exame vestibular |
 | [application] result | string | resultado do exame vestibular |
-| [application] type | string | tipo de exame vestibular (exam ou enem) |
 
 ### Significado dos valores em status
 | Nome | Descrição |
