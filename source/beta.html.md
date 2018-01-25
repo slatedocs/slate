@@ -76,6 +76,127 @@ Status Code: 200 OK
 
 Em caso de token válido mas sem permissão de acesso ao recurso específico
 
+# Paginação
+
+> Exemplo de requisição
+
+```bash
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/admissions
+```
+
+> Exemplo de retorno
+
+```json
+{
+  "has_more": false,
+  "items": [
+    {
+      "id": 12345,
+      "course_sku": "ADM-MANHA-SP",
+      "status": "pending_docs",
+      "student": {
+        "id": 394932,
+        "name": "José da Silva",
+        "cpf": "111.222.333-44",
+        "birth_date": "1991-01-01",
+        "emails": [
+          "teste@exemplo.com"
+        ],
+        "phones": [
+          "(11) 98888-7777"
+        ],
+        "address_information": {
+          "address": "Rua Sandra",
+          "number": "432S",
+          "neighborhood": "Chácara Dora",
+          "city": "Araçariguama",
+          "state": "SP",
+          "postal_code": "18147-000"
+        }
+      },
+      "applications": [
+        {
+          "id": 123456,
+          "type": "exam",
+          "exam": {
+            "id":456,
+            "course_skus": [
+              "ADM-MANHA-SP",
+              "DIR-MANHA-SP",
+              "ADM-NOITE-RJ"
+            ],
+            "exam_location": {
+              "address": "Rua Márcia",
+              "number": "4231",
+              "neighborhood": "Morro do Barreto",
+              "city": "São Roque",
+              "state": "SP",
+              "postal_code": "19110-000"
+            },
+            "dates": "2016-11-01",
+            "times": "18:30",
+            "status": "active"
+          },
+          "result": "approved"
+        }
+      ]
+    }
+  ]
+}
+```
+
+A API utiliza paginação baseada em cursor atráves dos parâmetros `starting_after` e `ending_before`. Ambos recebem um ID de objeto existente e retorna os objetos em order cronológica reversa.
+O parâmetro `ending_before` retorna objetos listados antes do objeto indicado. Em contrapartida, o parâmetro `starting_after` retorna objetos listados após o objeto indicado.
+O atributo `has_more` da resposta indica se há mais elementos disponíveis depois desse conjunto de objetos. Se for `false`, significa que é o fim da lista e não há mais objetos.
+
+
+### Parâmetros de cursores
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| starting_after | cursor | Cursor para uso em paginação. Retorna objetos listados após o objeto indicado. |
+| ending_before | cursor | Cursor para uso em paginação. Retorna objetos listados antes do objeto indicado. |
+
+### Informações de resultado de dados com paginação
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| has_more | boolean | indica se há mais elementos disponíveis depois desse conjunto de objetos. |
+| items | object array | lista dos objetos com dados retornados pela requisição. |
+| id | number | id da admissão |
+| course_sku | string | código do curso referente a essa matrícula |
+| status | string | status da admissão do aluno |
+| [student] id | number | id do aluno |
+| [student] name | string | nome do aluno |
+| [student] cpf | string | cpf do aluno |
+| [student] birth_date | string | data de nascimento do aluno |
+| [student] emails | array de string | lista de emails do aluno |
+| [student] phones | array de string | lista de telefones do aluno |
+| [student] address_information | object | objeto com dados onde aluno reside |
+| [address_information] address | string | endereço onde aluno reside |
+| [address_information] number | string | número onde aluno reside |
+| [address_information] neighborhood | string | bairro onde aluno reside |
+| [address_information] city | string | cidade onde aluno reside |
+| [address_information] state | string | estado onde aluno reside |
+| [address_information] postal_code | string | código postal onde aluno reside |
+| application | array | lista de objetos de inscrições de exame (pode estar vazio) |
+| [application] id | number | id da inscrição para exame |
+| [application] type | string | tipo de exame vestibular (exam ou enem) |
+| [application] student | object | objeto com os dados do aluno referente a essa matrícula |
+| exam | object | objeto com informações do exame referente a essa matrícula |
+| [exam] id | number | id do exame vestibular |
+| [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
+| [exam] local | object | objeto com dados do local do exame vestibular |
+| [exam_location] address | string | endereço da localização do exame vestibular |
+| [exam_location] number | string | número da localização do exame vestibular |
+| [exam_location] neighborhood | string | bairro da localização do exame vestibular |
+| [exam_location] city | string | cidade da localização do exame vestibular |
+| [exam_location] state | string | estado da localização do exame vestibular |
+| [exam_location] postal_code | string | código postal da localização do exame vestibular |
+| [exam] dates | string | data da realização do exame vestibular |
+| [exam] times | string | hora da realização do exame vestibular |
+| [exam] status | string | status do exame vestibular |
+| [application] result | string | resultado do exame vestibular |
 
 # Informações de alunos
 
@@ -289,6 +410,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 ```json
 {
+  "has_more": false,
   "items": [
     {
       "id": 12345,
@@ -340,28 +462,29 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
           "result": "approved"
         }
       ]
-    }
-  ],
-  "next_page": "12345",
-  "previous_page": null
+    },
+    {...},
+    {...}
+  ]
 }
 ```
 
 Retorna todas as admissões da faculdade.
 
-Admissões são retornadas em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da página anterior.
+Admissões são retornadas em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| `next_page` | Query | valor utilizado para continuar uma paginação anterior |
-| `previous_page` | Query | valor utilizado para retornar na paginação anterior |
+| starting_after | cursor | Cursor para uso em paginação. Retorna objetos listados após o objeto indicado. |
+| ending_before | cursor | Cursor para uso em paginação. Retorna objetos listados antes do objeto indicado. |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
+| has_more | boolean | indica se há mais elementos disponíveis depois desse conjunto de objetos. |
 | items | array | lista de objetos com dados de inscrições de vestibular |
 | id | number | id da admissão |
 | course_sku | string | código do curso referente a essa matrícula |
@@ -397,8 +520,6 @@ Admissões são retornadas em lote de 10, ordenadas pela última atualização r
 | [exam] times | string | hora da realização do exame vestibular |
 | [exam] status | string | status do exame vestibular |
 | [application] result | string | resultado do exame vestibular |
-| next_page | string | código para pegar os próximos passos |
-| previous_page | string | código para pegar os passos anteriores |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -509,7 +630,6 @@ Retorna uma admissão específica da faculdade.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| items | array | lista de objetos com dados de inscrições de vestibular |
 | id | number | id da admissão |
 | course_sku | string | código do curso referente a essa matrícula |
 | status | string | status da admissão do aluno |
@@ -679,7 +799,6 @@ Realiza atualização de um processo de admissão específico de um aluno. Para 
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| items | array | lista de objetos com dados de inscrições de vestibular |
 | id | number | id da admissão |
 | course_sku | string | código do curso referente a essa matrícula |
 | status | string | status da admissão do aluno |
@@ -752,6 +871,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 ```json
 {
+  "has_more": false,
   "items": [
     {
       "id": 123456,
@@ -802,27 +922,26 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       },
       "result": "approved"
     }
-  ],
-  "next_page": "12345",
-  "previous_page": null
+  ]
 }
 ```
 
 Retorna todas as inscrições de exame da faculdade.
 
-Inscrições são retornadas em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da página anterior.
+Inscrições são retornadas em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| `next_page` | Query | valor utilizado para continuar uma paginação anterior |
-| `previous_page` | Query | valor utilizado para retornar na paginação anterior |
+| starting_after | cursor | Cursor para uso em paginação. Retorna objetos listados após o objeto indicado. |
+| ending_before | cursor | Cursor para uso em paginação. Retorna objetos listados antes do objeto indicado. |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
+| has_more | boolean | indica se há mais elementos disponíveis depois desse conjunto de objetos. |
 | items | array| lista de objetos com dados de inscrições de vestibular |
 | id | number | id da inscrição para exame |
 | type | string | tipo de exame vestibular (exam ou enem) |
@@ -858,8 +977,6 @@ Inscrições são retornadas em lote de 10, ordenadas pela última atualização
 | [exam] time | string | hora da realização do exame vestibular |
 | [exam] status | string | status do exame vestibular |
 | result | string | resultado do exame vestibular |
-| next_page | string | código para pegar os próximos passos |
-| previous_page | string | código para pegar os passos anteriores |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -1200,6 +1317,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 ```json
 {
+  "has_more": false,
   "items": [
     {
       "id": 1234,
@@ -1226,27 +1344,27 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "active",
       "kind": "scheduled"
     }
-  ],
-  "next_page": "12345",
-  "previous_page": null
+  ]
 }
 ```
 
 Retorna todos os exames em lote.
 
-Exames em lote são retornados em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da página anterior.
+Exames em lote são retornados em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| `next_page` | Query | valor utilizado para continuar uma paginação anterior |
-| `previous_page` | Query | valor utilizado para retornar na paginação anterior |
+| starting_after | cursor | Cursor para uso em paginação. Retorna objetos listados após o objeto indicado. |
+| ending_before | cursor | Cursor para uso em paginação. Retorna objetos listados antes do objeto indicado. |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
+| has_more | boolean | indica se há mais elementos disponíveis depois desse conjunto de objetos. |
+| items | array| lista de objetos com dados de inscrições de vestibular |
 | id | number | id do lote de exames |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
 | exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
@@ -1260,8 +1378,6 @@ Exames em lote são retornados em lote de 10, ordenadas pela última atualizaç�
 | times | array | lista dos horários de aplicações dos exames |
 | status | string | situação dos exames entre `active` e `inactive` |
 | kind | string | tipo dos exames desse lote |
-| next_page | string | código para pegar os próximos passos |
-| previous_page | string | código para pegar os passos anteriores |
 
 ### Significado dos status
 
@@ -1593,6 +1709,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 ```json
 {
+  "has_more": false,
   "items": [
     {
       "id": 456,
@@ -1614,27 +1731,26 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "time": "18:30",
       "status": "active"
     }
-  ],
-  "next_page": "12345",
-  "previous_page": null
-  }
+  ]
+}
 ```
 
 Retorna todos os exames (ativos e suspensos).
 
-Exames são retornados em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da página anterior.
+Exames são retornados em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| `next_page` | Query | valor utilizado para continuar uma paginação anterior |
-| `previous_page` | Query | valor utilizado para retornar na paginação anterior |
+| starting_after | cursor | Cursor para uso em paginação. Retorna objetos listados após o objeto indicado. |
+| ending_before | cursor | Cursor para uso em paginação. Retorna objetos listados antes do objeto indicado. |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
+| has_more | boolean | indica se há mais elementos disponíveis depois desse conjunto de objetos. |
 | items | array | lista de objetos dos exames |
 | id | number | id do exame vestibular |
 | exam_group_id | number | id referente ao grupo de exame pertencente |
@@ -1649,8 +1765,6 @@ Exames são retornados em lote de 10, ordenadas pela última atualização reali
 | date | string | data do exame vestibular |
 | time | string | horário do exame vestibular |
 | status | string | situação do exame entre `active` e `inactive` |
-| next_page | string | código para pegar os próximos passos |
-| previous_page | string | código para pegar os passos anteriores |
 
 ## Informações de um único exame
 
@@ -1933,6 +2047,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 ```json
 {
+  "has_more": false,
   "items": [
     {
       "id": 789,
@@ -1950,27 +2065,27 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       },
       "status": "active"
     }
-  ],
-  "next_page": "12345",
-  "previous_page": null
-  }
+  ]
+}
 ```
 
 Retorna todos os exames de enem.
 
-Exames de ENEM são retornados em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da pagina anterior.
+Exames de ENEM são retornados em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| `next_page` | Query | valor utilizado para continuar uma paginação anterior |
-| `previous_page` | Query | valor utilizado para retornar na paginação anterior |
+| starting_after | cursor | Cursor para uso em paginação. Retorna objetos listados após o objeto indicado. |
+| ending_before | cursor | Cursor para uso em paginação. Retorna objetos listados antes do objeto indicado. |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
+| has_more | boolean | indica se há mais elementos disponíveis depois desse conjunto de objetos. |
+| items | array| lista de objetos com dados de inscrições de vestibular |
 | id | number | id do exame de enem |
 | course_skus | array | cursos que usam como entrada esse exame de enem |
 | minimum_grades | object | objeto com informações de nota mínima exigida pela faculdade |
@@ -1980,8 +2095,6 @@ Exames de ENEM são retornados em lote de 10, ordenadas pela última atualizaç�
 | [minimum_grades] linguagens | float | nota mínima de linguagens exigida pela faculdade |
 | [minimum_grades] matematica | float | nota mínima de matemática exigida pela faculdade |
 | status | string | situação do exame de enem entre `active` e `inactive` |
-| next_page | string | código para pegar os próximos passos |
-| previous_page | string | código para pegar os passos anteriores |
 
 ## Informações de um único exame de Enem
 
