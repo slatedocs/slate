@@ -126,7 +126,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 ```json
 {
   "error": true,
-  "message": "CPF não encontrado"
+  "message": "CPF not found",
+  "description": "Could not find any student by given CPF. Make sure you are following the pattern: xxx.xxx.xxx-xx"
 }
 ```
 
@@ -222,7 +223,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 ```json
 {
   "error": true,
-  "message": "ID não encontrado"
+  "message": "ID not found",
+  "description": "Could not find any student by given ID."
 }
 ```
 
@@ -315,6 +317,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "applications": [
         {
           "id": 123456,
+          "type": "exam",
           "exam": {
             "id":456,
             "course_skus": [
@@ -334,8 +337,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
             "times": "18:30",
             "status": "active"
           },
-          "result": "approved",
-          "type": "exam"
+          "result": "approved"
         }
       ]
     }
@@ -379,6 +381,7 @@ Admissões são retornadas em lote de 10, ordenadas pela última atualização r
 | [address_information] postal_code | string | código postal onde aluno reside |
 | application | array | lista de objetos de inscrições de exame (pode estar vazio) |
 | [application] id | number | id da inscrição para exame |
+| [application] type | string | tipo de exame vestibular (exam ou enem) |
 | [application] student | object | objeto com os dados do aluno referente a essa matrícula |
 | exam | object | objeto com informações do exame referente a essa matrícula |
 | [exam] id | number | id do exame vestibular |
@@ -394,7 +397,6 @@ Admissões são retornadas em lote de 10, ordenadas pela última atualização r
 | [exam] times | string | hora da realização do exame vestibular |
 | [exam] status | string | status do exame vestibular |
 | [application] result | string | resultado do exame vestibular |
-| [application] type | string | tipo de exame vestibular (exam ou enem) |
 | next_page | string | código para pegar os próximos passos |
 | previous_page | string | código para pegar os passos anteriores |
 
@@ -459,6 +461,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
   "applications": [
     {
       "id": 123456,
+      "type": "exam",
       "exam": {
         "id":456,
         "course_skus": [
@@ -478,8 +481,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
         "times": "18:30",
         "status": "active"
       },
-      "result": "approved",
-      "type": "exam"
+      "result": "approved"
     }
   ]
 }
@@ -490,7 +492,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 ```json
 {
   "error": true,
-  "message": "ID não encontrado"
+  "message": "ID not found",
+  "description": "Could not find any admission by given ID."
 }
 ```
 
@@ -525,6 +528,7 @@ Retorna uma admissão específica da faculdade.
 | [address_information] postal_code | string | código postal onde aluno reside |
 | application | array | lista de objetos de inscrição para exame (pode estar vazio) |
 | [application] id | number | id da inscrição para exame |
+| [application] type | string | tipo de exame vestibular (exam ou enem) |
 | [application] student | object | objeto com os dados do aluno referente a essa matrícula |
 | exam | object | objeto com informações do exame referente a essa matrícula |
 | [exam] id | number | id do exame vestibular |
@@ -540,7 +544,6 @@ Retorna uma admissão específica da faculdade.
 | [exam] times | string | hora da realização do exame vestibular |
 | [exam] status | string | status do exame vestibular |
 | [application] result | string | resultado do exame vestibular |
-| [application] type | string | tipo de exame vestibular (exam ou enem) |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -604,6 +607,7 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
   "applications": [
     {
       "id": 123456,
+      "type": "exam",
       "exam": {
         "id":456,
         "course_skus": [
@@ -623,8 +627,7 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
         "times": "18:30",
         "status": "active"
       },
-      "result": "approved",
-      "type": "exam"
+      "result": "approved"
     }
   ]
 }
@@ -635,7 +638,8 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
 ```json
 {
   "error": true,
-  "message": "Situação fornecida não é válida"
+  "message": "Invalid parameters",
+  "description": "Unknown status. Please check the API manual at http://docs.queroalunos.com/#atualizar-processo-de-admissao"
 }
 ```
 
@@ -644,7 +648,8 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
 ```json
 {
   "error": true,
-  "message": "ID não encontrado"
+  "message": "ID not found",
+  "description": "Could not find any admission by given ID."
 }
 ```
 
@@ -693,6 +698,7 @@ Realiza atualização de um processo de admissão específico de um aluno. Para 
 | [address_information] postal_code | string | código postal onde aluno reside |
 | application | array | lista de objetos de inscrição para exame (pode estar vazio) |
 | [application] id | number | id da inscrição para exame |
+| [application] type | string | tipo de exame vestibular (exam ou enem) |
 | [application] student | object | objeto com os dados do aluno referente a essa matrícula |
 | exam | object | objeto com informações do exame referente a essa matrícula |
 | [exam] id | number | id do exame vestibular |
@@ -708,7 +714,6 @@ Realiza atualização de um processo de admissão específico de um aluno. Para 
 | [exam] times | string | hora da realização do exame vestibular |
 | [exam] status | string | status do exame vestibular |
 | [application] result | string | resultado do exame vestibular |
-| [application] type | string | tipo de exame vestibular (exam ou enem) |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -733,7 +738,7 @@ Realiza atualização de um processo de admissão específico de um aluno. Para 
 | failed | Reprovado no exame vestibular |
 | approved | Aprovado no exame vestibular |
 
-# Informações de inscrição de exame
+# Informações de inscrição para exame
 
 ## Listar todas as inscrições de exame
 
@@ -750,6 +755,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
   "items": [
     {
       "id": 123456,
+      "type": "exam",
       "admission": {
         "id": 12345,
         "course_sku": "ADM-MANHA-SP",
@@ -794,8 +800,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
         "times": "18:30",
         "status": "active"
       },
-      "result": "approved",
-      "type": "exam"
+      "result": "approved"
     }
   ],
   "next_page": "12345",
@@ -820,6 +825,7 @@ Inscrições são retornadas em lote de 10, ordenadas pela última atualização
 | ---- | ---- | --------- |
 | items | array| lista de objetos com dados de inscrições de vestibular |
 | id | number | id da inscrição para exame |
+| type | string | tipo de exame vestibular (exam ou enem) |
 | admission | object | objeto com dados do processo de admissão do aluno |
 | [admission] id | number | id do processo de admissão |
 | [admission] course_sku | string | código do curso referente a essa matrícula |
@@ -852,7 +858,6 @@ Inscrições são retornadas em lote de 10, ordenadas pela última atualização
 | [exam] time | string | hora da realização do exame vestibular |
 | [exam] status | string | status do exame vestibular |
 | result | string | resultado do exame vestibular |
-| type | string | tipo de exame vestibular (exam ou enem) |
 | next_page | string | código para pegar os próximos passos |
 | previous_page | string | código para pegar os passos anteriores |
 
@@ -879,7 +884,7 @@ Inscrições são retornadas em lote de 10, ordenadas pela última atualização
 | failed | Reprovado no exame vestibular |
 | approved | Aprovado no exame vestibular |
 
-## Dados de uma única inscrição de exame
+## Dados de uma única inscrição para exame
 
 > Requisição
 
@@ -892,6 +897,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 ```json
 {
   "id": 123456,
+  "type": "exam",
   "admission": {
     "id": 12345,
     "course_sku": "ADM-MANHA-SP",
@@ -936,17 +942,17 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
     "time": "18:30",
     "status": "active"
   },
-  "result": "approved",
-  "type": "exam"
+  "result": "approved"
 }
 ```
 
-> Resposta quando não encontra nenhum aluno
+> Resposta quando não encontra nenhuma inscrição para exame
 
 ```json
 {
   "error": true,
-  "message": "ID não encontrado"
+  "message": "ID not found",
+  "description": "Could not find any application by given ID."
 }
 ```
 
@@ -963,6 +969,7 @@ Retorna uma inscrição específica na inscrição do exame da faculdade.
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
 | id | number | id da inscrição para exame |
+| type | string | tipo de exame vestibular (exam ou enem) |
 | admission | object | objeto com dados do processo de admissão do aluno |
 | [admission] id | number | id do processo de admissão |
 | [admission] course_sku | string | código do curso referente a essa matrícula |
@@ -995,7 +1002,6 @@ Retorna uma inscrição específica na inscrição do exame da faculdade.
 | [exam] time | string | hora da realização do exame vestibular |
 | [exam] status | string | status do exame vestibular |
 | result | string | resultado do exame vestibular |
-| type | string | tipo de exame vestibular (exam ou enem) |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -1034,6 +1040,7 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
 ```json
 {
   "id": 123456,
+  "type": "exam",
   "admission": {
     "id": 12345,
     "course_sku": "ADM-MANHA-SP",
@@ -1078,8 +1085,7 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
     "time": "18:30",
     "status": "active"
   },
-  "result": "approved",
-  "type": "exam"
+  "result": "approved"
 }
 ```
 
@@ -1088,20 +1094,22 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
 ```json
 {
   "error": true,
-  "message": "Situação fornecida não é válida"
+  "message": "Invalid parameters",
+  "description": "Unknown result. Please check the API manual at http://docs.queroalunos.com/#atualizar-inscricao-para-exame"
 }
 ```
 
-> Retorno quando não encontra o vestibular
+> Retorno quando não encontra a inscrição para exame
 
 ```json
 {
   "error": true,
-  "message": "ID não encontrado"
+  "message": "ID not found",
+  "description": "Could not find any application by given ID."
 }
 ```
 
-Atualiza a situação de agendamento ou resultado de uma inscrição de exame.
+Atualiza a situação de agendamento ou resultado de uma inscrição para exame.
 
 ### Parâmetros
 
@@ -1121,6 +1129,7 @@ Atualiza a situação de agendamento ou resultado de uma inscrição de exame.
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
 | id | number | id da inscrição para exame |
+| type | string | tipo de exame vestibular (exam ou enem) |
 | admission | object | objeto com dados do processo de admissão do aluno |
 | [admission] id | number | id do processo de admissão |
 | [admission] course_sku | string | código do curso referente a essa matrícula |
@@ -1153,7 +1162,6 @@ Atualiza a situação de agendamento ou resultado de uma inscrição de exame.
 | [exam] time | string | hora da realização do exame vestibular |
 | [exam] status | string | status do exame vestibular |
 | result | string | resultado do exame vestibular |
-| type | string | tipo de exame vestibular (exam ou enem) |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -1305,7 +1313,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 ```json
 {
   "error": true,
-  "message": "ID não encontrado"
+  "message": "ID not found",
+  "description": "Could not find any exam group by given ID."
 }
 ```
 Retorna um lote de exames específico.
@@ -1384,7 +1393,8 @@ curl -X POST --header "Authorization: Token ########" --header "Content-Type: ap
 ```json
 {
   "error": true,
-  "message": "Situação fornecida não é válida"
+  "message": "Invalid parameters",
+  "description": "Could not validate json file. Make sure you are following the keys and values as described by the API manual on the link http://docs.queroalunos.com/#criacao-de-exames-em-lote"
 }
 ```
 
@@ -1513,7 +1523,8 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
 ```json
 {
   "error": true,
-  "message": "Situação fornecida não é válida"
+  "message": "Invalid parameters",
+  "description": "Unknown status. Please check the API manual at http://docs.queroalunos.com/#suspender-ou-ativar-lote-de-exames"
 }
 ```
 
@@ -1522,7 +1533,8 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
 ```json
 {
   "error": true,
-  "message": "ID não encontrado"
+  "message": "ID not found",
+  "description": "Could not find any exam group by given ID."
 }
 ```
 
@@ -1678,7 +1690,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 ```json
 {
   "error": true,
-  "message": "ID não encontrado"
+  "message": "ID not found",
+  "description": "Could not find any exam by given ID."
 }
 ```
 
@@ -1744,7 +1757,8 @@ curl -X POST --header "Authorization: Token ########" --header "Content-Type: ap
 ```json
 {
   "error": true,
-  "message": "Situação fornecida não é válida"
+  "message": "Invalid parameters",
+  "description": "Could not validate json file. Make sure you are following the keys and values as described by the API manual on the link http://docs.queroalunos.com/#criacao-de-exame"
 }
 ```
 
@@ -1851,12 +1865,23 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
 }
 ```
 
+> Retorno quando parâmetros estão incorretos
+
+```json
+{
+  "error": true,
+  "message": "Invalid parameters",
+  "description": "Unknown status. Please check the API manual at http://docs.queroalunos.com/#suspender-ou-ativar-um-exame"
+}
+```
+
 > Resposta quando não encontra nenhum exame
 
 ```json
 {
   "error": true,
-  "message": "ID não encontrado"
+  "message": "ID not found",
+  "description": "Could not find any exam by given ID."
 }
 ```
 
@@ -1992,7 +2017,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 ```json
 {
   "error": true,
-  "message": "ID não encontrado"
+  "message": "ID not found",
+  "description": "Could not find any enem exam by given ID."
 }
 ```
 
@@ -2027,7 +2053,7 @@ curl -X POST --header "Authorization: Token ########" --header "Content-Type: ap
   --file "data.json"
 ```
 
-> data.json
+> estrutura de data.json
 
 ```json
 {
@@ -2047,12 +2073,13 @@ curl -X POST --header "Authorization: Token ########" --header "Content-Type: ap
 }
 ```
 
-> Resposta quando não encontra nenhum exame
+> Retorno quando parâmetros estão incorretos
 
 ```json
 {
   "error": true,
-  "message": "Situação fornecida não é válida."
+  "message": "Invalid parameters",
+  "description": "Could not validate json file. Make sure you are following the keys and values as described by the API manual on the link http://docs.queroalunos.com/#criacao-de-exame-de-enem"
 }
 ```
 
@@ -2147,7 +2174,8 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
 ```json
 {
   "error": true,
-  "message": "Situação fornecida não é válida"
+  "message": "Invalid parameters",
+  "description": "Unknown status. Please check the API manual at http://docs.queroalunos.com/#suspender-um-exame-de-enem-inteiro"
 }
 ```
 
@@ -2156,7 +2184,8 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
 ```json
 {
   "error": true,
-  "message": "ID não encontrado"
+  "message": "ID not found",
+  "description": "Could not find any enem exam by given ID."
 }
 ```
 
@@ -2192,7 +2221,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
   --file "data.json"
 ```
 
-> data.json
+> estrutura de data.json
 
 ```json
 {
@@ -2208,7 +2237,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 ```json
 {
   "error": true,
-  "message": "Situação fornecida não é válida"
+  "message": "Invalid parameters",
+  "description": "Could not validate json file. Make sure you are following the keys and values as described by the API manual on the link http://docs.queroalunos.com/#suspender-um-exame-de-enem-parcialmente"
 }
 ```
 
@@ -2318,7 +2348,7 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
 | initiated | Inscrição para exame Pendente |
 | pending_docs | Documentação Pendente |
 
-## Nova "inscrição de exame" (Vestibular)
+## Nova "inscrição para exame" (Vestibular)
 
 ```json
 {
@@ -2328,6 +2358,7 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
   "data": {
     "application": {
       "id": 123456,
+      "type": "exam",
       "admission": {
         "id": 12345,
         "course_sku": "ADM-MANHA-SP",
@@ -2373,8 +2404,7 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
         "time": "18:30",
         "status": "active"
       },
-      "result": null,
-      "type": "exam"
+      "result": null
     }
   }
 }
@@ -2392,6 +2422,7 @@ Esta notificação informando uma nova inscrição para exame via vestibular.
 | data | object | objeto com informações de acordo com o tipo de evento |
 | application | object | objeto com informações do vestibular |
 | [application] id | number | id da inscrição para exame |
+| [application] type | string | tipo de exame vestibular (_neste evento o valor sempre será `exam`_) |
 | [application] admission | object | objeto com dados do processo de admissão do aluno |
 | [admission] id | number | id do processo de admissão |
 | [admission] course_sku | string | código do curso referente a essa matrícula |
@@ -2425,9 +2456,8 @@ Esta notificação informando uma nova inscrição para exame via vestibular.
 | [exam] time | string | hora da realização do exame vestibular |
 | [exam] status | string | status do exame vestibular |
 | [application] result | string | resultado do exame vestibular (_neste evento o valor sempre será `null`_) |
-| [application] type | string | tipo de exame vestibular (_neste evento o valor sempre será `exam`_) |
 
-## Nova "inscrição de exame" (ENEM)
+## Nova "inscrição para exame" (ENEM)
 
 ```json
 {
@@ -2437,6 +2467,7 @@ Esta notificação informando uma nova inscrição para exame via vestibular.
   "data": {
     "application": {
       "id": 123456,
+      "type": "enem",
       "admission": {
         "id": 12345,
         "course_sku": "ADM-MANHA-SP",
@@ -2488,8 +2519,7 @@ Esta notificação informando uma nova inscrição para exame via vestibular.
         },
         "status": "active"
       },
-      "result": "pre-registered",
-      "type": "exam_enem"
+      "result": "pre-registered"
     }
   }
 }
@@ -2507,6 +2537,7 @@ Esta notificação informa uma nova inscrição para exame via ENEM.
 | data | object | objeto com informações de acordo com o tipo de evento |
 | application | object | objeto com informações do vestibular |
 | [application] id | number | id da inscrição para exame |
+| [application] type | string | tipo de exame vestibular (_neste evento o valor sempre será `enem`_) |
 | [application] admission | object | objeto com dados do processo de admissão do aluno |
 | [admission] id | number | id do processo de admissão |
 | [admission] course_sku | string | código do curso referente a essa matrícula |
@@ -2544,7 +2575,6 @@ Esta notificação informa uma nova inscrição para exame via ENEM.
 | [minimum_grades] matematica | float | nota mínima de matemática exigida pela faculdade |
 | [exam] status | string | status do exame vestibular |
 | [application] result | string | resultado do exame vestibular (_neste evento o valor sempre será `null`_) |
-| [application] type | string | tipo de exame vestibular (_neste evento o valor sempre será `enem`_) |
 
 ## Listagem de notificações
 
