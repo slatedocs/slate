@@ -1,4 +1,5 @@
-# Registering a Patient
+# Registration
+## Registering a Patient
 
 ```shell
 curl -X POST {server_url}/api/v1/patients

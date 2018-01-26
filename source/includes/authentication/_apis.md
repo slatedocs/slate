@@ -39,7 +39,7 @@ To obtain an API JWT Token
 
 `POST {server_url}/auth/auth_token`
 
-### Header Parameterr
+### Header Parameter
 
 Parameter | Default
 --------- | -------
