@@ -1,25 +1,27 @@
 ## Searching for Providers
 
 ```shell
-curl -X POST {server_url}/api/v1/patients/{patient_id}/providers/search
--H "Content-type: application/json"
--H "Authorization: Bearer 34a2sample-user-token"
--d '{ "search": {
-         "state_abbrev": "FL",
-       }
-    }'
+curl -X POST {server_url}/api/v2/patients/{patient_id}/providers/search
+  -H "Content-type: application/json"
+  -H "Authorization: Bearer 34a2sample-user-token"
+  -H "Accept: application/json"
+  -d '{ "search": {
+           "state_abbrev": "FL",
+         }
+      }'
 ```
 
 ```ruby
 RestClient::Request.new(
   method: :post,
-  url: "#{server_url}/api/v1/patients/#{patient_id}/providers/search",
+  url: "#{server_url}/api/v2/patients/#{patient_id}/providers/search",
   headers: {
     "Content-type" => "application/json",
     "Authorization" => "Bearer 34a2sample-user-token"
+    "Accept" => "application/json"
   },
   payload: {
-    search_params: {state_abbrev: "FL"}
+    search: {state_abbrev: "FL"}
   }
 ).execute
 ```
@@ -36,9 +38,7 @@ RestClient::Request.new(
       "photo_url": null,
       "specialty": "General Practice",
       "group_name": null,
-      "is_mental_health_provider": false,
       "is_visit_now_available": false,
-      "patient_can_request_appointment": true,
       "status": "Available",
       "next_appt_available_date": "2017-11-09T13:45:00-05:00",
       "availability_type": null
@@ -50,9 +50,7 @@ RestClient::Request.new(
       "photo_url": null,
       "specialty": "General Practice",
       "group_name": null,
-      "is_mental_health_provider": false,
       "is_visit_now_available": false,
-      "patient_can_request_appointment": true,
       "status": "Available",
       "next_appt_available_date": "2017-11-09T13:45:00-05:00",
       "availability_type": null
@@ -64,15 +62,12 @@ RestClient::Request.new(
       "photo_url": null,
       "specialty": "General Practice",
       "group_name": null,
-      "is_mental_health_provider": false,
       "is_visit_now_available": false,
-      "patient_can_request_appointment": true,
       "status": "Available",
       "next_appt_available_date": "2017-11-09T13:45:00-05:00",
       "availability_type": null
     }
   ],
-  "video_waiting_room_open": true,
   "refine_search_options": {
     "default_provider_types": [
       {
@@ -105,7 +100,7 @@ RestClient::Request.new(
 
 ```
 
-The first step in scheduling a visit is searching for available providers for a patient.
+For medical appointments, you can schedule a visit with an available provider or see the first available doctor.  To view a paginated list of available providers for a patient, make a request to:
 
 This request must include a valid User JWT token, please see our [documentation](#user-tokens)
 
@@ -115,25 +110,31 @@ This request must include a valid User JWT token, please see our [documentation]
 
 ### Header Parameter
 
-Parameter     | Default          | Description
----------     | -------          | -------
-Content-type  | application/json | Expected content type, currently only JSON is supported
-Authorization | Bearer {TOKEN}   | Auth Token, should be the string "Bearer {TOKEN}" where {Token} is the token received from the patient auth endpoint
+Parameter     | Default
+---------     | -------
+Content-type  | application/json
+Accept        | application/json
+Authorization | Bearer {jwttoken}
 
 ### URL Parameter
+
 Attribute | Required | Description
 --------- | ------- | -----------
-patient_id | true| MDLIVE ID for patient
+patient_id | true   | MDLIVE ID for patient
+per        | false  | # of providers per page
+page       | false  | Page #
 
-### Request Body
+<aside class="notice">
+  When the <code>page</code> and <code>per</code> parameters are not specified, the api defaults to the first 20 results.
+</aside>
 
-Attribute     | Required  | Description
----------     | --------  | -----------
-search_params | true      | Hash with specific search filters
-↳&nbsp;state_abbrev   | true      | 2 Letter state abbreviated, from the states list
-↳&nbsp;availability_type| false   | Can be either 'phone' or 'video', use to specify the preferred type of appointment for the patient
-↳&nbsp;gender         | false     | Preferred Provider gender (Male or Female string)
-↳&nbsp;provider_type  | false     | Provider Type ID, from the provider types list (or the endpoint response)
-↳&nbsp;specific_date  | false     | Date in YYYY-mm-dd format
-↳&nbsp;speciality_id  | false     | Provider Specialty for filtering, obtained from this endpoint response
+### Request Body Parameters
 
+Attribute                | Type             | Required  | Description
+-------------------------| -----------------| --------  | -----------
+search_params            | object           | true      | Object with specific search filters
+↳&nbsp; state_abbrev     | string           | true      | 2 Letter state abbreviated, from the states list
+↳&nbsp; availability_type| array of strings | false     | Can be either `['phone']`, `['video']`, or `['phone', 'video']`. Use to specify the preferred type of appointment for the patient
+↳&nbsp; gender           | string           | false     | Preferred provider gender (`Male` or `Female`)
+↳&nbsp; provider_type_id | integer          | false     | Provider Type ID, from the provider types list (or the endpoint response)
+↳&nbsp; specific_date    | string           | false     | Date in YYYY-mm-dd format
