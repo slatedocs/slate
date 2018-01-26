@@ -78,6 +78,8 @@ Em caso de token válido mas sem permissão de acesso ao recurso específico
 
 # Paginação
 
+## Exemplo de paginação
+
 > Exemplo de requisição
 
 ```bash
@@ -88,115 +90,157 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 ```json
 {
-  "has_more": false,
+  "has_more": true,
   "items": [
     {
       "id": 12345,
       "course_sku": "ADM-MANHA-SP",
       "status": "pending_docs",
-      "student": {
-        "id": 394932,
-        "name": "José da Silva",
-        "cpf": "111.222.333-44",
-        "birth_date": "1991-01-01",
-        "emails": [
-          "teste@exemplo.com"
-        ],
-        "phones": [
-          "(11) 98888-7777"
-        ],
-        "address_information": {
-          "address": "Rua Sandra",
-          "number": "432S",
-          "neighborhood": "Chácara Dora",
-          "city": "Araçariguama",
-          "state": "SP",
-          "postal_code": "18147-000"
-        }
-      },
-      "applications": [
-        {
-          "id": 123456,
-          "type": "exam",
-          "exam": {
-            "id":456,
-            "course_skus": [
-              "ADM-MANHA-SP",
-              "DIR-MANHA-SP",
-              "ADM-NOITE-RJ"
-            ],
-            "exam_location": {
-              "address": "Rua Márcia",
-              "number": "4231",
-              "neighborhood": "Morro do Barreto",
-              "city": "São Roque",
-              "state": "SP",
-              "postal_code": "19110-000"
-            },
-            "dates": "2016-11-01",
-            "times": "18:30",
-            "status": "active"
-          },
-          "result": "approved"
-        }
-      ]
+      "student": {...},
+      "applications": [ {...} ]
+    },
+    ...,
+    {
+      "id": 12369,
+      "course_sku": "ADM-NOITE-RJ",
+      "status": "pre_registered",
+      "student": {...},
+      "applications": [ {...} ]
     }
   ]
 }
 ```
 
-A API utiliza paginação baseada em cursor atráves dos parâmetros `starting_after` e `ending_before`. Ambos recebem um ID de objeto existente e retorna os objetos em order cronológica reversa.
-O parâmetro `ending_before` retorna objetos listados antes do objeto indicado. Em contrapartida, o parâmetro `starting_after` retorna objetos listados após o objeto indicado.
-O atributo `has_more` da resposta indica se há mais elementos disponíveis depois desse conjunto de objetos. Se for `false`, significa que é o fim da lista e não há mais objetos.
-
+A API utiliza paginação baseada em cursor atráves dos parâmetros `starting_after` e `ending_before`. Ambos recebem um ID de um dado existente e retorna elementos em order cronológica reversa.
+O parâmetro `ending_before` retorna elementos listados antes do dado que o ID foi indicado indicado. Em contrapartida, o parâmetro `starting_after` retorna elementos listados após o dado que o ID foi indicado indicado.
+O atributo `has_more` da resposta indica se há mais dados disponíveis depois desse conjunto de dados. Se for `false`, significa que é o fim da lista e não há mais objetos. Se for `true`, significa que apenas 25 elementos foram resgatados nessa lista e existem mais a serem resgatados.
 
 ### Parâmetros de cursores
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| starting_after | cursor | Cursor para uso em paginação. Retorna objetos listados após o objeto indicado. |
-| ending_before | cursor | Cursor para uso em paginação. Retorna objetos listados antes do objeto indicado. |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após do dado que o ID foi indicado. |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado que o ID foi indicado. |
 
 ### Informações de resultado de dados com paginação
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
 | has_more | boolean | indica se há mais elementos disponíveis depois desse conjunto de objetos. |
-| items | object array | lista dos objetos com dados retornados pela requisição. |
+| items | array | lista dos objetos com dados retornados pela requisição. |
 | id | number | id da admissão |
 | course_sku | string | código do curso referente a essa matrícula |
 | status | string | status da admissão do aluno |
-| [student] id | number | id do aluno |
-| [student] name | string | nome do aluno |
-| [student] cpf | string | cpf do aluno |
-| [student] birth_date | string | data de nascimento do aluno |
-| [student] emails | array de string | lista de emails do aluno |
-| [student] phones | array de string | lista de telefones do aluno |
-| [student] address_information | object | objeto com dados onde aluno reside |
-| [address_information] address | string | endereço onde aluno reside |
-| [address_information] number | string | número onde aluno reside |
-| [address_information] neighborhood | string | bairro onde aluno reside |
-| [address_information] city | string | cidade onde aluno reside |
-| [address_information] state | string | estado onde aluno reside |
-| [address_information] postal_code | string | código postal onde aluno reside |
+| student | object | objeto com informações do estudante referente a admissão |
 | application | array | lista de objetos de inscrições de exame (pode estar vazio) |
-| [application] id | number | id da inscrição para exame |
-| [application] type | string | tipo de exame vestibular (exam ou enem) |
-| [application] student | object | objeto com os dados do aluno referente a essa matrícula |
-| exam | object | objeto com informações do exame referente a essa matrícula |
-| [exam] id | number | id do exame vestibular |
-| [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
-| [exam] local | object | objeto com dados do local do exame vestibular |
-| [exam_location] address | string | endereço da localização do exame vestibular |
-| [exam_location] number | string | número da localização do exame vestibular |
-| [exam_location] neighborhood | string | bairro da localização do exame vestibular |
-| [exam_location] city | string | cidade da localização do exame vestibular |
-| [exam_location] state | string | estado da localização do exame vestibular |
-| [exam_location] postal_code | string | código postal da localização do exame vestibular |
-| [exam] dates | string | data da realização do exame vestibular |
-| [exam] times | string | hora da realização do exame vestibular |
-| [exam] status | string | status do exame vestibular |
-| [application] result | string | resultado do exame vestibular |
+
+## Uso do cursor starting_after
+
+> Exemplo de requisição
+
+```bash
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/admissions?starting_after=12369
+```
+
+> Retorno
+
+```json
+{
+  "has_more": false,
+  "items": [
+    {
+      "id": 12370,
+      "course_sku": "ADM-MANHA-SP",
+      "status": "pending_docs",
+      "student": {...},
+      "applications": [ {...} ]
+    },
+    ...,
+    {
+      "id": 12380,
+      "course_sku": "ADM-NOITE-RJ",
+      "status": "pre_registered",
+      "student": {...},
+      "applications": [ {...} ]
+    }
+  ]
+}
+```
+
+No exemplo acima, vimos que `has_more` retornou `true`, portanto existem mais objetos a serem resgatados após esse bloco de 25 elementos. Para poder consultá-los, na próxima requisição o parâmetro `starting_after` precisa ter o id do último índice do array `items`. A requisição e retorno ao lado são referentes ao exemplo [acima](#exemplo-de-paginacao).
+
+### Parâmetros de cursores
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após do dado que o ID foi indicado. |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado que o ID foi indicado. |
+
+### Informações de resultado de dados com paginação
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| has_more | boolean | indica se há mais elementos disponíveis depois desse conjunto de objetos. |
+| items | array | lista dos objetos com dados retornados pela requisição. |
+| id | number | id da admissão |
+| course_sku | string | código do curso referente a essa matrícula |
+| status | string | status da admissão do aluno |
+| student | object | objeto com informações do estudante referente a admissão |
+| application | array | lista de objetos de inscrições de exame (pode estar vazio) |
+
+## Uso do cursor ending_before
+
+> Exemplo de requisição
+
+```bash
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/admissions?ending_before=12370
+```
+
+> Retorno
+
+```json
+{
+  "has_more": true,
+  "items": [
+    {
+      "id": 12345,
+      "course_sku": "ADM-MANHA-SP",
+      "status": "pending_docs",
+      "student": {...},
+      "applications": [ {...} ]
+    },
+    ...,
+    {
+      "id": 12369,
+      "course_sku": "ADM-NOITE-RJ",
+      "status": "pre_registered",
+      "student": {...},
+      "applications": [ {...} ]
+    }
+  ]
+}
+```
+
+Assim como avançamos um conjunto de dados, é possível facilmente retornar a um conjunto anterior. Para fazer isso, na próxima requisição o parâmetro `ending_before` precisa ter o id do primeiro índice do array `items`. A requisição e retorno ao lado são referentes ao exemplo [acima](#uso-do-cursor-starting_after).
+
+### Parâmetros de cursores
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após do dado que o ID foi indicado. |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado que o ID foi indicado. |
+
+### Informações de resultado de dados com paginação
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| has_more | boolean | indica se há mais elementos disponíveis depois desse conjunto de objetos. |
+| items | array | lista dos objetos com dados retornados pela requisição. |
+| id | number | id da admissão |
+| course_sku | string | código do curso referente a essa matrícula |
+| status | string | status da admissão do aluno |
+| student | object | objeto com informações do estudante referente a admissão |
+| application | array | lista de objetos de inscrições de exame (pode estar vazio) |
 
 # Informações de alunos
 
@@ -468,7 +512,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 Retorna todas as admissões da faculdade.
 
-Admissões são retornadas em lotes de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
+Admissões são retornadas em páginas de 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
 
 ### Parâmetros
 
