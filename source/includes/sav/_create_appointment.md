@@ -159,5 +159,5 @@ appointment| true | parent attribute for the appointment
 ↳&nbsp;agrees_to_privacy_agreement | true | Patient's answer to if they agree to the terms MDLIVE Medical Group's Privacy Policy
 ↳&nbsp;consent_user_initials | true | Initials entered by patient to indicate they have answered the agreement questions
 ↳&nbsp;pcp_questions| false | parent attribute for array of Primary Care Physician questions
-&nbsp;&nbsp;&nbsp;&nbsp;↳&nbsp;question| false | Name for [PCP question](#pcp-questions)
+&nbsp;&nbsp;&nbsp;&nbsp;↳&nbsp;question| false | Name for [PCP question](#primary-care-physician-questions-retrieve-questions)
 &nbsp;&nbsp;&nbsp;&nbsp;↳&nbsp;answer | false | True or False answer to the Primary Care Physician question

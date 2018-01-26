@@ -48,6 +48,8 @@ includes:
   - entities/primary_care_physician/create
   - entities/primary_care_physician/update
   - entities/primary_care_physician/delete
+  - entities/primary_care_physician_questions/get
+  - entities/primary_care_physician_questions/update
   - entities/provider_types
   - entities/states
   - entities/surgeries/create
