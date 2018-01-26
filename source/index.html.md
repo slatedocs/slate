@@ -38,6 +38,10 @@ includes:
   - entities/pharmacies/current_pharmacy
   - entities/pharmacies/update
   - entities/pharmacies/search
+  - entities/primary_care_physician/get
+  - entities/primary_care_physician/create
+  - entities/primary_care_physician/update
+  - entities/primary_care_physician/delete
   - entities/provider_types
   - entities/states
   - entities/surgeries/create
