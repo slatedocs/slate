@@ -111,28 +111,23 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 }
 ```
 
-A API utiliza paginação baseada em cursor atráves dos parâmetros `starting_after` e `ending_before`. Ambos recebem um ID de um dado existente e retorna elementos em order cronológica reversa.
-O parâmetro `ending_before` retorna elementos listados antes do dado que o ID foi indicado indicado. Em contrapartida, o parâmetro `starting_after` retorna elementos listados após o dado que o ID foi indicado indicado.
-O atributo `has_more` da resposta indica se há mais dados disponíveis depois desse conjunto de dados. Se for `false`, significa que é o fim da lista e não há mais objetos. Se for `true`, significa que apenas 25 elementos foram resgatados nessa lista e existem mais a serem resgatados.
+A API utiliza paginação baseada em cursor atráves dos parâmetros `starting_after` e `ending_before`. Ambos recebem um id de um dado existente e retorna um array com até 25 elementos no máximo.
+O parâmetro `ending_before` retorna elementos cujo id é maior que o indicado pelo parâmetro. Em contrapartida, o parâmetro `starting_after` retorna elementos listados após o dado cujo o id foi indicado.
+O atributo `has_more` da resposta indica se há mais dados disponíveis depois dessa página. Se for `false`, significa que é o fim da lista e não há mais dados. Se for `true`, significa há mais dados a serem resgatados. Após uma requisição utilizando o parâmetro `ending_before`, o atributo `has_more` se refere à possibilidade de retornar à página anterior.
 
 ### Parâmetros de cursores
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após do dado que o ID foi indicado. |
-| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado que o ID foi indicado. |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo o ID foi indicado. |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo o ID foi indicado. |
 
 ### Informações de resultado de dados com paginação
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| has_more | boolean | indica se há mais elementos disponíveis depois desse conjunto de objetos. |
+| has_more | boolean | indica se há mais elementos disponíveis antes ou após essa página. |
 | items | array | lista dos objetos com dados retornados pela requisição. |
-| id | number | id da admissão |
-| course_sku | string | código do curso referente a essa matrícula |
-| status | string | status da admissão do aluno |
-| student | object | objeto com informações do estudante referente a admissão |
-| application | array | lista de objetos de inscrições de exame (pode estar vazio) |
 
 ## Uso do cursor starting_after
 
@@ -167,26 +162,21 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 }
 ```
 
-No exemplo acima, vimos que `has_more` retornou `true`, portanto existem mais objetos a serem resgatados após esse bloco de 25 elementos. Para poder consultá-los, na próxima requisição o parâmetro `starting_after` precisa ter o id do último índice do array `items`. A requisição e retorno ao lado são referentes ao exemplo [acima](#exemplo-de-paginacao).
+No exemplo acima, vimos que `has_more` retornou `true`, portanto existem mais dados a serem resgatados após essa página. Para poder consultá-los, na próxima requisição o parâmetro `starting_after` precisa ter o id do último índice do array `items`. A requisição e retorno ao lado são referentes ao exemplo [acima](#exemplo-de-paginacao).
 
 ### Parâmetros de cursores
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após do dado que o ID foi indicado. |
-| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado que o ID foi indicado. |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo o ID foi indicado. |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo o ID foi indicado. |
 
 ### Informações de resultado de dados com paginação
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| has_more | boolean | indica se há mais elementos disponíveis depois desse conjunto de objetos. |
-| items | array | lista dos objetos com dados retornados pela requisição. |
-| id | number | id da admissão |
-| course_sku | string | código do curso referente a essa matrícula |
-| status | string | status da admissão do aluno |
-| student | object | objeto com informações do estudante referente a admissão |
-| application | array | lista de objetos de inscrições de exame (pode estar vazio) |
+| has_more | boolean | indica se há mais elementos disponíveis antes ou após essa página. |
+| items | array | lista dos dados com dados retornados pela requisição. |
 
 ## Uso do cursor ending_before
 
@@ -221,26 +211,21 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 }
 ```
 
-Assim como avançamos um conjunto de dados, é possível facilmente retornar a um conjunto anterior. Para fazer isso, na próxima requisição o parâmetro `ending_before` precisa ter o id do primeiro índice do array `items`. A requisição e retorno ao lado são referentes ao exemplo [acima](#uso-do-cursor-starting_after).
+Assim como avançamos uma página, é possível facilmente retornar a uma página anterior. Para fazer isso, na próxima requisição o parâmetro `ending_before` precisa ter o id do primeiro índice do array `items`. A requisição e retorno ao lado são referentes ao exemplo [acima](#uso-do-cursor-starting_after).
 
 ### Parâmetros de cursores
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após do dado que o ID foi indicado. |
-| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado que o ID foi indicado. |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo o ID foi indicado. |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo o ID foi indicado. |
 
 ### Informações de resultado de dados com paginação
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| has_more | boolean | indica se há mais elementos disponíveis depois desse conjunto de objetos. |
-| items | array | lista dos objetos com dados retornados pela requisição. |
-| id | number | id da admissão |
-| course_sku | string | código do curso referente a essa matrícula |
-| status | string | status da admissão do aluno |
-| student | object | objeto com informações do estudante referente a admissão |
-| application | array | lista de objetos de inscrições de exame (pode estar vazio) |
+| has_more | boolean | indica se há mais elementos disponíveis antes ou após essa página. |
+| items | array | lista dos elementos com dados retornados pela requisição. |
 
 # Informações de alunos
 
@@ -515,21 +500,21 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 Retorna todas as admissões da faculdade.
 
-Admissões são retornadas em páginas de 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
+Admissões são retornadas em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| starting_after | cursor | Cursor para uso em paginação. Retorna objetos listados após o objeto indicado. |
-| ending_before | cursor | Cursor para uso em paginação. Retorna objetos listados antes do objeto indicado. |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo o ID foi indicado. |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo o ID foi indicado. |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| has_more | boolean | indica se há mais elementos disponíveis depois desse conjunto de objetos. |
-| items | array | lista de objetos com dados de inscrições de vestibular |
+| has_more | boolean | indica se há mais elementos disponíveis antes ou após essa página. |
+| items | array | lista de elementos com dados de inscrições de vestibular |
 | id | number | id da admissão |
 | course_sku | string | código do curso referente a essa matrícula |
 | status | string | status da admissão do aluno |
@@ -972,21 +957,21 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 Retorna todas as inscrições de exame da faculdade.
 
-Inscrições são retornadas em páginas de 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
+Inscrições são retornadas em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| starting_after | cursor | Cursor para uso em paginação. Retorna objetos listados após o objeto indicado. |
-| ending_before | cursor | Cursor para uso em paginação. Retorna objetos listados antes do objeto indicado. |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo o ID foi indicado. |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo o ID foi indicado. |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| has_more | boolean | indica se há mais elementos disponíveis depois desse conjunto de objetos. |
-| items | array| lista de objetos com dados de inscrições de vestibular |
+| has_more | boolean | indica se há mais elementos disponíveis antes ou após essa página. |
+| items | array | lista de elementos com dados de inscrições de vestibular |
 | id | number | id da inscrição para exame |
 | type | string | tipo de exame vestibular (exam ou enem) |
 | admission | object | objeto com dados do processo de admissão do aluno |
@@ -1394,24 +1379,24 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 Retorna todos os exames em lote.
 
-Exames em lote são retornados em páginas de 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
+Exames em lote são retornados em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar dados antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| starting_after | cursor | Cursor para uso em paginação. Retorna objetos listados após o objeto indicado. |
-| ending_before | cursor | Cursor para uso em paginação. Retorna objetos listados antes do objeto indicado. |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo o ID foi indicado. |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo o ID foi indicado. |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| has_more | boolean | indica se há mais elementos disponíveis depois desse conjunto de objetos. |
-| items | array| lista de objetos com dados de inscrições de vestibular |
+| has_more | boolean | indica se há mais elementos disponíveis antes ou após essa página. |
+| items | array | lista de elementos com dados de inscrições de vestibular |
 | id | number | id do lote de exames |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
-| exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
+| exam_locations | array | lista dos objetos dos endereços dos exames desse lote |
 | [exam_locations] address | string | endereço onde será feito o exame vestibular |
 | [exam_locations] number | string | número de onde será feito o exame vestibular |
 | [exam_locations] neighborhood | string | bairro onde será feito o exame vestibular |
@@ -1491,7 +1476,7 @@ Retorna um lote de exames específico.
 | ---- | ---- | --------- |
 | id | number | id do lote de exames |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
-| exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
+| exam_locations | array | lista dos objetos dos endereços dos exames desse lote |
 | [exam_locations] address | string | endereço onde será feito o exame vestibular |
 | [exam_locations] number | string | número de onde será feito o exame vestibular |
 | [exam_locations] neighborhood | string | bairro onde será feito o exame vestibular |
@@ -1571,7 +1556,7 @@ Cria um lote de exames.
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
-| exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
+| exam_locations | array | lista dos objetos dos endereços dos exames desse lote |
 | [exam_locations] address | string | endereço onde será feito o exame vestibular |
 | [exam_locations] number | string | número de onde será feito o exame vestibular |
 | [exam_locations] neighborhood | string | bairro onde será feito o exame vestibular |
@@ -1626,7 +1611,7 @@ Cria um lote de exames.
 | ---- | ---- | --------- |
 | id | number | id do lote de exames |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
-| exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
+| exam_locations | array | lista dos objetos dos endereços dos exames desse lote |
 | [exam_locations] address | string | endereço onde será feito o exame vestibular |
 | [exam_locations] number | string | número de onde será feito o exame vestibular |
 | [exam_locations] neighborhood | string | bairro onde será feito o exame vestibular |
@@ -1720,7 +1705,7 @@ Suspende ou ativa um lote de exames.
 | ---- | ---- | --------- |
 | id | number | id do lote de exames |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
-| exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
+| exam_locations | array | lista dos objetos dos endereços dos exames desse lote |
 | [exam_locations] address | string | endereço onde será feito o exame vestibular |
 | [exam_locations] number | string | número de onde será feito o exame vestibular |
 | [exam_locations] neighborhood | string | bairro onde será feito o exame vestibular |
@@ -1781,21 +1766,21 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 Retorna todos os exames (ativos e suspensos).
 
-Exames são retornados em páginas de 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
+Exames são retornados em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar dados antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| starting_after | cursor | Cursor para uso em paginação. Retorna objetos listados após o objeto indicado. |
-| ending_before | cursor | Cursor para uso em paginação. Retorna objetos listados antes do objeto indicado. |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo o ID foi indicado. |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo o ID foi indicado. |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| has_more | boolean | indica se há mais elementos disponíveis depois desse conjunto de objetos. |
-| items | array | lista de objetos dos exames |
+| has_more | boolean | indica se há mais elementos disponíveis antes ou após essa página. |
+| items | array | lista de elementos com dados dos exames |
 | id | number | id do exame vestibular |
 | exam_group_id | number | id referente ao grupo de exame pertencente |
 | course_skus | array | cursos que usam como entrada esse exame vestibular |
@@ -1927,7 +1912,7 @@ Cria um novo exame.
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
-| exam_location | array de objects | lista dos objetos dos endereços dos exames desse lote |
+| exam_location | array | lista dos objetos dos endereços dos exames desse lote |
 | [exam_location] address | string | endereço onde será feito o exame vestibular |
 | [exam_location] number | string | número de onde será feito o exame vestibular |
 | [exam_location] neighborhood | string | bairro onde será feito o exame vestibular |
@@ -1970,7 +1955,7 @@ Cria um novo exame.
 | id | number | id do lote de exames |
 | exam_group_id | number | id referente ao grupo de exame pertencente |
 | course_skus | array | cursos que usam como entrada algum exame desse lote |
-| exam_location | array de objects | lista dos objetos dos endereços dos exames desse lote |
+| exam_location | array | lista dos objetos dos endereços dos exames desse lote |
 | [exam_location] address | string | endereço onde será feito o exame vestibular |
 | [exam_location] number | string | número de onde será feito o exame vestibular |
 | [exam_location] neighborhood | string | bairro onde será feito o exame vestibular |
@@ -2115,21 +2100,21 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 Retorna todos os exames de enem.
 
-Exames de ENEM são retornados em páginas de 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
+Exames de ENEM são retornados em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar dados antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| starting_after | cursor | Cursor para uso em paginação. Retorna objetos listados após o objeto indicado. |
-| ending_before | cursor | Cursor para uso em paginação. Retorna objetos listados antes do objeto indicado. |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo o ID foi indicado. |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo o ID foi indicado. |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| has_more | boolean | indica se há mais elementos disponíveis depois desse conjunto de objetos. |
-| items | array| lista de objetos com dados de inscrições de vestibular |
+| has_more | boolean | indica se há mais elementos disponíveis antes ou após essa página. |
+| items | array | lista de elementos com dados de inscrições de vestibular |
 | id | number | id do exame de enem |
 | course_skus | array | cursos que usam como entrada esse exame de enem |
 | minimum_grades | object | objeto com informações de nota mínima exigida pela faculdade |
