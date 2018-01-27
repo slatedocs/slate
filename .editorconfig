@@ -15,4 +15,4 @@ trim_trailing_whitespace = true
 charset = utf-8
 
 [*.md]
-trim_trailing_whitespace = true
+trim_trailing_whitespace = false
