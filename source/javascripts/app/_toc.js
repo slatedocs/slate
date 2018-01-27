@@ -3,6 +3,7 @@
 ;(function () {
   'use strict';
 
+  var htmlPattern = /<[^>]*>/g;  
   var loaded = false;
 
   var debounce = function(func, waitTime) {
@@ -66,6 +67,7 @@
       }
 
       var $best = $toc.find("[href='" + best + "']").first();
+      var joinedTitle = $best.data("title") + " – " + originalTitle;
       if (!$best.hasClass("active")) {
         // .active is applied to the ToC link we're currently on, and its parent <ul>s selected by tocListSelector
         // .active-expanded is applied to the ToC links that are parents of this one
@@ -77,7 +79,7 @@
         $toc.find(tocListSelector).filter(":not(.active)").slideUp(150);
         $toc.find(tocListSelector).filter(".active").slideDown(150);
         // TODO remove classnames
-        document.title = $best.data("title") + " – " + originalTitle;
+        document.title = joinedTitle.replace(htmlPattern, '');
       }
     };
 
