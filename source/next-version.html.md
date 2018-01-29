@@ -254,6 +254,7 @@ Returns a list of stories and the story details, such as the author name and aut
 |not-story-content-ids | string |The stories other than the mentioned story IDs. |
 
 ## /api/v1/stories-by-slug/
+
 ```
 Example Request
 
@@ -328,6 +329,7 @@ Returns the story having the mentioned slug. The output contains information suc
 | Name | Data Type | Description|
 |--|--|--|
 |slug| string| The slug for the desired story|
+
 
 ## /api/v1/stories/{story-id}
 ```
@@ -501,6 +503,7 @@ Returns the story details having the mentioned story ID.
 |story-id | string| The story ID |
 
 
+## /api/v1/stories/{story-id}/related-stories
 ```
 Example Request
 
@@ -532,9 +535,8 @@ Example Response
 
 ```
 
-## /api/v1/stories/{story-id}/related-stories
-
 **Description**
+
 Returns the stories that are related to the mentioned story ID.
 
 
@@ -608,17 +610,6 @@ Example Response
 
 ##/api/v1/bulk
 
-**Description**
-
-Send a batch of API requests.
-
-
-**Input Parameters**
-
-| Name | Data Type | Description|
-|--|--|--|
-
-
 ```
 Example Request
 
@@ -655,20 +646,11 @@ Example Response
 }
 ```
 
-## /api/v1/collections/{slug}
-
 **Description**
-Returns the collection based on the slug.
 
+Send a batch of API requests.
 
-**Input Parameters**
-
-| Name | Data Type | Description|
-|--|--|--|
-|slug| string| The slug for the desired collection|
-|item-type| string| Possible values are story and collection|
-|exclude-story-ids|integer| The story IDs to be excluded from displaying|
-
+## /api/v1/collections/{slug}
 
 ```
 Example Request
@@ -736,16 +718,20 @@ Example Response
 
 ```
 
-## /api/v1/authors
-
 **Description**
 
-Returns the list of authors with the author name and author ID, along with details such as the author's biodata, gender, twitter handle and so on.
+Returns the collection based on the slug.
+
 
 **Input Parameters**
 
-None.
+| Name | Data Type | Description|
+|--|--|--|
+|slug| string| The slug for the desired collection|
+|item-type| string| Possible values are story and collection|
+|exclude-story-ids|integer| The story IDs to be excluded from displaying|
 
+## /api/v1/authors
 
 ```
 
@@ -769,6 +755,14 @@ Example Response
 }
 ```
 
+**Description**
+
+Returns the list of authors with the author name and author ID, along with details such as the author's biodata, gender, twitter handle and so on.
+
+**Input Parameters**
+
+None.
+
 ## /api/v1/authors/{author-id}
 
 **Description**
@@ -784,15 +778,6 @@ Returns the list of authors with the author name and author ID, along with detai
 
 
 ## /api/v1/config
-
-
-**Description**
-
-Displays the publisher's configurations, such as the publisher name and ID, SEO metadata, the sections and menu items, and so on.
-
-**Input Parameters**
-
-None.
 
 
 ```
@@ -846,15 +831,16 @@ Example Response
 
 ```
 
-## /api/v1/breaking-news
 
 **Description**
 
-Returns the list of breaking news.
+Displays the publisher's configurations, such as the publisher name and ID, SEO metadata, the sections and menu items, and so on.
 
 **Input Parameters**
 
 None.
+
+## /api/v1/breaking-news
 
 ```
 Example Request
@@ -896,23 +882,15 @@ Example Response
 
 ```
 
-##/api/v1/entities
-
 **Description**
 
-Lists all entities.
-
+Returns the list of breaking news.
 
 **Input Parameters**
 
-| Name | Data Type | Description|
-|--|--|--|
-|q| string|  The search string, for example |
-|limit|integer|The number of stories to display. The default is 20. |
-|offset|integer|The distance from the start of the array of stories to the reference point in the array. |
-|id | integer| The ID of an entity|
-|ids| string | A list of entity IDs |
+None.
 
+##/api/v1/entities
 
 ```
 
@@ -938,21 +916,22 @@ Example Response
 }
 
 ```
-
-##/api/v1/entities/{id}
-
 **Description**
 
-Lists the entity having the specified ID.
+Lists all entities.
 
 
 **Input Parameters**
 
 | Name | Data Type | Description|
 |--|--|--|
-| ID | integer| The entity ID|
+|q| string|  The search string, for example |
+|limit|integer|The number of stories to display. The default is 20. |
+|offset|integer|The distance from the start of the array of stories to the reference point in the array. |
+|id | integer| The ID of an entity|
+|ids| string | A list of entity IDs |
 
-
+##/api/v1/entities/{id}
 
 ```
 
@@ -1000,8 +979,28 @@ Example Response
 }
 
 ``` 
+**Description**
+
+Lists the entity having the specified ID.
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+| ID | integer| The entity ID|
+
 
 ##/api/v1/entities/{id}/{subentity+}
+
+
+```
+Example Request
+
+curl 'http://sketches.quintype.com/api/stories/8f9538f2-1972-4c7a-b1eb-7f8942dd0606/votes' -H 'Content-Type: application/json' --data-binary '{'magnitude': 'yes'}';
+
+
+```
 
 **Description**
 
@@ -1016,28 +1015,7 @@ Lists the subentity details in relation to the entity ID.
 |subentity |string | A nested entity name|
 
 
-```
-Example Request
-
-curl 'http://sketches.quintype.com/api/stories/8f9538f2-1972-4c7a-b1eb-7f8942dd0606/votes' -H 'Content-Type: application/json' --data-binary '{'magnitude': 'yes'}';
-
-
-```
-
-
 ##/api/stories/{story-id}/votes
-
-**Description**
-
- Adds vote to the specified story. Note that the user has to be logged in.
-
-
-**Input Parameters**
-
-| Name | Data Type | Description|
-|--|--|--|
-|story-id | String| The story ID|
-
 
 ```
 Example Request
@@ -1051,12 +1029,10 @@ Example Response
 
 ```
 
-
-##/api/stories/{story-id}/votes
-
 **Description**
 
-Fetches the total number of votes for the specified ID. Note that the user has to be logged in.
+ Adds vote to the specified story. Note that the user has to be logged in.
+
 
 **Input Parameters**
 
@@ -1065,6 +1041,7 @@ Fetches the total number of votes for the specified ID. Note that the user has t
 |story-id | String| The story ID|
 
 
+##/api/stories/{story-id}/votes
 
 ```
 Example Request
@@ -1147,14 +1124,17 @@ Quarterly</media:keywords>
 </rss>
 
 ```
-
-##/stories.rss
-
 **Description**
 
-Displays the RSS feeds of a publisher.
+Fetches the total number of votes for the specified ID. Note that the user has to be logged in.
 
+**Input Parameters**
 
+| Name | Data Type | Description|
+|--|--|--|
+|story-id | String| The story ID|
+
+##/stories.rss
 
 ```
 
@@ -1182,20 +1162,12 @@ Example Response
 }
 
 ```
-
-##/api/v1/tags/slug
-
 **Description**
 
-Displays the tag ID, name, and the meta description that matches the given slug.
+Displays the RSS feeds of a publisher.
 
 
-**Input Parameters**
-
-| Name | Data Type | Description|
-|--|--|--|
-|slug| string| The desired tag slug|
-
+##/api/v1/tags/slug
 
 ```
 
@@ -1208,17 +1180,20 @@ Example Response
 
 
 ```
-
-##/api/member/metadata
-
 **Description**
 
-Displays the meta description of the current user.
+Displays the tag ID, name, and the meta description that matches the given slug.
 
 
 **Input Parameters**
 
-None.
+| Name | Data Type | Description|
+|--|--|--|
+|slug| string| The desired tag slug|
+
+
+##/api/member/metadata
+
 
 
 ```
@@ -1232,6 +1207,14 @@ Example Response
 
 
 ```
+**Description**
+
+Displays the meta description of the current user.
+
+
+**Input Parameters**
+
+None.
 
 ##/api/member/metadata
 
