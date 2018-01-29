@@ -253,7 +253,7 @@ Returns a list of stories and the story details, such as the author name and aut
 |randomize|string|Displays list of random stories. |
 |not-story-content-ids | string |The stories other than the mentioned story IDs. |
 
-
+## /api/v1/stories-by-slug/
 ```
 Example Request
 
@@ -318,9 +318,6 @@ Example Response
 
 ```
 
-## /api/v1/stories-by-slug/
-
-
 **Description**
 
 Returns the story having the mentioned slug. The output contains information such as the story author name, author ID, tags, sections, cards, and the metadata associated with that story.
@@ -332,7 +329,7 @@ Returns the story having the mentioned slug. The output contains information suc
 |--|--|--|
 |slug| string| The slug for the desired story|
 
-
+## /api/v1/stories/{story-id}
 ```
 curl -X GET "http://sketches.quintype.com/api/v1/stories/ef91900e-2a7d-42c6-8ccc-fb75db2a4504"  -H "Accept: application/json"
 
@@ -492,7 +489,7 @@ Example Response
 
 ```
 
-## /api/v1/stories/{story-id}
+**Description**
 
 Returns the story details having the mentioned story ID.
 
