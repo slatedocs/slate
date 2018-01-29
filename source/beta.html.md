@@ -2610,5 +2610,5 @@ Lista eventos enviados
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| has_more      | boolean          | indica a existência de outras paginas |
-| notifications | array de objetos | lista de notificações: [referência](#definicao-base-do-evento)
+| has_more | boolean          | indica a existência de outras paginas |
+| items    | array de objetos | lista de notificações: [referência](#definicao-base-do-evento)
