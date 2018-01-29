@@ -23,6 +23,7 @@ search: true
 
 # API name
 
+## /api/v1/search/
 ```
 
 Example Request
@@ -107,7 +108,6 @@ Example Response
 
 ```
 
-## /api/v1/search/
 
 **Description**
 
@@ -129,7 +129,7 @@ Returns a list of stories.
 
 
 
-
+## /api/v1/stories/
 
 ```
 Example Request
@@ -232,8 +232,6 @@ Example Response
 }
 
 ```
-
-## /api/v1/stories/
 
 **Description**
 
@@ -678,7 +676,7 @@ Returns the collection based on the slug.
 ```
 Example Request
 
-$ curl -X GET "http://sketches.quintype.com/api/v1/authors -H "Accept: application/json"
+curl -X GET "http://sketches.quintype.com/api/v1/authors -H "Accept: application/json"
 
 Example Response
 
@@ -756,7 +754,7 @@ None.
 
 Example Request
 
-$ curl -X GET "http://sketches.quintype.com/api/v1/authors/20294 -H "Accept: application/json"
+curl -X GET "http://sketches.quintype.com/api/v1/authors/20294 -H "Accept: application/json"
 
 Example Response
 {  
@@ -901,7 +899,7 @@ Example Response
 
 ```
 
-##/api/v1/entities/
+##/api/v1/entities
 
 **Description**
 
