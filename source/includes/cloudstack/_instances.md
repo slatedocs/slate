@@ -219,6 +219,7 @@ Optional | &nbsp;
 `userData`<br/>*string* | User data is data that can be accessed and interpreted in the instance.
 `cpuCount`<br/>*int* | If the [compute offering](#cloudstack-compute-offerings) requires custom values (i.e. `"custom": true`), this value must be provided.
 `memoryInMB`<br/>*int* | If the [compute offering](#cloudstack-compute-offerings) requires custom values (i.e. `"custom": true`), this value must be provided.
+`ipAddress`<br/>*string* | Private IPv4 address of this instance, must be within network's CIDR and not collide with other instances on the network.
 
 
 
