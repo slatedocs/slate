@@ -19,7 +19,6 @@ Endpoint utilizado
 
 `https://queroalunos.com/api/v1`
 
-
 # Autenticação
 
 ```
@@ -76,6 +75,156 @@ Status Code: 200 OK
 
 Em caso de token válido mas sem permissão de acesso ao recurso específico
 
+# Paginação
+
+## Exemplo de paginação
+
+> Exemplo de requisição
+
+```bash
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/admissions
+```
+
+> Exemplo de retorno
+
+```json
+{
+  "has_more": true,
+  "items": [
+    {
+      "id": 12345,
+      "course_sku": "ADM-MANHA-SP",
+      "status": "pending_docs",
+      "student": { ... },
+      "applications": [ {...} ]
+    },
+    ...,
+    {
+      "id": 12369,
+      "course_sku": "ADM-NOITE-RJ",
+      "status": "pre_registered",
+      "student": { ... },
+      "applications": [ {...} ]
+    }
+  ]
+}
+```
+
+A API utiliza paginação baseada em cursor atráves dos parâmetros `starting_after` e `ending_before`. Ambos recebem um id de um dado existente e retorna uma lista com até 25 elementos no máximo.
+O parâmetro `ending_before` faz a requisição retornar elementos cujo id é maior que o indicado pelo parâmetro. Em contrapartida, o parâmetro `starting_after` faz a requisição retornar elementos listados após o dado cujo id foi indicado.
+O atributo `has_more` da resposta indica se há mais dados disponíveis depois dessa página. Se for `false`, significa que é o fim da lista e não há mais dados. Se for `true`, significa que há mais dados a serem resgatados. Após uma requisição utilizando o parâmetro `ending_before`, o atributo `has_more` se refere a possibilidade de retornar mais dados anteriores à página atual.
+
+### Parâmetros de cursores
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
+
+### Informações de resultado de dados com paginação
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| has_more | boolean | Indica se há mais elementos disponíveis antes ou após essa página |
+| items | array | Lista dos elementos retornados pela requisição |
+
+## Uso do cursor starting_after
+
+> Exemplo de requisição
+
+```bash
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/admissions?starting_after=12369
+```
+
+> Retorno
+
+```json
+{
+  "has_more": false,
+  "items": [
+    {
+      "id": 12370,
+      "course_sku": "ADM-MANHA-SP",
+      "status": "pending_docs",
+      "student": { ... },
+      "applications": [ {...} ]
+    },
+    ...,
+    {
+      "id": 12380,
+      "course_sku": "ADM-NOITE-RJ",
+      "status": "pre_registered",
+      "student": { ... },
+      "applications": [ {...} ]
+    }
+  ]
+}
+```
+
+No exemplo acima, vimos que `has_more` retornou `true`, portanto existem mais dados a serem resgatados após essa página. Para poder consultá-los, na próxima requisição o parâmetro `starting_after` precisa ter o id do último elemento da lista `items`. A requisição e retorno ao lado são referentes ao exemplo [acima](#exemplo-de-paginacao).
+
+### Parâmetros de cursores
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
+
+### Informações de resultado de dados com paginação
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| has_more | boolean | Indica se há mais elementos disponíveis antes ou após essa página |
+| items | array | Lista dos elementos retornados pela requisição |
+
+## Uso do cursor ending_before
+
+> Exemplo de requisição
+
+```bash
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/admissions?ending_before=12369
+```
+
+> Retorno
+
+```json
+{
+  "has_more": true,
+  "items": [
+    {
+      "id": 12345,
+      "course_sku": "ADM-MANHA-SP",
+      "status": "pending_docs",
+      "student": { ... },
+      "applications": [ {...} ]
+    },
+    ...,
+    {
+      "id": 12369,
+      "course_sku": "ADM-NOITE-RJ",
+      "status": "pre_registered",
+      "student": { ... },
+      "applications": [ {...} ]
+    }
+  ]
+}
+```
+
+Assim como avançamos uma página, é possível facilmente retornar a dados anteriores à página atual. Para fazer isso, na próxima requisição o parâmetro `ending_before` precisa ter o id do primeiro elemento da lista `items`. A requisição e retorno ao lado são referentes ao exemplo [acima](#uso-do-cursor-starting_after).
+
+### Parâmetros de cursores
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
+
+### Informações de resultado de dados com paginação
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| has_more | boolean | Indica se há mais elementos disponíveis antes ou após essa página |
+| items | array | Lista dos elementos retornados pela requisição |
 
 # Informações de alunos
 
@@ -139,29 +288,29 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| cpf | Query| CPF do aluno procurado. Exige CPF completamente formatado (ex: 123.456.789-10). |
+| cpf | Query | CPF do aluno procurado. Exige CPF completamente formatado (ex: 123.456.789-10) |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do aluno. |
-| name | string | nome do aluno |
-| cpf | string | cpf do aluno |
-| birth_date | string | data de nascimento do aluno |
-| emails | array de string | lista de emails do aluno |
-| phones | array de string | lista de telefones do aluno |
-| address_information | object | objeto com dados onde aluno reside |
-| [address_information] address | string | endereço onde aluno reside |
-| [address_information] number | string | número onde aluno reside |
-| [address_information] neighborhood | string | bairro onde aluno reside |
-| [address_information] city | string | cidade onde aluno reside |
-| [address_information] state | string | estado onde aluno reside |
-| [address_information] postal_code | string | código postal onde aluno reside |
-| admissions | array | lista de objeto com informações de processo de matricula |
-| id (admissions) | number | id do processo de matricula |
-| course_sku (admissions) | string | código do curso fornecido pela universidade |
-| status (admissions) | string | status que se encontra o processo de matricula |
+| id | number | Id do aluno |
+| name | string | Nome do aluno |
+| cpf | string | CPF do aluno |
+| birth_date | string | Data de nascimento do aluno |
+| emails | array de string | Lista de emails do aluno |
+| phones | array de string | Lista de telefones do aluno |
+| address_information | object | Objeto com dados onde aluno reside |
+| [address_information] address | string | Endereço onde aluno reside |
+| [address_information] number | string | Número onde aluno reside |
+| [address_information] neighborhood | string | Bairro onde aluno reside |
+| [address_information] city | string | Cidade onde aluno reside |
+| [address_information] state | string | Estado onde aluno reside |
+| [address_information] postal_code | string | Código postal onde aluno reside |
+| admissions | array | Lista de objetos com informações de processo de matricula |
+| id (admissions) | number | Id do processo de matricula |
+| course_sku (admissions) | string | Código do curso fornecido pela universidade |
+| status (admissions) | string | Status que se encontra o processo de matricula |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -179,7 +328,7 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 | dropping_out | Desistindo |
 | drop_out_confirmed | Desistência confirmada |
 
-## Busca de aluno por ID
+## Busca de aluno por id
 
 > Requisição
 
@@ -223,8 +372,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 ```json
 {
   "error": true,
-  "message": "ID not found",
-  "description": "Could not find any student by given ID."
+  "message": "id not found",
+  "description": "Could not find any student by given id."
 }
 ```
 
@@ -234,29 +383,29 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | Path | ID do aluno procurado. |
+| id | Path | Id do aluno procurado |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do aluno. |
-| name | string | nome do aluno |
-| cpf | string | cpf do aluno |
-| birth_date | string | data de nascimento do aluno |
-| emails | array de string | lista de emails do aluno |
-| phones | array de string | lista de telefones do aluno |
-| address_information | object | objeto com dados onde aluno reside |
-| [address_information] address | string | endereço onde aluno reside |
-| [address_information] number | string | número onde aluno reside |
-| [address_information] neighborhood | string | bairro onde aluno reside |
-| [address_information] city | string | cidade onde aluno reside |
-| [address_information] state | string | estado onde aluno reside |
-| [address_information] postal_code | string | código postal onde aluno reside |
-| admissions | array | lista de objetos com informações de processo de matricula |
-| [admissions] id | number | id do processo de matricula |
-| [admissions] course_sku | string | código do curso fornecido pela universidade |
-| [admissions] status | string | status que se encontra o processo de matricula |
+| id | number | Id do aluno |
+| name | string | Nome do aluno |
+| cpf | string | CPF do aluno |
+| birth_date | string | Data de nascimento do aluno |
+| emails | array de string | Lista de emails do aluno |
+| phones | array de string | Lista de telefones do aluno |
+| address_information | object | Objeto com dados onde aluno reside |
+| [address_information] address | string | Endereço onde aluno reside |
+| [address_information] number | string | Número onde aluno reside |
+| [address_information] neighborhood | string | Bairro onde aluno reside |
+| [address_information] city | string | Cidade onde aluno reside |
+| [address_information] state | string | Estado onde aluno reside |
+| [address_information] postal_code | string | Código postal onde aluno reside |
+| admissions | array | Lista de objetos com informações de processo de matricula |
+| [admissions] id | number | Id do processo de matricula |
+| [admissions] course_sku | string | Código do curso fornecido pela universidade |
+| [admissions] status | string | Status que se encontra o processo de matricula |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -289,6 +438,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 ```json
 {
+  "has_more": false,
   "items": [
     {
       "id": 12345,
@@ -340,65 +490,64 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
           "result": "approved"
         }
       ]
-    }
-  ],
-  "next_page": "12345",
-  "previous_page": null
+    },
+    {...},
+    {...}
+  ]
 }
 ```
 
 Retorna todas as admissões da faculdade.
 
-Admissões são retornadas em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da página anterior.
+Admissões são retornadas em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| `next_page` | Query | valor utilizado para continuar uma paginação anterior |
-| `previous_page` | Query | valor utilizado para retornar na paginação anterior |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| items | array | lista de objetos com dados de inscrições de vestibular |
-| id | number | id da admissão |
-| course_sku | string | código do curso referente a essa matrícula |
-| status | string | status da admissão do aluno |
-| [student] id | number | id do aluno |
-| [student] name | string | nome do aluno |
-| [student] cpf | string | cpf do aluno |
-| [student] birth_date | string | data de nascimento do aluno |
-| [student] emails | array de string | lista de emails do aluno |
-| [student] phones | array de string | lista de telefones do aluno |
-| [student] address_information | object | objeto com dados onde aluno reside |
-| [address_information] address | string | endereço onde aluno reside |
-| [address_information] number | string | número onde aluno reside |
-| [address_information] neighborhood | string | bairro onde aluno reside |
-| [address_information] city | string | cidade onde aluno reside |
-| [address_information] state | string | estado onde aluno reside |
-| [address_information] postal_code | string | código postal onde aluno reside |
-| application | array | lista de objetos de inscrições de exame (pode estar vazio) |
-| [application] id | number | id da inscrição para exame |
-| [application] type | string | tipo de exame vestibular (exam ou enem) |
-| [application] student | object | objeto com os dados do aluno referente a essa matrícula |
-| exam | object | objeto com informações do exame referente a essa matrícula |
-| [exam] id | number | id do exame vestibular |
-| [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
-| [exam] local | object | objeto com dados do local do exame vestibular |
-| [exam_location] address | string | endereço da localização do exame vestibular |
-| [exam_location] number | string | número da localização do exame vestibular |
-| [exam_location] neighborhood | string | bairro da localização do exame vestibular |
-| [exam_location] city | string | cidade da localização do exame vestibular |
-| [exam_location] state | string | estado da localização do exame vestibular |
-| [exam_location] postal_code | string | código postal da localização do exame vestibular |
-| [exam] dates | string | data da realização do exame vestibular |
-| [exam] times | string | hora da realização do exame vestibular |
-| [exam] status | string | status do exame vestibular |
-| [application] result | string | resultado do exame vestibular |
-| next_page | string | código para pegar os próximos passos |
-| previous_page | string | código para pegar os passos anteriores |
+| has_more | boolean | Indica se há mais elementos disponíveis antes ou após essa página |
+| items | array | Lista de elementos com dados de inscrições de vestibular |
+| id | number | Id da admissão |
+| course_sku | string | Código do curso referente a essa matrícula |
+| status | string | Status da admissão do aluno |
+| [student] id | number | Id do aluno |
+| [student] name | string | Nome do aluno |
+| [student] cpf | string | CPF do aluno |
+| [student] birth_date | string | Data de nascimento do aluno |
+| [student] emails | array de string | Lista de emails do aluno |
+| [student] phones | array de string | Lista de telefones do aluno |
+| [student] address_information | object | Objeto com dados onde aluno reside |
+| [address_information] address | string | Endereço onde aluno reside |
+| [address_information] number | string | Número onde aluno reside |
+| [address_information] neighborhood | string | Bairro onde aluno reside |
+| [address_information] city | string | Cidade onde aluno reside |
+| [address_information] state | string | Estado onde aluno reside |
+| [address_information] postal_code | string | Código postal onde aluno reside |
+| application | array | Lista de objetos de inscrições de exame (pode estar vazio) |
+| [application] id | number | Id da inscrição para exame |
+| [application] type | string | Tipo de exame vestibular (exam ou enem) |
+| [application] student | object | Objeto com os dados do aluno referente a essa matrícula |
+| exam | object | Objeto com informações do exame referente a essa matrícula |
+| [exam] id | number | Id do exame vestibular |
+| [exam] course_skus | array | Lista com os cursos pertencentes a este exame vestibular |
+| [exam] local | object | Objeto com dados do local do exame vestibular |
+| [exam_location] address | string | Endereço da localização do exame vestibular |
+| [exam_location] number | string | Número da localização do exame vestibular |
+| [exam_location] neighborhood | string | Bairro da localização do exame vestibular |
+| [exam_location] city | string | Cidade da localização do exame vestibular |
+| [exam_location] state | string | Estado da localização do exame vestibular |
+| [exam_location] postal_code | string | Código postal da localização do exame vestibular |
+| [exam] dates | string | Data da realização do exame vestibular |
+| [exam] times | string | Hora da realização do exame vestibular |
+| [exam] status | string | Status do exame vestibular |
+| [application] result | string | Resultado do exame vestibular |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -492,8 +641,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 ```json
 {
   "error": true,
-  "message": "ID not found",
-  "description": "Could not find any admission by given ID."
+  "message": "id not found",
+  "description": "Could not find any admission by given id."
 }
 ```
 
@@ -503,47 +652,46 @@ Retorna uma admissão específica da faculdade.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | path | id da admissão |
+| id | path | Id da admissão |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| items | array | lista de objetos com dados de inscrições de vestibular |
-| id | number | id da admissão |
-| course_sku | string | código do curso referente a essa matrícula |
-| status | string | status da admissão do aluno |
-| [student] id | number | id do aluno |
-| [student] name | string | nome do aluno |
-| [student] cpf | string | cpf do aluno |
-| [student] birth_date | string | data de nascimento do aluno |
-| [student] emails | array de string | lista de emails do aluno |
-| [student] phones | array de string | lista de telefones do aluno |
-| [student] address_information | object | objeto com dados onde aluno reside |
-| [address_information] address | string | endereço onde aluno reside |
-| [address_information] number | string | número onde aluno reside |
-| [address_information] neighborhood | string | bairro onde aluno reside |
-| [address_information] city | string | cidade onde aluno reside |
-| [address_information] state | string | estado onde aluno reside |
-| [address_information] postal_code | string | código postal onde aluno reside |
-| application | array | lista de objetos de inscrição para exame (pode estar vazio) |
-| [application] id | number | id da inscrição para exame |
-| [application] type | string | tipo de exame vestibular (exam ou enem) |
-| [application] student | object | objeto com os dados do aluno referente a essa matrícula |
-| exam | object | objeto com informações do exame referente a essa matrícula |
-| [exam] id | number | id do exame vestibular |
-| [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
-| [exam] local | object | objeto com dados do local do exame vestibular |
-| [exam_location] address | string | endereço da localização do exame vestibular |
-| [exam_location] number | string | número da localização do exame vestibular |
-| [exam_location] neighborhood | string | bairro da localização do exame vestibular |
-| [exam_location] city | string | cidade da localização do exame vestibular |
-| [exam_location] state | string | estado da localização do exame vestibular |
-| [exam_location] postal_code | string | código postal da localização do exame vestibular |
-| [exam] dates | string | data da realização do exame vestibular |
-| [exam] times | string | hora da realização do exame vestibular |
-| [exam] status | string | status do exame vestibular |
-| [application] result | string | resultado do exame vestibular |
+| id | number | Id da admissão |
+| course_sku | string | Código do curso referente a essa matrícula |
+| status | string | Status da admissão do aluno |
+| [student] id | number | Id do aluno |
+| [student] name | string | Nome do aluno |
+| [student] cpf | string | CPF do aluno |
+| [student] birth_date | string | Data de nascimento do aluno |
+| [student] emails | array de string | Lista de emails do aluno |
+| [student] phones | array de string | Lista de telefones do aluno |
+| [student] address_information | object | Objeto com dados onde aluno reside |
+| [address_information] address | string | Endereço onde aluno reside |
+| [address_information] number | string | Número onde aluno reside |
+| [address_information] neighborhood | string | Bairro onde aluno reside |
+| [address_information] city | string | Cidade onde aluno reside |
+| [address_information] state | string | Estado onde aluno reside |
+| [address_information] postal_code | string | Código postal onde aluno reside |
+| application | array | Lista de objetos de inscrição para exame (pode estar vazio) |
+| [application] id | number | Id da inscrição para exame |
+| [application] type | string | Tipo de exame vestibular (exam ou enem) |
+| [application] student | object | Objeto com os dados do aluno referente a essa matrícula |
+| exam | object | Objeto com informações do exame referente a essa matrícula |
+| [exam] id | number | Id do exame vestibular |
+| [exam] course_skus | array | Lista com os cursos pertencentes a este exame vestibular |
+| [exam] local | object | Objeto com dados do local do exame vestibular |
+| [exam_location] address | string | Endereço da localização do exame vestibular |
+| [exam_location] number | string | Número da localização do exame vestibular |
+| [exam_location] neighborhood | string | Bairro da localização do exame vestibular |
+| [exam_location] city | string | Cidade da localização do exame vestibular |
+| [exam_location] state | string | Estado da localização do exame vestibular |
+| [exam_location] postal_code | string | Código postal da localização do exame vestibular |
+| [exam] dates | string | Data da realização do exame vestibular |
+| [exam] times | string | Hora da realização do exame vestibular |
+| [exam] status | string | Status do exame vestibular |
+| [application] result | string | Resultado do exame vestibular |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -648,8 +796,8 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
 ```json
 {
   "error": true,
-  "message": "ID not found",
-  "description": "Could not find any admission by given ID."
+  "message": "id not found",
+  "description": "Could not find any admission by given id."
 }
 ```
 
@@ -679,41 +827,40 @@ Realiza atualização de um processo de admissão específico de um aluno. Para 
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| items | array | lista de objetos com dados de inscrições de vestibular |
-| id | number | id da admissão |
-| course_sku | string | código do curso referente a essa matrícula |
-| status | string | status da admissão do aluno |
-| [student] id | number | id do aluno |
-| [student] name | string | nome do aluno |
-| [student] cpf | string | cpf do aluno |
-| [student] birth_date | string | data de nascimento do aluno |
-| [student] emails | array de string | lista de emails do aluno |
-| [student] phones | array de string | lista de telefones do aluno |
-| [student] address_information | object | objeto com dados onde aluno reside |
-| [address_information] address | string | endereço onde aluno reside |
-| [address_information] number | string | número onde aluno reside |
-| [address_information] neighborhood | string | bairro onde aluno reside |
-| [address_information] city | string | cidade onde aluno reside |
-| [address_information] state | string | estado onde aluno reside |
-| [address_information] postal_code | string | código postal onde aluno reside |
-| application | array | lista de objetos de inscrição para exame (pode estar vazio) |
-| [application] id | number | id da inscrição para exame |
-| [application] type | string | tipo de exame vestibular (exam ou enem) |
-| [application] student | object | objeto com os dados do aluno referente a essa matrícula |
-| exam | object | objeto com informações do exame referente a essa matrícula |
-| [exam] id | number | id do exame vestibular |
-| [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
-| [exam] local | object | objeto com dados do local do exame vestibular |
-| [exam_location] address | string | endereço da localização do exame vestibular |
-| [exam_location] number | string | número da localização do exame vestibular |
-| [exam_location] neighborhood | string | bairro da localização do exame vestibular |
-| [exam_location] city | string | cidade da localização do exame vestibular |
-| [exam_location] state | string | estado da localização do exame vestibular |
-| [exam_location] postal_code | string | código postal da localização do exame vestibular |
-| [exam] dates | string | data da realização do exame vestibular |
-| [exam] times | string | hora da realização do exame vestibular |
-| [exam] status | string | status do exame vestibular |
-| [application] result | string | resultado do exame vestibular |
+| id | number | Id da admissão |
+| course_sku | string | Código do curso referente a essa matrícula |
+| status | string | Status da admissão do aluno |
+| [student] id | number | Id do aluno |
+| [student] name | string | Nome do aluno |
+| [student] cpf | string | CPF do aluno |
+| [student] birth_date | string | Data de nascimento do aluno |
+| [student] emails | array de string | Lista de emails do aluno |
+| [student] phones | array de string | Lista de telefones do aluno |
+| [student] address_information | object | Objeto com dados onde aluno reside |
+| [address_information] address | string | Endereço onde aluno reside |
+| [address_information] number | string | Número onde aluno reside |
+| [address_information] neighborhood | string | Bairro onde aluno reside |
+| [address_information] city | string | Cidade onde aluno reside |
+| [address_information] state | string | Estado onde aluno reside |
+| [address_information] postal_code | string | Código postal onde aluno reside |
+| application | array | Lista de objetos de inscrição para exame (pode estar vazio) |
+| [application] id | number | Id da inscrição para exame |
+| [application] type | string | Tipo de exame vestibular (exam ou enem) |
+| [application] student | object | Objeto com os dados do aluno referente a essa matrícula |
+| exam | object | Objeto com informações do exame referente a essa matrícula |
+| [exam] id | number | Id do exame vestibular |
+| [exam] course_skus | array | Lista com os cursos pertencentes a este exame vestibular |
+| [exam] local | object | Objeto com dados do local do exame vestibular |
+| [exam_location] address | string | Endereço da localização do exame vestibular |
+| [exam_location] number | string | Número da localização do exame vestibular |
+| [exam_location] neighborhood | string | Bairro da localização do exame vestibular |
+| [exam_location] city | string | Cidade da localização do exame vestibular |
+| [exam_location] state | string | Estado da localização do exame vestibular |
+| [exam_location] postal_code | string | Código postal da localização do exame vestibular |
+| [exam] dates | string | Data da realização do exame vestibular |
+| [exam] times | string | Hora da realização do exame vestibular |
+| [exam] status | string | Status do exame vestibular |
+| [application] result | string | Resultado do exame vestibular |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -752,6 +899,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 ```json
 {
+  "has_more": false,
   "items": [
     {
       "id": 123456,
@@ -802,64 +950,61 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       },
       "result": "approved"
     }
-  ],
-  "next_page": "12345",
-  "previous_page": null
+  ]
 }
 ```
 
 Retorna todas as inscrições de exame da faculdade.
 
-Inscrições são retornadas em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da página anterior.
+Inscrições são retornadas em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| `next_page` | Query | valor utilizado para continuar uma paginação anterior |
-| `previous_page` | Query | valor utilizado para retornar na paginação anterior |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| items | array| lista de objetos com dados de inscrições de vestibular |
-| id | number | id da inscrição para exame |
-| type | string | tipo de exame vestibular (exam ou enem) |
-| admission | object | objeto com dados do processo de admissão do aluno |
-| [admission] id | number | id do processo de admissão |
-| [admission] course_sku | string | código do curso referente a essa matrícula |
-| [admission] status | string | status da admissão do aluno |
-| [admission] student | object | objeto com dados do aluno |
-| [student] id | number | id do aluno |
-| [student] name | string | nome do aluno |
-| [student] cpf | string | cpf do aluno |
-| [student] birth_date | string | data de nascimento do aluno |
-| [student] emails | array de string | lista de emails do aluno |
-| [student] phones | array de string | lista de telefones do aluno |
-| [student] address_information | object | objeto com dados onde aluno reside |
-| [address_information] address | string | endereço onde aluno reside |
-| [address_information] number | string | número onde aluno reside |
-| [address_information] neighborhood | string | bairro onde aluno reside |
-| [address_information] city | string | cidade onde aluno reside |
-| [address_information] state | string | estado onde aluno reside |
-| [address_information] postal_code | string | código postal onde aluno reside |
-| exam | object | objeto com informações do exame vestibular |
-| [exam] id | number | id do exame vestibular |
-| [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
-| [exam] local | object | objeto com dados do exame vestibular |
-| [exam_location] address | string | endereço da localização do exame vestibular |
-| [exam_location] number | string | número da localização do exame vestibular |
-| [exam_location] neighborhood | string | bairro da localização do exame vestibular |
-| [exam_location] city | string | cidade da localização do exame vestibular |
-| [exam_location] state | string | estado da localização do exame vestibular |
-| [exam_location] postal_code | string | código postal da localização do exame vestibular |
-| [exam] date | string | data da realização do exame vestibular |
-| [exam] time | string | hora da realização do exame vestibular |
-| [exam] status | string | status do exame vestibular |
-| result | string | resultado do exame vestibular |
-| next_page | string | código para pegar os próximos passos |
-| previous_page | string | código para pegar os passos anteriores |
+| has_more | boolean | Indica se há mais elementos disponíveis antes ou após essa página |
+| items | array | Lista de elementos com dados de inscrições de vestibular |
+| id | number | Id da inscrição para exame |
+| type | string | Tipo de exame vestibular (exam ou enem) |
+| admission | object | Objeto com dados do processo de admissão do aluno |
+| [admission] id | number | Id do processo de admissão |
+| [admission] course_sku | string | Código do curso referente a essa matrícula |
+| [admission] status | string | Status da admissão do aluno |
+| [admission] student | object | Objeto com dados do aluno |
+| [student] id | number | Id do aluno |
+| [student] name | string | Nome do aluno |
+| [student] cpf | string | CPF do aluno |
+| [student] birth_date | string | Data de nascimento do aluno |
+| [student] emails | array de string | Lista de emails do aluno |
+| [student] phones | array de string | Lista de telefones do aluno |
+| [student] address_information | object | Objeto com dados onde aluno reside |
+| [address_information] address | string | Endereço onde aluno reside |
+| [address_information] number | string | Número onde aluno reside |
+| [address_information] neighborhood | string | Bairro onde aluno reside |
+| [address_information] city | string | Cidade onde aluno reside |
+| [address_information] state | string | Estado onde aluno reside |
+| [address_information] postal_code | string | Código postal onde aluno reside |
+| exam | object | Objeto com informações do exame vestibular |
+| [exam] id | number | Id do exame vestibular |
+| [exam] course_skus | array | Lista com os cursos pertencentes a este exame vestibular |
+| [exam] local | object | Objeto com dados do exame vestibular |
+| [exam_location] address | string | Endereço da localização do exame vestibular |
+| [exam_location] number | string | Número da localização do exame vestibular |
+| [exam_location] neighborhood | string | Bairro da localização do exame vestibular |
+| [exam_location] city | string | Cidade da localização do exame vestibular |
+| [exam_location] state | string | Estado da localização do exame vestibular |
+| [exam_location] postal_code | string | Código postal da localização do exame vestibular |
+| [exam] date | string | Data da realização do exame vestibular |
+| [exam] time | string | Hora da realização do exame vestibular |
+| [exam] status | string | Status do exame vestibular |
+| result | string | Resultado do exame vestibular |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -951,8 +1096,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 ```json
 {
   "error": true,
-  "message": "ID not found",
-  "description": "Could not find any application by given ID."
+  "message": "id not found",
+  "description": "Could not find any application by given id."
 }
 ```
 
@@ -962,46 +1107,46 @@ Retorna uma inscrição específica na inscrição do exame da faculdade.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | Path | id da inscrição para exame |
+| id | Path | Id da inscrição para exame |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id da inscrição para exame |
-| type | string | tipo de exame vestibular (exam ou enem) |
-| admission | object | objeto com dados do processo de admissão do aluno |
-| [admission] id | number | id do processo de admissão |
-| [admission] course_sku | string | código do curso referente a essa matrícula |
-| [admission] status | string | status da admissão do aluno |
-| [admission] student | object | objeto com dados do aluno |
-| [student] id | number | id do aluno |
-| [student] name | string | nome do aluno |
-| [student] cpf | string | cpf do aluno |
-| [student] birth_date | string | data de nascimento do aluno |
-| [student] emails | array de string | lista de emails do aluno |
-| [student] phones | array de string | lista de telefones do aluno |
-| [student] address_information | object | objeto com dados onde aluno reside |
-| [address_information] address | string | endereço onde aluno reside |
-| [address_information] number | string | número onde aluno reside |
-| [address_information] neighborhood | string | bairro onde aluno reside |
-| [address_information] city | string | cidade onde aluno reside |
-| [address_information] state | string | estado onde aluno reside |
-| [address_information] postal_code | string | código postal onde aluno reside |
-| exam | object | objeto com informações do exame vestibular |
-| [exam] id | number | id do exame vestibular |
-| [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
-| [exam] exam_location | object | objeto com dados do exame vestibular |
-| [exam_location] address | string | endereço da localização do exame vestibular |
-| [exam_location] number | string | número da localização do exame vestibular |
-| [exam_location] neighborhood | string | bairro da localização do exame vestibular |
-| [exam_location] city | string | cidade da localização do exame vestibular |
-| [exam_location] state | string | estado da localização do exame vestibular |
-| [exam_location] postal_code | string | código postal da localização do exame vestibular |
-| [exam] date | string | data da realização do exame vestibular |
-| [exam] time | string | hora da realização do exame vestibular |
-| [exam] status | string | status do exame vestibular |
-| result | string | resultado do exame vestibular |
+| id | number | Id da inscrição para exame |
+| type | string | Tipo de exame vestibular (exam ou enem) |
+| admission | object | Objeto com dados do processo de admissão do aluno |
+| [admission] id | number | Id do processo de admissão |
+| [admission] course_sku | string | Código do curso referente a essa matrícula |
+| [admission] status | string | Status da admissão do aluno |
+| [admission] student | object | Objeto com dados do aluno |
+| [student] id | number | Id do aluno |
+| [student] name | string | Nome do aluno |
+| [student] cpf | string | CPF do aluno |
+| [student] birth_date | string | Data de nascimento do aluno |
+| [student] emails | array de string | Lista de emails do aluno |
+| [student] phones | array de string | Lista de telefones do aluno |
+| [student] address_information | object | Objeto com dados onde aluno reside |
+| [address_information] address | string | Endereço onde aluno reside |
+| [address_information] number | string | Número onde aluno reside |
+| [address_information] neighborhood | string | Bairro onde aluno reside |
+| [address_information] city | string | Cidade onde aluno reside |
+| [address_information] state | string | Estado onde aluno reside |
+| [address_information] postal_code | string | Código postal onde aluno reside |
+| exam | object | Objeto com informações do exame vestibular |
+| [exam] id | number | Id do exame vestibular |
+| [exam] course_skus | array | Lista com os cursos pertencentes a este exame vestibular |
+| [exam] exam_location | object | Objeto com dados do exame vestibular |
+| [exam_location] address | string | Endereço da localização do exame vestibular |
+| [exam_location] number | string | Número da localização do exame vestibular |
+| [exam_location] neighborhood | string | Bairro da localização do exame vestibular |
+| [exam_location] city | string | Cidade da localização do exame vestibular |
+| [exam_location] state | string | Estado da localização do exame vestibular |
+| [exam_location] postal_code | string | Código postal da localização do exame vestibular |
+| [exam] date | string | Data da realização do exame vestibular |
+| [exam] time | string | Hora da realização do exame vestibular |
+| [exam] status | string | Status do exame vestibular |
+| result | string | Resultado do exame vestibular |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -1104,8 +1249,8 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
 ```json
 {
   "error": true,
-  "message": "ID not found",
-  "description": "Could not find any application by given ID."
+  "message": "id not found",
+  "description": "Could not find any application by given id."
 }
 ```
 
@@ -1128,40 +1273,40 @@ Atualiza a situação de agendamento ou resultado de uma inscrição para exame.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id da inscrição para exame |
-| type | string | tipo de exame vestibular (exam ou enem) |
-| admission | object | objeto com dados do processo de admissão do aluno |
-| [admission] id | number | id do processo de admissão |
-| [admission] course_sku | string | código do curso referente a essa matrícula |
-| [admission] status | string | status da admissão do aluno |
-| [admission] student | object | objeto com dados do aluno |
-| [student] id | number | id do aluno |
-| [student] name | string | nome do aluno |
-| [student] cpf | string | cpf do aluno |
-| [student] birth_date | string | data de nascimento do aluno |
-| [student] emails | array de string | lista de emails do aluno |
-| [student] phones | array de string | lista de telefones do aluno |
-| [student] address_information | object | objeto com dados onde aluno reside |
-| [address_information] address | string | endereço onde aluno reside |
-| [address_information] number | string | número onde aluno reside |
-| [address_information] neighborhood | string | bairro onde aluno reside |
-| [address_information] city | string | cidade onde aluno reside |
-| [address_information] state | string | estado onde aluno reside |
-| [address_information] postal_code | string | código postal onde aluno reside |
-| exam | object | objeto com informações do exame vestibular |
-| [exam] id | number | id do exame vestibular |
-| [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
-| [exam] local | object | objeto com dados do exame vestibular |
-| [exam] exam_location | string | endereço da localização do exame vestibular |
-| [exam_location] number | string | número da localização do exame vestibular |
-| [exam_location] neighborhood | string | bairro da localização do exame vestibular |
-| [exam_location] city | string | cidade da localização do exame vestibular |
-| [exam_location] state | string | estado da localização do exame vestibular |
-| [exam_location] postal_code | string | código postal da localização do exame vestibular |
-| [exam] date | string | data da realização do exame vestibular |
-| [exam] time | string | hora da realização do exame vestibular |
-| [exam] status | string | status do exame vestibular |
-| result | string | resultado do exame vestibular |
+| id | number | Id da inscrição para exame |
+| type | string | Tipo de exame vestibular (exam ou enem) |
+| admission | object | Objeto com dados do processo de admissão do aluno |
+| [admission] id | number | Id do processo de admissão |
+| [admission] course_sku | string | Código do curso referente a essa matrícula |
+| [admission] status | string | Status da admissão do aluno |
+| [admission] student | object | Objeto com dados do aluno |
+| [student] id | number | Id do aluno |
+| [student] name | string | Nome do aluno |
+| [student] cpf | string | CPF do aluno |
+| [student] birth_date | string | Data de nascimento do aluno |
+| [student] emails | array de string | Lista de emails do aluno |
+| [student] phones | array de string | Lista de telefones do aluno |
+| [student] address_information | object | Objeto com dados onde aluno reside |
+| [address_information] address | string | Endereço onde aluno reside |
+| [address_information] number | string | Número onde aluno reside |
+| [address_information] neighborhood | string | Bairro onde aluno reside |
+| [address_information] city | string | Cidade onde aluno reside |
+| [address_information] state | string | Estado onde aluno reside |
+| [address_information] postal_code | string | Código postal onde aluno reside |
+| exam | object | Objeto com informações do exame vestibular |
+| [exam] id | number | Id do exame vestibular |
+| [exam] course_skus | array | Lista com os cursos pertencentes a este exame vestibular |
+| [exam] local | object | Objeto com dados do exame vestibular |
+| [exam] exam_location | string | Endereço da localização do exame vestibular |
+| [exam_location] number | string | Número da localização do exame vestibular |
+| [exam_location] neighborhood | string | Bairro da localização do exame vestibular |
+| [exam_location] city | string | Cidade da localização do exame vestibular |
+| [exam_location] state | string | Estado da localização do exame vestibular |
+| [exam_location] postal_code | string | Código postal da localização do exame vestibular |
+| [exam] date | string | Data da realização do exame vestibular |
+| [exam] time | string | Hora da realização do exame vestibular |
+| [exam] status | string | Status do exame vestibular |
+| result | string | Resultado do exame vestibular |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -1200,6 +1345,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 ```json
 {
+  "has_more": false,
   "items": [
     {
       "id": 1234,
@@ -1226,42 +1372,40 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "active",
       "kind": "scheduled"
     }
-  ],
-  "next_page": "12345",
-  "previous_page": null
+  ]
 }
 ```
 
 Retorna todos os exames em lote.
 
-Exames em lote são retornados em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da página anterior.
+Exames em lote são retornados em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar dados antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| `next_page` | Query | valor utilizado para continuar uma paginação anterior |
-| `previous_page` | Query | valor utilizado para retornar na paginação anterior |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do lote de exames |
-| course_skus | array | cursos que usam como entrada algum exame desse lote |
-| exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
-| [exam_locations] address | string | endereço onde será feito o exame vestibular |
-| [exam_locations] number | string | número de onde será feito o exame vestibular |
-| [exam_locations] neighborhood | string | bairro onde será feito o exame vestibular |
-| [exam_locations] city | string | cidade onde será feito o exame vestibular |
-| [exam_locations] state | string | estado onde será feito o exame vestibular |
-| [exam_locations] postal_code | string | código postal de onde será feito o exame vestibular |
-| dates | array | lista das datas dos exames |
-| times | array | lista dos horários de aplicações dos exames |
-| status | string | situação dos exames entre `active` e `inactive` |
-| kind | string | tipo dos exames desse lote |
-| next_page | string | código para pegar os próximos passos |
-| previous_page | string | código para pegar os passos anteriores |
+| has_more | boolean | Indica se há mais elementos disponíveis antes ou após essa página |
+| items | array | Lista de elementos com dados de inscrições de vestibular |
+| id | number | Id do lote de exames |
+| course_skus | array | Cursos que usam como entrada algum exame desse lote |
+| exam_locations | array | Lista dos objetos dos endereços dos exames desse lote |
+| [exam_locations] address | string | Endereço onde será feito o exame vestibular |
+| [exam_locations] number | string | Número de onde será feito o exame vestibular |
+| [exam_locations] neighborhood | string | Bairro onde será feito o exame vestibular |
+| [exam_locations] city | string | Cidade onde será feito o exame vestibular |
+| [exam_locations] state | string | Estado onde será feito o exame vestibular |
+| [exam_locations] postal_code | string | Código postal de onde será feito o exame vestibular |
+| dates | array | Lista das datas dos exames |
+| times | array | Lista dos horários de aplicações dos exames |
+| status | string | Situação dos exames entre `active` e `inactive` |
+| kind | string | Tipo dos exames desse lote |
 
 ### Significado dos status
 
@@ -1313,8 +1457,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 ```json
 {
   "error": true,
-  "message": "ID not found",
-  "description": "Could not find any exam group by given ID."
+  "message": "id not found",
+  "description": "Could not find any exam group by given id."
 }
 ```
 Retorna um lote de exames específico.
@@ -1323,25 +1467,25 @@ Retorna um lote de exames específico.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | path | id do lote de exames |
+| id | path | Id do lote de exames |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do lote de exames |
-| course_skus | array | cursos que usam como entrada algum exame desse lote |
-| exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
-| [exam_locations] address | string | endereço onde será feito o exame vestibular |
-| [exam_locations] number | string | número de onde será feito o exame vestibular |
-| [exam_locations] neighborhood | string | bairro onde será feito o exame vestibular |
-| [exam_locations] city | string | cidade onde será feito o exame vestibular |
-| [exam_locations] state | string | estado onde será feito o exame vestibular |
-| [exam_locations] postal_code | string | código postal de onde será feito o exame vestibular |
-| dates | array | lista das datas dos exames |
-| times | array | lista dos horários de aplicações dos exames |
-| status | string | situação dos exames entre `active` e `inactive` |
-| kind | string | tipo dos exames desse lote |
+| id | number | Id do lote de exames |
+| course_skus | array | Cursos que usam como entrada algum exame desse lote |
+| exam_locations | array | Lista dos objetos dos endereços dos exames desse lote |
+| [exam_locations] address | string | Endereço onde será feito o exame vestibular |
+| [exam_locations] number | string | Número de onde será feito o exame vestibular |
+| [exam_locations] neighborhood | string | Bairro onde será feito o exame vestibular |
+| [exam_locations] city | string | Cidade onde será feito o exame vestibular |
+| [exam_locations] state | string | Estado onde será feito o exame vestibular |
+| [exam_locations] postal_code | string | Código postal de onde será feito o exame vestibular |
+| dates | array | Lista das datas dos exames |
+| times | array | Lista dos horários de aplicações dos exames |
+| status | string | Situação dos exames entre `active` e `inactive` |
+| kind | string | Tipo dos exames desse lote |
 
 ### Significado dos status
 
@@ -1404,24 +1548,24 @@ Cria um lote de exames.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| *.json | json | arquivo json com as informações do lote de exames |
+| *.json | json | Arquivo json com as informações do lote de exames |
 
 ### Informações dos argumentos
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| course_skus | array | cursos que usam como entrada algum exame desse lote |
-| exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
-| [exam_locations] address | string | endereço onde será feito o exame vestibular |
-| [exam_locations] number | string | número de onde será feito o exame vestibular |
-| [exam_locations] neighborhood | string | bairro onde será feito o exame vestibular |
-| [exam_locations] city | string | cidade onde será feito o exame vestibular |
-| [exam_locations] state | string | estado onde será feito o exame vestibular |
-| [exam_locations] postal_code | string | código postal de onde será feito o exame vestibular |
-| dates | array | lista das datas dos exames |
-| times | array | lista dos horários de aplicações dos exames |
-| status | string | situação dos exames entre `active` e `inactive` |
-| kind | string | tipo dos exames desse lote |
+| course_skus | array | Cursos que usam como entrada algum exame desse lote |
+| exam_locations | array | Lista dos objetos dos endereços dos exames desse lote |
+| [exam_locations] address | string | Endereço onde será feito o exame vestibular |
+| [exam_locations] number | string | Número de onde será feito o exame vestibular |
+| [exam_locations] neighborhood | string | Bairro onde será feito o exame vestibular |
+| [exam_locations] city | string | Cidade onde será feito o exame vestibular |
+| [exam_locations] state | string | Estado onde será feito o exame vestibular |
+| [exam_locations] postal_code | string | Código postal de onde será feito o exame vestibular |
+| dates | array | Lista das datas dos exames |
+| times | array | Lista dos horários de aplicações dos exames |
+| status | string | Situação dos exames entre `active` e `inactive` |
+| kind | string | Tipo dos exames desse lote |
 
 ### Significado dos status
 
@@ -1464,19 +1608,19 @@ Cria um lote de exames.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do lote de exames |
-| course_skus | array | cursos que usam como entrada algum exame desse lote |
-| exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
-| [exam_locations] address | string | endereço onde será feito o exame vestibular |
-| [exam_locations] number | string | número de onde será feito o exame vestibular |
-| [exam_locations] neighborhood | string | bairro onde será feito o exame vestibular |
-| [exam_locations] city | string | cidade onde será feito o exame vestibular |
-| [exam_locations] state | string | estado onde será feito o exame vestibular |
-| [exam_locations] postal_code | string | código postal de onde será feito o exame vestibular |
-| dates | array | lista das datas dos exames |
-| times | array | lista dos horários de aplicações dos exames |
-| status | string | situação dos exames entre `active` e `inactive` |
-| kind | string | tipo dos exames desse lote |
+| id | number | Id do lote de exames |
+| course_skus | array | Cursos que usam como entrada algum exame desse lote |
+| exam_locations | array | Lista dos objetos dos endereços dos exames desse lote |
+| [exam_locations] address | string | Endereço onde será feito o exame vestibular |
+| [exam_locations] number | string | Número de onde será feito o exame vestibular |
+| [exam_locations] neighborhood | string | Bairro onde será feito o exame vestibular |
+| [exam_locations] city | string | Cidade onde será feito o exame vestibular |
+| [exam_locations] state | string | Estado onde será feito o exame vestibular |
+| [exam_locations] postal_code | string | Código postal de onde será feito o exame vestibular |
+| dates | array | Lista das datas dos exames |
+| times | array | Lista dos horários de aplicações dos exames |
+| status | string | Situação dos exames entre `active` e `inactive` |
+| kind | string | Tipo dos exames desse lote |
 
 
 ## Suspender ou ativar lote de exames
@@ -1533,8 +1677,8 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
 ```json
 {
   "error": true,
-  "message": "ID not found",
-  "description": "Could not find any exam group by given ID."
+  "message": "id not found",
+  "description": "Could not find any exam group by given id."
 }
 ```
 
@@ -1544,7 +1688,7 @@ Suspende ou ativa um lote de exames.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | path | id do grupo de exame vestibular |
+| id | path | Id do grupo de exame vestibular |
 | status | string | status a ser alterado |
 
 ### Possíveis valores para o parâmetro status
@@ -1558,19 +1702,19 @@ Suspende ou ativa um lote de exames.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do lote de exames |
-| course_skus | array | cursos que usam como entrada algum exame desse lote |
-| exam_locations | array de objects | lista dos objetos dos endereços dos exames desse lote |
-| [exam_locations] address | string | endereço onde será feito o exame vestibular |
-| [exam_locations] number | string | número de onde será feito o exame vestibular |
-| [exam_locations] neighborhood | string | bairro onde será feito o exame vestibular |
-| [exam_locations] city | string | cidade onde será feito o exame vestibular |
-| [exam_locations] state | string | estado onde será feito o exame vestibular |
-| [exam_locations] postal_code | string | código postal de onde será feito o exame vestibular |
-| dates | array | lista das datas dos exames |
-| times | array | lista dos horários de aplicações dos exames |
-| status | string | situação dos exames entre `active` e `inactive` |
-| kind | string | tipo dos exames desse lote |
+| id | number | Id do lote de exames |
+| course_skus | array | Cursos que usam como entrada algum exame desse lote |
+| exam_locations | array | Lista dos objetos dos endereços dos exames desse lote |
+| [exam_locations] address | string | Endereço onde será feito o exame vestibular |
+| [exam_locations] number | string | Número de onde será feito o exame vestibular |
+| [exam_locations] neighborhood | string | Bairro onde será feito o exame vestibular |
+| [exam_locations] city | string | Cidade onde será feito o exame vestibular |
+| [exam_locations] state | string | Estado onde será feito o exame vestibular |
+| [exam_locations] postal_code | string | Código postal de onde será feito o exame vestibular |
+| dates | array | Lista das datas dos exames |
+| times | array | Lista dos horários de aplicações dos exames |
+| status | string | Situação dos exames entre `active` e `inactive` |
+| kind | string | Tipo dos exames desse lote |
 
 ### Significado do retorno de status
 
@@ -1593,6 +1737,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 ```json
 {
+  "has_more": false,
   "items": [
     {
       "id": 456,
@@ -1614,43 +1759,40 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "time": "18:30",
       "status": "active"
     }
-  ],
-  "next_page": "12345",
-  "previous_page": null
-  }
+  ]
+}
 ```
 
 Retorna todos os exames (ativos e suspensos).
 
-Exames são retornados em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da página anterior.
+Exames são retornados em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar dados antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| `next_page` | Query | valor utilizado para continuar uma paginação anterior |
-| `previous_page` | Query | valor utilizado para retornar na paginação anterior |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| items | array | lista de objetos dos exames |
-| id | number | id do exame vestibular |
-| exam_group_id | number | id referente ao grupo de exame pertencente |
-| course_skus | array | cursos que usam como entrada esse exame vestibular |
-| exam_location | object | objeto do endereço onde será feito o exame vestibular |
-| [exam_location] address | string | endereço onde será feito o exame vestibular |
-| [exam_location] number | string | número de onde será feito o exame vestibular |
-| [exam_location] neighborhood | string | bairro onde será feito o exame vestibular |
-| [exam_location] city | string | cidade onde será feito o exame vestibular |
-| [exam_location] state | string | estado onde será feito o exame vestibular |
-| [exam_location] postal_code | string | código postal de onde será feito o exame vestibular |
-| date | string | data do exame vestibular |
-| time | string | horário do exame vestibular |
-| status | string | situação do exame entre `active` e `inactive` |
-| next_page | string | código para pegar os próximos passos |
-| previous_page | string | código para pegar os passos anteriores |
+| has_more | boolean | Indica se há mais elementos disponíveis antes ou após essa página |
+| items | array | Lista de elementos com dados dos exames |
+| id | number | Id do exame vestibular |
+| exam_group_id | number | Id referente ao grupo de exame pertencente |
+| course_skus | array | Cursos que usam como entrada esse exame vestibular |
+| exam_location | object | Objeto do endereço onde será feito o exame vestibular |
+| [exam_location] address | string | Endereço onde será feito o exame vestibular |
+| [exam_location] number | string | Número de onde será feito o exame vestibular |
+| [exam_location] neighborhood | string | Bairro onde será feito o exame vestibular |
+| [exam_location] city | string | Cidade onde será feito o exame vestibular |
+| [exam_location] state | string | Estado onde será feito o exame vestibular |
+| [exam_location] postal_code | string | Código postal de onde será feito o exame vestibular |
+| date | string | Data do exame vestibular |
+| time | string | Horário do exame vestibular |
+| status | string | Situação do exame entre `active` e `inactive` |
 
 ## Informações de um único exame
 
@@ -1690,8 +1832,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 ```json
 {
   "error": true,
-  "message": "ID not found",
-  "description": "Could not find any exam by given ID."
+  "message": "id not found",
+  "description": "Could not find any exam by given id."
 }
 ```
 
@@ -1701,25 +1843,25 @@ Retorna um exame específico.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | path | id do exame vestibular |
+| id | path | Id do exame vestibular |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do exame vestibular |
-| exam_group_id | number | id referente ao grupo de exame pertencente |
-| course_skus | array | cursos que usam como entrada esse exame vestibular |
-| exam_location | object | objeto do endereço onde será feito o exame vestibular |
-| [exam_location] address | string | endereço onde será feito o exame vestibular |
-| [exam_location] number | string | número de onde será feito o exame vestibular |
-| [exam_location] neighborhood | string | bairro onde será feito o exame vestibular |
-| [exam_location] city | string | cidade onde será feito o exame vestibular |
-| [exam_location] state | string | estado onde será feito o exame vestibular |
-| [exam_location] postal_code | string | código postal de onde será feito o exame vestibular |
-| date | string | data do exame vestibular |
-| time | string | horário do exame vestibular |
-| status | string | situação do exame entre `active` e `inactive` |
+| id | number | Id do exame vestibular |
+| exam_group_id | number | Id referente ao grupo de exame pertencente |
+| course_skus | array | Cursos que usam como entrada esse exame vestibular |
+| exam_location | object | Objeto do endereço onde será feito o exame vestibular |
+| [exam_location] address | string | Endereço onde será feito o exame vestibular |
+| [exam_location] number | string | Número de onde será feito o exame vestibular |
+| [exam_location] neighborhood | string | Bairro onde será feito o exame vestibular |
+| [exam_location] city | string | Cidade onde será feito o exame vestibular |
+| [exam_location] state | string | Estado onde será feito o exame vestibular |
+| [exam_location] postal_code | string | Código postal de onde será feito o exame vestibular |
+| date | string | Data do exame vestibular |
+| time | string | Horário do exame vestibular |
+| status | string | Situação do exame entre `active` e `inactive` |
 
 ## Criação de exame
 
@@ -1768,18 +1910,18 @@ Cria um novo exame.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| course_skus | array | cursos que usam como entrada algum exame desse lote |
-| exam_location | array de objects | lista dos objetos dos endereços dos exames desse lote |
-| [exam_location] address | string | endereço onde será feito o exame vestibular |
-| [exam_location] number | string | número de onde será feito o exame vestibular |
-| [exam_location] neighborhood | string | bairro onde será feito o exame vestibular |
-| [exam_location] city | string | cidade onde será feito o exame vestibular |
-| [exam_location] state | string | estado onde será feito o exame vestibular |
-| [exam_location] postal_code | string | código postal de onde será feito o exame vestibular |
-| date | string | data do exame vestibular |
-| time | string | horário do exame vestibular |
-| status | string | situação dos exames entre `active` ou `inactive` |
-| kind | string | tipo dos exames desse lote |
+| course_skus | array | Cursos que usam como entrada algum exame desse lote |
+| exam_location | array | Lista dos objetos dos endereços dos exames desse lote |
+| [exam_location] address | string | Endereço onde será feito o exame vestibular |
+| [exam_location] number | string | Número de onde será feito o exame vestibular |
+| [exam_location] neighborhood | string | Bairro onde será feito o exame vestibular |
+| [exam_location] city | string | Cidade onde será feito o exame vestibular |
+| [exam_location] state | string | Estado onde será feito o exame vestibular |
+| [exam_location] postal_code | string | Código postal de onde será feito o exame vestibular |
+| date | string | Data do exame vestibular |
+| time | string | Horário do exame vestibular |
+| status | string | Situação dos exames entre `active` ou `inactive` |
+| kind | string | Tipo dos exames desse lote |
 
 > Resposta
 
@@ -1809,20 +1951,20 @@ Cria um novo exame.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do lote de exames |
-| exam_group_id | number | id referente ao grupo de exame pertencente |
-| course_skus | array | cursos que usam como entrada algum exame desse lote |
-| exam_location | array de objects | lista dos objetos dos endereços dos exames desse lote |
-| [exam_location] address | string | endereço onde será feito o exame vestibular |
-| [exam_location] number | string | número de onde será feito o exame vestibular |
-| [exam_location] neighborhood | string | bairro onde será feito o exame vestibular |
-| [exam_location] city | string | cidade onde será feito o exame vestibular |
-| [exam_location] state | string | estado onde será feito o exame vestibular |
-| [exam_location] postal_code | string | código postal de onde será feito o exame vestibular |
-| date | string | data do exame vestibular |
-| time | string | horário do exame vestibular |
-| status | string | situação dos exames entre `active` ou `inactive` |
-| kind | string | tipo dos exames desse lote |
+| id | number | Id do lote de exames |
+| exam_group_id | number | Id referente ao grupo de exame pertencente |
+| course_skus | array | Cursos que usam como entrada algum exame desse lote |
+| exam_location | array | Lista dos objetos dos endereços dos exames desse lote |
+| [exam_location] address | string | Endereço onde será feito o exame vestibular |
+| [exam_location] number | string | Número de onde será feito o exame vestibular |
+| [exam_location] neighborhood | string | Bairro onde será feito o exame vestibular |
+| [exam_location] city | string | Cidade onde será feito o exame vestibular |
+| [exam_location] state | string | Estado onde será feito o exame vestibular |
+| [exam_location] postal_code | string | Código postal de onde será feito o exame vestibular |
+| date | string | Data do exame vestibular |
+| time | string | Horário do exame vestibular |
+| status | string | Situação dos exames entre `active` ou `inactive` |
+| kind | string | Tipo dos exames desse lote |
 
 ### Significado dos status
 
@@ -1880,8 +2022,8 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
 ```json
 {
   "error": true,
-  "message": "ID not found",
-  "description": "Could not find any exam by given ID."
+  "message": "id not found",
+  "description": "Could not find any exam by given id."
 }
 ```
 
@@ -1891,7 +2033,7 @@ Suspende ou ativa um exame.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | path | id do exame vestibular |
+| id | path | Id do exame vestibular |
 | status | string | status a ser alterado |
 
 ### Possíveis valores para o parâmetro status
@@ -1905,19 +2047,19 @@ Suspende ou ativa um exame.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do exame vestibular |
-| exam_group_id | number | id referente ao grupo de exame pertencente |
-| course_skus | array | cursos que usam como entrada esse exame vestibular |
-| exam_location | object | objeto do endereço onde será feito o exame vestibular |
-| [exam_location] address | string | endereço onde será feito o exame vestibular |
-| [exam_location] number | string | número de onde será feito o exame vestibular |
-| [exam_location] neighborhood | string | bairro onde será feito o exame vestibular |
-| [exam_location] city | string | cidade onde será feito o exame vestibular |
-| [exam_location] state | string | estado onde será feito o exame vestibular |
-| [exam_location] postal_code | string | código postal de onde será feito o exame vestibular |
-| date | string | data do exame vestibular |
-| time | string | horário do exame vestibular |
-| status | string | situação do exame entre `active` e `inactive` |
+| id | number | Id do exame vestibular |
+| exam_group_id | number | Id referente ao grupo de exame pertencente |
+| course_skus | array | Cursos que usam como entrada esse exame vestibular |
+| exam_location | object | Objeto do endereço onde será feito o exame vestibular |
+| [exam_location] address | string | Endereço onde será feito o exame vestibular |
+| [exam_location] number | string | Número de onde será feito o exame vestibular |
+| [exam_location] neighborhood | string | Bairro onde será feito o exame vestibular |
+| [exam_location] city | string | Cidade onde será feito o exame vestibular |
+| [exam_location] state | string | Estado onde será feito o exame vestibular |
+| [exam_location] postal_code | string | Código postal de onde será feito o exame vestibular |
+| date | string | Data do exame vestibular |
+| time | string | Horário do exame vestibular |
+| status | string | Situação do exame entre `active` e `inactive` |
 
 # Exame de Enem
 
@@ -1933,6 +2075,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 ```json
 {
+  "has_more": false,
   "items": [
     {
       "id": 789,
@@ -1950,38 +2093,36 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       },
       "status": "active"
     }
-  ],
-  "next_page": "12345",
-  "previous_page": null
-  }
+  ]
+}
 ```
 
 Retorna todos os exames de enem.
 
-Exames de ENEM são retornados em lote de 10, ordenadas pela última atualização realizada. Se houver mais resultados, `next_page` retorna preenchido para ser utilizado como parâmetro na próxima requisição para continuar. O parâmetro `previous_page` será preenchido com o primeiro id quando utilizado `next_page`, que serve para pegar as informações da pagina anterior.
+Exames de ENEM são retornados em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar dados antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
 
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| `next_page` | Query | valor utilizado para continuar uma paginação anterior |
-| `previous_page` | Query | valor utilizado para retornar na paginação anterior |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do exame de enem |
-| course_skus | array | cursos que usam como entrada esse exame de enem |
-| minimum_grades | object | objeto com informações de nota mínima exigida pela faculdade |
-| [minimum_grades] redacao | float | nota mínima de redação exigida pela faculdade |
-| [minimum_grades] humanas | float | nota mínima de humanas exigida pela faculdade |
-| [minimum_grades] natureza | float | nota mínima de natureza exigida pela faculdade |
-| [minimum_grades] linguagens | float | nota mínima de linguagens exigida pela faculdade |
-| [minimum_grades] matematica | float | nota mínima de matemática exigida pela faculdade |
-| status | string | situação do exame de enem entre `active` e `inactive` |
-| next_page | string | código para pegar os próximos passos |
-| previous_page | string | código para pegar os passos anteriores |
+| has_more | boolean | Indica se há mais elementos disponíveis antes ou após essa página |
+| items | array | Lista de elementos com dados de inscrições de vestibular |
+| id | number | Id do exame de enem |
+| course_skus | array | Cursos que usam como entrada esse exame de enem |
+| minimum_grades | object | Objeto com informações de nota mínima exigida pela faculdade |
+| [minimum_grades] redacao | float | Nota mínima de redação exigida pela faculdade |
+| [minimum_grades] humanas | float | Nota mínima de humanas exigida pela faculdade |
+| [minimum_grades] natureza | float | Nota mínima de natureza exigida pela faculdade |
+| [minimum_grades] linguagens | float | Nota mínima de linguagens exigida pela faculdade |
+| [minimum_grades] matematica | float | Nota mínima de matemática exigida pela faculdade |
+| status | string | Situação do exame de enem entre `active` e `inactive` |
 
 ## Informações de um único exame de Enem
 
@@ -2017,8 +2158,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 ```json
 {
   "error": true,
-  "message": "ID not found",
-  "description": "Could not find any enem exam by given ID."
+  "message": "id not found",
+  "description": "Could not find any enem exam by given id."
 }
 ```
 
@@ -2028,21 +2169,21 @@ Retorna um exame de enem específico.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do exame de enem |
+| id | number | Id do exame de enem |
 
 ### Informações de resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do exame de enem |
-| course_skus | array | cursos que usam como entrada esse exame de enem |
-| minimum_grades | object | objeto com informações de nota mínima exigida pela faculdade |
-| [minimum_grades] redacao | float | nota mínima de redação exigida pela faculdade |
-| [minimum_grades] humanas | float | nota mínima de humanas exigida pela faculdade |
-| [minimum_grades] natureza | float | nota mínima de natureza exigida pela faculdade |
-| [minimum_grades] linguagens | float | nota mínima de linguagens exigida pela faculdade |
-| [minimum_grades] matematica | float | nota mínima de matemática exigida pela faculdade |
-| status | string | situação do exame de enem entre `active` e `inactive` |
+| id | number | Id do exame de enem |
+| course_skus | array | Cursos que usam como entrada esse exame de enem |
+| minimum_grades | object | Objeto com informações de nota mínima exigida pela faculdade |
+| [minimum_grades] redacao | float | Nota mínima de redação exigida pela faculdade |
+| [minimum_grades] humanas | float | Nota mínima de humanas exigida pela faculdade |
+| [minimum_grades] natureza | float | Nota mínima de natureza exigida pela faculdade |
+| [minimum_grades] linguagens | float | Nota mínima de linguagens exigida pela faculdade |
+| [minimum_grades] matematica | float | Nota mínima de matemática exigida pela faculdade |
+| status | string | Situação do exame de enem entre `active` e `inactive` |
 
 ## Criação de exame de Enem
 
@@ -2089,20 +2230,20 @@ Cria um exame de enem.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| *.json | json | arquivo json com as informações do exame de enem |
+| *.json | json | Arquivo json com as informações do exame de enem |
 
 ### Informações dos argumentos
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| course_skus | array | cursos que usam como entrada esse exame de enem |
-| minimum_grades | object | objeto com informações de nota mínima exigida pela faculdade |
-| [minimum_grades] redacao | float | nota mínima de redação exigida pela faculdade |
-| [minimum_grades] humanas | float | nota mínima de humanas exigida pela faculdade |
-| [minimum_grades] natureza | float | nota mínima de natureza exigida pela faculdade |
-| [minimum_grades] linguagens | float | nota mínima de linguagens exigida pela faculdade |
-| [minimum_grades] matematica | float | nota mínima de matemática exigida pela faculdade |
-| status | string | situação do exame de enem entre `active` e `inactive` |
+| course_skus | array | Cursos que usam como entrada esse exame de enem |
+| minimum_grades | object | Objeto com informações de nota mínima exigida pela faculdade |
+| [minimum_grades] redacao | float | Nota mínima de redação exigida pela faculdade |
+| [minimum_grades] humanas | float | Nota mínima de humanas exigida pela faculdade |
+| [minimum_grades] natureza | float | Nota mínima de natureza exigida pela faculdade |
+| [minimum_grades] linguagens | float | Nota mínima de linguagens exigida pela faculdade |
+| [minimum_grades] matematica | float | Nota mínima de matemática exigida pela faculdade |
+| status | string | Situação do exame de enem entre `active` e `inactive` |
 
 > Resposta
 
@@ -2129,15 +2270,15 @@ Cria um exame de enem.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do exame de enem |
-| course_skus | array | cursos que usam como entrada esse exame de enem |
-| minimum_grades | object | objeto com informações de nota mínima exigida pela faculdade |
-| [minimum_grades] redacao | float | nota mínima de redação exigida pela faculdade |
-| [minimum_grades] humanas | float | nota mínima de humanas exigida pela faculdade |
-| [minimum_grades] natureza | float | nota mínima de natureza exigida pela faculdade |
-| [minimum_grades] linguagens | float | nota mínima de linguagens exigida pela faculdade |
-| [minimum_grades] matematica | float | nota mínima de matemática exigida pela faculdade |
-| status | string | situação do exame de enem entre `active` e `inactive` |
+| id | number | Id do exame de enem |
+| course_skus | array | Cursos que usam como entrada esse exame de enem |
+| minimum_grades | object | Objeto com informações de nota mínima exigida pela faculdade |
+| [minimum_grades] redacao | float | Nota mínima de redação exigida pela faculdade |
+| [minimum_grades] humanas | float | Nota mínima de humanas exigida pela faculdade |
+| [minimum_grades] natureza | float | Nota mínima de natureza exigida pela faculdade |
+| [minimum_grades] linguagens | float | Nota mínima de linguagens exigida pela faculdade |
+| [minimum_grades] matematica | float | Nota mínima de matemática exigida pela faculdade |
+| status | string | Situação do exame de enem entre `active` e `inactive` |
 
 ## Suspender um exame de Enem inteiro
 
@@ -2184,8 +2325,8 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
 ```json
 {
   "error": true,
-  "message": "ID not found",
-  "description": "Could not find any enem exam by given ID."
+  "message": "id not found",
+  "description": "Could not find any enem exam by given id."
 }
 ```
 
@@ -2195,22 +2336,22 @@ Suspende um exame de Enem específico.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do exame de enem |
-| status | string | situação do exame de enem |
+| id | number | Id do exame de enem |
+| status | string | Situação do exame de enem |
 
 ### Informações do resultado
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| id | number | id do exame de enem |
-| course_skus | array | cursos que usam como entrada esse exame de enem |
-| minimum_grades | object | objeto com informações de nota mínima exigida pela faculdade |
-| [minimum_grades] redacao | float | nota mínima de redação exigida pela faculdade |
-| [minimum_grades] humanas | float | nota mínima de humanas exigida pela faculdade |
-| [minimum_grades] natureza | float | nota mínima de natureza exigida pela faculdade |
-| [minimum_grades] linguagens | float | nota mínima de linguagens exigida pela faculdade |
-| [minimum_grades] matematica | float | nota mínima de matemática exigida pela faculdade |
-| status | string | situação do exame de enem entre `active` e `inactive` |
+| id | number | Id do exame de enem |
+| course_skus | array | Cursos que usam como entrada esse exame de enem |
+| minimum_grades | object | Objeto com informações de nota mínima exigida pela faculdade |
+| [minimum_grades] redacao | float | Nota mínima de redação exigida pela faculdade |
+| [minimum_grades] humanas | float | Nota mínima de humanas exigida pela faculdade |
+| [minimum_grades] natureza | float | Nota mínima de natureza exigida pela faculdade |
+| [minimum_grades] linguagens | float | Nota mínima de linguagens exigida pela faculdade |
+| [minimum_grades] matematica | float | Nota mínima de matemática exigida pela faculdade |
+| status | string | Situação do exame de enem entre `active` e `inactive` |
 
 ## Suspender um exame de Enem parcialmente
 
@@ -2248,13 +2389,13 @@ Suspende um exame de Enem específico.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| *.json | json | id do exame de enem |
+| *.json | json | Id do exame de enem |
 
 ### Informações dos argumentos
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| course_skus | array | cursos que usam como entrada esse exame de enem |
+| course_skus | array | Cursos que usam como entrada esse exame de enem |
 
 # Notificações
 
@@ -2270,9 +2411,9 @@ Estrutura base das notificações:
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| created | string | data que foi criado o evento (timestamp UTC)
-| api_version | string | informação da versão atual da API
-| event_type | string | tipo de evento |
+| created | string | Data que foi criado o evento (timestamp UTC) |
+| api_version | string | Informação da versão atual da API |
+| event_type | string | Tipo de evento |
 | data | object | Objeto com informações de acordo com o tipo de evento |
 
 ## Notificar novo processo de admissão
@@ -2318,28 +2459,28 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| created | string | data que foi criado o evento (timestamp UTC)
-| api_version | string | informação da versão atual da API
-| event_type | string | tipo de evento, no caso `NewAdmission` |
-| data | object | objeto com informações de acordo com o tipo de evento |
-| admission | object | objeto com dados do processo de admissão do aluno |
-| [admission] id | number | id do processo de admissão |
-| [admission] course_sku | string | código do curso referente a essa matrícula |
-| [admission] status | string | status da admissão do aluno |
-| [admission] student | object | objeto com dados do aluno |
-| [student] id | number | id do aluno |
-| [student] name | string | nome do aluno |
-| [student] cpf | string | cpf do aluno |
-| [student] birth_date | string | data de nascimento do aluno |
-| [student] emails | array de string | lista de emails do aluno |
-| [student] phones | array de string | lista de telefones do aluno |
-| [student] address_information | object | objeto com dados onde aluno reside |
-| [address_information] address | string | endereço onde aluno reside |
-| [address_information] number | string | número onde aluno reside |
-| [address_information] neighborhood | string | bairro onde aluno reside |
-| [address_information] city | string | cidade onde aluno reside |
-| [address_information] state | string | estado onde aluno reside |
-| [address_information] postal_code | string | código postal onde aluno reside |
+| created | string | Data que foi criado o evento (timestamp UTC) |
+| api_version | string | Informação da versão atual da API |
+| event_type | string | Tipo de evento, no caso `NewAdmission` |
+| data | object | Objeto com informações de acordo com o tipo de evento |
+| admission | object | Objeto com dados do processo de admissão do aluno |
+| [admission] id | number | Id do processo de admissão |
+| [admission] course_sku | string | Código do curso referente a essa matrícula |
+| [admission] status | string | Status da admissão do aluno |
+| [admission] student | object | Objeto com dados do aluno |
+| [student] id | number | Id do aluno |
+| [student] name | string | Nome do aluno |
+| [student] cpf | string | CPF do aluno |
+| [student] birth_date | string | Data de nascimento do aluno |
+| [student] emails | array de string | Lista de emails do aluno |
+| [student] phones | array de string | Lista de telefones do aluno |
+| [student] address_information | object | Objeto com dados onde aluno reside |
+| [address_information] address | string | Endereço onde aluno reside |
+| [address_information] number | string | Número onde aluno reside |
+| [address_information] neighborhood | string | Bairro onde aluno reside |
+| [address_information] city | string | Cidade onde aluno reside |
+| [address_information] state | string | Estado onde aluno reside |
+| [address_information] postal_code | string | Código postal onde aluno reside |
 
 ### Significado dos valores em status
 
@@ -2416,46 +2557,46 @@ Esta notificação informando uma nova inscrição para exame via vestibular.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| created | string | data que foi criado o evento (timestamp UTC)
-| api_version | string | informação da versão atual da API
-| event_type | string | tipo de evento, no caso `NewApplication` |
-| data | object | objeto com informações de acordo com o tipo de evento |
-| application | object | objeto com informações do vestibular |
-| [application] id | number | id da inscrição para exame |
-| [application] type | string | tipo de exame vestibular (_neste evento o valor sempre será `exam`_) |
-| [application] admission | object | objeto com dados do processo de admissão do aluno |
-| [admission] id | number | id do processo de admissão |
-| [admission] course_sku | string | código do curso referente a essa matrícula |
-| [admission] status | string | status da admissão do aluno (_neste evento o valor sempre será `pre-registered`_) |
-| [admission] student | object | objeto com dados do aluno |
-| [student] id | number | id do aluno |
-| [student] name | string | nome do aluno |
-| [student] cpf | string | cpf do aluno |
-| [student] birth_date | string | data de nascimento do aluno |
-| [student] emails | array de string | lista de emails do aluno |
-| [student] phones | array de string | lista de telefones do aluno |
-| [student] address_information | object | objeto com dados onde aluno reside |
-| [address_information] address | string | endereço onde aluno reside |
-| [address_information] number | string | número onde aluno reside |
-| [address_information] neighborhood | string | bairro onde aluno reside |
-| [address_information] city | string | cidade onde aluno reside |
-| [address_information] state | string | estado onde aluno reside |
-| [address_information] postal_code | string | código postal onde aluno reside |
-| [application] exam | object | objeto com informações do exame vestibular|
-| [exam] id | number | id do exame vestibular |
-| [exam] exam_group_id | number | id referente ao grupo de exame pertencente |
-| [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
-| [exam] exam_location | object | objeto com dados do exame vestibular|
-| [exam_location] address | string | endereço da localização do exame vestibular |
-| [exam_location] number | string | número da localização do exame vestibular |
-| [exam_location] neighborhood | string | bairro da localização do exame vestibular |
-| [exam_location] city | string | cidade da localização do exame vestibular |
-| [exam_location] state | string | estado da localização do exame vestibular |
-| [exam_location] postal_code | string | código postal da localização do exame vestibular |
-| [exam] date | string | data da realização do exame vestibular |
-| [exam] time | string | hora da realização do exame vestibular |
-| [exam] status | string | status do exame vestibular |
-| [application] result | string | resultado do exame vestibular (_neste evento o valor sempre será `null`_) |
+| created | string | Data que foi criado o evento (timestamp UTC) |
+| api_version | string | Informação da versão atual da API |
+| event_type | string | Tipo de evento, no caso `NewApplication` |
+| data | object | Objeto com informações de acordo com o tipo de evento |
+| application | object | Objeto com informações do vestibular |
+| [application] id | number | Id da inscrição para exame |
+| [application] type | string | Tipo de exame vestibular (_neste evento o valor sempre será `exam`_) |
+| [application] admission | object | Objeto com dados do processo de admissão do aluno |
+| [admission] id | number | Id do processo de admissão |
+| [admission] course_sku | string | Código do curso referente a essa matrícula |
+| [admission] status | string | Status da admissão do aluno (_neste evento o valor sempre será `pre-registered`_) |
+| [admission] student | object | Objeto com dados do aluno |
+| [student] id | number | Id do aluno |
+| [student] name | string | Nome do aluno |
+| [student] cpf | string | CPF do aluno |
+| [student] birth_date | string | Data de nascimento do aluno |
+| [student] emails | array de string | Lista de emails do aluno |
+| [student] phones | array de string | Lista de telefones do aluno |
+| [student] address_information | object | Objeto com dados onde aluno reside |
+| [address_information] address | string | Endereço onde aluno reside |
+| [address_information] number | string | Número onde aluno reside |
+| [address_information] neighborhood | string | Bairro onde aluno reside |
+| [address_information] city | string | Cidade onde aluno reside |
+| [address_information] state | string | Estado onde aluno reside |
+| [address_information] postal_code | string | Código postal onde aluno reside |
+| [application] exam | object | Objeto com informações do exame vestibular|
+| [exam] id | number | Id do exame vestibular |
+| [exam] exam_group_id | number | Id referente ao grupo de exame pertencente |
+| [exam] course_skus | array | Lista com os cursos pertencentes a este exame vestibular |
+| [exam] exam_location | object | Objeto com dados do exame vestibular|
+| [exam_location] address | string | Endereço da localização do exame vestibular |
+| [exam_location] number | string | Número da localização do exame vestibular |
+| [exam_location] neighborhood | string | Bairro da localização do exame vestibular |
+| [exam_location] city | string | Cidade da localização do exame vestibular |
+| [exam_location] state | string | Estado da localização do exame vestibular |
+| [exam_location] postal_code | string | Código postal da localização do exame vestibular |
+| [exam] date | string | Data da realização do exame vestibular |
+| [exam] time | string | Hora da realização do exame vestibular |
+| [exam] status | string | Status do exame vestibular |
+| [application] result | string | Resultado do exame vestibular (_neste evento o valor sempre será `null`_) |
 
 ## Nova "inscrição para exame" (ENEM)
 
@@ -2531,50 +2672,50 @@ Esta notificação informa uma nova inscrição para exame via ENEM.
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| created | string | data que foi criado o evento (timestamp UTC)
-| api_version | string | informação da versão atual da API
-| event_type | string | tipo de evento, no caso `NewApplication` |
-| data | object | objeto com informações de acordo com o tipo de evento |
-| application | object | objeto com informações do vestibular |
-| [application] id | number | id da inscrição para exame |
-| [application] type | string | tipo de exame vestibular (_neste evento o valor sempre será `enem`_) |
-| [application] admission | object | objeto com dados do processo de admissão do aluno |
-| [admission] id | number | id do processo de admissão |
-| [admission] course_sku | string | código do curso referente a essa matrícula |
-| [admission] status | string | status da admissão do aluno (_neste evento o valor sempre será `pre-registered`_) |
-| [admission] student | object | objeto com dados do aluno |
-| [student] id | number | id do aluno |
-| [student] name | string | nome do aluno |
-| [student] cpf | string | cpf do aluno |
-| [student] birth_date | string | data de nascimento do aluno |
-| [student] emails | array de string | lista de emails do aluno |
-| [student] phones | array de string | lista de telefones do aluno |
-| [student] address_information | object | objeto com dados onde aluno reside |
-| [address_information] address | string | endereço onde aluno reside |
-| [address_information] number | string | número onde aluno reside |
-| [address_information] neighborhood | string | bairro onde aluno reside |
-| [address_information] city | string | cidade onde aluno reside |
-| [address_information] state | string | estado onde aluno reside |
-| [address_information] postal_code | string | código postal onde aluno reside |
-| [application] exam_application_info | object | objeto com informações da grade de notas obtida pelo aluno no enem |
-| [exam_application_info] grades | object | objeto com informações de notas obtida pelo aluno no enem |
-| [grades] redacao | float | nota obtida pelo aluno na redação |
-| [grades] humanas | float | nota obtida pelo aluno em humanas |
-| [grades] natureza | float | nota obtida pelo aluno em natureza |
-| [grades] linguagens | float | nota obtida pelo aluno em linguagens |
-| [grades] matematica | float | nota obtida pelo aluno em matemática |
-| [application] exam | object | objeto com informações do exame vestibular|
-| [exam] id | number | id do exame vestibular |
-| [exam] exam_group_id | number | id referente ao grupo de exame pertencente |
-| [exam] course_skus | array | lista com os cursos pertencentes a este exame vestibular |
-| [exam] minimum_grades | object | objeto com informações de nota mínima exigida pela faculdade |
-| [minimum_grades] redacao | float | nota mínima de redação exigida pela faculdade |
-| [minimum_grades] humanas | float | nota mínima de humanas exigida pela faculdade |
-| [minimum_grades] natureza | float | nota mínima de natureza exigida pela faculdade |
-| [minimum_grades] linguagens | float | nota mínima de linguagens exigida pela faculdade |
-| [minimum_grades] matematica | float | nota mínima de matemática exigida pela faculdade |
-| [exam] status | string | status do exame vestibular |
-| [application] result | string | resultado do exame vestibular (_neste evento o valor sempre será `null`_) |
+| created | string | Data que foi criado o evento (timestamp UTC) |
+| api_version | string | Informação da versão atual da API |
+| event_type | string | Tipo de evento, no caso `NewApplication` |
+| data | object | Objeto com informações de acordo com o tipo de evento |
+| application | object | Objeto com informações do vestibular |
+| [application] id | number | Id da inscrição para exame |
+| [application] type | string | Tipo de exame vestibular (_neste evento o valor sempre será `enem`_) |
+| [application] admission | object | Objeto com dados do processo de admissão do aluno |
+| [admission] id | number | Id do processo de admissão |
+| [admission] course_sku | string | Código do curso referente a essa matrícula |
+| [admission] status | string | Status da admissão do aluno (_neste evento o valor sempre será `pre-registered`_) |
+| [admission] student | object | Objeto com dados do aluno |
+| [student] id | number | Id do aluno |
+| [student] name | string | Nome do aluno |
+| [student] cpf | string | CPF do aluno |
+| [student] birth_date | string | Data de nascimento do aluno |
+| [student] emails | array de string | Lista de emails do aluno |
+| [student] phones | array de string | Lista de telefones do aluno |
+| [student] address_information | object | Objeto com dados onde aluno reside |
+| [address_information] address | string | Endereço onde aluno reside |
+| [address_information] number | string | Número onde aluno reside |
+| [address_information] neighborhood | string | Bairro onde aluno reside |
+| [address_information] city | string | Cidade onde aluno reside |
+| [address_information] state | string | Estado onde aluno reside |
+| [address_information] postal_code | string | Código postal onde aluno reside |
+| [application] exam_application_info | object | Objeto com informações da grade de notas obtida pelo aluno no enem |
+| [exam_application_info] grades | object | Objeto com informações de notas obtida pelo aluno no enem |
+| [grades] redacao | float | Nota obtida pelo aluno na redação |
+| [grades] humanas | float | Nota obtida pelo aluno em humanas |
+| [grades] natureza | float | Nota obtida pelo aluno em natureza |
+| [grades] linguagens | float | Nota obtida pelo aluno em linguagens |
+| [grades] matematica | float | Nota obtida pelo aluno em matemática |
+| [application] exam | object | Objeto com informações do exame vestibular|
+| [exam] id | number | Id do exame vestibular |
+| [exam] exam_group_id | number | Id referente ao grupo de exame pertencente |
+| [exam] course_skus | array | Lista com os cursos pertencentes a este exame vestibular |
+| [exam] minimum_grades | object | Objeto com informações de nota mínima exigida pela faculdade |
+| [minimum_grades] redacao | float | Nota mínima de redação exigida pela faculdade |
+| [minimum_grades] humanas | float | Nota mínima de humanas exigida pela faculdade |
+| [minimum_grades] natureza | float | Nota mínima de natureza exigida pela faculdade |
+| [minimum_grades] linguagens | float | Nota mínima de linguagens exigida pela faculdade |
+| [minimum_grades] matematica | float | Nota mínima de matemática exigida pela faculdade |
+| [exam] status | string | Status do exame vestibular |
+| [application] result | string | Resultado do exame vestibular (_neste evento o valor sempre será `null`_) |
 
 ## Listagem de notificações
 
