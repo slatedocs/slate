@@ -44,8 +44,11 @@ RestClient::Request.new(
     "source": "Self Reported",
     "concept_id": "64",
     "snomed": "267102003",
-    "icd10": "R07.0"
-    }
+    "icd10": "R07.0",
+    "date_reported": "2017-11-13T15:47:40.000-05:00",
+    "last_updated_date": "2017-11-13T15:47:40.000-05:00",
+    "active": true
+  }
 }
 ```
 

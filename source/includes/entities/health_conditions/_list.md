@@ -30,7 +30,7 @@ RestClient::Request.new(
         "id": 19,
         "condition": "Headaches",
         "source": "Self Reported",
-        "concept_id": "128"
+        "concept_id": "128",
         "snomed": "25064002",
         "icd10": "R51",
         "date_reported": "2017-01-26T09:45:28.000-05:00",
@@ -44,7 +44,7 @@ RestClient::Request.new(
         "id": 28,
         "condition": "Alcohol Dependence",
         "source": "Call Center",
-        "concept_id": null
+        "concept_id": null,
         "snomed": null,
         "icd10": "F10.20",
         "date_reported": "2017-11-13T15:47:40.000-05:00",
@@ -73,7 +73,7 @@ RestClient::Request.new(
     "is_pregnant": false,
     "is_breast_feeding": false,
     "systolic_bp": null,
-    "diastolic_P": null,
+    "diastolic_bp": null,
     "head_circumference": null,
     "updated_by": 52,
     "menstrual_cycle": "two weeks",

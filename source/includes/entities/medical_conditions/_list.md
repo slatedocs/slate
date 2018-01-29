@@ -29,7 +29,10 @@ RestClient::Request.new(
         "source":"Self Reported",
         "concept_id": "526",
         "snomed": "306058006",
-        "icd10": "D61.9"
+        "icd10": "D61.9",
+        "date_reported": "2017-11-18T12:45:28.000-05:00",
+        "last_updated_date": "2017-11-18T12:45:28.000-05:00",
+        "active": true
       }
     },
     {
@@ -40,7 +43,10 @@ RestClient::Request.new(
         "source":"Dr Jane Doe",
         "concept_id": "3488",
         "snomed": "195967001",
-        "icd10": "J45.909"
+        "icd10": "J45.909",
+        "date_reported": "2017-11-13T15:47:40.000-05:00",
+        "last_updated_date": "2017-11-13T15:47:40.000-05:00",
+        "active": true
       }
     }
   ]
