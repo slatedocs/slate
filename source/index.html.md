@@ -97,7 +97,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "pending_docs",
       "student": { ... },
       "applications": [ {...} ],
-      "created_at": "01/10/2016"
+      "created_at": "2016-10-01T03:15Z"
     },
     ...,
     {
@@ -106,7 +106,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "pre_registered",
       "student": { ... },
       "applications": [ {...} ],
-      "created_at": "15/10/2016"
+      "created_at": "2016-10-15T03:15Z"
     }
   ]
 }
@@ -152,7 +152,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "pending_docs",
       "student": { ... },
       "applications": [ {...} ],
-      "created_at": "16/10/2016"
+      "created_at": "2016-10-16T03:15Z"
     },
     ...,
     {
@@ -161,7 +161,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "pre_registered",
       "student": { ... },
       "applications": [ {...} ],
-      "created_at": "20/10/2016"
+      "created_at": "2016-10-20T03:15Z"
     }
   ]
 }
@@ -205,7 +205,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "pending_docs",
       "student": { ... },
       "applications": [ {...} ],
-      "created_at": "01/10/2016"
+      "created_at": "2016-10-01T03:15Z"
     },
     ...,
     {
@@ -214,7 +214,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "pre_registered",
       "student": { ... },
       "applications": [ {...} ],
-      "created_at": "15/10/2016"
+      "created_at": "2016-10-15T03:15Z"
     }
   ]
 }
@@ -258,7 +258,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "pre_registered",
       "student": { ... },
       "applications": [ {...} ],
-      "created_at": "15/10/2016"
+      "created_at": "2016-10-15T03:15Z"
     },
     ...,
     {
@@ -267,13 +267,13 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "pre_registered",
       "student": { ... },
       "applications": [ {...} ],
-      "created_at": "20/10/2016"
+      "created_at": "2016-10-20T03:15Z"
     }
   ]
 }
 ```
 
-É possível listar os elementos baseado na data de criação. Usando o parâmetro `start_date`, apenas os elementos criados após esta data serão listados. Esse filtro poderá ser verificado pelo atributo `created_at` da lista `items`. Esse parâmetro deve estar no formato `dd/mm/aaaa`.
+É possível listar os elementos baseado na data de criação. Usando o parâmetro `start_date`, apenas os elementos criados após esta data serão listados. O parâmetro deve estar no formato `dd/mm/aaaa`. Esse filtro poderá ser verificado pelo atributo `created_at` da lista `items`, que segue o formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601).
 
 ### Parâmetros de paginação
 
@@ -311,7 +311,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "pending_docs",
       "student": { ... },
       "applications": [ {...} ],
-      "created_at": "01/10/2016"
+      "created_at": "2016-10-01T03:15Z"
     },
     ...,
     {
@@ -320,13 +320,13 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "pre_registered",
       "student": { ... },
       "applications": [ {...} ],
-      "created_at": "15/10/2016"
+      "created_at": "2016-10-15T03:15Z"
     }
   ]
 }
 ```
 
-É possível listar os elementos baseado na data de criação. Usando o parâmetro `end_date`, apenas os elementos criados antes dessa data serão listados. Esse filtro poderá ser verificado pelo atributo `created_at` da lista `items`. Esse parâmetro deve estar no formato `dd/mm/aaaa`.
+É possível listar os elementos baseado na data de criação. Usando o parâmetro `end_date`, apenas os elementos criados antes dessa data serão listados. O parâmetro deve estar no formato `dd/mm/aaaa`. Esse filtro poderá ser verificado pelo atributo `created_at` da lista `items`, que segue o formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601).
 
 ### Parâmetros de paginação
 
@@ -382,7 +382,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
         "id": 12345,
         "course_sku": "ADM-NOITE-EAD",
         "status": "pending_docs",
-        "created_at": "01/10/2016"
+        "created_at": "2016-10-01T03:15Z"
       }
     ]
   }
@@ -483,7 +483,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "id": 12345,
       "course_sku": "ADM-NOITE-EAD",
       "status": "pending_docs",
-      "created_at": "01/10/2016"
+      "created_at": "2016-10-01T03:15Z"
     }
   ]
 }
@@ -607,13 +607,13 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
             "dates": "2016-11-01",
             "times": "18:30",
             "status": "active",
-            "created_at": "01/10/2016"
+            "created_at": "2016-10-01T03:15Z"
           },
           "result": "approved",
-          "created_at": "01/10/2016"
+          "created_at": "2016-10-01T03:15Z"
         }
       ],
-      "created_at": "01/10/2016"
+      "created_at": "2016-10-01T03:15Z"
     }
   ]
 }
@@ -757,13 +757,13 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
         "dates": "2016-11-01",
         "times": "18:30",
         "status": "active",
-        "created_at": "01/10/2016"
+        "created_at": "2016-10-01T03:15Z"
       },
       "result": "approved",
-      "created_at": "01/10/2016"
+      "created_at": "2016-10-01T03:15Z"
     }
   ],
-  "created_at": "01/10/2016"
+  "created_at": "2016-10-01T03:15Z"
 }
 ```
 
@@ -910,13 +910,13 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
         "dates": "2016-11-01",
         "times": "18:30",
         "status": "active",
-        "created_at": "01/10/2016"
+        "created_at": "2016-10-01T03:15Z"
       },
       "result": "approved",
-      "created_at": "01/10/2016"
+      "created_at": "2016-10-01T03:15Z"
     }
   ],
-  "created_at": "01/10/2016"
+  "created_at": "2016-10-01T03:15Z"
 }
 ```
 
