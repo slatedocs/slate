@@ -43,6 +43,7 @@ die () {
 build () {
   cd $BASEDIR
 
+  bundle install
   bundle exec middleman build --clean 
 }
 
