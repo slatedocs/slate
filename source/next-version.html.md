@@ -1218,14 +1218,6 @@ None.
 
 ##/api/member/metadata
 
-**Description**
-
-Enters the meta description of the current user.
-
-
-**Input Parameters**
-
-None.
 
 ```
 
@@ -1238,21 +1230,16 @@ Example Response
 
 
 ```
-
-##/api/v1/members/me
-
-
 **Description**
 
-Returns the current user
+Enters the meta description of the current user.
 
 
 **Input Parameters**
 
-| Name | Data Type | Description|
-|--|--|--|
-|story-id| string| The desired story ID|
+None.
 
+##/api/v1/members/me
 
 ```
 
@@ -1264,6 +1251,17 @@ Example Response
 
 
 ```
+**Description**
+
+Returns the current user
+
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|story-id| string| The desired story ID|
+
 
 ##/api/member/forgot-password
 
