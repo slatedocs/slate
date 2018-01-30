@@ -1,0 +1,78 @@
+#!/bin/bash
+
+set -e
+
+RELATIVE_DIR=`dirname $0`
+
+if uname -s | grep -q Darwin; then
+  BASEDIR=`greadlink -f $RELATIVE_DIR/..`;
+else
+  BASEDIR=`readlink -f $RELATIVE_DIR/..`;
+fi
+
+cd $BASEDIR
+
+# Pull our args off the command line so they aren't there when we source our settings.
+ACTION=$1; shift
+
+NET=`hostname -f | awk -F. '{print $2}'`
+case "$NET" in
+  ire)
+    ENV='ire'
+    ;;
+  aws)
+    ENV='aws'
+    ;;
+  stg)
+    ENV='stg'
+    ;;
+  hq)
+    ENV='prod'
+    ;;
+  *)
+    ENV='dev'
+    ;;
+esac
+
+die () {
+    echo "$*" 1>&2
+    exit 1
+}
+
+
+build () {
+  cd $BASEDIR
+
+  bundle exec middleman build --clean 
+}
+
+start_app () {
+  service slate start
+}
+
+stop_app () {
+  service slate stop
+}
+
+restart_app () {
+  service slate restart
+}
+
+# Do our stuff.
+case "$ACTION" in
+  start)
+    start_app
+    ;;
+  stop)
+    stop_app
+    ;;
+  restart)
+    restart_app
+    ;;
+  deploy)
+    build
+    ;;
+  *)
+    exit 1
+    ;;
+esac
