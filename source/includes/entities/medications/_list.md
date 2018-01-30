@@ -1,18 +1,20 @@
 ## Medications - List
 
 ```shell
-curl -X GET {server_url}/api/v1/patients/{id}/medications
--H "Content-type: application/json"
--H "Authorization: Bearer 34a2sample-user-token"
+curl -X GET {server_url}/api/v1/patients/{patient_id}/medications \
+  -H 'Authorization: Bearer {jwt_token}' \
+  -H 'Content-type: application/json' \
+  -H 'Accept: application/json' \
 ```
 
 ```ruby
 RestClient::Request.new(
   :method => :get,
-  :url => "{server_url}/api/v1/patients/{id}/medications",
+  :url => "{server_url}/api/v1/patients/{patient_id}/medications",
   :headers => {
-    "Content-type" => "application/json",
-    "Authorization" => "Bearer 34a2sample-user-token"
+    'Authorization' => 'Bearer {jwt_token}',
+    'Content-type' => 'application/json',
+    'Accept' => 'application/json'
   }
 ).execute
 ```
@@ -24,7 +26,7 @@ RestClient::Request.new(
   "medications": [
     {
       "id":2,
-      "name": "pencillan",
+      "name": "penicillin",
       "dosage": "1",
       "frequency": "Once Daily",
       "quantity":1,
@@ -40,7 +42,7 @@ To retrieve the list of patient's current active medications, make a request to:
 
 ### HTTP Request
 
-`GET {server_url}/api/v1/patients/{id}/medications`
+`GET {server_url}/api/v1/patients/{patient_id}/medications`
 
 This request must include a valid User JWT token, please see our [documentation](#user-tokens).
 
@@ -50,12 +52,4 @@ This request must include a valid User JWT token, please see our [documentation]
 Parameter    | Default
 ---------    | -------
 Content-type | application/json
-Authorization| Bearer example.jwttoken
-
-
-### Response codes
-
-HTTP Status Code | Reason
----------------- | ------
-200              | Successful operation
-422              | Not authorized or invalid token data
+Authorization| Bearer {jwt_token}

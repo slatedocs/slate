@@ -1,32 +1,34 @@
 ## Medications - Create
 
 ```shell
-curl -X POST {server_url}/api/v1/patients/{id}/medications
--H "Content-type: application/json"
--H "Authorization: Bearer 34a2sample-user-token"
--d '{
-  "medication": {
-    "name": "Hydrocortisone Ace (Topical)",
-    "current": true,
-    "dosage": "Aereosol",
-    "frequency": "twice daily"
-  }
-}'
+curl -X POST {server_url}/api/v2/patients/{patient_id}/medications \
+  -H "Content-type: application/json" \
+  -H "Authorization: Bearer {jwt_token}" \
+  -H 'Accept: application/json' \
+  -d '{
+    "medication": {
+      "name": "Hydrocortisone Ace (Topical)",
+      "current": true,
+      "dosage": "Aerosol",
+      "frequency": "twice daily"
+    }
+  }'
 ```
 
 ```ruby
 RestClient::Request.new(
   :method => :post,
-  :url => "{server_url}/api/v1/patients/{id}/medications",
+  :url => "{server_url}/api/v2/patients/{patient_id}/medications",
   :headers => {
-    "Content-type" => "application/json",
-    "Authorization" => "Bearer 34a2sample-user-token"
+    'Authorization' => 'Bearer {jwt_token}',
+    'Content-type' => 'application/json',
+    'Accept'  => 'application/json'
   },
   :payload => {
     medication: {
       name: "Hydrocortisone Ace (Topical)",
       current: true,
-      dosage: "Aereosol",
+      dosage: "Aerosol",
       frequency: "twice daily"
     }
   }
@@ -37,37 +39,15 @@ RestClient::Request.new(
 
 ```json
 {
-  "id": 4,
-  "user_id": 62,
-  "name": "Hydrocortisone Ace (Topical)",
-  "dosage": "Aereosol",
-  "start_date": null,
-  "ndc": null,
-  "prescriber": null,
-  "stop_date": null,
-  "prescription_date": null,
-  "form": null,
-  "dose": null,
-  "route": null,
-  "frequency": "twice daily",
-  "active": true,
-  "created_at": "2018-01-08T12:27:25.688-05:00",
-  "updated_at": "2018-01-08T12:27:25.688-05:00",
-  "origin": null,
-  "notes": null,
-  "cui": null,
-  "session_guid": null,
-  "deleted": "N",
-  "source": "Self Reported",
-  "current_condition": true,
-  "updated_by": null,
-  "new_crop_medication_id": null,
-  "prescription_id": null,
-  "quantity": 1,
-  "status": "Active",
-  "dc_reason": null,
-  "discontinued_date": null,
-  "last_updated_at": "01/08/2018"
+  "medication": {
+    "id": 29,
+    "name": "Hydrocortisone Ace (Topical)",
+    "dosage": "Aerosol",
+    "frequency": "twice daily",
+    "quantity": 1,
+    "source": "Self Reported",
+    "current": true
+  }
 }
 ```
 
@@ -76,7 +56,7 @@ To add a medication to a patient, make a request to:
 
 ### HTTP Request
 
-`POST {server_url}/api/v1/patients/{id}/medications`
+`POST {server_url}/api/v1/patients/{patient_id}/medications`
 
 This request must include a valid User JWT token, please see our [documentation](#user-tokens).
 
@@ -88,23 +68,23 @@ Parameter    | Default
 Content-type | application/json
 Authorization| Bearer example.jwttoken
 
+The following parameters are required when creating a medication. To search for the medication and retrieve needed parameter values, reference [medications - search](#medications-search).
+
+
+### URL Parameters
+
+Attribute   | Required | Description
+------------|----------|----------------------
+patient_id  | true     | MDLIVE ID for patient
+
 
 ### Request Body
 
-Attribute   |           | Required | Description
------------ | ----------| -------- | -----------
-            | id        | true     | ID of the patient
-medication  |           | true     | Parent attribute for medication
-            | name      | true  | Name of the medication (string)
-            | current   | false | Permitted values are true, false
-            | dosage    | false | Dosage of the medication (string)
-            | frequency | false | Frequency of the medication (string)
-
-
-### Response codes
-
-HTTP Status Code | Reason
----------------- | ------
-200              | Successful operation
-400              | Missing or empty medication
-401              | Not authorized or invalid token data
+Attribute        | Required | Description
+---------------- | -------- | -----------
+medication       | true     | Parent attribute for medication
+↳&nbsp;name      | true     | Name of the medication (string)
+↳&nbsp;current   | false    | Permitted values are true, false
+↳&nbsp;dosage    | false    | Dosage of the medication (string)
+↳&nbsp;frequency | false    | Frequency of the medication (string)
+↳&nbsp;med_id    | false    | Unique ID of the medication
