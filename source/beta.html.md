@@ -122,8 +122,8 @@ O atributo `has_more` da resposta indica se há mais dados disponíveis depois d
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
-| start_date | string | Data para filtrar listagem de elementos. Lista apenas elementos criados após a data indicada |
-| end_date | string | Data para filtrar listagem de elementos. Lista apenas elementos criados antes da data indicada |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
 
 ### Informações de resultado de dados com paginação
 
@@ -175,8 +175,8 @@ No exemplo acima, vimos que `has_more` retornou `true`, portanto existem mais da
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
-| start_date | string | Data para filtrar listagem de elementos. Lista apenas elementos criados após a data indicada |
-| end_date | string | Data para filtrar listagem de elementos. Lista apenas elementos criados antes da data indicada |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
 
 ### Informações de resultado de dados com paginação
 
@@ -228,8 +228,8 @@ Assim como avançamos uma página, é possível facilmente retornar a dados ante
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
-| start_date | string | Data para filtrar listagem de elementos. Lista apenas elementos criados após a data indicada |
-| end_date | string | Data para filtrar listagem de elementos. Lista apenas elementos criados antes da data indicada |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
 
 ### Informações de resultado de dados com paginação
 
@@ -281,8 +281,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
-| start_date | string | Data para filtrar listagem de elementos. Lista apenas elementos criados após a data indicada |
-| end_date | string | Data para filtrar listagem de elementos. Lista apenas elementos criados antes da data indicada |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
 
 ### Informações de resultado de dados com paginação
 
@@ -334,8 +334,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
-| start_date | string | Data para filtrar listagem de elementos. Lista apenas elementos criados após a data indicada |
-| end_date | string | Data para filtrar listagem de elementos. Lista apenas elementos criados antes da data indicada |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
 
 ### Informações de resultado de dados com paginação
 
@@ -629,8 +629,8 @@ Admissões são retornadas em páginas de até 25 elementos, ordenadas pela últ
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
-| start_date | string | Data para filtrar listagem de elementos. Lista apenas elementos criados após a data indicada |
-| end_date | string | Data para filtrar listagem de elementos. Lista apenas elementos criados antes da data indicada |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
 
 ### Informações de resultado
 
@@ -1111,8 +1111,8 @@ Inscrições são retornadas em páginas de até 25 elementos, ordenadas pela ú
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
-| start_date | string | Data para filtrar listagem de elementos. Lista apenas elementos criados após a data indicada |
-| end_date | string | Data para filtrar listagem de elementos. Lista apenas elementos criados antes da data indicada |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
 
 ### Informações de resultado
 
@@ -1553,8 +1553,8 @@ Exames em lote são retornados em páginas de até 25 elementos, ordenadas pela 
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
-| start_date | string | Data para filtrar listagem de elementos. Lista apenas elementos criados após a data indicada |
-| end_date | string | Data para filtrar listagem de elementos. Lista apenas elementos criados antes da data indicada |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
 
 ### Informações de resultado
 
@@ -1947,8 +1947,8 @@ Exames são retornados em páginas de até 25 elementos, ordenadas pela última 
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
-| start_date | string | Data para filtrar listagem de elementos. Lista apenas elementos criados após a data indicada |
-| end_date | string | Data para filtrar listagem de elementos. Lista apenas elementos criados antes da data indicada |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
 
 ### Informações de resultado
 
@@ -2289,8 +2289,8 @@ Exames de ENEM são retornados em páginas de até 25 elementos, ordenadas pela 
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
-| start_date | string | Data para filtrar listagem de elementos. Lista apenas elementos criados após a data indicada |
-| end_date | string | Data para filtrar listagem de elementos. Lista apenas elementos criados antes da data indicada |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
 
 ### Informações de resultado
 
