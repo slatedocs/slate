@@ -11,11 +11,13 @@ Download the Android SDK
 ### Step 2 -  Add SDK to Project
 
 1) Open your application's build.gradle file and add the library into the dependencies section.
-```gradle
 
-`dependencies {
-   implementation 'com.android.support:appcompat-v7:26.1.0'
-}```
+```json
+
+dependencies {
+   implementation 'com.mdlive.mdlconnect:1.0.0'
+}
+```
 
 ## Video Appointment
 ### Initialize user variables
@@ -24,7 +26,7 @@ In order to initiate a video call, you will need to pass in the user's token and
 
 ```java
 
-`VideoConnectSettings videoConnectSettings = VideoConnectSettings.builder()
+VideoConnectSettings videoConnectSettings = VideoConnectSettings.builder()
                .mdliveApiToken("{API_TOKEN}")
                .userId({SUER_ID})
                .build();
