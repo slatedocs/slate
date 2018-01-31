@@ -4,7 +4,7 @@ Breaking news can be used to quickly push current events to users as they are ha
 
 ### Linking to another story
 
-The breaking news story can be linked to an existing story, or added later. Typically, clicking on the breaking news should take you to this story. The breaking news API will automatically fetch the latest headline and slug of the linked story.
+The breaking news story can be linked to an existing story, or added later. Clicking on the breaking news opens the story. The breaking news API automatically fetches the latest headline and slug of the linked story.
 
 ### Story Group
 

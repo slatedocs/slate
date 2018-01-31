@@ -23,9 +23,9 @@ search: true
 
 # API name
 
-## /api/v1/search/
-```
+## /api/v1/search
 
+```
 Example Request
 
 $ curl -X GET "http://sketches.quintype.com/api/v1/search?fields=headline%2C%20tags%2Cslug%2C%20last-published-at%2C&limit=5&q=Indian%20cricket" -H "Accept: application/json"
@@ -40,7 +40,7 @@ Example Response
       "total":45,
       "stories":[  
          {  
-            "headline":"L&T to build world\u2019s biggest cricket stadium at Motera",
+            "headline":"L&T to build world's biggest cricket stadium at Motera",
             "tags":[  
                {  
                   "id":275035,
@@ -82,25 +82,6 @@ Example Response
             "slug":"politics/2017/09/13/afghan-drama",
             "last-published-at":1505284207024
          },
-         {  
-            "headline":"Okuhara reigns at Glasgow",
-            "tags":[  
-               {  
-                  "id":496336,
-                  "name":"Sindhu",
-                  "meta-description":null,
-                  "slug":"sindhu"
-               },
-               {  
-                  "id":496337,
-                  "name":"Badminton",
-                  "meta-description":null,
-                  "slug":"badminton"
-               }
-            ],
-            "slug":"sports/2017/08/30/okuhara-reigns-at-glasgow",
-            "last-published-at":1508911796773
-         }
       ],
       "term":"Indian cricket"
    }
@@ -129,7 +110,7 @@ Returns a list of stories.
 
 
 
-## /api/v1/stories/
+## /api/v1/stories
 
 ```
 Example Request
@@ -145,9 +126,6 @@ Example Response
          "headline":"Dangal reviews: Aamir Khan gets a salute from all of Bollywood",
          "slug":"entertainment/2016/12/23/storyabcphoto",
          "last-published-at":1504268716413,
-         "alternative":{  
-
-         },
          "sections":[  
             {  
                "id":81,
@@ -168,7 +146,6 @@ Example Response
          },
          "published-at":1504268716413,
          "id":"01436fae-fb15-42e5-9b3b-e57b93de21f0",
-         "hero-image-s3-key":"quintype-demo/2016-12/f6c8408d-0d2d-46e8-8818-6c481f13365e/dangal.jpg",
          "author-id":5278,
          "first-published-at":1482482240320,
          "story-template":"photo",
@@ -183,9 +160,6 @@ Example Response
          "headline":"9/11 and the unsolvable Afghan drama",
          "slug":"politics/2017/09/13/afghan-drama",
          "last-published-at":1505284207024,
-         "alternative":{  
-
-         },
          "sections":[  
             {  
                "id":83,
@@ -218,7 +192,6 @@ Example Response
          },
          "published-at":1505284207024,
          "id":"8339b599-3eab-4428-9486-9139d28bb1ba",
-         "hero-image-s3-key":"quintype-demo/2016-07/1910bb30-b118-475c-aced-9304968c69c8/G-1.jpg",
          "author-id":61657,
          "first-published-at":1505284207024,
          "story-template":null,
@@ -253,68 +226,160 @@ Returns a list of stories and the story details, such as the author name and aut
 |randomize|string|Displays list of random stories. |
 |not-story-content-ids | string |The stories other than the mentioned story IDs. |
 
-## /api/v1/stories-by-slug/
+## /api/v1/stories-by-slug
 
 ```
 Example Request
 
-$ curl -X GET "http://sketches.quintype.com/api/v1/stories-by-slug?slug=columns/2017/12/05/what-we-do"  -H "Accept: application/json"
+$ curl -X GET "https://sketches.quintype.com/api/v1/stories-by-slug?slug=technology/2017/09/14/iphone-x-vs-samsung-galaxy-note-8"  -H "Accept: application/json"
 
 Example Response
 
 {  
    "story":{  
-      "updated-at":1512455351309,
-      "assignee-id":181082,
-      "author-name":"Mohan",
-      "headline":"What we do",
-      "story-content-id":"d0cd42fd-43dd-45b9-8f72-b0e8bfe5fed5",
-      "slug":"columns/2017/12/05/test-what-we-do",
-      "last-published-at":1512455358961,
-      "content-created-at":1512455051337,
-      "owner-name":"Mohan",
-      "publisher-id":78,
-      "published-at":1512455358961,
+      "seo":{  
+         "meta-description":"comparison between iphone X and galaxy s8",
+         "meta-title":"smartphone, apple vs samsung",
+         "meta-keywords":[  
+            "politics"
+         ],
+         "meta-google-news-standout":false,
+      },
+      "assignee-id":323432,
+      "author-name":"Vineet",
+      "tags":[  
+         {  
+            "id":257701,
+            "name":"iphone;",
+            "meta-description":null,
+            "slug":"iphone"
+         },
+         {  
+            "id":506781,
+            "name":"smartphone",
+            "meta-description":null,
+            "slug":"smartphone"
+         }
+      ],
+      "headline":"iPhone X vs Samsung Galaxy Note 8",
+      "storyline-id":null,
+      "votes":{},
+      "story-content-id":"ef91900e-2a7d-42c6-8ccc-fb75db2a4504",
+      "slug":"technology/2017/09/14/iphone-x-vs-samsung-galaxy-note-8",
+      "last-published-at":1512732026172,
+      "subheadline":"A battle for smartphone dominance",
+      "sections":[  
+         {  
+            "id":84,
+            "name":"Technology",
+            "display-name":null,
+            "slug":"technology",
+            "parent-id":null,
+            "collection":null
+         }
+      ],
+      "content-created-at":1505383805868,
+      "owner-name":"Vineet"      
+      "publisher-id":15,
+      "hero-image-metadata":{  
+         "width":616,
+         "height":347,
+         "mime-type":"image/jpeg",
+         "focus-point":[  
+            408,
+            232
+         ]
+      },
+      "published-at":1512732026172,
+      "is-live-blog":false,
+      "breaking-news-linked-story-id":null,
+      "summary":"Iphone vs Samsung",
       "status":"published",
+      "bullet-type":"123",
+      "id":"ef91900e-2a7d-42c6-8ccc-fb75db2a4504",
+      "hero-image-s3-key":"quintype-demo/2016-11/20d960e9-cbb4-46c0-a6cc-3819c326f766/pixelxl-iphone7plus-30.jpg",
       "cards":[  
          {  
             "story-elements":[  
                {  
                   "description":"",
-                  "page-url":"/story/d0cd42fd-43dd-45b9-8f72-b0e8bfe5fed5/element/8cce4630-31d7-4ea0-8950-82aad9c8d33a",
-                  "type":"text",
-                  "id":"8cce4630-31d7-4ea0-8950-82aad9c8d33a",
+                  "page-url":"/story/ef91900e-2a7d-42c6-8ccc-fb75db2a4504/element/690b7304-d875-484a-9850-33c9eb360537",
+                  "type":"youtube-video",
+                  "url":"https://www.youtube.com/watch?v=iGpVs3wFKF0#action=share",
+                  "embed-url":"https://www.youtube.com/embed/iGpVs3wFKF0#action=share",
                   "metadata":{  
-                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer feugiat nisi sed elementum egestas. Duis ut pretium neque. Mauris vestibulum suscipit purus vestibulum semper. Donec elementum augue sem. Sed id eros accumsan, elementum ipsum eu, mattis arcu. Vestibulum eget ipsum est. Proin dapibus ornare odio, eget placerat justo placerat eu."
+
                   },
-                  "subtype":"blurb",
-                  "text":"<blockquote>This is a note.</blockquote>",
+               {   
+                  "page-url":"/story/ef91900e-2a7d-42c6-8ccc-fb75db2a4504/element/f693466d-2c8f-49fa-9d10-d26ff4f05ae3",
+                  "type":"jsembed",
+                  "metadata":{  
+                     "tweet-url":"https://twitter.com/Apple/status/907700942715228160",
+                     "provider":"twitter",
+                     "tweet-id":"907700942715228160"
+                  },
+                  "subtype":"tweet"
+               }
+            ],
+            "status":"draft",
+            "id":"afce3ef4-1036-4c1f-9d0e-997cde4dda4d",
+            "content-id":"afce3ef4-1036-4c1f-9d0e-997cde4dda4d",
+            "version":4,
+         },
+         {  
+            "story-elements":[  
+               {  
+                  "description":"",
+                  "page-url":"/story/ef91900e-2a7d-42c6-8ccc-fb75db2a4504/element/a99de097-11b7-4de6-8c22-6ef5ea2f03c1",
+                  "type":"jsembed",
+                  "family-id":"7b056ac4-c226-4650-99a9-0b11ed354335",
+                  "title":"",
+                  "id":"a99de097-11b7-4de6-8c22-6ef5ea2f03c1",
 
                },
                {  
                   "description":"",
-                  "page-url":"/story/d0cd42fd-43dd-45b9-8f72-b0e8bfe5fed5/element/3aef7afc-83a3-42ae-b41a-efe2896c5a2f",
-                  "type":"text",
-                  "id":"3aef7afc-83a3-42ae-b41a-efe2896c5a2f",
-
+                  "page-url":"/story/ef91900e-2a7d-42c6-8ccc-fb75db2a4504/element/c5b14bcd-4be2-46d9-9f46-43ea4e6bd3ac",
+                  "type":"jsembed",
                },
-               "card-updated-at":1512455301695,
-               "content-version-id":"da0ed0a6-c26a-46cc-b185-8e2f3fe2f128",
-               "card-added-at":1512455301695,
-               "status":"draft",
-               "id":"de9aa0cf-0d3c-4fcf-86d6-4a25bac857fe",
-               "version":1,
-               "story-version-id":"e06cef66-0926-4652-9358-b7c27b5f44f3",
-               "content-type":"story",
-               "author-id":181082,
-               "version":4,
-               "created-at":1512455344038,
-               "assignee-name":"Mohan",
+               "subtype":"location"
+            }
+         ],
+         "status":"draft",
+         "id":"6e14e3ed-529f-4d53-a290-175691c955b2",
+         "content-id":"6e14e3ed-529f-4d53-a290-175691c955b2",
+         "version":2,
+         "metadata":{  
+            "social-share":{  
+               "shareable":true,
+               "title":"iPhone X vs Samsung Galaxy Note 8",
+               "message":"Iphone vs Samsung",
 
-            ]
+            }
          }
-      ]
-   }
+      }
+   ],
+   "story-version-id":"f8526a61-6264-4dca-a12b-0ca1d067ede2",
+   "content-type":"story",
+   "author-id":323432,
+   "owner-id":323432,
+   "version":16,
+   "story-template":"video",
+   "authors":[  
+      {  
+         "id":323432,
+         "name":"Vineet",
+         "slug":"vineet",
+
+      }
+   ],
+   "metadata":{  
+      "card-share":{  
+         "shareable":true
+      }
+   },
+
+}
 }
 
 ```
@@ -333,7 +398,9 @@ Returns the story having the mentioned slug. The output contains information suc
 
 ## /api/v1/stories/{story-id}
 ```
-curl -X GET "http://sketches.quintype.com/api/v1/stories/ef91900e-2a7d-42c6-8ccc-fb75db2a4504"  -H "Accept: application/json"
+Example Request
+
+$ curl -X GET "http://sketches.quintype.com/api/v1/stories/ef91900e-2a7d-42c6-8ccc-fb75db2a4504"  -H "Accept: application/json"
 
 Example Response
 
@@ -548,11 +615,11 @@ Returns the stories that are related to the mentioned story ID.
 |section-id |string | The section ID of a story|
 |fields| string | The parameters of a story, such as headline, slug, sections, author ID, and so on.|
 
-
+##/api/v1/bulk
 ```
 Exmaple Request
 
-curl 'http://sketches.quintype.com/api/v1/bulk' -H 'Content-Type: application/json' --data-binary '{"requests":{"sports":{"slug":"sports","limit":"4","_type":"collection"},"history":{"slug":"history","limit":"4","_type":"collection"}}}' --compressed;
+$ curl 'http://sketches.quintype.com/api/v1/bulk' -H 'Content-Type: application/json' --data-binary '{"requests":{"sports":{"slug":"sports","limit":"4","_type":"collection"},"history":{"slug":"history","limit":"4","_type":"collection"}}}' --compressed;
 
 Example Response
 
@@ -608,12 +675,16 @@ Example Response
 
 ```
 
-##/api/v1/bulk
+**Description**
+
+Sends a batch of API requests.
+
+## /api/v1/collections/{slug}
 
 ```
 Example Request
 
-$ curl -X GET "http://sketches.quintype.com/api/v1/collections/history-trails  -H "Accept: application/json"
+$ curl -X GET "http://sketches.quintype.com/api/v1/collections/featured-stories"  -H "Accept: application/json"
 
 Example Response
 
@@ -648,14 +719,23 @@ Example Response
 
 **Description**
 
-Send a batch of API requests.
+Returns the collection based on the slug.
 
-## /api/v1/collections/{slug}
 
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|slug| string| The slug for the desired collection|
+|item-type| string| Possible values are story and collection|
+|exclude-story-ids|integer| The story IDs to be excluded from displaying|
+
+
+## /api/v1/authors
 ```
 Example Request
 
-curl -X GET "http://sketches.quintype.com/api/v1/authors -H "Accept: application/json"
+$ curl -X GET "http://sketches.quintype.com/api/v1/authors" -H "Accept: application/json"
 
 Example Response
 
@@ -720,24 +800,19 @@ Example Response
 
 **Description**
 
-Returns the collection based on the slug.
-
+Returns the list of authors with the author name and author ID, along with details such as the author's biodata, gender, twitter handle and so on.
 
 **Input Parameters**
 
-| Name | Data Type | Description|
-|--|--|--|
-|slug| string| The slug for the desired collection|
-|item-type| string| Possible values are story and collection|
-|exclude-story-ids|integer| The story IDs to be excluded from displaying|
+None.
 
-## /api/v1/authors
+## /api/v1/authors/{author-id}
 
 ```
 
 Example Request
 
-curl -X GET "http://sketches.quintype.com/api/v1/authors/20294 -H "Accept: application/json"
+$ curl -X GET "http://sketches.quintype.com/api/v1/authors/20294 -H "Accept: application/json"
 
 Example Response
 {  
@@ -757,17 +832,7 @@ Example Response
 
 **Description**
 
-Returns the list of authors with the author name and author ID, along with details such as the author's biodata, gender, twitter handle and so on.
-
-**Input Parameters**
-
-None.
-
-## /api/v1/authors/{author-id}
-
-**Description**
-
-Returns the list of authors with the author name and author ID, along with details such as the author's biodata, gender, twitter handle and so on.
+Returns the author details with the specified author ID.
 
 **Input Parameters**
 
@@ -777,8 +842,7 @@ Returns the list of authors with the author name and author ID, along with detai
 
 
 
-## /api/v1/config
-
+## /api/v1/breaking-news
 
 ```
 Example Request
@@ -831,6 +895,15 @@ Example Response
 
 ```
 
+**Description**
+
+Returns the list of breaking news.
+
+**Input Parameters**
+
+None.
+
+##/api/v1/config
 
 **Description**
 
@@ -840,12 +913,12 @@ Displays the publisher's configurations, such as the publisher name and ID, SEO 
 
 None.
 
-## /api/v1/breaking-news
 
+##/api/v1/entities
 ```
 Example Request
 
-curl -X GET "http://sketches.quintype.com/api/v1/entities?limit=2&type=book" -H "Accept: application/json"
+$ curl -X GET "http://sketches.quintype.com/api/v1/entities?limit=2&type=book" -H "Accept: application/json"
 
 
 Example Response
@@ -884,19 +957,27 @@ Example Response
 
 **Description**
 
-Returns the list of breaking news.
+Lists all entities.
+
 
 **Input Parameters**
 
-None.
+| Name | Data Type | Description|
+|--|--|--|
+|q| string|  The search string, for example |
+|limit|integer|The number of stories to display. The default is 20. |
+|offset|integer|The distance from the start of the array of stories to the reference point in the array. |
+|id | integer| The ID of an entity|
+|ids| string | A list of entity IDs |
 
-##/api/v1/entities
+
+##/api/v1/entities/{id}
 
 ```
 
 Example Request
 
-curl -X GET "http://sketches.quintype.com/api/v1/entities/12" -H "Accept: application/json"
+$ curl -X GET "http://sketches.quintype.com/api/v1/entities/12" -H "Accept: application/json"
 
 
 Example Response
@@ -916,29 +997,28 @@ Example Response
 }
 
 ```
+
 **Description**
 
-Lists all entities.
+Lists the entity having the specified ID.
 
 
 **Input Parameters**
 
 | Name | Data Type | Description|
 |--|--|--|
-|q| string|  The search string, for example |
-|limit|integer|The number of stories to display. The default is 20. |
-|offset|integer|The distance from the start of the array of stories to the reference point in the array. |
-|id | integer| The ID of an entity|
-|ids| string | A list of entity IDs |
+| ID | integer| The entity ID|
 
-##/api/v1/entities/{id}
+
+##/api/v1/entities/{id}/{subentity+}
 
 ```
 
-The following request fetches the list of companies established in the year 2015. A relationship had been created between the entities (entity-type) `year` and `companies` 
+The following request fetches the list of companies established in the year 2015. A relationship had been created between the entities (entity-type) `year` and `companies`. 
 
 Example Request
-curl -X GET "http://sketches.quintype.com/api/v1/entities/15557/companies-established-year" -H "Accept: application/json"
+
+$ curl -X GET "http://sketches.quintype.com/api/v1/entities/15557/companies-established-year" -H "Accept: application/json"
 
 Example Response
 
@@ -981,29 +1061,6 @@ Example Response
 ``` 
 **Description**
 
-Lists the entity having the specified ID.
-
-
-**Input Parameters**
-
-| Name | Data Type | Description|
-|--|--|--|
-| ID | integer| The entity ID|
-
-
-##/api/v1/entities/{id}/{subentity+}
-
-
-```
-Example Request
-
-curl 'http://sketches.quintype.com/api/stories/8f9538f2-1972-4c7a-b1eb-7f8942dd0606/votes' -H 'Content-Type: application/json' --data-binary '{'magnitude': 'yes'}';
-
-
-```
-
-**Description**
-
 Lists the subentity details in relation to the entity ID.
 
 
@@ -1020,14 +1077,10 @@ Lists the subentity details in relation to the entity ID.
 ```
 Example Request
 
-curl -X GET "http://sketches.quintype.com/api/stories/8f9538f2-1972-4c7a-b1eb-7f8942dd0606/votes" -H "Accept: application/json"
-
-
-Example Response
-
-
+$ curl 'http://sketches.quintype.com/api/stories/8f9538f2-1972-4c7a-b1eb-7f8942dd0606/votes' -H 'Content-Type: application/json' --data-binary '{'magnitude': 'yes'}';
 
 ```
+
 
 **Description**
 
@@ -1043,9 +1096,36 @@ Example Response
 
 ##/api/stories/{story-id}/votes
 
+
 ```
 Example Request
-curl -X GET "http://sketches.quintype.com/stories.rss" -H "Accept: application/json"
+
+$ curl -X GET "http://sketches.quintype.com/api/stories/ef91900e-2a7d-42c6-8ccc-fb75db2a4504/votes" -H "Accept: application/json"
+
+
+Example Response
+
+
+
+```
+
+**Description**
+
+Fetches the total number of votes for the specified ID. Note that the user has to be logged in.
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|story-id | String| The story ID|
+
+
+##/stories.rss
+
+```
+Example Request
+
+$ curl -X GET "http://sketches.quintype.com/stories.rss" -H "Accept: application/json"
 
 Example Response
 
@@ -1124,23 +1204,19 @@ Quarterly</media:keywords>
 </rss>
 
 ```
+
 **Description**
 
-Fetches the total number of votes for the specified ID. Note that the user has to be logged in.
+Displays the RSS feeds of a publisher.
 
-**Input Parameters**
 
-| Name | Data Type | Description|
-|--|--|--|
-|story-id | String| The story ID|
-
-##/stories.rss
+##/api/v1/tags/slug
 
 ```
 
 Example Request
 
-curl -X GET "http://sketches.quintype.com/api/v1/tags/temple" -H "Accept: application/json"
+$ curl -X GET "http://sketches.quintype.com/api/v1/tags/temple" -H "Accept: application/json"
 
 Example Response
 
@@ -1162,24 +1238,7 @@ Example Response
 }
 
 ```
-**Description**
 
-Displays the RSS feeds of a publisher.
-
-
-##/api/v1/tags/slug
-
-```
-
-Example Request
-
-curl -X GET "http://sketches.quintype.com/api/member/metadata" -H "Accept: application/json"
-
-Example Response
-
-
-
-```
 **Description**
 
 Displays the tag ID, name, and the meta description that matches the given slug.
@@ -1193,20 +1252,18 @@ Displays the tag ID, name, and the meta description that matches the given slug.
 
 
 ##/api/member/metadata
-
-
-
 ```
 
 Example Request
 
-curl -X POST "http://sketches.quintype.com/api/member/metadata" -H "Accept: application/json" -H "Content-Type: json" -d "{}"
+$ curl -X GET "http://sketches.quintype.com/api/member/metadata" -H "Accept: application/json"
 
 Example Response
 
-
+AP to revert
 
 ```
+
 **Description**
 
 Displays the meta description of the current user.
@@ -1218,18 +1275,13 @@ None.
 
 ##/api/member/metadata
 
-
 ```
 
 Example Request
 
-
-
-Example Response
-
-
-
+$ curl -X POST "http://sketches.quintype.com/api/member/metadata" -H "Accept: application/json" -H "Content-Type: json" -d "{}"
 ```
+
 **Description**
 
 Enters the meta description of the current user.
@@ -1245,9 +1297,10 @@ None.
 
 Example Request
 
-curl -X POST "http://sketches.quintype.com/api/member/forgot-password" -H "Accept: application/json" -H "Content-Type: json" -d "{ \"email\": \"string\"}"
+$ 
 
 Example Response
+
 
 
 ```
@@ -1265,9 +1318,15 @@ Returns the current user
 
 ##/api/member/forgot-password
 
+```
+
+Example Request
+
+$ curl -X POST "http://sketches.quintype.com/api/member/forgot-password" -H "Accept: application/json" -H "Content-Type: json" -d "{ \"email\": \"string\"}"
+
+```
 
 **Description**
-
 
 
 
@@ -1284,7 +1343,7 @@ Returns the current user
 ```
 Example Request
 
-curl -X POST "http://sketches.quintype.com/api/member" -H "Accept: application/json" -H "Content-Type: json" -d "{"name":"John Doe","username":"johndoe","email":"john@doe.com","password":"mypassword"}"
+$ curl -X POST "http://sketches.quintype.com/api/member" -H "Accept: application/json" -H "Content-Type: json" -d "{"name":"John Doe","username":"johndoe","email":"john@doe.com","password":"mypassword"}"
 
 ```
 
@@ -1294,7 +1353,7 @@ curl -X POST "http://sketches.quintype.com/api/member" -H "Accept: application/j
 ```
 Example Request
 
-curl -X POST "http://sketches.quintype.com/api/member/forgot-password" -H "Accept: application/json" -H "Content-Type: json" -d {"email":"john@doe.com","password":"mypassword"}
+$ curl -X POST "http://sketches.quintype.com/api/member/forgot-password" -H "Accept: application/json" -H "Content-Type: json" -d {"email":"john@doe.com","password":"mypassword"}
 
 ```
 
