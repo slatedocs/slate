@@ -42,6 +42,11 @@ includes:
   - entities/messages/create
   - entities/messages/mark_read
   - entities/patients/get
+  - entities/payments/cost
+  - entities/payments/create
+  - entities/payments/delete
+  - entities/payments/get
+  - entities/payments/update
   - entities/pharmacies/current_pharmacy
   - entities/pharmacies/update
   - entities/pharmacies/search
