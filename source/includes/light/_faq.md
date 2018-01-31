@@ -41,11 +41,41 @@
 
 light server - [http://dev.idamob.ru/light/services/WsEndpointServiceFacade?wsdl](http://dev.idamob.ru/light/services/WsEndpointServiceFacade?wsdl)
 
+## Server config
+
+```xml
+bankId.current=UniMegaBank
+resources.path = lightresources
+
+news.first.result.size=10
+rss.updates.interval=600
+ws.allowed_addresses=
+
+com.idamobile.platform.light.core.processor.EmailProcessor.SEND_EMAIL=false
+com.idamobile.platform.light.core.processor.EmailProcessor.WSDL_URL=http://dev.idamob.ru/orders-server-stub/services/OrdersWebServiceFacade?wsdl
+
+proxy.wsdl=http://dev.idamob.ru/proxy/services/IdaMobLightProxyServiceFacade?wsdl
+proxy.service=IdaMobLightProxyServiceFacade
+proxy.endpoint=IdaMobLightProxyServiceFacadeHttpSoap12Endpoint
+```
+
+**Конфиг сервера**
+
+key | type | comment
+--- | --- | ---:
+bankId.current | string | уникальный идентификатор банка
+resources.path | string | папка на сервере где располажены ресурсы (иконочки, баннеры)
+news.first.result.size | int | пакеты новостей для пэгинации на апликации
+rss.updates.interval | int | как часто сервер будет пытаться читать обновления rss ленты
+ws.allowed_addresses | string | ограничитель адресов доступа к лайту (модет быть пустым и желательно настраивать через средства nginx)
+SEND_EMAIL | bool | нужно ли отправлять заявки из контакнтых форм на email
+WSDL_URL | string | возможность получать заявки через веб-сервис. необходимо реализвать сервис по шаблону WSDL http://dev.idamob.ru/orders-server-stub/services/OrdersWebServiceFacade?wsdl
+proxy.wsdl | string | WSDL многошаговой формы
+proxy.service | string | IdaMobLightProxyServiceFacade
+proxy.endpoint | string | IdaMobLightProxyServiceFacadeHttpSoap12Endpoint
+
+
 ##  SMTP
-
-**Обновление в базе настроек**
-
-Для конфигурирования обратной связи клиента с банком нужно прописать настройки в базу
 
 ```xml
 update lightschema.properties set value = 'Trust iDa Mail Server' where key = 'mail.sender.name'
@@ -56,3 +86,7 @@ update lightschema.properties set value = 'notification@idamob.ru' where key = '
 update lightschema.properties set value = 'notificationidamob' where key = 'mail.smtp.pass'
 update lightschema.properties set value = 'true' where key = 'mail.smtp.auth.enable'
 ```
+
+**Обновление в базе настроек**
+
+Для конфигурирования обратной связи клиента с банком через почту нужно прописать настройки в базу
