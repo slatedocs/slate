@@ -41,6 +41,5 @@ You can call the following function with the appointment ID to start the video s
 
  //{VIDEO_CONTAINER} is the view in wich you want embed the video, you must use a RealtiveLayout view.
  mdlVideoConnectClient.startSession({APPOINTMENT_ID},{VIDEO_CONTAINER});
- mdlVideoConnectClient.initConfig(videoConnectSettings);
- 
+
  ```
