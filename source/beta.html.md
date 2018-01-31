@@ -68,7 +68,7 @@ Status Code: 200 OK
   "status": "error",
   "errors": [{
     "title": "Invalid Permission",
-    "detail": "You are not authorized to access this resource with these paramaters"
+    "detail": "You are not authorized to access this resource with these parameters"
   }]
 }
 ```
@@ -96,7 +96,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course_sku": "ADM-MANHA-SP",
       "status": "pending_docs",
       "student": { ... },
-      "applications": [ {...} ]
+      "applications": [ {...} ],
+      "created_at": "2016-10-01T03:15Z"
     },
     ...,
     {
@@ -104,7 +105,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course_sku": "ADM-NOITE-RJ",
       "status": "pre_registered",
       "student": { ... },
-      "applications": [ {...} ]
+      "applications": [ {...} ],
+      "created_at": "2016-10-15T03:15Z"
     }
   ]
 }
@@ -114,12 +116,14 @@ A API utiliza paginação baseada em cursor atráves dos parâmetros `starting_a
 O parâmetro `ending_before` faz a requisição retornar elementos cujo id é maior que o indicado pelo parâmetro. Em contrapartida, o parâmetro `starting_after` faz a requisição retornar elementos listados após o dado cujo id foi indicado.
 O atributo `has_more` da resposta indica se há mais dados disponíveis depois dessa página. Se for `false`, significa que é o fim da lista e não há mais dados. Se for `true`, significa que há mais dados a serem resgatados. Após uma requisição utilizando o parâmetro `ending_before`, o atributo `has_more` se refere a possibilidade de retornar mais dados anteriores à página atual.
 
-### Parâmetros de cursores
+### Parâmetros de paginação
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
 
 ### Informações de resultado de dados com paginação
 
@@ -147,7 +151,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course_sku": "ADM-MANHA-SP",
       "status": "pending_docs",
       "student": { ... },
-      "applications": [ {...} ]
+      "applications": [ {...} ],
+      "created_at": "2016-10-16T03:15Z"
     },
     ...,
     {
@@ -155,7 +160,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course_sku": "ADM-NOITE-RJ",
       "status": "pre_registered",
       "student": { ... },
-      "applications": [ {...} ]
+      "applications": [ {...} ],
+      "created_at": "2016-10-20T03:15Z"
     }
   ]
 }
@@ -163,12 +169,14 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 No exemplo acima, vimos que `has_more` retornou `true`, portanto existem mais dados a serem resgatados após essa página. Para poder consultá-los, na próxima requisição o parâmetro `starting_after` precisa ter o id do último elemento da lista `items`. A requisição e retorno ao lado são referentes ao exemplo [acima](#exemplo-de-paginacao).
 
-### Parâmetros de cursores
+### Parâmetros de paginação
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
 
 ### Informações de resultado de dados com paginação
 
@@ -196,7 +204,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course_sku": "ADM-MANHA-SP",
       "status": "pending_docs",
       "student": { ... },
-      "applications": [ {...} ]
+      "applications": [ {...} ],
+      "created_at": "2016-10-01T03:15Z"
     },
     ...,
     {
@@ -204,7 +213,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course_sku": "ADM-NOITE-RJ",
       "status": "pre_registered",
       "student": { ... },
-      "applications": [ {...} ]
+      "applications": [ {...} ],
+      "created_at": "2016-10-15T03:15Z"
     }
   ]
 }
@@ -212,12 +222,120 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 Assim como avançamos uma página, é possível facilmente retornar a dados anteriores à página atual. Para fazer isso, na próxima requisição o parâmetro `ending_before` precisa ter o id do primeiro elemento da lista `items`. A requisição e retorno ao lado são referentes ao exemplo [acima](#uso-do-cursor-starting_after).
 
-### Parâmetros de cursores
+### Parâmetros de paginação
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
+
+### Informações de resultado de dados com paginação
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| has_more | boolean | Indica se há mais elementos disponíveis antes ou após essa página |
+| items | array | Lista dos elementos retornados pela requisição |
+
+## Uso do filtro start_date
+
+> Exemplo de requisição
+
+```bash
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/admissions?start_date=15/10/2016
+```
+
+> Retorno
+
+```json
+{
+  "has_more": false,
+  "items": [
+    {
+      "id": 12369,
+      "course_sku": "ADM-NOITE-RJ",
+      "status": "pre_registered",
+      "student": { ... },
+      "applications": [ {...} ],
+      "created_at": "2016-10-15T03:15Z"
+    },
+    ...,
+    {
+      "id": 12380,
+      "course_sku": "ADM-NOITE-RJ",
+      "status": "pre_registered",
+      "student": { ... },
+      "applications": [ {...} ],
+      "created_at": "2016-10-20T03:15Z"
+    }
+  ]
+}
+```
+
+É possível listar os elementos baseado na data de criação. Usando o parâmetro `start_date`, apenas os elementos criados após esta data serão listados. O parâmetro deve estar no formato `dd/mm/aaaa`. Esse filtro poderá ser verificado pelo atributo `created_at` da lista `items`, que segue o formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601).
+
+### Parâmetros de paginação
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
+
+### Informações de resultado de dados com paginação
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| has_more | boolean | Indica se há mais elementos disponíveis antes ou após essa página |
+| items | array | Lista dos elementos retornados pela requisição |
+
+## Uso do filtro end_date
+
+> Exemplo de requisição
+
+```bash
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/admissions?end_date=15/10/2016
+```
+
+> Retorno
+
+```json
+{
+  "has_more": false,
+  "items": [
+    {
+      "id": 12345,
+      "course_sku": "ADM-MANHA-SP",
+      "status": "pending_docs",
+      "student": { ... },
+      "applications": [ {...} ],
+      "created_at": "2016-10-01T03:15Z"
+    },
+    ...,
+    {
+      "id": 12369,
+      "course_sku": "ADM-NOITE-RJ",
+      "status": "pre_registered",
+      "student": { ... },
+      "applications": [ {...} ],
+      "created_at": "2016-10-15T03:15Z"
+    }
+  ]
+}
+```
+
+É possível listar os elementos baseado na data de criação. Usando o parâmetro `end_date`, apenas os elementos criados antes dessa data serão listados. O parâmetro deve estar no formato `dd/mm/aaaa`. Esse filtro poderá ser verificado pelo atributo `created_at` da lista `items`, que segue o formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601).
+
+### Parâmetros de paginação
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
 
 ### Informações de resultado de dados com paginação
 
@@ -263,7 +381,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       {
         "id": 12345,
         "course_sku": "ADM-NOITE-EAD",
-        "status": "pending_docs"
+        "status": "pending_docs",
+        "created_at": "2016-10-01T03:15Z"
       }
     ]
   }
@@ -307,10 +426,11 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 | [address_information] city | string | Cidade onde aluno reside |
 | [address_information] state | string | Estado onde aluno reside |
 | [address_information] postal_code | string | Código postal onde aluno reside |
-| admissions | array | Lista de objetos com informações de processo de matricula |
-| id (admissions) | number | Id do processo de matricula |
-| course_sku (admissions) | string | Código do curso fornecido pela universidade |
-| status (admissions) | string | Status que se encontra o processo de matricula |
+| admissions | array | Lista de objetos com informações de processo de matrícula |
+| [admissions] id | number | Id do processo de matrícula |
+| [admissions] course_sku | string | Código do curso fornecido pela universidade |
+| [admissions] status | string | Status que se encontra o processo de matrícula |
+| [admissions] created_at | string | Data da criação do processo de matrícula |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -362,7 +482,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
     {
       "id": 12345,
       "course_sku": "ADM-NOITE-EAD",
-      "status": "pending_docs"
+      "status": "pending_docs",
+      "created_at": "2016-10-01T03:15Z"
     }
   ]
 }
@@ -402,10 +523,11 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 | [address_information] city | string | Cidade onde aluno reside |
 | [address_information] state | string | Estado onde aluno reside |
 | [address_information] postal_code | string | Código postal onde aluno reside |
-| admissions | array | Lista de objetos com informações de processo de matricula |
-| [admissions] id | number | Id do processo de matricula |
+| admissions | array | Lista de objetos com informações de processo de matrícula |
+| [admissions] id | number | Id do processo de matrícula |
 | [admissions] course_sku | string | Código do curso fornecido pela universidade |
-| [admissions] status | string | Status que se encontra o processo de matricula |
+| [admissions] status | string | Status que se encontra o processo de matrícula |
+| [admissions] created_at | string | Data da criação do processo de matrícula |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -422,7 +544,6 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 | dropped_out | Desistente |
 | dropping_out | Desistindo |
 | drop_out_confirmed | Desistência confirmada |
-
 
 # Informações de processos de admissão
 
@@ -485,21 +606,22 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
             },
             "dates": "2016-11-01",
             "times": "18:30",
-            "status": "active"
+            "status": "active",
+            "created_at": "2016-10-01T03:15Z"
           },
-          "result": "approved"
+          "result": "approved",
+          "created_at": "2016-10-01T03:15Z"
         }
-      ]
-    },
-    {...},
-    {...}
+      ],
+      "created_at": "2016-10-01T03:15Z"
+    }
   ]
 }
 ```
 
 Retorna todas as admissões da faculdade.
 
-Admissões são retornadas em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
+Admissões são retornadas em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a seção de [paginação](#paginacao).
 
 ### Parâmetros
 
@@ -507,6 +629,8 @@ Admissões são retornadas em páginas de até 25 elementos, ordenadas pela últ
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
 
 ### Informações de resultado
 
@@ -547,9 +671,13 @@ Admissões são retornadas em páginas de até 25 elementos, ordenadas pela últ
 | [exam] dates | string | Data da realização do exame vestibular |
 | [exam] times | string | Hora da realização do exame vestibular |
 | [exam] status | string | Status do exame vestibular |
+| [exam] created_at | string | Data da criação do exame vestibular |
 | [application] result | string | Resultado do exame vestibular |
+| [application] created_at | string | Data de criação da inscrição para exame |
+| created_at | string | Data de criação da admissão |
 
 ### Significado dos valores em status
+
 | Nome | Descrição |
 | ---- | --------- |
 | initiated | Inscrição para exame Pendente |
@@ -628,11 +756,14 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
         },
         "dates": "2016-11-01",
         "times": "18:30",
-        "status": "active"
+        "status": "active",
+        "created_at": "2016-10-01T03:15Z"
       },
-      "result": "approved"
+      "result": "approved",
+      "created_at": "2016-10-01T03:15Z"
     }
-  ]
+  ],
+  "created_at": "2016-10-01T03:15Z"
 }
 ```
 
@@ -691,9 +822,13 @@ Retorna uma admissão específica da faculdade.
 | [exam] dates | string | Data da realização do exame vestibular |
 | [exam] times | string | Hora da realização do exame vestibular |
 | [exam] status | string | Status do exame vestibular |
+| [exam] created_at | string | Data da criação do exame vestibular |
 | [application] result | string | Resultado do exame vestibular |
+| [application] created_at | string | Data de criação da inscrição para exame |
+| created_at | string | Data de criação da admissão |
 
 ### Significado dos valores em status
+
 | Nome | Descrição |
 | ---- | --------- |
 | initiated | Inscrição para exame Pendente |
@@ -710,6 +845,7 @@ Retorna uma admissão específica da faculdade.
 | drop_out_confirmed | Desistência confirmada |
 
 ### Significado dos valores em result
+
 | Nome | Descrição |
 | ---- | --------- |
 | null | Inscrição para exame Pendente |
@@ -773,11 +909,14 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
         },
         "dates": "2016-11-01",
         "times": "18:30",
-        "status": "active"
+        "status": "active",
+        "created_at": "2016-10-01T03:15Z"
       },
-      "result": "approved"
+      "result": "approved",
+      "created_at": "2016-10-01T03:15Z"
     }
-  ]
+  ],
+  "created_at": "2016-10-01T03:15Z"
 }
 ```
 
@@ -860,9 +999,13 @@ Realiza atualização de um processo de admissão específico de um aluno. Para 
 | [exam] dates | string | Data da realização do exame vestibular |
 | [exam] times | string | Hora da realização do exame vestibular |
 | [exam] status | string | Status do exame vestibular |
+| [exam] created_at | string | Data da criação do exame vestibular |
 | [application] result | string | Resultado do exame vestibular |
+| [application] created_at | string | Data de criação da inscrição para exame |
+| created_at | string | Data de criação da admissão |
 
 ### Significado dos valores em status
+
 | Nome | Descrição |
 | ---- | --------- |
 | initiated | Inscrição para exame Pendente |
@@ -879,6 +1022,7 @@ Realiza atualização de um processo de admissão específico de um aluno. Para 
 | drop_out_confirmed | Desistência confirmada |
 
 ### Significado dos valores em result
+
 | Nome | Descrição |
 | ---- | --------- |
 | null | Inscrição para exame Pendente |
@@ -928,6 +1072,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
             "postal_code": "18147-000"
           }
         },
+        "created_at": "2016-10-01T03:15Z"
       },
       "exam": {
         "id":456,
@@ -946,9 +1091,11 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
         },
         "dates": "2016-11-01",
         "times": "18:30",
-        "status": "active"
+        "status": "active",
+        "created_at": "2016-10-01T03:15Z"
       },
-      "result": "approved"
+      "result": "approved",
+      "created_at": "2016-10-01T03:15Z"
     }
   ]
 }
@@ -956,7 +1103,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 Retorna todas as inscrições de exame da faculdade.
 
-Inscrições são retornadas em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
+Inscrições são retornadas em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a seção de [paginação](#paginacao).
 
 ### Parâmetros
 
@@ -964,6 +1111,8 @@ Inscrições são retornadas em páginas de até 25 elementos, ordenadas pela ú
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
 
 ### Informações de resultado
 
@@ -991,10 +1140,11 @@ Inscrições são retornadas em páginas de até 25 elementos, ordenadas pela ú
 | [address_information] city | string | Cidade onde aluno reside |
 | [address_information] state | string | Estado onde aluno reside |
 | [address_information] postal_code | string | Código postal onde aluno reside |
+| [admission] created_at | string | Data de criação da admissão |
 | exam | object | Objeto com informações do exame vestibular |
 | [exam] id | number | Id do exame vestibular |
 | [exam] course_skus | array | Lista com os cursos pertencentes a este exame vestibular |
-| [exam] local | object | Objeto com dados do exame vestibular |
+| [exam] exam_location | object | Objeto com dados do exame vestibular |
 | [exam_location] address | string | Endereço da localização do exame vestibular |
 | [exam_location] number | string | Número da localização do exame vestibular |
 | [exam_location] neighborhood | string | Bairro da localização do exame vestibular |
@@ -1004,7 +1154,9 @@ Inscrições são retornadas em páginas de até 25 elementos, ordenadas pela ú
 | [exam] date | string | Data da realização do exame vestibular |
 | [exam] time | string | Hora da realização do exame vestibular |
 | [exam] status | string | Status do exame vestibular |
+| [exam] created_at | string | Data da criação do exame vestibular |
 | result | string | Resultado do exame vestibular |
+| created_at | string | Data de criação da inscrição para exame |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -1067,6 +1219,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
         "postal_code": "18147-000"
       }
     },
+    "created_at": "2016-10-01T03:15Z"
   },
   "exam": {
     "id": 456,
@@ -1085,9 +1238,11 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
     },
     "date": "2016-11-01",
     "time": "18:30",
-    "status": "active"
+    "status": "active",
+    "created_at": "2016-10-01T03:15Z"
   },
-  "result": "approved"
+  "result": "approved",
+  "created_at": "2016-10-01T03:15Z"
 }
 ```
 
@@ -1133,6 +1288,7 @@ Retorna uma inscrição específica na inscrição do exame da faculdade.
 | [address_information] city | string | Cidade onde aluno reside |
 | [address_information] state | string | Estado onde aluno reside |
 | [address_information] postal_code | string | Código postal onde aluno reside |
+| [admission] created_at | string | Data de criação da admissão |
 | exam | object | Objeto com informações do exame vestibular |
 | [exam] id | number | Id do exame vestibular |
 | [exam] course_skus | array | Lista com os cursos pertencentes a este exame vestibular |
@@ -1146,9 +1302,12 @@ Retorna uma inscrição específica na inscrição do exame da faculdade.
 | [exam] date | string | Data da realização do exame vestibular |
 | [exam] time | string | Hora da realização do exame vestibular |
 | [exam] status | string | Status do exame vestibular |
+| [exam] created_at | string | Data da criação do exame vestibular |
 | result | string | Resultado do exame vestibular |
+| created_at | string | Data de criação da inscrição para exame |
 
 ### Significado dos valores em status
+
 | Nome | Descrição |
 | ---- | --------- |
 | initiated | Inscrição para exame Pendente |
@@ -1165,6 +1324,7 @@ Retorna uma inscrição específica na inscrição do exame da faculdade.
 | drop_out_confirmed | Desistência confirmada |
 
 ### Significado dos valores em result
+
 | Nome | Descrição |
 | ---- | --------- |
 | null | Inscrição para exame Pendente |
@@ -1210,6 +1370,7 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
         "postal_code": "18147-000"
       }
     },
+    "created_at": "2016-10-01T03:15Z"
   },
   "exam": {
     "id": 456,
@@ -1228,9 +1389,11 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
     },
     "date": "2016-11-01",
     "time": "18:30",
-    "status": "active"
+    "status": "active",
+    "created_at": "2016-10-01T03:15Z"
   },
-  "result": "approved"
+  "result": "approved",
+  "created_at": "2016-10-01T03:15Z"
 }
 ```
 
@@ -1293,11 +1456,12 @@ Atualiza a situação de agendamento ou resultado de uma inscrição para exame.
 | [address_information] city | string | Cidade onde aluno reside |
 | [address_information] state | string | Estado onde aluno reside |
 | [address_information] postal_code | string | Código postal onde aluno reside |
+| [admission] created_at | string | Data de criação da admissão |
 | exam | object | Objeto com informações do exame vestibular |
 | [exam] id | number | Id do exame vestibular |
 | [exam] course_skus | array | Lista com os cursos pertencentes a este exame vestibular |
-| [exam] local | object | Objeto com dados do exame vestibular |
-| [exam] exam_location | string | Endereço da localização do exame vestibular |
+| [exam] exam_location | object | Objeto com dados do exame vestibular |
+| [exam_location] address | string | Endereço da localização do exame vestibular |
 | [exam_location] number | string | Número da localização do exame vestibular |
 | [exam_location] neighborhood | string | Bairro da localização do exame vestibular |
 | [exam_location] city | string | Cidade da localização do exame vestibular |
@@ -1306,7 +1470,9 @@ Atualiza a situação de agendamento ou resultado de uma inscrição para exame.
 | [exam] date | string | Data da realização do exame vestibular |
 | [exam] time | string | Hora da realização do exame vestibular |
 | [exam] status | string | Status do exame vestibular |
+| [exam] created_at | string | Data da criação do exame vestibular |
 | result | string | Resultado do exame vestibular |
+| created_at | string | Data de criação da inscrição para exame |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -1370,7 +1536,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       ],
       "times": [ "18:30", "19:30"],
       "status": "active",
-      "kind": "scheduled"
+      "kind": "scheduled",
+      "created_at": "2016-10-01T03:15Z"
     }
   ]
 }
@@ -1378,7 +1545,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 Retorna todos os exames em lote.
 
-Exames em lote são retornados em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar dados antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
+Exames em lote são retornados em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar dados antecessores à lista atual. Para mais informações, consulte a seção de [paginação](#paginacao).
 
 ### Parâmetros
 
@@ -1386,6 +1553,8 @@ Exames em lote são retornados em páginas de até 25 elementos, ordenadas pela 
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
 
 ### Informações de resultado
 
@@ -1406,6 +1575,7 @@ Exames em lote são retornados em páginas de até 25 elementos, ordenadas pela 
 | times | array | Lista dos horários de aplicações dos exames |
 | status | string | Situação dos exames entre `active` e `inactive` |
 | kind | string | Tipo dos exames desse lote |
+| created_at | string | Data de criação do lote de exames |
 
 ### Significado dos status
 
@@ -1448,7 +1618,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
   ],
   "times": [ "18:30", "19:30"],
   "status": "active",
-  "kind": "scheduled"
+  "kind": "scheduled",
+  "created_at": "2016-10-01T03:15Z"
 }
 ```
 
@@ -1486,6 +1657,7 @@ Retorna um lote de exames específico.
 | times | array | Lista dos horários de aplicações dos exames |
 | status | string | Situação dos exames entre `active` e `inactive` |
 | kind | string | Tipo dos exames desse lote |
+| created_at | string | Data de criação do lote de exames |
 
 ### Significado dos status
 
@@ -1622,7 +1794,6 @@ Cria um lote de exames.
 | status | string | Situação dos exames entre `active` e `inactive` |
 | kind | string | Tipo dos exames desse lote |
 
-
 ## Suspender ou ativar lote de exames
 
 > Requisição
@@ -1658,7 +1829,8 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
   ],
   "times": [ "18:30", "19:30"],
   "status": "active",
-  "kind": "scheduled"
+  "kind": "scheduled",
+  "created_at": "2016-10-01T03:15Z"
 }
 ```
 
@@ -1715,6 +1887,7 @@ Suspende ou ativa um lote de exames.
 | times | array | Lista dos horários de aplicações dos exames |
 | status | string | Situação dos exames entre `active` e `inactive` |
 | kind | string | Tipo dos exames desse lote |
+| created_at | string | Data de criação do lote de exames |
 
 ### Significado do retorno de status
 
@@ -1757,7 +1930,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       },
       "date": "2016-11-01",
       "time": "18:30",
-      "status": "active"
+      "status": "active",
+      "created_at": "2016-10-01T03:15Z"
     }
   ]
 }
@@ -1765,7 +1939,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 Retorna todos os exames (ativos e suspensos).
 
-Exames são retornados em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar dados antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
+Exames são retornados em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar dados antecessores à lista atual. Para mais informações, consulte a seção de [paginação](#paginacao).
 
 ### Parâmetros
 
@@ -1773,6 +1947,8 @@ Exames são retornados em páginas de até 25 elementos, ordenadas pela última 
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
 
 ### Informações de resultado
 
@@ -1793,6 +1969,7 @@ Exames são retornados em páginas de até 25 elementos, ordenadas pela última 
 | date | string | Data do exame vestibular |
 | time | string | Horário do exame vestibular |
 | status | string | Situação do exame entre `active` e `inactive` |
+| created_at | string | Data de criação do exame |
 
 ## Informações de um único exame
 
@@ -1823,7 +2000,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
   },
   "date": "2016-11-01",
   "time": "18:30",
-  "status": "active"
+  "status": "active",
+  "created_at": "2016-10-01T03:15Z"
 }
 ```
 
@@ -1862,6 +2040,7 @@ Retorna um exame específico.
 | date | string | Data do exame vestibular |
 | time | string | Horário do exame vestibular |
 | status | string | Situação do exame entre `active` e `inactive` |
+| created_at | string | Data de criação do exame |
 
 ## Criação de exame
 
@@ -2003,7 +2182,8 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
   },
   "date": "2016-11-01",
   "time": "18:30",
-  "status": "active"
+  "status": "active",
+  "created_at": "2016-10-01T03:15Z"
 }
 ```
 
@@ -2060,6 +2240,7 @@ Suspende ou ativa um exame.
 | date | string | Data do exame vestibular |
 | time | string | Horário do exame vestibular |
 | status | string | Situação do exame entre `active` e `inactive` |
+| created_at | string | Data de criação do exame |
 
 # Exame de Enem
 
@@ -2091,7 +2272,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
         "linguagens": 600.0,
         "matematica": 600.0
       },
-      "status": "active"
+      "status": "active",
+      "created_at": "2016-10-01T03:15Z"
     }
   ]
 }
@@ -2099,7 +2281,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 Retorna todos os exames de enem.
 
-Exames de ENEM são retornados em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar dados antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
+Exames de ENEM são retornados em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar dados antecessores à lista atual. Para mais informações, consulte a seção de [paginação](#paginacao).
 
 ### Parâmetros
 
@@ -2107,6 +2289,8 @@ Exames de ENEM são retornados em páginas de até 25 elementos, ordenadas pela 
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
 
 ### Informações de resultado
 
@@ -2123,6 +2307,7 @@ Exames de ENEM são retornados em páginas de até 25 elementos, ordenadas pela 
 | [minimum_grades] linguagens | float | Nota mínima de linguagens exigida pela faculdade |
 | [minimum_grades] matematica | float | Nota mínima de matemática exigida pela faculdade |
 | status | string | Situação do exame de enem entre `active` e `inactive` |
+| created_at | string | Data de criação do exame de enem |
 
 ## Informações de um único exame de Enem
 
@@ -2149,7 +2334,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
     "linguagens": 600.0,
     "matematica": 600.0
   },
-  "status": "active"
+  "status": "active",
+  "created_at": "2016-10-01T03:15Z"
 }
 ```
 
@@ -2184,6 +2370,7 @@ Retorna um exame de enem específico.
 | [minimum_grades] linguagens | float | Nota mínima de linguagens exigida pela faculdade |
 | [minimum_grades] matematica | float | Nota mínima de matemática exigida pela faculdade |
 | status | string | Situação do exame de enem entre `active` e `inactive` |
+| created_at | string | Data de criação do exame de enem |
 
 ## Criação de exame de Enem
 
@@ -2306,7 +2493,8 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
     "linguagens": 600.0,
     "matematica": 600.0
   },
-  "status": "inactive"
+  "status": "inactive",
+  "created_at": "2016-10-01T03:15Z"
 }
 ```
 
@@ -2352,6 +2540,7 @@ Suspende um exame de Enem específico.
 | [minimum_grades] linguagens | float | Nota mínima de linguagens exigida pela faculdade |
 | [minimum_grades] matematica | float | Nota mínima de matemática exigida pela faculdade |
 | status | string | Situação do exame de enem entre `active` e `inactive` |
+| created_at | string | Data de criação do exame de enem |
 
 ## Suspender um exame de Enem parcialmente
 
@@ -2744,12 +2933,12 @@ Lista eventos enviados
 | ---- | ---- | --------- | ------- |
 | start_date     | string | Data inicial do filtro | DD/MM/AAAA
 | end_date       | string | Data final do filtro | DD/MM/AAAA
-| starting_after | string | Cursor para a proxima página
+| starting_after | string | Cursor para a próxima página
 | ending_before  | string | Cursor para a página anterior
 
 ### Informações de retorno
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
-| has_more | boolean          | indica a existência de outras paginas |
+| has_more | boolean          | indica a existência de outras páginas |
 | items    | array de objetos | lista de notificações: [referência](#definicao-base-do-evento)
