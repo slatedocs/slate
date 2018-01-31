@@ -62,11 +62,11 @@ includes:
   
   - android_sdk/setup   
 
+  - iOS_SDK/_setup
+
 search: true
 ---
 
 # Introduction
 
 Welcome to MDLIVE's API.
-
-
