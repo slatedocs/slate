@@ -59,11 +59,11 @@ includes:
 
   - response_codes
 
+  - iOS_SDK/_setup
+
 search: true
 ---
 
 # Introduction
 
 Welcome to MDLIVE's API.
-
-
