@@ -28,7 +28,7 @@ When the Rollbar integration is enabled, Scout displays errors from the app's as
 
 ![rollbar errors](rollbar_errors_screenshot.png)
 
-When the error count is in <span style="color:#fff;background:red;padding: 2px">red</span>, a new error has appeared in the current timeframe. When the error count is in <span style="background:#ccc;padding:2px">gray</span>, older errors are continuing in this timeframe.
+When the error count is in <span style="color:#fff;background:#f0592a;padding: 2px">orange</span>, a new error has appeared in the current timeframe. When the error count is in <span style="background:#ccc;padding:2px">gray</span>, older errors are continuing in this timeframe.
 
 ### Configuration
 
