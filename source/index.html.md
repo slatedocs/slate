@@ -68,7 +68,7 @@ Status Code: 200 OK
   "status": "error",
   "errors": [{
     "title": "Invalid Permission",
-    "detail": "You are not authorized to access this resource with these paramaters"
+    "detail": "You are not authorized to access this resource with these parameters"
   }]
 }
 ```
@@ -426,11 +426,11 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 | [address_information] city | string | Cidade onde aluno reside |
 | [address_information] state | string | Estado onde aluno reside |
 | [address_information] postal_code | string | Código postal onde aluno reside |
-| admissions | array | Lista de objetos com informações de processo de matricula |
-| [admissions] id | number | Id do processo de matricula |
+| admissions | array | Lista de objetos com informações de processo de matrícula |
+| [admissions] id | number | Id do processo de matrícula |
 | [admissions] course_sku | string | Código do curso fornecido pela universidade |
-| [admissions] status | string | Status que se encontra o processo de matricula |
-| [admissions] created_at | string | Data da criação do processo de matricula |
+| [admissions] status | string | Status que se encontra o processo de matrícula |
+| [admissions] created_at | string | Data da criação do processo de matrícula |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -523,11 +523,11 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 | [address_information] city | string | Cidade onde aluno reside |
 | [address_information] state | string | Estado onde aluno reside |
 | [address_information] postal_code | string | Código postal onde aluno reside |
-| admissions | array | Lista de objetos com informações de processo de matricula |
-| [admissions] id | number | Id do processo de matricula |
+| admissions | array | Lista de objetos com informações de processo de matrícula |
+| [admissions] id | number | Id do processo de matrícula |
 | [admissions] course_sku | string | Código do curso fornecido pela universidade |
-| [admissions] status | string | Status que se encontra o processo de matricula |
-| [admissions] created_at | string | Data da criação do processo de matricula |
+| [admissions] status | string | Status que se encontra o processo de matrícula |
+| [admissions] created_at | string | Data da criação do processo de matrícula |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -621,7 +621,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 
 Retorna todas as admissões da faculdade.
 
-Admissões são retornadas em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a sessão de [paginação](#paginacao).
+Admissões são retornadas em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a seção de [paginação](#paginacao).
 
 ### Parâmetros
 
