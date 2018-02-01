@@ -37,8 +37,9 @@ request['authorization'] = "Token token=#{your_program_token}"
 curl -H "Authorization: Token token=your_program_token" \
 https://<your_program_subdomain>.redii.com/api/recognition/v1/moments
 ```
-> To authorize for RSS format feed, add this link to your rss reader:
-```https://x:<your_program_token>@<your_program_subdomain>.redii.com/api/recognition/v1/moments.rss```
+
+> To authorize for RSS format feed, add this link to your rss reader: ```
+https://x:<your_program_token>@<your_program_subdomain>.redii.com/api/recognition/v1/moments.rss```
 
 > Make sure to replace `your_program_token` and `your_program_subdomain` with your relevent key and subdomain.
 
@@ -54,10 +55,10 @@ Redii expects for the API key to be included in all API requests to the server i
 
 # Recognition
 
-## Get All moments
-> for JSON format:
+## Get Multipages Moments
+
 ```ruby
-uri = URI.parse("https://<your_program_subdomain>.redii.com/api/recognition/v1/moments?limit=2")
+uri = URI.parse("https://<your_program_subdomain>.redii.com/api/recognition/v1/moments")
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net::HTTP::Get.new(uri.request_uri)
 request['authorization'] = "Token token=#{your_program_token}"
@@ -66,7 +67,7 @@ request['authorization'] = "Token token=#{your_program_token}"
 ```shell
 # With shell, you can just pass the correct header with each request
 curl -H "Authorization: Token token=your_program_token" \
-https://<your_program_subdomain>.redii.com/api/recognition/v1/moments?limit=2
+https://<your_program_subdomain>.redii.com/api/recognition/v1/moments
 ```
 
 > The above command returns JSON structured like this:
@@ -92,20 +93,20 @@ https://<your_program_subdomain>.redii.com/api/recognition/v1/moments?limit=2
       "by_user":
         {
           "id": 22732,
-          "name“: "Alic Doe",
+          "name": "Alic Doe",
           "staff_id": 22730
 
         },
       "users":
         {
           "id": 22734,
-          "name“: "Bob Doe",
+          "name": "Bob Doe",
           "staff_id": 22732
         },
       "award":
         {
           "id": 1,
-          "name“: "Safety Leader",
+          "name": "Safety Leader",
           "description": "Noticed someone demonstrating they take safety seriously?"
         }
     },
@@ -120,27 +121,28 @@ https://<your_program_subdomain>.redii.com/api/recognition/v1/moments?limit=2
     "likes_count": 0,
     "comments_count": 0,
     "links" :
-      { "likes": "http://XXXX.redii.com/api/recognition/v1/moments/87902/likes"
-      }
+      {
+        "likes": "http://XXXX.redii.com/api/recognition/v1/moments/87902/likes"
+      },
     "by_user_id": 10,
     "award_id": 3,
     "by_user":
         {
           "id": 22722,
-          "name“: "Alic Doe",
+          "name": "Alic Doe",
           "staff_id": 22712
 
         },
       "users":
         {
           "id": 22111,
-          "name“: "Bob Doe",
+          "name": "Bob Doe",
           "staff_id": 23231
         },
       "award":
         {
           "id": 1,
-          "name“: "Safety Leader",
+          "name": "Safety Leader",
           "description": "Noticed someone demonstrating they take safety seriously?"
         }
   }
@@ -160,6 +162,7 @@ This endpoint retrieves (default of) the 10 most recent moments of recognition.
 Parameter | Default | Description
 --------- | ------- | -----------
 limit | 10 | The number of results to return.
+page | 1 | The page number of results to return.
 
 ## Get All likes for the specific moment
 
