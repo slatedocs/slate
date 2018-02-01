@@ -3,7 +3,7 @@
 Returns the appointment cost.
 
 ```shell
-curl -X GET '{server_url}/api/v1/payments/costs/check?patient_id={patient_id}&provider_type_id=3&promocode=IRMA&state_abbrev=FL' \
+curl -X GET '{server_url}/api/v2/payments/costs/check?patient_id={patient_id}&provider_type_id={provider_type_id}&promo_code={promo_code}&state_abbrev={state_abbrev}' \
   -H 'Authorization: Bearer {jwt_token}' \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json'
@@ -12,7 +12,7 @@ curl -X GET '{server_url}/api/v1/payments/costs/check?patient_id={patient_id}&pr
 ```ruby
 RestClient::Request.new(
   :method => :get,
-  :url => '{server_url}/api/v1/payments/costs/check?patient_id={patient_id}&provider_type_id=3&promocode=IRMA&state_abbrev=FL',
+  :url => '{server_url}/api/v2/payments/costs/check?patient_id={patient_id}&provider_type_id={provider_type_id}&promo_code={promo_code}&state_abbrev={state_abbrev}',
   :headers => {
     'Authorization' => 'Bearer {jwt_token}',
     'Content-type' => 'application/json',
@@ -60,5 +60,5 @@ Attribute        | Required | Description
 -----------------|----------|----------------------
 patient_id       | true     | MDLIVE ID for patient
 provider_type_id | true     | Provider Type ID, from the [provider types list](#provider-types)
-promocode        | false    | Promocode to apply to the cost of the appointment
+promo_code       | false    | Promo code to apply to the cost of the appointment
 state_abbrev     | false    | 2-Letter state abbreviated, from the [states list](#states)

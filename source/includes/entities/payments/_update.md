@@ -116,16 +116,16 @@ The following parameters need to be included in the body of the request:
 
 Attribute                      | Required | Description
 ------------------------------ |----------|--------------------
-credit_card                    | true     | Parent attribute for the credit card
-↳&nbsp;billing_data            | true     | Parent attribute for billing information
-↳&nbsp;↳&nbsp;name             | true     | Cardholder's name
-↳&nbsp;↳&nbsp;address1         | true     | Cardholder's address 1
-↳&nbsp;↳&nbsp;address2         | false    | Cardholder's address 2
-↳&nbsp;↳&nbsp;state_abbrev     | true     | Cardholder's state abbreviation
-↳&nbsp;↳&nbsp;city             | true     | Cardholder's city
-↳&nbsp;↳&nbsp;zip              | true     | Cardholder's ZIP Code
-↳&nbsp;card_data               | true     | Parent attribute for credit card information
-↳&nbsp;↳&nbsp;card_number      | true     | The card number, as a string without any separators
-↳&nbsp;↳&nbsp;cvv| true        | Cardholder's name
-↳&nbsp;↳&nbsp;expiration_month | true     | Two digit number representing the card's expiration month
-↳&nbsp;↳&nbsp; expiration_year | true     | Four digit number representing the card's expiration year
+credit_card                                     | true     | Parent attribute for the credit card
+↳&nbsp;billing_data                             | true     | Parent attribute for billing information
+&nbsp;&nbsp;&nbsp;&nbsp;↳&nbsp;name             | true     | Cardholder's name
+&nbsp;&nbsp;&nbsp;&nbsp;↳&nbsp;address1         | true     | Cardholder's address 1
+&nbsp;&nbsp;&nbsp;&nbsp;↳&nbsp;address2         | false    | Cardholder's address 2
+&nbsp;&nbsp;&nbsp;&nbsp;↳&nbsp;state_abbrev     | true     | Cardholder's state abbreviation
+&nbsp;&nbsp;&nbsp;&nbsp;↳&nbsp;city             | true     | Cardholder's city
+&nbsp;&nbsp;&nbsp;&nbsp;↳&nbsp;zip              | true     | Cardholder's ZIP Code
+↳&nbsp;card_data                                | true     | Parent attribute for credit card information
+&nbsp;&nbsp;&nbsp;&nbsp;↳&nbsp;card_number      | true     | The card number, as a string without any separators
+&nbsp;&nbsp;&nbsp;&nbsp;↳&nbsp;cvv              | true     | Cardholder's name
+&nbsp;&nbsp;&nbsp;&nbsp;↳&nbsp;expiration_month | true     | Two digit number representing the card's expiration month
+&nbsp;&nbsp;&nbsp;&nbsp;↳&nbsp;expiration_year  | true     | Four digit number representing the card's expiration year
