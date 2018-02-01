@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="https://www.servola.org/" />
+    <title>Servola API Tester</title>
+    <meta name="generator" content="BBEdit Prerelease" />
+    <style type="text/css">
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            background-color: rgb(243, 247, 249);
+            color: #000;
+            font-size: 10pt;
+            padding: 10px;
+        }
+        #logo { height: 40px }
+        textarea, .results, #params_saved { font-family: monospace }
+        table { height: 180px }
+        #params_saved {
+            font-size: small;
+            background-color: #eee;
+            border: 1px black solid;
+            height: 90%;
+            width: 110%;
+            white-space: pre;
+            overflow: auto;
+        }
+
+        #head {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10pt;
+        }
+
+        #head img {
+            vertical-align: middle;
+        }
+
+        #results {
+            margin-top: 20pt;
+        }
+
+        .results_row {
+            margin-top: 10pt;
+        }
+
+        #params_saved_td {
+            vertical-align: top;
+        }
+
+        #results_json {
+            margin-top: 4pt;
+            background-color: #eee;
+            border: 1px black solid;
+        }
+        ul {
+            list-style-type: none;
+            counter-reset: line-counter;
+        }
+        li {
+            white-space: pre;
+            counter-increment: line-counter;
+        }
+        li:nth-child(even) { background: #ddd }
+        li:nth-child(odd)  { background: #eee }
+        li:before {
+            -webkit-user-select: none;
+            content: counter(line-counter) ". ";
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.3.1/sha.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+function getURLVars() {
+    var url_vars = [];
+
+    var hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for (var i = 0; i < hashes.length; i++) {
+        hash = hashes[i].split('=');
+        url_vars.push(hash[0]);
+        if (hash[1] == 0) {
+            url_vars[hash[0]] = null;
+        }
+        else {
+            url_vars[hash[0]] = decodeURIComponent(hash[1]);
+        }
+    }
+    return url_vars;
+}
+
+var storedParams = '';
+var hostName = document.domain;
+var domainName = hostName.substring(
+    hostName.lastIndexOf('.', hostName.lastIndexOf('.') - 1) + 1
+);
+
+var urlHostName = 'api.shiftdata.com';
+if (domainName == 'ishifts.com') {
+    urlHostName = 'api-data.ishifts.com';
+}
+else if (domainName == 'servola.org') {
+    urlHostName = 'www.servola.org';
+}
+
+var url = 'https://' + urlHostName + '/servola/api/api.cgi?';
+
+function tryAPI () {
+    $('#results_json').html("\n\n# Working ...");
+
+    var url_vars = getURLVars();
+
+    var http_method = 'POST';
+    var this_url = url + '&access_key_id=' + encodeURIComponent($('#access_key_id').val());
+    var ajaxParams = { crossDomain: true, dataType: 'json' };
+
+    var shaObj = new jsSHA('SHA-1', 'TEXT');
+    shaObj.setHMACKey($('#secret').val(), 'TEXT');
+
+    if ( $('#raw')[0].checked ) {
+        ajaxParams.data = { POSTDATA: $('#data').val() };
+        shaObj.update($('#data').val());
+    }
+    else {
+        http_method = 'GET';
+        this_url += '&jsonrpc=2.0&id=1&method=' + encodeURIComponent($('#api_method').val()) + '&params=' + encodeURIComponent(window.btoa($('#data').val()));
+        shaObj.update('method' + $('#api_method').val() + 'params' + $('#data').val());
+    }
+
+    var hmac = shaObj.getHMAC('B64');
+    this_url += '&signature=' + encodeURIComponent(hmac);
+
+    $('#results').show();
+    $('#results_sign_b64').text(hmac);
+    $('#results_url').text(this_url);
+
+    ajaxParams.url = this_url;
+    ajaxParams.method = http_method;
+
+    $.ajax(ajaxParams)
+        .done( function( data ) {
+            var this_html = JSON.stringify(data, null, 2).split("\n").join("</li>\n<li>");
+            $('#results_json').html(data ? '<ul><li>' + this_html + '</li></ul>' : 'no data');
+        })
+        .fail( function( jqXHR, textStatus, errorThrown ) {
+            $('#results_json').html("\n\n# Failed: " + textStatus);
+        });
+}
+
+
+function rawMode() {
+    if ($('#raw')[0].checked) {
+        $('#http_method_span').show();
+        $('#json_instructions_span').show();
+        $('#api_method_span').hide();
+    }
+    else {
+        $('#http_method_span').hide();
+        $('#json_instructions_span').hide();
+        $('#api_method_span').show();
+    }
+}
+
+function restoreParams() {
+    $('#data').val(storedParams);
+}
+
+$(document).ready(function() {
+    var url_vars = getURLVars();
+    var raw = url_vars.raw;
+    var api_method = url_vars.method;
+    var params = url_vars.params;
+
+    if (raw) {
+        $('#raw').prop('checked', true);
+        $('#raw_span').show();
+    }
+    else {
+        $('#raw').prop('checked', false);
+    }
+    rawMode();
+
+    if (raw) {
+        if (!api_method) {
+            api_method = 'system.echo';
+        }
+        if (!params) {
+            params = '{}';
+        }
+        params = '{"id":1,"jsonrpc":"2.0","method":"' + api_method + '","params":' + params + '}';
+    }
+    else {
+        if (api_method) {
+            $('#api_method').val(api_method);
+        }
+    }
+
+    if (params) {
+        storedParams = params;
+        $('#data').val(params);
+        $('#params_saved').text(params);
+        $('#params_saved_td').show();
+    }
+});
+
+    </script>
+</head>
+<body>
+
+<div id="head">
+<img id="logo" src="http://shiftdata.com/images/logo.png"> <a href="http://shiftdata.com/">Shiftboard Web Services API</a> Interactive Test Tool
+</div>
+
+<form id="try_it">
+    <code>Access</code>: <input id="access_key_id" size="40" value="">
+    <br><code>Secret</code>: <input id="secret" type="password" size="40" value="">
+    <span id="api_method_span"><br><code>Method</code>: <input id="api_method" size="40" value="system.echo"></span>
+    <br><code>Parameters</code><span id="json_instructions_span" style="display:none"> (supply full JSON; will be sent as POST data)</span>:
+    <br><table><tr>
+        <td><textarea cols="100" rows="20" id="data">{}</textarea></td>
+        <td id="params_saved_td" style="display:none"><div><b><a href="#" onclick="restoreParams(); return false">Restore Params</b></div><div id="params_saved"></div></td>
+    </table>
+    <span id="raw_span" style="display:none"><br><code>Raw Mode</code>: <input id="raw" type="checkbox" onclick="rawMode()"></span>
+    <br><input type="button" value="Try It!" onmouseup="return tryAPI()">
+</form>
+
+<div id="results" style="display:none">
+    <div class="results_row"><b>Signature (Base64)</b>: <span id="results_sign_b64" class="results"></span></div>
+    <div class="results_row"><b>URL</b>: <span id="results_url" class="results"></span></div>
+    <div class="results_row"><b>Response</b>: <div id="results_json" class="results"></div></div>
+</div>
+
+</body>
+</html>
