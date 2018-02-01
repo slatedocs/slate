@@ -28,7 +28,7 @@ This API will list out all the identities for a user.
 
 ```shell
 curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscriber_identities.json -d '{
-  subscriber_identity: {
+  "subscriber_identity:" {
     "provider": "email",
     "value": "asim2@gmail.com"
   }
