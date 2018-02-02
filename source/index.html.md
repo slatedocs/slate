@@ -18,6 +18,7 @@ includes:
   - api/availability
   - api/calendar
   - api/client
+  - api/coverageBlock
   - api/department
   - api/location
   - api/managerNote
