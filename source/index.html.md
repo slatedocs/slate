@@ -58,7 +58,7 @@ Redii expects for the API key to be included in all API requests to the server i
 ## Get Multipages Moments
 
 ```ruby
-uri = URI.parse("https://<your_program_subdomain>.redii.com/api/recognition/v1/moments")
+uri = URI.parse("https://<your_program_subdomain>.redii.com/api/recognition/v1/moments?page=1&limit=5")
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net::HTTP::Get.new(uri.request_uri)
 request['authorization'] = "Token token=#{your_program_token}"
@@ -75,78 +75,75 @@ https://<your_program_subdomain>.redii.com/api/recognition/v1/moments
 ```json
 {
   "moment_nominations": [
-  {
-    "state": "approved",
-      "created_at": "2015-12-07T16:36:57.658+11:00",
-      "updated_at": "2015-12-07T16:36:57.696+11:00",
-      "approved_at": "2015-12-07T16:36:57.663+11:00",
-      "award_text": "Repellendus sed labore tempore incidunt facere sed ab iure qui eos alias.",
-      "manager_names": "Bruce Yost",
-      "user_names": "Wilmer Metz",
-      "likes_count": 0,
-      "comments_count": 0,
-      "links" :
-        { "likes": "http://XXXX.redii.com/api/recognition/v1/moments/87940/likes"
-        },
-      "by_user_id": 6,
-      "award_id": 4,
-      "by_user":
-        {
-          "id": 22732,
-          "name": "Alic Doe",
-          "staff_id": 22730
-
-        },
-      "users":
-        {
-          "id": 22734,
-          "name": "Bob Doe",
-          "staff_id": 22732
-        },
-      "award":
-        {
-          "id": 1,
-          "name": "Safety Leader",
-          "description": "Noticed someone demonstrating they take safety seriously?"
-        }
-    },
-  {
-    "state": "approved",
-    "created_at": "2015-12-07T16:36:57.815+11:00",
-    "updated_at": "2015-12-07T16:36:57.829+11:00",
-    "approved_at": "2015-12-07T16:36:57.818+11:00",
-    "award_text": "Architecto quisquam laboriosam quae dolor libero iure.",
-    "manager_names": "",
-    "user_names": "Eldred Ullrich",
-    "likes_count": 0,
-    "comments_count": 0,
-    "links" :
-      {
-        "likes": "http://XXXX.redii.com/api/recognition/v1/moments/87902/likes"
+    {
+      "state":"approved",
+      "created_at":"2015-12-07T16:36:57.658+11:00",
+      "updated_at":"2015-12-07T16:36:57.696+11:00",
+      "approved_at":"2015-12-07T16:36:57.663+11:00",
+      "award_text":"Repellendus sed labore tempore incidunt facere sed ab iure qui eos alias.",
+      "manager_names":"Bruce Yost",
+      "user_names":"Wilmer Metz",
+      "likes_count":0,
+      "comments_count":0,
+      "links": {
+        "likes":"http://XXXX.redii.com/api/recognition/v1/moments/87940/likes"
       },
-    "by_user_id": 10,
-    "award_id": 3,
-    "by_user":
-        {
-          "id": 22722,
-          "name": "Alic Doe",
-          "staff_id": 22712
-
-        },
-      "users":
-        {
-          "id": 22111,
-          "name": "Bob Doe",
-          "staff_id": 23231
-        },
-      "award":
-        {
-          "id": 1,
-          "name": "Safety Leader",
-          "description": "Noticed someone demonstrating they take safety seriously?"
-        }
+      "by_user_id":6,
+      "award_id":4,
+      "by_user": {
+        "id":22732,
+        "name":"Alic Doe",
+        "staff_id":22730
+      },
+      "users": {
+        "id":22734,
+        "name":"Bob Doe",
+        "staff_id":22732
+      },
+      "award": {
+        "id":1,
+        "name":"Safety Leader",
+        "description":"Noticed someone demonstrating they take safety seriously?"
+      }
+    },
+    {
+      "state":"approved",
+      "created_at":"2015-12-07T16:36:57.815+11:00",
+      "updated_at":"2015-12-07T16:36:57.829+11:00",
+      "approved_at":"2015-12-07T16:36:57.818+11:00",
+      "award_text":"Architecto quisquam laboriosam quae dolor libero iure.",
+      "manager_names":"",
+      "user_names":"Eldred Ullrich",
+      "likes_count":0,
+      "comments_count":0,
+      "links": {
+        "likes":"http://XXXX.redii.com/api/recognition/v1/moments/87902/likes"
+      },
+      "by_user_id":10,
+      "award_id":3,
+      "by_user": {
+        "id":22722,
+        "name":"Alic Doe",
+        "staff_id":22712
+      },
+      "users": {
+        "id":22111,
+        "name":"Bob Doe",
+        "staff_id":23231
+      },
+      "award": {
+        "id":1,
+        "name":"Safety Leader",
+        "description":"Noticed someone demonstrating they take safety seriously?"
+      }
+    }
+  ],
+  "meta": {
+    "total":724,
+    "total_pages":362,
+    "limit":"2",
+    "page":1
   }
-  ]
 }
 ```
 
