@@ -30,6 +30,7 @@ includes:
   - api/profileData
   - api/profileType
   - api/registration
+  - api/resource
   - api/role
   - api/shift
   - api/system
