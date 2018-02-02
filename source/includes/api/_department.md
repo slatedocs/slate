@@ -141,6 +141,10 @@ A unique identifier for this department.
 
 The name of this department.
 
+####description
+
+Description of the department
+
 ### department.update
 
 > Request example:
