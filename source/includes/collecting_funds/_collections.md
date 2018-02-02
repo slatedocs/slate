@@ -1,13 +1,13 @@
 # Collections
 
-Beyonic uses the term "Collections" for payments you receive (or collect) from mobile subscribers. See [how collections work](http://support.beyonic.com/how-beyonic-makes-collections-easier/) for more information.
+Beyonic uses the term "Collections" for payments you receive (or collect) from mobile subscribers. See the [Beyonic collections guide](https://support.beyonic.com/beyonic-collections-receive-mobile-money-through-beyonic) for more information.
 
 When the user sends in a payment, it will create a collection object that you can access via the Collections API using the methods shown below.
 
 The collections api endpoint is:
   <aside class="notice">https://app.beyonic.com/api/collections</aside>
 
-**NOTE: If you want to initiate new collections, use the [Collection Requests API](#collection-requests-get-paid). The collections api only allows you to view funds that have already been sent to you.**
+**NOTE: If you want to initiate new collections, use the [Collection Requests API](#collection-requests. The collections api only allows you to view funds that have already been sent to you.**
 
 ## The Collection object
 
