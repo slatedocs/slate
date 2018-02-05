@@ -358,7 +358,7 @@ response = requests.post(
 }
 ```
 
-`POST -d '{"group_name": <group-name>, "ldap_group_dn": <ldap_group_dn>}' "{manager-ip}/api/v3.1/user-groups"`
+`POST -d '{"group_name": <group-name>, "ldap_group_dn": <ldap_group_dn>, "role": <group-system-role>}' "{manager-ip}/api/v3.1/user-groups"`
 
 Creates a new user group.
 
@@ -368,9 +368,10 @@ Property | Type | Description
 --------- | ------- | -----------
 `group_name` | string | The group name.
 `ldap_group_dn` | string | Optional parameter, The distinguishing name of the corresponding LDAP group, if appropriate.
+`role` | string | Optional parameter, The name of the system role for the group (default: "default").
 
 ### Response
-A `User` resource.
+A `Group` resource.
 
 
 
