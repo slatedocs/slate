@@ -16,14 +16,32 @@ search: true
 ---
 # Introducción
 
-Integra tu sistema contable o ERP con Facturación Electrónica. La aplicación **Link** de Dátil
-te permite emitir todos los tipos de comprobantes electrónicos: facturas, retenciones,
-notas de crédito, notas de débito y guías de remisión.
+Integra tu sistema contable o ERP con Facturación Electrónica. La aplicación
+**Link** de Dátil te permite emitir todos los tipos de comprobantes
+electrónicos: facturas, retenciones, notas de crédito, notas de débito y
+guías de remisión.
 
-La aplicación Link de Dátil funciona en Windows y en Linux (próximamente) como un servicio del sistema operativo. De esta manera, Link se podrá mantener en ejecución permanente y emitiendo comprobantes.
+Link funciona como un servicio del sistema operativo, de esta manera se mantiene
+en ejecución permanente emitiendo comprobantes.
 
-**Link** se conecta a la base de datos de tu ERP o sistema contable para obtener la información
-de los comprobantes mientras sigues usando tu sistema como siempre lo has hecho.
+**Link** se conecta a la base de datos de tu ERP o sistema contable para obtener
+la información de los comprobantes mientras sigues usando tu sistema como
+siempre lo has hecho.
+
+**¿Cómo funciona?**
+
+- Link consulta los documentos utilizando las sentencias SQL de los archivos de
+configuración.
+- Registra los nuevos documentos detectados en una tabla de Control.
+- La *tarea de emisión* de Link toma de la tabla de Control el ID del documento
+(id_local) en las tablas o vistas del ERP y consulta toda la información de
+todas las tablas/vistas relacionadas establecidas en la configuración.
+- Si el intento de emisión del documento fue exitoso, Link actualiza la tabla
+de Control con el estado _RECIBIDO_
+- La *tarea de consulta de resultado* consulta al servicio de Dátil el estado
+de autorización del documento hasta obtener un estado final (AUTORIZADO,
+NO AUTORIZADO o DEVUELTO).
+
 
 # Requisitos
 
@@ -43,18 +61,19 @@ _Disponible para 32 y 64 bits_
 * Windows 7
 * Windows 8
 
-Para saber si la versión de su equipo es de 32 o 64 bits en Windows, siga los pasos del [siguiente enlace](https://support.microsoft.com/es-es/kb/827218).
+Para saber si la versión de su equipo es de 32 o 64 bits en Windows, sigue los
+pasos del [siguiente enlace](https://support.microsoft.com/es-es/kb/827218).
 
 **Linux** (próximamente)
 
 * Centos
 * Ubuntu
 
-## Motor de Base de Datos
+## Bases de Datos
 
-Link puede conectarse a los siguientes motores de bases de datos relacionales:
+Link ha sido probado con los siguientes motores de base de datos.
 
-**SQL Server**
+### SQL Server
 
 * SQL Server 2000
 * SQL Server 2005
@@ -62,31 +81,65 @@ Link puede conectarse a los siguientes motores de bases de datos relacionales:
 * SQL Server 2012
 * SQL Server 2014
 
-Para conocer la versión de SQL Server puede ejecutar el siguiente comando
+### Sybase
 
-`SELECT @@version`
+### ORACLE
 
+### DBF (Visual Fox Pro)
 
-Link también puede  extraer información de los siguientes archivos de base de datos:
-
-**DBF (Visual Fox Pro)**
-
-
+Sin embargo debería funcionar con cualquier motor de base de datos que disponga
+de un controlador ODBC.
 
 # Descargas
 
 Integra Dátil a tu sistema en minutos.
 
-### 4.7.0
+### Más reciente (5.0.1)
+
+- [Windows 32 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_5.0.1_32bit.exe)
+- [Windows 64 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_5.0.1_64bit.exe)
+
+#### Notas de la versión
+
+#### <strong>5.0.1</strong><br><small><strong>Enero 5, 2018</strong></small>
+
+##### Corregido
+La longitud máxima para el nombre de una columna en versiones de ORACLE menores
+a la 12 es de 30 caracteres. Por esto agregamos alias más cortos para parámetros
+que exceden esta longitud, como `fecha_emision_documento_sustento -> fecha_emi_doc_sustento`,
+`numero_autorizacion_documento_sustento -> num_aut_doc_sustento`
+
+### Versiones anteriores
+
+#### 5.0.0
+
+- [Windows 32 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_5.0.0_32bit.exe)
+- [Windows 64 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_5.0.0_64bit.exe)
+
+#### Notas de la versión
+
+#### <strong>5.0.0</strong><br><small><strong>Enero 5, 2018</strong></small>
+
+##### Nuevo
+Soporte para ORACLE.<br/>
+Personalización del formato de fecha utilizado como literal de fecha utilizando
+la nueva entrada de configuración `datetime_format`.<br/>
+
+##### Removido
+La tarea `sync_resources` fue removida completamente en favor de tarea más
+reciente `resource_sync`.
+
+
+#### 4.7.0
 
 - [Windows 32 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_4.7.0_32bit.exe)
 - [Windows 64 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_4.7.0_64bit.exe)
 
-# Notas de la versión
+#### Notas de la versión
 
-### <strong>4.7.0</strong><br><small><strong>Octubre 19, 2017</strong></small>
+#### <strong>4.7.0</strong><br><small><strong>Octubre 19, 2017</strong></small>
 
-#### Nuevo
+##### Nuevo
 Emisión de facturas de reembolso. Se agregaron tres nuevas entradas al archivo
 de configuración `config/receipts/invoice.ini`: invoice_reimbursement,
 invoice_reimbursement_document, invoice_reimbursement_document_tax
@@ -102,17 +155,17 @@ el flujo de ventanas que aparecerán en su pantalla.
 <img src='/images/linkapp/install-step-4.png'></img>
 <img src='/images/linkapp/install-step-5.png'></img>
 
-# Configuración
+## Preparando el ambiente
 
-## Tablas de Control y Mensaje
+Link utiliza dos tablas indispensables para su operación: Control y Mensaje.
+En la tabla de Control registra los documentos que debe procesar y el estado de
+cada uno de ellos. Puedes crear estas tablas en la misma base de datos de tu
+ERP o en una distinta.
 
-Control y Mensaje son tablas que el programa Link necesita para llevar control de los comprobantes emitidos. Pueden estar creados en la misma base de datos o en una distinta a la que almacena la información de los comprobantes.
-
-Para crear la tabla de control  y mensaje ejecutar:
+Crea la tabla de control y mensaje:
 
 <pre>
-CREATE TABLE
-    Control(
+CREATE TABLE Control (
     id_control bigint IDENTITY(1,1) NOT NULL PRIMARY KEY,
     tipo_comprobante int NOT NULL,
     id_local varchar(100) NOT NULL,
@@ -127,7 +180,7 @@ CREATE TABLE
     id_externo varchar(40),
     company_name varchar(40),
     CONSTRAINT ix_tipo_idlocal UNIQUE (tipo_comprobante, id_local, numero_comprobante, company_name)
-    )
+  )
 </pre>
 
 <pre>
@@ -143,62 +196,90 @@ CREATE TABLE
     )
 </pre>
 
-## Configuración general
+# Configuración
 
-Abrir el Bloc de Notas con permisos de administrador, dando click derecho y escogiendo
-**Ejecutar como administrador**. Escoger `Archivo` -> `Abrir` -> `C:\Archivos de Programa\Datil\Link\config`, en la opción `Tipo` de la ventana seleccionar _Todos los archivos_ y seleccionar `environment.ini`
+Link utiliza archivos de configuración en formato .ini que contienen todos los
+parámetros que se pueden ajustar. Puesto que los archivos de configuración se
+encuentran en la carpeta de `C:\Archivos de Progama\Datil\Link\config` para
+editarlos debes abrir siempre tu editor con permisos de administrador.
 
-### General
+Los [archivos INI](https://es.wikipedia.org/wiki/INI_(extensi%C3%B3n_de_archivo))
+están compuestos por secciones y cada sección puede tener varias claves y
+valores.
 
-Es la configuración general de la aplicación
+## environment.ini
 
-En la sección `[General]` editar los parámetros:
+Parámetros generales del ambiente. Contiene las siguientes secciones.
 
-* `company` con el nombre de la compañía, ejemplo `Seguros Segurito S.A.`
+### [DatabaseSource]
+
+Parámetros de conexión a la base de datos que contiene las tablas de Control
+y Mensaje.
+
+Parámetros | &nbsp;
+---------- | -----------
+driver<p class="dt-data-param-required">requerido</p> | Controlador cuando se establece una conexión por ODBC.
+server<p class="dt-data-param-required">requerido</p> | Dirección o nombre del servidor
+name<p class="dt-data-param-required">requerido</p> | Nombre de la base de datos
+user<p class="dt-data-param-required">requerido</p> | Nombre de usuario.
+password<p class="dt-data-param-required">requerido</p> | Contraseña del usuario de la base de datos
+version<p class="dt-data-param-required">requerido</p> | Versión del motor de base de datos que se utiliza para constriur SQL dependiendo de la versión
+api<p class="dt-data-param-required">requerido</p> | Puede ser `odbc` o `adodb`
+data_source<p class="dt-data-param-required">requerido</p> | Utilizado para conexiones tipo `adodb`
+provider<p class="dt-data-param-required">requerido</p> | Utilizado para conexiones tipo `adodb`
+datetime_format | Formato de la representación literal de un SQL_TIMESTAMP. Por ejemplo en SQL Server el literal de un `DATETIME` es %Y-%m-%d %H:%M:%S
+
+### [Scheduler]
+
+Las tareas se ejecutan al iniciar el servicio y luego esperan un tiempo
+establecido por estos parámetros. Todos los intervalos se especifican en
+segundos.
+
+Parámetros | &nbsp;
+---------- | -----------
+issue_receipts_interval<p class="dt-data-param-required">requerido</p> | Intervalo para la *tarea de emisión* de documentos.
+read_receipts_interval<p class="dt-data-param-required">requerido</p> | Intervalo para la *tarea de consulta de estado* de documentos.
+issue_receipts_from_xml_interval<p class="dt-data-param-required">requerido</p> | Intervalo para la *tarea de emisión por xml*.
+send_status_interval<p class="dt-data-param-required">requerido</p> | Intervalo para la tarea de reporte de estado (aun no utilizada)
+sync_resources_interval<p class="dt-data-param-required">requerido</p> | Intervalo para la *tarea de sincronización de recursos*.
+
+### [Constraints]
+
+Restricciones para la consulta de documentos.
+
+Parámetros | &nbsp;
+---------- | -----------
+issue_limit<p class="dt-data-param-required">requerido</p> | Número máximo de documentos que la *tarea de emisión* de documentos toma cada vez que se ejecuta.
+issue_order<p class="dt-data-param-required">requerido</p> | Determina el ordenamiento de los documentos consultados para emitir. Puede ser `ASC` o `DESC`
+get_info_limit<p class="dt-data-param-required">requerido</p> | Número máximo de documentos que la *tarea de consulta de estado* de documentos toma cada vez que se ejecuta.
+get_info_order<p class="dt-data-param-required">requerido</p> | Determina el ordenamiento de los documentos consultados para obtener su estado. Puede ser `ASC` o `DESC`
+first_receipt_date<p class="dt-data-param-required">requerido</p> | Establece la fecha a partir de la cual necesitas emitir documentos. La fecha debe tener el formato `YYYY-mm-dd hh:MM:SS` ejemplo: `2002-09-12 13:40:00` para el 12 de septiembre del año 2002 a las trece horas con cuarenta minutos y cero segundos.
+max_days_to_query<p class="dt-data-param-required">requerido</p> | El número máximo de días previos a consultar a partir de la fecha actual. Normalmente se configura con 30 puesto que es el límite de fecha de emisión establecido por el SRI para emitir un documento electrónico.
+new_receipts_limit<p class="dt-data-param-required">requerido</p> | Número máximo de documentos que la *tarea de control* inserta a la tabla de Control cada vez que se ejecuta.
+
+## companies/my_company.ini
 
 
-### DatabaseSource
+## Conexión a la base de datos
 
-Es la configuración de la base de datos que contiene las tablas de  control y mensaje.
+Ejemplos de configuración.
 
-#### SQL Server
+### SQL Server
 
-En la sección `[DatabaseSource]` editar los parámetros:
-
-* `driver` con el valor  `SQL Server`.
-* `server` con la url o ip o nombre del servidor de base de datos donde se crearon las tablas de Control y Mensaje. Ejemplo: localhost, 192.168.100.102, ADMIN\SQLEXPRESS.
-* `name` con el nombre de la base de datos.
-* `user` con el usuario que tiene acceso a la base de datos.
-* `password` con la clave de acceso a la base de datos.
-* `version` con la versión de SQL Server.
-* `api` con el valor `odbc`.
-
-Dejar `datasource`  y `provider` con el valor `None` porque no aplican para la conexión con
-SQL Server
-
-### Constraints
-
-En la sección `[Constraints]` editar el parámetro `first_receipt_date` con la fecha desde la cual se desea emitir el primer comprobante. La fecha debe tener el formato `YYYY-mm-dd hh:MM:SS` Ejemplo: `2016-09-12 13:40:00` para el 12 de septiembre del año 2016 a las trece horas con cuarenta minutos y cero segundos. El tiempo debe estar en formato de 24 horas.
-
-### Notification
-
-En la sección `[Notification]`:
-
-Editar el parámetro `email_api_key` con el API key de Sendgrid para el envío de emails.
-
-Editar el parámetro `dest_email` si desea recibir notificaciones cuando ocurra algún error al emitir un comprobante. Agregue una o varias direcciones de correo electrónico al separadas por coma (,).
-
-
-Guardar el archivo con la configuración editada.
+```ini
+driver = SQL Server.
+server = ADMIN\SQLEXPRESS.
+name = DATIL
+user = link
+password = Link007
+version = 2012
+api = odbc
+datasource = None
+provider   = None
+```
 
 
 ## Configuración de la compañía
-
-
-
-Abrir el Bloc de Notas con permisos de administrador, dando click derecho y escogiendo
-**Ejecutar como administrador**. Escoger `Archivo` -> `Abrir` -> `C:\Archivos de Programa\Datil\Link\config\companies`, en la opción `Tipo` de la ventana seleccionar _Todos los archivos_ y seleccionar `my_company.ini`
-
 
 ### General
 
