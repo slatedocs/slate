@@ -7,7 +7,7 @@ Most APIs will accept the primary identity via URL parameters, and will also acc
 ## LIST Subscriber Identities for a user
 
 ```shell
-$ curl -H "X-SUBAUTH: <auth-token>" https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscriber_identiites.json
+$ curl -H "X-SUBAUTH: <auth-token>" https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscriber_identities.json
 {
   "subscriber_identities": [
     {
@@ -28,9 +28,9 @@ This API will list out all the identities for a user.
 
 ```shell
 curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscriber_identities.json -d '{
-  subscriber_identity: {
-    provider: "email",
-    value: "asim2@gmail.com"
+  "subscriber_identity:" {
+    "provider": "email",
+    "value": "asim2@gmail.com"
   }
 }'
 
