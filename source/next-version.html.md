@@ -1260,7 +1260,7 @@ $ curl -X GET "http://sketches.quintype.com/api/member/metadata" -H "Accept: app
 
 Example Response
 
-Anagh to revert
+Awaiting inputs.
 
 ```
 
@@ -1405,7 +1405,7 @@ Logs in with the username and password.
 
 Returns the list of published instant articles.
 
-As a prerequisite to fetch the instant articles, the publisher front-end should contain the `<iframe></iframe>` tag that is provided by Facebook at the time of registering for instant articles. Example tag: `<iframe hidden="hidden" src="https://www.thequint.com/api/instant-articles-track.iframe?page-type=story&amp;story-id=abcd1234-abcd-1234-abcd-abcd4321"></iframe>`
+As a prerequisite to fetch the instant articles, the publisher front-end should contain the `<meta property="fb:pages" content="1234567890123456" />` tag that is provided by Facebook at the time of registering for instant articles.
 
 **Input Parameters**
 
