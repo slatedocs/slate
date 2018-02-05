@@ -1260,13 +1260,13 @@ $ curl -X GET "http://sketches.quintype.com/api/member/metadata" -H "Accept: app
 
 Example Response
 
-AP to revert
+Anagh to revert
 
 ```
 
 **Description**
 
-Displays the meta description of the current user.
+Displays the meta description of the current logged-in user.
 
 
 **Input Parameters**
@@ -1284,7 +1284,7 @@ $ curl -X POST "http://sketches.quintype.com/api/member/metadata" -H "Accept: ap
 
 **Description**
 
-Enters the meta description of the current user.
+Enters the meta description of the current logged-in user.
 
 
 **Input Parameters**
@@ -1297,23 +1297,40 @@ None.
 
 Example Request
 
-$ 
+$ curl -X GET "http://sketches.quintype.com/api/v1/members/me" -H "Accept: application/json"
 
 Example Response
 
+{
+  "member": {
+    "updated-at": 1517458769183,
+    "email": "charansingh@twitter-dummy-email.com",
+    "last-name": null,
+    "publisher-id": 1,
+    "name": "Sai Charan",
+    "avatar-url": "http://pbs.twimg.com/profile_images/780788770828267520/5cSBiM5w_normal.jpg",
+    "source": null,
+    "first-name": null,
+    "communication-email": null,
+    "bio": null,
+    "id": 469192,
+    "avatar-s3-key": null,
+    "twitter-handle": null,
+    "created-at": 1517458769183,
+    "metadata": {}
+  }
+}
 
 
 ```
 **Description**
 
-Returns the current user
+Returns the details of the current logged-in user.
 
 
 **Input Parameters**
 
-| Name | Data Type | Description|
-|--|--|--|
-|story-id| string| The desired story ID|
+None.
 
 
 ##/api/member/forgot-password
@@ -1328,13 +1345,13 @@ $ curl -X POST "http://sketches.quintype.com/api/member/forgot-password" -H "Acc
 
 **Description**
 
-
+Updates the password.
 
 **Input Parameters**
 
 | Name | Data Type | Description|
 |--|--|--|
-|| | |
+|E-mail| string| The e-mail ID |
 
 
 
@@ -1347,6 +1364,19 @@ $ curl -X POST "http://sketches.quintype.com/api/member" -H "Accept: application
 
 ```
 
+**Description**
+
+Adds the name, username, password, and the e-mail ID.
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|Name| string| The name of the user |
+|Username| string| The username|
+|E-mail| string| The e-mail ID of the user|
+|Password| string| The password for the mentioned username|
+
 
 ##/api/member/login
 
@@ -1357,12 +1387,24 @@ $ curl -X POST "http://sketches.quintype.com/api/member/forgot-password" -H "Acc
 
 ```
 
+**Description**
 
-#(H1) this is testing only
+Logs in with the username and password.
+
+**Input Parameters**
+
+| Name | Data Type | Description|
+|--|--|--|
+|E-mail| string| The registered e-mail ID of the user |
+|Password| string| The password associated with the username|
+
+<!--#(H1) this is testing only
 
 * open in new tab
 
 <a href="https://github.com/gja/rack-delete_cookies_from_public_requests" target="_blank">PHP </a>in GitHub
+
+-->
 
 <!--Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
 
