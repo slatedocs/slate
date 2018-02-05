@@ -75,7 +75,10 @@ account that last updated this request's status
 <span class="tryit" id="timeoffrequest-approve-tryit"></span>
 Approves a time off request.
 
-Required parameter: `id`.
+Required parameter:
+
+####id
+Time off request identifier or array of time off request identifiers.
 
 Optional parameter: `status_reason`. If not specified, status_reason will remain unchanged.
 
@@ -109,7 +112,8 @@ Response: On success, empty results will be returned.
 <span class="tryit" id="timeoffrequest-deny-tryit"></span>
 Denies a time off request.
 
-Required parameter: `id`.
+####id
+Time off request identifier or array of time off request identifiers.
 
 Optional parameter: `status_reason`. If not specified, status_reason will remain unchanged.
 
@@ -150,7 +154,7 @@ If requested, the response results `referenced_objects` attribute will be an obj
 
 ####account
 
-id, first_name, last_name, and screen_name attributes are provided. 
+id, first_name, last_name, and screen_name attributes are provided.
 
 **NOTE:** external_id will also be returned in the results if external ids are enabled for the site.
 
@@ -219,7 +223,7 @@ If specified, requests only timeOffRequests for the given account.
 
 **NOTE:** If you are calling this method with the `member` parameter, `external_member` is not required, and will be ignored.
 
- 
+
 ####account
 
 id, first_name, last_name, and screen_name attributes are provided.
