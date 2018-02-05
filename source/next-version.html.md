@@ -1398,6 +1398,19 @@ Logs in with the username and password.
 |E-mail| string| The registered e-mail ID of the user |
 |Password| string| The password associated with the username|
 
+
+## /api/instant-articles.rss
+
+**Description**
+
+Returns the list of published instant articles.
+
+As a prerequisite to fetch the instant articles, the publisher front-end should contain the `<iframe></iframe>` tag that is provided by Facebook at the time of registering for instant articles. Example tag: `<iframe hidden="hidden" src="https://www.thequint.com/api/instant-articles-track.iframe?page-type=story&amp;story-id=abcd1234-abcd-1234-abcd-abcd4321"></iframe>`
+
+**Input Parameters**
+
+None.
+
 <!--#(H1) this is testing only
 
 * open in new tab
