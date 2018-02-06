@@ -17,7 +17,7 @@ filter-user-id | if filter uses current_user criteria in it, you should provide 
 display-ids | filter Issues with display-ids (separated by commas) |
 title_exact | filter by Issue name exact match; case sensitive! |
 title_like | filter by Issue name: case insensitive, phrase can be inside the name |
-show_tags=true | set to 'true' to show the tags in the results|
+
 
 
 * none of the parameters are required. If you combine multiple parameters, it will do AND
@@ -133,10 +133,6 @@ This endpoint shows a specific Issue in your project.
 ### HTTP Request
 
 `GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues/YOUR_ISSUE_ID.json`
-
-Parameters | Description | required? |
---------- | ------- |------- |
-show_tags=true | set to 'true' to show the tags in the results| false |
 
 Here's the example of the JSON request and response
 
