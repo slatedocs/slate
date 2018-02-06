@@ -3,7 +3,7 @@
 ## LIST all Subscription Groups
 
 ```shell
-$ curl -H "X-SUBAUTH: <your-auth-token>" https://subtype.quintype.com/api/v1/subscription_groups.json
+$ curl -H "X-SUBAUTH: <your-auth-token>" https://accesstype.com/api/v1/subscription_groups.json
 {
   "subscription_groups": [{
     "id": 25,
@@ -55,7 +55,7 @@ This API will list out all public subscription groups
 ## GET a Subscription Group
 
 ```shell
-$ curl -H "X-SUBAUTH: <your-auth-token>" https://subtype.quintype.com/api/v1/subscription_groups/<group-id>.json
+$ curl -H "X-SUBAUTH: <your-auth-token>" https://accesstype.com/api/v1/subscription_groups/<group-id>.json
 {
   "subscription_group": {
     "id": 25,

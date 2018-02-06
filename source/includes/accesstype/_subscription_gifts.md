@@ -3,7 +3,7 @@
 ## POST Create a Subscription for gifting
 
 ```shell
-curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscription_gifts.json -d '{
+curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST https://accesstype.com/api/v1/subscribers/<provider>/<identity>/subscription_gifts.json -d '{
   "name": "Adam",
   "recipient_subscriber": {
     "recipient_identity_provider": "email",
@@ -36,7 +36,7 @@ It returns a Subscription Object in response
 ## LIST Subscriptions gifted by a user
 
 ```shell
-$ curl -H "X-SUBAUTH: <auth-token>" https://subtype.quintype.com/api/v1/subscribers/<provider>/<identity>/subscription_gifts.json
+$ curl -H "X-SUBAUTH: <auth-token>" https://accesstype.com/api/v1/subscribers/<provider>/<identity>/subscription_gifts.json
 {
  "subscriptions":[
   {
