@@ -617,7 +617,7 @@ Returns the stories that are related to the mentioned story ID.
 
 ##/api/v1/bulk
 ```
-Exmaple Request
+Example Request
 
 $ curl 'http://sketches.quintype.com/api/v1/bulk' -H 'Content-Type: application/json' --data-binary '{"requests":{"sports":{"slug":"sports","limit":"4","_type":"collection"},"history":{"slug":"history","limit":"4","_type":"collection"}}}' --compressed;
 
