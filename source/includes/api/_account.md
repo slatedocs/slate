@@ -9,7 +9,7 @@ A unique identifier for this account.
 ####external_id
 
 The external identifier for this account.
-    
+
 **NOTE:** This field is only used or returned when external ids are enabled for the site.
 
 ####first_name
@@ -719,6 +719,10 @@ Returns information about accounts with membership in a workgroup. Uses [paginat
 Required parameters: `select` object with a `workgroup` attribute identifying the workgroup whose members should be returned. E.g. `{select:{workgroup:12345}}`.
 
 Optional parameters:
+
+####search
+
+A generic search string; select accounts containing this string in any of: `first_name`, `last_name`, first and last names combined, `screen name`, or, if used by the site, `external_id`.
 
 ####extended
 
