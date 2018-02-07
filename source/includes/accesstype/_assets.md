@@ -7,12 +7,13 @@ $ curl -H "X-SUBAUTH: <auth-token>" https://accesstype.com/api/v1/subscribers/<p
 
 {
    "assets":[
-      {
-         "type":"site"
-      },
-      {
-         "type":"site"
-      }
+     {
+       "id":5,
+       "asset_category_id":1,
+       "metadata":{},
+       "title":"public",
+       "type":"site"
+     }
    ]
 }
 

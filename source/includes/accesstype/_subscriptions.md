@@ -8,6 +8,7 @@ It can also be set to `manual` to create subscriptions not involving payments.
 
 ```shell
 $ curl -H "X-SUBAUTH: <auth-token>" https://accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriptions.json
+
 {
  "subscriptions":[
   {
@@ -45,7 +46,17 @@ $ curl -H "X-SUBAUTH: <auth-token>" https://accesstype.com/api/v1/subscribers/<p
      "active":true,
      "payment_amount":"0.00",
      "payment_type":"manual",
-     "renewable": true
+     "renewable": true,
+     "coupon_code_id" : 6,
+     "discount_detail": {
+        "code": "TEST20",
+        "discount_type": "percent",
+        "title": "Test coupon gives 20 percent off",
+        "value": 20.0,
+        "discounted_price_cents": 8000.0,
+        "price_cents": 10000,
+        "price_currency": "USD"
+      }
     }
   ]
 }
@@ -60,7 +71,7 @@ In order to get only active subscriptions, param `active_only=true` can be used.
 curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST https://accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriptions.json -d '{
   "subscription": {
     "subscription_plan_id": "11",
-    "coupon_code": "",
+    "coupon_code": "NEWYEAR",
     "payment": {
         "payment_type": "razorpay",
         "payment_token": "pay_test_8tNiqdiajurOkj",

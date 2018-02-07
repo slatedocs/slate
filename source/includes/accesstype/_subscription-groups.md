@@ -11,8 +11,12 @@ $ curl -H "X-SUBAUTH: <your-auth-token>" https://accesstype.com/api/v1/subscript
     "name": "print",
     "description": "Digital + Print",
     "assets": [{
-        "type": "site"
-    }],
+       "id":5,
+       "asset_category_id":1,
+       "metadata":{},
+       "title":"public",
+       "type":"site"
+     }],
     "subscription_type": "individual",
     "public": true,
     "created_at": "2017-09-04T09:05:06.035Z",
@@ -63,8 +67,12 @@ $ curl -H "X-SUBAUTH: <your-auth-token>" https://accesstype.com/api/v1/subscript
     "name": "print",
     "description": "Digital + Print",
     "assets": [{
-        "type": "site"
-    }],
+       "id":5,
+       "asset_category_id":1,
+       "metadata":{},
+       "title":"public",
+       "type":"site"
+     }],
     "subscription_type": "individual",
     "public": true,
     "created_at": "2017-09-04T09:05:06.035Z",
