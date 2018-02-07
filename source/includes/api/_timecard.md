@@ -215,7 +215,7 @@ If requested, the response results `referenced_objects` attribute will be an obj
 
 ####account
 
-id, first_name, last_name, and screen_name attributes are provided. 
+id, first_name, last_name, and screen_name attributes are provided.
 
 **NOTE:** external_id will also be returned in the results if external ids are enabled for the site
 
@@ -413,3 +413,63 @@ Response: On success, empty results will be returned.
 <span class="tryit" id="timecard-customdropdownlist-tryit"></span>
 Returns information about custom dropdown list objects.
 
+### timecard.shiftList
+
+> Request example:
+
+```JSON
+{
+   "member" : "1"
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "2.811506",
+   "jsonrpc" : "2.0",
+   "id" : "21",
+   "result" : {
+                 "referenced_objects": {
+                       "workgroup": {
+                         "123456": "My Team"
+                       }
+                 },
+                 "shifts": [
+                    {
+                        "agent": "12345",
+                        "approved": "1",
+                        "category": "0",
+                        "client": null,
+                        "count": "1",
+                        "covered": true,
+                        "department": null,
+                        "display_time": "7am - 11:10am",
+                        "dur_hrs": "4",
+                        "dur_mins": "10",
+                        "end_date": "2018-02-06T11:10:00",
+                        "id": "1234567890",
+                        "name": "",
+                        "qty": "1",
+                        "start_date": "2018-02-06T07:00:00",
+                        "subject": "",
+                        "timezone": "Pacific Time (US/Can) (GMT-08:00)",
+                        "urgent": false,
+                        "use_time": "2",
+                        "venue": "0",
+                        "workgroup": "123456"
+                    }
+                 ]
+   }
+}
+```
+
+<span class="tryit" id="timecard-shiftlist-tryit"></span>
+Returns list of shifts (un)associated with timecards depending on timekeepr settings configured in Shiftboard
+
+Required parameters:
+#### member
+Integer; The id of the member to query on.
+
+The response results "shifts" attribute will be an array of the selected timecard objects that are (un)associated with shifts.
