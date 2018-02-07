@@ -61,6 +61,8 @@ EXEMPLO
 | discount_amount           | decimal | valor do desconto                                                                                                                                                                                                                                                                                           |
 | barcode                   | string  | código de barras                                                                                                                                                                                                                                                                                            |
 | due_date                  | date    | data de vencimento                                                                                                                                                                                                                                                                                          |
+| taxpayer_document_type    | string  | Tipo do documento do contribuinte                                                                                                                                                                                                                                                                           |
+| taxpayer_document         | string  | Número do documento do contribuinte                                                                                                                                                                                                                                                                         |
 | registration_status       | string  | status de registro do pagamento ('without_remittance', 'remitted', 'registered', 'canceled', 'edit_amount_started', 'edit_date_started', 'registered_with_error', 'cancelation_started', 'canceled_awaiting_confirmation', 'amount_edited_awaiting_confirmation', 'date_edited_awaiting_confirmation')      |
 
 
@@ -282,13 +284,11 @@ O attributo <code>amount</code> nesse caso é opcional, pois ele é identificado
 
 **Parâmetros quando payment_method é 'fgts'**
 
-| Campo                   | Tipo    | Comentário                                                         |
-|-------------------------|---------|--------------------------------------------------------------------|
-| barcode                 | string  | **(requerido)** Código de barras do boleto bancário                |
-| receita_federal_code    | string  | **(requerido)** código da receita federal, de 4 dígitos            |
-| fgts_identifier         | string  | **(requerido)** código de identificação do FGTS                    |
-| connectivity_seal       | string  | **(requerido)** selo de conectividade social                       |
-| connectivity_seal_digit | string  | **(requerido)** dígito verificador do selo de conectividade social |
+| Campo                  | Tipo    | Comentário                                                          |
+|------------------------|---------|---------------------------------------------------------------------|
+| barcode                | string  | **(requerido)** Código de barras do boleto bancário                 |
+| taxpayer_document_type | string  | **(requerido)** Tipo do documento do contribuinte ("cnpj" ou "cei") |
+| taxpayer_document      | string  | **(requerido)** Número do documento do contribuinte                 |
 
 ### Tributos sem código de barras (GPS, DARF, DAS, IPVA, ICMS-SP, DPVAT)
 
@@ -478,12 +478,10 @@ Além dos parâmetros comuns à todas as formas de pagamento, temos parâmetros 
 
 **Parâmetros quando payment_method é 'fgts'**
 
-| Campo                   | Tipo    | Comentário                                                         |
-|-------------------------|---------|--------------------------------------------------------------------|
-| receita_federal_code    | string  | **(requerido)** código da receita federal, de 4 dígitos            |
-| fgts_identifier         | string  | **(requerido)** código de identificação do FGTS                    |
-| connectivity_seal       | string  | **(requerido)** selo de conectividade social                       |
-| connectivity_seal_digit | string  | **(requerido)** dígito verificador do selo de conectividade social |
+| Campo                  | Tipo    | Comentário                                                          |
+|------------------------|---------|---------------------------------------------------------------------|
+| taxpayer_document_type | string  | **(requerido)** Tipo do documento do contribuinte ("cnpj" ou "cei") |
+| taxpayer_document      | string  | **(requerido)** Número do documento do contribuinte                 |
 
 ### Tributos sem código de barras (GPS, DARF, DAS, IPVA, ICMS-SP, DPVAT)
 
