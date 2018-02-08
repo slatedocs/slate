@@ -148,7 +148,17 @@ curl "https://api.affinity.vc/organizations/64779194" -u :<API-KEY>
   "name":"Affinity",
   "domain":"affinity.co",
   "global":false,
-  "person_ids":[89734, 117270, 138123, 274492, 304848, ...]
+  "person_ids":[89734, 117270, 138123, 274492, 304848, ...],
+  "list_entries": [
+    {
+      "id": 389,
+      "list_id": 26,
+      "creator_id": 38603,
+      "entity_id": 64779194,
+      "created_at": "2015-12-11T02:26:56.537-08:00",
+    },
+    ...
+  ],
 }
 ```
 
@@ -186,16 +196,6 @@ curl "https://api.affinity.vc/organizations" \
   "domain":"acme.co",
   "global":false,
   "person_ids":[38706],
-  "list_entries": [
-    {
-      "id": 389,
-      "list_id": 26,
-      "creator_id": 38603,
-      "entity_id": 64779194,
-      "created_at": "2015-12-11T02:26:56.537-08:00",
-    },
-    ...
-  ],
 }
 ```
 
