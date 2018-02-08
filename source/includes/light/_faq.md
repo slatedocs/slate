@@ -69,7 +69,7 @@ news.first.result.size | int | пакеты новостей для пэгина
 rss.updates.interval | int | как часто сервер будет пытаться читать обновления rss ленты
 ws.allowed_addresses | string | ограничитель адресов доступа к лайту (модет быть пустым и желательно настраивать через средства nginx)
 SEND_EMAIL | bool | нужно ли отправлять заявки из контакнтых форм на email
-WSDL_URL | string | возможность получать заявки через веб-сервис. необходимо реализвать сервис по шаблону WSDL http://dev.idamob.ru/orders-server-stub/services/OrdersWebServiceFacade?wsdl
+WSDL_URL | string | возможность получать заявки через веб-сервис. необходимо реализвать сервис по шаблону WSDL [http://dev.idamob.ru/orders-server-stub/services/OrdersWebServiceFacade?wsdl](http://dev.idamob.ru/orders-server-stub/services/OrdersWebServiceFacade?wsdl)
 proxy.wsdl | string | WSDL многошаговой формы
 proxy.service | string | IdaMobLightProxyServiceFacade
 proxy.endpoint | string | IdaMobLightProxyServiceFacadeHttpSoap12Endpoint
