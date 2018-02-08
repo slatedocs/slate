@@ -30,6 +30,16 @@ spreadsheet), please check out the [Field Values](#field-values) section of the 
     "johnjdoe@gmail.com",
   ],
   "organization_ids": [1687449],
+  "list_entries": [
+    {
+      "id": 388,
+      "list_id": 26,
+      "creator_id": 38603,
+      "entity_id": 38706,
+      "created_at": "2015-12-11T02:26:56.537-08:00",
+    },
+    ...
+  ],
 },
 ```
 
@@ -61,6 +71,7 @@ emails | string[] | The email addresses of the person.
 phone_numbers | string[] | The phone numbers of the person.
 primary_email | string | The email (automatically computed) that is most likely to the current active email address of the person.
 organization_ids | integer[] | An array of unique identifiers of organizations that the person is associated with.
+list_entries | ListEntry[] | An array of list entry resources associated with the person, only returned as part of the [Get a specific person](#get-a-specific-person) endpoint.
 
 ### Person types
 
@@ -148,8 +159,8 @@ page_token | string | false | The `next_page_token` from the previous response r
 ### Returns
 An object with two fields: `persons` and `next_page_token`. `persons` maps to an array of
 all the person resources that match the search criteria. Does not include the associated
-`organization_ids`. `next_page_token` includes a token to be sent along with the next
-request as the `page_token` parameter to fetch the next page of results.
+`organization_ids` or `list_entries`. `next_page_token` includes a token to be sent along
+with the next request as the `page_token` parameter to fetch the next page of results.
 
 ## Get a specific person
 
@@ -176,6 +187,16 @@ curl "https://api.affinity.vc/persons/38706" -u :<API-KEY>
     "johndoe@gmail.com",
   ],
   "organization_ids": [1687449],
+  "list_entries": [
+    {
+      "id": 388,
+      "list_id": 26,
+      "creator_id": 38603,
+      "entity_id": 38706,
+      "created_at": "2015-12-11T02:26:56.537-08:00",
+    },
+    ...
+  ],
 }
 ```
 

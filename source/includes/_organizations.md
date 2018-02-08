@@ -29,6 +29,16 @@ spreadsheet), please check out the [Field Values](#field-values) section of the 
   "domain":"affinity.co",
   "global":false,
   "person_ids":[89734, 117270, 138123, 274492, 304848, ...]
+  "list_entries": [
+    {
+      "id": 389,
+      "list_id": 26,
+      "creator_id": 38603,
+      "entity_id": 64779194,
+      "created_at": "2015-12-11T02:26:56.537-08:00",
+    },
+    ...
+  ],
 }
 ```
 Each organization object has a unique `id`. It also has a `name`, `domain` (the website
@@ -51,6 +61,7 @@ name | integer | The name of the organization (see below).
 domain | string | The website name of the organization. This is used by Affinity to automatically associate person objects with an organization.
 person_ids | string[] | An array of unique identifiers of person that are associated with the organization
 global | boolean | Returns whether this organization is a part of Affinity's global dataset of organizations. This is always false if the organization was created by you.
+list_entries | ListEntry[] | An array of list entry resources associated with the organization, only returned as part of the [Get a specific organization](#get-a-specific-organization) endpoint.
 
 
 ## Search for organizations
@@ -174,7 +185,17 @@ curl "https://api.affinity.vc/organizations" \
   "name":"Acme Corporation",
   "domain":"acme.co",
   "global":false,
-  "person_ids":[38706]
+  "person_ids":[38706],
+  "list_entries": [
+    {
+      "id": 389,
+      "list_id": 26,
+      "creator_id": 38603,
+      "entity_id": 64779194,
+      "created_at": "2015-12-11T02:26:56.537-08:00",
+    },
+    ...
+  ],
 }
 ```
 
