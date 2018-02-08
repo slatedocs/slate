@@ -77,13 +77,23 @@ p.requirements {
     display: inline-block;
     width: 30%;
     margin-right: 20px;
-    border: 1px solid #efefef;
+    border: 1px solid #ccc;
     border-radius: 3px;
     padding: 20px;
     box-sizing: border-box;
     h3 {
       margin-top: 0;
       margin-bottom: 10px;
+
+      img {
+        max-width: 24px;
+        max-height: 24px;
+        vertical-align: middle;
+        margin-right: 5px;
+      }
+    }
+    p {
+      font-size: 13px;
     }
   }
 }

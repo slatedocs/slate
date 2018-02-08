@@ -4,6 +4,7 @@ title: Help Docs ~ Scout APM
 includes:
   - ruby
   - elixir
+  - python
   - features
   - integrations
   - api
@@ -22,24 +23,32 @@ Browse through the sidebar, search, [email us](mailto:support@scoutapp.com), or 
 
 <div id="overview_container">
   <div>
-    <h3><a href="#ruby-agent">Ruby Agent</a></h3>
+    <h3>
+      <img src="images/elixir.png" alt="elixir" />
+      <a href="#ruby-agent">Ruby Agent</a>
+    </h3>
     <p>
       View our docs for installing, configuring, and troubleshooting the Scout Ruby agent.
     </p>
   </div>
 
   <div>
-    <h3><a href="#elixir-agent">Elixir Agent</a></h3>
+    <h3>
+      <img src="images/ruby.png" alt="ruby" />
+      <a href="#elixir-agent">Elixir Agent</a>
+    </h3>
     <p>
       View our docs for installing, configuring, and troubleshooting the Scout Elixir agent.
     </p>
   </div>
 
   <div>
-    <h3><a href="https://docs.google.com/forms/d/e/1FAIpQLSfZtTYaAtbbAveQ5j2wcR5UJeDnH5KUiHc6DwnH1Qjk_OBtYA/viewform" target="_blank">Python Agent</a></h3>
+    <h3>
+        <img src="images/python.png" alt="python" />
+        <a href="#python-agent">Python Agent</a></h3>
+    </h3>
     <p>
-      Python support is coming soon. 
-      <br/><br/><a href="https://docs.google.com/forms/d/e/1FAIpQLSfZtTYaAtbbAveQ5j2wcR5UJeDnH5KUiHc6DwnH1Qjk_OBtYA/viewform" target="_blank">Signup for early access</a>.
+      View our docs for installing, configuring, and troubleshooting the Scout Python agent.
     </p>
   </div>
 </div>
