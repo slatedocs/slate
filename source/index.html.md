@@ -139,10 +139,11 @@ https://<your_program_subdomain>.redii.com/api/recognition/v1/moments
     }
   ],
   "meta": {
-    "total":724,
-    "total_pages":362,
-    "limit":"2",
-    "page":1
+    "limit": 10,
+    "page": 1,
+    "show_auto_awards": true,
+    "total": 724,
+    "total_pages": 362,
   }
 }
 ```
@@ -160,6 +161,7 @@ Parameter | Default | Description
 --------- | ------- | -----------
 limit | 10 | The number of results to return.
 page | 1 | The page number of results to return.
+show_auto_awards | true | Show auto award of results to return.
 
 ## Get All likes for the specific moment
 
