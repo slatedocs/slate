@@ -24,7 +24,7 @@ Browse through the sidebar, search, [email us](mailto:support@scoutapp.com), or 
 <div id="overview_container">
   <div>
     <h3>
-      <img src="images/elixir.png" alt="elixir" />
+      <img src="images/ruby.png" alt="ruby" />
       <a href="#ruby-agent">Ruby Agent</a>
     </h3>
     <p>
@@ -34,7 +34,7 @@ Browse through the sidebar, search, [email us](mailto:support@scoutapp.com), or 
 
   <div>
     <h3>
-      <img src="images/ruby.png" alt="ruby" />
+      <img src="images/elixir.png" alt="elixir" />
       <a href="#elixir-agent">Elixir Agent</a>
     </h3>
     <p>
