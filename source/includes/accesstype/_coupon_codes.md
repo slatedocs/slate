@@ -3,7 +3,7 @@
 ## GET discount details for a subscription plan
 
 ```shell
-$ curl -H "X-SUBAUTH: <auth-token>" https://accesstype.com/api/v1/subscription_plans/<subscription-plan-id>/coupon_codes/<code>/apply.json
+$ curl -H "X-SUBAUTH: <auth-token>" https://accesstype.com/api/v1/subscription_plans/<subscription-plan-id>/coupon_codes/<code>/validate.json
 
 {
   "discount_details": {
