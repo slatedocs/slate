@@ -1,5 +1,7 @@
 # Internationalization
 
+## Country and Regional Support
+
 
 ```ruby
 require 'rest-client'
@@ -35,12 +37,13 @@ We also support some regional languages
 | Spanish    | Chile      | es-CL |
 | Spanish    | Maxican    | es-MX |
 
-### HTTP Request
+## HTTP Request
 
 `POST https://app.rubberstamp.io/api/v1/endpoint`
 
-### Query Parameters
+## Query Parameters
 
 | Param  | Type   | Description                              |
 | -----  | ---    | ---------                                |
 | locale | header | locale key for required language support |
+

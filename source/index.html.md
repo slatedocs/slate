@@ -12,7 +12,7 @@ toc_footers:
 includes:
   - authentication
   - errors
-  - locale_support
+  - internationalization
   - users
   - budgets
   - comments
