@@ -22,6 +22,10 @@ The GitHub integration is an __app-specific__ integration, authenticated via OAu
 
 ![git settings](git_settings_annotated.png)
 
+### Missing some repositories?
+
+When configuring the GitHub integration, you may notice that only personal repositories are shown and repositories owned by organizations are missing. Your organization is likely leveraging trusted applications. See [GitHub's docs on organization-approved applications](https://github.com/blog/1941-organization-approved-applications) for instructions approving Scout. Once Scout is listed as an approved application, the org's repositories will be available within Scout.
+
 ## Rollbar
 
 When the Rollbar integration is enabled, Scout displays errors from the app's associated Rollbar project alongside performance data within the Scout UI.
