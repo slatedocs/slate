@@ -553,6 +553,12 @@ Apache's __mod_headers__ module includes a `%t` variable that is formatted for S
 RequestHeader set X-Request-Start "%t"
 ````
 
+#### Apache Request Queuing and File Uploads
+
+If you are using Apache, you may observe a spike in queue time within Scout for actions that process large file uploads. Apache adds the `X-Request-Start` header as soon as the request hits Apache. So, all of the time spent uploading a file will be reported as queue time.
+
+This is different from Nginx, which will first buffer the file to a tmp file on disk, then once the upload is complete, add headers to the request. 
+
 ### HAProxy
 
 HAProxy 1.5+ supports timestamped headers and can be set in the frontend or backend section. We suggest putting this in the frontend to get a more accurate number:
