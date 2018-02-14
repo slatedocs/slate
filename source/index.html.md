@@ -77,8 +77,20 @@ includes:
   - parameter_history
   - connectivity_reliability_rate
   - available_networks
+  - command_request
+  - sync
+  - status_update
+  - rtc_online_status
+  - force_connection
 
   - product_data
+
+  - rtc_dead_letter_actions
+  - rtc_import_mo_dead_letters
+  - rtc_import_mt_reply_dead_letters
+  - replay
+  - discard
+  - decode
 
   - custom_endpoints
   - home
