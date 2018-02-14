@@ -45,7 +45,7 @@ includes:
   - repairs
   - repair_symptom_type_linker
   - rtc_connection_history
-  - rtc_dead_letters
+  - rtc_dead_letter
   - sim_providers
   - sim_part_type_sim_provider_linker
   - sim_provider_network_linker
