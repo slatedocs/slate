@@ -21,7 +21,7 @@ This endpoint returns the contents of a RTC dead letter message ready for displa
     | value 
 ---:|:------
 __endpoint__ | `/rtc_dead_letters/<rtc_dead_letter_id>/decode`
-__method__ | `PUT`
+__method__ | `GET`
 __url_params__ | `rtc_dead_letter_id` _(int)_
 __payload__ | None
 __response__ | 200
