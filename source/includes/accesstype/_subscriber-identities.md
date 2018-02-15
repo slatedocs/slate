@@ -7,7 +7,7 @@ Most APIs will accept the primary identity via URL parameters, and will also acc
 ## LIST Subscriber Identities for a user
 
 ```shell
-$ curl -H "X-SUBAUTH: <auth-token>" https://accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriber_identities.json
+$ curl -H "X-SUBAUTH: <auth-token>" https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriber_identities.json
 {
   "subscriber_identities": [
     {
@@ -27,7 +27,7 @@ This API will list out all the identities for a user.
 ## POST Create a Subscriber Identity for a user
 
 ```shell
-curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" https://accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriber_identities.json -d '{
+curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriber_identities.json -d '{
   "subscriber_identity:" {
     "provider": "email",
     "value": "asim2@gmail.com"
