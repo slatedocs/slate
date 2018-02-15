@@ -14,6 +14,8 @@ includes:
   - accesstype/subscription-groups
   - accesstype/subscriptions
   - accesstype/subscription_gifts
+  - accesstype/assets
+  - accesstype/coupon_codes
   - accesstype/for-platform-customers
 ---
 
