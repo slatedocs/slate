@@ -211,13 +211,13 @@ Cria um novo Pagamento, retornando as informações do mesmo em caso de sucesso.
 
 **Parâmetros comuns à todas as formas de pagamento**
 
-| Campo                     | Tipo    | Comentário                                                                                                                                                                                                        |
-|---------------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| payment_config_id         | integer | **(requerido)** código de identificação da configuração de pagamento à qual o pagamento irá pertencer                                                                                                             |
-| payment_method            | string  | **(requerido)** forma de pagamento ('credit_other_ownership', 'credit_same_ownership', 'credit_savings_account', 'doc_other_ownership', 'doc_same_ownership', 'ted_other_ownership', 'ted_same_ownership', 'gps') |
-| payment_type              | string  | **(requerido)** tipo de pagamento. Os possíveis valores variam de acordo com o "payment_method" (vide tabela 1)                                                                                                   |
-| amount                    | decimal | **(requerido)** valor do pagamento                                                                                                                                                                                |
-| date                      | date    | **(requerido)** data do pagamento                                                                                                                                                                                 |
+| Campo                     | Tipo    | Comentário                                                                                                                                                                                                                                                  |
+|---------------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| payment_config_id         | integer | **(requerido)** código de identificação da configuração de pagamento à qual o pagamento irá pertencer                                                                                                                                                       |
+| payment_method            | string  | **(requerido)** forma de pagamento ('credit_other_ownership', 'credit_same_ownership', 'credit_savings_account', 'doc_other_ownership', 'doc_same_ownership', 'ted_other_ownership', 'ted_same_ownership', 'gps', 'darf', 'das', 'ipva', icms_sp', 'dpvat') |
+| payment_type              | string  | **(requerido)** tipo de pagamento. Os possíveis valores variam de acordo com o "payment_method" (vide tabela 1)                                                                                                                                             |
+| amount                    | decimal | **(requerido)** valor do pagamento                                                                                                                                                                                                                          |
+| date                      | date    | **(requerido)** data do pagamento                                                                                                                                                                                                                           |
 
 ### Transferências (DOC, TED, Crédito)
 
@@ -631,6 +631,64 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 Inicia o processo de cancelamento de um determinado Pagamento, retornando JSON contendo as informações do pagamento em caso de sucesso ou os erros, caso haja algum.
 
 Após iniciar o processo de cancelamento será necessário gerar um arquivo de remessa, enviar para o banco e esperar o arquivo de retorno confirmando o cancelamento.
+
+## Schema de Pagamento
+
+```shell
+Schema de Pagamento
+
+DEFINIÇÃO
+
+  GET https://app.cobrato.com/api/v1/payments/schema
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X GET https://app.cobrato.com/api/v1/payments/schema?payment_config_id=1&payment_method=ted_other_ownership
+
+EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
+
+    200 OK
+
+EXEMPLO DE CORPO DA RESPOSTA COM SUCESSO
+
+  {
+    "schema": {
+      // json schema
+    },
+    "form": {
+      // json schema form
+    }
+  }
+
+EXEMPLO DE ESTADO DA RESPOSTA COM INSUCESSO
+
+    422 Unprocessable Entity
+
+EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
+
+  {
+    "errors": {
+      "payment_method":["ao menos um dos parâmetros deve ser enviado: payment_method e barcode"],
+      "barcode":["ao menos um dos parâmetros deve ser enviado: payment_method e barcode"],
+      "payment_config_id":["não pode ficar em branco"]
+    }
+  }
+
+```
+
+Retorna o [json schema](http://json-schema.org/) e o [json schema form](https://github.com/myfreecomm/nexaas-json-schema-form) com as informações necessárias para criar um pagamento, baseado nos dados enviados.
+
+**Parâmetros**
+
+| Campo             | Tipo    | Comentário                                                                                                                                                                                                                                                              |
+|-------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| payment_config_id | integer | **(requerido)** código de identificação da configuração de pagamento à qual o pagamento irá pertencer                                                                                                                                                                   |
+| payment_method    | string  | **(requerido, ou barcode)** forma de pagamento ('credit_other_ownership', 'credit_same_ownership', 'credit_savings_account', 'doc_other_ownership', 'doc_same_ownership', 'ted_other_ownership', 'ted_same_ownership', 'gps', 'darf', 'das', 'ipva', icms_sp', 'dpvat') |
+| barcode           | string  | **(requerido, ou payment_method)** código de barras do pagamento                                                                                                                                                                                                        |
 
 ## Tabelas
 
