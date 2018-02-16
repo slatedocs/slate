@@ -64,6 +64,7 @@ EXEMPLO
 | taxpayer_document_type    | string  | Tipo do documento do contribuinte                                                                                                                                                                                                                                                                           |
 | taxpayer_document         | string  | Número do documento do contribuinte                                                                                                                                                                                                                                                                         |
 | registration_status       | string  | status de registro do pagamento ('without_remittance', 'remitted', 'registered', 'canceled', 'edit_amount_started', 'edit_date_started', 'registered_with_error', 'cancelation_started', 'canceled_awaiting_confirmation', 'amount_edited_awaiting_confirmation', 'date_edited_awaiting_confirmation')      |
+| note                      | string  | Oberservação do pagamento                                                                                                                                                                                                                                                                                   |
 
 
 ## Informações do Pagamento
@@ -104,6 +105,7 @@ EXEMPLO DE CORPO DA RESPOSTA
     "payee_document": "123.456.789-09",
     "payee_name": "John Doe",
     "ted_goal": "00300",
+    "note": "Pagamento feito para outra conta",
     "_links": [
       { "rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/payments/10" },
       { "rel": "update", "method": "PUT", "href": "https://app.cobrato.com/api/v1/payments/10" },
@@ -185,6 +187,7 @@ EXEMPLO DE REQUISIÇÃO
           "payee_document_type": "cpf",
           "payee_document": "123.456.789-09",
           "payee_name": "Jane Doe"
+          "note": "Pagamento para fornecedores",
         }'
 
 EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
@@ -218,6 +221,7 @@ Cria um novo Pagamento, retornando as informações do mesmo em caso de sucesso.
 | payment_type              | string  | **(requerido)** tipo de pagamento. Os possíveis valores variam de acordo com o "payment_method" (vide tabela 1)                                                                                                                                             |
 | amount                    | decimal | **(requerido)** valor do pagamento                                                                                                                                                                                                                          |
 | date                      | date    | **(requerido)** data do pagamento                                                                                                                                                                                                                           |
+| note                      | string  | (opcional) oberservação do pagamento                                                                                                                                                                                                                        |
 
 ### Transferências (DOC, TED, Crédito)
 
@@ -419,10 +423,11 @@ Atualiza um determinado Pagamento, retornando as informações do mesmo em caso 
 
 **Parâmetros comuns a todas as formas de pagamento**
 
-| Campo                     | Tipo    | Comentário                         |
-|---------------------------|---------|------------------------------------|
-| amount                    | decimal | **(requerido)** valor do pagamento |
-| date                      | date    | **(requerido)** data do pagamento  |
+| Campo                     | Tipo    | Comentário                           |
+|---------------------------|---------|--------------------------------------|
+| amount                    | decimal | **(requerido)** valor do pagamento   |
+| date                      | date    | **(requerido)** data do pagamento    |
+| note                      | string  | (opcional) oberservação do pagamento |
 
 ### Transferências (DOC, TED, Crédito)
 
