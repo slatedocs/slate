@@ -1,6 +1,6 @@
 ## managerNote object
 
-### Basic Attributes
+### managerNote: basic attributes
 
 ####id
 
@@ -34,7 +34,7 @@ managerNoteType identifier or null if no type
 
 Date of activity in RFC 3339 full date format (e.g. "2009-01-01") or null if no activity_date
 
-### Extended Attributes
+### managerNote: extended attributes
 
 ####notes
 

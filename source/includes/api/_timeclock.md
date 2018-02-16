@@ -1,6 +1,6 @@
 ## timeclock object
 
-### Basic Attributes
+### timeclock: basic attributes
 
 ####id
 
@@ -30,7 +30,7 @@ Time that the user clocked out or null if not clocked out
 
 shift identifier or null if there is no shift associated with this timeclock object
 
-### Extended Attributes
+### timeclock: extended attributes
 
 ####clocked_in_local
 
@@ -160,7 +160,7 @@ optional, meters of 68% confidence of latitude/longitude
 
 ####location_time
 
-optional, time of latitude/longitude/accuracy fix. 
+optional, time of latitude/longitude/accuracy fix.
 
 **note:** location_time must be defined when including *latitude*, *longitude*, and/or *location_accuracy*, otherwise these parameters will be ignored.
 

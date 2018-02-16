@@ -1,6 +1,6 @@
 ## tradeboard object
 
-### Basic Attributes
+### tradeboard: basic attributes
 
 ####id
 
@@ -40,7 +40,7 @@ Unapproved - Trade is awaiting approval of completion
 
 Complete - Trade is completed
 
-### Extended Attributes
+### tradeboard: extended attributes
 
 ####notes
 
@@ -277,7 +277,7 @@ If requested, the response results `referenced_objects` attribute will be an obj
 
 ####account
 
-id, first_name, last_name, and screen_name attributes are provided. 
+id, first_name, last_name, and screen_name attributes are provided.
 
 **NOTE:** external_id will also be returned in the results if external ids are enabled for the site.
 
@@ -413,7 +413,7 @@ If requested, the response results `referenced_objects` attribute will be an obj
 
 ####account
 
-id, first_name, last_name, and screen_name attributes are provided. 
+id, first_name, last_name, and screen_name attributes are provided.
 
 **NOTE:** external_id will also be returned in the results if external ids are enabled for the site.
 

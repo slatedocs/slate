@@ -1,6 +1,6 @@
 ## account object
 
-### Basic Attributes
+### account: basic attributes
 
 ####id
 
@@ -9,7 +9,7 @@ A unique identifier for this account.
 ####external_id
 
 The external identifier for this account.
-    
+
 **NOTE:** This field is only used or returned when external ids are enabled for the site.
 
 ####first_name
@@ -114,7 +114,7 @@ System-defined pending codes are:
 * "*1002*" Documents Missing
 * "*1003*" Documents Verified
 
-### Extended Attributes
+### account: extended attributes
 
 (not all attributes are available for all organizations)
 
