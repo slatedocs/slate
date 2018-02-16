@@ -1,6 +1,6 @@
 ## shift object
 
-### Basic Attributes
+### shift: basic attributes
 
 ####id
 
@@ -78,7 +78,7 @@ If the shift is covered by a member, the external id of the member's account.
 
 If the shift is covered by a workgroup, the workgroup id (currently, never different from the shift's workgroup)
 
-### Extended Attributes
+### shift: extended attributes
 
 ####details
 
@@ -837,7 +837,7 @@ If requested, the response results `referenced_objects` attribute will be an obj
 
 ####account
 
-id, first_name, last_name, and screen_name attributes are provided. 
+id, first_name, last_name, and screen_name attributes are provided.
 
 **NOTE:** external_id will also be returned in the results if external ids are enabled for the site.
 

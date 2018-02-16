@@ -1,6 +1,6 @@
 ## timeOffRequest object
 
-### Basic Attributes
+### timeOffRequest: basic attributes
 
 ####id
 
@@ -48,7 +48,7 @@ Boolean; indicates whether this time off is paid or unpaid
 
 Category for this time off request, or null if the request has no category.
 
-### Extended Attributes
+### timeOffRequest: extended attributes
 
 ####details
 
@@ -150,7 +150,7 @@ If requested, the response results `referenced_objects` attribute will be an obj
 
 ####account
 
-id, first_name, last_name, and screen_name attributes are provided. 
+id, first_name, last_name, and screen_name attributes are provided.
 
 **NOTE:** external_id will also be returned in the results if external ids are enabled for the site.
 
@@ -219,7 +219,7 @@ If specified, requests only timeOffRequests for the given account.
 
 **NOTE:** If you are calling this method with the `member` parameter, `external_member` is not required, and will be ignored.
 
- 
+
 ####account
 
 id, first_name, last_name, and screen_name attributes are provided.

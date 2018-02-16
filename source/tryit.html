@@ -110,11 +110,11 @@ function tryAPI () {
     var url_vars = getURLVars();
 
     var http_method = 'POST';
-    var this_url = url + '&access_key_id=' + encodeURIComponent($('#access_key_id').val());
+    var this_url = url + '&access_key_id=' + encodeURIComponent($('#access_key_id').val().trim());
     var ajaxParams = { crossDomain: true, dataType: 'json' };
 
     var shaObj = new jsSHA('SHA-1', 'TEXT');
-    shaObj.setHMACKey($('#secret').val(), 'TEXT');
+    shaObj.setHMACKey($('#secret').val().trim(), 'TEXT');
 
     if ( $('#raw')[0].checked ) {
         ajaxParams.data = { POSTDATA: $('#data').val() };

@@ -1,6 +1,6 @@
 ## workgroup object
 
-workgroup objects have the following basic attributes:
+### workgroup: basic attributes
 
 ####id
 
