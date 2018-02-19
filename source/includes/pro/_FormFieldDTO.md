@@ -75,7 +75,7 @@ SOURCE_ACCOUNT | string | список идентификаторов проду
 TARGET_ACCOUNT | string | список идентификаторов продуктов в виде [ComboBoxValueDTO](#comboboxvaluedto) выбора 1..*
 SINGLE_LINE_TEXT | string | однострочный текст
 MULTI_LINE_TEXT | string | многострочный текст
-CHECK_BOX | bool | чекбокс {true, false} (поддерживает ссылку в формате <a href="http://www.idamob.ru">iDa Mobile</a>)
+CHECK_BOX | bool | чекбокс {true, false} (поддерживает в name ссылку в формате ``<a href="http://www.idamob.ru">iDa Mobile</a>``)
 PASSWORD | string | однострочный текст маскированный при вводе
 MONTH_YEAR | string | UNIXTIME в милисекундах
 DATE | int | UNIXTIME в милисекундах (например 1394582400000)
