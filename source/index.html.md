@@ -193,7 +193,7 @@ email | The email of the user whose balance you want to query.
 ## Use
 
 ```shell
-curl "https://mobius.network/api/v1/app_store/balance" \
+curl "https://mobius.network/api/v1/app_store/use" \
      -H "x-api-key: API_KEY_HERE" \
      -d "app_uid=APP_UID" \
      -d "email=EMAIL" \
@@ -819,6 +819,23 @@ All webhook requests have two headers:
 ```
 
 Called when a user deposits credits in your app through the DApp store.
+
+## App Store Withdraw
+
+> JSON Body
+
+```json
+{
+  "action_type": "app_store/withdraw",
+  "app_uid": "UID",
+  "email": "user@gmail.com",
+  "num_credits": 500, // Number of credits deposited in this transaction
+  "total_num_credits": 1000 // Total number of credits the user has in your app
+}
+```
+
+Called when a user withdraws credits in your app through the DApp store.
+
 
 ## Token Transfer
 
