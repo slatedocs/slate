@@ -1,5 +1,5 @@
 ## <u>Software Version Type</u>
-This description is not yet complete it should be filled in!
+Contains the details of the possible software-version-types that a unit can have running.
 
 
 ### <u>The software_version_type object</u>
@@ -13,6 +13,7 @@ __link__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font
 __checksum__ <br><font color="DarkGray">_varchar(8)_</font> <font color="Crimson"></font> | 
 __release_date__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
 __parameter_types__ <br><font color="DarkGray">_array_</font> <font color="Crimson"></font> | 
+__status__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["beta", "outdated", "bad", "stable"]</font>
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -41,6 +42,7 @@ __latest_software__ | The associated latest_software
 		"checksum": "checksum",
 		"release_date": "2000-01-01 00:00:00",
 		"parameter_types": [1,2,3],
+		"status": Unknown column type,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -59,6 +61,7 @@ __latest_software__ | The associated latest_software
 		"checksum": "checksum",
 		"release_date": "2000-01-01 00:00:00",
 		"parameter_types": [1,2,3],
+		"status": Unknown column type,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -85,6 +88,7 @@ __latest_software__ | The associated latest_software
 		"checksum": "checksum",
 		"release_date": "2000-01-01 00:00:00",
 		"parameter_types": [1,2,3],
+		"status": Unknown column type,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -128,6 +132,7 @@ __latest_software__ | The associated latest_software
 		"checksum": "csedited",
 		"release_date": "2016-07-01 12:34:45",
 		"parameter_types": [1,2,3,4,5,6],
+		"status": Unknown column type,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -145,6 +150,7 @@ __latest_software__ | The associated latest_software
 		"checksum": "csedited",
 		"release_date": "2016-07-01 12:34:45",
 		"parameter_types": [1,2,3,4,5,6],
+		"status": Unknown column type,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

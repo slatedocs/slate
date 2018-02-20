@@ -20,7 +20,8 @@ __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modifie
 
 Relationship | Description
 -------------:|:------------
-<font color="DarkGray">N/A</font> | <font color="DarkGray">_There are no relationships for this table._</font>
+__failure_types__ | The associated failure_types
+
 
 <hr>
 <br>

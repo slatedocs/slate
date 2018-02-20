@@ -11,6 +11,7 @@ __<a href="/#appliance">appliance_id</a>__ <br><font color="DarkGray">_int_</fon
 __arrival_date__ <br><font color="DarkGray">_date_</font> <font color="Crimson"></font> | 
 __refurbishment_date__ <br><font color="DarkGray">_date_</font> <font color="Crimson"></font> | 
 __pending_status__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson"></font> | 
+__process__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["Repair and Return", "Replaced", "Repossessed", "Broken on Arrival"]</font>
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -37,6 +38,7 @@ __appliance_action_types__ | The associated appliance_action_types
 		"arrival_date": "2000-01-01 00:00:00",
 		"refurbishment_date": "2000-01-01 00:00:00",
 		"pending_status": True,
+		"process": "test",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -53,6 +55,7 @@ __appliance_action_types__ | The associated appliance_action_types
 		"arrival_date": "2000-01-01 00:00:00",
 		"refurbishment_date": "2000-01-01 00:00:00",
 		"pending_status": True,
+		"process": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -77,6 +80,7 @@ __appliance_action_types__ | The associated appliance_action_types
 		"arrival_date": "2000-01-01 00:00:00",
 		"refurbishment_date": "2000-01-01 00:00:00",
 		"pending_status": True,
+		"process": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -118,6 +122,7 @@ __appliance_action_types__ | The associated appliance_action_types
 		"arrival_date": "2000-01-01 00:00:00",
 		"refurbishment_date": "2000-01-01 00:00:00",
 		"pending_status": False,
+		"process": "changed",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -133,6 +138,7 @@ __appliance_action_types__ | The associated appliance_action_types
 		"arrival_date": "2000-01-01 00:00:00",
 		"refurbishment_date": "2000-01-01 00:00:00",
 		"pending_status": False,
+		"process": "changed",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

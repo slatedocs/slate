@@ -1,18 +1,18 @@
-## <u>RTCConnectionHistory</u>
-Lists product RTC connection status updates.
+## <u>Rtc Connection History</u>
+Contains a history of RTC messages sent to each unit.
 
 
 ### <u>The rtc_connection_history object</u>
 
 Field | Description
 ------:|:------------
-__rtc_connection_history_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each rtc_connection_history entry.
+__rtc_connection_history_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each rtc_connection_history.
 __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__connection_status__ <br><font color="DarkGray">_text_</font> <font color="Crimson">(not-null)</font> | 'online' or 'offline'
-__connection_status_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | The time of this status update
-__connection_status_reason__ <br><font color="DarkGray">_text_</font> <font color="Crimson">(not-null)</font> | Reason for this status update: 'inactivity', 'low-battery-voltage', 'sleep-mode', 'unknown', 'user-request' or 'message-received' 
-__connection_status_info__ <br><font color="DarkGray">_text_</font> | Further information about the status update 
-__latest_message_time__  <br><font color="DarkGray">_datetime_</font> | time the last RTC message was received for this product
+__connection_status__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["offline", "online"]</font>
+__connection_status_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
+__connection_status_reason__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["low-battery-voltage", "sleep-mode", "unknown", "user-request", "inactivity", "message-received"]</font>
+__connection_status_info__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__latest_message_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -24,13 +24,12 @@ Relationship | Description
 -------------:|:------------
 <font color="DarkGray">N/A</font> | <font color="DarkGray">_There are no relationships for this table._</font>
 
-
 <hr>
 <br>
 
 > `POST` requests are not allowed at this endpoint
 
-    > We can retrieve a `rtc_connection_history` by specifying its `rtc_connection_history_id` in the request url:
+> We can retrieve the `rtc_connection_history` created by specifying its `rtc_connection_history_id` in the request url:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/rtc_connection_history/1'
@@ -44,19 +43,19 @@ Relationship | Description
     r.json()
     >>> {
 		"rtc_connection_history_id": 1
-		"product_imei": "866192037258629",
-        "connection_status": "online",
-        "connection_status_time": "2000-01-01 00:00:00",
-        "connection_status_reason": "user-request",
-        "connection_status_info": "Manually by user: a.user@bboxx.co.uk",
-        "latest_message_time": "2000-01-01 12:00:00",
-		"created_at": "2000-01-01 00:00:00",
-		"created_by": "test.user@bboxx.co.uk",
+		"product_imei": "000000000000000",
+		"connection_status": "test",
+		"connection_status_time": "2000-01-01 00:00:00",
+		"connection_status_reason": "test",
+		"connection_status_info": "test",
+		"latest_message_time": "2000-01-01 00:00:00",
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
 ```
 
-> We can retrieve all `rtc_connection_history` entries by omitting the `rtc_connection_history_id`:
+> We can retrieve all `rtc_connection_history` by omitting the `rtc_connection_history_id`:
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/rtc_connection_history'
@@ -84,7 +83,7 @@ Relationship | Description
 
 > `PUT` requests are not allowed at this endpoint
 
-> If a user has `SYSTEM` permissions they can delete the `rtc_connection_history` entry
+> If a user has `SYSTEM` permissions they can delete the `rtc_connection_history`
 
 ```python
     url = 'http://smartapi.bboxx.co.uk/v1/rtc_connection_history/1'
@@ -104,7 +103,6 @@ Relationship | Description
 
 ### POST
 `POST` requests are not allowed at this endpoint
-
 
 ### GET
      | value

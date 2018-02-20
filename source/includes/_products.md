@@ -11,11 +11,11 @@ __analysis_timestamp__ <br><font color="DarkGray">_datetime_</font> <font color=
 __capacity_limit__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
 __current_enable_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
 __desired_enable_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
-__current_tamper_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
-__desired_tamper_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
+__disable_date__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __device_key__ <br><font color="DarkGray">_varchar(24)_</font> <font color="Crimson">(unique)</font> | 
 __<a href="/#hub">hub_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __imsi__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,unique)</font> | 
+__iccid__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson">(unique)</font> | 
 __latest_connection_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __latest_connection_location_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __<a href="/#latest-state">latest_state_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
@@ -23,6 +23,12 @@ __<a href="/#product-type">product_type_id</a>__ <br><font color="DarkGray">_int
 __serial_number__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
 __<a href="/#shop">shop_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __<a href="/#software-l">software_lock</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__rtc_network_name__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["Test-SIM-Provider", "Aeris", "Wireless-Logic"]</font>
+__ip_address__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson"></font> | 
+__latest_rtc_connection_history_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__latest_rtc_mo_status_report_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
+__latest_rtc_mt_status_update_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
+__rtc_enabled_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -32,7 +38,6 @@ __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modifie
 
 Relationship | Description
 -------------:|:------------
-__anomalies__ | The associated anomalies
 __connections__ | The associated connections
 __notes__ | The associated notes
 __part_product_linker__ | The associated part_product_linker
@@ -44,6 +49,9 @@ __sms_history__ | The associated sms_history
 __states__ | The associated states
 __product_parameter__ | The associated product_parameter
 __analysis_histories__ | The associated analysis_histories
+__rtc_message_history__ | The associated rtc_message_history
+__rtc_connection_history__ | The associated rtc_connection_history
+__battery_failure__ | The associated battery_failure
 
 
 <hr>
@@ -69,11 +77,11 @@ __analysis_histories__ | The associated analysis_histories
 		"capacity_limit": "test",
 		"current_enable_flag": True,
 		"desired_enable_flag": True,
-		"current_tamper_flag": True,
-		"desired_tamper_flag": True,
+		"disable_date": "2000-01-01 00:00:00",
 		"device_key": "awjs875jg7thskr9485984rf",
 		"hub_id": 1,
 		"imsi": "000000000000000",
+		"iccid": Unknown column type,
 		"latest_connection_id": 1,
 		"latest_connection_location_id": 1,
 		"latest_state_id": 1,
@@ -81,6 +89,12 @@ __analysis_histories__ | The associated analysis_histories
 		"serial_number": "test",
 		"shop_id": 1,
 		"software_lock": 1,
+		"rtc_network_name": "test",
+		"ip_address": "000000000000000",
+		"latest_rtc_connection_history_id": 1,
+		"latest_rtc_mo_status_report_time": "2000-01-01 00:00:00",
+		"latest_rtc_mt_status_update_time": "2000-01-01 00:00:00",
+		"rtc_enabled_flag": True,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -122,11 +136,11 @@ __analysis_histories__ | The associated analysis_histories
 		"capacity_limit": "changed",
 		"current_enable_flag": False,
 		"desired_enable_flag": False,
-		"current_tamper_flag": False,
-		"desired_tamper_flag": False,
+		"disable_date": "2016-07-01 12:34:45",
 		"device_key": "awjs875jg7thskr9485984rf",
 		"hub_id": 2,
 		"imsi": "999999999999999",
+		"iccid": Unknown column type,
 		"latest_connection_id": 2,
 		"latest_connection_location_id": 2,
 		"latest_state_id": 2,
@@ -134,6 +148,12 @@ __analysis_histories__ | The associated analysis_histories
 		"serial_number": "changed",
 		"shop_id": 2,
 		"software_lock": 2,
+		"rtc_network_name": "changed",
+		"ip_address": "999999999999999",
+		"latest_rtc_connection_history_id": 2,
+		"latest_rtc_mo_status_report_time": "2016-07-01 12:34:45",
+		"latest_rtc_mt_status_update_time": "2016-07-01 12:34:45",
+		"rtc_enabled_flag": False,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -149,11 +169,11 @@ __analysis_histories__ | The associated analysis_histories
 		"capacity_limit": "changed",
 		"current_enable_flag": False,
 		"desired_enable_flag": False,
-		"current_tamper_flag": False,
-		"desired_tamper_flag": False,
+		"disable_date": "2016-07-01 12:34:45",
 		"device_key": "awjs875jg7thskr9485984rf",
 		"hub_id": 2,
 		"imsi": "999999999999999",
+		"iccid": Unknown column type,
 		"latest_connection_id": 2,
 		"latest_connection_location_id": 2,
 		"latest_state_id": 2,
@@ -161,6 +181,12 @@ __analysis_histories__ | The associated analysis_histories
 		"serial_number": "changed",
 		"shop_id": 2,
 		"software_lock": 2,
+		"rtc_network_name": "changed",
+		"ip_address": "999999999999999",
+		"latest_rtc_connection_history_id": 2,
+		"latest_rtc_mo_status_report_time": "2016-07-01 12:34:45",
+		"latest_rtc_mt_status_update_time": "2016-07-01 12:34:45",
+		"rtc_enabled_flag": False,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

@@ -26,6 +26,7 @@ __alerts__ | The associated alerts
 __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 __repair_action_type_linker__ | The associated repair_action_type_linker
 __replacements__ | The associated replacements
+__battery_failure__ | The associated battery_failure
 
 
 <hr>

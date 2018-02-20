@@ -1,5 +1,5 @@
 ## <u>Product Entity Linker</u>
-This description is not yet complete it should be filled in!
+Specifies which products are assigned to each entity.
 
 
 ### <u>The product_entity_linker object</u>

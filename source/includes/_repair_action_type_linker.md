@@ -1,5 +1,5 @@
 ## <u>Repair Action Type Linker</u>
-This description is not yet complete it should be filled in!
+Specifies which action-types were taken on all repairs.
 
 
 ### <u>The repair_action_type_linker object</u>

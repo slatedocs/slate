@@ -1,5 +1,5 @@
 ## <u>Repair Symptom Type Linker</u>
-This description is not yet complete it should be filled in!
+Specifies which symptoms were diagnosed on each repair
 
 
 ### <u>The repair_symptom_type_linker object</u>

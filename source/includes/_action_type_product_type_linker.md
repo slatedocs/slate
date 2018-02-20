@@ -1,5 +1,5 @@
 ## <u>Action Type Product Type Linker</u>
-This description is not yet complete it should be filled in!
+Specifies which action-types can be taken on each product-type during a repair.
 
 
 ### <u>The action_type_product_type_linker object</u>

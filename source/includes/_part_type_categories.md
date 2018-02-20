@@ -1,5 +1,5 @@
 ## <u>Part Type Category</u>
-The category of parts that each part type belongs to
+The category of parts that each part_type belongs to
 
 
 ### <u>The part_type_category object</u>

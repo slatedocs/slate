@@ -1,5 +1,5 @@
 ## <u>Entity</u>
-This description is not yet complete it should be filled in!
+Contains details of all of the entities who own BBOXX products
 
 
 ### <u>The entity object</u>

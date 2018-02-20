@@ -1,5 +1,5 @@
 ## <u>State Type</u>
-This description is not yet complete it should be filled in!
+Contains details of the possible types of state that a product can be in
 
 
 ### <u>The state_type object</u>

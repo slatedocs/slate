@@ -1,5 +1,5 @@
 ## <u>Alert</u>
-This description is not yet complete it should be filled in!
+Contains all of the alerts that exist for each product.
 
 
 ### <u>The alert object</u>

@@ -1,5 +1,5 @@
 ## <u>Alert Type</u>
-This description is not yet complete it should be filled in!
+Contains details of the different alert-types that can be raised.
 
 
 ### <u>The alert_type object</u>
@@ -16,6 +16,7 @@ __status__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not
 __severity__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __analysis_frequency__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
 __cooling_off_period__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
+__active__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -26,9 +27,10 @@ __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modifie
 Relationship | Description
 -------------:|:------------
 __alerts__ | The associated alerts
-__alert_type_anomaly_type_linker__ | The associated alert_type_anomaly_type_linker
+__alert_type_entity_anti_linker__ | The associated alert_type_entity_anti_linker
 __alert_type_product_type_linker__ | The associated alert_type_product_type_linker
 __analysis_histories__ | The associated analysis_histories
+__alert_type_state_type_linker__ | The associated alert_type_state_type_linker
 
 
 <hr>
@@ -48,6 +50,7 @@ __analysis_histories__ | The associated analysis_histories
 		"severity": "test",
 		"analysis_frequency": "2000-01-01 00:00:00",
 		"cooling_off_period": "2000-01-01 00:00:00",
+		"active": True,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -69,6 +72,7 @@ __analysis_histories__ | The associated analysis_histories
 		"severity": "test",
 		"analysis_frequency": "2000-01-01 00:00:00",
 		"cooling_off_period": "2000-01-01 00:00:00",
+		"active": True,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -98,6 +102,7 @@ __analysis_histories__ | The associated analysis_histories
 		"severity": "test",
 		"analysis_frequency": "2000-01-01 00:00:00",
 		"cooling_off_period": "2000-01-01 00:00:00",
+		"active": True,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -144,6 +149,7 @@ __analysis_histories__ | The associated analysis_histories
 		"severity": "changed",
 		"analysis_frequency": "2016-07-01 12:34:45",
 		"cooling_off_period": "2016-07-01 12:34:45",
+		"active": False,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -164,6 +170,7 @@ __analysis_histories__ | The associated analysis_histories
 		"severity": "changed",
 		"analysis_frequency": "2016-07-01 12:34:45",
 		"cooling_off_period": "2016-07-01 12:34:45",
+		"active": False,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

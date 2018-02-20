@@ -1,5 +1,5 @@
 ## <u>Hub</u>
-This description is not yet complete it should be filled in!
+Contains details of all every BBOXX hub-centre (obselete)
 
 
 ### <u>The hub object</u>

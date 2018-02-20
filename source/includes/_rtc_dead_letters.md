@@ -1,15 +1,19 @@
-## <u>State</u>
-Contains the current and historical state of every unit
+## <u>Rtc Dead Letter</u>
+RTC messages that failed to be delivered.
 
 
-### <u>The state object</u>
+### <u>The rtc_dead_letter object</u>
 
 Field | Description
 ------:|:------------
-__state_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each state.
-__<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__<a href="/#prev-state-t">prev_state_type</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__<a href="/#current-state-t">current_state_type</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__rtc_dead_letter_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each rtc_dead_letter.
+__queue_name__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson">(not-null)</font> | 
+__payload__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
+__status__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["discarded", "replayed"]</font>
+__status_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
+__replay_status__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["failure", "success"]</font>
+__replay_status_text__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__replay_status_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -26,10 +30,10 @@ Relationship | Description
 
 > `POST` requests are not allowed at this endpoint
 
-> We can retrieve the `state` created by specifying its `state_id` in the request url:
+> We can retrieve the `rtc_dead_letter` created by specifying its `rtc_dead_letter_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/states/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/rtc_dead_letters/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -39,20 +43,24 @@ Relationship | Description
 
     r.json()
     >>> {
-		"state_id": 1
-		"product_imei": "000000000000000",
-		"prev_state_type": 1,
-		"current_state_type": 1,
+		"rtc_dead_letter_id": 1
+		"queue_name": Unknown column type,
+		"payload": "test",
+		"status": "test",
+		"status_time": "2000-01-01 00:00:00",
+		"replay_status": "test",
+		"replay_status_text": "test",
+		"replay_status_time": "2000-01-01 00:00:00",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
 ```
 
-> We can retrieve all `states` by omitting the `state_id`:
+> We can retrieve all `rtc_dead_letters` by omitting the `rtc_dead_letter_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/states'
+    url = 'http://smartapi.bboxx.co.uk/v1/rtc_dead_letters'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -87,9 +95,9 @@ Relationship | Description
 ### GET
      | value
  ----:|:---
-endpoint | `/v1/states` or `/v1/states/<state_id>`
+endpoint | `/v1/rtc_dead_letters` or `/v1/rtc_dead_letters/<rtc_dead_letter_id>`
 method | `GET`
-url_params | `state_id` <font color="DarkGray">_(int)_</font>
+url_params | `rtc_dead_letter_id` <font color="DarkGray">_(int)_</font>
 query params | *> See Query Format and Filtering*
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Jade">__`OVERVIEW`__</font>

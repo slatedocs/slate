@@ -1,5 +1,5 @@
 ## <u>Connection</u>
-This description is not yet complete it should be filled in!
+Contains details of every connection that every product makes to the SMARTSolar Application.
 
 
 ### <u>The connection object</u>
@@ -15,21 +15,40 @@ __mnc__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> |
 __cell_1_lac__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __cell_1_cid__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __cell_1_signal__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__cell_1_mcc__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__cell_1_mnc__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __cell_2_lac__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __cell_2_cid__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __cell_2_signal__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__cell_2_mcc__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__cell_2_mnc__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __cell_3_lac__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __cell_3_cid__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __cell_3_signal__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__cell_3_mcc__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__cell_3_mnc__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __cell_4_lac__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __cell_4_cid__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __cell_4_signal__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__cell_4_mcc__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__cell_4_mnc__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __cell_5_lac__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __cell_5_cid__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __cell_5_signal__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__cell_5_mcc__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__cell_5_mnc__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __cell_6_lac__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __cell_6_cid__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __cell_6_signal__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__cell_6_mcc__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__cell_6_mnc__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__cell_7_lac__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__cell_7_cid__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__cell_7_signal__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__cell_7_mcc__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__cell_7_mnc__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__frequency__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__timing_advance__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __latitude__ <br><font color="DarkGray">_varchar(12)_</font> <font color="Crimson"></font> | 
 __longitude__ <br><font color="DarkGray">_varchar(12)_</font> <font color="Crimson"></font> | 
 __error_radius__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
@@ -73,21 +92,40 @@ Relationship | Description
 		"cell_1_lac": 1,
 		"cell_1_cid": 1,
 		"cell_1_signal": 1,
+		"cell_1_mcc": 1,
+		"cell_1_mnc": 1,
 		"cell_2_lac": 1,
 		"cell_2_cid": 1,
 		"cell_2_signal": 1,
+		"cell_2_mcc": 1,
+		"cell_2_mnc": 1,
 		"cell_3_lac": 1,
 		"cell_3_cid": 1,
 		"cell_3_signal": 1,
+		"cell_3_mcc": 1,
+		"cell_3_mnc": 1,
 		"cell_4_lac": 1,
 		"cell_4_cid": 1,
 		"cell_4_signal": 1,
+		"cell_4_mcc": 1,
+		"cell_4_mnc": 1,
 		"cell_5_lac": 1,
 		"cell_5_cid": 1,
 		"cell_5_signal": 1,
+		"cell_5_mcc": 1,
+		"cell_5_mnc": 1,
 		"cell_6_lac": 1,
 		"cell_6_cid": 1,
 		"cell_6_signal": 1,
+		"cell_6_mcc": 1,
+		"cell_6_mnc": 1,
+		"cell_7_lac": 1,
+		"cell_7_cid": 1,
+		"cell_7_signal": 1,
+		"cell_7_mcc": 1,
+		"cell_7_mnc": 1,
+		"frequency": 1,
+		"timing_advance": 1,
 		"latitude": "-1.111111111",
 		"longitude": "-1.111111111",
 		"error_radius": 1,

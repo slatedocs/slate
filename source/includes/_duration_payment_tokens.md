@@ -1,16 +1,12 @@
-## <u>Latest Software</u>
-Contains details of the most recent software for each product_type
+## <u>Duration Payment Token</u>
+This table holds a record of all receiving duration payment tokens. This is used to prevent duplicate payments being processed.
 
 
-### <u>The latest_software object</u>
+### <u>The duration_payment_token object</u>
 
 Field | Description
 ------:|:------------
-__latest_software_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each latest_software.
-__<a href="/#product-type">product_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__<a href="/#software-version-type">software_version_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__date_added__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
-__date_removed__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
+__token__ <br><font color="DarkGray">_varchar(24)_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each duration_payment_token.
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified

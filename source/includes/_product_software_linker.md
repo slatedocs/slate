@@ -1,5 +1,5 @@
 ## <u>Product Software Linker</u>
-This description is not yet complete it should be filled in!
+Specifies which software-version-type is currently on each product.
 
 
 ### <u>The product_software_linker object</u>

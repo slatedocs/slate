@@ -1,5 +1,5 @@
 ## <u>Action Type</u>
-Listing possible actions that could be taken during a product repair.
+Contains details of the types of Action that a technician can take during a repair
 
 
 ### <u>The action_type object</u>

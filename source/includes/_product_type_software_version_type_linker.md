@@ -1,5 +1,5 @@
 ## <u>Product Type Software Version Type Linker</u>
-This description is not yet complete it should be filled in!
+Specifies which software-version-types can be installed on each product-type.
 
 
 ### <u>The product_type_software_version_type_linker object</u>

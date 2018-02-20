@@ -1,5 +1,5 @@
 ## <u>Product Parameter</u>
-Base table that product_parameters and part_parameters can inherit from
+Contains details of the parameter settings of every product.
 
 
 ### <u>The product_parameter object</u>

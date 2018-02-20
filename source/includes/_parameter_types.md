@@ -12,6 +12,8 @@ __data_type__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(
 __validation_rules__ <br><font color="DarkGray">_json_</font> <font color="Crimson"></font> | 
 __description__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __units__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__repeatable__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
+__setting__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -38,6 +40,8 @@ __part_parameters__ | The associated part_parameters
 		"validation_rules": {},
 		"description": "test",
 		"units": "test",
+		"repeatable": True,
+		"setting": True,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -55,6 +59,8 @@ __part_parameters__ | The associated part_parameters
 		"validation_rules": {},
 		"description": "test",
 		"units": "test",
+		"repeatable": True,
+		"setting": True,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -80,6 +86,8 @@ __part_parameters__ | The associated part_parameters
 		"validation_rules": {},
 		"description": "test",
 		"units": "test",
+		"repeatable": True,
+		"setting": True,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -122,6 +130,8 @@ __part_parameters__ | The associated part_parameters
 		"validation_rules": {},
 		"description": "changed",
 		"units": "changed",
+		"repeatable": False,
+		"setting": False,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -138,6 +148,8 @@ __part_parameters__ | The associated part_parameters
 		"validation_rules": {},
 		"description": "changed",
 		"units": "changed",
+		"repeatable": False,
+		"setting": False,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

@@ -1,5 +1,5 @@
 ## <u>Part</u>
-This description is not yet complete it should be filled in!
+Contains details of all of the parts in each BBOXX product.
 
 
 ### <u>The part object</u>
@@ -21,6 +21,7 @@ Relationship | Description
 -------------:|:------------
 __part_product_linker__ | The associated part_product_linker
 __part_parameter__ | The associated part_parameter
+__battery_failure__ | The associated battery_failure
 
 
 <hr>

@@ -1,5 +1,5 @@
 ## <u>Alert Type Product Type Linker</u>
-This description is not yet complete it should be filled in!
+Specifies which alert-types can be raised on each product-types
 
 
 ### <u>The alert_type_product_type_linker object</u>

@@ -1,5 +1,5 @@
 ## <u>Enable History</u>
-This description is not yet complete it should be filled in!
+Contains a history of the enable-state of every product
 
 
 ### <u>The enable_history object</u>
