@@ -106,7 +106,7 @@ security.incorrect_login_attempts | int | количество неверных 
 pigeon.url | string | сервер пушей ``http://dev.idamob.ru/pigeon``
 pigeon.enabled | bool | наличие связки с сервером пуш сообщений PiGeon
 pigeon.twoFactorAuth | bool | наличие процесса двухфакторной аутентификации при подписке пользователя на пуш уведомления
-repeatSubscriptionAfter | int | повторить запрос регистрации при отказе (дни)
+pigeon.repeatSubscriptionAfter | int | повторить запрос регистрации при отказе (дни)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
