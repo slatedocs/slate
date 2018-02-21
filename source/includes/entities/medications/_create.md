@@ -56,7 +56,7 @@ To add a medication to a patient, make a request to:
 
 ### HTTP Request
 
-`POST {server_url}/api/v1/patients/{patient_id}/medications`
+`POST {server_url}/api/v2/patients/{patient_id}/medications`
 
 This request must include a valid User JWT token, please see our [documentation](#user-tokens).
 
