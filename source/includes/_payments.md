@@ -637,6 +637,48 @@ Inicia o processo de cancelamento de um determinado Pagamento, retornando JSON c
 
 Após iniciar o processo de cancelamento será necessário gerar um arquivo de remessa, enviar para o banco e esperar o arquivo de retorno confirmando o cancelamento.
 
+## Marcar Pagamento como não autorizado
+
+```shell
+Marcar Pagamento como não autorizado
+
+DEFINIÇÃO
+
+  POST https://app.cobrato.com/api/v1/payment/:id/unauthorize
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X POST https://app.cobrato.com/api/v1/payment/:id/unauthorize
+
+EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
+
+    200 OK
+
+EXEMPLO DE ESTADO DA RESPOSTA COM PAGAMENTO INEXISTENTE
+
+    404 Not Found
+
+EXEMPLO DE ESTADO DA RESPOSTA COM INSUCESSO
+
+    422 Unprocessable Entity
+
+EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
+
+  {
+    "errors":
+      {
+        "registration_status": ["Não é possível marcar este pagamento como não autorizado. Somente pagamentos com status 'registrado', NÃO efetivados e vencidos podem ser marcados como não autorizados"]
+      }
+  }
+
+```
+
+Marca um determinado Pagamento como não autorizado, retornando JSON com as informações do pagamento em caso de sucesso ou, caso contrário, os erros.
+
 ## Schema de Pagamento
 
 ```shell

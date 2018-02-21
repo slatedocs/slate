@@ -43,24 +43,29 @@ Este header é a assinatura do webhook. Este valor pode ser calculado com o HMAC
 
 Os eventos notificados são os seguintes:
 
-| Objeto          | Evento             | Descrição                                      |
-|-----------------|--------------------|------------------------------------------------|
-| charge          | created            | quando a cobrança é criada                     |
-| charge          | updated            | quando a cobrança é atualizada                 |
-| charge          | destroyed          | quando a cobrança é excluída                   |
-| charge          | received           | quando a cobrança é recebida                   |
-| charge          | undone_receivement | quando a cobrança tem seu recebimento desfeito |
-| charge_config   | created            | quando a configuração de cobrança é criada     |
-| charge_config   | updated            | quando a configuração de cobrança é atualizada |
-| charge_config   | destroyed          | quando a configuração de cobrança é excluída   |
-| credit_card     | created            | quando o cartão de crédito é criado            |
-| credit_card     | updated            | quando o cartão de crédito é atualizado        |
-| charge_template | created            | quando o modelo de cobrança é criado           |
-| charge_template | updated            | quando o modelo de cobrança é atualizado       |
-| charge_template | destroyed          | quando o modelo de cobrança é excluído         |
-| payer           | created            | quando o pagador é criado                      |
-| payer           | updated            | quando o pagador é atualizado                  |
-| payer           | destroyed          | quando o pagador é excluído                    |
+| Objeto          | Evento             | Descrição                                        |
+|-----------------|--------------------|--------------------------------------------------|
+| charge          | created            | quando a cobrança é criada                       |
+| charge          | updated            | quando a cobrança é atualizada                   |
+| charge          | destroyed          | quando a cobrança é excluída                     |
+| charge          | received           | quando a cobrança é recebida                     |
+| charge          | undone_receivement | quando a cobrança tem seu recebimento desfeito   |
+| charge_config   | created            | quando a configuração de cobrança é criada       |
+| charge_config   | updated            | quando a configuração de cobrança é atualizada   |
+| charge_config   | destroyed          | quando a configuração de cobrança é excluída     |
+| credit_card     | created            | quando o cartão de crédito é criado              |
+| credit_card     | updated            | quando o cartão de crédito é atualizado          |
+| charge_template | created            | quando o modelo de cobrança é criado             |
+| charge_template | updated            | quando o modelo de cobrança é atualizado         |
+| charge_template | destroyed          | quando o modelo de cobrança é excluído           |
+| payer           | created            | quando o pagador é criado                        |
+| payer           | updated            | quando o pagador é atualizado                    |
+| payer           | destroyed          | quando o pagador é excluído                      |
+| payment         | created            | quando o pagamento é criado                      |
+| payment         | updated            | quando o pagamento é atualizado                  |
+| payment         | canceled           | quando o pagamento é cancelado                   |
+| payment         | destroyed          | quando o pagamento é excluído                    |
+| payment         | unauthorized       | quando o pagamento é marcado como não autorizado |
 
 
 ## Cobrança criada
@@ -514,3 +519,95 @@ EXEMPLO DE PAYLOAD
 ```
 
 Informações enviadas quando uma Pagador é excluído.
+
+## Pagamento criado
+
+```shell
+Pagamento Criado
+
+EXEMPLO DE PAYLOAD
+
+  {
+    "created_at":"2015-05-21T16:13:33Z",
+    "event":"created",
+    "object_type":"payment",
+    "object_id":12,
+    "_links":[{
+      "rel":"self",
+      "method":"GET",
+      "url":"https://app.cobrato.com/api/v1/payments/12"
+    }]
+  }
+
+```
+
+Informações enviadas quando um Pagamento é criado.
+
+## Pagamento Atualizado
+
+```shell
+Pagamento Atualizado
+
+EXEMPLO DE PAYLOAD
+
+  {
+    "created_at":"2015-05-21T16:13:33Z",
+    "event":"updated",
+    "object_type":"payment",
+    "object_id":12,
+    "_links":[{
+      "rel":"self",
+      "method":"GET",
+      "url":"https://app.cobrato.com/api/v1/payments/12"
+    }]
+  }
+
+```
+
+Informações enviadas quando um Pagamento é atualizado.
+
+## Pagamento Excluído
+
+```shell
+Pagamento Excluído
+
+EXEMPLO DE PAYLOAD
+
+  {
+    "created_at":"2015-05-21T16:13:33Z",
+    "event":"destroyed",
+    "object_type":"payment",
+    "object_id":12,
+    "_links":[{
+      "rel":"self",
+      "method":"GET",
+      "url":"https://app.cobrato.com/api/v1/payments/12"
+    }]
+  }
+
+```
+
+Informações enviadas quando um Pagamento é excluído.
+
+## Pagamento Marcado como Não Autorizado
+
+```shell
+Pagamento Marcado como Não Autorizado
+
+EXEMPLO DE PAYLOAD
+
+  {
+    "created_at":"2015-05-21T16:13:33Z",
+    "event":"unauthorized",
+    "object_type":"payment",
+    "object_id":12,
+    "_links":[{
+      "rel":"self",
+      "method":"GET",
+      "url":"https://app.cobrato.com/api/v1/payments/12"
+    }]
+  }
+
+```
+
+Informações enviadas quando um Pagamento é marcado como Não Autorizado.
