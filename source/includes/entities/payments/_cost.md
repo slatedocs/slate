@@ -38,7 +38,7 @@ RestClient::Request.new(
 
 To retrieve the appointment cost, make a request to:
 
-`GET {server_url}/api/v1/payments/costs/check`
+`GET {server_url}/api/v2/payments/costs/check`
 
 
 ### Headers
