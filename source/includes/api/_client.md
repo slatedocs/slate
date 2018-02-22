@@ -245,6 +245,10 @@ A unique identifier for this client.
 
 The name of this client.
 
+####search
+
+A generic search string; select clients containing this string in their name.
+
 ### client.update
 
 > Request example:

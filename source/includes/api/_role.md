@@ -187,6 +187,10 @@ A unique identifier for this role.
 
 The name of this role.
 
+####search
+
+A generic search string; select roles containing this string in their name.
+
 ### role.update
 
 > Request example:

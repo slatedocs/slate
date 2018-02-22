@@ -145,6 +145,10 @@ The name of this department.
 
 Description of the department
 
+####search
+
+A generic search string; select departments containing this string in their name.
+
 ### department.update
 
 > Request example:

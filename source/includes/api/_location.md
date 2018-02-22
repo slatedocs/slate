@@ -215,6 +215,10 @@ Postal code.
 
 ####latlon
 
+####search
+
+A generic search string; select locations containing this string in their name.
+
 ### location.update
 
 > Request example:
