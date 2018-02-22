@@ -724,6 +724,10 @@ Optional parameters:
 
 A generic search string; select accounts containing this string in any of: `first_name`, `last_name`, first and last names combined, `screen name`, or, if used by the site, `external_id`.
 
+####sort
+
+A single sort criterion or an array of criteria in order from major to minor. Each criterion is either an attribute name (one of `first_name`, `last_name`, or `id`) or an object with two attributes, `name` (one of the supported sort attribute names) and `direction` (`asc` or `desc`).
+
 ####extended
 
 Boolean; if specified and true, the results returned will include an extended set of attributes; otherwise a basic set of attributes will be returned for each account.
