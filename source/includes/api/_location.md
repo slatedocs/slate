@@ -171,7 +171,19 @@ Response: On success, empty results will be returned.
 <span class="tryit" id="location-list-tryit"></span>
 Returns information about locations. Uses [pagination](#pagination).
 
-Optional parameters: `select` object with a `location` attribute identifying a single location or an array of locations to be returned. E.g.`{select:{location:12345}}`
+Optional parameters:
+
+####select
+
+An object specifying selection criteria for this request. Allowed criteria are:
+
+####location
+
+A single location identifier or array of location identifiers.
+
+####search
+
+A generic search string; select locations containing this string in their name.
 
 The response results `locations` attribute will be an array of the current page of locations. Each element of the array may have the following attributes:
 
@@ -214,10 +226,6 @@ Postal code.
 ####special_instructions
 
 ####latlon
-
-####search
-
-A generic search string; select locations containing this string in their name.
 
 ### location.update
 

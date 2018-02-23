@@ -129,7 +129,19 @@ The name of this department.
 <span class="tryit" id="department-list-tryit"></span>
 Returns information about departments. Uses [pagination](#pagination).
 
-Optional parameters: `select` object with a `department` attribute identifying a single department or array of departments to be returned. E.g. `{select:{department:12345}}`
+Optional parameters:
+
+####select
+
+An object specifying selection criteria for this request. Allowed criteria are:
+
+####department
+
+A single department identifier or array of department identifiers.
+
+####search
+
+A generic search string; select departments containing this string in their name.
 
 The response results `departments` attribute will be an array of the current page of departments. Each element of the array may have the following attributes:
 
@@ -144,10 +156,6 @@ The name of this department.
 ####description
 
 Description of the department
-
-####search
-
-A generic search string; select departments containing this string in their name.
 
 ### department.update
 

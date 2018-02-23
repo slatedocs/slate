@@ -175,7 +175,19 @@ One or more role ids to be assigned to the workgroup member.
 <span class="tryit" id="role-list-tryit"></span>
 Returns information about roles. Uses [pagination](#pagination).
 
-Optional parameters: `select` object with a `role` attribute identifying a single role or array of roles to be returned. E.g. `{select:{role:12345}}`
+Optional parameters:
+
+####select
+
+An object specifying selection criteria for this request. Allowed criteria are:
+
+####role
+
+A single role identifier or array of role identifiers.
+
+####search
+
+A generic search string; select roles containing this string in their name.
 
 The response results `roles` attribute will be an array of the current page of roles. Each element of the array may have the following attributes:
 
@@ -186,10 +198,6 @@ A unique identifier for this role.
 ####name
 
 The name of this role.
-
-####search
-
-A generic search string; select roles containing this string in their name.
 
 ### role.update
 
