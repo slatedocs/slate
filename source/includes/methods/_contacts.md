@@ -525,3 +525,5 @@ You can search or filter contacts on the following fields. Simply add them to yo
 * last_name - the contact's last name
 * email - the contact's email
 * phone_number - the contact's phone number. Note that the phonenumber will be matched in international format, starting with a '+' sign. If the '+' sign isn't included in your request, it will be appended before attempting to match your request.
+* created_after - only return contacts created after this date (E.g. 2017-01-01 00:00)
+* created_before - only return contacts created before this date (E.g. 2017-01-01 00:00)

@@ -59,7 +59,13 @@ beyonic.Payment.create(phonenumber='+256778122118',
                        )
 ```
 
-Beyonic supports Metadata, which allows you to add custom key-value attributes when creating objects. For example, you can include a unique ID to identify a payment, or add more information about a Contact. This data will be returned when you retrieve the record later, and can be used to identify the record.
+Beyonic supports Metadata on the contact, payment and collection request APIs. 
+
+Metadata allows you to add custom key-value attributes when creating objects. You can use metadata to track any 
+information you want to track by attaching it to a contact, payment or collection request object.
+
+For example, you can include a unique ID to identify a payment, or add more information about a Contact. 
+This data will be returned when you retrieve the record later, and can be used to identify the record.
 
 Metadata has the following constraints:
 
@@ -67,16 +73,28 @@ Metadata has the following constraints:
 * Both the keys and values must be strings.
 * For each record, you can have up to 10 custom attributes.
 
-Metadata is added to the object a set of key-value pairs, where the key is in the format metadata.key_name, for example: metadata.id or metadata.name or metadata.date, and so on.
+Metadata is added to the object a set of key-value pairs, where the key is in the format metadata.key_name, 
+for example: metadata.id or metadata.name or metadata.date, and so on.
 
 See the examples for more information.
 
+### API methods that support metadata.
+
+Not all API methods support metadata. Currently, the following API methods and their corresponding objects support metadata.
+
+1. The payment API
+2. The contacts API
+3. The collection requests API
+
 ## Custom Fields
 
-Custom Fields are similar to Metadata - they allow you to add custom data to some objects. There are a couple of differences between custom fields and other metadata:
+Custom Fields are similar to Metadata - they allow you to add custom data to some objects. Custom fields can be added to contacts,
+payments or collection requests.
 
-1. Custom fields are available through the web interface as well, while metadata fields are only available through the API
-2. Metadata keys and values can be created and edited through the API, while custom fields can only be created through the web interface (currently, you need to request addition of a custom field by [contacting us](http://beyonic.com/contact)). However, once custom fields have been created through the web interface, they can be updated or edited through the API as well.
+There are a couple of differences between custom fields and other metadata:
+
+1. Custom fields are available through the web interface as well as the API. Metadata can be viewed through the web interface, but can only be created via the API.
+2. Metadata keys and values can be created and edited through the API, while custom fields 'labels' can only be created through the web interface by your organization administrator. However, once custom fields have been created through the web interface, they can be updated or edited through the API as well.
 3. Metadata consists of string-based keys and string-based values. Custom field keys are strings (starting with "s_"), but the values may be of different types, including strings, numbers, boolean values or enum values (restricted to a predefined set of values)
 
 ### Adding or updating custom field data
@@ -93,3 +111,4 @@ Not all API methods support custom fields. Currently, the following API methods 
 
 1. The payment API
 2. The contacts API
+3. The collection requests API

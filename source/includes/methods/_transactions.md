@@ -333,5 +333,7 @@ You can search or filter transactions on the following fields. Simply add them t
 
 * account - the account id
 * type - the type of the transaction
-* start_date - the earliest date you want to include transactions from
-* end_date - the latest date you want to include transactions
+* created_after - only return transactions created after this date (E.g. 2017-01-01 00:00)
+* created_before - only return transactions created before this date (E.g. 2017-01-01 00:00)
+* start_date - the earliest date you want to include transactions from, inclusive (E.g. 2017-01-01 00:00)
+* end_date - the latest date you want to include transactions, inclusive (E.g. 2017-01-01 00:00)

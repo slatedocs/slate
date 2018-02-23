@@ -321,7 +321,7 @@ To retrieve a list of all collections, make a GET request to the collections end
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/collections?phonenumber=+80000000001&remote_transaction_id=SS12312 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://app.beyonic.com/api/collections?phonenumber=%2B80000000001&remote_transaction_id=SS12312 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -424,13 +424,14 @@ public class FilterCollectionsExample {
 
 You can search or filter collections on the following fields. Simply add them to your request as shown in the examples. You can combine multiple filters. Note that filters return exact matches only (the phonenumber field is treated differently - see below).
 
-* amount - the transaction amount
+* amount - the collection amount
 * currency - the currency code
 * phonenumber - the phonenumber that the collection request was intended for. Note that the phonenumber will be matched in international format, starting with a '+' sign. If the '+' sign isn't included in your request, it will be appended before attempting to match your request. This is only true for phone number searches with collections, to make claiming of transactions easier. Other
 * reference - the reference code that the customer used when sending the collection
 * remote_transaction_id - the transation id or transaction reference of the collection on the mobile network operator's side
 * collection_request - the ID of the collection request that this collection was matched to
-
+* created_after - only return collections created after this date (E.g. 2017-01-01 00:00)
+* created_before - only return collections created before this date (E.g. 2017-01-01 00:00)
 
 **Response**
 
@@ -441,7 +442,7 @@ Note that the response will be a list of collections, not a single collection.
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/collections?phonenumber=+80000000001&remote_transaction_id=SS12312&claim=True&amount=200 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://app.beyonic.com/api/collections?phonenumber=%2B80000000001&remote_transaction_id=SS12312&claim=True&amount=200 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -500,7 +501,7 @@ public class ClaimUnmatchedCollectionExample {
     public static void main(String[] args){
         URL url = null;
         try {
-            url = new URL(API_ENDPOINT + "?phonenumber=+80000000001&remote_transaction_id=SS12312&amount=200&claim=True");
+            url = new URL(API_ENDPOINT + "?phonenumber=%2B80000000001&remote_transaction_id=SS12312&amount=200&claim=True");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
             conn.setRequestProperty("Content-Type", "application/json");

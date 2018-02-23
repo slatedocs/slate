@@ -347,3 +347,5 @@ You can search or filter accounts on the following fields. Simply add them to yo
 
 * currrency - the account currency
 * status - the account status
+* created_after - only return accounts created after this date (E.g. 2017-01-01 00:00)
+* created_before - only return accounts created before this date (E.g. 2017-01-01 00:00)

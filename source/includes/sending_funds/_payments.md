@@ -648,3 +648,5 @@ You can search or filter payments on the following fields. Simply add them to yo
 * amount - the payment amount
 * currency - the payment currency code
 * payment_type - the payment type
+* created_after - only return payments created after this date (E.g. 2017-01-01 00:00)
+* created_before - only return payments created before this date (E.g. 2017-01-01 00:00)
