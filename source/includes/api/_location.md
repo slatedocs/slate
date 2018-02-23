@@ -171,7 +171,33 @@ Response: On success, empty results will be returned.
 <span class="tryit" id="location-list-tryit"></span>
 Returns information about locations. Uses [pagination](#pagination).
 
-Optional parameters: `select` object with a `location` attribute identifying a single location or an array of locations to be returned. E.g.`{select:{location:12345}}`
+Optional parameters:
+
+####select
+
+An object specifying selection criteria for this request.  The available criteria include:
+
+#####department
+
+Single department or array of departments to be returned.
+
+#####workgroup
+
+Single workgroup to filter results to be returned.
+
+NOTE:  If the call is made on behalf of a manager, the caller must also specify the boolean value `exclude_site` to limit the results to only the workgroup specified.
+
+#####show_only_workgroup_listables
+
+Only return results for the workgroup.
+
+#####exclude_site
+
+Boolean; if a manager of the team, don't include departments associated with the site itself with those for the team.
+
+#####sitewide
+
+Boolean; query for all departments across all workgroups that the user has access to. Enabled by default for manager accounts.
 
 The response results `locations` attribute will be an array of the current page of locations. Each element of the array may have the following attributes:
 

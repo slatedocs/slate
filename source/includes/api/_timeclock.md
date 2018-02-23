@@ -287,8 +287,6 @@ If requested, the response results `referenced_objects` attribute will be an obj
 
 id, first_name, last_name, and screen_name attributes are provided.
 
-**NOTE:** external_id will also be returned in the results if external ids are enabled for the site
-
 ####timezone
 
 name and olson_timezone attributes are provided.
@@ -467,7 +465,7 @@ report.
 <span class="tryit" id="timeclock-status-tryit"></span>
 Reports clocked in/out status of an account.
 
-Parameters: "account" (optional, defaults to current user) or "external_account" (optional, defaults to current user; can only be used if external ids are enabled for the site)
+Parameters: "account" (optional, defaults to current user).
 
 Response: On success, returns basic timeclock attributes. If the account is clocked in, they will reflect that timeclock object; otherwise, timeclock attributes other than `account` will be null.
 

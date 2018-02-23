@@ -175,7 +175,33 @@ One or more role ids to be assigned to the workgroup member.
 <span class="tryit" id="role-list-tryit"></span>
 Returns information about roles. Uses [pagination](#pagination).
 
-Optional parameters: `select` object with a `role` attribute identifying a single role or array of roles to be returned. E.g. `{select:{role:12345}}`
+Optional parameters:
+
+select
+
+An object specifying selection criteria for this request.  The available criteria include:
+
+role
+
+Single role or array of roles to be returned.
+
+workgroup
+
+Single workgroup to filter results to be returned.
+
+NOTE: If the call is made on behalf of a manager, the caller must also specify the boolean value `exclude_site` to limit the results to only the workgroup specified.
+
+show_only_workgroup_listables
+
+Only return results for the workgroup.
+
+exclude_site
+
+Boolean; if a manager of the team, don't include roles associated with the site itself with those for the team.
+
+sitewide
+
+Boolean; query for all roles across all workgroups that the user has access to. Enabled by default for manager accounts.
 
 The response results `roles` attribute will be an array of the current page of roles. Each element of the array may have the following attributes:
 

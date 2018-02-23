@@ -1142,7 +1142,19 @@ Updates an account object.
 
 Required parameters:  `id` or `external_id`.
 
-Other account object attributes may be specified.  Updating another account's email address or notification options is not allowed if the account is active with more than one organization's Shiftboard.
+Optional parameters:
+
+Other account object attributes may be specified.  
+
+####unconfirm_future_shifts
+
+Specify true if, when org_hold is being changed to true and/or org_pending is being changed to a non-0 value, shifts on or after today for this account should be unconfirmed.
+
+####unpublish_future_shifts
+
+Specify true if shifts being unconfirmed should also be unpublished.
+
+Updating another account's email address or notification options is not allowed if the account is active with more than one organization's Shiftboard.
 
 Response: On success, empty results will be returned.
 
@@ -1186,16 +1198,10 @@ The response results will have an attribute `url` to which the new/updated resum
 When posting to the returned url, one of the following content-types should be specified:
 
 * application/vnd.openxmlformats-officedocument.wordprocessingml.document
-
 * application/msword
-
 * text/plain
-
 * text/rtf
-
 * application/pdf
-
 * application/vnd.ms-office
 
 Upon success, the request to the url will return an HTTP 204 status code.
-

@@ -129,7 +129,33 @@ The name of this department.
 <span class="tryit" id="department-list-tryit"></span>
 Returns information about departments. Uses [pagination](#pagination).
 
-Optional parameters: `select` object with a `department` attribute identifying a single department or array of departments to be returned. E.g. `{select:{department:12345}}`
+Optional parameters:
+
+####select
+
+An object specifying selection criteria for this request.  The available criteria include:
+
+#####department
+
+Single department or array of departments to be returned.
+
+#####workgroup
+
+Single workgroup to filter results to be returned.
+
+NOTE:  If the call is made on behalf of a manager, the caller must also specify the boolean value `exclude_site` to limit the results to only the workgroup specified.
+
+#####show_only_workgroup_listables
+
+Only return results for the workgroup.
+
+#####exclude_site
+
+Boolean; if a manager of the team, don't include departments associated with the site itself with those for the team.
+
+#####sitewide
+
+Boolean; query for all departments across all workgroups that the user has access to. Enabled by default for manager accounts.
 
 The response results `departments` attribute will be an array of the current page of departments. Each element of the array may have the following attributes:
 

@@ -233,7 +233,17 @@ The response results will be a client object.
 <span class="tryit" id="client-list-tryit"></span>
 Returns information about clients. Uses [pagination](#pagination).
 
-Optional parameters: `select` object with a `client` attribute identifying a single client or array of clients to be returned. E.g. `{select:{client:12345}}.`
+Optional parameters:
+
+####select
+
+An object specifying selection criteria for this request.  The available criteria include:
+
+#####client
+
+Single client or array of clients to be returned.
+
+#####workgroup
 
 The response results `clients` attribute will be an array of the current page of clients. Each element of the array may have the following attributes:
 
