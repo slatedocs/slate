@@ -82,6 +82,44 @@ Notes
 }
 ```
 
+> Request example with "exists_ok" set:
+
+```JSON
+{
+   "workgroup" : "226072",
+   "name" : "client 887",
+   "exists_ok": true
+}
+```
+
+> Response example when client didn't already exist:
+
+```JSON
+{
+   "seconds" : "0.391969",
+   "jsonrpc" : "2.0",
+   "id" : "3",
+   "result" : {
+      "id" : "988",
+      "new": true
+   }
+}
+```
+
+> Response example when client already existed:
+
+```JSON
+{
+   "seconds" : "0.391969",
+   "jsonrpc" : "2.0",
+   "id" : "3",
+   "result" : {
+      "id" : "988",
+      "new": false
+   }
+}
+```
+
 <span class="tryit" id="client-create-tryit"></span>
 Creates a new client record.
 
@@ -206,6 +244,10 @@ A unique identifier for this client.
 ####name
 
 The name of this client.
+
+####search
+
+A generic search string; select clients containing this string in their name.
 
 ### client.update
 
