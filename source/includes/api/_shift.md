@@ -22,6 +22,9 @@ The date or date and time on which this shift begins. For an all-day shift, this
 
 The date and time on which this shift ends, (e.g. "2009-04-01T17:00:00"). Not specified for all-day or open-ended shifts.
 
+`dur_hrs` Integer; shift duration in hours. Required when creating a shift with a `use_time` value of 2. Likewise this value will only be returned when querying for shifts whose `use_time` value is equal to 2.
+
+`dur_mins` Integer; shift duration in minutes. Required when creating a shift with a `use_time` value of 2. Likewise this value will only be returned when querying for shifts whose `use_time` value is equal to 2.
 ####timezone
 
 The timezone for which the shift is scheduled.
@@ -77,6 +80,15 @@ If the shift is covered by a member, the external id of the member's account.
 ####covering_workgroup
 
 If the shift is covered by a workgroup, the workgroup id (currently, never different from the shift's workgroup)
+
+`use_time` Integer; shift type identifier. Valid `use_time` values are in the range of 1-5.
+1: shift/coverage block
+2: start time/duration
+3: start/end time
+4: open ended/tbd
+5: anytime
+
+`time_block` Integer; time block identifier. Required when creating a shift with a `use_time` value of 1. Likewise this value will only be returned when querying for shifts whose `use_time` value is equal to 1.
 
 ### shift: extended attributes
 
@@ -286,6 +298,14 @@ Creates a new shift record.
 
 Parameters: Most attributes of a shift object except `id` may be specified. Minimally, `workgroup` and `start_date` parameters must be specified. `timezone` will default to the organization's timezone. `location` will default to the workgroup's default location, if set. "external_covering_member/covering_member" and `covering_workgroup` are mutually exclusive, and may only be specified if the shift is covered. `tentative` may only true if the shift is covered, and `covered` may only be true if the shift is published. Start and end dates may only fall on even five minute times. Either `count` or `qty` may be specified and both will be set for the new shift, defaulting to 1; if both are specified, they must be equal. `count` must be 1 for a covered shift.
 
+Optional Parameters: 
+
+notify_on_create
+Boolean; send a notification message to the covering member for this shift.
+
+notify_message
+Additional text to include in notification message.
+
 Response: On success, an `id` attribute will provide the identifier for the new shift.
 
 ### shift.delete
@@ -313,6 +333,14 @@ Response: On success, an `id` attribute will provide the identifier for the new 
 Deletes a shift record.
 
 Required parameter: `id`.
+
+Optional Parameters:
+
+notify_on_delete
+Boolean; notify covering member upon deletion of the shift.
+
+notify_message
+Custom text to be included when notifying shift owner upon deletion of shift.
 
 Response: On success, empty results will be returned.
 
@@ -571,10 +599,6 @@ If specified, requests only shifts with the given reference IDs (case insensitiv
 ####covering_member
 
 If specified, requests only shifts covered by the workgroup member.
-
-####external_covering_member
-
-If the shift is covered by a member, the external id of the member's account.
 
 ####limit
 
@@ -1573,6 +1597,8 @@ Response: On success, empty results will be returned. Note that if the shift had
 Updates a shift object.
 
 Required parameter: `id`. Most other shift object attributes may be specified.
+
+Optional Parameters: `notify` Boolean; notify covering member upon update.
 
 The `count` of a shift is the number of positions available for that specific shift, whereas the `qty` is the total positions for all related shifts. Counts may not be directly modified: to increase or decrease available counts, modify the `qty` field, which will update the `qty` for all related shifts, increasing or decreasing the `count` only for the related uncovered shift. Therefore, `qty` cannot be decreased below the total `count` for all related covered shifts. If `qty` is set to the total `count` for all related covered shifts, the uncovered shift, now with `count` 0, is deleted.
 
