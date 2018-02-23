@@ -646,7 +646,7 @@ DEFINIÇÃO
 
   POST https://app.cobrato.com/api/v1/payment/:id/unauthorize
 
-EXEMPLO DE REQUISIÇÃO
+  EXEMPLO DE REQUISIÇÃO
 
   $ curl -i -u $API_TOKEN:X \
     -H 'User-Agent: My App 1.0' \
@@ -678,6 +678,50 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 ```
 
 Marca um determinado Pagamento como não autorizado, retornando JSON com as informações do pagamento em caso de sucesso ou, caso contrário, os erros.
+
+## Marcar pagamento com Erro no Registro
+
+```shell
+Marcar pagamento com Erro no Registro
+
+DEFINIÇÃO
+
+  POST https://app.cobrato.com/api/v1/payment/:id/register_error
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X POST https://app.cobrato.com/api/v1/payment/:id/register_error
+
+EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
+
+    200 OK
+
+EXEMPLO DE ESTADO DA RESPOSTA COM PAGAMENTO INEXISTENTE
+
+    404 Not Found
+
+EXEMPLO DE ESTADO DA RESPOSTA COM INSUCESSO
+
+    422 Unprocessable Entity
+
+EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
+
+  {
+    "errors":
+      {
+        "registration_status": ["não permite marcar como Erro no Registro"]
+      }
+  }
+
+```
+
+Marca o pagamento com Erro no registro manualmente.
+
+Importante para pagamentos que tiveram o lote rejeitado pelo sistema do banco. Neste caso o banco não envia nenhum erro no arquivo de retorno e é necessário marcar manualmente.
 
 ## Schema de Pagamento
 
