@@ -9,8 +9,8 @@ sudo apt-add-repository -y ppa:rael-gc/rvm
 sudo apt-get update
 sudo apt-get install rvm
 
-## Install Ruby dev headers
-sudo apt-get install ruby-all-dev
+## Install Ruby and other required dev headers
+sudo apt-get install ruby-all-dev libxslt-dev
 
 ## Install Node.js
 sudo apt-get install -y nodejs
