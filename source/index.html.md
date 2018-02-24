@@ -2,14 +2,7 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
-
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - Java
 
 includes:
   - errors
@@ -17,223 +10,183 @@ includes:
 search: true
 ---
 
-# Introduction
+# 介绍
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+百应API开放，详细接口文档。
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# 认证方式</aside>
+联系百应同学开通isv账号(appkey)，并建立测试企业。
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+# company
 
-# Authentication
+## 获取公司列表
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+```Java
+String baseUrl = "http://api.byrobot.cn";
+String url = baseUrl + "/openapi/v1/company/getCompanys";
+String result = IndataHttpUtils.sendGet(url, "AppKey", "AppSecret");
+System.out.print(result);
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> 返回结果示例:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "code": 200,
+    "data": [
+        {
+            "companyName": "公司名称", // 公司名称
+            "companyId": 1 // 公司id
+        }
+    ],
+    "resultMsg": "获取成功",
+    "errorStackTrace": null
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+获取可以管理的所有企业列表
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET /openapi/v1/company/getCompanys`
 
-### URL Parameters
+## 获取公司的主叫电话
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
+```Java
+String baseUrl = "http://api.byrobot.cn";
+String url = baseUrl + "/openapi/v1/company/getPhones?companyId=1";
+String result = IndataHttpUtils.sendGet(url, "AppKey", "AppSecret");
+System.out.print(result);
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
+> 返回结果示例:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+    "code": 200,
+    "data": [
+        {
+            "userPhoneId": 0, // 电话id
+            "phone": "17706423289", // 电话号码
+            "phoneName": "可用卡1", // 电话号码名称
+            "phoneType": 0, // 电话卡类型 0:机器人手机卡 1:人工坐席手机卡
+            "available": false // 是否可用
+        },
+        {
+            "userPhoneId": 13,
+            "phone": "18072749353",
+            "phoneName": "可用卡2",
+            "phoneType": 0,
+            "available": true
+        },
+        {
+            "userPhoneId": 31,
+            "phone": "15868457106",
+            "phoneName": "不可用卡1",
+            "phoneType": 1,
+            "available": false
+        }
+    ],
+    "resultMsg": "获取成功",
+    "errorStackTrace": null
 }
 ```
 
-This endpoint deletes a specific kitten.
+获取可以管理的某一个企业下的可用的主叫电话
+
+
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`GET /openapi/v1/company/getPhones`
 
-### URL Parameters
+### 请求参数:
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete aaa天烬测试
+字段 | 类型 | 描述
+--------- | ----------- | -----------
+companyId | Integer | 公司id
+
+## 获取公司的机器人
+
+```Java
+String baseUrl = "http://api.byrobot.cn";
+String url = baseUrl + "/openapi/v1/company/getRobots?companyId=1";
+String result = IndataHttpUtils.sendGet(url, "AppKey", "AppSecret");
+System.out.print(result);
+```
+
+> 返回结果示例:
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "robotDefId": 6, // 机器人id
+            "robotName": "产品电销_废弃_勿用", // 机器人名称
+            "sceneDefId": 11, // 场景id
+            "sceneRecords": [
+                {
+                    "sceneRecordId": 25, // 录音id
+                    "sceneRecordName": "房产电销女声版(佑琪)" //录音名称
+                },
+                {
+                    "sceneRecordId": 24,
+                    "sceneRecordName": "房产电销女声版(凯萍)"
+                },
+                {
+                    "sceneRecordId": 21,
+                    "sceneRecordName": "房产电销优化版(精品录音)"
+                },
+                {
+                    "sceneRecordId": 2,
+                    "sceneRecordName": "房产电销优化版(丸子)"
+                },
+                {
+                    "sceneRecordId": 1,
+                    "sceneRecordName": "房产电销优化版(张飞)"
+                }
+            ]
+        },
+        {
+            "robotDefId": 11,
+            "robotName": "金融销售机器人_默认",
+            "sceneDefId": 24,
+            "sceneRecords": [
+                {
+                    "sceneRecordId": 20,
+                    "sceneRecordName": "金融销售默认话术"
+                }
+            ]
+        },
+        {
+            "robotDefId": 12,
+            "robotName": "房产竞标机器人",
+            "sceneDefId": 31,
+            "sceneRecords": [
+                {
+                    "sceneRecordId": 31,
+                    "sceneRecordName": "房产竞标话术@20171223_23_49_57"
+                }
+            ]
+        }
+    ],
+    "resultMsg": "获取成功",
+    "errorStackTrace": null
+}
+```
+
+获取可以管理的某一个企业下的机器人列表
+
+### HTTP Request
+
+`GET /openapi/v1/company/getRobots`
+
+### 请求参数:
+
+字段 | 类型 | 描述
+--------- | ----------- | -----------
+companyId | Integer | 公司id
+
+
 
