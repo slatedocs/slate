@@ -103,7 +103,7 @@ Not all fields will be configured to be used for all organizations or set for al
 ```
 Approve one or more timecard records.
 
-Parameters: 
+Parameters:
 `id` One or more timecards to approve
 `approved` Boolean; approve or un-approve one or more timecards
 
@@ -238,7 +238,7 @@ If requested, the response results `referenced_objects` attribute will be an obj
 
 ####account
 
-id, first_name, last_name, and screen_name attributes are provided. 
+id, first_name, last_name, and screen_name attributes are provided.
 
 **NOTE:** external_id will also be returned in the results if external ids are enabled for the site
 
@@ -373,7 +373,7 @@ id and name attributes are provided.
 {"seconds":"0.052778","jsonrpc":"2.0","id":"48","result":{}}
 ```
 
-Process one or more timecard records. 
+Process one or more timecard records.
 
 Parameters:
 `id` One or more timecards to process

@@ -1144,7 +1144,7 @@ Required parameters:  `id` or `external_id`.
 
 Optional parameters:
 
-Other account object attributes may be specified.  
+Other account object attributes may be specified.
 
 ####unconfirm_future_shifts
 

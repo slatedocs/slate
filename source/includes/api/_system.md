@@ -89,6 +89,8 @@ selected time zone.
 
 ### system.whoami
 
+Returns account, the account id for the registered API user.
+
 > Request example:
 
 ```JSON

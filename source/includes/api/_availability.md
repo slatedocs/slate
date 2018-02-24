@@ -30,7 +30,7 @@ Date at which this availability ends; null if availability extends indefinitely 
 
 ####start_time
 
-Start time for each date of this availability, in [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) partial time format (e.g. "13:00:00"), or null if the availability extends from the beginning of the day. 
+Start time for each date of this availability, in [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) partial time format (e.g. "13:00:00"), or null if the availability extends from the beginning of the day.
 
 **note:** It is not possible to specify the seconds for *start_time*. This value should always be set to: "00"
 
