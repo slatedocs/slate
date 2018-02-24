@@ -1150,7 +1150,7 @@ Updates an account object.
 
 #### Optional parameters:
 
-Other account object attributes may be specified.  
+Other account object attributes may be specified.
 
 ####unconfirm_future_shifts
 

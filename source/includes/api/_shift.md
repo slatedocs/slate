@@ -298,7 +298,7 @@ Creates a new shift record.
 
 Parameters: Most attributes of a shift object except `id` may be specified. Minimally, `workgroup` and `start_date` parameters must be specified. `timezone` will default to the organization's timezone. `location` will default to the workgroup's default location, if set. "external_covering_member/covering_member" and `covering_workgroup` are mutually exclusive, and may only be specified if the shift is covered. `tentative` may only true if the shift is covered, and `covered` may only be true if the shift is published. Start and end dates may only fall on even five minute times. Either `count` or `qty` may be specified and both will be set for the new shift, defaulting to 1; if both are specified, they must be equal. `count` must be 1 for a covered shift.
 
-Optional Parameters: 
+Optional Parameters:
 
 notify_on_create
 Boolean; send a notification message to the covering member for this shift.

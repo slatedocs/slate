@@ -20,4 +20,4 @@ A unique identifier for this training.
 `name` The name of this training.
 `description` The description of this training.
 
-`training object` 
+`training object`
