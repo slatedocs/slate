@@ -4,7 +4,6 @@ title: MDLIVE API Reference
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
   - ruby
-  - java
 
 toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
@@ -69,8 +68,8 @@ includes:
   - entities/surgeries/surgery_names
 
   - response_codes
-  
-  - android_sdk/setup   
+
+  - android_sdk/setup
 
   - iOS_SDK/_setup
 
