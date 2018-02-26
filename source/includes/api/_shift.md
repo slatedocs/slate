@@ -566,43 +566,20 @@ Optional parameters:
 
 Object. The shift object allows for the following optional parameters:
 
-####id
-
-####start_date
-
-####start_time
-
-####end_date
-
-####end_time
-
-####timezone
-
-Timezone defualts to the site's timezone if one is not provided in the request.
-
-####role
-
-Role is required for role restriction.
-
-####unpaid_mins
-
-Required for overtime checking.
-
-####location
-
-Location id of shift (venue).
-
-####reference_id
-
-If specified, requests only shifts with the given reference IDs (case insensitive) (either a single reference ID or an array of reference IDs).
-
-####covering_member
-
-If specified, requests only shifts covered by the workgroup member.
-
-####external_covering_member
-
-If the shift is covered by a member, the external id of the member's account.
+Field | Description
+----- | -----------
+id |
+start_date |
+start_time |
+end_date |
+end_time |
+timezone | Timezone defaults to the site's timezone if one is not provided in the request.
+role | Role is required for role restriction.
+unpaid_mins | Required for overtime checking.
+location | Location id of shift (venue).
+reference_id | If specified, requests only shifts with the given reference IDs (case insensitive) (either a single reference ID or an array of reference IDs).
+covering_member | If specified, requests only shifts covered by the workgroup member.
+external_covering_member | If the shift is covered by a member, the external id of the member's account.
 
 ####limit
 
@@ -610,7 +587,7 @@ Maximum number of results to return; default site dropdown list limit.
 
 ####use_time
 
-Needed if open ended or all day should do overtime/conflict/availability/timeoff checkinng.
+Needed if open ended or all day should do overtime/conflict/availability/timeoff checking.
 
 ####include_holds
 
@@ -618,15 +595,15 @@ Boolean; default false (members on hold not included).
 
 ####conflicts_ok
 
-Boolean; default false (conficts checked, if date/times specified).
+Boolean; default false (conflicts checked, if date/times specified).
 
 ####daily_overtime_ok
 
-Boolean; default false (conficts checked, if date/times specified).
+Boolean; default false (conflicts checked, if date/times specified).
 
 ####weekly_overtime_ok
 
-Boolean; default false (conficts checked, if date/times specified).
+Boolean; default false (conflicts checked, if date/times specified).
 
 ####is_available
 
