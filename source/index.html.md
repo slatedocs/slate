@@ -68,8 +68,8 @@ includes:
   - entities/surgeries/surgery_names
 
   - response_codes
-  
-  - android_sdk/setup   
+
+  - android_sdk/setup
 
   - iOS_SDK/_setup
 
