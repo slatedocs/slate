@@ -72,7 +72,6 @@ Companies Using Slate
 ---------------------------------
 
 * [NASA](https://api.nasa.gov)
-* [IBM](https://docs.cloudant.com/api.html)
 * [Sony](http://developers.cimediacloud.com)
 * [Best Buy](https://bestbuyapis.github.io/api-documentation/)
 * [Travis-CI](https://docs.travis-ci.com/api/)
