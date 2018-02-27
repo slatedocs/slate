@@ -12,7 +12,7 @@ Our Elixir agent supports Phoenix 1.2.0+ and Elixir 1.4+.
   A Scout account is required. <a href="https://apm.scoutapp.com/users/sign_up" target: '_blank'>Signup here</a>.
 </aside>
 
-Tailored instructions are provided within our user interface. General instructions:
+Tailored instructions are provided within our user interface. General instructions for a Phoenix 1.3+ app:
 
 <div class="install">
 
@@ -51,15 +51,15 @@ Tailored instructions are provided within our user interface. General instructio
     </p>
     <pre class="terminal">
 # config/config.exs
-import_config "scout_apm.exs"
+<span>import_config "scout_apm.exs"</span>
 
 config :your_app, YourApp.Repo,
-  loggers: [{Ecto.LogEntry, :log, []},
-            <span>{ScoutApm.Instruments.EctoLogger, :log, []}</span>]</pre>
-    <p class="smaller"><code>web/web.ex</code>:
+  <span>loggers: [{Ecto.LogEntry, :log, []},
+            {ScoutApm.Instruments.EctoLogger, :log, []}]</span></pre>
+    <p class="smaller"><code>lib/your_app_web.ex</code>:
     </p>
-    <pre class="terminal"># web/web.ex
-defmodule HeroReview.Web do
+    <pre class="terminal"># lib/your_app_web.ex
+defmodule YourApp.Web do
   def controller do
     quote do
       use Phoenix.Controller
