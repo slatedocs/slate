@@ -75,7 +75,10 @@ account that last updated this request's status
 <span class="tryit" id="timeoffrequest-approve-tryit"></span>
 Approves a time off request.
 
-Required parameter: `id`.
+Required parameter:
+
+####id
+Time off request identifier or array of time off request identifiers.
 
 Optional parameter: `status_reason`. If not specified, status_reason will remain unchanged.
 
@@ -109,7 +112,8 @@ Response: On success, empty results will be returned.
 <span class="tryit" id="timeoffrequest-deny-tryit"></span>
 Denies a time off request.
 
-Required parameter: `id`.
+####id
+Time off request identifier or array of time off request identifiers.
 
 Optional parameter: `status_reason`. If not specified, status_reason will remain unchanged.
 
