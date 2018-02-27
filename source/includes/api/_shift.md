@@ -837,7 +837,7 @@ If requested, the response results `referenced_objects` attribute will be an obj
 
 ####account
 
-id, first_name, last_name, and screen_name attributes are provided. 
+id, first_name, last_name, and screen_name attributes are provided.
 
 **NOTE:** external_id will also be returned in the results if external ids are enabled for the site.
 
@@ -1562,3 +1562,12 @@ The `count` of a shift is the number of positions available for that specific sh
 
 Response: On success, if the shift was updated, empty results will be returned. If the shift had a `count` > 1 and the update was only applied to a portion of the count, a new shift object will have been created and the `id` of the new shift will be returned. If `qty` is modified on a covered shift, the `id` of the modified uncovered shift will be returned.
 
+### shift.customDropdownList
+
+<span class="tryit" id="shift-customdropdownlist-tryit"></span>
+Returns information about custom dropdown list objects.
+
+### shift.customMultipickList
+
+<span class="tryit" id="shift-custommultipicklist-tryit"></span>
+Returns information about custom multi-pick list objects.
