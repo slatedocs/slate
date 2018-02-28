@@ -6,7 +6,7 @@ The MDLConnect SDK for Android allows you to integrate your Android app with MDL
 
 ### Step 1 - Setup
 
-Download the Android SDK
+<a href="https://mdlive.blob.core.windows.net/affiliations-prod/static_asset/ANDROID_MDLIVE_SDK.zip">Download the Android SDK</a>
 
 ### Step 2 -  Add SDK to Project
 

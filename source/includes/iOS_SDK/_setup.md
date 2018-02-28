@@ -6,7 +6,7 @@ The MDLConnect SDK for iOS allows you to integrate your iOS app with MDLive's vi
 
 ### Step 1 - Setup
 
-Download the iOS SDK
+<a href="https://mdlive.blob.core.windows.net/affiliations-prod/static_asset/iOS_MDLIVE_SDK.zip">Download the iOS SDK</a>
 
 ### Step 2 -  Add SDK to Project
 
