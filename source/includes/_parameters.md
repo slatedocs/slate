@@ -4,7 +4,7 @@
 > A `GET` request to this endpoint returns a dictionary containing active and pending parameters of the product and its parts
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/111010101010101/parameters"
+    url = "https://smartapi.bboxx.co.uk/v1/products/111010101010101/parameters"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     r = requests.get(url=url, headers=headers)
@@ -80,7 +80,7 @@
 > A `POST` request to this endpoint will update the product and parts with the new parameters and return a response dictionary confirming newly set values
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/111010101010101/parameters"
+    url = "https://smartapi.bboxx.co.uk/v1/products/111010101010101/parameters"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
     data = {
             'part_parameters': {'616479': {'string_test_parameter': 'elephants'}},

@@ -30,7 +30,7 @@ Relationship | Description
 > An example POST request. Note that sms_history_id, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/sms_histories"
+    url = "https://smartapi.bboxx.co.uk/v1/sms_histories"
     data = json.dumps({
 		"attempted_retries": 1,
 		"enable_history_id": 1,
@@ -71,7 +71,7 @@ Relationship | Description
 > We can retrieve the `sms_history` created by specifying its `sms_history_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/sms_histories/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/sms_histories/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.get(url=url, headers=headers)
@@ -100,7 +100,7 @@ Relationship | Description
 > and we can retrieve all sms_histories by omitted the sms_history_id:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/sms_histories'
+    url = 'https://smartapi.bboxx.co.uk/v1/sms_histories'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.get(url=url, headers=headers)
@@ -126,7 +126,7 @@ Relationship | Description
 > We can edit the newly created sms_history with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/sms_histories'
+    url = 'https://smartapi.bboxx.co.uk/v1/sms_histories'
     data = json.dumps({
 		"attempted_retries": 2,
 		"enable_history_id": 2,
@@ -167,7 +167,7 @@ Relationship | Description
 > If a user has `SYSTEM` permissions they can delete the sms_history
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/sms_histories/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/sms_histories/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.delete(url=url, headers=headers)

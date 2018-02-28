@@ -23,7 +23,7 @@ It is possible (especially due to wake-ups) that a unit will connect more than o
 > Get the reliability rate for the default time range (previous 7 days)
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/111010101010101/connectivity_reliability_rate"
+    url = "https://smartapi.bboxx.co.uk/v1/products/111010101010101/connectivity_reliability_rate"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     r = requests.get(url=url, headers=headers)
@@ -41,7 +41,7 @@ It is possible (especially due to wake-ups) that a unit will connect more than o
 > Get the reliability rate for the last month
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/111010101010101/connectivity_reliability_rate"
+    url = "https://smartapi.bboxx.co.uk/v1/products/111010101010101/connectivity_reliability_rate"
     data = json.dumps({
         "start": (dt.datetime.utcnow() - dt.timedelta(days=30)).isoformat()
     })
@@ -62,7 +62,7 @@ It is possible (especially due to wake-ups) that a unit will connect more than o
 
 ```python
 
-    url = "http://smartapi.bboxx.co.uk/v1/products/111010101010101/connectivity_reliability_rate"
+    url = "https://smartapi.bboxx.co.uk/v1/products/111010101010101/connectivity_reliability_rate"
     data = json.dumps({
         "start": "2017-01-01 00:00:00"
         "end": "2017-06-01 00:00:00"

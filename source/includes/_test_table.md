@@ -21,7 +21,7 @@ rel3 | rel3
 > An example POST request. Note that pk_name, created_at, modified_at and created_by are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/table_name_plural"
+    url = "https://smartapi.bboxx.co.uk/v1/table_name_plural"
     data = json.dumps({
             k: v,
             k: v,
@@ -46,7 +46,7 @@ rel3 | rel3
 > We can retrieve the `table_name_singular` created by specifying its `pk_name` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/table_name_plural/post_record_id'
+    url = 'https://smartapi.bboxx.co.uk/v1/table_name_plural/post_record_id'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.get(url=url, headers=headers)
@@ -65,7 +65,7 @@ rel3 | rel3
 > and we can retrieve all table_name_plural by omitted the pk_name:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/table_name_plural'
+    url = 'https://smartapi.bboxx.co.uk/v1/table_name_plural'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.get(url=url, headers=headers)
@@ -84,7 +84,7 @@ rel3 | rel3
 > We can edit the newly created table_name_singular with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/table_name_plural'
+    url = 'https://smartapi.bboxx.co.uk/v1/table_name_plural'
     data = json.dumps({
             k: v,
             k: v,
@@ -109,7 +109,7 @@ rel3 | rel3
 > If a user has `SYSTEM` permissions they can delete the table_name_singular
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/table_name_plural/post_record_id'
+    url = 'https://smartapi.bboxx.co.uk/v1/table_name_plural/post_record_id'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + <valid_token>}
 
     r = requests.delete(url=url, headers=headers)

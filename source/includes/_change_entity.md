@@ -5,7 +5,7 @@ Since a <a href="#/product">`Product`</a> can be assigned to multiple entities a
 > A `PUT` request to this endpoint changes the specified entity to an another entity.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/change_entity"
+    url = "https://smartapi.bboxx.co.uk/v1/products/000000000000/change_entity"
     data = json.dumps({
         "old_entity_id": 5,
         "new_entity_id": 6

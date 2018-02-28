@@ -3,7 +3,7 @@
 > A `POST` request to this endpoint tells a unit to connect. For an RTC-enabled unit we will send a `sync`, for others we will `send_wakeup`.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/force_connection"
+    url = "https://smartapi.bboxx.co.uk/v1/products/000000000000/force_connection"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     r = requests.post(url=url, headers=headers)

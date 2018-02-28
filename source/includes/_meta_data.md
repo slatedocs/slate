@@ -14,7 +14,7 @@ normal query syntax.
 > A request like this:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/product_types'
+    url = 'https://smartapi.bboxx.co.uk/v1/product_types'
     data = {
         "name": "Test Product Type",
         "erp_code": "XX0005",

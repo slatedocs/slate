@@ -3,7 +3,7 @@
 > A `PUT` request to this endpoint assigns an entity to the specified entity.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/assign_entity"
+    url = "https://smartapi.bboxx.co.uk/v1/products/000000000000/assign_entity"
     data = json.dumps({"entity_id": 5})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 

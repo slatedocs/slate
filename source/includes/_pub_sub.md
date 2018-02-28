@@ -15,7 +15,7 @@ BBOXX supports `HTTP` and `HTTPS` endpoints and includes a signature in each `PO
 > To view a list of available channels, send a `GET` request to `/v1/channels`.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/channels"
+    url = "https://smartapi.bboxx.co.uk/v1/channels"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     r = requests.get(url=url, headers=headers)
@@ -56,7 +56,7 @@ Users can view the possible contents and format of the data sent in the channel 
 > An example of how to subscribe to the `product-status` channel.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/channels/product-status/subscribe"
+    url = "https://smartapi.bboxx.co.uk/v1/channels/product-status/subscribe"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     data = json.dumps({
@@ -98,7 +98,7 @@ You may only subscribe one url to each `channel`.
 > An example of how to un-subscribe from the `product-status` channel.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/channels/product-status/unsubscribe"
+    url = "https://smartapi.bboxx.co.uk/v1/channels/product-status/unsubscribe"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     data = json.dumps({

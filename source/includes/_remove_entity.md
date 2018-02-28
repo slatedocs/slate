@@ -5,7 +5,7 @@ Use this endpoint to remove an entity from the product.
 > A `PUT` request to this endpoint removes the specified entity.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/remove_entity"
+    url = "https://smartapi.bboxx.co.uk/v1/products/000000000000/remove_entity"
     data = json.dumps({
         "entity_id": 4,
     })

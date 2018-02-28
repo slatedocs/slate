@@ -3,7 +3,7 @@
 > A `POST` request to this endpoint instructs an RTC-enabled unit to reply with up to date status and telemetry data.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/sync"
+    url = "https://smartapi.bboxx.co.uk/v1/products/000000000000/sync"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     r = requests.post(url=url, headers=headers)

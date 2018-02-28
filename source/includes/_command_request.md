@@ -3,7 +3,7 @@
 > A `POST` request to this endpoint sends a debug/diagnostic command to an RTC-enabled unit.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/command_request"
+    url = "https://smartapi.bboxx.co.uk/v1/products/000000000000/command_request"
     data = json.dumps({"command": "atc 60 AT+CPOL=?;+COPS=?"})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 

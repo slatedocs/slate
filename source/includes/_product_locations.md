@@ -5,7 +5,7 @@
 > A `GET` request to this endpoint will return a complete list of products and their latest recorded locations.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/locations"
+    url = "https://smartapi.bboxx.co.uk/v1/products/locations"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     r = requests.get(url=url, headers=headers)

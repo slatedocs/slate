@@ -157,7 +157,7 @@ For example if we wish to see Current and Voltage data for the unit 013777894567
 > Data can be written to a specific product like this - note that the <a href="#product">`product_imei`</a> is automatically written into the tags and does not need to be specified by the user:
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/<imei>/data"
+    url = "https://smartapi.bboxx.co.uk/v1/products/<imei>/data"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     data = json.dumps({
@@ -231,7 +231,7 @@ response | `200`
 > More general data can be written like this:
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/influx/data"
+    url = "https://smartapi.bboxx.co.uk/v1/influx/data"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     data = json.dumps({
@@ -302,7 +302,7 @@ time                 current  product_imei    voltage  temperature
 > A `GET` request with no parameters will return the default query for the product.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000000/data"
+    url = "https://smartapi.bboxx.co.uk/v1/products/000000000000000/data"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     r = requests.get(url=url, headers=headers)
@@ -328,7 +328,7 @@ time                 current  product_imei    voltage  temperature
 > Any number of parameters can be explicitly specified, the other parameters will be filled with the default options.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000000/data"
+    url = "https://smartapi.bboxx.co.uk/v1/products/000000000000000/data"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     params = {
@@ -352,7 +352,7 @@ time                 current  product_imei    voltage  temperature
 > Complex queries can be built using the `where` clause parameters
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000000/data"
+    url = "https://smartapi.bboxx.co.uk/v1/products/000000000000000/data"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     params = {
@@ -557,7 +557,7 @@ A `GET` request to `/v1/influx/data` allows the user to read more general data f
 ## Custom Queries
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/influx/custom_query"
+    url = "https://smartapi.bboxx.co.uk/v1/influx/custom_query"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     params = {

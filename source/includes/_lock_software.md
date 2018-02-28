@@ -3,7 +3,7 @@
 > A `PUT` request to this endpoint will lock the software on the unit to the specified software.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/lock_software"
+    url = "https://smartapi.bboxx.co.uk/v1/products/000000000000/lock_software"
     data = json.dumps({"software": <software_id> or <software_name>})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
@@ -22,7 +22,7 @@
 > A `PUT` request with blank payload will remove the software lock.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/lock_software"
+    url = "https://smartapi.bboxx.co.uk/v1/products/000000000000/lock_software"
     data = json.dumps({"software": None})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 

@@ -31,7 +31,7 @@ Relationship | Description
 > We can retrieve the `tamper_enable_history` created by specifying its `tamper_enable_history_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/tamper_enable_history/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/tamper_enable_history/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -56,7 +56,7 @@ Relationship | Description
 > We can retrieve all `tamper_enable_history` by omitting the `tamper_enable_history_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/tamper_enable_history'
+    url = 'https://smartapi.bboxx.co.uk/v1/tamper_enable_history'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -84,7 +84,7 @@ Relationship | Description
 > If a user has `SYSTEM` permissions they can delete the `tamper_enable_history`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/tamper_enable_history/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/tamper_enable_history/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

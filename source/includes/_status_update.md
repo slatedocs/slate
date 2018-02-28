@@ -3,7 +3,7 @@
 > A `POST` request to this endpoint sends the latest parameter values to an RTC-enabled unit.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/status_update"
+    url = "https://smartapi.bboxx.co.uk/v1/products/000000000000/status_update"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     r = requests.post(url=url, headers=headers)

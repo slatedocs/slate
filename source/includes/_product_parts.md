@@ -5,7 +5,7 @@
 > A `GET` request to this endpoint will return a complete list of parts and related data currently associated with that unit.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/parts"
+    url = "https://smartapi.bboxx.co.uk/v1/products/000000000000/parts"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     r = requests.get(url=url, headers=headers)

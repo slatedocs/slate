@@ -3,7 +3,7 @@
 > A `PUT` request to this endpoint with set the unit to upgrade to the specified software when it next connects to the system. 
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/update_software"
+    url = "https://smartapi.bboxx.co.uk/v1/products/000000000000/update_software"
     data = json.dumps({"software": <software_id> or <software_name>})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 

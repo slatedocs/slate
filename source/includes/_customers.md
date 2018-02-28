@@ -31,7 +31,7 @@ __customer_entity_linker__ | The associated customer_entity_linker
 > We can retrieve the `customer` created by specifying its `customer_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/customers/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/customers/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -54,7 +54,7 @@ __customer_entity_linker__ | The associated customer_entity_linker
 > We can retrieve all `customers` by omitting the `customer_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/customers'
+    url = 'https://smartapi.bboxx.co.uk/v1/customers'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -80,7 +80,7 @@ __customer_entity_linker__ | The associated customer_entity_linker
 > We can edit the newly created `customer` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/customers/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/customers/1'
     data = json.dumps({
 		"name": "changed",
 		"external_customer_id": 2,
@@ -109,7 +109,7 @@ __customer_entity_linker__ | The associated customer_entity_linker
 > If a user has `SYSTEM` permissions they can delete the `customer`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/customers/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/customers/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

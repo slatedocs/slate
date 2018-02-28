@@ -8,7 +8,7 @@ The token is a random 64-char string.
 
 ## Generating a Valid Token (Logging in)
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/auth/login'
+    url = 'https://smartapi.bboxx.co.uk/v1/auth/login'
     fields = {
         "username": <username>,
         "password": <password>
@@ -28,7 +28,7 @@ A valid token will be sent in response if the username and passworod are correct
 ## The Full `/auth/login` Response
 ```python
 
-    url = 'http://smartapi.bboxx.co.uk/v1/auth/login'
+    url = 'https://smartapi.bboxx.co.uk/v1/auth/login'
     fields = {
         "username": <username>,
         "password": <password>
@@ -71,7 +71,7 @@ If the token expires the user should simply login again as above to generate a n
 ## A basic authentication routine
 ```python
     def login():
-        url = 'http://smartapi.bboxx.co.uk/v1/auth/login'
+        url = 'https://smartapi.bboxx.co.uk/v1/auth/login'
         fields = {
             "username": <username>,
             "password": <password>
@@ -103,7 +103,7 @@ applying a mass-update.
 
 ```python
 def login():
-    url = 'http://smartapi.bboxx.co.uk/v1/auth/login'
+    url = 'https://smartapi.bboxx.co.uk/v1/auth/login'
     fields = {
         "username": <username>,
         "password": <password>
@@ -148,7 +148,7 @@ def get_headers():
 > Usage would then be as follows:
 
 ```python
-url = "http://smartapi.bboxx.co.uk/v1/endpoint"
+url = "https://smartapi.bboxx.co.uk/v1/endpoint"
 data = json.dumps(data)
 headers = get_headers()
 

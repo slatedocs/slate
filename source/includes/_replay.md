@@ -3,7 +3,7 @@
 > A `PUT` request to this endpoint replays an RTC dead letter message.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/rtc_dead_letters/1/replay"
+    url = "https://smartapi.bboxx.co.uk/v1/rtc_dead_letters/1/replay"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     r = requests.put(url=url, headers=headers)

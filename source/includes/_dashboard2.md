@@ -2,7 +2,7 @@
 > A plain `GET` request returns a json structure as follows:
 
 ```python
-url = "http://smartapi.bboxx.co.uk/v1/dashboard2"
+url = "https://smartapi.bboxx.co.uk/v1/dashboard2"
 headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
 r = requests.get(url=url, headers=header)
@@ -113,7 +113,7 @@ __response__ | 200
 > A single product can be queried as follows:
 
 ```python
-url = "http://smartapi.bboxx.co.uk/v1/dashboard2"
+url = "https://smartapi.bboxx.co.uk/v1/dashboard2"
 headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
 params = {
@@ -182,7 +182,7 @@ Querying a single product follows the expected pattern.
 ### Entities
 
 ```python
-url = "http://smartapi.bboxx.co.uk/v1/dashboard2"
+url = "https://smartapi.bboxx.co.uk/v1/dashboard2"
 headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
 

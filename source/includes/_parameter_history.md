@@ -30,7 +30,7 @@ This means it will return the list of parameters as the unit would have "seen th
 ### Endpoints
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/111010101010101/parameters/history"
+    url = "https://smartapi.bboxx.co.uk/v1/products/111010101010101/parameters/history"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     r = requests.get(url=url, headers=headers)

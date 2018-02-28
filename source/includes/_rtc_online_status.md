@@ -3,7 +3,7 @@
 > A `POST` request to this endpoint sets the online status of an RTC-enabled unit.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/rtc_online_status"
+    url = "https://smartapi.bboxx.co.uk/v1/products/000000000000/rtc_online_status"
     data = json.dumps({"status": "online"})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 

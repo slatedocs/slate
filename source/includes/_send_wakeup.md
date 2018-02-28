@@ -8,7 +8,7 @@ This is done by sending a `WAKEUP` sms. For more information about unit connecti
 > A `POST` request to this endpoint will send a wakeup-sms to the unit and force it to connect to the system. The response will include the sms_history record that us created as a result of the request.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/send_wakeup"
+    url = "https://smartapi.bboxx.co.uk/v1/products/000000000000/send_wakeup"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     r = requests.post(url=url, headers=headers)

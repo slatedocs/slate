@@ -35,7 +35,7 @@ For example, a unit in `IN_REPAIR_SYSTEM` can only be moved into `ACTIVATED` or 
 > A `PUT` request to this endpoint changes the current `State` of the unit. A valid `state_type_id` need to be included in the data package. The following example shows demonstrates a unit transitioning from `ACTIVATED`(5) to `IN_REPAIR_SYSTEM`(8) successfully:
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/change_state"
+    url = "https://smartapi.bboxx.co.uk/v1/products/000000000000/change_state"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
     data = {
     	"new_state": 8
@@ -53,7 +53,7 @@ For example, a unit in `IN_REPAIR_SYSTEM` can only be moved into `ACTIVATED` or 
 > Here another `PUT` request is submitted to the endpoint, the unit is currently `ACTIVATED`(5) and an attempt to change it to `STORED` will result in failure:
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/change_state"
+    url = "https://smartapi.bboxx.co.uk/v1/products/000000000000/change_state"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
     data = {
     	"new_state": 2

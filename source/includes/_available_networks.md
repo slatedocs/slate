@@ -7,7 +7,7 @@ This endpoint returns the list of networks a unit could connect to in its curren
 > Get the available networks for the unit in Rwanda (country code 635)
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/111010101010101/available_networks?mcc=635"
+    url = "https://smartapi.bboxx.co.uk/v1/products/111010101010101/available_networks?mcc=635"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     r = requests.get(url=url, headers=headers)

@@ -7,7 +7,7 @@ This switch can be enabled/disabled remotely, particularly useful for periods of
 > A `PUT` request to this endpoint disables the tamper switch on the unit.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/products/000000000000/disable_tamper_switch"
+    url = "https://smartapi.bboxx.co.uk/v1/products/000000000000/disable_tamper_switch"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     r = requests.put(url=url, headers=headers)

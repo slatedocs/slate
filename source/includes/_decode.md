@@ -3,7 +3,7 @@
 > A `GET` request to this endpoint returns the contents of a RTC dead letter message ready for display to a user.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/rtc_dead_letters/1/decode"
+    url = "https://smartapi.bboxx.co.uk/v1/rtc_dead_letters/1/decode"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     r = requests.put(url=url, headers=headers)
