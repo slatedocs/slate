@@ -103,6 +103,10 @@ html, body {
     }
   }
 
+  .logo {
+    margin: 10px auto $logo-margin;
+  }
+
   .search-results {
     margin-top: 0;
     box-sizing: border-box;
