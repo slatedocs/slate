@@ -138,3 +138,7 @@ search_params            | object           | true      | Object with specific s
 ↳&nbsp; gender           | string           | false     | Preferred provider gender (`Male` or `Female`)
 ↳&nbsp; provider_type_id | integer          | false     | Provider Type ID, from the provider types list (or the endpoint response)
 ↳&nbsp; specific_date    | string           | false     | Date in YYYY-mm-dd format
+
+<aside class="success">
+  <code>is_visit_now_available</code> in provider search response is true when the provider is available for an immediate consultation
+</aside>
