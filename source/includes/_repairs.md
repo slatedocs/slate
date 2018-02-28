@@ -35,7 +35,7 @@ __battery_failure__ | The associated battery_failure
 > An example POST request. Note that `repair_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/repairs"
+    url = "https://smartapi.bboxx.co.uk/v1/repairs"
     data = json.dumps({
 		"product_imei": "000000000000000",
 		"arrival_date": "2000-01-01 00:00:00",
@@ -70,7 +70,7 @@ __battery_failure__ | The associated battery_failure
     > We can retrieve the `repair` created by specifying its `repair_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/repairs/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/repairs/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -96,7 +96,7 @@ __battery_failure__ | The associated battery_failure
 > We can retrieve all `repairs` by omitting the `repair_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/repairs'
+    url = 'https://smartapi.bboxx.co.uk/v1/repairs'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -122,7 +122,7 @@ __battery_failure__ | The associated battery_failure
 > We can edit the newly created `repair` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/repairs/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/repairs/1'
     data = json.dumps({
 		"product_imei": "999999999999999",
 		"arrival_date": "2000-01-01 00:00:00",
@@ -157,7 +157,7 @@ __battery_failure__ | The associated battery_failure
 > If a user has `SYSTEM` permissions they can delete the `repair`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/repairs/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/repairs/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

@@ -39,7 +39,7 @@ __alert_type_state_type_linker__ | The associated alert_type_state_type_linker
 > An example POST request. Note that `alert_type_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/alert_types"
+    url = "https://smartapi.bboxx.co.uk/v1/alert_types"
     data = json.dumps({
 		"name": "test",
 		"version": 1,
@@ -82,7 +82,7 @@ __alert_type_state_type_linker__ | The associated alert_type_state_type_linker
     > We can retrieve the `alert_type` created by specifying its `alert_type_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/alert_types/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/alert_types/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -112,7 +112,7 @@ __alert_type_state_type_linker__ | The associated alert_type_state_type_linker
 > We can retrieve all `alert_types` by omitting the `alert_type_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/alert_types'
+    url = 'https://smartapi.bboxx.co.uk/v1/alert_types'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -138,7 +138,7 @@ __alert_type_state_type_linker__ | The associated alert_type_state_type_linker
 > We can edit the newly created `alert_type` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/alert_types/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/alert_types/1'
     data = json.dumps({
 		"name": "changed",
 		"version": 2,
@@ -181,7 +181,7 @@ __alert_type_state_type_linker__ | The associated alert_type_state_type_linker
 > If a user has `SYSTEM` permissions they can delete the `alert_type`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/alert_types/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/alert_types/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

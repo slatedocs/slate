@@ -32,7 +32,7 @@ __actions__ | The associated actions
 > An example POST request. Note that `appliance_type_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/appliance_types"
+    url = "https://smartapi.bboxx.co.uk/v1/appliance_types"
     data = json.dumps({
 		"category": "test",
 		"name": "test",
@@ -65,7 +65,7 @@ __actions__ | The associated actions
     > We can retrieve the `appliance_type` created by specifying its `appliance_type_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/appliance_types/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/appliance_types/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -90,7 +90,7 @@ __actions__ | The associated actions
 > We can retrieve all `appliance_types` by omitting the `appliance_type_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/appliance_types'
+    url = 'https://smartapi.bboxx.co.uk/v1/appliance_types'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -116,7 +116,7 @@ __actions__ | The associated actions
 > We can edit the newly created `appliance_type` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/appliance_types/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/appliance_types/1'
     data = json.dumps({
 		"category": "changed",
 		"name": "changed",
@@ -149,7 +149,7 @@ __actions__ | The associated actions
 > If a user has `SYSTEM` permissions they can delete the `appliance_type`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/appliance_types/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/appliance_types/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

@@ -30,7 +30,7 @@ Relationship | Description
 > An example POST request. Note that `part_parameter_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/part_parameters"
+    url = "https://smartapi.bboxx.co.uk/v1/part_parameters"
     data = json.dumps({
 		"value": "test",
 		"date_added": "2000-01-01 00:00:00",
@@ -65,7 +65,7 @@ Relationship | Description
     > We can retrieve the `part_parameter` created by specifying its `part_parameter_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/part_parameters/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/part_parameters/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -91,7 +91,7 @@ Relationship | Description
 > We can retrieve all `part_parameters` by omitting the `part_parameter_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/part_parameters'
+    url = 'https://smartapi.bboxx.co.uk/v1/part_parameters'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -117,7 +117,7 @@ Relationship | Description
 > We can edit the newly created `part_parameter` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/part_parameters/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/part_parameters/1'
     data = json.dumps({
 		"value": "changed",
 		"date_added": "2016-07-01 12:34:45",
@@ -152,7 +152,7 @@ Relationship | Description
 > If a user has `SYSTEM` permissions they can delete the `part_parameter`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/part_parameters/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/part_parameters/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

@@ -31,7 +31,7 @@ __shops__ | The associated shops
 > An example POST request. Note that `hub_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/hubs"
+    url = "https://smartapi.bboxx.co.uk/v1/hubs"
     data = json.dumps({
 		"name": "test",
 		"guid": "test",
@@ -64,7 +64,7 @@ __shops__ | The associated shops
     > We can retrieve the `hub` created by specifying its `hub_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/hubs/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/hubs/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -89,7 +89,7 @@ __shops__ | The associated shops
 > We can retrieve all `hubs` by omitting the `hub_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/hubs'
+    url = 'https://smartapi.bboxx.co.uk/v1/hubs'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -115,7 +115,7 @@ __shops__ | The associated shops
 > We can edit the newly created `hub` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/hubs/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/hubs/1'
     data = json.dumps({
 		"name": "changed",
 		"guid": "changed",
@@ -148,7 +148,7 @@ __shops__ | The associated shops
 > If a user has `SYSTEM` permissions they can delete the `hub`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/hubs/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/hubs/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

@@ -28,7 +28,7 @@ Relationship | Description
 > An example POST request. Note that `analysis_history_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/analysis_history"
+    url = "https://smartapi.bboxx.co.uk/v1/analysis_history"
     data = json.dumps({
 		"product_imei": "000000000000000",
 		"alert_type_id": 1,
@@ -59,7 +59,7 @@ Relationship | Description
     > We can retrieve the `analysis_history` created by specifying its `analysis_history_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/analysis_history/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/analysis_history/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -83,7 +83,7 @@ Relationship | Description
 > We can retrieve all `analysis_history` by omitting the `analysis_history_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/analysis_history'
+    url = 'https://smartapi.bboxx.co.uk/v1/analysis_history'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -109,7 +109,7 @@ Relationship | Description
 > We can edit the newly created `analysis_history` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/analysis_history/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/analysis_history/1'
     data = json.dumps({
 		"product_imei": "999999999999999",
 		"alert_type_id": 2,
@@ -140,7 +140,7 @@ Relationship | Description
 > If a user has `SYSTEM` permissions they can delete the `analysis_history`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/analysis_history/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/analysis_history/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

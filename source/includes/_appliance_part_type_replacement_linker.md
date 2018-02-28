@@ -27,7 +27,7 @@ Relationship | Description
 > An example POST request. Note that `appliance_part_type_replacement_linker_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/appliance_part_type_replacement_linker"
+    url = "https://smartapi.bboxx.co.uk/v1/appliance_part_type_replacement_linker"
     data = json.dumps({
 		"appliance_type_id": 1,
 		"existing_appliance_part_type_id": 1,
@@ -56,7 +56,7 @@ Relationship | Description
     > We can retrieve the `appliance_part_type_replacement_linker` created by specifying its `appliance_part_type_replacement_linker_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/appliance_part_type_replacement_linker/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/appliance_part_type_replacement_linker/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -79,7 +79,7 @@ Relationship | Description
 > We can retrieve all `appliance_part_type_replacement_linker` by omitting the `appliance_part_type_replacement_linker_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/appliance_part_type_replacement_linker'
+    url = 'https://smartapi.bboxx.co.uk/v1/appliance_part_type_replacement_linker'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -105,7 +105,7 @@ Relationship | Description
 > We can edit the newly created `appliance_part_type_replacement_linker` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/appliance_part_type_replacement_linker/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/appliance_part_type_replacement_linker/1'
     data = json.dumps({
 		"appliance_type_id": 2,
 		"existing_appliance_part_type_id": 2,
@@ -134,7 +134,7 @@ Relationship | Description
 > If a user has `SYSTEM` permissions they can delete the `appliance_part_type_replacement_linker`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/appliance_part_type_replacement_linker/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/appliance_part_type_replacement_linker/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

@@ -27,7 +27,7 @@ Relationship | Description
 > An example POST request. Note that `mccmnc`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/networks"
+    url = "https://smartapi.bboxx.co.uk/v1/networks"
     data = json.dumps({
 		"name": "test",
 		"mcc": 1,
@@ -56,7 +56,7 @@ Relationship | Description
     > We can retrieve the `network` created by specifying its `mccmnc` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/networks/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/networks/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -79,7 +79,7 @@ Relationship | Description
 > We can retrieve all `networks` by omitting the `mccmnc`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/networks'
+    url = 'https://smartapi.bboxx.co.uk/v1/networks'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -105,7 +105,7 @@ Relationship | Description
 > We can edit the newly created `network` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/networks/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/networks/1'
     data = json.dumps({
 		"name": "changed",
 		"mcc": 2,
@@ -134,7 +134,7 @@ Relationship | Description
 > If a user has `SYSTEM` permissions they can delete the `network`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/networks/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/networks/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

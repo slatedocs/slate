@@ -73,7 +73,7 @@ Relationship | Description
 > We can retrieve the `connection` created by specifying its `connection_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/connections/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/connections/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -140,7 +140,7 @@ Relationship | Description
 > We can retrieve all `connections` by omitting the `connection_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/connections'
+    url = 'https://smartapi.bboxx.co.uk/v1/connections'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -168,7 +168,7 @@ Relationship | Description
 > If a user has `SYSTEM` permissions they can delete the `connection`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/connections/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/connections/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

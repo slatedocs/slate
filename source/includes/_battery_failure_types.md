@@ -27,7 +27,7 @@ __failure_type_linkers__ | The associated failure_type_linkers
 > An example POST request. Note that `battery_failure_type_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/battery_failure_types"
+    url = "https://smartapi.bboxx.co.uk/v1/battery_failure_types"
     data = json.dumps({
 		"name": "test",
 		"description": "test",
@@ -54,7 +54,7 @@ __failure_type_linkers__ | The associated failure_type_linkers
     > We can retrieve the `battery_failure_type` created by specifying its `battery_failure_type_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/battery_failure_types/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/battery_failure_types/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -76,7 +76,7 @@ __failure_type_linkers__ | The associated failure_type_linkers
 > We can retrieve all `battery_failure_types` by omitting the `battery_failure_type_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/battery_failure_types'
+    url = 'https://smartapi.bboxx.co.uk/v1/battery_failure_types'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -102,7 +102,7 @@ __failure_type_linkers__ | The associated failure_type_linkers
 > We can edit the newly created `battery_failure_type` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/battery_failure_types/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/battery_failure_types/1'
     data = json.dumps({
 		"name": "changed",
 		"description": "changed",
@@ -129,7 +129,7 @@ __failure_type_linkers__ | The associated failure_type_linkers
 > If a user has `SYSTEM` permissions they can delete the `battery_failure_type`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/battery_failure_types/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/battery_failure_types/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

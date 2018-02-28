@@ -26,7 +26,7 @@ __part_types__ | The associated part_types
 > An example POST request. Note that `part_type_category_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/part_type_categories"
+    url = "https://smartapi.bboxx.co.uk/v1/part_type_categories"
     data = json.dumps({
 		"name": "test",
 		})
@@ -51,7 +51,7 @@ __part_types__ | The associated part_types
     > We can retrieve the `part_type_category` created by specifying its `part_type_category_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/part_type_categories/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/part_type_categories/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -72,7 +72,7 @@ __part_types__ | The associated part_types
 > We can retrieve all `part_type_categories` by omitting the `part_type_category_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/part_type_categories'
+    url = 'https://smartapi.bboxx.co.uk/v1/part_type_categories'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -98,7 +98,7 @@ __part_types__ | The associated part_types
 > We can edit the newly created `part_type_category` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/part_type_categories/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/part_type_categories/1'
     data = json.dumps({
 		"name": "changed",
 		})
@@ -123,7 +123,7 @@ __part_types__ | The associated part_types
 > If a user has `SYSTEM` permissions they can delete the `part_type_category`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/part_type_categories/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/part_type_categories/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

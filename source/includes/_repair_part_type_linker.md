@@ -12,6 +12,7 @@ __<a href="/#old-part-type">old_part_type_id</a>__ <br><font color="DarkGray">_i
 __<a href="/#new-part-type">new_part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __requested_date__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __replaced_date__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
+__non_transferable__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -29,13 +30,14 @@ Relationship | Description
 > An example POST request. Note that `repair_part_type_linker_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/repair_part_type_linker"
+    url = "https://smartapi.bboxx.co.uk/v1/repair_part_type_linker"
     data = json.dumps({
 		"repair_id": 1,
 		"old_part_type_id": 1,
 		"new_part_type_id": 1,
 		"requested_date": "2000-01-01 00:00:00",
 		"replaced_date": "2000-01-01 00:00:00",
+		"non_transferable": True,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -53,6 +55,7 @@ Relationship | Description
 		"new_part_type_id": 1,
 		"requested_date": "2000-01-01 00:00:00",
 		"replaced_date": "2000-01-01 00:00:00",
+		"non_transferable": True,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -62,7 +65,7 @@ Relationship | Description
     > We can retrieve the `repair_part_type_linker` created by specifying its `repair_part_type_linker_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/repair_part_type_linker/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/repair_part_type_linker/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -78,6 +81,7 @@ Relationship | Description
 		"new_part_type_id": 1,
 		"requested_date": "2000-01-01 00:00:00",
 		"replaced_date": "2000-01-01 00:00:00",
+		"non_transferable": True,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -87,7 +91,7 @@ Relationship | Description
 > We can retrieve all `repair_part_type_linker` by omitting the `repair_part_type_linker_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/repair_part_type_linker'
+    url = 'https://smartapi.bboxx.co.uk/v1/repair_part_type_linker'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -113,13 +117,14 @@ Relationship | Description
 > We can edit the newly created `repair_part_type_linker` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/repair_part_type_linker/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/repair_part_type_linker/1'
     data = json.dumps({
 		"repair_id": 2,
 		"old_part_type_id": 2,
 		"new_part_type_id": 2,
 		"requested_date": "2016-07-01 12:34:45",
 		"replaced_date": "2016-07-01 12:34:45",
+		"non_transferable": False,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -136,6 +141,7 @@ Relationship | Description
 		"new_part_type_id": 2,
 		"requested_date": "2016-07-01 12:34:45",
 		"replaced_date": "2016-07-01 12:34:45",
+		"non_transferable": False,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45
@@ -146,7 +152,7 @@ Relationship | Description
 > If a user has `SYSTEM` permissions they can delete the `repair_part_type_linker`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/repair_part_type_linker/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/repair_part_type_linker/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

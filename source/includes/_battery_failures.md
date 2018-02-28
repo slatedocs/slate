@@ -29,7 +29,7 @@ __failure_types__ | The associated failure_types
 > An example POST request. Note that `battery_failure_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/battery_failures"
+    url = "https://smartapi.bboxx.co.uk/v1/battery_failures"
     data = json.dumps({
 		"repair_id": 1,
 		"part_id": 1,
@@ -60,7 +60,7 @@ __failure_types__ | The associated failure_types
     > We can retrieve the `battery_failure` created by specifying its `battery_failure_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/battery_failures/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/battery_failures/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -84,7 +84,7 @@ __failure_types__ | The associated failure_types
 > We can retrieve all `battery_failures` by omitting the `battery_failure_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/battery_failures'
+    url = 'https://smartapi.bboxx.co.uk/v1/battery_failures'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -110,7 +110,7 @@ __failure_types__ | The associated failure_types
 > We can edit the newly created `battery_failure` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/battery_failures/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/battery_failures/1'
     data = json.dumps({
 		"repair_id": 2,
 		"part_id": 2,
@@ -141,7 +141,7 @@ __failure_types__ | The associated failure_types
 > If a user has `SYSTEM` permissions they can delete the `battery_failure`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/battery_failures/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/battery_failures/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

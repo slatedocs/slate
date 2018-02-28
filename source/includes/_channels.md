@@ -24,7 +24,7 @@ Relationship | Description
 > An example POST request. Note that `name`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/channels"
+    url = "https://smartapi.bboxx.co.uk/v1/channels"
     data = json.dumps({
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
@@ -47,7 +47,7 @@ Relationship | Description
     > We can retrieve the `channel` created by specifying its `name` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/channels/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/channels/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -67,7 +67,7 @@ Relationship | Description
 > We can retrieve all `channels` by omitting the `name`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/channels'
+    url = 'https://smartapi.bboxx.co.uk/v1/channels'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -93,7 +93,7 @@ Relationship | Description
 > We can edit the newly created `channel` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/channels/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/channels/1'
     data = json.dumps({
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
@@ -116,7 +116,7 @@ Relationship | Description
 > If a user has `SYSTEM` permissions they can delete the `channel`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/channels/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/channels/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

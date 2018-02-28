@@ -34,7 +34,7 @@ Relationship | Description
 > An example POST request. Note that `alert_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/alerts"
+    url = "https://smartapi.bboxx.co.uk/v1/alerts"
     data = json.dumps({
 		"product_imei": "000000000000000",
 		"alert_type_id": 1,
@@ -77,7 +77,7 @@ Relationship | Description
     > We can retrieve the `alert` created by specifying its `alert_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/alerts/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/alerts/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -107,7 +107,7 @@ Relationship | Description
 > We can retrieve all `alerts` by omitting the `alert_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/alerts'
+    url = 'https://smartapi.bboxx.co.uk/v1/alerts'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -133,7 +133,7 @@ Relationship | Description
 > We can edit the newly created `alert` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/alerts/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/alerts/1'
     data = json.dumps({
 		"product_imei": "999999999999999",
 		"alert_type_id": 2,
@@ -176,7 +176,7 @@ Relationship | Description
 > If a user has `SYSTEM` permissions they can delete the `alert`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/alerts/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/alerts/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

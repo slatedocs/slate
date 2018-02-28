@@ -32,7 +32,7 @@ __appliance_action_types__ | The associated appliance_action_types
 > An example POST request. Note that `appliance_repair_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/appliance_repairs"
+    url = "https://smartapi.bboxx.co.uk/v1/appliance_repairs"
     data = json.dumps({
 		"appliance_id": 1,
 		"arrival_date": "2000-01-01 00:00:00",
@@ -65,7 +65,7 @@ __appliance_action_types__ | The associated appliance_action_types
     > We can retrieve the `appliance_repair` created by specifying its `appliance_repair_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/appliance_repairs/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/appliance_repairs/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -90,7 +90,7 @@ __appliance_action_types__ | The associated appliance_action_types
 > We can retrieve all `appliance_repairs` by omitting the `appliance_repair_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/appliance_repairs'
+    url = 'https://smartapi.bboxx.co.uk/v1/appliance_repairs'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -116,7 +116,7 @@ __appliance_action_types__ | The associated appliance_action_types
 > We can edit the newly created `appliance_repair` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/appliance_repairs/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/appliance_repairs/1'
     data = json.dumps({
 		"appliance_id": 2,
 		"arrival_date": "2000-01-01 00:00:00",
@@ -149,7 +149,7 @@ __appliance_action_types__ | The associated appliance_action_types
 > If a user has `SYSTEM` permissions they can delete the `appliance_repair`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/appliance_repairs/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/appliance_repairs/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

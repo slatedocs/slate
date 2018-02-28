@@ -28,7 +28,7 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 > An example POST request. Note that `symptom_type_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/symptom_types"
+    url = "https://smartapi.bboxx.co.uk/v1/symptom_types"
     data = json.dumps({
 		"name": "test",
 		"description": "test",
@@ -55,7 +55,7 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
     > We can retrieve the `symptom_type` created by specifying its `symptom_type_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/symptom_types/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/symptom_types/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -77,7 +77,7 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 > We can retrieve all `symptom_types` by omitting the `symptom_type_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/symptom_types'
+    url = 'https://smartapi.bboxx.co.uk/v1/symptom_types'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -103,7 +103,7 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 > We can edit the newly created `symptom_type` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/symptom_types/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/symptom_types/1'
     data = json.dumps({
 		"name": "changed",
 		"description": "changed",
@@ -130,7 +130,7 @@ __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 > If a user has `SYSTEM` permissions they can delete the `symptom_type`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/symptom_types/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/symptom_types/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

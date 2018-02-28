@@ -32,7 +32,7 @@ __sms_history__ | The associated sms_history
 > We can retrieve the `enable_history` created by specifying its `enable_history_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/enable_history/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/enable_history/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -57,7 +57,7 @@ __sms_history__ | The associated sms_history
 > We can retrieve all `enable_history` by omitting the `enable_history_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/enable_history'
+    url = 'https://smartapi.bboxx.co.uk/v1/enable_history'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -85,7 +85,7 @@ __sms_history__ | The associated sms_history
 > If a user has `SYSTEM` permissions they can delete the `enable_history`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/enable_history/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/enable_history/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

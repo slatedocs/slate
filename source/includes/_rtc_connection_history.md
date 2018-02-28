@@ -32,7 +32,7 @@ Relationship | Description
 > We can retrieve the `rtc_connection_history` created by specifying its `rtc_connection_history_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/rtc_connection_history/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/rtc_connection_history/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -58,7 +58,7 @@ Relationship | Description
 > We can retrieve all `rtc_connection_history` by omitting the `rtc_connection_history_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/rtc_connection_history'
+    url = 'https://smartapi.bboxx.co.uk/v1/rtc_connection_history'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -86,7 +86,7 @@ Relationship | Description
 > If a user has `SYSTEM` permissions they can delete the `rtc_connection_history`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/rtc_connection_history/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/rtc_connection_history/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

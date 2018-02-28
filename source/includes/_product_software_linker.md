@@ -29,7 +29,7 @@ Relationship | Description
 > An example POST request. Note that `product_software_linker_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/product_software_linker"
+    url = "https://smartapi.bboxx.co.uk/v1/product_software_linker"
     data = json.dumps({
 		"product_imei": "000000000000000",
 		"software_version_type_id": 1,
@@ -62,7 +62,7 @@ Relationship | Description
     > We can retrieve the `product_software_linker` created by specifying its `product_software_linker_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/product_software_linker/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/product_software_linker/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -87,7 +87,7 @@ Relationship | Description
 > We can retrieve all `product_software_linker` by omitting the `product_software_linker_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/product_software_linker'
+    url = 'https://smartapi.bboxx.co.uk/v1/product_software_linker'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -113,7 +113,7 @@ Relationship | Description
 > We can edit the newly created `product_software_linker` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/product_software_linker/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/product_software_linker/1'
     data = json.dumps({
 		"product_imei": "999999999999999",
 		"software_version_type_id": 2,
@@ -146,7 +146,7 @@ Relationship | Description
 > If a user has `SYSTEM` permissions they can delete the `product_software_linker`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/product_software_linker/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/product_software_linker/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

@@ -33,7 +33,7 @@ Relationship | Description
 > We can retrieve the `rtc_dead_letter` created by specifying its `rtc_dead_letter_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/rtc_dead_letters/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/rtc_dead_letters/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -60,7 +60,7 @@ Relationship | Description
 > We can retrieve all `rtc_dead_letters` by omitting the `rtc_dead_letter_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/rtc_dead_letters'
+    url = 'https://smartapi.bboxx.co.uk/v1/rtc_dead_letters'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)

@@ -30,7 +30,7 @@ Relationship | Description
 > We can retrieve the `product_entity_linker` created by specifying its `product_entity_linker_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/product_entity_linker/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/product_entity_linker/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -54,7 +54,7 @@ Relationship | Description
 > We can retrieve all `product_entity_linker` by omitting the `product_entity_linker_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/product_entity_linker'
+    url = 'https://smartapi.bboxx.co.uk/v1/product_entity_linker'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -82,7 +82,7 @@ Relationship | Description
 > If a user has `SYSTEM` permissions they can delete the `product_entity_linker`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/product_entity_linker/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/product_entity_linker/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

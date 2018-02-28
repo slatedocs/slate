@@ -35,7 +35,7 @@ __existing__ | The associated existing
 > An example POST request. Note that `part_type_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/part_types"
+    url = "https://smartapi.bboxx.co.uk/v1/part_types"
     data = json.dumps({
 		"name": "test",
 		"description": "test",
@@ -72,7 +72,7 @@ __existing__ | The associated existing
     > We can retrieve the `part_type` created by specifying its `part_type_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/part_types/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/part_types/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -99,7 +99,7 @@ __existing__ | The associated existing
 > We can retrieve all `part_types` by omitting the `part_type_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/part_types'
+    url = 'https://smartapi.bboxx.co.uk/v1/part_types'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -125,7 +125,7 @@ __existing__ | The associated existing
 > We can edit the newly created `part_type` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/part_types/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/part_types/1'
     data = json.dumps({
 		"name": "changed",
 		"description": "changed",
@@ -162,7 +162,7 @@ __existing__ | The associated existing
 > If a user has `SYSTEM` permissions they can delete the `part_type`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/part_types/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/part_types/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

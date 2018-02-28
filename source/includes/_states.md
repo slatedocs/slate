@@ -29,7 +29,7 @@ Relationship | Description
 > We can retrieve the `state` created by specifying its `state_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/states/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/states/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -52,7 +52,7 @@ Relationship | Description
 > We can retrieve all `states` by omitting the `state_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/states'
+    url = 'https://smartapi.bboxx.co.uk/v1/states'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)

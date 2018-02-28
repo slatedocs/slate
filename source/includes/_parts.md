@@ -30,7 +30,7 @@ __battery_failure__ | The associated battery_failure
 > An example POST request. Note that `part_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/parts"
+    url = "https://smartapi.bboxx.co.uk/v1/parts"
     data = json.dumps({
 		"serial_number": "test",
 		"part_type_id": 1,
@@ -59,7 +59,7 @@ __battery_failure__ | The associated battery_failure
     > We can retrieve the `part` created by specifying its `part_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/parts/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/parts/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -82,7 +82,7 @@ __battery_failure__ | The associated battery_failure
 > We can retrieve all `parts` by omitting the `part_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/parts'
+    url = 'https://smartapi.bboxx.co.uk/v1/parts'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -108,7 +108,7 @@ __battery_failure__ | The associated battery_failure
 > We can edit the newly created `part` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/parts/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/parts/1'
     data = json.dumps({
 		"serial_number": "changed",
 		"part_type_id": 2,
@@ -137,7 +137,7 @@ __battery_failure__ | The associated battery_failure
 > If a user has `SYSTEM` permissions they can delete the `part`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/parts/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/parts/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

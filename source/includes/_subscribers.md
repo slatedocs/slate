@@ -30,7 +30,7 @@ Relationship | Description
 > We can retrieve the `subscriber` created by specifying its `subscriber_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/subscribers/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/subscribers/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -54,7 +54,7 @@ Relationship | Description
 > We can retrieve all `subscribers` by omitting the `subscriber_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/subscribers'
+    url = 'https://smartapi.bboxx.co.uk/v1/subscribers'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)

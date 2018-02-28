@@ -28,7 +28,7 @@ __appliance_repair_appliance_symptom_linker__ | The associated appliance_repair_
 > An example POST request. Note that `appliance_symptom_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/appliance_symptoms"
+    url = "https://smartapi.bboxx.co.uk/v1/appliance_symptoms"
     data = json.dumps({
 		"name": "test",
 		"description": "test",
@@ -55,7 +55,7 @@ __appliance_repair_appliance_symptom_linker__ | The associated appliance_repair_
     > We can retrieve the `appliance_symptom` created by specifying its `appliance_symptom_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/appliance_symptoms/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/appliance_symptoms/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -77,7 +77,7 @@ __appliance_repair_appliance_symptom_linker__ | The associated appliance_repair_
 > We can retrieve all `appliance_symptoms` by omitting the `appliance_symptom_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/appliance_symptoms'
+    url = 'https://smartapi.bboxx.co.uk/v1/appliance_symptoms'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -103,7 +103,7 @@ __appliance_repair_appliance_symptom_linker__ | The associated appliance_repair_
 > We can edit the newly created `appliance_symptom` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/appliance_symptoms/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/appliance_symptoms/1'
     data = json.dumps({
 		"name": "changed",
 		"description": "changed",
@@ -130,7 +130,7 @@ __appliance_repair_appliance_symptom_linker__ | The associated appliance_repair_
 > If a user has `SYSTEM` permissions they can delete the `appliance_symptom`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/appliance_symptoms/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/appliance_symptoms/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

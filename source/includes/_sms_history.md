@@ -35,7 +35,7 @@ Relationship | Description
 > We can retrieve the `sms_history` created by specifying its `sms_history_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/sms_history/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/sms_history/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -64,7 +64,7 @@ Relationship | Description
 > We can retrieve all `sms_history` by omitting the `sms_history_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/sms_history'
+    url = 'https://smartapi.bboxx.co.uk/v1/sms_history'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -92,7 +92,7 @@ Relationship | Description
 > If a user has `SYSTEM` permissions they can delete the `sms_history`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/sms_history/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/sms_history/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

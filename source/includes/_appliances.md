@@ -27,7 +27,7 @@ __appliance_repairs__ | The associated appliance_repairs
 > An example POST request. Note that `appliance_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "http://smartapi.bboxx.co.uk/v1/appliances"
+    url = "https://smartapi.bboxx.co.uk/v1/appliances"
     data = json.dumps({
 		"appliance_type_id": 1,
 		"serial_number": "test",
@@ -54,7 +54,7 @@ __appliance_repairs__ | The associated appliance_repairs
     > We can retrieve the `appliance` created by specifying its `appliance_id` in the request url:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/appliances/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/appliances/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -76,7 +76,7 @@ __appliance_repairs__ | The associated appliance_repairs
 > We can retrieve all `appliances` by omitting the `appliance_id`:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/appliances'
+    url = 'https://smartapi.bboxx.co.uk/v1/appliances'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -102,7 +102,7 @@ __appliance_repairs__ | The associated appliance_repairs
 > We can edit the newly created `appliance` with a `PUT` request:
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/appliances/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/appliances/1'
     data = json.dumps({
 		"appliance_type_id": 2,
 		"serial_number": "changed",
@@ -129,7 +129,7 @@ __appliance_repairs__ | The associated appliance_repairs
 > If a user has `SYSTEM` permissions they can delete the `appliance`
 
 ```python
-    url = 'http://smartapi.bboxx.co.uk/v1/appliances/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/appliances/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)
