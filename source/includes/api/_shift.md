@@ -516,7 +516,9 @@ id, name, and label attributes are provided.
       "assignable" : {
          "1" : "Bob Doe",
          "2" : "Jane Doe"
-      }
+      },
+      "assignable_order" : [ "2", "1" ],
+      "unassignable_order" : [ "5" ]
    }
 }
 ```
@@ -673,6 +675,7 @@ Include members with no score (min_score must be specified).
 ####by_seniority
 
 Order by those with seniority by seniority date or rank, then with seniority and no date/rank, then no seniority (random within those).
+The order can be found in the `assignable_order` and `unassignable_order` arrays in the response.
 
 ####randomize
 
