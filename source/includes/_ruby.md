@@ -851,6 +851,23 @@ After restarting your dev server with DevTrace enabled, refresh the browser page
 
 ![custom devtrace](custom_devtrace.png)
 
+<h3 id="ruby-testing-instrumentation">Renaming transactions</h3>
+
+There may be cases where you require more control over how Scout names transactions. For example, if you have a controller-action that renders both JSON and HTML formats and the rendering time varies significantly between the two, it may make sense to define a unique transaction name for each.
+
+Use `ScoutApm::Transaction#rename`:
+
+```ruby
+class PostsController < ApplicationController
+  def index                              
+    ScoutApm::Transaction.rename("posts/foobar")                                   
+    @posts = Post.all                    
+  end
+end
+```  
+
+Do not generate highly cardinality transaction names (ex: `ScoutApm::Transaction.rename("posts/foobar_#{current_user.id}")`) as we limit the number of transactions that can be tracked. High-cardinality transaction names can quickly surpass this limit.
+
 ## Sneakers
 
 Scout doesn't instrument [Sneakers](https://github.com/jondot/sneakers) (a background processing framework for Ruby and RabbitMQ) automatically. To add Sneakers instrumentation:
@@ -1048,8 +1065,7 @@ You can ignore requests to web endpoints that match specific paths (like `/healt
 To selectively ignore a web request or background job in your code, add the following within the transaction:
 
 ```ruby
-req = ScoutApm::RequestManager.lookup
-req.ignore_request!
+ScoutApm::Transaction.ignore!
 ```
 
 ### Sampling web requests
@@ -1069,8 +1085,7 @@ def sample_requests_for_scout
 
   if rand > sample_rate
     Rails.logger.debug("[Scout] Ignoring request: #{request.original_url}")
-    req = ScoutApm::RequestManager.lookup
-    req.ignore_request!
+    ScoutApm::Transaction.ignore!
   end
 end
 ```
