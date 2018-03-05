@@ -611,7 +611,7 @@ Returns the stories that are related to the mentioned story ID.
 
 | Name | Data Type | Description|
 |--|--|--|
-|story-id |string | The story ID|
+|story-id |UUID | The story ID|
 |section-id |string | The section ID of a story|
 |fields| string | The parameters of a story, such as headline, slug, sections, author ID, and so on.|
 
