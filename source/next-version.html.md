@@ -567,7 +567,7 @@ Returns the story details having the mentioned story ID.
 
 | Name | Data Type | Description|
 |--|--|--|
-|story-id | string| The story ID |
+|story-id | UUID | The story ID |
 
 
 ## /api/v1/stories/{story-id}/related-stories
@@ -1091,7 +1091,7 @@ $ curl 'http://sketches.quintype.com/api/stories/8f9538f2-1972-4c7a-b1eb-7f8942d
 
 | Name | Data Type | Description|
 |--|--|--|
-|story-id | String| The story ID|
+|story-id | UUID | The story ID|
 
 
 ##/api/stories/{story-id}/votes
@@ -1117,7 +1117,7 @@ Fetches the total number of votes for the specified ID. Note that the user has t
 
 | Name | Data Type | Description|
 |--|--|--|
-|story-id | String| The story ID|
+|story-id | UUID | The story ID|
 
 
 ##/stories.rss
