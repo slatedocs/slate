@@ -110,118 +110,55 @@ vencto | 10 | date | não | Data de vencimento (DD/MM/YYYY). Usado apenas em bol
 url_retorno | 50 | string | sim | URL de retorno à Loja Virtual ou Site.
 retorno_tipo | 5 | string | não | Informar 'xml' para ter retorno em XML, caso não seja informado será retornado em HTML.
 
-## Campos adicionais para Stelo
+## Campos adicionais para Boleto (iPag/Zoop)
 
-**TransferBlock**
-
-```php
-<!-- Iframe -->
-<iframe src="https://carteirac1.hml.stelo.com.br/transaction/transfer?idUnico=stelo_fingerprint"
-width="0"
-marginwidth="0"
-height="0"
-marginheight="0"
-frameborder="0">
-</iframe>
-<!-- /Iframe -->
-```
-
-```html
-<!-- Iframe -->
-<iframe src="https://carteirac1.hml.stelo.com.br/transaction/transfer?idUnico=stelo_fingerprint"
-width="0"
-marginwidth="0"
-height="0"
-marginheight="0"
-frameborder="0">
-</iframe>
-<!-- /Iframe -->
-```
-
-O TransferBlock é um iFrame disponibilizado pela Stelo para que eles consigam ter uma melhor análise de risco, a inserção do iFrame é obrigatória e deve ser inserida dentro **BODY** da página de checkout.
-
-O campo **IdUnico** deve ser substituído sempre por um valor único. Este **IdUnico** deve ser enviado no campo *stelo_fingerprint* do POST para aprovar a transação.
-
-> Exemplo para gerar o stelo_fingerprint:
-
-```php
-<?php
-// VIA IPAG-SDK-PHP
-$stelo_fingerprint = md5(uniqid(rand(), true));
-
-//...
- $ipag->transaction()->getOrder()->setFingerprint($stelo_fingerprint);
-//...
-```
-
-Além do *stelo_fingerprint*, é necessário enviar os dados do produto no campo *descricao_pedido* em formato JSON.
-
-### Campos do pedido que deve ser enviado no campo *descricao_pedido* em formato JSON
-
-Campo | Tamanho | Tipo | Obrigatório | Descrição
-------| ------- | ---- | ----------- | ---------
-quant | 4       | alfanúmerico | sim | Quantidade do produto
-descr | 100     | alfanúmerico | sim | Descrição do Produto/ Nome do produto
-valor | 6       | númerico | sim | Valor do Produto, deve ser informado no formato 1.00
-id | 20 | alfanúmrico | não | SKU/Código do produto
-
-> Exemplo do campo descricao_pedido:
-
-```json
-{
-  "1":{
-    "quant":"1",
-    "descr":"Produto Teste",
-    "valor":"1.00",
-    "id":"001"
-  },
-  "2":{
-    "quant":"2",
-    "descr":"Produto Teste 2",
-    "valor":"1.50",
-    "id":"002"
-  },
-  "3": {
-    ...
-  },
-  ...
-}
-```
-
-> Informando os dados dos Produtos
+> Exemplo:
 
 ```php
 <?php
 // VIA IPAG-SDK-PHP
 // ...
-$cart = $ipag->cart(
-    // Nome do Produto, Valor Unitário, Quantidade, SKU (Código do Produto)
-    ['Produto 1', 5.00, 1, 'ABDC1'],
-    ['Produto 2', 3.50, 2, 'ABDC2'],
-    ['Produto 3', 5.50, 1, 'ABDC3'],
-    ['Produto 4', 8.50, 5, 'ABDC4']
-);
-
+$creditCard = $ipag->payment()
+    ->setInstructions('Instrução 1')
+    ->setInstructions('Instrução 2')
+    ->setInstructions('Instrução 3')
+    ->setDemonstratives('Demonstrativo 1')
+    ->setDemonstratives('Demonstrativo 2');
 // ...
 ```
 
-### Dados obrigátorios para trancionar via Stelo
+```shell
+curl -X POST \
+  https://sandbox.ipag.com.br/service/payment \
+  -H 'Authorization: Basic am9uYXRoYW46REM4QS00QzE2OUM7DSsdDEQTZBRUY2OC0wRkQ2RDMyOC0wRjAz' \
+  -F pedido=201803061703 \
+  -F operacao=Pagamento \
+  -F valor=2.00 \
+  -F metodo=boletozoop \
+  -F url_retorno=https://empresa.com/retorno \
+  -F email=jose@teste.com.br \
+  -F fone=11111111111 \
+  -F 'nome=Jose Francisco da Silva' \
+  -F 'endereco=Rua 1' \
+  -F numero_endereco=111 \
+  -F bairro=Bairro1 \
+  -F 'cidade=Cidade 1' \
+  -F estado=SP \
+  -F pais=Brasil \
+  -F cep=14400330 \
+  -F retorno_tipo=xml \
+  -F documento=79999338801 \
+  -F 'instrucoes[1]=Instrução 1' \
+  -F 'instrucoes[2]=Instrução 2' \
+  -F 'instrucoes[3]=Instrução 3' \
+  -F 'demonstrativos[1]=Demonstrativo 1'
+  -F 'demonstrativos[2]=Demonstrativo 2'
+```
 
 Campo | Tamanho | Tipo | Obrigatório | Descrição
-------| ------- | ---- | ----------- | ---------
-nome | 50 | string | sim | Nome do cliente
-documento | 18 | string | sim | CPF ou CNPJ do sacado
-email | 50 | string | sim| E-mail do cliente
-fone | 11 | string | sim | Telefone do cliente
-endereco | 50 | string | sim | Endereço completo do cliente
-numero_endereco | 5 | number | sim | Número do Endereço
-bairro | 20 | string | sim | Bairro do cliente
-cidade | 20 | string | sim | Cidade do cliente
-estado | 2 | string | sim | Estado do cliente
-pais | 15 | string | sim | País do cliente
-cep | 8 | string | sim | Cep do cliente
-stelo_fingerprint | 32 | string | sim | ID Unico gerado para o pedido
-descricao_pedido | ... | json | sim | Descrição dos produtos do pedido
+--------- | ----- | ----- | ----------- | ---------
+instrucoes[] | 80 | string | não | Para alterar as linhas de instruções dos Boletos emitidos pelo iPag/Zoop envie o campo instrucoes[1], instrucoes[2] e instrucoes[3] se necessário.
+demonstrativos[] | 80 | string | não | Para alterar as linhas de demonstrativo dos Boletos emitidos pelo iPag/Zoop envie o campo demonstrativos[1], demonstrativos[2] se necessário.
 
 ## Campos adicionais para 1-click buy
 
