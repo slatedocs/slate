@@ -843,7 +843,7 @@ To instrument a method call, add the following:
 
 In the example above, the metric appear in traces as `User/generate_profile_pic`. On timeseries charts, the time will be allocated to a `User` type. To modify the type or simply, simply change the `instrument` corresponding method arguments.
 
-<h3 id="ruby-renaming-instrumentation">Renaming transactions</h3>
+<h3 id="ruby-renaming-transactions">Renaming transactions</h3>
 
 There may be cases where you require more control over how Scout names transactions. For example, if you have a controller-action that renders both JSON and HTML formats and the rendering time varies significantly between the two, it may make sense to define a unique transaction name for each.
 
