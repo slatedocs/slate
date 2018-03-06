@@ -36,7 +36,7 @@ created_at | datetime | The string representing the time when the note was creat
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/notes" \
+curl "https://api.affinity.co/notes" \
   -u :<API-KEY> \
   -d person_ids[]=38706 \
   -d person_ids[]=624289 \

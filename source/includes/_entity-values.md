@@ -88,7 +88,7 @@ text | string | This represents a value in a text field.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/field-values?person_id=38706" -u :<API-KEY>
+curl "https://api.affinity.co/field-values?person_id=38706" -u :<API-KEY>
 ```
 > Example Response
 
@@ -164,7 +164,7 @@ An array of all the field values associated with the supplied `person`,
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/field-values" \
+curl "https://api.affinity.co/field-values" \
   -u :<API-KEY> \
   -d field_id=1284 \
   -d value="Architecture" \
@@ -204,7 +204,7 @@ The field value resource that was just created through this request.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/field-values/20406836" \
+curl "https://api.affinity.co/field-values/20406836" \
   -u :<API-KEY> \
   -d value="Healthcare" \
   -X "PUT"
@@ -251,7 +251,7 @@ The field value object that was just updated through this request.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/field-values/20406836" \
+curl "https://api.affinity.co/field-values/20406836" \
   -u :<API-KEY> \
   -X "DELETE"
 ```

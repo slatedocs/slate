@@ -34,7 +34,7 @@ please do not hesitate to contact us at `support@affinity.co`.
 > Authentication using HTTP basic auth.
 
 ```shell
-curl "https://api.affinity.vc/api_endpoint" -u :<API-KEY>
+curl "https://api.affinity.co/api_endpoint" -u :<API-KEY>
 ```
 
 To use the API, you will need to generate an API secret key. This can be done easily through
@@ -49,7 +49,7 @@ Otherwise, an error with a code of `401` will be returned.
 
 ## Requests & Responses
 This is a full-featured RESTful API. We provide reading & writing functionality for each
-object type in Affinity. All requests use the base URL of `https://api.affinity.vc/`.
+object type in Affinity. All requests use the base URL of `https://api.affinity.co/`.
 
 Responses to each request are provided as a JSON object. The response is either the data
 requested, or a valid error message and error code as outlined below.

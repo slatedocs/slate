@@ -25,7 +25,7 @@ spreadsheet), please check out the [Field Values](#field-values) section of the 
   "primary_email": "john@affinity.co",
   "emails": [
     "john@affinity.co",
-    "john@affinity.vc",
+    "john@affinity.co",
     "jdoe@alumni.stanford.edu",
     "johnjdoe@gmail.com",
   ],
@@ -101,7 +101,7 @@ confirm that there are no more resources).
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/persons?term=doe" -u :<API-KEY>
+curl "https://api.affinity.co/persons?term=doe" -u :<API-KEY>
 ```
 > Example Response
 
@@ -117,7 +117,7 @@ curl "https://api.affinity.vc/persons?term=doe" -u :<API-KEY>
       "primary_email": "john@affinity.co",
       "emails": [
         "john@affinity.co",
-        "john@affinity.vc",
+        "john@affinity.co",
         "jdoe@alumni.stanford.edu",
         "johnjdoe@gmail.com",
       ]
@@ -143,7 +143,7 @@ curl "https://api.affinity.vc/persons?term=doe" -u :<API-KEY>
 
 ```shell
 # To get the second page of results, issue the following query:
-curl "https://api.affinity.vc/persons?term=doe&page_token=eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9" -u :<API-KEY>
+curl "https://api.affinity.co/persons?term=doe&page_token=eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9" -u :<API-KEY>
 ```
 
 
@@ -167,7 +167,7 @@ with the next request as the `page_token` parameter to fetch the next page of re
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/persons/38706" -u :<API-KEY>
+curl "https://api.affinity.co/persons/38706" -u :<API-KEY>
 ```
 
 > Example Response
@@ -182,7 +182,7 @@ curl "https://api.affinity.vc/persons/38706" -u :<API-KEY>
   "primary_email": "john@affinity.co",
   "emails": [
     "john@affinity.co",
-    "john@affinity.vc",
+    "john@affinity.co",
     "jdoe@alumni.stanford.edu",
     "johndoe@gmail.com",
   ],
@@ -218,7 +218,7 @@ The person resource corresponding to the `person_id`.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/persons" \
+curl "https://api.affinity.co/persons" \
   -u :<API-KEY> \
   -d first_name="Alice" \
   -d last_name="Doe" \
@@ -271,7 +271,7 @@ The person resource was newly created from this successful request.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/860197" \
+curl "https://api.affinity.co/860197" \
   -u :<API-KEY> \
   -d phone_numbers[]="123-123-123" \
   -d phone_numbers[]="234-234-234" \
@@ -333,7 +333,7 @@ The person object that was just updated through this request.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/persons/860197" \
+curl "https://api.affinity.co/persons/860197" \
   -u :<API-KEY> \
   -X "DELETE"
 ```
@@ -371,7 +371,7 @@ section first.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/persons/fields" -u :<API-KEY>
+curl "https://api.affinity.co/persons/fields" -u :<API-KEY>
 ```
 
 > Example Response

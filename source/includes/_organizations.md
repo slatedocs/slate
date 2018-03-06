@@ -86,7 +86,7 @@ confirm that there are no more resources).
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/organizations?term=affinity" -u :<API-KEY>
+curl "https://api.affinity.co/organizations?term=affinity" -u :<API-KEY>
 ```
 > Example Response
 
@@ -115,7 +115,7 @@ curl "https://api.affinity.vc/organizations?term=affinity" -u :<API-KEY>
 
 ```shell
 # To get the second page of results, issue the following query:
-curl "https://api.affinity.vc/organizations?term=affinity&page_token=eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9" -u :<API-KEY>
+curl "https://api.affinity.co/organizations?term=affinity&page_token=eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9" -u :<API-KEY>
 ```
 
 ### Query Parameters
@@ -137,7 +137,7 @@ an array of all the organization resources that match the search criteria.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/organizations/64779194" -u :<API-KEY>
+curl "https://api.affinity.co/organizations/64779194" -u :<API-KEY>
 ```
 
 > Example Response
@@ -180,7 +180,7 @@ The organization object corresponding to the `organization_id`.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/organizations" \
+curl "https://api.affinity.co/organizations" \
   -u :<API-KEY> \
   -d name="Acme Corporation" \
   -d domain="acme.co" \
@@ -222,7 +222,7 @@ The organization resource that was just created by a successful request.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/organizations/120611418" \
+curl "https://api.affinity.co/organizations/120611418" \
   -u :<API-KEY> \
   -d name="Acme Corp." \
   -d person_ids[]=38706 \
@@ -276,7 +276,7 @@ The organization resource that was just updated through a successful request.
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/organizations/120611418" \
+curl "https://api.affinity.co/organizations/120611418" \
   -u :<API-KEY> \
   -X "DELETE"
 ```
@@ -311,7 +311,7 @@ organization_id | integer | true | The unique id of the organization that needs 
 > Example Request
 
 ```shell
-curl "https://api.affinity.vc/organizations/fields" -u :<API-KEY>
+curl "https://api.affinity.co/organizations/fields" -u :<API-KEY>
 ```
 
 > Example Response
