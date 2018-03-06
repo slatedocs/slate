@@ -2,12 +2,6 @@
 
 ##View Transaction
 
-View a single transaction record.
-
-### HTTP Request
-
-`GET transactions/<REFNUM>`
-
 >Example of json return
 
 ```json
@@ -18,8 +12,8 @@ View a single transaction record.
             "resultCode": "A",
             "status": "pending",
             "statusCode": "P",
-            "error": false,
-            "message": null
+            "error": "",
+            "message": ""
         },
         "customer": {
             "custID": "0001",
@@ -66,43 +60,21 @@ View a single transaction record.
 }
 ```
 
-##View All Transactions
-
-View multiple transaction records.
-
-This method makes use of different filter types.
-* Comma separated lists. Example: status=pending,settled
-* Greater then(gt) and less than(lt) available for numerical values. Example: amount=gt|100
-* Dates are in YYYY-MM-DD format. Example: start=2017-10-24
+View a single transaction record.
 
 ### HTTP Request
 
-`GET transactions/`
+`GET transactions/<REFNUM>`
 
-### Query Parameters
-
-Parameter | Filter type | Available Values
---------- | ------- | -----------
-refnum | List | 
-amount | gt/lt | Decimal Numbers
-start | Date | Any Date
-end | Date | Any Date
-status | List | pending, settled, declined, error, void
-result | List | approved, declined, error
-type | List | sale, refund, recurring, authonly
-method | List | card, ach
-source | List | keyed, chip, swipe, mobile
-cardtype | List | visa, mastercard, discovery
-
-### Pagination
-
-The returned results are separated into "Pages". The number of results to return per page can be controlled with the parameter `limit` (E.g. limit=20). The default is 20 results, max is 1000.
+##View All Transactions
 
 >Example of pagination in the return.
 
 ```json
 {
-	"data": [Transaction results],
+    "data": [
+        {}
+    ],
     "meta": {
         "pagination": {
             "total": 100,
@@ -117,3 +89,35 @@ The returned results are separated into "Pages". The number of results to return
     }
 }
 ```
+
+View multiple transaction records.
+
+This method makes use of different filter types.
+
+* Comma separated lists. Example: status=pending,settled
+* Greater then(gt) and less than(lt) available for numerical values. Example: amount=gt|100
+* Dates are in YYYY-MM-DD format. Example: start=2017-10-24
+
+### HTTP Request
+
+`GET transactions/`
+
+### Query Parameters
+
+Parameter | Filter type | Available Values
+--------- | ------- | -----------
+refnum | List | 
+amount | gt/lt | Decimal Numbers
+start | Date | YYYY-MM-DD
+end | Date | YYYY-MM-DD
+status | List | pending, settled, declined, error, void
+result | List | approved, declined, error
+type | List | sale, refund, recurring, authonly
+method | List | card, ach
+source | List | keyed, chip, swipe, mobile
+cardtype | List | visa, mastercard, discovery
+custom1-10 | Single Value | Parameter should be the word "custom" with a number after. Example: `custom4=value`
+
+### Pagination
+
+The returned results are separated into "Pages". The number of results to return per page can be controlled with the parameter `limit` (E.g. limit=20). The default is 20 results, max is 1000.

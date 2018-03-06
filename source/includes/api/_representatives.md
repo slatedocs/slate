@@ -33,8 +33,8 @@ contact* | The contact name for the Representative
 address | The Representative's Address
 phone |  The Representative's contact phone number
 email | The Representative's email address
-account* | Bank Account number
-routing* | Bank Account routing number
+account | Bank Account number
+routing | Bank Account routing number
 
 <aside class="notice">* = Required.</aside>
 

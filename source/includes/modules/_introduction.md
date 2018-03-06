@@ -1,3 +1,3 @@
 # Introduction
 
-Welcome to the Slyce API! 
+Welcome to the Slyce API! This API is an extension of the Slyce Plugin providing a convenient RESTful API interface for you to manage features including customers, subscriptions, invoices, payment methods, and running transactions. However, this API is not intended to be used as a replacement to the Plugin. Due to PCI compliance requirements, the API methods do not accept full card numbers. Therefore, the Plugin will need to be implemented to capture and tokenize card data which can then be used in the API methods.
