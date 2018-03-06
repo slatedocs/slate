@@ -843,14 +843,6 @@ To instrument a method call, add the following:
 
 In the example above, the metric appear in traces as `User/generate_profile_pic`. On timeseries charts, the time will be allocated to a `User` type. To modify the type or simply, simply change the `instrument` corresponding method arguments.
 
-<h3 id="ruby-testing-instrumentation">Testing instrumentation</h3>
-
-Improper instrumentation can break your application. It's important to test before deploying to production. The easiest way to validate your instrumentation is by running [DevTrace](#devtrace) and ensuring the new metric appears as desired.
-
-After restarting your dev server with DevTrace enabled, refresh the browser page and view the trace output. The new metric should appear in the trace:
-
-![custom devtrace](custom_devtrace.png)
-
 <h3 id="ruby-testing-instrumentation">Renaming transactions</h3>
 
 There may be cases where you require more control over how Scout names transactions. For example, if you have a controller-action that renders both JSON and HTML formats and the rendering time varies significantly between the two, it may make sense to define a unique transaction name for each.
@@ -864,9 +856,19 @@ class PostsController < ApplicationController
     @posts = Post.all                    
   end
 end
-```  
+```
+
+In the example above, the default name for the transaction is `posts/index`, which appears as `PostsController#index` in the Scout UI. Renaming the transaction to `posts/foobar` identifies the transaction as `PostsController#foobar` in the Scout UI.  
 
 Do not generate highly cardinality transaction names (ex: `ScoutApm::Transaction.rename("posts/foobar_#{current_user.id}")`) as we limit the number of transactions that can be tracked. High-cardinality transaction names can quickly surpass this limit.
+
+<h3 id="ruby-testing-instrumentation">Testing instrumentation</h3>
+
+Improper instrumentation can break your application. It's important to test before deploying to production. The easiest way to validate your instrumentation is by running [DevTrace](#devtrace) and ensuring the new metric appears as desired.
+
+After restarting your dev server with DevTrace enabled, refresh the browser page and view the trace output. The new metric should appear in the trace:
+
+![custom devtrace](custom_devtrace.png)
 
 ## Sneakers
 
