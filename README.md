@@ -113,4 +113,8 @@ Special Thanks
 
 For Andrew to deploy
 --------------------
-`aws s3 sync build s3://api.affinity.co --delete --acl public-read`
+Make sure to fetch the AWS credentials using MFA and copy them to `~/.aws/credentials` as described in the last bullet point of this section: https://github.com/affinity-team/infrastructure-secrets#accessing-aws-from-the-command-line.
+
+Then run:
+
+`aws s3 sync build s3://api.affinity.co --delete --acl public-read --profile mfa`
