@@ -657,8 +657,21 @@ Array ref of accounts to exclude from results to.
 Only members with this profile type.
 
 ####extended_filter
+> Request example with extended_filter specified:
 
-specification to filter on profile options (profile_type must be specified).
+```JSON
+{
+   "workgroup" : 12345,
+   "shift" : {
+      "id" : 123456789
+   },
+   "profile_type": 1,
+   "extended_filter": { "emergency_contact": "Joe Blow" }
+}
+```
+
+Specification to filter on profile options (profile_type must be specified). A complete list of valid options can be found
+by calling the [profileConfiguration.list](#profileconfiguration-list) method. The relevant fields are `profile_type` and `form_name`.
 
 ####range
 
