@@ -283,9 +283,15 @@ Response: On success, an `id` attribute will provide the identifier for the new 
 <span class="tryit" id="account-delete-tryit"></span>
 Deletes an account record.
 
-Required parameters:  `id` or `external_id`
+#### Required parameters:  `id` or `external_id`
 
-Optional boolean parameter: `notify` (defaults to false) to indicate a notification email should be sent to the owner of the deleted account.
+#### Optional parameters:
+
+##### `unconfirm_future_shifts`: Specify true if, when `org_hold` is being changed to true and/or `org_pending` is being changed to a non-0 value, shifts on or after today for this account should be unconfirmed.
+
+##### `unpublish_future_shifts`: Specify true if shifts being unconfirmed should also be unpublished.
+
+##### `notify`: Defaults to false. Specify true to indicate a notification email should be sent to the owner of the deleted account.
 
 Response: On success, empty results will be returned.
 
@@ -1140,7 +1146,15 @@ Response: On success, empty results will be returned.
 <span class="tryit" id="account-update-tryit"></span>
 Updates an account object.
 
-Required parameters:  `id` or `external_id`.
+#### Required parameters:  `id` or `external_id`.
+
+#### Optional parameters:
+
+##### `unconfirm_future_shifts`: Specify true if, when `org_hold` is being changed to true and/or `org_pending` is being changed to a non-0 value, shifts on or after today for this account should be unconfirmed.
+
+##### `unpublish_future_shifts`: Specify true if shifts being unconfirmed should also be unpublished.
+
+Other account object attributes may be specified.
 
 Optional parameters:
 
@@ -1154,7 +1168,9 @@ Specify true if, when org_hold is being changed to true and/or org_pending is be
 
 Specify true if shifts being unconfirmed should also be unpublished.
 
-Other account object attributes may be specified.  Updating another account's email address or notification options is not allowed if the account is active with more than one organization's Shiftboard.
+Other account object attributes may be specified.
+
+**NOTE:** Updating another account's email address or notification options is not allowed if the account is active with more than one organization's Shiftboard.
 
 Response: On success, empty results will be returned.
 
