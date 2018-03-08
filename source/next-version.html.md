@@ -677,7 +677,7 @@ Example Response
 
 **Description**
 
-Sends a batch of API requests.
+Sends multiple requests in a single API request.
 
 ## /api/v1/collections/{slug}
 
@@ -966,7 +966,7 @@ Lists all entities.
 |--|--|--|
 |q| string|  The search string, for example |
 |limit|integer|The number of stories to display. The default is 20. |
-|offset|integer|The distance from the start of the array of stories to the reference point in the array. |
+|offset|integer|The distance from the start of the array of entities to the reference point in the array. |
 |id | integer| The ID of an entity|
 |ids| string | A list of entity IDs |
 
@@ -1210,7 +1210,7 @@ Quarterly</media:keywords>
 Displays the RSS feeds of a publisher.
 
 
-##/api/v1/tags/slug
+##/api/v1/tags/{slug}
 
 ```
 
@@ -1406,6 +1406,22 @@ Logs in with the username and password.
 Returns the list of published instant articles.
 
 As a prerequisite to fetch the instant articles, the publisher front-end should contain the `<meta property="fb:pages" content="1234567890123456" />` tag that is provided by Facebook at the time of registering for instant articles.
+
+**Input Parameters**
+
+None.
+
+## /api/v1/amp/story?slug={slug}
+
+```
+Example Request
+
+$ curl -X GET "http://sketches.quintype.com/api/v1/amp/story?slug=international/2018/03/07/test-9" -H "Accept: application/json"
+
+```
+**Description**
+
+Generates a custom AMP page based on the story slug.
 
 **Input Parameters**
 
