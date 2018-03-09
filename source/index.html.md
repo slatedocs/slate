@@ -97,7 +97,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "pending_docs",
       "student": { ... },
       "applications": [ {...} ],
-      "created_at": "2016-10-01T03:15Z"
+      "created_at": "2016-10-01T02:01:44Z"
     },
     ...,
     {
@@ -106,7 +106,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "pre_registered",
       "student": { ... },
       "applications": [ {...} ],
-      "created_at": "2016-10-15T03:15Z"
+      "created_at": "2016-10-15T03:15:44Z"
     }
   ]
 }
@@ -122,8 +122,8 @@ O atributo `has_more` da resposta indica se há mais dados disponíveis depois d
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
-| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
-| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 
 ### Informações de resultado de dados com paginação
 
@@ -152,7 +152,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "pending_docs",
       "student": { ... },
       "applications": [ {...} ],
-      "created_at": "2016-10-16T03:15Z"
+      "created_at": "2016-10-16T03:15:44Z"
     },
     ...,
     {
@@ -161,7 +161,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "pre_registered",
       "student": { ... },
       "applications": [ {...} ],
-      "created_at": "2016-10-20T03:15Z"
+      "created_at": "2016-10-20T03:15:44Z"
     }
   ]
 }
@@ -175,8 +175,8 @@ No exemplo acima, vimos que `has_more` retornou `true`, portanto existem mais da
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
-| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
-| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 
 ### Informações de resultado de dados com paginação
 
@@ -205,7 +205,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "pending_docs",
       "student": { ... },
       "applications": [ {...} ],
-      "created_at": "2016-10-01T03:15Z"
+      "created_at": "2016-10-01T03:15:44Z"
     },
     ...,
     {
@@ -214,7 +214,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "pre_registered",
       "student": { ... },
       "applications": [ {...} ],
-      "created_at": "2016-10-15T03:15Z"
+      "created_at": "2016-10-15T03:15:44Z"
     }
   ]
 }
@@ -228,8 +228,8 @@ Assim como avançamos uma página, é possível facilmente retornar a dados ante
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
-| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
-| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 
 ### Informações de resultado de dados com paginação
 
@@ -258,7 +258,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "pre_registered",
       "student": { ... },
       "applications": [ {...} ],
-      "created_at": "2016-10-15T03:15Z"
+      "created_at": "2016-10-15T03:15:44Z"
     },
     ...,
     {
@@ -267,7 +267,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "pre_registered",
       "student": { ... },
       "applications": [ {...} ],
-      "created_at": "2016-10-20T03:15Z"
+      "created_at": "2016-10-20T03:15:44Z"
     }
   ]
 }
@@ -281,8 +281,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
-| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
-| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 
 ### Informações de resultado de dados com paginação
 
@@ -311,7 +311,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "pending_docs",
       "student": { ... },
       "applications": [ {...} ],
-      "created_at": "2016-10-01T03:15Z"
+      "created_at": "2016-10-01T03:15:44Z"
     },
     ...,
     {
@@ -320,7 +320,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "status": "pre_registered",
       "student": { ... },
       "applications": [ {...} ],
-      "created_at": "2016-10-15T03:15Z"
+      "created_at": "2016-10-15T03:15:44Z"
     }
   ]
 }
@@ -334,8 +334,8 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
-| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
-| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 
 ### Informações de resultado de dados com paginação
 
@@ -382,7 +382,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
         "id": 12345,
         "course_sku": "ADM-NOITE-EAD",
         "status": "pending_docs",
-        "created_at": "2016-10-01T03:15Z"
+        "created_at": "2016-10-01T03:15:44Z"
       }
     ]
   }
@@ -416,7 +416,7 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 | id | number | Id do aluno |
 | name | string | Nome do aluno |
 | cpf | string | CPF do aluno |
-| birth_date | string | Data de nascimento do aluno |
+| birth_date | string | Data de nascimento do aluno no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 | emails | array de string | Lista de emails do aluno |
 | phones | array de string | Lista de telefones do aluno |
 | address_information | object | Objeto com dados onde aluno reside |
@@ -430,7 +430,7 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 | [admissions] id | number | Id do processo de matrícula |
 | [admissions] course_sku | string | Código do curso fornecido pela universidade |
 | [admissions] status | string | Status que se encontra o processo de matrícula |
-| [admissions] created_at | string | Data da criação do processo de matrícula |
+| [admissions] created_at | string | Data da criação do processo de matrícula no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -483,7 +483,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "id": 12345,
       "course_sku": "ADM-NOITE-EAD",
       "status": "pending_docs",
-      "created_at": "2016-10-01T03:15Z"
+      "created_at": "2016-10-01T03:15:44Z"
     }
   ]
 }
@@ -527,7 +527,7 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 | [admissions] id | number | Id do processo de matrícula |
 | [admissions] course_sku | string | Código do curso fornecido pela universidade |
 | [admissions] status | string | Status que se encontra o processo de matrícula |
-| [admissions] created_at | string | Data da criação do processo de matrícula |
+| [admissions] created_at | string | Data da criação do processo de matrícula no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 
 ### Significado dos valores em status
 | Nome | Descrição |
@@ -607,13 +607,13 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
             "dates": "2016-11-01",
             "times": "18:30",
             "status": "active",
-            "created_at": "2016-10-01T03:15Z"
+            "created_at": "2016-10-01T03:15:44Z"
           },
           "result": "approved",
-          "created_at": "2016-10-01T03:15Z"
+          "created_at": "2016-10-01T03:15:44Z"
         }
       ],
-      "created_at": "2016-10-01T03:15Z"
+      "created_at": "2016-10-01T03:15:44Z"
     }
   ]
 }
@@ -629,8 +629,8 @@ Admissões são retornadas em páginas de até 25 elementos, ordenadas pela últ
 | ---- | ---- | --------- |
 | starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
-| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada |
-| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 
 ### Informações de resultado
 
@@ -644,7 +644,7 @@ Admissões são retornadas em páginas de até 25 elementos, ordenadas pela últ
 | [student] id | number | Id do aluno |
 | [student] name | string | Nome do aluno |
 | [student] cpf | string | CPF do aluno |
-| [student] birth_date | string | Data de nascimento do aluno |
+| [student] birth_date | string | Data de nascimento do aluno no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 | [student] emails | array de string | Lista de emails do aluno |
 | [student] phones | array de string | Lista de telefones do aluno |
 | [student] address_information | object | Objeto com dados onde aluno reside |
@@ -668,13 +668,13 @@ Admissões são retornadas em páginas de até 25 elementos, ordenadas pela últ
 | [exam_location] city | string | Cidade da localização do exame vestibular |
 | [exam_location] state | string | Estado da localização do exame vestibular |
 | [exam_location] postal_code | string | Código postal da localização do exame vestibular |
-| [exam] dates | string | Data da realização do exame vestibular |
-| [exam] times | string | Hora da realização do exame vestibular |
+| [exam] dates | string | Data da realização do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| [exam] times | string | Hora da realização do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 | [exam] status | string | Status do exame vestibular |
-| [exam] created_at | string | Data da criação do exame vestibular |
+| [exam] created_at | string | Data da criação do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 | [application] result | string | Resultado do exame vestibular |
-| [application] created_at | string | Data de criação da inscrição para exame |
-| created_at | string | Data de criação da admissão |
+| [application] created_at | string | Data de criação da inscrição para exame no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| created_at | string | Data de criação da admissão no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 
 ### Significado dos valores em status
 
@@ -757,13 +757,13 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
         "dates": "2016-11-01",
         "times": "18:30",
         "status": "active",
-        "created_at": "2016-10-01T03:15Z"
+        "created_at": "2016-10-01T03:15:44Z"
       },
       "result": "approved",
-      "created_at": "2016-10-01T03:15Z"
+      "created_at": "2016-10-01T03:15:44Z"
     }
   ],
-  "created_at": "2016-10-01T03:15Z"
+  "created_at": "2016-10-01T03:15:44Z"
 }
 ```
 
@@ -795,7 +795,7 @@ Retorna uma admissão específica da faculdade.
 | [student] id | number | Id do aluno |
 | [student] name | string | Nome do aluno |
 | [student] cpf | string | CPF do aluno |
-| [student] birth_date | string | Data de nascimento do aluno |
+| [student] birth_date | string | Data de nascimento do aluno no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 | [student] emails | array de string | Lista de emails do aluno |
 | [student] phones | array de string | Lista de telefones do aluno |
 | [student] address_information | object | Objeto com dados onde aluno reside |
@@ -819,13 +819,13 @@ Retorna uma admissão específica da faculdade.
 | [exam_location] city | string | Cidade da localização do exame vestibular |
 | [exam_location] state | string | Estado da localização do exame vestibular |
 | [exam_location] postal_code | string | Código postal da localização do exame vestibular |
-| [exam] dates | string | Data da realização do exame vestibular |
-| [exam] times | string | Hora da realização do exame vestibular |
+| [exam] dates | string | Data da realização do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| [exam] times | string | Hora da realização do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 | [exam] status | string | Status do exame vestibular |
-| [exam] created_at | string | Data da criação do exame vestibular |
+| [exam] created_at | string | Data da criação do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 | [application] result | string | Resultado do exame vestibular |
-| [application] created_at | string | Data de criação da inscrição para exame |
-| created_at | string | Data de criação da admissão |
+| [application] created_at | string | Data de criação da inscrição para exame no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| created_at | string | Data de criação da admissão no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 
 ### Significado dos valores em status
 
@@ -910,13 +910,13 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
         "dates": "2016-11-01",
         "times": "18:30",
         "status": "active",
-        "created_at": "2016-10-01T03:15Z"
+        "created_at": "2016-10-01T03:15:44Z"
       },
       "result": "approved",
-      "created_at": "2016-10-01T03:15Z"
+      "created_at": "2016-10-01T03:15:44Z"
     }
   ],
-  "created_at": "2016-10-01T03:15Z"
+  "created_at": "2016-10-01T03:15:44Z"
 }
 ```
 
@@ -972,7 +972,7 @@ Realiza atualização de um processo de admissão específico de um aluno. Para 
 | [student] id | number | Id do aluno |
 | [student] name | string | Nome do aluno |
 | [student] cpf | string | CPF do aluno |
-| [student] birth_date | string | Data de nascimento do aluno |
+| [student] birth_date | string | Data de nascimento do aluno no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 | [student] emails | array de string | Lista de emails do aluno |
 | [student] phones | array de string | Lista de telefones do aluno |
 | [student] address_information | object | Objeto com dados onde aluno reside |
@@ -996,13 +996,13 @@ Realiza atualização de um processo de admissão específico de um aluno. Para 
 | [exam_location] city | string | Cidade da localização do exame vestibular |
 | [exam_location] state | string | Estado da localização do exame vestibular |
 | [exam_location] postal_code | string | Código postal da localização do exame vestibular |
-| [exam] dates | string | Data da realização do exame vestibular |
-| [exam] times | string | Hora da realização do exame vestibular |
+| [exam] dates | string | Data da realização do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| [exam] times | string | Hora da realização do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 | [exam] status | string | Status do exame vestibular |
-| [exam] created_at | string | Data da criação do exame vestibular |
+| [exam] created_at | string | Data da criação do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 | [application] result | string | Resultado do exame vestibular |
-| [application] created_at | string | Data de criação da inscrição para exame |
-| created_at | string | Data de criação da admissão |
+| [application] created_at | string | Data de criação da inscrição para exame no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| created_at | string | Data de criação da admissão no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 
 ### Significado dos valores em status
 
