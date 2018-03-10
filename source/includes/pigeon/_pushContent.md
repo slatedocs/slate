@@ -12,6 +12,7 @@
    <sound>default</sound>
    <text>Текст для отображения в шторке телефона</text>
    <type>UNIVERSAL</type>
+   <imageURL>https://icdn.lenta.ru/favicon.ico</imageURL>
 </pushContent>
 ```
 
@@ -24,5 +25,7 @@ sound | string | 0..1 | по умолчанию default
 text | string | 1..1 | текст для пуша в шторке мобильного
 type | [pushType](#pushtype) | 1..1 | тип сообщения
 target | string | 1..1 | в зависимости от типа пуша передается id формы, точки, код подтверждения… или nil
+imageURL | string | 0..1 | URL рисунка, который нужно отобразить
+
 
 <aside class="error">Размер данной части сообщения не должен превышать 256B в протовном случае сервер Apple не примет</aside>
