@@ -1160,6 +1160,20 @@ Specify true if, when org_hold is being changed to true and/or org_pending is be
 
 Specify true if shifts being unconfirmed should also be unpublished.
 
+Optional parameters:
+
+Other account object attributes may be specified.
+
+####unconfirm_future_shifts
+
+Specify true if, when org_hold is being changed to true and/or org_pending is being changed to a non-0 value, shifts on or after today for this account should be unconfirmed.
+
+####unpublish_future_shifts
+
+Specify true if shifts being unconfirmed should also be unpublished.
+
+Other account object attributes may be specified.
+
 **NOTE:** Updating another account's email address or notification options is not allowed if the account is active with more than one organization's Shiftboard.
 
 Response: On success, empty results will be returned.

@@ -135,11 +135,11 @@ Optional parameters:
 
 An object specifying selection criteria for this request. Allowed criteria are:
 
-####department
+#####department
 
 A single department identifier or array of department identifiers.
 
-####search
+#####search
 
 A generic search string; select departments containing this string in their name.
 
