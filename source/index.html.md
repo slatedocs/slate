@@ -7,7 +7,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
 
 toc_footers:
-  - <a href='http://www.gakuengine.com'>GAKU Engine on GitHub</a>
+  - <a href='http://www.gakuengine.com'>GAKU Engine</a>
   - <a href='https://github.com/GAKUEngine/gaku'>GAKU Engine on GitHub</a>
   - <a href='https://github.com/GAKUEngine/manabu'>Manabu Ruby Client on GitHub</a>
   - <a href='https://github.com/GAKUEngine/manabu-desktop'>Manabu-Desktop Ruby + GTK Client on GitHub</a>
