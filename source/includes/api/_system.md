@@ -89,6 +89,8 @@ selected time zone.
 
 ### system.whoami
 
+Returns account, the account id for the registered API user.
+
 > Request example:
 
 ```JSON
@@ -109,6 +111,5 @@ selected time zone.
 ```
 
 <span class="tryit" id="system-whoami-tryit"></span>
-Returns account, the account id for the registered API user.
 
 **NOTE:** external_account, the external account id for the registered API user will be included if external ids are enabled for the site.

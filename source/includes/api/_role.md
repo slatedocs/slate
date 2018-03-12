@@ -181,13 +181,31 @@ Optional parameters:
 
 An object specifying selection criteria for this request. Allowed criteria are:
 
-####role
+#####role
 
 A single role identifier or array of role identifiers.
 
-####search
+#####search
 
 A generic search string; select roles containing this string in their name.
+
+####workgroup
+
+Single workgroup to filter results to be returned.
+
+**NOTE:** If the call is made on behalf of a manager, the caller must also specify the boolean value `exclude_site` to limit the results to only the workgroup specified.
+
+####show_only_workgroup_listables
+
+Only return results for the workgroup.
+
+####exclude_site
+
+Boolean; if a manager of the team, don't include roles associated with the site itself with those for the team.
+
+####sitewide
+
+Boolean; query for all roles across all workgroups that the user has access to. Enabled by default for manager accounts.
 
 The response results `roles` attribute will be an array of the current page of roles. Each element of the array may have the following attributes:
 

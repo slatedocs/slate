@@ -86,6 +86,29 @@ Not all fields will be exposed to all users.
 
 Not all fields will be configured to be used for all organizations or set for all timecards.
 
+### timecard.approve
+
+<span class="tryit" id="timecard-approve-tryit"></span>
+
+> Request example:
+
+```JSON
+{ "id": [123456, 654321], "approved": true }
+```
+
+> Response example:
+
+```JSON
+{"seconds":"0.052778","jsonrpc":"2.0","id":"48","result":{}}{"seconds":"0.052778","jsonrpc":"2.0","id":"48","result":{}}
+```
+Approve one or more timecard records.
+
+Parameters:
+`id` One or more timecards to approve
+`approved` Boolean; approve or un-approve one or more timecards
+
+Response: On success, empty results will be returned.
+
 ### timecard.create
 
 <span class="tryit" id="timecard-create-tryit"></span>
@@ -336,6 +359,27 @@ id and name attributes are provided.
 
 id and name attributes are provided.
 
+### timecard.process
+
+> Request example:
+
+```JSON
+{ "id": [123456, 654321], "processed": true }
+```
+
+> Response example:
+
+```JSON
+{"seconds":"0.052778","jsonrpc":"2.0","id":"48","result":{}}
+```
+
+Process one or more timecard records.
+
+Parameters:
+`id` One or more timecards to process
+`process` Boolean; process or un-process one or more timecards
+
+Response: On success, empty results will be returned.
 ### timecard.report
 
 <span class="tryit" id="timecard-report-tryit"></span>

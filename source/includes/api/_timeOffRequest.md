@@ -223,7 +223,6 @@ If specified, requests only timeOffRequests for the given account.
 
 **NOTE:** If you are calling this method with the `member` parameter, `external_member` is not required, and will be ignored.
 
-
 ####account
 
 id, first_name, last_name, and screen_name attributes are provided.

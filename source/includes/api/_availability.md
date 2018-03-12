@@ -30,7 +30,7 @@ Date at which this availability ends; null if availability extends indefinitely 
 
 ####start_time
 
-Start time for each date of this availability, in [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) partial time format (e.g. "13:00:00"), or null if the availability extends from the beginning of the day. 
+Start time for each date of this availability, in [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) partial time format (e.g. "13:00:00"), or null if the availability extends from the beginning of the day.
 
 **note:** It is not possible to specify the seconds for *start_time*. This value should always be set to: "00"
 
@@ -77,9 +77,7 @@ account identifier or array of account identifiers
 
 external account identifier or array of external account identifiers
 
-**NOTE:** If you are calling this method with the `external_account` parameter, `account` will be ignored (if included).
-
-**NOTE:** If you are calling this method with the account parameter, external_account will be ignored (if included).
+**NOTE:** If you are calling this method with the `account parameter`, `external_account` will be ignored (if included).
 
 ####external_account
 
@@ -214,6 +212,7 @@ id, first_name, last_name, and screen_name attributes are provided.
 ```
 
 <span class="tryit" id="availability-list-tryit"></span>
+
 Returns information about account availability data. Uses select criteria. Uses [pagination](#pagination).
 
 Parameters:

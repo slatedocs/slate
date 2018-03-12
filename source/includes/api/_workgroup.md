@@ -632,6 +632,22 @@ id, first_name, last_name, and screen_name attributes are provided.
 > Request example:
 
 ```JSON
+{"select":{"workgroup":"123456"}}
+```
+
+> Response example:
+
+```JSON
+{ "seconds": "0.148687", "jsonrpc": "2.0", "id": "58", "result": {  "count": "1", "page": { "this": { "batch": 10, "start": 1 } },  "workgroup_shift/coverage blocks": [    {      "days": "0",      "duration": "01:35:00",      "end_time": "13:45:00",      "name": "A Test Coverage Block",      "start_time": "12:10:00",      "time_block": "10101", "workgroup": "123456" }]}}
+```
+
+<span class="tryit" id="workgroup-listclients-tryit"></span>
+
+### workgroup.listClients
+
+> Request example:
+
+```JSON
 {
    "select" : {
       "workgroup" : "226072"
@@ -686,7 +702,21 @@ A client identifier.
 ####workgroup
 
 A workgroup identifier.
+### workgroup.listCoverageBlocks
+Returns information about workgroup/coverage block relationships.  Uses [pagination](#pagination). Uses select criteria.
 
+Optional parameters: "select" object with the following optional attributes:
+
+`workgroup` A single workgroup identifier or an array of identifiers of workgroups for which to look up coverage block relationships.  By default, all workgroups for which the API user is a manager will be queried.
+
+The response results "workgroup_shift/coverage blocks" attribute will be an array of the current page of workgroup coverage block relationships. Each element of the array may have the following attributes:
+`days` Number of days the coverage block spans.
+`duration` Number of hours the coverage block spans.
+`end_time` The time in which the coverage block ends.
+`name` The name of the coverage block.
+`start_time` The time in which the coverage block starts.
+`time_block` The coverage block identifier.
+`workgroup` A workgroup identifier.
 ### workgroup.listDepartments
 
 > Request example:
@@ -806,6 +836,31 @@ A location identifier.
 ####workgroup
 
 A workgroup identifier.
+
+### workgroup.listResources
+
+Returns information about workgroup/resource relationships.  Uses [pagination](#pagination). Uses select criteria.
+
+Optional parameters: "select" object with the following optional attributes:
+`resource` A single resource identifier or an array of identifiers of resources for which to look up workgroup relationships.  By default, all resources will be queried.
+`workgroup` A single workgroup identifier or an array of identifiers of workgroups for which to look up resource relationships.  By default, all workgroups for which the API user is a manager will be queried.
+
+The response results "workgroup_resources" attribute will be an array of the current page of workgroup resource relationships. Each element of the array may have the following attributes:
+`resource` A resource identifier.
+`workgroup` A workgroup identifier.
+> Request example:
+
+```JSON
+{"select":{"workgroup":"226085"}}
+```
+
+> Response example:
+
+```JSON
+{"seconds":"0.148687","jsonrpc":"2.0","id":"58","result":{"workgroup_resources":[{"workgroup":"226085","resource":"2"}],"count":"1","page":{"this":{"batch":25,"start":1}}}}
+```
+
+<span class="tryit" id="workgroup-listroles-tryit"></span>
 
 ### workgroup.listRoles
 

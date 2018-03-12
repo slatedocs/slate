@@ -239,14 +239,15 @@ Optional parameters:
 
 An object specifying selection criteria for this request. Allowed criteria are:
 
-####client
+#####client
 
 A single client identifier or array of client identifiers.
 
-####search
+#####search
 
 A generic search string; select clients containing this string in their name.
 
+#####workgroup
 
 The response results `clients` attribute will be an array of the current page of clients. Each element of the array may have the following attributes:
 
