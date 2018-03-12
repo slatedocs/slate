@@ -229,9 +229,13 @@ Time non-profile information for this account was last updated
 <span class="tryit" id="account-create-tryit"></span>
 Creates a new account record.
 
-####Required Parameters: first_name, last_name, and either email or the bad_email flag set true.
+#### Required Parameters
 
-####Optional Parameters: Other attributes of a account object may be specified. In addition, the following attributes may be specified:
+first_name, last_name, and either email or the bad_email flag set true.
+
+#### Optional Parameters
+
+Other attributes of a account object may be specified. In addition, the following attributes may be specified:
 
 #####exists_ok
 
@@ -257,7 +261,7 @@ https://www.shiftboard.com/login/openid?http%3A%2F%2Fwww.example.com%2F
 
 If this openid is already in use for any account in Shiftboard, an error will be returned.
 
-####Response
+#### Response
 
 On success, an `id` attribute will provide the identifier for the new account. If `exists_ok` was specified, an `existed` boolean attribute is returned indicating whether the email address was already in use for an account on Shiftboard.
 
@@ -285,9 +289,11 @@ On success, an `id` attribute will provide the identifier for the new account. I
 <span class="tryit" id="account-delete-tryit"></span>
 Deletes an account record.
 
-#### Required parameters:  `id` or `external_id`
+#### Required parameters
 
-#### Optional parameters:
+`id` or `external_id`
+
+#### Optional parameters
 
 ##### `unconfirm_future_shifts`
 
@@ -301,34 +307,48 @@ Specify true if shifts being unconfirmed should also be unpublished.
 
 Defaults to false. Specify true to indicate a notification email should be sent to the owner of the deleted account.
 
-#### Response: On success, empty results will be returned.
+#### Response
+
+On success, empty results will be returned.
 
 ### account.deleteDocument
 
 <span class="tryit" id="account-deletedocument-tryit"></span>
 Deletes an account document for a given account.
 
-Required parameters:  `id` or `external_id` and `document_number`
+#### Required parameters
 
-Response: On success, empty results will be returned.
+`id` or `external_id` and `document_number`
+
+#### Response
+
+On success, empty results will be returned.
 
 ### account.deleteImage
 
 <span class="tryit" id="account-deleteimage-tryit"></span>
 Deletes the user image for a given account.
 
-Required parameters:  `id` or `external_id`
+#### Required parameters
 
-Response: On success, empty results will be returned.
+`id` or `external_id`
+
+#### Response
+
+On success, empty results will be returned.
 
 ### account.deleteResume
 
 <span class="tryit" id="account-deleteresume-tryit"></span>
 Deletes the resume for a given account.'
 
-Required parameters:  `id` or `external_id`
+#### Required parameters
 
-Response: On success, empty results will be returned.
+`id` or `external_id`
+
+#### Response
+
+On success, empty results will be returned.
 
 ### account.get
 
@@ -379,9 +399,11 @@ Response: On success, empty results will be returned.
 <span class="tryit" id="account-get-tryit"></span>
 Returns information about a single account.
 
-####Required parameters:  `id` or `external_id`
+#### Required parameters
 
-####Optional parameters
+`id` or `external_id`
+
+#### Optional parameters
 
 #####extended
 
@@ -405,7 +427,7 @@ Boolean; if specified and true, the results returned will include a clocked_in a
 
 #####user_actions
 
-Boolean; if specified and true, a `user_actions` object will be returned with attributes indicating what actions should be presented to the user to be performed on this account:
+Boolean; if specified and true, a `user_actions` object will be returned with attributes indicating what actions should be presented to the user to be performed on this account
 
 #####add_availability
 
@@ -422,9 +444,11 @@ The response results will be an account object containing basic or basic and ext
 <span class="tryit" id="account-getdocument-tryit"></span>
 Returns an account document for a single account.
 
-####Required parameters:  `id` or `external_id` and `document_number`
+#### Required parameters
 
-####Optional parameter
+`id` or `external_id` and `document_number`
+
+#### Optional parameters
 
 `expiration` (defaults to 300) to specify valid lifetime of the returned URL in seconds. Maximum 604800 (1 week).
 
@@ -457,11 +481,11 @@ The response results will have an attribute `url` whose value can be used to fet
 <span class="tryit" id="account-getimage-tryit"></span>
 Returns image information about a single account.
 
-####Required parameters
+#### Required parameters
 
 `id` or `external_id`
 
-####Optional parameter
+#### Optional parameters
 
 `expiration` (defaults to 300) to specify valid lifetime of the returned URL in seconds. Maximum 604800 (1 week).
 
@@ -472,11 +496,11 @@ The response results will have an attribute `url` whose value can be used to fet
 <span class="tryit" id="account-getresume-tryit"></span>
 Returns resume information about a single account.
 
-####Required parameters
+#### Required parameters
 
 `id` or `external_id`
 
-####Optional parameter
+#### Optional parameters
 
 `expiration` (defaults to 300) to specify valid lifetime of the returned URL in seconds. Maximum 604800 (1 week).
 
@@ -540,63 +564,65 @@ The response results will have an attribute `url` whose value can be used to fet
 <span class="tryit" id="account-list-tryit"></span>
 Returns information about accounts. Uses [pagination](#pagination). Uses select criteria.
 
-Optional parameters:
+#### Optional parameters
 
-####select
+#####select
 
 An object specifying selection criteria for this request. Allowed criteria are:
 
-####account
+#####account
 
 A single account identifier or an array of identifiers to select.
 
-####email
+#####email
 
 A single email address or an array of them to select.
 
-####external_id
+#####external_id
 
 A single external_id or an array of them to select, if used by the site.
 
-####profile_type
+#####profile_type
 
 A profile type identifier for which to select accounts.
 
-####org_hold
+#####org_hold
 
 Hold status (boolean)
 
-####org_pending
+#####org_pending
 
 On-boarding status
 
-####search
+#####search
 
 A generic search string; select accounts containing this string in any of: first_name, last_name, first and last names combined, screen name, or, if used by the site, external_id.
 
-####extended
+#####extended
 
 Boolean; if specified and true, the results returned will include an extended set of attributes; otherwise a basic set of attributes will be returned for each account.
 
-####image
+#####image
 
 Boolean; if specified and true, the results returned will include an image_url attribute giving a url to the account's user image or null if no image is available.
 
-####image_expiration
+#####image_expiration
 
 Specifies the valid lifetime of the returned URL in seconds; default 300, maximum 604800 (1 week).
 
-####qrcode
+#####qrcode
 
 Boolean; if specified and true, the results returned will include a qrcode attribute giving the data for generating the account's qrcode.
 
-####sort
+#####sort
 
 A single sort criterion or an array of criteria in order from major to minor. Each criterion is either an attribute name (one of `first_name`, `last_name`, or `id`) or an object with two attributes, `name` (one of the supported sort attribute names) and `direction` (`asc` or `desc`).
 
-####timeclock_status
+#####timeclock_status
 
 Boolean; if specified and true, the results returned will include a clocked_in attribute indicating that the account is currently clocked in and a can_clock_in_out attribute indicating whether there is authorization to clock this account in or out.
+
+#### Response
 
 The response results `accounts` attribute will be an array of the current page of accounts. Each element of the array will be an account object containing basic or basic and extended account fields.
 
@@ -740,11 +766,11 @@ The response results `accounts` attribute will be an array of the current page o
 <span class="tryit" id="account-listbyworkgroup-tryit"></span>
 Returns information about accounts with membership in a workgroup. Uses [pagination](#pagination).
 
-####Required parameters
+#### Required parameters
 
 `select` object with a `workgroup` attribute identifying the workgroup whose members should be returned. E.g. `{select:{workgroup:12345}}`.
 
-####Optional parameters:
+#### Optional parameters
 
 #####search
 
@@ -804,11 +830,11 @@ Currently, this method only returns members with `org_hold` false and org_pendin
 <span class="tryit" id="account-listmemberships-tryit"></span>
 Returns information about workgroups to which a member belongs. Uses [pagination](#pagination). Uses select criteria.
 
-####Optional parameters:
+#### Optional parameters
 
 #####select
 
-An object specifying selection criteria for this request:
+An object specifying selection criteria for this request
 
 #####member
 
@@ -828,7 +854,7 @@ Boolean, defaults to true. Indicates that, in addition to the workgroups attribu
 
 The response results `workgroups` attribute will be an array of the current page of selected workgroups. Each element of the array will be a workgroup object containing basic workgroup fields.
 
-If requested, the response results `referenced_objects` attribute will be an object containing one or more object type names as attributes; for each object type the value will be an array of those instances of that type of object which are referred to in the `workgroups` results, with only selected minimal attributes provided:
+If requested, the response results `referenced_objects` attribute will be an object containing one or more object type names as attributes; for each object type the value will be an array of those instances of that type of object which are referred to in the `workgroups` results, with only selected minimal attributes provided
 
 #####account
 
@@ -866,7 +892,7 @@ id, first_name, last_name, and screen_name attributes are provided.
 <span class="tryit" id="account-listopenids-tryit"></span>
 Returns information about account_openid objects for a given account.
 
-####Required parameters
+#### Required parameters
 
 `account` or `external_account`
 
@@ -934,7 +960,7 @@ The response results `account_openids` attribute will be an array of the account
 <span class="tryit" id="account-listupdated-tryit"></span>
 Returns information about accounts created or updated since a given date. Uses [pagination](#pagination). Uses select criteria.
 
-####Optional parameters:
+#### Optional parameters
 
 #####extended
 
@@ -942,9 +968,9 @@ Boolean; if specified and true, the results returned will include an extended se
 
 #####select
 
-An object specifying selection criteria for this request. Note that updated_since will have a default value if not specified. The available criteria include all [account.list](#account-list) selection criteria with the addition of:
+An object specifying selection criteria for this request. Note that updated_since will have a default value if not specified. The available criteria include all [account.list](#account-list) selection criteria with the addition of
 
-#####updated_since
+######updated_since
 
 A system.timestamp previously returned by the [system.timestamp](#system-timestamp) method. Only accounts updated since this date will be selected. Defaults to 24 hours ago. If more than 30 days ago, only accounts updated in the last 30 days will be selected.
 
@@ -978,13 +1004,13 @@ The response results `accounts` attribute will be an array of the current page o
 <span class="tryit" id="account-resetpassword-tryit"></span>
 Resets the password for an account to a randomly chosen value and sends the new password to the account's email address. If the account has no email address or is not receiving email, no error will result and the password will be changed.
 
-####Required parameters
+#### Required parameters
 
 `account` or `external_account`, a single account identifier or an array of identifiers of accounts for which to reset the password.
 
 No more than 10000 accounts may be specified in a single request.
 
-####Response: On success, empty results will be returned.
+#### Response: On success, empty results will be returned.
 
 Note that this method may be deprecated in the future and replaced with a method to initiate a user-controlled password reset process.
 
@@ -1035,7 +1061,7 @@ Note that this method may be deprecated in the future and replaced with a method
 <span class="tryit" id="account-self-tryit"></span>
 Returns information about the account associated with the API key making the request.
 
-####Optional parameters:
+#### Optional parameters
 
 #####extended
 
@@ -1055,7 +1081,7 @@ Boolean; if specified and true, the results returned will include a qrcode attri
 
 #####user_actions
 
-Boolean; if specified and true, a `user_actions` object will be returned with attributes indicating what actions should be presented to the user to be performed on this account:
+Boolean; if specified and true, a `user_actions` object will be returned with attributes indicating what actions should be presented to the user to be performed on this account
 
 #####add_availability
 
@@ -1099,13 +1125,13 @@ If user_actions were requested, a `user_actions` attribute will also be returned
 <span class="tryit" id="account-sendpassword-tryit"></span>
 Sends a password reset link for an account to the account's email address. If the account has no email address or is not receiving email, no error will result.
 
-####Required parameters
+#### Required parameters
 
 `account` or `external_account`, a single account identifier or an array of identifiers of accounts for which to send the password reset.
 
 No more than 10000 accounts may be specified in a single request.
 
-####Response: On success, empty results will be returned.
+#### Response: On success, empty results will be returned.
 
 ### account.sendWelcomeLetter
 
@@ -1131,7 +1157,7 @@ No more than 10000 accounts may be specified in a single request.
 <span class="tryit" id="account-sendwelcomeletter-tryit"></span>
 Send a welcome email to the account's email address, giving them their password.  If the account has no email address or is not receiving email, no error will result.
 
-####Required parameters: `account` or `external_account`, a single account identifier or an array of identifiers of accounts for which to send a welcome letter.
+#### Required parameters: `account` or `external_account`, a single account identifier or an array of identifiers of accounts for which to send a welcome letter.
 
 #####account
 
@@ -1143,7 +1169,7 @@ No more than 10000 accounts may be specified in a single request.
 A single external ID (or an array of them if used by the site).
 No more than 10000 accounts may be specified in a single request.
 
-####Response: On success, empty results will be returned.
+#### Response: On success, empty results will be returned.
 
 ### account.update
 
@@ -1172,15 +1198,17 @@ No more than 10000 accounts may be specified in a single request.
 <span class="tryit" id="account-update-tryit"></span>
 Updates an account object.
 
-#### Required parameters:  `id` or `external_id`.
+#### Required parameters
 
-#### Optional parameters:
+`id` or `external_id`
 
-#####unconfirm_future_shifts
+#### Optional parameters
+
+##### unconfirm_future_shifts
 
 Specify true if, when org_hold is being changed to true and/or org_pending is being changed to a non-0 value, shifts on or after today for this account should be unconfirmed.
 
-#####unpublish_future_shifts
+##### unpublish_future_shifts
 
 Specify true if shifts being unconfirmed should also be unpublished.
 
@@ -1188,18 +1216,20 @@ Other account object attributes may be specified.
 
 **NOTE:** Updating another account's email address or notification options is not allowed if the account is active with more than one organization's Shiftboard.
 
-Response: On success, empty results will be returned.
+#### Response
+
+On success, empty results will be returned.
 
 ### account.updateDocument
 
 <span class="tryit" id="account-updatedocument-tryit"></span>
 Updates an account document for a single account.
 
-####Required parameters
+#### Required parameters
 
 `id` or `external_id` and `document_number`
 
-####Optional parameter
+#### Optional parameters
 
 `expiration` (defaults to 300) to specify valid lifetime of the returned URL in seconds. Maximum 3600 (1 hour).
 
@@ -1212,11 +1242,11 @@ Upon success, the request to the url will return an HTTP 204 status code.
 <span class="tryit" id="account-updateimage-tryit"></span>
 Updates the user image for a single account.
 
-####Required parameters
+#### Required parameters
 
 `id` or `external_id`
 
-####Optional parameter
+#### Optional parameters
 
 `expiration` (defaults to 300) to specify valid lifetime of the returned URL in seconds. Maximum 3600 (1 hour).
 
@@ -1229,11 +1259,11 @@ Upon success, the request to the url will return an HTTP 204 status code.
 <span class="tryit" id="account-updateresume-tryit"></span>
 Updates the resume for a single account.
 
-####Required parameters
+#### Required parameters
 
 `id` or `external_id`
 
-####Optional parameter
+#### Optional parameters
 
 `expiration` (defaults to 300) to specify valid lifetime of the returned URL in seconds. Maximum 3600 (1 hour).
 
