@@ -1010,7 +1010,9 @@ Resets the password for an account to a randomly chosen value and sends the new 
 
 No more than 10000 accounts may be specified in a single request.
 
-#### Response: On success, empty results will be returned.
+#### Response
+
+On success, empty results will be returned.
 
 Note that this method may be deprecated in the future and replaced with a method to initiate a user-controlled password reset process.
 
@@ -1131,7 +1133,9 @@ Sends a password reset link for an account to the account's email address. If th
 
 No more than 10000 accounts may be specified in a single request.
 
-#### Response: On success, empty results will be returned.
+#### Response
+
+On success, empty results will be returned.
 
 ### account.sendWelcomeLetter
 
@@ -1169,7 +1173,9 @@ No more than 10000 accounts may be specified in a single request.
 A single external ID (or an array of them if used by the site).
 No more than 10000 accounts may be specified in a single request.
 
-#### Response: On success, empty results will be returned.
+#### Response
+
+On success, empty results will be returned.
 
 ### account.update
 
