@@ -40,6 +40,12 @@ spreadsheet), please check out the [Field Values](#field-values) section of the 
     },
     ...
   ],
+  "interaction_dates": {
+    "last_email_date": "2012-03-04T05:06:07.890-08:00",
+    "last_event_date": "2011-12-11T02:26:56.537-08:00",
+    "last_interaction_date": "2012-03-04T05:06:07.890-08:00",
+    "next_event_date": "2019-03-04T05:06:07.890-08:00",
+  },
 },
 ```
 
@@ -57,9 +63,14 @@ you from a new email address (corresponding to organization B).
 In this case, Affinity will automatically associate person X with both
 organization A and organization B.
 
-Finally, the person resource `type` indicates whether a person is internal or
+The person resource `type` indicates whether a person is internal or
 external to your team. Every internal person is a user of Affinity on your team, and all other
 people are externals.
+
+Dates of the most recent and upcoming interactions with a person are available in the
+`interaction_dates` field. This data is only included when passing
+`with_interaction_dates=true` as a query parameter to the `/persons` or
+the `/persons/{person_id}` endpoints.
 
 Attribute | Type | Description
 --------- | ------- | -----------
@@ -72,6 +83,7 @@ phone_numbers | string[] | The phone numbers of the person.
 primary_email | string | The email (automatically computed) that is most likely to the current active email address of the person.
 organization_ids | integer[] | An array of unique identifiers of organizations that the person is associated with.
 list_entries | ListEntry[] | An array of list entry resources associated with the person, only returned as part of the [Get a specific person](#get-a-specific-person) endpoint.
+interaction_dates | object | An object with four string date fields representing the most recent and upcoming interactions with this person: `last_email_date`, `last_event_date`, `last_interacton_date` and `next_event_date`. Only returned when passing `with_interaction_dates=true`.
 
 ### Person types
 
@@ -97,6 +109,10 @@ The absence of a `next_page_token` indicates that all the records have been fetc
 though its presence does not necessarily indicated that there are _more_ resources to be
 fetched. The next page may be empty (but then would `next_page_token` would be `null` to
 confirm that there are no more resources).
+
+Pass `with_interaction_dates=true` as a query parameter to include dates of the most
+recent and upcoming interactions with persons. When this parameter is included, persons
+with no interactions will not be returned in the response.
 
 > Example Request
 
@@ -153,6 +169,7 @@ curl "https://api.affinity.co/persons?term=doe&page_token=eyJwYXJhbXMiOnsidGVybS
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
 term | string | true | A string used to search all the persons in your team's address book. This could be an email address, a first name or a last name.
+with_interaction_dates | boolean | false | When true, interaction dates will be present on the returned resources. Only persons that have interactions will be returned.
 page_size | number | false | How many results to return per page. (Default is the maximum value of 500.)
 page_token | string | false | The `next_page_token` from the previous response required to retrieve the next page of results.
 
@@ -161,6 +178,8 @@ An object with two fields: `persons` and `next_page_token`. `persons` maps to an
 all the person resources that match the search criteria. Does not include the associated
 `organization_ids` or `list_entries`. `next_page_token` includes a token to be sent along
 with the next request as the `page_token` parameter to fetch the next page of results.
+When `with_interaction_dates` is passed in the returned resources will have
+`interaction_dates` fields.
 
 ## Get a specific person
 
@@ -209,6 +228,7 @@ Fetches a person with a specified `person_id`.
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
 person_id | integer | true | The unique id of the person that needs to be retrieved.
+with_interaction_dates | boolean | false | When true, interaction dates will be present on the returned resources.
 
 ### Returns
 The person resource corresponding to the `person_id`.

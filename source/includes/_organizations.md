@@ -39,6 +39,12 @@ spreadsheet), please check out the [Field Values](#field-values) section of the 
     },
     ...
   ],
+  "interaction_dates": {
+    "last_email_date": "2012-03-04T05:06:07.890-08:00",
+    "last_event_date": "2011-12-11T02:26:56.537-08:00",
+    "last_interaction_date": "2012-03-04T05:06:07.890-08:00",
+    "next_event_date": "2019-03-04T05:06:07.890-08:00",
+  },
 }
 ```
 Each organization object has a unique `id`. It also has a `name`, `domain` (the website
@@ -54,6 +60,11 @@ organization. You also cannot delete a `global` organization.
 Of course, if an organization is manually created by your team, all fields can be
 modified and the organization can be deleted.
 
+Dates of the most recent and upcoming interactions with an organization are available in the
+`interaction_dates` field. This data is only included when passing
+`with_interaction_dates=true` as a query parameter to the `/organizations` or
+the `/organizations/{organization_id}` endpoints.
+
 Attribute | Type | Description
 --------- | ------- | -----------
 id | integer | The unique identifier of the organization object.
@@ -62,6 +73,7 @@ domain | string | The website name of the organization. This is used by Affinity
 person_ids | string[] | An array of unique identifiers of person that are associated with the organization
 global | boolean | Returns whether this organization is a part of Affinity's global dataset of organizations. This is always false if the organization was created by you.
 list_entries | ListEntry[] | An array of list entry resources associated with the organization, only returned as part of the [Get a specific organization](#get-a-specific-organization) endpoint.
+interaction_dates | object | An object with four string date fields representing the most recent and upcoming interactions with this organization: `last_email_date`, `last_event_date`, `last_interacton_date` and `next_event_date`. Only returned when passing `with_interaction_dates=true`.
 
 
 ## Search for organizations
@@ -82,6 +94,10 @@ The absence of a `next_page_token` indicates that all the records have been fetc
 though its presence does not necessarily indicated that there are _more_ resources to be
 fetched. The next page may be empty (but then would `next_page_token` would be `null` to
 confirm that there are no more resources).
+
+Pass `with_interaction_dates=true` as a query parameter to include dates of the most
+recent and upcoming interactions with organizations. When this parameter is included,
+organizations with no interactions will not be returned in the response.
 
 > Example Request
 
@@ -123,6 +139,7 @@ curl "https://api.affinity.co/organizations?term=affinity&page_token=eyJwYXJhbXM
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
 term | string | false | A string used to search all the organizations in your team's address book. This could be a name or a domain name.
+with_interaction_dates | boolean | false | When true, interaction dates will be present on the returned resources. Only organizations that have interactions will be returned.
 page_size | number | false | How many results to return per page. (Default is the maximum value of 500.)
 page_token | string | false | The `next_page_token` from the previous response required to retrieve the next page of results.
 
@@ -130,7 +147,8 @@ page_token | string | false | The `next_page_token` from the previous response r
 An object with two fields: `organizations` and `next_page_token`. `organizations` maps to
 an array of all the organization resources that match the search criteria.
 `next_page_token` includes a token to be sent along with the next request as the
-`page_token` parameter to fetch the next page of results.
+`page_token` parameter to fetch the next page of results. When `with_interaction_dates` is
+passed in the returned resources will have `interaction_dates` fields.
 
 ## Get a specific organization
 
@@ -171,6 +189,7 @@ Fetches an organization with a specified `organization_id`.
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
 organization_id | integer | true | The unique id of the organization that needs to be retrieved.
+with_interaction_dates | boolean | false | When true, interaction dates will be present on the returned resources.
 
 ### Returns
 The organization object corresponding to the `organization_id`.
