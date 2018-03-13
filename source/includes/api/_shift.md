@@ -262,9 +262,17 @@ Response: On success, a `message` attribute will provide a brief notification me
 <span class="tryit" id="shift-confirm-tryit"></span>
 Confirms a shift.
 
-Required parameter: `id`.
+#### Required parameter
 
-Response: On success, a `message` attribute will provide a brief notification message. If the shift had a count > 1, a new shift object will have been created and the id of the new shift will also be returned.
+`id`: ID of the shift to be assigned.
+
+#### Optional parameters
+
+`covering_member` or `external_covering_member`: Assign the specified user to the shift (rather than assigning the current user). Only available to workgroup managers.
+
+#### Response
+
+On success, a `message` attribute will provide a brief notification message. If the shift had a count > 1, a new shift object will have been created and the id of the new shift will also be returned.
 
 ### shift.create
 
