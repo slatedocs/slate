@@ -12,6 +12,7 @@ includes:
   - lists
   - list-entries
   - persons
+  - relationship-strengths
   - organizations
   - entity-values
   - notes
