@@ -16,7 +16,8 @@ When the GitHub integration is enabled, Scout annotates [deploys](#deploy-tracin
 
 ![deploy tracking](deploy_tracking.png)
 
-### Configuration
+<h3 id="github-configuration">Configuration</h3>
+
 
 The GitHub integration is an __app-specific__ integration, authenticated via OAuth. After authenticating, choose the Git repository name and branch name used for your application.
 
@@ -34,7 +35,7 @@ When the Rollbar integration is enabled, Scout displays errors from the app's as
 
 When the error count is in <span style="color:#fff;background:#f0592a;padding: 2px">orange</span>, a new error has appeared in the current timeframe. When the error count is in <span style="background:#ccc;padding:2px">gray</span>, older errors are continuing in this timeframe.
 
-### Configuration
+<h3 id="rollbar-configuration">Configuration</h3>
 
 The Rollbar configuration is an __app-specific__ integration, configured by providing a read-only Rollbar __Project Access Token__ (not an Account Access Token) in the app settings within Scout.
 

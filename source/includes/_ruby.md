@@ -907,7 +907,7 @@ Scout runs on Heroku without any special configuration. When Scout detects that 
 * Logging is set to `STDOUT` vs. logging to a file. Log messages are prefixed with `[Scout]` for easy filtering.
 * The dyno name (ex: `web.1`) is reported vs. the dyno hostname. Dyno hostnames are dynamically generated and don't have any meaningful information.
 
-### Configuration
+<h3 id="heroku-configuration">Configuration</h3>
 
 Scout can be configured via environment variables. This means you can use `heroku config:set` to configure the agent. For example, you can set the application name that appears in the Scout UI with:
 
