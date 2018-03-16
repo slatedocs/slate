@@ -165,7 +165,7 @@ qlitics('track', 'story-share', {
 ### story-element-action
    String. The user interaction being tracked with a [story element](./stories-cards-and-elements). The value will depend on the element type and iteraction being recorded.
 
-   - For the `youtube` story element, action can be one of the following
+   - For the `video` story element, action can be one of the following:
     - `play` when the video starts playing or when playback is resumed
     - `pause` when the video playback has been paused
     - `complete` when the video has finished playing

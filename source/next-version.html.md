@@ -677,7 +677,7 @@ Example Response
 
 **Description**
 
-Sends multiple requests in a single API request.
+Returns multiple responses in a single API request.
 
 ## /api/v1/collections/{slug}
 
@@ -1411,7 +1411,7 @@ As a prerequisite to fetch the instant articles, the publisher front-end should 
 
 None.
 
-## /api/v1/amp/story?slug={slug}
+## /api/v1/amp/story/
 
 ```
 Example Request
@@ -1421,11 +1421,13 @@ $ curl -X GET "http://sketches.quintype.com/api/v1/amp/story?slug=international/
 ```
 **Description**
 
-Generates a custom AMP page based on the story slug.
+Returns the story in AMP format. The output contains information associated with that story.
 
 **Input Parameters**
 
-None.
+| Name | Data Type | Description|
+|--|--|--|
+|slug| string| The slug for the desired story|
 
 <!--#(H1) this is testing only
 
