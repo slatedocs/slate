@@ -111,10 +111,13 @@ Special Thanks
 - [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
 
 
-For Andrew to deploy
+To deploy
 --------------------
-Make sure to fetch the AWS credentials using MFA and copy them to `~/.aws/credentials` as described in the last bullet point of this section: https://github.com/affinity-team/infrastructure-secrets#accessing-aws-from-the-command-line.
+1. Make sure to fetch the AWS credentials using MFA and copy them to `~/.aws/credentials` as described in the last bullet point of this section: https://github.com/affinity-team/infrastructure-secrets#accessing-aws-from-the-command-line.
 
-Then run:
+1. To build: `bundle exec middleman build --clean`
 
-`aws s3 sync build s3://api.affinity.co --delete --acl public-read --profile mfa`
+1. To upload to aws: `aws s3 sync build s3://api-docs.affinity.co --delete --acl public-read --profile mfa`
+
+1. Invalidate cache on cloudfront by following the instructions at this URL: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html#Invalidation_Requests. Type `/*` to invalidate all paths.
+
