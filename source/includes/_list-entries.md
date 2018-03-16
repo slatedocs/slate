@@ -200,7 +200,7 @@ you might want to make sure that it does not exist in the list already.
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
 list_id | integer | true | The unique id of the list whose list entries are to be retrieved.
-entity_id | integer | true| The unique id of the entity (person or company) to add to this list.
+entity_id | integer | true| The unique id of the entity (person, organization, or opportunity) to add to this list.
 creator_id | integer | false | The id of a Person resource who should be recorded as adding the entry to the list. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key.
 
 ### Returns
@@ -226,8 +226,12 @@ curl "https://api.affinity.co/lists/450/list-entries/56517" \
 
 Deletes a list entry with a specified `list_entry_id`.
 
-**Note:** This will also delete all the field values, if any, associated with the list entry.
+**Note:**
+
+1. This will also delete all the field values, if any, associated with the list entry.
 Such field values will only exist in fields specific to this list.
+2. If the list entry belongs to an Opportunity list, then the opportunity that the list
+entry is associated with will also be deleted.
 
 ### Path Parameters
 

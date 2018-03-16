@@ -65,7 +65,7 @@ Attribute | Type | Description
 --------- | ------- | -----------
 id | integer | The unique identifier of the field value object.
 field_id | integer | The unique identifier of the field the value is associated with.
-entity_id | integer | The unique identifier of the person or organization object the field value is associated with.
+entity_id | integer | The unique identifier of the person, organization, or opportunity object the field value is associated with.
 list_entry_id | integer | The unique identifier of the list entry object the field value is associated with. This only exists if the field the value is associated with is list-specific.
 value | One of many | The value attribute can take on many different types, depending on the field `value_type`. See below for reference.
 
@@ -138,7 +138,7 @@ curl "https://api.affinity.co/field-values?person_id=38706" -u :<API-KEY>
 ```
 `GET /field-values`
 
-Returns all field values attached to a `person`, `organization` or `list_entry`.
+Returns all field values attached to a `person`, `organization`, `opportunity`, or `list_entry`.
 
 ### Query Parameters
 
@@ -146,18 +146,19 @@ Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
 person_id | integer | custom* | A unique id that represents a person object whose field values are to be retrieved.
 organization_id | integer | custom* | A unique id that represents an organization object whose field values are to be retrieved.
+opportunity_id | integer | custom* | A unique id that represents an opportunity object whose field values are to be retrieved.
 list_entry_id | integer | custom* | A unique id that represents a list entry object whose field values are to be retrieved.
 
 **Note:**
 
-1. custom*: Only one of `person_id`, `organization_id`, `list_entry_id` can be specified to the endpoint.
-2. If a `person_id` or `organization_id` is specified, the endpoint returns all field values tied to these entities - including those that are associated with all list entries that
-exist for the given person or organization.
+1. custom*: Only one of `person_id`, `organization_id`, `opportunity_id`, or `list_entry_id` can be specified to the endpoint.
+2. If a `person_id`, `organization_id`, or `opportunity_id` is specified, the endpoint returns all field values tied to these entities - including those that are associated with all list entries that
+exist for the given person or organization. Opportunities can only have one list entry.
 
 
 ### Returns
 An array of all the field values associated with the supplied `person`,
-`organization` or `list_entry`.
+`organization`, `opportunity`, or `list_entry`.
 
 ## Create a new field value
 
@@ -192,7 +193,7 @@ Creates a new field value with the supplied parameters.
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
 field_id | integer | true | The unique identifier of the field (column) that the field value is associated with.
-entity_id | integer | true | The unique identifier of the entity (person or company) that the field value is associated with.
+entity_id | integer | true | The unique identifier of the entity (person, organization, or opportunity) that the field value is associated with.
 list_entry_id | integer | false | The unique identifier of the list entry (list row) that the field value is associated with. Only specify the list_entry_id if the field that the field value is associated with is list specific.
 value | custom | true | See the [field value resource](#the-field-value-resource) section for all value types. The value specified must correspond to the `value_type` of the supplied `field`.
 

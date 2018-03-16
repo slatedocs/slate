@@ -71,7 +71,7 @@ curl "https://api.affinity.co/lists" -u :<API-KEY>
   },
   {
     "id": 383,
-    "name": "My List of Companies",
+    "name": "My List of Organizations",
     "type": 1,
   },
   ...

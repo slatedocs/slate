@@ -36,7 +36,7 @@ Attribute | Type | Description
 id | integer | The unique identifier of the field object.
 name | string | The name of the field.
 allows_multiple | boolean | This determines whether multiple values can be added to a single cell for the field.
-dropdown_options | object[] | Affinity supports pre-entered dropdown options for fields of the "Ranked Dropdown" value_type. The array is empty unless there are valid dropdown options for the field of the "Ranked Dropdown" value type.  
+dropdown_options | object[] | Affinity supports pre-entered dropdown options for fields of the "Ranked Dropdown" value_type. The array is empty unless there are valid dropdown options for the field of the "Ranked Dropdown" value type.
 value_type | integer | This field describes what values can be associated with the field. This can be one of many values, as described in the table below.
 
 ### Field Value Types
@@ -50,7 +50,7 @@ It does not support updating, deleting, or creating fields. Modifying or
 creating an field must be done through the web product.
 
 For accessing person global fields, see the [Person Fields](#get-global-fields) endpoint.
-For accessing company global fields, see the [Company Fields](#get-global-fields33) endpoint.
+For accessing organization global fields, see the [Organization Fields](#get-global-fields33) endpoint.
 For accessing list specific fields on a list, see the [Specific List](#get-a-specific-list) endpoint.
 
 

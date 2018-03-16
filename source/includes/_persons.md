@@ -101,13 +101,13 @@ The search term can be part of an email address, a first name or a last name.
 This result is paginated. An initial request returns an object with two fields: `persons`
 and `next_page_token`. `persons` contains an array of person resources. The value of
 `next_page_token` should be sent as the query parameter `page_token` in another request to
-retrieve the next page of results. While paginating through results each request must have
-identical query parameters other than the changing `page_token`, otherwise an `Invalid
+retrieve the next page of results. While paginating through results, each request must have
+identical query parameters other than the changing `page_token`. Otherwise, an `Invalid
 page_token variable` error will be returned.
 
 The absence of a `next_page_token` indicates that all the records have been fetched,
-though its presence does not necessarily indicated that there are _more_ resources to be
-fetched. The next page may be empty (but then would `next_page_token` would be `null` to
+though its presence does not necessarily indicate that there are _more_ resources to be
+fetched. The next page may be empty (but then `next_page_token` would be `null` to
 confirm that there are no more resources).
 
 Pass `with_interaction_dates=true` as a query parameter to include dates of the most

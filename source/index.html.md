@@ -14,6 +14,7 @@ includes:
   - persons
   - relationship-strengths
   - organizations
+  - opps
   - entity-values
   - notes
   - additional-materials
