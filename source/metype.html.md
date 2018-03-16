@@ -1,5 +1,5 @@
 ---
-title: AccessType API Documentation
+title: Metype API Documentation
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -10,9 +10,9 @@ toc_footers:
 search: true
 ---
 
-# Introduction To MeType
+# Introduction To Metype
 
-Metype is a platform for increasing engagement. It can be embedded with any web page or mobile app.
+Metype is a platform for increasing user engagement. It can be embedded with any web page or mobile app.
 
 ## Terminology
 * Realm
