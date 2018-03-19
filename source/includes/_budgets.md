@@ -13,7 +13,9 @@ RestClient.post(
       name: 'Test',
       currency_id: 1,
       creator_id: 1,
-      allow_anyone_to_approve_a_po: false
+      allow_anyone_to_approve_a_po: false,
+      department_ids: [1,4],
+      approver_ids: [1,2]
     }
   },
   headers = {
@@ -32,8 +34,10 @@ curl https://app.rubberstamp.io/api/v1/budgets
   -d "budget[amount]=100.0"
   -d "budget[name]=Test"
   -d "budget[currency_id]=1"
-  -d "budget[creator_id=1]"
+  -d "budget[creator_id]=1"
   -d "budget[allow_anyone_to_approve_a_po]=false"
+  -d "budget[department_ids]=[1,4]"
+  -d "budget[approvers_ids]=[1,2]"
 ```
 
 > The above command returns JSON structured like this:
@@ -59,6 +63,14 @@ curl https://app.rubberstamp.io/api/v1/budgets
 
 Create a new Budget and returns the Budget object that is created.
 
+### Include associated departments and approvers
+
+To add approvers to this you can pass `approver_ids` which expect array of
+approver ids in the POST request.
+
+And to add departments you can pass `department_ids` which expect array of
+department ids in the POST request.
+
 ### HTTP Request
 
 `POST https://app.rubberstamp.io/api/v1/budgets`
@@ -78,6 +90,8 @@ Create a new Budget and returns the Budget object that is created.
 | budget[allow_anyone_to_approve_a_po] | boolean | Allow anyone to  approve a PO? |
 | budget[start_date]                   | date    | Budget start date              |
 | budget[end_date]                     | date    | Budget end date                |
+| budget[approver_ids]                 | Array   | Array of approver ids          |
+| budget[department_ids]               | Array   | Array of department ids        |
 
 
 
