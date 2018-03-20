@@ -134,3 +134,44 @@ We typically respond within a couple of hours during the business day.
   </tbody>
 </table>
 
+<h2 id="python-logging">Logging</h2>
+
+To log Scout agent output in your Django application, copy the following into your `settings.py` file:
+
+```python
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'stdout': {
+            'format': '%(asctime)s %(levelname)s %(message)s',
+            'datefmt': '%Y-%m-%dT%H:%M:%S%z',
+        },
+    },
+    'handlers': {
+        'stdout': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'stdout',
+        },
+        'scout_apm': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'scout_apm_debug.log',
+        },
+    },
+    'root': {
+        'handlers': ['stdout'],
+        'level': os.environ.get('LOG_LEVEL', 'DEBUG'),
+    },
+    'loggers': {
+        'scout_apm': {
+            'handlers': ['scout_apm'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+```
+
+If `LOGGING` is already defined, merge the above into the existing Dictionary.
+
