@@ -15,5 +15,6 @@ end
 
 task :sync do
   puts 'Syncing files to kudos web'
-  system('rsync -av ./build/ ../kudos/public/api-docs/')
+  system('rsync -av ./build/ ../kudos/public/api_docs/')
+  system('mv ../kudos/public/api_docs/index.html ../kudos/app/views/api_docs/client_api/index.html')
 end

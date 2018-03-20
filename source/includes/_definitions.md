@@ -29,7 +29,7 @@ A Kudos message is sent from a user, to one or more users
     }
   ]
 }
-``` 
+```
 ```shell
 {
   "sender": {
@@ -53,15 +53,17 @@ A Kudos message is sent from a user, to one or more users
     }
   ]
 }
-``` 
- 
+```
+
 | Attribute | Description | Required | Type |
 | ---------- | ----------- | -------- | ---- |
 |sender| The person sending the Kudos message  |Yes|[user](#user)|
 |recipients| One or more persons or groups receiving the Kudos message |Yes|\[[user](#user)\]|
-|message| The contents of the Kudos message|Yes|[message](#message)| 
-|level|The level of Kudos given by the message. This enumeration should be one of thank_you, good_job, impressive, or exceptional|Yes|enum|
+|message| The contents of the Kudos message|Yes|[message](#message)|
+|level|The level of Kudos given by the message. This enumeration should be one of thank_you, good_job, impressive, exceptional or award|Yes|enum|
 |qualities|One or more values or characteristics|Yes|\[[quality](#quality)\]|
+|badge_name|If the level of Kudos is award, specify the name of the badge to be attached|No|string|
+|points|If the level of Kudos is award, specify a custom point value|No|integer|
 
 ## Message
 
@@ -73,13 +75,13 @@ this object will have additional attributes, like tags, links, cc's, badges, etc
 {
   "body": "You did a good job"
 }
-``` 
+```
 ```shell
 {
   "body": "You did a good job"
 }
-``` 
- 
+```
+
 | Attributes | Description | Required | Type |
 | ---------- | ----------- | -------- | ---- |
 |body| The text of the Kudos message  |Yes|string|
@@ -93,14 +95,14 @@ skills for which your recipient(s) have demonstrated.
   "kind": "name",
   "value": "Skillful"
 }
-``` 
+```
 ```shell
 {
   "kind": "name",
   "value": "Skillful"
 }
-``` 
- 
+```
+
 | Attributes | Description | Required | Type |
 | ---------- | ----------- | -------- | ---- |
 |kind| At the moment, this enumeration consists of one choice - name |Yes|enum|

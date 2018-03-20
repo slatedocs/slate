@@ -24,7 +24,8 @@ docker run --rm -v $PWD:/usr/src/app/source -w /usr/src/app/source kudos-slate b
 Copies (syncs changes) the build files over to the appropriate public directory in the Kudos web app
 
 ```bash
-rsync -av ./build/ ../kudos/public/api-docs/
+rsync -av ./build/ ../kudos/public/api_docs/
+mv ../kudos/public/api_docs/index.html ../kudos/app/views/api_docs/client_api/index.html
 ```
 
 ## Rake tasks

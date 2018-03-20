@@ -4,10 +4,10 @@
 
 ```shell
 # API Key Header
-$ curl -i -X POST -H 'Content-Type: application/json' -H 'apikey: your_key_here' https://client-api.kudosnow.com/v1/kudos --data '{}'
+$ curl -i -X POST -H 'Content-Type: application/json' -H 'apikey: your_key_here' https://api-client.kudosnow.com/v1/kudos --data '{}'
 
 # API Key Query Param
-$ curl -i -X POST -H 'Content-Type: application/json' --url 'https://client-api.kudosnow.com/v1/kudos?apikey=your_key_here' --data '{}'
+$ curl -i -X POST -H 'Content-Type: application/json' --url 'https://api-client.kudosnow.com/v1/kudos?apikey=your_key_here' --data '{}'
 ```
 ```javascript
 var request = require('request');
