@@ -2,7 +2,7 @@
 
 <aside class="notice">Python Monitoring is in our early access program. <a href="https://docs.google.com/forms/d/e/1FAIpQLSfZtTYaAtbbAveQ5j2wcR5UJeDnH5KUiHc6DwnH1Qjk_OBtYA/viewform" target="_blank">Signup for access</a>.</aside>
 
-Scout's Python agent auto-instruments Django applications, SQL queries, and more.
+Scout's Python agent auto-instruments Django applications, SQL queries, and more. Source code and issues can be found on the [scout_apm_python](https://github.com/scoutapp/scout_apm_python) GitHub repository.
 
 <h2 id="python-requirements">Requirements</h2>
 
