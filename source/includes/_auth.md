@@ -13,7 +13,7 @@ $ curl -i -X POST -H 'Content-Type: application/json' --url 'https://api-client.
 var request = require('request');
 
 var options = {
-  uri: 'https://clientapi.kudosnow.com/v1/kudos',
+  uri: 'https://api-client.kudosnow.com/v1/kudos',
   method: 'POST',
   headers: {
     "apikey": "your_key_here"

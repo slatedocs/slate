@@ -5,7 +5,7 @@
 This endpoint creates a Kudos message.
 
 ```shell
-$ curl -i -X POST -H 'Content-Type: application/json' --url 'https://clientapi.kudosnow.com/v1/kudos?apikey=your_key_here' 
+$ curl -i -X POST -H 'Content-Type: application/json' --url 'https://api-client.kudosnow.com/v1/kudos?apikey=your_key_here' 
     --data '{
               "sender": {
                 "kind": "email",
@@ -33,7 +33,7 @@ $ curl -i -X POST -H 'Content-Type: application/json' --url 'https://clientapi.k
 var request = require('request');
 
 var options = {
-  uri: 'https://clientapi.kudosnow.com/v1/kudos',
+  uri: 'https://api-client.kudosnow.com/v1/kudos',
   method: 'POST',
   headers: {
     "apikey": "your_key_here"
