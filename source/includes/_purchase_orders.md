@@ -387,7 +387,7 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1'
       "base_gross_amount": "44.564375",
       "gross_usd_amount": "50.55",
       "product_id": null,
-      "received_quantity": null,
+      "received_quantity": 0.0,
       "custom_field_values": []
     }
   ],
