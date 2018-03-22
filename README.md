@@ -5,7 +5,6 @@
 </p>
 
 <p align="center">Slate helps you create beautiful, intelligent, responsive API documentation.</p>
-
 <p align="center"><img src="https://raw.githubusercontent.com/lord/img/master/screenshot-slate.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
 
 <p align="center"><em>The example above was created with Slate. Check it out at <a href="https://lord.github.io/slate">lord.github.io/slate</a>.</em></p>
@@ -72,7 +71,7 @@ Companies Using Slate
 ---------------------------------
 
 * [NASA](https://api.nasa.gov)
-* [IBM](https://docs.cloudant.com/api.html)
+* [IBM](https://console.bluemix.net/docs/services/Cloudant/getting-started.html)
 * [Sony](http://developers.cimediacloud.com)
 * [Best Buy](https://bestbuyapis.github.io/api-documentation/)
 * [Travis-CI](https://docs.travis-ci.com/api/)
