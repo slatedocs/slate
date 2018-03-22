@@ -12,50 +12,80 @@ includes:
   - introduction
 
   - schema
-  - alerts
-  - alert_types
+  - action_type_product_type_linker
+  - action_types
   - alert_type_anomaly_type_linker
+  - alert_type_entity_anti_linker
   - alert_type_product_type_linker
+  - alert_type_state_type_linker
+  - alert_types
+  - alerts
+  - analysis_history
   - anomalies
-  - anomaly_types
   - anomaly_type_product_type_linker
-  - battery_failures
-  - battery_failure_types
+  - anomaly_types
+  - appliance_action_type_appliance_type_linker
+  - appliance_action_types
+  - appliance_part_type_replacement_linker
+  - appliance_part_types
+  - appliance_repair_appliance_action_type_linker
+  - appliance_repair_appliance_part_type_linker
+  - appliance_repair_appliance_symptom_linker
+  - appliance_repairs
+  - appliance_symptom_appliance_type_linker
+  - appliance_symptoms
+  - appliance_types
+  - appliances
   - battery_failure_battery_failure_type_linker
+  - battery_failure_types
+  - battery_failures
+  - channels
   - connections
+  - customer_entity_linker
+  - customer_product_history
+  - customers
+  - duration_payment_tokens
   - enable_history
   - entities
   - hubs
   - latest_softwares
   - networks
   - parameter_types
-  - parts
+  - parameters
   - part_parameters
   - part_product_linker
-  - part_types
+  - part_type_categories
   - part_type_product_type_linker
   - part_type_replacement_linker
-  - products
-  - product_parameters
+  - part_types
+  - parts
   - product_entity_linker
   - product_notes
+  - product_parameters
   - product_software_linker
-  - product_types
   - product_type_software_version_type_linker
-  - repairs
+  - product_types
+  - products
+  - repair_action_type_linker
+  - repair_part_type_linker
   - repair_symptom_type_linker
+  - repair_workflow_events
+  - repairs
   - rtc_connection_history
-  - rtc_dead_letter
-  - sim_providers
+  - rtc_dead_letters
+  - rtc_message_history
+  - serials
+  - shops
   - sim_part_type_sim_provider_linker
   - sim_provider_network_linker
+  - sim_providers
   - sms_history
-  - shops
   - software_version_types
-  - states
   - state_types
-  - symptom_types
+  - states
+  - subscribers
   - symptom_type_product_type_linker
+  - symptom_types
   - tamper_enable_history
 
   - product_actions

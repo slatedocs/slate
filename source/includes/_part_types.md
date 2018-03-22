@@ -11,7 +11,7 @@ __name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-n
 __description__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __erp_code__ <br><font color="DarkGray">_varchar(6)_</font> <font color="Crimson"></font> | 
 __<a href="/#part-type-category">part_type_category_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
-__serial_number_category__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["known", "unknown", "hidden"]</font>
+__serial_number_category__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["known", "unknown", "hidden"]</font>
 __parameter_types__ <br><font color="DarkGray">_array_</font> <font color="Crimson"></font> | 
 __part_type_metadata_validator__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
@@ -24,9 +24,10 @@ __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modifie
 Relationship | Description
 -------------:|:------------
 __parts__ | The associated parts
-__repair_part_type_linker__ | The associated repair_part_type_linker
+__old_part_type_linkers__ | The associated old_part_type_linkers
+__new_part_type_linkers__ | The associated new_part_type_linkers
 __replacements__ | The associated replacements
-__existing__ | The associated existing
+__existings__ | The associated existings
 
 
 <hr>

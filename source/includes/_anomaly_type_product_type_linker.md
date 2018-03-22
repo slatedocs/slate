@@ -1,5 +1,5 @@
 ## <u>Anomaly Type Product Type Linker</u>
-This description is not yet complete it should be filled in!
+Specifies which anomaly-types can be raised on each product-types
 
 
 ### <u>The anomaly_type_product_type_linker object</u>
@@ -26,7 +26,7 @@ Relationship | Description
 > An example POST request. Note that `anomaly_type_product_type_linker_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "https://smartapi.bboxx.co.uk/v1/anomaly_type_product_type_linker"
+    url = "http://smartapi.bboxx.co.uk/v1/anomaly_type_product_type_linker"
     data = json.dumps({
 		"anomaly_type_id": 1,
 		"product_type_id": 1,
@@ -53,7 +53,7 @@ Relationship | Description
     > We can retrieve the `anomaly_type_product_type_linker` created by specifying its `anomaly_type_product_type_linker_id` in the request url:
 
 ```python
-    url = 'https://smartapi.bboxx.co.uk/v1/anomaly_type_product_type_linker/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/anomaly_type_product_type_linker/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -75,7 +75,7 @@ Relationship | Description
 > We can retrieve all `anomaly_type_product_type_linker` by omitting the `anomaly_type_product_type_linker_id`:
 
 ```python
-    url = 'https://smartapi.bboxx.co.uk/v1/anomaly_type_product_type_linker'
+    url = 'http://smartapi.bboxx.co.uk/v1/anomaly_type_product_type_linker'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -101,7 +101,7 @@ Relationship | Description
 > We can edit the newly created `anomaly_type_product_type_linker` with a `PUT` request:
 
 ```python
-    url = 'https://smartapi.bboxx.co.uk/v1/anomaly_type_product_type_linker/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/anomaly_type_product_type_linker/1'
     data = json.dumps({
 		"anomaly_type_id": 2,
 		"product_type_id": 2,
@@ -128,7 +128,7 @@ Relationship | Description
 > If a user has `SYSTEM` permissions they can delete the `anomaly_type_product_type_linker`
 
 ```python
-    url = 'https://smartapi.bboxx.co.uk/v1/anomaly_type_product_type_linker/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/anomaly_type_product_type_linker/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

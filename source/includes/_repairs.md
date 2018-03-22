@@ -13,6 +13,8 @@ __refurbishment_date__ <br><font color="DarkGray">_date_</font> <font color="Cri
 __measured_battery_capacity__ <br><font color="DarkGray">_float_</font> <font color="Crimson"></font> | 
 __process__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["Repair and Return", "Replaced", "Repossessed", "Broken on Arrival"]</font>
 __pending_status__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson"></font> | 
+__workflow_name__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__workflow_state__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -43,6 +45,8 @@ __battery_failure__ | The associated battery_failure
 		"measured_battery_capacity": 1.0,
 		"process": "test",
 		"pending_status": True,
+		"workflow_name": "test",
+		"workflow_state": "test",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -61,6 +65,8 @@ __battery_failure__ | The associated battery_failure
 		"measured_battery_capacity": 1.0,
 		"process": "test",
 		"pending_status": True,
+		"workflow_name": "test",
+		"workflow_state": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -87,6 +93,8 @@ __battery_failure__ | The associated battery_failure
 		"measured_battery_capacity": 1.0,
 		"process": "test",
 		"pending_status": True,
+		"workflow_name": "test",
+		"workflow_state": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -130,6 +138,8 @@ __battery_failure__ | The associated battery_failure
 		"measured_battery_capacity": 2.0,
 		"process": "changed",
 		"pending_status": False,
+		"workflow_name": "changed",
+		"workflow_state": "changed",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -147,6 +157,8 @@ __battery_failure__ | The associated battery_failure
 		"measured_battery_capacity": 2.0,
 		"process": "changed",
 		"pending_status": False,
+		"workflow_name": "changed",
+		"workflow_state": "changed",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

@@ -1,5 +1,5 @@
 ## <u>Anomaly</u>
-This description is not yet complete it should be filled in!
+Contains all of the anomalies raised on every product.
 
 
 ### <u>The anomaly object</u>
@@ -28,7 +28,7 @@ Relationship | Description
 > An example POST request. Note that `anomaly_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "https://smartapi.bboxx.co.uk/v1/anomalies"
+    url = "http://smartapi.bboxx.co.uk/v1/anomalies"
     data = json.dumps({
 		"anomaly_type_id": 1,
 		"product_imei": "000000000000000",
@@ -59,7 +59,7 @@ Relationship | Description
     > We can retrieve the `anomaly` created by specifying its `anomaly_id` in the request url:
 
 ```python
-    url = 'https://smartapi.bboxx.co.uk/v1/anomalies/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/anomalies/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -83,7 +83,7 @@ Relationship | Description
 > We can retrieve all `anomalies` by omitting the `anomaly_id`:
 
 ```python
-    url = 'https://smartapi.bboxx.co.uk/v1/anomalies'
+    url = 'http://smartapi.bboxx.co.uk/v1/anomalies'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -109,7 +109,7 @@ Relationship | Description
 > We can edit the newly created `anomaly` with a `PUT` request:
 
 ```python
-    url = 'https://smartapi.bboxx.co.uk/v1/anomalies/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/anomalies/1'
     data = json.dumps({
 		"anomaly_type_id": 2,
 		"product_imei": "999999999999999",
@@ -140,7 +140,7 @@ Relationship | Description
 > If a user has `SYSTEM` permissions they can delete the `anomaly`
 
 ```python
-    url = 'https://smartapi.bboxx.co.uk/v1/anomalies/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/anomalies/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

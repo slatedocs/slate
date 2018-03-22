@@ -28,44 +28,9 @@ Relationship | Description
 <hr>
 <br>
 
-> An example POST request. Note that `part_product_linker_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> `POST` requests are not allowed at this endpoint
 
-```python
-    url = "https://smartapi.bboxx.co.uk/v1/part_product_linker"
-    data = json.dumps({
-		"part_id": 1,
-		"product_imei": "000000000000000",
-		"date_added": "2000-01-01 00:00:00",
-		"date_removed": "2000-01-01 00:00:00",
-		"added_repair_id": 1,
-		"removed_repair_id": 1,
-		"replaced_part_id": 1,
-		})
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
-
-    r = requests.post(url=url, data=data, headers=headers)
-
-    r
-    >>> <Response 201>
-
-    r.json()
-
-    >>> {
-		"part_product_linker_id": 1
-		"part_id": 1,
-		"product_imei": "000000000000000",
-		"date_added": "2000-01-01 00:00:00",
-		"date_removed": "2000-01-01 00:00:00",
-		"added_repair_id": 1,
-		"removed_repair_id": 1,
-		"replaced_part_id": 1,
-		"created_at": "2000-01-01 00:00:00"
-		"created_by": "test.user@bboxx.co.uk"
-		"modified_at": None
-	}
-```
-
-    > We can retrieve the `part_product_linker` created by specifying its `part_product_linker_id` in the request url:
+> We can retrieve the `part_product_linker` created by specifying its `part_product_linker_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/part_product_linker/1'
@@ -174,15 +139,7 @@ Relationship | Description
 
 
 ### POST
-     | value
- ----:|:---
-endpoint | `/v1/part_product_linker`
-method | `POST`
-url_params | <font color="DarkGray">N/A</font>
-query params | <font color="DarkGray">N/A</font>
-body | JSON-formatted dictionary with the details of the `part_product_linker` that you wish to create
-permissions | <font color="Crimson">__`SYSTEM`__</font>
-response | `201`
+`POST` requests are not allowed at this endpoint
 
 ### GET
      | value

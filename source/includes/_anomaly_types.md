@@ -1,5 +1,5 @@
 ## <u>Anomaly Type</u>
-This description is not yet complete it should be filled in!
+Contains details on the different anomaly types that can be raised.
 
 
 ### <u>The anomaly_type object</u>
@@ -37,7 +37,7 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 > An example POST request. Note that `anomaly_type_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
-    url = "https://smartapi.bboxx.co.uk/v1/anomaly_types"
+    url = "http://smartapi.bboxx.co.uk/v1/anomaly_types"
     data = json.dumps({
 		"name": "test",
 		"version": 1,
@@ -80,7 +80,7 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
     > We can retrieve the `anomaly_type` created by specifying its `anomaly_type_id` in the request url:
 
 ```python
-    url = 'https://smartapi.bboxx.co.uk/v1/anomaly_types/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -110,7 +110,7 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 > We can retrieve all `anomaly_types` by omitting the `anomaly_type_id`:
 
 ```python
-    url = 'https://smartapi.bboxx.co.uk/v1/anomaly_types'
+    url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -136,7 +136,7 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 > We can edit the newly created `anomaly_type` with a `PUT` request:
 
 ```python
-    url = 'https://smartapi.bboxx.co.uk/v1/anomaly_types/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types/1'
     data = json.dumps({
 		"name": "changed",
 		"version": 2,
@@ -179,7 +179,7 @@ __anomaly_type_product_type_linker__ | The associated anomaly_type_product_type_
 > If a user has `SYSTEM` permissions they can delete the `anomaly_type`
 
 ```python
-    url = 'https://smartapi.bboxx.co.uk/v1/anomaly_types/1'
+    url = 'http://smartapi.bboxx.co.uk/v1/anomaly_types/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)
