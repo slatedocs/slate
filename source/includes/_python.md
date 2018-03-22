@@ -1,6 +1,6 @@
 # Python Agent
 
-<aside class="notice">Python Monitoring is in our early access program. <a href="https://docs.google.com/forms/d/e/1FAIpQLSfZtTYaAtbbAveQ5j2wcR5UJeDnH5KUiHc6DwnH1Qjk_OBtYA/viewform" target="_blank">Signup for access</a>.</aside>
+<aside class="notice">Python Monitoring is in our tech preview program.</aside>
 
 Scout's Python agent auto-instruments Django applications, SQL queries, and more. Source code and issues can be found on the [scout_apm_python](https://github.com/scoutapp/scout_apm_python) GitHub repository.
 
@@ -35,8 +35,8 @@ pip install scout_apm
 <pre style="width:500px">
 # settings.py
 INSTALLED_APPS = (
+  'scout_apm.django', # should be listed first
   # ... other apps ...
-  'scout_apm.django',
 )
 
 # Scout settings
@@ -70,6 +70,18 @@ Not seeing data? Email support@scoutapp.com with:
 * Your Django version
 
 We typically respond within a couple of hours during the business day.
+
+<h2 id="python-instrumented-libraries">Instrumented Libraries</h2>
+
+Scout auto-instruments the following Python libraries:
+
+* Django
+  * Middleware
+  * Templates (compiling & rendering)
+  * Template blocks
+  * SQL queries
+
+More to come - suggest others in the [scout_apm_python](https://github.com/scoutapp/scout_apm_python) GitHub repo.  
 
 <h2 id="python-configuration">Configuration Reference</h2>
 
