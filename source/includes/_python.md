@@ -48,7 +48,7 @@ SCOUT_NAME    = "[A FRIENDLY NAME FOR YOUR APP]"
 <p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> instead of providing these settings in <code>settings.py</code>.</p>
 
 <p>
-If you've installed Scout via the Heroku Addon, the provisioning process automatically sets the required settings via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. A configuration file isn't required.
+If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
 </p>
       </td>
     </tr>
