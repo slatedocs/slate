@@ -248,14 +248,6 @@ DevTrace is our development profiler: it's included with our Ruby and Elixir lib
 
 View our [Ruby](#ruby-devtrace) and [Elixir](#elixir-devtrace) instructions.
 
-## Server Timing
-
-View performance metrics (time spent in ActiveRecord, Redis, etc) for each of your app's requests in Chrome’s Developer tools with the [server_timing](https://github.com/scoutapp/ruby_server_timing) gem. Production-safe.
-
-![server timing](https://s3-us-west-1.amazonaws.com/scout-blog/ruby_server_timing.png)
-
-Server Timing is supported by the Ruby agent. For install instructions and configuration options, see [server_timing](https://github.com/scoutapp/ruby_server_timing) on GitHub.
-
 ## Chart Embeds
 
 You can embed an app's overview chart inside another web page (ex: an internal key metrics dashboard):

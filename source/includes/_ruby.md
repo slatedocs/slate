@@ -521,6 +521,14 @@ To enable [DevTrace](#devtrace), our in-browser profiler:
   </tbody>
 </table>
 
+<h2 id="ruby-server-timing">Server Timing</h2>
+
+View performance metrics (time spent in ActiveRecord, Redis, etc) for each of your app's requests in Chrome’s Developer tools with the [server_timing](https://github.com/scoutapp/ruby_server_timing) gem. Production-safe.
+
+![server timing](https://s3-us-west-1.amazonaws.com/scout-blog/ruby_server_timing.png)
+
+For install instructions and configuration options, see [server_timing](https://github.com/scoutapp/ruby_server_timing) on GitHub.
+
 ## Request Queuing
 
 Scout can measure the time it takes a request to reach your Rails app from farther upstream (a load balancer or web server). This appears in Scout as "Request Queuing" and provides an indication of your application's capacity. Large request queuing time is an indication that your app needs more capacity.

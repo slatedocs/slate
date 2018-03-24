@@ -47,16 +47,8 @@ Tailored instructions are provided within our user interface. General instructio
     <p class="instruct">
       <span class="step">C</span>Integrate into your Phoenix app.
     </p>
-    <p class="smaller"><code>config/config.exs</code>:
-    </p>
-    <pre class="terminal">
-# config/config.exs
-<span>import_config "scout_apm.exs"</span>
 
-config :your_app, YourApp.Repo,
-  <span>loggers: [{Ecto.LogEntry, :log, []},
-            {ScoutApm.Instruments.EctoLogger, :log, []}]</span></pre>
-    <p class="smaller"><code>lib/your_app_web.ex</code>:
+    <p class="smaller">Instrument Controllers. In <code>lib/your_app_web.ex</code>:
     </p>
     <pre class="terminal"># lib/your_app_web.ex
 defmodule YourApp.Web do
@@ -65,6 +57,25 @@ defmodule YourApp.Web do
       use Phoenix.Controller
       <span>use ScoutApm.Instrumentation</span>
       ...</pre>
+
+    <p class="smaller">Instrument Ecto queries. In <code>config/config.exs</code>:</p>
+    <pre class="terminal">
+# config/config.exs
+<span>import_config "scout_apm.exs"</span>
+
+<span>config :your_app, YourApp.Repo,
+  loggers: [{Ecto.LogEntry, :log, []},
+            {ScoutApm.Instruments.EctoLogger, :log, []}]</span></pre>
+
+
+    <p class="smaller">Instrument Templates. In <code>config/config.exs</code>:
+    </p>
+<pre class="terminal">
+# config/config.exs
+<span>config :phoenix, :template_engines,
+  eex: ScoutApm.Instruments.EExEngine,
+  exs: ScoutApm.Instruments.ExsEngine</span>
+</pre>
 
     <p class="instruct">
       <span class="step">D</span>Restart your app.
@@ -679,3 +690,12 @@ config :scout_apm,
     </tr>
   </tbody>
 </table>
+
+<h2 id="elixir-server-timing">Server Timing</h2>
+
+View performance metrics (time spent in Controller, Ecto, etc) for each of your app's requests in Chrome’s Developer tools with the [plug_server_timing](https://github.com/scoutapp/elixir_plug_server_timing) package. Production-safe.
+
+![server timing](https://s3-us-west-1.amazonaws.com/scout-blog/elixir_server_timing.png
+)
+
+For install instructions and configuration options, see [plug_server_timing](https://github.com/scoutapp/elixir_plug_server_timing) on GitHub.
