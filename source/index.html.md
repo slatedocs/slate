@@ -7,7 +7,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 search: true
 ---
 
-# Começando com API de Admissões do Quero Alunos
+# API de Admissões do Quero Alunos
 
 Bem-vindo à documentação da API de Admissões do Quero Alunos. Aqui você encontrará guias e referências sobre como utilizar nossa API. Qualquer dúvida, entre em contato pelo email api-admissoes@quero.education.
 
