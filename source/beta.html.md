@@ -2615,7 +2615,10 @@ Estrutura base das notificações:
   "data": {
     "admission": {
       "id": 12345,
-      "course_sku": "ADM-MANHA-SP",
+      "course": {
+        "id": "ADM-MANHA-SP",
+        "discount_percentage": 25.00
+      },
       "status": "initiated",
       "student": {
         "id": 394932,
@@ -2654,9 +2657,11 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
 | data | object | Objeto com informações de acordo com o tipo de evento |
 | admission | object | Objeto com dados do processo de admissão do aluno |
 | [admission] id | number | Id do processo de admissão |
-| [admission] course_sku | string | Código do curso referente a essa matrícula |
-| [admission] status | string | Status da admissão do aluno |
+| [admission] course | object | Objeto com dados do curso referente a essa matrícula |
+| [admission] status | string | Status da admissão do aluno (_neste evento o valor sempre será `pre-registered`_) |
 | [admission] student | object | Objeto com dados do aluno |
+| [course] id | string | Código do curso referente a essa matrícula |
+| [course] discount_percentage | number | Porcentagem de desconto do curso referente a essa matrícula |
 | [student] id | number | Id do aluno |
 | [student] name | string | Nome do aluno |
 | [student] cpf | string | CPF do aluno |
