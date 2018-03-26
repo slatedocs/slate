@@ -20,9 +20,9 @@ Tailored instructions are provided within our user interface. General instructio
         <span class="step">1</span>
       </td>
       <td style="padding-top: 15px">
-        <p>Install the <code>scout_apm</code> package:</p>
+        <p>Install the <code>scout-apm</code> package:</p>
 <pre style="width:500px">
-pip install scout_apm
+pip install scout-apm
 </pre>
       </td>
     </tr>
