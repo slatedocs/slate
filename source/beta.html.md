@@ -2658,10 +2658,10 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
 | admission | object | Objeto com dados do processo de admissão do aluno |
 | [admission] id | number | Id do processo de admissão |
 | [admission] course | object | Objeto com dados do curso referente a essa matrícula |
-| [admission] status | string | Status da admissão do aluno (_neste evento o valor sempre será `pre-registered`_) |
-| [admission] student | object | Objeto com dados do aluno |
 | [course] id | string | Código do curso referente a essa matrícula |
 | [course] discount_percentage | number | Porcentagem de desconto do curso referente a essa matrícula |
+| [admission] status | string | Status da admissão do aluno (_neste evento o valor sempre será `pre-registered`_) |
+| [admission] student | object | Objeto com dados do aluno |
 | [student] id | number | Id do aluno |
 | [student] name | string | Nome do aluno |
 | [student] cpf | string | CPF do aluno |
