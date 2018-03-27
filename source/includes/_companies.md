@@ -529,6 +529,82 @@ params.
 | department_id        | integer | Optional, if you want to filter approvers by department |
 
 
+## Get All Approvers
+
+```ruby
+require 'rest-client'
+
+RestClient.get(
+  'https://app.rubberstamp.io/api/v1/companies/all_approvers',
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.rubberstamp.io/api/v1/companies/all_approvers'
+  -X GET
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1,
+        "email": "admin@example.com",
+        "name": "Admin User",
+        "phone_number": "",
+        "setup_incomplete": false,
+        "employer_id": 1,
+        "authentication_token": "token",
+        "approval_limit": 1000000,
+        "companies": [
+            {
+                "id": 1,
+                "name": "ABC Corp."
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "email": "accountant@example.com",
+        "name": "Accountant User",
+        "phone_number": "",
+        "setup_incomplete": false,
+        "employer_id": 2,
+        "authentication_token": "token",
+        "approval_limit": 1000000,
+        "companies": [
+            {
+                "id": 1,
+                "name": "ABC Corp."
+            }
+        ]
+    }
+]
+```
+
+Retrieves the list of all approvers for current company regardless of auto approval routing
+
+### HTTP Request
+
+`GET https://app.rubberstamp.io/api/v1/companies/all_approvers`
+
+### URL Parameters
+
+| Params               | Type    | Description                                             |
+| ------               | ------  | -------------                                           |
+| authentication_token | headers | Authentication token                                    |
+| app_company_id       | headers | Company Id                                              |
+
+
+
 ## Invite User
 
 ```ruby
