@@ -7,7 +7,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 search: true
 ---
 
-# Começando com API de Admissões do Quero Alunos
+# API de Admissões do Quero Alunos
 
 Bem-vindo à documentação da API de Admissões do Quero Alunos. Aqui você encontrará guias e referências sobre como utilizar nossa API. Qualquer dúvida, entre em contato pelo email api-admissoes@quero.education.
 
@@ -2615,7 +2615,10 @@ Estrutura base das notificações:
   "data": {
     "admission": {
       "id": 12345,
-      "course_sku": "ADM-MANHA-SP",
+      "course": {
+        "id": "ADM-MANHA-SP",
+        "discount_percentage": 25.00
+      },
       "status": "initiated",
       "student": {
         "id": 394932,
@@ -2654,8 +2657,10 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
 | data | object | Objeto com informações de acordo com o tipo de evento |
 | admission | object | Objeto com dados do processo de admissão do aluno |
 | [admission] id | number | Id do processo de admissão |
-| [admission] course_sku | string | Código do curso referente a essa matrícula |
-| [admission] status | string | Status da admissão do aluno |
+| [admission] course | object | Objeto com dados do curso referente a essa matrícula |
+| [course] id | string | Código do curso referente a essa matrícula |
+| [course] discount_percentage | number | Porcentagem de desconto do curso referente a essa matrícula |
+| [admission] status | string | Status da admissão do aluno (_neste evento o valor sempre será `pre-registered`_) |
 | [admission] student | object | Objeto com dados do aluno |
 | [student] id | number | Id do aluno |
 | [student] name | string | Nome do aluno |
