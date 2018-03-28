@@ -891,8 +891,11 @@ RestClient.post(
   'https://app.rubberstamp.io/api/v1/purchase_orders/1/receiving_items',
   {
     purchase_order: {
-      item_ids: [1,2,3],
-      item_quantities: [10, 10, 20.00],
+      items: [
+        { id: 1, quantity: 10 },
+        { id: 2, quantity: 10 },
+        { id: 3, quantity: 20 },
+      ],
       notes: 'Item delivered successfully!',
       delivered_on: '2017-1-1'
     }
@@ -910,12 +913,12 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1/receiving_items'
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
   -H "app_company_id: 1"
-  -d "purchase_order[item_ids][]=1"
-  -d "purchase_order[item_ids][]=2"
-  -d "purchase_order[item_ids][]=3"
-  -d "purchase_order[item_quantities][]=10"
-  -d "purchase_order[item_quantities][]=10"
-  -d "purchase_order[item_quantities][]=20.00"
+  -d "purchase_order[items][0][id]=1"
+  -d "purchase_order[items][0][quantity]=10"
+  -d "purchase_order[items][1][id]=2"
+  -d "purchase_order[items][1][quantity]=10"
+  -d "purchase_order[items][2][id]=3"
+  -d "purchase_order[items][2][quantity]=20"
   -d "purchase_order[delivered_on]=2017-1-1"
   -d "purchase_order[notes]=Item delivered successfully!"
 ```
@@ -930,9 +933,6 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1/receiving_items'
 
 You can find `can_receive_item` in [Purchase Order Details](/slate/#get-purchase-order-details)
 page, This value should be true in order to allow user to receive items.
-Please make sure to pass item_ids and item_quantities in same array index.
-for example `item_ids=[1,2]` and `item_quantities=[10,20]` in this example,
-item with `id=1` have `quantity=10` and item with `id=2` have `quantity=20`.
 
 ### HTTP Request
 
@@ -946,5 +946,5 @@ item with `id=1` have `quantity=10` and item with `id=2` have `quantity=20`.
 | app_company_id       | header  | Company ID                         |
 | notes                | string  | comment/notes                      |
 | delivered_on         | string  | value must be in valid date format |
-| item_ids             | array[] | list of item ids                   |
-| item_quantities      | array[] | list of item quantities            |
+| items[][id]          | array[] | list of item ids                   |
+| items[][quantity]    | array[] | list of item quantities            |
