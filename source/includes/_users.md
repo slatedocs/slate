@@ -308,7 +308,18 @@ curl 'https://app.rubberstamp.io/api/v1/currentuser'
   "companies": [
     {
       "id": 1,
-      "name": "My Demo Company"
+      "name": "My Demo Company",
+      "membership_archived": false,
+      "is_locked": false,
+      "is_removed": false,
+      "approval_limit": 1000000,
+      "in_trial": false,
+      "roles": [
+        "companyadmin",
+        "approver",
+        "finance",
+        "teammember"
+      ]
     }
   ]
 }
@@ -316,6 +327,11 @@ curl 'https://app.rubberstamp.io/api/v1/currentuser'
 
 Retrieves the details of current logged in user. You need to supply the user's
 authentication token and company id as a header params.
+
+### Available Roles
+
+Each user can have various roles for their different companies. List of available roles are: `companyadmin`, `approver`,
+`finance`, `teammember`.
 
 ### HTTP Request
 
@@ -377,7 +393,18 @@ curl https://app.rubberstamp.io/api/v1/currentuser
   "companies": [
     {
       "id": 1,
-      "name": "My Demo Company"
+      "name": "My Demo Company",
+      "membership_archived": false,
+      "is_locked": false,
+      "is_removed": false,
+      "approval_limit": 1000000,
+      "in_trial": false,
+      "roles": [
+        "companyadmin",
+        "approver",
+        "finance",
+        "teammember"
+      ]
     }
   ]
 }
