@@ -11,6 +11,7 @@ The different sections of the Documentation are as follows:
 * [Schema](#schema) - A detailed listing of the resources available and how to access them.
 * [Product Actions](#product-actions) - A listing of the actions that a user can make for a specific product.
 * [Product Data](#product-data) - A listing of what telemetry data is recorded from each [product](#product) and how to access it.
+* [Repair Actions](#repair-actions) - A listing of the actions that a user can make for a specific repair.
 * [RTC Dead Letter Actions](#rtc-dead-letter-actions) - Endpoints that can be used to perform actions on RTC Dead Letter messages. .
 * [Custom Endpoints](#custom-endpoints) - A listing of other endpoints available to a user not specifically relating to an individual product.
 * [Notifications (Webhooks)](#notifications-web-hooks) - Information of how to receive data and updates from the SMARTSolar API

@@ -118,6 +118,10 @@ includes:
 
   - repair_actions
   - current_state
+  - send_inputs
+  - send_event
+  - irt_input_specifications
+  - irt_event_specifications
   
   - rtc_dead_letter_actions
   - rtc_import_mo_dead_letters
