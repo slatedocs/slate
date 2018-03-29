@@ -112,9 +112,17 @@ includes:
   - status_update
   - rtc_online_status
   - force_connection
+  - get_repair
 
   - product_data
 
+  - repair_actions
+  - current_state
+  - send_inputs
+  - send_event
+  - irt_input_specifications
+  - irt_event_specifications
+  
   - rtc_dead_letter_actions
   - rtc_import_mo_dead_letters
   - rtc_import_mt_reply_dead_letters
