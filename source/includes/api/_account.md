@@ -200,6 +200,28 @@ Time profile information for this account was last updated
 
 Time non-profile information for this account was last updated
 
+### account.acceptPrivacyPolicy
+
+> Request example:
+
+```JSON
+{}
+```
+> Response example:
+
+```JSON
+{
+   "id" : "1",
+   "jsonrpc" : "2.0",
+   "result" : {},
+   "seconds" : 0.08004
+}
+```
+
+<span class="tryit" id="account-acceptPrivacyPolicy-tryit"></span>
+Accepts the site privacy policy for the logged-in account. Read the policy at [https://www.shiftboard.com/privacy/](https://www.shiftboard.com/privacy/).
+
+
 ### account.create
 
 > Request example:
