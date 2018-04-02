@@ -333,6 +333,13 @@ authentication token and company id as a header params.
 Each user can have various roles for their different companies. List of available roles are: `companyadmin`, `approver`,
 `finance`, `teammember`.
 
+### Check if app_company_id is current employer id
+
+To Check if the user's mobile company is the active employer among many companies,
+you can check `current_user.employer_id === app_company_id` where current_user is
+the current logged in user in mobile app with `authentication_token` and `app_company_id`
+is the active company for that user in that mobile.
+
 ### HTTP Request
 
 `GET https://app.rubberstamp.io/api/v1/currentuser`
