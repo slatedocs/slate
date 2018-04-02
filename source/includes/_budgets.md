@@ -71,6 +71,12 @@ approver ids in the POST request.
 And to add departments you can pass `department_ids` which expect array of
 department ids in the POST request.
 
+### Date format should match `company_setting.date_format`
+
+Because we support multiple date formats, we need to send dates depending on
+`company_setting.date_format`. In this API endpoint, you need to provide proper
+date format for `start_date` and `end_date`. Please find date format in [Company Setting](/slate/#get-a-specific-company)
+
 ### HTTP Request
 
 `POST https://app.rubberstamp.io/api/v1/budgets`
