@@ -84,7 +84,7 @@ The value entered by the user would be submitted to the send_inputs endpoint lik
 ---
 ### "string" Data Type
 
-Indicates that the required value must be a string
+Indicates that the required value must be a string (intended for use with short strings, probably input via a single line text field)
 
 #### Validation Rules
 
@@ -107,6 +107,34 @@ The value entered by the user would be submitted to the send_inputs endpoint lik
 
 {<br/>
     "serial": "MC0211-999002-1"<br/>
+}
+
+
+---
+### "text" Data Type
+
+Indicates that the required value must be text (intended for use with long strings, probably input via a multi-line text area field)
+
+#### Validation Rules
+
+The following validation rules may be specified for text:
+
+* "minlength" : `<min-length-value>`
+* "maxlength" : `<max-length-value>`
+
+#### Example
+
+{<br/>
+   "ident": "termination_reason",<br/>
+   "label": "Termination Reason",<br/>
+   "data_type": "text",<br/>
+   "validation_rules": {"minlength": 10}<br/>
+}
+
+The value entered by the user would be submitted to the send_inputs endpoint like this:
+
+{<br/>
+    "termination_reason": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."<br/>
 }
 
 
