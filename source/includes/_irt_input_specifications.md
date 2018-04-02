@@ -11,6 +11,7 @@ Each input specification contains three mandatory fields:
 "int"
 "float"
 "string"
+"text"
 "datetime"
 "selection"
 
