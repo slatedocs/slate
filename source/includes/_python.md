@@ -146,6 +146,29 @@ More to come - suggest others in the [scout_apm_python](https://github.com/scout
   </tbody>
 </table>
 
+<h3 id="python-env-vars">Environment Variables</h3>
+
+You can also configure Scout APM via environment variables. _Environment variables override settings provided in your `settings.py` file._
+
+Environment variables use the same configuration names. For example, to set the organization key via environment variables:
+
+```
+export SCOUT_KEY=YOURKEY
+```
+
+<h2 id="python-environments">Environments</h2>
+
+It typically makes sense to treat each environment (production, staging, etc) as a separate application within Scout and ignore the development and test environments. Configure a unique app name for each environment as Scout aggregates data by the app name.
+
+A common approach is to set a `SCOUT_NAME` environment variable that includes the app environment:
+
+```
+export SCOUT_NAME="YOUR_APP_NAME (Staging)"
+```
+
+This will override the `SCOUT_NAME` value provided in your `settings.py` file.
+
+
 <h2 id="python-logging">Logging</h2>
 
 To log Scout agent output in your Django application, copy the following into your `settings.py` file:
