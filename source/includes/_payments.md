@@ -1,9 +1,5 @@
 # Pagamento
 
-<aside class="warning">
-Por enquanto, esta API está disponível apenas para contas beta.
-</aside>
-
 ```shell
 Pagamentos
 
