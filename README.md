@@ -1,118 +1,241 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/lord/img/master/logo-slate.png" alt="Slate: API Documentation Generator" width="226">
-  <br>
-  <a href="https://travis-ci.org/lord/slate"><img src="https://travis-ci.org/lord/slate.svg?branch=master" alt="Build Status"></a>
-</p>
+---
+title: API Reference
 
-<p align="center">Slate helps you create beautiful, intelligent, responsive API documentation.</p>
+language_tabs: # must be one of https://git.io/vQNgJ
+  - php
+  - javascript
 
-<p align="center"><img src="https://raw.githubusercontent.com/lord/img/master/screenshot-slate.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
+toc_footers:
+  - <a href='#'>Contact Anarock team for API KEY</a>
+  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
-<p align="center"><em>The example above was created with Slate. Check it out at <a href="https://lord.github.io/slate">lord.github.io/slate</a>.</em></p>
+includes:
+  - errors
 
-Features
-------------
+search: true
+---
 
-* **Clean, intuitive design** — With Slate, the description of your API is on the left side of your documentation, and all the code examples are on the right side. Inspired by [Stripe's](https://stripe.com/docs/api) and [PayPal's](https://developer.paypal.com/webapps/developer/docs/api/) API docs. Slate is responsive, so it looks great on tablets, phones, and even in print.
+# Introduction
 
-* **Everything on a single page** — Gone are the days when your users had to search through a million pages to find what they wanted. Slate puts the entire documentation on a single page. We haven't sacrificed linkability, though. As you scroll, your browser's hash will update to the nearest header, so linking to a particular point in the documentation is still natural and easy.
+Welcome to Anarock! You can use API for pushing leads from your system to our database.
 
-* **Slate is just Markdown** — When you write docs with Slate, you're just writing Markdown, which makes it simple to edit and understand. Everything is written in Markdown — even the code samples are just Markdown code blocks.
+Below is a documentation about how to use the API for publishing leads to Anarock databse.
 
-* **Write code samples in multiple languages** — If your API has bindings in multiple programming languages, you can easily put in tabs to switch between them. In your document, you'll distinguish different languages by specifying the language name at the top of each code block, just like with GitHub Flavored Markdown.
+# Authentication
 
-* **Out-of-the-box syntax highlighting** for [over 100 languages](https://github.com/jneen/rouge/wiki/List-of-supported-languages-and-lexers), no configuration required.
+> Code for creating hash using time_stamp:
 
-* **Automatic, smoothly scrolling table of contents** on the far left of the page. As you scroll, it displays your current position in the document. It's fast, too. We're using Slate at TripIt to build documentation for our new API, where our table of contents has over 180 entries. We've made sure that the performance remains excellent, even for larger documents.
+```php
 
-* **Let your users update your documentation for you** — By default, your Slate-generated documentation is hosted in a public GitHub repository. Not only does this mean you get free hosting for your docs with GitHub Pages, but it also makes it simple for other developers to make pull requests to your docs if they find typos or other problems. Of course, if you don't want to use GitHub, you're also welcome to host your docs elsewhere.
+<?php
 
-* **RTL Support** Full right-to-left layout for RTL languages such as Arabic, Persian (Farsi), Hebrew etc.
+// the shared secret key here
+$key = 'KEY'; 
+$current_time = time();
+$message = (string)$current_time;
 
-Getting started with Slate is super easy! Simply fork this repository and follow the instructions below. Or, if you'd like to check out what Slate is capable of, take a look at the [sample docs](http://lord.github.io/slate).
+// to lowercase hexits
+$hash = hash_hmac('sha256', $message, $key);
 
-Getting Started with Slate
-------------------------------
 
-### Prerequisites
-
-You're going to need:
-
- - **Linux or OS X** — Windows may work, but is unsupported.
- - **Ruby, version 2.3.1 or newer**
- - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
-
-### Getting Set Up
-
-1. Fork this repository on GitHub.
-2. Clone *your forked repository* (not our original one) to your hard drive with `git clone https://github.com/YOURUSERNAME/slate.git`
-3. `cd slate`
-4. Initialize and start Slate. You can either do this locally, or with Vagrant:
-
-```shell
-# either run this to run locally
-bundle install
-bundle exec middleman server
-
-# OR run this to run with vagrant
-vagrant up
 ```
 
-You can now see the docs at http://localhost:4567. Whoa! That was fast!
+```javascript
 
-Now that Slate is all set up on your machine, you'll probably want to learn more about [editing Slate markdown](https://github.com/lord/slate/wiki/Markdown-Syntax), or [how to publish your docs](https://github.com/lord/slate/wiki/Deploying-Slate).
+// NodeJS
+var cryto = require('crypto');
 
-If you'd prefer to use Docker, instructions are available [in the wiki](https://github.com/lord/slate/wiki/Docker).
+var key =  'KEY'; // the shared secret key here
+var time_stamp = Math.round((new Date()).getTime() / 1000);
+var message = time_stamp.toString();
 
-### Note on JavaScript Runtime
+var hash = crypto.createHmac('sha256', key).update(message);
 
-For those who don't have JavaScript runtime or are experiencing JavaScript runtime issues with ExecJS, it is recommended to add the [rubyracer gem](https://github.com/cowboyd/therubyracer) to your gemfile and run `bundle` again.
+// to lowercase hexits
+return hash.digest('hex');
 
-Companies Using Slate
----------------------------------
+```
 
-* [NASA](https://api.nasa.gov)
-* [IBM](https://docs.cloudant.com/api.html)
-* [Sony](http://developers.cimediacloud.com)
-* [Best Buy](https://bestbuyapis.github.io/api-documentation/)
-* [Travis-CI](https://docs.travis-ci.com/api/)
-* [Greenhouse](https://developers.greenhouse.io/harvest.html)
-* [Woocommerce](http://woocommerce.github.io/woocommerce-rest-api-docs/)
-* [Appium](http://appium.io/slate/en/master)
-* [Dwolla](https://docs.dwolla.com/)
-* [Clearbit](https://clearbit.com/docs)
-* [Coinbase](https://developers.coinbase.com/api)
-* [Parrot Drones](http://developer.parrot.com/docs/bebop/)
-* [Fidor Bank](http://docs.fidor.de/)
-* [Scale](https://docs.scaleapi.com/)
+> Make sure to replace `KEY` with your API key.
 
-You can view more in [the list on the wiki](https://github.com/lord/slate/wiki/Slate-in-the-Wild).
+Anarock uses SHA256 HMAC authentication method. The hash is created using current timestamp and your key as parameters.
 
-Questions? Need Help? Found a bug?
---------------------
+You can request key by getting in touch with Anarock team.
 
-If you've got questions about setup, deploying, special feature implementation in your fork, or just want to chat with the developer, please feel free to [start a thread in our Spectrum community](https://spectrum.chat/slate)!
+Anarock expects the two keys `hash` and `current_time` to be included in all API requests to server.
+ 
+### KEY
 
-Found a bug with upstream Slate? Go ahead and [submit an issue](https://github.com/lord/slate/issues). And, of course, feel free to submit pull requests with bug fixes or changes to the `dev` branch.
+These will be provided by your point of contact in ANAROCK team.
 
-Contributors
---------------------
+<aside class="notice">
+You must replace <code>KEY</code> with your personal API key.
+</aside>
 
-Slate was built by [Robert Lord](https://lord.io) while interning at [TripIt](https://www.tripit.com/).
+<aside class="notice">
+You must test first with <code>staging KEY</code> and then only put in <code>production KEY</code>.
+</aside>
 
-Thanks to the following people who have submitted major pull requests:
 
-- [@chrissrogers](https://github.com/chrissrogers)
-- [@bootstraponline](https://github.com/bootstraponline)
-- [@realityking](https://github.com/realityking)
-- [@cvkef](https://github.com/cvkef)
+# Sync Leads
 
-Also, thanks to [Sauce Labs](http://saucelabs.com) for sponsoring the development of the responsive styles.
+## Post Lead to Anarock Database
 
-Special Thanks
---------------------
-- [Middleman](https://github.com/middleman/middleman)
-- [jquery.tocify.js](https://github.com/gfranko/jquery.tocify.js)
-- [middleman-syntax](https://github.com/middleman/middleman-syntax)
-- [middleman-gh-pages](https://github.com/edgecase/middleman-gh-pages)
-- [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
+```php
+<?php 
+
+$api_url = 'STAGING OR PRODUCTION URL'; // as mentioned on left under HTTP Request Heading
+
+
+$key = 'KEY'; 
+$current_time = time();
+$message = (string)$current_time;
+
+// to lowercase hexits
+$hash = hash_hmac('sha256', $message, $key);
+
+
+// you can use libraries like https://github.com/brick/phonenumber to format numbers before sending
+
+$number = PhoneNumber::parse('+447123456789'); // phone number of the lead with +
+$country_code = $number->getRegionCode(); // GB
+$phone = $number->getNationalNumber(); // 7123456789
+
+$campaign_id = "UniqueString"; // String to Attribute the lead to specific project. contact ANAROCK team for this.
+
+$postFields  = "";
+$postFields .= "&field=".$value; // refer to query parameters section on left section
+$postFields .= "&current_time=".$current_time;
+$postFields .= "&phone=".$phone; // Phone number without country code
+$postFields .= "&country_code=".$country_code; // Standard ISO3166-1 alpha-2 code for a country.
+$postFields .= "&hash=".$hash; // its mandatory to create hash using same timestamp as sent in current_time parameter
+$postFields .= "&campaign_id=".$campaign_id;
+
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL,$api_url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS,
+            $postFields);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$server_output = curl_exec ($ch);
+// print_r($server_output);
+
+
+?>
+```
+
+
+```javascript
+const crypto = require('crypto');
+const PhoneNumber = require( 'awesome-phonenumber' );
+const axios = require('axios'); // using axios to make post request, you can use any other method/library you are comfortable with
+
+const timeStamp = Math.round((new Date()).getTime() / 1000);
+const message = timeStamp.toString()
+const hash = crypto.createHmac('sha256', key).update(message).digest('hex')
+
+const number = new PhoneNumber(number.toString()); // pass the number with + to the PhoneNumber Library
+const phone = number.getNumber('significant');
+const country_code = number.getRegionCode();
+
+const campaign_id = 'UniqueString';// String to Attribute the lead to specific project. contact ANAROCK team for this.
+
+return axios({
+  url: 'STAGING OR PRODUCTION URL', // as mentioned on left under HTTP Request Heading
+  method: 'POST',
+  data: {
+    phone: phone,
+    country_code: country_code,
+    current_time: timeStamp,
+    hash: hash,
+    campaign_id: campaign_id,
+    ... other fields as given in the query parameters section on left section
+  }
+})
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status":"OK",
+  "message":"success",
+  "response":
+    {
+      "lead_id": 17863
+    }
+}
+```
+
+This endpoint is used to posts a lead to ANAROCK database.
+
+### HTTP Request
+
+`staging`
+
+`POST http://lead.staging.anarock.com/api/v0/CHANNEL_NAME/sync-lead`
+
+``
+
+
+`production`
+
+`POST http://lead.anarock.com/api/v0/CHANNEL_NAME/sync-lead`
+
+
+<aside class="notice">
+Authentication keys are environment specific. Make sure you are using <code>Staging KEY</code> in <code>Staging API</code> and <code>Production KEY</code> in<code>Production API</code>.
+</aside>
+
+### CHANNEL_NAME
+
+This will be provided by your point of contact from ANAROCK team
+
+### QUERY PARAMETERS
+
+Parameter | Type | Mandatory | Description
+--------- | ------- | ------- | -----------
+name | String | - | Example "Rahul Kumar"
+phone | String | True | phone number without country code. Example: "9988998899"
+country_code | String | True | Standard ISO3166-1 alpha-2 code for a country. Link: <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2</a> You can also use libraries like, example: "IN" for India Defaults to "IN"
+email | String | - | Exmaple "abc@def.com"
+purpose | String | True | "buy" This should be hardcoded
+listing_id  | String | - |  Id of the product/listing/project/property for which lead is generated. Example: "111"
+listing_name |  String | - | name of the project/property for which lead is generated. Example: "Runwal Green"
+current_time | Integer | True | current epoch time in second(notmilisecond) Link: <a href="https://www.epochconverter.com/clock">https://www.epochconverter.com/clock</a>
+hash | String | True | Generated in the section  <a href="/?php#authentication">above</a> Hash should be created using the same time stamp as sent in the parameter `current_time`
+city | String | - | Example "Mumbai"
+locality | String | - | Example "Bandra West"
+min_budget | Integer | - | exmaple 10000000
+max_budget | Integer | - | exmaple 50000000
+contact_date | Integer | - | epoch time(in second) at which lead has contacted
+remarks | String | - | additional comment about lead
+homeloan_required | Boolean | - | whether the lead is interested in home loan or not
+is_otp_verified | Boolean | - | whether the lead is OTP verified or not
+is_call_verified | Boolean | - | whether the lead is Call verified or not
+credit_value | Stirng | - | credit/ cost of the lead. Exmaple: "250"
+is_broker | Boolean | - | whether the lead submitted is of a broker or not
+apartment_types |  String | - | comma separated bhk types where bhk type can be `1bhk/2bhk/3bhk/3+bhk/1rk`) example: "2bhk,3+bhk"
+source | String | - |  ‘google’, ‘fb’, etc mainly for marketing vendors
+placement |  String | - | ‘placement of the ad ‘city page top’, ‘search page bottom’
+sub_source | String | - | ‘display’, ‘sem’ etc can be used to pass on the sub source for digital campaigns.
+extra_details | JSON | - | key-value pair which will contain any extra details for lead e.g. {"utm_campaign: "something", "utm_source": "something"}
+campaign_id | String | True | The is a unique identifier for the project you are sending the lead for. Should be collected from point of contact in ANAROCK team. Without this lead attribution will be incorrect.
+
+
+
+<aside class="success">
+Remember — without proper <code>campaign_id</code>, leads will not be attributed to the correct team, Always check with your point of contact that leads are attributed to the desired project only.
+</aside>
+
+### PHONE NUMBER VALIDATION
+
+Please format phone numbers before sending using one of the libraries below
+
+Language | Link
+------- | -------
+PHP | <a href="https://github.com/brick/phonenumber">https://github.com/brick/phonenumber</a>
+NodeJS | <a href="https://www.npmjs.com/package/awesome-phonenumber">https://www.npmjs.com/package/awesome-phonenumber</a>
