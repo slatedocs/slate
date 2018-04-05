@@ -6,7 +6,7 @@ The Sync Lead API follows given error codes.
 Error Code | Meaning
 ---------- | -------
 401 | Unauthorized -- Your API key is wrong.
-422 | Wrong Parameters --- The response would contain a json explainging the error
+422 | Wrong Parameters --- The response would contain a json explaining the error
 -  | -
 403 | Forbidden -- The kitten requested is hidden for administrators only.
 404 | Not Found -- The specified kitten could not be found.
