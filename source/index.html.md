@@ -22,10 +22,28 @@ search: false
 https://api.eatsa.com
 ```
 
-
 Eatsa provides a simple and powerful REST API to integrate into our ordering and Cubby pick up system.
 
-Requests can be made to place and update orders, get an order ETA status, as well as information about stores.
+Requests can be made to place and update orders, get an order ETA status, as well as retrieve information about stores.
+
+All request bodies should have content type `application/json` and be valid JSON.
+
+
+## Interacting with the API
+
+Status codes
+
+ Id | Code | Description
+--------- | ------- | -----------
+200 | OK | Successful request
+201 | Created | New object saved
+204 | No content | Object deleted
+400 | Bad Request | Returns JSON with the error message
+401 | Unauthorized | Couldn’t authenticate your request
+403 | Invalid scope | User hasn’t authorized necessary scope
+404 | Not Found | No such object
+500 | Internal Server Error | Something went wrong
+503 | Service Unavailable | Your connection is being throttled or the service is down for maintenance
 
 # Authentication
 
@@ -43,9 +61,11 @@ To authenticate an API request include the following header `-H "X-Authtoken:42b
 
 All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.
 
+To request an authentication API please contact us at support@eatsa.com.
 
 # Orders
 
+<!---
 What is an order and it's status
 
 ### Order State
@@ -61,7 +81,7 @@ customer_canceled| The customer decides to cancel an order
 attendant_canceled| An employee decides to cancel an order.  
 hold_for_recubby| State when an order is kept in the kitchen for any reason.
 ready_to_recubby| State when an order has been held and the host can either manually deliver the without cubbies or they can iniciate a new cubby re assignment.
-
+--->
 
 ## Create an order
 
@@ -98,7 +118,11 @@ curl "https://api.eatsa.com/v1/orders" \
 }
 ```
 
-Place an order.
+Place an order in the queue. Orders have an initial state of `in_queue` and have a unique id that will be used to track the order and modify its state accordingly. 
+
+<!---
+Once an order is `in_queue` it will be scheduled for processing.
+--->
 
 ### Endpoint
 
@@ -111,11 +135,10 @@ Parameter | Required | Description
 client_sent_id | yes  | Unique ID that identifies the order request from the clients side
 store_id | yes | Store where the order will be created
 user | yes | Basic customer details, first and last name
-timeslot_start_time| no |optional, defines a pickup time, so orders can be placed ahead of time. Expected format: '2018-04-02T21:30:50.000Z'. The available time slots for a store can be retrieved from the 'Find store available time slots' API.
+timeslot_start_time| no | Defines a pickup time that enables orders to be scheduled. Expected format: '2018-04-02T21:30:50.000Z'. The available time slots for a store can be retrieved from the 'Find store available time slots' API.
 
 
-
-## Update order state
+## Mark order is ready for pickup
 
 > Example Request
 
@@ -123,7 +146,7 @@ timeslot_start_time| no |optional, defines a pickup time, so orders can be place
 curl "https://api.eatsa.com/v1/orders/2eecef15-c638-44a2-a133-64789f9929b1" \
     -X PUT -i -H "Content-Type:application/json; charset=utf-8" \
     -d '{
-          "status": "on_the_line"
+          "status": "ready_for_pickup"
         }'
 
 ```
@@ -136,16 +159,107 @@ curl "https://api.eatsa.com/v1/orders/2eecef15-c638-44a2-a133-64789f9929b1" \
   "client_sent_id": "96679B8C-B333-4046-BAD6-B358A97B6EE4",
   "user_id": "98cf8eba-45cd-4f2c-9541-dbf611c4456c",
   "store_id": "418fdc10-5881-11e4-8ed6-0800200c9a66",
+  "cubby_id": "418fdc10-5881-11e4-8ed6-0800200c9a66",
+  "cubby_name": "14",
   "created_at": "2018-04-02T21:29:25.233Z",
   "updated_at": "2018-04-02T21:29:25.681Z",
   "scheduled_time": "2018-04-02T21:30:50.000Z",
-  "status": "on_the_line",
+  "status": "ready_for_pickup",
   "human_readable_id": 208,
   "status_board_display_name": "Jessie B"
 }
 ```
 
-Change the state of order. Please refer to 'Order state' for more information about the different states an order can be. 
+Change the state of an order to 'ready_for_pickup', this indicates that the order has been  fulfilled by the back of house and is ready to be delivered to the customer. At this point a cubby name is assigned to place the order, at the same time the customer will be notified of the his cubby assignment. 
+
+### HTTP Request
+
+`PUT https://api.eatsa.com/v1/orders/:order_id`
+
+### Arguments
+
+Parameter | Description
+--------- | -----------
+status | State to transition order into
+
+## Cancel order by customer
+
+> Example Request
+
+```curl
+    curl "https://api.eatsa.com/v1/orders/2eecef15-c638-44a2-a133-64789f9929b1" \
+    -X PUT -i -H "Content-Type:application/json; charset=utf-8" \
+    -d '{
+          "status": "customer_canceled"
+        }'
+
+```
+
+> Example Response
+
+```json
+{
+  "id": "2eecef15-c638-44a2-a133-64789f9929b1",
+  "client_sent_id": "96679B8C-B333-4046-BAD6-B358A97B6EE4",
+  "user_id": "98cf8eba-45cd-4f2c-9541-dbf611c4456c",
+  "store_id": "418fdc10-5881-11e4-8ed6-0800200c9a66",
+  "cubby_id": "418fdc10-5881-11e4-8ed6-0800200c9a66",
+  "cubby_name": "14",
+  "created_at": "2018-04-02T21:29:25.233Z",
+  "updated_at": "2018-04-02T21:29:25.681Z",
+  "scheduled_time": "2018-04-02T21:30:50.000Z",
+  "status": "customer_canceled",
+  "human_readable_id": 208,
+  "status_board_display_name": "Jessie B"
+}
+```
+
+The customer decides to cancel their order, this changes the order state to `customer_canceled`.
+
+### HTTP Request
+
+`PUT https://api.eatsa.com/v1/orders/:order_id`
+
+### Arguments
+
+Parameter | Description
+--------- | -----------
+status | State to transition order into
+
+
+## Cancel order by attendant
+
+> Example Request
+
+```curl
+    curl "https://api.eatsa.com/v1/orders/2eecef15-c638-44a2-a133-64789f9929b1" \
+    -X PUT -i -H "Content-Type:application/json; charset=utf-8" \
+    -d '{
+          "status": "attendant_canceled"
+        }'
+
+```
+
+> Example Response
+
+```json
+{
+  "id": "2eecef15-c638-44a2-a133-64789f9929b1",
+  "client_sent_id": "96679B8C-B333-4046-BAD6-B358A97B6EE4",
+  "user_id": "98cf8eba-45cd-4f2c-9541-dbf611c4456c",
+  "store_id": "418fdc10-5881-11e4-8ed6-0800200c9a66",
+  "cubby_id": "418fdc10-5881-11e4-8ed6-0800200c9a66",
+  "cubby_name": "14",
+  "created_at": "2018-04-02T21:29:25.233Z",
+  "updated_at": "2018-04-02T21:29:25.681Z",
+  "scheduled_time": "2018-04-02T21:30:50.000Z",
+  "status": "attendant_canceled",
+  "human_readable_id": 208,
+  "status_board_display_name": "Jessie B"
+}
+```
+
+An attendant decides to cancel an order, this changes the order state to `attendant_canceled`.
 
 ### HTTP Request
 
