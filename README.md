@@ -219,10 +219,10 @@ is_call_verified | Boolean | - | whether the lead is Call verified or not
 credit_value | Stirng | - | credit/ cost of the lead. Exmaple: "250"
 is_broker | Boolean | - | whether the lead submitted is of a broker or not
 apartment_types |  String | - | comma separated bhk types where bhk type can be `1bhk/2bhk/3bhk/3+bhk/1rk`) example: "2bhk,3+bhk"
-source | String | - |  ‘google’, ‘fb’, etc mainly for marketing vendors
-placement |  String | - | ‘placement of the ad ‘city page top’, ‘search page bottom’
-sub_source | String | - | ‘display’, ‘sem’ etc can be used to pass on the sub source for digital campaigns.
-extra_details | JSON | - | key-value pair which will contain any extra details for lead e.g. {"utm_campaign: "something", "utm_source": "something"}
+source | String | - |  `google`, `facebook`, `affiliate`, `emailer`, `linkedin`, `portals`,`twitter`, etc - this field should always contain primary origin or lead
+sub_source | String | - | `google_display`, `google_search`, `facebook_brands`, `facebook_lead_gen`, `affiliate`  - this should identify the type of campaign either branding or performance 
+placement |  String | - | `utm_campaign` , `affiliate_name` e.g. taboola, nestoria, polyvalent, times_of_india, `portal_name` e.g. 99acres, magicbricks, housing  - this should tell exact campaign details be it google facebook etc. generally you should pass utm_campaign in this
+extra_details | JSON | - | key-value pair which will contain any extra details for lead e.g. {"utm_medium: "something", "utm_source": "something", "keyword": "targetted keyword on google for the campaign"}
 campaign_id | String | True | The is a unique identifier for the project you are sending the lead for. Should be collected from point of contact in ANAROCK team. Without this lead attribution will be incorrect.
 
 
