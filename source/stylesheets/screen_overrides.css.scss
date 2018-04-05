@@ -128,6 +128,10 @@ $darkgreen: #64953f;
   white-space: nowrap;
 }
 
+.content pre code {
+  white-space: inherit;
+}
+
 /*** lookup table ***/
 
 .content table tr:last-child {
