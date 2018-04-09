@@ -130,6 +130,14 @@ Full name of mailing address country.
 
 (Not all attributes will be provided to all users.)
 
+####level
+
+User level within the workgroup.
+
+* 2 - member
+* 3 - coordinator
+* 4 - manager
+
 ### workgroup.create_clients
 
 <span class="tryit" id="workgroup-create_clients-tryit"></span>
@@ -564,6 +572,7 @@ id, first_name, last_name, and screen_name attributes are provided.
             "id" : "226093",
             "allowed_conflict_mins" : "90",
             "code" : "thecode",
+            "level": 2,
             "location" : "29120",
             "timezone" : "Greenwich Mean Time : Dublin, Lisbon, London (GMT)",
             "public_phone" : "5555551212",
@@ -614,6 +623,10 @@ A generic search string; select workgroups containing this string in name or cod
 ####extended
 
 Boolean; if specified and true, the results returned will include an extended set of attributes; otherwise a basic set of attributes will be returned for each workgroup.
+
+####level
+
+Filter workgroups based on the caller's membership level. The filter is a lower limit; any workgroups the caller has access to and is the specified level and above, will be returned.
 
 ####referenced_objects
 
