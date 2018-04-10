@@ -1,12 +1,12 @@
-#### Acciones disponibles para Facturas de Venta
+#### Acciones disponibles para Nota de Crédito en Venta
 
-* [`GET /purchases/invoices`](#lista-facturas)<br>
-Obtener un listado de Facturas de compra
+* [`GET /purchases/credit-notes`](#lista-notas-de-crédito)<br>
+Obtener un listado de Notas de Crédito
 
-<h2 id="lista-facturas-compra">Lista Facturas</h2>
+## Lista Notas de Crédito
 
 ```shell
-curl -v https://api.datil.co/sales/invoices?customer_tax_identification=0900800712001 \
+curl -v https://api.datil.co/purchases/credit-notes?customer_tax_identification=0900800712001 \
 -H "X-Api-Key: <API-key>" \
 -H "Accept: application/json"
 ```
@@ -17,8 +17,8 @@ headers = {
   'x-api-key': '<API-key>',
   'accept': 'application/json'
 }
-datil_api_url = "https://api.datil.co/sales/invoices?customer_tax_identification=0900800712001"
-invoices = requests.get(datil_api_url, headers=headers).json()
+datil_api_url = "https://api.datil.co/purchases/credit-notes?customer_tax_identification=0900800712001"
+credit-notes = requests.get(datil_api_url, headers=headers).json()
 ```
 
 Obtén el listado completo de Facturas emitidas, o filtra los resultados
@@ -26,7 +26,7 @@ por cualquiera de estos parámetros.
 
 Parámetros | &nbsp;
 ---------- | -------
-supplier_tax_identification<p class="dt-data-type">string</p> | Filtra las facturas por proveedor (emisor).
+customer_tax_identification<p class="dt-data-type">string</p> | Filtra las facturas por comprador.
 issue_from<p class="dt-data-type">string</p> | Lista facturas emitidas hasta esta fecha.
 issue_to<p class="dt-data-type">string</p> | Lista facturas a partir de esta fecha de emisión.
 sequence_from<p class="dt-data-type">string</p> | Lista facturas a partir de esta secuencia.
@@ -49,20 +49,17 @@ coincidan con los parámetros de filtrado enviados.
   "previous": null,
   "results": [{
       "customer": {
-        "business": {
-          "legal_name": "Benalcázar Teresa"
-        },
         "tax_identification_type": "04",
-        "administrative_district_level_1": null,
+        "administrative_district_level_1": "Guayas",
         "phone": "555-5555",
-        "address": "",
-        "tax_identification": "1910221134001",
+        "address": "Calle Dátiles",
+        "tax_identification": "1701927920001",
         "properties": [],
-        "legal_name": "Benalcázar Teresa",
-        "locality": null,
-        "country": null,
-        "email": "tere@email.com",
-        "sublocality": null
+        "legal_name": "Datil",
+        "locality": "Guayaquil",
+        "country": "EC",
+        "email": "clientes@datil.co",
+        "sublocality": "Urdesa"
       },
       "issue_date": "2018-02-01T13:58:25.324730-05:00",
       "uuid": "0102201801099271255999999999010001483751993713710",
@@ -76,7 +73,6 @@ coincidan con los parámetros de filtrado enviados.
       "created": "2018-02-01T18:58:25.324730+00:00",
       "sequence": "148375",
       "number": "001-001-000148375",
-      "payment_methods": [],
       "totals": {
         "total_tax_amount": "0.00",
         "tip_amount": "0.00",
@@ -96,45 +92,43 @@ coincidan con los parámetros de filtrado enviados.
         "name": "Periodo",
         "description": "Febrero 2018"
       }],
-      "payments": [],
       "items": [{
-        "description": "Plan Gratuito",
+        "description": "Asesoría",
         "discount": "0.00",
-        "unit_price": "0.000000",
+        "quantity": "1.000000",
+        "unit_price": "100.000000",
         "properties": [],
         "product_id": "6047dfaa-d657-4185-b113-0f883ec455a1",
-        "sku": "FEF-001",
-        "total_amount": "0.00",
+        "sku": "TNT-001",
         "taxes": [{
-          "_id": "2",
-          "amount": "0.00",
-          "taxable_amount": "0.00",
+          "amount": "12.00",
+          "taxable_amount": "100.00",
           "tax_code": "2",
           "rate": "12.00",
           "rate_code": "2"
         }],
-        "id": 5432039,
-        "subtotal_amount": "0.00",
-        "quantity": "1.000000"
+        "subtotal_amount": "100.00",
+        "total_amount": "112.00",
       }],
       "supplier": {
-        "business": {
-          "legal_name": "Datil",
-          "commercial_name": "Datil"
-        },
-        "administrative_district_level_1": "Guayas",
+        "tax_identification_type": "04",
+        "legal_name": "Benalcázar Teresa",
+        "phone": "555-5555",
+        "tax_identification": "1910221134001",
+        "properties": [],
+        "email": "tere@email.com",
+        "sublocality": null,
+        "commercial_name": "Benalcázar Teresa",
+        "administrative_district_level_1": "Pichincha",
         "phone": "0",
         "address": "Av. Principal 234",
-        "tax_identification": "0992754321001",
         "id": "98e21dbd-bcec-4e83-b9e9-d4ae12b4d777",
-        "legal_name": "Datil",
-        "commercial_name": "Datil",
-        "locality": "Guayaquil",
+        "locality": "Quito",
         "country": "EC",
         "location": {
           "code": "001",
-          "administrative_district_level_2": "Guayaquil",
-          "administrative_district_level_1": "Guayas",
+          "administrative_district_level_2": "Quito",
+          "administrative_district_level_1": "Pichincha",
           "point_of_sale": {
             "code": "001",
             "id": 21
@@ -142,29 +136,24 @@ coincidan con los parámetros de filtrado enviados.
           "address": "Av. Principal 234",
           "id": "5d15f357-02dc-4911-841d-e69f09cb213c"
         },
-        "email": "clientes@datil.co"
       },
-      "outstanding_balance": "0.00",
       "printable_version_url": "https://app.datil.co/ver/aaaaaaaa0000999111ccc333777aa53/pdf?download",
       "id": "aaaaaaaa0000999111ccc333777aa53",
       "electronic_document_url": "https://app.datil.co/ver/aaaaaaaa0000999111ccc333777aa53/xml?download"
     },
     {
       "customer": {
-        "business": {
-          "legal_name": "Adriana Benítez"
-        },
         "tax_identification_type": "04",
-        "administrative_district_level_1": null,
-        "phone": "",
-        "address": "",
+        "administrative_district_level_1": "Guayas",
+        "phone": "555-5555",
+        "address": "Calle Dátiles",
         "tax_identification": "1701927920001",
         "properties": [],
-        "legal_name": "Adriana Benítez",
-        "locality": null,
-        "country": null,
-        "email": "adriana@hyper.com",
-        "sublocality": null
+        "legal_name": "Datil",
+        "locality": "Guayaquil",
+        "country": "EC",
+        "email": "clientes@datil.co",
+        "sublocality": "Urdesa"
       },
       "issue_date": "2018-02-01T17:17:31.257164-05:00",
       "uuid": "0102201801099275432100120010020000024971994713525",
@@ -176,7 +165,6 @@ coincidan con los parámetros de filtrado enviados.
         "amount": "3.75"
       }],
       "created": "2018-02-01T22:17:31.257164+00:00",
-      "dbid": 999876,
       "sequence": "2497",
       "number": "001-002-000002497",
       "payment_methods": [{
@@ -203,60 +191,56 @@ coincidan con los parámetros de filtrado enviados.
         "name": "Periodo",
         "description": "Anual"
       }],
-      "payments": [],
       "items": [{
-        "description": "Certificado de Firma Electrónica",
+        "description": "Dinamita",
         "discount": "0.00",
-        "unit_price": "31.250000",
+        "quantity": "5.000000",
+        "unit_price": "10.000000",
         "properties": [],
-        "product_id": "8e77da89-4b63-40c6-b9a5-268cb4a547f9",
-        "sku": "CFE-001",
-        "total_amount": "35.00",
+        "product_id": "6047dfaa-d657-4185-b113-0f883ec455a1",
+        "sku": "TNT-001",
         "taxes": [{
-          "_id": "2",
-          "amount": "3.75",
-          "taxable_amount": "31.25",
+          "amount": "6.00",
+          "taxable_amount": "50.00",
           "tax_code": "2",
           "rate": "12.00",
           "rate_code": "2"
         }],
-        "id": 23717155,
-        "subtotal_amount": "31.25",
-        "quantity": "1.000000"
+        "subtotal_amount": "50.00",
+        "total_amount": "56.00",
       }],
       "supplier": {
-        "business": {
-          "legal_name": "Datil",
-          "commercial_name": "Datil"
-        },
+        "tax_identification_type": "04",
+        "legal_name": "Acmere S.A.",
+        "commercial_name": "Acme Inc.",
+        "phone": "555-5555",
+        "tax_identification": "0923948576001",
+        "properties": [],
+        "email": "tere@email.com",
+        "sublocality": null,
         "administrative_district_level_1": "Guayas",
         "phone": "0",
         "address": "Av. Principal 234",
-        "tax_identification": "0992754321001",
-        "id": "98e21dbd-b6ec-4e83-b9e9-d4ae12b4d967",
-        "legal_name": "Datil",
-        "commercial_name": "Datil",
-        "locality": "Guayaquil",
+        "id": "98e21dbd-bcec-4e83-b9e9-d4ae12b4d777",
+        "locality": "Samborondón",
         "country": "EC",
         "location": {
           "code": "001",
-          "administrative_district_level_2": "Guayaquil",
+          "administrative_district_level_2": "Samborondón",
           "administrative_district_level_1": "Guayas",
           "point_of_sale": {
-            "code": "002",
-            "id": 148
+            "code": "001",
+            "id": 21
           },
           "address": "Av. Principal 234",
-          "id": "5d15f357-02dc-4118-841d-e69f09cb213c"
+          "id": "5d15f357-02dc-4911-841d-e69f09cb213c"
         },
-        "email": "clientes@datil.co"
       },
-      "outstanding_balance": "35.00",
       "printable_version_url": "https://app.datil.co/ver/088140bbd883556dabf82c38f5acf8ba/pdf?download",
       "id": "088140bbd883556dabf82c38f5acf8ba",
       "electronic_document_url": "https://app.datil.co/ver/088140bbd883556dabf82c38f5acf8ba/xml?download"
     }
   ],
-  "next": "https://app.datil.co/api/v2/latest/sales/invoices/?page=2&issue_from=2018-02-01&page_size=2&issue_to=2018-02-10"
+  "next": "https://app.datil.co/api/v2/latest/purchases/credit-notes/?page=2&issue_from=2018-02-01&page_size=2&issue_to=2018-02-10"
 }
 ```

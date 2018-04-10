@@ -26,7 +26,7 @@ Elimina un Producto de tu catálogo
 
 ### Lista Productos
 
-> ##### Requerimiento de ejemplo
+> Requerimiento de ejemplo
 
 ```shell
 curl -v https://api.datil.co/catalog/products?ids=e640584d-b1c3-487e-8c0c-acc931332a30,03a233139cca-c0c8-e784-3c1b-d485046e \
@@ -62,7 +62,7 @@ page_size<p class="dt-data-type">integer</p> | Define la cantidad de items por p
 Retorna un objeto [result set](#result-set) con el listado de Productos que coincidan
 con los filtros enviados.
 
-> ##### Respuesta de ejemplo
+> Respuesta de ejemplo
 
 ```json
 {
@@ -134,42 +134,11 @@ con los filtros enviados.
     }
   ]
 }
-{
-  "id": "9e01ba80-4e37-4cac-9df5-2996b7e39973",
-  "name": "Bolso UM",
-  "sku": "BOL-U123",
-  "description": "Bolso de mano ideal para salidas casuales.",
-  "unit_price": "45.000000",
-  "unit_cost": "30.000000",
-  "images": [],
-  "category": {
-    "id": "576aac8e-0f59-4b15-a89c-7bd3afc5ffbc",
-    "name": "Bolsos y Carteras"
-  },
-  "applicable_taxes": [{
-    "tax_code": "2",
-    "rate": "14.00",
-    "rate_code": "3",
-    "name": "IVA 14%"
-  }],
-  "unit_of_measurement": {
-    "abbreviation": "und",
-    "name": "Unidad"
-  },
-  "slug": "bolso-um",
-  "purchase_applicable_taxes": [],
-  "track_inventory": false,
-  "type": "good",
-  "tags": ["bolso", "casual"],
-  "available_online": false,
-  "created_at": "2017-03-28T13:10:32.189Z",
-  "updated_at": "2017-03-28T13:11:04.854Z"
-}
 ```
 
 ### Consulta un Producto
 
-> ##### Requerimiento de ejemplo
+> Requerimiento de ejemplo
 
 ```shell
 curl -v https://api.datil.co/catalog/products/e640584d-b1c3-487e-8c0c-acc931332a30 \
@@ -199,7 +168,7 @@ id<p class="dt-data-type">requerido</p> | El identificador único del producto.
 Retorna un objeto [Product](#product) si el identificador es válido, caso contrario
 retorna un error.
 
-> ##### Respuesta de ejemplo
+> Respuesta de ejemplo
 
 ```json
 {
@@ -237,7 +206,7 @@ retorna un error.
 
 ### Crea un Producto
 
-> ##### Requerimiento de ejemplo
+> Requerimiento de ejemplo
 
 ```shell
 curl -v https://api.datil.co/catalog/products \
@@ -356,7 +325,7 @@ rate_code<p class="dt-data-type">requerido</p> | Código del impuesto específic
 Retorna el nuevo objeto [Product](#product) si la información es válida, caso contrario
 retorna un error.
 
-> ##### Respuesta de ejemplo
+> Respuesta de ejemplo
 
 ```json
 {
@@ -407,7 +376,7 @@ retorna un error.
 
 ### Actualiza un Producto
 
-> ##### Requerimiento de ejemplo
+> Requerimiento de ejemplo
 
 ```shell
 curl -v https://api.datil.co/catalog/products/e640584d-b1c3-487e-8c0c-acc931332a30 \
@@ -500,7 +469,7 @@ rate_code<p class="dt-data-type">requerido</p> | Código del impuesto específic
 Retorna el nuevo objeto [Product](#product) si la información es válida, caso contrario
 retorna un error.
 
-> ##### Respuesta de ejemplo
+> Respuesta de ejemplo
 
 ```json
 {

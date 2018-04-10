@@ -24,7 +24,7 @@ Elimina una Categoría de tu catálogo
 
 ### Lista Categorías
 
-> ##### Requerimiento de ejemplo
+> Requerimiento de ejemplo
 
 ```shell
 curl -v https://api.datil.co/catalog/categories?ids=e640584d-b1c3-487e-8c0c-acc931332a30,03a233139cca-c0c8-e784-3c1b-d485046e \
@@ -58,7 +58,7 @@ page_size<p class="dt-data-type">integer</p> | Define la cantidad de items por p
 Retorna un objeto [result set](#result-set) con el listado de Categorías que coincidan
 con los filtros enviados.
 
-> ##### Respuesta de ejemplo
+> Respuesta de ejemplo
 
 ```json
 {
@@ -89,7 +89,7 @@ con los filtros enviados.
 
 ### Consulta una Categoría
 
-> ##### Requerimiento de ejemplo
+> Requerimiento de ejemplo
 
 ```shell
 curl -v https://api.datil.co/catalog/categories/e640584d-b1c3-487e-8c0c-acc931332a30 \
@@ -119,7 +119,7 @@ id<p class="dt-data-type">requerido</p> | El identificador único del categoría
 Retorna un objeto [Product](#product) si el identificador es válido, caso contrario
 retorna un error.
 
-> ##### Respuesta de ejemplo
+> Respuesta de ejemplo
 
 ```json
 {
@@ -133,7 +133,7 @@ retorna un error.
 
 ### Crea una Categoría
 
-> ##### Requerimiento de ejemplo
+> Requerimiento de ejemplo
 
 ```shell
 curl -v https://api.datil.co/catalog/categories \
@@ -174,7 +174,7 @@ parent_id | ID de la categoría padre. Esto te permitirá crear categorías dent
 Retorna el nuevo objeto [Product](#product) si la información es válida, caso contrario
 retorna un error.
 
-> ##### Respuesta de ejemplo
+> Respuesta de ejemplo
 
 ```json
 {
@@ -188,7 +188,7 @@ retorna un error.
 
 ### Actualiza una Categoría
 
-> ##### Requerimiento de ejemplo
+> Requerimiento de ejemplo
 
 ```shell
 curl -v https://api.datil.co/catalog/categories/0cde3602-979f-407b-ae6f-70f7d65a3a97 \
@@ -229,7 +229,7 @@ name<p class="dt-data-type">requerido</p> | Nombre del categoría
 Retorna el objeto [Category](#category) actualizado si la información es válida, caso contrario
 retorna un error.
 
-> ##### Respuesta de ejemplo
+> Respuesta de ejemplo
 
 ```json
 {

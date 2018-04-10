@@ -1,4 +1,4 @@
-## Facturas
+## Factura
 
 Una Factura está representada por un objeto _Invoice_.
 

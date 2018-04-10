@@ -1,4 +1,4 @@
-## Productos
+## Producto
 
 Un Producto está representado por un objeto _Product_.
 

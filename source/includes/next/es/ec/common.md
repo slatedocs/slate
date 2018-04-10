@@ -61,7 +61,7 @@ rate <p class="dt-data-type">string</p> | Porcentaje del impuesto aplicado.
 Atributos | &nbsp;
 --------- | -------
 number<p class="dt-data-type">string</p> | Código del grupo al que pertenece el impuesto.
-document_type <p class="dt-data-type">string</p> | Tipo del documento relacionado. Ver tabla de [Tipos de documentos](#tipos-de-documentos)
+type <p class="dt-data-type">string</p> | Tipo del documento relacionado. Ver tabla de [Tipos de documentos](#tipos-de-documentos)
 issue_date<p class="dt-data-type">string</p> | Fecha de emisión del documento relacionado en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 
 

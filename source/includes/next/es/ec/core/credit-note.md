@@ -1,4 +1,4 @@
-## Notas de Crédito
+## Nota de Crédito
 
 Una Nota de Crédito está representada por un objeto _Credit Note_.
 
@@ -19,7 +19,7 @@ properties<p class="dt-data-type">object</p> | Información adicional adjunta al
 electronic_document<p class="dt-data-type">string</p> | Documento electrónico, el XML que representa a esta factura ante el SRI.
 electronic_document_url<p class="dt-data-type">string</p> | URL de descarga del documento electrónico, el XML.
 printable_version_url<p class="dt-data-type">string</p> | URL de descarga del RIDE.
-credited_reason<p class="dt-data-type">string</p> | Motivo por el cual se emite la Nota de Crédito.
+credit_reason<p class="dt-data-type">string</p> | Motivo por el cual se emite la Nota de Crédito.
 credited_document<p class="dt-data-type">object [related document](#documento-relacionado)</p> | Documento afectado por la Nota de Crédito. Normalmente una Factura.
 
 

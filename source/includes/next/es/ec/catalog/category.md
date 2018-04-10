@@ -1,4 +1,4 @@
-## Categorías
+## Categoría
 
 Una Categoría está representada por un objeto _Category_.
 

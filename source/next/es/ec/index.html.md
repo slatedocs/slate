@@ -17,8 +17,11 @@ includes:
   - next/es/ec/common
   - next/es/ec/sales
   - next/es/ec/sales/invoices
+  - next/es/ec/sales/credit-notes
   - next/es/ec/purchases
   - next/es/ec/purchases/invoices
+  - next/es/ec/purchases/credit-notes
+  - next/es/ec/purchases/withholdings
   - next/es/ec/catalog/products
   - next/es/ec/catalog/categories
   - next/es/ec/codes
