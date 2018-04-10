@@ -176,14 +176,14 @@ This endpoint is used to posts a lead to ANAROCK database.
 
 `staging`
 
-`POST http://lead.staging.anarock.com/api/v0/CHANNEL_NAME/sync-lead`
+`POST https://lead.staging.anarock.com/api/v0/CHANNEL_NAME/sync-lead`
 
 ``
 
 
 `production`
 
-`POST http://lead.anarock.com/api/v0/CHANNEL_NAME/sync-lead`
+`POST https://lead.anarock.com/api/v0/CHANNEL_NAME/sync-lead`
 
 
 <aside class="notice">
