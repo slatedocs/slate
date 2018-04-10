@@ -1,4 +1,6 @@
-#### Acciones disponibles para Facturas de Venta
+<h2 id="facturas-compra">Facturas</h2>
+
+#### Acciones disponibles para Facturas de compra
 
 * [`GET /purchases/invoices`](#lista-facturas)<br>
 Obtener un listado de Facturas de compra
@@ -21,13 +23,13 @@ datil_api_url = "https://api.datil.co/sales/invoices?customer_tax_identification
 invoices = requests.get(datil_api_url, headers=headers).json()
 ```
 
-Obtén el listado completo de Facturas emitidas, o filtra los resultados
+Obtén el listado completo de Facturas recibidas, o filtra los resultados
 por cualquiera de estos parámetros.
 
 Parámetros | &nbsp;
 ---------- | -------
 supplier_tax_identification<p class="dt-data-type">string</p> | Filtra las facturas por proveedor (emisor).
-issue_from<p class="dt-data-type">string</p> | Lista facturas emitidas hasta esta fecha.
+issue_from<p class="dt-data-type">string</p> | Lista facturas recibidas hasta esta fecha.
 issue_to<p class="dt-data-type">string</p> | Lista facturas a partir de esta fecha de emisión.
 sequence_from<p class="dt-data-type">string</p> | Lista facturas a partir de esta secuencia.
 sequence_to<p class="dt-data-type">string</p> | Lista facturas hasta esta secuencia.

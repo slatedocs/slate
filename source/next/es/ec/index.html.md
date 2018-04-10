@@ -12,6 +12,7 @@ toc_footers:
 includes:
   - next/es/ec/core/invoice
   - next/es/ec/core/credit-note
+  - next/es/ec/core/withholding
   - next/es/ec/catalog/product
   - next/es/ec/catalog/category
   - next/es/ec/common
@@ -25,8 +26,6 @@ includes:
   - next/es/ec/catalog/products
   - next/es/ec/catalog/categories
   - next/es/ec/codes
-  - next/es/ec/accounting
-  - next/es/ec/accounting/accounting_info
   - errores
 
 search: true

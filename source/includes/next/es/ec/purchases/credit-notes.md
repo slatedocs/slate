@@ -1,9 +1,11 @@
-#### Acciones disponibles para Nota de Crédito en Venta
+<h2 id="notas-credito-compra">Notas de crédito</h2>
 
-* [`GET /purchases/credit-notes`](#lista-notas-de-crédito)<br>
+#### Acciones disponibles para Nota de Crédito en compra
+
+* [`GET /purchases/credit-notes`](#lista-notas-de-credito-compra)<br>
 Obtener un listado de Notas de Crédito
 
-## Lista Notas de Crédito
+<h2 id="lista-notas-credito-compra">Lista Notas de crédito</h2>
 
 ```shell
 curl -v https://api.datil.co/purchases/credit-notes?customer_tax_identification=0900800712001 \
@@ -21,27 +23,27 @@ datil_api_url = "https://api.datil.co/purchases/credit-notes?customer_tax_identi
 credit-notes = requests.get(datil_api_url, headers=headers).json()
 ```
 
-Obtén el listado completo de Facturas emitidas, o filtra los resultados
+Obtén el listado completo de Notas de crédito recibidas, o filtra los resultados
 por cualquiera de estos parámetros.
 
 Parámetros | &nbsp;
 ---------- | -------
-customer_tax_identification<p class="dt-data-type">string</p> | Filtra las facturas por comprador.
-issue_from<p class="dt-data-type">string</p> | Lista facturas emitidas hasta esta fecha.
-issue_to<p class="dt-data-type">string</p> | Lista facturas a partir de esta fecha de emisión.
-sequence_from<p class="dt-data-type">string</p> | Lista facturas a partir de esta secuencia.
-sequence_to<p class="dt-data-type">string</p> | Lista facturas hasta esta secuencia.
+customer_tax_identification<p class="dt-data-type">string</p> | Filtra las notas de crédito por comprador.
+issue_from<p class="dt-data-type">string</p> | Lista notas de crédito emitidas hasta esta fecha.
+issue_to<p class="dt-data-type">string</p> | Lista notas de crédito a partir de esta fecha de emisión.
+sequence_from<p class="dt-data-type">string</p> | Lista notas de crédito a partir de esta secuencia.
+sequence_to<p class="dt-data-type">string</p> | Lista notas de crédito hasta esta secuencia.
 supplier_points_of_sale<p class="dt-data-type">array</p> | Listado de códigos de punto de emisión separados por coma, ej: 001,004,005
-select_keys<p class="dt-data-type">array</p> | Listado de nombres de atributos de la factura separados por coma que se quisieran obtener en la respuesta. Si no se especifica la respuesta incluye el objeto completo. Ej: number,issue_date,items
+select_keys<p class="dt-data-type">array</p> | Listado de nombres de atributos de la nota de crédito separados por coma que se quisieran obtener en la respuesta. Si no se especifica la respuesta incluye el objeto completo. Ej: number,issue_date,items
 page_size<p class="dt-data-type">integer</p> | Define la cantidad de items por página. Por defecto retorna 30 items por página
 
 
 #### Respuesta
 
-Retorna un objeto [result set](#result-set) con el listado de Facturas que
+Retorna un objeto [result set](#result-set) con el listado de Notas de crédito que
 coincidan con los parámetros de filtrado enviados.
 
-> Listado de facturas
+> Listado de notas de crédito
 
 ```json
 {

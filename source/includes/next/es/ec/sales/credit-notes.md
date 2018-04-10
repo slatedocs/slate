@@ -1,4 +1,6 @@
-#### Acciones disponibles para Nota de crédito en Venta
+## Notas de crédito
+
+#### Acciones disponibles para Nota de crédito en venta
 
 * [`POST /sales/credit-notes/issues`](#emite-una-nota-de-crédito)<br>
 Emite una nueva Nota de crédito
@@ -10,7 +12,7 @@ Obtener información de una Nota de crédito
 Obtener un listado de Notas de crédito
 
 * [`POST /sales/credit-notes/:id/reissues`](#re-emite-un-nota-de-crédito)<br>
-Re-emite un Factura existente
+Re-emite un Nota de crédito existente
 
 
 ## Emite una Nota de crédito
@@ -64,11 +66,7 @@ curl -v https://api.datil.co/sales/credit-notes/issues \
     "locality": "Guayaquil",
     "address": "Carrera 10 Calle 1",
     "email": "compras@datil.co",
-    "person": {
-      "first_name": "Juan",
-      "middle_name": "A.",
-      "last_name": "Pérez"
-    },
+    "legal_name": "Juan A. Pérez",
     "phone": "57122222222222",
     "tax_identification_type": "05",
     "sublocality": "Centro",
@@ -154,11 +152,7 @@ credit_note = {
         "locality": "Guayaquil",
         "address": "Carrera 10 Calle 1",
         "email": "compras@datil.co",
-        "person": {
-            "first_name": "Juan",
-            "middle_name": "A.",
-            "last_name": "Pérez"
-        },
+        "legal_name": "Juan A. Pérez",
         "phone": "57122222222222",
         "tax_identification_type": "05",
         "sublocality": "Centro",
@@ -216,7 +210,7 @@ ambiente de pruebas del SRI.
 
 Parámetros | &nbsp;
 ---------- | -----------
-supplier<p class="dt-data-param-required">requerido</p> | En este campo sólo es necesario proveer "location" con los campos "code" y "point_of_sale". Para el objeto "point_of_sale" es necesario sólo especificar "code"
+supplier<p class="dt-data-param-required">requerido</p> | Información del [emisor](#issuer) .En este campo sólo es necesario proveer "location" con los campos "code" y "point_of_sale". Para el objeto "point_of_sale" es necesario sólo especificar "code"
 sequence | Número entero positivo mayor a cero. Si no envías esta información se utilizará el siguiente número de nota de crédito disponible.
 credit_reason<p class="dt-data-param-required">requerido</p> | Razón por la cual se emite la nota de crédito.
 credited_document<p class="dt-data-param-required">requerido</p> | Documento al que afecta esta nota de crédito. Ver [documento relacionado](#documento-relacionado)
@@ -311,11 +305,7 @@ necesitas consultar.
     "locality": "Guayaquil",
     "address": "Av. Primera 123",
     "email": "clientes@datil.co",
-    "person": {
-      "first_name": "José",
-      "middle_name": "",
-      "last_name": "Pérez"
-    },
+    "legal_name": "José Pérez",
     "phone": "0990289327",
     "tax_identification_type": "05",
     "sublocality": "",
@@ -427,9 +417,7 @@ coincidan con los parámetros de filtrado enviados.
   "previous": null,
   "results": [{
       "customer": {
-        "business": {
-          "legal_name": "Benalcázar Teresa"
-        },
+        "legal_name": "Benalcázar Teresa",
         "tax_identification_type": "04",
         "administrative_district_level_1": null,
         "phone": "555-5555",
@@ -495,10 +483,8 @@ coincidan con los parámetros de filtrado enviados.
         "quantity": "1.000000"
       }],
       "supplier": {
-        "business": {
-          "legal_name": "Datil",
-          "commercial_name": "Datil"
-        },
+        "legal_name": "Datil",
+        "commercial_name": "Datil",
         "administrative_district_level_1": "Guayas",
         "phone": "0",
         "address": "Av. Principal 234",
@@ -528,9 +514,7 @@ coincidan con los parámetros de filtrado enviados.
     },
     {
       "customer": {
-        "business": {
-          "legal_name": "Adriana Benítez"
-        },
+        "legal_name": "Adriana Benítez",
         "tax_identification_type": "04",
         "administrative_district_level_1": null,
         "phone": "",
@@ -601,10 +585,8 @@ coincidan con los parámetros de filtrado enviados.
         "quantity": "1.000000"
       }],
       "supplier": {
-        "business": {
-          "legal_name": "Datil",
-          "commercial_name": "Datil"
-        },
+        "legal_name": "Datil",
+        "commercial_name": "Datil",
         "administrative_district_level_1": "Guayas",
         "phone": "0",
         "address": "Av. Principal 234",

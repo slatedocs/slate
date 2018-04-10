@@ -65,7 +65,7 @@ type <p class="dt-data-type">string</p> | Tipo del documento relacionado. Ver ta
 issue_date<p class="dt-data-type">string</p> | Fecha de emisión del documento relacionado en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 
 
-### Supplier
+### Issuer
 
 Información del emisor de un comprobante.
 
@@ -112,8 +112,8 @@ Los contactos están representados por un objeto _Contact_
 
 Atributos | &nbsp;
 --------- | -------
-person <p class="dt-data-type">object</p> | objeto tipo [person](#person). Aparece cuando el contacto es una persona.
-business <p class="dt-data-type">object</p> | objeto tipo [business](#business). Aparece cuando el contacto es una empresa.
+legal_name<p class="dt-data-type">string</p> | Razón social del contacto.
+commercial_name<p class="dt-data-type">string</p> | Nombre comercial del contacto (aplica para empresas).
 properties <p class="dt-data-type">object</p> | diccionario de datos. Representa información complementarios del contacto.
 tax_identification <p class="dt-data-type">string</p> | De 5 a máximo 20 caracteres.
 tax_identification_type <p class="dt-data-type">string</p> | Ver [tabla](#tipo-de-identificación) de tipos de identificación
@@ -123,25 +123,6 @@ address <p class="dt-data-type">string</p> | Dirección
 locality <p class="dt-data-type">string</p> | Ciudad o pueblo
 sublocality <p class="dt-data-type">string</p> | Sector o barrio
 administrative_district_level_1 <p class="dt-data-type">string</p> | Provincia
-
-El contacto debe incluir alguno de los dos atributos, `business` o `person`.
-
-
-### Business
-
-Atributos | &nbsp;
---------- | -------
-legal_name <p class="dt-data-type">string</p> | Razón social.
-commercial_name <p class="dt-data-type">string</p> | Nombre de comercial.
-
-
-### Person
-
-Atributos | &nbsp;
---------- | -------
-first_name <p class="dt-data-type">string</p> | Nombre de pila.
-middle_name <p class="dt-data-type">string</p> | Segundo nombre.
-last_name <p class="dt-data-type">string</p> | Apellido.
 
 
 ### Property

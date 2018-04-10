@@ -22,7 +22,7 @@ Actualizar una Categoría existente
 Elimina una Categoría de tu catálogo
 
 
-### Lista Categorías
+## Lista Categorías
 
 > Requerimiento de ejemplo
 
@@ -53,7 +53,7 @@ parent_id<p class="dt-data-type">string</p> | Lista las cateogorías que pertene
 page_size<p class="dt-data-type">integer</p> | Define la cantidad de items por página. Por defecto retorna 30 items por página
 
 
-#### Respuesta
+### Respuesta
 
 Retorna un objeto [result set](#result-set) con el listado de Categorías que coincidan
 con los filtros enviados.
@@ -87,7 +87,7 @@ con los filtros enviados.
 }
 ```
 
-### Consulta una Categoría
+## Consulta una Categoría
 
 > Requerimiento de ejemplo
 
@@ -114,7 +114,7 @@ Parámetros | &nbsp;
 id<p class="dt-data-type">requerido</p> | El identificador único del categoría.
 
 
-#### Respuesta
+### Respuesta
 
 Retorna un objeto [Product](#product) si el identificador es válido, caso contrario
 retorna un error.
@@ -169,7 +169,7 @@ name<p class="dt-data-type">requerido</p> | Nombre del categoría
 parent_id | ID de la categoría padre. Esto te permitirá crear categorías dentro de otras.
 
 
-#### Respuesta
+### Respuesta
 
 Retorna el nuevo objeto [Product](#product) si la información es válida, caso contrario
 retorna un error.
@@ -186,7 +186,7 @@ retorna un error.
 }
 ```
 
-### Actualiza una Categoría
+## Actualiza una Categoría
 
 > Requerimiento de ejemplo
 
@@ -224,7 +224,7 @@ Parámetros |  &nbsp;
 name<p class="dt-data-type">requerido</p> | Nombre del categoría
 
 
-#### Respuesta
+### Respuesta
 
 Retorna el objeto [Category](#category) actualizado si la información es válida, caso contrario
 retorna un error.

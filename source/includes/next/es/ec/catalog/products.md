@@ -24,7 +24,7 @@ Actualizar un Producto existente
 Elimina un Producto de tu catálogo
 
 
-### Lista Productos
+## Lista Productos
 
 > Requerimiento de ejemplo
 
@@ -57,7 +57,7 @@ track_inventory<p class="dt-data-type">boolean</p> | Lista todos los productos q
 page_size<p class="dt-data-type">integer</p> | Define la cantidad de items por página. Por defecto retorna 30 items por página
 
 
-#### Respuesta
+### Respuesta
 
 Retorna un objeto [result set](#result-set) con el listado de Productos que coincidan
 con los filtros enviados.
@@ -136,7 +136,7 @@ con los filtros enviados.
 }
 ```
 
-### Consulta un Producto
+## Consulta un Producto
 
 > Requerimiento de ejemplo
 
@@ -163,7 +163,7 @@ Parámetros | &nbsp;
 id<p class="dt-data-type">requerido</p> | El identificador único del producto.
 
 
-#### Respuesta
+### Respuesta
 
 Retorna un objeto [Product](#product) si el identificador es válido, caso contrario
 retorna un error.
@@ -204,7 +204,7 @@ retorna un error.
 }
 ```
 
-### Crea un Producto
+## Crea un Producto
 
 > Requerimiento de ejemplo
 
@@ -320,7 +320,7 @@ rate_code<p class="dt-data-type">requerido</p> | Código del impuesto específic
 
 
 
-#### Respuesta
+### Respuesta
 
 Retorna el nuevo objeto [Product](#product) si la información es válida, caso contrario
 retorna un error.
@@ -374,7 +374,7 @@ retorna un error.
 }
 ```
 
-### Actualiza un Producto
+## Actualiza un Producto
 
 > Requerimiento de ejemplo
 
@@ -464,7 +464,7 @@ rate_code<p class="dt-data-type">requerido</p> | Código del impuesto específic
 
 
 
-#### Respuesta
+### Respuesta
 
 Retorna el nuevo objeto [Product](#product) si la información es válida, caso contrario
 retorna un error.

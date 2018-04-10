@@ -1,4 +1,6 @@
-#### Acciones disponibles para Facturas de Venta
+## Facturas
+
+#### Acciones disponibles para Facturas de venta
 
 * [`POST /sales/invoices/issues`](#emite-una-factura)<br>
 Emite una nueva Factura
@@ -74,11 +76,7 @@ curl -v https://api.datil.co/sales/invoices/issues \
     "locality": "Guayaquil",
     "address": "Carrera 10 Calle 1",
     "email": "compras@datil.co",
-    "person": {
-      "first_name": "Juan",
-      "middle_name": "A.",
-      "last_name": "Pérez"
-    },
+    "legal_name": "Juan A. Pérez",
     "phone": "57122222222222",
     "tax_identification_type": "05",
     "sublocality": "Centro",
@@ -174,11 +172,7 @@ invoice = {
         "locality": "Guayaquil",
         "address": "Carrera 10 Calle 1",
         "email": "compras@datil.co",
-        "person": {
-            "first_name": "Juan",
-            "middle_name": "A.",
-            "last_name": "Pérez"
-        },
+        "legal_name": "Juan A. Pérez",
         "phone": "57122222222222",
         "tax_identification_type": "05",
         "sublocality": "Centro",
@@ -236,7 +230,7 @@ ambiente de pruebas del SRI.
 
 Parámetros | &nbsp;
 ---------- | -----------
-supplier<p class="dt-data-param-required">requerido</p> | En este campo sólo es necesario proveer "location" con los campos "code" y "point_of_sale". Para el objeto "point_of_sale" es necesario sólo especificar "code"
+supplier<p class="dt-data-param-required">requerido</p> | Información del [emisor](#issuer). En este campo sólo es necesario proveer "location" con los campos "code" y "point_of_sale". Para el objeto "point_of_sale" es necesario sólo especificar "code"
 sequence | Número entero positivo mayor a cero. Si no envías esta información se utilizará el siguiente número de factura disponible.
 currency<p class="dt-data-param-required">requerido</p> | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda.
 issue_date | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). Si no es provista, se utilizará la fecha en la que se envía la factura.
@@ -323,11 +317,7 @@ consultar.
     "locality": "Guayaquil",
     "address": "Av. Primera 123",
     "email": "clientes@datil.co",
-    "person": {
-      "first_name": "José",
-      "middle_name": "",
-      "last_name": "Pérez"
-    },
+    "legal_name": "José Pérez",
     "phone": "0990289327",
     "tax_identification_type": "05",
     "sublocality": "",
@@ -440,9 +430,7 @@ coincidan con los parámetros de filtrado enviados.
   "previous": null,
   "results": [{
       "customer": {
-        "business": {
-          "legal_name": "Benalcázar Teresa"
-        },
+        "legal_name": "Benalcázar Teresa",
         "tax_identification_type": "04",
         "administrative_district_level_1": null,
         "phone": "555-5555",
@@ -509,10 +497,8 @@ coincidan con los parámetros de filtrado enviados.
         "quantity": "1.000000"
       }],
       "supplier": {
-        "business": {
-          "legal_name": "Datil",
-          "commercial_name": "Datil"
-        },
+        "legal_name": "Datil",
+        "commercial_name": "Datil",
         "administrative_district_level_1": "Guayas",
         "phone": "0",
         "address": "Av. Principal 234",
@@ -542,9 +528,7 @@ coincidan con los parámetros de filtrado enviados.
     },
     {
       "customer": {
-        "business": {
-          "legal_name": "Adriana Benítez"
-        },
+        "legal_name": "Adriana Benítez",
         "tax_identification_type": "04",
         "administrative_district_level_1": null,
         "phone": "",
@@ -616,10 +600,8 @@ coincidan con los parámetros de filtrado enviados.
         "quantity": "1.000000"
       }],
       "supplier": {
-        "business": {
-          "legal_name": "Datil",
-          "commercial_name": "Datil"
-        },
+        "legal_name": "Datil",
+        "commercial_name": "Datil",
         "administrative_district_level_1": "Guayas",
         "phone": "0",
         "address": "Av. Principal 234",
