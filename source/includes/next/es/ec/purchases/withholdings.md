@@ -160,8 +160,8 @@ se debe examinar el atributos `authorization` de la retención.
 ### Requerimiento
 
 ```shell
-curl -v https://link.datil.co/withholdings/<withholding-id> \
--H "Content-Type: application/json" \
+curl -v https://api.datil.co/withholdings/<withholding-id> \
+-H "Accept: application/json" \
 -H "X-Api-Key: <clave-del-api>" \
 ```
 
