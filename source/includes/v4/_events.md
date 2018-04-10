@@ -443,6 +443,7 @@ curl "https://demo.gomus.de/api/v4/events/1/dates/1"
         "description": null,
         "start_time": "2016-07-10T14:30:00+02:00",
         "vat_pct": 0,
+        "discount": 0,
         "tax_included": true,
         "seats": {
             "min": 1,
@@ -484,6 +485,7 @@ registration form.
 The json response contains more attributes than in the overview:
 
 - vat_pct (float), the pricing tax rate
+- discount (integer), discount in percent (0-100) to apply on total price for this item if ordered
 - tax_included (boolean), whether the tax (if any) is included or not
 
 plus a block of attributes for available seats (see below) languages, location and prices.
