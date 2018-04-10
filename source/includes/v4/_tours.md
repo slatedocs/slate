@@ -462,6 +462,7 @@ curl "https://demo.gomus.de/api/v4/tours/1/prices"
         }
     ],
     "vat_pct": 0.0,
+    "discount": 0,
     "tax_included": true
 
 }
@@ -490,6 +491,7 @@ plus additional surcharges, e.g. sunday extra, foreign language extra and so on.
 The json response contains the following attributes:
 
 - vat_pct (float), the pricing tax rate
+- discount (integer), discount in percent (0-100) to apply on total price for this item if ordered
 - tax_included (boolean), whether the tax (if any) is included or not
 
 and an array of "prices", see below.
