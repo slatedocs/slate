@@ -85,7 +85,7 @@ The json response contains a list of existing orders as an array and a meta bloc
 - id (integer), the unique database id of the order
 - token (string), a unique token of the order, see more at the documents section
 - is_valid (boolean), whether the order is valid or not
-- total_price_cents (integer), the total amount of the order in EUR cents
+- total_price_cents (integer), the total amount of the order in EUR cents (mind the discounts for each item)
 - comment (text), a comment, defined on creation
 - reference (text), reference field, can be used for advertising
 - rating (integer), a simple amazon style rating value
