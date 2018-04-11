@@ -102,7 +102,11 @@ curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" http:
      "created_at":"2017-10-30T10:55:42.201Z",
      "updated_at":"2017-10-30T10:55:42.201Z",
      "assets":[
-
+        {
+            "metadata":{},
+            "title":"public",
+            "type":"site"
+        }
      ],
      "start_timestamp":"2017-10-30T10:55:42.176Z",
      "end_timestamp":"2017-11-13T10:55:42.176Z",
@@ -139,7 +143,7 @@ It gives all subscriptions for a user.
 
 This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
 
-## LIST All Assets accessible to a user
+## LIST All Assets accessible to user
 
 ```shell
 curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/members/me/assets
@@ -147,11 +151,10 @@ curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" http:
 {
    "assets":[
       {
-         "type":"site"
-      },
-      {
-         "type":"site"
-      },
+       "metadata":{},
+       "title":"public",
+       "type":"site"
+      }
    ]
 }
 ```
