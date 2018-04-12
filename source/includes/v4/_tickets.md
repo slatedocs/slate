@@ -28,6 +28,7 @@ curl "https://demo.gomus.de/api/v4/tickets"
             33
         ],
         "price_cents": 1400,
+        "discount": 0,
         "vat_pct": 0,
         "tax_included": true,
         "entry_duration": 30,
@@ -82,6 +83,7 @@ The json response contains a list of tickets as an array and a meta block.
 - exhibition_ids, array of exhibition ids to whick the ticket belongs, can be empty
 - quota_ids, array of quota ids to which the ticket belongs, can be empty
 - price_cents (integer), price of the ticket in EUR cents
+- discount (integer), discount in percent (0-100) to apply on total price for this item if ordered
 - vat_pct (float), the tickets tax rate
 - tax_included (boolean), whether the tax (if any) is included in price_cents or not
 - first_entry (integer), first possible entry in minutes from beginning of day, can be combined with `valid_at` parameter
@@ -124,6 +126,7 @@ curl "https://demo.gomus.de/api/v4/tickets/1"
         ],
         "price_cents": 1400,
         "vat_pct": 0,
+        "discount": 0,
         "tax_included": true,
         "first_entry": 660,
         "last_entry": 990,
