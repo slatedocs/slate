@@ -60,10 +60,13 @@ Servlet container | [Apache Tomcat 7](http://tomcat.apache.org/download-70.cgi)
 Для этого файле ``${PRO_TOMCAT_HOME}/webapps/pro/WEB-INF/classes/smarttransactions.properties`` требуется указать в свойстве ``service_url`` значение Service URL, полученное после установки сервиса SmartTransactions
 
 **Инструкция по обновлению сервиса SmartTransactions**
+
 0. Раздеполить SmartTransactionsConsole.war и SmartTransactionsEndpoint.war
 0. Задеплоить новые версии, сначала SmartTransactionsEndpoint.war, а затем SmartTransactionsConsole.war
 
+
 **Инструкция по обновлению базы мерчантов**
+
 0. Получить от IDA Mobile свежий дамп базы мерчантов smt_merchants.backup
 0. Остановить Tomcat, на котором работает SmartTransactions
 0. Запустить pgAdmin и подключиться к нужному серверу СУБД
@@ -73,3 +76,5 @@ Servlet container | [Apache Tomcat 7](http://tomcat.apache.org/download-70.cgi)
 0. В открывшемся окне выбрать исходный файл (из шага 1), на вкладке "Параметры восстановления #1" поставить флажок напротив пункта Не сохранять - Владелец
 0. Запустить восстановление
 0. После завершения восстановления запустить Tomcat
+
+
