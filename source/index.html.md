@@ -96,7 +96,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50,0%"
+          "discount": "50.00"
         }
       },
       "status": "pending_docs",
@@ -110,7 +110,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50,0%"
+          "discount": "50.00"
         }
       },
       "status": "pre_registered",
@@ -161,7 +161,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50,0%"
+          "discount": "50.00"
         }
       },
       "status": "pending_docs",
@@ -175,7 +175,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50,0%"
+          "discount": "50.00"
         }
       },
       "status": "pre_registered",
@@ -224,7 +224,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50,0%"
+          "discount": "50.00"
         }
       },
       "status": "pending_docs",
@@ -238,7 +238,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50,0%"
+          "discount": "50.00"
         }
       },
       "status": "pre_registered",
@@ -287,7 +287,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50,0%"
+          "discount": "50.00"
         }
       },
       "status": "pre_registered",
@@ -301,7 +301,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50,0%"
+          "discount": "50.00"
         }
       },
       "status": "pre_registered",
@@ -350,7 +350,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50,0%"
+          "discount": "50.00"
         }
       },
       "status": "pending_docs",
@@ -364,7 +364,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50,0%"
+          "discount": "50.00"
         }
       },
       "status": "pre_registered",
@@ -433,7 +433,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
         "course": {
           "id": "ADM-MANHA-SP",
           "offer": {
-            "discount": "50,0%"
+            "discount": "50.00"
           }
         },
         "status": "pending_docs",
@@ -542,7 +542,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50,0%"
+          "discount": "50.00"
         }
       },
       "status": "pending_docs",
@@ -632,7 +632,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50,0%"
+          "discount": "50.00"
         }
       },
       "status": "pending_docs",
@@ -790,7 +790,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
   "course": {
     "id": "ADM-MANHA-SP",
     "offer": {
-      "discount": "50,0%"
+      "discount": "50.00"
     }
   },
   "status": "pending_docs",
@@ -951,7 +951,7 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
   "course": {
     "id": "ADM-MANHA-SP",
     "offer": {
-      "discount": "50,0%"
+      "discount": "50.00"
     }
   },
   "status": "enrolled",
