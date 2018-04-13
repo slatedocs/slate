@@ -96,7 +96,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50.00"
+          "discount": 50.0
         }
       },
       "status": "pending_docs",
@@ -110,7 +110,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50.00"
+          "discount": 50.0
         }
       },
       "status": "pre_registered",
@@ -161,7 +161,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50.00"
+          "discount": 50.0
         }
       },
       "status": "pending_docs",
@@ -175,7 +175,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50.00"
+          "discount": 50.0
         }
       },
       "status": "pre_registered",
@@ -224,7 +224,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50.00"
+          "discount": 50.0
         }
       },
       "status": "pending_docs",
@@ -238,7 +238,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50.00"
+          "discount": 50.0
         }
       },
       "status": "pre_registered",
@@ -287,7 +287,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50.00"
+          "discount": 50.0
         }
       },
       "status": "pre_registered",
@@ -301,7 +301,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50.00"
+          "discount": 50.0
         }
       },
       "status": "pre_registered",
@@ -350,7 +350,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50.00"
+          "discount": 50.0
         }
       },
       "status": "pending_docs",
@@ -364,7 +364,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50.00"
+          "discount": 50.0
         }
       },
       "status": "pre_registered",
@@ -433,7 +433,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
         "course": {
           "id": "ADM-MANHA-SP",
           "offer": {
-            "discount": "50.00"
+            "discount": 50.0
           }
         },
         "status": "pending_docs",
@@ -486,7 +486,7 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 | [admissions] course | object | Objeto com dados do curso referente a essa matrícula |
 | [course] id | string | Código do curso fornecido pela universidade referente a essa matrícula |
 | [course] offer | object | Objeto com dados da oferta do curso |
-| [offer] discount | string | Desconto do curso que o aluno adquiriu |
+| [offer] discount | float | Desconto do curso que o aluno adquiriu |
 | [admissions] status | string | Status que se encontra o processo de matrícula |
 | [admissions] created_at | string | Data da criação do processo de matrícula no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 
@@ -542,7 +542,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50.00"
+          "discount": 50.0
         }
       },
       "status": "pending_docs",
@@ -591,7 +591,7 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 | [admissions] course | object | Objeto com dados do curso referente a essa matrícula |
 | [course] id | string | Código do curso fornecido pela universidade referente a essa matrícula |
 | [course] offer | object | Objeto com dados da oferta do curso |
-| [offer] discount | string | Desconto do curso que o aluno adquiriu |
+| [offer] discount | float | Desconto do curso que o aluno adquiriu |
 | [admissions] status | string | Status que se encontra o processo de matrícula |
 | [admissions] created_at | string | Data da criação do processo de matrícula no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 
@@ -632,7 +632,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50.00"
+          "discount": 50.0
         }
       },
       "status": "pending_docs",
@@ -713,7 +713,7 @@ Admissões são retornadas em páginas de até 25 elementos, ordenadas pela últ
 | course | object | Objeto com dados do curso referente a essa matrícula |
 | [course] id | string | Código do curso fornecido pela universidade referente a essa matrícula |
 | [course] offer | object | Objeto com dados da oferta do curso |
-| [offer] discount | string | Desconto do curso que o aluno adquiriu |
+| [offer] discount | float | Desconto do curso que o aluno adquiriu |
 | status | string | Status da admissão do aluno |
 | [student] id | number | Id do aluno |
 | [student] name | string | Nome do aluno |
@@ -790,7 +790,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
   "course": {
     "id": "ADM-MANHA-SP",
     "offer": {
-      "discount": "50.00"
+      "discount": 50.0
     }
   },
   "status": "pending_docs",
@@ -872,7 +872,7 @@ Retorna uma admissão específica da faculdade.
 | course | object | Objeto com dados do curso referente a essa matrícula |
 | [course] id | string | Código do curso fornecido pela universidade referente a essa matrícula |
 | [course] offer | object | Objeto com dados da oferta do curso |
-| [offer] discount | string | Desconto do curso que o aluno adquiriu |
+| [offer] discount | float | Desconto do curso que o aluno adquiriu |
 | status | string | Status da admissão do aluno |
 | [student] id | number | Id do aluno |
 | [student] name | string | Nome do aluno |
@@ -951,7 +951,7 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
   "course": {
     "id": "ADM-MANHA-SP",
     "offer": {
-      "discount": "50.00"
+      "discount": 50.0
     }
   },
   "status": "enrolled",
@@ -1057,7 +1057,7 @@ Realiza atualização de um processo de admissão específico de um aluno. Para 
 | course | object | Objeto com dados do curso referente a essa matrícula |
 | [course] id | string | Código do curso fornecido pela universidade referente a essa matrícula |
 | [course] offer | object | Objeto com dados da oferta do curso |
-| [offer] discount | string | Desconto do curso que o aluno adquiriu |
+| [offer] discount | float | Desconto do curso que o aluno adquiriu |
 | status | string | Status da admissão do aluno |
 | [student] id | number | Id do aluno |
 | [student] name | string | Nome do aluno |
@@ -1143,7 +1143,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
         "course": {
           "id": "ADM-MANHA-SP",
           "offer": {
-            "discount": "50.00"
+            "discount": 50.0
           }
         },
         "status": "pending_docs",
@@ -1222,7 +1222,7 @@ Inscrições são retornadas em páginas de até 25 elementos, ordenadas pela ú
 | [admissions] course | object | Objeto com dados do curso referente a essa matrícula |
 | [course] id | string | Código do curso fornecido pela universidade referente a essa matrícula |
 | [course] offer | object | Objeto com dados da oferta do curso |
-| [offer] discount | string | Desconto do curso que o aluno adquiriu |
+| [offer] discount | float | Desconto do curso que o aluno adquiriu |
 | [admission] status | string | Status da admissão do aluno |
 | [admission] student | object | Objeto com dados do aluno |
 | [student] id | number | Id do aluno |
@@ -1298,7 +1298,7 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
     "course": {
       "id": "ADM-MANHA-SP",
       "offer": {
-        "discount": "50.00"
+        "discount": 50.0
       }
     },
     "status": "pending_docs",
@@ -1378,7 +1378,7 @@ Retorna uma inscrição específica na inscrição do exame da faculdade.
 | [admissions] course | object | Objeto com dados do curso referente a essa matrícula |
 | [course] id | string | Código do curso fornecido pela universidade referente a essa matrícula |
 | [course] offer | object | Objeto com dados da oferta do curso |
-| [offer] discount | string | Desconto do curso que o aluno adquiriu |
+| [offer] discount | float | Desconto do curso que o aluno adquiriu |
 | [admission] status | string | Status da admissão do aluno |
 | [admission] student | object | Objeto com dados do aluno |
 | [student] id | number | Id do aluno |
@@ -1457,7 +1457,7 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
     "course": {
       "id": "ADM-MANHA-SP",
       "offer": {
-        "discount": "50.00"
+        "discount": 50.0
       }
     },
     "status": "pending_docs",
@@ -1554,7 +1554,7 @@ Atualiza a situação de agendamento ou resultado de uma inscrição para exame.
 | [admissions] course | object | Objeto com dados do curso referente a essa matrícula |
 | [course] id | string | Código do curso fornecido pela universidade referente a essa matrícula |
 | [course] offer | object | Objeto com dados da oferta do curso |
-| [offer] discount | string | Desconto do curso que o aluno adquiriu |
+| [offer] discount | float | Desconto do curso que o aluno adquiriu |
 | [admission] status | string | Status da admissão do aluno |
 | [admission] student | object | Objeto com dados do aluno |
 | [student] id | number | Id do aluno |
@@ -2732,7 +2732,7 @@ Estrutura base das notificações:
       "course": {
         "id": "ADM-MANHA-SP",
         "offer": {
-          "discount": "50.00"
+          "discount": 50.0
         }
       },
       "status": "initiated",
@@ -2776,7 +2776,7 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
 | [admission] course | object | Objeto com dados do curso referente a essa matrícula |
 | [course] id | string | Código do curso fornecido pela universidade referente a essa matrícula |
 | [course] offer | object | Objeto com dados da oferta do curso |
-| [offer] discount | string | Porcentagem de desconto do curso que o aluno adquiriu |
+| [offer] discount | float | Porcentagem de desconto do curso que o aluno adquiriu |
 | [admission] status | string | Status da admissão do aluno (_neste evento o valor sempre será `pre-registered`_) |
 | [admission] student | object | Objeto com dados do aluno |
 | [student] id | number | Id do aluno |
@@ -2816,7 +2816,7 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
         "course": {
           "id": "ADM-MANHA-SP",
           "offer": {
-            "discount": "50.00"
+            "discount": 50.0
           }
         },
         "status": "pre-registered",
@@ -2885,7 +2885,7 @@ Esta notificação informando uma nova inscrição para exame via vestibular.
 | [admission] course | object | Objeto com dados do curso referente a essa matrícula |
 | [course] id | string | Código do curso fornecido pela universidade referente a essa matrícula |
 | [course] offer | object | Objeto com dados da oferta do curso |
-| [offer] discount | string | Porcentagem de desconto do curso que o aluno adquiriu |
+| [offer] discount | float | Porcentagem de desconto do curso que o aluno adquiriu |
 | [admission] status | string | Status da admissão do aluno (_neste evento o valor sempre será `pre-registered`_) |
 | [admission] student | object | Objeto com dados do aluno |
 | [student] id | number | Id do aluno |
@@ -2933,7 +2933,7 @@ Esta notificação informando uma nova inscrição para exame via vestibular.
         "course": {
           "id": "ADM-MANHA-SP",
           "offer": {
-            "discount": "50.00"
+            "discount": 50.0
           }
         },
         "status": "pre-registered",
@@ -3008,7 +3008,7 @@ Esta notificação informa uma nova inscrição para exame via ENEM.
 | [admission] course | object | Objeto com dados do curso referente a essa matrícula |
 | [course] id | string | Código do curso fornecido pela universidade referente a essa matrícula |
 | [course] offer | object | Objeto com dados da oferta do curso |
-| [offer] discount | string | Porcentagem de desconto do curso que o aluno adquiriu |
+| [offer] discount | float | Porcentagem de desconto do curso que o aluno adquiriu |
 | [admission] status | string | Status da admissão do aluno (_neste evento o valor sempre será `pre-registered`_) |
 | [admission] student | object | Objeto com dados do aluno |
 | [student] id | number | Id do aluno |
