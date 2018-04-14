@@ -37,7 +37,7 @@ To limit our agent's memory usage, we stop recording the details of every instru
 
 ## Security
 
-We take the security of your code metrics extremely seriously. Keeping your data secure is fundamental to our business. Scout is nearing a decade storing critical metrics with our server monitoring product and those same fundamentals are applied here:
+We take the security of your code metrics extremely seriously. Keeping your data secure is fundamental to our business. Scout is nearing a decade storing critical metrics and those same fundamentals are applied here:
 
 * All data transmitted by our agent to our servers is sent as serialized JSON over SSL.
 * Our UI is only served under SSL.
