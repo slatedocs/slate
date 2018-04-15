@@ -4,12 +4,12 @@ title: WCX API Documentation
 includes:
   - overview/introduction
   - overview/data-types
-  - overview/terminology
   - rest/requests/authentication
   - rest/requests/rate-limits
   - rest/requests/errors
   - rest/private/new-order
   - rest/private/cancel-order
+  - rest/private/batch-order
   - rest/private/list-orders
   - rest/private/list-fills
   - rest/private/list-transactions

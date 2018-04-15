@@ -1,4 +1,4 @@
-<h1 id='REST-Private' class='section-subheader'>Private</h1>
+<h1 id='REST-Private' class='section-subheader'>Private Endpoints</h1>
 
 # Orders
 
@@ -53,9 +53,9 @@ price | \*\* Price of your order
 
 \*\* Price can be ignored for `market` orders, but is required for all other order types. For `stop` orders, this is the price at which the stop order triggers, otherwise known as the stop price.
 
-As an alternative to market orders, you can use limit orders with price set deep in the opposite book. This allows you to set a size in base asset and a price, giving you an execution price guarantee.
+As an alternative to market orders, you can use limit orders with price set deep in the opposite book. This allows you to set `size` (instead of `funds`) and a price, which gives you an execution price guarantee.
 
-A list of products can be found by querying the [`/products`](#products) endpoint.
+A list of products can be found by querying the [/products](#products) endpoint.
 
 #### Limit order parameters
 
@@ -95,8 +95,8 @@ An order that is completely filled and off the book will be marked as **done**.
 
 ### Response
 
-An order accepted by the matching engine will be assigned an order `id` present in the response.
+An order accepted by the matching engine will be assigned an order `id` which will appear in the response.
 
-`filled` specifies the amount, in base asset, that was matched as a result of your order.
+`filled` specifies the amount that was matched as a result of your order.
 
 `timestamp` is the time your order was received by the matching engine.

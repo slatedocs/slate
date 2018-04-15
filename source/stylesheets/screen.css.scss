@@ -382,7 +382,6 @@ html, body {
 
     &.section-header {
       border-top: none;
-      background-color: #f9f9f9;
       color: #555;
       font-size: 30px;
       padding-top: 2em;
@@ -503,7 +502,9 @@ html, body {
     padding: 3px 4px 2px;
     border-radius: 2px;
     white-space: nowrap;
-    color: #d13713;
+    color: #2B303B;
+    font-weight: 600;
+    letter-spacing: 0.02rem;
     border: 1px solid rgba(0,0,0,0.08);
     @extend %break-words;
     @extend %code-font;
@@ -513,6 +514,8 @@ html, body {
     background-color: transparent;
     padding: 0;
     white-space: pre;
+    font-weight: 400;
+    letter-spacing: 0;
   }
 
   aside {

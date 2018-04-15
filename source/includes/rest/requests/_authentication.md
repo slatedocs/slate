@@ -9,14 +9,14 @@
 
 ## Getting your API Key
 
-You can generate an API key and secret from your **Settings/API** page. This information will be used to sign requests to private API endpoints.
+Your API key and secret are available on your [**Settings**](https://wcex.com/settings) page. Use them to sign requests to private API endpoints.
 
 ## Signing a Request
 
 ```javascript
 import crypto from 'crypto'
 
-// Signing a 'New Order' request
+// Signing a New Order request
 
 const API_SECRET = "6a0ef...";
 
@@ -53,9 +53,9 @@ where:
 * `timestamp` is the millisecond timestamp, the same one you pass to the `WCX-TIMESTAMP` header
 * `method` is the UPPER CASE HTTP method used to make the request (`GET`, `POST`, `PUT`, or `DELETE`)
 * `path` is the request path, e.g. `/new-order` (without query parameters)
-* `body` is the JSON-stringified body sent in the request. This generally applies to `POST` requests and can be ommitted for requests without a body.
+* `body` is the JSON-stringified body sent in the request. This generally applies to `POST` requests and can be omitted for requests without a body.
 
-Generate a SHA-256 HMAC of this string using your API Secret, then Base64-encode the output to get the `WCX-SIG` for this request.
+Generate a SHA-256 HMAC of this string using your API secret, then Base64-encode the output to get `WCX-SIG`.
 
 
 ## Timestamp

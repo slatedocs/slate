@@ -2,7 +2,7 @@
 
 <h3 id='data-types-timestamp'>Timestamp</h3>
 
-All timestamps are in milliseconds since UNIX epoch. Many endpoints, particularly those relating to the matching engine, will return millisecond timestamps with microsecond precision, encoded as string.
+All timestamps are in milliseconds since UNIX epoch. Some endpoints, particularly those relating to the matching engine, will return millisecond timestamps with microsecond precision, encoded as string.
 
 `1511482279491.739`
 
