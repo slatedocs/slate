@@ -62,9 +62,13 @@ EXEMPLO
   }
 ```
 
-Cada uma das cobranças criadas serão do mesmo tipo da configuração. Desta forma qualquer Cobrança criada sob uma Configuração de Cobrança do tipo Boleto será uma cobrança do tipo Boleto. Por este motivo os parâmetros, validações e alguns comportamentos serão variáveis de acordo com o tipo de cobrança.
+Cada uma das cobranças criadas terá um tipo, podendo variar de acordo com a configuração de cobrança. Um gateway de
+pagamento pode ter suporte à cobranças via boleto ou cartão de crédito, por exemplo. Por este motivo os parâmetros,
+validações e alguns comportamentos serão variáveis de acordo com o tipo de cobrança e da configuração de cobrança.
 
-### Boleto
+### Cobranças via Conta Bancária
+
+#### Boleto
 
 **Parâmetros**
 
@@ -117,16 +121,23 @@ Cada uma das cobranças criadas serão do mesmo tipo da configuração. Desta fo
 | available_billet               | boolean          | indica se o boleto está disponível para download                                                                                                    |
 | _links                         | array of object  | links relacionados à cobrança                                                                                                                       |
 
-### Gateway de Pagamento
+### Cobranças via Gateway de Pagamento
 
-As Cobranças tem o comportamento assíncrono em relação à comunicação com o Gateway de Pagamento. Ou seja, às ações que dependem de efetivação no Gateway de Pagamento não tem resposta na mesma requisição, são feitas em um processo separado e tem suas respostas dadas em payloads via webhook.
+Cada Gateway de Pagamento tem suporte à tipos de cobrança diferentes. Alguns têm suporte à cobranças via boleto, outros
+não, por exemplo. Em cada tipo de cobrança abaixo é especificado quais Gatways de Pagamento suportam tal tipo de cobrança.
+
+As Cobranças tem o comportamento assíncrono em relação à comunicação com o Gateway de Pagamento. Ou seja, às ações que
+dependem de efetivação no Gateway de Pagamento não tem resposta na mesma requisição, são feitas em um processo separado
+e tem suas respostas dadas em payloads via webhook.
+
+#### Cartão de crédito
 
 **Parâmetros**
 
 | Campo                          | Tipo             | Comentário                                                                                                                                    |
 |--------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
 | id                             | integer          |                                                                                                                                               |
-| type                           | string           | indica o tipo da cobrança. Nesse caso, "payment_gateway"                                                                                      |
+| type                           | string           | indica o tipo da cobrança. Nesse caso, "credit_card"                                                                                          |
 | charge_config_id               | integer          | identificador da configuração de cobrança a qual esta cobrança pertence                                                                       |
 | charged_amount                 | decimal          | valor cobrado no boleto                                                                                                                       |
 | notification_emails            | array of strings | emails que receberão notificações sobre a cobrança                                                                                            |
@@ -150,6 +161,42 @@ As Cobranças tem o comportamento assíncrono em relação à comunicação com 
 | for_homologation               | boolean          | indica se é uma cobrança que foi criada com o objetivo de homologar uma Configuração de cobrança ou um Cartão de Crédito                      |
 | payment_gateway_status         | string           | status da cobrança em relação ao gateway de pagamento (pending, authorized, captured, canceled, authorize_error, capture_error, cancel_error) |
 | payment_gateway_message        | string           | mensagem do gateway de pagamento relacionada ao seu status                                                                                    |
+| canceled_at                    | datetime         | data e horário em que a cobrança foi cancelada, se for o caso                                                                                 |
+| _links                         | array of object  | links relacionados à cobrança                                                                                                                 |
+
+
+#### Boleto
+
+**Parâmetros**
+
+| Campo                          | Tipo             | Comentário                                                                                                                                    |
+|--------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| id                             | integer          |                                                                                                                                               |
+| type                           | string           | indica o tipo da cobrança. Nesse caso, "billet"                                                                                               |
+| charge_config_id               | integer          | identificador da configuração de cobrança a qual esta cobrança pertence                                                                       |
+| charged_amount                 | decimal          | valor cobrado no boleto                                                                                                                       |
+| due_date                       | date             | data de vencimento da cobranca                                                                                                                |
+| interest_amount_per_month      | decimal          | porcentagem de juros mensal que deve ser aplicado em caso de atraso. Esse valore será dividido por 30 para ser encontrata a taxa diária       |
+| mulct_value                    | decimal          | valor da multa que deve ser aplicada em caso de atraso                                                                                        |
+| discount_amount                | decimal          | valor do disconto que deve ser aplicado em caso de pagamento até a data de vencimento                                                         |
+| payer_id                       | integer          | identificador do pagador                                                                                                                      |
+| payer_national_identifier_type | string           | tipo do documento do pagador (cpf ou cnpj)                                                                                                    |
+| payer_national_identifier      | string           | documento do pagador                                                                                                                          |
+| payer_name                     | string           | nome do pagador                                                                                                                               |
+| payer_number                   | string           | número do endereço do pagador                                                                                                                 |
+| payer_complement               | string           | complemento do endereço do pagador                                                                                                            |
+| payer_street                   | string           | rua do endereço do pagador                                                                                                                    |
+| payer_neighbourhood            | string           | bairro do endereço do pagador                                                                                                                 |
+| payer_zipcode                  | string           | cep do endereço do pagador                                                                                                                    |
+| payer_city                     | string           | cidade do endereço do pagador                                                                                                                 |
+| payer_state                    | string           | sigla do estado do endereço do pagador ("RJ" por exemplo)                                                                                     |
+| document_kind                  | string           | espécie do documento                                                                                                                          |
+| auto_send_billet               | boolean          | indica se será enviado email de notificação automaticamente para os emails especificados no campo 'notification_emails'                       |
+| notification_emails            | array of strings | emails que receberão notificações sobre a cobrança                                                                                            |
+| email_sender_name              | string           | nome do remetente do email de notificação de cobrança                                                                                         |
+| email_subject                  | string           | assunto do email de notificação de cobrança                                                                                                   |
+| email_text                     | string           | texto do email de notificação de cobrança                                                                                                     |
+| email_reply_to                 | string           | endereço de email a ser utilizado na resposta ao email de notificação de cobrança                                                             |
 | canceled_at                    | datetime         | data e horário em que a cobrança foi cancelada, se for o caso                                                                                 |
 | _links                         | array of object  | links relacionados à cobrança                                                                                                                 |
 
@@ -237,7 +284,9 @@ EXEMPLO DE CORPO DA RESPOSTA (BOLETO)
 Retorna as informações detalhadas da cobrança informada em JSON e também a referência a sua configuração de cobrança.
 
 <aside class="notice">
-  O conteúdo do nó "_links" irá variar de acordo com o tipo e o status da cobrança. No caso da Cobrança do tipo boleto, além dos itens básicos mostrados no exemplo de resposta ao lado, se a cobrança tiver sido recebida, irá conter o seguinte link:
+  O conteúdo do nó "_links" irá variar de acordo com o tipo e o status da cobrança. No caso da Cobrança do tipo boleto
+  de conta Bancária, além dos itens básicos mostrados no exemplo de resposta ao lado, se a cobrança tiver sido recebida,
+  irá conter o seguinte link:
 
   <br><br>
   <p>
@@ -297,7 +346,7 @@ Retorna uma lista em JSON contendo todos as cobranças que pertencem a sua Conta
 
 É possível filtrar a lista através dos seguintes parâmetros:
 
-- `type`: Filtra pelo tipo de cobrança. O valor a ser informado é string com um dos tipos existentes de cobrança.
+- `type`: Filtra pelo tipo de cobrança. O valor a ser informado é string com um dos tipos existentes de cobrança ("billet" e "credit_card", sendo que existe "payment_gateway" que está _deprecated_ retornando a mesma coisa que "credit_card") .
 - `remittable`: Filtra as cobranças remessáveis, ou seja, passíveis de geração de arquivo de remessa. É necessária apenas a presença do parâmetro, não importando seu valor.
 - `charge_config_ids`: Filtra pelas configurações de cobrança informadas. O valor informado é uma **lista\*** de ids das configurações de cobrança.
 - `payee_ids`: Filtra pelos beneficiários informados. O valor informado é uma **lista\*** de ids dos beneficiários.
@@ -355,7 +404,9 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e será gerado seu boleto. Se houverem erros eles serão informados no corpo da resposta.
 
-### Boleto
+### Cobrança via Conta Bancária
+
+#### Boleto
 
 **Parâmetros**
 
@@ -403,17 +454,30 @@ Cria um nova cobrança, caso haja sucesso retornará as informações da mesma e
 | city                     | string | (opcional, requerido se registrable for `true`) cidade do endereço do pagador                             |
 | state                    | string | (opcional, requerido se registrable for `true`) sigla do estado do endereço do pagador ("RJ" por exemplo) |
 
-### Gateway de Pagamento
+### Cobranças via Gateway de Pagamento
 
-Após a cobrança ser criada com sucesso (sem erros de validação) é iniciado o processo assíncrono para a comunicação com o gateway. Assim que esse processo terminar, um payload de recebimento ou de erro é enviado via webhook.
+Cobranças via gateway de pagamento podem ser de vários tipos, como Boleto e Cartão de crédito. Desse modo, quando for
+criar uma cobrança via gateway de pagamento, deve ser indicado o tipo através do atributo `type`. Por padrão, esse
+atributo terá o valor `"credit_card"`.
+
+É importante ressaltar que os tipos de cobrança disponíveis dependem do gateway de pagamento utilizado e da configuração
+de cobrança.
+
+Após a cobrança ser criada com sucesso (sem erros de validação) é iniciado o processo assíncrono para a comunicação com
+o gateway. Assim que esse processo terminar, um payload de atualização ou de erro é enviado via webhook.
 
 <aside class="notice">
-Em caso de falha da efetivação da cobrança no Gateway de Pagamento, o motivo da falha será disponibilizado no atributo 'payment_gateway_message'.
+Em caso de falha da efetivação da cobrança no Gateway de Pagamento, o motivo da falha será disponibilizado no
+atributo 'payment_gateway_message'.
 </aside>
 
+#### Cartão de crédito
+
 <aside class="notice">
-Se for utilizado um cartão já existente (enviando o parâmetro <code>credit_card_id</code>), este deve pertencer a mesma Configuração de Cobrança (parâmetro <code>charge_config_id</code>) utilizada.
+Se for utilizado um cartão já existente (enviando o parâmetro <code>credit_card_id</code>), este deve pertencer a
+mesma Configuração de Cobrança (parâmetro <code>charge_config_id</code>) utilizada.
 </aside>
+
 
 **Parâmetros**
 
@@ -422,6 +486,7 @@ Se for utilizado um cartão já existente (enviando o parâmetro <code>credit_ca
 | charge_config_id        | integer          | **(requerido)** código de identificação da configuração de cobrança da qual a cobrança irá pertencer                                                                          |
 | charged_amount          | decimal          | **(requerido)** valor cobrado                                                                                                                                                 |
 | payment_method          | string           | **(requerido)** método de pagamento ("credit_card_in_cash" pagamento à vista, "credit_card_financed" pagamento parcelado)                                                     |
+| type                    | string           | (opcional) tipo da cobrança, nesse caso "credit_card" é o valor padrão, por isso é opcional                                                                                   |
 | description             | string           | (opcional) descrição da cobrança                                                                                                                                              |
 | soft_descriptor         | string           | (opcional) descritor que irá aparecer na fatura do cartão (no máximo 13 caracteres)                                                                                           |
 | installments            | integer          | (opcional) número de parcelas (1 por padrão)                                                                                                                                  |
@@ -469,6 +534,47 @@ Caso exista um Pagador (Payer) com o mesmo <code>national_identifier</code>, nã
 | avs_zipcode         | string  | (opcional) cep do endereço de cobrança do cartão                                                                                                                                            |
 | created_as_reusable | boolean | (opcional) indica se o cartão de crédito deve ser salvo de modo que possa ser re-utilizado futuramente em novas cobranças desde mesmo pagador e configuração de cobrança (false por padrão) |
 
+#### Boleto
+
+**Parâmetros**
+
+| Campo                     | Tipo             | Comentário                                                                                                                                                                         |
+|---------------------------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| type                      | string           | **(requerido)** tipo da cobrança, nesse caso deve ser "billet"                                                                                                                     |
+| charge_config_id          | integer          | **(requerido)** código de identificação da configuração de cobrança da qual a cobrança irá pertencer                                                                               |
+| charged_amount            | decimal          | **(requerido)** valor cobrado                                                                                                                                                      |
+| due_date                  | date             | **(requerido)** data de vencimento da cobrança                                                                                                                                     |
+| payer_id                  | integer          | **(requerido, se não enviar payer_attributes)** identificador do pagador (caso seja fornecido, o parâmetro payer_attributes será ignorado)                                         |
+| payer_attributes*         | object           | **(requerido, se não enviar payer_id)** atributos para a criação de um novo pagador ou atualização de um pagador existente com o mesmo documento (national_identifier)             |
+| document_kind             | string           | (opcional) espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                                           |
+| interest_amount_per_month | decimal          | (opcional) porcentagem de juros mensal que deve ser aplicado em caso de atraso. Esse valore será dividido por 30 para ser encontrata a taxa diária                                 |
+| mulct_value               | decimal          | (opcional) porcentagem de multa que deve ser aplicada em caso de atraso                                                                                                            |
+| discount_amount           | decimal          | (opcional) valor do disconto que deve ser aplicado em caso de pagamento até a data de vencimento                                                                                   |
+| auto_send_billet          | boolean          | (opcional) Indica se será enviado email de notificação automaticamente para os emails especificados no campo 'notification_emails'. Caso não seja informada assumirá valor 'false' |
+| notification_emails       | array of strings | (opcional - requerido caso `auto_send_billet` seja `true`) emails que receberão notificações sobre a cobrança                                                                      |
+| email_sender_name         | string           | (opcional) Nome do remetente do email de notificação de cobrança, caso a opção auto_send_billet estiver com valor 'true'                                                           |
+| email_subject             | string           | (opcional) Assunto do email de notificação de cobrança, caso a opção auto_send_billet estiver com valor 'true'                                                                     |
+| email_text                | string           | (opcional) Texto do email de notificação de cobrança, caso a opção auto_send_billet estiver com valor 'true'                                                                       |
+| email_reply_to            | string           | (opcional) Endereço de email a ser utilizado na resposta ao email de notificação de cobrança, caso a opção auto_send_billet estiver com valor 'true'                               |
+
+**payer_attributes**
+
+<aside class="notice">
+Caso exista um Pagador (Payer) com o mesmo <code>national_identifier</code>, não será criado um novo, mas sim atualizado o existente.
+</aside>
+
+| Campo                    | Tipo   | Comentário                                                           |
+|--------------------------|--------|----------------------------------------------------------------------|
+| national_identifier_type | string | **(requerido)** tipo do documento do pagador (cpf ou cnpj)           |
+| national_identifier      | string | **(requerido)** documento do pagador                                 |
+| name                     | string | **(requerido)** nome do pagador                                      |
+| number                   | string | (opcional) número do endereço do pagador                             |
+| complement               | string | (opcional) complemento do endereço do pagador                        |
+| street                   | string | (opcional) rua do endereço do pagador                                |
+| neighbourhood            | string | (opcional) bairro do endereço do pagador                             |
+| zipcode                  | string | (opcional) cep do endereço do pagador                                |
+| city                     | string | (opcional) cidade do endereço do pagador                             |
+| state                    | string | (opcional) sigla do estado do endereço do pagador ("RJ" por exemplo) |
 
 ## Atualização de Cobrança
 
@@ -516,14 +622,19 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 Atualiza a cobrança determinada, caso haja sucesso retornará as informações da mesma. Se houverem erros eles serão informados no corpo da resposta. A requisição não diferencia a utilização dos verbos PUT e PATCH.
 
-### Boleto
+### Cobranças via Conta Bancária
+
+#### Boleto
 
 <aside class="warning">
-Para cobranças do tipo <strong>Boleto</strong> não é possível atualizar uma cobrança após seu recebimento, para isso é necessário desfazer o recebimento da mesma! Além disso, caso seja alterado com sucesso e será gerado um novo boleto sobrescrevendo o anterior.
+Para cobranças do tipo <strong>Boleto de Conta Bancária</strong> não é possível atualizar uma cobrança após seu
+recebimento, para isso é necessário desfazer o recebimento da mesma! Além disso, caso seja alterado com sucesso será
+gerado um novo boleto sobrescrevendo o anterior.
 </aside>
 
 <aside class="notice">
-Para cobranças do tipo <strong>Boleto</strong> os campos 'paid_at', 'paid_amount' e 'payment_tax', não são alterados via atualização de cobrança, apenas no recebimento ou desfazendo o recebimento da mesma.
+Para cobranças do tipo <strong>Boleto de Conta Bancária</strong> os campos 'paid_at', 'paid_amount' e 'payment_tax', não
+são alterados via atualização de cobrança, apenas no recebimento ou desfazendo o recebimento da mesma.
 </aside>
 
 **Parâmetros**
@@ -564,13 +675,18 @@ Para cobranças do tipo <strong>Boleto</strong> os campos 'paid_at', 'paid_amoun
 | city                     | string | (opcional, requerido se registrable for `true`) cidade do endereço do pagador                             |
 | state                    | string | (opcional, requerido se registrable for `true`) sigla do estado do endereço do pagador ("RJ" por exemplo) |
 
-### Gateway de Pagamento
+### Cobranças via Gateway de Pagamento
 
 <aside class="notice">
-Para cobranças do tipo <strong>Gateway de Pagamento</strong>, a atualização só é permitida caso o status no gateway de pagamento (atributo 'payment_gateway_status') seja de erro.
+Para cobranças do via <strong>Gateway de Pagamento</strong>, a atualização só é permitida caso o status no
+gateway de pagamento (atributo 'payment_gateway_status') seja de erro.
 </aside>
 
-Uma cobrança com o status de erro no gateway de pagamento pode ser editada com o objetivo de corrigir este error (descrito no atributo 'payment_gateway_message'). Sendo atualizada com sucesso, é feita uma re-tentativa de efetivação da cobrança no gateway de pagamento.
+Uma cobrança com o status de erro no gateway de pagamento pode ser editada com o objetivo de corrigir este error
+(descrito no atributo 'payment_gateway_message'). Sendo atualizada com sucesso, é feita uma re-tentativa de efetivação
+da cobrança no gateway de pagamento.
+
+#### Cartão de crédito
 
 **Parâmetros**
 
@@ -621,8 +737,47 @@ Uma cobrança com o status de erro no gateway de pagamento pode ser editada com 
 | avs_zipcode         | string  | (opcional) cep do endereço de cobrança do cartão                                                                                                                                            |
 | created_as_reusable | boolean | (opcional) indica se o cartão de crédito deve ser salvo de modo que possa ser re-utilizado futuramente em novas cobranças desde mesmo pagador e configuração de cobrança (false por padrão) |
 
+#### Boleto
 
-## Re-tentativa de efetivar de Cobrança (Gateway de pagamento)
+**Parâmetros**
+
+| Campo                     | Tipo             | Comentário                                                                                                                                                                         |
+|---------------------------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| charged_amount            | decimal          | **(requerido)** valor cobrado                                                                                                                                                      |
+| due_date                  | date             | **(requerido)** data de vencimento da cobrança                                                                                                                                     |
+| payer_id                  | integer          | **(requerido, se não enviar payer_attributes)** identificador do pagador (caso seja fornecido, o parâmetro payer_attributes será ignorado)                                         |
+| payer_attributes*         | object           | **(requerido, se não enviar payer_id)** atributos para a criação de um novo pagador ou atualização de um pagador existente com o mesmo documento (national_identifier)             |
+| document_kind             | string           | (opcional) espécie do documento, podendo ser DM (Duplicata Mercantil), DS (Duplicata de Serviço), NP (Nota Promissória) ou DV (Diversos)                                           |
+| interest_amount_per_month | decimal          | (opcional) porcentagem de juros mensal que deve ser aplicado em caso de atraso. Esse valore será dividido por 30 para ser encontrata a taxa diária                                 |
+| mulct_value               | decimal          | (opcional) porcentagem de multa que deve ser aplicada em caso de atraso                                                                                                            |
+| discount_amount           | decimal          | (opcional) valor do disconto que deve ser aplicado em caso de pagamento até a data de vencimento                                                                                   |
+| auto_send_billet          | boolean          | (opcional) Indica se será enviado email de notificação automaticamente para os emails especificados no campo 'notification_emails'. Caso não seja informada assumirá valor 'false' |
+| notification_emails       | array of strings | (opcional - requerido caso `auto_send_billet` seja `true`) emails que receberão notificações sobre a cobrança                                                                      |
+| email_sender_name         | string           | (opcional) Nome do remetente do email de notificação de cobrança, caso a opção auto_send_billet estiver com valor 'true'                                                           |
+| email_subject             | string           | (opcional) Assunto do email de notificação de cobrança, caso a opção auto_send_billet estiver com valor 'true'                                                                     |
+| email_text                | string           | (opcional) Texto do email de notificação de cobrança, caso a opção auto_send_billet estiver com valor 'true'                                                                       |
+| email_reply_to            | string           | (opcional) Endereço de email a ser utilizado na resposta ao email de notificação de cobrança, caso a opção auto_send_billet estiver com valor 'true'                               |
+
+**payer_attributes**
+
+<aside class="notice">
+Caso exista um Pagador (Payer) com o mesmo <code>national_identifier</code>, não será criado um novo, mas sim atualizado o existente.
+</aside>
+
+| Campo                    | Tipo   | Comentário                                                           |
+|--------------------------|--------|----------------------------------------------------------------------|
+| national_identifier_type | string | **(requerido)** tipo do documento do pagador (cpf ou cnpj)           |
+| national_identifier      | string | **(requerido)** documento do pagador                                 |
+| name                     | string | **(requerido)** nome do pagador                                      |
+| number                   | string | (opcional) número do endereço do pagador                             |
+| complement               | string | (opcional) complemento do endereço do pagador                        |
+| street                   | string | (opcional) rua do endereço do pagador                                |
+| neighbourhood            | string | (opcional) bairro do endereço do pagador                             |
+| zipcode                  | string | (opcional) cep do endereço do pagador                                |
+| city                     | string | (opcional) cidade do endereço do pagador                             |
+| state                    | string | (opcional) sigla do estado do endereço do pagador ("RJ" por exemplo) |
+
+## Re-tentativa de efetivar de Cobrança (Cartão de crédito)
 
 ```shell
 Re-tentativa de efetivação de Cobrança
@@ -694,17 +849,22 @@ Exclui determinada cobrança. As mudanças são irreversíveis, e não será mai
 
 Uma cobrança poderá ser excluída nos seguintes casos:
 
-### Gateway de Pagamento
+### Cartão de crédito
 
 Somente quando a cobrança estiver com erro de autorização (`payment_gateway_status` tiver o valor "authorize_error").
 
-### Boleto
+### Boleto via Gateway de pagamento
+
+Somente quando a cobrança estiver com erro de criação (`payment_gateway_status` tiver o valor "error_on_creation").
+
+### Boleto via Conta Bancária
 
 Para boletos **sem registro** a cobrança pode ser excluída enquanto não tiver sido recebida.
 
-Para boletos **com registro**, por sua vez, enquanto não tiver sido recebida e enquanto não tiver sido registrada (`registration_status` diferente de "registered").
+Para boletos **com registro**, por sua vez, enquanto não tiver sido recebida e enquanto não tiver sido
+registrada (`registration_status` diferente de "registered").
 
-## Recebimento de Cobrança (Boleto)
+## Recebimento de Cobrança (Boleto via Conta Bancária)
 
 ```shell
 Receber Cobrança (Boleto)
@@ -767,7 +927,7 @@ Marca determinada cobrança via Boleto como recebida, retornando JSON contendo a
 | payment_tax     | decimal  | (opcional) valor taxa cobrada pela instituição financeira para o processamento da cobrança |
 
 
-## Desfazer Recebimento de Cobrança (Boleto)
+## Desfazer Recebimento de Cobrança (Boleto via conta Bancária)
 
 ```shell
 Desfazer Recebimento de Cobrança (Boleto)
@@ -810,7 +970,7 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 Marca determinada cobrança via Boleto como não recebida, retornando JSON contendo as informações da cobrança em caso de sucesso ou os erros, caso haja algum.
 
 
-## Renovação de Cobrança (Boleto)
+## Renovação de Cobrança (Boleto via conta Bancária)
 
 ```shell
 Renovar Cobrança (Boleto)
@@ -865,7 +1025,7 @@ Retorna um JSON contento informações atualizadas da cobrança em caso de suces
 | new_due_date    | date    | **(requerido)** nova data de vencimento da cobrança |
 
 
-## Boleto da Cobrança
+## Boleto da Cobrança (Boleto via Gateway e Conta Bancária)
 
 ```shell
 Mostrar Boleto da Cobrança (URL)
@@ -920,7 +1080,7 @@ Para cobranças registradas, o boleto só ficará disponível após o registro d
 </aside>
 
 
-## Envio de Boleto da Cobrança
+## Envio de Boleto da Cobrança (Boleto via Gateway e Conta Bancária)
 
 ```shell
 Enviar Boleto da Cobrança
@@ -1011,18 +1171,27 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 Cancela determinada cobrança.
 
-### Gateway de Pagamento
+### Cartão de crédito
 
 Neste caso o cancelamento irá **estornar** o valor cobrado para o cliente.
 
+A cobrança poderá ser cancelada somente quando tiver sido autorizada, capturada ou com erro no cancelamento
+(`payment_gateway_status` tiver um dos seguintes valores: "authorized", "captured", ou "cancel_error").
 
-A cobrança poderá ser cancelada somente quando tiver sido autorizada, capturada ou com erro no cancelamento (`payment_gateway_status` tiver um dos seguintes valores: "authorized", "captured", ou "cancel_error").
+### Boleto via Gateway
 
-### Boleto
+Neste caso o cancelamento irá **invalidar** a cobrança, não permitindo mais o seu pagamento.
+
+A cobrança poderá ser cancelada somente quando ainda não tiver sido paga ou já tiver tido uma tentativa de cancelamento
+com erro (`payment_gateway_status` tiver o valor "error_on_cancelation").
+
+### Boleto via Conta Bancária
 
 Para boletos **sem registro**, a cobrança pode ser cancelada enquanto não tiver sido recebida.
 
-Para boletos **com registro**, por sua vez, enquanto não tiver sido recebida e tiver sido registrada ou não tiver arquivo de remessa (`registration_status` com um dos valores: "registered" ou "without_remittance"). Após ser cancelada no Cobrato será necessário criar um arquivo de remessa para notificar o Banco do cancelamento da cobrança.
+Para boletos **com registro**, por sua vez, enquanto não tiver sido recebida e tiver sido registrada ou não tiver
+arquivo de remessa (`registration_status` com um dos valores: "registered" ou "without_remittance"). Após ser cancelada
+no Cobrato será necessário criar um arquivo de remessa para notificar o Banco do cancelamento da cobrança.
 
 
 ## Revogar Cobrança
@@ -1068,4 +1237,5 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 ```
 
-Primeiro tenta excluir a cobrança. Caso não seja possível, tenta cancelá-la. Caso também não seja possível, retorna a resposta de insucesso.
+Primeiro tenta excluir a cobrança. Caso não seja possível, tenta cancelá-la. Caso também não seja possível, retorna a
+resposta de insucesso.
