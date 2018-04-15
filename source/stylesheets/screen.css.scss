@@ -72,9 +72,16 @@ html, body {
   }
 
   .logo-wrapper {
-    padding: 20px 15px;
+    display: block;
+    padding: 20px $nav-padding 0;
+    max-width: 35px;
+    text-decoration: none;
+    font-size: 22px;
+    color: #444;
+    font-weight: 300;
+    letter-spacing: 0.02rem;
     img {
-      max-width: 90px;
+      max-width: 35px;
     }
   }
 

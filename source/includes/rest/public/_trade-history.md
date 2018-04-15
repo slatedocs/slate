@@ -6,8 +6,8 @@
 [
 	{
 		"product": "ETH-BTC",
-		"taker_order_id": "bf2b704c-010a-48ca-93fb-d0193f24420a",
-		"maker_order_id": "31bf3a89-2a0a-40b0-9327-ec0a5cc3ce3c",
+		"order_id_taker": "bf2b704c-010a-48ca-93fb-d0193f24420a",
+		"order_id_maker": "31bf3a89-2a0a-40b0-9327-ec0a5cc3ce3c",
 		"size": "0.77942322",
 		"price": "0.05132",
 		"side": "buy",
@@ -15,8 +15,8 @@
 	},
 	{
 		"product": "ETH-BTC",
-		"taker_order_id": "c6023aca-333a-44d9-98fe-279e279f3a86",
-		"maker_order_id": "7f66a16c-0b47-4bd6-8add-6b2c33366082",
+		"order_id_taker": "c6023aca-333a-44d9-98fe-279e279f3a86",
+		"order_id_maker": "7f66a16c-0b47-4bd6-8add-6b2c33366082",
 		"size": "0.97422208",
 		"price": "0.051323",
 		"side": "buy",

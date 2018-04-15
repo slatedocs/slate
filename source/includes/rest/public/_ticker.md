@@ -18,8 +18,6 @@
 
 **`GET /ticker/:product`**
 
-Note: the response from this endpoint is updated when the last price of the requested product changes.
-
 ### Parameters
 
 Name | Description

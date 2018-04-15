@@ -9,32 +9,24 @@
 ```json
 {
   "type": "subscribe",
-  "products": ["ETH-BTC"],
+  "product": "ETH-BTC",
   "channels": [
   	"ticker",
   	"book",
-  	{
-  		"name": "trades", 
-  		"products": ["ETH-BTC", "LTC-BTC"]
-  	}
+    "trades"
   ]
 }
 ```
 
 ```json
 {
-  "type": "unsubscribe",
-  "products": ["ETH-BTC"]
+  "type": "unsubscribe"
 }
 ```
 
-To receive WebSocket events, you must first send a `subscribe` message with the channels you wish to subscribe to.
+To receive WebSocket events, you must first send a `subscribe` message with the product and channels you wish to subscribe to.
 
-You can subscribe to specific products by passing them in the `products` array. You can subscribe to up to 5 products at a time.
-
-You can also specify your products on a per-channel basis by passing an object containing the channel's `name` and `products` instead of a string.
-
-You can unsubscribe in a similar fashion, by sending an `unsubscribe` message. To unsubscribe from specific channels or products, you can pass them into `products` or `channels`. To unsubscribe entirely, simply send an unsubscribe message without any channels set.
+You can unsubscribe in a similar fashion, by sending an `unsubscribe` message.
 
 ## Channels
 
@@ -57,14 +49,11 @@ You can subscribe to the following channels:
 ```json
 {
   "type": "subscribe",
-  "products": ["ETH-BTC"],
+  "product": "ETH-BTC",
   "channels": [
   	"ticker",
   	"orders",
-  	{
-      "name": "balances", 
-      "products": ["ETH-BTC", "LTC-BTC"]
-    }
+    "balances"
   ],
   "auth": {
   	"key": "8b6bcdc6-5ef8-463b-833f-3681dc2c90d3",

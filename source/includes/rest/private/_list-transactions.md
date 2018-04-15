@@ -49,7 +49,7 @@ asset | Asset for which to return transactions
 
 Name | Default | Description
 ---------- | ---- | -------
-type | all | Can be `all`, `deposit`, `withdraw`, `trade`, or `fee`
+type | all | Can be `all`, `deposit`, `withdraw`, `trade`, `fee`, or `rebate`
 limit | 100 | Number of transactions to return (max is 100)
 timestamp | *N/A* | Return transactions that occurred before this time
 
