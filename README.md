@@ -176,14 +176,14 @@ This endpoint is used to posts a lead to ANAROCK database.
 
 `staging`
 
-`POST http://lead.staging.anarock.com/api/v0/CHANNEL_NAME/sync-lead`
+`POST https://lead.staging.anarock.com/api/v0/CHANNEL_NAME/sync-lead`
 
 ``
 
 
 `production`
 
-`POST http://lead.anarock.com/api/v0/CHANNEL_NAME/sync-lead`
+`POST https://lead.anarock.com/api/v0/CHANNEL_NAME/sync-lead`
 
 
 <aside class="notice">
@@ -224,6 +224,8 @@ sub_source | String | - | `google_display`, `google_search`, `facebook_brands`, 
 placement |  String | - | `utm_campaign` , `affiliate_name` e.g. taboola, nestoria, polyvalent, times_of_india, `portal_name` e.g. 99acres, magicbricks, housing  - this should tell exact campaign details be it google facebook etc. generally you should pass utm_campaign in this
 extra_details | JSON | - | key-value pair which will contain any extra details for lead e.g. {"utm_medium: "something", "utm_source": "something", "keyword": "targetted keyword on google for the campaign"}
 campaign_id | String | True | The is a unique identifier for the project you are sending the lead for. Should be collected from point of contact in ANAROCK team. Without this lead attribution will be incorrect.
+source_id | Integer | True | This is mandatory field for sending any lead. This helps categorization of leads based on different sources. Refer to <a href="/leads?#lead-source-and-sub-sources-api"> Lead Source Sub Source API</a>
+sub_source_id | Integer | True | This is mandatory field for sending any lead. This helps categorization of leads based on different sub_sources. Refer to <a href="/leads?#lead-source-and-sub-sources-api"> Lead Source Sub Source API</a>
 
 
 
@@ -239,3 +241,43 @@ Language | Link
 ------- | -------
 PHP | <a href="https://github.com/brick/phonenumber">https://github.com/brick/phonenumber</a>
 NodeJS | <a href="https://www.npmjs.com/package/awesome-phonenumber">https://www.npmjs.com/package/awesome-phonenumber</a>
+
+
+# Lead Source and Sub Sources API
+
+
+```php
+<?php
+// shows that lead is generated from google
+$source_id = 1
+// shows that lead is generated from google GDN.
+$sub_source_id = 8 
+
+$postFields .= "&source_id=".$source_id;
+$postFields .= "&sub_source_id=".$sub_source_id;
+```
+
+```javascript
+const source_id : 1 // shows that lead is generated from google
+const sub_source_id : 8 // shows that lead is generated from google GDN.
+
+{
+  source_id : 1 
+  sub_source_id: 8
+}
+```
+
+Its very important to categorize lead depending upon the source and sub source for better understanding of performance and analysis of over all marketting channels.
+
+While posting a lead the parameters should also have a source_id and sub_source_id as fields.
+
+The values for which can be accessed from this API. 
+
+### <a target="_blank" href="https://lead.anarock.com/api/v0/source-metadata">https://lead.anarock.com/api/v0/source-metadata</a>
+
+
+Example - If a lead is been generated from google GDN then 
+
+<aside class="success">
+Remember — without proper <code>source_id</code> and <code>sub_source_id</code>, leads will not be attributed to the correct sources. If you are running campaign on a new source and it's not present in the API, please contact Anarock team for the same.
+</aside>
