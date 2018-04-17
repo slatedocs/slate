@@ -218,6 +218,7 @@ Cria um novo Pagamento, retornando as informações do mesmo em caso de sucesso.
 | amount                    | decimal | **(requerido)** valor do pagamento                                                                                                                                                                                                                          |
 | date                      | date    | **(requerido)** data do pagamento                                                                                                                                                                                                                           |
 | note                      | string  | (opcional) oberservação do pagamento                                                                                                                                                                                                                        |
+| payee_name                | string  | (opcional) nome do beneficiário                                                                                                                                                                                                                             |
 
 ### Transferências (DOC, TED, Crédito)
 
