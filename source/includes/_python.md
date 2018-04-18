@@ -7,7 +7,7 @@ Scout's Python agent auto-instruments Django and Flask applications, SQL queries
 <h2 id="python-requirements">Requirements</h2>
 
 * Python 2.7 and 3.4+
-* Django 1.8+
+* Django 1.10+
 
 <h2 id="python-install">Installation</h2>
 
