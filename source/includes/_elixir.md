@@ -446,12 +446,14 @@ For full details on instrumentation functions, see our <a href="https://hexdocs.
 
 Scout’s instrumentation is divided into 2 areas:
 
-1. __Transactions__: these wrap around a flow of work, like a web request or a GenServer call. The UI groups data under transactions. Use `@transaction` module attributes and the `transaction/4` macro.
-2. __Timing__: these measure individual pieces of work, like an HTTP request to an outside service or an Ecto query. Use `@timing` module attributes and the `timing/4` macro.
+1. __Transactions__: these wrap around a flow of work, like a web request or a GenServer call. The UI groups data under transactions. Use the `deftransaction/2` macro or wrap blocks of code with the `transaction/4` macro.
+2. __Timing__: these measure individual pieces of work, like an HTTP request to an outside service or an Ecto query, and displays timing information within a transaction trace. Use the `deftiming/2` macro or the `timing/4` macro.
 
 ### Instrumenting transactions
 
-Via `@transaction` module attributes:
+#### deftransaction Macro Example
+
+Replace your function `def` with `deftransaction` to instrument it. You can override the name and type by setting the `@transaction_opts` attribute right before the function.
 
 ```elixir
 defmodule YourApp.Web.RoomChannel do
@@ -459,20 +461,22 @@ defmodule YourApp.Web.RoomChannel do
   use ScoutApm.Tracing
 
   # Will appear under "Web" in the UI, named "YourApp.Web.RoomChannel.join".
-  @transaction(type: "web")
-  def join("topic:html", _message, socket) do
+  @transaction_opts [type: "web"]
+  deftransaction join("topic:html", _message, socket) do
     {:ok, socket}
   end
 
   # Will appear under "Background Jobs" in the UI, named "RoomChannel.ping".
-  @transaction(type: "background", name: "RoomChannel.ping")
-  def handle_in("ping", %{"body" => body}, socket) do
+  @transaction_opts [type: "background", name: "RoomChannel.ping"]
+  deftransaction handle_in("ping", %{"body" => body}, socket) do
     broadcast! socket, "new_msg", %{body: body}
     {:noreply, socket}
   end
 ```
 
-Via `transaction/4`:
+#### transaction/4 Example
+
+Wrap the block of code you'd like to instrument with `transaction/4`:
 
 ```elixir
 import ScoutApm.Tracking
@@ -491,7 +495,10 @@ See the <a href="https://hexdocs.pm/scout_apm/ScoutApm.Tracing.html" target="_bl
 
 ### Timing functions and blocks of code
 
-Via `@timing` module attributes:
+#### deftiming Macro Example
+
+Replace your function `def` with `deftiming` to instrument it. You can override the name and category by setting the `@timing_opts` attribute right before the function.
+
 
 ```elixir
 defmodule Searcher do
@@ -499,20 +506,22 @@ defmodule Searcher do
 
   # Time associated with this function will appear under "Hound" in timeseries charts.
   # The function will appear as `Hound/open_search` in transaction traces.
-  @timing(category: "Hound")
-  def open_search(url) do
+  @timing_opts [category: "Hound"]
+  deftiming open_search(url) do
     navigate_to(url)
   end
 
   # Time associated with this function will appear under "Hound" in timeseries charts.
   # The function will appear as `Hound/homepage` in transaction traces.
-  @timing(category: "Hound", name: "homepage")
-  def open_homepage(url) do
+  @timing_opts [category: "Hound", name: "homepage"]
+  deftiming open_homepage(url) do
     navigate_to(url)
   end
 ```
 
-Via `timing/4`:
+#### timing/4 Example
+
+Wrap the block of code you'd like to instrument with `timing/4`:
 
 ```elixir
 defmodule PhoenixApp.PageController do
