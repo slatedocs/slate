@@ -117,6 +117,14 @@ During our BETA period, ScoutProf has a few limitations:
 
 The ScoutProf-enabled version of `scout_apm` can be safely installed on all environments our agent supports: the limitations above only prevent ScoutProf from running.
 
+### Can ScoutProf be enabled for ActionController::API and ActionController::Metal actions?
+
+Yes. Add the following to your controller:
+
+```ruby
+def enable_scoutprof?; true; end
+```
+
 ## Billing
 
 ### Free Trial
