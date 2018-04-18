@@ -64,7 +64,7 @@ Trace Explorer is accessed via the "Traces" navigation link when viewing an app.
 There are two main areas of Trace Explorer:
 
 * __Dimension Histograms__ - the top portion of the page generates a histogram representation for a number of trace dimensions (the response time distribution, count of traces by endpoints, and a display for each piece of [custom context](#context)). Selecting a specific area of a chart filters the transactions to just the selected data.
-* __List of transaction traces__ - the bottom portion of the page lists the individual traces. The traces are updated to reflect those that match any filtered dimensions. You can increase the height of this pane by clicking and dragging the top portion of the pane. Clicking on a trace URI opens the transaction trace in a new browser tab.
+* __List of transaction traces__ - the bottom portion of the page lists the [individual traces](#transaction-traces). The traces are updated to reflect those that match any filtered dimensions. You can increase the height of this pane by clicking and dragging the top portion of the pane. Clicking on a trace URI opens the transaction trace in a new browser tab.
 
 ## ScoutProf
 
@@ -231,9 +231,12 @@ Context lets you see the forest from the trees. For example, you can add custom 
 * How many trial customers are impacted by slow requests?
 * How much of an impact are slow requests having on our highest paying customers?
 
-Adding custom context is easy - learn how via [Ruby](#ruby-custom-context) or [Elixir](#elixir-custom-context).
+Adding custom context is easy - learn how via [Ruby](#ruby-custom-context), [Elixir](#elixir-custom-context), or [Python](#python-custom-context).
 
-When viewing a transaction trace, click the "Context" section to see the context Scout has collected.
+Context information is displayed in two areas:
+
+* When viewing a [transaction trace](#transaction-traces) - click the "Context" section to see the context Scout has collected.
+* When using [Trace Explorer](#trace-explorer) - filter traces by context.
 
 ## Endpoints Performance
 
