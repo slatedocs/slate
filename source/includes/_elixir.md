@@ -416,18 +416,27 @@ Requests to the Absinthe plug can be grouped by the GraphQL `operationName` unde
 
 ### HTTPoison
 
-Download this <a href="https://gist.github.com/itsderek23/50296b49df16b266e47cc04d227d4b4a" target="_blank">ScoutApm.HTTPoison module</a> into your app's `/lib` folder, then `alias ScoutApm.HTTPoison` when calling `HTTPoison` functions:
+Download this <a href="https://gist.github.com/itsderek23/048eaf813af4a1a31a219d75221eb7b7" target="_blank">Demo.HTTPClient module</a> (you can rename to something more fitting) into your app's `/lib` folder, then `alias Demo.HTTPClient` when calling `HTTPoison` functions:
 
 ```elixir
 defmodule Demo.Web.PageController do
   use Demo.Web, :controller
-  # Will route function calls to `HTTPoision` through `ScoutApm.HTTPoison`, which times the execution of the HTTP call.
-  alias ScoutApm.HTTPoison
+  # Will route function calls to `HTTPoision` through `Demo.HTTPClient`, which times the execution of the HTTP call.
+  alias Demo.HTTPClient
 
   def index(conn, _params) do
     # "HTTP" will appear on timeseries charts. "HTTP/get" and the url "https://cnn.com" will appear in traces.
-    HTTPoison.get("https://cnn.com")
-    render conn, "index.html"
+    case HTTPClient.get("https://cnn.com") do
+      {:ok, %HTTPoison.Response{} = response} ->
+        # do something with response
+        render(conn, "index.html")
+      {:error, %HTTPoison.Error{} = error} ->
+        # do something with error
+        render(conn, "error.html")
+    end
+    HTTPClient.post("https://cnn.com", "")
+    HTTPClient.get!("http://localhost:4567")
+    render(conn, "index.html")
   end
 end
 ```
