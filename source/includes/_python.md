@@ -2,7 +2,7 @@
 
 <aside class="notice">Python Monitoring is in our tech preview program.</aside>
 
-Scout's Python agent auto-instruments Django applications, SQL queries, and more. Source code and issues can be found on the [scout_apm_python](https://github.com/scoutapp/scout_apm_python) GitHub repository.
+Scout's Python agent auto-instruments Django and Flask applications, SQL queries, and more. Source code and issues can be found on the [scout_apm_python](https://github.com/scoutapp/scout_apm_python) GitHub repository.
 
 <h2 id="python-requirements">Requirements</h2>
 
@@ -67,7 +67,7 @@ Not seeing data? Email support@scoutapp.com with:
 
 * A link to your app within Scout (if applicable)
 * Your Python version
-* Your Django version
+* Your Django or Flask version
 
 We typically respond within a couple of hours during the business day.
 
@@ -80,6 +80,7 @@ Scout auto-instruments the following Python libraries:
   * Templates (compiling & rendering)
   * Template blocks
   * SQL queries
+* Flask
 
 More to come - suggest others in the [scout_apm_python](https://github.com/scoutapp/scout_apm_python) GitHub repo.  
 
