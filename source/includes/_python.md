@@ -11,7 +11,7 @@ Scout's Python agent auto-instruments Django and Flask applications, SQL queries
 
 <h2 id="python-install">Installation</h2>
 
-Tailored instructions are provided within our user interface. General instructions for a Django 1.8+ app:
+Tailored instructions are provided within our user interface. General instructions for a Django 1.10+ app:
 
 <table class="help install install_ruby">
   <tbody>
