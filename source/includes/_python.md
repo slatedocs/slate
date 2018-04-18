@@ -211,3 +211,32 @@ LOGGING = {
 
 If `LOGGING` is already defined, merge the above into the existing Dictionary.
 
+<h2 id="python-custom-context">Custom Context</h2>
+
+[Context](#context) lets you see the forest from the trees. For example, you can add custom context to answer critical questions like:
+
+* How many users are impacted by slow requests?
+* How many trial customers are impacted by slow requests?
+* How much of an impact are slow requests having on our highest paying customers?
+
+It's simple to add [custom context](#context) to your app:
+
+```python
+# ScoutApm.Context.add(key,value)
+ScoutApm.Context.add("user_email",request.user.email)
+```
+
+### Context Key Restrictions
+
+The Context `key` must be a `String` with only printable characters. Custom context keys may contain alphanumeric characters, dashes, and underscores. Spaces are not allowed.
+
+Attempts to add invalid context will be ignored.
+
+### Context Value Types
+
+Context values can be any json-serializable type. Examples:
+
+* `"1.1.1.1"`
+* `"free"`
+* `100`
+
