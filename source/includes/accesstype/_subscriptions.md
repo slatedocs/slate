@@ -101,6 +101,7 @@ We highly recommend use of this API before accepting payment form a user.
 curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriptions.json -d '{
   "subscription": {
     "subscription_plan_id": "11",
+    "campaign_id": "1",
     "coupon_code": "NEWYEAR",
     "payment": {
         "payment_type": "razorpay",
@@ -121,9 +122,12 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST ht
 ```
 
 This API can be used to create a subscription.
-It returns a Subscription Object in response.
 
 Here `attempt_token` is the token received from [preview](#post-preview-a-subscription).
+
+Use `campaign_id` optional field to create subscription for specific campaign.
+
+It returns a Subscription Object in response
 
 ## PATCH update attributes
 
