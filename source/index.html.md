@@ -281,3 +281,88 @@ Example - If a lead is been generated from google GDN then
 <aside class="success">
 Remember — without proper <code>source_id</code> and <code>sub_source_id</code>, leads will not be attributed to the correct sources. If you are running campaign on a new source and it's not present in the API, please contact Anarock team for the same.
 </aside>
+
+# Check Successful Submission
+
+```php
+<?php
+
+$key = 'KEY'; 
+$current_time = time();
+$message = (string)$current_time;
+
+// to lowercase hexits
+$hash = hash_hmac('sha256', $message, $key);
+
+$phone = 9999999999 // Phone number to test
+
+$api_url = "https://lead.staging.anarock.com/api/v0/CHANNEL_NAME/last-lead-data?phone="+$phone+"&current_time="+$current_time+"&hash="+$hash
+
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL,$api_url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$server_output = curl_exec ($ch);
+// print_r($server_output);
+
+```
+
+```javascript
+const crypto = require('crypto');
+const timeStamp = Math.round((new Date()).getTime() / 1000);
+const message = timeStamp.toString()
+const hash = crypto.createHmac('sha256', key).update(message).digest('hex')
+
+const phone = 9999999999 // Phone number to test
+
+axios({
+  method: "GET",
+  url: `https://lead.staging.anarock.com/api/v0/CHANNEL_NAME/last-lead-data?phone=${phone}&current_time=${timeStamp}&hash=${hash}`
+})
+
+```
+
+> The API given will returns JSON structured like this:
+
+```json
+{
+  "status":"OK",
+  "message":"success",
+  "response":{
+      "lead_id":194466,
+      "name":"NAME",
+      "email":"EMAIL@SOMETHING.com",
+      "phone":"+9199999999",
+      "country_code":"+91",
+      "source":null,
+      "sub_source":null,
+      "placement":null,
+      "extra_details":null,
+      "project_name":"bkc test",
+      "source_id": 1,
+      "sub_source_id": 10
+      }
+    }
+}
+```
+
+To check if a lead has been successfully submitted with all parameters captured correctly.
+
+Use the following GET API
+
+`staging`
+
+`https://lead.staging.anarock.com/api/v0/CHANNEL_NAME/last-lead-data?phone=PHONE_NUMBER&current_time=CURRENT_TIME&hash=HASH`
+
+`production`
+
+`https://lead.anarock.com/api/v0/CHANNEL_NAME/last-lead-data?phone=PHONE_NUMBER&current_time=CURRENT_TIME&hash=HASH`
+
+
+<aside class="success">
+Please ensure that you are getting the project name intended in the reponse given on the right.
+</aside>
+
+
+
+
