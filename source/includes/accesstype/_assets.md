@@ -8,8 +8,6 @@ $ curl -H "X-SUBAUTH: <auth-token>" https://www.accesstype.com/api/v1/subscriber
 {
    "assets":[
      {
-       "id":5,
-       "asset_category_id":1,
        "metadata":{},
        "title":"public",
        "type":"site"

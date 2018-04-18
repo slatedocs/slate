@@ -18,7 +18,11 @@ $ curl -H "X-SUBAUTH: <auth-token>" https://www.accesstype.com/api/v1/subscriber
      "created_at":"2017-10-30T10:55:42.201Z",
      "updated_at":"2017-10-30T10:55:42.201Z",
      "assets":[
-
+        {
+            "metadata":{},
+            "title":"public",
+            "type":"site"
+        }
      ],
      "start_timestamp":"2017-10-30T10:55:42.176Z",
      "end_timestamp":"2017-11-13T10:55:42.176Z",
@@ -65,6 +69,32 @@ $ curl -H "X-SUBAUTH: <auth-token>" https://www.accesstype.com/api/v1/subscriber
 This API will list out all the subscriptions for a user.
 In order to get only active subscriptions, param `active_only=true` can be used.
 
+## POST Preview a Subscription
+
+```shell
+curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriptions/preview.json -d '{
+  "subscription": {
+    "subscription_plan_id": "11",
+    "coupon_code": "NEWYEAR",
+    "metadata":  {
+        "full-name": "hello",
+        "email": "hello@quintype.com"
+    },
+    "start_timestamp": "2017-09-21 00:00:00"
+  },
+  "alternate_provider": "email",
+  "alternate_identity": "hey@quintype.com"
+}'
+```
+
+It returns a preview for a Subscription, without creating a new subscription.
+For a successful subscription, it also return an `attempt_token`.
+
+An `attempt_token` is the identifier of a subscription attempt. It should be sent back with [create subscription](#post-create-a-subscription) api to mark an attempt as success.
+
+We highly recommend use of this API before accepting payment form a user.
+
+
 ## POST Create a Subscription
 
 ```shell
@@ -85,12 +115,15 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST ht
     "start_timestamp": "2017-09-21 00:00:00"
   },
   "alternate_provider": "email",
-  "alternate_identity": "hey@quintype.com"
+  "alternate_identity": "hey@quintype.com",
+  "attempt_token": "fo4bMWjP6N5vtVySNtiAUNBQ"
 }'
 ```
 
 This API can be used to create a subscription.
-It returns a Subscription Object in response
+It returns a Subscription Object in response.
+
+Here `attempt_token` is the token received from [preview](#post-preview-a-subscription).
 
 ## PATCH update attributes
 
