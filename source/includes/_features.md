@@ -49,6 +49,23 @@ You'll see "CODE" buttons next to method calls that are >= 500 ms. [If you've en
 
 If you don't enable the GitHub integration, you'll see a backtrace.
 
+## Trace Explorer
+
+<aside class="notice">Trace Explorer is in our tech preview program. Share your feedback via <a href="https://github.com/scoutapp/roadmap/issues/33" target="_blank">this GitHub issue</a>.</aside>
+
+What was the slowest request yesterday? How has the app performed for `user@domain.com`? Which endpoints are generating the bulk of slow requests? Trace Explorer lets you quickly filter the transaction traces collected by Scout, giving you answers to your unique questions.
+
+![crossfilter](https://s3-us-west-1.amazonaws.com/scout-blog/s_vs_nr/crossfilter.gif)
+
+Trace Explorer is accessed via the "Traces" navigation link when viewing an app. 
+
+### How to use Trace Explorer
+
+There are two main areas of Trace Explorer:
+
+* __Dimension Histograms__ - the top portion of the page generates a histogram representation for a number of trace dimensions (the response time distribution, count of traces by endpoints, and a display for each piece of [custom context](#context)). Selecting a specific area of a chart filters the transactions to just the selected data.
+* __List of transaction traces__ - the bottom portion of the page lists the individual traces. The traces are updated to reflect those that match any filtered dimensions. You can increase the height of this pane by clicking and dragging the top portion of the pane. Clicking on a trace URI opens the transaction trace in a new browser tab.
+
 ## ScoutProf
 
 Every millisecond, ScoutProf captures a backtrace of what each thread in your application is currently running.  Over many backtraces, when you combine them, it tells a story of what code paths are taking up the most time in your application.
