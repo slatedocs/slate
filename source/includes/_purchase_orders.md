@@ -86,49 +86,52 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders'
   "share_key": "HEFYPNLBYFMKROPXUTCMPGMQCOGROKOS20170921003738",
   "archived": false,
   "conversion_rate": "0.88159",
-  "keywords": "John Doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
+  "keywords":
+    "John Doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
   "self_approved": false,
   "xero_id": null,
   "synced_with_xero": false,
   "purchase_order_items": [
-      {
-          "id": 1,
-          "description": "hello",
-          "purchase_order_id": 1,
-          "budget_id": 1,
-          "budget_summary": "1100044 - Embajadores de marca Google en Retail Chromecast : F 9575 : TELEFONIA Y CELULARES",
-          "gross_amount": "50.55",
-          "vat": "1.1",
-          "net_amount": "50.0",
-          "status": "pending",
-          "quantity": "1.0",
-          "unit_price": "50.0",
-          "item_number": null,
-          "base_net_amount": "44.0795",
-          "base_gross_amount": "44.564375",
-          "gross_usd_amount": "50.55",
-          "product_id": null,
-          "received_quantity": null,
-          "custom_field_values": []
-      }
+    {
+      "id": 1,
+      "description": "hello",
+      "purchase_order_id": 1,
+      "budget_id": 1,
+      "budget_summary":
+        "1100044 - Embajadores de marca Google en Retail Chromecast : F 9575 : TELEFONIA Y CELULARES",
+      "gross_amount": "50.55",
+      "vat": "1.1",
+      "net_amount": "50.0",
+      "status": "pending",
+      "quantity": "1.0",
+      "unit_price": "50.0",
+      "item_number": null,
+      "base_net_amount": "44.0795",
+      "base_gross_amount": "44.564375",
+      "gross_usd_amount": "50.55",
+      "product_id": null,
+      "received_quantity": null,
+      "custom_field_values": []
+    }
   ],
   "budgets": [
-      {
-          "id": 1,
-          "company_id": 1,
-          "name": "1100044 - Embajadores de marca Google en Retail Chromecast",
-          "amount": "19500.0",
-          "cost_code": "F 9575",
-          "cost_type": "TELEFONIA Y CELULARES",
-          "archived": false,
-          "currency_id": 100,
-          "base_amount": "19500.0",
-          "base_rate": "1.0",
-          "allow_anyone_to_approve_a_po": false,
-          "start_date": null,
-          "end_date": null,
-          "summary": "1100044 - Embajadores de marca Google en Retail Chromecast : F 9575 : TELEFONIA Y CELULARES"
-      }
+    {
+      "id": 1,
+      "company_id": 1,
+      "name": "1100044 - Embajadores de marca Google en Retail Chromecast",
+      "amount": "19500.0",
+      "cost_code": "F 9575",
+      "cost_type": "TELEFONIA Y CELULARES",
+      "archived": false,
+      "currency_id": 100,
+      "base_amount": "19500.0",
+      "base_rate": "1.0",
+      "allow_anyone_to_approve_a_po": false,
+      "start_date": null,
+      "end_date": null,
+      "summary":
+        "1100044 - Embajadores de marca Google en Retail Chromecast : F 9575 : TELEFONIA Y CELULARES"
+    }
   ],
   "purchase_order_comments": [],
   "custom_field_values": [],
@@ -157,7 +160,7 @@ these values will determine the status of the Purchase Order.
 ### Query Parameters
 
 | Params                                                                                             | Type    | Options                  | Description                                                |
-| -----                                                                                              | -----   | ---------                | -----------                                                |
+| -------------------------------------------------------------------------------------------------- | ------- | ------------------------ | ---------------------------------------------------------- |
 | authentication_token                                                                               | header  |                          | Authentication Token                                       |
 | app_company_id                                                                                     | header  |                          | Company ID                                                 |
 | commit                                                                                             | string  | `Send` <br /> `Draft`    | Possible values are `Send` and `Draft`                     |
@@ -209,9 +212,6 @@ these values will determine the status of the Purchase Order.
 | purchase_order[allocations_attributes][][maybe_value]                                              | integer |                          | Value                                                      |
 | purchase_order[allocations_attributes][][_destroy]                                                 | destroy | `true` <br/> `false`     | set `true` if you want to delete specifi row of allocation |
 
-
-
-
 ## Get all Purchase Orders
 
 ```ruby
@@ -245,7 +245,8 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders'
       "amount": "50.55",
       "status": "pending",
       "supplier_name": "John Doe",
-      "keywords": "John doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
+      "keywords":
+        "John doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
       "created_at": 1505972258000,
       "currency_id": 1,
       "currency_symbol": "$",
@@ -259,7 +260,8 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders'
       "amount": "50.55",
       "status": "pending",
       "supplier_name": "John Doe",
-      "keywords": "John Doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
+      "keywords":
+        "John Doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
       "created_at": 1505972227000,
       "currency_id": 1,
       "currency_symbol": "$",
@@ -269,11 +271,11 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders'
     }
   ],
   "meta": {
-      "current_page": 1,
-      "next_page": 2,
-      "prev_page": null,
-      "total_pages": 3,
-      "total_count": 25
+    "current_page": 1,
+    "next_page": 2,
+    "prev_page": null,
+    "total_pages": 3,
+    "total_count": 25
   }
 }
 ```
@@ -294,8 +296,6 @@ You can also search for your `Purchase Order` using `search` params example
 `/api/v1/purchase_orders?search=your search keyword`. It will perform full-text
 search and return result accordingly.
 
-
-
 ### HTTP Request
 
 `GET https://app.rubberstamp.io/api/v1/purchase_orders?page=1&search=something`
@@ -303,13 +303,11 @@ search and return result accordingly.
 ### Query Parameters
 
 | Params               | Type    | Description                                         |
-| ------               | -----   | -----------                                         |
+| -------------------- | ------- | --------------------------------------------------- |
 | authentication_token | header  | Authentication token                                |
 | app_company_id       | header  | Company ID                                          |
 | page                 | integer | Used for Loading records from specified page number |
 | search               | string  | Used for searching Purchase Order by search keyword |
-
-
 
 ## Get Purchase Order details
 
@@ -361,7 +359,8 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1'
   "share_key": "HEFYPNLBYFMKROPXUTCMPGMQCOGROKOS20170921003738",
   "archived": false,
   "conversion_rate": "0.88159",
-  "keywords": "deepak James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
+  "keywords":
+    "deepak James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
   "self_approved": false,
   "xero_id": null,
   "synced_with_xero": false,
@@ -375,7 +374,8 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1'
       "description": "hello",
       "purchase_order_id": 284588,
       "budget_id": 40228,
-      "budget_summary": "1100044 - Embajadores de marca Google en Retail Chromecast : F 9575 : TELEFONIA Y CELULARES",
+      "budget_summary":
+        "1100044 - Embajadores de marca Google en Retail Chromecast : F 9575 : TELEFONIA Y CELULARES",
       "gross_amount": "50.55",
       "vat": "1.1",
       "net_amount": "50.0",
@@ -406,7 +406,8 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1'
       "allow_anyone_to_approve_a_po": false,
       "start_date": null,
       "end_date": null,
-      "summary": "1100044 - Embajadores de marca Google en Retail Chromecast : F 9575 : TELEFONIA Y CELULARES"
+      "summary":
+        "1100044 - Embajadores de marca Google en Retail Chromecast : F 9575 : TELEFONIA Y CELULARES"
     }
   ],
   "purchase_order_comments": [],
@@ -441,12 +442,10 @@ attribute.
 ### URL Parameters
 
 | Params               | Type    | Description          |
-| ------               | -----   | ---------            |
+| -------------------- | ------- | -------------------- |
 | authentication_token | header  | Authentication token |
 | app_company_id       | header  | Company ID           |
 | ID                   | integer | Purchase Order ID    |
-
-
 
 ## New Purchase Order
 
@@ -474,56 +473,55 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/new'
 
 ```json
 {
-    "creator_id": 1,
-    "amount": 0,
-    "status": "draft",
-    "supplier_name": null,
-    "notes": null,
-    "company_id": 1,
-    "delivered_on": null,
-    "currency_id": 1,
-    "department_id": null,
-    "supplier_id": null,
-    "self_approved": false,
-    "delivery_status": "not_delivered",
-    "custom_field_values_attributes": [
+  "creator_id": 1,
+  "amount": 0,
+  "status": "draft",
+  "supplier_name": null,
+  "notes": null,
+  "company_id": 1,
+  "delivered_on": null,
+  "currency_id": 1,
+  "department_id": null,
+  "supplier_id": null,
+  "self_approved": false,
+  "delivery_status": "not_delivered",
+  "custom_field_values_attributes": [
+    {
+      "value": null,
+      "custom_field_id": 1,
+      "budget_id": null
+    }
+  ],
+  "purchase_order_items_attributes": [
+    {
+      "description": null,
+      "budget_id": null,
+      "gross_amount": "0.0",
+      "vat": "0.0",
+      "net_amount": null,
+      "status": "pending",
+      "quantity": "1.0",
+      "unit_price": null,
+      "item_number": null,
+      "base_net_amount": null,
+      "base_gross_amount": null,
+      "gross_usd_amount": null,
+      "product_id": null,
+      "received_quantity": null,
+      "custom_field_values_attributes": [
         {
-            "value": null,
-            "custom_field_id": 1,
-            "budget_id": null
+          "value": null,
+          "custom_field_id": 2,
+          "budget_id": null
         }
-    ],
-    "purchase_order_items_attributes": [
-        {
-            "description": null,
-            "budget_id": null,
-            "gross_amount": "0.0",
-            "vat": "0.0",
-            "net_amount": null,
-            "status": "pending",
-            "quantity": "1.0",
-            "unit_price": null,
-            "item_number": null,
-            "base_net_amount": null,
-            "base_gross_amount": null,
-            "gross_usd_amount": null,
-            "product_id": null,
-            "received_quantity": null,
-            "custom_field_values_attributes": [
-                {
-                    "value": null,
-                    "custom_field_id": 2,
-                    "budget_id": null
-                }
-            ]
-        }
-    ]
+      ]
+    }
+  ]
 }
 ```
 
 Generate new object for Purchase Order and associated models and return
 them in JSON format.
-
 
 ### HTTP Request
 
@@ -531,12 +529,10 @@ them in JSON format.
 
 ### URL Parameters
 
-| Params               | Type    | Description          |
-| ------               | ------  | -----------          |
-| authentication_token | header  | Authentication token |
-| app_company_id       | header  | Company ID           |
-
-
+| Params               | Type   | Description          |
+| -------------------- | ------ | -------------------- |
+| authentication_token | header | Authentication token |
+| app_company_id       | header | Company ID           |
 
 ## Pending Requests
 
@@ -571,7 +567,8 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/pending_requests'
       "amount": "50.55",
       "status": "pending",
       "supplier_name": "John Doe",
-      "keywords": "John doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
+      "keywords":
+        "John doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
       "created_at": 1505972258000,
       "currency_id": 1,
       "currency_symbol": "$",
@@ -585,7 +582,8 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/pending_requests'
       "amount": "50.55",
       "status": "pending",
       "supplier_name": "John Doe",
-      "keywords": "John Doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
+      "keywords":
+        "John Doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
       "created_at": 1505972227000,
       "currency_id": 1,
       "currency_symbol": "$",
@@ -595,11 +593,11 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/pending_requests'
     }
   ],
   "meta": {
-      "current_page": 1,
-      "next_page": 2,
-      "prev_page": null,
-      "total_pages": 3,
-      "total_count": 25
+    "current_page": 1,
+    "next_page": 2,
+    "prev_page": null,
+    "total_pages": 3,
+    "total_count": 25
   }
 }
 ```
@@ -627,14 +625,12 @@ and `total_count` to help your write your own logic of pagination.
 ### URL Parameters
 
 | params               | Type    | Description                                                 |
-| ------               | -----   | ---------                                                   |
+| -------------------- | ------- | ----------------------------------------------------------- |
 | authentication_token | header  | Authentication token                                        |
 | app_company_id       | header  | Company ID                                                  |
 | sort                 | string  | sorting column name                                         |
 | direction            | string  | sorting direction. values are: <br/> - `asc` <br/> - `desc` |
 | page                 | integer | page number                                                 |
-
-
 
 ## Pending Requests Count
 
@@ -674,12 +670,10 @@ Count total number of pending requests for current authentication_token.
 
 ### URL Parameters
 
-| Params               | Type    | Description          |
-| ------               | -----   | ---------            |
-| authentication_token | header  | Authentication token |
-| app_company_id       | header  | Company ID           |
-
-
+| Params               | Type   | Description          |
+| -------------------- | ------ | -------------------- |
+| authentication_token | header | Authentication token |
+| app_company_id       | header | Company ID           |
 
 ## Approve
 
@@ -725,11 +719,10 @@ order.
 ### URL Parameters
 
 | Params               | Type   | Description             |
-| ------               | ------ | -----------             |
+| -------------------- | ------ | ----------------------- |
 | authentication_token | header | Authentication token    |
 | app_company_id       | header | Company ID              |
 | token                | string | Approver's accept token |
-
 
 ## Reject
 
@@ -775,14 +768,10 @@ order.
 ### URL Parameters
 
 | Params               | Type   | Description             |
-| ------               | ------ | -----------             |
+| -------------------- | ------ | ----------------------- |
 | authentication_token | header | Authentication token    |
 | app_company_id       | header | Company ID              |
 | token                | string | Approver's reject token |
-
-
-
-
 
 ## Cancel
 
@@ -823,13 +812,10 @@ cancel or not by checking `can_cancel` value in [Purchase Order Details](/slate/
 
 ### URL Parameters
 
-| Params               | Type   | Description             |
-| ------               | ------ | -----------             |
-| authentication_token | header | Authentication token    |
-| app_company_id       | header | Company ID              |
-
-
-
+| Params               | Type   | Description          |
+| -------------------- | ------ | -------------------- |
+| authentication_token | header | Authentication token |
+| app_company_id       | header | Company ID           |
 
 ## Archive
 
@@ -870,10 +856,10 @@ purchase or or not by checking `can_archive` value in [Purchase Order Details pa
 
 ### URL Parameters
 
-| Params               | Type   | Description             |
-| ------               | ------ | -----------             |
-| authentication_token | header | Authentication token    |
-| app_company_id       | header | Company ID              |
+| Params               | Type   | Description          |
+| -------------------- | ------ | -------------------- |
+| authentication_token | header | Authentication token |
+| app_company_id       | header | Company ID           |
 
 ## Mark as Paid
 
@@ -941,10 +927,54 @@ page, This value should be true in order to allow user to receive items.
 ### URL Parameters
 
 | Params               | Type    | Description                        |
-| ------               | ------  | -----------                        |
+| -------------------- | ------- | ---------------------------------- |
 | authentication_token | header  | Authentication token               |
 | app_company_id       | header  | Company ID                         |
 | notes                | string  | comment/notes                      |
 | delivered_on         | string  | value must be in valid date format |
 | items[][id]          | array[] | list of item ids                   |
 | items[][quantity]    | array[] | list of item quantities            |
+
+## Cancel Receiving Items
+
+```ruby
+require 'rest-client'
+
+RestClient.post(
+  'https://app.rubberstamp.io/api/v1/purchase_orders/1/cancel_receiving_items',
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1/cancel_receiving_items'
+  -X POST
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": true
+}
+```
+
+You can find `can_receive_item` in [Purchase Order Details](/slate/#get-purchase-order-details)
+page, the users who are able to receive items can also cancel them. so please make sure this property is set to `true`.
+
+### HTTP Request
+
+`POST https://app.rubberstamp.io/api/v1/purchase_orders/:id/cancel_receiving_items`
+
+### URL Parameters
+
+| Params               | Type   | Description          |
+| -------------------- | ------ | -------------------- |
+| authentication_token | header | Authentication token |
+| app_company_id       | header | Company ID           |
