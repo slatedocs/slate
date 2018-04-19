@@ -40,6 +40,7 @@ spreadsheet), please check out the [Field Values](#field-values) section of the 
     ...
   ],
   "interaction_dates": {
+    "first_email_date": "2011-11-23T08:12:45.328-08:00",
     "last_email_date": "2012-03-04T05:06:07.890-08:00",
     "last_event_date": "2011-12-11T02:26:56.537-08:00",
     "last_interaction_date": "2012-03-04T05:06:07.890-08:00",
@@ -73,7 +74,7 @@ domain | string | The website name of the organization. This is used by Affinity
 person_ids | string[] | An array of unique identifiers of person that are associated with the organization
 global | boolean | Returns whether this organization is a part of Affinity's global dataset of organizations. This is always false if the organization was created by you.
 list_entries | ListEntry[] | An array of list entry resources associated with the organization, only returned as part of the [Get a specific organization](#get-a-specific-organization) endpoint.
-interaction_dates | object | An object with four string date fields representing the most recent and upcoming interactions with this organization: `last_email_date`, `last_event_date`, `last_interacton_date` and `next_event_date`. Only returned when passing `with_interaction_dates=true`.
+interaction_dates | object | An object with four string date fields representing the most recent and upcoming interactions with this organization: `first_email_date`, `last_email_date`, `last_event_date`, `last_interacton_date` and `next_event_date`. Only returned when passing `with_interaction_dates=true`.
 
 
 ## Search for organizations

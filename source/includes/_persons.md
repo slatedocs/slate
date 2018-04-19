@@ -41,6 +41,7 @@ spreadsheet), please check out the [Field Values](#field-values) section of the 
     ...
   ],
   "interaction_dates": {
+    "first_email_date": "2011-11-23T08:12:45.328-08:00",
     "last_email_date": "2012-03-04T05:06:07.890-08:00",
     "last_event_date": "2011-12-11T02:26:56.537-08:00",
     "last_interaction_date": "2012-03-04T05:06:07.890-08:00",
@@ -83,7 +84,7 @@ phone_numbers | string[] | The phone numbers of the person.
 primary_email | string | The email (automatically computed) that is most likely to the current active email address of the person.
 organization_ids | integer[] | An array of unique identifiers of organizations that the person is associated with.
 list_entries | ListEntry[] | An array of list entry resources associated with the person, only returned as part of the [Get a specific person](#get-a-specific-person) endpoint.
-interaction_dates | object | An object with four string date fields representing the most recent and upcoming interactions with this person: `last_email_date`, `last_event_date`, `last_interacton_date` and `next_event_date`. Only returned when passing `with_interaction_dates=true`.
+interaction_dates | object | An object with four string date fields representing the most recent and upcoming interactions with this person: `first_email_date`, `last_email_date`, `last_event_date`, `last_interacton_date` and `next_event_date`. Only returned when passing `with_interaction_dates=true`.
 
 ### Person types
 
