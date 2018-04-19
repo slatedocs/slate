@@ -367,6 +367,7 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1'
   "can_cancel": true,
   "can_archive": false,
   "can_receive_item": true,
+  "can_cancel_receiving_items": false,
   "can_mark_as_paid": true,
   "purchase_order_items": [
     {
@@ -965,7 +966,7 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1/cancel_receiving_items
 }
 ```
 
-You can find `can_receive_item` in [Purchase Order Details](/slate/#get-purchase-order-details)
+You can find `can_cancel_receiving_items` in [Purchase Order Details](/slate/#get-purchase-order-details)
 page, the users who are able to receive items can also cancel them. so please make sure this property is set to `true`.
 
 ### HTTP Request
