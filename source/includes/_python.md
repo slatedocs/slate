@@ -42,7 +42,7 @@ INSTALLED_APPS = (
 # Scout settings
 SCOUT_MONITOR = True
 SCOUT_KEY     = "[AVAILABLE IN THE SCOUT UI]"
-SCOUT_NAME    = "[A FRIENDLY NAME FOR YOUR APP]"
+SCOUT_NAME    = "A FRIENDLY NAME FOR YOUR APP"
 </pre>
 
 <p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> instead of providing these settings in <code>settings.py</code>.</p>
