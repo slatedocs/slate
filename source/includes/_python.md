@@ -8,10 +8,15 @@ Scout's Python agent auto-instruments Django and Flask applications, SQL queries
 
 * Python 2.7 and 3.4+
 * Django 1.10+
+* Flask 0.10+
 
 <h2 id="python-install">Installation</h2>
 
-Tailored instructions are provided within our user interface. General instructions for a Django 1.10+ app:
+Tailored instructions are provided within our user interface. 
+
+### Django Installation
+
+General instructions for a Django app:
 
 <table class="help install install_ruby">
   <tbody>
@@ -46,6 +51,64 @@ SCOUT_NAME    = "A FRIENDLY NAME FOR YOUR APP"
 </pre>
 
 <p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> instead of providing these settings in <code>settings.py</code>.</p>
+
+<p>
+If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="step">3</span></td>
+      <td style="padding-top: 15px"><p>Deploy.</p></td>
+    </tr>
+  </tbody>
+</table>
+
+### Flask Installation
+
+General instructions for a Flask app:
+
+<table class="help install install_ruby">
+  <tbody>
+    <tr>
+      <td>
+        <span class="step">1</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Install the <code>scout-apm</code> package:</p>
+<pre style="width:500px">
+pip install scout-apm
+</pre>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">2</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Configure Scout inside your Flask app:</p>
+
+<p>These instructions assume the app uses <code>SQLAlchemy</code>. If that isn't the case, remove the referencing lines.</p>
+
+<pre style="width:500px">
+from scout_apm.flask import ScoutApm
+from scout_apm.flask.sqlalchemy import instrument_sqlalchemy
+
+# Setup a flask 'app' as normal
+
+## Attaches ScoutApm to the Flask App
+ScoutApm(app)
+
+## Instrument the SQLAlchemy handle
+instrument_sqlalchemy(db)
+
+# Scout settings
+app.config['SCOUT_MONITOR'] = True
+app.config['SCOUT_KEY']     = "[AVAILABLE IN THE SCOUT UI]"
+app.config['SCOUT_NAME']    = "A FRIENDLY NAME FOR YOUR APP"
+</pre>
+
+<p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code>.</p>
 
 <p>
 If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
@@ -172,6 +235,8 @@ This will override the `SCOUT_NAME` value provided in your `settings.py` file.
 
 <h2 id="python-logging">Logging</h2>
 
+### Django Logging
+
 To log Scout agent output in your Django application, copy the following into your `settings.py` file:
 
 ```python
@@ -207,6 +272,45 @@ LOGGING = {
         },
     },
 }
+```
+
+### Flask Logging
+
+Add the following your Flask app:
+
+```python
+dictConfig({
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'stdout': {
+            'format': '%(asctime)s %(levelname)s %(message)s',
+            'datefmt': '%Y-%m-%dT%H:%M:%S%z',
+        },
+    },
+    'handlers': {
+        'stdout': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'stdout',
+        },
+        'scout_apm': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'scout_apm_debug.log',
+        },
+    },
+    'root': {
+        'handlers': ['stdout'],
+        'level': os.environ.get('LOG_LEVEL', 'DEBUG'),
+    },
+    'loggers': {
+        'scout_apm': {
+            'handlers': ['scout_apm'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+})
 ```
 
 If `LOGGING` is already defined, merge the above into the existing Dictionary.
