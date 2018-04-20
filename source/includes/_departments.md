@@ -145,17 +145,25 @@ You can also filter only archived departments by sending `archived` params and
 set it's value to `true` or `false` as your requirements.
 example, `/api/v1/departments?archived=true`
 
+### Filter company specific departments
+
+By default all departments associated with current logged in users are returned
+in the api response. If you want to list all department for given company then
+you can pass `company_specific=true` flag in the query params, example:
+`/api/v1/departments?company_specific=true&archived=false`
+
 ### HTTP Request
 
 `GET https://app.rubberstamp.io/api/v1/departments`
 
 ### Query Parameters
 
-| Params               | Type    | Description                    |
-| -----                | -----   | -----------                    |
-| authentication_token | header  | Authentication token           |
-| app_company_id       | header  | Registered company id          |
-| archived             | boolean | Filter departments by archived |
+| Params               | Type    | Description                        |
+| -----                | -----   | -----------                        |
+| authentication_token | header  | Authentication token               |
+| app_company_id       | header  | Registered company id              |
+| archived             | boolean | Filter departments by archived     |
+| company_specific     | boolean | Filter company specific department |
 
 
 
