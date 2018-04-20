@@ -32,7 +32,7 @@ Servlet container | [Apache Tomcat 7](http://tomcat.apache.org/download-70.cgi)
 
 **Настройка приложения**
 
-Следующие параметры приложения находятся в файле ``${TOMCAT_HOME}/webapps/SmartTransactionsEndpoint/META-INF/server.xml`` внутри тега GlobalNamingResources:
+Следующие параметры приложения находятся в файле ``${TOMCAT_HOME}/conf/server.xml`` внутри тега GlobalNamingResources:
 
    <Resource name="jdbc/core"
             url="jdbc:postgresql://localhost:5432/smt_core"
