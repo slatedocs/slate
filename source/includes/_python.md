@@ -344,3 +344,10 @@ Context values can be any json-serializable type. Examples:
 * `"free"`
 * `100`
 
+<h2 id="python-upgrade">Updating to the Newest Version</h2>
+
+```python
+pip install scout-apm --upgrade
+```
+
+The package changelog is [available here](https://github.com/scoutapp/scout_apm_python/blob/master/CHANGELOG.md).  
