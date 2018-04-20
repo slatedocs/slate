@@ -1,13 +1,23 @@
 # Erros
 Caso seja retornado erro, ele terá o seguinte formato:
 
-```shell
+> Erro retornado pela API do iPag
+
+```xml
 <?xml version="1.0" encoding="utf-8" ?>
 <error>
     <code>002</code>
     <message>Método de pagamento não configurado ou inativo no iPag.Acesse o Painel para verificar.</message>
 </error>
+
+<?xml version="1.0" encoding="utf-8" ?>
+<error>
+    <code>011</code>
+    <message>(4066553618107) - Número do cartão é inválido</message>
+</error>
 ```
+
+> Erro retornado pela API do iPag (via SDK-PHP)
 
 ```php
 <?php
@@ -56,7 +66,7 @@ Código | Descrição
 
 ## Bloqueio de IP
 
-O bloqueio de IP ocorre após 3 tentativas de aprovar um pedido vindos do mesmo requisitante.
+O bloqueio de IP ocorre após 3 transações terem sido recusadas vindos de um mesmo cliente.
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>

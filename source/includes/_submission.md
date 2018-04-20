@@ -51,6 +51,14 @@ try {
         ->setExpiryYear('2025')
         ->setCvc('123');
 
+    $cart = $ipag->cart(
+        // Nome do Produto, Valor Unitário, Quantidade, SKU (Código do Produto)
+        ['Produto 1', 5.00, 1, 'ABDC1'],
+        ['Produto 2', 3.50, 2, 'ABDC2'],
+        ['Produto 3', 5.50, 1, 'ABDC3'],
+        ['Produto 4', 8.50, 5, 'ABDC4']
+    );
+
     $transaction = $ipag->transaction();
     $transaction->getOrder()
         ->setOrderId($orderId)
@@ -61,6 +69,7 @@ try {
             ->setMethod(Method::VISA)
             ->setCreditCard($creditCard)
         )
+        ->setCart($cart)
         ->setCustomer($customer);
 
     $response = $transaction->execute();
@@ -80,25 +89,58 @@ try {
 }
 ```
 
+### Dados de identificação
+
 Campo | Tamanho | Tipo | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
 identificacao | 60 | string | sim | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
 identificacao2 | 60 | string | não | Código de identificação do parceiro no iPag (Marketplace)
-metodo | 15 | string | sim | Forma de Pagamento * veja os valores possíveis na seção Métodos deste documento
-operacao | 10 | string | sim | Operação * veja os valores possíveis na seção Operações deste documento
-pedido| 20 | string | sim | Número do pedido (única restrição é que não pode ser igual a outro já enviado ao iPag, aconselhamos numeral sequencial)
+
+
+### Dados da operação
+Campo | Tamanho | Tipo | Obrigatório | Descrição
+--------- | ----- | ----- | ----------- | ---------
+metodo | 15 | string | sim | Método de Pagamento * veja os valores possíveis na seção [Métodos](#m-todos)
+operacao | 10 | string | sim | Operação * veja os valores possíveis na seção [Operações](#opera-es)
+pedido| 20 | string | sim | Número do pedido (Restrição é que não pode ser igual a outro já enviado ao iPag, aconselhamos um número sequencial)
+url_retorno | 50 | string | sim | URL de retorno à Loja Virtual ou Site.
+retorno_tipo | 5 | string | sim | Informar 'xml'.
+boleto_tipo | 5 | string | sim | Informar 'xml'.
+
+### Dados da transação
+
+Campo | Tamanho | Tipo | Obrigatório | Descrição
+--------- | ----- | ----- | ----------- | ---------
 valor | 12 | decimal | sim | Valor total da compra. Deve-se usar pontos como separador de casas decimais, ex: 100.00
 parcelas | 3 | number | não (se cartão, sim) | Número de Parcelas, minimo: 1, máximo: 12
+frete_valor | 12 | decimal | não | Valor do frete cobrado, apenas informativo, não será somado ao valor da transação
+frete_tipo | 100 | string | não | Descrição do frete, exemplo: Pac (Aproximadamente 5 dias para entrega)
+
+### Dados do Cartão de Crédito/Débito
+
+Campo | Tamanho | Tipo | Obrigatório | Descrição
+--------- | ----- | ----- | ----------- | ---------
 nome_cartao | 30 | string | não (se cartão, sim) | Nome do titular do cartão de crédito.
 num_cartao | 16 | number | não (se cartão, sim) | Número do cartão de crédito).
 cvv_cartao | 3 | number | não (se cartão, sim) | Código de verificação do cartão de crédito
 mes_cartao | 2 | number | não (se cartão, sim) | Mês de validade do cartão de crédito
 ano_cartao | 2 | number | não (se cartão, sim) | Ano de validade do cartão de crédito
+
+### Dados do Cliente
+
+Campo | Tamanho | Tipo | Obrigatório | Descrição
+--------- | ----- | ----- | ----------- | ---------
 nome | 30 | string | sim | Nome do cliente
 tipo_pessoa | 1 | char | não | “j” para pessoas jurídicas e “f” para pessoas físicas
 documento | 18 | string | não | CPF ou CNPJ do sacado
 email | 30 | string | não| E-mail do cliente
 fone | 10 | string | não | Telefone do cliente
+birthdate | 10 | string | não | Data de nascimento do cliente (Ex.: 1989-03-28)[AAAA-MM-DD]
+
+### Dados do Endereço de Cobrança/Envio
+
+Campo | Tamanho | Tipo | Obrigatório | Descrição
+--------- | ----- | ----- | ----------- | ---------
 endereco | 30 | string | não | Endereço completo do cliente
 numero_endereco | 5 | number | não | Número do Endereço
 complemento | 100 | string | não | Complemento do Endereço
@@ -107,9 +149,34 @@ cidade | 20 | string | não | Cidade do cliente
 estado | 2 | string | não | Estado do cliente
 pais | 15 | string | não | País do cliente
 cep | 8 | string | não | Cep do cliente
-vencto | 10 | date | não | Data de vencimento (DD/MM/YYYY). Usado apenas em boletos. Se não for informado, o vencimento será a data de hoje + o prazo informado nas configurações do iPag.
-url_retorno | 50 | string | sim | URL de retorno à Loja Virtual ou Site.
-retorno_tipo | 5 | string | sim | Informar 'xml'.
+
+### Dados de Produto/Carrinho
+
+Campo | Tamanho | Tipo | Obrigatório | Descrição
+--------- | ----- | ----- | ----------- | ---------
+produtos[#][nome] | 100 | string | não | Nome do produto
+produtos[#][quantidade] | 100 | integer | não | Quantidade
+produtos[#][valor] | 10 | float | não | Valor unitário do produto
+produtos[#][sku] | 100 | string | não | código único do produto
+produtos[#][descricao] | 255 | string | não | Descrição do produto
+
+<aside class="info">
+<b>Substitua o # por um número que identifique este produto.</b><br><br>
+
+Exemplo:<br><br>
+produtos[1][nome] = 'Camisa Azul'<br>
+produtos[1][quantidade] = 2<br>
+produtos[1][valor] = 17.89<br>
+produtos[1][sku] = 'CAS8172AA'<br>
+produtos[1][descricao] = 'CAMISA AZUL COLEÇÃO INVERNO 2018'<br>
+<br><br>
+produtos[2][nome] = 'Camisa Verde'<br>
+produtos[2][quantidade] = 1<br>
+produtos[2][valor] = 19.89<br>
+produtos[2][sku] = 'CAS817255'<br>
+produtos[2][descricao] = 'CAMISA VERDE COLEÇÃO INVERNO 2018'
+</aside>
+
 
 ## Campos adicionais para Boleto (iPag/Zoop)
 
@@ -158,6 +225,7 @@ curl -X POST \
 
 Campo | Tamanho | Tipo | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
+vencto | 10 | date | sim | Data de vencimento (DD/MM/YYYY). Se não for informado, o vencimento será a data de hoje + o prazo informado nas configurações do iPag.
 instrucoes[] | 80 | string | não | Para alterar as linhas de instruções dos Boletos emitidos pelo iPag/Zoop envie o campo instrucoes[1], instrucoes[2] e instrucoes[3] se necessário.
 demonstrativos[] | 80 | string | não | Para alterar as linhas de demonstrativo dos Boletos emitidos pelo iPag/Zoop envie o campo demonstrativos[1], demonstrativos[2] se necessário.
 
