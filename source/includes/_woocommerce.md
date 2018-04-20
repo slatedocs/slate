@@ -6,8 +6,8 @@ Faça o upload do arquivo Zip pelo menu "Adicionar Novo" no Wordpress.
 
 Após a instalação, ative o plugin e vá ao painel de configuração
 
-1. Entre na página de administração do Magento.
-2. Vá em Extensões->Pagamentos e ative o módulo "iPag - Cartão de Crédito"
+1. Entre na página de administração do WooCommerce.
+2. Vá em Extensões > Pagamentos e ative o módulo "iPag - Cartão de Crédito"
 
 3. Nas opções do módulo iPag, preencha os campos como demonstrado abaixo:
  * Status: Habilitado
@@ -18,7 +18,7 @@ Após a instalação, ative o plugin e vá ao painel de configuração
  * Taxa de juros: Juro aplicado nas parcelas
  * Parcelas sem juros: Parcelas sem juros
 
-4. Vá em Extensões->Pagamentos e ative o módulo "iPag - Boleto"
+4. Vá em Extensões > Pagamentos e ative o módulo "iPag - Boleto"
 
 5. Nas opções do módulo iPag, preencha os campos como demonstrado abaixo:
  * Status: Habilitado
@@ -30,7 +30,7 @@ Após a instalação, ative o plugin e vá ao painel de configuração
  * Parcelas sem juros: Parcelas sem juros
 
 ## Configuração dos Métodos de Pagamento
-Acesse sua conta no <a href="https://painel.ipag.com.br"> Painel do iPag</a> e configure os métodos de pagamento.
+Acesse sua conta no <a href="https://painel-sandbox.ipag.com.br">Painel do iPag</a> e configure os métodos de pagamento.
 <aside class="notice">
     Em caso de dúvidas, entre em contato conosco enviando um email para suporte@ipag.com.br
 </aside>

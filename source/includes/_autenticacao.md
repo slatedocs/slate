@@ -8,7 +8,7 @@ A API KEY é utilizada para realizar a autenticação para as operações na API
 
 **Acesse:**
 
-[SANDBOX - Painel iPag - Minha Conta](http://sandbox.ipag.com.br/ipag-painel/?r=admin/alterardados&navegation=addplus ).
+[SANDBOX - Painel iPag - Minha Conta](https://sandbox.ipag.com.br/ipag-painel/?r=admin/alterardados&navegation=addplus ).
 
 <aside class="notice">
 <b>Caso não possua uma API KEY em sua conta, faça a requisição para suporte@ipag.com.br.</b>

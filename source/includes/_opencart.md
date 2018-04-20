@@ -14,7 +14,7 @@ Copie o conteúdo do arquivo Zip para o diretório onde o Opencart está instala
  * Cartões de crédito aceitos: Selecione as bandeiras desejadas
 
 ## Configuração dos Métodos de Pagamento
-Acesse sua conta no <a href="https://painel.ipag.com.br"> Painel do iPag</a> e configure os métodos de pagamento.
+Acesse sua conta no <a href="https://painel-sandbox.ipag.com.br"> Painel do iPag</a> e configure os métodos de pagamento.
 <aside class="notice">
     Em caso de dúvidas, entre em contato conosco enviando um email para suporte@ipag.com.br
 </aside>

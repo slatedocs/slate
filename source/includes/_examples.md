@@ -56,7 +56,8 @@ try {
         ['Produto 4', 8.50, 5, 'ABDC4']
     );
 
-    $ipag->transaction()->getOrder()
+    $transaction = $ipag->transaction();
+    $transaction->getOrder()
         ->setOrderId($orderId)
         ->setCallbackUrl('https://minha_loja.com.br/ipag/callback')
         ->setAmount(10.00)
@@ -68,7 +69,7 @@ try {
         ->setCustomer($customer)
         ->setCart($cart);
 
-    $response = $ipag->transaction()->execute();
+    $response = $transaction->execute();
 
     //Retornou algum erro?
     if (!empty($response->error)) {

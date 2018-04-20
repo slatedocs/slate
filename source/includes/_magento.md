@@ -15,7 +15,7 @@ Crie a pasta log dentro do diretório var do Magento, ficará <magentodir>/var/l
 
 1. Entre na página de administração do Magento.
 
-2. Vá em Sistema->Configuração->Cache Management.
+2. Vá em Sistema > Configuração > Cache Management.
 	No campo "All Cache", escolha "Atualizar"
 	Em seguida clique em "Salvar configurações de cache"
 
@@ -59,7 +59,7 @@ A atualização deste arquivo é opcional, mas garante que o valor das parcelas 
 Na versão 1.4 do Magento, para melhorar a aparência do Checkout, pode ser necessário inserir os comandos no arquivo styles.css
 
 ## Configuração dos Métodos de Pagamento
-Acesse sua conta no <a href="https://painel.ipag.com.br"> Painel do iPag</a> e configure os métodos de pagamento.
+Acesse sua conta no <a href="https://painel-sandbox.ipag.com.br"> Painel do iPag</a> e configure os métodos de pagamento.
 <aside class="notice">
     Em caso de dúvidas, entre em contato conosco enviando um email para suporte@ipag.com.br
 </aside>

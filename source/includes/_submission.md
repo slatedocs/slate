@@ -51,7 +51,8 @@ try {
         ->setExpiryYear('2025')
         ->setCvc('123');
 
-    $ipag->transaction()->getOrder()
+    $transaction = $ipag->transaction();
+    $transaction->getOrder()
         ->setOrderId($orderId)
         ->setCallbackUrl('https://minha_loja.com.br/ipag/callback')
         ->setAmount(10.00)
@@ -62,7 +63,7 @@ try {
         )
         ->setCustomer($customer);
 
-    $response = $ipag->transaction()->execute();
+    $response = $transaction->execute();
 
     //Retornou algum erro?
     if (!empty($response->error)) {
@@ -82,33 +83,33 @@ try {
 Campo | Tamanho | Tipo | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
 identificacao | 60 | string | sim | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
-identificacao2 | 60 | string | sim | Código de identificação do parceiro no iPag (Marketplace)
+identificacao2 | 60 | string | não | Código de identificação do parceiro no iPag (Marketplace)
 metodo | 15 | string | sim | Forma de Pagamento * veja os valores possíveis na seção Métodos deste documento
 operacao | 10 | string | sim | Operação * veja os valores possíveis na seção Operações deste documento
 pedido| 20 | string | sim | Número do pedido (única restrição é que não pode ser igual a outro já enviado ao iPag, aconselhamos numeral sequencial)
 valor | 12 | decimal | sim | Valor total da compra. Deve-se usar pontos como separador de casas decimais, ex: 100.00
-parcelas | 3 | number | não | Número de Parcelas
-nome_cartao | 30 | string | não | Nome do titular do cartão de crédito (se aplicável).
-num_cartao | 16 | number | não | Número do cartão de crédito (se aplicável).
-cvv_cartao | 3 | number | não | Código de verificação do cartão de crédito (se aplicável)
-mes_cartao | 2 | number | não | Mês de validade do cartão de crédito
-ano_cartao | 2 | number | não | Ano de validade do cartão de crédito
+parcelas | 3 | number | não (se cartão, sim) | Número de Parcelas, minimo: 1, máximo: 12
+nome_cartao | 30 | string | não (se cartão, sim) | Nome do titular do cartão de crédito.
+num_cartao | 16 | number | não (se cartão, sim) | Número do cartão de crédito).
+cvv_cartao | 3 | number | não (se cartão, sim) | Código de verificação do cartão de crédito
+mes_cartao | 2 | number | não (se cartão, sim) | Mês de validade do cartão de crédito
+ano_cartao | 2 | number | não (se cartão, sim) | Ano de validade do cartão de crédito
 nome | 30 | string | sim | Nome do cliente
 tipo_pessoa | 1 | char | não | “j” para pessoas jurídicas e “f” para pessoas físicas
 documento | 18 | string | não | CPF ou CNPJ do sacado
-email | 30 | string | sim| E-mail do cliente
-fone | 10 | string | sim | Telefone do cliente
-endereco | 30 | string | sim | Endereço completo do cliente
-numero_endereco | 5 | number | sim | Número do Endereço
+email | 30 | string | não| E-mail do cliente
+fone | 10 | string | não | Telefone do cliente
+endereco | 30 | string | não | Endereço completo do cliente
+numero_endereco | 5 | number | não | Número do Endereço
 complemento | 100 | string | não | Complemento do Endereço
-bairro | 15 | string | sim | Bairro do cliente
-cidade | 20 | string | sim | Cidade do cliente
-estado | 2 | string | sim | Estado do cliente
-pais | 15 | string | sim | País do cliente
-cep | 8 | string | sim | Cep do cliente
+bairro | 15 | string | não | Bairro do cliente
+cidade | 20 | string | não | Cidade do cliente
+estado | 2 | string | não | Estado do cliente
+pais | 15 | string | não | País do cliente
+cep | 8 | string | não | Cep do cliente
 vencto | 10 | date | não | Data de vencimento (DD/MM/YYYY). Usado apenas em boletos. Se não for informado, o vencimento será a data de hoje + o prazo informado nas configurações do iPag.
 url_retorno | 50 | string | sim | URL de retorno à Loja Virtual ou Site.
-retorno_tipo | 5 | string | não | Informar 'xml' para ter retorno em XML, caso não seja informado será retornado em HTML.
+retorno_tipo | 5 | string | sim | Informar 'xml'.
 
 ## Campos adicionais para Boleto (iPag/Zoop)
 
@@ -196,7 +197,8 @@ token_cartao | 37 | string | Obrigatório na utilização do token | Quando o
 // VIA IPAG-SDK-PHP
 // ...
 
-$ipag->transaction()->getOrder()
+$transaction = $ipag->transaction();
+$transaction->getOrder()
     ->setSubscription($ipag->subscription()
       ->setProfileId('1000000')
       ->setFrequency(1)
@@ -204,7 +206,7 @@ $ipag->transaction()->getOrder()
       ->setStart('10/10/2018')
 );
 
-$response = $ipag->transaction()->execute();
+$response = $transaction->execute();
 ```
 
 Parâmetro | size | type | Obrigatório | Descrição
