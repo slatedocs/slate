@@ -70,19 +70,45 @@ under the License.
         <ul class="search-results"></ul>
       <% end %>
       <div id="toc" class="toc-list-h1">
-        <% toc_data(page_content).each do |h1| %>
-          <li>
-            <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:content].to_s.parameterize %>"><%= h1[:content] %></a>
-            <% if h1[:children].length > 0 %>
-              <ul class="toc-list-h2">
-                <% h1[:children].each do |h2| %>
-                  <li>
-                    <a href="#<%= h2[:id] %>" class="toc-h2 toc-link" data-title="<%= h2[:content].to_s.parameterize %>"><%= h2[:content] %></a>
-                  </li>
-                <% end %>
-              </ul>
-            <% end %>
-          </li>
+        <% if current_page.data.multiple_pages %>
+          <div id="toc">
+            <!--
+            <ul style="padding: 0 15px 0 15px;">
+              <li id="vtwo-link1" style="font-size: 14px;color: #595864;"><a href="/subdir/thing1/">One Thing</a></li>
+              <li id="vtwo-link2" style="font-size: 14px;color: #595864;"><a href="/subdir/thing2/">Another Thing</a></li>
+              <li id="vtwo-link3" style="font-size: 14px;color: #595864;"><a href="/subdir/thing3/">A Third Thing</a></li>
+            </ul>
+            -->
+            
+            <%# WIP: build sub pages automatically %>
+            <% current_page.data.resources.each do |resource| %>
+            <li>
+              resource
+                <ul class="toc-list-h2">
+                  <% current_page.data.resource.each do |request| %>
+                    <li>
+                     request
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </li>
+          </div>
+        <% else %>
+          <% toc_data(page_content).each do |h1| %>
+            <li>
+              <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:content].to_s.parameterize %>"><%= h1[:content] %></a>
+              <% if h1[:children].length > 0 %>
+                <ul class="toc-list-h2">
+                  <% h1[:children].each do |h2| %>
+                    <li>
+                      <a href="#<%= h2[:id] %>" class="toc-h2 toc-link" data-title="<%= h2[:content].to_s.parameterize %>"><%= h2[:content] %></a>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </li>
+          <% end %>
         <% end %>
       </div>
       <% if current_page.data.toc_footers %>

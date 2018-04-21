@@ -15,6 +15,16 @@ includes:
   - errors
 
 search: true
+
+multiple_pages: false
+
+resources:
+  - <a href='#kittens' class='toc-h1 toc-link' data-title='kittens'>kittens</a>
+
+kittens:
+  - <a href='#get-all-kittens' class='toc-h2 toc-link' data-title='get all kittens'>Get All Kittens</a>
+  - <a href='#get-a-specific-kitten' class='toc-h2 toc-link' data-title='get a specific kitten'>Get a specific kitten</a>
+  - <a href='#delete-a-specific-kitten' class='toc-h2 toc-link' data-title='delete a specific kitten'>Delete a specific kitten</a>
 ---
 
 # Introduction
