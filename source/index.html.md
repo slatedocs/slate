@@ -137,7 +137,7 @@ This endpoint retrieves all districts.
 
 ### Query Parameters
 
-Parameter | Require | Type    | Default | Description
+Parameter | Required | Type    | Default | Description
 --------- | ------- | ------- | ------- | -----------
 province_id | true | string | | Province id of districts you want to retrieve. Get province id in api [GET /geo/provinces](#get-provinces)
 
@@ -190,7 +190,7 @@ This endpoint retrieves all communes.
 
 ### Query Parameters
 
-Parameter | Require | Type    | Default | Description
+Parameter | Required | Type    | Default | Description
 --------- | ------- | ------- | ------- | -----------
 district_id | true | string | | District id of communes you want to retrieve. Get district id in api [GET /geo/districts](#get-districts)
 
@@ -264,7 +264,7 @@ This endpoint retrieves all businesses and basic user info.
 
 ### Query Parameters
 
-Parameter | Require | Type    | Default | Description
+Parameter | Required | Type    | Default | Description
 --------- | ------- | ------- | ------- | -----------
 access_token | true | string | | Your personal acess_token
 
@@ -323,7 +323,7 @@ This endpoint retrieves a specific business.
 
 ### URL Parameters
 
-Parameter | Require | Type    | Default | Description
+Parameter | Required | Type    | Default | Description
 --------- | ------- | ------- | ------- | -----------
 access_token | true | string | | Your personal acess_token
 ID | true | integer | | The ID of the business to retrieve
@@ -380,11 +380,11 @@ This endpoint retrieves services.
 
 ### URL Parameters
 
-Parameter | Require | Type    | Default | Description
+Parameter | Required | Type    | Default | Description
 --------- | ------- | ------- | ------- | -----------
 sender_district_id | true | string | | Id of sender's district
 receiver_district_id | true | string | | Id of receiver's district
-receiver_commune_id | false | string | | Id of receiver's district
+receiver_commune_id | false | string | | Id of receiver's commune
 
 ## Get Trackings
 
@@ -525,7 +525,7 @@ This endpoint retrieves all trackings into your business.
 
 ### Query Parameters
 
-Parameter | Require | Type    | Default | Description
+Parameter | Required | Type    | Default | Description
 --------- | ------- | ------- | ------- | -----------
 access_token | true | string | | Your personal acess_token
 business_id | true | integer | | Id one business in list businesses you get in api [GET /user/me](#get-all-businesses)
@@ -695,7 +695,7 @@ This endpoint create a tracking into your business.
 
 ### Query Parameters
 
-Parameter | Require | Type    | Default | Description
+Parameter | Required | Type    | Default | Description
 --------- | ------- | ------- | ------- | -----------
 access_token | true | string | | Your personal acess_token
 business_id | true | integer | | Id of a business in list businesses. Get in api [GET /user/me](#get-all-businesses)
@@ -712,7 +712,7 @@ cod | true | integer | | Amount of cod or values of all items in package
 
 Params `items`
 
-Parameter | Require | Type    | Default | Description
+Parameter | Required | Type    | Default | Description
 --------- | ------- | ------- | ------- | -----------
 name | true | string | | Name of item or product
 weight | true | integer | | Weight of item or product
