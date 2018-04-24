@@ -87,6 +87,10 @@ includes:
   - symptom_type_product_type_linker
   - symptom_types
   - tamper_enable_history
+  - test_jig_test_result
+  - test_jig_entity_linker
+  - test_bench_entity_linker
+  - usb_diag_tool_entity_linker
 
   - product_actions
   - enable
