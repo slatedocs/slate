@@ -174,7 +174,7 @@ business-category | <span class="label label-required">Required</span> The type 
 primary-business-location | <span class="label label-required">Required</span> The primary location served by the business. Enter town name and state code - for example, Chicago, IL.
 search-terms | <span class="label label-required">Required</span> Supply one or more search terms (max 5) as a JSON string. For example, ["restaurant san francisco","cafe san francisco"].
 google-location | <span class="label label-required">Required</span> A valid google search location. Please refer to our location check method.
-bing-location | <span class="label label-required">Required</span> A valid bing search location. Please refer to our location check method.
+bing-location | A valid bing search location. Please refer to our location check method.
 notify | One of yes or no. If set to yes we will send report alerts to all email addresses specified (see field below). If you include customer email addresses when setting up your report we'll also email them the alerts so please be sure this is what you want before adding their addresses. Default is no.
 email-addresses | Supply one or more (max 5) email addresses for us to send report alerts to. This only takes effect if notify is set to yes.
 facebook-url | If known, please supply the Facebook URL for the business. If not supplied we'll try and find it on the business website or through a direct search of Facebook.
