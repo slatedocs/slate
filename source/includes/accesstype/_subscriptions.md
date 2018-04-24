@@ -195,7 +195,11 @@ In order to register a recurring subscription with some providers (such as razor
 ## POST register a recurring subscription
 
 ```shell
-curl -H "X-SUBAUTH: <auth-token>" -X POST https://www.accesstype.com/api/v1/subscription_plans/<subscription-plan-id>/external_subscription_token.json?type=razorpay
+curl -H "X-SUBAUTH: <auth-token>" -X POST -H "Content-Type: application/json" https://www.accesstype.com/api/v1/subscription_plans/<subscription-plan-id>/external_subscription_token.json -d '{
+  "type": "razorpay",
+  "provider": "email",
+  "identity": "foo@bar.com"
+}'
 
 {
   "subscription": {
