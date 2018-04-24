@@ -1,6 +1,8 @@
-# Contact Types
+Contact Types
+=============
 
-## Get contact types list
+Get contact types list
+----------------------
 
 ```shell
 curl -X GET :endpoint:/api/v1/contact_types -H 'Authorization: :auth_token:'
@@ -11,7 +13,8 @@ require 'manabu'
 Manabu::ContactTypes.new(client).all
 ```
 
-## Register new contact type
+Register new contact type
+-------------------------
 
 ```shell
 curl -X POST :endpoint:/api/v1/contact_types?name=test \

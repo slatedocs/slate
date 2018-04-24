@@ -17,8 +17,8 @@ includes:
   - authentication
   - users
   - roles
-  - students
   - enrollment_statuses
+  - students
   - contact_types
   - errors
 
@@ -26,13 +26,15 @@ includes:
 search: true
 ---
 
-# Introduction
+Introduction
+============
 
 The GAKU Engine API comes standard with any install of GAKU Engine, though it may be disabled
 by removing the "gaku-api" gem from your Gemfile. All calls to the API other than the 'status'
 call require authentication.
 
-## Protocols
+Protocols
+---------
 
 The GAKU Engine API can be accessed with either [MessagePack](https://msgpack.org/) or JSON.
 We highly recommend you use MessagePack as a lot of data from the API can be quite extensive

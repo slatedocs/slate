@@ -1,23 +1,8 @@
-<!-- # Enrollment Statuses
+Enrollment Status
+=================
 
-Test
-
-## Index
-
-adasdad
-
-```shell
-  curl -X GET ":endpoint:/api/v1/enrollment_statuses" -H 'Authorization: :auth_token:'
-```
-
-```ruby
-require "manabu"
-Manabu::EnrollmentStatuses.new(client).all
-``` -->
-
-# Enrollment Status
-
-## List all enrollment statuses
+List all enrollment statuses
+----------------------------
 
 ```ruby
 require 'manabu'
@@ -29,7 +14,8 @@ curl -X GET ":endpoint:/api/v1/enrollment_statuses"
   -H 'Authorization: :auth_token:'
 ```
 
-## Test all enrollment statuses
+Test all enrollment statuses
+----------------------------
 
 ```ruby
 require 'manabu'
