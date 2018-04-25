@@ -30,7 +30,6 @@
 ```json
 [{
   "id": "3e89d474-0569-4ea9-9f5e-6f81c1984d2f",
-  "product": "ETH-BTC",
   "type": "limit",
   "side": "buy",
   "size": "15.00000000",
@@ -40,7 +39,6 @@
 },
 {
   "id": "9d97aec3-5e86-4eac-a1b4-8404423837b2",
-  "product": "ETH-BTC",
   "type": "limit",
   "side": "sell",
   "size": "12.00000000",
