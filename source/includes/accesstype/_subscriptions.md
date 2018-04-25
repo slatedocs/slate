@@ -207,3 +207,5 @@ curl -H "X-SUBAUTH: <auth-token>" -X POST -H "Content-Type: application/json" ht
   }
 }
 ```
+
+`provider` and `identity` are optional params and should be sent if the external subscription is not to start immediately.
