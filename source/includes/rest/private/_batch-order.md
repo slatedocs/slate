@@ -48,7 +48,9 @@
   "timestamp": "1511487005839.427"
 },
 {
-  "id": "6c26914e-40f4-11e8-842f-0ed5f89f718b"
+  "id": "6c26914e-40f4-11e8-842f-0ed5f89f718b",
+  "cancel": true,
+  "type": "limit"
 }]
 ```
 
