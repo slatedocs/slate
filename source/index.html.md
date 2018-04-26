@@ -5,6 +5,7 @@ includes:
   - ruby
   - elixir
   - python
+  - core_agent
   - features
   - integrations
   - api
