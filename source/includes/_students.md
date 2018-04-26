@@ -1,14 +1,36 @@
-# Students
+Students
+========
 
 Student resources
 
-## Get students list
+Get students list
+-----------------
 
 ```shell
   curl -X GET :endpoint:/api/v1/students -H 'Authorization: :auth_token:'
 ```
 
-## Create new student
+```ruby
+require 'manabu'
+Manabu::Students.new(client).roster
+```
+
+Filter students
+---------------
+
+Filter students with condition
+
+| Condition              | Description            |
+| ---------------------- | ---------------------- |
+| enrollment_status      | filter by enrollment status code|
+
+```ruby
+  Manabu::Students.new(client).filter(enrollment_status: 'enrolled')
+```
+
+
+Create new student
+------------------
 
 | Parameter              | Required | Description            |
 | ---------------------- | -------- | ---------------------- |
@@ -32,12 +54,13 @@ Student resources
 require "manabu"
 
 new_user = Manabu::Students.new(client).register(name: 'john', surname: 'Doe')
-
+#or
 user = Manabu::Student.new(name: 'john', surname: 'doe')
 new_user = Manabu::Students.new(client).register(user)
 ```
 
-## Update a student
+Update a student
+----------------
 
 Update student attribute
 
@@ -66,7 +89,8 @@ curl -X PATCH :endpoint:/api/v1/students/1?name=jane \
   user.set(name: 'jane', surname: 'doe')
 ```
 
-## Get a student picture
+Get a student picture
+---------------------
 
 Get picture file
 
@@ -80,7 +104,8 @@ Get picture file
   user.picture
 ```
 
-## Set Picture to a student
+Set Picture to a student
+------------------------
 
 ```shell
 
@@ -92,7 +117,7 @@ Get picture file
   student.set_picture('path/to/file')
 ```
 
-## Add guardian to а student
+Add guardian to а student
 
 ```shell
 curl -X POST :endpoint:/api/v1/students/:id:/student_guardians?guardian_id=:guardian_id: \
@@ -104,4 +129,32 @@ curl -X POST :endpoint:/api/v1/students/:id:/student_guardians?guardian_id=:guar
   student = Manabu::Student.new(client, id: 1)
   guardian = Manabu::Guardian.new(client, id: 1)
   student.add_guardian(guardian)
+```
+
+List student guardians
+----------------------
+
+```shell
+  curl -X POST :endpoint:/api/v1/students/:id:/guardians\
+    -H 'Authorization: :auth_token:'
+```
+
+```ruby
+require 'manabu'
+student = Manabu::Student.new(client, id: 1)
+student.guardians
+```
+
+List student courses
+----------------------
+
+```shell
+  curl -X POST :endpoint:/api/v1/students/:id:/courses\
+    -H 'Authorization: :auth_token:'
+```
+
+```ruby
+require 'manabu'
+student = Manabu::Student.new(client, id: 1)
+student.courses
 ```

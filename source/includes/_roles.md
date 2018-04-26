@@ -1,6 +1,8 @@
-# Roles
+Roles
+=====
 
-## Get roles list
+Get roles list
+--------------
 
 ```ruby
 require 'manabu'

@@ -15,11 +15,14 @@ toc_footers:
 
 includes:
   - authentication
-  - users
   - roles
-  - enrollment_statuses
+  - users
   - students
+  - enrollment_statuses
   - contact_types
+  - courses
+  - course
+  - syllabuses
   - errors
 
 
