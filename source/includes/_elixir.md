@@ -304,6 +304,7 @@ Our [install instructions](#elixir-install) walk through instrumenting the follo
   * views
   * templates
 * Ecto 2.0
+* Slime Templates
 
 See [instrumenting common librariess](/#instrumenting-common-libraries) for guides on instrumenting other Elixir libraries.
 
