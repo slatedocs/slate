@@ -124,6 +124,8 @@ includes:
   - current_state
   - send_inputs
   - send_event
+  - history
+  - list_current_states
   - irt_input_specifications
   - irt_event_specifications
   
