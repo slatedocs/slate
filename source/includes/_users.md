@@ -1,6 +1,5 @@
 # Users
 
-
 ## Register
 
 ```shell
@@ -126,24 +125,20 @@ You can track each registration with [segment.io](https://segment.com) by passin
 
 ### Query Parameters
 
-| Param                                  | Type    | Description                                              |
-| ---------                              | ------- | -----------                                              |
-| email                                  | string  | Your registered email address                            |
-| password                               | string  | strong password                                          |
-| password_confirmation                  | string  | password confirmation                                    |
-| name                                   | string  | Your First Name and Last Name                            |
-| phone_number                           | string  | Phone number                                             |
-| tracking_info[properties][uuid]        | header  | Pass uuid to track                                       |
-| tracking_info[properties][is_web-view] | header  | `true` if user is using web browsers otherwise `false`   |
-| tracking_info[properties][is_ipad]     | header  | `true` if user is using IPad otherwise `false`           |
-| tracking_info[properties][is_ios]      | header  | `true` if user is using IOS device otherwise `false`     |
-| tracking_info[properties][is_android]  | header  | `true` if user is using android device otherwise `false` |
-| tracking_info[properties][platform]    | header  | device platform                                          |
-| tracking_info[properties][version]     | header  | device version                                           |
-
-
-
-
+| Param                                  | Type   | Description                                              |
+| -------------------------------------- | ------ | -------------------------------------------------------- |
+| email                                  | string | Your registered email address                            |
+| password                               | string | strong password                                          |
+| password_confirmation                  | string | password confirmation                                    |
+| name                                   | string | Your First Name and Last Name                            |
+| phone_number                           | string | Phone number                                             |
+| tracking_info[properties][uuid]        | header | Pass uuid to track                                       |
+| tracking_info[properties][is_web-view] | header | `true` if user is using web browsers otherwise `false`   |
+| tracking_info[properties][is_ipad]     | header | `true` if user is using IPad otherwise `false`           |
+| tracking_info[properties][is_ios]      | header | `true` if user is using IOS device otherwise `false`     |
+| tracking_info[properties][is_android]  | header | `true` if user is using android device otherwise `false` |
+| tracking_info[properties][platform]    | header | device platform                                          |
+| tracking_info[properties][version]     | header | device version                                           |
 
 ## Login
 
@@ -236,7 +231,6 @@ This endpoint returns `User` object along with `authentication_token`.
 RubberStamp expects for the Authentication token to be included in all API
 requests to the server in a header.
 
-
 ### HTTP Request
 
 `POST https://app.rubberstamp.io/api/v1/login`
@@ -246,28 +240,24 @@ requests to the server in a header.
 You can track each login with [segment.io](https://segment.com) by passing
 `tracking_info` `HEADER` params as shown in the example.
 
-
 ### Query Parameters
 
-| Param     | Type    | Description                   |
-| --------- | ------- | -----------                   |
-| email     | string  | Your registered email address |
-| password  | string  | strong password               |
-| tracking_info[properties][uuid]        | header  | Pass uuid to track                                       |
-| tracking_info[properties][is_web-view] | header  | `true` if user is using web browsers otherwise `false`   |
-| tracking_info[properties][is_ipad]     | header  | `true` if user is using IPad otherwise `false`           |
-| tracking_info[properties][is_ios]      | header  | `true` if user is using IOS device otherwise `false`     |
-| tracking_info[properties][is_android]  | header  | `true` if user is using android device otherwise `false` |
-| tracking_info[properties][platform]    | header  | device platform                                          |
-| tracking_info[properties][version]     | header  | device version                                           |
+| Param                                  | Type   | Description                                              |
+| -------------------------------------- | ------ | -------------------------------------------------------- |
+| email                                  | string | Your registered email address                            |
+| password                               | string | strong password                                          |
+| tracking_info[properties][uuid]        | header | Pass uuid to track                                       |
+| tracking_info[properties][is_web-view] | header | `true` if user is using web browsers otherwise `false`   |
+| tracking_info[properties][is_ipad]     | header | `true` if user is using IPad otherwise `false`           |
+| tracking_info[properties][is_ios]      | header | `true` if user is using IOS device otherwise `false`     |
+| tracking_info[properties][is_android]  | header | `true` if user is using android device otherwise `false` |
+| tracking_info[properties][platform]    | header | device platform                                          |
+| tracking_info[properties][version]     | header | device version                                           |
 
 <aside class="success">
 Remember — You need to be a valid user to get authenticated. If you haven't
 registered yet, try register api.
 </aside>
-
-
-
 
 ## GET Current User
 
@@ -314,12 +304,7 @@ curl 'https://app.rubberstamp.io/api/v1/currentuser'
       "is_removed": false,
       "approval_limit": 1000000,
       "in_trial": false,
-      "roles": [
-        "companyadmin",
-        "approver",
-        "finance",
-        "teammember"
-      ]
+      "roles": ["companyadmin", "approver", "finance", "teammember"]
     }
   ]
 }
@@ -346,15 +331,10 @@ is the active company for that user in that mobile.
 
 ### URL Parameters
 
-| Params               | Type    | Description                      |
-| -----                | -----   | ---------                        |
-| authentication_token | header  | Authentication token             |
-| app_company_id       | header  | registered company id            |
-
-
-
-
-
+| Params               | Type   | Description           |
+| -------------------- | ------ | --------------------- |
+| authentication_token | header | Authentication token  |
+| app_company_id       | header | registered company id |
 
 ## Update User
 
@@ -406,12 +386,7 @@ curl https://app.rubberstamp.io/api/v1/currentuser
       "is_removed": false,
       "approval_limit": 1000000,
       "in_trial": false,
-      "roles": [
-        "companyadmin",
-        "approver",
-        "finance",
-        "teammember"
-      ]
+      "roles": ["companyadmin", "approver", "finance", "teammember"]
     }
   ]
 }
@@ -427,17 +402,13 @@ parameters not provided will be left unchanged.
 ### Query Parameters
 
 | Param                | Type   | Description              |
-| -----                | ---    | ---------                |
+| -------------------- | ------ | ------------------------ |
 | authentication_token | header | Authentication token     |
 | app_company_id       | header | registered company id    |
 | email                | string | email                    |
 | password             | string | strong password          |
 | name                 | string | Your First and Last name |
 | phone_number         | string | Phone number             |
-
-
-
-
 
 ## Reset Password
 
@@ -476,12 +447,9 @@ reset page and you can reset your password from there.
 
 ### Query Parameters
 
-| Param                 | Type    | Description                   |
-| ---------             | ------- | -----------                   |
-| email                 | string  | Your registered email address |
-
-
-
+| Param | Type   | Description                   |
+| ----- | ------ | ----------------------------- |
+| email | string | Your registered email address |
 
 ## Google Login
 
@@ -489,7 +457,10 @@ reset page and you can reset your password from there.
 curl 'https://app.rubberstamp.io/api/v1/google_login'
   -X POST
   -H "Content-Type: application/json"
+  -d "uuid=encoded_google_id"
   -d "email=api@example.com"
+  -d "first_name=John"
+  -d "last_name=Doe"
 ```
 
 ```ruby
@@ -497,7 +468,12 @@ require 'rest-client'
 
 response = RestClient.post(
   'https://app.rubberstamp.io/api/v1/google_login',
-  { email: 'api@example.com' }
+  {
+    uuid: 'encoded_google_id',
+    email: 'api@example.com',
+    first_name: 'john',
+    last_name: 'doe'
+  }
 )
 ```
 
@@ -521,7 +497,8 @@ response = RestClient.post(
   ]
 }
 ```
-It will return `User` object back with the matching email address.
+
+To use this api endpoint, you first need to `login with googl` using oauth/oauth2 and get user's `uuid`, `email,`first_name`and`last_name`. Then encode`uuid` using provided encryption method. Once everything is in place, send encoded uuid along with other required data. As a response you will get user object.
 
 ### HTTP Request
 
@@ -529,12 +506,12 @@ It will return `User` object back with the matching email address.
 
 ### Query Parameters
 
-| Param                 | Type    | Description                   |
-| ---------             | ------- | -----------                   |
-| email                 | string  | Your registered email address |
-
-
-
+| Param      | Type   | Description                   |
+| ---------- | ------ | ----------------------------- |
+| uuid       | string | encoded google id             |
+| email      | string | Your registered email address |
+| first_name | string | user's given name             |
+| last_name  | string | user's family name            |
 
 ## Get My Currencies
 
@@ -589,12 +566,9 @@ Returns a list of currencies that are enabled for given company id.
 ### Query Parameters
 
 | Param                | Type   | Description           |
-| -----                | ---    | ---------             |
+| -------------------- | ------ | --------------------- |
 | authentication_token | header | Authentication token  |
 | app_company_id       | header | registered company id |
-
-
-
 
 ## Get All Currencies
 
@@ -688,13 +662,9 @@ Returns a list of all available currencies.
 
 ### Query Parameters
 
-| Param                | Type   | Description           |
-| -----                | ---    | ---------             |
-| authentication_token | header | Authentication token  |
-
-
-
-
+| Param                | Type   | Description          |
+| -------------------- | ------ | -------------------- |
+| authentication_token | header | Authentication token |
 
 ## Logout
 
@@ -735,6 +705,5 @@ authentication_token you need to login again.
 ### Query Parameters
 
 | Param                | Type   | Description          |
-| ----                 | ----   | ---------            |
+| -------------------- | ------ | -------------------- |
 | authentication_token | header | Authentication token |
-
