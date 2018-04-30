@@ -498,7 +498,7 @@ response = RestClient.post(
 }
 ```
 
-To use this api endpoint, you first need to `login with googl` using oauth/oauth2 and get user's `uuid`, `email,`first_name`and`last_name`. Then encode`uuid` using provided encryption method. Once everything is in place, send encoded uuid along with other required data. As a response you will get user object.
+To use this api endpoint, you first need to `login with googl` using oauth/oauth2 and get user's `uuid`, `email`,`first_name`and`last_name`. Then encode `uuid` using provided encryption method. Once everything is in place, send encoded uuid along with other required data. As a response you will get user object.
 
 ### HTTP Request
 
