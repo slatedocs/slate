@@ -1,6 +1,6 @@
-#任务信息查询
+#任务信息查询接口
 
-##获取任务列表
+##获取任务列表接口
 
 ###功能说明：
 
@@ -70,7 +70,7 @@
 
 URL：http://api.byrobot.cn/openapi/v1/task/getTasks
 
-###访问方式：
+###请求方法：
 
 GET
 
@@ -93,7 +93,6 @@ GET
 参数名 | 类型 | 描述 
 --------- | ------- |------
  code|integer | 响应码 |
- data| object | 返回实体 |
  pageNum| Integer | 第几页 |
  pageSize| Integer | 每页页面条数 |
  total| Integer | 数据总条数 |
@@ -116,9 +115,8 @@ GET
  fromUnavailableCount| Integer | 任务主叫号码不可用的号码总数 |
  callPhones| List | 主叫电话号码列表，格式和getPhones返回结果相同 |
  resultMsg| String | 响应说明 |
- errorStackTrace| String | 接口异常说明 |
 
-##获取任务详情
+##获取任务详情接口
 
 ###功能说明：
 
@@ -238,7 +236,7 @@ GET
 
 URL：http://api.byrobot.cn/openapi/v1/task/getTaskDetail
 
-###访问方式：
+###请求方法：
 
 GET
 
@@ -256,7 +254,6 @@ GET
 参数名 | 类型 | 描述 
 --------- | ------- |------
  code|integer | 响应码 |
- data| object | 返回实体 |
  callJobId| Integer | 任务id |
  jobName| String | 任务名称 |
  jobType| Integer | 任务类型，1-定时，2-手动 |
@@ -282,9 +279,8 @@ GET
  callPhones| List | 主叫电话号码列表，格式和getPhones返回结果相同 |
  extraStat| List | 任务分析结果统计信息 |
  resultMsg| String | 响应说明 |
- errorStackTrace| String | 接口异常说明 |
  
-##获取已经完成任务电话号码
+##获取已经完成任务电话号码接口
  
 ###功能说明：
  
@@ -394,7 +390,7 @@ GET
  
  URL：http://api.byrobot.cn/openapi/v1/task/queryDoneTaskPhones
  
-###访问方式：
+###请求方法：
  
  GET
  
@@ -420,7 +416,6 @@ GET
  参数名 | 类型 | 描述 
  --------- | ------- |------
   code|integer | 响应码 |
-  data| object | 返回实体 |
   pageNum| Integer | 第几页 |
    pageSize| Integer | 每页页面条数 |
    total| Integer | 数据总条数 |
@@ -449,9 +444,8 @@ GET
   jobName| List | 任务名称 | 
   resultList| List | 通话分析结果信息 |
   resultMsg| String | 响应说明 |
-  errorStackTrace| String | 接口异常说明 |
 
-##获取一个通话的详情
+##获取一个通话的详情接口
  
 ###功能说明：
  
@@ -572,7 +566,7 @@ GET
  
  URL：http://api.byrobot.cn/openapi/v1/task/phoneLogInfo
  
-###访问方式：
+###请求方法：
  
  GET
  
@@ -588,7 +582,6 @@ GET
  参数名 | 类型 | 描述 
  --------- | ------- |------
   code|integer | 响应码 |
-  data| object | 返回实体 |
   phoneLogs| List | 对话内容 |
   sceneInstanceId| Integer | 任务实例id |
   speaker| String |角色|
@@ -619,4 +612,3 @@ GET
   hangUp| List | 挂机人, 0: AI 1: 用户 |
   taskResult| String | 任务结果分析 |
   resultMsg| String | 响应说明 |
-  errorStackTrace| String | 接口异常说明 |  

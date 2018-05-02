@@ -1,6 +1,6 @@
-# 公司信息
+# 公司信息接口
 
-##获取公司列表
+##获取公司列表接口
 
 ###功能说明：
 
@@ -31,7 +31,7 @@
 
 URL：http://api.byrobot.cn/openapi/v1/company/getCompanys
 
-###访问方式：
+###请求方法：
 
 GET
 
@@ -47,14 +47,12 @@ GET
 参数名 | 类型 | 描述 
 --------- | ------- |------
  code|integer | 响应码 |
- data| object | 返回实体 |
  companyName|String | 公司名称 |
  companyId| integer | 公司Id |
  resultMsg| String | 响应说明 |
- errorStackTrace| String | 接口异常说明 |
 
 
-##获取公司的主叫电话列表
+##获取公司的主叫电话列表接口
 
 ###功能说明：
 
@@ -96,7 +94,7 @@ GET
 
 URL：http://api.byrobot.cn/openapi/v1/company/getPhones
 
-###访问方式：
+###请求方法：
 
 GET
 
@@ -114,18 +112,16 @@ GET
 参数名 | 类型 | 描述 
 --------- | ------- |------
  code|integer | 响应码 |
- data| object | 返回实体 |
  userPhoneId|Integer | 电话id |
  phone| String | 电话号码 |
-  phoneName| String | 电话号码名称 |
+ phoneName| String | 电话号码名称 |
  phoneType| Integer | 手机(0, "手机"),阿里云固话(1, "阿里云固话"),无主叫固话(2, "无主叫固话"), |
  available| Boolean | 是否可用 |
  totalConcurrencyQuota| Integer | 总并发数 |
  usedConcurrencyQuota| Integer | 已经使用并发数 |
  resultMsg| String | 响应说明 |
- errorStackTrace| String | 接口异常说明 |
 
-##获取公司的机器人话术列表
+##获取公司的机器人话术列表接口
 
 ###功能说明：
 
@@ -170,7 +166,7 @@ GET
 
 URL：http://api.byrobot.cn/openapi/v1/company/getPhones
 
-###访问方式：
+###请求方法：
 
 GET
 
@@ -188,12 +184,10 @@ GET
 参数名 | 类型 | 描述 
 --------- | ------- |------
  code|integer | 响应码 |
- data| object | 返回实体 |
  robotDefId|Integer | 机器人话术id |
  robotName| String | 机器人话术名称 |
  sceneDefId| Integer | 机器人话术场景id |
  sceneRecordId| Integer | 机器人话术录音id |
  sceneRecordName| String | 机器人录音名称 |
  resultMsg| String | 响应说明 |
- errorStackTrace| String | 接口异常说明 |
 

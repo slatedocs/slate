@@ -1,6 +1,6 @@
-#任务操作
+#任务操作接口
 
-##创建任务
+##创建任务接口
 
 ###功能说明：
 
@@ -46,7 +46,7 @@
 
 URL：http://api.byrobot.cn/openapi/v1/task/createTask
 
-###访问方式：
+###请求方法：
 
 POST
 
@@ -79,11 +79,9 @@ POST
 参数名 | 类型 | 描述 
 --------- | ------- |------
  code|integer | 响应码 |
- data| object | 返回实体 |
  resultMsg| String | 响应说明 |
- errorStackTrace| String | 接口异常说明 |
 
-##启动任务
+##启动任务接口
 
 ###功能说明：
 
@@ -105,7 +103,7 @@ POST
 
 URL：http://api.byrobot.cn/openapi/v1/task/start
 
-###访问方式：
+###请求方法：
 
 POST
 
@@ -122,11 +120,9 @@ POST
 参数名 | 类型 | 描述 
 --------- | ------- |------
  code|integer | 响应码 |
- data| object | 返回实体 |
  resultMsg| String | 响应说明 |
- errorStackTrace| String | 接口异常说明 |
  
-##暂停任务
+##暂停任务接口
  
 ###功能说明：
  
@@ -148,7 +144,7 @@ POST
  
  URL：http://api.byrobot.cn/openapi/v1/task/pause
  
-###访问方式：
+###请求方法：
  
  POST
  
@@ -165,11 +161,9 @@ POST
  参数名 | 类型 | 描述 
  --------- | ------- |------
   code|integer | 响应码 |
-  data| object | 返回实体 |
   resultMsg| String | 响应说明 |
-  errorStackTrace| String | 接口异常说明 |
 
-##停止任务
+##停止任务接口
  
 ###功能说明：
  
@@ -191,7 +185,7 @@ POST
  
  URL：http://api.byrobot.cn/openapi/v1/task/stop
  
-###访问方式：
+###请求方法：
  
  POST
  
@@ -208,11 +202,9 @@ POST
  参数名 | 类型 | 描述 
  --------- | ------- |------
   code|integer | 响应码 |
-  data| object | 返回实体 |
   resultMsg| String | 响应说明 |
-  errorStackTrace| String | 接口异常说明 |
 
-##向任务中导入客户
+##向任务中导入客户接口
  
 ###功能说明：
  
@@ -255,7 +247,7 @@ POST
  
  URL：http://api.byrobot.cn/openapi/v1/task/importTaskCustomer
 
-###访问方式：
+###请求方法：
  
  POST
  
@@ -276,6 +268,4 @@ POST
  参数名 | 类型 | 描述 
  --------- | ------- |------
   code|integer | 响应码 |
-  data| object | 返回实体 |
   resultMsg| String | 响应说明 |
-  errorStackTrace| String | 接口异常说明 |

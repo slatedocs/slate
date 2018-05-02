@@ -2,7 +2,6 @@
 title: API Reference
 
 includes:
-  - errors
   - company
   - task
   - ObtainTask
@@ -19,13 +18,44 @@ search: true
 
 公司官网地址 ：[www.byrobot.cn/](https://www.byrobot.cn/)
  
-# 认证    
+
+# 开发引导
+
+## 调用说明
+
+```
+
+调用方式说明：
+
+第一种方式：主动调用
+  这种调用方式是客户主动调用接口获取数据或实现功能；
+  
+  主动调用需要传入APP_KEY和APP_SECRET用于权限校验；
+  
+  请在开发对接程序前联系百应技术支持进行注册。
+  
+第二种方式：方法回调
+  这种调用方式是当达到预设条件如：任务完成或通话结束时，由百应主动向指定地址发送信息；
+  
+  请在开发前自主配置好回调地址。
+  
+```
+
+百应机器人API是使用HTTP并遵循REST原则设计的Web服务接口；
+
+您可以使用几乎任何客户端和任何编程语言与REST API进行交互。
+
+通过发送简单的HTTP请求就可以轻松接入使用。
+
+调用方式分为两种：主动调用和方法回调。
+
+## 认证    
 
 > 认证密钥样例
 
 ```java
-  APP_KEY = "WtSMaJWdODxVotvy";
-  APP_SECRET = "aXSFnnZbHCVnowXJSROZyJPRMguz1Q";    
+  APP_KEY = "WtSMaXXXXXXXXtvy";
+  APP_SECRET = "aXSFnnZbHXXXXXXXXXXXXXXXMguz1Q";    
 ```
 
 API认证采用HMACSha1加密算法进行机密，使用时间戳、APP_KEY、APP_SECRET共同生成一个密钥。
@@ -40,16 +70,6 @@ API认证采用HMACSha1加密算法进行机密，使用时间戳、APP_KEY、AP
 <aside class="notice">
 您必须替换对接密钥 <code>APP_KEY 和 APP_SECRET </code>在您的对接程序中 
 </aside>
-
-# 开发引导
-
-## 调用说明
-
-百应机器人API是使用HTTP并遵循REST原则设计的Web服务接口；
-
-您可以使用几乎任何客户端和任何编程语言与REST API进行交互。
-
-通过发送简单的HTTP请求就可以轻松接入使用。
 
 ## 统一请求格式
 
@@ -78,23 +98,14 @@ HTTP头信息:
 
 <code>Accept:application/json;charset=utf-8</code>
 
-<code>Content-Type:application/x-www-form-urlencoded;charset=utf-8</code>
-
 说明：
 
 请求方式(Method)：统一用POST方式
 编码：UTF-8
-最佳实践：
 
-请使用发短信接口
-可以自动匹配模板，开发更简单
-请设置好IP白名单
-IP白名单可以有效提高账户安全性
-请补充完整您的账户资料信息
-包括设置余额提醒阈值、联系人和紧急联系人的联系方式等账户信息，方便我们提供更好的服务
 >
 
-##SDK下载
+##JAVA SDK DEMO 下载
 
 本页面提供Java的SDK下载。
 
@@ -107,9 +118,9 @@ SDK包内有部分使用说明，各接口的详细使用说明请浏览各API�
 JAVA | [GitHub地址](https://github.com/indata-public/byrobot-openapi-demo) 
 
 
-##流程图:
+##最佳实践流程图:
 
- ![](images/OMS1.png)
+ ![](images/OMS3.png)
  
 ##流程说明
 
@@ -139,7 +150,7 @@ JAVA | [GitHub地址](https://github.com/indata-public/byrobot-openapi-demo)
  
 ##枚举类型说明
 
-### 电话卡类型Enum
+### 电话卡类型枚举
  
 code    | desc 
 --------- | ------- 
@@ -147,7 +158,7 @@ code    | desc
 1 | 阿里云固话 
 2 | 无主叫固话
 
-### 任务类型Enum
+### 任务类型枚举
  
 code    | desc 
 --------- | ------- 
@@ -155,17 +166,15 @@ code    | desc
 2 | 手动启动任务 
 
 
-### 外呼类型Enum
-原类型
-外呼类型，0-sim卡（默认）, 1-固话, 2-无主叫
-没有找到枚举类
+### 外呼类型枚举
  
 code    | desc 
 --------- | ------- 
- | 定时启动任务
-2 | 手动启动任务 
+0| sim卡(默认)
+1| 固话
+2| 无主叫 
 
-### 是否发送短信Enum
+### 是否发送短信枚举
  
 code    | desc 
 --------- | ------- 
@@ -174,7 +183,7 @@ code    | desc
 
 
 
-### 任务状态Enum
+### 任务状态枚举
  
 code    | desc 
 --------- | ------- 
@@ -188,7 +197,7 @@ code    | desc
 7| 排队中
 8| AI到期
 
-### 任务实例状态Enum
+### 任务实例状态枚举
  
 code    | desc 
 --------- | ------- 
@@ -198,7 +207,7 @@ code    | desc
 3| 二次拨打调度中
 
 
-### 任务实例已完成状态Enum
+### 任务实例已完成状态枚举
 code   | desc
 ----|-----
 0| 已接听
@@ -212,7 +221,7 @@ code   | desc
 8| 未接
 9| 主叫欠费
 
-### 呼叫类型Enum
+### 呼叫类型枚举
 code   | desc
 ----|-----
 0|免费试用
@@ -224,5 +233,14 @@ code   | desc
 100|客服人工拨打
 
 
+## 错误码信息
 
+错误码 | 错误信息
+---------- | -------
+200|执行成功
+401|校验数据错误
+404|资源未找到
+403|权限不足
+412|参数错误
+500|未知错误
 
