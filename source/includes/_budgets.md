@@ -334,4 +334,5 @@ parameters not provided will be left unchanged.
 | budget[allow_anyone_to_approve_a_po] | boolean | Allow anyone to  approve a PO? |
 | budget[start_date]                   | date    | Budget start date              |
 | budget[end_date]                     | date    | Budget end date                |
-
+| budget[approver_ids]                 | Array   | Array of approver ids          |
+| budget[department_ids]               | Array   | Array of department ids        |
