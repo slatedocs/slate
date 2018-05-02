@@ -1,6 +1,142 @@
 # Send to supplier templates
 
-## Create a Template
+## Get All Templates
+
+```shell
+curl --request GET \
+  --url https://app.rubberstamp.io/api/v1/send_to_supplier_templates \
+  --header 'app_company_id: 1' \
+  --header 'authentication_token: your token' \
+  --header 'content-type: application/json'
+```
+
+```ruby
+require 'rest-client'
+
+RestClient.get(
+  'https://app.rubberstamp.io/api/v1/send_to_supplier_templates',
+  headers = {
+      authentication_token: 'your token',
+      app_company_id: '1'
+  }
+)
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 1,
+    "company_id": 1,
+    "label": "Default Template",
+    "text":
+      "Dear MyTaxi, \r\n\r\nPlease find attached to this email a Purchase Order number. We request that you attach this document when sending your invoice to our accounts department. \r\n\r\nSincerely, \r\nUNICEF Ireland"
+  },
+  {
+    "id": 2,
+    "company_id": 1,
+    "label": "Sample Template",
+    "text": "Dear John Snow, \r\n\n this is a sample template"
+  }
+]
+```
+
+Get list of all templates.
+
+### HTTP Request
+
+`GET https://app.rubberstamp.io/api/v1/send_to_supplier_templates`
+
+### Query Parameters
+
+| Params               | Type   | Description          |
+| -------------------- | ------ | -------------------- |
+| app_company_id       | header | Company ID           |
+| authentication_token | header | Authentication Token |
+
+## Forward Template
+
+```shell
+curl --request PUT \
+  --url https://app.rubberstamp.io/api/v1/purchase_orders/2/forward \
+  --header 'app_company_id: 1' \
+  --header 'authentication_token: your token' \
+  --header 'content-type: application/json' \
+  --data '{
+    "emails": "test@example.com",
+    "cc": "test2@example.com",
+    "note": "Thank you for subscribing",
+    "save_template": true,
+    "email_subject": "Thank you for subscribing",
+    "template_label": "woo hoo!!"
+  }'
+```
+
+```ruby
+require 'rest-client'
+
+RestClient.put(
+  'https://app.rubberstamp.io/api/v1/purchase_orders/2/forward',
+  {
+    emails: "test@example.com",
+    cc: "test2@example.com",
+    note: "Thank you for subscribing",
+    save_template: true,
+    email_subject: "Thank you for subscribing",
+    template_label: "woo hoo!!"
+  },
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: '1'
+  }
+)
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{ "save": true }
+```
+
+This api endpoint will perform any of these 3 actions:
+
+### Create New Template
+
+To create new template, you must pass `save_template: true` params or form data into the post request.
+
+### Update Existing Template
+
+To update existing template, you must need to pass `update_template: true` params or form data into this post request
+
+### Send template to supplier
+
+If `save_template` or `update_template` is not there, then it will send given template to the supplier.
+
+### Default Template
+
+To mark template as default, you need to pass `is_default: true` params or form data.
+
+### HTTP Request
+
+`PUT https://app.rubberstamp.io/api/v1/purchase_orders/:id/forward`
+
+### Query Parameters
+
+| Param                | Type    | Description                                    |
+| -------------------- | ------- | ---------------------------------------------- |
+| authentication_token | header  | Authentication token                           |
+| app_company_id       | header  | registered company id                          |
+| emails               | Array   | list of email addresses                        |
+| cc                   | string  | CC email address                               |
+| notes                | text    | template body                                  |
+| email_subject        | string  | Email subject                                  |
+| email_label          | string  | Email Label                                    |
+| save_template        | boolean | `true` if you want to save template            |
+| is_default           | boolean | `true` if you want to mark template as default |
+| update_template      | boolean | `true` if you want to update template          |
+
+<!-- ## Create a Template
 
 ```shell
 curl --request POST \
@@ -59,60 +195,7 @@ Create new Send to supplier template with `label` and `text`.
 | label                | string | label for your template |
 | text                 | text   | body of the template    |
 
-## Get All Templates
 
-```shell
-curl --request GET \
-  --url https://app.rubberstamp.io/api/v1/send_to_supplier_templates \
-  --header 'app_company_id: 1' \
-  --header 'authentication_token: your token' \
-  --header 'content-type: application/json'
-```
-
-```ruby
-require 'rest-client'
-
-RestClient.get(
-  'https://app.rubberstamp.io/api/v1/send_to_supplier_templates',
-  headers = {
-      authentication_token: 'your token',
-      app_company_id: '1'
-  }
-)
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "company_id": 1,
-    "label": "Default Template",
-    "text":
-      "Dear MyTaxi, \r\n\r\nPlease find attached to this email a Purchase Order number. We request that you attach this document when sending your invoice to our accounts department. \r\n\r\nSincerely, \r\nUNICEF Ireland"
-  },
-  {
-    "id": 2,
-    "company_id": 1,
-    "label": "Sample Template",
-    "text": "Dear John Snow, \r\n\n this is a sample template"
-  }
-]
-```
-
-Get list of all templates.
-
-### HTTP Request
-
-`GET https://app.rubberstamp.io/api/v1/send_to_supplier_templates`
-
-### Query Parameters
-
-| Params               | Type   | Description          |
-| -------------------- | ------ | -------------------- |
-| app_company_id       | header | Company ID           |
-| authentication_token | header | Authentication Token |
 
 ## Get a Specific Template
 
@@ -218,4 +301,4 @@ parameters not provided will be left unchanged.
 | authentication_token | header | Authentication token  |
 | app_company_id       | header | registered company id |
 | label                | string | template label        |
-| text                 | text   | template body         |
+| text                 | text   | template body         | -->
