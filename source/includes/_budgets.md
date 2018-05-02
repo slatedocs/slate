@@ -57,7 +57,10 @@ curl https://app.rubberstamp.io/api/v1/budgets
   "allow_anyone_to_approve_a_po": false,
   "start_date": null,
   "end_date": null,
-  "summary": "Test"
+  "summary": "Test",
+  "creator_id": 1,
+  "department_ids": [],
+  "approver_ids": []
 }
 ```
 
@@ -83,24 +86,21 @@ date format for `start_date` and `end_date`. Please find date format in [Company
 
 ### Query Parameters
 
-| Param                                | Type    | Description                    |
-| ----                                 | ---     | ---------                      |
-| authentication_token                 | header  | Authentication token           |
-| app_company_id                       | header  | registered company id          |
-| budget[amount]                       | double  | Budget Amount                  |
-| budget[name]                         | string  | Budget Name                    |
-| budget[cost_code]                    | string  | Budget cost code               |
-| budget[cost_type]                    | string  | Budget cost type               |
-| budget[currency_id]                  | integer | Budget currency                |
-| budget[creator_id]                   | integer | Budget creator                 |
-| budget[allow_anyone_to_approve_a_po] | boolean | Allow anyone to  approve a PO? |
-| budget[start_date]                   | date    | Budget start date              |
-| budget[end_date]                     | date    | Budget end date                |
-| budget[approver_ids]                 | Array   | Array of approver ids          |
-| budget[department_ids]               | Array   | Array of department ids        |
-
-
-
+| Param                                | Type    | Description                   |
+| ------------------------------------ | ------- | ----------------------------- |
+| authentication_token                 | header  | Authentication token          |
+| app_company_id                       | header  | registered company id         |
+| budget[amount]                       | double  | Budget Amount                 |
+| budget[name]                         | string  | Budget Name                   |
+| budget[cost_code]                    | string  | Budget cost code              |
+| budget[cost_type]                    | string  | Budget cost type              |
+| budget[currency_id]                  | integer | Budget currency               |
+| budget[creator_id]                   | integer | Budget creator                |
+| budget[allow_anyone_to_approve_a_po] | boolean | Allow anyone to approve a PO? |
+| budget[start_date]                   | date    | Budget start date             |
+| budget[end_date]                     | date    | Budget end date               |
+| budget[approver_ids]                 | Array   | Array of approver ids         |
+| budget[department_ids]               | Array   | Array of department ids       |
 
 ## GET All Budgets
 
@@ -142,7 +142,10 @@ curl 'https://app.rubberstamp.io/api/v1/budgets'
     "allow_anyone_to_approve_a_po": false,
     "start_date": 1483401600,
     "end_date": 1519862400,
-    "summary": "Advocacy : 2017"
+    "summary": "Advocacy : 2017",
+    "creator_id": 1,
+    "department_ids": [],
+    "approver_ids": []
   },
   {
     "id": 2,
@@ -158,7 +161,10 @@ curl 'https://app.rubberstamp.io/api/v1/budgets'
     "allow_anyone_to_approve_a_po": false,
     "start_date": 1483401600,
     "end_date": 1519862400,
-    "summary": "Audit And Accountancy Fees : 2017"
+    "summary": "Audit And Accountancy Fees : 2017",
+    "creator_id": 1,
+    "department_ids": [],
+    "approver_ids": []
   },
   {
     "id": 3,
@@ -174,7 +180,10 @@ curl 'https://app.rubberstamp.io/api/v1/budgets'
     "allow_anyone_to_approve_a_po": false,
     "start_date": 1483401600,
     "end_date": 1519862400,
-    "summary": "Board Expenses : 2017"
+    "summary": "Board Expenses : 2017",
+    "creator_id": 1,
+    "department_ids": [],
+    "approver_ids": []
   }
 ]
 ```
@@ -193,14 +202,10 @@ you can pass `department_id` query params to filter budgets by departments like:
 ### Query Parameters
 
 | Param                | Type    | Description                  |
-| ----                 | -----   | ----------                   |
+| -------------------- | ------- | ---------------------------- |
 | authentication_token | header  | Authentication token         |
 | app_company_id       | header  | registered company id        |
 | department_id        | integer | Filter budgets by department |
-
-
-
-
 
 ## Get a specific Budget
 
@@ -242,7 +247,10 @@ curl 'https://app.rubberstamp.io/api/v1/budgets/1'
   "start_date": 1483401600,
   "end_date": 1519862400,
   "summary": "Advocacy : 2017",
-  "remaining_amount": 50000.0
+  "remaining_amount": 50000.0,
+  "creator_id": 1,
+  "department_ids": [],
+  "approver_ids": []
 }
 ```
 
@@ -256,12 +264,10 @@ budget id that was returned upon budget creation.
 ### URL Parameters
 
 | Params               | Type    | Description                      |
-| -----                | -----   | ----------                       |
+| -------------------- | ------- | -------------------------------- |
 | authentication_token | header  | Authentication token             |
 | app_company_id       | header  | registered company id            |
 | ID                   | integer | The ID of the budget to retrieve |
-
-
 
 ## Update a Budget
 
@@ -308,7 +314,10 @@ curl 'https://app.rubberstamp.io/api/v1/budgets/1'
   "allow_anyone_to_approve_a_po": false,
   "start_date": null,
   "end_date": null,
-  "summary": "Test"
+  "summary": "Test",
+  "creator_id": 1,
+  "department_ids": [],
+  "approver_ids": []
 }
 ```
 
@@ -321,18 +330,18 @@ parameters not provided will be left unchanged.
 
 ### Query Parameters
 
-| Params                               | Type    | Description                    |
-| -----                                | -----   | ------------                   |
-| authentication_token                 | header  | Authentication token           |
-| app_company_id                       | header  | registered company id          |
-| budget[amount]                       | double  | Budget Amount                  |
-| budget[name]                         | string  | Budget Name                    |
-| budget[cost_code]                    | string  | Budget cost code               |
-| budget[cost_type]                    | string  | Budget cost type               |
-| budget[currency_id]                  | integer | Budget currency                |
-| budget[creator_id]                   | integer | Budget creator                 |
-| budget[allow_anyone_to_approve_a_po] | boolean | Allow anyone to  approve a PO? |
-| budget[start_date]                   | date    | Budget start date              |
-| budget[end_date]                     | date    | Budget end date                |
-| budget[approver_ids]                 | Array   | Array of approver ids          |
-| budget[department_ids]               | Array   | Array of department ids        |
+| Params                               | Type    | Description                   |
+| ------------------------------------ | ------- | ----------------------------- |
+| authentication_token                 | header  | Authentication token          |
+| app_company_id                       | header  | registered company id         |
+| budget[amount]                       | double  | Budget Amount                 |
+| budget[name]                         | string  | Budget Name                   |
+| budget[cost_code]                    | string  | Budget cost code              |
+| budget[cost_type]                    | string  | Budget cost type              |
+| budget[currency_id]                  | integer | Budget currency               |
+| budget[creator_id]                   | integer | Budget creator                |
+| budget[allow_anyone_to_approve_a_po] | boolean | Allow anyone to approve a PO? |
+| budget[start_date]                   | date    | Budget start date             |
+| budget[end_date]                     | date    | Budget end date               |
+| budget[approver_ids]                 | Array   | Array of approver ids         |
+| budget[department_ids]               | Array   | Array of department ids       |
