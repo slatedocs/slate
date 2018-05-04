@@ -304,6 +304,7 @@ curl 'https://app.rubberstamp.io/api/v1/currentuser'
       "is_removed": false,
       "approval_limit": 1000000,
       "in_trial": false,
+      "paid_plan": true,
       "roles": ["companyadmin", "approver", "finance", "teammember"]
     }
   ]
