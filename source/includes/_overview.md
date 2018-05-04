@@ -3,7 +3,8 @@
 Shiftboard offers a rich set of Application Programming Interfaces
 (APIs) to allow external systems to interact with the Shiftboard
 platform.  These APIs take the form of
-[JSON-RPC](http://jsonrpc.org/spec.html) web service calls.  Most
+[JSON-RPC](http://jsonrpc.org/spec.html) web service calls or
+[Webhooks](https://en.wikipedia.org/wiki/Webhook).  Most
 Shiftboard application, account, authorization, systems management,
 and site provisioning data is accessible and the API is continually
 extended to encompass more of the Shiftboard data and functionality.
@@ -29,15 +30,10 @@ digitally signed requests.
 ## Scope
 
 Virtually every end-user interaction can be implemented using the
-API.  In fact, all of Shiftboard's end-user applications use the
-API. In addition, various types of management functionality not 
-available to end-users are exposed via the API.
+web service.  In fact, all of Shiftboard's end-user applications use the
+web service. In addition, various types of management functionality not 
+available to end-users are exposed via the web service.
 
-The API and this documentation are revised regularly as we respond
-to new customer requirements.  If you have any questions or new
-requirements, please contact our Partner program for the latest
-information.
-
-The Shiftboard API is constantly evolving.  Please ask about any
+The Shiftboard APIs are constantly evolving.  Please ask about any
 objects or extended functionality that can help meet the requirements
 of your project.
