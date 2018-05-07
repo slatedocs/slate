@@ -20,7 +20,7 @@ Time off request type
 
 Value|Type
 --|--
-3|Start Date With Duration
+3|Start & End Date
 4|Open Ended
 5|All Day
 
