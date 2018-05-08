@@ -779,12 +779,9 @@ account. We ignore `gmail`, `hotmail`, `icloud`, `yahoo` domain though.
 require 'rest-client'
 
 RestClient.post(
-  'https://app.rubberstamp.io/api/v1/users/join_existing_company',
+  'https://app.rubberstamp.io/api/v1/users/join_existing_company?company_id=1',
   headers = {
     authentication_token: 'your token'
-  },
-  {
-    company_id: 1
   }
 )
 ```
@@ -808,7 +805,8 @@ Action to actually `join` existing company. To join the company, you need to pas
 
 ### HTTP Request
 
-`POST https://app.rubberstamp.io/api/v1/users/join_existing_company`
+`POST
+https://app.rubberstamp.io/api/v1/users/join_existing_company?company_id=:id`
 
 ### Query Parameters
 
