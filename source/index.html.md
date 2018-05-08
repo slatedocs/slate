@@ -2,7 +2,7 @@
 title: Shiftboard Web Services API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - json
+  - json: Example Code
 
 toc_footers:
   - <a href='https://github.com/shiftboard/slate'>Powered by Slate</a>
@@ -11,6 +11,7 @@ search: true
 
 includes:
   - overview
+  - webhooks
   - setup
   - requests-responses
   - objects
