@@ -709,3 +709,110 @@ authentication_token you need to login again.
 | Param                | Type   | Description          |
 | -------------------- | ------ | -------------------- |
 | authentication_token | header | Authentication token |
+
+
+## List domain matching companies
+
+```ruby
+require 'rest-client'
+
+RestClient.get(
+  'https://app.rubberstamp.io/api/v1/users/join_account',
+  headers = {
+    authentication_token: 'your token'
+  }
+)
+```
+
+```shell
+curl https://app.rubberstamp.io/api/v1/users/join_account'
+  -X GET
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "companies": [
+    {
+      "id": 1,
+      "name": "Demo 1",
+      "membership_archived": null,
+      "is_locked": false,
+      "is_removed": false,
+      "approval_limit": null,
+      "in_trial": false,
+      "roles": null,
+      "remaining_trial_days": 1
+    },
+    ...
+  ],
+  "meta": {
+    "current_page": 1,
+    "next_page": 2,
+    "prev_page": null,
+    "total_pages": 2,
+    "total_count": 20
+  }
+}
+```
+
+Returns list of companies that matches the domain/subdomain of users mailer
+account. We ignore `gmail`, `hotmail`, `icloud`, `yahoo` domain though.
+
+### HTTP Request
+
+`GET https://app.rubberstamp.io/api/v1/users/join_account`
+
+### Query Parameters
+
+| Param                | Type   | Description          |
+| -------------------- | ------ | -------------------- |
+| authentication_token | header | Authentication token |
+
+
+## Join existing companies
+
+```ruby
+require 'rest-client'
+
+RestClient.post(
+  'https://app.rubberstamp.io/api/v1/users/join_existing_company',
+  headers = {
+    authentication_token: 'your token'
+  },
+  {
+    company_id: 1
+  }
+)
+```
+
+```shell
+curl https://app.rubberstamp.io/api/v1/users/join_existing_company'
+  -X POST
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -d "company_id: 1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{ "success": true }
+```
+
+Action to actually `join` existing company. To join the company, you need to pass
+`company_id` as a query_params
+
+### HTTP Request
+
+`POST https://app.rubberstamp.io/api/v1/users/join_existing_company`
+
+### Query Parameters
+
+| Param                | Type    | Description                                 |
+| -------------------- | ------  | --------------------                        |
+| authentication_token | header  | Authentication token                        |
+| company_id           | integer | Company id you want to send join request to |
