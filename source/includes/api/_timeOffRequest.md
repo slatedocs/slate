@@ -14,6 +14,16 @@ The date or date and time on which this timeOffRequest begins. For an all-day ti
 
 The date and time on which this timeOffRequest ends, (e.g. "2009-04-01T17:00:00"). Not specified for all-day or open-ended timeOffRequests.
 
+####use_time
+
+Time off request type
+
+Value|Type
+--|--
+3|Start & End Date
+4|Open Ended
+5|All Day
+
 ####timezone
 
 ####workgroup
