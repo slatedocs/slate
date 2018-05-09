@@ -69,7 +69,8 @@ curl --request PUT \
     "note": "Thank you for subscribing",
     "save_template": true,
     "email_subject": "Thank you for subscribing",
-    "template_label": "woo hoo!!"
+    "template_label": "woo hoo!!",
+    "uploads": [1,2],
   }'
 ```
 
@@ -84,7 +85,8 @@ RestClient.put(
     note: "Thank you for subscribing",
     save_template: true,
     email_subject: "Thank you for subscribing",
-    template_label: "woo hoo!!"
+    template_label: "woo hoo!!",
+    uploads: [1,2]
   },
   headers = {
     authentication_token: 'your token',
@@ -135,6 +137,7 @@ To mark template as default, you need to pass `is_default: true` params or form 
 | save_template        | boolean | `true` if you want to save template            |
 | is_default           | boolean | `true` if you want to mark template as default |
 | update_template      | boolean | `true` if you want to update template          |
+| uploads              | Array   | list of upload ids                             |
 
 <!-- ## Create a Template
 
