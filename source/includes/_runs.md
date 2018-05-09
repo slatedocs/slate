@@ -1,3 +1,4 @@
+
 # Runs
 
 ## GET all runs in your project
@@ -137,7 +138,7 @@ href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/cr
 curl -H "Content-Type:application/json" \
    -u test@pt.com:YOUR TOKEN \
    -X POST https://api.practitest.com/api/v2/projects/1/runs.json \
-   -d '{"data": { "type": "instances", "attributes": {"instance-id": 3254471, "exit-code": 0 }, "files": {"data": [{"filename": "one.log", "content_encoded": "'"$( base64 /tmp/log_12:04:34.log)"'" }, {"filename": "two.log", "content_encoded": "'"$( base64 /tmp/log_17:07:13.log)"'" }]} }  }'
+   -d '{"data": { "type": "instances", "attributes": {"instance-id": 3254471, "exit-code": 0 }, "files": {"data": [{"filename": "one.log", "content_encoded": "'"$( base64 /tmp/one.log)"'" }, {"filename": "two.log", "content_encoded": "'"$( base64 /tmp/two.log)"'" }]} }  }'
 
 # upload test results with the automated-execution-output
 curl -H "Content-Type:application/json" \
