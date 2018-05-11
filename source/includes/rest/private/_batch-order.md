@@ -69,7 +69,7 @@ Orders will be executed by the matching engine in the order they are submitted.
 
 For cancellation requests, `cancel: true` must be set.
 
-Your account must have sufficient balance to honor all the new orders requests you place in your batch order.
+Your account must have sufficient balance to honor all the new orders requests you place in your batch order; otherwise, the entire batch order request will fail.
 
 ### Response
 

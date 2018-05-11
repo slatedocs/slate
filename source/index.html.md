@@ -14,7 +14,6 @@ includes:
   - rest/private/list-fills
   - rest/private/list-transactions
   - rest/private/list-balances
-  - rest/private/deposit
   - rest/public/products
   - rest/public/ticker
   - rest/public/order-book
