@@ -83,7 +83,8 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST ht
     "start_timestamp": "2017-09-21 00:00:00"
   },
   "alternate_provider": "email",
-  "alternate_identity": "hey@quintype.com"
+  "alternate_identity": "hey@quintype.com",
+  "name": "Ben"
 }'
 ```
 
@@ -117,7 +118,8 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST ht
   },
   "alternate_provider": "email",
   "alternate_identity": "hey@quintype.com",
-  "attempt_token": "fo4bMWjP6N5vtVySNtiAUNBQ"
+  "attempt_token": "fo4bMWjP6N5vtVySNtiAUNBQ",
+  "name": "Ben"
 }'
 ```
 
@@ -201,8 +203,7 @@ In order to register a recurring subscription with some providers (such as razor
 ```shell
 curl -H "X-SUBAUTH: <auth-token>" -X POST -H "Content-Type: application/json" https://www.accesstype.com/api/v1/subscription_plans/<subscription-plan-id>/external_subscription_token.json -d '{
   "type": "razorpay",
-  "provider": "email",
-  "identity": "foo@bar.com"
+  "attempt_token": "fo4bMWjP6N5vtVySNtiAUNBQ"
 }'
 
 {
@@ -212,4 +213,5 @@ curl -H "X-SUBAUTH: <auth-token>" -X POST -H "Content-Type: application/json" ht
 }
 ```
 
-`provider` and `identity` are optional params and should be sent if the external subscription is not to start immediately.
+`attempt_token` is optional param and must be sent if the external subscription is not to start immediately.
+
