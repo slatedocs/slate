@@ -42,7 +42,7 @@ Get historical candles for a product. Candles returned are grouped by `resolutio
 Name | Description
 ---------- | -------
 product | A valid product
-resolution | *N/A* | (required) Candle resolution to return. Can be `5`, `15`, `60`, `240`, or `1D`.
+resolution | Candle resolution to return. Can be `5`, `15`, `60`, `240`, or `1D`.
 
 ### Query Parameters
 
@@ -51,7 +51,7 @@ Name | Default | Description
 start | 0 | The time after which to fetch candles, in ms
 end | Current time | The time before which to fetch candles, in ms
 
-E.g. `/candles/ETH-BTC?start=1511480127561&end=1511480129513` fetches 1h candles between the start and end timestamps.
+E.g. `/candles/ETH-BTC/60?start=1511480127561&end=1511480129513` fetches 1h candles between the start and end timestamps.
 
 A maximum of 100 candles are returned per request.
 
