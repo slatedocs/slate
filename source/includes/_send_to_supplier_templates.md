@@ -45,13 +45,6 @@ RestClient.get(
 
 Get list of all templates.
 
-### Emails
-
-In [Purchase Order Details](/slate/#get-purchase-order-details) you will get `supplier.email`, which you can send in `emails` field.
-
-### CC
-
-In [Purchase Order Details](/slate/#get-purchase-order-details) you will get `creator_email`, you can set that value in `cc` field.
 
 ### HTTP Request
 
@@ -118,7 +111,7 @@ To create new template, you must pass `save_template: true` params or form data 
 
 ### Update Existing Template
 
-To update existing template, you must need to pass `update_template: true` params or form data into this post request
+To update existing template, you must need to pass `update_template: true` params or form data into this post request.
 
 ### Send template to supplier
 
@@ -127,6 +120,15 @@ If `save_template` or `update_template` is not there, then it will send given te
 ### Default Template
 
 To mark template as default, you need to pass `is_default: true` params or form data.
+
+
+### Emails Fields
+
+In [Purchase Order Details](/slate/#get-purchase-order-details) you will get `supplier.email`, which you can send in `emails` field.
+
+### CC Fields
+
+In [Purchase Order Details](/slate/#get-purchase-order-details) you will get `creator_email`, you can set that value in `cc` field.
 
 ### HTTP Request
 
