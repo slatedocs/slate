@@ -37,12 +37,21 @@ RestClient.get(
     "id": 2,
     "company_id": 1,
     "label": "Sample Template",
-    "text": "Dear John Snow, \r\n\n this is a sample template"
+    "text": "Dear John Snow, \r\n\n this is a sample template",
+    "is_default": true
   }
 ]
 ```
 
 Get list of all templates.
+
+### Emails
+
+In [Purchase Order Details](/slate/#get-purchase-order-details) you will get `supplier.email`, which you can send in `emails` field.
+
+### CC
+
+In [Purchase Order Details](/slate/#get-purchase-order-details) you will get `creator_email`, you can set that value in `cc` field.
 
 ### HTTP Request
 
