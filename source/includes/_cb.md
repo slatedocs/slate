@@ -39,7 +39,7 @@ $success = $api->post('/v2/cb/create', [
     'working_hours_apply_to_all' => 'Y',
     'working_hours_mon_start'    => '8:00 am',
     'working_hours_mon_end'      => '10:00 pm', 
-    'social_profile_links'       => '{"facebook":"https:\/\/facebook.com\/","twitter":"https:\/\/twitter.com","linkedin":"https:\/\/linkedin.com","instagram":"https:\/\/instagram.com","pinterest":"https:\/\/pinterest.com"}'
+    'social_profile_links'       => '{"facebook":"https:\/\/en-gb.facebook.com\/brightlocal\/","twitter":"https:\/\/twitter.com\/bright_local","linkedin":"https:\/\/uk.linkedin.com\/company\/bright-local-seo","instagram":","pinterest":"https:\/\/www.pinterest.co.uk\/brightlocal\/"}'
 ]);
 print_r($success);
 ```
@@ -232,7 +232,7 @@ $success = $api->put('/v2/cb/' .$campaignId, [
     'contact_firstname'          => 'Joe',
     'contact_telephone'          => '+1 212-554-1515',
     'contact_email'              => 'joe.bloggs@test.com',	
-    'social_profile_links'       => '{"facebook":"https:\/\/facebook.com\/","twitter":"https:\/\/twitter.com","linkedin":"https:\/\/linkedin.com","instagram":"https:\/\/instagram.com","pinterest":"https:\/\/pinterest.com"}'
+    'social_profile_links'       => '{"facebook":"https:\/\/en-gb.facebook.com\/brightlocal\/","twitter":"https:\/\/twitter.com\/bright_local","linkedin":"https:\/\/uk.linkedin.com\/company\/bright-local-seo","instagram":","pinterest":"https:\/\/www.pinterest.co.uk\/brightlocal\/"}'
 ]);
 print_r($success);
 ```
@@ -1045,11 +1045,11 @@ var campaign = request.Get("/v2/cb/get", parameters);
                 "csv_url": "<hidden>"
             },
             "social_profile_links": {
-                "facebook": "https:\/\/facebook.com",
-                "twitter": "https:\/\/twitter.com",
-                "linkedin": "https:\/\/linkedin.com",
-                "pinterest": "https:\/\/pinterest.com",
-                "instagram": "https:\/\/instagram.com"
+                "facebook": "https:\/\/en-gb.facebook.com\/brightlocal\/",
+                "twitter": "https:\/\/twitter.com\/bright_local",
+                "linkedin": "https:\/\/uk.linkedin.com\/company\/bright-local-seo",
+                "pinterest": "https:\/\/www.pinterest.co.uk\/brightlocal\/",
+                "instagram": ""
             }
         }
     }
