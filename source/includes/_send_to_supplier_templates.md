@@ -60,7 +60,7 @@ Get list of all templates.
 ## Forward Template
 
 ```shell
-curl --request PUT \
+curl --request POST \
   --url https://app.rubberstamp.io/api/v1/purchase_orders/2/forward \
   --header 'app_company_id: 1' \
   --header 'authentication_token: your token' \
@@ -79,7 +79,7 @@ curl --request PUT \
 ```ruby
 require 'rest-client'
 
-RestClient.put(
+RestClient.post(
   'https://app.rubberstamp.io/api/v1/purchase_orders/2/forward',
   {
     emails: "test@example.com",
@@ -132,7 +132,7 @@ In [Purchase Order Details](/slate/#get-purchase-order-details) you will get `cr
 
 ### HTTP Request
 
-`PUT https://app.rubberstamp.io/api/v1/purchase_orders/:id/forward`
+`POST https://app.rubberstamp.io/api/v1/purchase_orders/:id/forward`
 
 ### Query Parameters
 
@@ -144,7 +144,7 @@ In [Purchase Order Details](/slate/#get-purchase-order-details) you will get `cr
 | cc                   | string  | CC email address                               |
 | notes                | text    | template body                                  |
 | email_subject        | string  | Email subject                                  |
-| email_label          | string  | Email Label                                    |
+| template_label       | string  | Template Label                                 |
 | save_template        | boolean | `true` if you want to save template            |
 | is_default           | boolean | `true` if you want to mark template as default |
 | update_template      | boolean | `true` if you want to update template          |
