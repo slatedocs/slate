@@ -65,6 +65,7 @@ try {
         ->setCallbackUrl('https://minha_loja.com.br/ipag/callback')
         ->setAmount(10.00)
         ->setInstallments(1)
+        ->setIp('200.100.10.1')
         ->setPayment($ipag->payment()
             ->setMethod(Method::VISA)
             ->setCreditCard($creditCard)
@@ -113,6 +114,7 @@ Campo | Tamanho | Tipo | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
 valor | 12 | decimal | sim | Valor total da compra. Deve-se usar pontos como separador de casas decimais, ex: 100.00
 parcelas | 3 | number | não (se cartão, sim) | Número de Parcelas, minimo: 1, máximo: 12
+ip | 60 | string | não (porém recomendado) | IP do comprador, permitido IPV4 e IPV6
 frete_valor | 12 | decimal | não | Valor do frete cobrado, apenas informativo, não será somado ao valor da transação
 frete_tipo | 100 | string | não | Descrição do frete, exemplo: Pac (Aproximadamente 5 dias para entrega)
 

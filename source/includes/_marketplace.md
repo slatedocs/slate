@@ -1,10 +1,20 @@
-# (Marketplace) - Cadastrar Vendedor
+# (Marketplace) - Cadastrar & Credenciar Vendedor
 
-## Criando um Seller & Parceiro Marketplace
+### O que é?
+
+O serviço de credenciamento é um conjunto de web-services que permitem automatização total do processo de credenciamento, com APIs para cadastro de novos vendedores, gestão de documentação necessária ao processo de "Conheça Seu Cliente".
+
+Para usar o serviço de Credenciamento, você precisa:
+
+1. Realizar o cadastro de um [novo vendedor](#cadastrar-um-seller-amp-parceiro-marketplace-via-api) pela API;
+2. Enviar a documentação necessária ao processo de "Conheça Seu Cliente";
+3. Uma vez que o cadastro seja validado e liberado pela nossa equipe, você poderá enviar transações e realizar split em nome deste vendedor;
+
+## Cadastrar um Seller & Parceiro Marketplace via API
 
 `POST /service/v1`
 
-## Criando um vendedor do tipo Pessoa Jurídica (Business Seller)
+## Cadastrar um vendedor do tipo Pessoa Jurídica (Business Seller)
 
 > Exemplo de integração
 
@@ -180,7 +190,7 @@ bank[agencynumber] | Número da Agência
 bank[accountnumber] | Número da Conta
 bank[document] | Documento do Titular
 
-## Criando um vendedor do tipo Pessoa Física (Individual Seller)
+## Cadastrar um vendedor do tipo Pessoa Física (Individual Seller)
 
 > Exemplo de integração
 
@@ -325,7 +335,7 @@ bank[agencynumber] | Número da Agência
 bank[accountnumber] | Número da Conta
 bank[document] | Documento do Titular
 
-## Criando um banco (Bank)
+## Cadastrar um banco (Bank)
 
 > Exemplo de integração
 
@@ -525,7 +535,7 @@ bank[agencynumber] | Número da Agência
 bank[accountnumber] | Número da Conta
 bank[document] | Documento do Titular
 
-## Consultando um vendedor (Get Seller)
+## Consultar um vendedor (Get Seller)
 
 > Exemplo de integração
 
@@ -634,3 +644,68 @@ bank[name] | Nome do Titular
 bank[agencynumber] | Número da Agência
 bank[accountnumber] | Número da Conta
 bank[document] | Documento do Titular
+
+## Conheça seu Cliente (Envio de Documentos)
+
+### Arquivos
+- Com até 2MB no máximo.
+- Imagem ou extensão: .jpg, .png e .pdf.
+- Os arquivos podem ser fotografados ou scaneados.
+- Os documentos precisam estar completos com todas as informações, sem cortes ou rasuras.
+- Enviar frente e verso dos documentos.
+- O prazo para análise da documentação é de até 5 dias úteis.
+
+Pode ser enviado via Painel iPag também: [Enviar Documentos](https://painel-sandbox.ipag.com.br/?r=admin/documentos)
+
+`POST /service/v1`
+
+> Exemplo de integração
+
+```shell
+curl --request POST \
+  --url 'https://sandbox.ipag.com.br/service/v1 \
+  --header 'Authorization: Basic am9uYXRoYW46REM4QS00QzE2383M5NS1EQTZBRUY2OC0wRkQ2RDMyOC0wRjAz' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'content-type: multipart/form-data; \
+  --form cpf=@/Users/user/Pictures/cpf.jpg \
+  --form cnpj=@/Users/user/Pictures/cnpj.jpg \
+  --form atividade=@/Users/user/Pictures/atividade.jpg \
+  --form comprovante=@/Users/user/Pictures/comprovante.jpg \
+  --form ctrl=seller_documents \
+  --form seller_id=8dc2dbf71518482a859e6057359bba46
+```
+
+Campo |  tipo | Obrigatório | Descrição
+------| ----- | ----------- | ---------
+ctrl  | string | sim | Enviar: **'seller_documents'**
+seller_id | string | sim | Login do Parceiro/Vendedor no iPag
+cpf | file | não | Imagem do CPF,RG ou CNH do Sócio Resposável (JPG, PNG ou PDF)
+cnpj | file | não | Imagem do Cartão CNPJ do Vendedor (caso seja Pessoa Juridica) (JPG, PNG ou PDF)
+atividade | file | não | Imagem de Nota Fiscal ou Cartão de Visitas (JPG, PNG ou PDF)
+comprovante | file | não | Imagem de Conta de luz, água ou telefone (JPG, PNG ou PDF)
+
+### Retorno
+
+> Retorno (XML)
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<retorno>
+    <success>ok</success>
+    <message>Arquivo(s) enviado(s) com sucesso!</message>
+    <cpf>recebido</cpf>
+    <cnpj>recebido</cnpj>
+    <atividade>recebido</atividade>
+    <comprovante>recebido</comprovante>
+</retorno>
+```
+
+Campo | Descrição
+------|----------
+retorno | Container
+success | Caso tenha sido enviado com sucesso irá retornar "ok"
+message | Mensagem de retorno
+cpf | status do arquivo
+cnpj | status do arquivo
+atividade | status do arquivo
+comprovante | status do arquivo
