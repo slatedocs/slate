@@ -344,6 +344,40 @@ Required parameters:  `id` or `external_id`
 
 Response: On success, empty results will be returned.
 
+### account.expiredCertification
+
+> Request example:
+
+```JSON
+{
+   "id" : "947"
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.173293",
+   "jsonrpc" : "2.0",
+   "id" : "49",
+   "result" : {}
+}
+```
+
+<span class="tryit" id="account-expiredcertification-tryit"></span>
+If an account is not on hold (org_hold is true and org_pending is 0), sets it to Expired Certification org_pending status.  Otherwise, does nothing.
+
+#### Required parameters:  `id` or `external_id`
+
+#### Optional parameters:
+
+##### `unconfirm_future_shifts`: Specify true if shifts on or after today for this account should be unconfirmed.
+
+##### `unpublish_future_shifts`: Specify true if such shifts should be unpublished.
+
+Response: On success, empty results will be returned.
+
 ### account.get
 
 > Request example:
