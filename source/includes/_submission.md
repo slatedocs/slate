@@ -122,6 +122,7 @@ frete_tipo | 100 | string | não | Descrição do frete, exemplo: Pac (Aproximad
 
 Campo | Tamanho | Tipo | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
+softdescriptor | 13 | string | não| Identificação na Fatura do Cartão (Cielo, Zoop). Ex.: MINHALOJA
 nome_cartao | 30 | string | não (se cartão, sim) | Nome do titular do cartão de crédito.
 num_cartao | 16 | number | não (se cartão, sim) | Número do cartão de crédito).
 cvv_cartao | 3 | number | não (se cartão, sim) | Código de verificação do cartão de crédito
