@@ -63,7 +63,7 @@ A Kudos message is sent from a user, to one or more users
 |level|The level of Kudos given by the message. This enumeration should be one of thank_you, good_job, impressive, exceptional or award|Yes|enum|
 |qualities|One or more values or characteristics|Yes|\[[quality](#quality)\]|
 |badge_name|If the level of Kudos is award, specify the name of the badge to be attached|No|string|
-|points|If the level of Kudos is award, specify a custom point value|No|integer|
+|points|If the level of Kudos is award, specify a custom point value.  Leave points blank to use the points defined by the badge|No|integer|
 
 ## Message
 
