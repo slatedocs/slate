@@ -227,6 +227,7 @@ Retorna uma lista em JSON contendo todas as Configurações de Cobrança que per
 
 - `type`: Filtra pelo tipo de configuração de cobrança. O valor a ser informado é string com um dos tipos existentes de configuração de cobrança.
 - `charge_type`: Filtra pelo tipo de cobrança disponível para a configuração, ou seja retornará as configurações que suportam o tipo de cobrança informado. O valor a ser informado é a string com um dos tipos de cobrança disponíveis ("billet" ou "credit_card" até o momento).
+- `bank_code`: Filtrar pelo código do banco da configuração de cobrança. O valor a ser informado é uma string com o código do banco. Por exemplo "341" para Itaú, "237" para Bradesco e etc.
 - `payee_ids`: Filtra pelos beneficiários informados. O valor informado é uma **lista\*** de ids dos beneficiários.
 - `payee_national_identifiers`: Filtra pelos beneficiários informados. O valor informado é uma **lista\*** de número de documentos dos beneficiários.
 

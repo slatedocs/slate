@@ -148,6 +148,26 @@ EXEMPLO DE ESTADO DA RESPOSTA COM INSUCESSO
 
     422 Unprocessable Entity
 
+EXEMPLO DE CORPO DA RESPOSTA
+
+  {
+    "remittance_cnabs": [
+      "id": 1,
+      "config_id": 1,
+      "type": "charge",
+      "status": "processed",
+      "charge_config_id": 1,
+      "_links":
+        [
+          {"rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/remittance_cnabs/1"},
+          {"rel": "destroy", "method": "DELETE", "href": "https://app.cobrato.com/api/v1/remittance_cnabs/1"},
+          {"rel": "config", "method": "GET", "href": "https://app.cobrato.com/api/v1/charge_configs/1"},
+          {"rel": "file", "method": "GET", "href": "https://app.cobrato.com/api/v1/remittance_cnabs/1/file"},
+          {"rel": "items", "method": "GET", "href": "http://localhost:3000/api/v1/remittance_cnabs/1/items"}
+        ]
+    }]
+  }
+
 EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
   {
@@ -158,7 +178,7 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
 
 ```
 
-Cria novo(s) Arquivo(s) CNAB de Remessa, retornando as informações do mesmo caso haja sucesso. Se houverem erros, eles serão informados no corpo da resposta.
+Cria novo(s) Arquivo(s) CNAB de Remessa, retornando as informações do(s) mesmo(s) caso haja sucesso. Se houverem erros, eles serão informados no corpo da resposta.
 
 Um Arquivo de remessa sempre está associado à uma Configuração. Sendo assim, será gerado um CNAB de remessa para cada Configuração envolvida na solicitação de criação, e esse arquivo irá incluir todos os items passíveis de remessa, seja para registrar a inclusão, cancelamento ou alteração.
 
