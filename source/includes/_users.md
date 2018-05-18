@@ -13,6 +13,7 @@ curl 'https://app.rubberstamp.io/api/v1/register'
   -d "password_confirmation=pass1234"
   -d "name=Api user"
   -d "phone_number=98xxxxxxxx"
+  -d "terms_of_service=true"
 
 # Example With Tracking Info
 
@@ -31,6 +32,7 @@ curl 'https://app.rubberstamp.io/api/v1/register'
   -d "password_confirmation=pass1234"
   -d "name=Api user"
   -d "phone_number=98xxxxxxxx"
+  -d "terms_of_service=true"
 ```
 
 ```ruby
@@ -45,7 +47,8 @@ RestClient.post(
     password: 'pass1234',
     password_confirmation: 'pass1234',
     name: 'Api user',
-    phone_number: '98xxxxxx'
+    phone_number: '98xxxxxx',
+    terms_of_service: true
   }
 )
 
@@ -58,7 +61,8 @@ RestClient.post(
     password: 'pass1234',
     password_confirmation: 'pass1234',
     name: 'Api user',
-    phone_number: '98xxxxxx'
+    phone_number: '98xxxxxx',
+    terms_of_service: true
   },
   headers = {
     "tracking_info": {
@@ -98,6 +102,10 @@ This endpoint will register you as a rubberstamp user, send confirmation link
 to your email and you can confirm it. It will returns `User` object along
 with `authentication_token`.
 
+### Terms of service
+
+`terms_of_service` is a required field.
+
 ### HTTP Request
 
 `POST https://app.rubberstamp.io/api/v1/register`
@@ -125,20 +133,21 @@ You can track each registration with [segment.io](https://segment.com) by passin
 
 ### Query Parameters
 
-| Param                                  | Type   | Description                                              |
-| -------------------------------------- | ------ | -------------------------------------------------------- |
-| email                                  | string | Your registered email address                            |
-| password                               | string | strong password                                          |
-| password_confirmation                  | string | password confirmation                                    |
-| name                                   | string | Your First Name and Last Name                            |
-| phone_number                           | string | Phone number                                             |
-| tracking_info[properties][uuid]        | header | Pass uuid to track                                       |
-| tracking_info[properties][is_web-view] | header | `true` if user is using web browsers otherwise `false`   |
-| tracking_info[properties][is_ipad]     | header | `true` if user is using IPad otherwise `false`           |
-| tracking_info[properties][is_ios]      | header | `true` if user is using IOS device otherwise `false`     |
-| tracking_info[properties][is_android]  | header | `true` if user is using android device otherwise `false` |
-| tracking_info[properties][platform]    | header | device platform                                          |
-| tracking_info[properties][version]     | header | device version                                           |
+| Param                                  | Type    | Description                                              |
+| -------------------------------------- | ------  | -------------------------------------------------------- |
+| email                                  | string  | Your registered email address                            |
+| password                               | string  | strong password                                          |
+| password_confirmation                  | string  | password confirmation                                    |
+| name                                   | string  | Your First Name and Last Name                            |
+| phone_number                           | string  | Phone number                                             |
+| terms_of_serivce                       | boolean | You must accept terms of service                         |
+| tracking_info[properties][uuid]        | header  | Pass uuid to track                                       |
+| tracking_info[properties][is_web-view] | header  | `true` if user is using web browsers otherwise `false`   |
+| tracking_info[properties][is_ipad]     | header  | `true` if user is using IPad otherwise `false`           |
+| tracking_info[properties][is_ios]      | header  | `true` if user is using IOS device otherwise `false`     |
+| tracking_info[properties][is_android]  | header  | `true` if user is using android device otherwise `false` |
+| tracking_info[properties][platform]    | header  | device platform                                          |
+| tracking_info[properties][version]     | header  | device version                                           |
 
 ## Login
 
