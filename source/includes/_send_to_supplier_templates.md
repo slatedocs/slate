@@ -37,12 +37,14 @@ RestClient.get(
     "id": 2,
     "company_id": 1,
     "label": "Sample Template",
-    "text": "Dear John Snow, \r\n\n this is a sample template"
+    "text": "Dear John Snow, \r\n\n this is a sample template",
+    "is_default": true
   }
 ]
 ```
 
 Get list of all templates.
+
 
 ### HTTP Request
 
@@ -58,7 +60,7 @@ Get list of all templates.
 ## Forward Template
 
 ```shell
-curl --request PUT \
+curl --request POST \
   --url https://app.rubberstamp.io/api/v1/purchase_orders/2/forward \
   --header 'app_company_id: 1' \
   --header 'authentication_token: your token' \
@@ -77,7 +79,7 @@ curl --request PUT \
 ```ruby
 require 'rest-client'
 
-RestClient.put(
+RestClient.post(
   'https://app.rubberstamp.io/api/v1/purchase_orders/2/forward',
   {
     emails: "test@example.com",
@@ -109,7 +111,7 @@ To create new template, you must pass `save_template: true` params or form data 
 
 ### Update Existing Template
 
-To update existing template, you must need to pass `update_template: true` params or form data into this post request
+To update existing template, you must need to pass `update_template: true` params or form data into this post request.
 
 ### Send template to supplier
 
@@ -119,9 +121,18 @@ If `save_template` or `update_template` is not there, then it will send given te
 
 To mark template as default, you need to pass `is_default: true` params or form data.
 
+
+### Emails Fields
+
+In [Purchase Order Details](/slate/#get-purchase-order-details) you will get `supplier.email`, which you can send in `emails` field.
+
+### CC Fields
+
+In [Purchase Order Details](/slate/#get-purchase-order-details) you will get `creator_email`, you can set that value in `cc` field.
+
 ### HTTP Request
 
-`PUT https://app.rubberstamp.io/api/v1/purchase_orders/:id/forward`
+`POST https://app.rubberstamp.io/api/v1/purchase_orders/:id/forward`
 
 ### Query Parameters
 
@@ -133,7 +144,7 @@ To mark template as default, you need to pass `is_default: true` params or form 
 | cc                   | string  | CC email address                               |
 | notes                | text    | template body                                  |
 | email_subject        | string  | Email subject                                  |
-| email_label          | string  | Email Label                                    |
+| template_label       | string  | Template Label                                 |
 | save_template        | boolean | `true` if you want to save template            |
 | is_default           | boolean | `true` if you want to mark template as default |
 | update_template      | boolean | `true` if you want to update template          |

@@ -343,9 +343,10 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1'
   "supplier_id": 310511,
   "supplier_name": "deepak",
   "status": "pending",
-  "creator_id": 1,
   "currency_id": 3,
+  "creator_id": 1,
   "creator_name": "James Kennedy",
+  "creator_email": "james@example.com",
   "amount": "50.55",
   "created_at": 1505972258,
   "updated_at": 1505972258,
@@ -425,7 +426,12 @@ curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1'
       "accept_token": "17943-344853-20171017053411......",
       "reject_token": "17943-344853-20171017053411......"
     }
-  ]
+  ],
+  "supplier": {
+    "id": 1,
+    "email": "supplier1@example.com",
+    ...
+  }
 }
 ```
 
