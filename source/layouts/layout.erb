@@ -54,8 +54,8 @@ under the License.
       <%= image_tag "logo.png", class: 'logo' %>
       <% if language_tabs.any? %>
         <div class="lang-selector">
-          <% language_tabs.each do |lang| %>
-            <% if lang.is_a? Hash %>
+          <% language_tabs.each do |lang| 
+            if lang.is_a? Hash %>
               <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
             <% else %>
               <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
@@ -72,27 +72,23 @@ under the License.
       <div id="toc" class="toc-list-h1">
         <% if current_page.data.multiple_pages %>
           <div id="toc">
-            <!--
-            <ul style="padding: 0 15px 0 15px;">
-              <li id="vtwo-link1" style="font-size: 14px;color: #595864;"><a href="/subdir/thing1/">One Thing</a></li>
-              <li id="vtwo-link2" style="font-size: 14px;color: #595864;"><a href="/subdir/thing2/">Another Thing</a></li>
-              <li id="vtwo-link3" style="font-size: 14px;color: #595864;"><a href="/subdir/thing3/">A Third Thing</a></li>
-            </ul>
-            -->
-            
-            <%# WIP: build sub pages automatically %>
             <% current_page.data.resources.each do |resource| %>
-            <li>
-              resource
+              <li>
+                <% puts resource %>
+                <%= resource %>
                 <ul class="toc-list-h2">
-                  <% current_page.data.resource.each do |request| %>
+                  <% @resource_name = resource[/data-title='[a-zA-Z-]+'/]
+                      @resource_name = @resource_name[12..-2]
+                      puts @resource_name %>
+                  <% current_page.data[@resource_name].each do |request| %>
                     <li>
-                     request
+                      <% puts request %>
+                      <%= request %>
                     </li>
                   <% end %>
                 </ul>
-              <% end %>
-            </li>
+              </li>
+            <% end %>
           </div>
         <% else %>
           <% toc_data(page_content).each do |h1| %>
