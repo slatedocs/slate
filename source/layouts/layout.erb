@@ -74,7 +74,6 @@ under the License.
           <div id="toc">
             <% current_page.data.resources.each do |resource| %>
               <li>
-                <% puts resource %>
                 <%= resource %>
                 <ul class="toc-list-h2">
                   <% @resource_name = resource[/data-title='[a-zA-Z-]+'/]
@@ -82,7 +81,9 @@ under the License.
                       puts @resource_name %>
                   <% current_page.data[@resource_name].each do |request| %>
                     <li>
-                      <% puts request %>
+                      <% @request_name = request[/data-title='[a-zA-Z-]+'/]
+                        @request_name = @request_name[12..-2]
+                        puts '  ' + @request_name %>
                       <%= request %>
                     </li>
                   <% end %>
