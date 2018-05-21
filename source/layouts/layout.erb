@@ -76,12 +76,12 @@ under the License.
               <li>
                 <%= resource %>
                 <ul class="toc-list-h2">
-                  <% @resource_name = resource[/data-title='[a-zA-Z-]+'/]
+                  <% @resource_name = resource[/data-title='[a-zA-Z-_]+'/]
                       @resource_name = @resource_name[12..-2]
                       puts @resource_name %>
                   <% current_page.data[@resource_name].each do |request| %>
                     <li>
-                      <% @request_name = request[/data-title='[a-zA-Z-]+'/]
+                      <% @request_name = request[/data-title='[a-zA-Z-_]+'/]
                         @request_name = @request_name[12..-2]
                         puts '  ' + @request_name %>
                       <%= request %>
