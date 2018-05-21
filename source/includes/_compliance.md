@@ -11,14 +11,9 @@ Email support@scoutapp.com with any questions regarding HIPAA.
 
 ## GDPR
 
-Scout will be ready for the EU General Data Protection Regulation (GDPR) before May 25, 2018, when the law goes into effect. Scout receives performance data from our customers, which we use to generate charts and reports. While our monitoring agents are primarily metric-focused, they can be configured to send personal data if the customer wishes.
+While our monitoring agents are primarily metric-focused, they can be configured to send personal data if the customer wishes.
 
-Under the GDPR, Scout is defined as a [Data Processor](https://gdpr-info.eu/art-28-gdpr/). Here is how we’ll support customers with GDPR readiness given our role:
-
-* An updated Data Processing Agreement (DPA) that reflects the requirements of the GDPR and ensures compliant data transfer with storage outside the EU.
-* Reviewing our technical and organizational security measures to ensure they are in compliance with the GDPR.
-* Prompt breach notifications: In line with our current policies, we will promptly inform you of any incidents involving your users’ personal data. 
-* Clarifying our data deletion process: Customers can request that their data be deleted at anytime. Upon account closure, all performance data will be deleted within 90 days. Requests for return or deletion of data are handled on a case by case basis.
+Under the GDPR, Scout is defined as a [Data Processor](https://gdpr-info.eu/art-28-gdpr/). You can [view and sign our Data Processing Agreement](https://app.hellosign.com/s/a349d944) on behalf of your organization.
 
 ## PCI DSS
 
