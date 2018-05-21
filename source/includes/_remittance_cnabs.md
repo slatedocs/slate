@@ -9,6 +9,7 @@ EXEMPLO
     "id": 1,
     "config_id": 1,
     "type": "charge",
+    "file_name": "CI14058A.REM",
     "status": "processed",
     "_links":
       [
@@ -35,6 +36,7 @@ Se seu plano não der direito a utilização desta API, a resposta com será com
 | type             | string          | indica o tipo de arquivo de remessa ('charge' ou 'payment')                                                                        |
 | config_id        | string          | identificador da configuração no Cobrato relacionada ao arquivo de remessa                                                         |
 | charge_config_id | string          | (DEPRECATED: use config_id) identificador da configuração de cobrança no Cobrato                                                   |
+| file_name        | string          | nome do arquivo de remessa                                                                                                         |
 | status           | string          | situação da remessa, podendo ser "processing" (processando), "processed" (processado) e "processing_error" (erro de processamento) |
 | _links           | array of object | links relacionado CNAB de remessa                                                                                                  |
 
@@ -65,6 +67,7 @@ EXEMPLO DE CORPO DA RESPOSTA
     "id": 1,
     "config_id": 1,
     "type": "charge",
+    "file_name": "CI14058A.REM",
     "status": "processed",
     "_links":
       [
@@ -155,6 +158,7 @@ EXEMPLO DE CORPO DA RESPOSTA
       "id": 1,
       "config_id": 1,
       "type": "charge",
+      "file_name": "CI14058A.REM",
       "status": "processed",
       "charge_config_id": 1,
       "_links":
