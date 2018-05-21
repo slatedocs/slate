@@ -45,7 +45,6 @@ RestClient.get(
 
 Get list of all templates.
 
-
 ### HTTP Request
 
 `GET https://app.rubberstamp.io/api/v1/send_to_supplier_templates`
@@ -121,7 +120,6 @@ If `save_template` or `update_template` is not there, then it will send given te
 
 To mark template as default, you need to pass `is_default: true` params or form data.
 
-
 ### Emails Fields
 
 In [Purchase Order Details](/slate/#get-purchase-order-details) you will get `supplier.email`, which you can send in `emails` field.
@@ -129,6 +127,10 @@ In [Purchase Order Details](/slate/#get-purchase-order-details) you will get `su
 ### CC Fields
 
 In [Purchase Order Details](/slate/#get-purchase-order-details) you will get `creator_email`, you can set that value in `cc` field.
+
+### Uploads Fields
+
+`uploads` accept list of ids, and must be Array values. If uploads are send while saving or updating template, they are ignored. `uploads` are only available when you are sending template to the supplier.
 
 ### HTTP Request
 
