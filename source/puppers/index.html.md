@@ -36,32 +36,32 @@ puppers:
 
 # Kittens
 
-## Get All Kittens
+## Get All Puppers
 
 ```ruby
-require 'kittn'
+require 'puppr'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+api = Puppr::APIClient.authorize!('woofwoofwoof')
+api.puppers.get
 ```
 
 ```python
-import kittn
+import puppr
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+api = puppr.authorize('woofwoofwoof')
+api.puppers.get()
 ```
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl "http://example.com/api/puppers"
+  -H "Authorization: woofwoofwoof"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const puppr = require('puppr');
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+let api = puppr.authorize('woofwoofwoof');
+let puppers = api.puppers.get();
 ```
 
 > The above command returns JSON structured like this:
@@ -85,49 +85,49 @@ let kittens = api.kittens.get();
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all puppers.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET http://example.com/api/puppers`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+include_doggos | false | If set to true, the result will also include big ol' puppers.
+available | true | If set to false, the result will include puppers that have already been adopted.
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — a happy pupper is an authenticated pupper!
 </aside>
 
-## Get a Specific Kitten
+## Get a Specific Pupper
 
 ```ruby
-require 'kittn'
+require 'puppr'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+api = Puppr::APIClient.authorize!('woofwoofwoof')
 api.kittens.get(2)
 ```
 
 ```python
-import kittn
+import puppr
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
+api = puppr.authorize('woofwoofwoof')
+api.puppers.get(2)
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl "http://example.com/api/puppers/2"
+  -H "Authorization: woofwoofwoof"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const puppr = require('puppr');
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+let api = puppr.authorize('woofwoofwoof');
+let max = api.puppers.get(2);
 ```
 
 > The above command returns JSON structured like this:
@@ -142,47 +142,47 @@ let max = api.kittens.get(2);
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint retrieves a specific pupper.
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET http://example.com/puppers/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+ID | The ID of the pupper to retrieve
 
-## Delete a Specific Kitten
+## Delete a Specific Pupper
 
 ```ruby
-require 'kittn'
+require 'puppr'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
+api = Puppr::APIClient.authorize!('woofwoofwoof')
+api.puppers.delete(2)
 ```
 
 ```python
-import kittn
+import puppr
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
+api = puppr.authorize('woofwoofwoof')
+api.puppers.delete(2)
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2"
+curl "http://example.com/api/puppers/2"
   -X DELETE
-  -H "Authorization: meowmeowmeow"
+  -H "Authorization: woofwoofwoof"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const puppr = require('puppr');
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+let api = puppr.authorize('woofwoofwoof');
+let max = api.puppers.delete(2);
 ```
 
 > The above command returns JSON structured like this:
@@ -198,10 +198,10 @@ This endpoint deletes a specific kitten.
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`DELETE http://example.com/puppers/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete
+ID | The ID of the pupper to delete

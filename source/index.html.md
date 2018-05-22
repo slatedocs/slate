@@ -19,12 +19,19 @@ search: true
 multiple_pages: true
 
 resources:
-  - <a href='/kittens/index.html' class='toc-h1 toc-link' data-title='kittens'>kittens</a>
+  - kittens:'/kittens/index.html'
+  - puppers:'/puppers/index.html'
 
 kittens:
-  - <a href='/kittens/index.html#get-all-kittens' class='toc-h2 toc-link' data-title='get-all-kittens'>Get All Kittens</a>
-  - <a href='/kittens/index.html#get-a-specific-kitten' class='toc-h2 toc-link' data-title='get-a-specific-kitten'>Get a specific kitten</a>
-  - <a href='/kittens/index.html#delete-a-specific-kitten' class='toc-h2 toc-link' data-title='delete-a-specific-kitten'>Delete a specific kitten</a>
+  - Get All Kittens:'get-all-kittens'
+  - Get a specific kitten:'get-a-specific-kitten'
+  - Delete a specific kitten:'delete-a-specific-kitten'
+
+puppers:
+  - Get All Puppers:'get-all-puppers'
+  - Get a specific pupper:'get-a-specific-pupper'
+  - Delete a specific pupper:'delete-a-specific-pupper'
+
 ---
 
 # Introduction
