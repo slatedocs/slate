@@ -23,14 +23,15 @@ resources:
   - puppers:'/puppers/index.html'
 
 kittens:
-  - <a href='/kittens/index.html#get-all-kittens' class='toc-h2 toc-link' data-title='get-all-kittens'>Get All Kittens</a>
-  - <a href='/kittens/index.html#get-a-specific-kitten' class='toc-h2 toc-link' data-title='get-a-specific-kitten'>Get a specific kitten</a>
-  - <a href='/kittens/index.html#delete-a-specific-kitten' class='toc-h2 toc-link' data-title='delete-a-specific-kitten'>Delete a specific kitten</a>
+  - Get All Kittens:'get-all-kittens'
+  - Get a specific kitten:'get-a-specific-kitten'
+  - Delete a specific kitten:'delete-a-specific-kitten'
 
 puppers:
-  - <a href='/puppers/index.html#get-all-puppers' class='toc-h2 toc-link' data-title='get-all-puppers'>Get All Puppers</a>
-  - <a href='/puppers/index.html#get-a-specific-pupper' class='toc-h2 toc-link' data-title='get-a-specific-pupper'>Get a specific pupper</a>
-  - <a href='/puppers/index.html#delete-a-specific-pupper' class='toc-h2 toc-link' data-title='delete-a-specific-pupper'>Delete a specific pupper</a>
+  - Get All Puppers:'get-all-puppers'
+  - Get a specific pupper:'get-a-specific-pupper'
+  - Delete a specific pupper:'delete-a-specific-pupper'
+
 ---
 
 # Kittens
