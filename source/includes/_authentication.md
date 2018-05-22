@@ -25,11 +25,11 @@ curl "api_endpoint_here"
 
 > Make sure to replace `meowmeowmeow` with your API key.
 
-go~mus expects the API key to be included in all reseller API requests to the server in a header 
+go~mus expects the API key to be included in all reseller and cash point API requests to the server in a header 
 that looks like the following:
 
 `Authorization: Bearer meowmeowmeow`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>meowmeowmeow</code> with your personal API key. For testing, you can use this key in the demo instance.
 </aside>
