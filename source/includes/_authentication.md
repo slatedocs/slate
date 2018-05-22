@@ -31,5 +31,5 @@ that looks like the following:
 `Authorization: Bearer meowmeowmeow`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>meowmeowmeow</code> with your personal API key. For testing, you can use this key in the demo instance.
 </aside>
