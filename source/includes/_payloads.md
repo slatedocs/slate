@@ -67,7 +67,7 @@ Os eventos notificados são os seguintes:
 | payment         | destroyed             | quando o pagamento é excluído                     |
 | payment         | unauthorized          | quando o pagamento é marcado como não autorizado  |
 | payment         | registered_with_error | quando o pagamento é marcado com Erro no registro |
-| regress_cnab    | created               | quando o arquivo de retorno é criado              |
+| remittance_cnab | updated               | quando o arquivo de remessa é atualizado          |
 | regress_cnab    | updated               | quando o arquivo de retorno é atualizado          |
 
 
@@ -638,28 +638,28 @@ EXEMPLO DE PAYLOAD
 
 Informações enviadas quando um Pagamento é marcado com Erro no Registro.
 
-## Arquivo de retorno criado
+## Arquivo de remessa Atualizado
 
 ```shell
-Arquivo de retorno Criado
+Arquivo de remessa Atualizadao
 
 EXEMPLO DE PAYLOAD
 
   {
     "created_at":"2015-05-21T16:13:33Z",
-    "event":"created",
-    "object_type":"regress_cnab",
+    "event":"updated",
+    "object_type":"remittance_cnab",
     "object_id":12,
     "_links":[{
       "rel":"self",
       "method":"GET",
-      "url":"https://app.cobrato.com/api/v1/regress_cnabs/12"
+      "url":"https://app.cobrato.com/api/v1/remittance_cnabs/12"
     }]
   }
 
 ```
 
-Informações enviadas quando um Arquivo de retorno é criado.
+Informações enviadas quando um Arquivo de remessa é atualizado.
 
 ## Arquivo de retorno Atualizado
 
