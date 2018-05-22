@@ -8,22 +8,27 @@ toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 search: true
----
 
+includes:
+  - metype/comments
+  - metype/feed
+  - metype/user_generated_content
+  - metype/sso
+---
 # Introduction To Metype
 
 Metype is a platform for increasing user engagement. It can be embedded with any web page or mobile app.
+There are several components of Metype that can be integrated into your site to increase your user engagement.
+A summation of all these tools will help you funnel your user's engagement.
 
-## Terminology
-* Realm
-* Comment
+## Products
+* Comments - An iframe/widget for users to comment on a page.
+* Live Feed - An iframe/widget for users to check other user's activities on a website.
+* User Generated Content (UGC) - An iframe/widget for users to submit their user generated content.
+* Single Sign On (SSO) - A service for users to login universally on a website.
+* Story Reactions - An iframe/widget for users to respond/react to contents on a page.
 
-# User Generated Content
+## Vision
 
-## POST Create a User Generated Content
-
-```shell
-curl -H "Content-Type: application/json" https://www.metype.com/
-```
-
-The above API can be used to submit user generated content from a site. The MeType platform can be configured to automatically move this user generated content into any supported CMS.
+Metype is envisioned to be a one stop shop for all users engagement. It not only provides tools for user engagement but aims to give engage users when they are not on your property too.
+The power of audience engagement is something no one can underestimate and metype aims to provide it's customers all the tools for them to manage and target users and monetize.
