@@ -39,7 +39,7 @@ $success = $api->post('/v2/cb/create', [
     'working_hours_apply_to_all' => 'Y',
     'working_hours_mon_start'    => '8:00 am',
     'working_hours_mon_end'      => '10:00 pm', 
-    'social_profile_links'       => '{"facebook":"https:\/\/en-gb.facebook.com\/brightlocal\/","twitter":"https:\/\/twitter.com\/bright_local","linkedin":"https:\/\/uk.linkedin.com\/company\/bright-local-seo","instagram":","pinterest":"https:\/\/www.pinterest.co.uk\/brightlocal\/"}'
+    'social_profile_links'       => '{"facebook":"https:\/\/en-gb.facebook.com\/brightlocal\/","twitter":"https:\/\/twitter.com\/bright_local","linkedin":"https:\/\/uk.linkedin.com\/company\/bright-local-seo","instagram":","pinterest":"https:\/\/www.pinterest.com\/brightlocal\/"}'
 ]);
 print_r($success);
 ```
@@ -196,7 +196,7 @@ special_offer |
 special_offer_description |		
 special_offer_expiry_date |		
 payment_methods	| <p>String with '&#124;' delimiter. E.g. cash&#124;visa&#124;mastercard&#124;amex&#124;cheque&#124;atm&#124;discover. Possible values - cash&#124;visa&#124;mastercard&#124;amex&#124;cheque&#124;invoice&#124;insurance&#124;atm&#124;travellers&#124;financing&#124;paypal&#124;discover</p>
-social_profile_links | JSON encoded object. Social channels supported are facebook, twitter, linkedin, pinterest and instagram.
+social_profile_links | JSON encoded object. See example on the right for reference. Social channels supported are facebook, twitter, linkedin, pinterest and instagram.
 receive-email-alerts | 		
 alert-email-addresses | 		
 old_business_name |		
@@ -232,7 +232,7 @@ $success = $api->put('/v2/cb/' .$campaignId, [
     'contact_firstname'          => 'Joe',
     'contact_telephone'          => '+1 212-554-1515',
     'contact_email'              => 'joe.bloggs@test.com',	
-    'social_profile_links'       => '{"facebook":"https:\/\/en-gb.facebook.com\/brightlocal\/","twitter":"https:\/\/twitter.com\/bright_local","linkedin":"https:\/\/uk.linkedin.com\/company\/bright-local-seo","instagram":","pinterest":"https:\/\/www.pinterest.co.uk\/brightlocal\/"}'
+    'social_profile_links'       => '{"facebook":"https:\/\/en-gb.facebook.com\/brightlocal\/","twitter":"https:\/\/twitter.com\/bright_local","linkedin":"https:\/\/uk.linkedin.com\/company\/bright-local-seo","instagram":"","pinterest":"https:\/\/www.pinterest.com\/brightlocal\/"}'
 ]);
 print_r($success);
 ```
@@ -279,7 +279,8 @@ var success = request.Put("/v2/cb/" + campaignId + "", parameters);
     "business_categories": "Please enter at least one business category or tag",
     "campaign_state": "Please select state",
     "campaign_city": "Please select location",
-    "address1": "Please enter street address"  
+    "address1": "Please enter street address",  
+    "social_profile_links": "Please use valid social channels. Channels supported are facebook, twitter, linkedin, pinterest and instagram."  
   }
 }
 ```
@@ -354,7 +355,7 @@ special_offer |
 special_offer_description |		
 special_offer_expiry_date |		
 payment_methods	| <p>String with '&#124;' delimiter. E.g. cash&#124;visa&#124;mastercard&#124;amex&#124;cheque&#124;atm&#124;discover. Possible values - cash, visa, mastercard, amex, cheque, invoice, insurance, atm, travellers, financing, paypal, discover</p>
-social_profile_links | JSON encoded array. Social channels supported are facebook, twitter, linkedin, pinterest and instagram.
+social_profile_links | JSON encoded object. See example on the right for reference. Social channels supported are facebook, twitter, linkedin, pinterest and instagram.
 receive-email-alerts | 		
 alert-email-addresses | 		
 old_business_name |		
@@ -813,6 +814,13 @@ var campaign = request.Get("/v2/cb/get", parameters);
                 "2": null,
                 "3": null
             },
+            "social_profile_links": {
+                "facebook": "https:\/\/en-gb.facebook.com\/brightlocal\/",
+                "twitter": "https:\/\/twitter.com\/bright_local",
+                "linkedin": "https:\/\/uk.linkedin.com\/company\/bright-local-seo",
+                "pinterest": "https:\/\/www.pinterest.co.uk\/brightlocal\/",
+                "instagram": ""
+            },            
             "email_alerts": {
                 "enabled": "N",
                 "addresses": [
@@ -1043,13 +1051,6 @@ var campaign = request.Get("/v2/cb/get", parameters);
                 "interactive_url": "<hidden>",
                 "pdf_url": "<hidden>",
                 "csv_url": "<hidden>"
-            },
-            "social_profile_links": {
-                "facebook": "https:\/\/en-gb.facebook.com\/brightlocal\/",
-                "twitter": "https:\/\/twitter.com\/bright_local",
-                "linkedin": "https:\/\/uk.linkedin.com\/company\/bright-local-seo",
-                "pinterest": "https:\/\/www.pinterest.co.uk\/brightlocal\/",
-                "instagram": ""
             }
         }
     }
