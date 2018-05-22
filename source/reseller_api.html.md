@@ -513,6 +513,29 @@ A ticket item has a fairly simple structure:
 }
 ```
 
+> or with specific seating options:
+
+```json
+{
+    "type": "Event",
+    "attributes": {
+        "id": 28227,
+        "seats": [
+          {
+            "seat_id": 22,
+            "scale_price_id": 33
+            
+          },
+          {
+            "seat_id": 23,
+            "scale_price_id": 33
+          }
+        
+        ]
+    }
+}
+```
+
 An event item has a similar structure:
 
 - id (integer), the events date id, see event section in public api
@@ -524,6 +547,12 @@ If the event only has one price, the quantity key is used.
 However, if the event has scale pricing, then the quantities key is used instead:
 
 - quantities (object), the scale price id as the key, and the quantity as the value.
+
+If the event contains seatings, the strucuture has to contain info about the specific seats:
+
+- seat_id (integer), id of the specific seat
+- scale_price_id (integer), id of the scale price
+
 
 ### Tour
 

@@ -452,6 +452,7 @@ curl "https://demo.gomus.de/api/v4/events/1/dates/1"
             "available": 20,
             "max_per_registration": null
         },
+        "seatings": [],
         "location": {
             "name": "Gemäldegalerie",
             "city": "Berlin",
@@ -504,6 +505,14 @@ The seats block contains four attributes:
 
 The location block provides information about the event starting/meeting point and address.
 
+### Seatings
+
+Events can contain additional data for seatings.
+If the seatings array contains data, specific seats must be referenced on book (see prices).
+
+A visual seating plan is provided in the seatings data as well as all information needed (categories, rows, types, seats, blockings and reservations) for providing own visual representation.
+The visual seating plan is a standardized SVG graphic for display and manipulation via Javascript.
+
 ### Prices
 
 The prices block contains one ore more price objects in an array. There are two types of price objects for event date bookings:
@@ -514,9 +523,11 @@ default prices with three attributes:
 - optional (boolean), whether the price is a choice or not
 - price_cents (integer) price in EUR cents
 
-or scale prices with six attributes:
+or scale prices with following attributes:
 
 - scale_price_id (integer) internal database id for the scale price definition
+- seat_category_id (integer) only for events with seating plan
+- seat_category_title (string) only for events with seating plan
 - title(string) title of scale price, e.g. "regular fee" or "reduced fee"
 - description(text)
 - group (boolean), whether the price is for the whole group or per participant (per seat)
