@@ -76,12 +76,13 @@ under the License.
               <li>
                 <% resource_name = resource[/^[a-zA-Z\-_\s]+:/] %>
                 <% resource_name = resource_name.to_s[0..-2] %>
+                <% resource_name_lower = resource_name.downcase %>
                 <% current_page.data.debug ? ( puts resource_name ) : '' %>
                 <% resource_url = resource[/\/?[a-zA-Z\-\.\/_]+\/index.html/] %>
                 <% current_page.data.debug ? ( puts '- ' + resource_url.to_s ) : '' %>
                 <%= link_to resource_name, resource_url, :class => 'toc-h1 toc-link', :directory_indexes => true %>
                 <ul class="toc-list-h2 active">
-                  <% current_page.data[resource_name].each do |request| %>
+                  <% current_page.data[resource_name_lower].each do |request| %>
                     <li>
                       <% request_fragment = request[/:'[a-zA-Z\-_]+'/] %>
                       <% request_fragment = request_fragment.to_s[2..-2] %>
@@ -89,7 +90,8 @@ under the License.
                       <% request_name = request[/^[a-zA-Z\-_\s]+:/] %>
                       <% request_name = request_name.to_s[0..-2] %>
                       <% current_page.data.debug ? ( puts '  ' + request_name ) : '' %>
-                      <%= link_to @request_name, resource_url + '#' + request_fragment, :class => 'toc-h2 toc-link active', :fragment => @request_fragment %>
+                      <% resource_url_full = resource_url.to_s + '#' + request_fragment.to_s %>
+                      <%= link_to @request_name, resource_url_full, :class => 'toc-h2 toc-link active', :fragment => @request_fragment %>
                       <%= request %>
                     </li>
                   <% end %>
