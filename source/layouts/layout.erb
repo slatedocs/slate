@@ -74,16 +74,18 @@ under the License.
           <div id="toc">
             <% current_page.data.resources.each do |resource| %>
               <li>
-                <%= resource %>
+                <% resource_name = resource[/^[a-zA-Z\-_]+:/] %>
+                <% resource_name = resource_name.to_s[0..-2] %>
+                <% current_page.data.debug ? '' : ( puts resource_name ) %>
+                <% resource_url = resource[/\/?[a-zA-Z\-\.\/_]+\/index.html/] %>
+                <% current_page.data.debug ? '' : ( puts '- ' + resource_url.to_s ) %>
+                <%= link_to resource_name, resource_url, :class => 'toc-h1 toc-link', :directory_indexes => true %>
                 <ul class="toc-list-h2">
-                  <% @resource_name = resource[/data-title='[a-zA-Z-_]+'/]
-                      @resource_name = @resource_name[12..-2]
-                      puts @resource_name %>
-                  <% current_page.data[@resource_name].each do |request| %>
+                  <% current_page.data[resource_name].each do |request| %>
                     <li>
-                      <% @request_name = request[/data-title='[a-zA-Z-_]+'/]
-                        @request_name = @request_name[12..-2]
-                        puts '  ' + @request_name %>
+                      <% @request_name = request[/data-title='[a-zA-Z\-_]+'/]
+                        @request_name = @request_name.to_s[12..-2]
+                        current_page.data.debug ? '' : ( puts '  ' + @request_name ) %>
                       <%= request %>
                     </li>
                   <% end %>
