@@ -70,3 +70,24 @@ The color and font are confiruable according to your liking -->
   });
 </script>
 ```
+
+## Comments Count API
+
+* The total comments count can be fetched for a page or multiple pages using the api call on the shell.
+The page ids should be comma seperated and base64 encoded. A maximum of 10 page urls can be passed.
+
+``` shell
+GET https://www.metype.com/api/v1/accounts/:account_id/pages?page_ids=base_64_enc_string1,base_64_enc_string2
+
+Response:
+[
+    {
+        "url": "http://www.example.com/1",
+        "comments_count": 1
+    },
+    {
+        "url": "http://www.example.com/2",
+        "comments_count": 1
+    }
+]
+```
