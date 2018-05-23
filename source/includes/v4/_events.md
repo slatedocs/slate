@@ -27,13 +27,13 @@ curl "https://demo.gomus.de/api/v4/events/categories"
       "id": 5,
       "name": "Kinder / Familien"
     }
-  ] 
+  ]
 }
 ```
 
 ### Response
 
-The json response contains a list of all event categories to build up filters. 
+The json response contains a list of all event categories to build up filters.
 Note: this only contains valid elements, some events might have no name set. Some categories have
 duplicate names.
 
@@ -65,7 +65,7 @@ curl "https://demo.gomus.de/api/v4/events/languages"
 
 ### Response
 
-The json response contains a list of all languages used by online bookable event products to build up filters. 
+The json response contains a list of all languages used by online bookable event products to build up filters.
 
 ## Event tags
 
@@ -452,7 +452,50 @@ curl "https://demo.gomus.de/api/v4/events/1/dates/1"
             "available": 20,
             "max_per_registration": null
         },
-        "seatings": [],
+        "seatings": [
+            {
+                "blocked_seats": [1,2],
+                "categories": [
+                    {
+                        "id": 1,
+                        "title": "A",
+                        "description": "",
+                        "color_code": "#bdbdbd"
+                    }
+                ],
+                "rows": [
+                    {
+                        "id": 1,
+                        "title": "1"
+                    }
+                ],
+                "seats": [
+                    {
+                        "id": 1,
+                        "row_id": 1,
+                        "category_id": 1,
+                        "type_id": null,
+                        "title": "A",
+                        "description": null
+                    },
+                    {
+                        "id": 2,
+                        "row_id": 1,
+                        "category_id": 1,
+                        "type_id": 1,
+                        "title": "A",
+                        "description": null
+                    }
+                ],
+                "types": [
+                    {
+                        "id": 1,
+                        "title": "Rollstuhlplatz"
+                    }
+                ],
+                "visual_url": "/api/v4/seatings/1.svg"
+            }
+        ],
         "location": {
             "name": "Gemäldegalerie",
             "city": "Berlin",
@@ -609,7 +652,7 @@ curl "https://demo.gomus.de/api/v4/dates/languages"
 
 ### Response
 
-The json response contains a list of all languages used by online bookable date to build up filters. 
+The json response contains a list of all languages used by online bookable date to build up filters.
 
 
 ## Global events calendar
