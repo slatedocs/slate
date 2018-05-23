@@ -550,10 +550,10 @@ The location block provides information about the event starting/meeting point a
 
 ### Seatings
 
-Events can contain additional data for seatings.
-If the seatings array contains data, specific seats must be referenced on book (see prices).
+Events can contain additional data for seating plans.
+If the `seatings` array contains data, specific seats must be referenced in the order item when ordering (see prices).
 
-A visual seating plan is provided in the seatings data as well as all information needed (categories, rows, types, seats, blockings and reservations) for providing own visual representation.
+A visual seating plan is provided in the seatings data as well as all the information needed (categories, rows, types, seats, blocked seats and reservations) for providing your own visual representation, or seat selection widget.
 The visual seating plan is a standardized SVG graphic for display and manipulation via Javascript.
 
 ### Prices
@@ -569,16 +569,16 @@ default prices with three attributes:
 or scale prices with following attributes:
 
 - scale_price_id (integer) internal database id for the scale price definition
-- seat_category_id (integer) only for events with seating plan
-- seat_category_title (string) only for events with seating plan
-- title(string) title of scale price, e.g. "regular fee" or "reduced fee"
-- description(text)
+- seat_category_id (integer) internal database id for the seat category definition (only for events with seating plan)
+- seat_category_title (string) title or the seat category (only for events with seating plan)
+- title (string) title of scale price, e.g. "regular fee" or "reduced fee"
+- description (text) longer, more detailed description for the scale price
 - group (boolean), whether the price is for the whole group or per participant (per seat)
 - optional (boolean), whether the price is a choice or not
 - price_cents (integer) price in EUR cents
 
 
-Usualy, there will be one default price or at least one scale pice.
+Usually, there will be one default price or at least one scale price.
 
 
 ## Global dates list
@@ -665,7 +665,7 @@ curl "https://demo.gomus.de/api/v4/calendar"
 
 > The above command returns JSON structured like the single events calendar, but for all events.
 
-The global calender provides a nice way to check wether dates are available for a day in range or not. With the default mode, the return value for each day in the specified range is a simple boolean.
+The global calender provides a nice way to check whether dates are available for a day in range or not. With the default mode, the return value for each day in the specified range is a simple boolean.
 
 
 ### Available filters:
