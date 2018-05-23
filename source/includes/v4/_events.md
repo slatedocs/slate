@@ -27,13 +27,13 @@ curl "https://demo.gomus.de/api/v4/events/categories"
       "id": 5,
       "name": "Kinder / Familien"
     }
-  ] 
+  ]
 }
 ```
 
 ### Response
 
-The json response contains a list of all event categories to build up filters. 
+The json response contains a list of all event categories to build up filters.
 Note: this only contains valid elements, some events might have no name set. Some categories have
 duplicate names.
 
@@ -65,7 +65,7 @@ curl "https://demo.gomus.de/api/v4/events/languages"
 
 ### Response
 
-The json response contains a list of all languages used by online bookable event products to build up filters. 
+The json response contains a list of all languages used by online bookable event products to build up filters.
 
 ## Event tags
 
@@ -452,6 +452,50 @@ curl "https://demo.gomus.de/api/v4/events/1/dates/1"
             "available": 20,
             "max_per_registration": null
         },
+        "seatings": [
+            {
+                "blocked_seats": [1,2],
+                "categories": [
+                    {
+                        "id": 1,
+                        "title": "A",
+                        "description": "",
+                        "color_code": "#bdbdbd"
+                    }
+                ],
+                "rows": [
+                    {
+                        "id": 1,
+                        "title": "1"
+                    }
+                ],
+                "seats": [
+                    {
+                        "id": 1,
+                        "row_id": 1,
+                        "category_id": 1,
+                        "type_id": null,
+                        "title": "A",
+                        "description": null
+                    },
+                    {
+                        "id": 2,
+                        "row_id": 1,
+                        "category_id": 1,
+                        "type_id": 1,
+                        "title": "A",
+                        "description": null
+                    }
+                ],
+                "types": [
+                    {
+                        "id": 1,
+                        "title": "Rollstuhlplatz"
+                    }
+                ],
+                "visual_url": "/api/v4/seatings/1.svg"
+            }
+        ],
         "location": {
             "name": "Gemäldegalerie",
             "city": "Berlin",
@@ -504,6 +548,14 @@ The seats block contains four attributes:
 
 The location block provides information about the event starting/meeting point and address.
 
+### Seatings
+
+Events can contain additional data for seating plans.
+If the `seatings` array contains data, specific seats must be referenced in the order item when ordering (see prices).
+
+A visual seating plan is provided in the seatings data as well as all the information needed (categories, rows, types, seats, blocked seats and reservations) for providing your own visual representation, or seat selection widget.
+The visual seating plan is a standardized SVG graphic for display and manipulation via Javascript.
+
 ### Prices
 
 The prices block contains one ore more price objects in an array. There are two types of price objects for event date bookings:
@@ -514,17 +566,19 @@ default prices with three attributes:
 - optional (boolean), whether the price is a choice or not
 - price_cents (integer) price in EUR cents
 
-or scale prices with six attributes:
+or scale prices with following attributes:
 
 - scale_price_id (integer) internal database id for the scale price definition
-- title(string) title of scale price, e.g. "regular fee" or "reduced fee"
-- description(text)
+- seat_category_id (integer) internal database id for the seat category definition (only for events with seating plan)
+- seat_category_title (string) title or the seat category (only for events with seating plan)
+- title (string) title of scale price, e.g. "regular fee" or "reduced fee"
+- description (text) longer, more detailed description for the scale price
 - group (boolean), whether the price is for the whole group or per participant (per seat)
 - optional (boolean), whether the price is a choice or not
 - price_cents (integer) price in EUR cents
 
 
-Usualy, there will be one default price or at least one scale pice.
+Usually, there will be one default price or at least one scale price.
 
 
 ## Global dates list
@@ -598,7 +652,7 @@ curl "https://demo.gomus.de/api/v4/dates/languages"
 
 ### Response
 
-The json response contains a list of all languages used by online bookable date to build up filters. 
+The json response contains a list of all languages used by online bookable date to build up filters.
 
 
 ## Global events calendar
@@ -611,7 +665,7 @@ curl "https://demo.gomus.de/api/v4/calendar"
 
 > The above command returns JSON structured like the single events calendar, but for all events.
 
-The global calender provides a nice way to check wether dates are available for a day in range or not. With the default mode, the return value for each day in the specified range is a simple boolean.
+The global calender provides a nice way to check whether dates are available for a day in range or not. With the default mode, the return value for each day in the specified range is a simple boolean.
 
 
 ### Available filters:

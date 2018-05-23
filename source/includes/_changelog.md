@@ -1,5 +1,10 @@
 # Changelog
 
+### 4.4 - System 2.21.0 Update
+
+- updated documentation for events with seating plans
+- typo fixes
+
 ### 4.4
 
 - updated info for obsolete event calendar
