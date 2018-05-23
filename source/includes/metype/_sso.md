@@ -3,18 +3,18 @@
 Metype enables property owners to manage identity of users by providing a login and sign in service.
 Currently Metype allows social logins like Facebook, Twitter and Google Plus.
 
-## Terminology
+## Terminology - SSO
 * `User`: A person logged in to metype or registering via metype.
 * `OAuth`: A mechanishm which authenticates users based on a token/code.
 * `Authorization Code`: A code for a client to get authenticated on a server.
 
-## Prerequisites
+## Prerequisites - SSO
 * Sign up for an account @ www.metype.com.
 * You will find all your accounts @ www.metype.com/admin if you are signed in.
 * You will find the credentials for SSO in the `Embed Metype` Tab on your admin panel.
 * Set a callback url for your `Settings` tab under admins panel so that Metype knows the path to which it can redirect to after authenticating the user.
 
-## Integration
+## Integration - SSO
 
 ### Authorization Code Flow
 

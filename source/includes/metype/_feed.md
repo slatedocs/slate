@@ -2,12 +2,12 @@
 
 Metype provides a feed to represent audience activity on your site.
 
-## Terminology
+## Terminology - Feed
 * `Page`: It is the web page where you want to insert your commenting widget.
 * `User`: A person who can login and use the feed widget.
 * `Author`: A person who is logged in and has commented.
 
-## Installation
+## Installation - Feed
 ### Prerequisites
 * Sign up for an account @ www.metype.com.
 * You will find all your accounts @ www.metype.com/admin if you are signed in.

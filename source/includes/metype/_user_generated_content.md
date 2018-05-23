@@ -2,14 +2,14 @@
 
 Metype provides a form called user generated content to enable users to submit their opinions and views.
 
-## Terminology
+## Terminology - UGC
 * `Page`: It is the web page where you want to insert your UGC widget. This acts as a unique identifier for the UGC widget.
 * `User`: A person who can login and use the UGC widget.
 * `Author`: A person who is logged in and has submitted his/her views.
 * `User Generated Content (UGC)`: A piece of content submitted by a user or an individual.
 This person is not known by the property owner. This can be biased or unbiased about any topic.
 
-## Installation
+## Installation - UGC
 ### Prerequisites
 * Sign up for an account @ www.metype.com.
 * You will find all your accounts @ www.metype.com/admin if you are signed in.

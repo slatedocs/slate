@@ -2,7 +2,7 @@
 
 Metype provides a commenting system for your users to engage with your content.
 
-## Terminology
+## Terminology - Comments
 * `Page`: It is the web page where you want to insert your commenting widget. This acts as a unique identifier for the commenting widget.
 * `Comment Realm`: An instance of a commenting widget is a comment realm. There could be multiple comment realms in a page.
 * `User`: A person who can login and use the commenting widget.
@@ -15,7 +15,7 @@ Metype provides a commenting system for your users to engage with your content.
 * `Pre Moderation`: A moderation methodology in which the comment flows into a pending queue.
 * `Profanity`: Dirty language used in comments.
 
-## Installation
+## Installation - Comments
 ### Prerequisites
 * Sign up for an account @ www.metype.com.
 * You will find all your accounts @ www.metype.com/admin if you are signed in.
