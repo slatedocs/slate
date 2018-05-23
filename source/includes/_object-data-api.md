@@ -29,8 +29,8 @@ Some records returned from the API will contain a few properties that provide so
 Property | Description
 --------- | -----------
 @odata.type|The entity type of the record. Useful when requesting records from parent objects
-@odata.id|A URL that can be used to access the record
-@odata.editLink|Denotes if the record can be modified by the user making the request. Same as @odata.id link
+@odata.id|A URL that can be used to access the record. To remove this property from your requests, append the query string key/value of: **noIdLink=1** to your request URI
+@odata.editLink|Denotes if the record can be modified by the user making the request. Same as @odata.id link. To remove this property from your requests, append the query string key/value of: **noEditLink=1** to your request URI
 
 ## Record Limits
 > Example response with pagination link
@@ -43,7 +43,7 @@ Property | Description
 }
 ```
 
-We've provided a convenient way to access more data in any request for sequential data where the number of records exceeds 500. Simply call the url in the nextLink parameter and we'll respond with the next set of data.
+We've provided a convenient way to access more data in any request for sequential data where the number of records exceeds 5000. Simply call the url in the nextLink parameter and we'll respond with the next set of data.
 
 ## Object Relational Data
 Many Intelex objects have relations to other objects. These relations are configured as relation type or lookup type fields.  These fields are accessible via the API as navigation properties. 
@@ -62,6 +62,7 @@ System Object | Description |  System Name
 Employees | Intelex Employees | SysEmployeeEntity
 Locations | Intelex locations | SysLocationEntity
 Groups | Intelex Employee groups | SysGroupEntity
+EDIS Staging Table | Staging table used to process EDIS | EmployeeStagingEntity
 
 ## Requesting Object Data
 
@@ -2001,7 +2002,7 @@ Parameter | Description |Required | Example Value
 Content-Type | Content type for entire batch request |Yes|multipart/mixed;boundary=batch_AAA123
 Prefer|Preference to continue if error is encountered|No|odata.continue-on-error
 
-##### Change sets
+##### Change Sets
 
 When multiple operations are contained in a change set, all the operations are considered atomic, which means that if any one of the operations fail, any completed operations will be rolled back. Like a batch requests, change sets must have a Content-Type header with a value set to multipart/mixed with a boundary set to include the identifier of the change set using this pattern:
 
@@ -2031,3 +2032,7 @@ The end of the change set must contain a termination indicator like the followin
 `
 --changeset_BBB456---
 `
+
+##### Batch Limits
+
+The Batch service has its limits.  The maximum number of operations or changesets that can be included in the body of a $batch request is 100. The maximum number of operations inside a changeset is 1000. The size of the payload for a $batch request cannot exceed 1MB.

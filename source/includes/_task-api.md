@@ -1,4 +1,4 @@
-# Task API - Beta
+# Task API
 
 The Task API gives you the ability to retrieve your Intelex tasks. These tasks can be found in the My Tasks Summary application in your Intelex platform. Tasks are object data records that are assigned to an employee in the Intelex system. You can create tasks by [creating records](#create-a-record) and setting the workflow's person responsible or re-assign tasks by [updating a record's person responsible](#updating-person-responsible)
 
