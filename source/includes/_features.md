@@ -149,6 +149,20 @@ You'll see the raw SQL and a list of individual query execution times that appea
 
 The source of that trace is immediately displayed.
 
+### Slow Query Insights
+
+When the database monitoring addon is enabled, a new "Slow Query" insight is activated on your app dashboard:
+
+![slow query insights](slow_query_insights.png)
+
+This insight analyzes your queries in three dimensions, helping you focus on database optimizations that will most improve your app:
+
+1. __Which queries are most impacting app performance?__ This is based on the total time consumed of each query, where time consumed is the average query latency multiplied by the query throughput.
+2. __Which queries are significant bottlenecks inside web endpoints and background jobs?__ A single query that is responsible for a large percentage of the time spent in a transaction is a great place to investigate for a performance win.
+3. __Which queries are consistently slow?__ These are queries that have a high average latency.
+
+
+
 ### Pricing
 
 Database Monitoring is available as an addon. See your billing page for pricing information.
