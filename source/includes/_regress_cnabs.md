@@ -11,7 +11,7 @@ EXEMPLO
     "config_id": 9,
     "status": "processed",
     "type": "charge",
-    "file_name": "CI14058A.RET",
+    "filename": "CI14058A.RET",
     "_links":
       [
         {"rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1"},
@@ -36,7 +36,7 @@ Se seu plano não der direito a utilização desta API, a resposta com será com
 | type             | string          | indica o tipo de arquivo de remessa ('charge' ou 'payment')                                                                             |
 | config_id        | string          | identificador da configuração no Cobrato relacionada ao arquivo de remessa                                                              |
 | charge_config_id | string          | (DEPRECATED: use config_id) identificador da configuração de cobrança no Cobrato                                                        |
-| file_name        | string          | nome do arquivo de retorno                                                                                                              |
+|  filename        | string          | nome do arquivo de retorno                                                                                                              |
 | status           | string          | situação do arquivo CNAB, podendo ser "processing" (processando), "processed" (processado) e "processing_error" (erro de processamento) |
 | _links           | array of object | links relacionado CNAB de retorno                                                                                                       |
 
@@ -69,7 +69,7 @@ EXEMPLO DE CORPO DA RESPOSTA
     "config_id": 9,
     "status": "processed",
     "type": "charge",
-    "file_name": "CI14058A.RET",
+    "filename": "CI14058A.RET",
     "_links":
       [
         {"rel": "self", "method": "GET", "href": "https://app.cobrato.com/api/v1/regress_cnabs/1"},
@@ -126,7 +126,7 @@ Retorna uma lista em JSON contendo todos os CNABs de retorno que pertencem a sua
 É possível filtrar a lista através dos seguintes parâmetros:
 
 - `type`: Filtra pelo tipo de arquivo de retorno. O valor a ser informado é string com um dos tipos existentes de arquivo de retorno ("charge" ou "payment").
-- `config_id`: Filtra pela configuração informada. O valor informado deve ser o um id de uma configuração, seja de cobrança ou de pagamento. É bom usar sempre o filtro `type` em conjunto com esse.
+- `config_id`: Filtra pela configuração informada. O valor informado deve ser o id de uma configuração, seja de cobrança ou de pagamento. É **fortemente recomendado** usar sempre o filtro `type` em conjunto com esse para ter os resultados esperados.
 
 ## Criação de CNAB de Retorno
 
