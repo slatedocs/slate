@@ -34,7 +34,7 @@ The payments api endpoint is:
     "updated_by": null,
     "start_date": "2014-11-22T20:57:04.018Z",
     "remote_transaction_id": null,
-    "send_sms_message": False
+    "send_sms_message": false
 }
 ```
 
