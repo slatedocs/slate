@@ -15,15 +15,49 @@ The collection requests api endpoint is:
 
 ```json
 {
-    "id": 3620,
-    "organization": 1,
-    "amount": "30",
+    "id": 427737,
+    "organization": 4,
+    "amount": "3000.0000",
     "currency": "BXC",
-    "phone_number": "+80000000001",
-    "created": "2014-11-22T20:57:04.017Z",
-    "author": 15,
-    "modified": "2014-11-22T20:57:04.018Z",
-    "updated_by": 15
+    "phonenumber": "+80000000001",
+    "contact": {
+        "id": 127694,
+        "organization": 4,
+        "first_name": "Kennedy",
+        "last_name": "Amani",
+        "email": null,
+        "phone_number": "+80000000001",
+        "type": "employee",
+        "status": "active",
+        "metadata": {},
+        "phone_is_supported": "yes",
+        "phone_is_mm_registered": "yes",
+        "name_on_network": "Insufficient Data Or Too Low Score",
+        "name_matches_network_status": "checked",
+        "name_matches_network_score": 0.0,
+        "network_name": "",
+        "created": "2016-12-30T21:14:27Z",
+        "author": 134,
+        "modified": "2018-04-24T08:16:27Z",
+        "updated_by": 134
+    },
+    "reason": "Test Org",
+    "metadata": {
+        "my_id": "123ASDAsd123"
+    },
+    "created": "2018-05-25T19:06:51Z",
+    "author": 134,
+    "modified": "2018-05-25T19:06:51Z",
+    "updated_by": 134,
+    "collection": null,
+    "account": null,
+    "success_message": "",
+    "instructions": null,
+    "send_instructions": false,
+    "status": "pending",
+    "error_message": null,
+    "error_details": null,
+    "expiry_date": "2018-05-26 19:06:51.300273+00:00"
 }
 ```
 
@@ -34,6 +68,7 @@ organization | long integer | The ID of the organization that owns this collecti
 amount | decimal | The collection request amount
 currency | string | The 3 letter ISO currency code for the collection request. **Note:**: BXC is the Beyonic Test Currency code. See the "Testing" section for more information. Supported currency codes are BXC (Testing), UGX (Uganda), KES (Kenya)
 phonenumber | string | The phone number that the collection request is intended for, in international format, starting with a +
+contact | object | The contact that has been matched to this request. See the "Contacts" section for more information.
 reason | string or null | Internal description or reason for this collection request
 metadata | hash | Any custom metadata that was added to the collection request when it was created
 created | string | The date that the collection request was created, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
@@ -42,8 +77,11 @@ modified | string | The date that the collection request was last modified, in t
 updated_by | string | The ID of the user who last updated the collection request
 collection | long integer or null | The ID of the collection that fulfilled the collection request, if any
 success_message | string or null | The confirmation message delivered to the customer upon successful completion of this payment request
-send_instructions | boolean | *New in V2.* Defaults to False (but you probably want to set this to True). Indicates whether we should send payment instructions to the subscriber via SMS. Note that this field defaults to False, so if you want the collection request to actually notify the customer (with a USSD popup and an SMS), you must set this field to True. Omitting the field will prevent collection requests from being sent out to the customer.
-instructions | string or null | *New in V2.* Allows overriding of the default instructions sent to the subscriber. If omitted, default network-specific instructions will be sent to the subscriber via SMS. If you want to skip sending ANY sms instructions and turn off even the default instructions, set this parameter to "skip" (instructions = "skip")
+send_instructions | boolean | Defaults to False (but you probably want to set this to True). Indicates whether we should send payment instructions to the subscriber via SMS. Note that this field defaults to False, so if you want the collection request to actually notify the customer (with a USSD popup and an SMS), you must set this field to True. Omitting the field will prevent collection requests from being sent out to the customer.
+instructions | string or null | Allows overriding of the default instructions sent to the subscriber. If omitted, default network-specific instructions will be sent to the subscriber via SMS. If you want to skip sending ANY sms instructions and turn off even the default instructions, set this parameter to "skip" (instructions = "skip")
+status | string | This is the status of the collection request. Possible values are: pending, successful, failed, expired or reversed
+error_message | string | This will contain a short description in case of an error
+error_details | string | This will contain an detailed description in case of an error
 expiry_date | string or null | Defaults to "24 hours". Specifies the date and time when this collection request will be marked as expired. Examples of valid values for this field include strings such as "tomorrow", "24 hours", "2 minutes", or %d/%m/%Y format e.g 24/05/2019 or %d/%m/%Y %H:%M:%S format e.g 24/05/2019 13:24:12
 
 
@@ -191,18 +229,49 @@ public class CreateCollectionRequestExample {
 
 ```json
 {
-    "id": 3620,
-    "organization": 1,
-    "amount": "30",
+    "id": 427737,
+    "organization": 4,
+    "amount": "3000.0000",
     "currency": "BXC",
-    "phone_number": "+80000000001",
+    "phonenumber": "+80000000001",
+    "contact": {
+        "id": 127694,
+        "organization": 4,
+        "first_name": "Kennedy",
+        "last_name": "Amani",
+        "email": null,
+        "phone_number": "+80000000001",
+        "type": "employee",
+        "status": "active",
+        "metadata": {},
+        "phone_is_supported": "yes",
+        "phone_is_mm_registered": "yes",
+        "name_on_network": "Insufficient Data Or Too Low Score",
+        "name_matches_network_status": "checked",
+        "name_matches_network_score": 0.0,
+        "network_name": "",
+        "created": "2016-12-30T21:14:27Z",
+        "author": 134,
+        "modified": "2018-04-24T08:16:27Z",
+        "updated_by": 134
+    },
+    "reason": "Test Org",
     "metadata": {
         "my_id": "123ASDAsd123"
     },
-    "created": "2014-11-22T20:57:04.017Z",
-    "author": 15,
-    "modified": "2014-11-22T20:57:04.018Z",
-    "updated_by": 15
+    "created": "2018-05-25T19:06:51Z",
+    "author": 134,
+    "modified": "2018-05-25T19:06:51Z",
+    "updated_by": 134,
+    "collection": null,
+    "account": null,
+    "success_message": "",
+    "instructions": null,
+    "send_instructions": false,
+    "status": "pending",
+    "error_message": null,
+    "error_details": null,
+    "expiry_date": "2018-05-26 19:06:51.300273+00:00"
 }
 ```
 
@@ -221,19 +290,20 @@ success_message | No | String (Max 140 characters) | "Thank you for your payment
 send_instructions | No | Boolean | False | *New in V2.* Defaults to False (but you probably want to set this to True). Indicates whether we should send payment instructions to the subscriber via SMS. Note that this field defaults to False, so if you want the collection request to actually notify the customer (with a USSD popup and an SMS), you must set this field to True. Omitting the field will prevent collection requests from being sent out to the customer.
 instructions | No | String (Max 140 characters) | "Use #1234 as the reference" | *New in V2.* Allows overriding of the default instructions sent to the subscriber. If omitted, default network-specific instructions will be sent to the subscriber via SMS. If you want to skip sending ANY sms instructions and turn off even the default instructions, set this parameter to "skip" (instructions = "skip")
 expiry_date | No | Date String | 24 hours | Defaults to "24 hours". Specifies the date and time when this collection request will be marked as expired. Examples of valid values for this field include strings such as "tomorrow", "24 hours", "2 minutes", or %d/%m/%Y format e.g 24/05/2019 or %d/%m/%Y %H:%M:%S format e.g 24/05/2019 13:24:12
+
 ## Retrieving a single Collection Request
 
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/collectionrequests/230 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://app.beyonic.com/api/collectionrequests/427737 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
 require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-collection_request = Beyonic::CollectionRequest.get(23)
+collection_request = Beyonic::CollectionRequest.get(427737)
 
 p collection_request  # Examine the returned object
 ```
@@ -243,7 +313,7 @@ p collection_request  # Examine the returned object
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$collection_request = Beyonic_Collection_Request::get(23);
+$collection_request = Beyonic_Collection_Request::get(427737);
 
 print_r($collection_request);  // Examine the returned object
 ?>
@@ -253,7 +323,7 @@ print_r($collection_request);  // Examine the returned object
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-collection_request = beyonic.CollectionRequest.get(23)
+collection_request = beyonic.CollectionRequest.get(427737)
 
 print collection_request  # Examine the returned object
 ```
@@ -277,7 +347,7 @@ public class SingleCollectionRequestExample {
     public static void main(String[] args){
         URL url = null;
         try {
-            url = new URL(API_ENDPOINT + "/1");
+            url = new URL(API_ENDPOINT + "/427737");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
             conn.setRequestProperty("Content-Type", "application/json");
@@ -312,15 +382,49 @@ public class SingleCollectionRequestExample {
 
 ```json
 {
-    "id": 230,
-    "organization": 1,
-    "amount": "30",
+    "id": 427737,
+    "organization": 4,
+    "amount": "3000.0000",
     "currency": "BXC",
-    "phone_number": "+80000000001",
-    "created": "2014-11-22T20:57:04.017Z",
-    "author": 15,
-    "modified": "2014-11-22T20:57:04.018Z",
-    "updated_by": 15
+    "phonenumber": "+80000000001",
+    "contact": {
+        "id": 127694,
+        "organization": 4,
+        "first_name": "Kennedy",
+        "last_name": "Amani",
+        "email": null,
+        "phone_number": "+80000000001",
+        "type": "employee",
+        "status": "active",
+        "metadata": {},
+        "phone_is_supported": "yes",
+        "phone_is_mm_registered": "yes",
+        "name_on_network": "Insufficient Data Or Too Low Score",
+        "name_matches_network_status": "checked",
+        "name_matches_network_score": 0.0,
+        "network_name": "",
+        "created": "2016-12-30T21:14:27Z",
+        "author": 134,
+        "modified": "2018-04-24T08:16:27Z",
+        "updated_by": 134
+    },
+    "reason": "Test Org",
+    "metadata": {
+        "my_id": "123ASDAsd123"
+    },
+    "created": "2018-05-25T19:06:51Z",
+    "author": 134,
+    "modified": "2018-05-25T19:06:51Z",
+    "updated_by": 134,
+    "collection": null,
+    "account": null,
+    "success_message": "",
+    "instructions": null,
+    "send_instructions": false,
+    "status": "pending",
+    "error_message": null,
+    "error_details": null,
+    "expiry_date": "2018-05-26 19:06:51.300273+00:00"
 }
 ```
 
@@ -328,7 +432,7 @@ To retrieve a single collection request, provide the collection request id and a
 
 Parameter | Required | Type | Example | Notes
 --------- | -------- | ---- | ------- | -----
-id | Yes | Integer | 23 | The id of the collection you want to retrieve
+id | Yes | Integer | 427737 | The id of the collection you want to retrieve
 
 ## Listing all Collection Requests
 
@@ -420,47 +524,98 @@ public class ListAllCollectionRequestsExample {
 
 ```json
 {
-    "count": 3,
-    "next": "http://localhost:8000/api/collectionrequests?offset=10",
+    "count": 31271,
+    "next": "https://app.beyonic.com/api/collectionrequests?limit=10&offset=10",
     "previous": null,
-    "results": [
-        {
-            "id": 99,
-            "organization": "Beyonic",
-            "amount": "3000.0000",
-            "currency": "BXC",
-            "phonenumber": "+80000000001",
-            "metadata": null,
-            "created": "2015-08-10T16:10:01Z",
-            "author": 42,
-            "modified": "2015-08-10T16:10:01Z",
-            "updated_by": 42
+    "results": [{
+        "id": 427737,
+        "organization": 4,
+        "amount": "3000.0000",
+        "currency": "BXC",
+        "phonenumber": "+80000000001",
+        "contact": {
+            "id": 127694,
+            "organization": 4,
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": null,
+            "phone_number": "+80000000001",
+            "type": "employee",
+            "status": "active",
+            "metadata": {},
+            "phone_is_supported": "yes",
+            "phone_is_mm_registered": "yes",
+            "name_on_network": "Insufficient Data Or Too Low Score",
+            "name_matches_network_status": "checked",
+            "name_matches_network_score": 0.0,
+            "network_name": "",
+            "created": "2016-12-30T21:14:27Z",
+            "author": 134,
+            "modified": "2018-04-24T08:16:27Z",
+            "updated_by": 134
         },
-        {
-            "id": 100,
-            "organization": "Beyonic",
-            "amount": "3000.0000",
-            "currency": "BXC",
-            "phonenumber": "+80000000001",
-            "metadata": null,
-            "created": "2015-08-10T16:10:01Z",
-            "author": 42,
-            "modified": "2015-08-10T16:10:01Z",
-            "updated_by": 42
+        "reason": "Test Org",
+        "metadata": {
+            "my_id": "123ASDAsd123"
         },
-        {
-            "id": 101,
-            "organization": "Beyonic",
-            "amount": "3000.0000",
-            "currency": "BXC",
-            "phonenumber": "+80000000001",
-            "metadata": null,
-            "created": "2015-08-10T16:10:01Z",
-            "author": 42,
-            "modified": "2015-08-10T16:10:01Z",
-            "updated_by": 42
-        }
-    ]
+        "created": "2018-05-25T19:06:51Z",
+        "author": 134,
+        "modified": "2018-05-25T19:06:51Z",
+        "updated_by": 134,
+        "collection": null,
+        "account": null,
+        "success_message": "",
+        "instructions": null,
+        "send_instructions": false,
+        "status": "pending",
+        "error_message": null,
+        "error_details": null,
+        "expiry_date": "2018-05-26 19:06:51.300273+00:00"
+    }, {
+        "id": 427028,
+        "organization": 4,
+        "amount": "50000.0000",
+        "currency": "UGX",
+        "phonenumber": "+256XXXXXXXXX",
+        "contact": {
+            "id": 188525,
+            "organization": 4,
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": null,
+            "phone_number": "+256XXXXXXXXX",
+            "type": "employee",
+            "status": "active",
+            "metadata": {},
+            "phone_is_supported": "yes",
+            "phone_is_mm_registered": "yes",
+            "name_on_network": "John Doe",
+            "name_matches_network_status": "checked",
+            "name_matches_network_score": 100.0,
+            "network_name": "",
+            "created": "2017-05-11T19:04:40Z",
+            "author": 134,
+            "modified": "2018-02-22T21:00:15Z",
+            "updated_by": 432
+        },
+        "reason": "Test Org",
+        "metadata": {
+            "my_id": "123ASDAsd123"
+        },
+        "created": "2018-05-25T14:56:56Z",
+        "author": 134,
+        "modified": "2018-05-25T14:58:01Z",
+        "updated_by": 134,
+        "collection": null,
+        "account": null,
+        "success_message": "",
+        "instructions": null,
+        "send_instructions": true,
+        "status": "pending",
+        "error_message": null,
+        "error_details": null,
+        "expiry_date": "2018-05-26 14:56:55.917817+00:00"
+    }, ... ]
 }
 ```
 
@@ -471,7 +626,7 @@ To retrieve a list of all collections, make a GET request to the collections end
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/collectionrequests?remote_transaction_id=12345&amount=500 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl "https://app.beyonic.com/api/collectionrequests?phonenumber=%2B80000000001&amount=500" -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -479,7 +634,7 @@ require 'beyonic'
 Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 collection_requests = Beyonic::CollectionRequest.list(
-  remote_transaction_id: '12345',
+  phonenumber: '+80000000001',
   amount: 500
 )
 
@@ -492,7 +647,7 @@ require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
 $collection_requests = Beyonic_Collection_Request::getAll(array(
-  "remote_transaction_id" => "12345",
+  "phonenumber" => "+80000000001",
   "amount" => 500
 ));
 
@@ -504,7 +659,7 @@ print_r($collection_requests);  // Examine the returned objects
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-collection_requests = beyonic.CollectionRequest.list(remote_transaction_id='12345', amount=500)
+collection_requests = beyonic.CollectionRequest.list(phonenumber='+80000000001', amount=500)
 
 print collection_requests  # Examine the returned objects
 ```

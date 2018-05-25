@@ -17,10 +17,10 @@ The following events are supported
 
 Event | Description | Object returned in data
 --------- | -------- | ----------------------
-payment.status.changed | Triggered any time a payment changes status. | Payment object
+payment.status.changed | Triggered any time a payment changes state. See the "Payments" section for possible state values. | Payment object
 collection.received | Triggered any time a collection (an incoming payment) is received from a customer | Collection object
 contact.created | Triggered any time a contact is created in your account | Contact object
-collectionrequest.status.changed | Triggered any time a collection request status changes. | CollectionRequest object
+collectionrequest.status.changed | Triggered any time a collection request status changes. See the "Collection Requests" section for possible status values. | CollectionRequest object
 
 ## The Event object
 
