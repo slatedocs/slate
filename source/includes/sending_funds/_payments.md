@@ -33,7 +33,8 @@ The payments api endpoint is:
     "modified": "2014-11-22T20:57:04.018Z",
     "updated_by": null,
     "start_date": "2014-11-22T20:57:04.018Z",
-    "remote_transaction_id": null
+    "remote_transaction_id": null,
+    "send_sms_message": False
 }
 ```
 
@@ -62,6 +63,7 @@ author | long integer | The ID of the user who created the payment
 modified | string | The date that the payment was last modified, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
 updated_by | string | The ID of the user who last updated the payment
 remote_transaction_id | string | The transaction id provided by the mobile network operator. This will only be available once the payment is completed.
+send_sms_message | boolean | Defaults to False. Indicates whether we should send the description as an sms message. 
 
 ## Creating a new Payment
 
