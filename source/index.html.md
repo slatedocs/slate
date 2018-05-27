@@ -1,11 +1,11 @@
 ---
-title: API Reference
+title: CoinBTR API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
+  #- ruby
+  #- python
+  #- javascript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -19,14 +19,34 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+CoinBTR provides a simple and powerful REST API to help you automatically perform nearly all actions you can at `https://coinbtr.com/`.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+# General
+
+Before
+
+* All requests use the `application/json` content type and go over `https`. The base url is `https://api.coinbtr.com/v1/`.
+* All requests are `GET`, `POST` and `PUT` requests and all responses come in a default response object with the result in the result field.
+* Always check the `success` flag to ensure that your API call succeeded.
+
+## HTTPS API Responses
+
+CoinBTR REST API calls will always return a JSON Object.
+
+* A successful API calls will response a JSON  objects that looks like:
+
+`{ "success": true, "payload": {RELEVANT_DATA_HERE} }`
+
+* An successful API calls will response a JSON  objects that looks like:
+
+`{ "success": false, "error": {"message": ERROR_MESSAGE, "code": ERROR_CODE} }`
+
+## Error codes
 
 # Authentication
 
+## API Access tokens
 > To authorize, use this code:
 
 ```ruby
@@ -64,6 +84,40 @@ Kittn expects for the API key to be included in all API requests to the server i
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
+
+# Profile
+
+# Wallets
+
+## Get wallet balance
+available to spend
+available to withdraw
+
+## Make withdraw
+
+## Get fund address
+
+## List withdraws
+
+## List founds
+
+#Trading
+
+## Place an order
+
+## Cancel an open order
+
+## List open orders
+
+## Get open order
+
+# Transactions
+
+## List trasactions
+
+## Get Transaction
+
+#Market
 
 # Kittens
 
@@ -236,4 +290,3 @@ This endpoint deletes a specific kitten.
 Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to delete
-
