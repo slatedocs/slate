@@ -60,3 +60,16 @@ The color and font are confiruable according to your liking -->
   });
 </script>
 ```
+
+### Wordpress
+1. Make a note of your Metype Account ID. This is present under the `Embed Metype` Tab in your admin panel.
+2. Now visit your WordPress admin page. E.g. yourwebsite.com/wp-admin.
+3. Go to `Plugins` and click on `Add new`.
+4. Search for `Metype`.
+5. You’ll find `Metype` by `Quintype Technologies India Pvt Ltd`.
+6. Click on `Install Now`.
+7. Click on `Activate`.
+8. You will now be able to see Metype on the left hand side of the WordPress admin page.
+9. Enter your Metype Account ID, review your settings and save changes.
+   Note: The Metype Account ID is the one you had noted down in Step 1, available in metype.com/admin —> Embed Metype.
+10. The Metype commenting widget and feed widget will now begin to appear in all of your WordPress pages.
