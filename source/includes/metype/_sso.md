@@ -12,6 +12,7 @@ Currently Metype allows social logins like Facebook, Twitter and Google Plus.
 * Sign up for an account @ www.metype.com.
 * You will find all your accounts @ www.metype.com/admin if you are signed in.
 * You will find the credentials for SSO in the `Embed Metype` Tab on your admin panel.
+* Please whitelist your website url in `Allow Multiple Domains` under `Settings` Tab of the admin panel if you are embedding the widget on a website other than the website url provided during account creation. If this is not done you will get an error called `This domain is not whitelisted` on the browser console when you are trying to embed the script. Visually you ll see the `metype` logo appearing and the widget not rendering on the browser.
 * Set a callback url for your `Settings` tab under admins panel so that Metype knows the path to which it can redirect to after authenticating the user.
 
 ## Integration - SSO

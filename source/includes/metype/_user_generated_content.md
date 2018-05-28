@@ -14,7 +14,7 @@ This person is not known by the property owner. This can be biased or unbiased a
 * Sign up for an account @ www.metype.com.
 * You will find all your accounts @ www.metype.com/admin if you are signed in.
 * You can find account specific information in the `Embed Metype` Tab.
-
+* Please whitelist your website url in `Allow Multiple Domains` under `Settings` Tab of the admin panel if you are embedding the widget on a website other than the website url provided during account creation. If this is not done you will get an error called `This domain is not whitelisted` on the browser console when you are trying to embed the script. Visually you ll see the `metype` logo appearing and the widget not rendering on the browser.
 
 ### Javascript
 * Setup the initialization script in the `<head>` section in case of a website.
