@@ -129,7 +129,7 @@ GET /geo/districts HTTP/1.1
 }
 ```
 
-This endpoint retrieves all districts.
+This endpoint retrieves all districts of given province.
 
 ### HTTP Request
 
@@ -182,7 +182,7 @@ GET /geo/communes HTTP/1.1
 }
 ```
 
-This endpoint retrieves all communes.
+This endpoint retrieves all communes of given district.
 
 ### HTTP Request
 
@@ -532,7 +532,7 @@ business_id | true | integer | | Id one business in list businesses you get in a
 page | false | integer | 1 | Page number
 start_date | false | integer | | Start date `timestamp`
 end_date | false | integer | | End date `timestamp`
-is_sort_by_updated_at | false | boolean | false | If `true` trackings will sort by `updated_at` instead of default sort by `inserted_at`
+sort_by | false | string | inserted_at | If `sort_by`= `"updated_at"` trackings will sort by `updated_at` instead of default sort by `inserted_at`
 filter_by_status | false | string | | One or more status of trackings separate by `,`
 filter_inner_outer | false | integer | | `1` is inner, `2` is outer in same province and `3` is outer
 creator_id | false | string | | id of creator `UUID`
