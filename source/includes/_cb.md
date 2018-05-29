@@ -117,9 +117,9 @@ var success = request.Post("/v2/cb/create", parameters);
     "employees_number": "Please enter number of employees",
     "start_year": "Please enter starting year",
     "working_hours": "Your must provide Working Hours for at least one day in the week",
+    "social_profile_links": "The supplied URL for facebook is too long (max 256 characters)",
     "campaign_status": "Invalid campaign status",
-    "location_id": "Location with ID 0 not found or doesn't belong to this customer",
-    "social_profile_links": "The supplied URL for facebook is too long (max 256 characters)"
+    "location_id": "Location with ID 0 not found or doesn't belong to this customer"§
   }
 }
 ```
@@ -196,7 +196,7 @@ special_offer |
 special_offer_description |		
 special_offer_expiry_date |		
 payment_methods	| <p>String with '&#124;' delimiter. E.g. cash&#124;visa&#124;mastercard&#124;amex&#124;cheque&#124;atm&#124;discover. Possible values - cash&#124;visa&#124;mastercard&#124;amex&#124;cheque&#124;invoice&#124;insurance&#124;atm&#124;travellers&#124;financing&#124;paypal&#124;discover</p>
-social_profile_links | JSON encoded object. See example on the right for reference. Social channels supported are facebook, twitter, linkedin, pinterest and instagram.
+social_profile_links | JSON encoded object. Social channels supported are facebook, twitter, linkedin, pinterest and instagram.
 receive-email-alerts | 		
 alert-email-addresses | 		
 old_business_name |		
@@ -279,7 +279,8 @@ var success = request.Put("/v2/cb/" + campaignId + "", parameters);
     "business_categories": "Please enter at least one business category or tag",
     "campaign_state": "Please select state",
     "campaign_city": "Please select location",
-    "address1": "Please enter street address",  
+    "address1": "Please enter street address",
+    "working_hours": "Your must provide Working Hours for at least one day in the week",
     "social_profile_links": "Please use valid social channels. Channels supported are facebook, twitter, linkedin, pinterest and instagram."  
   }
 }
