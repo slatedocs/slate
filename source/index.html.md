@@ -3,12 +3,9 @@ title: CoinBTR API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  #- ruby
-  #- python
-  #- javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://coinbtr.com/signup'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -19,35 +16,134 @@ search: true
 
 # Introduction
 
-CoinBTR provides a simple and powerful REST API to help you automatically perform nearly all actions you can at `https://coinbtr.com/`.
+CoinBTR provides a simple and powerful REST API to help you to automatically perform nearly all actions you can at `coinbtr.com`.
 
 
 # General
 
-Before
+Before making API calls consider the following:
 
 * All requests use the `application/json` content type and go over `https`. The base url is `https://api.coinbtr.com/v1/`.
 * All requests are `GET`, `POST` and `PUT` requests and all responses come in a default response object with the result in the result field.
 * Always check the `success` flag to ensure that your API call succeeded.
 
-## HTTPS API Responses
+## HTTP API Responses
 
 CoinBTR REST API calls will always return a JSON Object.
 
-* A successful API calls will response a JSON  objects that looks like:
+* Successful API calls will response a JSON  objects that looks like:
 
-`{ "success": true, "payload": {RELEVANT_DATA_HERE} }`
+`{
+  "success": true,
+  "msg":"",
+  "data": {
+    RELATED_DATA_HERE
+    }
+  }`
 
-* An successful API calls will response a JSON  objects that looks like:
+* Unsuccessful API calls will response a JSON  objects that looks like:
 
-`{ "success": false, "error": {"message": ERROR_MESSAGE, "code": ERROR_CODE} }`
+`{
+  "success": false,
+  "msg": {
+    "error": ERROR_MESSAGE,
+    "code": ERROR_CODE
+  }
+}`
 
 ## Error codes
 
 # Authentication
 
-## API Access tokens
-> To authorize, use this code:
+## API Key
+
+# Profile Operations
+
+## Profile information
+### HTTP Request
+`GET /api/v1/wallet/user/profile`
+```shell
+# With shell, you can just pass the correct header with each request
+curl "api_endpoint_here"
+  -H "Authorization: meowmeowmeow"
+```
+
+## Session information
+### HTTP Request
+`GET /api/v1/wallet/user/session`
+
+# Wallet Operations
+
+## Get Deposit Address
+### HTTP Request
+`GET /api/v1/wallet/getdepositaddress`
+
+## Withdraw
+### HTTP Request
+`POST /api/v1/wallet/whithdraw`
+
+## List Balances
+### HTTP Request
+`GET /api/v1/wallet/listbalances`
+
+## Get Balance
+### HTTP Request
+`GET /api/v1/wallet/getbalance`
+
+## List Withdraws
+### HTTP Request
+`GET /api/v1/wallet/listwithdraws`
+
+## List Deposit
+### HTTP Request
+`GET /api/v1/wallet/listdeposits`
+
+#Trading Operations
+
+## Place a buy limit order
+### HTTP Request
+`POST /api/v1/trading/place/buylimit`
+
+## Place a sell limit order
+### HTTP Request
+`POST /api/v1/trading/place/selllimit`
+
+## Cancel an open order
+### HTTP Request
+`POST /api/v1/trading/cancel/buylimit`
+
+## List open orders
+### HTTP Request
+`POST /api/v1/trading/listopenorders`
+
+## Get open order
+### HTTP Request
+`POST /api/v1/trading/listopenorders`
+
+## List Trasactions
+
+## Get Transaction
+
+#Market- Public API Methods
+
+## Get tiker
+### HTTP Request
+`GET /market/gettiker`
+
+## Get Order Book
+### HTTP Request
+`GET /market/getorderbook`
+
+## Get 24H Volume
+### HTTP Request
+`GET /market/get24hvolume`
+
+## Get Currencies
+### HTTP Request
+`GET /market/getcurrencies`
+
+
+> In order of getting acces to the API. You need to get a customized API key from profile > settings > API Keys. Make sure to allow the proper
 
 ```ruby
 require 'kittn'
@@ -85,39 +181,6 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Profile
-
-# Wallets
-
-## Get wallet balance
-available to spend
-available to withdraw
-
-## Make withdraw
-
-## Get fund address
-
-## List withdraws
-
-## List founds
-
-#Trading
-
-## Place an order
-
-## Cancel an open order
-
-## List open orders
-
-## Get open order
-
-# Transactions
-
-## List trasactions
-
-## Get Transaction
-
-#Market
 
 # Kittens
 
