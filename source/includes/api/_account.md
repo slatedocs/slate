@@ -9,7 +9,7 @@ A unique identifier for this account.
 ####external_id
 
 The external identifier for this account.
-    
+
 **NOTE:** This field is only used or returned when external ids are enabled for the site.
 
 ####first_name
@@ -79,6 +79,10 @@ Web/blog address.
 ####timezone
 
 Timezone for this account.
+
+####olson_timezone
+
+The Olson timezone for this account.
 
 ####profile_type
 
