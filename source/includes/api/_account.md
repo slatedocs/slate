@@ -80,6 +80,10 @@ Web/blog address.
 
 Timezone for this account.
 
+####olson_timezone
+
+The Olson timezone for this account.
+
 ####profile_type
 
 profile type identifier for this account.
