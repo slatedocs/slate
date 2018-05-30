@@ -505,6 +505,9 @@ acknowledgeDeclineReason
 
 id and label attributes are provided.
 
+####image
+Boolean; if specified and true, the results returned will include an image_url attribute giving a url to the shift's covering_member's user image or null if no image is available.
+
 ####custom_multipick
 
 id and name attributes are provided.
