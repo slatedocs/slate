@@ -9,6 +9,7 @@ Scout's Python agent auto-instruments Django and Flask applications, SQL queries
 * Python 2.7 and 3.4+
 * Django 1.10+
 * Flask 0.10+
+* Celery 3.1+
 
 <h2 id="python-install">Installation</h2>
 
@@ -144,8 +145,23 @@ Scout auto-instruments the following Python libraries:
   * Template blocks
   * SQL queries
 * Flask
+* [Celery](#celery)
 
 More to come - suggest others in the [scout_apm_python](https://github.com/scoutapp/scout_apm_python) GitHub repo.  
+
+## Celery
+
+Add the following to instrument Celery workers:
+
+<pre class="terminal" style="width: initial">
+<span>import scout_apm.celery</span>
+from celery import Celery
+
+app = Celery('tasks', backend='redis://localhost', broker='redis://localhost')
+<span>scout_apm.celery.install()</span>
+</pre>
+
+Tasks will appear in the "Background Jobs" area of the Scout UI.
 
 <h2 id="python-configuration">Configuration Reference</h2>
 
