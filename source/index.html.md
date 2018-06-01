@@ -62,15 +62,15 @@ CoinBTR REST API calls will always return a JSON Object.
 ## Profile information
 ### HTTP Request
 `GET /api/v1/wallet/user/profile`
+
 ```shell
-# With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
   -H "Authorization: meowmeowmeow"
 ```
 
 ## Session information
 ### HTTP Request
-`GET /api/v1/wallet/user/session`
+`GET /api/v1/user/session`
 
 # Wallet Operations
 
@@ -78,9 +78,29 @@ curl "api_endpoint_here"
 ### HTTP Request
 `GET /api/v1/wallet/getdepositaddress`
 
+
 ## Withdraw
+```shell
+ADDRESS='2N9JiEUYgRwKAw6FfnUca54VUeaSYSL9qqG'
+COIN=btc
+AMOUNT=0.001
+
+curl -X POST \
+-H "Content-Type: application/json" \
+-H "Authorization: Token $ACCESS_TOKEN" \
+-d "{ \"coin\": \"$COIN\", \"address\": \"$ADDRESS\", \"amount\": $AMOUNT }" \
+https://coinbtr.com/api/v1/wallet/withdraw
+```
+
 ### HTTP Request
 `POST /api/v1/wallet/whithdraw`
+## Body Parameters
+
+
+| Parameter | Type | Required | Coins | Description |
+|---|---|---|---|---|
+| coin | String | Yes | All | Cryptocurrency  |
+| address | String | Yes | All | Destination address. |
 
 ## List Balances
 ### HTTP Request
