@@ -3,6 +3,7 @@ title: CoinBTR API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
+  - python
 
 toc_footers:
   - <a href='https://coinbtr.com/signup'>Sign Up for a Developer Key</a>
@@ -16,10 +17,10 @@ search: true
 
 # Introduction
 
-CoinBTR provides a simple and powerful REST API to help you to automatically perform nearly all actions you can at `coinbtr.com`.
+CoinBTR provides a simple and practical REST API to help you to automatically perform nearly all actions you can at `coinbtr.com`.
 
 
-# General
+## General considerations
 
 Before making API calls consider the following:
 
@@ -75,36 +76,122 @@ curl "api_endpoint_here"
 # Wallet Operations
 
 ## Get Deposit Address
+
+```shell
+COINBTR_TOKEN='your_token_id'
+COIN=btc
+
+curl -X POST \
+-H "Content-Type: application/json" \
+-H "Authorization: Token $COINBTR_TOKEN" \
+-d "{ \"coin\": \"$COIN\" }" \
+https://coinbtr.com/api/v1/wallet/getdepositaddress
+```
+
+This API call will bring you a deposit address funding cryptocurrency wallet.
+
+
 ### HTTP Request
 `GET /api/v1/wallet/getdepositaddress`
 
+> The API call will response this:
+
+```json
+{
+  "success": true,
+  "msg": "",
+  "data": {
+    "coin":"btc",
+    "address": "2NFfxvXpAWjKng7enFougtvtxxCJ2hQEMo4",
+  }
+}
+```
+### Body Parameters
+
+| Parameter | Type | Required | Coins | Description |
+|---|---|---|---|---|
+| coin | String | Yes | All | Cryptocurrency symbol (e.g. 'btc'). |
 
 ## Withdraw
 ```shell
+COINBTR_TOKEN='your_token_id'
 ADDRESS='2N9JiEUYgRwKAw6FfnUca54VUeaSYSL9qqG'
 COIN=btc
 AMOUNT=0.001
 
 curl -X POST \
 -H "Content-Type: application/json" \
--H "Authorization: Token $ACCESS_TOKEN" \
+-H "Authorization: Token $COINBTR_TOKEN" \
 -d "{ \"coin\": \"$COIN\", \"address\": \"$ADDRESS\", \"amount\": $AMOUNT }" \
 https://coinbtr.com/api/v1/wallet/withdraw
 ```
+This API call allows you to send cryptocurrencies to a given destination address.
+
 
 ### HTTP Request
 `POST /api/v1/wallet/whithdraw`
-## Body Parameters
 
+> The API response will look like this:
+
+```json
+{
+  "success": true,
+  "msg": "",
+  "data": {
+    "coin":"BTC",
+    "txid": "a4b50c3f7fb5dd9273f5be69661b79eed61570421f76ec903ad914d39980549e",
+    "status": "signed",
+    "date": "2018-07-02T04:57:55.942Z"
+  }
+}
+```
+### Body Parameters
 
 | Parameter | Type | Required | Coins | Description |
 |---|---|---|---|---|
-| coin | String | Yes | All | Cryptocurrency  |
+| coin | String | Yes | All | Cryptocurrency symbol (e.g. 'btc'). |
 | address | String | Yes | All | Destination address. |
+| amount | Float | Yes | All | Amount to send. |
 
 ## List Balances
+```shell
+COINBTR_TOKEN='your_token_id'
+
+curl -X GET \
+-H "Content-Type: application/json" \
+-H "Authorization: Token $COINBTR_TOKEN" \
+https://coinbtr.com/api/v1/wallet/listbalances
+```
+
+This API call is used to retrieve your wallets balances, including their deposit addresses.
+
 ### HTTP Request
+> The API response will look like this:
+
+```json
+{
+	"success" : true,
+	"message" : "",
+	"data" : [{
+			"coin" : "LTC",
+			"balance" : 0.00000000,
+			"available" : 0.00000000,
+			"pending" : 0.00000000,
+			"depositAddress" : "DLxcEt3AatMyr2NTatzjsfHNoB9NT62HiF"
+		}, {
+			"coin" : "BTC",
+			"balance" : 14.21549076,
+			"available" : 14.21549076,
+			"pending" : 0.00000000,
+			"depositAddress" : "1Mrcdr6715hjda34pdXuLqXcju6qgwHA31"
+		}
+	]
+}
+```
 `GET /api/v1/wallet/listbalances`
+
+### Body Parameters
+None
 
 ## Get Balance
 ### HTTP Request
@@ -114,7 +201,7 @@ https://coinbtr.com/api/v1/wallet/withdraw
 ### HTTP Request
 `GET /api/v1/wallet/listwithdraws`
 
-## List Deposit
+## List Deposits
 ### HTTP Request
 `GET /api/v1/wallet/listdeposits`
 
@@ -146,13 +233,18 @@ https://coinbtr.com/api/v1/wallet/withdraw
 
 #Market- Public API Methods
 
-## Get tiker
-### HTTP Request
-`GET /market/gettiker`
+## List Books
+
+This endpoint returns a list of existing exchange order books and their respective order placement limits.
+`GET /market/listbooks`
 
 ## Get Order Book
 ### HTTP Request
 `GET /market/getorderbook`
+
+## Get tiker
+### HTTP Request
+`GET /market/gettiker`
 
 ## Get 24H Volume
 ### HTTP Request
