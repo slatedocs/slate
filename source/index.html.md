@@ -58,6 +58,8 @@ CoinBTR REST API calls will always return a JSON Object.
 
 ## API Key
 
+In the spirit of keeping things simple, we offer an easy to manage API Key authentication method. You can have multiple API keys, each with their own level of rights. To manage your API keys please go to Settings > Manage API Keys.
+
 # Profile Operations
 
 ## Profile information
