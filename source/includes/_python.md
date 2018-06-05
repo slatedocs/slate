@@ -6,10 +6,12 @@ Scout's Python agent auto-instruments Django and Flask applications, SQL queries
 
 <h2 id="python-requirements">Requirements</h2>
 
-* Python 2.7 and 3.4+
-* Django 1.10+
+* Python 3.4+ (request Python 2.7 support via [this GitHub issue](https://github.com/scoutapp/scout_apm_python/issues/45))
+* Django 1.10+ (request Django 1.8 and 1.9 support via [this GitHub issue](https://github.com/scoutapp/scout_apm_python/issues/26))
 * Flask 0.10+
 * Celery 3.1+
+
+
 
 <h2 id="python-install">Installation</h2>
 
