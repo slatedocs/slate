@@ -17,22 +17,22 @@ search: true
 
 # Introduction
 
-CoinBTR provides a simple and practical REST API to help you to automatically perform nearly all actions you can at `coinbtr.com`.
-
+CoinBTR provides a simple and practical REST API to help you to automatically perform nearly all actions you can do in our platform [CoinBTR](https://coinbtr.com).
 
 ## General considerations
 
 Before making API calls consider the following:
 
-* All requests use the `application/json` content type and go over `https`. The base url is `https://api.coinbtr.com/v1/`.
-* All requests are `GET`, `POST` and `PUT` requests and all responses come in a default response object with the result in the result field.
+* All requests use the `application/json` content type and go over `http`. The base url is `https://coinbtr.com/api/v1/`.
+* All requests are `GET` and `POST` requests and all responses come in a default response object with the result in the `data` field.
 * Always check the `success` flag to ensure that your API call succeeded.
+* If something goes wrong look at the `msg` field. There you will find the error description and error code.
 
 ## HTTP API Responses
 
 CoinBTR REST API calls will always return a JSON Object.
 
-* Successful API calls will response a JSON  objects that looks like:
+* A successful API call will response a JSON  object that looks like:
 
 `{
   "success": true,
@@ -42,7 +42,7 @@ CoinBTR REST API calls will always return a JSON Object.
     }
   }`
 
-* Unsuccessful API calls will response a JSON  objects that looks like:
+* An unsuccessful API call will response a JSON  object that looks like:
 
 `{
   "success": false,
@@ -58,29 +58,58 @@ CoinBTR REST API calls will always return a JSON Object.
 
 ## API Key
 
-In the spirit of keeping things simple, we offer an easy to manage API Key authentication method. You can have multiple API keys, each with their own level of rights. To manage your API keys please go to Settings > Manage API Keys.
+In order to use our platform through API calls you must request and configure as many API keys as you need. You can configure each API key with its own level of permission. To add, delete or modify your API keys please go to your profile `Settings` > `Manage API Keys`.
 
-# Profile Operations
-
-## Profile information
-### HTTP Request
-`GET /api/v1/wallet/user/profile`
-
-```shell
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+<aside class="notice">
+API key is always needed for accessing private methods.
+</aside>
+<aside class="warning">
+You must have 2FA enabled to create an API key.
+</aside>
+# Session
 
 ## Session information
+
+```shell
+COINBTR_TOKEN='your_api_key'
+
+curl -X GET \
+-H "Authorization: Token $COINBTR_TOKEN" \
+https://coinbtr.com/api/v1/user/session
+```
+This API call will response relevant information about the current session associated to your account and the token key used.
+
 ### HTTP Request
+> The API call will response this:
+
+```json
+{
+  "success": true,
+  "msg": "",
+  "data": {
+    "username": "jhon@mail.com",
+    "ip":"189.200.10.0",
+    "token": {
+      "expires": "date",
+      "permissions": {
+        "withdraw": true,
+        "deposit": true,
+        "trade": false
+      }
+    }
+  }
+}
+```
 `GET /api/v1/user/session`
+### Body Parameters
+None
 
 # Wallet Operations
 
 ## Get Deposit Address
 
 ```shell
-COINBTR_TOKEN='your_token_id'
+COINBTR_TOKEN='your_api_key'
 COIN=btc
 
 curl -X POST \
@@ -89,9 +118,7 @@ curl -X POST \
 -d "{ \"coin\": \"$COIN\" }" \
 https://coinbtr.com/api/v1/wallet/getdepositaddress
 ```
-
-This API call will bring you a deposit address funding cryptocurrency wallet.
-
+This API call will bring you a deposit address for funding your cryptocurrency wallet.
 
 ### HTTP Request
 `GET /api/v1/wallet/getdepositaddress`
@@ -114,9 +141,10 @@ This API call will bring you a deposit address funding cryptocurrency wallet.
 |---|---|---|---|---|
 | coin | String | Yes | All | Cryptocurrency symbol (e.g. 'btc'). |
 
-## Withdraw
+## Cryptocurrency Withdraw
+
 ```shell
-COINBTR_TOKEN='your_token_id'
+COINBTR_TOKEN='your_api_key'
 ADDRESS='2N9JiEUYgRwKAw6FfnUca54VUeaSYSL9qqG'
 COIN=btc
 AMOUNT=0.001
@@ -127,8 +155,7 @@ curl -X POST \
 -d "{ \"coin\": \"$COIN\", \"address\": \"$ADDRESS\", \"amount\": $AMOUNT }" \
 https://coinbtr.com/api/v1/wallet/withdraw
 ```
-This API call allows you to send cryptocurrencies to a given destination address.
-
+This API call allows you to send cryptocurrency to a given destination address.
 
 ### HTTP Request
 `POST /api/v1/wallet/whithdraw`
@@ -155,9 +182,16 @@ This API call allows you to send cryptocurrencies to a given destination address
 | address | String | Yes | All | Destination address. |
 | amount | Float | Yes | All | Amount to send. |
 
+## MXN Withdraw (SPEI)
+This API call is used to withdraw MXN to a given clabe, card number.
+
+### HTTP Request
+
+### Body Parameters
+
 ## List Balances
 ```shell
-COINBTR_TOKEN='your_token_id'
+COINBTR_TOKEN='your_api_key'
 
 curl -X GET \
 -H "Content-Type: application/json" \
@@ -200,6 +234,8 @@ None
 `GET /api/v1/wallet/getbalance`
 
 ## List Withdraws
+This API call is used to retrieve your withdraws history.
+
 ### HTTP Request
 `GET /api/v1/wallet/listwithdraws`
 
@@ -207,7 +243,7 @@ None
 ### HTTP Request
 `GET /api/v1/wallet/listdeposits`
 
-#Trading Operations
+#Trading Operations (PUBLIC API)
 
 ## Place a buy limit order
 ### HTTP Request
@@ -256,214 +292,11 @@ This endpoint returns a list of existing exchange order books and their respecti
 ### HTTP Request
 `GET /market/getcurrencies`
 
+#Coin specific implementations
+There are aditional data that you most provide for certain cryptocurrencies operations.
 
-> In order of getting acces to the API. You need to get a customized API key from profile > settings > API Keys. Make sure to allow the proper
+## Nem (XEM) withdraws
 
-```ruby
-require 'kittn'
+## Monero (XMR) withdraws
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+##
