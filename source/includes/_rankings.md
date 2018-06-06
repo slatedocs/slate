@@ -744,7 +744,7 @@ screenshots | Determines whether or not to generate SERP screenshots and include
 ## Supported Countries
 
 Country | Code | Supported Engines
-------- | -----------------
+------- | ---- | -----------------
 Australia | AUS | All
 Austria | AUT | Google engines only
 Canada (English, French) | CAN, CAN:EN, CAN:FR | All
