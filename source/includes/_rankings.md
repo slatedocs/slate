@@ -538,7 +538,7 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 batch-id | <span class="label label-required">Required</span>
 search-engine | <span class="label label-required">Required</span> One of google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local.
-country | <span class="label label-required">Required</span> Determines whether or not to search against .com, .ca, co.uk, .com.au search engines. One of USA, CAN:EN, CAN:FR, GBR, AUS, IRL or NZL.
+country | <span class="label label-required">Required</span> Determines which country specific variant of the specified search engine to use. As defined in "Supported Countries"(#supported-countries) table below.
 google-location | Allows you to optionally localize results by specifying your physical location. Specify a ZIP, city name or region. Only applicable to US searches. Also see [Check Location](#check-location) method.
 bing-location | Allows you to optionally localize results by specifying your physical location. See [Check Location](#check-location) method.
 search-term | <span class="label label-required">Required</span> The search term to get ranking information for.
@@ -725,7 +725,7 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 batch-id | <span class="label label-required">Required</span>
 search-engine | <span class="label label-required">Required</span> One of google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local.
-country | <span class="label label-required">Required</span> Determines whether or not to search against .com, .ca, co.uk, .com.au search engines. One of USA, CAN:EN, CAN:FR, GBR, AUS, IRL or NZL.
+country | <span class="label label-required">Required</span> Determines which country specific variant of the specified search engine to use. As defined in "Supported Countries"(#supported-countries) table below.
 google-location | Allows you to optionally localize results by specifying your physical location. Specify a ZIP, city name or region. Only applicable to US searches. Also see [Check Location](#check-location) method.
 bing-location | Allows you to optionally localize results by specifying your physical location. See [Check Location](#check-location) method.
 search-terms | <span class="label label-required">Required</span> Encode as a JSON string, e.g. \["restaurant new york", "restaurant", "cafe"\] (max 100).
@@ -740,6 +740,36 @@ screenshots | Determines whether or not to generate SERP screenshots and include
 <aside class="notice">
     By default we return 5 pages or 50 results (whichever is lower). If you need more than this please contact us. We can increase to a maximum of 10 pages or 100 results on a case by case basis.
 </aside>
+
+## Supported Countries
+
+Country | Code | Supported Engines
+------- | -----------------
+Australia | AUS | All
+Austria | AUT | Google engines only
+Canada (English, French) | CAN, CAN:EN, CAN:FR | All
+Czech Republic | CZE | Google engines only
+Denmark | DNK, DNK:DA, DNK:FO | Google engines only
+France | FRA | Google engines only
+Germany | DEU | Google engines only
+Hong Kong | HKG | Google engines only
+Ireland | IRL | All
+Italy | ITA | Google engines only
+Luxembourg | LUX, LUX:DE, LUX:FR | Google engines only
+Netherlands | NLD, NLD:NL, NLD:EN | Google engines only
+New Zealand | NZL | All
+Norway | NOR, NOR:NO, NOR:NN | Google engines only
+Spain | ESP, ESP:ES, ESP:CA, ESP:GL, ESP:EU | Google engines only
+Sweden | SWE | Google engines only
+Switzerland | CHE, CHE:DE, CHE:FR, CHE:IT, CHE:RM | Google engines only
+Philippines | PHL | Google engines only
+Poland | POL | Google engines only
+Portugal | PRT | Google engines only
+Taiwan | TWN | Google engines only
+United Kingdom | GBR | All
+United States | USA | All
+United States Minor | UMI | Google engines only
+    
 
 ## Check Location
 
