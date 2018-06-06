@@ -250,8 +250,6 @@ Make sure that your API key has permissions to perform this actions.
 `POST /api/v1/trading/place/buylimit`
 
 ## Place a sell limit order
-https://bittrex.com/api/v1.1/market/selllimit?apikey=API_KEY&market=BTC-LTC&quantity=1.2&rate=1.3
-
 ```shell
 COINBTR_TOKEN='your_api_key'
 MKT=BTC-LTC
