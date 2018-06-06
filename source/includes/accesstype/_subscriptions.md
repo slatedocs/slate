@@ -165,7 +165,15 @@ This API can be used to update the attributes of **all** active subscriptions of
 curl -H "X-SUBAUTH: <auth-token>" -X "DELETE" -H "Content-Type: application/json" https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriptions/<subscription-id>.json
 ```
 
-This API can be used to delete a subscription
+This API can be used to delete a subscription(THIS API WILL BE DEPRECATED SOON IN FAVOUR OF CANCEL Subscription API)
+
+## CANCEL a subscription
+
+```shell
+curl -H "X-SUBAUTH: <auth-token>" -X "PUT" -H "Content-Type: application/json" https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriptions/<subscription-id>/cancel.json
+```
+
+This API can be used to cancel a subscription
 
 ## POST renew a subscription
 
