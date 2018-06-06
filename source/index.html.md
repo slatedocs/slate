@@ -112,16 +112,14 @@ None
 COINBTR_TOKEN='your_api_key'
 COIN=btc
 
-curl -X POST \
--H "Content-Type: application/json" \
+curl -X GET \
 -H "Authorization: Token $COINBTR_TOKEN" \
--d "{ \"coin\": \"$COIN\" }" \
-https://coinbtr.com/api/v1/wallet/getdepositaddress
+https://coinbtr.com/api/v1/wallet/getdepositaddress?coin=$COIN
 ```
 This API call will bring you a deposit address for funding your cryptocurrency wallet.
 
 ### HTTP Request
-`GET /api/v1/wallet/getdepositaddress`
+`GET /api/v1/wallet/getdepositaddress/?coin=btc`
 
 > The API call will response this:
 
@@ -206,20 +204,20 @@ This API call is used to retrieve your wallets balances, including their deposit
 
 ```json
 {
-	"success" : true,
-	"message" : "",
-	"data" : [{
-			"coin" : "LTC",
-			"balance" : 0.00000000,
-			"available" : 0.00000000,
-			"pending" : 0.00000000,
-			"depositAddress" : "DLxcEt3AatMyr2NTatzjsfHNoB9NT62HiF"
+	"success": true,
+	"message": "",
+	"data": [{
+			"coin": "LTC",
+			"balance": 0.00000000,
+			"available": 0.00000000,
+			"pending": 0.00000000,
+			"depositAddress": "DLxcEt3AatMyr2NTatzjsfHNoB9NT62HiF"
 		}, {
-			"coin" : "BTC",
-			"balance" : 14.21549076,
-			"available" : 14.21549076,
-			"pending" : 0.00000000,
-			"depositAddress" : "1Mrcdr6715hjda34pdXuLqXcju6qgwHA31"
+			"coin": "BTC",
+			"balance": 14.21549076,
+			"available": 14.21549076,
+			"pending": 0.00000000,
+			"depositAddress": "1Mrcdr6715hjda34pdXuLqXcju6qgwHA31"
 		}
 	]
 }
@@ -243,13 +241,30 @@ This API call is used to retrieve your withdraws history.
 ### HTTP Request
 `GET /api/v1/wallet/listdeposits`
 
-#Trading Operations (PUBLIC API)
-
+#Trading Operations
+<aside class="notice">
+Make sure that your API key has permissions to perform this actions.
+</aside>
 ## Place a buy limit order
 ### HTTP Request
 `POST /api/v1/trading/place/buylimit`
 
 ## Place a sell limit order
+https://bittrex.com/api/v1.1/market/selllimit?apikey=API_KEY&market=BTC-LTC&quantity=1.2&rate=1.3
+
+```shell
+COINBTR_TOKEN='your_api_key'
+MKT=BTC-LTC
+AMOUNT=0.0001
+
+curl -X POST \
+-H "Content-Type: application/json" \
+-H "Authorization: Token $COINBTR_TOKEN" \
+-d "{ \"market\": \"$MKT\", \"amount\": \"$AMOUNT\" }" \
+https://coinbtr.com/api/v1/trading/selllimit
+```
+
+This endpoint is used to place a sell order in a given market.
 ### HTTP Request
 `POST /api/v1/trading/place/selllimit`
 
