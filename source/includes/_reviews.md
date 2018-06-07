@@ -163,6 +163,7 @@ country | <span class="label label-required">Required</span>
 sort | 'rating' or 'date'. By default 'date'.
 reviews-limit | Positive number or 'all'. By default 100.
 date-from | Date Format: Y-m-d or Y-m-d H:i:s. By default not specified.
+start-page | See [paging](#paging) table below for details.
 
 ## Fetch Reviews (by business data)
 
@@ -506,3 +507,17 @@ telephone | A valid telephone number. Providing this will improve the quality of
 sort | 'rating' or 'date'. By default 'date'.
 reviews-limit | Positive number or 'all'. By default 100.
 date-from | Date Format: Y-m-d or Y-m-d H:i:s. By default not specified.
+start-page | See [paging](#paging) table below for details.
+
+## Paging
+
+We support up to 500 reviews per request to a given directory. If you need to retrieve more than 500 reviews you can use the start-page parameter and submit multiple requests to pick up older reviews. For example with Google to fetch 1000 reviews you'd need to make two requests:
+
+1. Without start-page (or with start-page=1) to fetch reviews 1 - 500.
+2. With start-page=51 (Google returns 10 reviews per page) to fetch reviews 501 - 1000.
+
+### Supported Directories
+
+Directory | Number Reviews Per Page
+--------- | -----------------------
+Google    | 10
