@@ -916,7 +916,11 @@ The response results `workgroups` attribute will be an array of the current page
 
 If requested, the response results `referenced_objects` attribute will be an object containing one or more object type names as attributes; for each object type the value will be an array of those instances of that type of object which are referred to in the `workgroups` results, with only selected minimal attributes provided
 
-#####account
+####sort
+
+A single sort criterion or an array of criteria in order from major to minor. Each criterion is either an attribute name (one of `name`, or `code`) or an object with two attributes, `name` (one of the supported sort attribute names) and `direction` (`asc` or `desc`).
+
+####account
 
 id, first_name, last_name, and screen_name attributes are provided.
 
