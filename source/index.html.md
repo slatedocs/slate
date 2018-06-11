@@ -15,6 +15,8 @@ includes:
   - requests-responses
   - objects
   - api/account
+  - api/attestation
+  - api/attestationType
   - api/availability
   - api/calendar
   - api/client

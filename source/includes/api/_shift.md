@@ -705,6 +705,10 @@ Allow shifts on N consecutive days if beta feature is enabled (boolean).
 
 Allow shifts that have a short (N hours) turnaround if beta feature is enabled (boolean).
 
+####ignore_attestation_types
+
+Array of [`attestationType`](#attestationtype-object) IDs to ignore.
+
 ### shift.getOfferedTrade
 
 > Request example:
