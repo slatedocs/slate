@@ -17,7 +17,8 @@ includes:
 search: true
 ---
 
-# Introduction
+# Building your own Venmo with Stellar
+## Introduction
 
 Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
 
@@ -25,8 +26,11 @@ We have language bindings in Shell, Ruby, and Python! You can view code examples
 
 This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
+# Venmo in Stellar?
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+## Creating an Anchor
+## Creating your own asset
 > To authorize, use this code:
 
 ```ruby
@@ -65,9 +69,18 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+## Customer accounts
 
-## Get All Kittens
+### Federation
+
+### Using Stellar as the main ledger
+
+# Anchor Setup
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+## Multisignature
 
 ```ruby
 require 'kittn'
@@ -133,7 +146,7 @@ available | true | If set to false, the result will include kittens that have al
 Remember — a happy kitten is an authenticated kitten!
 </aside>
 
-## Get a Specific Kitten
+## Creating a Stellar ccount
 
 ```ruby
 require 'kittn'
@@ -187,7 +200,7 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to retrieve
 
-## Delete a Specific Kitten
+## Setting up multisignature for an user account
 
 ```ruby
 require 'kittn'
@@ -237,3 +250,67 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to delete
 
+## Trustlines and asset holding authorization
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.delete(2)
+```
+
+```python
+import kittn
+
+api = kittn.authorize('meowmeowmeow')
+api.kittens.delete(2)
+```
+
+```shell
+curl "http://example.com/api/kittens/2"
+  -X DELETE
+  -H "Authorization: meowmeowmeow"
+```
+
+```javascript
+const kittn = require('kittn');
+
+let api = kittn.authorize('meowmeowmeow');
+let max = api.kittens.delete(2);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 2,
+  "deleted" : ":("
+}
+```
+
+This endpoint deletes a specific kitten.
+
+### HTTP Request
+
+`DELETE http://example.com/kittens/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the kitten to delete
+
+
+# Building the mobile wallet
+## Using the Stellar-SDK in React-Native
+Introduce the Stellar-SDK polyfill and how to display an account data in a RN app.
+## Creating an user signup flow
+Very simple user signup flow based in user name. It shows how to setup Stellar account, multisig and trustline schema.
+## Depositing "fiat" into your wallet
+ A fake implementation in the wallet similar to transferring money from a bank.
+## Showing account transactions
+Implements the transaction history in the RN wallet.
+## Sending payments
+Flow for doing P2P payments.
+## Cashing out
+Fake implementation for transferring money to the bank accountp
