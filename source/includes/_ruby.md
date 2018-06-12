@@ -833,7 +833,7 @@ The trace item will now be displayed as `Exporting/user_activity`.
 
 ### Instrumenting blocks of code
 
-To instrument a method call, add the following:
+To instrument a block of code, add the following:
 
 ```ruby
   class User

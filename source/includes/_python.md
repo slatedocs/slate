@@ -333,6 +333,61 @@ dictConfig({
 
 If `LOGGING` is already defined, merge the above into the existing Dictionary.
 
+<h2 id="python-custom-instrumentation">Custom Instrumentation</h2>
+
+Traces that allocate significant amount of time to `View`, `Job`, or `Template` are good candidates to add custom instrumentation. This indicates a significant amount of time is falling outside our default instrumentation.
+
+### Limits
+
+We limit the number of metrics that can be instrumented. Tracking too many unique metrics can impact the performance of our UI. Do not dynamically generate metric types in your instrumentation (ie `with scout_apm.api.instrument("Computation_for_user_"+user.email)`) as this can quickly exceed our rate limits. 
+
+For high-cardinality details, use tags: `with scout_apm.api.instrument("Computation", tags={ 'user': user.email})`.
+
+### Getting Started
+
+Import the API module:
+
+```python
+import scout_apm.api
+
+# or to not use the whole prefix on each call:
+import instrument from scout_apm.api
+```
+
+```python
+scout_apm.api.instrument(name, tags={}, kind="Custom")
+```
+
+* `name` - A semi-detailed version of what the section of code is. It should be static between different invocations of the method. Individual details like `user id`, or counts or other data points can be added as tags. Names like `retreive_from_api` or `GET` are good names.
+* `kind` - A high level area of the application. This defaults to `Custom`. Your whole application should have a very low number of unique strings here. In our built-in instruments, this is things like `Template` and `SQL`. For custom instrumentation, it can be strings like `MongoDB` or `HTTP` or similar. This should not change based on input or state of the application.
+* `tags` - A dictionary of key/value pairs. Key should be a string, but value can be any json-able structure. High-cardinalilty fields like `user id` are permitted.
+
+### As a Context Manager
+
+Wrap a section of code in a unique "span" of work.
+
+The yielded object can be used to add additional tags individually.
+
+```python
+def foo():
+  with scout_apm.api.instrument("Computation 1") as instrument:
+    instrument.tag("record_count", 100)
+    # Work
+
+  with scout_apm.api.instrument("Computation 2", tags={ 'filtered_record_count': 50 } ) ) as instrument:  
+    # Work
+```
+
+### As a decorator
+
+Wraps a whole function in a custom trace. This uses the same API as the ContextManager style.
+
+```python
+@scout_apm.api.instrument("Computation")
+def bar():
+  # Work
+```
+
 <h2 id="python-custom-context">Custom Context</h2>
 
 [Context](#context) lets you see the forest from the trees. For example, you can add custom context to answer critical questions like:
