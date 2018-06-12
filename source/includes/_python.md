@@ -360,7 +360,7 @@ scout_apm.api.instrument(name, tags={}, kind="Custom")
 
 * `name` - A semi-detailed version of what the section of code is. It should be static between different invocations of the method. Individual details like `user id`, or counts or other data points can be added as tags. Names like `retreive_from_api` or `GET` are good names.
 * `kind` - A high level area of the application. This defaults to `Custom`. Your whole application should have a very low number of unique strings here. In our built-in instruments, this is things like `Template` and `SQL`. For custom instrumentation, it can be strings like `MongoDB` or `HTTP` or similar. This should not change based on input or state of the application.
-* `tags` - A dictionary of key/value pairs. Key should be a string, but value can be any json-able structure. High-cardinalilty fields like `user id` are permitted.
+* `tags` - A dictionary of key/value pairs. Key should be a string, but value can be any json-able structure. High-cardinality fields like `user id` are permitted.
 
 ### As a Context Manager
 
