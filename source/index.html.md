@@ -8,7 +8,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://twitter.com/abuiles'>Follow me on on Twitter @abuiles</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -18,19 +18,45 @@ search: true
 ---
 
 # Building your own Venmo with Stellar
-## Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to building your own Venmo with Stellar. This guide will show you how to create a product "similar" to Venmo using Stellar.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+> ![TODO: putting this here as placeholder - Kena we need to replace this one](https://d3vv6lp55qjaqc.cloudfront.net/items/2B1011461n3o0x1n0143/Image%202018-06-12%20at%209.19.12%20PM.png?X-CloudApp-Visitor-Id=49274&v=204e84f5)
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+In the Stellar universe, an entity like Venmo is called an Anchor.
 
-# Venmo in Stellar?
+<aside class="notice">
+Anchors are entities that people trust to hold their deposits and issue credits into the Stellar network for those deposits.
+</aside>
+
+The [official documentation](https://www.stellar.org/developers/guides/anchor/index.html#customer-accounts) to create an anchor suggests two ways to maintain customers
+accounts:
+
+1. Maintain a Stellar account for each customer
+2. Maintain a single account and use the memo field to identify who is the recipient.
+
+The documentation then expands on the second method without covering the first one.
+
+My goal is to create the missing guide following the first method mantaining a Stellar account for each customer.
+
+I'll be using Stellar to build a low-cost financial service. Unlike other wallets, I won't expose to the final user the fact that we are using Stellar.
+
+The following are some of the goals in this tutorial:
+
+1. The final user will not know about Stellar.
+2. The final user will not need to store or worry about seed keys.
+3. The final user will not transact with Lumens.
+4. The system will use Lumens as "usage tokens". Each account needs Lumens to be able to use the Stellar ledger.
+5. The final user will be depositing "fiat" into the financial instituion and getting "fiat" credited in their accounts
+6. The final user will hold only one asset which represente American Dollars.
+
+# Concepts
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-## Creating an Anchor
-## Creating your own asset
+## Account
+## Anchor
+## Assets
 > To authorize, use this code:
 
 ```ruby
@@ -69,18 +95,14 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-## Customer accounts
-
-### Federation
-
-### Using Stellar as the main ledger
+## Multisignature
 
 # Anchor Setup
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 
-## Multisignature
+## Creating an user account
 
 ```ruby
 require 'kittn'
@@ -146,7 +168,7 @@ available | true | If set to false, the result will include kittens that have al
 Remember — a happy kitten is an authenticated kitten!
 </aside>
 
-## Creating a Stellar ccount
+## Adding a trustline
 
 ```ruby
 require 'kittn'
@@ -200,7 +222,7 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to retrieve
 
-## Setting up multisignature for an user account
+## Setting up multisignature
 
 ```ruby
 require 'kittn'
@@ -249,57 +271,6 @@ This endpoint deletes a specific kitten.
 Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to delete
-
-## Trustlines and asset holding authorization
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
 
 # Building the mobile wallet
 ## Using the Stellar-SDK in React-Native
