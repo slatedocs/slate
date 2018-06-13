@@ -89,6 +89,12 @@ Setting for whether the [`attestation`](#attestation-object) field is required f
 <span class="tryit" id="attestationtype-list-tryit"></span>
 Returns attestation type records for the org.
 
+#### Required Parameters
+
+* select - An object specifying selection criteria for this request. Allowed criteria are:
+  * workgroup (team)
+
+
 #### Response
 
 On success, the selected attestation type records will be returned in the `"attestationTypes"` key.
