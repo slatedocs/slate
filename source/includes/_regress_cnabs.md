@@ -36,7 +36,7 @@ Se seu plano não der direito a utilização desta API, a resposta com será com
 | type             | string          | indica o tipo de arquivo de remessa ('charge' ou 'payment')                                                                             |
 | config_id        | string          | identificador da configuração no Cobrato relacionada ao arquivo de remessa                                                              |
 | charge_config_id | string          | (DEPRECATED: use config_id) identificador da configuração de cobrança no Cobrato                                                        |
-|  filename        | string          | nome do arquivo de retorno                                                                                                              |
+| filename         | string          | nome do arquivo de retorno                                                                                                              |
 | status           | string          | situação do arquivo CNAB, podendo ser "processing" (processando), "processed" (processado) e "processing_error" (erro de processamento) |
 | _links           | array of object | links relacionado CNAB de retorno                                                                                                       |
 

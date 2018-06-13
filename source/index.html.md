@@ -12,6 +12,7 @@ includes:
   - basic_information
   - payees
   - payers
+  - people
   - bank_accounts
   - charge_configs
   - charge_templates

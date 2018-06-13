@@ -19,13 +19,16 @@ EXEMPLO
     "complement": "Ao lado da lotérica.",
     "_links":
       [
-        {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/payers/1"},
-        {"rel":"update","method":"PUT","href":"https://app.cobrato.com/api/v1/payers/1"}
+        {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/people/1"},
+        {"rel":"update","method":"PUT","href":"https://app.cobrato.com/api/v1/people/1"}
       ]
   }
 ```
+<aside class="warning">
+  <strong>ATENÇÃO!</strong> Este endpoint será descontinuado. Por favor utilize o endpoint de <code>Pessoa</code>
+</aside>
 
-É possível ter indeterminados pagadores, e a eles que pertencem a uma Conta de Serviço. Podem ser tanto pessoas físicas como pessoas jurídicas.
+É possível ter indeterminados pagadores pertencentes a uma Conta de Serviço. Podem ser tanto pessoas físicas como pessoas jurídicas.
 
 <aside class="notice">
   É importante ressaltar que, para o pagador ser utilizado em uma cobrança via boleto registrado, todos os dados devem ser preenchidos (são obrigatórios), com exceção do <code>complement</code>.
@@ -85,18 +88,22 @@ EXEMPLO DE CORPO DA RESPOSTA
     "complement": "Ao lado da lotérica.",
     "_links":
       [
-        {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/payers/1"},
-        {"rel":"update","method":"PUT","href":"https://app.cobrato.com/api/v1/payers/1"}
+        {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/people/1"},
+        {"rel":"update","method":"PUT","href":"https://app.cobrato.com/api/v1/people/1"}
       ]
   }
 ```
 
+<aside class="warning">
+  <strong>ATENÇÃO!</strong> Este endpoint será descontinuado. Por favor utilize o endpoint de <code>Pessoa</code>
+</aside>
+
 Retorna as informações detalhadas do pagador em JSON.
 
-## Lista de Todos os Pagadors
+## Lista de Todos os Pagadores
 
 ```shell
-Listar Pagadors
+Listar Pagadores
 
 DEFINIÇÃO
 
@@ -117,7 +124,7 @@ EXEMPLO DE ESTADO DA RESPOSTA
 EXEMPLO DE CORPO DA RESPOSTA
 
   {
-    "payers":
+    "people":
       [
         {
           // informações pagador 1
@@ -129,6 +136,10 @@ EXEMPLO DE CORPO DA RESPOSTA
       ]
   }
 ```
+
+<aside class="warning">
+  <strong>ATENÇÃO!</strong> Este endpoint será descontinuado. Por favor utilize o endpoint de <code>Pessoa</code>
+</aside>
 
 Retorna uma lista em JSON contendo todos os pagadores pertencentes a sua Conta de Serviço.
 
@@ -178,6 +189,10 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
   }
 
 ```
+
+<aside class="warning">
+  <strong>ATENÇÃO!</strong> Este endpoint será descontinuado. Por favor utilize o endpoint de <code>Pessoa</code>
+</aside>
 
 Cria um novo pagador, retornando as informações do mesmo caso haja sucesso. Se houverem erros eles serão informados no corpo da resposta.
 
@@ -239,6 +254,10 @@ EXEMPLO DE CORPO DA RESPOSTA COM INSUCESSO
     }
 
 ```
+
+<aside class="warning">
+  <strong>ATENÇÃO!</strong> Este endpoint será descontinuado. Por favor utilize o endpoint de <code>Pessoa</code>
+</aside>
 
 Atualiza um determinado pagador, retornando as informações do mesmo caso haja sucesso. Se houverem erros eles serão informados no corpo da resposta. A requisição não diferencia a utilização dos verbos PUT e PATCH.
 
