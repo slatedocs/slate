@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: Building your own Venmo with Stellar
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
