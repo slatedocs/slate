@@ -121,7 +121,7 @@ remittances without incurring in high transaction fees. There is also
 MOBI which allow people to use the Mobius network, if you hold MOBI then
 your can interact with the applications in the network.
 
-On there right you can see the JSON representation of a Stellar
+On the right you can see the JSON representation of a Stellar
 account. Each account has a key called balances, representing the
 assets held by the account.
 
