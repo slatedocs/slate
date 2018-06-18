@@ -199,7 +199,7 @@ can be backed by [http://papaya.io/](http://papaya.io/) and the other
 one from [StrongHold](https://stronghold.co/). It means that at some
 point the issuer (also known as anchor) received `BTC` in their
 Bitcoin wallets and then credited with their equivalent representation
-of Bitcoin your Stellar account.
+of Bitcoin your Stellar account. If you visit the following site, [https://stellar.expert/explorer/public/asset](https://stellar.expert/explorer/public/asset) you'll find all the assets issued in Stellar.
 
 For this tutorial, I'll be creating a custom asset in the test network
 (testnet) representing Dollars and I'll build a way to credit and
@@ -209,12 +209,63 @@ You can learn more about assets in the SDF guides: [https://www.stellar.org/deve
 
 ## Anchor
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+At the beginning of this tutorial, I mentioned that an entity like
+Venmo is called an anchor.  Anchors issue assets on top of Stellar and
+then credit those asset to other Stellar accounts. If the anchor
+represents fiat, then it is likely an authorized entity to deal with
+money like banks, savings and credit institutions or a
+remittance company. User deposit fiat to the anchor's account and they
+credit the user Stellar account with the equivalent balance.
+
+This is how banks or Venmo works but instead of using a public ledger
+like Stellar, they have their own private system and use third parties
+like ACH or SWIFT to move money around.
+
+Anchors can represent also other cryptocurrencies. [Papaya](https://apay.io/) is an anchor which includes support for cryptocurrencies like `ETH`, `BTC` and others.
+
+If you want to deposit Ether, they give you an Ethereum address. After you deposit Ether to that address they issue the equivalent to your Stellar account. In this case you'll have to trust Papaya because they'll be acting as custodian for the Ether you sent them.
+
+For this tutorial, I'll be creating an anchor which will issue an
+asset representing USD. User will have to download an app, I'll fake a
+KYC process and then create a Stellar account for the user and
+authorize the user to hold the asset. Once the user have been
+authorized they will be able to deposit USD or debit USD from their accounts.
+
+You can learn more about anchors in the SDF guides: [https://www.stellar.org/developers/guides/anchor/](https://www.stellar.org/developers/guides/anchor/)
 
 ## Multisignature
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 # Anchor Setup
+
+From this moment, I'll give a name to this Venmo clone. It would be called: `AnchorX`.
+
+The following is high level overview of what happens when you want to use Venmo:
+
+1. Download the app and create an user.
+2. Go through KYC with phone number, email and bank account verification.
+3. Once you are authorized to use Venmo, transfer money from your bank account and send it to other Venmo users.
+4. Transfer to your bank whatever balance you have left.
+
+Let's translate the steps above to actions in AnchorX and write what happens in Stellar and backend systems.
+
+1. Download the app and create an user.
+2. Go through KYC.
+3. Once you are authorized to use AnchorX, transfer money from your bank account and send it to other AnchorX users.
+4. Transfer to your bank whatever balance you have left.
+
+
+### Download the app and create an user
+
+There is nothing special here, we just add a new user to our database
+and put it in some kind of pending state for verification.
+
+### Go through KYC with phone number, email and bank account verification
+
+The user is required to confirm their identity before being able to
+use `AnchorX`. Once the user confirms their identity then they can
+start using the app.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
