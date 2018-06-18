@@ -239,7 +239,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 # Anchor Setup
 
-From this moment, I'll give a name to this Venmo clone. It would be called: `AnchorX`.
+From now on, I'll call the Venmo clone we are building `AnchorX`.
 
 The following is high level overview of what happens when you want to use Venmo:
 
@@ -248,31 +248,97 @@ The following is high level overview of what happens when you want to use Venmo:
 3. Once you are authorized to use Venmo, transfer money from your bank account and send it to other Venmo users.
 4. Transfer to your bank whatever balance you have left.
 
-Let's translate the steps above to actions in AnchorX and write what happens in Stellar and backend systems.
+Let's translate the steps above to actions in AnchorX and then identify the requirements to setup the anchor.
 
-1. Download the app and create an user.
-2. Go through KYC.
-3. Once you are authorized to use AnchorX, transfer money from your bank account and send it to other AnchorX users.
-4. Transfer to your bank whatever balance you have left.
+### Download the app and create an user.
 
+User should be able to download an app and then create an account. To
+keep things simple, I'll be using React-Native with Expo and then use
+a username (no password) as sign-up method.
 
-### Download the app and create an user
+### Go through KYC
 
-There is nothing special here, we just add a new user to our database
-and put it in some kind of pending state for verification.
+In Venmo there is some level of KYC, since this is a toy example we
+won't be including any formal KYC process. By default every user will
+be marked as verified. In a real life example, you probably want to
+collect user data like SSN, driver's license, passport, proof of
+residence, etc.
 
-### Go through KYC with phone number, email and bank account verification
+After an user creates an account with AnchorX, the service will
+automatically provision a Stellar account and authorize the account to
+hold the anchor asset.
 
-The user is required to confirm their identity before being able to
-use `AnchorX`. Once the user confirms their identity then they can
-start using the app.
+Stellar accounts can hold any asset, but additionally anchors can
+authorize who is allowed to hold their asset.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+When a Stellar accounts decides to trust a given asset, they are
+creating a trustline between the account and the asset. Such operation
+has to be stored in the ledger. The code in the right shows a transaction creating a trustline with an `account` and an `asset`.
 
+```javascript
+const asset = new StellarSdk.Asset(
+  'USD',
+  'issuer-id'
+);
+
+new StellarSdk
+  .TransactionBuilder(account)
+  .addOperation(
+    StellarSdk.Operation.changeTrust({
+      asset
+    }))
+  .build();
+```
+
+Likewise, when the asset issuer requires authorization by them before people can hold their asset. It needs to happen in an operation.
+The code in right shows an operation where the issuing account is authorizing a `trustor` to hold its asset with code `USD`.
+
+```javascript
+const trustor = 'some-stellar-address'
+
+new StellarSdk.TransactionBuilder(issuingAccount)
+  .addOperation(
+    StellarSdk.Operation.allowTrust({
+      trustor,
+      assetCode: 'USD',
+      authorize: true
+    })
+  )
+  .build();
+```
+
+For this example, `AnchorX` will be running both operations to allow account to transact with its asset.
+
+### Credit from bank account
+
+The app will have a section which will simulate transferring from your bank account.
+
+### P2P payments
+
+Once the account has been provisioned and have some Dollars, users should be able to send money to other users in AnchorX
+
+### Transfer balance from AnchorX to Bank account
+
+The app will have a section for depositing their dollars to their bank account.
 
 ## Creating an user account
 ## Adding a trustline
 ## Setting up multisignature
+
+# Building the backend
+Reference backend in Node.js
+## Create user account
+API end-point to create user a new user account
+### Create Stellar account
+Implementation of Stellar account provisioning
+### Create truslines
+Implementation of Stellar trustlines
+## Credit account
+API end-point to "transfer" USD from bank account to Stellar account.
+## Payments
+API end-point to transfer money from user a to user b
+## Debit account
+API end-point to transfer money from AnchorX to bank account.
 
 # Building the mobile wallet
 ## Using the Stellar-SDK in React-Native
