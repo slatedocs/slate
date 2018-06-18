@@ -74,7 +74,7 @@ also provision other users accounts as they signup for our Venmo
 clone. Although each user will have a Stellar account they won't know
 about it.
 
-### Creating account in the test network
+### Creating accounts in the test network
 ```javascript
 const StellarSdk = require('stellar-sdk')
 const fetch = require('node-fetch')
@@ -95,7 +95,7 @@ async function run() {
   console.log(`
     Congrats, you have a Stellar account in the test network!
     seed: ${pair.secret()}
-    id: pair.publicKey()
+    id: ${pair.publicKey()}
   `)
 
   const url = `https://horizon-testnet.stellar.org/accounts/${pair.publicKey()}`
