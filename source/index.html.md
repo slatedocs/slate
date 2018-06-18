@@ -163,7 +163,7 @@ The Stellar network allows us to represent any kind of asset. All assets
 in Stellar can be traded and exchanged with each other.
 
 Like other protocols, Stellar has a native asset which is called the
-`Lumen` represented with the symbol `XLM`. Accounts can hold
+`Lumen` represented with the symbol `XLM`. Stellar accounts can hold
 multiple assets as long as they trust the asset and in some
 cases they have been authorized to hold the asset.
 

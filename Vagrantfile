@@ -24,7 +24,7 @@ Vagrant.configure(2) do |config|
       echo "Installing app dependencies"
       cd /vagrant
       bundle config build.nokogiri --use-system-libraries
-      bundle install
+      sudo bundle install
     SHELL
 
   config.vm.provision "run",
