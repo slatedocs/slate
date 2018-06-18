@@ -175,10 +175,10 @@ fiat, equity, real estate, goats, you name it.
 Lumens are an example of a custom asset or token, at they allow us to
 interact with the Stellar network. There are many other types of
 assets built on top of Stellar, one example is the `EURT` which is a
-representation of the `EURO` and allow people to do cross-border
+representation of the `EURO` and allows people to do cross-border
 remittances without incurring in high transaction fees. There is also
-`MOBI` which allow people to use the `Mobius network`, if you hold `MOBI` then
-your can interact with the applications in the network.
+`MOBI` which allows people to use the `Mobius network`, if you hold `MOBI` then
+your can interact with the applications in their network.
 
 On the right you can see the JSON representation of a Stellar
 account. Each account has a key called balances, representing the
@@ -188,26 +188,27 @@ The account on the right has the following assets:
 
 - MOBI: Asset issued by [Mobius network](https://mobius.network/)
 - EURT: Asset issued by [Tempo](http://tempo.eu.com/) a remittances company.
-- ETH: This asset represents Ether, you send real `ETH` to [http://papaya.io/](http://papaya.io/) and they credit you with `ETH` in your Stellar account.
+- ETH: This asset represents Ether, you send real `ETH` to [http://papaya.io/](http://papaya.io/) and they credit you with their `ETH` asset in your Stellar account.
 - USD: Asset representing `Dollars`, issued by [Stronghold](https://stronghold.co/).
 - native: Native asset of the network, it represents `Lumens`.
 
 Assets in Stellar are representet by a combination of `code` and `issuer`. It is possible then to find two assets with the code `USD` representing Dollars but one can be issued by Bank Of America and the other by Venmo.
 
-It's also possible to find multiple assets with the code `BTC`, where one
+It is also possible to find multiple assets with the code `BTC`, where one
 can be backed by [http://papaya.io/](http://papaya.io/) and the other
 one from [StrongHold](https://stronghold.co/). It means that at some
 point the issuer (also known as anchor) received `BTC` in their
 Bitcoin wallets and then credited with their equivalent representation
-of Bitcoin.
+of Bitcoin your Stellar account.
 
 For this tutorial, I'll be creating a custom asset in the test network
 (testnet) representing Dollars and I'll build a way to credit and
 debit accounts as if we were depositing Dollars.
 
-You can learn more about assets visitng [https://www.stellar.org/developers/guides/concepts/assets.html](https://www.stellar.org/developers/guides/concepts/assets.html)
+You can learn more about assets in the SDF guides: [https://www.stellar.org/developers/guides/concepts/assets.html](https://www.stellar.org/developers/guides/concepts/assets.html)
 
 ## Anchor
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 ## Multisignature
