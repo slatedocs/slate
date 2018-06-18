@@ -6,7 +6,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 toc_footers:
   - <a href='https://twitter.com/abuiles'>Follow me on on Twitter @abuiles</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powerend by Slate</a>
+  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors
