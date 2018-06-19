@@ -1602,10 +1602,92 @@ Response: On success, if the shift was updated, empty results will be returned. 
 
 ### shift.customDropdownList
 
+> Request example:
+
+```JSON
+{}
+```
+> Response example:
+
+```JSON
+{
+    "custom_listable_1": {
+        "25013": "Listable 1 Value A",
+        "25014": "Listable 1 Value B"
+    },
+    "custom_listable_2": {
+        "25015": "Listable 2 Value A",
+        "25016": "Listable 2 Value B",
+        "25017": "Listable 2 Value C"
+    },
+    "custom_listable_3": {
+        "25018": "Listable 3 Value A",
+        "25019": "Listable 3 Value B",
+        "25020": "Listable 3 Value C",
+        "25021": "Listable 3 Value D"
+    }
+}
+```
+
 <span class="tryit" id="shift-customdropdownlist-tryit"></span>
-Returns information about custom dropdown list objects.
+Returns information about shift related custom dropdown list objects.
+
+Required Parameter: none
+
+Optional Parameters: none
+
+Response: On success, an object will be returned containing all shift custom dropdown listables that have been created, and are enabled for the site.
+
 
 ### shift.customMultipickList
 
+> Request example:
+
+```JSON
+{}
+```
+> Response example:
+
+```JSON
+{
+    "custom_multipick": [
+        {
+            "description": "Multipick Value One",
+            "id": "5551209",
+            "name": "One"
+        },
+        {
+            "description": "Multipick Value Two",
+            "id": "5551210",
+            "name": "Two"
+        }
+    ],
+    "custom_multipick_2": [
+        {
+            "description": "Choice A",
+            "id": "5551211",
+            "name": "A"
+        },
+        {
+            "description": "Choice B",
+            "id": "5551212",
+            "name": "B"
+        },
+        {
+            "description": "Choice C",
+            "id": "5551213",
+            "name": "C"
+        }
+    ],
+    "custom_multipick_3": []
+}
+```
+
 <span class="tryit" id="shift-custommultipicklist-tryit"></span>
-Returns information about custom multi-pick list objects.
+Returns information about shift related custom multi-pick list objects.
+
+Required Parameter: none
+
+Optional Parameters: none
+
+Response: On success, an object will be returned containing all shift custom multi-pick listables that have been created, and are enabled for the site.

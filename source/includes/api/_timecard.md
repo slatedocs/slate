@@ -454,8 +454,43 @@ Response: On success, empty results will be returned.
 
 ### timecard.customDropdownList
 
+> Request example:
+
+```JSON
+{}
+```
+
+> Response example:
+
+```JSON
+{
+    "custom_listable_1": {
+        "1550": "Red",
+        "1551": "Blue",
+        "1552": "Green"
+    },
+    "custom_listable_2": {
+        "1553": "Breakfast",
+        "1554": "Lunch",
+        "1555": "Dinner"
+    },
+    "custom_listable_4": {
+        "1558": "Baseball",
+        "1559": "Skiing",
+        "1560": "Soccer",
+        "1561": "Football"
+    }
+}
+```
+
 <span class="tryit" id="timecard-customdropdownlist-tryit"></span>
-Returns information about custom dropdown list objects.
+Returns information about timecard related custom dropdown list objects.
+
+Required Parameter: none
+
+Optional Parameters: none
+
+Response: On success, an object will be returned containing all timecard custom drop down listables that have been created, and are enabled for the site.
 
 ### timecard.shiftList
 
