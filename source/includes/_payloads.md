@@ -53,6 +53,7 @@ Os eventos notificados são os seguintes:
 | charge_config   | created               | quando a configuração de cobrança é criada        |
 | charge_config   | updated               | quando a configuração de cobrança é atualizada    |
 | charge_config   | destroyed             | quando a configuração de cobrança é excluída      |
+| charge_config   | deactivated           | quando a configuração de cobrança é desativada    |
 | credit_card     | created               | quando o cartão de crédito é criado               |
 | credit_card     | updated               | quando o cartão de crédito é atualizado           |
 | charge_template | created               | quando o modelo de cobrança é criado              |
@@ -288,7 +289,7 @@ EXEMPLO DE PAYLOAD
     "_links":[{
       "rel":"self",
       "method":"GET",
-      "url":"https://app.cobrato.com/api/v1/charges_accounts/7"
+      "url":"https://app.cobrato.com/api/v1/charges_configs/7"
     }]
   }
 
@@ -340,6 +341,29 @@ EXEMPLO DE PAYLOAD
 ```
 
 Informações enviadas quando uma Configuração de Cobrança é excluída.
+
+## Configuração de Cobrança desativada
+
+```shell
+Configuração de Cobrança Desativada
+
+EXEMPLO DE PAYLOAD
+
+  {
+    "created_at":"2015-05-21T16:13:33Z",
+    "event":"deactivated",
+    "object_type":"charge_config",
+    "object_id":7,
+    "_links":[{
+      "rel":"self",
+      "method":"GET",
+      "url":"https://app.cobrato.com/api/v1/charge_configs/7"
+    }]
+  }
+
+```
+
+Informações enviadas quando uma Configuração de Cobrança é Desativada.
 
 ## Cartão de crédito criado
 

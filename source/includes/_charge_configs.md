@@ -81,7 +81,7 @@ As Configurações de Cobrança do tipo **Conta bancária** (billet), pertencem 
 | transmission_code         | string           | código de transmissão (apenas para o Santander)                                                                                                                           |
 | pre_released_billet       | boolean          | caso a configuração de cobrança utilize boletos registrados, este atributo indica se os boletos podem ser acessados antes do registro no banco ser confirmado             |
 | writing_off_deadline      | integer          | número de dias após o vencimento da cobrança para que seja feita a baixa automática do título no banco (apenas para cobranças registradas com padrão 240)                 |
-| available_charge_types    | array of strings | tipos de cobrança disponíveis. No caso de Configuração de Cobrança por Conta Bancária, será disponível somente a opção "billet". Este campo será gerenciado pelo Cobrato. |
+| available_charge_types    | array of strings | tipos de cobrança disponíveis. No caso de Configuração de Cobrança por Conta Bancária, será disponível somente a opção "billet". Este campo será gerenciado pelo Cobrato  |
 | _links                    | array of object  | links da configuração de cobrança e de sua conta bancária                                                                                                                 |
 
 
@@ -169,6 +169,7 @@ EXEMPLO DE CORPO DA RESPOSTA (BOLETO)
     "pre_released_billet": false,
     "writing_off_deadline": null,
     "available_charge_types": ["billet"],
+    "deactivated_at": 2018-04-10,
     "_links":
       [
         {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/charge_configs/1"},
@@ -496,3 +497,32 @@ EXEMPLO DE ESTADO DA RESPOSTA COM CONFIGURAÇÃO DE COBRANÇA INEXISTENTE
 ```
 
 Exclui determinada Configuração de Cobrança e junto a ela todas suas Cobranças. As mudanças são irreversíveis.
+
+## Desativação de Configuração de Cobrança
+
+```shell
+Desativar Configuração de Cobrança
+
+DEFINIÇÃO
+
+  POST https://app.cobrato.com/api/v1/charge_configs/:id/deactivate
+
+EXEMPLO DE REQUISIÇÃO
+
+  $ curl -i -u $API_TOKEN:X \
+    -H 'User-Agent: My App 1.0' \
+    -H 'Accept: application/json' \
+    -H 'Content-type: application/json' \
+    -X POST https://app.cobrato.com/api/v1/charge_configs/:id/deactivate
+
+EXEMPLO DE ESTADO DA RESPOSTA COM SUCESSO
+
+    204 No Content
+
+EXEMPLO DE ESTADO DA RESPOSTA COM CONFIGURAÇÃO DE COBRANÇA INEXISTENTE
+
+    404 Not Found
+
+```
+
+Desativa determinada Configuração de Cobrança.
