@@ -304,7 +304,7 @@ On success, a `message` attribute will provide a brief notification message. If 
 <span class="tryit" id="shift-create-tryit"></span>
 Creates a new shift record.
 
-Parameters: Most attributes of a shift object except `id` may be specified. Minimally, `workgroup` and `start_date` parameters must be specified. `timezone` will default to the organization's timezone. `location` will default to the workgroup's default location, if set. "external_covering_member/covering_member" and `covering_workgroup` are mutually exclusive, and may only be specified if the shift is covered. `tentative` may only true if the shift is covered, and `covered` may only be true if the shift is published. Start and end dates may only fall on even five minute times. Either `count` or `qty` may be specified and both will be set for the new shift, defaulting to 1; if both are specified, they must be equal. `count` must be 1 for a covered shift.
+Parameters: Most attributes of a shift object except `id` may be specified. Minimally, `workgroup` and `start_date` parameters must be specified. `timezone` will default to the organization's timezone. `location` will default to the workgroup's default location, if set. `external_covering_member`/`covering_member` and `covering_workgroup` are mutually exclusive, and may only be specified if the shift is covered. `tentative` may only true if the shift is covered, and `covered` may only be true if the shift is published. Start and end dates may only fall on even five minute times. Either `count` or `qty` may be specified and both will be set for the new shift, defaulting to 1; if both are specified, they must be equal. `count` must be 1 for a covered shift.
 
 Optional Parameters:
 
@@ -315,6 +315,16 @@ notify_message
 Additional text to include in notification message.
 
 Response: On success, an `id` attribute will provide the identifier for the new shift.
+
+Assignability Preferences: If enabled, assignability checks can be turned on and overridden during shift creation. To turn on the assignabilty checks, the feature must me enabled and the `assignability_checks` parameter must be true. When this is enabled the following overrides may be available based enabled features:
+* `conflicts_ok` - boolean
+* `daily_overtime_ok` - boolean
+* `weekly_overtime_ok` - boolean
+* `timeoff_ok` - boolean
+* `consecutive_days` - boolean
+* `short_turnaround` - boolean
+* `ignore_attestation_types` - boolean
+* `attestation_type` array of attestationTypeId
 
 ### shift.delete
 
