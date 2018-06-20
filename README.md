@@ -47,7 +47,8 @@ You're going to need:
 1. Fork this repository on GitHub.
 2. Clone *your forked repository* (not our original one) to your hard drive with `git clone https://github.com/YOURUSERNAME/slate.git`
 3. `cd slate`
-4. Initialize and start Slate. You can either do this locally, or with Vagrant:
+4. (OSX Users) Slate uses nokogiri, which requires xcode during bundle install. See [installing_nokogiri] (https://github.com/sparklemotion/nokogiri.org-tutorials/blob/master/content/installing_nokogiri.md) prior to initializing Slate
+5. Initialize and start Slate. You can either do this locally, or with Vagrant:
 
 ```shell
 # either run this to run locally
@@ -85,6 +86,7 @@ Companies Using Slate
 * [Parrot Drones](http://developer.parrot.com/docs/bebop/)
 * [Fidor Bank](http://docs.fidor.de/)
 * [Scale](https://docs.scaleapi.com/)
+* [Nutanix](http://developer.nutanix.com/)
 
 You can view more in [the list on the wiki](https://github.com/lord/slate/wiki/Slate-in-the-Wild).
 
