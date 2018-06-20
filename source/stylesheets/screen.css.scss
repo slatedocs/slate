@@ -88,7 +88,7 @@ html, body {
       padding: 6px 0 6px 20px;
       box-sizing: border-box;
       margin: $nav-v-padding $nav-padding;
-      width: $nav-width - 30;
+      width: $nav-width - ($nav-padding*2);
       outline: none;
       color: $nav-text;
       border-radius: 0; /* ios has a default border radius */

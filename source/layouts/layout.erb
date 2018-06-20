@@ -69,7 +69,7 @@ under the License.
         </div>
         <ul class="search-results"></ul>
       <% end %>
-      <div id="toc" class="toc-list-h1">
+      <ul id="toc" class="toc-list-h1">
         <% toc_data(page_content).each do |h1| %>
           <li>
             <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:content].to_s.parameterize %>"><%= h1[:content] %></a>
@@ -84,7 +84,7 @@ under the License.
             <% end %>
           </li>
         <% end %>
-      </div>
+      </ul>
       <% if current_page.data.toc_footers %>
         <ul class="toc-footer">
           <% current_page.data.toc_footers.each do |footer| %>
