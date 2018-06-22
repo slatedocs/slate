@@ -169,7 +169,7 @@ EXEMPLO DE CORPO DA RESPOSTA (BOLETO)
     "pre_released_billet": false,
     "writing_off_deadline": null,
     "available_charge_types": ["billet"],
-    "deactivated_at": 2018-04-10,
+    "deactivated_at": "2018-04-10T17:46:01.253Z",
     "_links":
       [
         {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/charge_configs/1"},
