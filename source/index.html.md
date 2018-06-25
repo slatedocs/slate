@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
 
 toc_footers:
-  - <a href='https://twitter.com/abuiles'>Follow me on on Twitter @abuiles</a>
+  - <a href='https://twitter.com/abuiles'>Follow me on Twitter @abuiles</a>
   - <a href='https://github.com/abuiles/building-your-own-venmo-with-stellar/issues'>Report issues</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
