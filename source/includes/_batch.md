@@ -87,6 +87,7 @@ Parameter | Notes
 --------- | -----
 api-key | <span class="label label-required">Required</span>
 stop-on-job-error | 1 or 0. default 0. If errors are found in one job the batch will be stopped and no further jobs will be processed.
+callback | Callback URL. When a batch fails or completes the batch results will be posted to this callback URL
 
 ## Commit Batch
 
