@@ -25,26 +25,24 @@ This is a work in progress!
 Welcome to building your own Venmo with Stellar. This guide will show
 you how to create a product "similar" to Venmo using Stellar.
 
-In Stellar, an entity like Venmo is called an Anchor.
-
-The [official documentation](https://www.stellar.org/developers/guides/anchor/index.html#customer-accounts) to create an anchor suggests two ways to maintain customers accounts:
+In Stellar, an entity like Venmo is called an `anchor`. When you are building an anchor, there are two suggested ways to build and maintain customer accounts:
 
 1. Maintain a Stellar account for each customer.
-2. Maintain a single account and use the memo field to identify who is the recipient.
+2. Maintain a single Stellar account to transact on behalf of your customers and use the memo field to identify who is the recipient of each transaction.
 
-The documentation then expands on the second method without covering the first one.
+The [official documentation](https://www.stellar.org/developers/guides/anchor/index.html#customer-accounts) covers the second method but there is no documentation about the first one.
 
-My goal is to create the missing guide following the first method mantaining a Stellar account for each customer.
+In this tutorial I will be creating an anchor following the first method and explore considerations on different fronts like security and usability.
 
 I'll be using Stellar to build a low-cost financial service. Unlike other wallets, I won't expose to the final user the fact that we are using Stellar.
 
 The following are some of the goals in this tutorial:
 
-1. The final user will not know about Stellar.
-2. The final user will not need to store or worry about seed keys.
-3. The final user will not transact with Lumens.
+1. The final user won't know about Stellar.
+2. The final user won't need to store or worry about seed keys.
+3. The final user won't transact with Lumens.
 4. The system will use Lumens as "usage tokens". Each account needs Lumens to be able to use the Stellar ledger.
-5. The final user will be depositing "fiat" into the financial instituion and getting "fiat" credited in their accounts
+5. The final user will be depositing "fiat" into the financial instituion and getting "fiat" credited in their accounts.
 6. The final user will hold an asset which represents American Dollars.
 7. All the examples and the wallet will be running in the Stellar testnet.
 
