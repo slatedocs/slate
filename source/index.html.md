@@ -238,8 +238,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 # Anchor Setup
 
-From now on, I'll call the Venmo clone we are building `AnchorX`.
-
 The following is high level overview of what happens when you want to use Venmo:
 
 1. Download the app and create an user.
@@ -247,11 +245,13 @@ The following is high level overview of what happens when you want to use Venmo:
 3. Once you are authorized to use Venmo, transfer money from your bank account and send it to other Venmo users.
 4. Transfer to your bank whatever balance you have left.
 
-Let's translate the steps above to actions in AnchorX and then identify the requirements to setup the anchor.
+From now on, I'll call the Venmo clone for this tutorial AnchorX,
+let's translate the steps above to actions in AnchorX and then
+identify the requirements to setup the anchor.
 
 ### Download the app and create an user.
 
-User should be able to download an app and then create an account. To
+Users should be able to download an app and then create an account. To
 keep things simple, I'll be using React-Native with Expo and then use
 a username (no password) as sign-up method.
 
@@ -259,20 +259,18 @@ a username (no password) as sign-up method.
 
 In Venmo there is some level of KYC, since this is a toy example we
 won't be including any formal KYC process. By default every user will
-be marked as verified. In a real life example, you probably want to
-collect user data like SSN, driver's license, passport, proof of
-residence, etc.
+be marked as verified. In real life, you probably want to collect user
+data like SSN, driver's license, passport, proof of residence, etc.
 
 After an user creates an account with AnchorX, the service will
 automatically provision a Stellar account and authorize the account to
-hold the anchor asset.
+hold the anchor's asset.
 
-Stellar accounts can hold any asset, but additionally anchors can
-authorize who is allowed to hold their asset.
+Stellar accounts can hold any asset, but additionally anchors can authorize who is allowed to hold their asset.
 
 When a Stellar accounts decides to trust a given asset, they are
 creating a trustline between the account and the asset. Such operation
-has to be stored in the ledger. The code in the right shows a transaction creating a trustline with an `account` and an `asset`.
+has to be stored in the ledger. The code in the right shows a transaction creating a trustline between an `account` and an `asset`.
 
 ```javascript
 const asset = new StellarSdk.Asset(
@@ -281,7 +279,7 @@ const asset = new StellarSdk.Asset(
 );
 
 new StellarSdk
-  .TransactionBuilder(account)
+  .TransactionBuilder(myAccount)
   .addOperation(
     StellarSdk.Operation.changeTrust({
       asset
@@ -290,7 +288,7 @@ new StellarSdk
 ```
 
 Likewise, when the asset issuer requires authorization by them before people can hold their asset. It needs to happen in an operation.
-The code in right shows an operation where the issuing account is authorizing a `trustor` to hold its asset with code `USD`.
+The code shows an operation where the issuing account is authorizing a `trustor` to hold its asset with code `USD`.
 
 ```javascript
 const trustor = 'some-stellar-address'
@@ -306,7 +304,7 @@ new StellarSdk.TransactionBuilder(issuingAccount)
   .build();
 ```
 
-For this example, `AnchorX` will be running both operations to allow account to transact with its asset.
+For this example, `AnchorX` will be running both operations to allow accounts to transact with its asset.
 
 ### Credit from bank account
 
@@ -320,12 +318,12 @@ Once the account has been provisioned and have some Dollars, users should be abl
 
 The app will have a section for depositing their dollars to their bank account.
 
-## Creating an user account
-## Adding a trustline
-## Setting up multisignature
-
 # Building the backend
+
+In this section, I'll be implementing a GraphQL API which will support user sign-up and sign-in, deposits, withdrawals and payments. The mobile application will be interacting with this API.
+
 Reference backend in Node.js
+
 ## Create user account
 API end-point to create user a new user account
 ### Create Stellar account
