@@ -6,7 +6,9 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 toc_footers:
   - <a href='https://twitter.com/abuiles'>Follow me on on Twitter @abuiles</a>
+  - <a href='https://github.com/abuiles/building-your-own-venmo-with-stellar/issues'>Report issues</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+
 
 includes:
   - errors
@@ -14,13 +16,12 @@ includes:
 search: true
 ---
 # Building your own Venmo with Stellar
+
 <aside class="notice">
-This is a work in progress!
+Work in progress!
 </aside>
 
-
-- You can report issues in the GitHub repo [cliking here](https://github.com/abuiles/building-your-own-venmo-with-stellar/issues)
-- You support my work sending XLM tips here `GBCFAMVYPJTXHVWRFP7VO6F4QE7B4UHAVJOEG5VR6VEB5M67GHQGEEAB`.
+> This is a free tutorial, but I like to drink coffee while I write. You can buy my a coffee with XLM, send a tip here `GBCFAMVYPJTXHVWRFP7VO6F4QE7B4UHAVJOEG5VR6VEB5M67GHQGEEAB` with the memo `coffee`.
 
 Welcome to building your own Venmo with Stellar. This guide will show
 you how to create a product "similar" to Venmo using Stellar.
