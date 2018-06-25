@@ -93,7 +93,7 @@ pip install scout-apm
 
 <p>These instructions assume the app uses <code>SQLAlchemy</code>. If that isn't the case, remove the referencing lines.</p>
 
-<pre style="width:500px">
+<pre style="width:initial">
 from scout_apm.flask import ScoutApm
 from scout_apm.flask.sqlalchemy import instrument_sqlalchemy
 
@@ -102,7 +102,9 @@ from scout_apm.flask.sqlalchemy import instrument_sqlalchemy
 ## Attaches ScoutApm to the Flask App
 ScoutApm(app)
 
-## Instrument the SQLAlchemy handle
+## OPTIONAL - if using SQLAlchemy, instrument SQL queries via the SQLAlchemy handle
+from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy(app)
 instrument_sqlalchemy(db)
 
 # Scout settings
