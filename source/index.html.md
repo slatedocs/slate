@@ -33,9 +33,7 @@ In Stellar, an entity like Venmo is called an `anchor`. When you are building an
 
 The [official documentation](https://www.stellar.org/developers/guides/anchor/index.html#customer-accounts) covers the second method but there is no documentation about the first one.
 
-In this tutorial I will be creating an anchor following the first method and explore considerations on different fronts like security and usability.
-
-I'll be using Stellar to build a low-cost financial service. Unlike other wallets, I won't expose to the final user the fact that we are using Stellar.
+In this tutorial you will use Stellar to build a low-cost financial service similar to Venmo and instead of following the approach number two which is already documented in the Stellar website, you'll be maintaining a Stellar account for each customer and also making it transparant to the final user that they are using Stellar.
 
 The following are some of the goals in this tutorial:
 
@@ -53,8 +51,7 @@ Anchors are entities that people trust to hold their deposits and issue credits 
 
 # Concepts
 
-Before getting started I'd like to introduce some important concepts
-in Stellar like account, asset, anchor, multisignature.
+Before getting started you need to learn some concepts in Stellar like account, asset, anchor, multisignature.
 
 ## Account
 
@@ -68,9 +65,9 @@ public key is the equivalent of your bank account number and then the
 private key is the password. The private key is required to sign each
 transaction.
 
-For this tutorial, I'll be using accounts to create new assets and
-also provision other users accounts as they signup for our Venmo
-clone. Although each user will have a Stellar account they won't know
+For this tutorial, you'll be using accounts to create new assets and
+also provision other users accounts as they signup for this Venmo
+clone which will be called `AnchorX`. Although each user will have a Stellar account they won't know
 about it.
 
 ### Creating accounts in the test network
@@ -200,15 +197,15 @@ point the issuer (also known as anchor) received `BTC` in their
 Bitcoin wallets and then credited with their equivalent representation
 of Bitcoin your Stellar account. If you visit the following site, [https://stellar.expert/explorer/public/asset](https://stellar.expert/explorer/public/asset) you'll find all the assets issued in Stellar.
 
-For this tutorial, I'll be creating a custom asset in the test network
-(testnet) representing Dollars and I'll build a way to credit and
+You'll be creating a custom asset in the test network
+(testnet) representing Dollars and you will build a way to credit and
 debit accounts as if we were depositing Dollars.
 
 You can learn more about assets in the SDF guides: [https://www.stellar.org/developers/guides/concepts/assets.html](https://www.stellar.org/developers/guides/concepts/assets.html)
 
 ## Anchor
 
-At the beginning of this tutorial, I mentioned that an entity like
+At the beginning of this tutorial, you read that an entity like
 Venmo is called an anchor.  Anchors issue assets on top of Stellar and
 then credit those asset to other Stellar accounts. If the anchor
 represents fiat, then it is likely an authorized entity to deal with
@@ -224,8 +221,8 @@ Anchors can represent also other cryptocurrencies. [Papaya](https://apay.io/) is
 
 If you want to deposit Ether, they give you an Ethereum address. After you deposit Ether to that address they issue the equivalent to your Stellar account. In this case you'll have to trust Papaya because they'll be acting as custodian for the Ether you sent them.
 
-For this tutorial, I'll be creating an anchor which will issue an
-asset representing USD. User will have to download an app, I'll fake a
+In this tutorial, you will be creating an anchor which will issue an
+asset representing USD. User will have to download an app, you'll fake a
 KYC process and then create a Stellar account for the user and
 authorize the user to hold the asset. Once the user have been
 authorized they will be able to deposit USD or debit USD from their accounts.
@@ -245,9 +242,7 @@ The following is high level overview of what happens when you want to use Venmo:
 3. Once you are authorized to use Venmo, transfer money from your bank account and send it to other Venmo users.
 4. Transfer to your bank whatever balance you have left.
 
-From now on, I'll call the Venmo clone for this tutorial AnchorX,
-let's translate the steps above to actions in AnchorX and then
-identify the requirements to setup the anchor.
+Let's translate the steps above to actions in AnchorX and then identify the requirements to setup the anchor.
 
 ### Download the app and create an user.
 
@@ -322,14 +317,51 @@ The app will have a section for depositing their dollars to their bank account.
 
 In this section, I'll be implementing a GraphQL API which will support user sign-up and sign-in, deposits, withdrawals and payments. The mobile application will be interacting with this API.
 
-Reference backend in Node.js
+I'll be writing the server in `TypeScript` and using [Prisma](https://www.prisma.io/) to generate the user management API.
 
-## Create user account
-API end-point to create user a new user account
+## Setting up the server
+
+I'm bootstrapping the server using the [GraphQL CLI](https://oss.prisma.io/content/graphql-cli/01-overview) and using the `TypeScript` template. To make things easy I put release which you can use as starting point if you want to follow step by step.
+
+The following pull request contains the boostrapping step [https://github.com/abuiles/anchorx-api/pull/1](https://github.com/abuiles/anchorx-api/pull/1). You can get it by running the following commands:
+
+1. `git clone https://github.com/abuiles/anchorx-api`
+2. `cd anchorx-api`
+3. `git checkout v1`
+
+Next you are going to add the user model.
+
+## User
+
+The user model is defined in `database/datamodel.graphql`. Users in AnchorX signup using their username. After they signup, the service assigns automatically a Stellar account. While we have a Stellar account for each customer, the user will never interact with it. The code on the right represents  the user model.
+
+```javascript
+type User {
+  id: ID! @unique
+  username: String! @unique
+  stellarAccount: String!
+  stellarSeed: String!
+}
+```
+
+After adding the user model definition to `database/datamodel.graphql`, you have to run `yarn prisma deploy` to create a new table in the database and get the CRUD end-points for users.
+
+- `yarn run prisma deploy`
+
+The [pull request #2](https://github.com/abuiles/anchorx-api/pull/2), shows the changes added in this step. The important changes are here [https://github.com/abuiles/anchorx-api/pull/2/files#diff-5ca8cc3ddf0d92dda0872ee778220e21](https://github.com/abuiles/anchorx-api/pull/2/files#diff-5ca8cc3ddf0d92dda0872ee778220e21) since the rest is code generated by prisma.
+
+After a new user is created, you need to provision a Stellar account. Provisioning a new account requires multiple steps:
+
+1. You need to create a public and private key pair.
+2. After the public key has been created, you need to fund that account with some Lumens.
+3. After the account has been created in the Stellar ledger, you need to create a trustline with the anchor asset.
+
 ### Create Stellar account
 Implementation of Stellar account provisioning
-### Create truslines
+### Funding the new account
+### Creating trustlines
 Implementation of Stellar trustlines
+
 ## Credit account
 API end-point to "transfer" USD from bank account to Stellar account.
 ## Payments
@@ -338,6 +370,7 @@ API end-point to transfer money from user a to user b
 API end-point to transfer money from AnchorX to bank account.
 
 # Building the mobile wallet
+
 ## Using the Stellar-SDK in React-Native
 Introduce the Stellar-SDK polyfill and how to display an account data in a RN app.
 ## Creating an user signup flow
