@@ -11,13 +11,7 @@ Scout's Python agent auto-instruments Django and Flask applications, SQL queries
 * Flask 0.10+
 * Celery 3.1+
 
-
-
-<h2 id="python-install">Installation</h2>
-
-Tailored instructions are provided within our user interface. 
-
-### Django Installation
+## Django
 
 General instructions for a Django app:
 
@@ -67,7 +61,7 @@ If you've installed Scout via the Heroku Addon, the provisioning process automat
   </tbody>
 </table>
 
-### Flask Installation
+## Flask
 
 General instructions for a Flask app:
 
@@ -113,7 +107,163 @@ app.config['SCOUT_KEY']     = "[AVAILABLE IN THE SCOUT UI]"
 app.config['SCOUT_NAME']    = "A FRIENDLY NAME FOR YOUR APP"
 </pre>
 
-<p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code>.</p>
+<p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> and remove the calls to <code>app.config</code>.</p>
+
+<p>
+If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="step">3</span></td>
+      <td style="padding-top: 15px"><p>Deploy.</p></td>
+    </tr>
+  </tbody>
+</table>
+
+## Celery
+
+Add the following to instrument Celery workers:
+
+<table class="help install install_ruby">
+  <tbody>
+    <tr>
+      <td>
+        <span class="step">1</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Install the <code>scout-apm</code> package:</p>
+<pre style="width:500px">
+pip install scout-apm
+</pre>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">2</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Configure Scout in your <code>settings.py</code> file:</p>
+<pre class="terminal" style="width: initial">
+<span>import scout_apm.celery</span>
+<span>from scout_apm.core.config.config import ScoutConfig</span>
+from celery import Celery
+
+app = Celery('tasks', backend='redis://localhost', broker='redis://localhost')
+<span>
+ScoutConfig.set(
+        key = '...',
+        name = 'Same as Web App Name',
+        monitor = True
+        )
+</span>
+<span>scout_apm.celery.install()</span>
+</pre>
+
+<p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code>. Remove the call to <code>ScoutConfig.set</code>.</p>
+
+<p>
+If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="step">3</span></td>
+      <td style="padding-top: 15px"><p>Deploy.</p></td>
+    </tr>
+  </tbody>
+</table>
+
+Tasks will appear in the "Background Jobs" area of the Scout UI.
+
+## Pyramid
+
+General instructions for a Pyramid app:
+
+<table class="help install install_ruby">
+  <tbody>
+    <tr>
+      <td>
+        <span class="step">1</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Install the <code>scout-apm</code> package:</p>
+<pre style="width:500px">
+pip install scout-apm
+</pre>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">2</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Add Scout to your Pyramid config:</p>
+
+<pre style="width:initial">
+import scout_apm.pyramid
+
+if __name__ == '__main__':
+    with Configurator() as config:
+        config.add_settings(
+            SCOUT_KEY = '...',
+            SCOUT_MONITOR = True,
+            SCOUT_NAME = 'My Pyramid App'
+        )
+        config.include('scout_apm.pyramid')
+</pre>
+
+<p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> and remove the call to <code>config.add_settings</code>.</p>
+
+<p>
+If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="step">3</span></td>
+      <td style="padding-top: 15px"><p>Deploy.</p></td>
+    </tr>
+  </tbody>
+</table>
+
+## Bottle
+
+General instructions for a Bottle app:
+
+<table class="help install install_ruby">
+  <tbody>
+    <tr>
+      <td>
+        <span class="step">1</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Install the <code>scout-apm</code> package:</p>
+<pre style="width:500px">
+pip install scout-apm
+</pre>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">2</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Add Scout to your Bottle config:</p>
+
+<pre style="width:initial">
+from scout_apm.bottle import ScoutPlugin
+
+app = bottle.default_app()
+app.config.update({'scout.name': "YOUR_APP_NAME",
+                   'scout.monitor': "true",
+                   'scout.key': "YOUR_KEY"})
+
+scout = ScoutPlugin()
+bottle.install(scout)
+</pre>
+
+<p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> and remove the call to <code>app.config.update</code>.</p>
 
 <p>
 If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
@@ -135,7 +285,7 @@ Not seeing data? Email support@scoutapp.com with:
 
 * A link to your app within Scout (if applicable)
 * Your Python version
-* Your Django or Flask version
+* The name of the framework and version you are trying to instrument (ie - Flask 0.10).
 
 We typically respond within a couple of hours during the business day.
 
@@ -143,29 +293,17 @@ We typically respond within a couple of hours during the business day.
 
 Scout auto-instruments the following Python libraries:
 
-* Django
+* [Django](#django)
   * Middleware
   * Templates (compiling & rendering)
   * Template blocks
   * SQL queries
-* Flask
+* [Flask](#flask)
 * [Celery](#celery)
+* [Pyramid](#pyramid)
+* [Bottle](#bottle)
 
 More to come - suggest others in the [scout_apm_python](https://github.com/scoutapp/scout_apm_python) GitHub repo.  
-
-## Celery
-
-Add the following to instrument Celery workers:
-
-<pre class="terminal" style="width: initial">
-<span>import scout_apm.celery</span>
-from celery import Celery
-
-app = Celery('tasks', backend='redis://localhost', broker='redis://localhost')
-<span>scout_apm.celery.install()</span>
-</pre>
-
-Tasks will appear in the "Background Jobs" area of the Scout UI.
 
 <h2 id="python-configuration">Configuration Reference</h2>
 
@@ -189,7 +327,7 @@ Tasks will appear in the "Background Jobs" area of the Scout UI.
   <tbody>
     <tr>
       <th>
-        SCOUT_KEY
+        key
       </th>
       <td>
         The organization API key.
@@ -202,7 +340,7 @@ Tasks will appear in the "Background Jobs" area of the Scout UI.
     </tr>
     <tr>
       <th>
-        SCOUT_NAME
+        name
       </th>
       <td>
         Name of the application (ex: 'Photos App').
@@ -215,7 +353,7 @@ Tasks will appear in the "Background Jobs" area of the Scout UI.
     </tr>
     <tr>
       <th>
-        SCOUT_MONITOR
+        monitor
       </th>
       <td>
         Whether monitoring data should be reported.
@@ -225,6 +363,34 @@ Tasks will appear in the "Background Jobs" area of the Scout UI.
       </td>
       <td>
         Yes
+      </td>
+    </tr>
+    <tr>
+      <th>
+        hostname
+      </th>
+      <td>
+        The hostname the metrics should be aggregrated under.
+      </td>
+      <td>
+        <code>hostname</code>       
+      </td>
+      <td>
+        Yes
+      </td>
+    </tr>
+    <tr>
+      <th>
+        revision_sha
+      </th>
+      <td>
+        The Git SHA associated with this release.
+      </td>
+      <td>
+             
+      </td>
+      <td>
+        No
       </td>
     </tr>
   </tbody>
@@ -426,3 +592,17 @@ pip install scout-apm --upgrade
 ```
 
 The package changelog is [available here](https://github.com/scoutapp/scout_apm_python/blob/master/CHANGELOG.md).  
+
+<h2 id="python-deploy-tracking-config">Deploy Tracking Config</h2>
+
+Scout can [track deploys](#deploy-tracking), making it easier to correlate changes in your app to performance.
+
+Scout identifies deploys via the following:
+
+1. Setting the `revision_sha` configuration value:
+
+```python
+ScoutConfig.set(revision_sha = 'SHA')
+```
+2. Setting a `SCOUT_REVISION_SHA` environment variable equal to the SHA of your latest release.
+3. If you are using Heroku, enable [Dyno Metadata](https://devcenter.heroku.com/articles/dyno-metadata). This adds a `HEROKU_SLUG_COMMIT` environment variable to your dynos, which Scout then associates with deploys.
