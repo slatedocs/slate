@@ -1,0 +1,33 @@
+{
+  "name": "mjml-doc-slate",
+  "version": "1.0.0",
+  "description": "MJML documentation",
+  "main": "js/register.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "concat-docs-md": "cd js && node register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjmlio/slate.git"
+  },
+  "keywords": [
+    "MJML",
+    "documentation",
+    "slate"
+  ],
+  "author": "kmcb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mjmlio/slate/issues"
+  },
+  "homepage": "https://github.com/mjmlio/slate#readme",
+  "dependencies": {
+    "babel-register": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1"
+  }
+}
