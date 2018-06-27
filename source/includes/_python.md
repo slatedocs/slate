@@ -400,7 +400,7 @@ More to come - suggest others in the [scout_apm_python](https://github.com/scout
 
 You can also configure Scout APM via environment variables. _Environment variables override settings provided in your `settings.py` file._
 
-Environment variables use the same configuration names. For example, to set the organization key via environment variables:
+To configure Scout via enviroment variables, uppercase the config key and prefix it with `SCOUT`. For example, to set the key via environment variables:
 
 ```
 export SCOUT_KEY=YOURKEY

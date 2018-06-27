@@ -469,7 +469,7 @@ The following configuration settings are available:
 
 You can also configure Scout APM via environment variables. _Environment variables override settings provided in_ `scout_apm.yml`.
 
-Environment variables have the same names as those in the Yaml config file, but are prefixed with `SCOUT_`. For example, to set the organization key via environment variables:
+To configure Scout via enviroment variables, uppercase the config key and prefix it with `SCOUT`. For example, to set the key via environment variables:
 
 ```ruby
 export SCOUT_KEY=YOURKEY
