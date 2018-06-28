@@ -613,3 +613,210 @@ html, body {
 .highlight, .highlight .w {
   background-color: $code-bg;
 }
+
+
+
+/*.................................................................
+.................................................................*/
+
+
+
+
+.content > p{
+  line-height: 27px;
+}
+
+.content{
+  h1{
+    font-weight: normal;
+  }
+  a{
+    color: #b1459d;
+  }
+
+  li{
+    color: #666;
+    line-height: 25px;
+    font-size: 14px;
+    list-style: square;
+  }
+
+  aside {
+    color: #fff;
+    a{
+      color: #000;
+    }
+  }
+  table{
+      margin: 1em 27px;
+      overflow: auto;
+      width: calc(50% - 54px);
+      display: table;
+      @media (max-width: 700px){
+         width: calc(100% - 54px);
+      }
+      tr:nth-child(odd) > td,
+      tr:nth-child(even) > td{
+        background: transparent;
+      }
+      tr> th{
+        background: #777;
+        color: #fff;
+      }
+      td{
+        .wcmp-api-endpoint {
+          margin: 5px 0;
+          padding: 2px;
+          width: 100%;
+        }
+      }
+  }
+  .wcmp-api-endpoint {
+    margin: 10px 27px;
+    padding: 5px;
+    border-radius: 3px;
+    background: #222;
+    display: inline-block;
+    width: calc(59% - 74px);
+    color: #fff;
+    @media (max-width: 700px){
+       width: calc(100% - 74px);
+    }
+    .wcmp-endpoint-data{
+      i.label {
+        display: inline-block;
+        padding: 10px;
+        border-radius: 3px;
+        margin: 0 4px 0 0;
+      }
+      i.label.label-get {
+        background: green;
+      }
+      i.label.label-post {
+        background: #47afca;
+      }
+      i.label.label-put {
+        background: #c56820;
+      }
+      i.label.label-delete {
+        background: #e20a2e;
+      }
+      h6{
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+        font-size: 13px;
+        font-weight: normal;
+      }
+    }
+  }
+  pre, blockquote{
+    width: 41%;
+    white-space: pre-wrap;
+    @media (max-width: 700px){
+       width: 100%;
+    }
+  }
+  table {
+    width: calc(59% - 54px);
+    @media (max-width: 700px){
+       width: calc(100% - 54px);
+    }
+  }
+}
+.page-wrapper{
+  .dark-box {
+      width: 41%;
+  }
+  .lang-selector {
+    box-sizing: border-box;
+    a {
+      line-height: 45px;  
+      border-top: 6px solid #1E2224;  
+    }
+    a.active{
+      border-top: 6px solid #582851;
+    }
+  }
+}
+.content > h1, .content > h2, .content > h3, 
+.content > h4, .content > h5, .content > h6, 
+.content > p, .content > table, .content > ul, 
+.content > ol, .content > aside, .content > dl {
+  margin-right: 41%;
+  @media (max-width: 700px){
+     margin-right: 0;
+  }
+}
+.toc-wrapper {
+    /*padding-bottom: 200px;*/
+    width: 231px;
+    background: #f3f3f3;
+    border-right: 1px solid #ddd;
+    box-sizing: border-box;
+    overflow: auto;
+    box-shadow: 1px 0px 6px 0px rgba(0,0,0,0.3);
+    .toc-list-h2{
+      background-color: transparent;
+      .toc-h2.toc-link{
+        font-size: 13px;
+      }
+    }
+    .toc-link{
+      color: #222;
+    }
+    .toc-link.active {
+      background-color: #6c4165;
+    }
+    .toc-link.active-parent{
+      background: #442f50;
+    }
+    .toc-list-h1 {
+      font-size: 14px;
+      padding-top: 10px;
+    }
+    .toc-footer {
+      padding: 1em 0;
+      margin-top: 1em;
+      border-top: 1px dashed #666;
+      width: 230px;
+      li {
+        font-size: 0.8em;
+        line-height: 27px;
+        text-decoration: none;
+        font-weight: normal;
+        font-size: 14px;
+        a{
+          color: #000;
+        }
+      }
+    }
+
+    .logo {
+        display: inline-block;
+       /* width: 110px;
+        max-width: 100%;
+        padding: 20px calc(50% - 55px);
+        border-bottom: 1px solid #999;*/
+        width: 78%;
+        max-width: 100%;
+        padding: 13px 11%;
+        border-bottom: 1px solid #ddd;
+    }
+    .search {
+      &:before {
+        top: 17px;
+        left: 22px;
+        color: #8a4dad;
+      }
+      input{
+        background: #442f50;
+        border-color: #442f50;
+        padding: 6px 0 6px 22px;                   
+      }
+    }
+
+  }
+
+
+
