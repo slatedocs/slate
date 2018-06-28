@@ -116,22 +116,25 @@ This endpoint upload new run results to your project.
 
 Parameters | Description | required? |
 --------- | ------- |------- |
-data/attributes/instance-id | Instance id (not display-id) | true |
+data/attributes/instance-id* | Instance id (not display-id) | true |
 data/attributes/exit-code | 0 for passed, otherwise failed | false |
 data/attributes/run-duration | (HH:MM:SS), to update the run duration of a specific instance | false |
 data/attributes/automated-execution-output | text output string that will be shown in ‘Execution output’ field (up to 255 characters) | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
-data/steps/data* | an array of steps override the exit code | false |
-data/files/data** | an array of files  | false |
+data/steps/data** | an array of steps override the exit code | false |
+data/files/data*** | an array of files  | false |
 
 
-* Steps array includes steps json hash, with these attributes: name, description, expected-results, actual-results, status.
+* Users can update 20 instances (maximum) with results by sending one request. See a curl example in the dark area to the right.
+
+** Steps array includes steps json hash, with these attributes: name, description, expected-results, actual-results, status.
 Status can be one of the following: PASSED, FAILED, BLOCKED, NO RUN, N/A
 When using steps, the exit-code is ignored, and it calculates it according to the steps status.
 
-** files would be as an attachments in your automated tests. It's a json hash that has two attributes: filename, and content_encoded.
+*** files would be as an attachments in your automated tests. It's a json hash that has two attributes: filename, and content_encoded.
 We expect to get the file content encoded as BASE64. See code examples: shell with curl to your right, Ruby example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/runs.rb" target="blank"> here</a>, Python version 2 example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/create_run_attachments_v2.py" target="blank"> here</a>, Python version 3 example <a
 href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/create_run_attachments_v3.py" target="blank"> here</a>, Java example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/java/src/main/java/com/practitest/examples/RunWithAttachments.java" target="blank"> here</a>, C sharp (.Net) example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/csharp/create_run_attachments.cs" target="blank"> here</a>.
+
 
 ```shell
 # upload test results with a file attachment
@@ -157,3 +160,9 @@ curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN  \
 -X POST https://api.practitest.com/api/v2/projects/4566/runs.json \
 -d '{"data": { "type": "instances", "attributes": {"instance-id": 98142, "exit-code": 0, "custom-fields": { "---f-45293": "Win" }}}} '
+
+# example with updating multiple instances with results
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN  \
+-X POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/runs.json \
+-d '{"data": [{ "type": "instances", "attributes": {"instance-id": 105716, "exit-code": 0, "automated-execution-output": "THIS IS MY OUTPUT"}}, { "type": "instances", "attributes": {"instance-id": 105717, "exit-code": 0, "automated-execution-output": "THIS IS MY OUTPUT"}}]}'
