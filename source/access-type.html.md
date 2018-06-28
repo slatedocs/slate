@@ -18,6 +18,7 @@ includes:
   - accesstype/coupon_codes
   - accesstype/campaigns
   - accesstype/for-platform-customers
+  - accesstype/release_notes
 ---
 
 # Introduction To AccessType
