@@ -516,7 +516,66 @@ mutation {
 
 You can test the changes made up to this point by running the server. To do so type the command `yarn dev` in your console and it will bring a GraphQL playground to your browser. You can test the `signup mutation` by pasting the code in the right and hitting run.
 
-## Funding the new account
+AnchorX allows you now to create new users and it assigns a stellar account to each user. However, the Stellar account is not created in the Stellar ledger until it gets funded with some lumens.
+
+The gif below, shows you the process of creating an account and what happens when you try to look at that account on the stellar test network.
+
+The result is a 404 since you never funded the Stellar account.
+
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/0D2x0C3Y3i2C0J2q1i1L/Screen%20Recording%202018-06-28%20at%2011.14%20AM.gif?X-CloudApp-Visitor-Id=49274&v=df174936)
+
+To fix this, AnchorX needs to fund each account with enough lumens so that it can keep the minimum balance and then be able to do
+transactions. In the next section you will learn how to create account programatically in Stellar without `friendbot`.
+
+## Creating the account in the Stellar ledger
+
+```javascript
+// Classes required to create new account
+import {
+  Keypair, // Keypair represents public and secret keys.
+  Network, // Network provides helper methods to get the passphrase or id for different stellar networks.
+  Operation, // Operation helps you represent/build operations in Stellar network.
+  Server, // Server handles the network connections.
+  TransactionBuilder // Helps you construct transactions.
+} from 'stellar-sdk'
+
+try {
+  // Tell the Stellar SDK you are using the testnet
+  Network.useTestNetwork();
+  // point to testnet host
+  const stellarServer = new Server('https://horizon-testnet.stellar.org');
+
+  // Never put values like the an account seed in code.
+  const provisionerKeyPair = Keypair.fromSecret('SA72TGXRHE26WC5G5MTNURFUFBHZHTIQKF5AQWRXJMJGZUF4XY6HFWJ4')
+
+  // Load account from Stellar
+  const provisioner = await stellarServer.loadAccount(provisionerKeyPair.publicKey())
+
+  console.log('creating account in ledger', keypair.publicKey())
+  const transaction = new TransactionBuilder(provisioner)
+        .addOperation(
+          // Operation to create new accounts
+          Operation.createAccount({
+            destination: keypair.publicKey(),
+            startingBalance: '2'
+          })
+        ).build()
+
+  // Sign the transaction above
+  transaction.sign(provisionerKeyPair)
+
+  // Submit transaction to the server
+  const result = await stellarServer.submitTransaction(transaction);
+  console.log('Account created: ', result)
+} catch (e) {
+  console.log('Stellar account not created.', e)
+}
+```
+The Stellar SDK includes a transaction builder which helps you create operations. To create an account, you'll need to use the [createAccount operation](https://stellar.github.io/js-stellar-sdk/Operation.html#.createAccount). The code on the right includes the relevant pieces to create a new account programmatically.
+
+You can follow along and read the comment on what each line represents. After that you'll need to use that code in the context of the signup mutation to create the account in the Stellar ledger.
+
+You need to extend the signup mutation to fund the user's account after it has been created successfully.
 
 ## Creating trustlines
 Implementation of Stellar trustlines
