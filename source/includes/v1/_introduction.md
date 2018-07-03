@@ -2,7 +2,7 @@
 
 WC Marketplace 3.1+ have been fully integrated with WordPress REST API. This will now let developers interact with sites remotely by sending and receiving JSON objects. When a data is sent out or a HTTP(S) request is made to the API from external applications, the response will be returned in JSON, thereby allowing WCMp data to be created, read, updated or deleted.
 
-WCMp REST API has been introduced extending [WordPress REST API](https://developer.wordpress.org/rest-api/) and [WooCommerce REST API](https://woocommerce.github.io/woocommerce-rest-api-docs).
+WCMp REST API has been introduced extending <a target="_blank" href="https://developer.wordpress.org/rest-api/">WordPress REST API</a> and <a target="_blank" href="https://woocommerce.github.io/woocommerce-rest-api-docs">WooCommerce REST API</a>.
 
 ## Prerequisites ##
 
@@ -18,14 +18,14 @@ To use __WCMp REST API__ make sure you are using:
 * You may access the API over either HTTP or HTTPS.
 
 <aside class="notice">
-  <strong>Note:</strong> Before you proceed, go through <a href="https://woocommerce.github.io/woocommerce-rest-api-docs">WooCommerce REST API</a> for proper understanding.
+  <strong>Note:</strong> Before you proceed, go through <a target="_blank" href="https://woocommerce.github.io/woocommerce-rest-api-docs">WooCommerce REST API</a> for proper understanding of WCMp and WooCommerce REST API.
 </aside>
 
 ## JSONP ##
 
 JSONP is a method for sending JSON data without worrying about cross-domain issues. The JSON data is wrapped up in a callback function as a parameter inside it, but obviously keeping in mind the function exists on the client.
 
-WP REST API supports JSONP by default about which you may read it [here](https://developer.wordpress.org/rest-api/using-the-rest-api/global-parameters/#_jsonp).
+WP REST API supports JSONP by default about which you may read it <a target="_blank" href="https://developer.wordpress.org/rest-api/using-the-rest-api/global-parameters/#_jsonp">here</a>.
 
 A syntactical representation of a JSONP request is provided below:
 <div class="wcmp-api-endpoint">
@@ -48,7 +48,7 @@ curl https://example.com/wp-json/wcmp/v1/vendors/14?_jsonp=vendorDetails \
 
 ## Starting Out ##
 
-Generate API credentials (Consumer Key & Consumer Secret) following instructions listed in [http://docs.woocommerce.com/document/woocommerce-rest-api/](http://docs.woocommerce.com/document/woocommerce-rest-api/) or you may also want to read through [https://woocommerce.github.io/woocommerce-rest-api-docs/#authentication](https://woocommerce.github.io/woocommerce-rest-api-docs/#authentication) to authenticate with the WP REST API.
+Generate API credentials (Consumer Key & Consumer Secret) following instructions listed in <a target="_blank" href="http://docs.woocommerce.com/document/woocommerce-rest-api/">http://docs.woocommerce.com/document/woocommerce-rest-api/</a> or you may also want to read through <a target="_blank" href="https://woocommerce.github.io/woocommerce-rest-api-docs/#authentication">https://woocommerce.github.io/woocommerce-rest-api-docs/#authentication</a> to authenticate with the WP REST API.
 
 We do not create a different credential set, rather we use WooCommerce's API credentials thereby you need to authenticate only once.
 

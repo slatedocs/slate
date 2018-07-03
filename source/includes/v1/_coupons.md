@@ -1,5 +1,5 @@
 # Coupons #
-WCMp Coupons API allows you to get all the coupons of a vendor or insert a vendor's coupon and even update a coupon with a vendor assigned to it [(extends WooCommerce Coupons API)](https://woocommerce.github.io/woocommerce-rest-api-docs/#coupons).
+WCMp Coupons API allows you to get all the coupons of a vendor or insert a vendor's coupon and even update a coupon with a vendor assigned to it <a target="_blank" href="https://developer.wordpress.org/rest-api/">WordPress REST API</a> and <a target="_blank" href="https://woocommerce.github.io/woocommerce-rest-api-docs/#coupons">(extends WooCommerce Coupons API)</a>.
 
 ## List all coupons by vendor ##
 To retrieve all the coupons by a vendor, make a HTTP GET request to WooCommerce's Coupon API with a `vendor` parameter passed to it.

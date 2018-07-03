@@ -1,5 +1,5 @@
 # Orders #
-WCMp Orders API allows you to list all the orders of a vendor [(extends WooCommerce Orders API)](https://woocommerce.github.io/woocommerce-rest-api-docs/#orders). 
+WCMp Orders API allows you to list all the orders of a vendor <a target="_blank" href="https://woocommerce.github.io/woocommerce-rest-api-docs/#orders">(extends WooCommerce Orders API)</a>. 
 
 ## List all orders by vendor ##
 To retrieve all the orders by a vendor, make a HTTP GET request to WooCommerce's Orders API with a `vendor` parameter passed to it.

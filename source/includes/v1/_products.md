@@ -1,5 +1,5 @@
 # Products #
-WCMp Products API allows you to get all the products of a vendor or insert a vendor's product and even update a product with a vendor assigned to it [(extends WooCommerce Products API)](https://woocommerce.github.io/woocommerce-rest-api-docs/#products).
+WCMp Products API allows you to get all the products of a vendor or insert a vendor's product and even update a product with a vendor assigned to it <a target="_blank" href="https://woocommerce.github.io/woocommerce-rest-api-docs/#products">(extends WooCommerce Products API)</a>.
 
 ## List all products by vendor ##
 To retrieve all the products by a vendor, make a HTTP GET request to WooCommerce's Product API with a `vendor` parameter passed to it.
