@@ -149,6 +149,7 @@ includes:
   - meta_data
   - query_format
   - errors
+  - internationalization
 
 search: true
 ---
