@@ -93,6 +93,9 @@ includes:
   - usb_diag_tool_entity_linker
 
   - product_actions
+  - create_hub2
+  - create_product_tiger
+  - create_product_hyena
   - enable
   - disable
   - update_software
@@ -119,6 +122,10 @@ includes:
   - get_repair
 
   - product_data
+
+  - part_actions
+  - create_tiger_pcb
+  - create_hyena_pcb
 
   - repair_actions
   - current_state
