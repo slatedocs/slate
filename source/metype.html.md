@@ -14,6 +14,7 @@ includes:
   - metype/feed
   - metype/user_generated_content
   - metype/sso
+  - metype/release_notes
 ---
 # Introduction To Metype
 
