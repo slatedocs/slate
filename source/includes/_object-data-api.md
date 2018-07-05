@@ -49,9 +49,10 @@ We've provided a convenient way to access more data in any request for sequentia
 Many Intelex objects have relations to other objects. These relations are configured as relation type or lookup type fields.  These fields are accessible via the API as navigation properties. 
 Every object will have navigation properties that can be used to access its related data in another object.  You'll need to use the system name of the field configured with the related object in order to access related data.  
 
-You can access related data by using the [$expand](#query-option-expand) query option or you can [navigate to related data](#requesting-related-records) using a URL path. You can traverse multiple levels of relational data by navigating through the URL path or with nested $expand queries.
+You can access related data by using the [$expand](#query-option-expand) query option or you can [navigate to related data](#requesting-related-records) using a URL path. You can traverse multiple levels of relational data by navigating through the URL path or with nested $expand queries. 
 
 Please note: Trying to access or modify relation fields that are self-referencing will not work (i.e. A relation type field on an object that is a relation to itself) 
+
 
 ## System Objects
 
@@ -707,6 +708,9 @@ The $expand system query option specifies the related object records and lookup 
 |Sort expanded collection|$expand=SubIncidents($orderby=DateCreated)|
 |Filter expanded collection|$expand=SubIncidents($filter=Description ne null)|
 |Filter and select expanded collection|$expand=SubIncidents($filter=Description ne null;$select=Description)|
+|Expand child locations on SysLocationEntity system object - 1 level| /object/SysLocationEntity?$expand=ChildLocations
+|Expand child locations on SysLocationEntity system object - multi-level| /object/SysLocationEntity?$expand=ChildLocations($expand=ChildLocations)
+|Expand parent location on SysLocationEntity system object| /object/SysLocationEntity?$expand=ParentLocation
 
 ##### URL Parameters
 
