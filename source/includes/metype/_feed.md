@@ -80,9 +80,10 @@ The color and font are confiruable according to your liking -->
 3. Click on `HTML/Javascript`.
 4. Check the `Show HTML/Javascript` checkbox.
 5. Leave the title empty.
-6. Add the 3rd HTML and javascript on the right in the shell in this section in the `content` field. Dont forget to add your `account id` and other UI customizations in the script.
+6. Add the script for Blogger specified in the shell on the right in the `content` field. Dont forget to add your `account id` and other UI customizations in the script.
 
 ```shell
+<!-- Script for Blogger -->
 <script type='text/javascript'>
   window.talktype = window.talktype || function(f) {
     if (talktype.loaded)
