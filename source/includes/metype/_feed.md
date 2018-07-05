@@ -81,7 +81,7 @@ The color and font are confiruable according to your liking -->
 4. Check the `Show HTML/Javascript` checkbox.
 5. Leave the title empty.
 6. Add the HTML and Javascript in the shell on the right in the `content` field. Dont forget to add your `account id` and other UI customizations in the script.
-```
+```shell
 <script type='text/javascript'>
   window.talktype = window.talktype || function(f) {
     if (talktype.loaded)

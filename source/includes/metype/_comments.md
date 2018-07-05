@@ -94,7 +94,7 @@ The color and font are confiruable according to your liking -->
 6. Check the `Show HTML/Javascript` checkbox.
 7. Type `Metype Comments` in the `title` field.
 8. Add the HTML and Javascript in the shell on the right in the `content` field. Dont forget to add your `account id` and other UI customizations in the script.
-```
+```shell
 <script type='text/javascript'>
   window.talktype = window.talktype || function(f) {
     if (talktype.loaded)
