@@ -54,8 +54,8 @@ under the License.
       <%= image_tag "logo.png", class: 'logo' %>
       <% if language_tabs.any? %>
         <div class="lang-selector">
-          <% language_tabs.each do |lang| %>
-            <% if lang.is_a? Hash %>
+          <% language_tabs.each do |lang| 
+            if lang.is_a? Hash %>
               <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
             <% else %>
               <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
@@ -69,20 +69,51 @@ under the License.
         </div>
         <ul class="search-results"></ul>
       <% end %>
-      <ul id="toc" class="toc-list-h1">
-        <% toc_data(page_content).each do |h1| %>
-          <li>
-            <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:content].to_s.parameterize %>"><%= h1[:content] %></a>
-            <% if h1[:children].length > 0 %>
-              <ul class="toc-list-h2">
-                <% h1[:children].each do |h2| %>
-                  <li>
-                    <a href="#<%= h2[:id] %>" class="toc-h2 toc-link" data-title="<%= h2[:content].to_s.parameterize %>"><%= h2[:content] %></a>
-                  </li>
-                <% end %>
-              </ul>
+      <div id="toc" class="toc-list-h1">
+        <% if current_page.data.multiple_pages %>
+          <div id="toc">
+            <% current_page.data.resources.each do |resource| %>
+              <li>
+                <% resource_name = resource[/^[a-zA-Z\-_\s]+:/] %>
+                <% resource_name = resource_name.to_s[0..-2] %>
+                <% resource_name_lower = resource_name.downcase %>
+                <% current_page.data.debug ? ( puts resource_name ) : '' %>
+                <% resource_url = resource[/\/?[a-zA-Z\-\.\/_]+\/index.html/] %>
+                <% current_page.data.debug ? ( puts '- ' + resource_url.to_s ) : '' %>
+                <%= link_to resource_name, resource_url, :class => 'toc-h1 toc-link', :directory_indexes => true %>
+                <ul class="toc-list-h2 active">
+                  <% current_page.data[resource_name_lower].each do |request| %>
+                    <li>
+                      <% request_fragment = request[/:'[a-zA-Z\-_]+'/] %>
+                      <% request_fragment = request_fragment.to_s[2..-2] %>
+                      <% current_page.data.debug ? ( puts '  ' + request_fragment ) : '' %>
+                      <% request_name = request[/^[a-zA-Z\-_\s]+:/] %>
+                      <% request_name = request_name.to_s[0..-2] %>
+                      <% current_page.data.debug ? ( puts '  ' + request_name ) : '' %>
+                      <% resource_url_full = resource_url.to_s + '#' + request_fragment.to_s %>
+                      <%= link_to @request_name, resource_url_full, :class => 'toc-h2 toc-link active', :fragment => @request_fragment %>
+                      <%= request %>
+                    </li>
+                  <% end %>
+                </ul>
+              </li>
             <% end %>
-          </li>
+          </div>
+        <% else %>
+          <% toc_data(page_content).each do |h1| %>
+            <li>
+              <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:content].to_s.parameterize %>"><%= h1[:content] %></a>
+              <% if h1[:children].length > 0 %>
+                <ul class="toc-list-h2">
+                  <% h1[:children].each do |h2| %>
+                    <li>
+                      <a href="#<%= h2[:id] %>" class="toc-h2 toc-link" data-title="<%= h2[:content].to_s.parameterize %>"><%= h2[:content] %></a>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </li>
+          <% end %>
         <% end %>
       </ul>
       <% if current_page.data.toc_footers %>
