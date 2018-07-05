@@ -93,7 +93,8 @@ The color and font are confiruable according to your liking -->
 5. Click on `HTML/Javascript`.
 6. Check the `Show HTML/Javascript` checkbox.
 7. Type `Metype Comments` in the `title` field.
-8. Add the HTML and Javascript in the shell on the right in the `content` field. Dont forget to add your `account id` and other UI customizations in the script.
+8. Add the 3rd HTML and javascript on the right in the shell in this section in the `content` field. Dont forget to add your `account id` and other UI customizations in the script.
+
 ```shell
 <script type='text/javascript'>
   window.talktype = window.talktype || function(f) {
@@ -133,6 +134,7 @@ The color and font are confiruable according to your liking -->
 <!-- Script that loads the metype library. This can be moved to the head -->
 <script src='https://www.metype.com/quintype-metype/assets/metype.js'></script>
 ```
+
 9. Click on `Save` at the end of the page.
 10. Now the `Metype Comments` gadget is available in your layout. You can move it as per your requirements in your posts layout.
 
