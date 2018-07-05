@@ -9,7 +9,7 @@ If you've found a bug with Slate upstream that you're still encountering even in
 -->
 
 Operating system: ✍️ TODO
-Last upstream commit (run `git log --author="Robert Lord" | head -n 1`): ✍️ TODO
+Last upstream version (check `CHANGELOG.md` for the latest version): ✍️ TODO
 Browser version(s): ✍️ TODO
 Ruby version (run `ruby -v`):  ✍️ TODO
 
