@@ -229,10 +229,6 @@ authorized they will be able to deposit USD or debit USD from their accounts.
 
 You can learn more about anchors in the SDF guides: [https://www.stellar.org/developers/guides/anchor/](https://www.stellar.org/developers/guides/anchor/)
 
-## Multisignature
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
 # Anchor Setup
 
 The following is high level overview of what happens when you want to use Venmo:
@@ -589,13 +585,133 @@ You can find in [pull request #5](https://github.com/abuiles/anchorx-api/pull/5)
 In a production app, you probably want to have all the code interacting with Stellar accounts and secret keys in a different service like AWS Lambda. Also make use of AWS IAM policies, KMS and force MFA.
 </aside>
 
+## Payments
+
+```javascript
+ import {
+ + Asset,
+   Keypair,
+ + Memo
+   Network,
+   Operation,
+   Server,
+   TransactionBuilder
+ } from 'stellar-sdk'
+
+ import {
+   AES,
+ + enc
+ } from 'crypto-js'xo
+
+ const ENVCryptoSecret = 'StellarIsAwesome-But-Do-Not-Put-This-Value-In-Code'
+
+   mutations: { ...
++    async payment(_, { amount, senderUsername, recipientUsername, memo }, context: Context, info) {
++      // Load users from database
++      const result = await context.db.query.users({
++        where: {
++          username_in: [senderUsername, recipientUsername]
++        }
++      })
++
++      const [sender, recipient] = result
++
++      Network.useTestNetwork();
++      const stellarServer = new Server('https://horizon-testnet.stellar.org');
++
++      // build the keypair required to sign the payment transaction
++      const signerKeys = Keypair.fromSecret(
++        // Use something like KMS in production
++        AES.decrypt(
++          recipient.stellarSeed,
++          ENVCryptoSecret
++        ).toString(enc.Utf8)
++      )
++
++      // Load Stellar account from ledger
++      const account = await stellarServer.loadAccount(sender.stellarAccount)
++
++      /*
++        Payments require an asset type, for now users will be sending
++        lumens. In the next chapter you'll create a custom asset
++        representing Dollars and use it.
++      */
++      const asset = Asset.native()
++
++      let transaction = new TransactionBuilder(account)
++        .addOperation(
++          Operation.payment({
++            destination: sender.stellarAccount,
++            asset,
++            amount
++          })
++        ).build()
++
++      transaction.sign(signerKeys)
++
++      try {
++        const { hash } = await stellarServer.submitTransaction(transaction)
++
++        return { id: hash }
++      } catch (e) {
++        console.log(`failure ${e}`)
++
++        throw e
++      }
++    }
+   },
+ }
+```
+
+In Venmo you can send payments using the recipient's phone number,
+email or username. In AnchorX users will be sending money to each
+other using their usernames. To keep things simple, you won't
+implement any kind of session management which means you'll have to
+tell the API explicitly who is the sender and the recipient. For
+production apps this is very BAD IDEA, but the goal here is not to
+build an user management or Authn/Authz system.
+
+To send a payment in Stellar, you need the recipient's Stellar account
+and source account secret.
+
+The code in the right shows the mutation to create new payments. It
+takes the sender and recipient username as parameters. It loads first
+the user's data from the database, decrypts the sender seed and then
+signs the transaction to submit a payment.
+
+<aside class="notice">
+If you are freaking out about decrypting the seed and signing the
+transaction with it, don't worry. You will learn more about other ways
+to deal with account seeds and signing transactions in a different section.
+</aside>
+
+Payments are created using the payment `payment` function from the
+`Operation` class. You can see it takes the destination, the
+asset and the amount.
+
+Since Stellar accounts can hold multiple assets you need to specify
+which of the assets held by an account you are trying to transfer. For
+now the operation is sending lumens. In AnchorX, users won't be
+sending lumens to each other but the custom asset representing USD.
+
+In the upcoming sections you will:
+
+ - Create a custom asset representing Dollars.
+ - Learn how to allow accounts to hold that asset.
+ - Implement the `creditAccount` mutation which simulates transferring Dollars from the user bank account to AnchorX.
+ - Change the payment mutation to send USD instead of lumens.
+
+[Pull request #7](https://github.com/abuiles/anchorx-api/pull/7) includes all the changes introduced in this section.
+
+## Creating AnchorX custom asset
+
 ## Creating trustlines
+
 Implementation of Stellar trustlines
 
 ## Credit account
 API end-point to "transfer" USD from bank account to Stellar account.
-## Payments
-API end-point to transfer money from user a to user b
+
 ## Debit account
 API end-point to transfer money from AnchorX to bank account.
 
