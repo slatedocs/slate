@@ -524,8 +524,14 @@ The result is a 404 since you never funded the Stellar account.
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/0D2x0C3Y3i2C0J2q1i1L/Screen%20Recording%202018-06-28%20at%2011.14%20AM.gif?X-CloudApp-Visitor-Id=49274&v=df174936)
 
-To fix this, AnchorX needs to fund each account with enough lumens so that it can keep the minimum balance and then be able to do
-transactions. In the next section you will learn how to create account programatically in Stellar without `friendbot`.
+To fix this, AnchorX needs to fund each account with enough lumens to
+keep the minimum account balance and then be able to do
+transactions. In the next section you will learn how to create account
+programatically in Stellar without `friendbot`.
+
+<aside class="notice">
+Lear more about minimum account balance <a href="https://www.stellar.org/developers/guides/concepts/fees.html#minimum-account-balance">here</a>
+</aside>
 
 ## Creating the account in the Stellar ledger
 
@@ -576,6 +582,12 @@ The Stellar SDK includes a transaction builder which helps you create operations
 You can follow along and read the comment on what each line represents. After that you'll need to use that code in the context of the signup mutation to create the account in the Stellar ledger.
 
 You need to extend the signup mutation to fund the user's account after it has been created successfully.
+
+You can find in [pull request #5](https://github.com/abuiles/anchorx-api/pull/5) the change in the mutation using the create account operation.
+
+<aside class="notice">
+In a production app, you probably want to have all the code interacting with Stellar accounts and secret keys in a different service like AWS Lambda. Also make use of AWS IAM policies, KMS and force MFA.
+</aside>
 
 ## Creating trustlines
 Implementation of Stellar trustlines
