@@ -18,7 +18,7 @@ search: true
 # Building your own Venmo with Stellar
 
 <aside class="notice">
-Work in progress!
+Work in progress - 40% complete.
 </aside>
 
 > This is a free tutorial, but I like to drink coffee while I write. You can buy my a coffee with XLM, send a tip here `GBCFAMVYPJTXHVWRFP7VO6F4QE7B4UHAVJOEG5VR6VEB5M67GHQGEEAB` with the memo `coffee`.
