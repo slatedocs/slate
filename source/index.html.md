@@ -820,6 +820,46 @@ You can see the changes from this section in [pull request #8](https://github.co
 
 ## Allow trustline
 
+```javascript
+export async function allowTrust(trustor) {
+  Network.useTestNetwork();
+  const stellarServer = new Server('https://horizon-testnet.stellar.org');
+
+  try {
+    // Never store secrets in code! Use something like KMS and put
+    // this somewhere were few people can access it.
+    const issuingKeys = Keypair.fromSecret('SBYZ5NEJ34Y3FTKADVBO3Y76U6VLTREJSW4MXYCVMUBTL2K3V4Y644UX')
+    const issuingAccount = await stellarServer.loadAccount(issuingKeys.publicKey())
+
+    const transaction = new TransactionBuilder(issuingAccount)
+      .addOperation(
+        Operation.allowTrust({
+          trustor,
+          assetCode: AnchorXUSD.code,
+          authorize: true
+        })
+      )
+      .build();
+
+    transaction.sign(issuingKeys);
+
+    const result = await stellarServer.submitTransaction(transaction)
+
+    console.log('trust allowed', result)
+
+    return result
+  } catch (e) {
+    console.log('allow trust failed', e)
+  }
+}
+```
+
+On the right you can see the allow trust operation in used. It
+receives the public key of the account that you want to authorize and
+the asset's code.
+
+Now you can use that function after calling `createTrustline`. [Pull request #9](https://github.com/abuiles/anchorx-api/pull/9/files) shows you how to use the `allowTrust` function inside the signup mutation.
+
 ## Credit account
 API end-point to "transfer" USD from bank account to Stellar account.
 
