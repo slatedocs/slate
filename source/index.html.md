@@ -613,7 +613,8 @@ In a production app, you probably want to have all the code interacting with Ste
 +        }
 +      })
 +
-+      const [sender, recipient] = result
++      const sender = result.find(u => u.username === senderUsername)
++      const recipient = result.find(u => u.username === recipientUsername)
 +
 +      Network.useTestNetwork();
 +      const stellarServer = new Server('https://horizon-testnet.stellar.org');
@@ -861,7 +862,108 @@ the asset's code.
 
 Now you can use that function after calling `createTrustline`. [Pull request #9](https://github.com/abuiles/anchorx-api/pull/9/files) shows you how to use the `allowTrust` function inside the signup mutation.
 
+## Welcome balance
+
+```javascript
+export async function payment(signerKeys: Keypair, destination: string, amount: string) {
+  Network.useTestNetwork();
+  const stellarServer = new Server('https://horizon-testnet.stellar.org');
+
+  const account = await stellarServer.loadAccount(signerKeys.publicKey())
+
+  let transaction = new TransactionBuilder(account)
+    .addOperation(
+      Operation.payment({
+        destination,
+        asset: AnchorXUSD,
+        amount
+      })
+    ).addMemo(Memo.text('https://goo.gl/6pDRPi'))
+    .build()
+
+  transaction.sign(signerKeys)
+
+  try {
+    const { hash } = await stellarServer.submitTransaction(transaction)
+
+    return { id: hash }
+  } catch (e) {
+    console.log(`failure ${e}`)
+    throw e
+  }
+}
+```
+
+In theory, AnchorX and the Stellar accounts it creates are ready to
+receive and send `USD`. AnchorX's growth hackers have decided that the
+best way to bring people to the platform is by giving each user a
+welcome bonus of $10 USD.
+
+You need to extend the signup mutation to send new users $10 USD. Add the function on the right to utils and then call it after the allow trustline operation.
+
+The function takes the signer keys, that is the account we are debiting the USD from, the destination is the account to be credited and instead of sending the native asset, you are sending the custom USD.
+
+You can use now that function inside the signup mutation with the issuing keypair.
+
+The following gif show you how after creating new accounts, they end up with $10 USD in their balance.
+
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/0n1c1o2o0F2P2H0c3K1b/Screen%20Recording%202018-07-09%20at%2004.41%20PM.gif?X-CloudApp-Visitor-Id=49274&v=c08071af)
+
+[Pull request #10](https://github.com/abuiles/anchorx-api/pull/10)
+includes all the changes introduced in this section. Now that AnchorX
+users can hold USD, let's replace the payment mutation to send USD and
+also give them a way to debit or credit their accounts.
+
+## Paying with USD
+
+```javascript
+    async payment(_, { amount, senderUsername, recipientUsername, memo }, context: Context, info) {
+      const result = await context.db.query.users({
+        where: {
+          username_in: [senderUsername, recipientUsername]
+        }
+      })
+
+      const sender = result.find(u => u.username === senderUsername)
+      const recipient = result.find(u => u.username === recipientUsername)
+
+      const signerKeys = Keypair.fromSecret(
+        // Use something like KMS in production
+        AES.decrypt(
+          sender.stellarSeed,
+          ENVCryptoSecret
+        ).toString(enc.Utf8)
+      )
+
+      try {
+        const { hash } = await payment(
+          signerKeys,
+          recipient.stellarAccount,
+          amount
+        )
+
+        return { id: hash }
+      } catch (e) {
+        console.log(`failure ${e}`)
+
+        throw e
+      }
+    }
+  }
+```
+
+You already have a payment mutation to allow people to send money between each other. Until now it was sending the native asset but since users can hold USD you need to replace it to send USD. To do so, you can use the payment function from the previous section.
+
+The code on the right shows you the new version of the payment mutation, which uses the `payment` function.
+
+The following gif show you the payment mutation in action.
+
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/2m06171D3o3x1O2p3c3Z/Screen%20Recording%202018-07-09%20at%2005.06%20PM.gif?X-CloudApp-Visitor-Id=49274&v=e39af9cd)
+
+[Pull request #11[(https://github.com/abuiles/anchorx-api/pull/11) shows you the changes introduced in this section.
+
 ## Credit account
+
 API end-point to "transfer" USD from bank account to Stellar account.
 
 ## Debit account
