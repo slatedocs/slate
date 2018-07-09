@@ -116,7 +116,7 @@ data/attributes/custom-fields | a hash of custom-fields with their value | false
 data/steps/data* | an array of steps override the exit code | false |
 data/attributes/tags | an array of tags | false |
 
-* Steps array includes steps json hash, with these attributes: name, description, expected-results.
+* Steps array includes steps json hash, with these attributes: name (255 char. maximum), description, expected-results.
 To update / view and delete steps, refer to steps resources (to be released)
 
 
