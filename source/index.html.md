@@ -257,8 +257,6 @@ After an user creates an account with AnchorX, the service will
 automatically provision a Stellar account and authorize the account to
 hold the anchor's asset.
 
-Stellar accounts can hold any asset, but additionally anchors can authorize who is allowed to hold their asset.
-
 When a Stellar accounts decides to trust a given asset, they are
 creating a trustline between the account and the asset. Such operation
 has to be stored in the ledger. The code in the right shows a transaction creating a trustline between an `account` and an `asset`.
@@ -703,11 +701,124 @@ In the upcoming sections you will:
 
 [Pull request #7](https://github.com/abuiles/anchorx-api/pull/7) includes all the changes introduced in this section.
 
-## Creating AnchorX custom asset
+## Issuing AnchorX custom asset
 
-## Creating trustlines
+In this section you'll learn the high level details of issuing a new asset and how to allow other accounts to hold your asset. Stellar's official documentation has a great guide about issuing assets so this tutorial won't repeat the same. You can read more about it here [https://www.stellar.org/developers/guides/issuing-assets.html](https://www.stellar.org/developers/guides/issuing-assets.html)
 
-Implementation of Stellar trustlines
+To create an asset you'll need an asset code and an issuing account.
+
+The asset code needs a short identifier, for national currencies you need to use an [ISO 4217 code](https://en.wikipedia.org/wiki/ISO_4217). AnchorX asset will use the code `USD`.
+
+The issuing account can emit new `USD`, give it to other accounts and impose some controls around it. In this tutorial the issuing account will be `GBX67BEOABQAELIP2XTC6JXHJPASKYCIQNS7WF6GWPSCBEAJEK74HK36` with seed `SBYZ5NEJ34Y3FTKADVBO3Y76U6VLTREJSW4MXYCVMUBTL2K3V4Y644UX`.
+
+Before an account can hold a given asset, it needs to explicitly create
+an operation expressing that it trust the asset with code `USD`
+created by the issuing account
+`GBX67BEOABQAELIP2XTC6JXHJPASKYCIQNS7WF6GWPSCBEAJEK74HK36`, such
+operation is called creating a `trustline`.
+
+The issuer can set a condition where it needs to authorize accounts
+before they can hold its asset, this is useful if you only want people
+who are your clients or have gone through your KYC process to transact
+with your asset. In this scenario you need two trustlines one from the customer's account to your issuing account and then one from your issuing account to the customer's account.
+
+## Setting up issuing account
+
+```javascript
+import {
+  AuthRequiredFlag,
+  AuthRevocableFlag,
+  Server,
+  Keypair,
+  Network,
+  Operation,
+  TransactionBuilder,
+  xdr
+} from 'stellar-sdk'
+
+async function setupIssuer() {
+  Network.useTestNetwork()
+
+  const stellarServer = new Server('https://horizon-testnet.stellar.org')
+  const issuerKeyPair = Keypair.fromSecret('SBYZ5NEJ34Y3FTKADVBO3Y76U6VLTREJSW4MXYCVMUBTL2K3V4Y644UX')
+  const issuingAccount = await stellarServer.loadAccount(issuerKeyPair.publicKey())
+
+  var transaction = new TransactionBuilder(issuingAccount)
+      .addOperation(
+        Operation.setOptions({
+          setFlags: AuthRevocableFlag | AuthRequiredFlag
+        }))
+      .build()
+
+  transaction.sign(issuerKeyPair)
+  await stellarServer.submitTransaction(transaction)
+
+  console.log('All set!')
+}
+
+setupIssuer()
+
+```
+
+The code on the right shows you the basic setup for an account before creating an asset. In it, you are setting the `AuthRequiredFlag` which requires the trustline from the issuer to the holder and `AuthRevocableFlag` which allows you to freeze the user's access to your asset. You can read more about both flags [here](https://www.stellar.org/developers/guides/concepts/assets.html#controlling-asset-holders). Since this is something which is done once, this is not included in the GitHub repo. You can try it in [Repl.it](https://repl.it/@abuiles/SetupAnchorFlags)
+
+Next you need to extend the signup mutation to create both trustlines when an user creates a new account.
+
+## Creating a trustline
+
+```javascript
+import {
+  Asset,
+  Keypair,
+  Network,
+  Operation,
+  Server,
+  TransactionBuilder
+} from 'stellar-sdk'
+
+export async function createTrustline(accountKeypair) {
+  Network.useTestNetwork();
+  const stellarServer = new Server('https://horizon-testnet.stellar.org');
+
+  try {
+    const account = await stellarServer.loadAccount(accountKeypair.publicKey())
+    const transaction = new TransactionBuilder(account)
+      .addOperation(
+        Operation.changeTrust({
+          asset: AnchorXUSD
+        }))
+      .build();
+
+    transaction.sign(accountKeypair)
+
+    const result = await stellarServer.submitTransaction(transaction)
+
+    console.log('trustline created from  account to issuer and signers updated', result)
+
+    return result
+  } catch (e) {
+    console.log('create trustline failed.', e)
+  }
+}
+```
+
+The code on the right shows you how to create a trustline from an account to the issuer account. You'll be using that function inside the signup mutation.
+
+Now after you create a new user, you will also create a trustline from the new account to AnchorX asset. You are not done yet, although the account accepts AnchorX `USD`, if you try to send `USD` to that account it won't work because the account hasn't been authorized to hold the asset.
+
+After a trustline is created, you'll see the custom asset in the account's balance.
+
+The following gif shows you an account's state after it gets created without the trustline to AnchorX asset. You can see that the balance key only shows native.
+
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/113r1e353x3S1s1V2k2I/Screen%20Recording%202018-07-09%20at%2002.56%20PM.gif?X-CloudApp-Visitor-Id=49274&v=559df5f9)
+
+And the next one will show you what happens in the account after creating the trustline.
+
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/0r2R1z2h2g2p2t3L3O0m/Screen%20Recording%202018-07-09%20at%2003.00%20PM.gif?X-CloudApp-Visitor-Id=49274&v=a19639ff)
+
+You can see the changes from this section in [pull request #8](https://github.com/abuiles/anchorx-api/pull/8).
+
+## Allow trustline
 
 ## Credit account
 API end-point to "transfer" USD from bank account to Stellar account.
