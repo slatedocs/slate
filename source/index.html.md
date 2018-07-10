@@ -513,7 +513,7 @@ You can test the changes made up to this point by running the server. To do so t
 
 AnchorX allows you now to create new users and it assigns a stellar account to each user. However, the Stellar account is not created in the Stellar ledger until it gets funded with some lumens.
 
-The gif below, shows you the process of creating an account and what happens when you try to look at that account on the stellar test network.
+The GIF below, shows you the process of creating an account and what happens when you try to look at that account on the stellar test network.
 
 The result is a 404 since you never funded the Stellar account.
 
@@ -810,7 +810,7 @@ Now after you create a new user, you will also create a trustline from the new a
 
 After a trustline is created, you'll see the custom asset in the account's balance.
 
-The following gif shows you an account's state after it gets created without the trustline to AnchorX asset. You can see that the balance key only shows native.
+The following GIF shows you an account's state after it gets created without the trustline to AnchorX asset. You can see that the balance key only shows native.
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/113r1e353x3S1s1V2k2I/Screen%20Recording%202018-07-09%20at%2002.56%20PM.gif?X-CloudApp-Visitor-Id=49274&v=559df5f9)
 
@@ -901,11 +901,15 @@ welcome bonus of $10 USD.
 
 You need to extend the signup mutation to send new users $10 USD. Add the function on the right to utils and then call it after the allow trustline operation.
 
-The function takes the signer keys, that is the account we are debiting the USD from, the destination is the account to be credited and instead of sending the native asset, you are sending the custom USD.
+The function takes the signing keys for the account to be debited, the destination account and the amount.
 
-You can use now that function inside the signup mutation with the issuing keypair.
+<aside class="notice">
+You might have noticed the use of the issuing account to send the welcome bonus. In practice this is a bad idea, since if that account gets compromised, it means all AnchorX operations will be compromised. You'll learn more about how to deal with this situation later. If you can't wait, check [the account structure guide](https://www.stellar.org/developers/guides/anchor/index.html#account-structure) in the official docs.
+</aside>
 
-The following gif show you how after creating new accounts, they end up with $10 USD in their balance.
+You can use the payment function inside the signup mutation.
+
+The following GIF show you how after creating new accounts, they end up with $10 USD in their balance.
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/0n1c1o2o0F2P2H0c3K1b/Screen%20Recording%202018-07-09%20at%2004.41%20PM.gif?X-CloudApp-Visitor-Id=49274&v=c08071af)
 
@@ -952,11 +956,11 @@ also give them a way to debit or credit their accounts.
   }
 ```
 
-You already have a payment mutation to allow people to send money between each other. Until now it was sending the native asset but since users can hold USD you need to replace it to send USD. To do so, you can use the payment function from the previous section.
+You have a payment mutation to allow people to send money between each other. Until now it was sending the native asset but since users can hold USD you need to replace it to send USD. To do so, you can use the payment function from the previous section.
 
 The code on the right shows you the new version of the payment mutation, which uses the `payment` function.
 
-The following gif show you the payment mutation in action.
+The following GIF show you the payment mutation in action.
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/2m06171D3o3x1O2p3c3Z/Screen%20Recording%202018-07-09%20at%2005.06%20PM.gif?X-CloudApp-Visitor-Id=49274&v=e39af9cd)
 
@@ -964,7 +968,42 @@ The following gif show you the payment mutation in action.
 
 ## Credit account
 
-API end-point to "transfer" USD from bank account to Stellar account.
+```javascript
+async credit(_, { amount, username }, context: Context, info) {
+      const user = await context.db.query.user({
+        where: {
+          username: username
+        }
+      })
+
+      try {
+        const { hash } = await payment(
+          // keypair for issuing account - no bueno
+          Keypair.fromSecret('SBYZ5NEJ34Y3FTKADVBO3Y76U6VLTREJSW4MXYCVMUBTL2K3V4Y644UX'),
+          user.stellarAccount,
+          amount
+        )
+
+        return { id: hash }
+      } catch (e) {
+        console.log(`failure ${e}`)
+
+        throw e
+      }
+    }
+```
+
+In this section you will implement a new mutation to credit an user's account with `USD`. This mutation simulates a callback which would have been called if you were integrating your system with ACH or a similar system. In the context of the tutorial, this will be called when the user sends money from their bank account to AnchorX.
+
+The mutation takes the username and the amount to be credited. Since you are using the issues keys, you can see that every time a new credit happens, the amount of `USD` minted increases.
+
+To see how much is in circulation for a given asset you can visit the [horizon end-point for assets](https://www.stellar.org/developers/horizon/reference/resources/asset.html) filtering by code and issuer. The URL for AnchorX `USD` is the following [https://horizon-testnet.stellar.org/assets?order=desc&asset_code=USD&asset_issuer=GBX67BEOABQAELIP2XTC6JXHJPASKYCIQNS7WF6GWPSCBEAJEK74HK36](https://horizon-testnet.stellar.org/assets?order=desc&asset_code=USD&asset_issuer=GBX67BEOABQAELIP2XTC6JXHJPASKYCIQNS7WF6GWPSCBEAJEK74HK36)
+
+The code in the right shows you the mutation and [pull request #12](https://github.com/abuiles/anchorx-api/pull/12) includes the change in the project.
+
+The GIF below shows you the credit mutation in action and how the amount of `USD` increases after you credit accounts.
+
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/252J2G111Q1a261j2D1X/Screen%20Recording%202018-07-10%20at%2010.57%20AM.gif?X-CloudApp-Visitor-Id=49274&v=7b4cf1e8)
 
 ## Debit account
 API end-point to transfer money from AnchorX to bank account.
