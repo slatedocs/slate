@@ -19,7 +19,7 @@ search: true
 # Building your own Venmo with Stellar
 
 <aside class="notice">
-Work in progress - ██████░░░░░░░ 48% complete.
+Work in progress  ██████░░░░░░ 50% complete
 </aside>
 
 > This is a free tutorial, but I like to drink coffee while I write. You can buy my a coffee with XLM, send a tip here `GBCFAMVYPJTXHVWRFP7VO6F4QE7B4UHAVJOEG5VR6VEB5M67GHQGEEAB` with the memo `coffee`.
@@ -1006,7 +1006,66 @@ The GIF below shows you the credit mutation in action and how the amount of `USD
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/252J2G111Q1a261j2D1X/Screen%20Recording%202018-07-10%20at%2010.57%20AM.gif?X-CloudApp-Visitor-Id=49274&v=7b4cf1e8)
 
 ## Debit account
-API end-point to transfer money from AnchorX to bank account.
+
+```javascript
+async debit(_, { amount, username }, context: Context, info) {
+      const user = await context.db.query.user({
+        where: {
+          username: username
+        }
+      })
+
+      const keypair = Keypair.fromSecret(
+        AES.decrypt(
+          user.stellarSeed,
+          ENVCryptoSecret
+        ).toString(enc.Utf8)
+      )
+
+      // When you send back a custom asset to the issuing account, the
+      // asset you send back get destroyed
+      const issuingAccount = 'GBX67BEOABQAELIP2XTC6JXHJPASKYCIQNS7WF6GWPSCBEAJEK74HK36'
+
+      try {
+        const { hash } = await payment(
+          keypair,
+          issuingAccount,
+          amount
+        )
+
+        console.log(`account ${keypair.publicKey()} debited - now transfer real money to ${username} bank account`)
+
+        return { id: hash }
+      } catch (e) {
+        console.log(`failure ${e}`)
+
+        throw e
+      }
+    }
+```
+
+In this section you will implement a new mutation to debit money from an user's account. This mutation simulates a callback which would have been called if you were integrating sending money to user's bank account. In AnchorX, this will be use when the user wants to withdraw money from AnchorX.
+
+When crediting account you saw that `USD` was being minted. For debiting, you'll be doing the opposite process, taking `USD` from an user's account and sending it back to the issuing account. In Stellar, when an asset is sent back to the issuing account, it gets destroyed.
+
+The code on the right shows the debit mutation. It is very similar to the credit operation, but the difference is that the destination is the issuing account. [Pull request #13](https://github.com/abuiles/anchorx-api/pull/13) shows the changes in the mutation and schema.
+
+The following GIF shows you the debit mutation and how assets get destroyed after sending them back.
+
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/2f382x1B1T123J3T1c3d/Screen%20Recording%202018-07-10%20at%2011.28%20AM.gif?X-CloudApp-Visitor-Id=49274&v=4a3a8dc0)
+
+## Conclusion
+
+Congratulations! You have now a very basic implementation of AnchorX API. In this chapter you learnt:
+
+  - [How to create Stellar accounts programatically.](#creating-the-account-in-the-stellar-ledger)
+  - [How to issue new assets in Stellar.](#issuing-anchorx-custom-asset)
+  - [How to create trustlines in Stellar and authorize truslines.](#creating-a-trustline)
+  - [Signing transactions and making payments with Stellar.](#payments)
+  - [What happens after an issuing account issues more assets.](#credit-account)
+  - [What happens after an issuing account receives back issued assets.](#debit-account)
+
+In the next chapter you'll be building a mobile wallet in React-Native to allow AnchorX customer to interact with their accounts. You'll also learn how to use the Stellar JS SDK to read accounts data and follow payments. After you build the wallet, you will learn about best practices like managing secret keys, using a base account along with the issuing account, how to setup multisignatutre schemas and security considerations.
 
 # Building the mobile wallet
 
@@ -1022,7 +1081,10 @@ Implements the transaction history in the RN wallet.
 Flow for doing P2P payments.
 ## Cashing out
 Fake implementation for transferring money to the bank accountp
+# Best practices
+Best practices for managing issuing accounts, signing transactions on behalf of users, etc.
 # Security
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
 ## Infrastructure
 ## Keeping keys secure
