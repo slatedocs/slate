@@ -2,6 +2,14 @@
 
 This section contains important Accestype release notes. For any queries, please write to us as support@quintype.com.
 
+## 10 Jul 2018 Release Notes - Accesstype
+
+### Enhancements and bug fixes:
+1. Updated the Subscriptions Report to include Plan names of the group, Subscription Created Date and Subscription Start Date.
+2. Security and user concurrency upgrades.
+
+
+
 ## 28 Jun 2018 Release Notes - Accesstype
 
 ### Enhancements and bug fixes:
