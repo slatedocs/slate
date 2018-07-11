@@ -2,7 +2,7 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
+  - json
  
 
 toc_footers:
@@ -15,8 +15,7 @@ includes:
 search: true
 ---
 
-# Introduction
-
+# API Documentation
 
 Welcome to SuredBits' API documentation. This API allows you to query sports data, including teams, players, games, scores, and statistics.
 
