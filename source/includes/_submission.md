@@ -117,6 +117,7 @@ parcelas | 3 | number | não (se cartão, sim) | Número de Parcelas, minimo: 1
 ip | 60 | string | não (porém recomendado) | IP do comprador, permitido IPV4 e IPV6
 frete_valor | 12 | decimal | não | Valor do frete cobrado, apenas informativo, não será somado ao valor da transação
 frete_tipo | 100 | string | não | Descrição do frete, exemplo: Pac (Aproximadamente 5 dias para entrega)
+antifraude | 1 | boolean | não | Define se irá consultar no Antifraude ou não, se e somente se existir antifraude configurado na conta. Valor padrão: true (1).
 
 ### Dados do Cartão de Crédito/Débito
 
