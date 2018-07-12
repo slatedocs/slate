@@ -2,6 +2,10 @@
 
 membership objects have the following attributes:
 
+####id
+
+Pseudo-id (workgroup-member) for callers that need a fixed ID string.
+
 ####member
 
 The account identifier for this membership.
@@ -23,6 +27,10 @@ Level|Membership Type
 2|member
 3|coordinator
 4|manager
+
+#### creation_date
+
+The datetime (in UTC) that this object was created.
 
 ### membership.create
 
@@ -153,54 +161,32 @@ Response: On success, empty results will be returned.
    "result" : {
       "memberships" : [
          {
-            "workgroup" : "2",
-            "level" : "2",
-            "member" : "4912"
-         },
-         {
-            "workgroup" : "1171",
-            "level" : "2",
-            "member" : "4912"
-         },
-         {
+            "id" : "2-2",
+            "creation_date" : "2018-01-02 02:24:00",
             "workgroup" : "2",
             "level" : "2",
             "member" : "2"
          },
          {
+            "id" : "1171-2",
+            "creation_date" : "2018-01-02 02:24:00",
             "workgroup" : "1171",
             "level" : "2",
             "member" : "2"
          },
          {
+            "id" : "2-3",
+            "creation_date" : "2018-01-02 02:24:00",
             "workgroup" : "2",
             "level" : "2",
             "member" : "3"
          },
          {
+            "id" : "1171-3",
+            "creation_date" : "2018-01-02 02:24:00",
             "workgroup" : "1171",
             "level" : "2",
             "member" : "3"
-         },
-         {
-            "workgroup" : "2",
-            "level" : "2",
-            "member" : "4"
-         },
-         {
-            "workgroup" : "1171",
-            "level" : "2",
-            "member" : "4"
-         },
-         {
-            "workgroup" : "2",
-            "level" : "2",
-            "member" : "5"
-         },
-         {
-            "workgroup" : "1171",
-            "level" : "2",
-            "member" : "5"
          }
       ],
       "referenced_objects" : {
@@ -218,7 +204,7 @@ Response: On success, empty results will be returned.
             {
                "email" : "pjones@example.com",
                "external_id" : "42648",
-               "id" : "4",
+               "id" : "2",
                "first_name" : "Paul",
                "last_name" : "Jones",
                "screen_name" : "Paul Jones"
@@ -230,30 +216,6 @@ Response: On success, empty results will be returned.
                "first_name" : "Susan",
                "last_name" : "Adams",
                "screen_name" : "Susan Adams"
-            },
-            {
-               "email" : "sfs@example.com",
-               "external_id" : "0",
-               "id" : "4912",
-               "first_name" : "Scott",
-               "last_name" : "Smith",
-               "screen_name" : "Scott Smith"
-            },
-            {
-               "email" : "linda.wilson@example.com",
-               "external_id" : "16917",
-               "id" : "2",
-               "first_name" : "Linda",
-               "last_name" : "Wilson",
-               "screen_name" : "Linda R Wilson"
-            },
-            {
-               "email" : "ricky@example.com",
-               "external_id" : "40089",
-               "id" : "5",
-               "first_name" : "Richard",
-               "last_name" : "Garcia",
-               "screen_name" : "Ricky Garcia"
             }
          ]
       },
