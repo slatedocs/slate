@@ -6,7 +6,6 @@ language_tabs: # must be one of https://git.io/vQNgJ
  
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 search: true
@@ -778,3 +777,13 @@ Resource | Description | Example
 /stats/lastName/firstName/seasonphase | Search for a player's statistics during the given season phase of this year | Lebron Jame's stats for postseason this year. <a href="http://api.suredbits.com/nba/v0/stats/james/lebron/post">http://api.suredbits.com/nba/v0/stats/james/lebron/post</a>
 /stats/lastName/firstName/seasonphase/year | Search for a player's statistics during the given season phase of 2017 | Lebron Jame's stats for postseason this year. <a href="http://api.suredbits.com/nba/v0/stats/james/lebron/post/2017">http://api.suredbits.com/nba/v0/stats/james/lebron/post/2017</a>
 /stats/lastName/firstName/year/month | Search for a player's statistics in a given calendar year and month. | Joel Embiid for Rookie of the Month January 2017. <a href="http://api.suredbits.com/nba/v0/stats/embiid/joel/2017/1">http://api.suredbits.com/nba/v0/stats/embiid/joel/2017/1</a>
+
+# Email Updates
+<aside class="success">Sign up to be notified as we update and add to our APIs!</aside>
+<form action="//suredbits.us12.list-manage.com/subscribe/post?u=6d2301935be3bfea5b7f29e4c&amp;id=16dc8b6ffb" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+            <div id="mc_embed_signup_scroll">
+                <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required="">
+                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_6d2301935be3bfea5b7f29e4c_16dc8b6ffb" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+            </div>
+        </form>
