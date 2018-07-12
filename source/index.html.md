@@ -60,30 +60,6 @@ An example request to find Tom Brady of the New England Patriots:
 ]
 ```
 
-## Mailing List
-
-We will publish <a href="https://medium.com/@SuredBits">blog posts</a> and <a href="https://twitter.com/SuredBits">tweet</a> when we release updates to the API, but you can also join our mailing list to be notified directly of any updates!
-
-<form action="//suredbits.us12.list-manage.com/subscribe/post?u=6d2301935be3bfea5b7f29e4c&amp;id=16dc8b6ffb" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="novalidate">
-     <div id="mc_embed_signup_scroll">
-    <h2>Join our mailing list to be the first to know our API is updated!</h2>
- <div class="indicates-required"><span class="asterisk"><em></em></span></div><em>
- </em><div class="mc-field-group"><em>
-    <label for="mce-EMAIL">Email Address  <span class="asterisk"></span></label></em>
- 
-    <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" aria-required="true">
- </div>
-    <div id="mce-responses" class="clear">
-        <div class="response" id="mce-error-response" style="display:none"></div>
-        <div class="response" id="mce-success-response" style="display:none"></div>
-    </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-     <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_6d2301935be3bfea5b7f29e4c_16dc8b6ffb" tabindex="-1" value=""></div>
-     <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-     </div>
- </form>
-
-<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-
 # NFL
 
 ## Current Info
