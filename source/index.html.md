@@ -1065,12 +1065,39 @@ Congratulations! You have now a very basic implementation of AnchorX API. In thi
   - [What happens after an issuing account issues more assets.](#credit-account)
   - [What happens after an issuing account receives back issued assets.](#debit-account)
 
-In the next chapter you'll be building a mobile wallet in React-Native to allow AnchorX customer to interact with their accounts. You'll also learn how to use the Stellar JS SDK to read accounts data and follow payments. After you build the wallet, you will learn about best practices like managing secret keys, using a base account along with the issuing account, how to setup multisignatutre schemas and security considerations.
+In the next chapter you'll be building a mobile wallet in React Native to allow AnchorX customer to interact with their accounts. You'll also learn how to use the Stellar JS SDK to read accounts data and follow payments. After you build the wallet, you will learn about best practices like managing secret keys, using a base account along with the issuing account, how to setup multisignatutre schemas and security considerations.
 
 # Building the mobile wallet
 
+In this chapter you'll learn how to use the Stellar JS SDK in React
+Native and use it to display balances and transactions. This tutorial
+won't go into details on things which are not related with Stellar
+like setting up React Native, navigation, setting Apollo, etc. This
+tutorial includes a template project which has all the basics already
+setup.
+
+When interacting with Stellar, you will find a detailed section explaining what's happening.
+
+The wallet will be written using the following technologies:
+
+- [React Native](https://facebook.github.io/react-native/).
+- [TypeScript](https://www.typescriptlang.org/).
+- [GraphQL with Apollo](https://www.apollographql.com/).
+- [Storybook](https://github.com/storybooks/storybook/tree/master/app/react-native).
+- [NativeBase](https://nativebase.io/).
+- [React-Navigation](https://github.com/react-navigation/react-navigation).
+
+## Application boilerplate
+
+Start by cloning the Stellar mobile wallet boilerplate.
+
+1. `git clone https://github.com/abuiles/stellar-mobile-wallet-boilerplate`
+2. `cd stellar-mobile-wallet-boilerplate`
+
 ## Using the Stellar-SDK in React-Native
+
 Introduce the Stellar-SDK polyfill and how to display an account data in a RN app.
+
 ## Creating an user signup flow
 Very simple user signup flow based in user name. It shows how to setup Stellar account, multisig and trustline schema.
 ## Depositing "fiat" into your wallet
