@@ -316,13 +316,12 @@ The server will be written in `TypeScript` and use [Prisma](https://www.prisma.i
 
 ## Setting up the server
 
-In this section you can find a GraphQL server created with [GraphQL CLI](https://oss.prisma.io/content/graphql-cli/01-overview) and using the `TypeScript` template. To make things easy there is a release which you can use as starting point.
+In this section you can find a GraphQL server created with [GraphQL CLI](https://oss.prisma.io/content/graphql-cli/01-overview) and using the `TypeScript` template. To make things easy there is boilerplate project which you can use to get started.
 
-The following pull request contains the boostrapping step [https://github.com/abuiles/anchorx-api/pull/1](https://github.com/abuiles/anchorx-api/pull/1). You can get it by running the following commands:
+Download the boilerplate running the following commands:
 
-1. `git clone https://github.com/abuiles/anchorx-api`
+1. `git clone https://github.com/abuiles/anchorx-api-boilerplate anchorx-api`
 2. `cd anchorx-api`
-3. `git checkout v1`
 
 Next you are going to add the user model.
 
