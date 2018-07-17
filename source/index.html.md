@@ -94,9 +94,9 @@ includes:
 
   - product_actions
   - create_hub2
-  - create_product_tiger
-  - create_product_hyena
   - create_enterprise
+  - create_product_home2
+  - create_product_hub2
   - create_product_enterprise
   - enable
   - disable

@@ -4,9 +4,9 @@
 
 ```python
     url = "https://smartapi.bboxx.co.uk/v1/parts/create_hyena_pcb"
-    data = json.dumps({"imsi": 213514135171353,
-                       "imei": 010101234560005,
-                       "device_key": 4ab1ab3ab1ab7ab9ab1ab4ab})
+    data = json.dumps({"imsi": "213514135171353",
+                       "imei": "010101234560005",
+                       "device_key": "4ab1ab3ab1ab7ab9ab1ab4ab"})
     headers = {"Content-Type": "application/json", "Authorization": "Token token=" + A_VALID_TOKEN}
 
     r = requests.post(url=url, data=data, headers=headers)
