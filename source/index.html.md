@@ -1072,8 +1072,7 @@ In this chapter you'll learn how to use the Stellar JS SDK in React
 Native and use it to display balances and transactions. This tutorial
 won't go into details on things which are not related with Stellar
 like setting up React Native, navigation, setting Apollo, etc. This
-tutorial includes a template project which has all the basics already
-setup.
+tutorial includes a boilerplate project which has all the basics already setup.
 
 When interacting with Stellar, you will find a detailed section explaining what's happening.
 
@@ -1086,14 +1085,35 @@ The wallet will be written using the following technologies:
 - [NativeBase](https://nativebase.io/).
 - [React-Navigation](https://github.com/react-navigation/react-navigation).
 
-## Application boilerplate
+## Mobile wallet boilerplate
 
-Start by cloning the Stellar mobile wallet boilerplate.
+The following GIF shows you all the screens and functionality included in the mobile wallet boilerplate.
 
-1. `git clone https://github.com/abuiles/stellar-mobile-wallet-boilerplate`
-2. `cd stellar-mobile-wallet-boilerplate`
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/1a132y2a340n1Y272Z1S/Screen%20Recording%202018-07-17%20at%2011.06%20AM.gif?X-CloudApp-Visitor-Id=49274&v=78531abe)
 
-## Using the Stellar-SDK in React-Native
+As you can see the login/signup screen is already configured to consume the `GraphQL` API. After the user signs in you will display the balance and transaction history and give the user the option to make new payments.
+
+Before downloading the boilerplate, make sure you have the following dependencies installed in your computer.
+
+- [yarn](https://yarnpkg.com/lang/en/)
+- [Expo client](https://docs.expo.io/versions/v28.0.0/introduction/installation#mobile-client-expo-for-ios-and-android)
+
+Next, download the boilerplate with the following commands:
+
+1. `git clone https://github.com/abuiles/StellarMobileWalletBoilerplate AnchorX`
+2. `cd AnchorX`
+3. `yarn install`
+
+After the dependencies are installed, you should be able to run the Android or iOS version of the app with the following commands:
+
+- iOS: `yarn run ios`
+- Android: `yarn run android`
+
+You will see instructions in the console on how to run in the Simulator or using the Expo client.
+
+Next, you need to install the JS Stellar SDK in the React Native and then display the account balance.
+
+## Installing the Stellar-SDK in React Native
 
 Introduce the Stellar-SDK polyfill and how to display an account data in a RN app.
 
