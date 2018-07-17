@@ -19,13 +19,10 @@ search: true
 # Building your own Venmo with Stellar
 
 <aside class="notice">
-Work in progress  ██████░░░░░░ 50% complete
+Work in progress  ██████░░░░ 60%
 </aside>
 
-> This is a free tutorial, but I like to drink coffee while I write. You can buy my a coffee with XLM, send a tip here `GBCFAMVYPJTXHVWRFP7VO6F4QE7B4UHAVJOEG5VR6VEB5M67GHQGEEAB` with the memo `coffee`.
-
-Welcome to building your own Venmo with Stellar. This guide will show
-you how to create a product "similar" to Venmo using Stellar.
+Welcome to building your own Venmo with Stellar. This guide will show you how to create a product "similar" to Venmo using Stellar.
 
 In Stellar, an entity like Venmo is called an `anchor`. When you are building an anchor, there are two suggested ways to build and maintain customer accounts:
 
