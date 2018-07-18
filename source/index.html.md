@@ -19,221 +19,405 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+The Kardia Pro API is a component of the Kardia Pro suite. It’s intended purpose is to securely transmit ECG recordings captured by Kardia Mobile users to a third party platform or application. ECG recordings can be transmitted in PDF format, or as JSON data files to be aggregated and consumed by the third party. Kardia Pro uses a REST based protocol to connect and exchange information with third party applications.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Features include:
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+- Participant creation
+- Code generation for participant
+- Callback registration for status changes and events
+- ECG recording retrieval
+
+# How it Works
+
+Kardia Pro facilitates a connection between a clinician’s Kardia Pro account and their selected patients. Patients are provisioned with a unique code that connects their Kardia application specifically to their clinician or service and allows all ECG recordings captured via Kardia Mobile to be accessible to the clinician via the Kardia Pro application or API. ECGs sent through the API are made available to the clinician within their native application or platform.
 
 # Authentication
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl -H 'Authorization=77D8AF75-629C-4A2A-9A08-260D33546ADF' \
+  https://us-kardia-production.alivecor.com/e/v1/recordings/0dc851e0acff
 ```
 
-```javascript
-const kittn = require('kittn');
+Requests made to the API are protected by sending your API key in the Authorization header. Requests not properly authenticated will return a 401 error code. API keys are delivered after entering an enterprise agreement.
 
-let api = kittn.authorize('meowmeowmeow');
-```
+All API requests must be made over HTTPS, or they will fail
 
-> Make sure to replace `meowmeowmeow` with your API key.
+# Participants
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+## Create Team Participant
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+> Example Request
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+  "customParticipantID": "AC001",
+  "firstName": "Jon",
+  "lastName": "Snow",
+  "email": "jsnow@example.com",
+  "phone": "555-555-5555",
+  "dob": "1970-07-21",
+  "sex": 1
+}
 ```
 
-This endpoint retrieves all kittens.
+> Example Response
 
-### HTTP Request
+```json
+{
+  "customParticipantID": "AC001",
+  "firstName": "Jon",
+  "lastName": "Snow",
+  "email": "jsnow@example.com",
+  "phone": "555-555-5555",
+  "dob": "1970-07-21",
+  "sex": 1
+}
+```
 
-`GET http://example.com/api/kittens`
+Patients are represented in the Kardia Pro system as team participants. To create a participant send a HTTP POST request to /e/v1/participants.
 
-### Query Parameters
+### Resource
+POST /e/v1/participants
 
-Parameter | Default | Description
+### Authorization
+OAuth 2.0 bearer token.
+
+### Post Parameters
+Name | Type | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+customParticipantID | string | **Required** external identifier from outside the AliveCor system
+firstName | string | **Required** participant’s first name
+lastName | string | **Required** participant’s last name
+email | string | **Optional** participant’s email
+phone | string | **Optional** participant’s mobile phone number
+dob | string | **Optional** participant’s date of birth
+sex | int | **Optional** ISO/IEC5218 representation of sex
+
+### Returns
+HTTP Status Code | Reason
+------------- | ------
+200 | Success
+400 | Bad request
+409 | Cannot create a participant with a duplicate `customParticipantId`
+
+# Users
+
+## Create User
+
+> Example Request
+
+```json
+{
+  "connection_code": "string",
+  "country_code": "string",
+  "email": "string",
+  "password": "string"
+}
+```
+
+> Example Response
+
+```json
+{
+  "user_token": "string"
+}
+```
+
+Create a Kardia mobile user.
+
+### Resource
+POST /e/v1/user
+
+### Authorization
+OAuth 2.0 bearer token.
+
+### Post Parameters
+Name | Type | Description
+--------- | ------- | -----------
+connection_code | string | **Optional** generated connection code
+country_code | string | **Required** ISO 3166-1 Alpha-2 country code
+email | string | **Required** user's email
+password | string | **Required** user's password
+
+### Returns
+HTTP Status Code | Reason
+------------- | ------
+201 | User created
+400 | Couldn't create user
+
+# Codes
+
+## Generate Connection Code
+
+> Example Request
+
+```json
+{
+  "customParticipantID" : "AC001",
+  "templateID" : "7uhcmvtlb87c4n5nyx1qq9ur7"
+}
+```
+
+> Example Response
+
+```json
+{
+  "code" : "LQYP-MSAK-NPJR"
+}
+```
+
+Generates a new connection code for a given participant. To create a new connection code send a HTTP POST request to /e/v1/code.
+
+### Resource
+POST /e/v1/code
+
+### Authorization
+OAuth 2.0 bearer token.
+
+### Post Parameters
+Name | Type | Description
+--------- | ------- | -----------
+customParticipantID | string | **Required** participant’s external identifier
+templateID | string | **Required** AliveCor supplied connection template identifier
+
+### Returns
+HTTP Status Code | Reason
+------------- | ------
+200 | Success
+400 | Bad request
+
+## Redeem Code
+
+> Example Request
+
+```json
+{
+  "connection_code" : "AC001",
+  "user_token": ""
+}
+```
+
+Redeems a code and creates a connection between the team and the user.
+
+### Resource
+POST /e/v1/connection
+
+### Authorization
+OAuth 2.0 bearer token.
+
+### Post Parameters
+Name | Type | Description
+--------- | ------- | -----------
+connectionCode | string | **Required** generated connection code
+user_token | string | **Required** the token representing the user
+
+### Returns
+HTTP Status Code | Reason
+------------- | ------
+200 | Connection created
+400 | Couldn't create connection
+
+## Disconnect Code
+
+> Example Request
+
+```json
+{
+  "customParticipantID" : "AC001"
+}
+```
+
+> Example Response
+
+```json
+{
+  "customParticipantID" : "AC001"
+}
+```
+
+Removes a connection for the given participant.
+
+### Resource
+POST /e/v1/disconnection
+
+### Authorization
+OAuth 2.0 bearer token.
+
+### Post Parameters
+Name | Type | Description
+--------- | ------- | -----------
+customParticipantID | string | **Required** participant’s external identifier
+
+### Returns
+HTTP Status Code | Reason
+------------- | ------
+200 | Success
+400 | Bad request
+
+# Recordings
+
+## Get Recording
+
+> Example Request
+
+```json
+{
+  "recording-id": "123123"
+}
+```
+
+> Example Response
+
+```json
+{
+  "afibDetected": true,
+  "customParticipantID": "string",
+  "data": {
+    "frequency": 0,
+    "mains_freq": 0,
+    "samples": {
+      "lead_I": [
+        0
+      ]
+    }
+  },
+  "duration": 0,
+  "heartRate": 0,
+  "id": "string",
+  "noiseDetected": true,
+  "normalDetected": true,
+  "recordedAt": "string"
+}
+```
+
+Get the full recording with ECG sample data for any `recordingId`.
+
+## Get Recording PDF
+
+> Example Request
+
+```json
+{
+  "recording-id": "123123"
+}
+```
+
+Get the PDF rendering for any `recordingId`.
+
+### Post Parameters
+Name | Type | Description
+--------- | ------- | -----------
+recording-id | string | **Required** unique id for a recording
+
+### Returns
+HTTP Status Code | Reason
+------------- | ------
+200 | Success with file
+404 | Failed to find PDF for given `recording-id`
+
+# Event Callback
+
+## GET callback
+
+> Issue a HTTP GET request to view a previously set callback URL.
+
+```shell
+curl ​-​X GET \
+--​header ​'Authorization: Bearer YOUR-ACCESS-TOKEN'​ \
+'https://us-kardia-production.alivecor.com/e/v1/callback'
+```
+
+> Example Response
+
+```json
+{
+  ​"url"​:​ ​"http://example.com/callback"
+}
+```
+
+Get registered URL for event callbacks
+
+### Returns
+HTTP Status Code | Reason
+------------- | ------
+200 | Success
+400 | Bad request
+
+## PUT callback
+
+> To setup the event callback URL send a PUT request
+
+```shell
+curl ​-​X PUT \
+--​header ​'Authorization: Bearer YOUR-ACCESS-TOKEN'​ \
+-​d ​'{ "url": "http://example.com/callback"}'​ \
+'https://us-kardia-production.alivecor.com/e/v1/callback'
+```
+
+> You'll receive a 200 HTTP status code with the following response.
+
+```json
+{
+  ​"url"​:​ ​"http://example.com/callback"
+}
+```
+
+The Kardia Pro API will notify a URL of your choice via HTTP POST with information about events that occur as Kardia Pro processes patient connections and EKG recordings. The event callback can be used to monitor new patient connections and identify when EKG recordings occur.
+
+### Returns
+HTTP Status Code | Reason
+------------- | ------
+200 | Success
+400 | Bad request
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Once the <code>/callbackURL</code> is set, the following types of callbacks can happen.
 </aside>
 
-## Get a Specific Kitten
+## POST callback
 
-```ruby
-require 'kittn'
+### Connection established
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
+A `POST` is made to the `/callbackURL` with an empty body.
 
-```python
-import kittn
+### Participant connected
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+A participant successfully connected with a code.
 
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
+A `POST` is made to the `/callbackURL` in the format:
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
+`
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "eventType": "participantConnected",
+  "customParticipantId": "string"
 }
-```
+`
 
-This endpoint retrieves a specific kitten.
+### Participant disconnected
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+A participant has disconnected from a code-established connection.
 
-### HTTP Request
+A `POST` is made to the `/callbackURL` in the format:
 
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
+`
 {
-  "id": 2,
-  "deleted" : ":("
+  "eventType": "participantDisconnected",
+  "customParticipantId": "string"
 }
-```
+`
 
-This endpoint deletes a specific kitten.
+### New recording created
 
-### HTTP Request
+A participant has created a recording.
 
-`DELETE http://example.com/kittens/<ID>`
+A `POST` is made to the `/callbackURL` in the format:
 
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+`
+{
+  "eventType": "newRecording",
+  "customParticipantId": "string"
+}
+`
 
