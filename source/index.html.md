@@ -15,83 +15,124 @@ search: true
 
 Welcome to SuredBits' API documentation. This API allows you to query sports data, including teams, players, games, scores, and statistics.
 
-Currently, our API supports NFL and NBA data.
+Currently, our API only supports NFL data feeds.
+
+<aside class="success">IMPORTANT: Suredbits is a Lightning Application built on the Bitcoin protocol.  Our NFL APIs are available exclusively via Lightning protocol. </aside>
+
+Here are some useful resources to help you get up and running with Bitcoin and Lightning:
+
+1. <a href="https://bitcoin.org/en/download">Download Bitcoin Core</a>
+2. <a href="https://lbtc.io/">Lightning Bitcoin, Downloads and Wallets</a>
+3. <a href="http://lightning.network/">Lightning Network Background</a>
+4. <a href="https://lightning.network/lightning-network-paper.pdf">Lightning Whitepaper</a>
+5. <a href="https://www.youtube.com/watch?v=l1si5ZWLgy0">Introduction to Bitcoin</a>
+
 
 ## Format 
 
-Requests are structured as follows:
+> Example Data Returned
 
-http://api.suredbits.com/sport/version/searchParameter/subParameters## 
-
-## Weekly Update 
-
-The NFL API is updated weekly on Tuesdays at 1800 UTC to reflect week-to-week changes.
-
-## Example
-
-An example request to find Tom Brady of the New England Patriots:
-
-> <code>http://api.suredbits.com/nfl/v0/players/brady/tom</code>;
-
-```json
+```json 
 [
-  {
-    "weight": 225,
-    "profileId": 2504211,
-    "gsisName": "T.Brady",
-    "uniformNumber": 12,
-    "fullName": "Tom Brady",
-    "height": 76,
-    "lastName": "Brady",
-    "firstName": "Tom",
-    "birthDate": "8/3/1977",
-    "profileUrl": "http://www.nfl.com/player/tombrady/2504211/profile",
-    "status": "Active",
-    "team": "NE",
-    "playerId": "00-0019596",
-    "position": "QB",
-    "yearsPro": 17,
-    "college": "Michigan"
+ {
+    "playerId":"00-0011754",
+    "gsisName":"R.Moss",
+    "fullName":"Randy Moss",
+    "firstName":"Randy",
+    "lastName":"Moss",
+    "team":"UNK",
+    "position":"UNK",
+    "profileId":2502220,
+    "profileUrl":"http://www.nfl.com/player/randymoss/2502220/profile",
+    "birthDate":"2/13/1977",
+    "college":"Marshall",
+    "yearsPro":14,
+    "height":76,
+    "weight":210,"status":
+    "Unknown","_type":
+    "com.github.nfldb.models.NflPlayer"
   }
 ]
 ```
 
+Requests for data follow this sample format:
+
+{"channel":"players", "lastName" : "Moss", "firstName" : "Randy"}
+
+<aside class="note">NOTE: All API requests must include the field type "channel".  However, that does not have to be the first field in the request. </aside>
+
+Lighting request are done via websockets and have the following format:
+
+1. A pull request implements a websocket channel for the requested <span style="color:red"> *data* </span>. 
+
+2. Upon confirmation of a valid request, you will receive a Lightning Network Invoice that should appear similar to the one below:
+
+**lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt2wvhthpsdqqxqrrssn39f5saxgtqmzsdvg0uh3twrmxmnnl2mra6kcuprwc2pzplneka953svu87ajz29mf8623qefe3jpkqsmsu05l9n05xf98uqq2mf25gqvzwkq3**
+
+3. 
+
+## Connect to Suredbits Lightning Node
+In order to access our APIs, you ill need to connect to our lightning node via a websocket client of your choosing.   The url is <span style="color:blue"> *[nodeId]@ln.test.suredbits.com* </span>
+
 # NFL
 
-## Current Info
-Return the current status of the NFL season.
-
-Includes the current week, season type (Preseaspn, Regular, Postseason), and the last time the API was updated.
-
-<table class="docutils">
-                            <thead>
-                            <tr>
-                                <th>Resource</th>
-                                <th>Example</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>/info/</td>
-                                <td>
-                                    <a rel="noopener noreferrer" target="_blank" href="http://api.suredbits.com/nfl/v0/info/">
-                                        http://api.suredbits.com/nfl/v0/info/
-                                    </a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-```json
-{
-  "seasonYear": 2017,
-  "lastRosterDownload": "20180603T151844.638Z",
-  "week": "NflWeek17",
-  "version": "8",
-  "seasonType": "Regular"
-}
-```
-
 ## Games
+> Example Data Returned
+
+```json
+[
+  {
+    "gsisId":"2017091006",
+    "gameKey":"57241",
+    "startTime":"2017-09-10T17:00:00.000Z",
+    "week":"NflWeek1",
+    "dayOfWeek":"Sunday",
+    "seasonYear":2017,
+    "seasonType":"Regular",
+    "finished":true,
+    "homeTeam":{
+      "team":"MIA",
+      "score":0,
+      "scoreQ1":0,
+      "scoreQ2":0,
+      "scoreQ3":0,
+      "scoreQ4":0,
+      "turnovers":0
+    },
+    "awayTeam":{
+      "team":"TB",
+      "score":0,
+      "scoreQ1":0,
+      "scoreQ2":0,
+      "scoreQ3":0,
+      "scoreQ4":0,
+      "turnovers":0
+    },
+    "timeInserted":"2017-08-04T18:29:15.669Z",
+    "timeUpdate":"2018-06-08T19:34:44.063Z",
+    "_type":"com.github.nfldb.models.NflGame"
+  },
+    ...
+  ]
+```
+There are two required fields to query NFL Games data:
+
+**Required**
+
+
+1. <span style="color:red"> *week - Int* </span>
+2. <span style="color:red"> *seasonPhase - Preaseason, Regular, Postseason* </span>
+
+
+**Optional**
+
+1. <span style="color:red"> *year - Int* </span>
+2. <span style="color:red"> *teamId - String (ex: CHI, MIN, GB, MIA* </span> etc)
+
+Exmaple Data Request 
+
+{"channel":"games", "week":1, "seasonPhase" : "Regular", "year" : 2017}
+
 > Sample Data for Games 
 
 ```json
@@ -122,7 +163,10 @@ Includes the current week, season type (Preseaspn, Regular, Postseason), and the
     "scoreQ1": 10,
     "scoreQ4": 3
   },
+]
 ```
+
+<aside class="warning"> Can everything below here be removed from Games? </aside>
 
 Search NFL games by team, year, and/or week.
 
@@ -146,46 +190,32 @@ Usage   | Description  |   Example
 
 
 ## Players
-> Example: Tom Brady
+> Example Data Returned
 
-```json
-
-[{
-  "weight": 225,
-  "profileId": 2504211,
-  "gsisName": "T.Brady",
-  "uniformNumber": 12,
-  "fullName": "Tom Brady",
-  "height": 76,
-  "lastName": "Brady",
-  "firstName": "Tom",
-  "birthDate": "8/3/1977",
-  "profileUrl": "http://www.nfl.com/player/tombrady/2504211/profile",
-  "status": "Active",
-  "team": "NE",
-  "playerId": "00-0019596",
-  "position": "QB",
-  "yearsPro": 19,
-  "college": "Michigan"
-}]
+```json 
+[{"playerId":"00-0011754",
+"gsisName":"R.Moss",
+"fullName":"Randy Moss",
+"firstName":"Randy",
+"lastName":"Moss",
+"team":"UNK",
+"position":"UNK",
+"profileId":2502220,
+"profileUrl":"http://www.nfl.com/player/randymoss/2502220/profile",
+"birthDate":"2/13/1977",
+"college":"Marshall",
+"yearsPro":14,
+"height":76,
+"weight":210,"status":
+"Unknown","_type":
+"com.github.nfldb.models.NflPlayer"}]
 ```
 
-Search NFL players by last or full name.
+To request Player data, you must submit both a <span style="color:red"> *firstName* </span> and <span style="color:red"> *lastName*</span> into the request. 
 
-<a href="http://api.suredbits.com/nfl/v0/players/">http://api.suredbits.com/nfl/v0/players/</a>
+**Example Requests**
 
-Names must be an exact match, including periods or apostrophes, but capitalization isn't required.
-
-For example, search by last name only, "brady" will return Tom Brady, but "brad" will not.
-
-<aside class="warning"> Searching by full name, "green/a.j." will return "A.J. Green", but "aj" will not. The periods are imperative.</aside>
-
-
-
-Usage | Description | Example 
--------- | ----------- | -------
-/players/lastName | Search players by last name | <a href="http://api.suredbits.com/nfl/v0/players/brady">http://api.suredbits.com/nfl/v0/players/brady</a>
-/players/lastName/firstName | Search players by last and first name | <a href="http://api.suredbits.com/nfl/v0/players/brady/tom">http://api.suredbits.com/nfl/v0/players/brady/tom</a>
+{"channel":"players", "lastName" : "Moss", "firstName" : "Randy"}
 
 
 ## Team
@@ -261,6 +291,86 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
 
 
 ## Stats 
+
+> Example Data Return
+
+```json
+
+[
+  {
+    "att":37,
+    "cmp":27,
+    "cmpAirYds":167,
+    "inCmp":10,
+    "inCmpAirYds": 75,
+    "passingInt":0,
+    "sack":1,
+    "sackYds":-7,
+    "passingTds":1,
+    "passingTwoPointAttempt":0,
+    "passingTwoPointAttemptMade":0,
+    "passingTwoPointAttemptMissed":0,
+    "passingYds":291,
+  }
+ ]
+```
+
+Example Data Requests
+
+ {
+  "channel":"stats", 
+  "statType" : "passing", 
+  "gameId" : "2016101604", 
+  "playerId" : "00-0027973"
+ }
+
+
+  {
+    "channel":"stats", 
+    "lastName" : "Brees", 
+    "firstName" : "Drew", 
+    "year": 2017, "week" : 1, 
+    "seasonPhase" : "Regular", 
+    "statType" : "passing"
+   }
+
+
+
+To query by <span style="color:red"> *gameId* </span> or <span style="color:red"> *playerId* </span>:
+
+**Required fields**
+
+
+1. <span style="color:red"> *{channel}* </span> example: <span style="color:red"> *stats* </span>
+2. <span style="color:red"> *{statType}* </span> example: <span style="color:red"> *passing, rushing, receiving, defense* </span>
+3. <span style="color:red"> *{gameId}* </span> example:  <span style="color:red"> *2016101604* </span>
+4. <span style="color:red"> *{playerId}* </span> example: <span style="color:red"> *00-0027973* </span> 
+
+
+To query by <span style="color:red"> *name* </span> or <span style="color:red"> *week* </span>:
+
+**Required fields**
+
+1. <span style="color:red"> *{channel}* </span> example <span style="color:red"> *stats* </span>
+2. <span style="color:red"> *{statType}* </span> example <span style="color:red"> *passing, rushing, receiving, defense* </span>
+3. <span style="color:red"> *{year}* </span> <span style="color:red"> *2016, 2017* </span>
+4. <span style="color:red"> *{week}* </span>  example <span style="color:red"> *1, 2* </span>... 
+5. <span style="color:red"> *{seasonPhase}* </span> example <span style="color:red"> *Preseason, Regular, Postseason* </span>
+6. <span style="color:red"> *{firstName}* </span> example <span style="color:red"> *Drew* </span>
+7. <span style="color:red"> *{lastName}* </span> example <span style="color:red"> *Brees* </span>
+
+
+Currently we only support requesting by:
+
+1. <span style="color:red"> *statType* </span>
+2. <span style="color:red"> *playerId* </span>
+3. <span style="color:red"> *gameId* </span>
+
+Eventually we will also support <span style="color:red"> *firstName* </span>, <span style="color:red"> *lastName* </span>, 
+<span style="color:red"> *seasonPhase* </span>, <span style="color:red"> *year* </span> and <span style="color:red"> *week* </span>.
+
+<aside class="warning"> What do we need from old documentation below? </aside>
+
 Search NFL player stats in a given game for a given player.
 
 Omitting a footballStat will return all statistics.
@@ -661,123 +771,7 @@ Returns all statistics, regardless of position.
 
 Can specify a year (2009-2015), or leave blank for the current season (2016).
 
-# NBA
-## Games
-Search NBA games by team, year, month or day.
-
-Currently only 2015-16 and 2016-17 games are available.
-
-http://api.suredbits.com/nba/v0/games
-
-## Keywords
-Keywords | Type | Description
--------- | ---- | ----------
-<span style="color:red"> *team* </span> | string | The Team ID 
-<span style="color:red"> *year* </span> | Integer | Year of play
-
-
-## Usage
-
-Resource | Description | Example 
---------- | ---------- | ------
-/games | All regular-season games for the current day. | <a href="http://api.suredbits.com/nba/v0/games">http://api.suredbits.com/nba/v0/games</a>
-/games/year | All regular-season games in the given year. The year provided is the year in which the season started. Ex. To search the 2015-16 season, provide 2015 as the year. | <a href="http://api.suredbits.com/nba/v0/games/2016">http://api.suredbits.com/nba/v0/games/2016</a>
-/games/year/month | All games played in the month of a year. | <ahref="http://api.suredbits.com/nba/v0/games/2017/1">http://api.suredbits.com/nba/v0/games/2017/1</a>
-/games/year/month/day | The games played on a specific date, given a year, month and day. | <a href="http://api.suredbits.com/nba/v0/games/2017/1/29">http://api.suredbits.com/nba/v0/games/2017/1/29</a>
-/games/team | The game played for a given team today. Nothing returned if the team doesn't play today. | <a href="http://api.suredbits.com/nba/v0/games/phi">http://api.suredbits.com/nba/v0/games/phi</a>
-/games/team/year/ | All games for a given team in a given year. The year provided is the year in which the season started. Ex. To search the 2015-16 season, provide 2015 as the year. | <a href="http://api.suredbits.com/nba/v0/games/phi/2015">http://api.suredbits.com/nba/v0/games/phi/2015</a>
-/games/team/year/month | All games for a given team in a month in a year. | <a href="http://api.suredbits.com/nba/v0/games/phi/2017/1">http://api.suredbits.com/nba/v0/games/phi/2017/1</a>
-/games/team/year/month/day | The game played by a team given a year, month and day. Returns nothing if the team didn't play that day. | <a href="http://api.suredbits.com/nba/v0/games/phi/2017/1/29">http://api.suredbits.com/nba/v0/games/phi/2017/1/29</a>
-/games/team/seasonphase | The games for the given team during the given season phase this year.	| <a href="http://api.suredbits.com/nba/v0/games/sas/post">http://api.suredbits.com/nba/v0/games/sas/post</a>
-/games/team/seasonphase/year | The games for the given team during the given season phase and year. | <a href="http://api.suredbits.com/nba/v0/games/sas/post/2016">http://api.suredbits.com/nba/v0/games/sas/post/2016</a>
-/games/seasonphase  | The games for the given season phase for this year. | <a href="http://api.suredbits.com/nba/v0/games/post">http://api.suredbits.com/nba/v0/games/post</a>
-/games/seasonphase/year | The games for the given season phase for the given year. | <a href="http://api.suredbits.com/nba/v0/games/post/2016">http://api.suredbits.com/nba/v0/games/post/2016</a>
-
-
-
-
-## Team ID Table
-
-Team ID | City & Name 
-------- | ----------
-ATL |	Atlanta Hawks	
-BKN |	Brooklyn Nets	
-BOS |	Boston Celtics	
-CHA |	Charlotte Hornets	
-CHI |	Chicago Bulls	
-CLE |	Cleveland Cavaliers	
-DAL |	Dallas Mavericks	
-DEN |	Denver Broncos	
-DET |	Detroit Pistons	
-GSW |	Golden State Warriors	
-HOU |	Houston Rockets	
-IND |	Indiana Pacers	
-LAC |	Los Angeles Clippers	
-LAL |	Los Angeles Lakers	
-MEM |	Memphis Grizzlies	
-MIA |	Miami Heat
-MIL |	Milwaukee Bucks
-MIN |	Minnesota Timberwolves
-NOP |	New Orleans Pelicans
-NYK |	New York Knicks
-OKC |	Oklahoma City Thunder
-ORL |	Orlando Magic
-PHI |	Philadelphia 76ers
-PHX |	Phoenix Suns
-POR |	Portland Trail Blazers
-SAC |	Sacramento Kings
-SAS |	San Antonio Spurs
-TOR |	Toronto Raptors
-UTA |	Utah Jazz
-WAS |	Washington Wizards
-
-
-## Players
-Search NBA players by team.
-
-http://api.suredbits.com/nba/v0/players
-
-## Keywords 
-Keywords | Type | Description
---------- | ---------- | ------
-<span style="color:red"> *team* </span>	| string | The Team ID
-
-## Usage 
-
-Resource | Description | Example 
--------- | ---------- | ---------
-/players | All current, rostered players in the NBA. | <a href="http://api.suredbits.com/nba/v0/players">http://api.suredbits.com/nba/v0/players</a>
-/players/teamID	| All current players on a given NBA team. | <a href="http://api.suredbits.com/nba/v0/players/phi">http://api.suredbits.com/nba/v0/players/phi</a>
-/players/lastName | Searches players by their last name. | <a href="http://api.suredbits.com/nba/v0/players/james">http://api.suredbits.com/nba/v0/players/james</a>
-/players/lastName | Searches players by their first and last name. | <a href="http://api.suredbits.com/nba/v0/players/james/lebron">http://api.suredbits.com/nba/v0/players/james/lebron</a>
-
-
-## Stats
-
-## Stats 
-Search NBA player game and season statistics by a player's ID or name.
-
-Currently, it's only possible to search active player statistics for the 2015-16 and 2016-17 seasons.
-
-http://api.suredbits.com/nba/v0/stats
-
-## Usage - Stats By Id
-Resource | Description  | Example 
---------- | ----------  |-------
-/stats/playerID/gameID | Search for a player's game stats given his playerID and a gameID. | Ex: LeBron James (ID 2544) in Dec 7 game vs. NYK (ID 21600327) <a href="http://api.suredbits.com/nba/v0/stats/2544/21600327">http://api.suredbits.com/nba/v0/stats/2544/21600327</a>
-/stats/playerID/year | Search for a player's stats in a given year by his playerID. | Ex: LeBron James (ID 2544) 2016 stats <a href="http://api.suredbits.com/nba/v0/stats/2544/2016">http://api.suredbits.com/nba/v0/stats/2544/2016</a>
-
-
-
-## Usage - Stats by Name 
-Resource | Description | Example
--------- | ----------- | -------
-/stats/lastName/firstName | Search for a player's current season statistics given his name. | LeBron James stats for current season (2016-17) <a href="http://api.suredbits.com/nba/v0/stats/james/lebron">http://api.suredbits.com/nba/v0/stats/james/lebron</a>
-/stats/lastName/firstName/year | Search for a player's statistics given his name and a year. If no year is given, the current season stats are returned. | LeBron James stats for 2015-16 season. <a href="http://api.suredbits.com/nba/v0/stats/james/lebron/2015">http://api.suredbits.com/nba/v0/stats/james/lebron/2015</a>
-/stats/lastName/firstName/seasonphase | Search for a player's statistics during the given season phase of this year | Lebron Jame's stats for postseason this year. <a href="http://api.suredbits.com/nba/v0/stats/james/lebron/post">http://api.suredbits.com/nba/v0/stats/james/lebron/post</a>
-/stats/lastName/firstName/seasonphase/year | Search for a player's statistics during the given season phase of 2017 | Lebron Jame's stats for postseason this year. <a href="http://api.suredbits.com/nba/v0/stats/james/lebron/post/2017">http://api.suredbits.com/nba/v0/stats/james/lebron/post/2017</a>
-/stats/lastName/firstName/year/month | Search for a player's statistics in a given calendar year and month. | Joel Embiid for Rookie of the Month January 2017. <a href="http://api.suredbits.com/nba/v0/stats/embiid/joel/2017/1">http://api.suredbits.com/nba/v0/stats/embiid/joel/2017/1</a>
-
+#
 # Email Updates
 <aside class="success">Sign up to be notified as we update and add to our APIs!</aside>
 <form action="//suredbits.us12.list-manage.com/subscribe/post?u=6d2301935be3bfea5b7f29e4c&amp;id=16dc8b6ffb" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
