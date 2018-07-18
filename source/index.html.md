@@ -27,6 +27,8 @@ Here are some useful resources to help you get up and running with Bitcoin and L
 4. <a href="https://lightning.network/lightning-network-paper.pdf">Lightning Whitepaper</a>
 5. <a href="https://www.youtube.com/watch?v=l1si5ZWLgy0">Introduction to Bitcoin</a>
 
+## Connect to Suredbits Lightning Node
+In order to access our APIs, you will need to connect to our lightning node via a websocket client of your choosing.   The url is <span style="color:blue"> *[nodeId]@ln.test.suredbits.com* </span>
 
 ## Format 
 
@@ -54,6 +56,8 @@ Here are some useful resources to help you get up and running with Bitcoin and L
   }
 ]
 ```
+> This is a sample Lightning Invoice.
+> lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt2wvhthpsdqqxqrrssn39f5saxgtqmzsdvg0uh3twrmxmnnl2mra6kcuprwc2pzplneka953svu87ajz29mf8623qefe3jpkqsmsu05l9n05xf98uqq2mf25gqvzwkq3
 
 Requests for data follow this sample format:
 
@@ -61,18 +65,13 @@ Requests for data follow this sample format:
 
 <aside class="note">NOTE: All API requests must include the field type "channel".  However, that does not have to be the first field in the request. </aside>
 
-Lighting request are done via websockets and have the following format:
+Suredbits APIs are available via websockets with the following format:
 
 1. A pull request implements a websocket channel for the requested <span style="color:red"> *data* </span>. 
 
 2. Upon confirmation of a valid request, you will receive a Lightning Network Invoice that should appear similar to the one below:
 
-**lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt2wvhthpsdqqxqrrssn39f5saxgtqmzsdvg0uh3twrmxmnnl2mra6kcuprwc2pzplneka953svu87ajz29mf8623qefe3jpkqsmsu05l9n05xf98uqq2mf25gqvzwkq3**
-
-3. 
-
-## Connect to Suredbits Lightning Node
-In order to access our APIs, you ill need to connect to our lightning node via a websocket client of your choosing.   The url is <span style="color:blue"> *[nodeId]@ln.test.suredbits.com* </span>
+3. **PLACEHOLDER**
 
 # NFL
 
@@ -115,56 +114,25 @@ In order to access our APIs, you ill need to connect to our lightning node via a
     ...
   ]
 ```
+
+Example Data Request 
+
+{"channel":"games", "week":1, "seasonPhase" : "Regular", "year" : 2017}
+
 There are two required fields to query NFL Games data:
 
 **Required**
 
 
-1. <span style="color:red"> *week - Int* </span>
-2. <span style="color:red"> *seasonPhase - Preaseason, Regular, Postseason* </span>
+1. <span style="color:red"> <*week*> </span> - <span style="color:red"> *Integer value* </span>
+2. <span style="color:red"> <*seasonPhase*> - <span style="color:red"> *Preaseason, Regular, Postseason* </span>
 
 
 **Optional**
 
-1. <span style="color:red"> *year - Int* </span>
-2. <span style="color:red"> *teamId - String (ex: CHI, MIN, GB, MIA* </span> etc)
-
-Exmaple Data Request 
-
-{"channel":"games", "week":1, "seasonPhase" : "Regular", "year" : 2017}
-
-> Sample Data for Games 
-
-```json
-[{
-  "gsisId": "2017123115",
-  "seasonYear": 2017,
-  "startTime": "20171231T212500.000Z",
-  "timeInserted": "20170803T145501.334Z",
-  "dayOfWeek": "Sunday",
-  "gameKey": "57489",
-  "finished": true,
-  "homeTeam": {
-    "scoreQ3": 7,
-    "turnovers": 1,
-    "scoreQ2": 0,
-    "score": 24,
-    "team": "SEA",
-    "scoreQ1": 7,
-    "scoreQ4": 10
-  },
-  "timeUpdate": "20180603T004736.984Z",
-  "awayTeam": {
-    "scoreQ3": 3,
-    "turnovers": 0,
-    "scoreQ2": 10,
-    "score": 26,
-    "team": "ARI",
-    "scoreQ1": 10,
-    "scoreQ4": 3
-  },
-]
-```
+1. <span style="color:red"> <*year*> -  <span style="color:red"> *Int* </span>
+2. <span style="color:red"> <*teamId*> - String (ex: CHI, MIN, GB, MIA* </span> etc)
+`
 
 <aside class="warning"> Can everything below here be removed from Games? </aside>
 
@@ -211,7 +179,7 @@ Usage   | Description  |   Example
 "com.github.nfldb.models.NflPlayer"}]
 ```
 
-To request Player data, you must submit both a <span style="color:red"> *firstName* </span> and <span style="color:red"> *lastName*</span> into the request. 
+To request Player data, you must submit both a <span style="color:red"> <*firstName*> </span> and <span style="color:red"> <*lastName*> </span> into the request. 
 
 **Example Requests**
 
@@ -256,7 +224,7 @@ To request Player data, you must submit both a <span style="color:red"> *firstNa
   "position": "DB",
   "yearsPro": 16,
   "college": "Kansas State"
-},
+}
 ```
 
 Search NFL team information by team ID.
@@ -341,23 +309,23 @@ To query by <span style="color:red"> *gameId* </span> or <span style="color:red"
 **Required fields**
 
 
-1. <span style="color:red"> *{channel}* </span> example: <span style="color:red"> *stats* </span>
-2. <span style="color:red"> *{statType}* </span> example: <span style="color:red"> *passing, rushing, receiving, defense* </span>
-3. <span style="color:red"> *{gameId}* </span> example:  <span style="color:red"> *2016101604* </span>
-4. <span style="color:red"> *{playerId}* </span> example: <span style="color:red"> *00-0027973* </span> 
+1. <span style="color:red"> <*channel*> </span> example: <span style="color:red"> *stats* </span>
+2. <span style="color:red"> <*statType*> </span> example: <span style="color:red"> *passing, rushing, receiving, defense* </span>
+3. <span style="color:red"> <*gameId>*> </span> example:  <span style="color:red"> *2016101604* </span>
+4. <span style="color:red"> <*playerId*> </span> example: <span style="color:red"> *00-0027973* </span> 
 
 
 To query by <span style="color:red"> *name* </span> or <span style="color:red"> *week* </span>:
 
 **Required fields**
 
-1. <span style="color:red"> *{channel}* </span> example <span style="color:red"> *stats* </span>
-2. <span style="color:red"> *{statType}* </span> example <span style="color:red"> *passing, rushing, receiving, defense* </span>
-3. <span style="color:red"> *{year}* </span> <span style="color:red"> *2016, 2017* </span>
-4. <span style="color:red"> *{week}* </span>  example <span style="color:red"> *1, 2* </span>... 
-5. <span style="color:red"> *{seasonPhase}* </span> example <span style="color:red"> *Preseason, Regular, Postseason* </span>
-6. <span style="color:red"> *{firstName}* </span> example <span style="color:red"> *Drew* </span>
-7. <span style="color:red"> *{lastName}* </span> example <span style="color:red"> *Brees* </span>
+1. <span style="color:red"> <*channel*> </span> example <span style="color:red"> *stats* </span>
+2. <span style="color:red"> <*statType*> </span> example <span style="color:red"> *passing, rushing, receiving, defense* </span>
+3. <span style="color:red"> <*year*> </span> <span style="color:red"> *2016, 2017* </span>
+4. <span style="color:red"> <*week*> </span>  example <span style="color:red"> *1, 2* </span>... 
+5. <span style="color:red"> <*seasonPhase}*> </span> example <span style="color:red"> *Preseason, Regular, Postseason* </span>
+6. <span style="color:red"> <*firstName>*> </span> example <span style="color:red"> *Drew* </span>
+7. <span style="color:red"> <*lastName>*> </span> example <span style="color:red"> *Brees* </span>
 
 
 Currently we only support requesting by:
