@@ -17,6 +17,7 @@ includes:
   - opps
   - entity-values
   - notes
+  - entity-files
   - additional-materials
 
 ---
