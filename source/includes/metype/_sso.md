@@ -66,4 +66,4 @@ Response:
 ```
 
 This user can be hashed and maintained in a session cookie or repeated requests to metype can be made to get the user details.
-The OAuth libraries will handle the rest in the application if you jave integrated with one.
+The OAuth libraries will handle the rest in the application if you have integrated with one.

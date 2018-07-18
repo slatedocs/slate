@@ -38,7 +38,7 @@ Please find the script with detailed comments on the right in the shell.
 
 ```shell
 <!-- Feed Widget embed code. Html Element with the necessary attributes.
-The color and font are confiruable according to your liking -->
+The color and font are configurable according to your liking -->
 <div id='feed-metype-container'
      class='feed-iframe-container'
      data-metype-account-id='XXXXX'

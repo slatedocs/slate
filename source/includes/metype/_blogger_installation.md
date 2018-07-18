@@ -15,7 +15,7 @@
 </script>
 
 <!-- Commenting Widget embed code. Html Element with the necessary attributes.
-The color and font are confiruable according to your liking -->
+The color and font are configurable according to your liking -->
 <div id='metype-container'
      class='iframe-container'
      data-metype-account-id='XXXXX'
@@ -72,7 +72,7 @@ Follow the steps below to install the Metype Comments widget on your Blogger web
 </script>
 
 <!-- Feed Widget embed code. Html Element with the necessary attributes.
-The color and font are confiruable according to your liking -->
+The color and font are configurable according to your liking -->
 <div id='feed-metype-container'
      class='feed-iframe-container'
      data-metype-account-id='XXXXX'
