@@ -84,6 +84,7 @@ opportunity_ids | integer[] | false | An array of unique identifiers of opportun
 content | string | false | The string containing the content of the new note.
 gmail_id | string | false | The id of a Gmail message to save as the content of the note.
 creator_id | integer | false | The id of a Person resource who should be recorded as the author of the note. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key.
+created_at | datetime | false | A string (formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) representing the creation time to be recorded for the note. If not provided, defaults to the current time.
 
 Note that either `content` or `gmail_id` must be specified.
 
