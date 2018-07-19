@@ -1090,10 +1090,7 @@ The following GIF shows you all the screens and functionality included in the mo
 
 As you can see the login/signup screen is already configured to consume the `GraphQL` API. After the user signs in you will display the balance and transaction history and give the user the option to make new payments.
 
-Before downloading the boilerplate, make sure you have the following dependencies installed in your computer.
-
-- [yarn](https://yarnpkg.com/lang/en/)
-- [Expo client](https://docs.expo.io/versions/v28.0.0/introduction/installation#mobile-client-expo-for-ios-and-android)
+Before downloading the boilerplate, install the required dependencies to run React Native applications. You can find the list of requirements in the following page [https://facebook.github.io/react-native/docs/getting-started](https://facebook.github.io/react-native/docs/getting-started), click in `Build Projects with Native Code` and follow the instructions.
 
 Next, download the boilerplate with the following commands:
 
@@ -1106,20 +1103,175 @@ After the dependencies are installed, you should be able to run the Android or i
 - iOS: `yarn run ios`
 - Android: `yarn run android`
 
-You will see instructions in the console on how to run in the Simulator or using the Expo client.
+Once the application is running start a session putting your favorite username. You will see a placeholder balance showing `$1000`, your `username` and `stellarAccount`. In the following session you will install the JS Stellar SDK and use it to show the account's real balance.
 
-Next, you need to install the JS Stellar SDK in the React Native and then display the account balance.
+## Using the Stellar-SDK in React Native [WIP]
 
-## Installing the Stellar-SDK in React Native
+### Adding Node core modules and globals [WIP]
 
-Introduce the Stellar-SDK polyfill and how to display an account data in a RN app.
+Using the JS Stellar SDK requires extra setup because the package depends in some Node core modules like `crypto` or globals like `process`, which are not available in React Native.
 
-## Creating an user signup flow
-Very simple user signup flow based in user name. It shows how to setup Stellar account, multisig and trustline schema.
-## Depositing "fiat" into your wallet
- A fake implementation in the wallet similar to transferring money from a bank.
+If you try to run the application and import the SDK, you will see an error like the following:
+
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/1b13041l020I0s2l0L3o/Image%202018-07-18%20at%201.29.16%20PM.png?X-CloudApp-Visitor-Id=49274&v=60e47590)
+
+This is a known issue in the React Native world and there is a solution for it. To solve the problem you need to install the package [node-libs-react-native
+](https://github.com/parshap/node-libs-react-native) which provides the implementation for some of those modules and [vm-browserify](https://github.com/browserify/vm-browserify).
+
+Run the following commands:
+
+- `yarn add node-libs-react-native vm-browserify react-native-randombytes`
+- `react-native link`
+
+```javascript
+// rn-cli.config.js
+const extraNodeModules = require('node-libs-react-native')
+extraNodeModules.vm = require.resolve('vm-browserify')
+
+module.exports = {
+  getTransformModulePath() {
+    return require.resolve("react-native-typescript-transformer");
+  },
+  getSourceExts() {
+    return ["ts", "tsx"];
+  },
+  extraNodeModules
+};
+```
+
+Edit the file `rn-cli.config.js` file in the root directory to look like the code in the right and then add to `index.js` in the root container the following at the top: `import 'node-libs-react-native/globals'`
+
+You can see the changes in pull [request #10](https://github.com/abuiles/AnchorX/pull/10/files) the relevant pieces are:
+
+- [package.json](https://github.com/abuiles/AnchorX/pull/10/files#diff-b9cfc7f2cdf78a7f4b91a753d10865a2)
+- [rn-cli.config.js](https://github.com/abuiles/AnchorX/pull/10/files#diff-41fdc10e1b5862877e4afa7e9176ee09)
+- [index.js](https://github.com/abuiles/AnchorX/pull/10/files#diff-168726dbe96b3ce427e7fedce31bb0bc)
+
+### Installing the SDK and writing your first component [WIP]
+
+Once you have all the required depencies to install the JS Stellar SDK, run the following command:
+
+- `yarn add stellar-sdk @types/stellar-sdk`
+
+Next you need to create a new container component which will load the Stellar account from the ledger and then display the balance for AnchorX custom asset.
+
+The container component will have the following props:
+
+- `stellarAccount`: Stellar account id to load.
+- `asset`: since Stellar accounts can hold multiple assets, you'll tell explicitly to the component which asset to display.
+
+```javascript
+import * as React from 'react'
+import {
+  Platform,
+  StyleSheet,
+  View
+} from 'react-native'
+
+import {
+  Asset,
+  AccountResponse,
+  Network,
+  Server
+} from 'stellar-sdk'
+
+import { Text } from 'native-base'
+import { styles as s } from 'react-native-style-tachyons'
+
+import Loading from '../components/Loading'
+
+interface Props {
+  accountId: string
+  asset: Asset
+}
+
+interface State {
+  sdkAccount: AccountResponse
+}
+
+export default class Balance extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props)
+    this.state = {}
+  }
+
+  async componentDidMount() {
+    const { accountId } = this.props
+    const stellarServer = new Server('https://horizon-testnet.stellar.org')
+    const sdkAccount = await stellarServer.loadAccount(accountId)
+
+    this.setState({
+      sdkAccount
+    })
+  }
+
+  render() {
+    const { sdkAccount } = this.state
+    const { asset } = this.props
+
+    if (!sdkAccount) return <Loading />
+
+    const { balance } = sdkAccount.balances.find(({ asset_code, asset_issuer }) => asset_code === asset.code && asset_issuer === asset.issuer)
+
+    return (
+      <View style={[s.jcc, s.aic]}>
+        <Text style={s.f3}>
+          {balance}
+        </Text>
+      </View>
+    )
+  }
+}
+```
+
+Create the component by running `touch app/container/Balance` and then paste the content on the right.
+
+> Update the Home container to render the Balance component
+
+```javascript
+ import { NavigationScreenProps } from 'react-navigation'
++import { Asset } from 'stellar-sdk'
++
++import Balance from './Balance'
+
+ export default class Home extends React.Component<NavigationScreenProps> {
+   static navigationOptions = {
+@@ -18,6 +21,11 @@ export default class Home extends React.Component<NavigationScreenProps> {
+   }
+
+   render() {
++    const anchorXUSD = new Asset(
++      'USD',
++      'GBX67BEOABQAELIP2XTC6JXHJPASKYCIQNS7WF6GWPSCBEAJEK74HK36'
++    )
++
+     return (
+       <CurrentUserQuery query={GET_CURRENT_USER_QUERY}>
+         {({ loading, data }) => {
+@@ -58,7 +66,9 @@ export default class Home extends React.Component<NavigationScreenProps> {
+                      s.pa4
+                    ]}
+                  >
+-                   <Text>$1000</Text>
++                   <Balance
++                     accountId={data.me.stellarAccount}
++                     asset={anchorXUSD} />
+                  </View>
+                  <View>
+```
+
+In the `Home` container use the `Balance` container to display the account balance.
+
+If you run the app, you should see the balance in your AnchorX account.
+
+You can see the changes in this section in [pull request #11](https://github.com/abuiles/AnchorX/pull/11).
+
 ## Showing account transactions
 Implements the transaction history in the RN wallet.
+
+## Depositing "fiat" into your wallet
+ A fake implementation in the wallet similar to transferring money from a bank.
+
 ## Sending payments
 Flow for doing P2P payments.
 ## Cashing out
