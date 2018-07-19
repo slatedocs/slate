@@ -434,6 +434,7 @@ Cancela | POST /service/cancel
 **elo** | crédito
 **discover** | crédito
 **hipercard** | crédito
+**hiper** | crédito
 **jcb** | crédito
 **aura** | crédito
 **visaelectron** | débito
@@ -445,12 +446,10 @@ Cancela | POST /service/cancel
 -----------|--------
 **boleto_banespasantander** | boleto impresso
 **boletobb** | boleto impresso
-**boletostelo** | boleto impresso
-**boletocielo** | boleto impresso
-**boletostone** | boleto impresso
 **boletozoop** | boleto impresso
 **boletoitaushopline** | boleto impresso
 **boletoshopfacil** | boleto impresso
+**boletosicredi** | boleto impresso
 
 ###Transferência (Office Bank)
 
@@ -472,3 +471,5 @@ Código | Descrição
 6 | Aprovado valor parcial (Status Reservado pelo iPag)
 7 | Recusado
 8 | Aprovado e Capturado
+9 | Chargeback
+10 | Em Disputa
