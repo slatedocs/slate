@@ -1098,22 +1098,19 @@ Next, download the boilerplate with the following commands:
 2. `cd AnchorX`
 3. `yarn install`
 
-After the dependencies are installed, you should be able to run the Android or iOS version of the app with the following commands:
+After the dependencies are installed, you should be able to run the Android or iOS version with the following commands:
 
 - iOS: `yarn run ios`
 - Android: `yarn run android`
 
-Once the application is running start a session putting your favorite username. You will see a placeholder balance showing `$1000`, your `username` and `stellarAccount`. In the following session you will install the JS Stellar SDK and use it to show the account's real balance.
+Once the application is running start a session by putting your favorite username. You will see a placeholder balance showing `$1000`, your `username` and `stellarAccount`. In the following session you will install the JS Stellar SDK and use it to show the account's real balance.
 
-## Using the Stellar-SDK in React Native [WIP]
-
-### Adding Node core modules and globals [WIP]
-
+## Using the Stellar-SDK in React Native
 Using the JS Stellar SDK requires extra setup because the package depends in some Node core modules like `crypto` or globals like `process`, which are not available in React Native.
 
 If you try to run the application and import the SDK, you will see an error like the following:
 
-![](https://d3vv6lp55qjaqc.cloudfront.net/items/1b13041l020I0s2l0L3o/Image%202018-07-18%20at%201.29.16%20PM.png?X-CloudApp-Visitor-Id=49274&v=60e47590)
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/1b13041l020I0s2l0L3o/%5B38cfda07cc131d3a1e9d71bf82fb8887%5D_Image+2018-07-18+at+1.29.16+PM.png?X-CloudApp-Visitor-Id=49274&v=f0422f8c)
 
 This is a known issue in the React Native world and there is a solution for it. To solve the problem you need to install the package [node-libs-react-native
 ](https://github.com/parshap/node-libs-react-native) which provides the implementation for some of those modules and [vm-browserify](https://github.com/browserify/vm-browserify).
@@ -1141,15 +1138,15 @@ module.exports = {
 
 Edit the file `rn-cli.config.js` file in the root directory to look like the code in the right and then add to `index.js` in the root container the following at the top: `import 'node-libs-react-native/globals'`
 
-You can see the changes in pull [request #10](https://github.com/abuiles/AnchorX/pull/10/files) the relevant pieces are:
+You can see the changes in [pull request #10](https://github.com/abuiles/AnchorX/pull/10/files). The relevant pieces are:
 
 - [package.json](https://github.com/abuiles/AnchorX/pull/10/files#diff-b9cfc7f2cdf78a7f4b91a753d10865a2)
 - [rn-cli.config.js](https://github.com/abuiles/AnchorX/pull/10/files#diff-41fdc10e1b5862877e4afa7e9176ee09)
 - [index.js](https://github.com/abuiles/AnchorX/pull/10/files#diff-168726dbe96b3ce427e7fedce31bb0bc)
 
-### Installing the SDK and writing your first component [WIP]
+### Installing the SDK and writing your first component
 
-Once you have all the required depencies to install the JS Stellar SDK, run the following command:
+Once you have the depencies to install the SDK, run the following command:
 
 - `yarn add stellar-sdk @types/stellar-sdk`
 
@@ -1198,6 +1195,7 @@ export default class Balance extends React.Component<Props, State> {
   async componentDidMount() {
     const { accountId } = this.props
     const stellarServer = new Server('https://horizon-testnet.stellar.org')
+    // load the account from Horizon
     const sdkAccount = await stellarServer.loadAccount(accountId)
 
     this.setState({
@@ -1224,9 +1222,9 @@ export default class Balance extends React.Component<Props, State> {
 }
 ```
 
-Create the component by running `touch app/container/Balance` and then paste the content on the right.
+Create the component by running `touch app/containers/Balance.tsx` and then paste the content on the right.
 
-> Update the Home container to render the Balance component
+> Update `app/containers/Home.tsx` to render the Balance component.
 
 ```javascript
  import { NavigationScreenProps } from 'react-navigation'
@@ -1260,11 +1258,13 @@ Create the component by running `touch app/container/Balance` and then paste the
                   <View>
 ```
 
-In the `Home` container use the `Balance` container to display the account balance.
+After that, you will find the changes in the `Home` container to use `Balance`.
 
 If you run the app, you should see the balance in your AnchorX account.
 
 You can see the changes in this section in [pull request #11](https://github.com/abuiles/AnchorX/pull/11).
+
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/0D3Z3n1C2H2V3D321u2H/Screen%20Recording%202018-07-18%20at%2009.28%20PM.gif?X-CloudApp-Visitor-Id=49274&v=780917c0)
 
 ## Showing account transactions
 Implements the transaction history in the RN wallet.
