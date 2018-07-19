@@ -1266,16 +1266,110 @@ You can see the changes in this section in [pull request #11](https://github.com
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/0D3Z3n1C2H2V3D321u2H/Screen%20Recording%202018-07-18%20at%2009.28%20PM.gif?X-CloudApp-Visitor-Id=49274&v=780917c0)
 
+## Balance updates
+
+You can see your balance noew but if you send or receive USD, the balance won't update. The horizon server allows you to call some end-points in streaming mode using Server-Sent Events, account details is one of those end-points.
+
+In this chapter you will learn how to use the streaming mode to update the account balance.
+
+In the following GIF you can see how we need to refresh the app to see the balance updated.
+
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/0L3N0S2D223l3K1S3a2r/Screen%20Recording%202018-07-19%20at%2009.44%20AM.gif?X-CloudApp-Visitor-Id=49274&v=e537cac7)
+
+```js
+mutation {
+  credit(amount: "10", username:"your-username") {
+    id
+  }
+}
+```
+
+You can try it by going to [https://anchorx-api.herokuapp.com/](https://anchorx-api.herokuapp.com/) and writing the mutation on the right using your username.
+
+## Using streaming mode
+
+> Edit `app/containers/Balance.tsx`
+
+```javascript
+   async componentDidMount() {
+     const { accountId } = this.props
+     const stellarServer = new Server('https://horizon-testnet.stellar.org')
+     const sdkAccount = await stellarServer.loadAccount(accountId)
+
++    // Setup streaming to the accountId, this returns a function which
++    // you can use to close the stream.
++    let accountEventsClose = stellarServer.accounts().accountId(accountId).stream({
++      // onmessage is called each time the ledger closes
++      onmessage: res => {
++        const { sdkAccount } = this.state
++
++        // Check if balances changed and if they did update sdkAcount.balances
++        if (sdkAccount.balances !== res.balances) {
++          sdkAccount.balances = res.balances
++
++          this.setState({
++            sdkAccount: sdkAccount
++          })
++        }
++      }
++    });
++
++    // For convinience add this to the account so you can close
++    // on componentWillUnmount. hat-tip to StellarTerm ;)
++    sdkAccount.close = () => {
++      try {
++        accountEventsClose();
++      } catch(e) {
++        console.log('error closing account streaming')
++      }
++    }
++
+     this.setState({
+       sdkAccount
+     })
+   }
+
++  componentWillUnmount() {
++    const { sdkAccount } = this.state
++    // Close the stream when unmounting the component
++    sdkAccount.close()
++  }
++
+   render() {
+     const { sdkAccount } = this.state
+     const { asset } = this.props
+}
+```
+
+The SDK uses the builder pattern to help you interact with horizon and its different functionalities. Once you have an instance of the server, you can setup streaming by calling the following command: `stellarServer.accounts().accountId(accountId).stream({args})`.
+
+You need to update the lifecycle methods `componentDidMount` and `componentWillUnmount` in  `app/containers/Balance.tsx`. On the right you will find the additions with comments.
+
+<aside class="notice">
+You can find the documentation for the account builder <a href="https://stellar.github.io/js-stellar-sdk/AccountCallBuilder.html">here</a>
+</aside>
+
+
+In the GIF below you can see how the balance updates now after using streaming.
+
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/2w3D461n0K3I1M0F2H2J/Screen%20Recording%202018-07-19%20at%2010.59%20AM.gif?X-CloudApp-Visitor-Id=49274&v=cfe8eea8)
+
+You can find the changes in this section in [pull request #12](https://github.com/abuiles/AnchorX/pull/12).
+
+Next, let's create a new container to display account transactions.
+
 ## Showing account transactions
+
 Implements the transaction history in the RN wallet.
 
 ## Depositing "fiat" into your wallet
- A fake implementation in the wallet similar to transferring money from a bank.
+A fake implementation in the wallet similar to transferring money from a bank.
 
 ## Sending payments
 Flow for doing P2P payments.
 ## Cashing out
 Fake implementation for transferring money to the bank accountp
+
 # Best practices
 Best practices for managing issuing accounts, signing transactions on behalf of users, etc.
 # Security
