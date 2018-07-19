@@ -286,7 +286,76 @@ Creates a new shift record.
 
 Parameters: Most attributes of a shift object except `id` may be specified. Minimally, `workgroup` and `start_date` parameters must be specified. `timezone` will default to the organization's timezone. `location` will default to the workgroup's default location, if set. "external_covering_member/covering_member" and `covering_workgroup` are mutually exclusive, and may only be specified if the shift is covered. `tentative` may only true if the shift is covered, and `covered` may only be true if the shift is published. Start and end dates may only fall on even five minute times. Either `count` or `qty` may be specified and both will be set for the new shift, defaulting to 1; if both are specified, they must be equal. `count` must be 1 for a covered shift.
 
+It is possible to use this method to create a series of repeating (repeating) shifts. In order to do so, some additional parameters are required. Below is a list of these optional parameters.
+
+Optional parameters:
+
+#### repeating_shift
+
+Boolean; specifies the caller is creating a series of repeating shifts.
+
+#### repeating_shift_type
+
+Type of repeating shift.
+
+Type|Meaning
+--|--
+1|Frequency
+2|Days of Week
+
+#### repeating_shift_end_date
+
+The date of the final shift in the repeating series in [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) full date format (e.g. "2018-01-01").
+
+#### repeating_shift_interval
+
+Specifies the interval in which the series will be created. Valid interval options are below:
+
+Interval|Meaning
+--|--
+1|Every
+2|Every Other
+3|Every Third
+4|Every Fourth
+5|Every Fifth
+6|Every Sixth
+
+**NOTE:** `every_fifth` and `every_sixth` are only available when creating daily shifts.
+
+#### repeating_shift_frequency
+
+Specifies the frequency for a frequency based repeating series. Valid frequency options are below:
+
+Frequency|Meaning
+--|--
+1|Day
+2|Week
+3|Month
+4|Year
+
+**NOTE:** Parameter is required when `repeating_shift_type` is `1`
+
+#### repeating_shift_days_of_week
+
+Array. Specifies which days of the week to create shifts for in a repeating series. Valid options are below:
+
+Day|Meaning
+--|--
+0|Sunday
+1|Monday
+2|Tuesday
+3|Wednesday
+4|Thursday
+5|Friday
+6|Saturday
+
+**NOTE:** Parameter is required when `repeating_shift_type` is `2`
+
 Response: On success, an `id` attribute will provide the identifier for the new shift.
+
+#### additional_dates
+
+Array. Additional shift dates to be created alongside the specified repeating series. Dates must be in [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) full date format (e.g. "2018-01-01")
 
 ### shift.delete
 
@@ -840,7 +909,7 @@ If requested, the response results `referenced_objects` attribute will be an obj
 
 ####account
 
-id, first_name, last_name, and screen_name attributes are provided. 
+id, first_name, last_name, and screen_name attributes are provided.
 
 **NOTE:** external_id will also be returned in the results if external ids are enabled for the site.
 
