@@ -11,15 +11,13 @@ toc_footers:
 search: true
 ---
 
-# API Documentation
+# Lightning API v0 Documentation
 
-Welcome to SuredBits' API documentation. This API allows you to query sports data, including teams, players, games, scores, and statistics.
+Thank you and welcome to SuredBits' API documentation. This API allows you to query our NFL data, including teams, players, games, scores, and statistics.
 
-Currently, our API only supports NFL data feeds.
+<aside class="success">IMPORTANT: Suredbits is a Lightning Application built on the Bitcoin protocol.  This initial release is only on testnet. </aside>
 
-<aside class="success">IMPORTANT: Suredbits is a Lightning Application built on the Bitcoin protocol.  Our NFL APIs are available exclusively via Lightning protocol. </aside>
-
-Here are some useful resources to help you get up and running with Bitcoin and Lightning:
+Not familiar with Bitcoin or Lightning but want to learn?  Here are some useful resources to help you get up and running with both.  Read and watch and come back when you're ready. 
 
 1. <a href="https://bitcoin.org/en/download">Download Bitcoin Core</a>
 2. <a href="https://lbtc.io/">Lightning Bitcoin, Downloads and Wallets</a>
@@ -63,20 +61,30 @@ Requests for data follow this sample format:
 
 {"channel":"players", "lastName" : "Moss", "firstName" : "Randy"}
 
-<aside class="note">NOTE: All API requests must include the field type "channel".  However, that does not have to be the first field in the request. </aside>
+<aside class="note">NOTE: All API requests must include the field type "channel".  However, 'channel" does not have to be the first field in the request. </aside>
 
 Suredbits APIs are available via websockets with the following format:
 
-1. A pull request implements a websocket channel for the requested <span style="color:red"> *data* </span>. 
+1. A pull request implements a websocket channel for the requested <span style="color:red"> <*data*> </span>. 
 
 2. Upon confirmation of a valid request, you will receive a Lightning Network Invoice that should appear similar to the one below:
 
 3. **PLACEHOLDER**
 
+## Error Message
+
+If there is an error in your query, you will see a message similar to this:
+
+Example data request
+
+{"firstName": "Tom", "lastName": "Brady"}
+
+*Error: JsError(List((,List(JsonValidationError(List('channel' is undefined on object: {"firstName":"Tom","lastName":"Brady"}),WrappedArray())))))*
+
 # NFL
 
 ## Games
-> Example Data Returned
+> Example of Games data
 
 ```json
 [
@@ -121,44 +129,23 @@ Example Data Request
 
 There are two required fields to query NFL Games data:
 
-**Required**
+**Required fields**
 
 
 1. <span style="color:red"> <*week*> </span> - <span style="color:red"> *Integer value* </span>
-2. <span style="color:red"> <*seasonPhase*> - <span style="color:red"> *Preaseason, Regular, Postseason* </span>
+2. <span style="color:red"> <*seasonPhase*> </span> - <span style="color:red"> *Preaseason, Regular* </span> , or <span style="color:red"> *Postseason* </span>
 
 
-**Optional**
+**Optional fields**
 
 1. <span style="color:red"> <*year*> -  <span style="color:red"> *Int* </span>
-2. <span style="color:red"> <*teamId*> - String (ex: CHI, MIN, GB, MIA* </span> etc)
-`
+2. <span style="color:red"> <*teamId*> - String </span> ex: <span style="color:red"> *CHI, MIN, GB, MIA* </span> etc. <a href="#TeamID">See Team ID Table</a>
 
 <aside class="warning"> Can everything below here be removed from Games? </aside>
 
-Search NFL games by team, year, and/or week.
-
-<a href="http://api.suredbits.com/nfl/v0/games">http://api.suredbits.com/nfl/v0/games</a>
-
-### Keywords
-Keywords  | Type  | Description
---------- | ----- | -----------
-<span style="color:red"> *team* </span>	  | String | The Team ID <a href="../team/#team-id-table">(Refer to this table of teams and their teamIDs.)</a>
-<span style="color:red"> *year*	</span> | Integer | Year of Play
-<span style="color:red"> *rank* </span>     | Integer | Week of play (ex. '6' for Week 6)
-
-Usage   | Description  |   Example
----------- | ------------ |  --------- 
-/games	| All games for current week | 	<a href="http://api.suredbits.com/nfl/v0/games">http://api.suredbits.com/nfl/v0/games</a>
-/games/team |	All games for a given team for the current week. | <a href="http://api.suredbits.com/nfl/v0/games/min">http://api.suredbits.com/nfl/v0/games/min</a>
-/games/team/year/ | All games for a given team in a given year. (Regular season only) | <a href="http://api.suredbits.com/nfl/v0/games/min/2015">http://api.suredbits.com/nfl/v0/games/min/2015</a>
-/games/team/year/week | A single game a given team played in a given year in a given week. | <a href="http://api.suredbits.com/nfl/v0/games/min/2014/15">http://api.suredbits.com/nfl/v0/games/min/2014/15</a>
-/games/year | All games played for a given year. | <a href="http://api.suredbits.com/nfl/v0/games/2016">http://api.suredbits.com/nfl/v0/games/2016</a?
-/games/year/week | All games played for a given week in a given year. | <a href="http://api.suredbits.com/nfl/v0/games/2016/1">http://api.suredbits.com/nfl/v0/games/2016/1</a>
-
 
 ## Players
-> Example Data Returned
+> Example of Players data
 
 ```json 
 [{"playerId":"00-0011754",
@@ -179,66 +166,105 @@ Usage   | Description  |   Example
 "com.github.nfldb.models.NflPlayer"}]
 ```
 
-To request Player data, you must submit both a <span style="color:red"> <*firstName*> </span> and <span style="color:red"> <*lastName*> </span> into the request. 
+This pull request implements a websocket channel called <span style="color:red"> *players* </span>. It returns a NFL player given a websocket request.
 
 **Example Requests**
 
 {"channel":"players", "lastName" : "Moss", "firstName" : "Randy"}
 
+There are two required fields to request NFL Player data: 
+
+1. <span style="color:red"> <*firstName*> </span>  example:  <span style="color:red"> <*Randy*> </span>
+2. <span style="color:red"> <*lastName*> </span>  example:  <span style="color:red"> <*Moss*> </span>
+
 
 ## Team
-> Sample Roster Data
+>Example of Roster data
 
 ```json
-[{
-  "weight": 218,
-  "profileId": 2559252,
-  "gsisName": "",
-  "uniformNumber": 1,
-  "fullName": "Kyle Sloter",
-  "height": 76,
-  "lastName": "Sloter",
-  "firstName": "Kyle",
-  "birthDate": "2/7/1994",
-  "profileUrl": "http://www.nfl.com/player/kylesloter/2559252/profile",
-  "status": "Active",
-  "team": "MIN",
-  "playerId": "00-0033672",
-  "position": "QB",
-  "yearsPro": 2,
-  "college": "Northern Colorado"
-}, {
-  "weight": 197,
-  "profileId": 2505552,
-  "gsisName": "T.Newman",
-  "uniformNumber": 23,
-  "fullName": "Terence Newman",
-  "height": 70,
-  "lastName": "Newman",
-  "firstName": "Terence",
-  "birthDate": "9/4/1978",
-  "profileUrl": "http://www.nfl.com/player/terencenewman/2505552/profile",
-  "status": "Active",
-  "team": "MIN",
-  "playerId": "00-0022045",
-  "position": "DB",
-  "yearsPro": 16,
-  "college": "Kansas State"
-}
+[
+  {
+    "playerId":"00-0027981",
+    "gsisName":"K.Rudolph",
+    "fullName":"Kyle Rudolph",
+    "firstName":"Kyle",
+    "lastName":"Rudolph",
+    "team":"MIN",
+    "position":"TE",
+    "profileId":2495438,
+    "profileUrl":"http://www.nfl.com/player/kylerudolph/2495438/profile",
+    "uniformNumber":82,
+    "birthDate":"11/9/1989",
+    "college":"Notre Dame",
+    "yearsPro":8,"height":78,
+    "weight":265,
+    "status":"Active",
+    "_type":"com.github.nfldb.models.NflPlayer",
+  }
+  ...
+]
+  
 ```
 
-Search NFL team information by team ID.
+>Example of Schedule data
 
-<a href="http://api.suredbits.com/nfl/v0/team/">http://api.suredbits.com/nfl/v0/team/</a>
+```json
+[
+  {
+    "gsisId":"2017091001",
+    "gameKey":"57236",
+    "startTime":"20170910T170000.000Z",
+    "week":"NflWeek1",
+    "dayOfWeek":"Sunday",
+    "seasonYear":2017,
+    "seasonType":"Regular",
+    "finished":true,
+    "homeTeam":
+      {
+        "team":"CHI",
+        "score":17,
+        "scoreQ1":0,
+        "scoreQ2":10,
+        "scoreQ3":0,
+        "scoreQ4":7,
+        "turnovers":0
+      },
+    "awayTeam":
+      {
+        "team":"ATL",
+        "score":23,
+        "scoreQ1":3,
+        "scoreQ2":7,
+        "scoreQ3":3,
+        "scoreQ4":10,
+        "turnovers":1
+      },
+    "timeInserted":"20170804T182915.669Z",
+    "timeUpdate":"20180608T192330.452Z",
+    "_type":"com.github.nfldb.models.NflGame"
+    }
+  ...
+]
+```
 
-Usage | Description | Example 
--------- | ----------- | -------
-/team/teamID/roster | Find a team's current roster | <a href="http://api.suredbits.com/nfl/v0/team/min/roster">http://api.suredbits.com/nfl/v0/team/min/roster</a>
-/team/teamID/schedule | Find a team's schedule for the current season | <a href="http://api.suredbits.com/nfl/v0/team/min/schedule">http://api.suredbits.com/nfl/v0/team/min/schedule</a>
+This pull request implements a websocket channel called <span style="color:red"> *team* </span>. It returns the Roster or Schedule for a given NFL Team given a websocket request.
 
+Example Data Request for Rosters:
+{"channel": "team", "teamId": "MIN", "retrieve": "roster"}
 
-### Team ID Table
-TeamID	| City & Name | TeamID | City & Name
+Example Data Request for Schedules:
+{"channel": "team", "teamId": "CHI", "retrieve": "schedule"}
+
+There are two required Fields to request NFL Team & Roster data:
+
+**Required fields**: 
+
+1. <span style="color:red"> <*teamID*> </span>: example <span style="color:red"> *CHI* </span>, <span style="color:red"> *MIN* </span> etc.
+2. <span style="color:red"> <*retrieve*> </span>: search by <span style="color:red"> *roster* </span> or <span style="color:red"> *schedule* </span>
+
+<h3 id="TeamID"> Team ID Table</h3>
+
+Team Id	| City & Name | TeamID | City & Name
 -------- | ----------- | ------ | ---------
 ARI	| Arizona Cardinals	| LA   | Los Angeles Rams
 ATL	| Atlanta Falcons	| MIA  | Miami Dolphins
@@ -260,7 +286,7 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
 
 ## Stats 
 
-> Example Data Return
+> Example of Stats data
 
 ```json
 
@@ -283,6 +309,8 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
  ]
 ```
 
+This pull request implements a websocket channel called <span style="color:red"> *stats* </span>.  It returns the data for an individual <span style="color:red"> *player* </span> or <span style="color:red"> *game* </span>.
+
 Example Data Requests
 
  {
@@ -303,7 +331,6 @@ Example Data Requests
    }
 
 
-
 To query by <span style="color:red"> *gameId* </span> or <span style="color:red"> *playerId* </span>:
 
 **Required fields**
@@ -314,6 +341,7 @@ To query by <span style="color:red"> *gameId* </span> or <span style="color:red"
 3. <span style="color:red"> <*gameId>*> </span> example:  <span style="color:red"> *2016101604* </span>
 4. <span style="color:red"> <*playerId*> </span> example: <span style="color:red"> *00-0027973* </span> 
 
+<hr>
 
 To query by <span style="color:red"> *name* </span> or <span style="color:red"> *week* </span>:
 
@@ -327,6 +355,8 @@ To query by <span style="color:red"> *name* </span> or <span style="color:red"> 
 6. <span style="color:red"> <*firstName>*> </span> example <span style="color:red"> *Drew* </span>
 7. <span style="color:red"> <*lastName>*> </span> example <span style="color:red"> *Brees* </span>
 
+<hr>
+
 
 Currently we only support requesting by:
 
@@ -337,40 +367,11 @@ Currently we only support requesting by:
 Eventually we will also support <span style="color:red"> *firstName* </span>, <span style="color:red"> *lastName* </span>, 
 <span style="color:red"> *seasonPhase* </span>, <span style="color:red"> *year* </span> and <span style="color:red"> *week* </span>.
 
-<aside class="warning"> What do we need from old documentation below? </aside>
-
-Search NFL player stats in a given game for a given player.
-
-Omitting a footballStat will return all statistics.
-
-<a href="http://api.suredbits.com/nfl/v0/stats/footballStat/gameID/playerID">http://api.suredbits.com/nfl/v0/stats/footballStat/gameID/playerID</a>
-
-<a href="http://api.suredbits.com/nfl/v0/stats/footballStat/lastName/firstName/year/week">http://api.suredbits.com/nfl/v0/stats/footballStat/lastName/firstName/year/week</a>
-
-You can find a <a href="../players/">player's playerID</a> and a <a href="../games/">game's gameID</a> using this API.
-
-Optional - specify a seasonType (for season stats and game by name):
-
-- "reg" = Regular season
-
-- "post" = Postseason
-
-- "pre" = Preseason
-
-<a href="http://api.suredbits.com/nfl/v0/stats/footballStat/lastName/firstName/year/week/seasonType">http://api.suredbits.com/nfl/v0/stats/footballStat/lastName/firstName/year/week/seasonType</a>
-
-<aside class="notice"> SeasonType will always default to Regular season unless a different seasonType is specified.</aside>
 
 
-### Keywords
-Keywords | Type	| Description
--------- | ---- | ------------
-<span style="color:red"> *passing* </span>	| String | Searches passing statistics.
-<span style="color:red"> *rushing* </span>	| String | Searches rushing statistics.
-<span style="color:red"> *receiving* </span> | String | Searches receiving statistics.
-<span style="color:red"> *defensive* </span> | String | Searches defensive statistics.
+# Contact Support
+Email us at support@suredbits.com
 
-#
 # Email Updates
 <aside class="success">Sign up to be notified as we update and add to our APIs!</aside>
 <form action="//suredbits.us12.list-manage.com/subscribe/post?u=6d2301935be3bfea5b7f29e4c&amp;id=16dc8b6ffb" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
