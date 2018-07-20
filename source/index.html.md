@@ -148,8 +148,9 @@ includes:
   - custom_endpoints
   - home
   - auth_login
+  - validate_user
+  - validate_user_and_password
   - dashboard2
-  - create_customer
   - pub_sub
 
   - using_the_api
