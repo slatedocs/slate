@@ -1356,11 +1356,34 @@ In the GIF below you can see how the balance updates now after using streaming.
 
 You can find the changes in this section in [pull request #12](https://github.com/abuiles/AnchorX/pull/12).
 
-Next, let's create a new container to display account transactions.
+Next, let's create  display the account payments.
 
 ## Showing account transactions
+### Payment component
 
-Implements the transaction history in the RN wallet.
+First you need to add a component to display a single payment. If the payment if a debit it will show the message "You paid X" and the value. If you are the receipient, then it shows "X paid you".
+
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/3K3a1P2l0v1r2X3o2X3A/Screen%20Recording%202018-07-19%20at%2004.55%20PM.gif?X-CloudApp-Visitor-Id=49274&v=b9dca21b)
+
+The only thing concerning Stellar here is how you can use the TypeScript type to specify that the component will receive a `PaymentOperationRecord` as part of the props.
+
+```javascript
+import { PaymentOperationRecord } from 'stellar-sdk'
+
+interface Props {
+  account: string
+  payment: PaymentOperationRecord
+}
+```
+
+You can find the component implementation in [pull request #13](https://github.com/abuiles/AnchorX/pull/13).
+
+Next you'll write a container to load the payments and use the Payment component for each entry.
+
+### Payments component
+
+To show transactions, you will follow a similar pattern to the one use in the previous section. Create a container component which will load the last page of payments using the [payments method](https://stellar.github.io/js-stellar-sdk/Server.html#payments) in the Server class. And then use streaming from the [PaymentCallBuilder](https://stellar.github.io/js-stellar-sdk/PaymentCallBuilder.html).
+
 
 ## Depositing "fiat" into your wallet
 A fake implementation in the wallet similar to transferring money from a bank.
