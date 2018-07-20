@@ -1,6 +1,6 @@
 # Release Notes
 
-This section contains important Accestype release notes. For any queries, please write to us as support@quintype.com.
+This section contains important Accestype release notes. For any queries, please write to us at [support@quintype.com](mailto:support@quintype.com).
 
 ## 10 Jul 2018 Release Notes - Accesstype
 
