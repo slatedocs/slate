@@ -1358,8 +1358,7 @@ You can find the changes in this section in [pull request #12](https://github.co
 
 Next, let's create  display the account payments.
 
-## Showing account transactions
-### Payment component
+## Payment component
 
 First you need to add a component to display a single payment. If the payment if a debit it will show the message "You paid X" and the value. If you are the receipient, then it shows "X paid you".
 
@@ -1380,10 +1379,209 @@ You can find the component implementation in [pull request #13](https://github.c
 
 Next you'll write a container to load the payments and use the Payment component for each entry.
 
-### Payments component
+## Showing payments
+
+> Create the file `app/containers/Payments.tsx` with the following code:
+
+```javascript
+import * as React from 'react'
+import { View, StyleSheet, FlatList } from 'react-native'
+
+import { Container, Content, Text, Button, Spinner } from 'native-base'
+import { styles as s } from 'react-native-style-tachyons'
+
+import { Asset, PaymentOperationRecord, Server, Network } from 'stellar-sdk'
+
+import Payment from '../components/Payment'
+
+interface Props {
+  accountId: string
+  asset?: Asset
+}
+
+interface State {
+  loadMore: boolean
+  payments: PaymentOperationRecord[]
+  loading: boolean
+  closeStreaming?: any
+}
+
+
+export default class Payments extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props)
+
+    this.state = {
+      loadMore: true,
+      payments: [],
+      loading: false
+    }
+  }
+
+  async loadPayments(cursor?: string) {
+    const { accountId, asset } = this.props
+    const { payments } = this.state
+    Network.useTestNetwork()
+    const stellarServer = new Server('https://horizon-testnet.stellar.org')
+
+    // Load payments for account in descending order, most recentfirst.
+    let builder = stellarServer
+      .payments()
+      .forAccount(accountId)
+      .order('desc')
+
+    if (cursor) {
+      builder.cursor(cursor)
+    }
+
+    const { records } = await builder.call()
+
+    if (asset) {
+      return records.filter((payment) => payment.asset_code === asset.code && payment.asset_issuer === asset.issuer)
+    } else {
+      return records
+    }
+  }
+
+  /* Use `now` in the cursor to be notified of new payments. If you don't
+   * set the cursor to "now", then you'll be notified about all the
+   * payments since account's creation.*/
+  listenForPayments(cursor = 'now') {
+    const { closeStreaming } = this.state
+
+    if (closeStreaming) {
+      try {
+        closeStreaming()
+      } catch (e) {
+        console.log('error closing streaming')
+      }
+    }
+
+    const { accountId } = this.props
+
+    Network.useTestNetwork()
+    const server = new Server('https://horizon-testnet.stellar.org')
+
+    // Notice how we are using PaymentOperationRecord from @types/stellar-sdk
+    let handleMessage = (payment: PaymentOperationRecord) => {
+      const { asset } = this.props
+      const { payments } = this.state
+
+      if (payment.asset_code === asset.code && payment.asset_issuer === asset.issuer) {
+        this.setState({
+          payments: [payment, ...payments]
+        })
+      }
+    }
+
+    this.setState({
+      closeStreaming: server.payments()
+        .cursor(cursor)
+        .forAccount(accountId)
+        .stream({
+          onmessage: handleMessage
+        })
+    })
+  }
+
+  /* After the component mounts, load the first page of payments and
+   * setup streaming*/
+  async componentDidMount() {
+    const payments = await this.loadPayments()
+
+    this.setState({
+      payments
+    })
+
+    this.listenForPayments()
+  }
+
+  componentWillUnmount() {
+    const { closeStreaming } = this.state
+
+    try {
+      closeStreaming && closeStreaming()
+    } catch (e) {
+      console.log('error closing streaming')
+    }
+  }
+
+  /* Method use for pagination, it gets calls when the end of the list is
+   * reached.  It calls the generic function loadPayments using the last
+   * item in payments as the cursor.
+   */
+  async fetchMoreData() {
+    const { accountId } = this.props
+    const { payments } = this.state
+
+    const cursor = payments[payments.length - 1].id
+
+    this.setState({
+      loading: true
+    })
+
+    const nextPage = await this.loadPayments(cursor)
+
+    const state = {
+      loadMore: true,
+      payments: [...payments, ...nextPage],
+      loading: false
+    }
+
+    if (nextPage.length === 0) {
+      state.loadMore = false
+    }
+
+    this.setState(state)
+  }
+
+  render() {
+    const { accountId } = this.props
+    const { loadMore, payments, loading } = this.state
+
+    return (
+      <Container style={{ backgroundColor: '#F5FCFF' }} >
+        <FlatList
+          data={payments}
+          renderItem={({ item }) => <Payment key={item.id} payment={item} account={accountId} />}
+          keyExtractor={(item) => item.id}
+          onEndReachedThreshold={0.2}
+          onEndReached={({ distanceFromEnd }) => {
+            if (!loadMore || loading) {
+              return
+            }
+
+            return this.fetchMoreData()
+          }}
+          refreshing={loading}
+          ListFooterComponent={loading && <Spinner color="blue" />}
+          onRefresh={() => {
+            if (payments.length > 0) {
+              this.listenForPayments(payments[0].id)
+            }
+          }}
+        />
+      </Container>
+    )
+  }
+}
+```
 
 To show transactions, you will follow a similar pattern to the one use in the previous section. Create a container component which will load the last page of payments using the [payments method](https://stellar.github.io/js-stellar-sdk/Server.html#payments) in the Server class. And then use streaming from the [PaymentCallBuilder](https://stellar.github.io/js-stellar-sdk/PaymentCallBuilder.html).
 
+At this point most of the changes are related with React and building components. On the right you can see the component implementation. The following functions use the SDK:
+
+- `loadPayments`: Sets the server and loads the first page of payments.
+- `listenForPayments`: Set streaming.
+- `fetchMoreData`: Call when loading more payments.
+
+Also, noticed how you can use types defined in `@types/stellar-sdk` like `PaymentOperationRecord`.
+
+After creating the component, you can import it in the Home container and use it by passing the `accountId` and `asset`, you can see the change [here](https://github.com/abuiles/AnchorX/pull/14/files#diff-32a848d19077743a2d26b348315714e3R75).
+
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/2N1v02411B0H2y43362n/Screen%20Recording%202018-07-20%20at%2011.06%20AM.gif?X-CloudApp-Visitor-Id=49274&v=de150e07)
+
+You can see the the changes in [pull request #14](https://github.com/abuiles/AnchorX/pull/14/files)
 
 ## Depositing "fiat" into your wallet
 A fake implementation in the wallet similar to transferring money from a bank.
