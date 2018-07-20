@@ -26,7 +26,11 @@ Not familiar with Bitcoin or Lightning but want to learn?  Here are some useful 
 5. <a href="https://www.youtube.com/watch?v=l1si5ZWLgy0">Introduction to Bitcoin</a>
 
 ## Connect to Suredbits Lightning Node
-In order to access our APIs, you will need to connect to our lightning node via a websocket client of your choosing.   The url is <span style="color:blue"> *[nodeId]@ln.test.suredbits.com* </span>
+In order to access our APIs, you will need to connect to our lightning node via your preferred lightning client.   
+
+The url is:
+
+<span style="color:blue"> *0338f57e4e20abf4d5c86b71b59e995ce4378e373b021a7b6f41dabb42d3aad069@ln.test.suredbits.com* </span>
 
 ## Format 
 
@@ -54,34 +58,32 @@ In order to access our APIs, you will need to connect to our lightning node via 
   }
 ]
 ```
-> This is a sample Lightning Invoice.
-> lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt2wvhthpsdqqxqrrssn39f5saxgtqmzsdvg0uh3twrmxmnnl2mra6kcuprwc2pzplneka953svu87ajz29mf8623qefe3jpkqsmsu05l9n05xf98uqq2mf25gqvzwkq3
-
-Requests for data follow this sample format:
-
-{"channel":"players", "lastName" : "Moss", "firstName" : "Randy"}
-
-<aside class="note">NOTE: All API requests must include the field type "channel".  However, 'channel" does not have to be the first field in the request. </aside>
 
 Suredbits APIs are available via websockets with the following format:
 
-1. A pull request implements a websocket channel for the requested <span style="color:red"> <*data*> </span>. 
+**Example requests**
 
-2. Upon confirmation of a valid request, you will receive a Lightning Network Invoice that should appear similar to the one below:
+{"channel":"players", "lastName" : "Moss", "firstName" : "Randy"}
 
-3. **PLACEHOLDER**
+<aside class="note">NOTE: All API requests must include the field type "channel".  However, "channel" does not have to be the first field in the request. </aside>
 
-## Error Message
 
-If there is an error in your query, you will see a message similar to this:
+1. Send a request over the websocket (see <a href="#NFLData">NFL Data</a>). 
 
-Example data request
+2. Upon confirmation of a valid request, you will receive a Lightning Network Invoice that should appear similar to the one below.
 
-{"firstName": "Tom", "lastName": "Brady"}
+3. Pay that ln invoice in your lightning client 
 
-*Error: JsError(List((,List(JsonValidationError(List('channel' is undefined on object: {"firstName":"Tom","lastName":"Brady"}),WrappedArray())))))*
+4. Receive data :)
 
-# NFL
+### Sample Lightning Invoice
+
+A successful request will generate a lightning invoice that will look simiar to the example below:
+
+<span style="color:red"> *lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt2wvhthpsdqqxqrrssn39f5saxgtqmzs...* </span>
+
+
+<h1 id="NFLData"> NFL Data</h1>
 
 ## Games
 > Example of Games data
@@ -123,7 +125,7 @@ Example data request
   ]
 ```
 
-Example Data Request 
+**Example Requests**
 
 {"channel":"games", "week":1, "seasonPhase" : "Regular", "year" : 2017}
 
@@ -131,18 +133,18 @@ There are two required fields to query NFL Games data:
 
 **Required fields**
 
-
-1. <span style="color:red"> <*week*> </span> - <span style="color:red"> *Integer value* </span>
-2. <span style="color:red"> <*seasonPhase*> </span> - <span style="color:red"> *Preaseason, Regular* </span> , or <span style="color:red"> *Postseason* </span>
+Field | Type | Example
+------ | ------- | ------
+<span style="color:red"> <*week*> </span> | Integer | <span style="color:red"> </span> <span style="color:red"> *1, 2, 3* </span> etc...
+<span style="color:red"> <*seasonPhase*> </span> | String |  <span style="color:red"> *Preaseason, Regular* </span> , or <span style="color:red"> *Postseason* </span>
 
 
 **Optional fields**
 
-1. <span style="color:red"> <*year*> -  <span style="color:red"> *Int* </span>
-2. <span style="color:red"> <*teamId*> - String </span> ex: <span style="color:red"> *CHI, MIN, GB, MIA* </span> etc. <a href="#TeamID">See Team ID Table</a>
-
-<aside class="warning"> Can everything below here be removed from Games? </aside>
-
+Field | Type | Example
+------ | ------- | --------
+<span style="color:red"> <*year*> </span> | Integer |  <span style="color:red"> *2009, 2010, 2011,* etc. </span>
+<span style="color:red"> <*teamId*> </span> | String  |  <span style="color:red"> *CHI, MIN, GB, MIA* </span> etc. <a href="#TeamID">See Team ID Table</a>
 
 ## Players
 > Example of Players data
@@ -172,10 +174,14 @@ This pull request implements a websocket channel called <span style="color:red">
 
 {"channel":"players", "lastName" : "Moss", "firstName" : "Randy"}
 
-There are two required fields to request NFL Player data: 
+Required fields to request NFL Player data: 
 
-1. <span style="color:red"> <*firstName*> </span>  example:  <span style="color:red"> <*Randy*> </span>
-2. <span style="color:red"> <*lastName*> </span>  example:  <span style="color:red"> <*Moss*> </span>
+**Required Fields**
+
+Field | Type | Example
+------ | ----- | -----
+<span style="color:red"> <*firstName*> </span> | String |  <span style="color:red"> <*Randy*> </span>
+<span style="color:red"> <*lastName*> </span>  | String |  <span style="color:red"> <*Moss*> </span>
 
 
 ## Team
@@ -249,18 +255,22 @@ There are two required fields to request NFL Player data:
 
 This pull request implements a websocket channel called <span style="color:red"> *team* </span>. It returns the Roster or Schedule for a given NFL Team given a websocket request.
 
-Example Data Request for Rosters:
+**Example requests**
+
+For Rosters:
 {"channel": "team", "teamId": "MIN", "retrieve": "roster"}
 
-Example Data Request for Schedules:
+For Schedules:
 {"channel": "team", "teamId": "CHI", "retrieve": "schedule"}
 
 There are two required Fields to request NFL Team & Roster data:
 
 **Required fields**: 
 
-1. <span style="color:red"> <*teamID*> </span>: example <span style="color:red"> *CHI* </span>, <span style="color:red"> *MIN* </span> etc.
-2. <span style="color:red"> <*retrieve*> </span>: search by <span style="color:red"> *roster* </span> or <span style="color:red"> *schedule* </span>
+Field | Type | Example 
+------ | ----- | ------
+<span style="color:red"> <*teamID*> </span> | String |  <span style="color:red"> *CHI* </span>, <span style="color:red"> *MIN* </span> etc.
+<span style="color:red"> <*retrieve*> </span> | String |  <span style="color:red"> *roster* </span> or <span style="color:red"> *schedule* </span>
 
 <h3 id="TeamID"> Team ID Table</h3>
 
@@ -311,9 +321,9 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
 
 This pull request implements a websocket channel called <span style="color:red"> *stats* </span>.  It returns the data for an individual <span style="color:red"> *player* </span> or <span style="color:red"> *game* </span>.
 
-Example Data Requests
+**Example Data Requests**
 
- {
+ Example 1 {
   "channel":"stats", 
   "statType" : "passing", 
   "gameId" : "2016101604", 
@@ -321,7 +331,7 @@ Example Data Requests
  }
 
 
-  {
+  Example 2 {
     "channel":"stats", 
     "lastName" : "Brees", 
     "firstName" : "Drew", 
@@ -336,27 +346,27 @@ To query by <span style="color:red"> *gameId* </span> or <span style="color:red"
 **Required fields**
 
 
-1. <span style="color:red"> <*channel*> </span> example: <span style="color:red"> *stats* </span>
-2. <span style="color:red"> <*statType*> </span> example: <span style="color:red"> *passing, rushing, receiving, defense* </span>
-3. <span style="color:red"> <*gameId>*> </span> example:  <span style="color:red"> *2016101604* </span>
-4. <span style="color:red"> <*playerId*> </span> example: <span style="color:red"> *00-0027973* </span> 
+Field | Type | Example
+------ | ----- | -------
+<span style="color:red"> <*channel*> </span> | String| <span style="color:red"> *stats* </span>
+<span style="color:red"> <*statType*> </span> | String | <span style="color:red"> *passing, rushing, receiving, defense* </span>
+<span style="color:red"> <*gameId>*> </span> | String | <span style="color:red"> *2016101604* </span>
+<span style="color:red"> <*playerId*> </span> | String | <span style="color:red"> *00-0027973* </span> 
 
-<hr>
 
 To query by <span style="color:red"> *name* </span> or <span style="color:red"> *week* </span>:
 
 **Required fields**
 
-1. <span style="color:red"> <*channel*> </span> example <span style="color:red"> *stats* </span>
-2. <span style="color:red"> <*statType*> </span> example <span style="color:red"> *passing, rushing, receiving, defense* </span>
-3. <span style="color:red"> <*year*> </span> <span style="color:red"> *2016, 2017* </span>
-4. <span style="color:red"> <*week*> </span>  example <span style="color:red"> *1, 2* </span>... 
-5. <span style="color:red"> <*seasonPhase}*> </span> example <span style="color:red"> *Preseason, Regular, Postseason* </span>
-6. <span style="color:red"> <*firstName>*> </span> example <span style="color:red"> *Drew* </span>
-7. <span style="color:red"> <*lastName>*> </span> example <span style="color:red"> *Brees* </span>
-
-<hr>
-
+Field | Example
+------ | -------
+<span style="color:red"> <*channel*> </span> | <span style="color:red"> *stats* </span>
+<span style="color:red"> <*statType*> </span> | <span style="color:red"> *passing, rushing, receiving, defense* </span>
+<span style="color:red"> <*year*> </span> | <span style="color:red"> *2016, 2017* </span>
+<span style="color:red"> <*week*> </span> |  <span style="color:red"> *1, 2* </span>... 
+<span style="color:red"> <*seasonPhase}*> | </span> <span style="color:red"> *Preseason, Regular, Postseason* </span>
+<span style="color:red"> <*firstName>*>  | </span> <span style="color:red"> *Drew* </span>
+<span style="color:red"> <*lastName>*> | </span> <span style="color:red"> *Brees* </span>
 
 Currently we only support requesting by:
 
@@ -370,7 +380,7 @@ Eventually we will also support <span style="color:red"> *firstName* </span>, <s
 
 
 # Contact Support
-Email us at support@suredbits.com
+Email us at <a href="mailto:support@suredbits.com">support@suredbits.com</a>
 
 # Email Updates
 <aside class="success">Sign up to be notified as we update and add to our APIs!</aside>
