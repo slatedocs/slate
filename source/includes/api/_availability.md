@@ -294,6 +294,26 @@ If requested, the response results `referenced_objects` attribute will be an obj
 
 id, first_name, last_name, and screen_name attributes are provided.
 
+### availability.approve
+
+<span class="tryit" id="availability-get-tryit"></span>
+Approves request to change an availability record.
+
+Parameters:
+
+####id
+
+Required. id of the availability record for which to be approved/denied change.
+
+####approval
+
+Required. Boolean, indicates that, availability record is approved or denied. True is approved, false is denied.
+
+####message
+Optional. A text message that is included in notification message.
+
+Response: On success, empty results will be returned.
+
 ### availability.update *(not currently available)*
 
 Please let us know if you would like access to this method.
