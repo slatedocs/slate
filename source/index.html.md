@@ -1686,7 +1686,7 @@ export default DismissableStackNavigator(
   }
 )
 ```
-To deposit money into the account, you will create a new container which will use the deposit mutation and the transfer form. On the right you can see the implementation for such container.
+To deposit money into the account, you will create a new container which will use the deposit mutation and the transfer form. On the right you can see the implementation for such container. For this tutorial, assume your bank account has been linked when you went through signup.
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/2n1c1D15440a0D0W3q0S/Screen%20Recording%202018-07-23%20at%2010.09%20AM.gif?X-CloudApp-Visitor-Id=49274&v=57d5f857)
 
@@ -1700,10 +1700,16 @@ Next, you will add the withdrawals container.
 
 ## Withdrawals
 
+Withdrawals are very similar to deposits, the only thing that changes is the mututation used in the callback. Instead of using `credit` you will use `debit`.
+
+Since the code is very similar you won't see it here, instead you can go to Github and check [pull request #17](https://github.com/abuiles/AnchorX/pull/17) which includes lal the changes.
+
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/0W3r2g1b2a2C3k0u1R1t/Screen%20Recording%202018-07-23%20at%2010.46%20AM.gif?X-CloudApp-Visitor-Id=49274&v=4c5c7ace)
+
+Next you will implement the final screen which is which will allow you to send money to other AnchorX users, using their `username`.
+
 ## Sending payments
 Flow for doing P2P payments.
-## Cashing out
-Fake implementation for transferring money to the bank accountp
 
 # Best practices
 Best practices for managing issuing accounts, signing transactions on behalf of users, etc.
