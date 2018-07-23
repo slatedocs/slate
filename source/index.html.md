@@ -1707,6 +1707,109 @@ Next you will implement the final screen which is which will allow you to send m
 
 ## Sending payments
 
+To send new payments you need to create a payment form and then change the new payment container to render the form. The boilerplate has two screens, the first one is meant to be used for searching the recipient like in Venmo and the second one to input the amount, however, this tutorial won't include the search part and it would be left as an exercise to the reader as mapping the Stellar address to real usernames in the payments list. The payment form will take the recipient's username and the amount and then call the payment mutation.
+
+## New Payment form
+
+```javascript
+import * as React from 'react';
+import { Alert } from 'react-native'
+import { Container, Content, Form, Item, Input, Label, Button, Text, Spinner } from 'native-base';
+import { styles as s } from "react-native-style-tachyons";
+
+import { Transaction } from '../Types'
+
+interface Props {
+  send: (username: string, amount: string) => Promise<Transaction>
+  didSend: () => void
+}
+
+interface State {
+  amount: string
+  username: string
+  sending: boolean
+}
+
+class PaymentForm extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props)
+
+    this.state = {
+      amount: '',
+      username: '',
+      sending: false
+    }
+  }
+
+  async send(): Promise<Transaction> {
+    const { username, amount } = this.state
+
+    this.setState({
+      sending: true
+    })
+
+    const transaction = await this.props.send(username, amount)
+
+    this.setState({
+      sending: false
+    })
+
+    this.props.didSend()
+
+    return transaction
+  }
+
+  render() {
+    const { amount, username, sending } = this.state
+
+    return (
+      <Container style={{backgroundColor: '#F5FCFF'}}>
+        <Content scrollEnabled={false}>
+          <Form>
+            <Item floatingLabel>
+              <Label>Recipient username</Label>
+              <Input
+                onChangeText={(username) => this.setState({ username })}
+                value={username}
+                autoFocus={true}
+                autoCorrect={false}
+                autoCapitalize={"none"}
+              />
+            </Item>
+            <Item floatingLabel>
+              <Label>Amount</Label>
+              <Input
+                onChangeText={(amount) => this.setState({ amount })}
+                value={amount}
+                keyboardType={'decimal-pad'}
+                autoCorrect={false}
+                autoCapitalize={"none"}
+              />
+            </Item>
+            {!sending && (
+               <Button full style={[s.mt4]} onPress={() => this.send()}>
+                 <Text>Send</Text>
+               </Button>
+            )}
+            {sending && <Spinner color="blue" />}
+          </Form>
+        </Content>
+      </Container>
+    );
+  }
+}
+
+export default PaymentForm
+```
+
+First you need to add a form to send new payments. The code on the right shows you the component used in the GIF below.
+
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/1U3Z1z1B2x2l1J2H3X1C/Screen%20Recording%202018-07-23%20at%2011.19%20AM.gif?X-CloudApp-Visitor-Id=49274&v=cf6755fb)
+
+You can see the implementation in [pull request #18](https://github.com/abuiles/AnchorX/pull/18/files). Next let's update the new payment container to use the payment form and add a new mutation for payments.
+
+## New Payment container
+
 Flow for doing P2P payments.
 
 # Best practices
