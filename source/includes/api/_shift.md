@@ -300,8 +300,8 @@ Type of repeating shift.
 
 Type|Meaning
 --|--
-1|Frequency
-2|Days of Week
+frequency|Frequency
+days_of_week|Days of Week
 
 #### repeating_shift_end_date
 
@@ -313,12 +313,12 @@ Specifies the interval in which the series will be created. Valid interval optio
 
 Interval|Meaning
 --|--
-1|Every
-2|Every Other
-3|Every Third
-4|Every Fourth
-5|Every Fifth
-6|Every Sixth
+every|Every
+every_other|Every Other
+every_third|Every Third
+every_fourth|Every Fourth
+every_fifth|Every Fifth
+every_sixth|Every Sixth
 
 **NOTE:** `every_fifth` and `every_sixth` are only available when creating daily shifts.
 
@@ -326,14 +326,14 @@ Interval|Meaning
 
 Specifies the frequency for a frequency based repeating series. Valid frequency options are below:
 
-Frequency|Meaning
+Frequency|
 --|--
-1|Day
-2|Week
-3|Month
-4|Year
+day|
+week|
+month|
+year|
 
-**NOTE:** Parameter is required when `repeating_shift_type` is `1`
+**NOTE:** Parameter is required when `repeating_shift_type` is `frequency`
 
 #### repeating_shift_days_of_week
 
@@ -349,9 +349,9 @@ Day|Meaning
 5|Friday
 6|Saturday
 
-**NOTE:** Parameter is required when `repeating_shift_type` is `2`
+**NOTE:** Parameter is required when `repeating_shift_type` is `days_of_week`
 
-Response: On success, an `id` attribute will provide the identifier for the new shift.
+Response: On success, an `id` attribute will provide the identifier for the new shift. When creating a series of repeating shifts, the `id` returned will be the first shift in the series.
 
 #### additional_dates
 
