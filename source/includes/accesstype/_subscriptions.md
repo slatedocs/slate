@@ -80,7 +80,10 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST ht
         "full-name": "hello",
         "email": "hello@quintype.com"
     },
-    "start_timestamp": "2017-09-21 00:00:00"
+    "payment": {
+        "payment_type": "razorpay"
+    },
+    "start_timestamp": "2018-07-24 00:00:00"
   },
   "alternate_provider": "email",
   "alternate_identity": "hey@quintype.com",
@@ -93,8 +96,9 @@ For a successful subscription, it also return an `attempt_token`.
 
 An `attempt_token` is the identifier of a subscription attempt. It should be sent back with [create subscription](#post-create-a-subscription) api to mark an attempt as success.
 
-We highly recommend use of this API before accepting payment form a user.
+This API must be used before accepting payment from a user.
 
+One can pass the value for `payment.payment_type` as `razorpay_recurring` when making the preview API call to get `external_reference_id` and `attempt_token` in response.
 
 ## POST Create a Subscription
 
@@ -223,3 +227,4 @@ curl -H "X-SUBAUTH: <auth-token>" -X POST -H "Content-Type: application/json" ht
 
 `attempt_token` is optional param and must be sent if the external subscription is not to start immediately.
 
+**NOTE**:- This API will soon be deprecated, as the same can now be achieved by [preview API](#post-preview-a-subscription).
