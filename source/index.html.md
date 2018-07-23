@@ -19,30 +19,16 @@ search: true
 Work in progress ████████░░ 85%
 </aside>
 
-Welcome to building your own Venmo with Stellar. This guide will show you how to create a product "similar" to Venmo using Stellar.
+Stellar is a distributed ledger technology which allows anyone to build low-cost and fast financial services. This tutorial will walk you through some of its features and show you how to create a Venmo clone on top of Stellar called `AnchorX`.
 
-In Stellar, an entity like Venmo is called an `anchor`. When you are building an anchor, there are two suggested ways to build and maintain customer accounts:
+In order to maintain customer accounts, Stellar requires you to create some sort of organization. Think about it as a "Stellar company" but in Stellar Jargon, that is called an `anchor`. There are 2 ways to do this. Either you create Stellar accounts on behalf of customers or use the memo field of the transaction to operate on behalf of your customers/users.
 
-1. Maintain a Stellar account for each customer.
-2. Maintain a single Stellar account to transact on behalf of your customers and use the memo field to identify who is the recipient of each transaction.
-
-The [official documentation](https://www.stellar.org/developers/guides/anchor/index.html#customer-accounts) covers the second method but there is no documentation about the first one.
-
-In this tutorial you will use Stellar to build a low-cost financial service similar to Venmo and instead of following the approach number two which is already documented in the Stellar website, you'll be maintaining a Stellar account for each customer and also making it transparant to the final user that they are using Stellar.
+The [official documentation](https://www.stellar.org/developers/guides/anchor/index.html#customer-accounts) covers the second method but there is no documentation about the first one. This tutorial will show you how to create an anchor maintaining a Stellar account for each customer.
 
 The following are some of the goals in this tutorial:
 
-1. The final user won't know about Stellar.
-2. The final user won't need to store or worry about seed keys.
-3. The final user won't transact with Lumens.
-4. The system will use Lumens as "usage tokens". Each account needs Lumens to be able to use the Stellar ledger.
-5. The final user will be depositing "fiat" into the financial instituion and getting "fiat" credited in their accounts.
-6. The final user will hold an asset which represents American Dollars.
-7. All the examples and the wallet will be running in the Stellar testnet.
-
-<aside class="notice">
-Anchors are entities that people trust to hold their deposits and issue credits into the Stellar network for those deposits.
-</aside>
+1. Make a system that feels like Venmo with Stellar.
+2. The user won't see any of the implementation details - they will be transacting in Dollars.
 
 # Concepts
 
@@ -59,11 +45,6 @@ When you create an account, you get a public and private key. The
 public key is the equivalent of your bank account number and then the
 private key is the password. The private key is required to sign each
 transaction.
-
-For this tutorial, you'll be using accounts to create new assets and
-also provision other users accounts as they signup for this Venmo
-clone which will be called `AnchorX`. Although each user will have a Stellar account they won't know
-about it.
 
 ### Creating accounts in the test network
 ```javascript
