@@ -27,17 +27,8 @@ The [official documentation](https://www.stellar.org/developers/guides/anchor/in
 
 The following are some of the goals in this tutorial:
 
-1. The final user won't know about Stellar.
-2. The final user won't need to store or worry about seed keys.
-3. The final user won't transact with Lumens.
-4. The system will use Lumens as "usage tokens". Each account needs Lumens to be able to use the Stellar ledger.
-5. The final user will be depositing "fiat" into the financial instituion and getting "fiat" credited in their accounts.
-6. The final user will hold an asset which represents American Dollars.
-7. All the examples and the wallet will be running in the Stellar testnet.
-
-<aside class="notice">
-Anchors are entities that people trust to hold their deposits and issue credits into the Stellar network for those deposits.
-</aside>
+1. Make a system that feels like Venmo with Stellar.
+2. The user won't see any of the implementation details - they will be transacting in Dollars.
 
 # Concepts
 
