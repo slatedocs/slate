@@ -16,7 +16,7 @@ search: true
 # Building your own Venmo with Stellar
 
 <aside class="notice">
-Work in progress  ███████░░░ 70%
+Work in progress █████████░░░ 75%
 </aside>
 
 Welcome to building your own Venmo with Stellar. This guide will show you how to create a product "similar" to Venmo using Stellar.
