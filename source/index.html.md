@@ -11,9 +11,6 @@ toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 
-includes:
-  - errors
-
 search: true
 ---
 # Building your own Venmo with Stellar
@@ -1709,12 +1706,10 @@ Since the code is very similar you won't see it here, instead you can go to Gith
 Next you will implement the final screen which is which will allow you to send money to other AnchorX users, using their `username`.
 
 ## Sending payments
+
 Flow for doing P2P payments.
 
 # Best practices
 Best practices for managing issuing accounts, signing transactions on behalf of users, etc.
-# Security
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-## Infrastructure
-## Keeping keys secure
+# F.A.Q
