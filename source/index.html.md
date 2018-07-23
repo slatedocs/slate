@@ -1594,7 +1594,7 @@ First you need to add a transfer form component which you will reuse for both op
 In [pull request #15](https://github.com/abuiles/AnchorX/pull/15) you can find the implementation for the component displayed in the GIF above. It takes as `props` a function which call the mutation credit or debit. Next, you will find the implantation for both containers.
 
 ## Deposits
-> The content below belongs to `app/containers/Deposit.tsx'
+> The content below belongs to app/containers/Deposit.tsx
 
 ```javascript
 import * as React from 'react'
