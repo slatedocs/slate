@@ -1810,9 +1810,25 @@ You can see the implementation in [pull request #18](https://github.com/abuiles/
 
 ## New Payment container
 
-Flow for doing P2P payments.
+You new to use the payment form component in the new payment container. Also, you need to add a new mutation component for `payment`. The following GIF shows the functionality working:
+
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/1D2Y112X0X1t261H1S0P/Screen%20Recording%202018-07-23%20at%2012.10%20PM.gif?X-CloudApp-Visitor-Id=49274&v=ba6f5c5a)
+
+You can find the changes in [pull request #19](https://github.com/abuiles/AnchorX/pull/19/files). The following are the relevant parts of that PR:
+
+- `Mutation`: [https://github.com/abuiles/AnchorX/pull/19/files#diff-e36e4c2d86d36183ccec7eb4f7090ee4](https://github.com/abuiles/AnchorX/pull/19/files#diff-6b176d09842db5660d3df5ad191d4c67R69)
+- `PaymentForm`: [https://github.com/abuiles/AnchorX/pull/19/files#diff-6b176d09842db5660d3df5ad191d4c67R69](https://github.com/abuiles/AnchorX/pull/19/files#diff-6b176d09842db5660d3df5ad191d4c67R69)
+
+## Conclusion
+
+Now you have a basic clone of Venmo using Stellar. In this section you learned how to build a mobile wallet using the JS Stellar SDK in React Native and how to use to do things like read an  account from the ledger or use streaming. There are many more features that could be build but they will be left as an exercise to the reader. For example, you could add a resolver which takes a Stellar account and returns the username associated with that account.
+
+As mentioned at the beginning of this tutorial, AnchorX takes a different approach to other anchors since it manages users account. You could try modifying this wallet to allow each user to manage their own private keys and then use AnchorX to resolver usernames to Stellar addresses.
+
+Before finishing the tutorial, you will learn about some best practices around account management and security. I hope you enjoy this tutorial and if you have questions or suggestions, you can create an issue in the GitHub repo [here](https://github.com/abuiles/building-your-own-venmo-with-stellar).
 
 # Best practices
+
 Best practices for managing issuing accounts, signing transactions on behalf of users, etc.
 
 # F.A.Q
