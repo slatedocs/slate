@@ -23,9 +23,7 @@ Stellar is a distributed ledger technology which allows anyone to build low-cost
 
 In order to maintain customer accounts, Stellar requires you to create some sort of organization. Think about it as a "Stellar company" but in Stellar Jargon, that is called an `anchor`. There are 2 ways to do this. Either you create Stellar accounts on behalf of customers or use the memo field of the transaction to operate on behalf of your customers/users.
 
-The [official documentation](https://www.stellar.org/developers/guides/anchor/index.html#customer-accounts) covers the second method but there is no documentation about the first one.
-
-In this tutorial you will use Stellar to build a low-cost financial service similar to Venmo and instead of following the approach number two which is already documented in the Stellar website, you'll be maintaining a Stellar account for each customer and also making it transparant to the final user that they are using Stellar.
+The [official documentation](https://www.stellar.org/developers/guides/anchor/index.html#customer-accounts) covers the second method but there is no documentation about the first one. This tutorial will show you how to create an anchor maintaining a Stellar account for each customer.
 
 The following are some of the goals in this tutorial:
 
