@@ -1594,8 +1594,109 @@ First you need to add a transfer form component which you will reuse for both op
 In [pull request #15](https://github.com/abuiles/AnchorX/pull/15) you can find the implementation for the component displayed in the GIF above. It takes as `props` a function which call the mutation credit or debit. Next, you will find the implantation for both containers.
 
 ## Deposits
+> The content below belongs to `app/containers/Deposit.tsx'
 
-A fake implementation in the wallet similar to transferring money from a bank.
+```javascript
+import * as React from 'react'
+import { View } from 'react-native'
+
+import { NavigationScreenProps } from 'react-navigation'
+import { Body, Button, Container, Content, Header, Icon, Left, Right, Text, Title } from 'native-base'
+import { styles as s } from 'react-native-style-tachyons'
+import layoutStyles from '../styles/layout'
+import DismissableStackNavigator from './DismissableStackNavigator'
+import { Transaction } from '../Types'
+import TransferForm from '../components/TransferForm'
+import CreditDebitMutation, { CREDIT_MUTATION } from '../mutations/CreditDebit'
+import CurrentUserQuery, { GET_CURRENT_USER_QUERY } from '../queries/CurrentUser'
+
+export class DepositScreen extends React.Component<NavigationScreenProps> {
+  async deposit(mutation, username: string, amount: string): Promise<Transaction> {
+    const { data } = await mutation({
+      variables: {
+        username,
+        amount
+      }
+    })
+
+    return data.credit
+  }
+
+  didSend(): void {
+    this.props.navigation.navigate('Home')
+  }
+
+  render() {
+    const { navigation } = this.props
+
+    const userSelected = () => navigation.navigate('PaymentDetails')
+
+    return (
+      <CurrentUserQuery query={GET_CURRENT_USER_QUERY}>
+        {({ loading, data }) => {
+           if (loading) {
+             return <Loading />
+           }
+
+           const { me } = data
+           return (
+             <Container style={{backgroundColor: '#F5FCFF'}}>
+               <Header style={layoutStyles.header}>
+                 <Left>
+                   <Button
+                     transparent
+                     onPress={() => this.props.screenProps.dismiss()}>
+                     <Icon name='close' />
+                   </Button>
+                 </Left>
+                 <Body>
+                   <Title>Deposit</Title>
+                 </Body>
+                 <Right />
+               </Header>
+               <Content scrollEnabled={false}>
+                 <CreditDebitMutation mutation={CREDIT_MUTATION}>
+                   {(mutation, { data }) => {
+                      return (
+                        <TransferForm send={this.deposit.bind(this, mutation, me.username)} didSend={this.didSend.bind(this)} />
+                      )
+                   }}
+                 </CreditDebitMutation>
+               </Content>
+             </Container>
+           )
+        }}
+      </CurrentUserQuery>
+    )
+  }
+}
+
+export default DismissableStackNavigator(
+  {
+    Deposit: {
+      screen: DepositScreen
+    }
+  },
+  {
+    initialRouteName: 'Deposit',
+    headerMode: 'none',
+    cardStyle: {
+      backgroundColor: '#F5FCFF'
+    }
+  }
+)
+```
+To deposit money into the account, you will create a new container which will use the deposit mutation and the transfer form. On the right you can see the implementation for such container.
+
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/2n1c1D15440a0D0W3q0S/Screen%20Recording%202018-07-23%20at%2010.09%20AM.gif?X-CloudApp-Visitor-Id=49274&v=57d5f857)
+
+[Pull request #16](https://github.com/abuiles/AnchorX/pull/16) shows you all the implementation details. The following are some of the relevant changes:
+
+- Mutation component: [https://github.com/abuiles/AnchorX/pull/16/files#diff-edc1bb1b69c5a2a4ae142da5ad61e9c1](https://github.com/abuiles/AnchorX/pull/16/files#diff-edc1bb1b69c5a2a4ae142da5ad61e9c1)
+- Add a new option to the menu bar: [https://github.com/abuiles/AnchorX/pull/16/files#diff-82d98b5838f0e7e19e05fe1a563eb307R34](https://github.com/abuiles/AnchorX/pull/16/files#diff-82d98b5838f0e7e19e05fe1a563eb307R34)
+- Extend `TransferForm` to receive a `didSend` callback: [https://github.com/abuiles/AnchorX/pull/16/files#diff-76291595d5a283ba48caa79aca053ac0L9](https://github.com/abuiles/AnchorX/pull/16/files#diff-76291595d5a283ba48caa79aca053ac0L9)
+
+Next, you will add the withdrawals container.
 
 ## Withdrawals
 
