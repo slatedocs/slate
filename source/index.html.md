@@ -19,7 +19,7 @@ search: true
 Work in progress ████████░░ 85%
 </aside>
 
-Welcome to building your own Venmo with Stellar. This guide will show you how to create a product "similar" to Venmo using Stellar.
+Stellar is a distributed ledger technology which allows anyone to build low-cost and fast financial services. This tutorial will walk you through some of its features and show you how to create a Venmo clone on top of Stellar.
 
 In Stellar, an entity like Venmo is called an `anchor`. When you are building an anchor, there are two suggested ways to build and maintain customer accounts:
 
