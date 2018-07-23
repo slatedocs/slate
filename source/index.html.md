@@ -1581,10 +1581,23 @@ After creating the component, you can import it in the Home container and use it
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/2N1v02411B0H2y43362n/Screen%20Recording%202018-07-20%20at%2011.06%20AM.gif?X-CloudApp-Visitor-Id=49274&v=de150e07)
 
-You can see the the changes in [pull request #14](https://github.com/abuiles/AnchorX/pull/14/files)
+You can see the the changes in [pull request #14](https://github.com/abuiles/AnchorX/pull/14/files).
 
-## Depositing "fiat" into your wallet
+## Depositing and withdrawing fiat from the wallet
+
+In this section you will add two screens to deposit or withdraw money from AnchorX.
+
+First you need to add a transfer form component which you will reuse for both operations.
+
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/1i2B2R3w2H2t3u1X1N3Q/Screen%20Recording%202018-07-23%20at%2008.02%20AM.gif?X-CloudApp-Visitor-Id=49274&v=b8034496)
+
+In [pull request #15](https://github.com/abuiles/AnchorX/pull/15) you can find the implementation for the component displayed in the GIF above. It takes as `props` a function which call the mutation credit or debit. Next, you will find the implantation for both containers.
+
+## Deposits
+
 A fake implementation in the wallet similar to transferring money from a bank.
+
+## Withdrawals
 
 ## Sending payments
 Flow for doing P2P payments.
