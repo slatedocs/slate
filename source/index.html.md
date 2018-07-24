@@ -154,32 +154,18 @@ give us some initial Lumens.
   ]
 }
 ```
-The Stellar network allows us to represent any kind of asset. All assets
-in Stellar can be traded and exchanged with each other.
+Assets are resources with economic value like money, equity, real
+estate, goats, you name it. Cryptocurrencies allow you to represent
+any kind of asset. Stellar is no exception, it allows any account to
+define traditional assets or even come up with new exciting
+assets. These can be easily traded and exchanged over the Stellar
+network.
 
-Like other protocols, Stellar has a native asset which is called the
-`Lumen` represented with the symbol `XLM`. Stellar accounts can hold
-multiple assets as long as they trust the asset and in some
-cases they have been authorized to hold the asset.
+Under the blankets, Stellar uses a native asset which is called the Lumen represented with the symbol XLM.
 
-Any account can create their own asset representing traditional or custom (work/usage/hybrid) of assets.
+Assets still feel a bit abstract. On the right you can find a concrete example of how an account balance could look like in JSON format.
 
-Traditional assets are a cryptographic representation of things like
-fiat, equity, real estate, goats, you name it.
-
-Lumens are an example of a custom asset or token, at they allow us to
-interact with the Stellar network. There are many other types of
-assets built on top of Stellar, one example is the `EURT` which is a
-representation of the `EURO` and allows people to do cross-border
-remittances without incurring in high transaction fees. There is also
-`MOBI` which allows people to use the `Mobius network`, if you hold `MOBI` then
-your can interact with the applications in their network.
-
-On the right you can see the JSON representation of a Stellar
-account. Each account has a key called balances, representing the
-assets held by the account.
-
-The account on the right has the following assets:
+It contains the following assets:
 
 - EURT: Asset issued by [Tempo](http://tempo.eu.com/) a remittances company.
 - ETH: This asset represents Ether, you send real `ETH` to [http://papaya.io/](http://papaya.io/) and they credit your Stellar account with their `ETH`.
