@@ -293,10 +293,10 @@ Scout auto-instruments the following Python libraries:
 
 * Frameworks
   * [Django](#django)
-    * Middleware
-    * Templates (compiling & rendering)
-    * Template blocks
-    * SQL queries
+      * Middleware
+      * Templates (compiling & rendering)
+      * Template blocks
+      * SQL queries
   * [Flask](#flask)
   * [Celery](#celery)
   * [Pyramid](#pyramid)
