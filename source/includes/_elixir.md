@@ -306,7 +306,7 @@ Our [install instructions](#elixir-install) walk through instrumenting the follo
 * Ecto 2.0
 * Slime Templates
 
-See [instrumenting common librariess](/#instrumenting-common-libraries) for guides on instrumenting other Elixir libraries.
+See [instrumenting common libraries](/#instrumenting-common-libraries) for guides on instrumenting other Elixir libraries.
 
 ## Instrumenting Common Libraries
 
@@ -448,7 +448,7 @@ Download <a href="https://gist.github.com/itsderek23/051327a152bc4d95451fd76808b
 
 <h2 id="elixir-custom-instrumentation">Custom Instrumentation</h2>
 
-You can extend Scout to record additional types of transactions (background jobs, for example) and time the execution of code that fall outside our custom instrumentation.
+You can extend Scout to record additional types of transactions (background jobs, for example) and time the execution of code that fall outside our auto instrumentation.
 
 For full details on instrumentation functions, see our <a href="https://hexdocs.pm/scout_apm/ScoutApm.Tracing.html" target="_blank">ScoutApm.Tracing Hex docs</a>.
 

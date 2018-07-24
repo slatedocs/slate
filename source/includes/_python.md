@@ -1,7 +1,5 @@
 # Python Agent
 
-<aside class="notice">Python Monitoring is in our tech preview program.</aside>
-
 Scout's Python agent auto-instruments Django and Flask applications, SQL queries, and more. Source code and issues can be found on the [scout_apm_python](https://github.com/scoutapp/scout_apm_python) GitHub repository.
 
 <h2 id="python-requirements">Requirements</h2>
@@ -146,7 +144,7 @@ pip install scout-apm
         <p>Configure Scout in your <code>settings.py</code> file:</p>
 <pre class="terminal" style="width: initial">
 <span>import scout_apm.celery</span>
-<span>from scout_apm.core.config.config import ScoutConfig</span>
+<span>from scout_apm.core.config import ScoutConfig</span>
 from celery import Celery
 
 app = Celery('tasks', backend='redis://localhost', broker='redis://localhost')
@@ -293,15 +291,25 @@ We typically respond within a couple of hours during the business day.
 
 Scout auto-instruments the following Python libraries:
 
-* [Django](#django)
-  * Middleware
-  * Templates (compiling & rendering)
-  * Template blocks
-  * SQL queries
-* [Flask](#flask)
-* [Celery](#celery)
-* [Pyramid](#pyramid)
-* [Bottle](#bottle)
+* Frameworks
+  * [Django](#django)
+    * Middleware
+    * Templates (compiling & rendering)
+    * Template blocks
+    * SQL queries
+  * [Flask](#flask)
+  * [Celery](#celery)
+  * [Pyramid](#pyramid)
+  * [Bottle](#bottle)
+* Libraries
+  * PyMongo
+  * Requests
+  * UrlLib3
+  * Redis
+  * ElasticSearch
+  * Jinja2
+
+You can instrument your own code or other libraries via [custom instrumentation](#python-custom-instrumentation).
 
 More to come - suggest others in the [scout_apm_python](https://github.com/scoutapp/scout_apm_python) GitHub repo.  
 
@@ -400,7 +408,7 @@ More to come - suggest others in the [scout_apm_python](https://github.com/scout
 
 You can also configure Scout APM via environment variables. _Environment variables override settings provided in your `settings.py` file._
 
-To configure Scout via enviroment variables, uppercase the config key and prefix it with `SCOUT`. For example, to set the key via environment variables:
+To configure Scout via environment variables, uppercase the config key and prefix it with `SCOUT`. For example, to set the key via environment variables:
 
 ```
 export SCOUT_KEY=YOURKEY
@@ -503,15 +511,137 @@ If `LOGGING` is already defined, merge the above into the existing Dictionary.
 
 <h2 id="python-custom-instrumentation">Custom Instrumentation</h2>
 
+You can extend Scout to trace transactions outside our officially supported frameworks (ex: Cron jobs and micro web frameworks) and time the execution of code that fall outside our auto instrumentation.
+
+### Transactions & Timing
+
+Scout’s instrumentation is divided into 2 areas:
+
+1. __Transactions__: these wrap around a flow of work, like a web request or Cron job. The UI groups data under transactions. Use the `@scout_apm.api.WebTransaction()` decorator or wrap blocks of code via the `with scout_apm.api.WebTransaction('')` context manager.
+2. __Timing__: these measure individual pieces of work, like an HTTP request to an outside service and display timing information within a transaction trace. Use the `@scout_apm.api.instrument()` decorator or the `with scout_apm.api.instrument() as instrument` context manager.
+
+### Instrumenting transactions
+
+A transaction groups a sequence of work under in the Scout UI. These are used to generate transaction traces. For example, you may create a transaction that wraps around the entire execution of a Python script that is ran as a Cron Job.
+
+<h4 id="python-transaction-limits">Limits</h4>
+
+We limit the number of unique transactions that can be instrumented. Tracking too many unique transactions can impact the performance of our UI. Do not dynamically generate transaction names in your instrumentation (ie `with scout_apm.api.WebTransaction('update_user_"+user.id')`) as this can quickly exceed our rate limits. Use [context](#python-custom-context) to add high-dimesionality information instead.
+
+#### Getting Started
+
+Import the API module and configure Scout:
+
+```python
+import scout_apm.api
+
+# A dict containing the configuration for APM.
+# See our Python help docs for all configuration options.
+config = {'name': 'My App Name',
+          'key': 'APM_Key',
+          'monitor': True}
+
+# The `install()` method must be called early on within your app code in order
+# to install the APM agent code and instrumntation.
+scout_apm.api.install(config=config)
+```
+
+<h4 id="python-web-or-background">Web or Background transactions?</h4>
+
+Scout distinguishes between two types of transactions:
+
+* `WebTransaction`: For transactions that impact the user-facing experience. Time spent in these transactions will appear on your app overboard dashboard and appear in the "Web" area of the UI.
+* `BackgroundTransaction`: For transactions that don't have an impact on the user-facing experience (example: cron jobs). These will be available in the "Background Jobs" area of the UI.
+
+<h4 id="python-transaction-explicit">Explicit</h4>
+
+```py
+scout_apm.api.WebTransaction.start('Foo') # or BackgroundTransaction.start()
+# do some app work
+scout_apm.api.WebTransaction.stop()
+```
+
+<h4 id="python-transaction-context-manager">As a context manager</h4>
+
+```py
+with scout_apm.api.WebTransaction('Foo'): # or BackgroundTransaction()
+    # do some app work
+```
+
+<h4 id="python-transaction-decorator">As a decorator</h4>
+
+```py
+@scout_apm.api.WebTransaction('Foo') # or BackgroundTransaction()
+def my_foo_action(path):
+    # do some app work
+```
+
+#### Cron Job Example
+
+```python
+#!/usr/bin/env python
+
+import requests
+import scout_apm.api
+
+# A dict containing the configuration for APM.
+# See our Python help docs for all configuration options.
+config = {'name': 'My App Name',
+          'key': 'YOUR_SCOUT_KEY',
+          'monitor': True}
+
+# The `install()` method must be called early on within your app code in order
+# to install the APM agent code and instrumntation.
+scout_apm.api.install(config=config)
+
+# Will appear under Background jobs in the Scout UI
+with scout_apm.api.BackgroundTransaction('Foo'):
+  r = requests.get('http://httpbin.org/status/418')
+  print(r.text)
+```
+
+#### Falcon Example
+
+The example below instruments a [Falcon](https://falconframework.org/) web app:
+
+```python
+import falcon
+import scout_apm.api
+from scout_apm.api import Context
+
+# Must call scout_apm.api.install() early to set up
+# instrumentation and the core agent.
+# Create a dict of configuration options for Scout
+config = {'name': 'My App Name',
+          'key': 'APM_KEY',
+          'monitor': True}
+scout_apm.api.install(config=config)
+
+class WorkResource:
+    @scout_apm.api.WebTransaction('Work/Get')
+    def on_get(self, req, resp):
+        Context.add('path', req.path)
+        resp.media = some_work()
+
+api = falcon.API()
+api.add_route('/work', WorkResource())
+
+def some_work():
+    # ... Do some real work ...
+    return "Did some work"
+```
+
+### Timing functions and blocks of code
+
 Traces that allocate significant amount of time to `View`, `Job`, or `Template` are good candidates to add custom instrumentation. This indicates a significant amount of time is falling outside our default instrumentation.
 
-### Limits
+<h4 id="python-span-limits">Limits</h4>
 
 We limit the number of metrics that can be instrumented. Tracking too many unique metrics can impact the performance of our UI. Do not dynamically generate metric types in your instrumentation (ie `with scout_apm.api.instrument("Computation_for_user_"+user.email)`) as this can quickly exceed our rate limits. 
 
 For high-cardinality details, use tags: `with scout_apm.api.instrument("Computation", tags={ 'user': user.email})`.
 
-### Getting Started
+<h4 id="python-span-getting-started">Getting Started</h4>
 
 Import the API module:
 
@@ -530,7 +660,7 @@ scout_apm.api.instrument(name, tags={}, kind="Custom")
 * `kind` - A high level area of the application. This defaults to `Custom`. Your whole application should have a very low number of unique strings here. In our built-in instruments, this is things like `Template` and `SQL`. For custom instrumentation, it can be strings like `MongoDB` or `HTTP` or similar. This should not change based on input or state of the application.
 * `tags` - A dictionary of key/value pairs. Key should be a string, but value can be any json-able structure. High-cardinality fields like `user id` are permitted.
 
-### As a Context Manager
+<h4 id="python-span-context-manager">As a context manager</h4>
 
 Wrap a section of code in a unique "span" of work.
 
@@ -546,9 +676,9 @@ def foo():
     # Work
 ```
 
-### As a decorator
+<h4 id="python-span-decorator">As a decorator</h4>
 
-Wraps a whole function in a custom trace. This uses the same API as the ContextManager style.
+Wraps a whole function, timing the execution of specified function within a transaction trace. This uses the same API as the ContextManager style.
 
 ```python
 @scout_apm.api.instrument("Computation")
