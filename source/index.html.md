@@ -172,19 +172,6 @@ It contains the following assets:
 - USD: Asset representing `Dollars`, issued by [Stronghold](https://stronghold.co/).
 - native: Native asset of the network, it represents `Lumens`.
 
-Assets in Stellar are representet by a combination of `code` and `issuer`. It is possible then to find two assets with the code `USD` representing Dollars but one can be issued by Bank Of America and the other by Venmo.
-
-It is also possible to find multiple assets with the code `BTC`, where one
-can be backed by [http://papaya.io/](http://papaya.io/) and the other
-one from [StrongHold](https://stronghold.co/). It means that at some
-point the issuer (also known as anchor) received `BTC` in their
-Bitcoin wallets and then credited with their equivalent representation
-of Bitcoin your Stellar account. If you visit the following site, [https://stellar.expert/explorer/public/asset](https://stellar.expert/explorer/public/asset) you'll find all the assets issued in Stellar.
-
-You'll be creating a custom asset in the test network
-(testnet) representing Dollars and you will build a way to credit and
-debit accounts as if we were depositing Dollars.
-
 You can learn more about assets in the SDF guides: [https://www.stellar.org/developers/guides/concepts/assets.html](https://www.stellar.org/developers/guides/concepts/assets.html)
 
 ## Anchor
