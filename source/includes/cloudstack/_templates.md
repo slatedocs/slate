@@ -27,15 +27,10 @@ curl -X GET \
     "zoneId":"ea901007-056b-4c50-bb3a-2dd635fce2ab",
     "zoneName": "zone1",
     "osTypeId":"d38dc1d9-dd34-4fdd-8f51-a973f8fe5f3b",
-    "osTypeName": "Other (64-bit)",
+    "osType": "Other (64-bit)",
     "availableInZones": [
        "ea901007-056b-4c50-bb3a-2dd635fce2ab"
-    ],
-    "hypervisor": "VMware",
-    "format": "OVA",
-    "nicAdapter": "e1000",
-    "rootDiskController": "scsi",
-    "keyboard": "uk"
+    ]
   }],
   "metadata": {
     "recordCount": 1
@@ -59,16 +54,11 @@ Attributes | &nbsp;
 `dynamicallyScalable`<br/>*boolean* | true if you can dynamically scale an [instance](#cloudstack-instances) with this template
 `extractable`<br/>*boolean* | true if the template allows download from a generated URL
 `created`<br/>*string* | The creation date of the template
-`osTypeId`<br/>*UUID* | Id of the OS type
-`osTypeName`<br/>*string* | The OS type of the template (e.g. Ubuntu, CentOS...)
+`osTypeId`<br/>*UUID* | Id of th OS type
+`osType`<br/>*string* | The OS type of the template (e.g. Ubuntu, CentOS...)
 `zoneId`<br/>*UUID* |The [zone id](#cloudstack-zones) that the template is available in. Empty if available in multiple zones
 `zoneName`<br/>*string* |The [zone id](#cloudstack-zones) that the template is available in. Empty if available in multiple zones
 `availableInZones`<br/>*array[UUID]* | List of all [zone ids](#cloudstack-zones) that the template is available in
-`hypervisor`<br>*string* | The name of the hypervisor
-`format`<br>*string* | The template format for the chosen hypervisor
-`nicAdapter`<br>*string* | `VMWare only` The network interface controller name. Empty if not selected.<br>*Values*: e1000, pcnet32, vmxnet2 or vmxnet3.
-`rootDiskController`<br>*string* | `VMWare only` The root disk controller name. Empty if not selected.<br>*Values*: ide, scsi for CloudStack version up to 4.4.<br>*Values*: ide, scsi, osdefault, pvscsi, lsilogic, lsisas1068, buslogic for CloudStack version 4.5 and up.
-`keyboard`<br>*string* | `VMWare only` The keyboard type name. Empty if not selected.<br>*Values*: us, uk, jp, sc.
 
 #### Retrieve a template
 
@@ -96,15 +86,10 @@ curl -X GET \
     "zoneId":"ea901007-056b-4c50-bb3a-2dd635fce2ab",
     "zoneName": "zone1",
     "osTypeId":"d38dc1d9-dd34-4fdd-8f51-a973f8fe5f3b",
-    "osTypeName": "Other (64-bit)",
+    "osType": "Other (64-bit)",
     "availableInZones": [
        "ea901007-056b-4c50-bb3a-2dd635fce2ab"
-    ],
-    "hypervisor": "VMware",
-    "format": "OVA",
-    "nicAdapter": "e1000",
-    "rootDiskController": "scsi",
-    "keyboard": "uk"
+    ]
   }
 }
 ```
@@ -125,124 +110,8 @@ Attributes | &nbsp;
 `dynamicallyScalable`<br/>*boolean* | true if you can dynamically scale an [instance](#cloudstack-instances) with this template
 `extractable`<br/>*boolean* | true if the template allows download from a generated URL
 `created`<br/>*string* | The creation date of the template
-`osTypeId`<br/>*UUID* | Id of the OS type
-`osTypeName`<br/>*string* | The OS type of the template (e.g. Ubuntu, CentOS...)
+`osTypeId`<br/>*UUID* | Id of th OS type
+`osType`<br/>*string* | The OS type of the template (e.g. Ubuntu, CentOS...)
 `zoneId`<br/>*UUID* |The [zone id](#cloudstack-zones) that the template is available in. Empty if available in multiple zones
 `zoneName`<br/>*string* |The [zone id](#cloudstack-zones) that the template is available in. Empty if available in multiple zones
 `availableInZones`<br/>*array[UUID]* | List of all [zone ids](#cloudstack-zones) that the template is available in
-`hypervisor`<br>*string* | The name of the hypervisor
-`format`<br>*string* | The template format for the chosen hypervisor
-`nicAdapter`<br>*string* | `VMWare only` The network interface controller name. Empty if not selected.<br>*Values*: e1000, pcnet32, vmxnet2 or vmxnet3
-`rootDiskController`<br>*string* | `VMWare only` The root disk controller name. Empty if not selected.<br>*Values*: ide, scsi for CloudStack version up to 4.4.<br>*Values*: ide, scsi, osdefault, pvscsi, lsilogic, lsisas1068, buslogic for CloudStack version 4.5 and up
-`keyboard`<br>*string* | `VMWare only` The keyboard type name. Empty if not selected.<br>*Values*: us, uk, jp, sc
-
-#### Import a template
-
-```shell
-curl -X POST \
-   -H "Content-Type: application/json" \
-   -H "MC-Api-Key: your_api_key" \
-   -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/templates"
-
-# Request should look like this
-```
-```json
-{
-  "name": "debian",
-  "description":"This is my template",
-  "url":"http://somewhere.com/template-vmware.ova",
-  "hypervisor":"VMWare",
-  "format":"OVA",
-  "keyboard":"us",
-  "nicAdapter":"vmxnet3",
-  "osTypeId": "53161a9c-6019-11e7-914a-0200246f00c5",
-  "osTypeName": "Debian GNU/Linux 7(64-bit)",
-  "zoneId":"e2cf7fa0-c3c2-4a39-9f8d-ee01ac3546cd"
-}
-```
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/templates</code>
-
-Import a template
-
-Required | &nbsp;
--------- | ------
-`name`<br/>*string* | The name of the template
-`description`<br/>*string* | The description of the template
-`url`<br/>*string* | The URL where the teplate is hosted. N.B. only `http` protocol is supported
-`zoneId`<br/>*UUID* | The zone where it will be available. If there is only 1 zone, the field is optional
-`hypervisor`<br>*string* | The name of the hypervisor
-`format`<br>*string* | The template format for the chosen hypervisor
-`osTypeId`<br/>*UUID* | Id of the OS type
-`osTypeName`<br/>*string*  | The OS type of the template (e.g. Ubuntu, CentOS...)
-
-Optional | &nbsp;
--------- | ------
-`defaultUsername`<br/>*string* | The default username of the template
-`size`<br/>*long* | The size of the template in bytes
-`availablePublicly`<br/>*boolean* | true if public to everyone. Your custom templates will always be private
-`dynamicallyScalable`<br/>*boolean* | true if you can dynamically scale an [instance](#cloudstack-instances) with this template
-`extractable`<br/>*boolean* | true if the template allows download from a generated URL
-`nicAdapter`<br>*string* | `VMWare only` The network interface controller name. Empty if not selected.<br>*Values*: e1000, pcnet32, vmxnet2 or vmxnet3
-`rootDiskController`<br>*string* | `VMWare only` The root disk controller name. Empty if not selected.<br>*Values*: ide, scsi for CloudStack version up to 4.4.<br>*Values*: ide, scsi, osdefault, pvscsi, lsilogic, lsisas1068, buslogic for CloudStack version 4.5 and up
-`keyboard`<br>*string* | `VMWare only` The keyboard type name. Empty if not selected.<br>*Values*: us, uk, jp, sc
-
-#### Update a template
-
-```shell
-curl -X POST \
-   -H "Content-Type: application/json" \
-   -H "MC-Api-Key: your_api_key" \
-   -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/templates/162cdfcb-45e5-4aa6-81c4-124c94621bdb"
-
-# Request should look like this
-```
-```json
-{
-  "name": "debian",
-  "description":"This is my template",
-  "url":"http://somewhere.com/template-vmware.ova",
-  "hypervisor":"VMWare",
-  "format":"OVA",
-  "keyboard":"us",
-  "nicAdapter":"vmxnet3",
-  "osTypeId": "53161a9c-6019-11e7-914a-0200246f00c5",
-  "osTypeName": "Debian GNU/Linux 7(64-bit)",
-  "zoneId":"e2cf7fa0-c3c2-4a39-9f8d-ee01ac3546cd",
-  "availablePublicly":"true"
-}
-```
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/templates/:id</code>
-
-Update a template
-
-Optional | &nbsp;
--------- | ------
-`name`<br/>*string* | The name of the template
-`description`<br/>*string* | The description of the template
-`url`<br/>*string* | The URL where the teplate is hosted. N.B. only `http` protocol is supported
-`zoneId`<br/>*UUID* | The zone where it will be available. If there is only 1 zone, the field is optional
-`hypervisor`<br>*string* | The name of the hypervisor
-`format`<br>*string* | The template format for the chosen hypervisor
-`osTypeId`<br/>*UUID* | Id of the OS type
-`osTypeName`<br/>*string*  | The OS type of the template (e.g. Ubuntu, CentOS...)
-`defaultUsername`<br/>*string* | The default username of the template
-`size`<br/>*long* | The size of the template in bytes
-`availablePublicly`<br/>*boolean* | true if public to everyone. Your custom templates will always be private
-`dynamicallyScalable`<br/>*boolean* | true if you can dynamically scale an [instance](#cloudstack-instances) with this template
-`extractable`<br/>*boolean* | true if the template allows download from a generated URL
-`nicAdapter`<br>*string* | `VMWare only` The network interface controller name. Empty if not selected.<br>*Values*: e1000, pcnet32, vmxnet2 or vmxnet3
-`rootDiskController`<br>*string* | `VMWare only` The root disk controller name. Empty if not selected.<br>*Values*: ide, scsi for CloudStack version up to 4.4.<br>*Values*: ide, scsi, osdefault, pvscsi, lsilogic, lsisas1068, buslogic for CloudStack version 4.5 and up
-`keyboard`<br>*string* | `VMWare only` The keyboard type name. Empty if not selected.<br>*Values*: us, uk, jp, sc
-
-#### Delete a template
-
-```shell
-curl -X DELETE \
-   -H "MC-Api-Key: your_api_key" \
-"https://cloudmc_endpoint/v1/services/compute-on/test_area/templates/162cdfcb-45e5-4aa6-81c4-124c94621bdb"
-```
-<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/templates/:id</code>
-
-Delete a public or private template
