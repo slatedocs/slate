@@ -152,14 +152,7 @@ Field | Type | Example
 ------ | ------- | --------
 <span style="color:red"> <*year*> </span> | Integer |  <span style="color:red"> *2009, 2010, 2011,* etc. </span>
 <span style="color:red"> <*teamId*> </span> | String  |  <span style="color:red"> *CHI, MIN, GB, MIA* </span> etc. <a href="#TeamID">See Team ID Table</a>
-
-*Live Game Data*
-
-To request real-time data from games in progress, add an optional <span style="color:red">*realtime": true* </span> field that will return **only** data from games currently in progress.
-
-**Example Request**
-{"channel":"games", "week": 0, "seasonPhase": "Preseason",  "year": 2018, <span style="color:red">*realtime": true* </span>}
-
+<span style="color:red"> *realtime" true* </span> | Boolean | <span style="color:red"> Current in progress game data </span>
 
 
 ## Players
