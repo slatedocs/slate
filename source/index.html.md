@@ -25,12 +25,21 @@ Not familiar with Bitcoin or Lightning but want to learn?  Here are some useful 
 4. <a href="https://lightning.network/lightning-network-paper.pdf">Lightning Whitepaper</a>
 5. <a href="https://www.youtube.com/watch?v=l1si5ZWLgy0">Introduction to Bitcoin</a>
 
-## Connect to Suredbits Lightning Node
+## Suredbits Lightning Node
 In order to access our APIs, you will need to connect to our lightning node via your preferred lightning client.   
 
 The url is:
 
 <span style="color:blue"> *0338f57e4e20abf4d5c86b71b59e995ce4378e373b021a7b6f41dabb42d3aad069@ln.test.suredbits.com* </span>
+
+
+## Suredbits Lightning Payment 
+
+Here is our custom drop-in solution in nodejs client for our API: <a href="https://github.com/suredbits/lightning-charge">https://github.com/suredbits/lightning-charge</a>
+
+## Suredbits Websocket Endpoint
+Here is the websocket channel for Suredbits: <a href="wss://test.api.suredbits.com/nfl/v0">wss://test.api.suredbits.com/nfl/v0</a>
+
 
 ## Format 
 
@@ -53,8 +62,7 @@ The url is:
     "yearsPro":14,
     "height":76,
     "weight":210,"status":
-    "Unknown","_type":
-    "com.github.nfldb.models.NflPlayer"
+    "Unknown",:
   }
 ]
 ```
@@ -119,7 +127,6 @@ A successful request will generate a lightning invoice that will look simiar to 
     },
     "timeInserted":"2017-08-04T18:29:15.669Z",
     "timeUpdate":"2018-06-08T19:34:44.063Z",
-    "_type":"com.github.nfldb.models.NflGame"
   },
     ...
   ]
@@ -146,29 +153,40 @@ Field | Type | Example
 <span style="color:red"> <*year*> </span> | Integer |  <span style="color:red"> *2009, 2010, 2011,* etc. </span>
 <span style="color:red"> <*teamId*> </span> | String  |  <span style="color:red"> *CHI, MIN, GB, MIA* </span> etc. <a href="#TeamID">See Team ID Table</a>
 
+*Live Game Data*
+
+To request real-time data from games in progress, add an optional <span style="color:red">*realtime": true* </span> field that will return **only** data from games currently in progress.
+
+**Example Request**
+{"channel":"games", "week": 0, "seasonPhase": "Preseason",  "year": 2018, <span style="color:red">*realtime": true* </span>}
+
+
+
 ## Players
 > Example of Players data
 
 ```json 
-[{"playerId":"00-0011754",
-"gsisName":"R.Moss",
-"fullName":"Randy Moss",
-"firstName":"Randy",
-"lastName":"Moss",
-"team":"UNK",
-"position":"UNK",
-"profileId":2502220,
-"profileUrl":"http://www.nfl.com/player/randymoss/2502220/profile",
-"birthDate":"2/13/1977",
-"college":"Marshall",
-"yearsPro":14,
-"height":76,
-"weight":210,"status":
-"Unknown","_type":
-"com.github.nfldb.models.NflPlayer"}]
+[ {
+    "playerId":"00-0011754",
+    "gsisName":"R.Moss",
+    "fullName":"Randy Moss",
+    "firstName":"Randy",
+    "lastName":"Moss",
+    "team":"UNK",
+    "position":"UNK",
+    "profileId":2502220,
+    "profileUrl":"http://www.nfl.com/player/randymoss/2502220/profile",
+    "birthDate":"2/13/1977",
+    "college":"Marshall",
+    "yearsPro":14,
+    "height":76,
+    "weight":210,"status":
+    "Unknown",:
+  }
+]
 ```
 
-This pull request implements a websocket channel called <span style="color:red"> *players* </span>. It returns a NFL player given a websocket request.
+This request implements a websocket channel called <span style="color:red"> *players* </span>. It returns a NFL player given a websocket request.
 
 **Example Requests**
 
@@ -205,7 +223,6 @@ Field | Type | Example
     "yearsPro":8,"height":78,
     "weight":265,
     "status":"Active",
-    "_type":"com.github.nfldb.models.NflPlayer",
   }
   ...
 ]
@@ -247,13 +264,12 @@ Field | Type | Example
       },
     "timeInserted":"20170804T182915.669Z",
     "timeUpdate":"20180608T192330.452Z",
-    "_type":"com.github.nfldb.models.NflGame"
     }
   ...
 ]
 ```
 
-This pull request implements a websocket channel called <span style="color:red"> *team* </span>. It returns the Roster or Schedule for a given NFL Team given a websocket request.
+This request implements a websocket channel called <span style="color:red"> *team* </span>. It returns the Roster or Schedule for a given NFL Team given a websocket request.
 
 **Example requests**
 
@@ -319,7 +335,7 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
  ]
 ```
 
-This pull request implements a websocket channel called <span style="color:red"> *stats* </span>.  It returns the data for an individual <span style="color:red"> *player* </span> or <span style="color:red"> *game* </span>.
+This request implements a websocket channel called <span style="color:red"> *stats* </span>.  It returns the data for an individual <span style="color:red"> *player* </span> or <span style="color:red"> *game* </span>.
 
 **Example Data Requests**
 
@@ -341,7 +357,7 @@ This pull request implements a websocket channel called <span style="color:red">
    }
 
 
-To query by <span style="color:red"> *gameId* </span> or <span style="color:red"> *playerId* </span>:
+To query by <span style="color:red"> *gameId* </span> and <span style="color:red"> *playerId* </span>:
 
 **Required fields**
 
@@ -354,7 +370,7 @@ Field | Type | Example
 <span style="color:red"> <*playerId*> </span> | String | <span style="color:red"> *00-0027973* </span> 
 
 
-To query by <span style="color:red"> *name* </span> or <span style="color:red"> *week* </span>:
+To query by <span style="color:red"> *name* </span> and <span style="color:red"> *week* </span>:
 
 **Required fields**
 
@@ -364,30 +380,15 @@ Field | Example
 <span style="color:red"> <*statType*> </span> | <span style="color:red"> *passing, rushing, receiving, defense* </span>
 <span style="color:red"> <*year*> </span> | <span style="color:red"> *2016, 2017* </span>
 <span style="color:red"> <*week*> </span> |  <span style="color:red"> *1, 2* </span>... 
-<span style="color:red"> <*seasonPhase}*> | </span> <span style="color:red"> *Preseason, Regular, Postseason* </span>
-<span style="color:red"> <*firstName>*>  | </span> <span style="color:red"> *Drew* </span>
-<span style="color:red"> <*lastName>*> | </span> <span style="color:red"> *Brees* </span>
-
-Currently we only support requesting by:
-
-1. <span style="color:red"> *statType* </span>
-2. <span style="color:red"> *playerId* </span>
-3. <span style="color:red"> *gameId* </span>
-
-Eventually we will also support <span style="color:red"> *firstName* </span>, <span style="color:red"> *lastName* </span>, 
-<span style="color:red"> *seasonPhase* </span>, <span style="color:red"> *year* </span> and <span style="color:red"> *week* </span>.
+<span style="color:red"> <*seasonPhase*> | </span> <span style="color:red"> *Preseason, Regular, Postseason* </span>
+<span style="color:red"> <*firstName*>  | </span> <span style="color:red"> *Drew* </span>
+<span style="color:red"> <*lastName*> | </span> <span style="color:red"> *Brees* </span>
 
 
+# Contact Us
+Follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a>
 
-# Contact Support
+Join our Slack channel <a href="https://suredbits.slack.com/">Suredbits Slack</a>
+ 
 Email us at <a href="mailto:support@suredbits.com">support@suredbits.com</a>
 
-# Email Updates
-<aside class="success">Sign up to be notified as we update and add to our APIs!</aside>
-<form action="//suredbits.us12.list-manage.com/subscribe/post?u=6d2301935be3bfea5b7f29e4c&amp;id=16dc8b6ffb" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
-            <div id="mc_embed_signup_scroll">
-                <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required="">
-                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_6d2301935be3bfea5b7f29e4c_16dc8b6ffb" tabindex="-1" value=""></div>
-                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-            </div>
-        </form>
