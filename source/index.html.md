@@ -1801,10 +1801,22 @@ Now you have a basic clone of Venmo using Stellar. In this section you learned h
 
 As mentioned at the beginning of this tutorial, AnchorX takes a different approach to other anchors since it manages users account. You could try modifying this wallet to allow each user to manage their own private keys and then use AnchorX to resolver usernames to Stellar addresses.
 
-Before finishing the tutorial, you will learn about some best practices around account management and security. I hope you enjoy this tutorial and if you have questions or suggestions, you can create an issue in the GitHub repo [here](https://github.com/abuiles/building-your-own-venmo-with-stellar).
+Before finishing the tutorial, you will learn about some best practices around account management and security.
 
 # Best practices
 
-Best practices for managing issuing accounts, signing transactions on behalf of users, etc.
+## Managing issuing account (base vs issuing)
 
-# F.A.Q
+## Managing secret keys (BIP39)
+
+https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki
+
+## Multisignature
+
+## Stellar Core and Horizon use
+
+# Conclusion
+
+As stated at the beginning of the tutorial, the goal here was to show you a different approach to creating an anchor and at the same time help you get familiar with some concepts in Stellar. Don't take what I say here as written in stone, the requirements might be different for your particular situation, always do your research. There are other resources out there where you can go and ask questions like the [Stellar community Slack](https://slack.stellar.org/) and the [Stellar Stack Exchange](https://stellar.stackexchange.com/). If there is something else you would like me to write about please let me know and If you enjoy this tutorial, tweet or tell your friends about it!
+
+--Fin
