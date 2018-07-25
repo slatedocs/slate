@@ -1,6 +1,6 @@
 # Release Notes
 
-## 25 July 2018 Release Notes - Metype
+## 26 July 2018 Release Notes - Metype
 
 ```shell
 <div id='metype-container' class='iframe-container' data-metype-account-id='2' data-metype-host='https://www.metype.com/' data-metype-primary-color='#0000ff' data-metype-bg-color='#ffffff' data-metype-font-color='#4a4a4a'> data-metype-comment-widget-id="comment-widget-2"</div>
