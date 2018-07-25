@@ -16,7 +16,7 @@ search: true
 # Building your own Venmo with Stellar
 
 <aside class="notice">
-Work in progress ████████░░ 85%
+Work in progress ████████████▒ 95%
 </aside>
 
 Stellar is a distributed ledger technology which allows anyone to build low-cost and fast financial services. This tutorial will walk you through some of its features and show you how to create a Venmo clone on top of Stellar called `AnchorX`.
@@ -1908,8 +1908,51 @@ in the ledger to change the signers schema.
 
 [Pull request #14](https://github.com/abuiles/anchorx-api/pull/14) shows you how to apply the multisignature schema above to anchorx-api.
 
+## Managing the issuing account
+
+After issuing AnchorX's custom asset, you continue using the issuing
+account to create and authorize who could hold your asset. There is a
+security risk involved with this since if the issuing account gets
+compromised the attackers can create as many USD as they want.
+
+To manage this, you can follow the recommendation
+[here](https://www.stellar.org/developers/guides/anchor/index.html#account-structure)
+which is to maintain two accounts, one for issuing and destroying
+assets and then a base account which we will hold a huge amount of
+your asset so it can credit people who transfer USD from their bank
+account to their AnchorX account. That way you can keep the secret key
+for the issuing account offline.
+
+Additionally, since you need the `allowTrust` operation, the you can
+add a signer with low threshold to the issuing account.
+
+## Stellar Core and Horizon
+
+For testing purposes it's fine to relay on the public test network run
+by the SDF, however if you are building your own service, you should
+be running your own nodes and horizon instance. You can learn more
+about it in the [getting started
+guide](https://www.stellar.org/developers/guides/get-started/index.html).
+
 # Conclusion
 
-As stated at the beginning of the tutorial, the goal here was to show you a different approach to creating an anchor and at the same time help you get familiar with some concepts in Stellar. Don't take what I say here as written in stone, the requirements might be different for your particular situation, always do your research. There are other resources out there where you can go and ask questions like the [Stellar community Slack](https://slack.stellar.org/) and the [Stellar Stack Exchange](https://stellar.stackexchange.com/). If there is something else you would like me to write about please let me know and If you enjoy this tutorial, tweet or tell your friends about it!
+As mentioned at the beginning of the tutorial, the goal here was to
+show you a different approach to creating an anchor and at the same
+time help you get familiar with some concepts in Stellar. Don't take
+what I say here as written in stone, the requirements might be
+different for your particular situation, always do your
+research. There are other resources out there where you can go and ask
+questions like the [Stellar community
+Slack](https://slack.stellar.org/) and the [Stellar Stack
+Exchange](https://stellar.stackexchange.com/). If there is something
+else you would like me to write about please let me know. I'm looking
+forward to writing more about Stellar and helping you build awesome
+stuff on top of it.
 
 --Fin
+
+<aside class="notice">
+If you enjoy this tutorial, tweet or tell your friends about it and if
+you want to support my writings, you can send XLM donations to the
+following Stellar address GBCFAMVYPJTXHVWRFP7VO6F4QE7B4UHAVJOEG5VR6VEB5M67GHQGEEAB
+</aside>
