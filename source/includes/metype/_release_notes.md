@@ -1,5 +1,27 @@
 # Release Notes
 
+## 25 July 2018 Release Notes - Metype
+
+```shell
+<div id='metype-container' class='iframe-container' data-metype-account-id='2' data-metype-host='https://www.metype.com/' data-metype-primary-color='#0000ff' data-metype-bg-color='#ffffff' data-metype-font-color='#4a4a4a'> data-metype-comment-widget-id="comment-widget-2"</div>
+<script type='text/javascript'>
+  var metypeContainer = document.getElementById("metype-container"),
+    page_url = metypeContainer.getAttribute("data-metype-page-url");
+  metypeContainer.setAttribute('data-metype-page-url', page_url || window.location.href);
+  metypeContainer.setAttribute('data-metype-window-height', window.innerHeight);
+  metypeContainer.setAttribute('data-metype-screen-width', window.screen.width);
+  talktype(function() {
+    talktype.commentWidgetIframe(metypeContainer);
+  });
+</script>
+```
+1. Publishers can now embed many conversations on a single page. 
+
+
+**Note to developers:** The commenting widget allows an additional field `data-metype-comment-widget-id` in the `<div>` tag of the commenting widget, and can have any arbitrary value. E.g.,
+`data-metype-comment-widget-id="comment-widget-2"`.
+
+
 ## 4 July 2018 Release Notes - Metype
 
 1. Notifications for reactions to comments - commenters will now get notified when other users react on their comments.
@@ -8,4 +30,5 @@
 ![Story Reactions](../../images/Story_Reactions_4Jul18.png "Story Reactions")
 Write to us at metype@quintype.com to get your own set of story reactions configured for your account.
 3. Bug fixes and loading speed optimisations on the widgets.
+
 
