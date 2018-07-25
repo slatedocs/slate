@@ -144,12 +144,12 @@ pip install scout-apm
         <p>Configure Scout in your <code>settings.py</code> file:</p>
 <pre class="terminal" style="width: initial">
 <span>import scout_apm.celery</span>
-<span>from scout_apm.core.config import ScoutConfig</span>
+<span>from scout_apm.api import Config</span>
 from celery import Celery
 
 app = Celery('tasks', backend='redis://localhost', broker='redis://localhost')
 <span>
-ScoutConfig.set(
+Config.set(
         key = '...',
         name = 'Same as Web App Name',
         monitor = True
@@ -429,6 +429,18 @@ This will override the `SCOUT_NAME` value provided in your `settings.py` file.
 
 <h2 id="python-logging">Logging</h2>
 
+Log the agent activity using the framework-specific instructions below.
+
+### Log Levels
+
+The following log levels are available:
+
+* CRITICAL
+* ERROR
+* WARNING
+* INFO
+* DEBUG
+
 ### Django Logging
 
 To log Scout agent output in your Django application, copy the following into your `settings.py` file:
@@ -508,6 +520,24 @@ dictConfig({
 ```
 
 If `LOGGING` is already defined, merge the above into the existing Dictionary.
+
+### Celery Logging
+
+Add the following to our default Celery configuration:
+
+```
+import logging
+logging.basicConfig(level='DEBUG')
+```
+
+### Custom Instrumentation logging
+
+If you've [added Scout's instrumentation to an unsupported framework or script](#python-custom-instrumentation), add the following to record the agent logs:
+
+```
+import logging
+logging.basicConfig(level='DEBUG')
+```
 
 <h2 id="python-custom-instrumentation">Custom Instrumentation</h2>
 
