@@ -15,10 +15,6 @@ search: true
 ---
 # Building your own Venmo with Stellar
 
-<aside class="notice">
-Work in progress ████████████▒ 95%
-</aside>
-
 Stellar is a distributed ledger technology which allows anyone to build low-cost and fast financial services. This tutorial will walk you through some of its features and show you how to create a Venmo clone on top of Stellar called `AnchorX`.
 
 In order to maintain customer accounts, Stellar requires you to create some sort of organization. Think about it as a "Stellar company" but in Stellar jargon, that is called an `anchor`. There are 2 ways to do this. Either you create Stellar accounts on behalf of customers or use the memo field of the transaction to operate on behalf of your customers/users.
