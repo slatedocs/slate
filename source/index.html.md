@@ -1805,15 +1805,108 @@ Before finishing the tutorial, you will learn about some best practices around a
 
 # Best practices
 
-## Managing issuing account (base vs issuing)
+## Using multisignature
 
-## Managing secret keys (BIP39)
+Transactions in Stellar need an authorization to be valid. Such
+authorization is signed by the public key associated with the
+account. However, Stellar allows you to add multiple signers to an
+account and then specify a security level which can be `low`, `medium` or
+`high`. Each level has the following features:
 
-https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki
+- `low`: it allows to update the sequence number for the source account and the allow trust operation.
 
-## Multisignature
+- `medium`: all other operations listed [here](https://www.stellar.org/developers/guides/concepts/list-of-operations.html)
 
-## Stellar Core and Horizon use
+- `high`: it allows signers or the thresholds update and merge account operation.
+
+The official documentation has a completed summary on multisignature
+[https://www.stellar.org/developers/guides/concepts/multi-sig.html](https://www.stellar.org/developers/guides/concepts/multi-sig.html)
+- please give it a read before continuing.
+
+```
+  const signerKeys = Keypair.fromSecret(
+    // Use something like KMS in production
+    AES.decrypt(
+      sender.stellarSeed,
+      ENVCryptoSecret
+    ).toString(enc.Utf8)
+  )
+```
+
+You can use multisignature to create different security schemas around
+account management, if you recall, you were decrypting the seed for
+processing new payments like displayed in the right. The issue with
+this is that you have to manage all your user keys and then if one
+gets exposed then you lose control of the account.
+
+An alternative setting instead of using the master key as signer, is
+to add two more signers to each account with mid and high threshold,
+and change the master key to have a low threshold. With this you will
+have the key with the highest threshold always offline and put the
+mid-threshold key in a service which can not be easily compromised. The downside of doing this is that it that it will increate the minium balance per account.
+
+This kind of schema was recently used by
+[SatoshiPay](https://satoshipay.io/) in their Lumens give away, they
+were giving away lumens but you could only use them to pay creators in
+their platform. To force this, they put a multisignature schema in each
+account so if you were trying to send lumens to someone who was not a creator, they would not sign the transaction.
+
+Let's look next at the code to implement multisignature.
+
+## Adding signers to an account
+
+```javascript
+async function addSigners(keypair: Keypair) {
+  Network.useTestNetwork();
+  const stellarServer = new Server('https://horizon-testnet.stellar.org');
+
+  const paymentsId = 'GCQOZGXMH6MI3JKWWO365BCXUJN6MFZR7XMKKCHGDY2K6JNCYFRH6M4C'
+  const adminId = 'GA6KTSHWU6GX6ER6HTWMGONS4VLQ4ZHONU6RKBGXTT7HFLV6NHX3ONAL'
+
+  const account = await stellarServer.loadAccount(newAccountKeypair.publicKey())
+
+  var transaction = new TransactionBuilder(account)
+    .addOperation(
+      Operation.setOptions({
+        signer: {
+          ed25519PublicKey: paymentsId,
+          weight: 2
+        }
+      })
+    )
+    .addOperation(
+      Operation.setOptions({
+        signer: {
+          ed25519PublicKey: adminId,
+          weight: 5
+        }
+      }))
+    .addOperation(
+      Operation.setOptions({
+        masterWeight: 0, // set master key weight to 0, it can't do anything
+        lowThreshold: 1,
+        medThreshold: 2, // Allows  paymentsId to send payments
+        highThreshold: 5 // Allows adminId to manage account
+      }))
+    .build();
+
+  transaction.sign(keypair)
+
+  const result = await server.submitTransaction(transaction)
+
+}
+```
+
+Let's assume you want to use account
+`GCQOZGXMH6MI3JKWWO365BCXUJN6MFZR7XMKKCHGDY2K6JNCYFRH6M4C` for signing
+payments and account
+`GA6KTSHWU6GX6ER6HTWMGONS4VLQ4ZHONU6RKBGXTT7HFLV6NHX3ONAL` to be the
+admin of all your users accunts.
+
+You will have to call the code on the right after creating the account
+in the ledger to change the signers schema.
+
+[Pull request #14](https://github.com/abuiles/anchorx-api/pull/14) shows you how to apply the multisignature schema above to anchorx-api.
 
 # Conclusion
 
