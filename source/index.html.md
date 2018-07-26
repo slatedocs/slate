@@ -13,11 +13,14 @@ search: true
 
 # Lightning API v0 Documentation
 
-Thank you and welcome to SuredBits' API documentation. This API allows you to query our NFL data, including teams, players, games, scores, and statistics.
+## Background Resources
+Thank you and welcome to SuredBits' Lightning App API documentation. This API allows you to query our NFL data, including teams, players, games, scores, and statistics.
+
+We are currently focused primarily on developers already familiar with Bitcoin and know Lightning or are interested in building apps using the Lightning protocol. However, if you are just starting out in cryptocurrency development, we have included some helpful links below.
 
 <aside class="success">IMPORTANT: Suredbits is a Lightning Application built on the Bitcoin protocol.  This initial release is only on testnet. </aside>
 
-Not familiar with Bitcoin or Lightning but want to learn?  Here are some useful resources to help you get up and running with both.  Read and watch and come back when you're ready. 
+Here are some useful resources to help you learn and get started with Bicoin and Lightning Network.  Read and watch and come back when you're ready. 
 
 1. <a href="https://bitcoin.org/en/download">Download Bitcoin Core</a>
 2. <a href="https://lbtc.io/">Lightning Bitcoin, Downloads and Wallets</a>
@@ -40,6 +43,16 @@ Here is our custom drop-in solution in nodejs client for our API: <a href="https
 ## Suredbits Websocket Endpoint
 Here is the websocket channel for Suredbits: <a href="wss://test.api.suredbits.com/nfl/v0">wss://test.api.suredbits.com/nfl/v0</a>
 
+## UUID
+> Example Data Returned with valid UUID
+
+```json
+{"uuid":"123e4567-e89b-12d3-a456-426655440000","data":{"version":"8","lastRosterDownload":"20180720T141610.664Z","seasonType":"Regular","seasonYear":2017,"week":"NflWeek17"}}
+```
+
+If you want to track specific requests, you can enter an optional field called <span style="color:red"> *`uuid`* </span> to any request.  
+
+A valid <span style="color:red"> *`uuid`* </span> request will show up on the invoice, response, and any error message that is returned.  If no <span style="color:red"> *`uuid`* </span> is specified in a websocket request then this field will be omitted from that request's responses.
 
 ## Format 
 
@@ -47,22 +60,25 @@ Here is the websocket channel for Suredbits: <a href="wss://test.api.suredbits.c
 
 ```json 
 [
- {
-    "playerId":"00-0011754",
-    "gsisName":"R.Moss",
-    "fullName":"Randy Moss",
-    "firstName":"Randy",
-    "lastName":"Moss",
-    "team":"UNK",
-    "position":"UNK",
-    "profileId":2502220,
-    "profileUrl":"http://www.nfl.com/player/randymoss/2502220/profile",
-    "birthDate":"2/13/1977",
-    "college":"Marshall",
-    "yearsPro":14,
-    "height":76,
-    "weight":210,"status":
-    "Unknown",:
+ {  
+   "data":
+    {
+      "playerId":"00-0011754",
+      "gsisName":"R.Moss",
+      "fullName":"Randy Moss",
+      "firstName":"Randy",
+      "lastName":"Moss",
+      "team":"UNK",
+      "position":"UNK",
+      "profileId":2502220,
+      "profileUrl":"http://www.nfl.com/player/randymoss/2502220/profile",
+      "birthDate":"2/13/1977",
+      "college":"Marshall",
+      "yearsPro":14,
+      "height":76,
+      "weight":210,"status":
+      "Unknown",:
+     }
   }
 ]
 ```
@@ -99,23 +115,25 @@ A successful request will generate a lightning invoice that will look simiar to 
 ```json
 [
   {
-    "gsisId":"2017091006",
-    "gameKey":"57241",
-    "startTime":"2017-09-10T17:00:00.000Z",
-    "week":"NflWeek1",
-    "dayOfWeek":"Sunday",
-    "seasonYear":2017,
-    "seasonType":"Regular",
-    "finished":true,
-    "homeTeam":{
-      "team":"MIA",
-      "score":0,
-      "scoreQ1":0,
-      "scoreQ2":0,
-      "scoreQ3":0,
-      "scoreQ4":0,
-      "turnovers":0
-    },
+    "data":
+      {
+      "gsisId":"2017091006",
+      "gameKey":"57241",
+      "startTime":"2017-09-10T17:00:00.000Z",
+      "week":"NflWeek1",
+      "dayOfWeek":"Sunday",
+      "seasonYear":2017,
+      "seasonType":"Regular",
+      "finished":true,
+      "homeTeam":{
+        "team":"MIA",
+        "score":0,
+        "scoreQ1":0,
+        "scoreQ2":0,
+        "scoreQ3":0,
+        "scoreQ4":0,
+        "turnovers":0
+        },
     "awayTeam":{
       "team":"TB",
       "score":0,
@@ -127,7 +145,7 @@ A successful request will generate a lightning invoice that will look simiar to 
     },
     "timeInserted":"2017-08-04T18:29:15.669Z",
     "timeUpdate":"2018-06-08T19:34:44.063Z",
-  },
+   }
     ...
   ]
 ```
@@ -152,29 +170,36 @@ Field | Type | Example
 ------ | ------- | --------
 <span style="color:red"> <*year*> </span> | Integer |  <span style="color:red"> *2009, 2010, 2011,* etc. </span>
 <span style="color:red"> <*teamId*> </span> | String  |  <span style="color:red"> *CHI, MIN, GB, MIA* </span> etc. <a href="#TeamID">See Team ID Table</a>
-<span style="color:red"> *realtime" true* </span> | Boolean | <span style="color:red"> Current in progress game data </span>
+<span style="color:red"> <*realtime*> </span> | Boolean | <span style="color:red"> *true* </span>
 
+
+
+*Note about 
 
 ## Players
 > Example of Players data
 
 ```json 
-[ {
-    "playerId":"00-0011754",
-    "gsisName":"R.Moss",
-    "fullName":"Randy Moss",
-    "firstName":"Randy",
-    "lastName":"Moss",
-    "team":"UNK",
-    "position":"UNK",
-    "profileId":2502220,
-    "profileUrl":"http://www.nfl.com/player/randymoss/2502220/profile",
-    "birthDate":"2/13/1977",
-    "college":"Marshall",
-    "yearsPro":14,
-    "height":76,
-    "weight":210,"status":
-    "Unknown",:
+[ 
+  {
+    "data":
+      {
+        "playerId":"00-0011754",
+        "gsisName":"R.Moss",
+        "fullName":"Randy Moss",
+        "firstName":"Randy",
+        "lastName":"Moss",
+        "team":"UNK",
+        "position":"UNK",
+        "profileId":2502220,
+        "profileUrl":"http://www.nfl.com/player/randymoss/2502220/profile",
+        "birthDate":"2/13/1977",
+        "college":"Marshall",
+        "yearsPro":14,
+        "height":76,
+        "weight":210,"status":
+        "Unknown",:
+       }
   }
 ]
 ```
@@ -201,21 +226,24 @@ Field | Type | Example
 ```json
 [
   {
-    "playerId":"00-0027981",
-    "gsisName":"K.Rudolph",
-    "fullName":"Kyle Rudolph",
-    "firstName":"Kyle",
-    "lastName":"Rudolph",
-    "team":"MIN",
-    "position":"TE",
-    "profileId":2495438,
-    "profileUrl":"http://www.nfl.com/player/kylerudolph/2495438/profile",
-    "uniformNumber":82,
-    "birthDate":"11/9/1989",
-    "college":"Notre Dame",
-    "yearsPro":8,"height":78,
-    "weight":265,
-    "status":"Active",
+    "data":
+      {
+        "playerId":"00-0027981",
+        "gsisName":"K.Rudolph",
+        "fullName":"Kyle Rudolph",
+        "firstName":"Kyle",
+        "lastName":"Rudolph",
+        "team":"MIN",
+        "position":"TE",
+        "profileId":2495438,
+        "profileUrl":"http://www.nfl.com/player/kylerudolph/2495438/profile",
+        "uniformNumber":82,
+        "birthDate":"11/9/1989",
+        "college":"Notre Dame",
+        "yearsPro":8,"height":78,
+        "weight":265,
+        "status":"Active",
+       }
   }
   ...
 ]
@@ -227,15 +255,17 @@ Field | Type | Example
 ```json
 [
   {
-    "gsisId":"2017091001",
-    "gameKey":"57236",
-    "startTime":"20170910T170000.000Z",
-    "week":"NflWeek1",
-    "dayOfWeek":"Sunday",
-    "seasonYear":2017,
-    "seasonType":"Regular",
-    "finished":true,
-    "homeTeam":
+    "data":
+      {
+        "gsisId":"2017091001",
+        "gameKey":"57236",
+        "startTime":"20170910T170000.000Z",
+        "week":"NflWeek1",
+        "dayOfWeek":"Sunday",
+        "seasonYear":2017,
+        "seasonType":"Regular",
+        "finished":true,
+        "homeTeam":
       {
         "team":"CHI",
         "score":17,
@@ -257,6 +287,7 @@ Field | Type | Example
       },
     "timeInserted":"20170804T182915.669Z",
     "timeUpdate":"20180608T192330.452Z",
+      }
     }
   ...
 ]
@@ -311,19 +342,22 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
 
 [
   {
-    "att":37,
-    "cmp":27,
-    "cmpAirYds":167,
-    "inCmp":10,
-    "inCmpAirYds": 75,
-    "passingInt":0,
-    "sack":1,
-    "sackYds":-7,
-    "passingTds":1,
-    "passingTwoPointAttempt":0,
-    "passingTwoPointAttemptMade":0,
-    "passingTwoPointAttemptMissed":0,
-    "passingYds":291,
+    "data":
+      {
+        "att":37,
+        "cmp":27,
+        "cmpAirYds":167,
+        "inCmp":10,
+        "inCmpAirYds": 75,
+        "passingInt":0,
+        "sack":1,
+        "sackYds":-7,
+        "passingTds":1,
+        "passingTwoPointAttempt":0,
+        "passingTwoPointAttemptMade":0,
+        "passingTwoPointAttemptMissed":0,
+        "passingYds":291,
+       }
   }
  ]
 ```
