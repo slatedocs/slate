@@ -9,6 +9,39 @@ Scout's Python agent auto-instruments Django and Flask applications, SQL queries
 * Flask 0.10+
 * Celery 3.1+
 
+<h2 id="python-instrumented-libraries">Instrumented Libraries</h2>
+
+Scout provides instrument for most of the popular Python libraries. Instrumentation may require some configuration (`Django`) or is automatically applied (`Requests`) by our agent.
+
+### Some configuration required
+
+The libraries below require a small number of configuration updates. Click on the respective library for instructions.
+
+* [Django](#django)
+    * Middleware
+    * Templates (compiling & rendering)
+    * Template blocks
+    * SQL queries
+* [Flask](#flask)
+* [Flask SQLAlchemy](#flask-sqlalchemy)
+* [Celery](#celery)
+* [Pyramid](#pyramid)
+* [Bottle](#bottle)
+* [SQLAlchemy](#sqlalchemy)
+
+### Automatically applied
+
+The libraries below are automatically detected by the agent during the startup process and do not require explicit configuration to add instrumentation.
+
+* PyMongo
+* Requests
+* UrlLib3
+* Redis
+* ElasticSearch
+* Jinja2
+
+You can instrument your own code or other libraries via [custom instrumentation](#python-custom-instrumentation). You can suggest additonal libraries you'd like Scout to instrument [on GitHub](https://github.com/scoutapp/scout_apm_python/issues).  
+
 ## Django
 
 General instructions for a Django app:
@@ -83,21 +116,13 @@ pip install scout-apm
       <td style="padding-top: 15px">
         <p>Configure Scout inside your Flask app:</p>
 
-<p>These instructions assume the app uses <code>SQLAlchemy</code>. If that isn't the case, remove the referencing lines.</p>
-
 <pre style="width:initial">
 from scout_apm.flask import ScoutApm
-from scout_apm.flask.sqlalchemy import instrument_sqlalchemy
 
 # Setup a flask 'app' as normal
 
-## Attaches ScoutApm to the Flask App
+# Attaches ScoutApm to the Flask App
 ScoutApm(app)
-
-## OPTIONAL - if using SQLAlchemy, instrument SQL queries via the SQLAlchemy handle
-from flask_sqlalchemy import SQLAlchemy
-db = SQLAlchemy(app)
-instrument_sqlalchemy(db)
 
 # Scout settings
 app.config['SCOUT_MONITOR'] = True
@@ -118,6 +143,19 @@ If you've installed Scout via the Heroku Addon, the provisioning process automat
     </tr>
   </tbody>
 </table>
+
+If your app uses `flask-sqlalchemy`, [see our instructions below](#flask-sqlalchemy) for additional instrumentation instructions.
+
+## Flask SQLAlchemy
+
+Instrument [`flask-sqlalchemy`](http://flask-sqlalchemy.pocoo.org/) queries:
+
+```py
+from scout_apm.flask.sqlalchemy import instrument_sqlalchemy
+
+# Assuming something like engine = create_engine('sqlite:///:memory:', echo=True)
+instrument_sqlalchemy(engine)
+```
 
 ## Celery
 
@@ -277,6 +315,17 @@ If you've installed Scout via the Heroku Addon, the provisioning process automat
 
 It takes approximatively five minutes for your data to first appear within the Scout UI.
 
+## SQLAlchemy
+
+Instrument SQLAlchemy queries:
+
+```py
+from scout_apm.sqlalchemy import instrument_sqlalchemy
+
+# Assuming something like engine = create_engine('sqlite:///:memory:', echo=True)
+instrument_sqlalchemy(engine)
+```
+
 <h2 id="python-troubleshooting">Troubleshooting</h2>
 
 Not seeing data? Email support@scoutapp.com with:
@@ -286,32 +335,6 @@ Not seeing data? Email support@scoutapp.com with:
 * The name of the framework and version you are trying to instrument (ie - Flask 0.10).
 
 We typically respond within a couple of hours during the business day.
-
-<h2 id="python-instrumented-libraries">Instrumented Libraries</h2>
-
-Scout auto-instruments the following Python libraries:
-
-* Frameworks
-  * [Django](#django)
-      * Middleware
-      * Templates (compiling & rendering)
-      * Template blocks
-      * SQL queries
-  * [Flask](#flask)
-  * [Celery](#celery)
-  * [Pyramid](#pyramid)
-  * [Bottle](#bottle)
-* Libraries
-  * PyMongo
-  * Requests
-  * UrlLib3
-  * Redis
-  * ElasticSearch
-  * Jinja2
-
-You can instrument your own code or other libraries via [custom instrumentation](#python-custom-instrumentation).
-
-More to come - suggest others in the [scout_apm_python](https://github.com/scoutapp/scout_apm_python) GitHub repo.  
 
 <h2 id="python-configuration">Configuration Reference</h2>
 
@@ -755,14 +778,10 @@ The package changelog is [available here](https://github.com/scoutapp/scout_apm_
 
 <h2 id="python-deploy-tracking-config">Deploy Tracking Config</h2>
 
-Scout can [track deploys](#deploy-tracking), making it easier to correlate changes in your app to performance.
+Scout can [track deploys](#deploy-tracking), making it easier to correlate specific deploys to changes in performance.
 
 Scout identifies deploys via the following:
 
-1. Setting the `revision_sha` configuration value:
-
-```python
-ScoutConfig.set(revision_sha = 'SHA')
-```
+1. Setting the `revision_sha` configuration value: `ScoutConfig.set(revision_sha = 'SHA')`.
 2. Setting a `SCOUT_REVISION_SHA` environment variable equal to the SHA of your latest release.
 3. If you are using Heroku, enable [Dyno Metadata](https://devcenter.heroku.com/articles/dyno-metadata). This adds a `HEROKU_SLUG_COMMIT` environment variable to your dynos, which Scout then associates with deploys.
