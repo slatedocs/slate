@@ -47,7 +47,17 @@ Here is the websocket channel for Suredbits: <a href="wss://test.api.suredbits.c
 > Example Data Returned with valid UUID
 
 ```json
-{"uuid":"123e4567-e89b-12d3-a456-426655440000","data":{"version":"8","lastRosterDownload":"20180720T141610.664Z","seasonType":"Regular","seasonYear":2017,"week":"NflWeek17"}}
+{
+  "uuid":"123e4567-e89b-12d3-a456-426655440000",
+  "data":
+    {
+      "version":"8",
+      "lastRosterDownload":"20180720T141610.664Z",
+      "seasonType":"Regular",
+      "seasonYear":2017,
+      "week":"NflWeek17" 
+    }
+ }
 ```
 
 If you want to track specific requests, you can enter an optional field called <span style="color:red"> *`uuid`* </span> to any request.  
