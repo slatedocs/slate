@@ -221,7 +221,6 @@ Optional | &nbsp;
 `format`<br>*string* | The template format for the chosen hypervisor
 `osTypeId`<br/>*UUID* | Id of the OS type
 `passwordEnabled`<br/>*boolean* | **false** if want to set the reset password feature
-`size`<br/>*long* | The size of the template in bytes
 `sshEnabled`<br/>*boolean* | **false** if you want to enable sshKey for the template
 `defaultUsername`<br/>*string* | The default username of the template
 `dynamicallyScalable`<br/>*boolean* | **true** if you can dynamically scale an [instance](#cloudstack-instances) with this template
