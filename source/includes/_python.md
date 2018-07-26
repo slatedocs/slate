@@ -429,7 +429,7 @@ This will override the `SCOUT_NAME` value provided in your `settings.py` file.
 
 <h2 id="python-logging">Logging</h2>
 
-Log the agent activity using the framework-specific instructions below.
+Scout logs via the built-in Python logger, which means you can add a handler to the `scout_apm` package. If you don't setup logging, use the examples below as a starting point.
 
 ### Log Levels
 
