@@ -303,6 +303,9 @@ For Rosters:
 For Schedules:
 {"channel": "team", "teamId": "CHI", "retrieve": "schedule"}
 
+For Year:
+{"channel": "team", "teamId": "CHI", "retrieve": "schedule", year: 2018}
+
 There are two required Fields to request NFL Team & Roster data:
 
 **Required fields**: 
@@ -311,6 +314,14 @@ Field | Type | Example
 ------ | ----- | ------
 <span style="color:red"> <*teamID*> </span> | String |  <span style="color:red"> *CHI* </span>, <span style="color:red"> *MIN* </span> etc.
 <span style="color:red"> <*retrieve*> </span> | String |  <span style="color:red"> *roster* </span> or <span style="color:red"> *schedule* </span>
+
+**Optional Field**
+
+Field | Type | Example
+------| ----- | ------
+<span style="color:red"> <*year*> </span> | Integer | <span style="color:red"> *2018* </span> , <span style="color:red"> *2015* </span> , <span style="color:red"> *2011* </span> , etc. 
+
+<aside class="notice">NOTE: the <span style="color:red"> year </span> field defaults to current year. </aside>
 
 <h3 id="TeamID"> Team ID Table</h3>
 
