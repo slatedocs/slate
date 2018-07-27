@@ -60,7 +60,7 @@ transaction.
 
 ### Creating accounts in the test network
 
-> For now we recommend running the code below on repl.it [https://repl.it/@abuiles/CreateStellarAccount](https://repl.it/@abuiles/CreateStellarAccount)
+> For now, run the code below on repl.it [https://repl.it/@abuiles/CreateStellarAccount](https://repl.it/@abuiles/CreateStellarAccount)
 
 ```javascript
 const StellarSdk = require('stellar-sdk')
@@ -215,7 +215,7 @@ a username (no password) as sign-up method.
 
 ### Go through KYC
 
-In Venmo there is some level of KYC, since this is a toy example we
+In Venmo there is some level of KYC, since this is a toy example you
 won't be including any formal KYC process. By default every user will
 be marked as verified. In real life, you probably want to collect user
 data like SSN, driver's license, passport, proof of residence, etc.
@@ -1241,7 +1241,7 @@ You can see your balance noew but if you send or receive USD, the balance won't 
 
 In this chapter you will learn how to use the streaming mode to update the account balance.
 
-In the following GIF you can see how we need to refresh the app to see the balance updated.
+In the following GIF you can see how you need to refresh the app to see the balance updated.
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/0L3N0S2D223l3K1S3a2r/Screen%20Recording%202018-07-19%20at%2009.44%20AM.gif?X-CloudApp-Visitor-Id=49274&v=e537cac7)
 
@@ -1431,7 +1431,7 @@ export default class Payments extends React.Component<Props, State> {
     Network.useTestNetwork()
     const server = new Server('https://horizon-testnet.stellar.org')
 
-    // Notice how we are using PaymentOperationRecord from @types/stellar-sdk
+    // Notice how you can use PaymentOperationRecord from @types/stellar-sdk
     let handleMessage = (payment: PaymentOperationRecord) => {
       const { asset } = this.props
       const { payments } = this.state
@@ -1914,7 +1914,7 @@ compromised the attackers can create as many USD as they want.
 To manage this, you can follow the recommendation
 [here](https://www.stellar.org/developers/guides/anchor/index.html#account-structure)
 which is to maintain two accounts, one for issuing and destroying
-assets and then a base account which we will hold a huge amount of
+assets and then a base account which will hold a huge amount of
 your asset so it can credit people who transfer USD from their bank
 account to their AnchorX account. That way you can keep the secret key
 for the issuing account offline.
