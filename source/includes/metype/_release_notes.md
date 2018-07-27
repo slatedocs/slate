@@ -2,7 +2,7 @@
 
 ## 27 July 2018 Release Notes - Metype
 
-1. The Live Feed is not enhanced to allow users to login and view their notificaions.
+1. The Live Feed is now enhanced to allow users to login and view their notificaions.
 
 ![Feed Notifications Logged In](../../images/Notifications_on_Feed_In.png "Feed Notifications Logged in") ![Feed Notifications Logged Out](../../images/Notifications_on_Feed_Out.png "Feed Notifications Logged out")
 
