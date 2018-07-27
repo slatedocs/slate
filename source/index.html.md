@@ -196,7 +196,7 @@ authorized they will be able to deposit USD or debit USD from their accounts.
 
 You can learn more about anchors in the SDF guides: [https://www.stellar.org/developers/guides/anchor/](https://www.stellar.org/developers/guides/anchor/)
 
-# Anchor Setup
+# Mapping Venmo to Stellar
 
 The following is high level overview of what happens when you want to use Venmo:
 
