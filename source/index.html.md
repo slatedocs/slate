@@ -201,66 +201,24 @@ You can learn more about anchors in the SDF guides: [https://www.stellar.org/dev
 The following is high level overview of what happens when you want to use Venmo:
 
 1. Download the app and create an user.
-2. Go through KYC with phone number, email and bank account verification.
+2. Go through phone number, email and bank account verification.
 3. Once you are authorized to use Venmo, transfer money from your bank account and send it to other Venmo users.
 4. Transfer to your bank whatever balance you have left.
 
 Let's translate the steps above to actions in AnchorX and then identify the requirements to setup the anchor.
 
-### Download the app and create an user.
+### Download the app and create an user
 
 Users should be able to download an app and then create an account. To
-keep things simple, I'll be using React-Native with Expo and then use
-a username (no password) as sign-up method.
+keep things the application will use username (no password) for
+sign-up/sign-in.
 
-### Go through KYC
+### Account verification
 
-In Venmo there is some level of KYC, since this is a toy example you
-won't be including any formal KYC process. By default every user will
-be marked as verified. In real life, you probably want to collect user
-data like SSN, driver's license, passport, proof of residence, etc.
-
-After an user creates an account with AnchorX, the service will
-automatically provision a Stellar account and authorize the account to
-hold the anchor's asset.
-
-When a Stellar accounts decides to trust a given asset, they are
-creating a trustline between the account and the asset. Such operation
-has to be stored in the ledger. The code in the right shows a transaction creating a trustline between an `account` and an `asset`.
-
-```javascript
-const asset = new StellarSdk.Asset(
-  'USD',
-  'issuer-id'
-);
-
-new StellarSdk
-  .TransactionBuilder(myAccount)
-  .addOperation(
-    StellarSdk.Operation.changeTrust({
-      asset
-    }))
-  .build();
-```
-
-Likewise, when the asset issuer requires authorization by them before people can hold their asset. It needs to happen in an operation.
-The code shows an operation where the issuing account is authorizing a `trustor` to hold its asset with code `USD`.
-
-```javascript
-const trustor = 'some-stellar-address'
-
-new StellarSdk.TransactionBuilder(issuingAccount)
-  .addOperation(
-    StellarSdk.Operation.allowTrust({
-      trustor,
-      assetCode: 'USD',
-      authorize: true
-    })
-  )
-  .build();
-```
-
-For this example, `AnchorX` will be running both operations to allow accounts to transact with its asset.
+In Venmo there is a verification process, since this is a toy example
+you won't be including that. By default every user will be marked as
+verified. In real application, you probably want to collect user data
+like SSN, driver's license, passport, proof of residence, etc.
 
 ### Credit from bank account
 
@@ -268,7 +226,7 @@ The app will have a section which will simulate transferring from your bank acco
 
 ### P2P payments
 
-Once the account has been provisioned and have some Dollars, users should be able to send money to other users in AnchorX
+Once the account has been provisioned and have some Dollars, users should be able to send money to other users.
 
 ### Transfer balance from AnchorX to Bank account
 
