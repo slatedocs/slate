@@ -185,9 +185,6 @@ Field | Type | Example
 <span style="color:red"> <*realtime*> </span> | Boolean | <span style="color:red"> *true* </span>
 
 
-
-*Note about 
-
 ## Players
 > Example of Players data
 
@@ -210,8 +207,8 @@ Field | Type | Example
         "college":"Marshall",
         "yearsPro":14,
         "height":76,
-        "weight":210,"status":
-        "Unknown",:
+        "weight":210,
+        "status": "Unknown",:
        }
     ]
   }
