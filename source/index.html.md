@@ -41,7 +41,7 @@ The url is:
 Here is our custom drop-in solution in nodejs client for our API: <a href="https://github.com/suredbits/lightning-charge">https://github.com/suredbits/lightning-charge</a>
 
 ## Suredbits Websocket Endpoint
-Here is the websocket channel for Suredbits: <a href="wss://test.api.suredbits.com/nfl/v0">wss://test.api.suredbits.com/nfl/v0</a>
+Here is the websocket uri for Suredbits: <a href="wss://test.api.suredbits.com/nfl/v0">wss://test.api.suredbits.com/nfl/v0</a>
 
 ## UUID
 > Example Data Returned with valid UUID
@@ -62,7 +62,7 @@ Here is the websocket channel for Suredbits: <a href="wss://test.api.suredbits.c
 
 If you want to track specific requests, you can enter an optional field called <span style="color:red"> *`uuid`* </span> to any request.  
 
-A valid <span style="color:red"> *`uuid`* </span> request will show up on the invoice, response, and any error message that is returned.  If no <span style="color:red"> *`uuid`* </span> is specified in a websocket request then this field will be omitted from that request's responses.
+A valid <span style="color:red"> *`uuid`* </span> request will show up on the invoice, response, and any error message that are returned.  If no <span style="color:red"> *`uuid`* </span> is specified in a websocket request then this field will be omitted from that request's responses.
 
 ## Format 
 
@@ -99,7 +99,7 @@ Suredbits APIs are available via websockets with the following format:
 
 {"channel":"players", "lastName" : "Moss", "firstName" : "Randy"}
 
-<aside class="note">NOTE: All API requests must include the field type "channel".  However, "channel" does not have to be the first field in the request. </aside>
+<aside class="note">NOTE: All API requests must include the  "channel" field.  However, "channel" does not have to be the first field in the request. </aside>
 
 
 1. Send a request over the websocket (see <a href="#NFLData">NFL Data</a>). 
@@ -316,7 +316,7 @@ For Rosters:
 For Schedules:
 {"channel": "team", "teamId": "CHI", "retrieve": "schedule"}
 
-For Year:
+For Rosters in Year:
 {"channel": "team", "teamId": "CHI", "retrieve": "schedule", year: 2018}
 
 There are two required Fields to request NFL Team & Roster data:
