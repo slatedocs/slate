@@ -60,6 +60,26 @@ Workgroup identifier for this availability or null if no workgroup
 
 true for all days of the week (within the date range, if specified) to which this availability applies.
 
+### availability.approve
+
+<span class="tryit" id="availability-get-tryit"></span>
+Approves request to change an availability record.
+
+Parameters:
+
+####id
+
+Required. id of the availability record for which to be approved/denied change.
+
+####approve
+
+Required. Boolean, indicates that, availability record is approved or denied. True is approved, false is denied.
+
+####message
+Optional. A text message that is included in notification message.
+
+Response: On success, empty results will be returned.
+
 ### availability.create
 
 <span class="tryit" id="availability-create-tryit"></span>
