@@ -71,7 +71,7 @@ Parameters:
 
 Required. id of the availability record for which to be approved/denied change.
 
-####approval
+####approve
 
 Required. Boolean, indicates that, availability record is approved or denied. True is approved, false is denied.
 
