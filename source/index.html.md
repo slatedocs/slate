@@ -69,9 +69,9 @@ A valid <span style="color:red"> *`uuid`* </span> request will show up on the in
 > Example Data Returned
 
 ```json 
-[
- {  
-   "data":
+{  
+  "data":
+  [
     {
       "playerId":"00-0011754",
       "gsisName":"R.Moss",
@@ -88,9 +88,9 @@ A valid <span style="color:red"> *`uuid`* </span> request will show up on the in
       "height":76,
       "weight":210,"status":
       "Unknown",:
-     }
-  }
-]
+    }
+  ]
+}
 ```
 
 Suredbits APIs are available via websockets with the following format:
@@ -123,9 +123,10 @@ A successful request will generate a lightning invoice that will look simiar to 
 > Example of Games data
 
 ```json
-[
-  {
-    "data":
+
+ {
+   "data":
+    [
       {
       "gsisId":"2017091006",
       "gameKey":"57241",
@@ -144,20 +145,21 @@ A successful request will generate a lightning invoice that will look simiar to 
         "scoreQ4":0,
         "turnovers":0
         },
-    "awayTeam":{
-      "team":"TB",
-      "score":0,
-      "scoreQ1":0,
-      "scoreQ2":0,
-      "scoreQ3":0,
-      "scoreQ4":0,
-      "turnovers":0
-    },
-    "timeInserted":"2017-08-04T18:29:15.669Z",
-    "timeUpdate":"2018-06-08T19:34:44.063Z",
-   }
-    ...
-  ]
+      "awayTeam":{
+        "team":"TB",
+        "score":0,
+        "scoreQ1":0,
+        "scoreQ2":0,
+        "scoreQ3":0,
+        "scoreQ4":0,
+        "turnovers":0
+      },
+      "timeInserted":"2017-08-04T18:29:15.669Z",
+      "timeUpdate":"2018-06-08T19:34:44.063Z",
+     },
+     ...
+    ]
+ }
 ```
 
 **Example Requests**
@@ -190,9 +192,10 @@ Field | Type | Example
 > Example of Players data
 
 ```json 
-[ 
-  {
-    "data":
+
+{
+  "data":
+    [
       {
         "playerId":"00-0011754",
         "gsisName":"R.Moss",
@@ -210,8 +213,8 @@ Field | Type | Example
         "weight":210,"status":
         "Unknown",:
        }
+    ]
   }
-]
 ```
 
 This request implements a websocket channel called <span style="color:red"> *players* </span>. It returns a NFL player given a websocket request.
@@ -234,9 +237,10 @@ Field | Type | Example
 >Example of Roster data
 
 ```json
-[
-  {
-    "data":
+
+{
+  "data":
+    [
       {
         "playerId":"00-0027981",
         "gsisName":"K.Rudolph",
@@ -253,19 +257,21 @@ Field | Type | Example
         "yearsPro":8,"height":78,
         "weight":265,
         "status":"Active",
-       }
+       },
+       ...
+    ]
   }
-  ...
-]
+  
   
 ```
 
 >Example of Schedule data
 
 ```json
-[
-  {
-    "data":
+
+ {
+   "data":
+    [
       {
         "gsisId":"2017091001",
         "gameKey":"57236",
@@ -297,10 +303,10 @@ Field | Type | Example
       },
     "timeInserted":"20170804T182915.669Z",
     "timeUpdate":"20180608T192330.452Z",
-      }
-    }
-  ...
-]
+    },
+    ...
+   ]
+ }
 ```
 
 This request implements a websocket channel called <span style="color:red"> *team* </span>. It returns the Roster or Schedule for a given NFL Team given a websocket request.
@@ -361,9 +367,10 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
 
 ```json
 
-[
-  {
-    "data":
+
+{
+  "data":
+    [
       {
         "att":37,
         "cmp":27,
@@ -378,9 +385,11 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
         "passingTwoPointAttemptMade":0,
         "passingTwoPointAttemptMissed":0,
         "passingYds":291,
-       }
+       },
+       ...
+    ]
   }
- ]
+
 ```
 
 This request implements a websocket channel called <span style="color:red"> *stats* </span>.  It returns the data for an individual <span style="color:red"> *player* </span> or <span style="color:red"> *game* </span>.
