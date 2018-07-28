@@ -427,6 +427,16 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "state": "SP",
       "postal_code": "18147-000"
     },
+    "enem": {
+      "year": 2018,
+      "scores": {
+        "essay": 200.0,
+        "math": 200.1,
+        "language": 200.2,
+        "nature": 200.4,
+        "social": 200.5
+      }
+    },
     "admissions": [
       {
         "id": 12345,
@@ -481,6 +491,14 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 | [address_information] city | string | Cidade onde aluno reside |
 | [address_information] state | string | Estado onde aluno reside |
 | [address_information] postal_code | string | Código postal onde aluno reside |
+| enem | object | Objeto com dados do ENEM |
+| [enem] year | id | number | Ano em que foi realizada a prova do ENEM |
+| [enem] scores | object | Objetos com dados de notas do ENEM |
+| [enem] [scores] essay | float | Nota de Redação do ENEM |
+| [enem] [scores] math | float | Nota de Matemática do ENEM |
+| [enem] [scores] language | float | Nota de Linguagens do ENEM |
+| [enem] [scores] nature | float | Nota de Ciências da Natureza do ENEM |
+| [enem] [scores] social | float | Nota de Ciências Humanas do ENEM |
 | admissions | array | Lista de objetos com informações de processo de matrícula |
 | [admissions] id | number | Id do processo de matrícula |
 | [admissions] course | object | Objeto com dados do curso referente a essa matrícula |
@@ -536,6 +554,16 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
     "state": "SP",
     "postal_code": "18147-000"
   },
+  "enem": {
+    "year": 2018,
+    "scores": {
+      "essay": 200.0,
+      "math": 200.1,
+      "language": 200.2,
+      "nature": 200.4,
+      "social": 200.5
+    }
+  },
   "admissions": [
     {
       "id": 12345,
@@ -586,6 +614,14 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 | [address_information] city | string | Cidade onde aluno reside |
 | [address_information] state | string | Estado onde aluno reside |
 | [address_information] postal_code | string | Código postal onde aluno reside |
+| enem | object | Objeto com dados do ENEM |
+| [enem] year | id | number | Ano em que foi realizada a prova do ENEM |
+| [enem] scores | object | Objetos com dados de notas do ENEM |
+| [enem] [scores] essay | float | Nota de Redação do ENEM |
+| [enem] [scores] math | float | Nota de Matemática do ENEM |
+| [enem] [scores] language | float | Nota de Linguagens do ENEM |
+| [enem] [scores] nature | float | Nota de Ciências da Natureza do ENEM |
+| [enem] [scores] social | float | Nota de Ciências Humanas do ENEM |
 | admissions | array | Lista de objetos com informações de processo de matrícula |
 | [admissions] id | number | Id do processo de matrícula |
 | [admissions] course | object | Objeto com dados do curso referente a essa matrícula |
@@ -647,6 +683,16 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
         "phones": [
           "(11) 98888-7777"
         ],
+        "enem": {
+          "year": 2018,
+          "scores": {
+            "essay": 200.0,
+            "math": 200.1,
+            "language": 200.2,
+            "nature": 200.4,
+            "social": 200.5
+          }
+        },
         "address_information": {
           "address": "Rua Sandra",
           "number": "432S",
@@ -715,19 +761,7 @@ Admissões são retornadas em páginas de até 25 elementos, ordenadas pela últ
 | [course] offer | object | Objeto com dados da oferta do curso |
 | [offer] discount | float | Desconto do curso que o aluno adquiriu |
 | status | string | Status da admissão do aluno |
-| [student] id | number | Id do aluno |
-| [student] name | string | Nome do aluno |
-| [student] cpf | string | CPF do aluno |
-| [student] birth_date | string | Data de nascimento do aluno no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| [student] emails | array de string | Lista de emails do aluno |
-| [student] phones | array de string | Lista de telefones do aluno |
-| [student] address_information | object | Objeto com dados onde aluno reside |
-| [address_information] address | string | Endereço onde aluno reside |
-| [address_information] number | string | Número onde aluno reside |
-| [address_information] neighborhood | string | Bairro onde aluno reside |
-| [address_information] city | string | Cidade onde aluno reside |
-| [address_information] state | string | Estado onde aluno reside |
-| [address_information] postal_code | string | Código postal onde aluno reside |
+| student | object | Objeto com dados do aluno |
 | application | array | Lista de objetos de inscrições de exame (pode estar vazio) |
 | [application] id | number | Id da inscrição para exame |
 | [application] type | string | Tipo de exame vestibular (exam ou enem) |
@@ -805,6 +839,16 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
     "phones": [
       "(11) 98888-7777"
     ],
+    "enem": {
+      "year": 2018,
+      "scores": {
+        "essay": 200.0,
+        "math": 200.1,
+        "language": 200.2,
+        "nature": 200.4,
+        "social": 200.5
+      }
+    },
     "address_information": {
       "address": "Rua Sandra",
       "number": "432S",
@@ -874,19 +918,7 @@ Retorna uma admissão específica da faculdade.
 | [course] offer | object | Objeto com dados da oferta do curso |
 | [offer] discount | float | Desconto do curso que o aluno adquiriu |
 | status | string | Status da admissão do aluno |
-| [student] id | number | Id do aluno |
-| [student] name | string | Nome do aluno |
-| [student] cpf | string | CPF do aluno |
-| [student] birth_date | string | Data de nascimento do aluno no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| [student] emails | array de string | Lista de emails do aluno |
-| [student] phones | array de string | Lista de telefones do aluno |
-| [student] address_information | object | Objeto com dados onde aluno reside |
-| [address_information] address | string | Endereço onde aluno reside |
-| [address_information] number | string | Número onde aluno reside |
-| [address_information] neighborhood | string | Bairro onde aluno reside |
-| [address_information] city | string | Cidade onde aluno reside |
-| [address_information] state | string | Estado onde aluno reside |
-| [address_information] postal_code | string | Código postal onde aluno reside |
+| student | object | Objeto com dados do aluno |
 | application | array | Lista de objetos de inscrição para exame (pode estar vazio) |
 | [application] id | number | Id da inscrição para exame |
 | [application] type | string | Tipo de exame vestibular (exam ou enem) |
@@ -966,6 +998,16 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
     "phones": [
       "(11) 98888-7777"
     ],
+    "enem": {
+      "year": 2018,
+      "scores": {
+        "essay": 200.0,
+        "math": 200.1,
+        "language": 200.2,
+        "nature": 200.4,
+        "social": 200.5
+      }
+    },
     "address_information": {
       "address": "Rua Sandra",
       "number": "432S",
@@ -1059,19 +1101,7 @@ Realiza atualização de um processo de admissão específico de um aluno. Para 
 | [course] offer | object | Objeto com dados da oferta do curso |
 | [offer] discount | float | Desconto do curso que o aluno adquiriu |
 | status | string | Status da admissão do aluno |
-| [student] id | number | Id do aluno |
-| [student] name | string | Nome do aluno |
-| [student] cpf | string | CPF do aluno |
-| [student] birth_date | string | Data de nascimento do aluno no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| [student] emails | array de string | Lista de emails do aluno |
-| [student] phones | array de string | Lista de telefones do aluno |
-| [student] address_information | object | Objeto com dados onde aluno reside |
-| [address_information] address | string | Endereço onde aluno reside |
-| [address_information] number | string | Número onde aluno reside |
-| [address_information] neighborhood | string | Bairro onde aluno reside |
-| [address_information] city | string | Cidade onde aluno reside |
-| [address_information] state | string | Estado onde aluno reside |
-| [address_information] postal_code | string | Código postal onde aluno reside |
+| student | object | Objeto com dados do aluno |
 | application | array | Lista de objetos de inscrição para exame (pode estar vazio) |
 | [application] id | number | Id da inscrição para exame |
 | [application] type | string | Tipo de exame vestibular (exam ou enem) |
@@ -1158,6 +1188,16 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
           "phones": [
             "(11) 98888-7777"
           ],
+          "enem": {
+            "year": 2018,
+            "scores": {
+              "essay": 200.0,
+              "math": 200.1,
+              "language": 200.2,
+              "nature": 200.4,
+              "social": 200.5
+            }
+          },
           "address_information": {
             "address": "Rua Sandra",
             "number": "432S",
@@ -1225,19 +1265,6 @@ Inscrições são retornadas em páginas de até 25 elementos, ordenadas pela ú
 | [offer] discount | float | Desconto do curso que o aluno adquiriu |
 | [admission] status | string | Status da admissão do aluno |
 | [admission] student | object | Objeto com dados do aluno |
-| [student] id | number | Id do aluno |
-| [student] name | string | Nome do aluno |
-| [student] cpf | string | CPF do aluno |
-| [student] birth_date | string | Data de nascimento do aluno no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| [student] emails | array de string | Lista de emails do aluno |
-| [student] phones | array de string | Lista de telefones do aluno |
-| [student] address_information | object | Objeto com dados onde aluno reside |
-| [address_information] address | string | Endereço onde aluno reside |
-| [address_information] number | string | Número onde aluno reside |
-| [address_information] neighborhood | string | Bairro onde aluno reside |
-| [address_information] city | string | Cidade onde aluno reside |
-| [address_information] state | string | Estado onde aluno reside |
-| [address_information] postal_code | string | Código postal onde aluno reside |
 | [admission] created_at | string | Data de criação da admissão no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 | exam | object | Objeto com informações do exame vestibular |
 | [exam] id | number | Id do exame vestibular |
@@ -1313,6 +1340,16 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "phones": [
         "(11) 98888-7777"
       ],
+      "enem": {
+        "year": 2018,
+        "scores": {
+          "essay": 200.0,
+          "math": 200.1,
+          "language": 200.2,
+          "nature": 200.4,
+          "social": 200.5
+        }
+      },
       "address_information": {
         "address": "Rua Sandra",
         "number": "432S",
@@ -1381,19 +1418,6 @@ Retorna uma inscrição específica na inscrição do exame da faculdade.
 | [offer] discount | float | Desconto do curso que o aluno adquiriu |
 | [admission] status | string | Status da admissão do aluno |
 | [admission] student | object | Objeto com dados do aluno |
-| [student] id | number | Id do aluno |
-| [student] name | string | Nome do aluno |
-| [student] cpf | string | CPF do aluno |
-| [student] birth_date | string | Data de nascimento do aluno no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| [student] emails | array de string | Lista de emails do aluno |
-| [student] phones | array de string | Lista de telefones do aluno |
-| [student] address_information | object | Objeto com dados onde aluno reside |
-| [address_information] address | string | Endereço onde aluno reside |
-| [address_information] number | string | Número onde aluno reside |
-| [address_information] neighborhood | string | Bairro onde aluno reside |
-| [address_information] city | string | Cidade onde aluno reside |
-| [address_information] state | string | Estado onde aluno reside |
-| [address_information] postal_code | string | Código postal onde aluno reside |
 | [admission] created_at | string | Data de criação da admissão no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 | exam | object | Objeto com informações do exame vestibular |
 | [exam] id | number | Id do exame vestibular |
@@ -1472,6 +1496,16 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
       "phones": [
         "(11) 98888-7777"
       ],
+      "enem": {
+        "year": 2018,
+        "scores": {
+          "essay": 200.0,
+          "math": 200.1,
+          "language": 200.2,
+          "nature": 200.4,
+          "social": 200.5
+        }
+      },
       "address_information": {
         "address": "Rua Sandra",
         "number": "432S",
@@ -1557,19 +1591,6 @@ Atualiza a situação de agendamento ou resultado de uma inscrição para exame.
 | [offer] discount | float | Desconto do curso que o aluno adquiriu |
 | [admission] status | string | Status da admissão do aluno |
 | [admission] student | object | Objeto com dados do aluno |
-| [student] id | number | Id do aluno |
-| [student] name | string | Nome do aluno |
-| [student] cpf | string | CPF do aluno |
-| [student] birth_date | string | Data de nascimento do aluno no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| [student] emails | array de string | Lista de emails do aluno |
-| [student] phones | array de string | Lista de telefones do aluno |
-| [student] address_information | object | Objeto com dados onde aluno reside |
-| [address_information] address | string | Endereço onde aluno reside |
-| [address_information] number | string | Número onde aluno reside |
-| [address_information] neighborhood | string | Bairro onde aluno reside |
-| [address_information] city | string | Cidade onde aluno reside |
-| [address_information] state | string | Estado onde aluno reside |
-| [address_information] postal_code | string | Código postal onde aluno reside |
 | [admission] created_at | string | Data de criação da admissão no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 | exam | object | Objeto com informações do exame vestibular |
 | [exam] id | number | Id do exame vestibular |
@@ -1611,1095 +1632,6 @@ Atualiza a situação de agendamento ou resultado de uma inscrição para exame.
 | failed | Reprovado no exame vestibular |
 | approved | Aprovado no exame vestibular |
 
-# Exames em lote
-
-## Listar todos os exames em lote
-
-> Requisição
-
-```bash
-curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/exam_groups
-```
-
-> Resposta
-
-```json
-{
-  "has_more": false,
-  "items": [
-    {
-      "id": 1234,
-      "course_skus": [
-        "ADM-MANHA-SP",
-        "DIR-MANHA-SP",
-        "ADM-NOITE-RJ"
-      ],
-      "exam_locations": [
-        {
-          "address": "Rua Márcia",
-          "number": "4231",
-          "neighborhood": "Morro do Barreto",
-          "city": "São Roque",
-          "state": "SP",
-          "postal_code": "19110-000"
-        }
-      ],
-      "dates": [
-        "2016-11-01", "2016-11-01",
-        "2016-11-01", "2016-11-01"
-      ],
-      "times": [ "18:30", "19:30"],
-      "status": "active",
-      "kind": "scheduled",
-      "created_at": "2016-10-01T03:15:44Z"
-    }
-  ]
-}
-```
-
-Retorna todos os exames em lote.
-
-Exames em lote são retornados em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar dados antecessores à lista atual. Para mais informações, consulte a seção de [paginação](#paginacao).
-
-### Parâmetros
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
-| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
-| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-
-### Informações de resultado
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| has_more | boolean | Indica se há mais elementos disponíveis antes ou após essa página |
-| items | array | Lista de elementos com dados de inscrições de vestibular |
-| id | number | Id do lote de exames |
-| course_skus | array | Cursos que usam como entrada algum exame desse lote |
-| exam_locations | array | Lista dos objetos dos endereços dos exames desse lote |
-| [exam_locations] address | string | Endereço onde será feito o exame vestibular |
-| [exam_locations] number | string | Número de onde será feito o exame vestibular |
-| [exam_locations] neighborhood | string | Bairro onde será feito o exame vestibular |
-| [exam_locations] city | string | Cidade onde será feito o exame vestibular |
-| [exam_locations] state | string | Estado onde será feito o exame vestibular |
-| [exam_locations] postal_code | string | Código postal de onde será feito o exame vestibular |
-| dates | array | Lista das datas dos exames no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| times | array | Lista dos horários de aplicações dos exames no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| status | string | Situação dos exames entre `active` e `inactive` |
-| kind | string | Tipo dos exames desse lote |
-| created_at | string | Data de criação do lote de exames no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-
-### Significado dos status
-
-| Status | Descrição |
-| ------ | --------- |
-| active | Todas as combinações de exame nesse lote estão ativas para serem escolhidas |
-| inactive | Nenhuma combinação de exame nesse lote está ativa para ser escolhida |
-
-## Informações de um único lote de exames
-
-> Requisição
-
-```bash
-curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/exam_groups/1234
-```
-
-> Resposta
-
-```json
-{
-  "id": 1234,
-  "course_skus": [
-    "ADM-MANHA-SP",
-    "DIR-MANHA-SP",
-    "ADM-NOITE-RJ"
-  ],
-  "exam_locations": [
-    {
-      "address": "Rua Márcia",
-      "number": "4231",
-      "neighborhood": "Morro do Barreto",
-      "city": "São Roque",
-      "state": "SP",
-      "postal_code": "19110-000"
-    }
-  ],
-  "dates": [
-    "2016-11-01", "2016-11-01",
-    "2016-11-01", "2016-11-01"
-  ],
-  "times": [ "18:30", "19:30"],
-  "status": "active",
-  "kind": "scheduled",
-  "created_at": "2016-10-01T03:15:44Z"
-}
-```
-
-> Resposta quando não encontra nenhum lote de exames
-
-```json
-{
-  "error": true,
-  "message": "id not found",
-  "description": "Could not find any exam group by given id."
-}
-```
-Retorna um lote de exames específico.
-
-### Parâmetros
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| id | path | Id do lote de exames |
-
-### Informações de resultado
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| id | number | Id do lote de exames |
-| course_skus | array | Cursos que usam como entrada algum exame desse lote |
-| exam_locations | array | Lista dos objetos dos endereços dos exames desse lote |
-| [exam_locations] address | string | Endereço onde será feito o exame vestibular |
-| [exam_locations] number | string | Número de onde será feito o exame vestibular |
-| [exam_locations] neighborhood | string | Bairro onde será feito o exame vestibular |
-| [exam_locations] city | string | Cidade onde será feito o exame vestibular |
-| [exam_locations] state | string | Estado onde será feito o exame vestibular |
-| [exam_locations] postal_code | string | Código postal de onde será feito o exame vestibular |
-| dates | array | Lista das datas dos exames no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| times | array | Lista dos horários de aplicações dos exames no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| status | string | Situação dos exames entre `active` e `inactive` |
-| kind | string | Tipo dos exames desse lote |
-| created_at | string | Data de criação do lote de exames no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-
-### Significado dos status
-
-| Status | Descrição |
-| ------ | --------- |
-| active | Todas as combinações de exame nesse lote estão ativas para serem escolhidas |
-| inactive | Nenhuma combinação de exame nesse lote está ativa para ser escolhida |
-
-## Criação de exames em lote
-
-> Requisição
-
-```bash
-curl -X POST --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/exam_groups \
-  --file "data.json"
-```
-
-> estrutura de data.json
-
-```json
-{
-  "course_skus": [
-    "ADM-MANHA-SP",
-    "DIR-MANHA-SP",
-    "ADM-NOITE-RJ"
-  ],
-  "exam_locations": [
-    {
-      "address": "Rua Márcia",
-      "number": "4231",
-      "neighborhood": "Morro do Barreto",
-      "city": "São Roque",
-      "state": "SP",
-      "postal_code": "19110-000"
-    }
-  ],
-  "dates": [
-    "2016-11-01", "2016-11-01",
-    "2016-11-01", "2016-11-01"
-  ],
-  "times": [ "18:30", "19:30" ],
-  "status": "active",
-  "kind": "scheduled"
-}
-```
-
-> Retorno quando parâmetros estão incorretos
-
-```json
-{
-  "error": true,
-  "message": "Invalid parameters",
-  "description": "Could not validate json file. Make sure you are following the keys and values as described by the API manual on the link http://docs.queroalunos.com/#criacao-de-exames-em-lote"
-}
-```
-
-Cria um lote de exames.
-
-### Parâmetros
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| *.json | json | Arquivo json com as informações do lote de exames |
-
-### Informações dos argumentos
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| course_skus | array | Cursos que usam como entrada algum exame desse lote |
-| exam_locations | array | Lista dos objetos dos endereços dos exames desse lote |
-| [exam_locations] address | string | Endereço onde será feito o exame vestibular |
-| [exam_locations] number | string | Número de onde será feito o exame vestibular |
-| [exam_locations] neighborhood | string | Bairro onde será feito o exame vestibular |
-| [exam_locations] city | string | Cidade onde será feito o exame vestibular |
-| [exam_locations] state | string | Estado onde será feito o exame vestibular |
-| [exam_locations] postal_code | string | Código postal de onde será feito o exame vestibular |
-| dates | array | Lista das datas dos exames no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| times | array | Lista dos horários de aplicações dos exames no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| status | string | Situação dos exames entre `active` e `inactive` |
-| kind | string | Tipo dos exames desse lote |
-
-### Significado dos status
-
-| Status | Descrição |
-| ------ | --------- |
-| active | Todas as combinações de exame nesse lote estão ativas para serem escolhidas |
-| inactive | Nenhuma combinação de exame nesse lote está ativa para ser escolhida |
-
-> Resposta
-
-```json
-{
-  "id": 123,
-  "course_skus": [
-    "ADM-MANHA-SP",
-    "DIR-MANHA-SP",
-    "ADM-NOITE-RJ"
-  ],
-  "exam_locations": [
-    {
-      "address": "Rua Márcia",
-      "number": "4231",
-      "neighborhood": "Morro do Barreto",
-      "city": "São Roque",
-      "state": "SP",
-      "postal_code": "19110-000"
-    }
-  ],
-  "dates": [
-    "2016-11-01", "2016-11-01",
-    "2016-11-01", "2016-11-01"
-  ],
-  "times": [ "18:30", "19:30"],
-  "status": "active",
-  "kind": "scheduled"
-}
-```
-
-### Informações de resultado
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| id | number | Id do lote de exames |
-| course_skus | array | Cursos que usam como entrada algum exame desse lote |
-| exam_locations | array | Lista dos objetos dos endereços dos exames desse lote |
-| [exam_locations] address | string | Endereço onde será feito o exame vestibular |
-| [exam_locations] number | string | Número de onde será feito o exame vestibular |
-| [exam_locations] neighborhood | string | Bairro onde será feito o exame vestibular |
-| [exam_locations] city | string | Cidade onde será feito o exame vestibular |
-| [exam_locations] state | string | Estado onde será feito o exame vestibular |
-| [exam_locations] postal_code | string | Código postal de onde será feito o exame vestibular |
-| dates | array | Lista das datas dos exames no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| times | array | Lista dos horários de aplicações dos exames no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| status | string | Situação dos exames entre `active` e `inactive` |
-| kind | string | Tipo dos exames desse lote |
-
-## Suspender ou ativar lote de exames
-
-> Requisição
-
-```bash
-curl -X PUT --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/exam_groups/1234 \
-  --data '{"status": "active"}'
-```
-
-> Resposta
-
-```json
-{
-  "id": 1234,
-  "course_skus": [
-    "ADM-MANHA-SP",
-    "DIR-MANHA-SP",
-    "ADM-NOITE-RJ"
-  ],
-  "exam_locations": [
-    {
-      "address": "Rua Márcia",
-      "number": "4231",
-      "neighborhood": "Morro do Barreto",
-      "city": "São Roque",
-      "state": "SP",
-      "postal_code": "19110-000"
-    }
-  ],
-  "dates": [
-    "2016-11-01", "2016-11-01",
-    "2016-11-01", "2016-11-01"
-  ],
-  "times": [ "18:30", "19:30"],
-  "status": "active",
-  "kind": "scheduled",
-  "created_at": "2016-10-01T03:15:44Z"
-}
-```
-
-> Retorno quando parâmetros estão incorretos
-
-```json
-{
-  "error": true,
-  "message": "Invalid parameters",
-  "description": "Unknown status. Please check the API manual at http://docs.queroalunos.com/#suspender-ou-ativar-lote-de-exames"
-}
-```
-
-> Retorno quando não encontra o grupo de exame
-
-```json
-{
-  "error": true,
-  "message": "id not found",
-  "description": "Could not find any exam group by given id."
-}
-```
-
-Suspende ou ativa um lote de exames.
-
-### Parâmetros
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| id | path | Id do grupo de exame vestibular |
-| status | string | status a ser alterado |
-
-### Possíveis valores para o parâmetro status
-
-| Nome | Descrição |
-| ---- | --------- |
-| active | status ativado |
-| inactive | status inativo |
-
-### Informações de resultado
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| id | number | Id do lote de exames |
-| course_skus | array | Cursos que usam como entrada algum exame desse lote |
-| exam_locations | array | Lista dos objetos dos endereços dos exames desse lote |
-| [exam_locations] address | string | Endereço onde será feito o exame vestibular |
-| [exam_locations] number | string | Número de onde será feito o exame vestibular |
-| [exam_locations] neighborhood | string | Bairro onde será feito o exame vestibular |
-| [exam_locations] city | string | Cidade onde será feito o exame vestibular |
-| [exam_locations] state | string | Estado onde será feito o exame vestibular |
-| [exam_locations] postal_code | string | Código postal de onde será feito o exame vestibular |
-| dates | array | Lista das datas dos exames no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| times | array | Lista dos horários de aplicações dos exames no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| status | string | Situação dos exames entre `active` e `inactive` |
-| kind | string | Tipo dos exames desse lote |
-| created_at | string | Data de criação do lote de exames no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-
-### Significado do retorno de status
-
-| Status | Descrição |
-| ------ | --------- |
-| active | Todas as combinações de exame nesse lote estão ativas para serem escolhidas |
-| inactive | Nenhuma combinação de exame nesse lote está ativa para ser escolhida |
-
-# Informações de exames
-
-## Listar todos os exames
-
-> Requisição
-
-```bash
-curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/exams
-```
-
-> Resposta
-
-```json
-{
-  "has_more": false,
-  "items": [
-    {
-      "id": 456,
-      "exam_group_id": 123,
-      "course_skus": [
-        "ADM-MANHA-SP",
-        "DIR-MANHA-SP",
-        "ADM-NOITE-RJ"
-      ],
-      "exam_location": {
-        "address": "Rua Márcia",
-        "number": "4231",
-        "neighborhood": "Morro do Barreto",
-        "city": "São Roque",
-        "state": "SP",
-        "postal_code": "19110-000"
-      },
-      "date": "2016-11-01",
-      "time": "18:30",
-      "status": "active",
-      "created_at": "2016-10-01T03:15:44Z"
-    }
-  ]
-}
-```
-
-Retorna todos os exames (ativos e suspensos).
-
-Exames são retornados em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar dados antecessores à lista atual. Para mais informações, consulte a seção de [paginação](#paginacao).
-
-### Parâmetros
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
-| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
-| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-
-### Informações de resultado
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| has_more | boolean | Indica se há mais elementos disponíveis antes ou após essa página |
-| items | array | Lista de elementos com dados dos exames |
-| id | number | Id do exame vestibular |
-| exam_group_id | number | Id referente ao grupo de exame pertencente |
-| course_skus | array | Cursos que usam como entrada esse exame vestibular |
-| exam_location | object | Objeto do endereço onde será feito o exame vestibular |
-| [exam_location] address | string | Endereço onde será feito o exame vestibular |
-| [exam_location] number | string | Número de onde será feito o exame vestibular |
-| [exam_location] neighborhood | string | Bairro onde será feito o exame vestibular |
-| [exam_location] city | string | Cidade onde será feito o exame vestibular |
-| [exam_location] state | string | Estado onde será feito o exame vestibular |
-| [exam_location] postal_code | string | Código postal de onde será feito o exame vestibular |
-| date | string | Data do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| time | string | Horário do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| status | string | Situação do exame entre `active` e `inactive` |
-| created_at | string | Data de criação do exame no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-
-## Informações de um único exame
-
-> Requisição
-
-```bash
-curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/exams/456
-```
-
-> Resposta
-
-```json
-{
-  "id": 456,
-  "exam_group_id": 1234,
-  "course_skus": [
-    "ADM-MANHA-SP",
-    "DIR-MANHA-SP",
-    "ADM-NOITE-RJ"
-  ],
-  "exam_location": {
-    "address": "Rua Márcia",
-    "number": "4231",
-    "neighborhood": "Morro do Barreto",
-    "city": "São Roque",
-    "state": "SP",
-    "postal_code": "19110-000"
-  },
-  "date": "2016-11-01",
-  "time": "18:30",
-  "status": "active",
-  "created_at": "2016-10-01T03:15:44Z"
-}
-```
-
-> Resposta quando não encontra nenhum exame
-
-```json
-{
-  "error": true,
-  "message": "id not found",
-  "description": "Could not find any exam by given id."
-}
-```
-
-Retorna um exame específico.
-
-### Parâmetros
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| id | path | Id do exame vestibular |
-
-### Informações de resultado
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| id | number | Id do exame vestibular |
-| exam_group_id | number | Id referente ao grupo de exame pertencente |
-| course_skus | array | Cursos que usam como entrada esse exame vestibular |
-| exam_location | object | Objeto do endereço onde será feito o exame vestibular |
-| [exam_location] address | string | Endereço onde será feito o exame vestibular |
-| [exam_location] number | string | Número de onde será feito o exame vestibular |
-| [exam_location] neighborhood | string | Bairro onde será feito o exame vestibular |
-| [exam_location] city | string | Cidade onde será feito o exame vestibular |
-| [exam_location] state | string | Estado onde será feito o exame vestibular |
-| [exam_location] postal_code | string | Código postal de onde será feito o exame vestibular |
-| date | string | Data do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| time | string | Horário do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| status | string | Situação do exame entre `active` e `inactive` |
-| created_at | string | Data de criação do exame no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-
-## Criação de exame
-
-> Requisição
-
-```bash
-curl -X POST --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/exams \
-  --file "data.json"
-```
-
-> estrutura de data.json
-
-```json
-{
-  "course_skus": [ "ADM-MANHA-SP" ],
-  "exam_location": [
-    {
-      "address": "Rua Márcia",
-      "number": "4231",
-      "neighborhood": "Morro do Barreto",
-      "city": "São Roque",
-      "state": "SP",
-      "postal_code": "19110-000"
-    }
-  ],
-  "date": "2016-11-01",
-  "time": "18:30",
-  "status": "active",
-  "kind": "scheduled"
-}
-```
-
-> Retorno quando parâmetros estão incorretos
-
-```json
-{
-  "error": true,
-  "message": "Invalid parameters",
-  "description": "Could not validate json file. Make sure you are following the keys and values as described by the API manual on the link http://docs.queroalunos.com/#criacao-de-exame"
-}
-```
-
-Cria um novo exame.
-
-### Informações dos argumentos
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| course_skus | array | Cursos que usam como entrada algum exame desse lote |
-| exam_location | array | Lista dos objetos dos endereços dos exames desse lote |
-| [exam_location] address | string | Endereço onde será feito o exame vestibular |
-| [exam_location] number | string | Número de onde será feito o exame vestibular |
-| [exam_location] neighborhood | string | Bairro onde será feito o exame vestibular |
-| [exam_location] city | string | Cidade onde será feito o exame vestibular |
-| [exam_location] state | string | Estado onde será feito o exame vestibular |
-| [exam_location] postal_code | string | Código postal de onde será feito o exame vestibular |
-| date | string | Data do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| time | string | Horário do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| status | string | Situação dos exames entre `active` ou `inactive` |
-| kind | string | Tipo dos exames desse lote |
-
-> Resposta
-
-```json
-{
-  "id": 456,
-  "exam_group_id": 1234,
-  "course_skus": [ "ADM-MANHA-SP" ],
-  "exam_location": [
-    {
-      "address": "Rua Márcia",
-      "number": "4231",
-      "neighborhood": "Morro do Barreto",
-      "city": "São Roque",
-      "state": "SP",
-      "postal_code": "19110-000"
-    }
-  ],
-  "date": "2016-11-01",
-  "time": "18:30",
-  "status": "active",
-  "kind": "scheduled"
-}
-```
-
-### Informações da resposta
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| id | number | Id do lote de exames |
-| exam_group_id | number | Id referente ao grupo de exame pertencente |
-| course_skus | array | Cursos que usam como entrada algum exame desse lote |
-| exam_location | array | Lista dos objetos dos endereços dos exames desse lote |
-| [exam_location] address | string | Endereço onde será feito o exame vestibular |
-| [exam_location] number | string | Número de onde será feito o exame vestibular |
-| [exam_location] neighborhood | string | Bairro onde será feito o exame vestibular |
-| [exam_location] city | string | Cidade onde será feito o exame vestibular |
-| [exam_location] state | string | Estado onde será feito o exame vestibular |
-| [exam_location] postal_code | string | Código postal de onde será feito o exame vestibular |
-| date | string | Data do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| time | string | Horário do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| status | string | Situação dos exames entre `active` ou `inactive` |
-| kind | string | Tipo dos exames desse lote |
-
-### Significado dos status
-
-| Status | Descrição |
-| ------ | --------- |
-| active | Todas as combinações de exame nesse lote estão ativas para serem escolhidas |
-| inactive | Nenhuma combinação de exame nesse lote está ativa para ser escolhida |
-
-## Suspender ou ativar um exame
-
-> Requisição
-
-```bash
-curl -X PUT --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/exams/456 \
-  --data '{"status":"active"}'
-```
-
-> Resposta
-
-```json
-{
-  "id": 456,
-  "exam_group_id": 123,
-  "course_skus": [
-    "ADM-MANHA-SP",
-    "DIR-MANHA-SP",
-    "ADM-NOITE-RJ"
-  ],
-  "exam_location": {
-    "address": "Rua Márcia",
-    "number": "4231",
-    "neighborhood": "Morro do Barreto",
-    "city": "São Roque",
-    "state": "SP",
-    "postal_code": "19110-000"
-  },
-  "date": "2016-11-01",
-  "time": "18:30",
-  "status": "active",
-  "created_at": "2016-10-01T03:15:44Z"
-}
-```
-
-> Retorno quando parâmetros estão incorretos
-
-```json
-{
-  "error": true,
-  "message": "Invalid parameters",
-  "description": "Unknown status. Please check the API manual at http://docs.queroalunos.com/#suspender-ou-ativar-um-exame"
-}
-```
-
-> Resposta quando não encontra nenhum exame
-
-```json
-{
-  "error": true,
-  "message": "id not found",
-  "description": "Could not find any exam by given id."
-}
-```
-
-Suspende ou ativa um exame.
-
-### Parâmetros
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| id | path | Id do exame vestibular |
-| status | string | status a ser alterado |
-
-### Possíveis valores para o parâmetro status
-
-| Nome | Descrição |
-| ---- | --------- |
-| active | status ativado |
-| inactive | status inativo |
-
-### Informações de resultado
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| id | number | Id do exame vestibular |
-| exam_group_id | number | Id referente ao grupo de exame pertencente |
-| course_skus | array | Cursos que usam como entrada esse exame vestibular |
-| exam_location | object | Objeto do endereço onde será feito o exame vestibular |
-| [exam_location] address | string | Endereço onde será feito o exame vestibular |
-| [exam_location] number | string | Número de onde será feito o exame vestibular |
-| [exam_location] neighborhood | string | Bairro onde será feito o exame vestibular |
-| [exam_location] city | string | Cidade onde será feito o exame vestibular |
-| [exam_location] state | string | Estado onde será feito o exame vestibular |
-| [exam_location] postal_code | string | Código postal de onde será feito o exame vestibular |
-| date | string | Data do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| time | string | Horário do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| status | string | Situação do exame entre `active` e `inactive` |
-| created_at | string | Data de criação do exame no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-
-# Exame de Enem
-
-## Listar todos os exames de Enem
-
-> Requisição
-
-```bash
-curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/enem_exams
-```
-
-> Resposta
-
-```json
-{
-  "has_more": false,
-  "items": [
-    {
-      "id": 789,
-      "course_skus": [
-        "ADM-MANHA-SP",
-        "DIR-MANHA-SP",
-        "ADM-NOITE-RJ"
-      ],
-      "minimum_grades": {
-        "redacao": 600.0,
-        "humanas": 600.0,
-        "natureza": 600.0,
-        "linguagens": 600.0,
-        "matematica": 600.0
-      },
-      "status": "active",
-      "created_at": "2016-10-01T03:15:44Z"
-    }
-  ]
-}
-```
-
-Retorna todos os exames de enem.
-
-Exames de ENEM são retornados em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar dados antecessores à lista atual. Para mais informações, consulte a seção de [paginação](#paginacao).
-
-### Parâmetros
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
-| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
-| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-
-### Informações de resultado
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| has_more | boolean | Indica se há mais elementos disponíveis antes ou após essa página |
-| items | array | Lista de elementos com dados de inscrições de vestibular |
-| id | number | Id do exame de enem |
-| course_skus | array | Cursos que usam como entrada esse exame de enem |
-| minimum_grades | object | Objeto com informações de nota mínima exigida pela faculdade |
-| [minimum_grades] redacao | float | Nota mínima de redação exigida pela faculdade |
-| [minimum_grades] humanas | float | Nota mínima de humanas exigida pela faculdade |
-| [minimum_grades] natureza | float | Nota mínima de natureza exigida pela faculdade |
-| [minimum_grades] linguagens | float | Nota mínima de linguagens exigida pela faculdade |
-| [minimum_grades] matematica | float | Nota mínima de matemática exigida pela faculdade |
-| status | string | Situação do exame de enem entre `active` e `inactive` |
-| created_at | string | Data de criação do exame de enem no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-
-## Informações de um único exame de Enem
-
-> Requisição
-
-```bash
-curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/enem_exams/789
-```
-
-> Resposta
-
-```json
-{
-  "id": 789,
-  "course_skus": [
-    "ADM-MANHA-SP",
-    "DIR-MANHA-SP",
-    "ADM-NOITE-RJ"
-  ],
-  "minimum_grades": {
-    "redacao": 600.0,
-    "humanas": 600.0,
-    "natureza": 600.0,
-    "linguagens": 600.0,
-    "matematica": 600.0
-  },
-  "status": "active",
-  "created_at": "2016-10-01T03:15:44Z"
-}
-```
-
-> Retorno quando não encontra o exame de enem
-
-```json
-{
-  "error": true,
-  "message": "id not found",
-  "description": "Could not find any enem exam by given id."
-}
-```
-
-Retorna um exame de enem específico.
-
-### Parâmetros
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| id | number | Id do exame de enem |
-
-### Informações de resultado
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| id | number | Id do exame de enem |
-| course_skus | array | Cursos que usam como entrada esse exame de enem |
-| minimum_grades | object | Objeto com informações de nota mínima exigida pela faculdade |
-| [minimum_grades] redacao | float | Nota mínima de redação exigida pela faculdade |
-| [minimum_grades] humanas | float | Nota mínima de humanas exigida pela faculdade |
-| [minimum_grades] natureza | float | Nota mínima de natureza exigida pela faculdade |
-| [minimum_grades] linguagens | float | Nota mínima de linguagens exigida pela faculdade |
-| [minimum_grades] matematica | float | Nota mínima de matemática exigida pela faculdade |
-| status | string | Situação do exame de enem entre `active` e `inactive` |
-| created_at | string | Data de criação do exame de enem no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-
-## Criação de exame de Enem
-
-> Requisição
-
-```bash
-curl -X POST --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/enem_exams \
-  --file "data.json"
-```
-
-> estrutura de data.json
-
-```json
-{
-  "course_skus": [
-    "ADM-MANHA-SP",
-    "DIR-MANHA-SP",
-    "ADM-NOITE-RJ"
-  ],
-  "minimum_grades": {
-    "redacao": 600.0,
-    "humanas": 600.0,
-    "natureza": 600.0,
-    "linguagens": 600.0,
-    "matematica": 600.0
-  },
-  "status": "active"
-}
-```
-
-> Retorno quando parâmetros estão incorretos
-
-```json
-{
-  "error": true,
-  "message": "Invalid parameters",
-  "description": "Could not validate json file. Make sure you are following the keys and values as described by the API manual on the link http://docs.queroalunos.com/#criacao-de-exame-de-enem"
-}
-```
-
-Cria um exame de enem.
-
-### Parâmetros
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| *.json | json | Arquivo json com as informações do exame de enem |
-
-### Informações dos argumentos
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| course_skus | array | Cursos que usam como entrada esse exame de enem |
-| minimum_grades | object | Objeto com informações de nota mínima exigida pela faculdade |
-| [minimum_grades] redacao | float | Nota mínima de redação exigida pela faculdade |
-| [minimum_grades] humanas | float | Nota mínima de humanas exigida pela faculdade |
-| [minimum_grades] natureza | float | Nota mínima de natureza exigida pela faculdade |
-| [minimum_grades] linguagens | float | Nota mínima de linguagens exigida pela faculdade |
-| [minimum_grades] matematica | float | Nota mínima de matemática exigida pela faculdade |
-| status | string | Situação do exame de enem entre `active` e `inactive` |
-
-> Resposta
-
-```json
-{
-  "id": 789,
-  "course_skus": [
-    "ADM-MANHA-SP",
-    "DIR-MANHA-SP",
-    "ADM-NOITE-RJ"
-  ],
-  "minimum_grades": {
-    "redacao": 600.0,
-    "humanas": 600.0,
-    "natureza": 600.0,
-    "linguagens": 600.0,
-    "matematica": 600.0
-  },
-  "status": "active"
-}
-```
-
-### Informações da resposta
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| id | number | Id do exame de enem |
-| course_skus | array | Cursos que usam como entrada esse exame de enem |
-| minimum_grades | object | Objeto com informações de nota mínima exigida pela faculdade |
-| [minimum_grades] redacao | float | Nota mínima de redação exigida pela faculdade |
-| [minimum_grades] humanas | float | Nota mínima de humanas exigida pela faculdade |
-| [minimum_grades] natureza | float | Nota mínima de natureza exigida pela faculdade |
-| [minimum_grades] linguagens | float | Nota mínima de linguagens exigida pela faculdade |
-| [minimum_grades] matematica | float | Nota mínima de matemática exigida pela faculdade |
-| status | string | Situação do exame de enem entre `active` e `inactive` |
-
-## Suspender um exame de Enem inteiro
-
-> Requisição
-
-```bash
-curl -X PUT --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/enem_exams/789 \
-  --data '{"status":"inactive"}'
-```
-
-> Resposta
-
-```json
-{
-  "id": 789,
-  "course_skus": [
-    "ADM-MANHA-SP",
-    "DIR-MANHA-SP",
-    "ADM-NOITE-RJ"
-  ],
-  "minimum_grades": {
-    "redacao": 600.0,
-    "humanas": 600.0,
-    "natureza": 600.0,
-    "linguagens": 600.0,
-    "matematica": 600.0
-  },
-  "status": "inactive",
-  "created_at": "2016-10-01T03:15:44Z"
-}
-```
-
-> Retorno quando parâmetros estão incorretos
-
-```json
-{
-  "error": true,
-  "message": "Invalid parameters",
-  "description": "Unknown status. Please check the API manual at http://docs.queroalunos.com/#suspender-um-exame-de-enem-inteiro"
-}
-```
-
-> Retorno quando não encontra o exame de enem
-
-```json
-{
-  "error": true,
-  "message": "id not found",
-  "description": "Could not find any enem exam by given id."
-}
-```
-
-Suspende um exame de Enem específico.
-
-### Parâmetros
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| id | number | Id do exame de enem |
-| status | string | Situação do exame de enem |
-
-### Informações do resultado
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| id | number | Id do exame de enem |
-| course_skus | array | Cursos que usam como entrada esse exame de enem |
-| minimum_grades | object | Objeto com informações de nota mínima exigida pela faculdade |
-| [minimum_grades] redacao | float | Nota mínima de redação exigida pela faculdade |
-| [minimum_grades] humanas | float | Nota mínima de humanas exigida pela faculdade |
-| [minimum_grades] natureza | float | Nota mínima de natureza exigida pela faculdade |
-| [minimum_grades] linguagens | float | Nota mínima de linguagens exigida pela faculdade |
-| [minimum_grades] matematica | float | Nota mínima de matemática exigida pela faculdade |
-| status | string | Situação do exame de enem entre `active` e `inactive` |
-| created_at | string | Data de criação do exame de enem no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-
-## Suspender um exame de Enem parcialmente
-
-> Requisição
-
-```bash
-curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/enem_exams/suspend \
-  --file "data.json"
-```
-
-> estrutura de data.json
-
-```json
-{
-  "course_skus": [
-    "ADM-MANHA-SP",
-    "DIR-MANHA-SP"
-  ]
-}
-```
-
-> Retorno quando parâmetros estão incorretos
-
-```json
-{
-  "error": true,
-  "message": "Invalid parameters",
-  "description": "Could not validate json file. Make sure you are following the keys and values as described by the API manual on the link http://docs.queroalunos.com/#suspender-um-exame-de-enem-parcialmente"
-}
-```
-
-Suspende um exame de Enem específico.
-
-### Parâmetros
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| *.json | json | Id do exame de enem |
-
-### Informações dos argumentos
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| course_skus | array | Cursos que usam como entrada esse exame de enem |
-
 # Notificações
 
 Notificações utilizam uma rota única de callback, que deve ser fornecida pela faculdade, de um token para autenticação via HTTP Basic.
@@ -2723,7 +1655,7 @@ Estrutura base das notificações:
 
 ```json
 {
-  "event_type": "NewAdmission",
+  "event_type": "admission.created",
   "created": "2017-12-15T17:34:26.173",
   "api_version": "1.0.0",
   "data": {
@@ -2747,6 +1679,16 @@ Estrutura base das notificações:
         "phones": [
           "(11) 98888-7777"
         ],
+        "enem": {
+          "year": 2018,
+          "scores": {
+            "essay": 200.0,
+            "math": 200.1,
+            "language": 200.2,
+            "nature": 200.4,
+            "social": 200.5
+          }
+        },
         "address_information": {
           "address": "Rua Sandra",
           "number": "432S",
@@ -2769,7 +1711,7 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
 | ---- | ---- | --------- |
 | created | string | Data que foi criado o evento no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 | api_version | string | Informação da versão atual da API |
-| event_type | string | Tipo de evento, no caso `NewAdmission` |
+| event_type | string | Tipo de evento, no caso `admission.created` |
 | data | object | Objeto com informações de acordo com o tipo de evento |
 | admission | object | Objeto com dados do processo de admissão do aluno |
 | [admission] id | number | Id do processo de admissão |
@@ -2777,21 +1719,8 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
 | [course] id | string | Código do curso fornecido pela universidade referente a essa matrícula |
 | [course] offer | object | Objeto com dados da oferta do curso |
 | [offer] discount | float | Porcentagem de desconto do curso que o aluno adquiriu |
-| [admission] status | string | Status da admissão do aluno (_neste evento o valor sempre será `pre-registered`_) |
+| [admission] status | string | Status da admissão do aluno |
 | [admission] student | object | Objeto com dados do aluno |
-| [student] id | number | Id do aluno |
-| [student] name | string | Nome do aluno |
-| [student] cpf | string | CPF do aluno |
-| [student] birth_date | string | Data de nascimento do aluno no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| [student] emails | array de string | Lista de emails do aluno |
-| [student] phones | array de string | Lista de telefones do aluno |
-| [student] address_information | object | Objeto com dados onde aluno reside |
-| [address_information] address | string | Endereço onde aluno reside |
-| [address_information] number | string | Número onde aluno reside |
-| [address_information] neighborhood | string | Bairro onde aluno reside |
-| [address_information] city | string | Cidade onde aluno reside |
-| [address_information] state | string | Estado onde aluno reside |
-| [address_information] postal_code | string | Código postal onde aluno reside |
 
 ### Significado dos valores em status
 
@@ -2799,250 +1728,6 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
 | ---- | --------- |
 | initiated | Inscrição para exame Pendente |
 | pending_docs | Documentação Pendente |
-
-## Nova "inscrição para exame" (Vestibular)
-
-```json
-{
-  "event_type": "NewApplication",
-  "created": "2017-12-15T17:34:26.173",
-  "api_version": "1.0.0",
-  "data": {
-    "application": {
-      "id": 123456,
-      "type": "exam",
-      "admission": {
-        "id": 12345,
-        "course": {
-          "id": "ADM-MANHA-SP",
-          "offer": {
-            "discount": 50.0
-          }
-        },
-        "status": "pre-registered",
-        "student": {
-          "id": 394932,
-          "name": "José da Silva",
-          "cpf": "111.222.333-44",
-          "birth_date": "1991-01-01",
-          "emails": [
-            "teste@exemplo.com"
-          ],
-          "phones": [
-            "(11) 98888-7777"
-          ],
-          "address_information": {
-            "address": "Rua Sandra",
-            "number": "432S",
-            "neighborhood": "Chácara Dora",
-            "city": "Araçariguama",
-            "state": "SP",
-            "postal_code": "18147-000"
-          }
-        },
-      },
-      "exam": {
-        "id": 456,
-        "exam_group_id": 123,
-        "course_skus": [
-          "ADM-MANHA-SP",
-          "DIR-MANHA-SP",
-          "ADM-NOITE-RJ"
-        ],
-        "exam_location": {
-          "address": "Rua Márcia",
-          "number": "4231",
-          "neighborhood": "Morro do Barreto",
-          "city": "São Roque",
-          "state": "SP",
-          "postal_code": "19110-000"
-        },
-        "date": "2016-11-01",
-        "time": "18:30",
-        "status": "active"
-      },
-      "result": null
-    }
-  }
-}
-```
-
-Esta notificação informando uma nova inscrição para exame via vestibular.
-
-### Parâmetros
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| created | string | Data que foi criado o evento no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| api_version | string | Informação da versão atual da API |
-| event_type | string | Tipo de evento, no caso `NewApplication` |
-| data | object | Objeto com informações de acordo com o tipo de evento |
-| application | object | Objeto com informações do vestibular |
-| [application] id | number | Id da inscrição para exame |
-| [application] type | string | Tipo de exame vestibular (_neste evento o valor sempre será `exam`_) |
-| [application] admission | object | Objeto com dados do processo de admissão do aluno |
-| [admission] id | number | Id do processo de admissão |
-| [admission] course | object | Objeto com dados do curso referente a essa matrícula |
-| [course] id | string | Código do curso fornecido pela universidade referente a essa matrícula |
-| [course] offer | object | Objeto com dados da oferta do curso |
-| [offer] discount | float | Porcentagem de desconto do curso que o aluno adquiriu |
-| [admission] status | string | Status da admissão do aluno (_neste evento o valor sempre será `pre-registered`_) |
-| [admission] student | object | Objeto com dados do aluno |
-| [student] id | number | Id do aluno |
-| [student] name | string | Nome do aluno |
-| [student] cpf | string | CPF do aluno |
-| [student] birth_date | string | Data de nascimento do aluno no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| [student] emails | array de string | Lista de emails do aluno |
-| [student] phones | array de string | Lista de telefones do aluno |
-| [student] address_information | object | Objeto com dados onde aluno reside |
-| [address_information] address | string | Endereço onde aluno reside |
-| [address_information] number | string | Número onde aluno reside |
-| [address_information] neighborhood | string | Bairro onde aluno reside |
-| [address_information] city | string | Cidade onde aluno reside |
-| [address_information] state | string | Estado onde aluno reside |
-| [address_information] postal_code | string | Código postal onde aluno reside |
-| [application] exam | object | Objeto com informações do exame vestibular|
-| [exam] id | number | Id do exame vestibular |
-| [exam] exam_group_id | number | Id referente ao grupo de exame pertencente |
-| [exam] course_skus | array | Lista com os cursos pertencentes a este exame vestibular |
-| [exam] exam_location | object | Objeto com dados do exame vestibular|
-| [exam_location] address | string | Endereço da localização do exame vestibular |
-| [exam_location] number | string | Número da localização do exame vestibular |
-| [exam_location] neighborhood | string | Bairro da localização do exame vestibular |
-| [exam_location] city | string | Cidade da localização do exame vestibular |
-| [exam_location] state | string | Estado da localização do exame vestibular |
-| [exam_location] postal_code | string | Código postal da localização do exame vestibular |
-| [exam] date | string | Data da realização do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| [exam] time | string | Hora da realização do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| [exam] status | string | Status do exame vestibular |
-| [application] result | string | Resultado do exame vestibular (_neste evento o valor sempre será `null`_) |
-
-## Nova "inscrição para exame" (ENEM)
-
-```json
-{
-  "event_type": "NewApplication",
-  "created": "2017-12-15T17:34:26:44Z",
-  "api_version": "1.0.0",
-  "data": {
-    "application": {
-      "id": 123456,
-      "type": "enem",
-      "admission": {
-        "id": 12345,
-        "course": {
-          "id": "ADM-MANHA-SP",
-          "offer": {
-            "discount": 50.0
-          }
-        },
-        "status": "pre-registered",
-        "student": {
-          "id": 394932,
-          "name": "José da Silva",
-          "cpf": "111.222.333-44",
-          "birth_date": "1991-01-01",
-          "emails": [
-            "teste@exemplo.com"
-          ],
-          "phones": [
-            "(11) 98888-7777"
-          ],
-          "address_information": {
-            "address": "Rua Sandra",
-            "number": "432S",
-            "neighborhood": "Chácara Dora",
-            "city": "Araçariguama",
-            "state": "SP",
-            "postal_code": "18147-000"
-          }
-        },
-      },
-      "exam_application_info": {
-        "grades": {
-          "redacao": 600.0,
-          "humanas": 600.0,
-          "natureza": 600.0,
-          "linguagens": 600.0,
-          "matematica": 600.0
-        }
-      },
-      "exam": {
-        "id": 456,
-        "exam_group_id": 123,
-        "course_skus": [
-          "ADM-MANHA-SP",
-          "DIR-MANHA-SP",
-          "ADM-NOITE-RJ"
-        ],
-        "minimum_grades": {
-          "redacao": 600.0,
-          "humanas": 600.0,
-          "natureza": 600.0,
-          "linguagens": 600.0,
-          "matematica": 600.0
-        },
-        "status": "active"
-      },
-      "result": "pre-registered"
-    }
-  }
-}
-```
-
-Esta notificação informa uma nova inscrição para exame via ENEM.
-
-### Parâmetros
-
-| Nome | Tipo | Descrição |
-| ---- | ---- | --------- |
-| created | string | Data que foi criado o evento no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| api_version | string | Informação da versão atual da API |
-| event_type | string | Tipo de evento, no caso `NewApplication` |
-| data | object | Objeto com informações de acordo com o tipo de evento |
-| application | object | Objeto com informações do vestibular |
-| [application] id | number | Id da inscrição para exame |
-| [application] type | string | Tipo de exame vestibular (_neste evento o valor sempre será `enem`_) |
-| [application] admission | object | Objeto com dados do processo de admissão do aluno |
-| [admission] id | number | Id do processo de admissão |
-| [admission] course | object | Objeto com dados do curso referente a essa matrícula |
-| [course] id | string | Código do curso fornecido pela universidade referente a essa matrícula |
-| [course] offer | object | Objeto com dados da oferta do curso |
-| [offer] discount | float | Porcentagem de desconto do curso que o aluno adquiriu |
-| [admission] status | string | Status da admissão do aluno (_neste evento o valor sempre será `pre-registered`_) |
-| [admission] student | object | Objeto com dados do aluno |
-| [student] id | number | Id do aluno |
-| [student] name | string | Nome do aluno |
-| [student] cpf | string | CPF do aluno |
-| [student] birth_date | string | Data de nascimento do aluno no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| [student] emails | array de string | Lista de emails do aluno |
-| [student] phones | array de string | Lista de telefones do aluno |
-| [student] address_information | object | Objeto com dados onde aluno reside |
-| [address_information] address | string | Endereço onde aluno reside |
-| [address_information] number | string | Número onde aluno reside |
-| [address_information] neighborhood | string | Bairro onde aluno reside |
-| [address_information] city | string | Cidade onde aluno reside |
-| [address_information] state | string | Estado onde aluno reside |
-| [address_information] postal_code | string | Código postal onde aluno reside |
-| [application] exam_application_info | object | Objeto com informações da grade de notas obtida pelo aluno no enem |
-| [exam_application_info] grades | object | Objeto com informações de notas obtida pelo aluno no enem |
-| [grades] redacao | float | Nota obtida pelo aluno na redação |
-| [grades] humanas | float | Nota obtida pelo aluno em humanas |
-| [grades] natureza | float | Nota obtida pelo aluno em natureza |
-| [grades] linguagens | float | Nota obtida pelo aluno em linguagens |
-| [grades] matematica | float | Nota obtida pelo aluno em matemática |
-| [application] exam | object | Objeto com informações do exame vestibular|
-| [exam] id | number | Id do exame vestibular |
-| [exam] exam_group_id | number | Id referente ao grupo de exame pertencente |
-| [exam] course_skus | array | Lista com os cursos pertencentes a este exame vestibular |
-| [exam] minimum_grades | object | Objeto com informações de nota mínima exigida pela faculdade |
-| [minimum_grades] redacao | float | Nota mínima de redação exigida pela faculdade |
-| [minimum_grades] humanas | float | Nota mínima de humanas exigida pela faculdade |
-| [minimum_grades] natureza | float | Nota mínima de natureza exigida pela faculdade |
-| [minimum_grades] linguagens | float | Nota mínima de linguagens exigida pela faculdade |
-| [minimum_grades] matematica | float | Nota mínima de matemática exigida pela faculdade |
-| [exam] status | string | Status do exame vestibular |
-| [application] result | string | Resultado do exame vestibular (_neste evento o valor sempre será `null`_) |
 
 ## Listagem de notificações
 
