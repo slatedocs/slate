@@ -36,11 +36,11 @@ search: true
 > API Endpoint
 
 ```shell
-https://app.procurmentexpress.com
+https://app.procurementexpress.com
 ```
 
 ```ruby
-https://app.procurmentexpress.com
+https://app.procurementexpress.com
 ```
 
 Welcome to `V1` API documentaiton for **Rubberstamp** - A simple Purchase Order solution.

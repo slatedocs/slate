@@ -5,7 +5,7 @@
 ```shell
 # Example Without Tracking Info
 
-curl 'https://app.procurmentexpress.com/api/v1/register'
+curl 'https://app.procurementexpress.com/api/v1/register'
   -X POST
   -H "Content-Type: application/json"
   -d "email=api@example.com"
@@ -17,7 +17,7 @@ curl 'https://app.procurmentexpress.com/api/v1/register'
 
 # Example With Tracking Info
 
-curl 'https://app.procurmentexpress.com/api/v1/register'
+curl 'https://app.procurementexpress.com/api/v1/register'
   -X POST
   -H "Content-Type: application/json"
   -H "tracking_info[properties][uuid]=your uuid"
@@ -41,7 +41,7 @@ require 'rest-client'
 # Example Without Tracking Info
 
 RestClient.post(
-  'https://app.procurmentexpress.com/api/v1/register',
+  'https://app.procurementexpress.com/api/v1/register',
   {
     email: 'api@example.com',
     password: 'pass1234',
@@ -55,7 +55,7 @@ RestClient.post(
 # Example With Tracking Info
 
 RestClient.post(
-  'https://app.procurmentexpress.com/api/v1/register',
+  'https://app.procurementexpress.com/api/v1/register',
   {
     email: 'api@example.com',
     password: 'pass1234',
@@ -108,7 +108,7 @@ with `authentication_token`.
 
 ### HTTP Request
 
-`POST https://app.procurmentexpress.com/api/v1/register`
+`POST https://app.procurementexpress.com/api/v1/register`
 
 ### Tracking Registration
 
@@ -157,7 +157,7 @@ require 'rest-client'
 # Example Without Tracking info
 
 RestClient.post(
-  'https://app.procurmentexpress.com/api/v1/login',
+  'https://app.procurementexpress.com/api/v1/login',
   {
     email: 'api@example.com',
     password: 'pass1234'
@@ -166,7 +166,7 @@ RestClient.post(
 
 # Example With Tracking Info
 RestClient.post(
-  'https://app.procurmentexpress.com/api/v1/login',
+  'https://app.procurementexpress.com/api/v1/login',
   {
     email: 'api@example.com',
     password: 'pass1234'
@@ -192,7 +192,7 @@ RestClient.post(
 ```shell
 # Example Without Tracking Info
 
-curl 'https://app.procurmentexpress.com/api/v1/login'
+curl 'https://app.procurementexpress.com/api/v1/login'
   -X POST
   -H "Content-Type: application/json"
   -d "email=api@example.com"
@@ -200,7 +200,7 @@ curl 'https://app.procurmentexpress.com/api/v1/login'
 
 # Example With Tracking Info
 
-curl 'https://app.procurmentexpress.com/api/v1/login'
+curl 'https://app.procurementexpress.com/api/v1/login'
   -X POST
   -H "Content-Type: application/json"
   -H "tracking_info[properties][uuid]=your uuid"
@@ -242,7 +242,7 @@ requests to the server in a header.
 
 ### HTTP Request
 
-`POST https://app.procurmentexpress.com/api/v1/login`
+`POST https://app.procurementexpress.com/api/v1/login`
 
 ### Tracking Registration
 
@@ -274,7 +274,7 @@ registered yet, try register api.
 require 'rest-client'
 
 response = RestClient.get(
-  'https://app.procurmentexpress.com/api/v1/currentuser',
+  'https://app.procurementexpress.com/api/v1/currentuser',
   headers = {
     authentication_token: 'your token',
     app_company_id: '1'
@@ -285,7 +285,7 @@ response.body
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/currentuser'
+curl 'https://app.procurementexpress.com/api/v1/currentuser'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -338,7 +338,7 @@ is the active company for that user in that mobile.
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/currentuser`
+`GET https://app.procurementexpress.com/api/v1/currentuser`
 
 ### URL Parameters
 
@@ -353,7 +353,7 @@ is the active company for that user in that mobile.
 require 'rest-client'
 
 RestClient.put(
-  'https://app.procurmentexpress.com/api/v1/currentuser',
+  'https://app.procurementexpress.com/api/v1/currentuser',
   {
     email: 'john@example.com',
     password: 'password',
@@ -365,7 +365,7 @@ RestClient.put(
 ```
 
 ```shell
-curl https://app.procurmentexpress.com/api/v1/currentuser
+curl https://app.procurementexpress.com/api/v1/currentuser
   -X PUT
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -408,7 +408,7 @@ parameters not provided will be left unchanged.
 
 ### HTTP Request
 
-`PUT https://app.procurmentexpress.com/api/v1/currentuser`
+`PUT https://app.procurementexpress.com/api/v1/currentuser`
 
 ### Query Parameters
 
@@ -424,7 +424,7 @@ parameters not provided will be left unchanged.
 ## Reset Password
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/reset_password'
+curl 'https://app.procurementexpress.com/api/v1/reset_password'
   -X POST
   -H "Content-Type: application/json"
   -d "email=api@example.com"
@@ -434,7 +434,7 @@ curl 'https://app.procurmentexpress.com/api/v1/reset_password'
 require 'rest-client'
 
 response = RestClient.post(
-  'https://app.procurmentexpress.com/api/v1/reset_password',
+  'https://app.procurementexpress.com/api/v1/reset_password',
   { email: 'api@example.com' }
 )
 ```
@@ -454,7 +454,7 @@ reset page and you can reset your password from there.
 
 ### HTTP Request
 
-`POST https://app.procurmentexpress.com/api/v1/reset_password`
+`POST https://app.procurementexpress.com/api/v1/reset_password`
 
 ### Query Parameters
 
@@ -465,7 +465,7 @@ reset page and you can reset your password from there.
 ## Google Login
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/google_login'
+curl 'https://app.procurementexpress.com/api/v1/google_login'
   -X POST
   -H "Content-Type: application/json"
   -d "uuid=encoded_google_id"
@@ -478,7 +478,7 @@ curl 'https://app.procurmentexpress.com/api/v1/google_login'
 require 'rest-client'
 
 response = RestClient.post(
-  'https://app.procurmentexpress.com/api/v1/google_login',
+  'https://app.procurementexpress.com/api/v1/google_login',
   {
     uuid: 'encoded_google_id',
     email: 'api@example.com',
@@ -513,7 +513,7 @@ To use this api endpoint, you first need to `login with googl` using oauth/oauth
 
 ### HTTP Request
 
-`POST https://app.procurmentexpress.com/api/v1/google_login`
+`POST https://app.procurementexpress.com/api/v1/google_login`
 
 ### Query Parameters
 
@@ -530,7 +530,7 @@ To use this api endpoint, you first need to `login with googl` using oauth/oauth
 require 'rest-client'
 
 response = RestClient.get(
-  'https://app.procurmentexpress.com/api/v1/currencies',
+  'https://app.procurementexpress.com/api/v1/currencies',
   headers = {
     authentication_token: 'your token',
     app_company_id: '1'
@@ -539,7 +539,7 @@ response = RestClient.get(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/currencies'
+curl 'https://app.procurementexpress.com/api/v1/currencies'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -572,7 +572,7 @@ Returns a list of currencies that are enabled for given company id.
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/currencies`
+`GET https://app.procurementexpress.com/api/v1/currencies`
 
 ### Query Parameters
 
@@ -587,7 +587,7 @@ Returns a list of currencies that are enabled for given company id.
 require 'rest-client'
 
 response = RestClient.get(
-  'https://app.procurmentexpress.com/api/v1/all_currencies',
+  'https://app.procurementexpress.com/api/v1/all_currencies',
   headers = {
     authentication_token: 'your token',
   }
@@ -595,7 +595,7 @@ response = RestClient.get(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/all_currencies'
+curl 'https://app.procurementexpress.com/api/v1/all_currencies'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -669,7 +669,7 @@ Returns a list of all available currencies.
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/all_currencies`
+`GET https://app.procurementexpress.com/api/v1/all_currencies`
 
 ### Query Parameters
 
@@ -683,7 +683,7 @@ Returns a list of all available currencies.
 require 'rest-client'
 
 RestClient.post(
-  'https://app.procurmentexpress.com/api/v1/logout',
+  'https://app.procurementexpress.com/api/v1/logout',
   headers = {
     authentication_token: 'your token'
   }
@@ -691,7 +691,7 @@ RestClient.post(
 ```
 
 ```shell
-curl https://app.procurmentexpress.com/api/v1/logout
+curl https://app.procurementexpress.com/api/v1/logout
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -711,7 +711,7 @@ authentication_token you need to login again.
 
 ### HTTP Request
 
-`POST https://app.procurmentexpress.com/api/v1/logout`
+`POST https://app.procurementexpress.com/api/v1/logout`
 
 ### Query Parameters
 
@@ -726,7 +726,7 @@ authentication_token you need to login again.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.procurmentexpress.com/api/v1/users/join_account',
+  'https://app.procurementexpress.com/api/v1/users/join_account',
   headers = {
     authentication_token: 'your token'
   }
@@ -734,7 +734,7 @@ RestClient.get(
 ```
 
 ```shell
-curl https://app.procurmentexpress.com/api/v1/users/join_account'
+curl https://app.procurementexpress.com/api/v1/users/join_account'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -773,7 +773,7 @@ account. We ignore `gmail`, `hotmail`, `icloud`, `yahoo` domain though.
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/users/join_account`
+`GET https://app.procurementexpress.com/api/v1/users/join_account`
 
 ### Query Parameters
 
@@ -788,7 +788,7 @@ account. We ignore `gmail`, `hotmail`, `icloud`, `yahoo` domain though.
 require 'rest-client'
 
 RestClient.post(
-  'https://app.procurmentexpress.com/api/v1/users/join_existing_company?company_id=1',
+  'https://app.procurementexpress.com/api/v1/users/join_existing_company?company_id=1',
   headers = {
     authentication_token: 'your token'
   }
@@ -796,7 +796,7 @@ RestClient.post(
 ```
 
 ```shell
-curl https://app.procurmentexpress.com/api/v1/users/join_existing_company'
+curl https://app.procurementexpress.com/api/v1/users/join_existing_company'
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -815,7 +815,7 @@ Action to actually `join` existing company. To join the company, you need to pas
 ### HTTP Request
 
 `POST
-https://app.procurmentexpress.com/api/v1/users/join_existing_company?company_id=:id`
+https://app.procurementexpress.com/api/v1/users/join_existing_company?company_id=:id`
 
 ### Query Parameters
 

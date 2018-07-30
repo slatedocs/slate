@@ -6,7 +6,7 @@
 require 'rest-client'
 
 RestClient.post(
-  'https://app.procurmentexpress.com/api/v1/purchase_orders',
+  'https://app.procurementexpress.com/api/v1/purchase_orders',
   {
     commit: "Send",
     purchase_order: {
@@ -37,7 +37,7 @@ RestClient.post(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/purchase_orders'
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -155,7 +155,7 @@ these values will determine the status of the Purchase Order.
 
 ### HTTP Request
 
-`POST https://app.procurmentexpress.com/api/v1/purchase_orders`
+`POST https://app.procurementexpress.com/api/v1/purchase_orders`
 
 ### Query Parameters
 
@@ -218,7 +218,7 @@ these values will determine the status of the Purchase Order.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.procurmentexpress.com/api/v1/purchase_orders',
+  'https://app.procurementexpress.com/api/v1/purchase_orders',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -227,7 +227,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/purchase_orders'
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -298,7 +298,7 @@ search and return result accordingly.
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/purchase_orders?page=1&search=something`
+`GET https://app.procurementexpress.com/api/v1/purchase_orders?page=1&search=something`
 
 ### Query Parameters
 
@@ -315,7 +315,7 @@ search and return result accordingly.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.procurmentexpress.com/api/v1/purchase_orders/1',
+  'https://app.procurementexpress.com/api/v1/purchase_orders/1',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -324,7 +324,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/purchase_orders/1'
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -444,7 +444,7 @@ attribute.
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/purchase_orders/:id`
+`GET https://app.procurementexpress.com/api/v1/purchase_orders/:id`
 
 ### URL Parameters
 
@@ -460,7 +460,7 @@ attribute.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.procurmentexpress.com/api/v1/purchase_orders/new',
+  'https://app.procurementexpress.com/api/v1/purchase_orders/new',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -469,7 +469,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/purchase_orders/new'
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders/new'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -532,7 +532,7 @@ them in JSON format.
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/purchase_orders/new`
+`GET https://app.procurementexpress.com/api/v1/purchase_orders/new`
 
 ### URL Parameters
 
@@ -547,7 +547,7 @@ them in JSON format.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.procurmentexpress.com/api/v1/purchase_orders/pending_requests',
+  'https://app.procurementexpress.com/api/v1/purchase_orders/pending_requests',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -556,7 +556,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/purchase_orders/pending_requests'
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders/pending_requests'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -616,7 +616,7 @@ for current authentication_token.
 
 You can sort requests by column with `asc` and `desc` directions.
 Example if you want to sort requests in `asc` order by `created_at` column then:
-`GET https://app.procurmentexpress.com/api/v1/purchase_orders/pending_requests?sort=created_at&direction=asc`
+`GET https://app.procurementexpress.com/api/v1/purchase_orders/pending_requests?sort=created_at&direction=asc`
 
 ### Pagination
 
@@ -627,7 +627,7 @@ and `total_count` to help your write your own logic of pagination.
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/purchase_orders/pending_requests`
+`GET https://app.procurementexpress.com/api/v1/purchase_orders/pending_requests`
 
 ### URL Parameters
 
@@ -645,7 +645,7 @@ and `total_count` to help your write your own logic of pagination.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.procurmentexpress.com/api/v1/purchase_orders/pending_request_count',
+  'https://app.procurementexpress.com/api/v1/purchase_orders/pending_request_count',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -654,7 +654,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/purchase_orders/pending_request_count'
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders/pending_request_count'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -673,7 +673,7 @@ Count total number of pending requests for current authentication_token.
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/purchase_orders/pending_request_count`
+`GET https://app.procurementexpress.com/api/v1/purchase_orders/pending_request_count`
 
 ### URL Parameters
 
@@ -688,7 +688,7 @@ Count total number of pending requests for current authentication_token.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.procurmentexpress.com/api/v1/purchase_orders/1/approve',
+  'https://app.procurementexpress.com/api/v1/purchase_orders/1/approve',
   {
     token: 'accept-token'
   },
@@ -700,7 +700,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/purchase_orders/1/approve'
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/approve'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -721,7 +721,7 @@ order.
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/purchase_orders/:id/approve`
+`GET https://app.procurementexpress.com/api/v1/purchase_orders/:id/approve`
 
 ### URL Parameters
 
@@ -737,7 +737,7 @@ order.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.procurmentexpress.com/api/v1/purchase_orders/1/reject',
+  'https://app.procurementexpress.com/api/v1/purchase_orders/1/reject',
   {
     token: 'reject-token'
   },
@@ -749,7 +749,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/purchase_orders/1/reject'
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/reject'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -770,7 +770,7 @@ order.
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/purchase_orders/:id/reject`
+`GET https://app.procurementexpress.com/api/v1/purchase_orders/:id/reject`
 
 ### URL Parameters
 
@@ -786,7 +786,7 @@ order.
 require 'rest-client'
 
 RestClient.post(
-  'https://app.procurmentexpress.com/api/v1/purchase_orders/1/cancel',
+  'https://app.procurementexpress.com/api/v1/purchase_orders/1/cancel',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -795,7 +795,7 @@ RestClient.post(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/purchase_orders/1/cancel'
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/cancel'
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -815,7 +815,7 @@ cancel or not by checking `can_cancel` value in [Purchase Order Details](/slate/
 
 ### HTTP Request
 
-`POST https://app.procurmentexpress.com/api/v1/purchase_orders/:id/cancel`
+`POST https://app.procurementexpress.com/api/v1/purchase_orders/:id/cancel`
 
 ### URL Parameters
 
@@ -830,7 +830,7 @@ cancel or not by checking `can_cancel` value in [Purchase Order Details](/slate/
 require 'rest-client'
 
 RestClient.post(
-  'https://app.procurmentexpress.com/api/v1/purchase_orders/1/archive',
+  'https://app.procurementexpress.com/api/v1/purchase_orders/1/archive',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -839,7 +839,7 @@ RestClient.post(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/purchase_orders/1/archive'
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/archive'
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -859,7 +859,7 @@ purchase or or not by checking `can_archive` value in [Purchase Order Details pa
 
 ### HTTP Request
 
-`POST https://app.procurmentexpress.com/api/v1/purchase_orders/:id/archive`
+`POST https://app.procurementexpress.com/api/v1/purchase_orders/:id/archive`
 
 ### URL Parameters
 
@@ -881,7 +881,7 @@ in [Purchase Order Details](/slate/#get-purchase-order-details)
 require 'rest-client'
 
 RestClient.post(
-  'https://app.procurmentexpress.com/api/v1/purchase_orders/1/receiving_items',
+  'https://app.procurementexpress.com/api/v1/purchase_orders/1/receiving_items',
   {
     purchase_order: {
       items: [
@@ -901,7 +901,7 @@ RestClient.post(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/purchase_orders/1/receiving_items'
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/receiving_items'
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -929,7 +929,7 @@ page, This value should be true in order to allow user to receive items.
 
 ### HTTP Request
 
-`POST https://app.procurmentexpress.com/api/v1/purchase_orders/:id/receiving_items`
+`POST https://app.procurementexpress.com/api/v1/purchase_orders/:id/receiving_items`
 
 ### URL Parameters
 
@@ -948,7 +948,7 @@ page, This value should be true in order to allow user to receive items.
 require 'rest-client'
 
 RestClient.post(
-  'https://app.procurmentexpress.com/api/v1/purchase_orders/1/cancel_receiving_items',
+  'https://app.procurementexpress.com/api/v1/purchase_orders/1/cancel_receiving_items',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -957,7 +957,7 @@ RestClient.post(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/purchase_orders/1/cancel_receiving_items'
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/cancel_receiving_items'
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -977,7 +977,7 @@ page, the users who are able to receive items can also cancel them. so please ma
 
 ### HTTP Request
 
-`POST https://app.procurmentexpress.com/api/v1/purchase_orders/:id/cancel_receiving_items`
+`POST https://app.procurementexpress.com/api/v1/purchase_orders/:id/cancel_receiving_items`
 
 ### URL Parameters
 

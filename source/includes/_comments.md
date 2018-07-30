@@ -6,7 +6,7 @@
 require 'rest-client'
 
 RestClient.post(
-  'https://app.procurmentexpress.com/api/v1/purchase_orders/1/comments',
+  'https://app.procurementexpress.com/api/v1/purchase_orders/1/comments',
   { comment: 'my first PO' },
   headers = {
     authentication_token: 'your token',
@@ -16,7 +16,7 @@ RestClient.post(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/purchase_orders/1/comments'
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/comments'
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -45,7 +45,7 @@ is created.
 ### HTTP Request
 
 `POST
-https://app.procurmentexpress.com/api/v1/purchase_order/:purchase_order_id/comments`
+https://app.procurementexpress.com/api/v1/purchase_order/:purchase_order_id/comments`
 
 ### Query Parameters
 

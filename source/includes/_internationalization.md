@@ -7,7 +7,7 @@
 require 'rest-client'
 
 RestClient.get(
-  'https://app.procurmentexpress.com/api/v1/endpoint',
+  'https://app.procurementexpress.com/api/v1/endpoint',
   headers = {
     locale: 'es'
   }
@@ -15,7 +15,7 @@ RestClient.get(
 ```
 
 ```sh
-curl https://app.procurmentexpress.com/api/v1/endpoint'
+curl https://app.procurementexpress.com/api/v1/endpoint'
   -H "locale: es"
 ```
 
@@ -39,7 +39,7 @@ We also support some regional languages
 
 ## HTTP Request
 
-`POST https://app.procurmentexpress.com/api/v1/endpoint`
+`POST https://app.procurementexpress.com/api/v1/endpoint`
 
 ## Query Parameters
 
