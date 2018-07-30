@@ -4,6 +4,10 @@ O ipag.js ajuda na manipulação dos dados sensíveis do cartão de crédito, cr
 
 ## Incluindo o ipag.js
 
+Inclua o script antes do fechamendo da tag **body**
+
+[Ver Script na aba HTML](?html#ipag-js)
+
 ```html
 <!-- Inclua o script antes do fechamento da tag </body> -->
 <script type="text/javascript" src="https://sandbox.ipag.com.br/js/dist/ipag.js"></script>
@@ -39,11 +43,33 @@ try {
 }
 ```
 
-Recuperar seu SessionToken via API iPag e atribuir no método **iPag.setIpagId()** do ipag.js (Veja na aba JavaScript).
+Para recuperar o **SessionToken**, enviar um GET para `/service/sessionToken` apenas com os headers:
+
+`"Content-Type": "application/json"`
+
+`"Authorization": "Basic am9uYXRoYW46REM4QS00QzE2ONHSNS1EQTZBRUY2O92SDRkQ2RDMyOC0wRjAz"`
+
+Você deve recuperar o **SessionToken** via Server Side por segurança, utilizar apenas o Session Token no Client Side.
+
+> Resposta da chamada do SessionToken
+
+```
+{
+    "token": "E0D5-246E12FD-431CDAD2-01D05180-B27E",
+    "expires_at": "2018-07-30 09:17:05"
+}
+```
+
+<aside class="notice">
+    Alterar o Authorization para as suas credenciais <a href="?javascript#autentica-o-api">Ver autenticação</a>
+</aside>
+
+Após recuperar seu **SessionToken**, atribua no método **iPag.setIpagId('SESSION_TOKEN')** do ipag.js [Veja na aba JavaScript](?javascript#incluindo-o-ipag-js).
 
 ```javascript
 iPag.setIpagId('COLOCAR SEU SESSION_TOKEN AQUI');
 ```
+
 
 ## Habilitando o modo Sandbox
 
@@ -57,6 +83,8 @@ O modo Sandbox (Teste) é utilizado para que os tokens temporários sejam criado
 
 Caso não seja chamado, será feito uma tentativa de envio para o ambiente de produção do iPag.
 
+[Veja na aba JavaScript](?javascript#habilitando-o-modo-sandbox)
+
 ## Entradas de Texto Formatadas com Formatter.js
 
 O ipag.js detecta automaticamente se você possuí o Formatter.js e tenta formatar as entradas de dados de cartão. Você pode saber mais sobre o Formatter.js no [GitHub](https://github.com/jaridmargolin/formatter.js).
@@ -65,17 +93,21 @@ Para isto você deve definir o seguinte atributo para o input do número do cart
 
 >Exemplo de input com data-ipag="number"
 
-```html
+```
+//html
 <input id="cc-number" name="cc-number" type="tel" class="cc-number" required="" data-ipag="number" value="">
 ```
 
-```javascript
+```
+//js
 ...
 iPag.setup();
 ...
 ```
 
 ## Criando um token de pagamento (Processo completo com validação)
+
+[Veja na aba JavaScript](?javascript#criando-um-token-de-pagamento-processo-completo-com-valida-o)
 
 >O script abaixo utiliza a biblioteca do JQuery
 
@@ -153,6 +185,8 @@ Os campos do formulário devem ter o atributo data-ipag para cada campo abaixo:
 * expiry_year => Ano de vencimento do cartão
 
 ## Funções Auxiliares
+
+[Veja na aba JavaScript](?javascript#fun-es-auxiliares)
 
 ### iPag.validateCreditCardNumber
 Valida o número do cartão de crédito utilizando o algoritmo Luhn
