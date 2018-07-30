@@ -1701,3 +1701,54 @@ Required Parameter: none
 Optional Parameters: none
 
 Response: On success, an object will be returned containing all shift custom multi-pick listables that have been created, and are enabled for the site.
+
+### shift.customTextList
+
+> Request example:
+
+```JSON
+{}
+```
+> Response example:
+
+```JSON
+{
+	"custom_text_1": {
+		"label": "Custom Text 1",
+		"permissions": {
+			"auth_read": 2,
+			"auth_write": 4
+		}
+	},
+	"custom_text_2": {
+		"label": "Custom Text 2",
+		"permissions": {
+			"auth_read": 2,
+			"auth_write": 4
+		}
+	},
+	"custom_text_3": {
+		"label": "Custom Text 3",
+		"permissions": {
+			"auth_read": 5,
+			"auth_write": 2
+		}
+	},
+	"custom_textarea": {
+		"label": "Custom Text Area",
+		"permissions": {
+			"auth_read": 2,
+			"auth_write": "4"
+		}
+	}
+}
+```
+
+<span class="tryit" id="shift-custommultipicklist-tryit"></span>
+Returns permissions for shift related custom multi text/text area objects.
+
+Required Parameter: none
+
+Optional Parameters: none
+
+Response: On success, an object will be returned containing all shift custom text objects that have been created, and are enabled for the site.
