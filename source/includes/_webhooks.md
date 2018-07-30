@@ -6,7 +6,7 @@
 require 'rest-client'
 
 RestClient.post(
-  'https://app.rubberstamp.io/api/v1/webhooks',
+  'https://app.procurmentexpress.com/api/v1/webhooks',
   {
     webhook: {
       name: 'My Awesome App',
@@ -49,7 +49,7 @@ RestClient.post(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/webhooks'
+curl 'https://app.procurmentexpress.com/api/v1/webhooks'
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -116,7 +116,7 @@ Create a new Webhooks and returns the Webhook object that is created.
 
 ### HTTP Request
 
-`POST https://app.rubberstamp.io/api/v1/webhooks`
+`POST https://app.procurmentexpress.com/api/v1/webhooks`
 
 ### Query Parameters
 
@@ -146,7 +146,7 @@ Create a new Webhooks and returns the Webhook object that is created.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.rubberstamp.io/api/v1/webhooks',
+  'https://app.procurmentexpress.com/api/v1/webhooks',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -155,7 +155,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/webhooks'
+curl 'https://app.procurmentexpress.com/api/v1/webhooks'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -205,11 +205,11 @@ Returns a list of webhooks that are not `archived`.
 
 Default result will only provide webhooks that are not already archived.
 If you want to get the list of webhooks that are archived then you can pass
-`archived=true` params e.g: `https://app.rubberstamp.io/api/v1/webhooks?archived=true`
+`archived=true` params e.g: `https://app.procurmentexpress.com/api/v1/webhooks?archived=true`
 
 ### HTTP Request
 
-`GET https://app.rubberstamp.io/api/v1/webhooks`
+`GET https://app.procurmentexpress.com/api/v1/webhooks`
 
 ### Query Parameters
 
@@ -227,7 +227,7 @@ If you want to get the list of webhooks that are archived then you can pass
 require 'rest-client'
 
 RestClient.get(
-  'https://app.rubberstamp.io/api/v1/webhooks/1',
+  'https://app.procurmentexpress.com/api/v1/webhooks/1',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -236,7 +236,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/webhooks/1'
+curl 'https://app.procurmentexpress.com/api/v1/webhooks/1'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -268,7 +268,7 @@ Webhook id that was returned upon budget creation.
 
 ### HTTP Request
 
-`GET https://app.rubberstamp.io/api/v1/webhooks/:id`
+`GET https://app.procurmentexpress.com/api/v1/webhooks/:id`
 
 ### URL Parameters
 
@@ -287,7 +287,7 @@ Webhook id that was returned upon budget creation.
 require 'rest-client'
 
 RestClient.put(
-  'https://app.rubberstamp.io/api/v1/webhooks/1',
+  'https://app.procurmentexpress.com/api/v1/webhooks/1',
   {
     webhook: {
       name: 'My Awesome App name updated',
@@ -305,7 +305,7 @@ RestClient.put(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/webhooks/1'
+curl 'https://app.procurmentexpress.com/api/v1/webhooks/1'
   -X PUT
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -354,7 +354,7 @@ parameters not provided will be left unchanged.
 
 ### HTTP Request
 
-`PUT https://app.rubberstamp.io/api/v1/webhooks/:id`
+`PUT https://app.procurmentexpress.com/api/v1/webhooks/:id`
 
 ### Query Parameters
 

@@ -6,7 +6,7 @@
 require 'rest-client'
 
 RestClient.post(
-  'https://app.rubberstamp.io/api/v1/products',
+  'https://app.procurmentexpress.com/api/v1/products',
   {
     product: {
       description: '1 IPad Charging Station',
@@ -23,7 +23,7 @@ RestClient.post(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/products'
+curl 'https://app.procurmentexpress.com/api/v1/products'
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -52,7 +52,7 @@ Create a new products and returns the `Product` object that is created.
 
 ### HTTP Request
 
-`POST https://app.rubberstamp.io/api/v1/products`
+`POST https://app.procurmentexpress.com/api/v1/products`
 
 ### Query Parameters
 
@@ -72,7 +72,7 @@ Create a new products and returns the `Product` object that is created.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.rubberstamp.io/api/v1/products',
+  'https://app.procurmentexpress.com/api/v1/products',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -81,7 +81,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/products'
+curl 'https://app.procurmentexpress.com/api/v1/products'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -127,7 +127,7 @@ If you want to filter archived products you can pass `archived` params like:
 
 ### HTTP Request
 
-`GET https://app.rubberstamp.io/api/v1/products`
+`GET https://app.procurmentexpress.com/api/v1/products`
 
 ### Query Parameters
 
@@ -146,7 +146,7 @@ If you want to filter archived products you can pass `archived` params like:
 require 'rest-client'
 
 RestClient.get(
-  'https://app.rubberstamp.io/api/v1/products/1',
+  'https://app.procurmentexpress.com/api/v1/products/1',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -155,7 +155,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/products/1'
+curl 'https://app.procurmentexpress.com/api/v1/products/1'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -181,7 +181,7 @@ product id, that was returned upon product creation.
 
 ### HTTP Request
 
-`GET https://app.rubberstamp.io/api/v1/products/:id`
+`GET https://app.procurmentexpress.com/api/v1/products/:id`
 
 ### URL Parameters
 
@@ -199,7 +199,7 @@ product id, that was returned upon product creation.
 require 'rest-client'
 
 RestClient.put(
-  'https://app.rubberstamp.io/api/v1/products/1',
+  'https://app.procurmentexpress.com/api/v1/products/1',
   {
     product: {
       description: 'updated'
@@ -213,7 +213,7 @@ RestClient.put(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/products/1'
+curl 'https://app.procurmentexpress.com/api/v1/products/1'
   -X PUT
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -240,7 +240,7 @@ Any parameters not provided will be left unchanged.
 
 ### HTTP Request
 
-`PUT https://app.rubberstamp.io/api/v1/products/:id`
+`PUT https://app.procurmentexpress.com/api/v1/products/:id`
 
 ### Query Parameters
 

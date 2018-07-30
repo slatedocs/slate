@@ -4,7 +4,7 @@
 require 'rest-client'
 
 RestClient.get(
-  'https://app.rubberstamp.io/api/v1/endpoint',
+  'https://app.procurmentexpress.com/api/v1/endpoint',
   headers={authentication_token: 'your token'}
 )
 ```
@@ -12,7 +12,7 @@ RestClient.get(
 ```shell
 # With shell, you can just pass the correct header with each request
 
-curl "https://app.rubberstamp.io/api/v1/endpoint"
+curl "https://app.procurmentexpress.com/api/v1/endpoint"
   -H "authentication_token: your token"
 ```
 
