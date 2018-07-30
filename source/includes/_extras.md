@@ -5,11 +5,11 @@
 ```ruby
 require 'rest-client'
 
-RestClient.get('https://app.procurmentexpress.com/api/v1/extras')
+RestClient.get('https://app.procurementexpress.com/api/v1/extras')
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/extras'
+curl 'https://app.procurementexpress.com/api/v1/extras'
   -X GET
   -H "Content-Type: application/json"
 ```
@@ -26,7 +26,7 @@ Wait for 3 seconds and return a json response. Used for testing mobile app funct
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/extras`
+`GET https://app.procurementexpress.com/api/v1/extras`
 
 
 
@@ -37,11 +37,11 @@ Wait for 3 seconds and return a json response. Used for testing mobile app funct
 ```ruby
 require 'rest-client'
 
-RestClient.get('https://app.procurmentexpress.com/api/v1/locales/en')
+RestClient.get('https://app.procurementexpress.com/api/v1/locales/en')
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/locales/en'
+curl 'https://app.procurementexpress.com/api/v1/locales/en'
   -X GET
   -H "Content-Type: application/json"
 ```
@@ -74,7 +74,7 @@ Get list of locales depending on `locale` params
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/locales/:locale`
+`GET https://app.procurementexpress.com/api/v1/locales/:locale`
 
 ### URL Parameters
 
@@ -99,7 +99,7 @@ Supported locales right now are listed below
 require 'rest-client'
 
 RestClient.get(
-'https://app.procurmentexpress.com/api/v1/track',
+'https://app.procurementexpress.com/api/v1/track',
   {
     tracking_info: {
       event: 'yyy',
@@ -120,7 +120,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/track'
+curl 'https://app.procurementexpress.com/api/v1/track'
   -X GET
   -H "Content-Type: application/json"
   -d "tracking_info[event]=yyy"
@@ -160,7 +160,7 @@ Track segment.io with given params value, and return as a json output.
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/track`
+`GET https://app.procurementexpress.com/api/v1/track`
 
 ### URL Parameters
 
@@ -181,11 +181,11 @@ Track segment.io with given params value, and return as a json output.
 ```ruby
 require 'rest-client'
 
-RestClient.get('https://app.procurmentexpress.com/api/v1/useralreadyregistered?email=test@example.com')
+RestClient.get('https://app.procurementexpress.com/api/v1/useralreadyregistered?email=test@example.com')
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/useralreadyregistered?email=test@example.com'
+curl 'https://app.procurementexpress.com/api/v1/useralreadyregistered?email=test@example.com'
   -X GET
   -H "Content-Type: application/json"
 ```
@@ -203,7 +203,7 @@ already registered otherwise returns `false`.
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/useralreadyregistered?email=...`
+`GET https://app.procurementexpress.com/api/v1/useralreadyregistered?email=...`
 
 ### URL Parameters
 

@@ -6,7 +6,7 @@
 require 'rest-client'
 
 RestClient.post(
-  'https://app.procurmentexpress.com/api/v1/kittens',
+  'https://app.procurementexpress.com/api/v1/kittens',
   {
     field01: 'value'
   },
@@ -18,7 +18,7 @@ RestClient.post(
 ```
 
 ```shell
-curl https://app.procurmentexpress.com/api/v1/kittens
+curl https://app.procurementexpress.com/api/v1/kittens
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -42,7 +42,7 @@ Create a new kitten and returns the Kitten object that is created.
 
 ### HTTP Request
 
-`POST https://app.procurmentexpress.com/api/v1/kittens`
+`POST https://app.procurementexpress.com/api/v1/kittens`
 
 ### Query Parameters
 
@@ -61,7 +61,7 @@ Create a new kitten and returns the Kitten object that is created.
 require 'rest-client'
 
 response = RestClient.get(
-  'https://app.procurmentexpress.com/api/v1/kittens',
+  'https://app.procurementexpress.com/api/v1/kittens',
   headers = {
     authentication_token: 'your token',
     app_company_id: '1'
@@ -72,7 +72,7 @@ response.body
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/kittens'
+curl 'https://app.procurementexpress.com/api/v1/kittens'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -104,7 +104,7 @@ Returns a list of your kittens.
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/kittens`
+`GET https://app.procurementexpress.com/api/v1/kittens`
 
 ### Query Parameters
 
@@ -122,7 +122,7 @@ Returns a list of your kittens.
 require 'rest-client'
 
 response = RestClient.get(
-  'https://app.procurmentexpress.com/api/v1/kittens/1',
+  'https://app.procurementexpress.com/api/v1/kittens/1',
   headers = {
     authentication_token: 'your token',
     app_company_id: '1'
@@ -133,7 +133,7 @@ response.body
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/kittens/1'
+curl 'https://app.procurementexpress.com/api/v1/kittens/1'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -157,7 +157,7 @@ kitten id, that was returned upon kitten creation.
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/kittens/:id`
+`GET https://app.procurementexpress.com/api/v1/kittens/:id`
 
 ### URL Parameters
 
@@ -177,7 +177,7 @@ kitten id, that was returned upon kitten creation.
 require 'rest-client'
 
 RestClient.put(
-  'https://app.procurmentexpress.com/api/v1/kittens/1',
+  'https://app.procurementexpress.com/api/v1/kittens/1',
   {
     field01: 'value'
   },
@@ -189,7 +189,7 @@ RestClient.put(
 ```
 
 ```shell
-curl https://app.procurmentexpress.com/api/v1/kittens/1
+curl https://app.procurementexpress.com/api/v1/kittens/1
   -X PUT
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -214,7 +214,7 @@ parameters not provided will be left unchanged.
 
 ### HTTP Request
 
-`PUT https://app.procurmentexpress.com/api/v1/kittens/:id`
+`PUT https://app.procurementexpress.com/api/v1/kittens/:id`
 
 ### Query Parameters
 
@@ -236,7 +236,7 @@ parameters not provided will be left unchanged.
 require 'rest-client'
 
 response = RestClient.delete(
-  'https://app.procurmentexpress.com/api/v1/kittens/1',
+  'https://app.procurementexpress.com/api/v1/kittens/1',
   headers = {
     authentication_token: 'your token',
     app_company_id: '1'
@@ -245,7 +245,7 @@ response = RestClient.delete(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/kittens/1'
+curl 'https://app.procurementexpress.com/api/v1/kittens/1'
   -X DELETE
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -266,7 +266,7 @@ parameter on success. If the kitten id doesn't exists, it raises the error.
 
 ### HTTP Request
 
-`DELETE https://app.procurmentexpress.com/api/v1/kittens/:id`
+`DELETE https://app.procurementexpress.com/api/v1/kittens/:id`
 
 ### URL Parameters
 

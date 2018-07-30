@@ -6,7 +6,7 @@
 require 'rest-client'
 
 RestClient.post(
-  'https://app.procurmentexpress.com/api/v1/tax_rates',
+  'https://app.procurementexpress.com/api/v1/tax_rates',
   {
     tax_rate: {
       name: 'default_13.0',
@@ -21,7 +21,7 @@ RestClient.post(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/tax_rates'
+curl 'https://app.procurementexpress.com/api/v1/tax_rates'
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -48,7 +48,7 @@ Create a new Tax rate and return the `TaxRate` object that is created.
 
 ### HTTP Request
 
-`POST https://app.procurmentexpress.com/api/v1/tax_rates`
+`POST https://app.procurementexpress.com/api/v1/tax_rates`
 
 
 ### Query Parameters
@@ -70,7 +70,7 @@ Create a new Tax rate and return the `TaxRate` object that is created.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.procurmentexpress.com/api/v1/tax_rates',
+  'https://app.procurementexpress.com/api/v1/tax_rates',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -79,7 +79,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/tax_rates'
+curl 'https://app.procurementexpress.com/api/v1/tax_rates'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -115,7 +115,7 @@ Returns a list of your tax rates.
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/tax_rates`
+`GET https://app.procurementexpress.com/api/v1/tax_rates`
 
 #### Query Parameters
 
@@ -132,7 +132,7 @@ Returns a list of your tax rates.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.procurmentexpress.com/api/v1/tax_rates/1',
+  'https://app.procurementexpress.com/api/v1/tax_rates/1',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -141,7 +141,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/tax_rates/1'
+curl 'https://app.procurementexpress.com/api/v1/tax_rates/1'
   -X GET
   -H 'Content-Type: application/json'
   -H 'authentication_token: your token'
@@ -167,7 +167,7 @@ tax rate id, that was returned upon tax rate creation.
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/tax_rates/:id`
+`GET https://app.procurementexpress.com/api/v1/tax_rates/:id`
 
 ### URL Parameters
 
@@ -185,7 +185,7 @@ tax rate id, that was returned upon tax rate creation.
 require 'rest-client'
 
 RestClient.put(
-  'https://app.procurmentexpress.com/api/v1/tax_rates/1',
+  'https://app.procurementexpress.com/api/v1/tax_rates/1',
   {
     tax_rate: {
       name: 'default_13.10',
@@ -200,7 +200,7 @@ RestClient.put(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/tax_rates/1'
+curl 'https://app.procurementexpress.com/api/v1/tax_rates/1'
   -X PUT
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -228,7 +228,7 @@ parameters not provided will be left unchanged.
 
 ### HTTP Request
 
-`PUT https://app.procurmentexpress.com/api/v1/tax_rates/:id`
+`PUT https://app.procurementexpress.com/api/v1/tax_rates/:id`
 
 ### Query Parameters
 

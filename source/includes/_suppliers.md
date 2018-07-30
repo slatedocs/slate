@@ -6,7 +6,7 @@
 require 'rest-client'
 
 RestClient.post(
-  'https://app.procurmentexpress.com/api/v1/suppliers',
+  'https://app.procurementexpress.com/api/v1/suppliers',
   {
     supplier: {
       name: 'iCare Center',
@@ -23,7 +23,7 @@ RestClient.post(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/suppliers'
+curl 'https://app.procurementexpress.com/api/v1/suppliers'
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -56,7 +56,7 @@ Create a new suppliers and returns the `Supplier` object that is created.
 
 ### HTTP Request
 
-`POST https://app.procurmentexpress.com/api/v1/suppliers`
+`POST https://app.procurementexpress.com/api/v1/suppliers`
 
 ### Query Parameters
 
@@ -82,7 +82,7 @@ Create a new suppliers and returns the `Supplier` object that is created.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.procurmentexpress.com/api/v1/suppliers',
+  'https://app.procurementexpress.com/api/v1/suppliers',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -91,7 +91,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/suppliers'
+curl 'https://app.procurementexpress.com/api/v1/suppliers'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -174,7 +174,7 @@ You can pass `archived` params with `true` or `false` to filter Archived supplie
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/suppliers`
+`GET https://app.procurementexpress.com/api/v1/suppliers`
 
 ### Query Parameters
 
@@ -193,7 +193,7 @@ You can pass `archived` params with `true` or `false` to filter Archived supplie
 require 'rest-client'
 
 RestClient.get(
-  'https://app.procurmentexpress.com/api/v1/suppliers/1',
+  'https://app.procurementexpress.com/api/v1/suppliers/1',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -202,7 +202,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/suppliers/1'
+curl 'https://app.procurementexpress.com/api/v1/suppliers/1'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -232,7 +232,7 @@ supplier id, that was returned upon supplier creation.
 
 ### HTTP Request
 
-`GET https://app/rubberstamp.io/api/v1/suppliers/:id`
+`GET https://app.procurementexpress.com/api/v1/suppliers/:id`
 
 ### URL Parameters
 
@@ -251,7 +251,7 @@ supplier id, that was returned upon supplier creation.
 require 'rest-client'
 
 RestClient.put(
-  'https://app.procurmentexpress.com/api/v1/suppliers/1',
+  'https://app.procurementexpress.com/api/v1/suppliers/1',
   {
     supplier: {
       name: 'updated'
@@ -265,7 +265,7 @@ RestClient.put(
 ```
 
 ```shell
-curl 'https://app.procurmentexpress.com/api/v1/suppliers/1'
+curl 'https://app.procurementexpress.com/api/v1/suppliers/1'
   -X PUT
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -296,7 +296,7 @@ Any parameters not provided will be left unchanged.
 
 ### HTTP Request
 
-`PUT https://app.procurmentexpress.com/api/v1/suppliers/:id`
+`PUT https://app.procurementexpress.com/api/v1/suppliers/:id`
 
 
 ### Query Parameters

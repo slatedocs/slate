@@ -4,7 +4,7 @@
 
 ```shell
 curl --request GET \
-  --url https://app.procurmentexpress.com/api/v1/send_to_supplier_templates \
+  --url https://app.procurementexpress.com/api/v1/send_to_supplier_templates \
   --header 'app_company_id: 1' \
   --header 'authentication_token: your token' \
   --header 'content-type: application/json'
@@ -14,7 +14,7 @@ curl --request GET \
 require 'rest-client'
 
 RestClient.get(
-  'https://app.procurmentexpress.com/api/v1/send_to_supplier_templates',
+  'https://app.procurementexpress.com/api/v1/send_to_supplier_templates',
   headers = {
       authentication_token: 'your token',
       app_company_id: '1'
@@ -47,7 +47,7 @@ Get list of all templates.
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/send_to_supplier_templates`
+`GET https://app.procurementexpress.com/api/v1/send_to_supplier_templates`
 
 ### Query Parameters
 
@@ -60,7 +60,7 @@ Get list of all templates.
 
 ```shell
 curl --request POST \
-  --url https://app.procurmentexpress.com/api/v1/purchase_orders/2/forward \
+  --url https://app.procurementexpress.com/api/v1/purchase_orders/2/forward \
   --header 'app_company_id: 1' \
   --header 'authentication_token: your token' \
   --header 'content-type: application/json' \
@@ -79,7 +79,7 @@ curl --request POST \
 require 'rest-client'
 
 RestClient.post(
-  'https://app.procurmentexpress.com/api/v1/purchase_orders/2/forward',
+  'https://app.procurementexpress.com/api/v1/purchase_orders/2/forward',
   {
     emails: "test@example.com",
     cc: "test2@example.com",
@@ -134,7 +134,7 @@ In [Purchase Order Details](/slate/#get-purchase-order-details) you will get `cr
 
 ### HTTP Request
 
-`POST https://app.procurmentexpress.com/api/v1/purchase_orders/:id/forward`
+`POST https://app.procurementexpress.com/api/v1/purchase_orders/:id/forward`
 
 ### Query Parameters
 
@@ -156,7 +156,7 @@ In [Purchase Order Details](/slate/#get-purchase-order-details) you will get `cr
 
 ```shell
 curl --request POST \
-  --url https://app.procurmentexpress.com/api/v1/send_to_supplier_templates \
+  --url https://app.procurementexpress.com/api/v1/send_to_supplier_templates \
   --header 'app_company_id: 1' \
   --header 'authentication_token: your token' \
   --header 'content-type: application/json' \
@@ -171,7 +171,7 @@ curl --request POST \
 ```ruby
 require 'rest-client'
 RestClient.post(
-  'https://app.procurmentexpress.com/api/v1/send_to_supplier_templates',
+  'https://app.procurementexpress.com/api/v1/send_to_supplier_templates',
   {
     send_to_supplier_template: {
         label: 'Sample Template',
@@ -200,7 +200,7 @@ Create new Send to supplier template with `label` and `text`.
 
 ### HTTP Request
 
-`POST https://app.procurmentexpress.com/api/v1/send_to_supplier_templates`
+`POST https://app.procurementexpress.com/api/v1/send_to_supplier_templates`
 
 ### Query Parameters
 
@@ -217,7 +217,7 @@ Create new Send to supplier template with `label` and `text`.
 
 ```sh
 curl --request GET \
-  --url https://app.procurmentexpress.com/api/v1/send_to_supplier_templates/2 \
+  --url https://app.procurementexpress.com/api/v1/send_to_supplier_templates/2 \
   --header 'app_company_id: 1' \
   --header 'authentication_token: your token' \
   --header 'content-type: application/json'
@@ -227,7 +227,7 @@ curl --request GET \
 require 'rest-client'
 
 response = RestClient.get(
-  'https://app.procurmentexpress.com/api/v1/send_to_supplier_templates/2',
+  'https://app.procurementexpress.com/api/v1/send_to_supplier_templates/2',
   headers = {
     authentication_token: 'your token',
     app_company_id: '1'
@@ -250,7 +250,7 @@ Get detail for send to supplier template by given id
 
 ### HTTP Request
 
-`GET https://app.procurmentexpress.com/api/v1/send_to_supplier_templates/:id`
+`GET https://app.procurementexpress.com/api/v1/send_to_supplier_templates/:id`
 
 ### URL Parameters
 
@@ -266,7 +266,7 @@ Get detail for send to supplier template by given id
 require 'rest-client'
 
 RestClient.put(
-  'https://app.procurmentexpress.com/api/v1/send_to_supplier_templates/1',
+  'https://app.procurementexpress.com/api/v1/send_to_supplier_templates/1',
   {
     label: 'Thank you template'
     text: 'Dear John Snow, \t\n\n Thank you for subscribing to our newsletter.'
@@ -280,7 +280,7 @@ RestClient.put(
 
 ```shell
 curl --request PUT \
-  --url https://app.procurmentexpress.com/api/v1/send_to_supplier_templates/2 \
+  --url https://app.procurementexpress.com/api/v1/send_to_supplier_templates/2 \
   --header 'app_company_id: 1' \
   --header 'authentication_token: your token' \
   --header 'content-type: application/json' \
@@ -308,7 +308,7 @@ parameters not provided will be left unchanged.
 
 ### HTTP Request
 
-`PUT https://app.procurmentexpress.com/api/v1/kittens/:id`
+`PUT https://app.procurementexpress.com/api/v1/kittens/:id`
 
 ### Query Parameters
 
