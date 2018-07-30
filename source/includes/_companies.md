@@ -659,3 +659,47 @@ Send invitation to the user.
 | invite_user[email]   | string  | Email to send invitation to                                                                                          |
 | invite_user[name]    | string  | User's first name and last name                                                                                      |
 | invite_user[roles]   | Array[] | List of Roles for that user. Available roles are: <br/> - companyadmin <br/> - approver <br/> - finance <br/> - teammember |
+
+## Invite Limit Left
+
+```ruby
+require 'rest-client'
+
+RestClient.get(
+  'https://app.procurementexpress.com/api/v1/companies/invite_limit_left',
+  headers = {
+    app_company_id: 1,
+    authentication_token: 'token'
+  }
+)
+```
+
+```sh
+curl 'https://app.procurementexpress.com/api/v1/companies/invite_limit_left'
+  -X GET
+  -H 'authentication_token: token'
+  -H 'app_company_id: 1'
+```
+
+> Above command will response
+
+```json
+{
+  "limit_left": 4,
+  "active_users": 1,
+  "allowed_users": 5
+}
+```
+
+This endpoint will return information about your current subscription. Information like, `limit_left`, how many `active_users` are currently there in company and how many total `allowed_users` you can add to this company as per your subscription.
+
+### HTTP Request
+
+`GET https://app.procurementexpress.com/api/v1/companies/invite_limit_left`
+
+### URL Parameters
+
+| Params               | Type    | Description                                                                                                          |
+| -----                | ------  | ---------                                                                                                            |
+| authentication_token | headers | Authentication token                                                                                                 |
+| app_company_id       | headers | Company id                                                                                                           |
