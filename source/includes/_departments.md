@@ -6,7 +6,7 @@
 require 'rest-client'
 
 RestClient.post(
-  'https://app.rubberstamp.io/api/v1/departments',
+  'https://app.procurmentexpress.com/api/v1/departments',
   {
     department: {
       name: 'Accounting',
@@ -28,7 +28,7 @@ RestClient.post(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/departments'
+curl 'https://app.procurmentexpress.com/api/v1/departments'
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -65,7 +65,7 @@ Create a new `Department` and returns the `Department` object that is created.
 
 ### HTTP Request
 
-`POST https://app.rubberstamp.io/api/v1/departments`
+`POST https://app.procurmentexpress.com/api/v1/departments`
 
 ### Query Parameters
 
@@ -92,7 +92,7 @@ Create a new `Department` and returns the `Department` object that is created.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.rubberstamp.io/api/v1/departments',
+  'https://app.procurmentexpress.com/api/v1/departments',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -101,7 +101,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/departments'
+curl 'https://app.procurmentexpress.com/api/v1/departments'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -154,7 +154,7 @@ you can pass `company_specific=true` flag in the query params, example:
 
 ### HTTP Request
 
-`GET https://app.rubberstamp.io/api/v1/departments`
+`GET https://app.procurmentexpress.com/api/v1/departments`
 
 ### Query Parameters
 
@@ -173,7 +173,7 @@ you can pass `company_specific=true` flag in the query params, example:
 require 'rest-client'
 
 RestClient.get(
-  'https://app.rubberstamp.io/api/v1/departments/1',
+  'https://app.procurmentexpress.com/api/v1/departments/1',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -182,7 +182,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/departments/1'
+curl 'https://app.procurmentexpress.com/api/v1/departments/1'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -210,7 +210,7 @@ department id, that was returned upon department creation.
 
 ### HTTP Request
 
-`GET https://app.rubberstamp.io/api/v1/departments/:id`
+`GET https://app.procurmentexpress.com/api/v1/departments/:id`
 
 ### URL Parameters
 
@@ -228,7 +228,7 @@ department id, that was returned upon department creation.
 require 'rest-client'
 
 RestClient.put(
-  'https://app.rubberstamp.io/api/v1/departments/1',
+  'https://app.procurmentexpress.com/api/v1/departments/1',
   {
     department: {
       name: 'Accounting department',
@@ -242,7 +242,7 @@ RestClient.put(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/departments/1'
+curl 'https://app.procurmentexpress.com/api/v1/departments/1'
   -X PUT
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -271,7 +271,7 @@ Any parameters not provided will be left unchanged.
 
 ### HTTP Request
 
-`PUT https://app.rubberstamp.io/api/v1/departments/:id`
+`PUT https://app.procurmentexpress.com/api/v1/departments/:id`
 
 ### Query Parameters
 

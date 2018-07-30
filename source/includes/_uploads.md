@@ -6,7 +6,7 @@
 require 'rest-client'
 
 RestClient.post(
-  'https://app.rubberstamp.io/api/v1/uploads/po',
+  'https://app.procurmentexpress.com/api/v1/uploads/po',
   {
     po_id: '1',
     uploads_attributes: {
@@ -22,7 +22,7 @@ RestClient.post(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/uploads/po'
+curl 'https://app.procurmentexpress.com/api/v1/uploads/po'
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -49,7 +49,7 @@ in json format.
 
 ### HTTP Request
 
-`POST https://app.rubberstamp.io/api/v1/uploads/po`
+`POST https://app.procurmentexpress.com/api/v1/uploads/po`
 
 ### URL Parameters
 
@@ -68,7 +68,7 @@ in json format.
 require 'rest-client'
 
 RestClient.post(
-  'https://app.rubberstamp.io/api/v1/uploads/poc',
+  'https://app.procurmentexpress.com/api/v1/uploads/poc',
   {
     poc_id: '1',
     uploads_attributes: {
@@ -84,7 +84,7 @@ RestClient.post(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/uploads/poc'
+curl 'https://app.procurmentexpress.com/api/v1/uploads/poc'
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -111,7 +111,7 @@ in json format.
 
 ### HTTP Request
 
-`POST https://app.rubberstamp.io/api/v1/uploads/poc`
+`POST https://app.procurmentexpress.com/api/v1/uploads/poc`
 
 ### URL Parameters
 
@@ -130,7 +130,7 @@ in json format.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.rubberstamp.io/api/v1/uploads/status?upload_token=myuploadtoken1',
+  'https://app.procurmentexpress.com/api/v1/uploads/status?upload_token=myuploadtoken1',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -139,7 +139,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/uploads/status?upload_token=myuploadtoken1'
+curl 'https://app.procurmentexpress.com/api/v1/uploads/status?upload_token=myuploadtoken1'
   -X GET
   -H "authentication_token: your token"
   -H "app_company_id: 1"
@@ -162,7 +162,7 @@ object in JSON format.
 
 ### HTTP Request
 
-`GET https://app.rubberstamp.io/api/v1/uploads/status?upload_token=your token`
+`GET https://app.procurmentexpress.com/api/v1/uploads/status?upload_token=your token`
 
 ### URL Parameters
 

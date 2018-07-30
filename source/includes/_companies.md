@@ -6,7 +6,7 @@
 require 'rest-client'
 
 RestClient.post(
-  'https://app.rubberstamp.io/api/v1/companies',
+  'https://app.procurmentexpress.com/api/v1/companies',
   {
     company: {
       name: 'ABC Corp.',
@@ -23,7 +23,7 @@ RestClient.post(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/companies'
+curl 'https://app.procurmentexpress.com/api/v1/companies'
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -45,7 +45,7 @@ Create a new Company and returns the `Company` object that is created.
 
 ### HTTP Request
 
-`POST https://app.rubberstamp.io/api/v1/companies`
+`POST https://app.procurmentexpress.com/api/v1/companies`
 
 ### Query Parameters
 
@@ -101,7 +101,7 @@ Create a new Company and returns the `Company` object that is created.
 require 'rest-client'
 
 response = RestClient.get(
-  'https://app.rubberstamp.io/api/v1/companies',
+  'https://app.procurmentexpress.com/api/v1/companies',
   headers = {
     authentication_token: 'your token'
   }
@@ -111,7 +111,7 @@ response.body
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/companies'
+curl 'https://app.procurmentexpress.com/api/v1/companies'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -136,7 +136,7 @@ Returns a list of companies for current logged in user.
 
 ### HTTP Request
 
-`GET https://app.rubberstamp.io/api/v1/companies`
+`GET https://app.procurmentexpress.com/api/v1/companies`
 
 ### Query Parameters
 
@@ -153,7 +153,7 @@ Returns a list of companies for current logged in user.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.rubberstamp.io/api/v1/companies/1',
+  'https://app.procurmentexpress.com/api/v1/companies/1',
   headers = {
     authentication_token: 'your token',
   }
@@ -161,7 +161,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/companies/1'
+curl 'https://app.procurmentexpress.com/api/v1/companies/1'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -285,7 +285,7 @@ that was returned upon company creation.
 
 ### HTTP Request
 
-`GET https://app.rubberstamp.io/api/v1/companies/:id`
+`GET https://app.procurmentexpress.com/api/v1/companies/:id`
 
 ### URL Parameters
 
@@ -302,7 +302,7 @@ that was returned upon company creation.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.rubberstamp.io/api/v1/companies/details',
+  'https://app.procurmentexpress.com/api/v1/companies/details',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -311,7 +311,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/companies/details'
+curl 'https://app.procurmentexpress.com/api/v1/companies/details'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -436,7 +436,7 @@ that was returned upon company creation.
 
 ### HTTP Request
 
-`GET https://app.rubberstamp.io/api/v1/companies/details`
+`GET https://app.procurmentexpress.com/api/v1/companies/details`
 
 ### URL Parameters
 
@@ -454,7 +454,7 @@ that was returned upon company creation.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.rubberstamp.io/api/v1/companies/approvers?department_id=1',
+  'https://app.procurmentexpress.com/api/v1/companies/approvers?department_id=1',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -463,7 +463,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/companies/approvers?department_id=1'
+curl 'https://app.procurmentexpress.com/api/v1/companies/approvers?department_id=1'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -518,7 +518,7 @@ params.
 
 ### HTTP Request
 
-`GET https://app.rubberstamp.io/api/v1/companies/approvers?department_id=:id`
+`GET https://app.procurmentexpress.com/api/v1/companies/approvers?department_id=:id`
 
 ### URL Parameters
 
@@ -535,7 +535,7 @@ params.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.rubberstamp.io/api/v1/companies/all_approvers',
+  'https://app.procurmentexpress.com/api/v1/companies/all_approvers',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -544,7 +544,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/companies/all_approvers'
+curl 'https://app.procurmentexpress.com/api/v1/companies/all_approvers'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -594,7 +594,7 @@ Retrieves the list of all approvers for current company regardless of auto appro
 
 ### HTTP Request
 
-`GET https://app.rubberstamp.io/api/v1/companies/all_approvers`
+`GET https://app.procurmentexpress.com/api/v1/companies/all_approvers`
 
 ### URL Parameters
 
@@ -611,7 +611,7 @@ Retrieves the list of all approvers for current company regardless of auto appro
 require 'rest-client'
 
 RestClient.post(
-  'https://app.rubberstamp.io/api/v1/companies/send_user_invite',
+  'https://app.procurmentexpress.com/api/v1/companies/send_user_invite',
   {
     invite_user: {
       email: 'friend@example.com',
@@ -627,7 +627,7 @@ RestClient.post(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/companies/send_user_invite'
+curl 'https://app.procurmentexpress.com/api/v1/companies/send_user_invite'
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -648,7 +648,7 @@ Send invitation to the user.
 
 ### HTTP Request
 
-`POST https://app.rubberstamp.io/api/v1/companies/send_user_invite`
+`POST https://app.procurmentexpress.com/api/v1/companies/send_user_invite`
 
 ### URL Parameters
 

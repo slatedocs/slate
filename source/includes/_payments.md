@@ -6,7 +6,7 @@
 require 'rest-client'
 
 RestClient.post(
-  'https://app.rubberstamp.io/api/v1/purchase_orders/1/payments',
+  'https://app.procurmentexpress.com/api/v1/purchase_orders/1/payments',
   {
     payment: {
       notes: "payment notes",
@@ -30,7 +30,7 @@ RestClient.post(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/purchase_orders/1/payments'
+curl 'https://app.procurmentexpress.com/api/v1/purchase_orders/1/payments'
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -56,7 +56,7 @@ have enough permission to mark purchase order as paid or not, you need to first 
 
 ### HTTP Request
 
-`POST https://app.rubberstamp.io/api/v1/purchase_orders/:purchase_order_id/payments`
+`POST https://app.procurmentexpress.com/api/v1/purchase_orders/:purchase_order_id/payments`
 
 ### Query Parameters
 

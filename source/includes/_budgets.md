@@ -6,7 +6,7 @@
 require 'rest-client'
 
 RestClient.post(
-  'https://app.rubberstamp.io/api/v1/budgets',
+  'https://app.procurmentexpress.com/api/v1/budgets',
   {
     budget: {
       amount: 100.0,
@@ -26,7 +26,7 @@ RestClient.post(
 ```
 
 ```shell
-curl https://app.rubberstamp.io/api/v1/budgets
+curl https://app.procurmentexpress.com/api/v1/budgets
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -82,7 +82,7 @@ date format for `start_date` and `end_date`. Please find date format in [Company
 
 ### HTTP Request
 
-`POST https://app.rubberstamp.io/api/v1/budgets`
+`POST https://app.procurmentexpress.com/api/v1/budgets`
 
 ### Query Parameters
 
@@ -108,7 +108,7 @@ date format for `start_date` and `end_date`. Please find date format in [Company
 require 'rest-client'
 
 RestClient.get(
-  'https://app.rubberstamp.io/api/v1/budgets',
+  'https://app.procurmentexpress.com/api/v1/budgets',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -117,7 +117,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/budgets'
+curl 'https://app.procurmentexpress.com/api/v1/budgets'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -197,7 +197,7 @@ you can pass `department_id` query params to filter budgets by departments like:
 
 ### HTTP Request
 
-`GET https://app.rubberstamp.io/api/v1/budgets`
+`GET https://app.procurmentexpress.com/api/v1/budgets`
 
 ### Query Parameters
 
@@ -213,7 +213,7 @@ you can pass `department_id` query params to filter budgets by departments like:
 require 'rest-client'
 
 RestClient.get(
-  'https://app.rubberstamp.io/api/v1/budgets/1',
+  'https://app.procurmentexpress.com/api/v1/budgets/1',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -222,7 +222,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/budgets/1'
+curl 'https://app.procurmentexpress.com/api/v1/budgets/1'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -259,7 +259,7 @@ budget id that was returned upon budget creation.
 
 ### HTTP Request
 
-`GET https://app.rubberstamp.io/api/v1/budgets/:id`
+`GET https://app.procurmentexpress.com/api/v1/budgets/:id`
 
 ### URL Parameters
 
@@ -275,7 +275,7 @@ budget id that was returned upon budget creation.
 require 'rest-client'
 
 RestClient.put(
-  'https://app.rubberstamp.io/api/v1/budgets/1',
+  'https://app.procurmentexpress.com/api/v1/budgets/1',
   {
     budget: {
       amount: 200.0,
@@ -289,7 +289,7 @@ RestClient.put(
 ```
 
 ```shell
-curl 'https://app.rubberstamp.io/api/v1/budgets/1'
+curl 'https://app.procurmentexpress.com/api/v1/budgets/1'
   -X PUT
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -326,7 +326,7 @@ parameters not provided will be left unchanged.
 
 ### HTTP Request
 
-`PUT https://app.rubberstamp.io/api/v1/budgets/:id`
+`PUT https://app.procurmentexpress.com/api/v1/budgets/:id`
 
 ### Query Parameters
 
