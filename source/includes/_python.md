@@ -4,10 +4,7 @@ Scout's Python agent auto-instruments Django and Flask applications, SQL queries
 
 <h2 id="python-requirements">Requirements</h2>
 
-* Python 3.4+ (request Python 2.7 support via [this GitHub issue](https://github.com/scoutapp/scout_apm_python/issues/45))
-* Django 1.10+ (request Django 1.8 and 1.9 support via [this GitHub issue](https://github.com/scoutapp/scout_apm_python/issues/26))
-* Flask 0.10+
-* Celery 3.1+
+`scout-apm` requires Python 3.4+ (request Python 2.7 support via [this GitHub issue](https://github.com/scoutapp/scout_apm_python/issues/45)).
 
 <h2 id="python-instrumented-libraries">Instrumented Libraries</h2>
 
@@ -44,6 +41,8 @@ You can instrument your own code or other libraries via [custom instrumentation]
 
 ## Django
 
+Scout supports Django 1.10+ (request Django 1.8 and 1.9 support via [this GitHub issue](https://github.com/scoutapp/scout_apm_python/issues/26)).
+
 General instructions for a Django app:
 
 <table class="help install install_ruby">
@@ -74,7 +73,7 @@ INSTALLED_APPS = (
 
 # Scout settings
 SCOUT_MONITOR = True
-SCOUT_KEY     = "[AVAILABLE IN THE SCOUT UI]"
+SCOUT_KEY     = "[SCOUT_KEY]"
 SCOUT_NAME    = "A FRIENDLY NAME FOR YOUR APP"
 </pre>
 
@@ -93,6 +92,8 @@ If you've installed Scout via the Heroku Addon, the provisioning process automat
 </table>
 
 ## Flask
+
+Scout supports Flask 0.10+.
 
 General instructions for a Flask app:
 
@@ -126,7 +127,7 @@ ScoutApm(app)
 
 # Scout settings
 app.config['SCOUT_MONITOR'] = True
-app.config['SCOUT_KEY']     = "[AVAILABLE IN THE SCOUT UI]"
+app.config['SCOUT_KEY']     = "[SCOUT_KEY]"
 app.config['SCOUT_NAME']    = "A FRIENDLY NAME FOR YOUR APP"
 </pre>
 
@@ -159,6 +160,8 @@ instrument_sqlalchemy(engine)
 
 ## Celery
 
+Scout supports Celery 3.1+.
+
 Add the following to instrument Celery workers:
 
 <table class="help install install_ruby">
@@ -188,7 +191,7 @@ from celery import Celery
 app = Celery('tasks', backend='redis://localhost', broker='redis://localhost')
 <span>
 Config.set(
-        key = '...',
+        key = '[SCOUT_KEY]',
         name = 'Same as Web App Name',
         monitor = True
         )
@@ -242,7 +245,7 @@ import scout_apm.pyramid
 if __name__ == '__main__':
     with Configurator() as config:
         config.add_settings(
-            SCOUT_KEY = '...',
+            SCOUT_KEY = '[SCOUT_KEY]',
             SCOUT_MONITOR = True,
             SCOUT_NAME = 'My Pyramid App'
         )
@@ -293,7 +296,7 @@ from scout_apm.bottle import ScoutPlugin
 app = bottle.default_app()
 app.config.update({'scout.name': "YOUR_APP_NAME",
                    'scout.monitor': "true",
-                   'scout.key': "YOUR_KEY"})
+                   'scout.key': "[SCOUT_KEY]"})
 
 scout = ScoutPlugin()
 bottle.install(scout)
