@@ -76,6 +76,31 @@ Required parameter: `id`.
 
 Response: On success, empty results will be returned.
 
+### tradeboard.approve
+
+This API call can be used in two situations. 
+
+The first situation is when an employee request permission to post a shift to be traded. In this case the API is called to
+approve or deny the shift to be traded to another employees.  
+
+The second situation is when a shift has been posted as a trade and an employee is requesting to cover the shift. In this cass the API is called to approve or deny the employee to cover the shift.
+
+Parameters:
+
+####id
+
+Required. id of the tradeboard posting for which to be approved or denied.
+
+####approval
+Required. Boolean indicating if tradeboard is approved or denied to either be put up for trade (situation 1) or for being cover by another employee (situation 2)
+
+####notes
+Optional. Text that is attached to notification. This can be used when a shift is submitted to be posted as a trade. The text will be attached to the request to trade. This parameter is only used when the shift is requested to be posted as a trade (situation 1). 
+
+####no_notify
+Optional. Boolean indicating if a notification is created when the trade is requested to be covered by another employee. If "true", a notification will be send out. If "false", no notification will be send out.
+This parameter is only used when the trade is approved/denied to be covered by another employee (situation 2 )
+
 ### tradeboard.create
 
 > Request example:
