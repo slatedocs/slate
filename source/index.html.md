@@ -23,10 +23,9 @@ We are currently focused primarily on developers already familiar with Bitcoin a
 Here are some useful resources to help you learn and get started with Bicoin and Lightning Network.  Read and watch and come back when you're ready. 
 
 1. <a href="https://bitcoin.org/en/download">Download Bitcoin Core</a>
-2. <a href="https://lbtc.io/">Lightning Bitcoin, Downloads and Wallets</a>
-3. <a href="http://lightning.network/">Lightning Network Background</a>
-4. <a href="https://lightning.network/lightning-network-paper.pdf">Lightning Whitepaper</a>
-5. <a href="https://www.youtube.com/watch?v=l1si5ZWLgy0">Introduction to Bitcoin</a>
+2. <a href="http://lightning.network/">Lightning Network Background</a>
+3. <a href="https://lightning.network/lightning-network-paper.pdf">Lightning Whitepaper</a>
+4. <a href="https://www.youtube.com/watch?v=l1si5ZWLgy0">Introduction to Bitcoin</a>
 
 ## Suredbits Lightning Node
 In order to access our APIs, you will need to connect to our lightning node via your preferred lightning client.   
@@ -38,7 +37,7 @@ The url is:
 
 ## Suredbits Lightning Payment 
 
-Here is our custom drop-in solution in nodejs client for our API: <a href="https://github.com/suredbits/lightning-charge">https://github.com/suredbits/lightning-charge</a>
+Here is our custom drop-in solution in node.js client for our API: <a href="https://github.com/suredbits/lightning-charge">https://github.com/suredbits/lightning-charge</a>
 
 ## Suredbits Websocket Endpoint
 Here is the websocket uri for Suredbits: <a href="wss://test.api.suredbits.com/nfl/v0">wss://test.api.suredbits.com/nfl/v0</a>
