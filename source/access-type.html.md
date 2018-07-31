@@ -15,11 +15,13 @@ includes:
   - accesstype/subscriptions
   - accesstype/subscription_gifts
   - accesstype/assets
+  - accesstype/wallets
   - accesstype/coupon_codes
   - accesstype/campaigns
   - accesstype/for-platform-customers
   - accesstype/faq
   - accesstype/release_notes
+  
 ---
 
 # Introduction To AccessType
@@ -36,3 +38,4 @@ AccessType is a product for managing subscriptions. It can be used in conjunctio
 * Patron Plan - A patron plan is a purchasable item, for some duration. A subscription plan is attached to a patron group. Each plan has it's own duration, price and assets. A parton plan is purchasable only through a campaign.
 * Campaign - A campaign is typically used to fund a project and therefore has a goal. A subscriber can contribute to a campaign by choosing any patron plan.
 * Patrons - Users who have subscribed to a Patron plan of a campaign.
+* Wallets - A wallet is used by a subscriber to purchase assets or plans. Purchases by subscribers must be validated by Wallet tokens which can be saved in and retrieved from Accesstype.
