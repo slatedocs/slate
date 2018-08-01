@@ -1055,7 +1055,7 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
 {
   "error": true,
   "message": "Invalid parameters",
-  "description": "Unknown status. Please check the API manual at http://docs.queroalunos.com/#atualizar-processo-de-admissao"
+  "description": "Unknown status. Please check the API manual at https://docs.queroalunos.com/#atualizar-processo-de-admissao"
 }
 ```
 
@@ -1548,7 +1548,7 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
 {
   "error": true,
   "message": "Invalid parameters",
-  "description": "Unknown result. Please check the API manual at http://docs.queroalunos.com/#atualizar-inscricao-para-exame"
+  "description": "Unknown result. Please check the API manual at https://docs.queroalunos.com/#atualizar-inscricao-para-exame"
 }
 ```
 
@@ -1703,7 +1703,7 @@ Estrutura base das notificações:
 }
 ```
 
-Esta notificação informando uma novo aluno para o processo de admissão na universidade.
+Esta notificação informa o início de um processo de admissão.
 
 ### Parâmetros
 
@@ -1728,6 +1728,83 @@ Esta notificação informando uma novo aluno para o processo de admissão na uni
 | ---- | --------- |
 | initiated | Inscrição para exame Pendente |
 | pending_docs | Documentação Pendente |
+
+## Notificar nova submissão de documento de admissão
+
+```json
+{
+  "event_type": "document.submitted",
+  "created": "2017-12-15T17:34:26.173",
+  "api_version": "1.0.0",
+  "data": {
+    "document": {
+      "id": 12345,
+      "type": "rg",
+      "rg": {
+        "category": "primary_id",
+        "url": "https://s3-example.amazonaws.com/example.png"
+      },
+      "admission": {
+        "status": "initiated",
+        "course": {
+          "id": "ADM-MANHA-SP",
+          "offer": {
+            "discount": 50.0
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Esta notificação informa a submissão de um documento do processo de admissão.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| created | string | Data que foi criado o evento no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| api_version | string | Informação da versão atual da API |
+| event_type | string | Tipo de evento, no caso `document.submitted` |
+| data | object | Objeto com informações de acordo com o tipo de evento |
+| document | object | Objeto com dados do documento de admissão do aluno |
+| [document] id | number | Id do documento de admissão |
+| [document] type | string | Tipo do documento |
+| ref(type) | object | Objeto contendo dados de documento (a chave desse objeto é o valor de type)  |
+| ref(type) | category | string | Categoria do documento |
+| ref(type) | url | string | URL que aponta para a imagem do documento |
+| [document] admission | object | Objeto com dados da admissão |
+
+### Significado dos valores em type
+
+| Nome | Descrição |
+| ---- | --------- |
+| rg | RG|
+| cpf | CPF |
+| cnh | CNH |
+| rg_do_guardiao | RG do guardião do menor de idade |
+| cpf_do_guardiao | CPF do guardião do menor de idade |
+| cnh_do_guardiao | CNH do guardião do menor de idade |
+| certificado_de_reservista | Certificado de Reservista (se maior de 18 anos e do sexo masculino) |
+| titulo_de_eleitor | Título de Eleitor (se maior de 18 anos) |
+| historico_escolar | Histórico Escolar |
+| diploma | Diploma de Graduação |
+| comprovante_de_residencia | Comprovante de Residência |
+| comprovante_de_residencia_do_guardiao | Comprovante de Residência do guardião (se menor de idade) |
+| comprovante_de_voto | Comprovante de Voto |
+
+### Significado dos valores em category
+
+| Nome | Descrição |
+| ---- | --------- |
+| primary_id | Documento de Bolso |
+| guardian_primary_id | Documento de Bolso do guardião do menor de idade |
+| government_issued | Documento homologado por instituição governamental |
+| academic_history | Documento de Histórico Escolar |
+| financial_history | Documento de Histórico Financeiro |
+| guardian_financial_history | Documento de Histórico Financeiro do guardião do menor de idade |
+| social_history | Documento de Histório Social |
 
 ## Listagem de notificações
 
