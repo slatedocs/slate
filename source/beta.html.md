@@ -1729,6 +1729,77 @@ Esta notificação informa o início de um processo de admissão.
 | initiated | Inscrição para exame Pendente |
 | pending_docs | Documentação Pendente |
 
+## Notificar novo exame
+
+```json
+{
+  "event_type": "application.submitted",
+  "created": "2017-12-15T17:34:26.173",
+  "api_version": "1.0.0",
+  "data": {
+    "application": {
+      "id": "5bb84b6c-8716-4363-b59d-7005a97a08a4",
+      "type": "enem",
+      "result": "approved|failed",
+      "created_at": "2016-10-15T03:15:44Z",
+      "enem": {
+        "natureza": "500.0",
+        "humanas": "500.0",
+        "linguagens": "500.0",
+        "matematica": "500.0",
+        "redacao": "500.0"
+      },
+      "exam": {
+        "standards_score": 200,
+        "argument_score": 200,
+        "theme_score": 200,
+        "cohesion_score": 200,
+        "proposal_score": 200,
+        "total_score": 200
+      },
+      "admission": {
+        "status": "initiated",
+        "course": {
+          "id": "ADM-MANHA-SP",
+          "offer": {
+            "discount": 50.0
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Esta notificação informa o a realização do vestibular do processo de admissão.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| created | string | Data que foi criado o evento no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| api_version | string | Informação da versão atual da API |
+| event_type | string | Tipo de evento, no caso `admission.submitted` |
+| data | object | Objeto com informações de acordo com o tipo de evento |
+| application | object | Objeto com dados do processo de admissão do aluno |
+| [application] id | string (uuid) | Id do exame |
+| [application] type | string | Indica o tipo de vestibular |
+| [application] result | string | Resultado do vestibular `approved|failed` |
+| [application] created_at | string | Data da criação do exam no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| [application] enem | object | Objeto com as notas do enem separadas por area de conhecimento
+| [application][enem] natureza | string | Nota em `Natureza e suas Tecnologias` |
+| [application][enem] humanas | string | Nota em `Humanas` |
+| [application][enem] linguagens | string | Nota em `Linguagens` |
+| [application][enem] matematica | string | Nota em `Matemática` |
+| [application][enem] redacao | string | Nota em `Redação` |
+| [application] exam | object | Objeto com as notas do exame de cada competência |
+| [application][exam] standards_score | number | Nota em `Norma culta` |
+| [application][exam] argument_score | number | Nota em `Adequação ao tema` |
+| [application][exam] theme_score | number | Nota em `Argumentação` |
+| [application][exam] cohesion_score | number | Nota em `Coesão textual` |
+| [application][exam] proposal_score | number | Nota em `Proposta de intervenção` |
+| [application][exam] total_score | number | Soma das notas (nota final) |
+
 ## Notificar nova submissão de documento de admissão
 
 ```json
