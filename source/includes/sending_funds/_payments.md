@@ -34,7 +34,8 @@ The payments api endpoint is:
     "updated_by": null,
     "start_date": "2014-11-22T20:57:04.018Z",
     "remote_transaction_id": null,
-    "send_sms_message": false
+    "send_sms_message": false,
+    "charged_fee": 0
 }
 ```
 
@@ -64,6 +65,7 @@ modified | string | The date that the payment was last modified, in the UTC time
 updated_by | string | The ID of the user who last updated the payment
 remote_transaction_id | string | The transaction id provided by the mobile network operator. This will only be available once the payment is completed.
 send_sms_message | boolean | Defaults to False. Indicates whether we should send the description as a separate sms message to the consumer. Additional SMS fees apply. See https://beyonic.com/pricing for fees information. When SMS is enabled, can use the following placeholders in the description for personalization: {firstname}, {fullname}, {phone}, {amount}
+charged_fee | decimal | The fee that was charged. It is only available for completed payments.
 
 ## Creating a new Payment
 
@@ -242,7 +244,8 @@ public class CreatePayment {
     "modified": "2014-11-22T20:57:04.018Z",
     "updated_by": null,
     "start_date": "2014-11-22T20:57:04.018Z",
-    "remote_transaction_id": null
+    "remote_transaction_id": null,
+    "charged_fee": 0
 }
 ```
 
@@ -392,7 +395,8 @@ public class SinglePaymentExample {
     "author":134,
     "modified":"2016-03-31T08:08:45Z",
     "updated_by":134,
-    "start_date":"2016-03-31T08:08:01Z"
+    "start_date":"2016-03-31T08:08:01Z",
+    "charged_fee": 0
 }
 ```
 
@@ -521,7 +525,8 @@ public class ListAllPaymentsExample {
             "author": 1,
             "modified": "2013-08-20T17:21:39Z",
             "updated_by": null,
-            "start_date": "2013-08-20T00:00:00Z"
+            "start_date": "2013-08-20T00:00:00Z",
+            "charged_fee": 0
         },
         {
             "id": 2,
@@ -547,7 +552,8 @@ public class ListAllPaymentsExample {
             "author": 1,
             "modified": "2013-08-22T01:53:36Z",
             "updated_by": 1,
-            "start_date": "2013-08-21T00:00:00Z"
+            "start_date": "2013-08-21T00:00:00Z",
+            "charged_fee": 0
         },
    ]
 }
