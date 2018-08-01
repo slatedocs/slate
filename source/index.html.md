@@ -10,8 +10,14 @@ toc_footers:
 
 search: true
 ---
-
+ 
 # Lightning API v0 Documentation
+
+## Connect With US
+
+Follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a>
+
+We invite you to join our Slack channel <a href="https://suredbits.slack.com/">Suredbits Slack</a>
 
 ## Background Resources
 Thank you and welcome to SuredBits' Lightning App API documentation. This API allows you to query our NFL data, including teams, players, games, scores, and statistics.
