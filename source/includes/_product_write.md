@@ -102,29 +102,59 @@ id | title | price | shipping | pup:isdeleted
 123 | my first product | 1.23 | | 
 124 | my second product | 3.21 | 0.99 | 
 125 | my other product | 5.99 | - | 1 
+126 | another product of mine | 0.50 | - | -1 
 
 ### Deleting products
 
 ```shell
+# Soft delete
 curl -d '[{
     "id": 124,
     "pup:isdeleted": 1
+}]'
+https://platform-api.productsup.io/platform/v2/sites/Identifier:123/products/md5string32chars/upload
+
+# Hard delete
+curl -d '[{
+    "id": 124,
+    "pup:isdeleted": -1
 }]'
 https://platform-api.productsup.io/platform/v2/sites/Identifier:123/products/md5string32chars/upload
 ```
 
 ```php
 <?php
+// Soft delete
 $ProductService->delete(array(
         'id' => 123,
     )
 );
+
+// Hard delete
+$ProductService->insert(array(
+        'id' => 123,
+        'pup:isdeleted' => -1
+    )
+);
 ```
 
-Deleting products can be achieved either by:
+Deleting specific products can be achieved by adding the column 
+_pup:isdeleted_. Depending on it's value a soft or a hard delete can be 
+triggered.
+A soft delete marks the product as deleted, but it will still show up in the 
+Dataview of the Platform. When doing a hard delete, the product will not be 
+imported and will not be visible in the platform.
 
-- Sending a *full* upload, this will override all existing data
-- Or when using a *delta* upload, add a column _pup:isdeleted_: and set it's value to 1 for products that should be deleted.
+This applies to both *full* and *delta* uploads. Sending a *full* upload will 
+also override all data. So it's not needed to remove products beforehand. 
+Additionally it's also possible to _clear_ your api data, by sending just 
+a dummy product, marking it for a hard delete and doing a full commit.
+
+Value for pup:isdeleted | Description 
+--- | ---
+1 | Soft delete, product will be present in platform, *but marked*
+-1 | Hard delete, product will *not* be present in platform 
+0 | No delete, product will be present in platform
 
 ## Committing
 
