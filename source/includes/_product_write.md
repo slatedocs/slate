@@ -146,8 +146,8 @@ Dataview of the Platform. When doing a hard delete, the product will not be
 imported and will not be visible in the platform.
 
 This applies to both *full* and *delta* uploads. Sending a *full* upload will 
-also override all data. So it's not needed to remove products beforehand. 
-Additionally it's also possible to _clear_ your api data, by sending just 
+also override all data, so it's not needed to remove products beforehand. 
+Additionally it's also possible to _clear_ your api data by sending just 
 a dummy product, marking it for a hard delete and doing a full commit.
 
 Value for pup:isdeleted | Description 
