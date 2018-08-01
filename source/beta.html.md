@@ -1772,8 +1772,8 @@ Esta notificação informa a submissão de um documento do processo de admissão
 | [document] id | number | Id do documento de admissão |
 | [document] type | string | Tipo do documento |
 | ref(type) | object | Objeto contendo dados de documento (a chave desse objeto é o valor de type)  |
-| ref(type) | category | string | Categoria do documento |
-| ref(type) | url | string | URL que aponta para a imagem do documento |
+| ref(type) category | string | Categoria do documento |
+| ref(type) url | string | URL que aponta para a imagem do documento |
 | [document] admission | object | Objeto com dados da admissão |
 
 ### Significado dos valores em type
