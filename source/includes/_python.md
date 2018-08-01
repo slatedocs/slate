@@ -4,7 +4,10 @@ Scout's Python agent auto-instruments Django and Flask applications, SQL queries
 
 <h2 id="python-requirements">Requirements</h2>
 
-`scout-apm` requires Python 3.4+ (request Python 2.7 support via [this GitHub issue](https://github.com/scoutapp/scout_apm_python/issues/45)).
+`scout-apm` requires :
+
+* Python 3.4+ ([request Python 2.7 support](https://github.com/scoutapp/scout_apm_python/issues/45)).
+* The POSIX, Unix, or OSX operating systems ([Request Windows support](https://github.com/scoutapp/scout_apm_python/issues/101)).
 
 <h2 id="python-instrumented-libraries">Instrumented Libraries</h2>
 
@@ -73,7 +76,7 @@ INSTALLED_APPS = (
 
 # Scout settings
 SCOUT_MONITOR = True
-SCOUT_KEY     = "[SCOUT_KEY]"
+SCOUT_KEY     = "SCOUT_KEY"
 SCOUT_NAME    = "A FRIENDLY NAME FOR YOUR APP"
 </pre>
 
@@ -127,7 +130,7 @@ ScoutApm(app)
 
 # Scout settings
 app.config['SCOUT_MONITOR'] = True
-app.config['SCOUT_KEY']     = "[SCOUT_KEY]"
+app.config['SCOUT_KEY']     = "SCOUT_KEY"
 app.config['SCOUT_NAME']    = "A FRIENDLY NAME FOR YOUR APP"
 </pre>
 
@@ -191,7 +194,7 @@ from celery import Celery
 app = Celery('tasks', backend='redis://localhost', broker='redis://localhost')
 <span>
 Config.set(
-        key = '[SCOUT_KEY]',
+        key = 'SCOUT_KEY',
         name = 'Same as Web App Name',
         monitor = True
         )
@@ -245,7 +248,7 @@ import scout_apm.pyramid
 if __name__ == '__main__':
     with Configurator() as config:
         config.add_settings(
-            SCOUT_KEY = '[SCOUT_KEY]',
+            SCOUT_KEY = 'SCOUT_KEY',
             SCOUT_MONITOR = True,
             SCOUT_NAME = 'My Pyramid App'
         )
@@ -296,7 +299,7 @@ from scout_apm.bottle import ScoutPlugin
 app = bottle.default_app()
 app.config.update({'scout.name': "YOUR_APP_NAME",
                    'scout.monitor': "true",
-                   'scout.key': "[SCOUT_KEY]"})
+                   'scout.key': "SCOUT_KEY"})
 
 scout = ScoutPlugin()
 bottle.install(scout)
