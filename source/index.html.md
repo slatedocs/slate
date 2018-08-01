@@ -322,7 +322,7 @@ For Schedules:
 {"channel": "team", "teamId": "CHI", "retrieve": "schedule"}
 
 For Rosters in Year:
-{"channel": "team", "teamId": "CHI", "retrieve": "schedule", year: 2018}
+{"channel": "team", "teamId": "CHI", "retrieve": "schedule", "year": 2018}
 
 There are two required Fields to request NFL Team & Roster data:
 
