@@ -17,7 +17,7 @@ search: true
 
 Follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a>
 
-We invite you to join our Slack channel <a href="https://suredbits.slack.com/">Suredbits Slack</a>
+We invite you to join our Slack channel <a href="https://join.slack.com/t/suredbits/signup/">Suredbits Slack</a>
 
 ## Background Resources
 Thank you and welcome to SuredBits' Lightning App API documentation. This API allows you to query our NFL data, including teams, players, games, scores, and statistics.
@@ -447,7 +447,7 @@ Field | Example
 # Contact Us
 Follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a>
 
-Join our Slack channel <a href="https://suredbits.slack.com/">Suredbits Slack</a>
+Join our Slack channel <a href="https://join.slack.com/t/suredbits/signup/">Suredbits Slack</a>
  
 Email us at <a href="mailto:support@suredbits.com">support@suredbits.com</a>
 
