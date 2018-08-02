@@ -249,6 +249,10 @@ A single account identifier or an array of account identifiers indicating accoun
 
 **NOTE:** If you are calling this method with the `external_member` parameter, `member` is not required.
 
+####exclude_workgroup
+
+A single workgroup identifier or an array of workgroup identifiers indicating workgroup. This is basically a filter that exludes membership information for members that belongs to this workgroup.   
+
 ####external_member
 
 A single external account identifier or an array of external account identifiers indicating accounts for whom to return memberships.
