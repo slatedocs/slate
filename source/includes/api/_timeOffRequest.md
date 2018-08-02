@@ -90,9 +90,38 @@ Required parameter:
 ####id
 Time off request identifier or array of time off request identifiers.
 
-Optional parameter: `status_reason`. If not specified, status_reason will remain unchanged.
+Optional parameter: 
 
-Response: On success, empty results will be returned.
+####status_reason. 
+
+If not specified, status_reason will remain unchanged.
+
+####unconfirmed
+
+Boolean. In case of conflicts the conflicted shifts will be "unconfirmed".
+
+####unpublish
+
+Boolean. In case of conflicts the conflicted shifts will be "unpublish".
+
+
+Response: On success, empty results will be returned if neither unconfirmed/unpublished has been specified.
+
+If a conflict was found and if either unconfirmed/unpublished was specified, the result set will have one field "conflicts" containing an array of conflict descriptions. Each element describes one conflict in terms of start date for the shift, the team name and a text with details for the conflict.
+
+```JSON
+{
+        "conflicts": [
+                {
+                        "startdate": "2018-08-24",
+                        "team": "All Volunteers",
+                        "text": "Conflicts by 16 hrs"
+                },
+                ...
+        ]
+}
+```
+
 
 ### timeOffRequest.create
 
