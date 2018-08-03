@@ -62,6 +62,16 @@ html, body {
   font-size: 13px;
   font-weight: bold;
 
+  h1 {
+    color: #fff;
+    text-align: center;
+
+    a {
+      color: #fff;
+    }
+  }
+  
+
   // language selector for mobile devices
   .lang-selector {
     display: none;
