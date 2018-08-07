@@ -2,6 +2,16 @@
 
 This section contains important Accestype release notes. For any queries, please write to us at [support@quintype.com](mailto:support@quintype.com).
 
+## 6 Aug 2018 Release Notes - Accesstype
+
+### Enhancements and bug fixes:
+1. Wallets API - Link wallets of [Simpl](https://getsimpl.com) and [PayTm](https://paytm.com) with publishers. Documentation available [here](#post-subscriber-wallet-token)
+2. Emails sent out to subscribers have a new look. 
+3. Enhancements to help reconcile subscription failures using Android Pay if any.
+4. Minor bug fixes.
+
+
+
 ## 10 Jul 2018 Release Notes - Accesstype
 
 ### Enhancements and bug fixes:
