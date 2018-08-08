@@ -17,7 +17,7 @@ search: true
 
 Follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a>
 
-We invite you to join our Slack channel <a href="https://join.slack.com/t/suredbits/signup/">Suredbits Slack</a>
+We invite you to join our Slack channel <a href="https://join.slack.com/t/suredbits/shared_invite/enQtNDEyMjY3MTg1MTg3LTYyYjkwOGUzMDQ4NDAwZjE1M2I3MmQyNWNlZjNlYjg4OGRjYTRjNWUwNjRjNjg4Y2NjZjAxYjU1N2JjMTU1YWM">Suredbits Slack</a>
 
 ## Background Resources
 Thank you and welcome to SuredBits' Lightning App API documentation. This API allows you to query our NFL data, including teams, players, games, scores, and statistics.
@@ -57,7 +57,7 @@ Here is the websocket uri for Suredbits: <a href="wss://test.api.suredbits.com/n
   "data":
     {
       "version":"8",
-      "lastRosterDownload":"20180720T141610.664Z",
+      "lastRosterDownload":"2018-07-20T141610.664Z",
       "seasonType":"Regular",
       "seasonYear":2017,
       "week":"NflWeek17" 
@@ -277,7 +277,7 @@ Field | Type | Example
       {
         "gsisId":"2017091001",
         "gameKey":"57236",
-        "startTime":"20170910T170000.000Z",
+        "startTime":"2017-09-10T170000.000Z",
         "week":"NflWeek1",
         "dayOfWeek":"Sunday",
         "seasonYear":2017,
@@ -303,8 +303,8 @@ Field | Type | Example
         "scoreQ4":10,
         "turnovers":1
       },
-    "timeInserted":"20170804T182915.669Z",
-    "timeUpdate":"20180608T192330.452Z",
+    "timeInserted":"2017-08-04T182915.669Z",
+    "timeUpdate":"2018-06-08T192330.452Z",
     },
     ...
    ]
@@ -447,7 +447,7 @@ Field | Example
 # Contact Us
 Follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a>
 
-Join our Slack channel <a href="https://join.slack.com/t/suredbits/signup/">Suredbits Slack</a>
+Join our Slack channel <a href="https://join.slack.com/t/suredbits/shared_invite/enQtNDEyMjY3MTg1MTg3LTYyYjkwOGUzMDQ4NDAwZjE1M2I3MmQyNWNlZjNlYjg4OGRjYTRjNWUwNjRjNjg4Y2NjZjAxYjU1N2JjMTU1YWM">Suredbits Slack</a>
  
 Email us at <a href="mailto:support@suredbits.com">support@suredbits.com</a>
 
