@@ -13,6 +13,7 @@ includes:
   - sandbox
   - payment_intro
   - payment_create
+  - payment_callback
   - payment_inquiry
   - status
   - errors
