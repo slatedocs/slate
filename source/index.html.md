@@ -3,6 +3,7 @@ title: راهنمای API پرداخت
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell: cUrl
+  - php: PHP
 
 toc_footers:
 

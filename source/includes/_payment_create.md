@@ -14,6 +14,33 @@ curl -X POST https://api.idpay.ir/v1/payment \
 }'
 ```
 
+```php
+<?php
+
+$params = array(
+  'order_id' => 101,
+  'amount' => 10000,
+  'phone' => '09382198592',
+  'desc' => 'توضیحات پرداخت کننده',
+  'callback' => 'https://example.com/idpay-web-service.php',
+);
+
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_URL, 'https://api.idpay.ir/v1/payment');
+curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($params));
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+  'Content-Type: application/json',
+  'X-API-KEY: 965b0483-4519-46b0-aca0-1a6971dc2781',
+  'X-SANDBOX: true'
+));
+
+$response = curl_exec($curl);
+curl_close($curl);
+
+return $response;
+```
+
 > با اجرای دستور بالا پاسخی مشابه متن زیر با فرمت JSON دریافت میشود:
 
 ```json
