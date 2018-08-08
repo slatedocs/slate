@@ -61,7 +61,7 @@ It is reccommended that this SDK is loaded in the head tag of the page as shown 
 Including this SDK exposes `window.submitLeadToAnarock` function which takes in below parameters
 
 ```js
-window.submitLeadToAnarock({name, phone, country_code, email, remarks, campaign_id, channel_name, api_key, onLeadSuccessCallback, onLeadFailureCallback, onInvalidPhone, env}
+window.submitLeadToAnarock({name: 'name', phone: 9819619866, country_code: 'in', email: 'yadav.rahul026@gmail.com', remarks: 'remarks to be submitted', campaign_id: 'campaign-id', channel_name: 'channel_name', api_key: 'asd298379246798s7d', onLeadSuccessCallback: function(){}, onLeadFailureCallback: function(){}, onInvalidPhone: (){}, env: 'staging'}
 ```
 The description of various parameters is given below.
 
