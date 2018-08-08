@@ -20,20 +20,20 @@ $params = array(
   'order_id' => 101,
 );
 
-$curl = curl_init();
-curl_setopt($curl, CURLOPT_URL, 'https://api.idpay.ir/v1/payment/inquiry');
-curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($params));
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'https://api.idpay.ir/v1/payment/inquiry');
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
   'Content-Type: application/json',
   'X-API-KEY: 965b0483-4519-46b0-aca0-1a6971dc2781',
   'X-SANDBOX: true'
 ));
 
-$response = curl_exec($curl);
-curl_close($curl);
+$result = curl_exec($ch);
+curl_close($ch);
 
-return $response;
+return $result;
 ```
 
 > با اجرای دستور بالا پاسخی مشابه متن زیر با فرمت JSON دریافت میشود:
