@@ -1,5 +1,5 @@
 ---
-title: TransferWise Borderless Account API
+title: TransferWise API
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -9,22 +9,103 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='#'>Sign Up for a Developer Key</a>
 
 includes:
-  - errors
   - errors
 
 search: true
 ---
 
 # Introduction
+TODO - this is TransferWise API, which has xxx parts .  
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+# Authentication
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# Errors
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+## HTTP Response Codes
+
+> Validation error examples
+
+```json
+{
+    "errors": [
+        {
+            "code": "error.route.not.supported",
+            "message": "This route is not supported",
+            "arguments": [
+                "CNY-EUR"
+            ]
+        }
+    ]
+}
+
+{
+  "errors": [
+    {
+      "code": "NotNull",
+      "message": "may not be null",
+      "path": "targetAccount",
+      "arguments": []
+    },
+    {
+      "code": "NotNull",
+      "message": "may not be null",
+      "path": "quote",
+      "arguments": []
+    }
+  ]
+}
+```
+
+> Authentication error examples
+
+```json
+{
+    "error": "unauthorized",
+    "error_description": "Full authentication is required to access this resource"
+}
+```
+
+> System error examples
+
+```json
+{
+  "timestamp": "2017-02-02T13:07:39.644+0000",
+  "status": 500,
+  "error": "Internal Server Error",
+  "exception": "java.lang.NullPointerException",
+  "message": "No message available",
+  "path": "/v1/quotes/106031/account-requirements"
+}
+```
+
+
+HTTP response codes indicate the success or failure of an API request. 
+* Bullet
+* 2xx code range indicates success.
+* 4xx code range indicate client side error, for example invalid data was submitted or some field is missing.
+* 5xx code range indicate server side error, meaning problem is in TransferWise side. 
+
+**Code** | **Description** 
+------------ | ------------- 
+**200** | OK. Successful request.
+**400** | Bad request. Request message data did not pass validation.  
+**401** | Unauthorised. Not authorised to access requested data.  
+**403** | Forbidden. Access to requested data is forbidden. 
+**404** | Not Found. Requested resource does not exist.
+**408** | Timeout. Operation timed out. 
+**422** | Unprocessable entity. Request message data did not pass validation.
+**500** | TransferWise server error.
+
+
+
+
+
+
+
+
+
 
 # Authentication
 
@@ -57,6 +138,7 @@ let api = kittn.authorize('meowmeowmeow');
 > Make sure to replace `meowmeowmeow` with your API key.
 
 Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
 Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
