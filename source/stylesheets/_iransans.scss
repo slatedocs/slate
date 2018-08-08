@@ -1,0 +1,69 @@
+/**
+ *
+ * Name: IRAN Sans-Serif Font
+ * Version: 4.0
+ * Author: Moslem Ebrahimi (moslemebrahimi.com)
+ * Created on: Dec 25, 2012
+ * Updated on: Dec 12, 2015
+ * Website: http://fontiran.com
+ * Copyright: Commercial/Proprietary Software
+ *
+ * IRAN Sans-serif fonts are considered a proprietary software.
+ * To gain information about the laws regarding the use of these fonts, please visit www.fontiran.com
+ * This set of fonts are used in this project under the license: (KDHNM)
+ */
+
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 200;
+  src: font-url('IRANSans/IRANSansWeb_UltraLight.eot');
+  src: font-url('IRANSans/IRANSansWeb_UltraLight.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+      font-url('IRANSans/IRANSansWeb_UltraLight.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+      font-url('IRANSans/IRANSansWeb_UltraLight.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      font-url('IRANSans/IRANSansWeb_UltraLight.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 300;
+  src: font-url('IRANSans/IRANSansWeb_Light.eot');
+  src: font-url('IRANSans/IRANSansWeb_Light.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+      font-url('IRANSans/IRANSansWeb_Light.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+      font-url('IRANSans/IRANSansWeb_Light.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      font-url('IRANSans/IRANSansWeb_Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: normal;
+  src: font-url('IRANSans/IRANSansWeb.eot');
+  src: font-url('IRANSans/IRANSansWeb.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+      font-url('IRANSans/IRANSansWeb.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+      font-url('IRANSans/IRANSansWeb.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      font-url('IRANSans/IRANSansWeb.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 500;
+  src: font-url('IRANSans/IRANSansWeb_Medium.eot');
+  src: font-url('IRANSans/IRANSansWeb_Medium.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+      font-url('IRANSans/IRANSansWeb_Medium.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+      font-url('IRANSans/IRANSansWeb_Medium.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      font-url('IRANSans/IRANSansWeb_Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: bold;
+  src: font-url('IRANSans/IRANSansWeb_Bold.eot');
+  src: font-url('IRANSans/IRANSansWeb_Bold.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+      font-url('IRANSans/IRANSansWeb_Bold.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+      font-url('IRANSans/IRANSansWeb_Bold.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      font-url('IRANSans/IRANSansWeb_Bold.ttf') format('truetype');
+}
