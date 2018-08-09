@@ -314,7 +314,76 @@ Boolean; send a notification message to the covering member for this shift.
 notify_message
 Additional text to include in notification message.
 
-Response: On success, an `id` attribute will provide the identifier for the new shift.
+It is possible to use this method to create a series of repeating (repeating) shifts. In order to do so, some additional parameters are required. Below is a list of these optional parameters.
+
+Optional parameters:
+
+#### repeating_shift
+
+Boolean; specifies the caller is creating a series of repeating shifts.
+
+#### repeating_shift_type
+
+Type of repeating shift.
+
+Type|Meaning
+--|--
+frequency|Frequency
+days_of_week|Days of Week
+
+#### repeating_shift_end_date
+
+The date of the final shift in the repeating series in [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) full date format (e.g. "2018-01-01").
+
+#### repeating_shift_interval
+
+Specifies the interval in which the series will be created. Valid interval options are below:
+
+Interval|Meaning
+--|--
+every|Every
+every_other|Every Other
+every_third|Every Third
+every_fourth|Every Fourth
+every_fifth|Every Fifth
+every_sixth|Every Sixth
+
+**NOTE:** `every_fifth` and `every_sixth` are only available when creating daily shifts.
+
+#### repeating_shift_frequency
+
+Specifies the frequency for a frequency based repeating series. Valid frequency options are below:
+
+Frequency|
+--|--
+day|
+week|
+month|
+year|
+
+**NOTE:** Parameter is required when `repeating_shift_type` is `frequency`
+
+#### repeating_shift_days_of_week
+
+Array. Specifies which days of the week to create shifts for in a repeating series. Valid options are below:
+
+Day|Meaning
+--|--
+0|Sunday
+1|Monday
+2|Tuesday
+3|Wednesday
+4|Thursday
+5|Friday
+6|Saturday
+
+**NOTE:** Parameter is required when `repeating_shift_type` is `days_of_week`
+
+Response: On success, an `id` attribute will provide the identifier for the new shift. When creating a series of repeating shifts, the `id` returned will be the first shift in the series.
+
+#### additional_dates
+
+Array. Additional shift dates to be created alongside the specified repeating series. Dates must be in [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) full date format (e.g. "2018-01-01")
 
 Assignability Preferences: If enabled, assignability checks can be turned on and overridden during shift creation. To turn on the assignabilty checks, the feature must me enabled and the `assignability_checks` parameter must be true. When this is enabled the following overrides may be available based enabled features:
 * `conflicts_ok` - boolean
