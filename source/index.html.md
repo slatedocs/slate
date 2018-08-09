@@ -31,6 +31,7 @@ includes:
   - api/news
   - api/openid
   - api/paycode
+  - api/paytype
   - api/profileConfiguration
   - api/profileData
   - api/profileType
