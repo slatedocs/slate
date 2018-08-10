@@ -14,7 +14,7 @@ node('node') {
 	}
 
 	stage('deploy') {
-		def deploy = new DeployArt(steps)
+		def deploy = new Deploy(steps)
 		deploy.initialize(
             '/var/www/',
             'maps4news-docs',
