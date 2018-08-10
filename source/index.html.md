@@ -266,7 +266,7 @@ If this does not solve nor explain the issue you are having then please report t
 
 # Simulation
 
-## Simulate Processing
+## Simulate Transfer Status Changes
 
 > Example Request:
 
@@ -274,8 +274,6 @@ If this does not solve nor explain the issue you are having then please report t
 curl "http://sandbox.transferwise.tech//v1/simulation/transfers/{transferId}/processing"
   -H "Authorization: <your api token>"
 ```
-
-
 
 > Example Response:
 
@@ -303,35 +301,42 @@ curl "http://sandbox.transferwise.tech//v1/simulation/transfers/{transferId}/pro
 }
 ```
 
-Changes transfer status from `incoming_payment_waiting` to `processing`.
-Limited to sandbox environment.
-
+Changes transfer status so you can simulate payment processing in sandbox environment.
+All transfer status change simulations are limited to sandbox environment only.
 
 ### Request
-
+Changes transfer status from incoming_payment_waiting to processing.<br/>
 `GET http://sandbox.transferwise.tech/v1/simulation/transfers/{transferId}/processing`
 
-Parameter | Description | Format
---------- | ------- | -----------
-transferId | Unique ID of transfer | Integer
+Changes transfer status from processing to funds_converted.<br/>
+`GET http://sandbox.transferwise.tech/v1/simulation/transfers/{transferId}/funds_converted`
+
+Changes transfer status from funds_converted to outgoing_payment_sent.<br/>
+`GET http://sandbox.transferwise.tech/v1/simulation/transfers/{transferId}/outgoing_payment_sent`
+
+Changes transfer status from outgoing_payment_sent to bounced_back.<br/>
+`GET http://sandbox.transferwise.tech/v1/simulation/transfers/{transferId}/bounced_back`
+
+Changes transfer status from bounced_back to funds_refunded.<br/>
+`GET http://sandbox.transferwise.tech/v1/simulation/transfers/{transferId}/funds_refunded`
 
 
 ### Response
-TODO - reference to "transfer"
+Transfer entity with new status. 
 
 Field | Description | Format
 --------- | ------- | -----------
-id | Unique Transfer Id, assigned by TransferWise | Integer
+id | Unique Transfer ID, assigned by TransferWise | Integer
 user | User Id | Integer
-targetAccount | Target recipient account id. Person who is receiving the funds. | Integer
-sourceAccount | Refund recipient account id. Used only for refund purposes. | Integer
+targetAccount | Target recipient account ID. Person who is receiving the funds. | Integer
+sourceAccount | Refund recipient account ID. Used only for refund purposes. | Integer
 quote | Quote ID | Integer
 status | Transfer current status. | `incoming_payment_waiting`</br>`incoming_payment_initiated`</br>`waiting_recipient_input_to_proceed`</br>`processing`</br>`funds_converted`</br>`outgoing_payment_sent`</br>`charged_back`</br>`cancelled`</br>`cancelled_refund_processing`</br>`funds_refunded`</br>`bounced_back`
 reference | End to end reference text. Deprecated. Use details.reference field. | Text
 rate | Exchange rate used for transfer. | Decimal
-created | Timestamp when transfer was created. | String TODO !!!
+created | Timestamp when transfer was created. | yyyy-mm-dd hh:mm:ss
 business | User porfile id - only in case of businesses. Deprecated. | Integer
-transferRequest | Link to 'Request money' transfer id. Deprecated. | Integer
+transferRequest | Link to 'Request money' transfer ID. Deprecated. | Integer
 details.reference | End to end reference text.  | 
 hasActiveIssues | Are there any pending issues which stop executing the transfer. | Boolean
 sourceValue | Transfer amount in source currency. | Decimal
@@ -339,82 +344,6 @@ sourceCurrency | Source currency code of the transfer. | Text
 targetValue | Transfer amount in target currency. | Decimal
 targetCurrency | Target currency code of the transfer. | Text
 customerTransactionId | UUID format unique identifier assinged by customer. Used for idempotency check purposes. | UUID
-
-
-
-
-# Kittens and dogs
-
-## Get a Specific Kitten
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
-
-
-
-# Authentication
-
-> To authorize, use this code:
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
 
 
 
@@ -426,8 +355,8 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 
 **Date** | **Description** 
 ------------ | ------------- 
-16/05/2018 | GET /v1/borderless-accounts/{borderlessAccountId}/statement.json <p> New borderless account statement endpoint launched. This includes a lot of extra information useful for reconciliation purposes. 
-16/04/2018 | Transfer status simulation endpoints in sandbox added. <p><li>GET /v1/simulation/transfers/{transferId}/processing<li>GET /v1/simulation/transfers/{transferId}/funds_converted<li>GET /v1/simulation/transfers/{transferId}/outgoing_payment_sent<li>GET /v1/simulation/transfers/{transferId}/bounced_back<li>GET /v1/simulation/transfers/{transferId}/funds_refunded
+16/05/2018 | GET /v1/borderless-accounts/{borderlessAccountId}/statement.json <br/> New borderless account statement endpoint launched. This includes a lot of extra information useful for reconciliation purposes. 
+16/04/2018 | Transfer status simulation endpoints in sandbox added. <br/><li>GET /v1/simulation/transfers/{transferId}/processing<li>GET /v1/simulation/transfers/{transferId}/funds_converted<li>GET /v1/simulation/transfers/{transferId}/outgoing_payment_sent<li>GET /v1/simulation/transfers/{transferId}/bounced_back<li>GET /v1/simulation/transfers/{transferId}/funds_refunded
 25/10/2017 | POST /v1/accounts has now dateOfBirth field. This field is optional  but sending this will eliminate false positives during compliance checks.
 11/10/2017 | GET /v1/transfers/{transferId} has now additional fields: sourceValue, sourceCurrency, targetValue, targetCurrency. 
 10/10/2017 | GET /v1/transfers supports additional query parameters: profile, createdDateStart, createdDateEnd and status. 
@@ -441,6 +370,14 @@ We dont have these yet.  Working on it ...
 
 Request feature !!!
 Give feedback on the API !
+
+<aside class="notice">
+You must replace <code>meowmeowmeow</code> with your personal API key.
+</aside>
+
+<aside class="warning">
+Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.
+</aside>
 
 
 
