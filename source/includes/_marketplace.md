@@ -665,8 +665,7 @@ Pode ser enviado via Painel iPag também: [Enviar Documentos](https://painel-san
 curl --request POST \
   --url 'https://sandbox.ipag.com.br/service/v1 \
   --header 'Authorization: Basic am9uYXRoYW46REM4QS00QzE2383M5NS1EQTZBRUY2OC0wRkQ2RDMyOC0wRjAz' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --header 'content-type: multipart/form-data; \
+  --header 'Content-Type: multipart/form-data; \
   --form cpf=@/Users/user/Pictures/cpf.jpg \
   --form cnpj=@/Users/user/Pictures/cnpj.jpg \
   --form atividade=@/Users/user/Pictures/atividade.jpg \

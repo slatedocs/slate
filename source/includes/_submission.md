@@ -90,6 +90,50 @@ try {
 }
 ```
 
+```shell
+curl -X POST \
+  https://sandbox.ipag.com.br/service/payment \
+  -H 'Authorization: Basic am9uYXRoYW46REM4QS00QzE2Yu75NS1EQTZBRUY2OC0wRkQ2RDMyOC0wRjAz' \
+  -H 'content-type: multipart/form-data' \
+  -F identificacao=teste \
+  -F pedido=201803061703 \
+  -F operacao=Pagamento \
+  -F valor=2.00 \
+  -F metodo=visa \
+  -F url_retorno=https://empresa.com/retorno \
+  -F email=jose@teste.com.br \
+  -F fone=11111111111 \
+  -F 'nome=Jean Orlando' \
+  -F 'endereco=Rua 1' \
+  -F numero_endereco=111 \
+  -F bairro=Bairro1 \
+  -F 'cidade=Cidade 1' \
+  -F estado=SP \
+  -F pais=Brasil \
+  -F cep=14400330 \
+  -F retorno_tipo=xml \
+  -F num_cartao=4012001038166662 \
+  -F mes_cartao=07 \
+  -F ano_cartao=2018 \
+  -F cvv_cartao=306 \
+  -F documento=79999338801
+
+  <?xml version="1.0" encoding="utf-8" ?>
+  <retorno>
+      <id_transacao>80f1e6f5d38947b3bf413369f5b75d3d</id_transacao>
+      <valor>2.00</valor>
+      <num_pedido>201803061703</num_pedido>
+      <status_pagamento>8</status_pagamento>
+      <mensagem_transacao>Transação aprovada e capturada</mensagem_transacao>
+      <metodo>visa</metodo>
+      <operadora>zoop</operadora>
+      <operadora_mensagem>succeeded</operadora_mensagem>
+      <id_librepag>1003838</id_librepag>
+      <autorizacao_id>Z133937-000260004</autorizacao_id>
+      <url_autenticacao></url_autenticacao>
+  </retorno>
+```
+
 ### Dados de identificação
 
 Campo | Tamanho | Tipo | Obrigatório | Descrição
@@ -251,6 +295,55 @@ $creditCard = $ipag->creditCard()
 // ...
 ```
 
+```shell
+curl -X POST \
+  https://sandbox.ipag.com.br/service/payment \
+  -H 'Authorization: Basic am9uYXRoYW46REM4QS00QzE2OUM7DSsdDEQTZBRUY2OC0wRkQ2RDMyOC0wRjAz' \
+  -H 'content-type: multipart/form-data' \
+  -F identificacao=teste \
+  -F pedido=201803061704 \
+  -F operacao=Pagamento \
+  -F valor=2.00 \
+  -F metodo=visa \
+  -F url_retorno=https://empresa.com/retorno \
+  -F email=jose@teste.com.br \
+  -F fone=11111111111 \
+  -F 'nome=Jean Orlando' \
+  -F 'endereco=Rua 1' \
+  -F numero_endereco=111 \
+  -F bairro=Bairro1 \
+  -F 'cidade=Cidade 1' \
+  -F estado=SP \
+  -F pais=Brasil \
+  -F cep=14400330 \
+  -F retorno_tipo=xml \
+  -F num_cartao=4012001038166662 \
+  -F mes_cartao=07 \
+  -F ano_cartao=2018 \
+  -F cvv_cartao=306 \
+  -F documento=79999338801 \
+  -F gera_token_cartao=1
+
+<?xml version="1.0" encoding="utf-8" ?>
+<retorno>
+    <id_transacao>c82263b4dd2c43e2a73d3f7950820e78</id_transacao>
+    <valor>2.00</valor>
+    <num_pedido>201803061704</num_pedido>
+    <status_pagamento>8</status_pagamento>
+    <mensagem_transacao>Transação aprovada e capturada</mensagem_transacao>
+    <metodo>visa</metodo>
+    <operadora>zoop</operadora>
+    <operadora_mensagem>succeeded</operadora_mensagem>
+    <id_librepag>1003839</id_librepag>
+    <autorizacao_id>Z133937-000260004</autorizacao_id>
+    <url_autenticacao></url_autenticacao>
+    <token>c565-80ccecf3-27995e1e-a9c1ebc3-4b10</token>
+    <last4>6662</last4>
+    <mes>07</mes>
+    <ano>2018</ano>
+</retorno>
+```
+
 Campo | Tamanho | Tipo | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
 gera_token_cartao | 5 | boolean | Obrigatório na criação do pedido | Utilizado para realizar a transação em que os dados do Cartão ficam armazenado no iPag. Este parâmetro é utilizado para implementar o recurso de Pagamento com 1 Click
@@ -279,6 +372,60 @@ $transaction->getOrder()
 );
 
 $response = $transaction->execute();
+```
+
+```shell
+curl -X POST \
+  https://sandbox.ipag.com.br/service/payment \
+  -H 'Authorization: Basic am9uYXRoYW46REM4QS00QzE2OUM7DSsdDEQTZBRUY2OC0wRkQ2RDMyOC0wRjAz' \
+  -H 'content-type: multipart/form-data' \
+  -F identificacao=teste \
+  -F pedido=201803061705 \
+  -F operacao=Pagamento \
+  -F valor=50.00 \
+  -F metodo=visa \
+  -F url_retorno=https://empresa.com/retorno/profile_id/123456 \
+  -F email=jose@teste.com.br \
+  -F fone=11111111111 \
+  -F 'nome=Jean Orlando' \
+  -F 'endereco=Rua 1' \
+  -F numero_endereco=111 \
+  -F bairro=Bairro1 \
+  -F 'cidade=Cidade 1' \
+  -F estado=SP \
+  -F pais=Brasil \
+  -F cep=14400330 \
+  -F retorno_tipo=xml \
+  -F num_cartao=4012001038166662 \
+  -F mes_cartao=07 \
+  -F ano_cartao=2018 \
+  -F cvv_cartao=306 \
+  -F documento=79999338801 \
+  -F frequencia=1 \
+  -F intervalo=month \
+  -F inicio=10/09/2018 \
+  -F valor_rec=99.00
+
+<?xml version="1.0" encoding="utf-8" ?>
+<retorno>
+    <id_transacao>803b898fbf7b4d0bb6b19081360bebd9</id_transacao>
+    <valor>50.00</valor>
+    <num_pedido>201803061705</num_pedido>
+    <status_pagamento>8</status_pagamento>
+    <mensagem_transacao>Transação aprovada e capturada</mensagem_transacao>
+    <metodo>visa</metodo>
+    <operadora>zoop</operadora>
+    <operadora_mensagem>succeeded</operadora_mensagem>
+    <id_librepag>1003840</id_librepag>
+    <autorizacao_id>Z133937-000260004</autorizacao_id>
+    <url_autenticacao></url_autenticacao>
+    <token>6bab-460635e7-1c2ee1a2-d4e554a9-1a59</token>
+    <last4>6662</last4>
+    <mes>07</mes>
+    <ano>2018</ano>
+    <id_assinatura>1006</id_assinatura>
+    <profile_id>123456</profile_id>
+</retorno>
 ```
 
 Parâmetro | size | type | Obrigatório | Descrição
@@ -415,12 +562,12 @@ id_assinatura | Id da assinatura criado pelo iPag.
 
 *Observe que a primeira letra de cada operação deve ser maiúscula*
 
-Operações | Descrição
---------- | ----------------
-Pagamento | POST /service/payment
-Consulta | POST /service/consult
-Captura | POST /service/capture
-Cancela | POST /service/cancel
+Operações | Método | Descrição
+--------- | ------ | --------
+Pagamento | POST | /service/payment
+Consulta | POST | /service/consult
+Captura | POST | /service/capture
+Cancela | POST | /service/cancel
 
 ## Métodos
 ###Cartões
@@ -442,21 +589,21 @@ Cancela | POST /service/cancel
 
 ###Boleto
 
-**Método** | Tipo
------------|--------
-**boleto_banespasantander** | boleto impresso
-**boletobb** | boleto impresso
-**boletozoop** | boleto impresso
-**boletoitaushopline** | boleto impresso
-**boletoshopfacil** | boleto impresso
-**boletosicredi** | boleto impresso
+Empresa | **Método** | Tipo
+--------| -----------|--------
+Santander | **boleto_banespasantander** | boleto impresso
+Banco do Brasil | **boletobb** | boleto impresso
+Zoop | **boletozoop** | boleto impresso
+Itaú | **boletoitaushopline** | boleto impresso
+Bradesco | **boletoshopfacil** | boleto impresso
+Sicredi | **boletosicredi** | boleto impresso
 
 ###Transferência (Office Bank)
 
 **Método** | Tipo
 -----------|--------
 **itaushopline** | Transferência e Boleto
-**bancobrasil** | Transferência e Boleto
+**bancobrasil** | Transferência
 
 
 ## Status das Transações
