@@ -1,239 +1,127 @@
 ---
 title: API Reference
 
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
+language_tabs:
+  - php
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://api.maps4news.com/register'>Sign Up for Maps4News</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
 
 search: true
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the API documentation for Maps4News.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+This API allows you to manage everything about your account and your organisation. As well as generate Maps.
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+# API Wrapper
+
+> You can install the library using:
+
+```
+npm install @mapcreator/maps4news
+```
+
+If you are using JavaScript to develop your app then you are in luck. 
+We have created a query builder-like library that is able to do everything our API offers. It even does the Oauth login for you, in redirect, popup or password flow.
+
+The library is freely available on [github](https://github.com/MapCreatorEU/api-wrapper) and [npm](https://www.npmjs.com/package/@mapcreator/maps4news).
+
+More information about the wrapper can be found on [this page](/api-wrapper.html)
 
 # Authentication
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
+```php
+This example uses the guzzlehttp package from composer.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+<?php
 
-```python
-import kittn
+$host = "https://api.maps4news.com";
+$client_id = 0;
+$secret = "secret";
+$redirect_url = "http://localhost/callback";
 
-api = kittn.authorize('meowmeowmeow')
-```
+////////////////////////////
+// /login route in your app.
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+// Prepare redirect to API login page.
+$query = http_build_query([
+    'client_id' => $client_id,
+    'redirect_uri' => 'http://localhost/callback',
+    'response_type' => 'code'
+]);
+
+// Redirect user.
+header("Location: $host/oauth/authorize?$query");
+
+//////////////////////////////
+// /callback route in your app.
+
+$http = new GuzzleHttp\Client();
+
+// Get the user's access_token.
+$response = $http->post("$host/oauth/token", [
+    'form_params' => [
+        'grant_type' => 'authorization_code',
+        'client_id' => $client_id,
+        'client_secret' => $secret,
+        'redirect_uri' => $redirect_url,
+        'code' => $_POST['code']
+    ]
+]);
+
+// Get the access token.
+$token = json_decode((string) $response->getBody(), true)['access_token'];
+
+// Request the user's info.
+$response = $http->get("$host/v1/users/me", [
+    'headers' => [
+        'Authorization' => "Bearer $token",
+        'Accept' => 'application/json'
+    ]
+]);
+
+// Display the user's information
+print_r(json_decode((string) $response->getBody()));
 ```
 
 ```javascript
-const kittn = require('kittn');
+import { ImplicitFlow, Maps4News } from '@mapcreator/maps4news';
 
-let api = kittn.authorize('meowmeowmeow');
+const API_CLIENT_ID = 0;
+const API_HOST = 'https://api.maps4news.com';
+const REDIRECT_URL = 'http://localhost/';
+
+const auth = new ImplicitFlow(API_CLIENT_ID, REDIRECT_URL);
+const api = new Maps4News(auth, API_HOST);
+
+// Somewhere in your application
+api.authenticate();
+
+// Get the user's information
+api.users.get('me').then(console.log);
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure the <code>client_id</code>, <code>host</code> and <code>redirect_url</code> are correctly filled in.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+The Maps4News API is an OAuth2 API. We support implicit and password flows.
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must have a valid client registered with us to be able to use the API. Clients are currently on request.
 </aside>
 
-# Kittens
+# Next
 
-## Get All Kittens
+The next step in learning about our API would be to look into our extensive documentation about all the available endpoints.
 
-```ruby
-require 'kittn'
+[API Swagger docs](api.html)
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+Our you can look into how the wrapper works.
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+[API Wrapper docs](api-wrapper.html)
