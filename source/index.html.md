@@ -2,10 +2,10 @@
 title: راهنمای API پرداخت
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell: cUrl
+  - shell: cURL
   - php: PHP
-  - go: Go
   - javascript: Node
+  - go: Go
 
 
 toc_footers:

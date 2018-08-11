@@ -12,23 +12,25 @@ curl -X POST https://api.idpay.ir/v1/payment \
   "amount": 10000,
   "phone": "09382198592",
   "desc": "توضیحات پرداخت کننده",
-  "callback": "https://example.com/idpay-web-service.php"
+  "callback": "https://example.com/callback"
 }'
 ```
 
 ```php
 <?php
 
+$url = 'https://api.idpay.ir/v1/payment';
+
 $params = array(
-  'order_id' => 101,
+  'order_id' => '101',
   'amount' => 10000,
   'phone' => '09382198592',
   'desc' => 'توضیحات پرداخت کننده',
-  'callback' => 'https://example.com/idpay-web-service.php',
+  'callback' => 'https://example.com/callback',
 );
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://api.idpay.ir/v1/payment');
+curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -40,15 +42,62 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 $result = curl_exec($ch);
 curl_close($ch);
 
-return $result;
-```
-
-```go
-
+var_dump($result);
 ```
 
 ```javascript
+var request = require('request');
 
+var options = {
+  method: 'POST',
+  url: 'https://api.idpay.ir/v1/payment',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-API-KEY': '965b0483-4519-46b0-aca0-1a6971dc2781',
+    'X-SANDBOX': true,
+  },
+  body: {
+    'order_id': '101',
+    'amount': 10000,
+    'phone': '09382198592',
+    'desc': 'توضیحات پرداخت کننده',
+    'callback': 'https://example.com/callback',
+  },
+  json: true,
+};
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```go
+url := "https://api.idpay.ir/v1/payment"
+
+data := map[string]string{
+  "order_id": "101",
+  "amount":   "10000",
+  "phone":    "09382198592",
+  "desc":     "توضیحات پرداخت کننده",
+  "callback": "https://example.com/callback",
+}
+
+payload, _ := json.Marshal(data)
+
+req, _ := http.NewRequest("POST", url, bytes.NewBuffer(payload))
+
+req.Header.Set("Content-Type", "application/json")
+req.Header.Set("X-API-KEY", "965b0483-4519-46b0-aca0-1a6971dc2781")
+req.Header.Set("X-SANDBOX", "true")
+
+res, _ := http.DefaultClient.Do(req)
+
+defer res.Body.Close()
+body, _ := ioutil.ReadAll(res.Body)
+
+fmt.Println(string(body))
 ```
 
 ### آدرس درخواست

@@ -16,19 +16,21 @@ curl -X POST https://api.idpay.ir/v1/payment/inquiry \
 ```php
 <?php
 
+$url = 'https://api.idpay.ir/v1/payment/inquiry';
+
 $params = array(
   'id' => 'd2e353189823079e1e4181772cff5292',
-  'order_id' => 101,
+  'order_id' => '101',
 );
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://api.idpay.ir/v1/payment/inquiry');
+curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
   'Content-Type: application/json',
   'X-API-KEY: 965b0483-4519-46b0-aca0-1a6971dc2781',
-  'X-SANDBOX: true'
+  'X-SANDBOX: true',
 ));
 
 $result = curl_exec($ch);
@@ -37,12 +39,53 @@ curl_close($ch);
 return $result;
 ```
 
-```go
+```javascript
+var request = require('request');
 
+var options = {
+  method: 'POST',
+  url: 'https://api.idpay.ir/v1/payment/inquiry',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-API-KEY': '965b0483-4519-46b0-aca0-1a6971dc2781',
+    'X-SANDBOX': true,
+  },
+  body: {
+    'id': 'd2e353189823079e1e4181772cff5292',
+    'order_id': '101',
+  },
+  json: true,
+};
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
 ```
 
-```javascript
+```go
+url := "https://api.idpay.ir/v1/payment/inquiry"
 
+data := map[string]string{
+  "id":       "d2e353189823079e1e4181772cff5292",
+  "order_id": "101",
+}
+
+payload, _ := json.Marshal(data)
+
+req, _ := http.NewRequest("POST", url, bytes.NewBuffer(payload))
+
+req.Header.Set("Content-Type", "application/json")
+req.Header.Set("X-API-KEY", "965b0483-4519-46b0-aca0-1a6971dc2781")
+req.Header.Set("X-SANDBOX", "true")
+
+res, _ := http.DefaultClient.Do(req)
+
+defer res.Body.Close()
+body, _ := ioutil.ReadAll(res.Body)
+
+fmt.Println(string(body))
 ```
 
 ### آدرس درخواست
