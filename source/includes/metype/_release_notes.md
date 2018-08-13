@@ -1,5 +1,10 @@
 # Release Notes
 
+## 13 Aug 2018 Release Notes - Metype
+
+1. [Major bug fix] Commenting widget was partially loaded on pages part of a set of infinite scroll stories.
+
+
 ## 3 Aug 2018 Release Notes - Metype
 
 1. Sign-in to Metype using your LinkedIn account. This is available on Metype home page, Comment widget sign-in, Feed widget sign-in and also available to publishers using Metype login to manage their user identities.
