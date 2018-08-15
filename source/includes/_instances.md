@@ -129,13 +129,14 @@ This endpoint creates an instance in your project.
 Parameters | Description | required? |
 --------- | ------- |------- |
 data/attributes/set-id | TestSet id (not display id) | true |
-data/attributes/test-id | Test id (not display id) | true |
+data/attributes/test-id* | Test id (not display id) | true |
 data/attributes/planned-execution | date field of planned-execution | false |
 data/attributes/version | string of instance version | false |
 data/attributes/priority | string of instance priority | false |
 data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
 
+* Users can create 20 instances (maximum) by sending one request. See a curl example in the dark area to the right.
 
 You can find at the [right area](#create-an-instance) (shell) an example of the request
 
@@ -144,6 +145,12 @@ curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 -X POST https://api.practitest.com/api/v2/projects/4566/instances.json \
 -d '{"data": { "type": "instances", "attributes": {"test-id": 233, "set-id": 33, "priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
+
+# example with creating multiple instances
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4520/instances.json \
+-d '{"data": [{ "type": "instances", "attributes": {"test-id": 72926, "set-id": 22140}}, { "type": "instances", "attributes": {"test-id": 72927, "set-id": 22140}}, { "type": "instances", "attributes": {"test-id": 72927, "set-id": 22141}}]}'
 ```
 
 
