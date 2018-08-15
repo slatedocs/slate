@@ -19,7 +19,6 @@ includes:
   - payment_callback
   - payment_inquiry
   - status
-  - errors
 
 search: false
 ---
