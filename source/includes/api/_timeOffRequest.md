@@ -96,9 +96,9 @@ Optional parameter:
 
 If not specified, status_reason will remain unchanged.
 
-####unconfirmed
+####unconfirm
 
-Boolean. In case of conflicts the conflicted shifts will be "unconfirmed".
+Boolean. In case of conflicts the conflicted shifts will be "unconfirm".
 
 ####unpublish
 
