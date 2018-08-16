@@ -1632,6 +1632,86 @@ Atualiza a situação de agendamento ou resultado de uma inscrição para exame.
 | failed | Reprovado no exame vestibular |
 | approved | Aprovado no exame vestibular |
 
+# Informações de documentos de um processo de admissão
+
+## Dados de um único documento de um processo de admissão
+
+> Requisição
+
+```bash
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/admissions/456/documents/12345
+```
+
+> Resposta
+
+```json
+{
+      "id": 12345,
+      "type": "rg",
+      "url": "https://s3-example.amazonaws.com/example.png",
+      "admission": {
+        "id": 456,
+        "status": "submitted_docs",
+        "course": {
+          "id": "ADM-MANHA-SP",
+          "offer": {
+            "discount": 50.0
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+
+> Resposta quando não encontra nenhuma admissão
+
+```json
+{
+  "status": "error",
+  "errors": [
+    {
+      "title": "Admission not found",
+      "details": "No admission associated with this ID was found"
+    }
+  ]
+}
+```
+
+> Resposta quando não encontra nenhum documento associado à admissão
+
+```json
+{
+  "status": "error",
+  "errors": [
+    {
+      "title": "Document not found",
+      "details": "No document associated with this ID was found"
+    }
+  ]
+}
+```
+
+Retorna um documento específico para um processo de admissão.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | Path | Id da admissão |
+| document_id | Path | Id do documento referente à admissão |
+
+### Informações de resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | number | Id do documento de admissão |
+| type | string | Tipo do documento |
+| url | string | URL que aponta para a imagem do documento |
+| created_at | string | Data de submissão do documento no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| [admission] | object | Objeto que identifica o processo de admissão a que o documento de refere |
+
 # Notificações
 
 Notificações utilizam uma rota única de callback, que deve ser fornecida pela faculdade, de um token para autenticação via HTTP Basic.
@@ -1727,7 +1807,17 @@ Esta notificação informa o início de um processo de admissão.
 | Nome | Descrição |
 | ---- | --------- |
 | initiated | Inscrição para exame Pendente |
+| pre_registered | Agendamento solicitado para exame vestibular |
+| registered | Agendamento confirmado no exame vestibular |
+| failed | Reprovado no exame vestibular |
+| approved | Aprovado no exame vestibular |
 | pending_docs | Documentação Pendente |
+| submitted_docs | Documentação Enviada |
+| rejected_docs | Documentação Rejeitada |
+| enrolled | Matriculado |
+| dropped_out | Desistente |
+| dropping_out | Desistindo |
+| drop_out_confirmed | Desistência confirmada |
 
 ## Notificar novo exame
 
@@ -1758,6 +1848,7 @@ Esta notificação informa o início de um processo de admissão.
         "total_score": 200
       },
       "admission": {
+        "id": 456,
         "status": "initiated",
         "course": {
           "id": "ADM-MANHA-SP",
@@ -1771,7 +1862,7 @@ Esta notificação informa o início de um processo de admissão.
 }
 ```
 
-Esta notificação informa o a realização do vestibular do processo de admissão.
+Esta notificação informa a realização do vestibular (via Exame Quero Bolsa ou Nota do Enem) do processo de admissão.
 
 ### Parâmetros
 
@@ -1811,12 +1902,9 @@ Esta notificação informa o a realização do vestibular do processo de admiss�
     "document": {
       "id": 12345,
       "type": "rg",
-      "rg": {
-        "category": "primary_id",
-        "url": "https://s3-example.amazonaws.com/example.png"
-      },
       "admission": {
-        "status": "initiated",
+        "id": 456,
+        "status": "submitted_docs",
         "course": {
           "id": "ADM-MANHA-SP",
           "offer": {
@@ -1842,10 +1930,6 @@ Esta notificação informa a submissão de um documento do processo de admissão
 | document | object | Objeto com dados do documento de admissão do aluno |
 | [document] id | number | Id do documento de admissão |
 | [document] type | string | Tipo do documento |
-| ref(type) | object | Objeto contendo dados de documento (a chave desse objeto é o valor de type)  |
-| ref(type) category | string | Categoria do documento |
-| ref(type) url | string | URL que aponta para a imagem do documento |
-| [document] admission | object | Objeto com dados da admissão |
 
 ### Significado dos valores em type
 
@@ -1864,18 +1948,6 @@ Esta notificação informa a submissão de um documento do processo de admissão
 | comprovante_de_residencia | Comprovante de Residência |
 | comprovante_de_residencia_do_guardiao | Comprovante de Residência do guardião (se menor de idade) |
 | comprovante_de_voto | Comprovante de Voto |
-
-### Significado dos valores em category
-
-| Nome | Descrição |
-| ---- | --------- |
-| primary_id | Documento de Bolso |
-| guardian_primary_id | Documento de Bolso do guardião do menor de idade |
-| government_issued | Documento homologado por instituição governamental |
-| academic_history | Documento de Histórico Escolar |
-| financial_history | Documento de Histórico Financeiro |
-| guardian_financial_history | Documento de Histórico Financeiro do guardião do menor de idade |
-| social_history | Documento de Histório Social |
 
 ## Listagem de notificações
 
