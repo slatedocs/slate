@@ -1710,7 +1710,7 @@ Retorna um documento específico para um processo de admissão.
 | type | string | Tipo do documento |
 | url | string | URL que aponta para a imagem do documento |
 | created_at | string | Data de submissão do documento no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| [admission] | object | Objeto que identifica o processo de admissão a que o documento de refere |
+| [admission] | object | Objeto que identifica o processo de admissão a que o documento se refere |
 
 # Notificações
 
