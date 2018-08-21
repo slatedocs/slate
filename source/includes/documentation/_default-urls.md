@@ -11,8 +11,8 @@ The Quintype application is made up of at least 3 host names.
 Staging urls are typically hosted by Quintype, and will have the following URLs.
 
 * editor - `thefoobar.staging.quintype.com`
-* api server - `thefoobar.staging.quintype.io`
-* front end - `thefoobar-web.staging.quintype.io`
+* api server - `thefoobar.qtstage.io`
+* front end - `thefoobar-web.qtstage.io`
 
 ### Production
 
