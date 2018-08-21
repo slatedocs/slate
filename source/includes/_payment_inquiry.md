@@ -90,7 +90,7 @@ fmt.Println(string(body))
 
 ### آدرس درخواست
 
-`POST https://api.idapy.ir/v1/payment/inquiry`
+`POST https://api.idpay.ir/v1/payment/inquiry`
 
 ### پارامترهای مورد نیاز
 

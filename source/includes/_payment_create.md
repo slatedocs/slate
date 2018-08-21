@@ -2,6 +2,10 @@
 
 با استفاده از آدرس زیر می‌توانید یک تراکنش جدید ایجاد کنید.
 
+<aside class="notice">
+دامنه آدرس بازگشت به سایت پذیرنده یا <code>callback</code> باید مطابق با آدرسی باشد که در <a href="https://idpay.ir/dashboard/web-services">وب سرویس‌های من</a> تعریف شده است.
+</aside>
+
 ```shell
 curl -X POST https://api.idpay.ir/v1/payment \
   -H 'Content-Type: application/json' \
@@ -102,7 +106,7 @@ fmt.Println(string(body))
 
 ### آدرس درخواست
 
-`POST https://api.idapy.ir/v1/payment`
+`POST https://api.idpay.ir/v1/payment`
 
 ### پارامترهای مورد نیاز
 
