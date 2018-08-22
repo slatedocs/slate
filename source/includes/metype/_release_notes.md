@@ -13,6 +13,7 @@ The SSO login page also displays displays the website's branding.
 ![Metype SSO Form Authenticate User](../../images/Metype_SSO_Form_Authenticate_User.png "Metype SSO Form Authenticate User")
 
 2. [Bug fix] Ad-units not responsive.
+3. [Bug fix] Twitter and LinkedIn Login redirect issues in SSO.
 
 
 ## 13 Aug 2018 Release Notes - Metype
