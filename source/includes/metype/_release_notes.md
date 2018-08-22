@@ -1,8 +1,23 @@
 # Release Notes
 
+## 22 Aug 2018 Release Notes - Metype
+1. **Enhanced Single Sign-On(SSO)** - Metype's SSO has been enhanced so users can sign-in with any email address and password. 
+The feature includes all login related workflows such as Sign-up, Sign-in and Forgot Password along with verification of email with an OTP.
+The SSO login page also displays displays the website's branding.
+
+[Click here](#user-identity-management-single-sign-on-sso) to know how to integrate SSO on your website.
+
+![Metype SSO Form Login](../../images/Metype_SSO_Form_Login.png "Metype SSO Form Login")
+![Metype SSO Form Sign Up](../../images/Metype_SSO_Form_Signup.png "Metype SSO Form Sign Up")
+![Metype SSO Form OTP](../../images/Metype_SSO_Form_OTP.png "Metype SSO Form OTP")
+![Metype SSO Form Authenticate User](../../images/Metype_SSO_Form_Authenticate_User.png "Metype SSO Form Authenticate User")
+
+2. [Bug fix] Ad-units not responsive.
+
+
 ## 13 Aug 2018 Release Notes - Metype
 
-1. [Major bug fix] Commenting widget was partially loaded on pages part of a set of infinite scroll stories.
+1. [Bug fix] Commenting widget was partially loaded on pages part of a set of infinite scroll stories. 
 
 
 ## 3 Aug 2018 Release Notes - Metype
