@@ -786,8 +786,14 @@ The package changelog is [available here](https://github.com/scoutapp/scout_apm_
 
 Scout can [track deploys](#deploy-tracking), making it easier to correlate specific deploys to changes in performance.
 
-Scout identifies deploys via the following:
+Scout identifies deploys via the following approaches:
 
-1. Setting the `revision_sha` configuration value: `ScoutConfig.set(revision_sha = 'SHA')`.
-2. Setting a `SCOUT_REVISION_SHA` environment variable equal to the SHA of your latest release.
-3. If you are using Heroku, enable [Dyno Metadata](https://devcenter.heroku.com/articles/dyno-metadata). This adds a `HEROKU_SLUG_COMMIT` environment variable to your dynos, which Scout then associates with deploys.
+* Setting the `revision_sha` configuration value:
+
+```python
+from scout_apm.api import Config
+Config.set(revision_sha = os.popen("git rev-parse HEAD").read()) # if the app directory is a git repo
+```
+
+* Setting a `SCOUT_REVISION_SHA` environment variable equal to the SHA of your latest release.
+* If you are using Heroku, enable [Dyno Metadata](https://devcenter.heroku.com/articles/dyno-metadata). This adds a `HEROKU_SLUG_COMMIT` environment variable to your dynos, which Scout then associates with deploys.
