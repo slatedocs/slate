@@ -5,7 +5,7 @@
 <!DOCTYPE html>
   <html lang="en-us">
   <head>
-  <script type="text/javascript" src="https://ea-assests.anarock.com/form_new.js"></script></head>
+  <script type="text/javascript" src="https://s3.ap-south-1.amazonaws.com/anarock.misc/form_new.js"></script></head>
 <body>
   <div id="anarock-form"></div>
   <script>
@@ -23,7 +23,6 @@ Including this SDK exposes `window.createForm` function which takes in below par
 | form_container | html_element - document.getElementById | null | true | html_element where the form should be placed |
 | API_KEY | string | null | true | API Key given by anarock team |
 | CHANNEL_NAME | string | null | true | CHANNEL NAME given by anarock team |
-| CAMPAIGN_ID | string | null | true | CAMPAIGN ID given by anarock team |
 | CAMPAIGN_ID | string | null | true | CAMPAIGN ID given by anarock team |
 | ENVIRONMENT | string | 'staging' | true | possible values are `staging` or `production` |
 | options | object | null | - | possible keys are `showRemarks` or `remarksTitle`, `show_label`, `show_placeholder`, `contacting_authority`, `show_thankyou` |
@@ -47,8 +46,7 @@ In the `options` object
 
 Working example can be seen here. https://marketing.anarock.com/static/test.html
 
-
-`window.onLeadSucess` && `window.onLeadFailure` are the two functions that are called on submission of lead. These are called with 2 arguments  `lead_id` && `data_submitted_in_anarock_database`
+`window.onLeadSuccess` && `window.onLeadFailure` are the two functions that are called on submission of lead. These are called with 2 arguments  `lead_id` && `data_submitted_in_anarock_database`
 
 
 `data_submitted_in_anarock_database` will have a signature as defined below
@@ -68,8 +66,16 @@ Working example can be seen here. https://marketing.anarock.com/static/test.html
   }
 ```
 
-e.g. `window.onLeadSucess(78642, {name: 'Test' .....})` or `window.onLeadFailure(null, {name: 'Test' .....})`
+e.g. `window.onLeadSuccess(78642, {name: 'Test' .....})` or `window.onLeadFailure(null, {name: 'Test' .....})`
 
+### Thank you page redirection
+
+`show_thankyou` flag in options can be used to show a thank you message in place of form.
+
+also, to do redirections to your own thankyou page. You can use the 
+
+window.onLeadSuccess = fuction(leadId, data_submitted_in_anarock_database) { window.href = '/thankyou'; }
+window.onLeadFailure = fuction(null, data_submitted_in_anarock_database) { window.href = '/thankyou'; }
 
 ### You can modify css as you wish.
 
