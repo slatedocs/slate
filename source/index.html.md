@@ -43,7 +43,7 @@ The url is:
 
 ## Suredbits Lightning Payment 
 
-Here is our custom drop-in solution in node.js client for our API: <a href="https://github.com/suredbits/lightning-charge">https://github.com/suredbits/lightning-charge</a>
+Here is a simple javascript client for our API: <a href="https://github.com/suredbits/lightning-charge">https://github.com/suredbits/lightning-charge</a>
 
 ## Suredbits Websocket Endpoint
 Here is the websocket uri for Suredbits: <a href="wss://test.api.suredbits.com/nfl/v0">wss://test.api.suredbits.com/nfl/v0</a>
@@ -123,6 +123,29 @@ A successful request will generate a lightning invoice that will look simiar to 
 
 
 <h1 id="NFLData"> NFL Data</h1>
+
+## Info
+
+```json
+{
+  "data":
+    [
+      {
+        "version":"8",
+        "lastRosterDownload":"2018-08-13T17:07:53.668Z",
+        "seasonType":"Preseason",
+        "seasonYear":2018,
+        "week":"NflPreSeasonWeek1"
+       }
+    ]
+ }
+```
+
+**Example Request**
+
+{"channel": "info"}
+
+This provides a check and confirmation on the status of the API. 
 
 ## Games
 > Example of Games data
