@@ -756,8 +756,9 @@ def bar():
 It's simple to add [custom context](#context) to your app:
 
 ```python
-# ScoutApm.Context.add(key,value)
-ScoutApm.Context.add("user_email",request.user.email)
+import scout_apm.api
+# scout_apm.api.Context.add(key,value)
+scout_apm.api.Context.add("user_email",request.user.email)
 ```
 
 ### Context Key Restrictions
