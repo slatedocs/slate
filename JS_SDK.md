@@ -30,19 +30,19 @@ Including this SDK exposes `window.createForm` function which takes in below par
 
 In the `options` object 
 
-`showRemarks` is a boolean. Should be passed true if you want a queries section in the form as in the second form at https://marketing.anarock.com/static/test.html
+`showRemarks` is a boolean. Should be passed `true` if you want a queries section in the form as in the second form at https://marketing.anarock.com/static/test.html
 
 `remarksTitle` is a string, Label that should be showing as title of queries section in the form. 
 
-`show_label` is a boolean to show or hide label in input boxes. Default value is true.
+`show_label` is a boolean to show or hide label in input boxes. Default value is `true`.
 
-`show_placeholder` is a boolean to show or hide label in input boxes. Default value is false.
+`show_placeholder` is a boolean to show or hide label in input boxes. Default value is `false`.
 
 `show_placeholder` && `show_label` both cannot be same at the same point of time.
 
 `contacting_authority` this should be the project name to show the name for dnd checkbox
 
-`show_thankyou` is a boolean to check if after success thank you screen to be shown or not. default value is false
+`show_thankyou` is a boolean to check if after success thank you screen to be shown or not. default value is `true`
 
 Working example can be seen here. https://marketing.anarock.com/static/test.html
 
