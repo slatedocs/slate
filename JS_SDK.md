@@ -1,11 +1,11 @@
-
+### JS SDK 
 
 ```html
 
 <!DOCTYPE html>
   <html lang="en-us">
   <head>
-  <script type="text/javascript" src="https://s3.ap-south-1.amazonaws.com/anarock.misc/form_new.js"></script></head>
+  <script type="text/javascript" src="https://s3.ap-south-1.amazonaws.com/anarock.misc/form.js"></script></head>
 <body>
   <div id="anarock-form"></div>
   <script>
