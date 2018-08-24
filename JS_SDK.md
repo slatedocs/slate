@@ -78,7 +78,7 @@ You can modify css as you wish.
 below is the html structure of the form
 
 ```html
-<div id="anarock-form-1" style="width: 320px;">
+
   <div class="ap-lead-form">
     <div class="am-input-container">
       <div class="am-input-label">Name*</div>
@@ -106,7 +106,7 @@ below is the html structure of the form
     <div class="am-button primary " type="submit" value="Submit">Submit</div>
     </div>
   </div>
-</div>
+
 ```
 
 
