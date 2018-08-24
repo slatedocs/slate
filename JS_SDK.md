@@ -28,7 +28,7 @@ Including this SDK exposes `window.createForm` function which takes in below par
 | CAMPAIGN_ID | string | null | true | CAMPAIGN ID given by anarock team |
 | CAMPAIGN_ID | string | null | true | CAMPAIGN ID given by anarock team |
 | ENVIRONMENT | string | 'staging' | true | possible values are `staging` or `production` |
-| options | object | null | - | possible keys are `showRemarks` or `remarksTitle` |
+| options | object | null | - | possible keys are `showRemarks` or `remarksTitle`, 'show_label', 'show_placeholder' |
 
 
 In the `options` object 
@@ -37,47 +37,52 @@ In the `options` object
 
 `remarksTitle` is a string, Label that should be showing as title of queries section in the form. 
 
+`show_label` is a boolean to show or hide label in input boxes. Default value is true.
+
+`show_placeholder` is a boolean to show or hide label in input boxes. Default value is false.
+
+`show_placeholder` && `show_label` both cannot be same at the same point of time.
+
+`contacting_authority` this should be the project name to show the name for dnd checkbox
+
 Working example can be seen here. https://marketing.anarock.com/static/test.html
 
 
+You can modify css as you wish.
 
-
-2. Submit Lead SDK
-
-It is reccommended that this SDK is loaded in the head tag of the page as shown below.
+below is the html structure of the form
 
 ```html
-<!DOCTYPE html>
-  <html lang="en-us">
-  <head>
-    <script type="text/javascript" src="https://s3.ap-south-1.amazonaws.com/anarock.misc/submit.js"></script>
-  </head>
-  <body>
-  ....
-  </body>
-</html>
+<div id="anarock-form-1" style="width: 320px;">
+  <div class="ap-lead-form">
+    <div class="am-input-container">
+      <div class="am-input-label">Name*</div>
+      <input class="am-input" maxlength="100">
+    </div>
+    <div class="am-input-container">
+      <div class="am-input-label">Email*</div>
+      <input class="am-input" maxlength="100">
+    </div>
+    <div class="am-input-container phone focussed">
+      <div class="am-input-label">Phone*</div>
+        <select>
+          <option value="in">India - +91</option>
+        </select>
+          <input class="am-input" maxlength="20">
+      </div>
+    <div class="am-input-container text   textarea ">
+      <div class="am-input-label">Add your query</div>
+      <textarea rows="3" class="am-input" maxlength="400"></textarea>
+    </div>
+    <div class="ap-agree-box">
+      <input type="checkbox" value="agree" id="ap-agree">
+      <label for="ap-agree">I agree and authorize team to contact me. This will override the registry with DNC / NDNC</label>
+    </div>
+    <div class="am-button primary " type="submit" value="Submit">Submit</div>
+    </div>
+  </div>
+</div>
 ```
 
-Including this SDK exposes `window.submitLeadToAnarock` function which takes in below parameters
 
-```js
-window.submitLeadToAnarock({name: 'name', phone: 9819619866, country_code: 'in', email: 'yadav.rahul026@gmail.com', remarks: 'remarks to be submitted', campaign_id: 'campaign-id', channel_name: 'channel_name', api_key: 'asd298379246798s7d', onLeadSuccessCallback: function(){}, onLeadFailureCallback: function(){}, onInvalidPhone: (){}, env: 'staging'}
-```
-The description of various parameters is given below.
 
-| Parameter | Type | Default Value | Required | Description |
-| --- | --- | --- | --- | --- |
-| name | string | '' | true |name of the lead |
-| phone | integer or string | null | true | phone number of lead |
-| country_code | string | 'in' | true | Standard ISO3166-1 alpha-2 code for a country. Link: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 |
-| email | string | null | true | email id of lead |
-| campaign_id | string | null | true | campaign_id - specific for a project - ask from anarock team |
-| channel_name | string | null | true | channel_name - specific for an agency - ask from anarock team |
-| api_key | string | null | true | api_key - specific for an agency - ask from anarock team |
-| onLeadSuccessCallback | function | null | - | function that will be called on successful submission of lead, arguments are (lead_id, data_submitted_to_anarock) |
-| onLeadFailureCallback | function | null | - | function that will be called on failure of lead submission, arguments are (null, data_submitted_to_anarock) |
-| onInvalidPhone | function | null | - | called if the phone number passed is invalid for the given country_code in parameters, if phone number is wrong, lead will never be submitted to anarock database  |
-
-It is very important to handle `onInvalidPhone` and show user with appropritate messages on UI if you are using Form SDK. 
-
-In addition to `onLeadSuccessCallback` and `onLeadFailureCallback` optional global functions can be defined as `window.onLeadSucess` called on successful submission and `window.onLeadFailure` called on failure in submitting the lead to anarock database.
