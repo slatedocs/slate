@@ -270,6 +270,26 @@ Confirms a shift.
 
 `covering_member` or `external_covering_member`: Assign the specified user to the shift (rather than assigning the current user). Only available to workgroup managers.
 
+#### Assignability parameters
+
+To use assignability checks, the `assignability_checks` parameter must be `true`; then, the following options may be available, based on enabled features:
+
+`conflicts_ok` - boolean
+
+`daily_overtime_ok` - boolean
+
+`weekly_overtime_ok` - boolean
+
+`timeoff_ok` - boolean
+
+`consecutive_days` - boolean
+
+`short_turnaround` - boolean
+
+`ignore_attestation_types` - boolean
+
+`attestation_type` - array of attestationTypeId
+
 #### Response
 
 On success, a `message` attribute will provide a brief notification message. If the shift had a count > 1, a new shift object will have been created and the id of the new shift will also be returned.
@@ -304,25 +324,27 @@ On success, a `message` attribute will provide a brief notification message. If 
 <span class="tryit" id="shift-create-tryit"></span>
 Creates a new shift record.
 
-Parameters: Most attributes of a shift object except `id` may be specified. Minimally, `workgroup` and `start_date` parameters must be specified. `timezone` will default to the organization's timezone. `location` will default to the workgroup's default location, if set. `external_covering_member`/`covering_member` and `covering_workgroup` are mutually exclusive, and may only be specified if the shift is covered. `tentative` may only true if the shift is covered, and `covered` may only be true if the shift is published. Start and end dates may only fall on even five minute times. Either `count` or `qty` may be specified and both will be set for the new shift, defaulting to 1; if both are specified, they must be equal. `count` must be 1 for a covered shift.
+#### Parameters
 
-Optional Parameters:
+Most attributes of a shift object except `id` may be specified. Minimally, `workgroup` and `start_date` parameters must be specified. `timezone` will default to the organization's timezone. `location` will default to the workgroup's default location, if set. `external_covering_member`/`covering_member` and `covering_workgroup` are mutually exclusive, and may only be specified if the shift is covered. `tentative` may only true if the shift is covered, and `covered` may only be true if the shift is published. Start and end dates may only fall on even five minute times. Either `count` or `qty` may be specified and both will be set for the new shift, defaulting to 1; if both are specified, they must be equal. `count` must be 1 for a covered shift.
 
-notify_on_create
+#### Optional parameters
+
+`notify_on_create`
 Boolean; send a notification message to the covering member for this shift.
 
-notify_message
+`notify_message`
 Additional text to include in notification message.
 
-It is possible to use this method to create a series of repeating (repeating) shifts. In order to do so, some additional parameters are required. Below is a list of these optional parameters.
+#### Repeating shift parameters
 
-Optional parameters:
+It is possible to use this method to create a series of repeating (repeating) shifts. In order to do so, some additional parameters are required:
 
-#### repeating_shift
+##### repeating_shift
 
 Boolean; specifies the caller is creating a series of repeating shifts.
 
-#### repeating_shift_type
+##### repeating_shift_type
 
 Type of repeating shift.
 
@@ -331,11 +353,11 @@ Type|Meaning
 frequency|Frequency
 days_of_week|Days of Week
 
-#### repeating_shift_end_date
+##### repeating_shift_end_date
 
 The date of the final shift in the repeating series in [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) full date format (e.g. "2018-01-01").
 
-#### repeating_shift_interval
+##### repeating_shift_interval
 
 Specifies the interval in which the series will be created. Valid interval options are below:
 
@@ -350,7 +372,7 @@ every_sixth|Every Sixth
 
 **NOTE:** `every_fifth` and `every_sixth` are only available when creating daily shifts.
 
-#### repeating_shift_frequency
+##### repeating_shift_frequency
 
 Specifies the frequency for a frequency based repeating series. Valid frequency options are below:
 
@@ -363,7 +385,7 @@ year|
 
 **NOTE:** Parameter is required when `repeating_shift_type` is `frequency`
 
-#### repeating_shift_days_of_week
+##### repeating_shift_days_of_week
 
 Array. Specifies which days of the week to create shifts for in a repeating series. Valid options are below:
 
@@ -379,21 +401,34 @@ Day|Meaning
 
 **NOTE:** Parameter is required when `repeating_shift_type` is `days_of_week`
 
-Response: On success, an `id` attribute will provide the identifier for the new shift. When creating a series of repeating shifts, the `id` returned will be the first shift in the series.
-
-#### additional_dates
+##### additional_dates
 
 Array. Additional shift dates to be created alongside the specified repeating series. Dates must be in [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt) full date format (e.g. "2018-01-01")
 
-Assignability Preferences: If enabled, assignability checks can be turned on and overridden during shift creation. To turn on the assignabilty checks, the feature must me enabled and the `assignability_checks` parameter must be true. When this is enabled the following overrides may be available based enabled features:
-* `conflicts_ok` - boolean
-* `daily_overtime_ok` - boolean
-* `weekly_overtime_ok` - boolean
-* `timeoff_ok` - boolean
-* `consecutive_days` - boolean
-* `short_turnaround` - boolean
-* `ignore_attestation_types` - boolean
-* `attestation_type` array of attestationTypeId
+#### Assignability parameters
+
+To use assignability checks, the `assignability_checks` parameter must be `true`; then, the following options may be available, based on enabled features:
+
+`conflicts_ok` - boolean
+
+`daily_overtime_ok` - boolean
+
+`weekly_overtime_ok` - boolean
+
+`timeoff_ok` - boolean
+
+`consecutive_days` - boolean
+
+`short_turnaround` - boolean
+
+`ignore_attestation_types` - boolean
+
+`attestation_type` - array of attestationTypeId
+
+
+#### Response
+
+On success, an `id` attribute will provide the identifier for the new shift. When creating a series of repeating shifts, the `id` returned will be the first shift in the series.
 
 ### shift.delete
 
@@ -1671,13 +1706,39 @@ Response: On success, empty results will be returned. Note that if the shift had
 <span class="tryit" id="shift-update-tryit"></span>
 Updates a shift object.
 
-Required parameter: `id`. Most other shift object attributes may be specified.
+#### Required parameter
 
-Optional Parameters: `notify` Boolean; notify covering member upon update.
+`id`. Most other shift object attributes may be specified.
+
+#### Optional Parameters
+
+`notify` Boolean; notify covering member upon update.
 
 The `count` of a shift is the number of positions available for that specific shift, whereas the `qty` is the total positions for all related shifts. Counts may not be directly modified: to increase or decrease available counts, modify the `qty` field, which will update the `qty` for all related shifts, increasing or decreasing the `count` only for the related uncovered shift. Therefore, `qty` cannot be decreased below the total `count` for all related covered shifts. If `qty` is set to the total `count` for all related covered shifts, the uncovered shift, now with `count` 0, is deleted.
 
-Response: On success, if the shift was updated, empty results will be returned. If the shift had a `count` > 1 and the update was only applied to a portion of the count, a new shift object will have been created and the `id` of the new shift will be returned. If `qty` is modified on a covered shift, the `id` of the modified uncovered shift will be returned.
+#### Assignability parameters
+
+To use assignability checks, the `assignability_checks` parameter must be `true`; then, the following options may be available, based on enabled features:
+
+`conflicts_ok` - boolean
+
+`daily_overtime_ok` - boolean
+
+`weekly_overtime_ok` - boolean
+
+`timeoff_ok` - boolean
+
+`consecutive_days` - boolean
+
+`short_turnaround` - boolean
+
+`ignore_attestation_types` - boolean
+
+`attestation_type` - array of attestationTypeId
+
+#### Response
+
+On success, if the shift was updated, empty results will be returned. If the shift had a `count` > 1 and the update was only applied to a portion of the count, a new shift object will have been created and the `id` of the new shift will be returned. If `qty` is modified on a covered shift, the `id` of the modified uncovered shift will be returned.
 
 ### shift.customDropdownList
 
