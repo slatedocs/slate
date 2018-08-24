@@ -1,6 +1,4 @@
-There are 2 types of JS SDKs available for integration. 
 
-1. Form DSK
 
 ```html
 
