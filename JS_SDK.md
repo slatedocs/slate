@@ -7,7 +7,7 @@ There are 2 types of JS SDKs available for integration.
 <!DOCTYPE html>
   <html lang="en-us">
   <head>
-  <script type="text/javascript" src="https://s3.ap-south-1.amazonaws.com/anarock.misc/form.js"></script></head>
+  <script type="text/javascript" src="https://ea-assests.anarock.com/form.js"></script></head>
 <body>
   <div id="anarock-form"></div>
   <script>
