@@ -28,7 +28,7 @@ Including this SDK exposes `window.createForm` function which takes in below par
 | CAMPAIGN_ID | string | null | true | CAMPAIGN ID given by anarock team |
 | CAMPAIGN_ID | string | null | true | CAMPAIGN ID given by anarock team |
 | ENVIRONMENT | string | 'staging' | true | possible values are `staging` or `production` |
-| options | object | null | - | possible keys are `showRemarks` or `remarksTitle`, `show_label`, `show_placeholder`, `contacting_authority` |
+| options | object | null | - | possible keys are `showRemarks` or `remarksTitle`, `show_label`, `show_placeholder`, `contacting_authority`, `show_thankyou` |
 
 
 In the `options` object 
@@ -45,7 +45,32 @@ In the `options` object
 
 `contacting_authority` this should be the project name to show the name for dnd checkbox
 
+`show_thankyou` is a boolean to check if after success thank you screen to be shown or not. default value is false
+
 Working example can be seen here. https://marketing.anarock.com/static/test.html
+
+
+`window.onLeadSucess` && `window.onLeadFailure` are the two functions that are called on submission of lead. These are called with 2 arguments  `lead_id` && `data_submitted_in_anarock_database`
+
+
+`data_submitted_in_anarock_database` will have a signature as defined below
+
+```json
+  {
+      "name": "string",
+      "phone": "string",
+      "email": "string",
+      "country_code": "country_code || 'in'",
+      "campaign_id": "string",
+      "source": "string",
+      "sub_source": "string",
+      "placement": "string",
+      "remarks": "string",
+      "extra_details": "JSON object"
+  }
+```
+
+e.g. `window.onLeadSucess(78642, {name: 'Test' .....})` or `window.onLeadFailure(null, {name: 'Test' .....})`
 
 
 You can modify css as you wish.
