@@ -4,7 +4,7 @@ The customers of Quintype platform can use below APIs for subscriptions in Acces
 
 ## POST Preview subscription
 
-```shell
+```shell--request
 curl -H "content-type: application/json" https://sketches.quintype.com/api/v1/subscription/preview -d '{
     "member": {
       "email": "example@gmail.com"
@@ -24,6 +24,9 @@ curl -H "content-type: application/json" https://sketches.quintype.com/api/v1/su
     }}
 '
 ```
+```shell--response
+```
+
 It returns a preview for a Subscription, without creating a new subscription.
 For a successful subscription, it also return an `attempt_token`.
 
@@ -33,7 +36,7 @@ We highly recommend use of this API before accepting payment form a user.
 
 ## POST Register And Subscribe a user
 
-```shell
+```shell--request
 curl -H "X-QT-AUTH: sample-auth" -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/register-and-subscribe -d '{
    "member": {
         "email": "ace33@quintype.com",
@@ -71,6 +74,9 @@ curl -H "X-QT-AUTH: sample-auth" -H "Content-Type: application/json" http://sket
 '
 
 ```
+```shell--response
+```
+
 Registers a member and creates subscription in Accesstype. It returns X-QT-AUTH in response headers.
 
 `gateway-name` can be any valid payment-type supported by Accesstype.
@@ -83,7 +89,7 @@ Registers a member and creates subscription in Accesstype. It returns X-QT-AUTH 
 
 ## POST Subscribe Without Login
 
-```shell
+```shell--request
 curl -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/subscribe-without-login?email=example@gmail.com -d '{
     "options": {
         "gateway-name": "razorpay"
@@ -116,6 +122,9 @@ curl -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/sub
 '
 
 ```
+```shell--response
+```
+
 It create subscription for a already registered user.
 `gateway-name` can be any valid payment-type suppored by Accesstype.
 
@@ -126,9 +135,13 @@ It create subscription for a already registered user.
 
 ## LIST All subscriptions of a user
 
-```shell
+```shell--request
 curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/members/me/subscriptions
 
+
+```
+
+```shell--response
 {
  "subscriptions":[
   {
@@ -175,15 +188,19 @@ curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" http:
   ]
 }
 ```
+
 It gives all subscriptions for a user.
 
 This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
 
 ## LIST All Assets accessible to user
 
-```shell
+```shell--request
 curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/members/me/assets
 
+```
+
+```shell--response
 {
    "assets":[
       {
@@ -193,14 +210,16 @@ curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" http:
       }
    ]
 }
+
 ```
+
 It gives all assets accessible to a user.
 
 This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
 
 ## PATCH Update a subscription
 
-```shell
+```shell--request
 curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" -X PATCH http://sketches.quintype.com/api/v1/members/me/subscriptions/<id> -d '{
   "metadata":  {
     "full-name": "hello-world",
@@ -209,13 +228,16 @@ curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" -X PA
 }'
 
 ```
+
+```shell--response
+```
 It updates a subscription for user.
 
 This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
 
 ## PATCH Update all subscriptions
 
-```shell
+```shell--request
 curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" -X PATCH http://sketches.quintype.com/api/v1/members/me/subscriptions -d '{
   "metadata":  {
     "full-name": "hello-world",
@@ -224,13 +246,17 @@ curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" -X PA
 }'
 
 ```
+
+```shell--response
+```
+
 It bulk updates **all** subscriptions for user.
 
 This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
 
 ## POST Renew a subscription
 
-```shell
+```shell--request
 curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" -X POST http://sketches.quintype.com/api/v1/members/me/subscriptions/<id>/renewals -d '{
   "coupon_code": "",
   "payment": {
@@ -242,6 +268,9 @@ curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" -X PO
 }'
 
 ```
+```shell--response
+```
+
 This API can be used to renew any renewable subscription.
 
 One can use the optional `metadata` field to set it different from that of the existing subsription. If not passed, it is set to be same as existing subscription.

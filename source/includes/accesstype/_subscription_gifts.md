@@ -2,7 +2,7 @@
 
 ## POST Create a Subscription for gifting
 
-```shell
+```shell--request
 curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscription_gifts.json -d '{
   "name": "Adam",
   "recipient_subscriber": {
@@ -28,6 +28,8 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST ht
   "alternate_identity": "hey@quintype.com"
 }'
 ```
+```shell--response
+```
 
 This API can be used to create a subscription and gift it to a `recipient_subscriber`.
 `recipient_subscriber` details are required.
@@ -35,8 +37,11 @@ It returns a Subscription Object in response
 
 ## LIST Subscriptions gifted by a user
 
-```shell
+```shell--request
 $ curl -H "X-SUBAUTH: <auth-token>" https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscription_gifts.json
+
+```
+```shell--response
 {
  "subscriptions":[
   {

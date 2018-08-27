@@ -2,9 +2,10 @@
 
 ## GET discount details for a subscription plan
 
-```shell
+```shell--request
 $ curl -H "X-SUBAUTH: <auth-token>" https://www.accesstype.com/api/v1/subscription_plans/<subscription-plan-id>/coupon_codes/<code>/validate.json
-
+```
+```shell--response
 {
   "discount_details": {
     "code": "TEST100",
@@ -17,7 +18,6 @@ $ curl -H "X-SUBAUTH: <auth-token>" https://www.accesstype.com/api/v1/subscripti
   },
   "message": "Applied successfully"
 }
-
 ```
 
 It returns discount details for a active coupon code.

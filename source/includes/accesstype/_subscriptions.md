@@ -6,9 +6,13 @@ It can also be set to `manual` to create subscriptions not involving payments.
 
 ## LIST Subscriptions for a user
 
-```shell
+```shell--request
 $ curl -H "X-SUBAUTH: <auth-token>" https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriptions.json
 
+
+```
+
+```shell--response
 {
  "subscriptions":[
   {
@@ -71,7 +75,7 @@ In order to get only active subscriptions, param `active_only=true` can be used.
 
 ## POST Preview a Subscription
 
-```shell
+```shell--request
 curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriptions/preview.json -d '{
   "subscription": {
     "subscription_plan_id": "11",
@@ -91,6 +95,9 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST ht
 }'
 ```
 
+```shell--response
+```
+
 It returns a preview for a Subscription, without creating a new subscription.
 For a successful subscription, it also return an `attempt_token`.
 
@@ -102,7 +109,7 @@ One can pass the value for `payment.payment_type` as `razorpay_recurring` when m
 
 ## POST Create a Subscription
 
-```shell
+```shell--request
 curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriptions.json -d '{
   "subscription": {
     "subscription_plan_id": "11",
@@ -126,6 +133,8 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST ht
   "name": "Ben"
 }'
 ```
+```shell--response
+```
 
 This API can be used to create a subscription.
 
@@ -137,7 +146,7 @@ It returns a Subscription Object in response
 
 ## PATCH update attributes
 
-```shell
+```shell--request
 curl -H "X-SUBAUTH: <auth-token>" -X PATCH -H "Content-Type: application/json" https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriptions/<id>.json -d '{
   "subscription": {
     "metadata":  {
@@ -147,12 +156,14 @@ curl -H "X-SUBAUTH: <auth-token>" -X PATCH -H "Content-Type: application/json" h
   }
 }'
 ```
+```shell--response
+```
 
 This API can be used to update the attributes for a subscription of a subscriber
 
 ## PATCH bulk update attributes
 
-```shell
+```shell--request
 curl -H "X-SUBAUTH: <auth-token>" -X PATCH -H "Content-Type: application/json" https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriptions.json -d '{
   "metadata":  {
     "full-name": "hello-world",
@@ -160,28 +171,34 @@ curl -H "X-SUBAUTH: <auth-token>" -X PATCH -H "Content-Type: application/json" h
   }
 }'
 ```
+```shell--response
+```
 
 This API can be used to update the attributes of **all** active subscriptions of a subscriber
 
 ## DELETE a subscription
 
-```shell
+```shell--request
 curl -H "X-SUBAUTH: <auth-token>" -X "DELETE" -H "Content-Type: application/json" https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriptions/<subscription-id>.json
+```
+```shell--response
 ```
 
 This API can be used to delete a subscription(THIS API WILL BE DEPRECATED SOON IN FAVOUR OF CANCEL Subscription API)
 
 ## CANCEL a subscription
 
-```shell
+```shell--request
 curl -H "X-SUBAUTH: <auth-token>" -X "PUT" -H "Content-Type: application/json" https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriptions/<subscription-id>/cancel.json
+```
+```shell--response
 ```
 
 This API can be used to cancel a subscription
 
 ## POST renew a subscription
 
-```shell
+```shell--request
 curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriptions/<subscription_id>/renewals.json -d '{
   "subscription": {
     "coupon_code": "",
@@ -195,6 +212,8 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST ht
   "alternate_provider": "email",
   "alternate_identity": "hey@quintype.com"
 }'
+```
+```shell--response
 ```
 
 This API can be used to renew any renewable subscription.
@@ -212,7 +231,7 @@ In order to register a recurring subscription with some providers (such as razor
 
 ## POST register a recurring subscription
 
-```shell
+```shell--request
 curl -H "X-SUBAUTH: <auth-token>" -X POST -H "Content-Type: application/json" https://www.accesstype.com/api/v1/subscription_plans/<subscription-plan-id>/external_subscription_token.json -d '{
   "type": "razorpay",
   "attempt_token": "fo4bMWjP6N5vtVySNtiAUNBQ"
@@ -223,6 +242,8 @@ curl -H "X-SUBAUTH: <auth-token>" -X POST -H "Content-Type: application/json" ht
     "id": "sub_8tQNd3qURQJiK5"
   }
 }
+```
+```shell--response
 ```
 
 `attempt_token` is optional param and must be sent if the external subscription is not to start immediately.

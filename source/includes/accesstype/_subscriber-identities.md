@@ -6,8 +6,11 @@ Most APIs will accept the primary identity via URL parameters, and will also acc
 
 ## LIST Subscriber Identities for a user
 
-```shell
+```shell--request
 $ curl -H "X-SUBAUTH: <auth-token>" https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriber_identities.json
+
+```
+```shell--response
 {
   "subscriber_identities": [
     {
@@ -22,11 +25,12 @@ $ curl -H "X-SUBAUTH: <auth-token>" https://www.accesstype.com/api/v1/subscriber
 }
 ```
 
+
 This API will list out all the identities for a user.
 
 ## POST Create a Subscriber Identity for a user
 
-```shell
+```shell--request
 curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriber_identities.json -d '{
   "subscriber_identity:" {
     "provider": "email",
@@ -44,6 +48,8 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" https://ww
     "value":"asim@quintype.com"
   }]
 }
+```
+```shell--response
 ```
 
 This API can be used to add an Identity for an existing subscriber

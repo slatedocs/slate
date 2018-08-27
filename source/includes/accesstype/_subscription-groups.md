@@ -2,8 +2,11 @@
 
 ## LIST all Subscription Groups
 
-```shell
+```shell--request
 $ curl -H "X-SUBAUTH: <your-auth-token>" https://www.accesstype.com/api/v1/subscription_groups.json
+
+```
+```shell--response
 {
   "subscription_groups": [{
     "id": 25,
@@ -58,8 +61,11 @@ This API will list out all public subscription groups
 
 ## GET a Subscription Group
 
-```shell
+```shell--request
 $ curl -H "X-SUBAUTH: <your-auth-token>" https://www.accesstype.com/api/v1/subscription_groups/<group-id>.json
+
+```
+```shell--response
 {
   "subscription_group": {
     "id": 25,
@@ -109,5 +115,4 @@ $ curl -H "X-SUBAUTH: <your-auth-token>" https://www.accesstype.com/api/v1/subsc
   }
 }
 ```
-
 This will fetch a subscription, either a public or private one

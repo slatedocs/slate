@@ -2,7 +2,8 @@
 title: AccessType API Documentation
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
+  - shell--request: Request
+  - shell--response: Response
 
 toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
@@ -14,10 +15,11 @@ includes:
   - accesstype/subscription-groups
   - accesstype/subscriptions
   - accesstype/subscription_gifts
+  - accesstype/campaigns
+  - accesstype/pay_per_asset
   - accesstype/assets
   - accesstype/wallets
   - accesstype/coupon_codes
-  - accesstype/campaigns
   - accesstype/for-platform-customers
   - accesstype/faq
   - accesstype/release_notes

@@ -2,8 +2,10 @@
 
 ## LIST all Campaigns
 
-```shell
+```shell--request
 $ curl -H "X-SUBAUTH: <your-auth-token>" https://www.accesstype.com/api/v1/campaigns.json
+```
+```shell--response
 {
   "campaigns": [{
     "id": 25,
@@ -47,12 +49,14 @@ $ curl -H "X-SUBAUTH: <your-auth-token>" https://www.accesstype.com/api/v1/campa
 }
 ```
 
-This API will list out all campaigns
+This API will list out all campaigns that are set up for the account.
 
 ## GET a Campaign
 
-```shell
+```shell--request
 $ curl -H "X-SUBAUTH: <your-auth-token>" https://www.accesstype.com/api/v1/campaigns/<campaign-id>.json
+```
+```shell--response
 {
   "campaign": {
     "id": 1,
@@ -93,6 +97,82 @@ $ curl -H "X-SUBAUTH: <your-auth-token>" https://www.accesstype.com/api/v1/campa
     }]
   }
 }
+
 ```
 
-This will fetch a specific campaign
+
+This will fetch details of a specific campaign.
+
+## POST Preview a Patron Subscription
+
+```shell--request
+curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriptions/preview.json -d '{
+  "subscription": {
+    "subscription_plan_id": "11",
+    "campaign_id": "1",
+    "coupon_code": "NEWYEAR",
+    "metadata":  {
+        "full-name": "hello",
+        "email": "hello@quintype.com"
+    },
+    "payment": {
+        "payment_type": "razorpay"
+    },
+    "start_timestamp": "2018-07-24 00:00:00"
+  },
+  "alternate_provider": "email",
+  "alternate_identity": "hey@quintype.com",
+  "name": "Ben"
+}'
+```
+```shell--response
+```
+
+It returns a preview for a Patron of a Campaign, without creating a Patron for a Campaign.
+
+The `campaign_id` field must be sent in the request for the request to be identified as a Patron Subscription Attempt.
+
+For a successful preview attempt, it returns an `attempt_token`.
+
+An `attempt_token` is the identifier of a subscription attempt. It should be sent back with [create subscription](#post-create-a-patron-subscription) api to mark an attempt as success.
+
+This API must be used before accepting payment from a potential patron.
+
+One can pass the value for `payment.payment_type` as `razorpay_recurring` when making the preview API call to get `external_reference_id` and `attempt_token` in response.
+
+## POST Create a Patron Subscription
+
+```shell--request
+curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriptions.json -d '{
+  "subscription": {
+    "subscription_plan_id": "11",
+    "campaign_id": "1",
+    "coupon_code": "NEWYEAR",
+    "payment": {
+        "payment_type": "razorpay",
+        "payment_token": "pay_test_8tNiqdiajurOkj",
+        "amount_cents": "99900",
+        "amount_currency": "INR"
+    },
+    "metadata":  {
+        "full-name": "hello",
+        "email": "hello@quintype.com"
+    },
+    "start_timestamp": "2017-09-21 00:00:00"
+  },
+  "alternate_provider": "email",
+  "alternate_identity": "hey@quintype.com",
+  "attempt_token": "fo4bMWjP6N5vtVySNtiAUNBQ",
+  "name": "Ben"
+}'
+```
+```shell--response
+```
+
+This API can be used to create a Patron Subscription.
+
+The `campaign_id` field must be sent in the request for the request to be identified as a Patron Subscription Creation.
+
+Here `attempt_token` is the token received from [preview](#post-preview-a-patron-subscription).
+
+It returns a Subscription Object in response.
