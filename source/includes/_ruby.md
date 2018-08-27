@@ -880,7 +880,7 @@ After restarting your dev server with DevTrace enabled, refresh the browser page
 
 ## Rake + Rails Runner
 
-Scout doesn't have a dedicated API for instrumenting `rake` tasks or transactions called via `rails runner`. Instead, we suggest creating basic wrapper tasks that spawn a background job in a [framework we support](#ruby-instrumented-libs). These jobs are automatically monitored by Scout and are appear in the Scout UI under "background jobs".
+Scout doesn't have a dedicated API for instrumenting `rake` tasks or transactions called via `rails runner`. Instead, we suggest creating basic wrapper tasks that spawn a background job in a [framework we support](#ruby-instrumented-libs). These jobs are automatically monitored by Scout and appear in the Scout UI under "background jobs".
 
 For example, the following is a CronJob that triggers the execution of an `IntercomSync` background job:
 
