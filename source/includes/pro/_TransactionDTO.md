@@ -40,6 +40,8 @@ authorization | bool | 1..1 | операция авторизации
 cardId | string | 0..1 | ID карты, с которой связана данная транзакция
 sic | int | 0..1 | mcc код из процессинга для SmartTransaction
 bonusPointsAmount | [AmountDTO](#amountdto) | 0..1 | сумма бонусов
+creditPlans | [CreditPlanDTO](#creditplandto) | 0..1 | список платежей по кредиту
+creditPlansFormId | string | 0..1 | идентификатор соответствующей оформлению кредита заполненной формы возвращаемый на запрос [getPaymentForm](#getpaymentform)
 
 ### TransactionStatus
 

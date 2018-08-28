@@ -54,6 +54,7 @@ fromIndex | int | 1..1 | начиная с какой позиции нужно 
 count | int | 0..1 | максимальное количество транзакций на странице
 since | [Date ISO 8601](https://ru.wikipedia.org/wiki/ISO_8601) | 1..1 | дата начала периода
 to | [Date ISO 8601](https://ru.wikipedia.org/wiki/ISO_8601) | 1..1 | дата конца периода
+filter | string | 0..1 | тип фильтрации для транзакций
 **Response:** | | |
 transactions | [TransactionDTO](#transactiondto) | 0..1 | список объектов с информацией о транзакциях
 lastUpdateTime | [Date ISO 8601](https://ru.wikipedia.org/wiki/ISO_8601) | 1..1 | дата последней по времени транзакции по продукту из запрашиваемого периода

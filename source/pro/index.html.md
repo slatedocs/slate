@@ -51,6 +51,7 @@ includes:
   - pro/BonusPointsDTO
   - pro/MultiCurrencyAccountsDTO
   - pro/TransactionDTO
+  - pro/CreditPlanDTO
   - pro/FormDTO
   - pro/FormFieldDTO
   - pro/TemplateDTO
