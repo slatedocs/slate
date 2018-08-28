@@ -12,6 +12,8 @@ includes:
 ---
 # Payouts API
 ## Before you start coding
+Welcome to TransferWise Payouts API documentation. 
+Before you jump into coding please take few moments to go through these 3 topics at first.
 
 ### 1. Learn about TransferWise borderless account. 
 Borderless account features and pricing are best explained below.
@@ -20,7 +22,7 @@ Borderless account features and pricing are best explained below.
 
 
 ### 2. Signup for TransferWise borderless account
-Get hands-on experience before you start with API integration as it will help you understand how our payment flow works. 
+Get hands-on experience as it will help you understand how our payment flow works. 
 Just follow these three simple steps. 
 
 * Sign up for TransferWise borderless account. [https://transferwise.com/gb/borderless](https://transferwise.com/gb/borderless)
@@ -32,14 +34,11 @@ Just follow these three simple steps.
 
 ### 3. Choose the best tool for you
 
-There are two ways you can execute large number of payouts:
+There are two ways you can make large number of payouts:
 
 * *Batch payments.* Prepare CSV file and upload this using our Batch Payments tool: [https://transferwise.com/batch](https://transferwise.com/batch)
 
 * *API integration.* Automate your payment process fully by sending payment orders via TransferWise API. 
-
-
-
 
 
 
@@ -615,14 +614,11 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/transfers/{transferId} \
 
 
 
-You can check transfer latest status by polling this endpoint. We are building webhook notification support to notify about status changes, but unfortunately this is not available yet.
-
-
-### State flow of transfers:
+You can check transfer latest status by polling this endpoint. We are building webhook notification support to notify about status changes, but unfortunately this is not available yet. Normal state flow of transfers: 
 
 **Incoming Payment Waiting ⇒ Processing ⇒ Funds Converted ⇒ Outgoing Payment Sent**
 
-Outgoing Payment Sent is the final state of happy flow. Should the payment fail then the problematic flow continues. For example, if recipient bank account does not exist and payment is returned.
+Outgoing Payment Sent is the final state of normal flow. Should the payment fail then the problematic flow continues. For example, if recipient bank account does not exist and payment is returned. Problematic state flow of transfers: 
 
 **Outgoing Payment Sent ⇒ Bounced Back ⇒ Funds Refunded**
 
@@ -653,18 +649,352 @@ Payment systems in different countries operate in different speeds and frequency
 
 ## Check account balance
 
+> Example Request:
+
+```shell
+
+curl -X GET https://api.sandbox.transferwise.tech/v1/borderless-accounts?profileId={profileId} \
+     -H "Authorization: Bearer <your api token>" 
+```
+
+> Example Response:
+
+```json
+[
+    {
+        "id": 64,
+        "profileId": <your profile id>,
+        "recipientId": 13828530,
+        "creationTime": "2018-03-14T12:31:15.678Z",
+        "modificationTime": "2018-03-19T15:19:42.111Z",
+        "active": true,
+        "eligible": true,
+        "balances": [
+            {
+                "balanceType": "AVAILABLE",
+                "currency": "GBP",
+                "amount": {
+                    "value": 10999859,
+                    "currency": "GBP"
+                },
+                "reservedAmount": {
+                    "value": 0,
+                    "currency": "GBP"
+                },
+                "bankDetails": null
+            },
+            {
+                "balanceType": "AVAILABLE",
+                "currency": "EUR",
+                "amount": {
+                    "value": 9945236.2,
+                    "currency": "EUR"
+                },
+                "reservedAmount": {
+                    "value": 0,
+                    "currency": "EUR"
+                },
+                "bankDetails": null
+            }
+        ]
+    }
+]
+```
 
 
 
+Get available balances for all activated currencies in your borderless account.
+
+### Request
+
+**`POST https://api.sandbox.transferwise.tech/v1/borderless-accounts?profileId={profileId}`**
+
+Use profile id obtained earlier to make this call. 
+
+
+
+### Response
+
+Field                             | Description                                   | Format
+---------                         | -------                                       | -----------
+id                                | Borderless account id                         | Integer
+profileId                         | Personal or business profile id               | Integer
+recipientId                       | Recipient id you can use for borderless topup payment order  | Integer
+creationTime                      | Date when balance account was opened                     | Timestamp
+modificationTime                  | Date when balance account setup was modified.            | Timestamp
+active                            | Is borderless account active or inactive       | Boolean
+eligible                          | Ignore                                         | Boolean
+balances[n].balanceType              | AVAILABLE                                     | Text
+balances[n].currency                 | Currency code      | Text
+balances[n].amount.value             | Available balance in specified currency       | Decimal
+balances[n].amount.currency          | Currency code       | Text
+balances[n].reservedAmount.value     | Reserved amount from your balance | Decimal
+balances[n].reservedAmount.currency  | Reserved amount currency code       | Text
+balances[n].bankDetails              | Your borderless account bank details       | Group
 
 
 ## Download account statement
 
+> Example Request:
+
+```shell
+
+curl -X GET https://api.sandbox.transferwise.tech/v1/borderless-accounts/{borderlessAccountId}/statement.json?
+currency=EUR&intervalStart=2018-03-01T00:00:00.000Z&intervalEnd=2018-03-15T23:59:59.999Z \
+     -H "Authorization: Bearer <your api token>" 
+```
+
+> Example Response:
+
+```json
+{
+  "accountHolder": {
+    "type": "PERSONAL",
+    "address": {
+      "addressFirstLine": "Veerenni 24",
+      "city": "Tallinn",
+      "postCode": "12112",
+      "stateCode": "",
+      "countryName": "Estonia"
+    },
+    "firstName": "Oliver",
+    "lastName": "Wilson"
+  },
+  "issuer": {
+    "name": "TransferWise Ltd.",
+    "firstLine": "56 Shoreditch High Street",
+    "city": "London",
+    "postCode": "E1 6JJ",
+    "stateCode": "",
+    "country": "United Kingdom"
+  },
+  "bankDetails": null,
+  "transactions": [
+    {
+      "type": "DEBIT",
+      "date": "2018-04-30T08:47:05.832Z",
+      "amount": {
+        "value": -7.76,
+        "currency": "EUR"
+      },
+      "totalFees": {
+        "value": 0.04,
+        "currency": "EUR"
+      },
+      "details": {
+        "type": "CARD",
+        "description": "Card transaction of 6.80 GBP issued by Tfl.gov.uk/cp TFL TRAVEL CH",
+        "amount": {
+          "value": 6.8,
+          "currency": "GBP"
+        },
+        "category": "Transportation Suburban and Loca",
+        "merchant": {
+          "name": "Tfl.gov.uk/cp",
+          "firstLine": null,
+          "postCode": "SW1H 0TL  ",
+          "city": "TFL TRAVEL CH",
+          "state": "   ",
+          "country": "GB",
+          "category": "Transportation Suburban and Loca"
+        }
+      },
+      "exchangeDetails": {
+        "forAmount": {
+          "value": 6.8,
+          "currency": "GBP"
+        },
+        "rate": null
+      },
+      "runningBalance": {
+        "value": 16.01,
+        "currency": "EUR"
+      },
+      "referenceNumber": "CARD-249281"
+    },
+    {
+      "type": "CREDIT",
+      "date": "2018-04-17T07:47:00.227Z",
+      "amount": {
+        "value": 200,
+        "currency": "EUR"
+      },
+      "totalFees": {
+        "value": 0,
+        "currency": "EUR"
+      },
+      "details": {
+        "type": "DEPOSIT",
+        "description": "Received money from HEIN LAURI with reference SVWZ+topup card",
+        "senderName": "HEIN LAURI",
+        "senderAccount": "EE76 1700 0170 0049 6704 ",
+        "paymentReference": "SVWZ+topup card"
+      },
+      "exchangeDetails": null,
+      "runningBalance": {
+        "value": 207.69,
+        "currency": "EUR"
+      },
+      "referenceNumber": "TRANSFER-34188888"
+    },
+    {
+      "type": "CREDIT",
+      "date": "2018-04-10T05:58:34.681Z",
+      "amount": {
+        "value": 9.94,
+        "currency": "EUR"
+      },
+      "totalFees": {
+        "value": 0,
+        "currency": "EUR"
+      },
+      "details": {
+        "type": "CONVERSION",
+        "description": "Converted 8.69 GBP to 9.94 EUR",
+        "sourceAmount": {
+          "value": 8.69,
+          "currency": "GBP"
+        },
+        "targetAmount": {
+          "value": 9.94,
+          "currency": "EUR"
+        },
+        "fee": {
+          "value": 0.03,
+          "currency": "GBP"
+        },
+        "rate": 1.147806
+      },
+      "exchangeDetails": null,
+      "runningBalance": {
+        "value": 9.94,
+        "currency": "EUR"
+      },
+      "referenceNumber": "CONVERSION-1511237"
+    }
+  ],
+  "endOfStatementBalance": {
+    "value": 9.94,
+    "currency": "EUR"
+  },
+  "query": {
+    "intervalStart": "2018-03-01T00:00:00Z",
+    "intervalEnd": "2018-04-30T23:59:59.999Z",
+    "currency": "EUR",
+    "accountId": 64
+  }
+}
+```
+
+Get borderless account statement for one currency and for specified time range. 
+The period between intervalStart and intervalEnd cannot exceed 3 months.
+
+### Request
+
+**`GET https://api.sandbox.transferwise.tech/v1/borderless-accounts/{borderlessAccountId}/statement.json?`**
+
+**`currency=EUR&intervalStart=2018-03-01T00:00:00.000Z&intervalEnd=2018-03-15T23:59:59.999Z`**
+
+All query parameters are mandatory.
+
+Field                             | Description                                   | Format
+---------                         | -------                                       | -----------
+borderlessAccountId                   | You can obtain your borderless account id from previous "Check account balance" response.                        | Integer
+currency                              | Currency code              | Text
+intervalStart                         | Statement start time in UTC time             | Zulu time. Don't forget the 'Z' at the end. 
+intervalEnd                           | Statement start time in UTC time             | Zulu time. Don't forget the 'Z' at the end. 
+
+Note that you can also download statements in PDF and CSV formats if you replace statement.json with statement.csv or statement.pdf respectively in the above URL.
+
+### Response
+
+Field                             | Description                                   | Format
+---------                         | -------                                       | -----------
+accountHolder.type                      | Account holder type: PERSONAL or BUSINESS                        | Text
+accountHolder.address.addressFirstLine  | Account holder address street          | Text
+accountHolder.address.city              | Account holder address city          | Text
+accountHolder.address.postCode          | Account holder address zipc ode | Text
+accountHolder.address.stateCode         | Account holder address state | Text
+accountHolder.address.countryName       | Account holder address country | Text
+accountHolder.firstName                 | Account holder first name | Text
+accountHolder.lastName                  | Account holder last name | Text
+issuer.name                             | Account issuer name | Text
+issuer.firstLine                        | Account issuer address street | Text
+issuer.city                             | Account issuer address city | Text
+issuer.postCode                         | Account issuer address zip code | Text
+issuer.stateCode                        | Account issuer address state | Text
+issuer.country                          | Account issuer address country | Text
+bankDetails              | Your borderless account bank details       | Group
+transactions[n].type                 | DEBIT or CREDIT              | Text
+transactions[n].date                 | Time of transaction           | Zulu time
+transactions[n].amount.value                 | Transaction amount           | Decimal
+transactions[n].amount.currency                 | Transaction currency code             | Text
+transactions[n].totalFees.value                 | Transaction fee amount           | Decimal
+transactions[n].totalFees.currency                 | Transaction fee currency code             | Text
+transactions[n].details.type                 | CARD, CONVERSION, DEPOSIT, TRANSFER, MONEY_ADDED              | Text
+transactions[n].details.description                 | Human readable explanation about the transaction           | Text
+transactions[n].details.amount.value                 | Amount in original currency (card transactions abroad)              | Decimal
+transactions[n].details.amount.currency                 | Original currency code              | Text
+transactions[n].details.sourceAmount.value                 | Amount in source currency (conversions)              | Decimal
+transactions[n].details.sourceAmount.currency                 | Source currency code              | Text
+transactions[n].details.targetAmount.value                 | Amount in target currency (conversions)              | Decimal
+transactions[n].details.targetAmount.currency                 | Target currency code              | Text
+transactions[n].details.fee.value                 | Conversion fee amount             | Decimal
+transactions[n].details.fee.currency                 | Conversion fee currency code              | Text
+transactions[n].details.rate                 | Conversion exchange rate            | Decimal
+transactions[n].details.senderName                 | Deposit sender name                | Text
+transactions[n].details.senderAccount              | Deposit sender bank account details                  | Text
+transactions[n].details.paymentReference                 | Deposit payment reference text                  | Text
+transactions[n].details.category             |  Card transaction category                 | Text
+transactions[n].details.merchant.name             |  Card transaction merchant name                 | Text
+transactions[n].details.merchant.firstLine             |  Merchant address street          | Text
+transactions[n].details.merchant.postCode             |  Merchant address zipcode                 | Text
+transactions[n].details.merchant.city             | Merchant address city                 | Text
+transactions[n].details.merchant.state             | Merchant address state              | Text
+transactions[n].details.merchant.country            | Merchant address country                 | Text
+transactions[n].details.merchant.category             |  Merchant category                 | Text
+transactions[n].exchangeDetails.forAmount.value             |  Currency exchange amount                | Decimal
+transactions[n].exchangeDetails.forAmount.currency             |  Currency code                 | Text
+transactions[n].exchangeDetails.rate             | Exchange rate                 | Decimal
+transactions[n].runningBalance.value             | Running balance after the transaction   | Decimal
+transactions[n].runningBalance.currency             |  Running balance currency code                | Text
+transactions[n].referenceNumber            |TransferWise assigned unique transaction reference number | Text
+endOfStatementBalance.value                | Closing balance for specified time period   | Decimal
+endOfStatementBalance.currency             | Closing balance currency code | Text
+query.intervalStart                | Query parameter repeated             | Zulu time
+query.intervalEnd                | Query parameter repeated                 | Zulu time
+query.currency                | Query parameter repeated          | Text
+query.accountId                | Query parameter repeated         | Integer
+
+## Going Live checklist
 
 
 
+### 1. Make your integration bulletproof
+  * Implement basic retry mechanism to handle potential failures or network interruptions 
+  
+  * Implement duplicate prevention mechanism to avoid duplicate payments. Verify that UUID is uniquely generated for each individual payment and its value is kept same in case of retrying.
+  
+  * Implement basic logging to help out in debugging and problem solving, if needed.
+  
+  * Check that your  can handle all possible transfer states during polling of transfer info.
+  
+  * Automatically check available balance before submitting requests to fund your transfers. This avoids rejections due to insufficient balance.
+  
+  * Verify that your borderless account statement provides you all information you need for financial accounting.
 
-## Go Live
 
+### 2. Open LIVE account
+  * Sign up for Transferwise borderless account and go through on-boarding flow including 2FA setup.
+
+### 3. Setup Security for LIVE environment
+  * Obtain your live API token from Settings page. 
+  
+  * Store your live API token securely in your production servers so that only authorized persons have access to it. 
+  
+### 4. Do penny testing in LIVE
+  * Make a small deposit to your borderless account. 
+  * Make few small value test payments via LIVE API before you start executing large number of transfers.
+  * All set. Switch it on.
 
 
