@@ -972,15 +972,10 @@ query.accountId                | Query parameter repeated         | Integer
 
 ### 1. Make your integration bulletproof
   * Implement basic retry mechanism to handle potential failures or network interruptions 
-  
   * Implement duplicate prevention mechanism to avoid duplicate payments. Verify that UUID is uniquely generated for each individual payment and its value is kept same in case of retrying.
-  
   * Implement basic logging to help out in debugging and problem solving, if needed.
-  
   * Check that your  can handle all possible transfer states during polling of transfer info.
-  
   * Automatically check available balance before submitting requests to fund your transfers. This avoids rejections due to insufficient balance.
-  
   * Verify that your borderless account statement provides you all information you need for financial accounting.
 
 
@@ -989,7 +984,6 @@ query.accountId                | Query parameter repeated         | Integer
 
 ### 3. Setup Security for LIVE environment
   * Obtain your live API token from Settings page. 
-  
   * Store your live API token securely in your production servers so that only authorized persons have access to it. 
   
 ### 4. Do penny testing in LIVE
