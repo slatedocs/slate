@@ -46,7 +46,7 @@ pro - [IdaMobProxyServiceFacade?wsdl](http://dev.idamob.ru/proxy/services/IdaMob
 
 pro - [version/getVersion](http://dev.idamob.ru/pro/endpoints/version/getVersion)
 
-## Multy server
+## Multi-server
 
 **Рекомендация по развертыванию нескольких серверов на одной машине**
 
@@ -149,3 +149,17 @@ key | type | comment
 hibernate.connection.url | string | адрес расположения базы банных
 hibernate.connection.username | string | логин к базе
 hibernate.connection.password | string | пароль к базе
+
+**Удаление сессий пользователя**
+
+В случае если у пользователя сменился логин, но не поменялся bankClientId, вход под новым логином будет невозможен. Для того что бы очистить данные по старому логну ``LOGIN`` нужно выполнить скрипт в proschema:
+
+```
+select id from proschema.bank_user usr where usr.login = 'LOGIN'
+от результата этого запроса подставьте вместо #ID# нижеследующих запросах
+delete from proschema.secret_key sc where sc.session_id in (select id from proschema.user_session ses where ses.user_id = '#ID#')
+delete from proschema.user_session ses where ses.user_id = '#ID#'
+delete from proschema.device_verification_code dvc where dvc.user_id = '#ID#'
+delete from proschema.device_verification_code_salt dvc where dvc.user_id = '#ID#'
+delete from proschema.bank_user usr where usr.id = '#ID#'
+```
