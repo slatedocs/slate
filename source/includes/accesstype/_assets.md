@@ -5,6 +5,9 @@
 ```shell--request
 $ curl -H "X-SUBAUTH: <auth-token>" https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/assets.json
 
+```
+```shell--response
+
 {
    "assets":[
      {
@@ -15,6 +18,4 @@ $ curl -H "X-SUBAUTH: <auth-token>" https://www.accesstype.com/api/v1/subscriber
    ]
 }
 
-```
-```shell--response
 ```
