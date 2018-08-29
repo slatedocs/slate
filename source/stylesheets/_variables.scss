@@ -20,19 +20,24 @@ under the License.
 ////////////////////////////////////////////////////////////////////////////////
 // Use these settings to help adjust the appearance of Slate
 
+// TRANSFERWISE COLORS FROM BOOTSTRAP
+////////////////////
+$brand-navy-minus-20: #253655;
+$brand-navy-minus-10: #2e4369;
+$brand-navy: #37517e;
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #2E3336 !default;
-$examples-bg: #2E3336 !default;
-$code-bg: #1E2224 !default;
-$code-annotation-bg: #191D1F !default;
-$nav-subitem-bg: #1E2224 !default;
-$nav-active-bg: #0F75D4 !default;
-$nav-active-parent-bg: #1E2224 !default; // parent links of the current section
-$lang-select-border: #000 !default;
-$lang-select-bg: #1E2224 !default;
-$lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
+$nav-bg: $brand-navy !default;
+$examples-bg: $brand-navy !default;
+$code-bg: $brand-navy-minus-20 !default;
+$code-annotation-bg: $brand-navy-minus-10 !default;
+$nav-subitem-bg: $brand-navy-minus-10 !default;
+$nav-active-bg: $brand-navy-minus-20 !default;
+$nav-active-parent-bg: $brand-navy-minus-20 !default; // parent links of the current section
+$lang-select-border: $brand-navy !default;
+$lang-select-bg: $brand-navy-minus-10 !default;
+$lang-select-active-bg: $brand-navy !default; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
 $main-bg: #F3F7F9 !default;
 $aside-notice-bg: #8fbcd4 !default;
@@ -89,7 +94,7 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 // OTHER
 ////////////////////
 $nav-footer-border-color: #666 !default;
-$search-box-border-color: #666 !default;
+$search-box-border-color: #fff !default;
 
 
 ////////////////////////////////////////////////////////////////////////////////
