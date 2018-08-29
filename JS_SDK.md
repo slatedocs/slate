@@ -5,6 +5,16 @@ Add the line in your head tag.
 ```html
 <script type="text/javascript" src="https://s3.ap-south-1.amazonaws.com/anarock.misc/form.js"></script></head>
 ```
+
+and initialize it in body 
+
+```html
+<script>
+    var form_container = document.getElementById('anarock-form')
+    window.createForm(form_container, API_KEY, CHANNEL_NAME, CAMPAIGN_ID, ENVIRONMENT, options)
+ </script>
+```
+
 e.g.
 
 ```html
