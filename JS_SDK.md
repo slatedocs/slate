@@ -1,5 +1,12 @@
 ### JS SDK 
 
+Add the line in your head tag. 
+
+```html
+<script type="text/javascript" src="https://s3.ap-south-1.amazonaws.com/anarock.misc/form.js"></script></head>
+```
+
+
 ```html
 
 <!DOCTYPE html>
