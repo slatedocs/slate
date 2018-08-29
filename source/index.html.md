@@ -9,8 +9,8 @@ search: true
 includes:
   - introduction
   - payouts
-  - affiliates
   - banks
+  - affiliates
   - reference/quotes
   - reference/recipients
   - reference/transfers

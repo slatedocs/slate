@@ -1,4 +1,4 @@
-# Business Payouts Guide
+# Borderless Payouts Guide
 ## Before you start coding
 Welcome to TransferWise Payouts API documentation. 
 Before you jump into coding please take few moments to go through these 3 topics at first.
@@ -887,7 +887,7 @@ All query parameters are mandatory.
 
 Field                             | Description                                   | Format
 ---------                         | -------                                       | -----------
-borderlessAccountId                   | You can obtain your borderless account id from previous "Check account balance" response.                        | Integer
+borderlessAccountId                   | Your borderless account id is returned in "Check account balance" response as field "id".                        | Integer
 currency                              | Currency code              | Text
 intervalStart                         | Statement start time in UTC time             | Zulu time. Don't forget the 'Z' at the end. 
 intervalEnd                           | Statement start time in UTC time             | Zulu time. Don't forget the 'Z' at the end. 
