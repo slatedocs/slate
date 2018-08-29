@@ -71,6 +71,16 @@ under the License.
       <% end %>
       <ul id="toc" class="toc-list-h1">
         <% toc_data(page_content).each do |h1| %>
+          <% if h1[:id] == 'quotes' %>
+            <div style="
+              color: #fff;
+              padding: 10px 15px;
+              opacity: 0.5;
+              border-top: 1px solid #fff;
+              ">
+              Full API Reference
+            </div>
+          <% end %>
           <li>
             <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:title] %>"><%= h1[:content] %></a>
             <% if h1[:children].length > 0 %>
