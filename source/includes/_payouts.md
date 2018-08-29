@@ -887,7 +887,7 @@ All query parameters are mandatory.
 
 Field                             | Description                                   | Format
 ---------                         | -------                                       | -----------
-borderlessAccountId                   | Your borderless account id is returned in "Check account balance" response as field "id".                        | Integer
+borderlessAccountId                   | Your borderlessAccountId is included in "Check account balance" response as field "id".                        | Integer
 currency                              | Currency code              | Text
 intervalStart                         | Statement start time in UTC time             | Zulu time. Don't forget the 'Z' at the end. 
 intervalEnd                           | Statement start time in UTC time             | Zulu time. Don't forget the 'Z' at the end. 
