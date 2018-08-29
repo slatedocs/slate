@@ -11,8 +11,8 @@ includes:
   - payouts
   - affiliates
   - banks
-  - recipients
   - reference/quotes
+  - reference/recipients
   - reference/transfers
 
 ---

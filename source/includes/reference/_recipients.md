@@ -1,4 +1,4 @@
-# Recipients API Guide
+# Recipients
 
 ## Create AED recipient
 
