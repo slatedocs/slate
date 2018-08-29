@@ -553,6 +553,10 @@ Include a value in the format `t=MICROSECONDS_SINCE_EPOCH` where `MICROSECONDS_S
 
 __Nearly any front-end HTTP server or load balancer can be configured to add this header.__ Some examples are below.
 
+<h3 id="ruby-heroku-request-queue">Heroku</h3>
+
+Time in queue is automatically collected for apps deployed on Heroku. This measures the time from when a request hits the Heroku router and when your app begins processing the request.
+
 ### Apache
 
 Apache's __mod_headers__ module includes a `%t` variable that is formatted for Scout usage. To enable request queue reporting, add this code to your Apache config:
