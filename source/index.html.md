@@ -7,6 +7,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 search: true
 
 includes:
+  - introduction
   - payouts
   - affiliates
   - banks
