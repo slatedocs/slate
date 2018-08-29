@@ -197,7 +197,7 @@ html, body {
 }
 
 .toc-link, .toc-footer li {
-  padding: 0 $nav-padding 0 $nav-padding;
+  padding: 3px $nav-padding 3px $nav-padding;
   display: block;
   overflow-x: hidden;
   white-space: nowrap;
@@ -613,4 +613,31 @@ html, body {
 
 .highlight, .highlight .w {
   background-color: $code-bg;
+}
+
+.api-reference-separator-container {
+  margin-top: 10px;
+}
+
+.api-reference-separator {
+  color: #fff;
+  padding: 10px 15px 5px;
+  opacity: 0.5;
+  border-top: 1px solid #fff;
+}
+
+input.search::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #9aa8be;
+}
+
+input.search::-moz-placeholder { /* Firefox 19+ */
+  color: #9aa8be;
+}
+
+input.search:-ms-input-placeholder { /* IE 10+ */
+  color: #9aa8be;
+}
+
+input.search:-moz-placeholder { /* Firefox 18- */
+  color: #9aa8be;
 }
