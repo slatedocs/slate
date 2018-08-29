@@ -10,7 +10,7 @@ includes:
   - recipients
 
 ---
-# Payouts API
+# Business Payouts Guide
 ## Before you start coding
 Welcome to TransferWise Payouts API documentation. 
 Before you jump into coding please take few moments to go through these 3 topics at first.
@@ -990,5 +990,27 @@ query.accountId                | Query parameter repeated         | Integer
   * Make a small deposit to your borderless account. 
   * Make few small value test payments via LIVE API before you start executing large number of transfers.
   * All set. Switch it on.
+
+
+
+
+
+# Affiliates Guide
+
+# Bank Integrations Guide
+
+
+# Full API Reference
+
+## Recipients
+### Create
+### List
+### Get By Id
+
+## Transfers
+### Create
+### List
+### Get By Id
+
 
 

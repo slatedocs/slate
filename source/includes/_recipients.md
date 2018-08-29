@@ -1,4 +1,4 @@
-# Recipients API
+# Recipients API Guide
 
 ## Create AED recipient
 
@@ -1759,6 +1759,7 @@ Recipient type = *'southafrica'*
 Required details: swiftCode, accountNumber
 
 You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+
 
 
 
