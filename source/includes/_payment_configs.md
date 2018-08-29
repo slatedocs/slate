@@ -9,6 +9,7 @@ EXEMPLO
     "id": 1,
     "bank_account_id": 1,
     "name": "Configuração de Pagamento",
+    "timezone": "Brasilia",
     "_links":
       [
         {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/payment_configs/1"},
@@ -47,6 +48,7 @@ EXEMPLO DE CORPO DA RESPOSTA
     "id": 1,
     "bank_account_id": 1,
     "name": "Configuração de Pagamento",
+    "timezone": "Brasilia",
     "_links":
       [
         {"rel":"self","method":"GET","href":"https://app.cobrato.com/api/v1/payment_configs/1"},
