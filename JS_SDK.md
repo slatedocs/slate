@@ -11,7 +11,7 @@ and initialize it in body
 ```html
 <script>
     var form_container = document.getElementById('anarock-form')
-    window.createForm(form_container, API_KEY, CHANNEL_NAME, CAMPAIGN_ID, ENVIRONMENT, options)
+    window.createForm(form_container, API_KEY, CHANNEL_NAME, CAMPAIGN_ID, 'production', {})
  </script>
 ```
 
