@@ -1634,6 +1634,63 @@ Atualiza a situação de agendamento ou resultado de uma inscrição para exame.
 
 # Informações de documentos de um processo de admissão
 
+## Listar todos os documentos de um processo de admissão
+
+> Requisição
+
+```bash
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/admissions/456/documents
+```
+
+> Resposta
+
+```json
+{
+  "has_more": false,
+  "items": [
+    {
+      "id": 12345,
+      "type": "rg",
+      "admission": {
+        "id": 456,
+        "status": "submitted_docs",
+        "course": {
+          "id": "ADM-MANHA-SP",
+          "offer": {
+            "discount": 50.0
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+Retorna todas os documentos para um processo de admissão.
+
+A lista de documentos são retornadas em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a seção de [paginação](#paginacao).
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| id | Path | Id da admissão |
+
+### Informações de resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| has_more | boolean | Indica se há mais elementos disponíveis antes ou após essa página |
+| items | array | Lista de elementos com dados de inscrições de vestibular |
+| id | number | Id do documento de admissão |
+| type | string | Tipo do documento |
+| created_at | string | Data de submissão do documento no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| [admission] | object | Objeto que identifica o processo de admissão a que o documento se refere |
+
 ## Dados de um único documento de um processo de admissão
 
 > Requisição
@@ -1870,7 +1927,7 @@ Esta notificação informa a realização do vestibular (via Exame Quero Bolsa o
 | ---- | ---- | --------- |
 | created | string | Data que foi criado o evento no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 | api_version | string | Informação da versão atual da API |
-| event_type | string | Tipo de evento, no caso `admission.submitted` |
+| event_type | string | Tipo de evento, no caso `application.submitted` |
 | data | object | Objeto com informações de acordo com o tipo de evento |
 | application | object | Objeto com dados do processo de admissão do aluno |
 | [application] id | string (uuid) | Id do exame |
