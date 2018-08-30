@@ -40,6 +40,46 @@ mobile_number  | String    | The mobile number of the user to register
 401 - Unauthorized
 </aside>
 
+## User Verification
+
+```shell
+curl "http://example.com/api/users/verify"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status_code": 200,
+  "message": "Success",
+  "body": {
+    "user_id": 1,
+    "token": "9fdsf0s7df23.dsf7dbbv68786.4vhbv34x5jgvh2"
+  }
+}
+```
+
+This endpoint verifies the user's account through a verification code sent via email.
+
+### HTTP Request
+
+`POST http://example.com/api/users/verify`
+
+### Body Parameters
+
+Parameter      | Data Type | Description
+---------------|-----------|--------------
+user_id        | Integer   | The user_id of the user to register
+code           | String    | The verification code received by the user
+
+<aside class="success">
+200 - Success
+</aside>
+<aside class="warning">
+401 - Unauthorized
+</aside>
+
+
 ## PIN Creation
 
 ```shell
