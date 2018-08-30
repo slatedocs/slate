@@ -1393,6 +1393,94 @@ Esta notificação informa o início de um processo de admissão.
 | dropping_out | Desistindo |
 | drop_out_confirmed | Desistência confirmada |
 
+## Notificar atualização de um processo de admissão
+
+```json
+{
+  "event_type": "admission.updated",
+  "created": "2017-12-15T17:34:26.173",
+  "api_version": "1.0.0",
+  "data": {
+    "admission": {
+      "id": 12345,
+      "course": {
+        "id": "ADM-MANHA-SP",
+        "offer": {
+          "discount": 50.0
+        }
+      },
+      "status": "submitted_docs",
+      "student": {
+        "id": 394932,
+        "name": "José da Silva",
+        "cpf": "111.222.333-44",
+        "birth_date": "1991-01-01",
+        "emails": [
+          "teste@exemplo.com"
+        ],
+        "phones": [
+          "(11) 98888-7777"
+        ],
+        "enem": {
+          "year": 2018,
+          "scores": {
+            "essay": 200.0,
+            "math": 200.1,
+            "language": 200.2,
+            "nature": 200.4,
+            "social": 200.5
+          }
+        },
+        "address_information": {
+          "address": "Rua Sandra",
+          "number": "432S",
+          "neighborhood": "Chácara Dora",
+          "city": "Araçariguama",
+          "state": "SP",
+          "postal_code": "18147-000"
+        }
+      }
+    }
+  }
+}
+```
+
+Esta notificação informa a atualização de um processo de admissão.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| created | string | Data que foi criado o evento no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| api_version | string | Informação da versão atual da API |
+| event_type | string | Tipo de evento, no caso `admission.created` |
+| data | object | Objeto com informações de acordo com o tipo de evento |
+| admission | object | Objeto com dados do processo de admissão do aluno |
+| [admission] id | number | Id do processo de admissão |
+| [admission] course | object | Objeto com dados do curso referente a essa matrícula |
+| [course] id | string | Código do curso fornecido pela universidade referente a essa matrícula |
+| [course] offer | object | Objeto com dados da oferta do curso |
+| [offer] discount | float | Porcentagem de desconto do curso que o aluno adquiriu |
+| [admission] status | string | Status da admissão do aluno |
+| [admission] student | object | Objeto com dados do aluno |
+
+### Significado dos valores em status
+
+| Nome | Descrição |
+| ---- | --------- |
+| initiated | Inscrição para exame Pendente |
+| pre_registered | Agendamento solicitado para exame vestibular |
+| registered | Agendamento confirmado no exame vestibular |
+| failed | Reprovado no exame vestibular |
+| approved | Aprovado no exame vestibular |
+| pending_docs | Documentação Pendente |
+| submitted_docs | Documentação Enviada |
+| rejected_docs | Documentação Rejeitada |
+| enrolled | Matriculado |
+| dropped_out | Desistente |
+| dropping_out | Desistindo |
+| drop_out_confirmed | Desistência confirmada |
+
 ## Notificar novo exame
 
 ```json
