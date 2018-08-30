@@ -427,6 +427,16 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
       "state": "SP",
       "postal_code": "18147-000"
     },
+    "enem": {
+      "year": 2018,
+      "scores": {
+        "essay": 200.0,
+        "math": 200.1,
+        "language": 200.2,
+        "nature": 200.4,
+        "social": 200.5
+      }
+    },
     "admissions": [
       {
         "id": 12345,
@@ -481,6 +491,14 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 | [address_information] city | string | Cidade onde aluno reside |
 | [address_information] state | string | Estado onde aluno reside |
 | [address_information] postal_code | string | Código postal onde aluno reside |
+| enem | object | Objeto com dados do ENEM |
+| [enem] year | id | number | Ano em que foi realizada a prova do ENEM |
+| [enem] scores | object | Objetos com dados de notas do ENEM |
+| [enem] [scores] essay | float | Nota de Redação do ENEM |
+| [enem] [scores] math | float | Nota de Matemática do ENEM |
+| [enem] [scores] language | float | Nota de Linguagens do ENEM |
+| [enem] [scores] nature | float | Nota de Ciências da Natureza do ENEM |
+| [enem] [scores] social | float | Nota de Ciências Humanas do ENEM |
 | admissions | array | Lista de objetos com informações de processo de matrícula |
 | [admissions] id | number | Id do processo de matrícula |
 | [admissions] course | object | Objeto com dados do curso referente a essa matrícula |
@@ -536,6 +554,16 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
     "state": "SP",
     "postal_code": "18147-000"
   },
+  "enem": {
+    "year": 2018,
+    "scores": {
+      "essay": 200.0,
+      "math": 200.1,
+      "language": 200.2,
+      "nature": 200.4,
+      "social": 200.5
+    }
+  },
   "admissions": [
     {
       "id": 12345,
@@ -586,6 +614,14 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 | [address_information] city | string | Cidade onde aluno reside |
 | [address_information] state | string | Estado onde aluno reside |
 | [address_information] postal_code | string | Código postal onde aluno reside |
+| enem | object | Objeto com dados do ENEM |
+| [enem] year | id | number | Ano em que foi realizada a prova do ENEM |
+| [enem] scores | object | Objetos com dados de notas do ENEM |
+| [enem] [scores] essay | float | Nota de Redação do ENEM |
+| [enem] [scores] math | float | Nota de Matemática do ENEM |
+| [enem] [scores] language | float | Nota de Linguagens do ENEM |
+| [enem] [scores] nature | float | Nota de Ciências da Natureza do ENEM |
+| [enem] [scores] social | float | Nota de Ciências Humanas do ENEM |
 | admissions | array | Lista de objetos com informações de processo de matrícula |
 | [admissions] id | number | Id do processo de matrícula |
 | [admissions] course | object | Objeto com dados do curso referente a essa matrícula |
@@ -647,6 +683,16 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
         "phones": [
           "(11) 98888-7777"
         ],
+        "enem": {
+          "year": 2018,
+          "scores": {
+            "essay": 200.0,
+            "math": 200.1,
+            "language": 200.2,
+            "nature": 200.4,
+            "social": 200.5
+          }
+        },
         "address_information": {
           "address": "Rua Sandra",
           "number": "432S",
@@ -715,19 +761,7 @@ Admissões são retornadas em páginas de até 25 elementos, ordenadas pela últ
 | [course] offer | object | Objeto com dados da oferta do curso |
 | [offer] discount | float | Desconto do curso que o aluno adquiriu |
 | status | string | Status da admissão do aluno |
-| [student] id | number | Id do aluno |
-| [student] name | string | Nome do aluno |
-| [student] cpf | string | CPF do aluno |
-| [student] birth_date | string | Data de nascimento do aluno no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| [student] emails | array de string | Lista de emails do aluno |
-| [student] phones | array de string | Lista de telefones do aluno |
-| [student] address_information | object | Objeto com dados onde aluno reside |
-| [address_information] address | string | Endereço onde aluno reside |
-| [address_information] number | string | Número onde aluno reside |
-| [address_information] neighborhood | string | Bairro onde aluno reside |
-| [address_information] city | string | Cidade onde aluno reside |
-| [address_information] state | string | Estado onde aluno reside |
-| [address_information] postal_code | string | Código postal onde aluno reside |
+| student | object | Objeto com dados do aluno |
 | application | array | Lista de objetos de inscrições de exame (pode estar vazio) |
 | [application] id | number | Id da inscrição para exame |
 | [application] type | string | Tipo de exame vestibular (exam ou enem) |
@@ -805,6 +839,16 @@ curl --header "Authorization: Token ########" --header "Content-Type: applicatio
     "phones": [
       "(11) 98888-7777"
     ],
+    "enem": {
+      "year": 2018,
+      "scores": {
+        "essay": 200.0,
+        "math": 200.1,
+        "language": 200.2,
+        "nature": 200.4,
+        "social": 200.5
+      }
+    },
     "address_information": {
       "address": "Rua Sandra",
       "number": "432S",
@@ -874,19 +918,7 @@ Retorna uma admissão específica da faculdade.
 | [course] offer | object | Objeto com dados da oferta do curso |
 | [offer] discount | float | Desconto do curso que o aluno adquiriu |
 | status | string | Status da admissão do aluno |
-| [student] id | number | Id do aluno |
-| [student] name | string | Nome do aluno |
-| [student] cpf | string | CPF do aluno |
-| [student] birth_date | string | Data de nascimento do aluno no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| [student] emails | array de string | Lista de emails do aluno |
-| [student] phones | array de string | Lista de telefones do aluno |
-| [student] address_information | object | Objeto com dados onde aluno reside |
-| [address_information] address | string | Endereço onde aluno reside |
-| [address_information] number | string | Número onde aluno reside |
-| [address_information] neighborhood | string | Bairro onde aluno reside |
-| [address_information] city | string | Cidade onde aluno reside |
-| [address_information] state | string | Estado onde aluno reside |
-| [address_information] postal_code | string | Código postal onde aluno reside |
+| student | object | Objeto com dados do aluno |
 | application | array | Lista de objetos de inscrição para exame (pode estar vazio) |
 | [application] id | number | Id da inscrição para exame |
 | [application] type | string | Tipo de exame vestibular (exam ou enem) |
@@ -966,6 +998,16 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
     "phones": [
       "(11) 98888-7777"
     ],
+    "enem": {
+      "year": 2018,
+      "scores": {
+        "essay": 200.0,
+        "math": 200.1,
+        "language": 200.2,
+        "nature": 200.4,
+        "social": 200.5
+      }
+    },
     "address_information": {
       "address": "Rua Sandra",
       "number": "432S",
@@ -1013,7 +1055,7 @@ curl -X PUT --header "Authorization: Token ########" --header "Content-Type: app
 {
   "error": true,
   "message": "Invalid parameters",
-  "description": "Unknown status. Please check the API manual at http://docs.queroalunos.com/#atualizar-processo-de-admissao"
+  "description": "Unknown status. Please check the API manual at https://docs.queroalunos.com/#atualizar-processo-de-admissao"
 }
 ```
 
@@ -1059,19 +1101,7 @@ Realiza atualização de um processo de admissão específico de um aluno. Para 
 | [course] offer | object | Objeto com dados da oferta do curso |
 | [offer] discount | float | Desconto do curso que o aluno adquiriu |
 | status | string | Status da admissão do aluno |
-| [student] id | number | Id do aluno |
-| [student] name | string | Nome do aluno |
-| [student] cpf | string | CPF do aluno |
-| [student] birth_date | string | Data de nascimento do aluno no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| [student] emails | array de string | Lista de emails do aluno |
-| [student] phones | array de string | Lista de telefones do aluno |
-| [student] address_information | object | Objeto com dados onde aluno reside |
-| [address_information] address | string | Endereço onde aluno reside |
-| [address_information] number | string | Número onde aluno reside |
-| [address_information] neighborhood | string | Bairro onde aluno reside |
-| [address_information] city | string | Cidade onde aluno reside |
-| [address_information] state | string | Estado onde aluno reside |
-| [address_information] postal_code | string | Código postal onde aluno reside |
+| student | object | Objeto com dados do aluno |
 | application | array | Lista de objetos de inscrição para exame (pode estar vazio) |
 | [application] id | number | Id da inscrição para exame |
 | [application] type | string | Tipo de exame vestibular (exam ou enem) |
@@ -1118,3 +1148,414 @@ Realiza atualização de um processo de admissão específico de um aluno. Para 
 | null | Inscrição para exame Pendente |
 | failed | Reprovado no exame vestibular |
 | approved | Aprovado no exame vestibular |
+
+# Informações de documentos de um processo de admissão
+
+## Listar todos os documentos de um processo de admissão
+
+> Requisição
+
+```bash
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/admissions/456/documents
+```
+
+> Resposta
+
+```json
+{
+  "has_more": false,
+  "items": [
+    {
+      "id": 12345,
+      "type": "rg",
+      "admission": {
+        "id": 456,
+        "status": "submitted_docs",
+        "course": {
+          "id": "ADM-MANHA-SP",
+          "offer": {
+            "discount": 50.0
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+Retorna todas os documentos para um processo de admissão.
+
+A lista de documentos são retornadas em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a seção de [paginação](#paginacao).
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| starting_after | cursor | Cursor para uso em paginação. Retorna elementos listados após o dado cujo id foi indicado |
+| ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
+| start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| id | Path | Id da admissão |
+
+### Informações de resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| has_more | boolean | Indica se há mais elementos disponíveis antes ou após essa página |
+| items | array | Lista de elementos com dados de inscrições de vestibular |
+| id | number | Id do documento de admissão |
+| type | string | Tipo do documento |
+| created_at | string | Data de submissão do documento no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| [admission] | object | Objeto que identifica o processo de admissão a que o documento se refere |
+
+## Dados de um único documento de um processo de admissão
+
+> Requisição
+
+```bash
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/admissions/456/documents/12345
+```
+
+> Resposta
+
+```json
+{
+      "id": 12345,
+      "type": "rg",
+      "url": "https://s3-example.amazonaws.com/example.png",
+      "admission": {
+        "id": 456,
+        "status": "submitted_docs",
+        "course": {
+          "id": "ADM-MANHA-SP",
+          "offer": {
+            "discount": 50.0
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+
+> Resposta quando não encontra nenhuma admissão
+
+```json
+{
+  "status": "error",
+  "errors": [
+    {
+      "title": "Admission not found",
+      "details": "No admission associated with this ID was found"
+    }
+  ]
+}
+```
+
+> Resposta quando não encontra nenhum documento associado à admissão
+
+```json
+{
+  "status": "error",
+  "errors": [
+    {
+      "title": "Document not found",
+      "details": "No document associated with this ID was found"
+    }
+  ]
+}
+```
+
+Retorna um documento específico para um processo de admissão.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | Path | Id da admissão |
+| document_id | Path | Id do documento referente à admissão |
+
+### Informações de resultado
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | number | Id do documento de admissão |
+| type | string | Tipo do documento |
+| url | string | URL que aponta para a imagem do documento |
+| created_at | string | Data de submissão do documento no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| [admission] | object | Objeto que identifica o processo de admissão a que o documento se refere |
+
+# Notificações
+
+Notificações utilizam uma rota única de callback, que deve ser fornecida pela faculdade, de um token para autenticação via HTTP Basic.
+
+A rota deve aceitar JSON.
+
+A rota deve aceitar apenas POSTs.
+
+## Definição base do evento
+
+Estrutura base das notificações:
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| created | string | Data que foi criado o evento no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| api_version | string | Informação da versão atual da API |
+| event_type | string | Tipo de evento |
+| data | object | Objeto com informações de acordo com o tipo de evento |
+
+## Notificar novo processo de admissão
+
+```json
+{
+  "event_type": "admission.created",
+  "created": "2017-12-15T17:34:26.173",
+  "api_version": "1.0.0",
+  "data": {
+    "admission": {
+      "id": 12345,
+      "course": {
+        "id": "ADM-MANHA-SP",
+        "offer": {
+          "discount": 50.0
+        }
+      },
+      "status": "initiated",
+      "student": {
+        "id": 394932,
+        "name": "José da Silva",
+        "cpf": "111.222.333-44",
+        "birth_date": "1991-01-01",
+        "emails": [
+          "teste@exemplo.com"
+        ],
+        "phones": [
+          "(11) 98888-7777"
+        ],
+        "enem": {
+          "year": 2018,
+          "scores": {
+            "essay": 200.0,
+            "math": 200.1,
+            "language": 200.2,
+            "nature": 200.4,
+            "social": 200.5
+          }
+        },
+        "address_information": {
+          "address": "Rua Sandra",
+          "number": "432S",
+          "neighborhood": "Chácara Dora",
+          "city": "Araçariguama",
+          "state": "SP",
+          "postal_code": "18147-000"
+        }
+      }
+    }
+  }
+}
+```
+
+Esta notificação informa o início de um processo de admissão.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| created | string | Data que foi criado o evento no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| api_version | string | Informação da versão atual da API |
+| event_type | string | Tipo de evento, no caso `admission.created` |
+| data | object | Objeto com informações de acordo com o tipo de evento |
+| admission | object | Objeto com dados do processo de admissão do aluno |
+| [admission] id | number | Id do processo de admissão |
+| [admission] course | object | Objeto com dados do curso referente a essa matrícula |
+| [course] id | string | Código do curso fornecido pela universidade referente a essa matrícula |
+| [course] offer | object | Objeto com dados da oferta do curso |
+| [offer] discount | float | Porcentagem de desconto do curso que o aluno adquiriu |
+| [admission] status | string | Status da admissão do aluno |
+| [admission] student | object | Objeto com dados do aluno |
+
+### Significado dos valores em status
+
+| Nome | Descrição |
+| ---- | --------- |
+| initiated | Inscrição para exame Pendente |
+| pre_registered | Agendamento solicitado para exame vestibular |
+| registered | Agendamento confirmado no exame vestibular |
+| failed | Reprovado no exame vestibular |
+| approved | Aprovado no exame vestibular |
+| pending_docs | Documentação Pendente |
+| submitted_docs | Documentação Enviada |
+| rejected_docs | Documentação Rejeitada |
+| enrolled | Matriculado |
+| dropped_out | Desistente |
+| dropping_out | Desistindo |
+| drop_out_confirmed | Desistência confirmada |
+
+## Notificar novo exame
+
+```json
+{
+  "event_type": "application.submitted",
+  "created": "2017-12-15T17:34:26.173",
+  "api_version": "1.0.0",
+  "data": {
+    "application": {
+      "id": "5bb84b6c-8716-4363-b59d-7005a97a08a4",
+      "type": "enem",
+      "result": "approved|failed",
+      "created_at": "2016-10-15T03:15:44Z",
+      "enem": {
+        "natureza": "500.0",
+        "humanas": "500.0",
+        "linguagens": "500.0",
+        "matematica": "500.0",
+        "redacao": "500.0"
+      },
+      "exam": {
+        "standards_score": 200,
+        "argument_score": 200,
+        "theme_score": 200,
+        "cohesion_score": 200,
+        "proposal_score": 200,
+        "total_score": 200
+      },
+      "admission": {
+        "id": 456,
+        "status": "initiated",
+        "course": {
+          "id": "ADM-MANHA-SP",
+          "offer": {
+            "discount": 50.0
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Esta notificação informa a realização do vestibular (via Exame Quero Bolsa ou Nota do Enem) do processo de admissão.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| created | string | Data que foi criado o evento no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| api_version | string | Informação da versão atual da API |
+| event_type | string | Tipo de evento, no caso `application.submitted` |
+| data | object | Objeto com informações de acordo com o tipo de evento |
+| application | object | Objeto com dados do processo de admissão do aluno |
+| [application] id | string (uuid) | Id do exame |
+| [application] type | string | Indica o tipo de vestibular |
+| [application] result | string | Resultado do vestibular `approved|failed` |
+| [application] created_at | string | Data da criação do exam no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| [application] enem | object | Objeto com as notas do enem separadas por area de conhecimento
+| [application][enem] natureza | string | Nota em `Natureza e suas Tecnologias` |
+| [application][enem] humanas | string | Nota em `Humanas` |
+| [application][enem] linguagens | string | Nota em `Linguagens` |
+| [application][enem] matematica | string | Nota em `Matemática` |
+| [application][enem] redacao | string | Nota em `Redação` |
+| [application] exam | object | Objeto com as notas do exame de cada competência |
+| [application][exam] standards_score | number | Nota em `Norma culta` |
+| [application][exam] argument_score | number | Nota em `Adequação ao tema` |
+| [application][exam] theme_score | number | Nota em `Argumentação` |
+| [application][exam] cohesion_score | number | Nota em `Coesão textual` |
+| [application][exam] proposal_score | number | Nota em `Proposta de intervenção` |
+| [application][exam] total_score | number | Soma das notas (nota final) |
+
+## Notificar nova submissão de documento de admissão
+
+```json
+{
+  "event_type": "document.submitted",
+  "created": "2017-12-15T17:34:26.173",
+  "api_version": "1.0.0",
+  "data": {
+    "document": {
+      "id": 12345,
+      "type": "rg",
+      "admission": {
+        "id": 456,
+        "status": "submitted_docs",
+        "course": {
+          "id": "ADM-MANHA-SP",
+          "offer": {
+            "discount": 50.0
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Esta notificação informa a submissão de um documento do processo de admissão.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| created | string | Data que foi criado o evento no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| api_version | string | Informação da versão atual da API |
+| event_type | string | Tipo de evento, no caso `document.submitted` |
+| data | object | Objeto com informações de acordo com o tipo de evento |
+| document | object | Objeto com dados do documento de admissão do aluno |
+| [document] id | number | Id do documento de admissão |
+| [document] type | string | Tipo do documento |
+
+### Significado dos valores em type
+
+| Nome | Descrição |
+| ---- | --------- |
+| rg | RG|
+| cpf | CPF |
+| cnh | CNH |
+| rg_do_guardiao | RG do guardião do menor de idade |
+| cpf_do_guardiao | CPF do guardião do menor de idade |
+| cnh_do_guardiao | CNH do guardião do menor de idade |
+| certificado_de_reservista | Certificado de Reservista (se maior de 18 anos e do sexo masculino) |
+| titulo_de_eleitor | Título de Eleitor (se maior de 18 anos) |
+| historico_escolar | Histórico Escolar |
+| diploma | Diploma de Graduação |
+| comprovante_de_residencia | Comprovante de Residência |
+| comprovante_de_residencia_do_guardiao | Comprovante de Residência do guardião (se menor de idade) |
+| comprovante_de_voto | Comprovante de Voto |
+
+## Listagem de notificações
+
+> Requisição
+
+```bash
+curl --header "Authorization: Base ########" --header "Content-Type: application/json" https://queroalunos.com/api/{version}/notifications/search
+```
+
+> Resposta
+
+```json
+{
+  "has_more": true,
+  "notifications": [
+    {...}
+  ]
+}
+```
+
+Lista eventos enviados
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| start_date     | string | Data inicial do filtro no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| end_date       | string | Data final do filtro no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| starting_after | string | Cursor para a próxima página
+| ending_before  | string | Cursor para a página anterior
+
+### Informações de retorno
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| has_more | boolean          | indica a existência de outras páginas |
+| items    | array de objetos | lista de notificações: [referência](#definicao-base-do-evento)
