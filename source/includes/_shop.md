@@ -23,7 +23,7 @@ curl "http://example.com/api/shop"
           "id": 1,
           "title": "Black Panther",
           "thumbnail_url": "http://www.imageurl.com/bp/bp-large.png",
-          "featured_price": 125
+          "display_price": 125
         }
       ]
     },
@@ -36,7 +36,7 @@ curl "http://example.com/api/shop"
           "id": 64,
           "title": "Steam",
           "thumbnail_url": "http://www.imageurl.com/steam/steam-large.png",
-          "featured_price": 64
+          "display_price": 64
         }
       ]
     }
@@ -98,7 +98,16 @@ curl "http://example.com/api/shop/64"
       }
     ],
     "genre": [
-      "Games"
+      {
+        "id": 2,
+        "name": "Action",
+        "icon_url": "http://www.imageurl.com/icons/genre/action.png",
+      },
+      {
+        "id": 3,
+        "name": "Movies",
+        "icon_url": "http://www.imageurl.com/icons/genre/movies.png",
+      }
     ],
     "media_images": [
       "http://www.imageurl.com/steam/steam-1.png"
@@ -114,7 +123,7 @@ This endpoint retrieves the shop contents.
 
 ### HTTP Request
 
-`GET http://example.com/api/shop/<ID>`
+`GET http://example.com/api/shop/{id}`
 
 ### URL Parameters
 
