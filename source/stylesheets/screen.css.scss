@@ -652,6 +652,10 @@ html, body {
   background-color: $code-bg;
 }
 
+.highlight .err {
+  color: #f53636;
+}
+
 .api-reference-separator-container {
   margin-top: 10px;
 }
