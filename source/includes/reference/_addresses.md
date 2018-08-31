@@ -1,72 +1,88 @@
 # Addresses
 ## Create
-## Get By Id
-## List
-## Get Requirements
-## Refresh Requirements
-
-
 > Example Request:
 
 ```shell
-curl -X GET "https://api.sandbox.transferwise.tech/v1/address-requirements" \
-     -H "Authorization: <your api token>"
+
+curl -X POST https://api.sandbox.transferwise.tech/v1/addresses \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "details": {
+            "country": "EE",
+            "firstLine": "Narva mnt 5-1",
+            "postCode": "10113",
+            "city": "Tallinn"
+          }
+        }'
+
 ```
 
 > Example Response:
 
 ```json
 {
-  "id": 15574445,
-  "user": 294205,
-  "targetAccount": 7993919,
-  "sourceAccount": null,
-  "quote": 113379,
-  "status": "processing",
-  "reference": "good times",
-  "rate": 1.2151,
-  "created": "2017-03-14 15:25:51",
-  "business": null,
-  "transferRequest": null,
+  "id": 236532,
+  "profile": 217896,
   "details": {
-    "reference": "good times"
-  },
-  "hasActiveIssues": false,
-  "sourceValue": 1000,
-  "sourceCurrency": "EUR",
-  "targetValue": 895.32,
-  "targetCurrency": "GPB"
+    "country": "EE",
+    "firstLine": "Narva mnt 5-1",
+    "postCode": "10113",
+    "city": "Tallinn",
+    "state": "",
+    "occupation": null
+  }
 }
+
 ```
 
+Create an address for user profile.
+List of required are slightly different for countries.  
+For example state field is required for US, CA, BR and AU addresses.
+Please use [Addresses.Get Requirements](#addresses-get-requirements) and  [Addresses.Refresh Requirements](#addresses-refresh-requirements) endpoints to figure out which fields you need to create addresses in specific countries.
 
-You can simulate payment processing by changing transfer statuses using these endpoints. 
-
-This feature is limited to sandbox only.
 
 
 ### Request
-**`GET https://api.sandbox.transferwise.tech/v1/simulation/transfers/{transferId}/processing`**
 
-Changes transfer status from incoming_payment_waiting to processing.
+**`POST https://api.sandbox.transferwise.tech/v1/addresses`**
 
-**`GET https://api.sandbox.transferwise.tech/v1/simulation/transfers/{transferId}/funds_converted`**
+Field                 | Description                                        | Format
+---------             | -------                                            | -----------
+profile               | User profile id.                                   | Integer
+details.country       | 2 digit ISO country code.                          | Text
+details.firstLine     | Address line: street, house, apartment.            | Text
+details.postCode      | Zip code                                           | Text
+details.city          | City name                                          | Text
+details.state         | State code. Required if country is US, CA, AU, BR  | Text
+details.occupation    | User occupation. Required for US, CA, JP           | Text
 
-Changes transfer status from processing to funds_converted.<br/>
-
-**`GET https://api.sandbox.transferwise.tech/v1/simulation/transfers/{transferId}/outgoing_payment_sent`**
-
-Changes transfer status from funds_converted to outgoing_payment_sent.<br/>
-
-**`GET https://api.sandbox.transferwise.tech/v1/simulation/transfers/{transferId}/bounced_back`**
-
-Changes transfer status from outgoing_payment_sent to bounced_back.<br/>
-
-**`GET https://api.sandbox.transferwise.tech/v1/simulation/transfers/{transferId}/funds_refunded`**
-
-Changes transfer status from bounced_back to funds_refunded.
 
 ### Response
-Transfer entity with changed status. See more at [Transfers.Get By Id](#transfers-get-by-id)
+Field                 | Description                                        | Format
+---------             | -------                                            | -----------
+id                    | Address id                                         | Integer
+profile               | User profile id.                                   | Integer
+details.country       | 2 digit ISO country code.                          | Text
+details.firstLine     | Address line: street, house, apartment.            | Text
+details.postCode      | Zip code                                           | Text
+details.city          | City name                                          | Text
+details.state         | State code. Required if country is US, CA, AU, BR  | Text
+details.occupation    | User occupation. Required for US, CA, JP           | Text
+
+
+
+## Get By Id
+
+
+## List
+
+
+## Get Requirements
+
+
+## Refresh Requirements
+
 
 

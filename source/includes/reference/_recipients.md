@@ -4,18 +4,19 @@
 > Example Request (AED):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "AED",
-    "type": "emirates",
-    "legalType": "PRIVATE",
-    "details": {
-	   "IBAN": "AE070331234567890123456"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "AED",
+          "type": "emirates",
+          "legalType": "PRIVATE",
+          "details": {
+      	   "IBAN": "AE070331234567890123456"
+         }
+      }'
 ```
 
 Send payments to United Arab Emirates. 
