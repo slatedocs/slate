@@ -14,5 +14,7 @@ includes:
   - reference/quotes
   - reference/recipients
   - reference/transfers
+  - reference/simulation
+  - reference/terms
 
 ---
