@@ -42,7 +42,7 @@ Including this SDK exposes `window.createForm` function which takes in below par
 | CHANNEL_NAME | string | null | true | CHANNEL NAME given by anarock team |
 | CAMPAIGN_ID | string | null | true | CAMPAIGN ID given by anarock team |
 | ENVIRONMENT | string | 'staging' | true | possible values are `staging` or `production` |
-| options | object | null | - | possible keys are `showRemarks` or `remarksTitle`, `show_label`, `show_placeholder`, `contacting_authority`, `show_thankyou` |
+| options | object | null | - | possible keys are `showRemarks` or `remarksTitle`, `show_label`, `show_placeholder`, `contacting_authority`, `show_thankyou`, `dnc_checked` |
 
 
 In the `options` object 
@@ -60,6 +60,8 @@ In the `options` object
 `contacting_authority` this should be the project name to show the name for dnd checkbox
 
 `show_thankyou` is a boolean to check if after success thank you screen to be shown or not. default value is `true`
+
+`dnc_checked` is a boolean to autocheck the DNC checkbox. default value is `false`
 
 Working example can be seen here. https://marketing.anarock.com/static/test.html
 
@@ -85,14 +87,39 @@ Working example can be seen here. https://marketing.anarock.com/static/test.html
 
 e.g. `window.onLeadSuccess(78642, {name: 'Test' .....})` or `window.onLeadFailure(null, {name: 'Test' .....})`
 
+### Enable DNC checkbox by default
+
+You can pass `dnc_checked` as `true` in the options to set the checkbox by default as selected.
+
+
+```html
+<script>
+    var form_container = document.getElementById('anarock-form')
+    window.createForm(form_container, API_KEY, CHANNEL_NAME, CAMPAIGN_ID, 'production', { dnc_checked: true })
+ </script>
+```
+
+
 ### Thank you page redirection
 
 `show_thankyou` flag in options can be used to show a thank you message in place of form.
 
 also, to do redirections to your own thankyou page. You can use the 
 
-window.onLeadSuccess = fuction(leadId, data_submitted_in_anarock_database) { window.href = '/thankyou'; }
-window.onLeadFailure = fuction(null, data_submitted_in_anarock_database) { window.href = '/thankyou'; }
+window.onLeadSuccess = function(leadId, data_submitted_in_anarock_database) { window.href = '/thankyou'; }
+window.onLeadFailure = function(null, data_submitted_in_anarock_database) { window.href = '/thankyou'; }
+
+### Saving Lead to Your Own Database
+
+To save the data submitted to anarock to your database, you need to define the `window.onLeadSuccess` function. This function is called with 2 parameters `leadID`, `data_submitted_in_anarock_database` (signature is defined above). 
+
+You can use the function as below
+
+```js
+window.onLeadSuccess = function (leadId, data_submitted_in_anarock_database) {
+     // Make the API request to your server with leadId and data stored.
+}
+```
 
 ### You can modify css as you wish.
 
