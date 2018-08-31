@@ -9,7 +9,7 @@
 > Example Request:
 
 ```shell
-curl -X GET "https://api.sandbox.transferwise.tech/v1/address-requirements"
+curl -X GET "https://api.sandbox.transferwise.tech/v1/address-requirements" \
      -H "Authorization: <your api token>"
 ```
 

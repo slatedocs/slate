@@ -3,7 +3,7 @@
 > Example Request:
 
 ```shell
-curl -X GET "https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=USD"
+curl -X GET "https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=USD" \
      -H "Authorization: <your api token>"
 ```
 

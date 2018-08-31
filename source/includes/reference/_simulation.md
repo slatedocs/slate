@@ -4,7 +4,7 @@
 > Example Request:
 
 ```shell
-curl -X GET "https://api.sandbox.transferwise.tech/v1/simulation/transfers/{transferId}/processing"
+curl -X GET "https://api.sandbox.transferwise.tech/v1/simulation/transfers/{transferId}/processing" \
      -H "Authorization: <your api token>"
 ```
 
