@@ -1,10 +1,15 @@
-# Simulation
-## Simulate Transfer Processing
+# Addresses
+## Create
+## Get By Id
+## List
+## Get Requirements
+## Refresh Requirements
+
 
 > Example Request:
 
 ```shell
-curl -X GET "https://api.sandbox.transferwise.tech/v1/simulation/transfers/{transferId}/processing"
+curl -X GET "https://api.sandbox.transferwise.tech/v1/address-requirements"
      -H "Authorization: <your api token>"
 ```
 
@@ -33,6 +38,8 @@ curl -X GET "https://api.sandbox.transferwise.tech/v1/simulation/transfers/{tran
   "targetCurrency": "GPB"
 }
 ```
+
+
 You can simulate payment processing by changing transfer statuses using these endpoints. 
 
 This feature is limited to sandbox only.

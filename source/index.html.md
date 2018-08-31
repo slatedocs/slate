@@ -11,10 +11,12 @@ includes:
   - payouts
   - banks
   - affiliates
+  - reference/addresses
+  - reference/rates
   - reference/quotes
   - reference/recipients
-  - reference/transfers
   - reference/simulation
   - reference/terms
+  - reference/transfers
 
 ---

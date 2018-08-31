@@ -1,5 +1,4 @@
 # Recipients
-
 ## Create AED recipient
 
 > Example Request (AED):

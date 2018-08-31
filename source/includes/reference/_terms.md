@@ -1,11 +1,10 @@
 # Terms and Conditions
-
 ## Get Terms and Conditions
 
 > Example Request:
 
 ```shell
-curl "https://api.sandbox.transferwise.tech/v1/terms/default"
+curl -X GET "https://api.sandbox.transferwise.tech/v1/terms/default"
 ```
 
 > Example Response:
