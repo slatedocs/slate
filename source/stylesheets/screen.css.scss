@@ -425,9 +425,14 @@ html, body {
   }
 
   table {
-    margin-bottom: 1em;
+    margin-bottom: 2em;
     overflow: auto;
     font-size: 14px;
+    display: table;
+    width: 100% - $examples-width;
+    border-collapse: separate;
+
+
     th,td {
       text-align: left;
       vertical-align: top;
@@ -441,7 +446,7 @@ html, body {
       padding: 5px 10px;
       border-bottom: 1px solid #ccc;
       vertical-align: bottom;
-      color: $brand-navy;
+      color: $brand-navy-minus-10;
     }
 
     td {
