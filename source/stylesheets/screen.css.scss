@@ -84,11 +84,10 @@ html, body {
 
     input {
       background: $nav-bg;
-      padding: 13px 16px 11px;
+      padding: 7px 16px 5px;
       box-sizing: border-box;
       margin: $nav-v-padding $nav-padding;
       width: $nav-width - ($nav-padding*2);
-      height: 48px;
       outline: none;
       color: $nav-text;
       border-radius: 3px; /* ios has a default border radius */
@@ -103,7 +102,7 @@ html, body {
 
     &:before {
       position: absolute;
-      top: 25px;
+      top: 17px;
       right: 43px;
       color: $brand-smoke-minus-10;
       @extend %icon-search;
