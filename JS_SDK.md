@@ -125,7 +125,7 @@ window.onLeadSuccess = function (leadId, data_submitted_in_anarock_database) {
 
 ### You can modify css as you wish.
 
-below is the html structure of the form
+below are the classes used. You can override them in your code.
 
 ```html
 
