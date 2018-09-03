@@ -29,7 +29,7 @@ curl "http://example.com/api/wallet"
         "currency": "xonio",
         "balance": 10,
         "address": "0x9ivrb24b5obp25pnu12ldvjd897b",
-      },
+      }
     ]
   }
 }
