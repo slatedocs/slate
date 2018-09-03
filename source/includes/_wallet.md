@@ -3,7 +3,7 @@
 ## Get Wallet
 
 ```shell
-curl "http://example.com/api/wallet/<ID>"
+curl "http://example.com/api/wallet"
   -H "Authorization: Bearer <TOKEN>"
 ```
 
@@ -14,13 +14,23 @@ curl "http://example.com/api/wallet/<ID>"
   "status_code": 200,
   "message": "Success",
   "body": {
-    "id": 1,
-    "address": "0x9ivrb24b5obp25pnu12ldvjd897b",
-    "wallet": {
-      "load": 480,
-      "xon": 520,
-      "xonio": 1
-    }
+    "wallet": [
+      {
+        "currency": "load",
+        "balance": 480,
+        "address": "0x9ivrb24b5obp25pnu12ldvjd897b",
+      },
+      {
+        "currency": "xon",
+        "balance": 80,
+        "address": "0x9ivrb24b5obp25pnu12ldvjd897b",
+      },
+      {
+        "currency": "xonio",
+        "balance": 10,
+        "address": "0x9ivrb24b5obp25pnu12ldvjd897b",
+      },
+    ]
   }
 }
 ```
@@ -29,7 +39,7 @@ This endpoint retrieves the wallet of user.
 
 ### HTTP Request
 
-`GET http://example.com/api/wallet/1`
+`GET http://example.com/api/wallet/`
 
 ### Body Parameters
 
