@@ -74,10 +74,8 @@ under the License.
       <ul id="toc" class="toc-list-h1">
         <% toc_data(page_content).each do |h1| %>
           <% if h1[:id] == 'full-api-reference' %>
-            <div class="api-reference-separator-container">
-              <div class="api-reference-separator">
-                Full API Reference
-              </div>
+            <div class="api-reference-separator">
+              <%= h1[:title] %>
             </div>
           <% else %>
             <li>

@@ -654,14 +654,11 @@ html, body {
   color: #f53636;
 }
 
-.api-reference-separator-container {
-  margin-top: 10px;
-}
-
 .api-reference-separator {
   padding: 20px 0 10px;
   margin: 20px 32px 0;
   border-top: 1px solid #e5e5e5;
+  font-size: 14px;
 }
 
 input.search::-webkit-input-placeholder { /* Chrome/Opera/Safari */
