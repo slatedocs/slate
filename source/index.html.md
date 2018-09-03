@@ -19,5 +19,6 @@ includes:
   - reference/simulation
   - reference/terms
   - reference/transfers
+  - reference/profiles
 
 ---
