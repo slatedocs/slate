@@ -129,34 +129,12 @@ below is the html structure of the form
 
 ```html
 
-  <div class="ap-lead-form">
-    <div class="am-input-container">
-      <div class="am-input-label">Name*</div>
-      <input class="am-input" maxlength="100">
-    </div>
-    <div class="am-input-container">
-      <div class="am-input-label">Email*</div>
-      <input class="am-input" maxlength="100">
-    </div>
-    <div class="am-input-container phone focussed">
-      <div class="am-input-label">Phone*</div>
-        <select>
-          <option value="in">India - +91</option>
-        </select>
-          <input class="am-input" maxlength="20">
-      </div>
-    <div class="am-input-container text   textarea ">
-      <div class="am-input-label">Add your query</div>
-      <textarea rows="3" class="am-input" maxlength="400"></textarea>
-    </div>
-    <div class="ap-agree-box">
-      <input type="checkbox" value="agree" id="ap-agree">
-      <label for="ap-agree">I agree and authorize team to contact me. This will override the registry with DNC / NDNC</label>
-    </div>
-    <div class="am-button primary " type="submit" value="Submit">Submit</div>
-    </div>
-  </div>
-
+  .ap-lead-form
+  .am-input-container
+  .am-input-label
+  .am-input
+  .ap-agree-box
+  .am-button primary
 ```
 
 
