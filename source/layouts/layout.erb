@@ -73,25 +73,26 @@ under the License.
       <% end %>
       <ul id="toc" class="toc-list-h1">
         <% toc_data(page_content).each do |h1| %>
-          <% if h1[:id] == 'addresses' %>
+          <% if h1[:id] == 'full-api-reference' %>
             <div class="api-reference-separator-container">
               <div class="api-reference-separator">
                 Full API Reference
               </div>
             </div>
+          <% else %>
+            <li>
+              <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:title] %>"><%= h1[:content] %></a>
+              <% if h1[:children].length > 0 %>
+                <ul class="toc-list-h2">
+                  <% h1[:children].each do |h2| %>
+                    <li>
+                      <a href="#<%= h2[:id] %>" class="toc-h2 toc-link" data-title="<%= h2[:title] %>"><%= h2[:content] %></a>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </li>
           <% end %>
-          <li>
-            <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:title] %>"><%= h1[:content] %></a>
-            <% if h1[:children].length > 0 %>
-              <ul class="toc-list-h2">
-                <% h1[:children].each do |h2| %>
-                  <li>
-                    <a href="#<%= h2[:id] %>" class="toc-h2 toc-link" data-title="<%= h2[:title] %>"><%= h2[:content] %></a>
-                  </li>
-                <% end %>
-              </ul>
-            <% end %>
-          </li>
         <% end %>
       </ul>
       <% if current_page.data.toc_footers %>

@@ -377,9 +377,8 @@ html, body {
     @extend %header-font;
     font-size: 25px;
     padding-top: 1.5em;
-    padding-bottom: 0.5em;
-    margin-bottom: $h1-margin-bottom;
-    margin-top: 2em;
+    margin-bottom: 1.5em;
+    margin-top: 1.5em;
     border-top: 1px solid #e5e5e5;
   }
 
@@ -391,7 +390,7 @@ html, body {
   h2 {
     @extend %header-font;
     font-size: 19px;
-    margin-top: 4em;
+    margin-top: 2em;
     margin-bottom: 0;
     padding-top: 2em;
     padding-bottom: 1.2em;
@@ -401,7 +400,7 @@ html, body {
   // h2s right after h1s should bump right up
   // against the h1s.
   h1 + h2, h1 + div + h2 {
-    margin-top: $h1-margin-bottom * -1;
+    margin-top: -2em;
     border-top: none;
   }
 
@@ -411,9 +410,9 @@ html, body {
 
   h3, h4, h5, h6 {
     @extend %header-font;
-    font-size: 15px;
-    margin-top: 2.5em;
-    margin-bottom: 0.8em;
+    font-size: 16px;
+    margin-top: 2em;
+    margin-bottom: 1.5em;
   }
 
   h4, h5, h6 {
