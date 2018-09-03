@@ -106,8 +106,10 @@ You can pass `dnc_checked` as `true` in the options to set the checkbox by defau
 
 also, to do redirections to your own thankyou page. You can use the 
 
+```js
 window.onLeadSuccess = function(leadId, data_submitted_in_anarock_database) { window.href = '/thankyou'; }
 window.onLeadFailure = function(null, data_submitted_in_anarock_database) { window.href = '/thankyou'; }
+```
 
 ### Saving Lead to Your Own Database
 
