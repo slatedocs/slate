@@ -428,10 +428,11 @@ html, body {
     margin-bottom: 2em;
     overflow: auto;
     font-size: 14px;
-    display: table;
-    width: 100% - $examples-width;
-    border-collapse: separate;
-
+    @media (min-width: $tablet-width) {
+      display: table;
+      width: 100% - $examples-width;
+      border-collapse: separate;
+    }
 
     th,td {
       text-align: left;
