@@ -1,5 +1,4 @@
 # Borderless Payouts Guide
-## Before you start coding
 Welcome to TransferWise Payouts API documentation. 
 Before you jump into coding please take few moments to go through these 3 topics at first.
 
