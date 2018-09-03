@@ -11,6 +11,7 @@ includes:
   - payouts
   - banks
   - affiliates
+  - full-reference-separator
   - reference/addresses
   - reference/rates
   - reference/quotes
