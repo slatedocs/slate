@@ -2,7 +2,9 @@
 title: Metype API Documentation
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
+  - shell: Scripts
+  - shell--request: Request
+  - shell--response: Response
 
 toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
@@ -17,6 +19,7 @@ includes:
   - metype/wordpress_installation
   - metype/blogger_installation
   - metype/release_notes
+  - metype/api_documentation
 ---
 # Introduction To Metype
 
