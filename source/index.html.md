@@ -711,6 +711,9 @@ service_name | true | string | | Name of service. Get in api [GET /snappy/tracki
 cod | true | integer | | Amount of cod or values of all items in package
 note | false | string | `Khởi tạo vận đơn` | Note of each status in tracking
 customer_tracking_id | false | string |  | The custom id of customer
+is_receiver_pay | false | boolean | false | If `true` all cost of the tracking will be paid by the receiver
+is_allow_checking_good | false | boolean | false | If `true` means to allow the receiver to see the product
+is_allow_try_out | false | boolean | false | If `true` means to allow the receiver to try the product
 
 Params `items`
 
