@@ -1,22 +1,179 @@
 # User Profiles
 
-## Create
+## Create (Personal)
 > Example Request:
 
 ```shell
 
-curl -X POST https://api.sandbox.transferwise.tech/v1/addresses \
+curl -X POST https://api.sandbox.transferwise.tech/v1/profiles \
      -H "Authorization: Bearer <your api token>" \
      -H "Content-Type: application/json" \
      -d '{ 
-          "profile": <your profile id>,
+          "type": "personal",
           "details": {
-            "country": "EE",
-            "firstLine": "Narva mnt 5-1",
-            "postCode": "10113",
-            "city": "Tallinn"
-          }
+            "firstName": "Oliver",
+            "lastName": "Wilson",
+            "dateOfBirth": "1977-07-01",
+            "phoneNumber": "+3725064992"
+           }
         }'
+
+
+```
+
+> Example Response (Personal):
+
+```json
+{
+  "id": <your personal profile id>,
+  "type": "personal",
+  "details": {
+    "firstName": "Oliver",
+    "lastName": "Wilson",
+    "dateOfBirth": "1977-07-01",
+    "phoneNumber": "+3725064992",
+    "avatar": "",
+    "occupation": "",
+    "primaryAddress": null
+  }
+}
+```
+
+Create personal user profile.
+Same person cannot have multiple active duplicate user profiles.
+Thus creating multiple profiles with the same details will fail.
+
+### Request
+
+**`POST https://api.sandbox.transferwise.tech/v1/profiles`**
+
+Field                   | Description                   | Format
+---------               | -------                       | -----------
+type                    | "personal"                    | Text
+details.firstName       | First name                    | Text
+details.lastName        | Last name                     | Text
+details.dateOfBirth     | Date of birth                 | YYYY-MM-DD
+details.phoneNumber     | Phone number                  | Text
+
+
+### Response
+Field                   | Description                   | Format
+---------               | -------                       | -----------
+id                      | profileId                     | Integer
+type                    | "personal"                    | Text
+details.firstName       | First name                    | Text
+details.lastName        | Last name                     | Text
+details.dateOfBirth     | Date of birth                 | YYYY-MM-DD
+details.phoneNumber     | Phone number                  | Text
+details.avatar          | Link to person avatar image   | Text
+details.occupation      | Person occupation             | Text
+details.primaryAddress  | Address object id             | Integer
+
+
+
+
+## Create (Business)
+> Example Request:
+
+```shell
+
+curl -X POST https://api.sandbox.transferwise.tech/v1/profiles \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "type": "business",
+          "details": {
+            "name": "ABC Logistics Ltd",
+            "registrationNumber": "12144939",
+            "acn": null,
+            "abn": null,
+            "arbn": null,
+            "companyType": "LIMITED",
+            "companyRole": "OWNER",
+            "descriptionOfBusiness": "Information and communication",
+            "webpage": "https://abc-logistics.com"
+           }
+        }'
+```
+
+> Example Response (Business):
+
+```json
+{
+  "id": <your business profile id>,
+  "type": "business",
+  "details": {
+     "name": "ABC Logistics Ltd",
+     "registrationNumber": "12144939",
+     "acn": null,
+     "abn": null,
+     "arbn": null,
+     "companyType": "LIMITED",
+     "companyRole": "OWNER",
+     "descriptionOfBusiness": "Information and communication",
+     "webpage": "https://abc-logistics.com",
+     "primaryAddress": null
+   }
+}
+```
+
+Create business user profile.
+You would need to create personal profile first always. Business profile cannot be created without personal profile.
+
+### Request (Business)
+
+**`POST https://api.sandbox.transferwise.tech/v1/profiles`**
+
+Field                        | Description                                                   | Format
+---------                    | -------                                                       | -----------
+type                         | "business"                                                    | Text
+details.name                 | Business name                                                 | Text
+details.registrationNumber   | Business registration number                                  | Text
+details.acn                  | Australian Company Number  (only for AUS businesses)          | Text
+details.abn                  | Australian Business Nnumber (only for AUS businesses)         | Text
+details.arbn                 | Australian Registered Body Number  (only for AUS businesses)  | Text
+details.companyType          | Company legal form. Allowed values:   <ul><li>LIMITED</li><li>PARTNERSHIP</li><li>SOLE_TRADER</li><li>LIMITED_BY_GUARANTEE</li><li>LIMITED_LIABILITY_COMPANY</li><li>FOR_PROFIT_CORPORATION</li><li>NON_PROFIT_CORPORATION</li><li>LIMITED_PARTNERSHIP</li><li>LIMITED_LIABILITY_PARTNERSHIP</li><li>GENERAL_PARTNERSHIP</li><li>SOLE_PROPRIETORSHIP</li><li>PRIVATE_LIMITED_COMPANY</li><li>PUBLIC_LIMITED_COMPANY</li><li>TRUST</li><li>OTHER</ul>  | Text
+details.companyRole          | Role of person. Allowed Values: <ul><li>OWNER</li><li>DIRECTOR</li><li>OTHER</ul>                 | Text
+details.descriptionOfBusiness| Sector / filed of activity           | Text
+details.webpage              | Business webpage                 | Text
+
+
+### Response (Business)
+Field                   | Description                   | Format
+---------               | -------                       | -----------
+id                      | profileId                     | Integer
+type                         | "business"                                                    | Text
+details.name                 | Business name                                                 | Text
+details.registrationNumber   | Business registration number                                  | Text
+details.acn                  | Australian Company Number  (only for AUS businesses)          | Text
+details.abn                  | Australian Business Nnumber (only for AUS businesses)         | Text
+details.arbn                 | Australian Registered Body Number  (only for AUS businesses)  | Text
+details.companyType          | Company legal form | Text
+details.companyRole          | Role of person                | Text
+details.descriptionOfBusiness| Sector / filed of activity           | Text
+details.webpage              | Business webpage                 | Text
+details.primaryAddress  | Address object id             | Integer
+
+
+
+## Update
+> Example Request:
+
+```shell
+
+curl -X PUT https://api.sandbox.transferwise.tech/v1/profiles \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "type": "personal",
+          "details": {
+            "firstName": "Oliver",
+            "lastName": "Wilson",
+            "dateOfBirth": "1977-07-01",
+            "phoneNumber": "+3725064992"
+           }
+        }'
+
 
 ```
 
@@ -24,51 +181,27 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/addresses \
 
 ```json
 {
-  "id": 236532,
-  "profile": <your profile id>,
+  "id": <your personal profile id>,
+  "type": "personal",
   "details": {
-    "country": "EE",
-    "firstLine": "Narva mnt 5-1",
-    "postCode": "10113",
-    "city": "Tallinn",
-    "state": "",
-    "occupation": null
+    "firstName": "Oliver",
+    "lastName": "Wilson",
+    "dateOfBirth": "1977-07-01",
+    "phoneNumber": "+3725064992",
+    "avatar": "",
+    "occupation": "",
+    "primaryAddress": null
   }
 }
-
 ```
 
-Adds address info to user profile.
-List of required fields are slightly different for different countries.  
-For example state field is required for US, CA, BR and AU addresses but not for other countries.
-Please look at [Addresses.Requirements](#addresses-requirements) to figure out which fields are required to create addresses in specific country.
+Update user profile information. 
+If user profile has been verified by TransferWise then there are restrictions on what information is allowed to change. 
 
 ### Request
 
-**`POST https://api.sandbox.transferwise.tech/v1/addresses`**
-
-Field                 | Description                                        | Format
----------             | -------                                            | -----------
-profile               | User profile id.                                   | Integer
-details.country       | 2 digit ISO country code.                          | Text
-details.firstLine     | Address line: street, house, apartment.            | Text
-details.postCode      | Zip code                                           | Text
-details.city          | City name                                          | Text
-details.state         | State code. Required if country is US, CA, AU, BR  | Text
-details.occupation    | User occupation. Required for US, CA, JP           | Text
-
-
-### Response
-Field                 | Description                                        | Format
----------             | -------                                            | -----------
-id                    | Address id                                         | Integer
-profile               | User profile id.                                   | Integer
-details.country       | 2 digit ISO country code.                          | Text
-details.firstLine     | Address line: street, house, apartment.            | Text
-details.postCode      | Zip code                                           | Text
-details.city          | City name                                          | Text
-details.state         | State code. Required if country is US, CA, AU, BR  | Text
-details.occupation    | User occupation. Required for US, CA, JP           | Text
+**`PUT https://api.sandbox.transferwise.tech/v1/profiles`**
+Request and response is same as described in [Create (Personal)](#user-profile-create-personal) and [Create (Business)](#user-profile-create-business)
 
 
 
@@ -77,7 +210,7 @@ details.occupation    | User occupation. Required for US, CA, JP           | Tex
 
 ```shell
 
-curl -X GET https://api.sandbox.transferwise.tech/v1/addresses/{addressId} \
+curl -X GET https://api.sandbox.transferwise.tech/v1/profiles/{profileId} \
      -H "Authorization: Bearer <your api token>" 
 ```
 
@@ -85,23 +218,23 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/addresses/{addressId} \
 
 ```json
 {
-  "id": 236532,
-  "profile": <your profile id>,
+  "id": <your personal profile id>,
+  "type": "personal",
   "details": {
-    "country": "EE",
-    "firstLine": "Narva mnt 5-1",
-    "postCode": "10113",
-    "city": "Tallinn",
-    "state": "",
-    "occupation": null
+    "firstName": "Oliver",
+    "lastName": "Wilson",
+    "dateOfBirth": "1977-07-01",
+    "phoneNumber": "+3725064992",
+    "avatar": "",
+    "occupation": "",
+    "primaryAddress": null
   }
 }
-
 ```
 
-Get address info by id.
+Get profile info by id.
 ### Request
-**`GET https://api.sandbox.transferwise.tech/v1/addresses/{addressId}`**
+**`GET https://api.sandbox.transferwise.tech/v1/profiles/{profileId}`**
 
 
 
@@ -110,7 +243,7 @@ Get address info by id.
 
 ```shell
 
-curl -X GET https://api.sandbox.transferwise.tech/v1/addresses?profile={profileId} \
+curl -X GET https://api.sandbox.transferwise.tech/v1/profiles \
      -H "Authorization: Bearer <your api token>" 
 ```
 
@@ -119,167 +252,88 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/addresses?profile={profileI
 ```json
 [
     {
-        "id": 7099091,
-        "profile": <your profile id>,
-        "details": {
-            "country": "EE",
-            "firstLine": "Veerenni 29",
-            "postCode": "12991",
-            "city": "Tallinn",
-            "state": null,
-            "occupation": null
-        }
+      "id": <your personal profile id>,
+      "type": "personal",
+      "details": {
+        "firstName": "Oliver",
+        "lastName": "Wilson",
+        "dateOfBirth": "1977-07-01",
+        "phoneNumber": "+3725064992",
+        "avatar": "",
+        "occupation": "",
+        "primaryAddress": null
+      }
+    },
+    {
+      "id": <your business profile id>,
+      "type": "business",
+      "details": {
+         "name": "ABC Logistics Ltd",
+         "registrationNumber": "12144939",
+         "acn": null,
+         "abn": null,
+         "arbn": null,
+         "companyType": "LIMITED",
+         "companyRole": "OWNER",
+         "descriptionOfBusiness": "Information and communication",
+         "webpage": "https://abc-logistics.com",
+         "primaryAddress": null
+       }
     }
+    
 ]
 
 ```
-List of addresses belonging to user profile.
+List of all profiles belonging to user.
 
 ### Request
-**`GET https://api.sandbox.transferwise.tech/v1/addresses?profile={profileId}`**
+**`GET https://api.sandbox.transferwise.tech/v1/profiles`**
 
 
 
 
-
-## Requirements
+## Create Identification Document
 > Example Request:
 
 ```shell
 
-curl -X GET https://api.sandbox.transferwise.tech/v1/address-requirements \
-     -H "Authorization: Bearer <your api token>" 
+curl -X POST https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/verification-documents \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+            "firstName": "Oliver",
+            "lastName": "Wilson",
+            "type": "IDENTITY_CARD",
+            "uniqueIdentifier": "AA299822313",
+            "issueDate": "2017-12-31",
+            "issuerCountry": "EE",
+            "issuerState": "",
+            "expiryDate": "2027-12-31"
+        }'
 ```
 
 > Example Response:
 
 ```json
-[
-  {
-    "type": "address",
-    "fields": [
-      {
-        "name": "Country",
-        "group": [
-          {
-            "key": "country",
-            "type": "select",
-            "refreshRequirementsOnChange": true,
-            "required": true,
-            "displayFormat": null,
-            "example": "Germany",
-            "minLength": null,
-            "maxLength": null,
-            "validationRegexp": null,
-            "validationAsync": null,
-            "valuesAllowed": [
-              {
-                "key": "AX",
-                "name": "Åland Islands"
-              },
-              ...
-              {
-                "key": "ZM",
-                "name": "Zambia"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "name": "City",
-        "group": [
-          {
-            "key": "city",
-            "type": "text",
-            "refreshRequirementsOnChange": false,
-            "required": true,
-            "displayFormat": null,
-            "example": "London",
-            "minLength": null,
-            "maxLength": null,
-            "validationRegexp": null,
-            "validationAsync": null,
-            "valuesAllowed": null
-          }
-        ]
-      },
-      {
-        "name": "Postal code",
-        "group": [
-          {
-            "key": "postCode",
-            "type": "text",
-            "refreshRequirementsOnChange": false,
-            "required": true,
-            "displayFormat": null,
-            "example": "10025",
-            "minLength": null,
-            "maxLength": null,
-            "validationRegexp": null,
-            "validationAsync": null,
-            "valuesAllowed": null
-          }
-        ]
-      }
-      ...
-    ]
-  }
-]
+{  
+}
 ```
-### Request
-**` GET https://api.sandbox.transferwise.tech/v1/address-requirements`**<br/>
-**` POST https://api.sandbox.transferwise.tech/v1/address-requirements`**<br/>
-
-GET and POST address-requirements endpoints help you to figure out which fields are required to create a valid address for different countries.
-You could even build a dynamic user interface on top of these endpoints. This is a step-by-step guide on how to do this.
-
-1. Call GET /v1/address-requirements to get list of fields you need to fill with values in "details" section for creating a valid address.  Response contains 4 required top level fields: 
- * country   (select field with list of values)
- * city      (text field)
- * postCode  (text field)
- * firstLine (text field)
-
-2. Analyze the list of fields. Because refreshRequirementsOnChange=true for field 'country' then this indicates that there could be additional fields required depending on the selected value.
-3. Call POST /v1/address-requirements with selected country value to figure out if this is the case.  <br/>
-For example posting {"details": {"country" : "US"}} will also add "state" to list of fields.<br/>
-But posting {"details": {"country" : "GB"}} will not.
-
-4. If you choose "US" as country you will notice that "state" field also has refreshRequirementsOnChange=true.  This means you would need to make another POST call to /v1/address-requirements with a specific state value.<br/>
-For example posting {"details": { "country" : "US", "state": "AZ" }} will also add "occupation" to list of fields.<br/>
-But posting {"details": { "country" : "US", "state": "AL" }} will not.
-
-5. So once you get to the point where you have provided values for all fields which have refreshRequirementsOnChange=true then you have complete set of fields to compose a valid request to create an address object. 
-For example this is a valid request to create address in US Arizona:
-<br/> POST /v1/addresses:<br/>
-{
-    "profile" : your-profile-id,<br/>
-    "details": {<br/>
-        "country" : "US",<br/>
-        "state": "AZ",<br/>
-        "city": "Phoenix",<br/>
-        "postCode": "10025",<br/>
-        "firstLine": "50 Sunflower Ave.",<br/>
-        "occupation": "software engineer"<br/>
-    }
-}<br/>
+Add identification document details to user profile. Applicable to personal profiles (not business) only.  
+Returns empty result if successful. 
 
 
-### Response
-Field                                       | Description                                        | Format
----------                                   | -------                                            | -----------
-type                                        | "address"                                          | Text
-fields[n].name                              | Field description                                  | Text
-fields[n].group[n].key                      | Key is name of the field you should include in the JSON                                     | Text
-fields[n].group[n].type                     | Display type of field (e.g. text, select, etc)                                  | Text
-fields[n].group[n].refreshRequirementsOnChange |  Tells you whether you should call POST address-requirements once the field value is set to discover required lower level fields.  | Boolean
-fields[n].group[n].required                 | Indicates if the field is mandatory or not                                 | Boolean
-fields[n].group[n].displayFormat            | Display format pattern.                                | Text
-fields[n].group[n].example                  | Example value.                                | Text
-fields[n].group[n].minLength                | Min valid length of field value.                                   | Integer
-fields[n].group[n].maxLength                | Max valid length of field value.                             | Integer
-fields[n].group[n].validationRegexp         | Regexp validation pattern.                                     | Text
-fields[n].group[n].validationAsync          | Validator URL and parameter name you should use when submitting the value for validation | Text
-fields[n].group[n].valuesAllowed[n].key     | List of allowed values. Value key                           | Text
-fields[n].group[n].valuesAllowed[n].name    | List of allowed values. Value name.                          | Text
+### Request (Business)
+
+**`POST https://api.sandbox.transferwise.tech/v1/profiles`**
+
+Field                    | Description                                 | Format
+---------                | -------                                     |-----------
+firstName                | Person first name in document               | Text
+lastName                 | Person last name in document                | Text
+type                     | Document type. Allowed Values: <ul><li>DRIVERS_LICENCE</li><li>IDENTITY_CARD</li><li>GREEN_CARD</li><li>MY_NUMBER</li><li>PASSPORT</li><li>OTHER</ul>   | Text
+uniqueIdentifier         | Document number                             | Text
+issueDate                | Document issue date                         | YYYY-MM-DD
+issuerCountry            | Issued by country code. For example "US"    | Text
+issuerState              | Issued by state code. For example "NY"      | Text
+expiryDate               | Document expiry date. (optional)            | YYYY-MM-DD
 
