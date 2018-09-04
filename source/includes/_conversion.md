@@ -1,6 +1,6 @@
 # Conversion
 
-## Airtime Credits
+## Convert
 
 ```shell
 curl "http://example.com/api/convert/xon"
@@ -17,11 +17,23 @@ curl "http://example.com/api/convert/xon"
     "id": 1,
     "date": "@D:2015-12-10T12:34:56",
     "timestamp": 19267343928,
-    "wallet": {
-      "load": 480,
-      "xon": 520,
-      "xonio": 1
-    }
+    "wallet": [
+      {
+        "currency": "load",
+        "balance": 480,
+        "address": "0x9ivrb24b5obp25pnu12ldvjd897b",
+      },
+      {
+        "currency": "xon",
+        "balance": 80,
+        "address": "0x9ivrb24b5obp25pnu12ldvjd897b",
+      },
+      {
+        "currency": "xonio",
+        "balance": 10,
+        "address": "0x9ivrb24b5obp25pnu12ldvjd897b",
+      }
+    ]
   }
 }
 ```
@@ -30,14 +42,16 @@ This endpoint converts load to xon credits.
 
 ### HTTP Request
 
-`POST http://example.com/api/convert/xon`
+`POST http://example.com/api/convert/`
 
 ### Body Parameters
 
-Parameter       | Data Type | Description
-----------------|-----------|--------------
-user_id         | Integer   | The id of the user to be charged
-airtime_credit  | Integer   | The total amount of load to charge
+Parameter       | Data Type  | Description
+----------------|------------|--------------
+user_id         | Integer    | The id of the user to be charged
+from            | String     | The origin currency code
+to              | String     | The destination currency code
+amount          | BigDecimal | The amount to be converted
 
 <aside class="success">
 200 - Success
