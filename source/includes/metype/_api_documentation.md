@@ -92,6 +92,8 @@ This endpoint creates an account under an organization
 | Response code | Description |
 |---------------|-------------|
 |201|Account is created|
-|401|When you pass a wrong organization credentials i.e., orgnization_id or auth_token|
 |400|When required paramaters are not sent with API|
+|401|When you pass wrong organization credentials i.e., organization_id or authentication_token|
+|404|When organization_id is not passed or invalid organization_id is not passed|
+|422|When an invalid website_url is sent as a parameter|
 
