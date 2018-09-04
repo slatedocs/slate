@@ -3,7 +3,7 @@
 ## Update
 
 ```shell
-curl --data-binary '{"id":"10","method":"profile.Update","params":{"function":5,"sector":8,"seniority":1}, "jsonrpc": "2.0"}'
+curl --data-binary '{"id":"10", "method":"profile.Update", "params":{"function":5, "sector":8, "seniority":1}, "jsonrpc":"2.0"}'
   -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
   -H 'content-type:application/json;'
 ```
@@ -43,7 +43,7 @@ Returns — Profile Model - the user’s updated profile data
 ## Get
 
 ```shell
-curl --data-binary '{"id":"5","method":"profile.Get","params":[], "jsonrpc": "2.0"}, "jsonrpc": "2.0"}'
+curl --data-binary '{"id":"5", "method":"profile.Get", "params":[], "jsonrpc":"2.0"}'
   -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
   -H 'content-type:application/json;'
 ```
@@ -76,10 +76,20 @@ Retrieves an user’s profile information.
 Returns — Profile Model - the user’s profile data
 </aside>
 
+### Errors
+
+Error Code | Meaning
+---------- | -------
+-32603 | Internal Server Error
+-32003 | Mandatory JWT Claim missing
+-32600 | The JSON sent is not a valid Request object
+-32604 | The requested user profile does not exist
+
+
 ## GetInputOptions
 
 ```shell
-curl --data-binary '{"id":"3","method":"profile.GetInputOptions","params":[], "jsonrpc": "2.0"}'
+curl --data-binary '{"id":"3", "method":"profile.GetInputOptions", "params":[], "jsonrpc":"2.0"}'
   -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
   -H 'content-type:application/json;'
 ```
@@ -159,3 +169,11 @@ Retrieves available inputs afferent to an organisation.
 <aside class="success">
 Returns — Lists of InputOption Model - the organisation’s <code>seniority</code>, <code>function</code> and <code>sector</code> options
 </aside>
+
+### Errors
+
+Error Code | Meaning
+---------- | -------
+-32603 | Internal Server Error
+-32003 | Mandatory JWT Claim missing
+-32600 | The JSON sent is not a valid Request object
