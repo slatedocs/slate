@@ -42,7 +42,7 @@ If email is new (does not have active user) then new user will be created.
 Field                   | Description                   | Format
 ---------               | -------                       | -----------
 email                   | User email                | Email
-registrationCode        | Generated registration code   | Text, min length is 32 chars
+registrationCode        | Generated registration code. You need your registration code later to obtain access token on behalf of this newly created user.   | Text, min length is 32 chars
 
 
 ### Response

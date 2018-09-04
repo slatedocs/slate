@@ -1,5 +1,5 @@
 # Quotes
-## Create Quote
+## Create
 
 > Example Request:
 
@@ -72,9 +72,9 @@ Field                 | Description                                   | Format
 id                    | quoteId                                      | Integer
 source                | Source(send) currency code                    | Text
 target                | Target(receive) currency code                 | Text
-sourceAmount          | Amount in source currency.                    | Decimal
+sourceAmount          | Amount in source currency                     | Decimal
 targetAmount          | Amount in target currency                     | Decimal
-type                  | 'BALANCE_PAYOUT' for payments <br/> 'BALANCE_CONVERSION' for conversion between balances | Text
+type                  | Quote type                                    | Text
 rate                  | Exchange rate value                           | Decimal
 createdTime           | Quote created timestamp                       | Timestamp
 createdByUserId       | Your used id                                  | Integer
@@ -227,7 +227,7 @@ sourceAmount          | Amount in source currency. <br/>Either sourceAmount or t
 
 ### Response
 
-Same as [Create Quote](#quotes-create-quote), but without "id" field since temporary quote is not stored and cannot be used for creating transfer.
+Same as [Create](#quotes-create), but without "id" field since temporary quote is not stored and cannot be used for creating transfer.
 Temporary quote is not associated with any user, it is anonymous. 
 
 

@@ -231,9 +231,9 @@ Field                 | Description                                   | Format
 id                    | Quote id                                      | Integer
 source                | Source(send) currency code                    | Text
 target                | Target(receive) currency code                 | Text
-sourceAmount          | Amount in source currency.                    | Decimal
+sourceAmount          | Amount in source currency                     | Decimal
 targetAmount          | Amount in target currency                     | Decimal
-type                  | 'BALANCE_PAYOUT' for payments <br/> 'BALANCE_CONVERSION' for conversion between balances | Text
+type                  | Quote type                                    | Text
 rate                  | Exchange rate value                           | Decimal
 createdTime           | Quote created timestamp                       | Timestamp
 createdByUserId       | Your used id                                  | Integer

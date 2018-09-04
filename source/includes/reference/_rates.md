@@ -1,5 +1,5 @@
 # Exchange Rates
-## Get Exchange Rates
+## List
 > Example Request:
 
 ```shell

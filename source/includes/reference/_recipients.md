@@ -1,4 +1,205 @@
 # Recipients
+
+## Create
+
+> Example Request (Create GBP recipient):
+
+```shell
+
+curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "currency": "GBP", 
+          "type": "sort_code", 
+          "profile": <your profile id>, 
+          "accountHolderName": "Ann Johnson",
+          "legalType": "PRIVATE",
+           "details": { 
+              "sortCode": "231470", 
+              "accountNumber": "28821822" 
+           } 
+         }'
+
+```
+
+> Example Response (Create GBP recipient):
+
+```json
+{
+    "id": 31273058,
+    "profile": <your profile id>, 
+    "accountHolderName": "Ann Johnson",
+    "type": "sort_code", 
+    "country": "GB", 
+    "currency": "GBP"
+    "details": {
+        "accountNumber": "28821822",
+        "sortCode": "231470"
+    }
+}
+
+```
+
+There are four steps to execute payouts: 
+
+Step 1: Create a quote
+
+**Step 2: Create a recipient account**
+
+Step 3: Create a transfer
+
+Step 4: Fund a transfer
+
+<br/>
+Recipient is a person or institution  who is the ultimate beneficiary of your payment. 
+
+Recipient bank account details are different for different currencies. For example you only need to know IBAN number to send payments to most European and Nordic countries. 
+But in order to send money to Canada you would need to know four fields: Institution No, Transit no, Account No & Account Type.
+
+GBP example is provided here. You can find other currency examples in Recipient API section below.  
+
+
+### Request
+
+**`POST https://api.sandbox.transferwise.tech/v1/accounts`**
+
+Field                 | Description                                   | Format
+---------             | -------                                       | -----------
+currency              | 3 character currency code                     | Text
+type                  | Recipient type                                | Text
+profile               | Personal or business profile id               | Integer
+accountHolderName     | Recipient full name                           | Text
+legalType             | Recipient legal type: PRIVATE or BUSINESS     | Text
+details               | Currency specific group, see Recipients API   | 
+details.sortCode      | Recipient bank sort code (GBP example)        | Text
+details.accountNumber | Recipient bank account no (GBP example)       | Text
+
+
+### Response
+
+Recipient id is needed for creating transfers in step 3.
+
+Field                 | Description                                   | Format
+---------             | -------                                       | -----------
+id                    | Recipient id                                  | Integer
+profile               | Personal or business profile id               | Integer
+acccountHolderName    | Recipient full name                           | Text
+currency              | 2 character country code                      | Text
+country               | 3 character currency code                     | Text
+type                  | Recipient type                                | Text
+details               | Currency specific group, see Recipients API   | 
+details.sortCode      | Recipient bank sort code (GBP example)        | Text
+details.accountNumber | Recipient bank account no (GBP example)       | Text
+
+
+### Send money to email recipient
+
+If you don't know recipient bank account details you can set up **email recipient** so that TransferWise can collect bank details directly from the recipient. 
+
+TransferWise will then email your recipient with a link to collect their bank account details. 
+Once recipient provides bank account details to us we are able to complete your transfer.
+
+So all you need to know is recipient name and email to send payment.
+See below under Recipient API how to create email recipients.
+
+
+
+
+## Get By Id
+> Example Request:
+
+```shell
+
+curl -X GET https://api.sandbox.transferwise.tech/v1/profiles/{profileId} \
+     -H "Authorization: Bearer <your api token>" 
+```
+
+> Example Response:
+
+```json
+{
+  "id": <your personal profile id>,
+  "type": "personal",
+  "details": {
+    "firstName": "Oliver",
+    "lastName": "Wilson",
+    "dateOfBirth": "1977-07-01",
+    "phoneNumber": "+3725064992",
+    "avatar": "",
+    "occupation": "",
+    "primaryAddress": null
+  }
+}
+```
+
+Get profile info by id.
+### Request
+**`GET https://api.sandbox.transferwise.tech/v1/profiles/{profileId}`**
+
+
+
+## List
+> Example Request:
+
+```shell
+
+curl -X GET https://api.sandbox.transferwise.tech/v1/profiles \
+     -H "Authorization: Bearer <your api token>" 
+```
+
+> Example Response:
+
+```json
+[
+    {
+      "id": <your personal profile id>,
+      "type": "personal",
+      "details": {
+        "firstName": "Oliver",
+        "lastName": "Wilson",
+        "dateOfBirth": "1977-07-01",
+        "phoneNumber": "+3725064992",
+        "avatar": "",
+        "occupation": "",
+        "primaryAddress": null
+      }
+    },
+    {
+      "id": <your business profile id>,
+      "type": "business",
+      "details": {
+         "name": "ABC Logistics Ltd",
+         "registrationNumber": "12144939",
+         "acn": null,
+         "abn": null,
+         "arbn": null,
+         "companyType": "LIMITED",
+         "companyRole": "OWNER",
+         "descriptionOfBusiness": "Information and communication",
+         "webpage": "https://abc-logistics.com",
+         "primaryAddress": null
+       }
+    }
+    
+]
+
+```
+List of all profiles belonging to user.
+
+### Request
+**`GET https://api.sandbox.transferwise.tech/v1/profiles`**
+
+
+
+## Requirements
+
+
+
+## Validate Field
+
+
+
 ## Create AED recipient
 
 > Example Request (AED):
