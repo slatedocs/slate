@@ -40,6 +40,17 @@ seniority | integer | the user’s seniority input identifier
 Returns — Profile Model - the user’s updated profile data
 </aside>
 
+### Errors
+
+Error Code | Meaning
+---------- | -------
+-32603 | Internal Server Error
+-32003 | Mandatory JWT Claim missing
+-32600 | The JSON sent is not a valid Request object
+-32610 | Unsupported function input
+-32609 | Unsupported seniority input
+-32608 | Unsupported sector input
+
 ## Get
 
 ```shell
@@ -168,6 +179,158 @@ Retrieves available inputs afferent to an organisation.
 
 <aside class="success">
 Returns — Lists of InputOption Model - the organisation’s <code>seniority</code>, <code>function</code> and <code>sector</code> options
+</aside>
+
+### Errors
+
+Error Code | Meaning
+---------- | -------
+-32603 | Internal Server Error
+-32003 | Mandatory JWT Claim missing
+-32600 | The JSON sent is not a valid Request object
+
+## SetFavouriteAsset
+
+```shell
+curl --data-binary '{"id":"3", "method":"profile.SetFavouriteAsset", "params":{"id":1, "saved":true}, "jsonrpc":"2.0"}'
+  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'content-type:application/json;'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "jsonrpc": "2.0",
+	"result": "success",
+	"id": "3"
+}
+```
+
+Mark an asset as <code>favourite</code> for an user.
+
+### HTTP Request
+
+`POST https://api.test.filtered.com/v2/jsonrpc/jwt`
+
+### Parameters
+
+Parameter | Type | Description
+--------- | ------- | -----------
+id | integer | the asset to be favourited id
+saved | boolean | the true/false status
+
+<aside class="success">
+Returns — Message - a success message
+</aside>
+
+### Errors
+
+Error Code | Meaning
+---------- | -------
+-32603 | Internal Server Error
+-32003 | Mandatory JWT Claim missing
+-32600 | The JSON sent is not a valid Request object
+-32014 | Unsupported asset
+
+## FetchCompetencies
+
+```shell
+curl --data-binary '{"id":"7","method":"profile.FetchCompetencies","params":[], "jsonrpc": "2.0"}'
+  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'content-type:application/json;'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"competencies": [{
+			"id": 15,
+			"name": "Project Management"
+		}, {
+			"id": 13,
+			"name": "Data Analysis"
+		}, {
+			"id": 4,
+			"name": "Productivity"
+		}, {
+			"id": 3,
+			"name": "Research"
+		}, {
+			"id": 11,
+			"name": "Personal Development"
+		}, {
+			"id": 6,
+			"name": "Spreadsheeting"
+		}, {
+			"id": 9,
+			"name": "Communication, Influence \u0026 Teamwork"
+		}, {
+			"id": 12,
+			"name": "Problem Solving \u0026 Decision Making"
+		}, {
+			"id": 1,
+			"name": "Planning \u0026 Organizing"
+		}, {
+			"id": 5,
+			"name": "Writing"
+		}, {
+			"id": 8,
+			"name": "Email"
+		}, {
+			"id": 17,
+			"name": "Organisational Management"
+		}, {
+			"id": 2,
+			"name": "Maths"
+		}, {
+			"id": 16,
+			"name": "Client Focus"
+		}, {
+			"id": 10,
+			"name": "Digital Collaboration"
+		}, {
+			"id": 7,
+			"name": "MS Office"
+		}, {
+			"id": 14,
+			"name": "Business \u0026 Organisational Savvy"
+		}, {
+			"id": 19,
+			"name": "Using Financials"
+		}, {
+			"id": 20,
+			"name": "Ethics \u0026 Compliance"
+		}, {
+			"id": 18,
+			"name": "People Management"
+		}, {
+			"id": 22,
+			"name": "Mindfulness"
+		}, {
+			"id": 21,
+			"name": "Resilience \u0026 Adaptability"
+		}]
+	},
+	"id": "7"
+}
+```
+
+Retrieve organisation afferent competencies for an user.
+
+### HTTP Request
+
+`POST https://api.test.filtered.com/v2/jsonrpc/jwt`
+
+### Parameters
+
+<aside class="notice"><code>No parameters</code></aside>
+
+<aside class="success">
+Returns — Lists of Competency Model - the organisation’s competencies
 </aside>
 
 ### Errors

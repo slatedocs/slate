@@ -10,7 +10,9 @@ toc_footers:
 includes:
   - profile
   - playlist
-  - errors
+  - chat
+  - event
+  - event_list
 
 search: true
 ---
