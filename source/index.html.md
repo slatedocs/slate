@@ -9,6 +9,7 @@ toc_footers:
 
 includes:
   - profile
+  - playlist
   - errors
 
 search: true
