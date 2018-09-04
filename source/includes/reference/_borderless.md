@@ -356,7 +356,7 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/borderless-accounts/{borde
      -H "Content-Type: application/json" \
      -H "X-idempotence-uuid: <your generated uuid> \
      -d '{ 
-            "quoteId": <conersion quote id>
+            "quoteId": <conversion quote id>
          }'
 
 ```

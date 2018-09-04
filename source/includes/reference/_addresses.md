@@ -232,7 +232,7 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/address-requirements \
 **` POST https://api.sandbox.transferwise.tech/v1/address-requirements`**<br/>
 
 GET and POST address-requirements endpoints help you to figure out which fields are required to create a valid address for different countries.
-You could even build a dynamic user interface on top of these endpoints. This is a step-by-step guide on how to do this.
+You could even build a dynamic user interface on top of these endpoints. This is a step-by-step guide on how these endpoints work.
 
 1. Call GET /v1/address-requirements to get list of fields you need to fill with values in "details" section for creating a valid address.  Response contains 4 required top level fields: 
  * country   (select field with list of values)

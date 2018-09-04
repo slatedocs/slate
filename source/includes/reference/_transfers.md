@@ -156,7 +156,7 @@ errorCode             | Failure reason. For example "balance.payment-option-unav
 
 ## Get Issues - todo
 
-## Get Delivery Time - todo
+## Get Delivery Time
 > Example Request:
 
 ```shell
@@ -195,4 +195,6 @@ estimatedDeliveryDate     | Estimated time when funds will arrive to recipient's
 
 ## List - todo
 
+
+## Requirements - todo
 
