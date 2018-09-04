@@ -201,7 +201,8 @@ If user profile has been verified by TransferWise then there are restrictions on
 ### Request
 
 **`PUT https://api.sandbox.transferwise.tech/v1/profiles`**
-Request and response is same as described in [Create (Personal)](#user-profile-create-personal) and [Create (Business)](#user-profile-create-business)
+
+Request and response is same as described in [Create (Personal)](#user-profiles-create-personal) and [Create (Business)](#user-profiles-create-business)
 
 
 
