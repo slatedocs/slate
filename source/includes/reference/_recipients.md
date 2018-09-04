@@ -166,12 +166,12 @@ Get recipient account info by id.
 
 
 
-## List !!!
+## List - todo
 > Example Request:
 
 ```shell
 
-curl -X GET https://api.sandbox.transferwise.tech/v1/accounts \
+curl -X GET https://api.sandbox.transferwise.tech/v1/accounts? \
      -H "Authorization: Bearer <your api token>" 
 ```
 
@@ -219,11 +219,13 @@ List of all profiles belonging to user.
 
 
 
-## Requirements
+## Requirements - todo
 
 
 
-## Validate Field
+## Validate Field - todo
+AUD aadressi teema ka !
+
 
 
 

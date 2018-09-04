@@ -1,7 +1,7 @@
 # Transfers
 
 
-## Create
+## Create  - todo
 
 > Example Request:
 
@@ -49,17 +49,6 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/transfers \
 
 ```
 
-There are four steps to execute payouts: 
-
-Step 1: Create a quote
-
-Step 2: Create a recipient account
-
-**Step 3: Create a transfer**
-
-Step 4: Fund a transfer
-
-<br/>
 Transfer is a payout order which consists of quote and recipient account. You can also add reference text and you need to specify unique identifier to avoid creating duplicate transfers. 
 Once created then a transfer needs to be funded during next 5 working days. In case not it will get automatically cancelled.  
 
@@ -108,7 +97,7 @@ When your first call fails (error or timeout) then you should use the same value
 This way we can treat subsequent retry messages as **repeat messages** and will not create duplicate transfers to your account. 
 
 
-## Fund
+## Fund - todo
 
 > Example Request:
 
@@ -161,13 +150,13 @@ errorCode             | Failure reason. For example "balance.payment-option-unav
 
 
 
-## Cancel
+## Cancel - todo
 
-## Get by Id
+## Get by Id - todo
 
-## Get Issues
+## Get Issues - todo
 
-## Get Delivery Time 
+## Get Delivery Time - todo
 > Example Request:
 
 ```shell
@@ -204,6 +193,6 @@ estimatedDeliveryDate     | Estimated time when funds will arrive to recipient's
 
 
 
-## List
+## List - todo
 
 
