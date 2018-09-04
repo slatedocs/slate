@@ -694,7 +694,7 @@ Get available balances for all activated currencies in your borderless account.
 
 ### Request
 
-**`POST https://api.sandbox.transferwise.tech/v1/borderless-accounts?profileId={profileId}`**
+**`GET https://api.sandbox.transferwise.tech/v1/borderless-accounts?profileId={profileId}`**
 
 Use profile id obtained earlier to make this call. 
 
@@ -704,7 +704,7 @@ Use profile id obtained earlier to make this call.
 
 Field                             | Description                                   | Format
 ---------                         | -------                                       | -----------
-id                                | Borderless account id                         | Integer
+id                                | borderlessAccountId                         | Integer
 profileId                         | Personal or business profile id               | Integer
 recipientId                       | Recipient id you can use for borderless topup payment order  | Integer
 creationTime                      | Date when balance account was opened                     | Timestamp
@@ -720,7 +720,7 @@ balances[n].reservedAmount.currency  | Reserved amount currency code       | Tex
 balances[n].bankDetails              | Your borderless account bank details       | Group
 
 
-## Download account statement
+## Get account statement
 
 > Example Request:
 
