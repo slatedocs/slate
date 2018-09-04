@@ -76,6 +76,11 @@ curl -X POST \
 
 This endpoint creates an account under an organization
 
+
+<aside class="notice">
+Reach out to metype team to get organization id and authentication token.
+</aside>
+
 ### HTTP Request
 
 `POST https://www.metype.com/api/v1/organizations/:organization_id/accounts`
