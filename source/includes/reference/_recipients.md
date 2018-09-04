@@ -14,8 +14,8 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
           "type": "sort_code", 
           "profile": <your profile id>, 
           "accountHolderName": "Ann Johnson",
-          "legalType": "PRIVATE",
            "details": { 
+              "legalType": "PRIVATE",
               "sortCode": "231470", 
               "accountNumber": "28821822" 
            } 
@@ -32,8 +32,9 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
     "accountHolderName": "Ann Johnson",
     "type": "sort_code", 
     "country": "GB", 
-    "currency": "GBP"
+    "currency": "GBP",
     "details": {
+        "legalType": "PRIVATE",
         "accountNumber": "28821822",
         "sortCode": "231470"
     }
@@ -41,23 +42,13 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
 
 ```
 
-There are four steps to execute payouts: 
-
-Step 1: Create a quote
-
-**Step 2: Create a recipient account**
-
-Step 3: Create a transfer
-
-Step 4: Fund a transfer
-
-<br/>
 Recipient is a person or institution  who is the ultimate beneficiary of your payment. 
 
 Recipient bank account details are different for different currencies. For example you only need to know IBAN number to send payments to most European and Nordic countries. 
 But in order to send money to Canada you would need to know four fields: Institution No, Transit no, Account No & Account Type.
 
-GBP example is provided here. You can find other currency examples in Recipient API section below.  
+GBP example is provided here. You can find other currency examples below.<br/>
+Please also look at [Recipients.Requirements](#recipients-requirements) to figure out which fields are required to create recipients in specific countries.
 
 
 ### Request
@@ -70,31 +61,65 @@ currency              | 3 character currency code                     | Text
 type                  | Recipient type                                | Text
 profile               | Personal or business profile id               | Integer
 accountHolderName     | Recipient full name                           | Text
-legalType             | Recipient legal type: PRIVATE or BUSINESS     | Text
 details               | Currency specific group, see Recipients API   | 
+details.legalType     | Recipient legal type: PRIVATE or BUSINESS     | Text
 details.sortCode      | Recipient bank sort code (GBP example)        | Text
 details.accountNumber | Recipient bank account no (GBP example)       | Text
 
 
 ### Response
 
-Recipient id is needed for creating transfers in step 3.
+Recipient account id is needed for creating transfers in step 3.
 
 Field                 | Description                                   | Format
 ---------             | -------                                       | -----------
-id                    | Recipient id                                  | Integer
+id                    | recipientAccountId                            | Integer
 profile               | Personal or business profile id               | Integer
 acccountHolderName    | Recipient full name                           | Text
 currency              | 2 character country code                      | Text
 country               | 3 character currency code                     | Text
 type                  | Recipient type                                | Text
 details               | Currency specific group, see Recipients API   | 
+details.legalType     | Recipient legal type                          | Text
 details.sortCode      | Recipient bank sort code (GBP example)        | Text
 details.accountNumber | Recipient bank account no (GBP example)       | Text
 
 
-### Send money to email recipient
+## Create Email Recipient
 
+> Example Request (Create email recipient):
+
+```shell
+
+curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>, 
+          "accountHolderName": "Ann Johnson",
+          "currency": "EUR", 
+          "type": "email", 
+           "details": { 
+              "email": "ann.johnson@gmail.com"
+           } 
+         }'
+```
+
+> Example Response (Create email recipient):
+
+```json
+{
+    "id": 31273058,
+    "profile": <your profile id>, 
+    "accountHolderName": "Ann Johnson",
+    "type": "email", 
+    "currency": "EUR",
+    "details": {
+          "email": "ann.johnson@gmail.com"
+    }
+}
+
+```
 If you don't know recipient bank account details you can set up **email recipient** so that TransferWise can collect bank details directly from the recipient. 
 
 TransferWise will then email your recipient with a link to collect their bank account details. 
@@ -106,12 +131,13 @@ See below under Recipient API how to create email recipients.
 
 
 
+
 ## Get By Id
 > Example Request:
 
 ```shell
 
-curl -X GET https://api.sandbox.transferwise.tech/v1/profiles/{profileId} \
+curl -X GET https://api.sandbox.transferwise.tech/v1/accounts/{recipientAccountId} \
      -H "Authorization: Bearer <your api token>" 
 ```
 
@@ -119,32 +145,33 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/profiles/{profileId} \
 
 ```json
 {
-  "id": <your personal profile id>,
-  "type": "personal",
-  "details": {
-    "firstName": "Oliver",
-    "lastName": "Wilson",
-    "dateOfBirth": "1977-07-01",
-    "phoneNumber": "+3725064992",
-    "avatar": "",
-    "occupation": "",
-    "primaryAddress": null
-  }
+    "id": 31273058,
+    "profile": <your profile id>, 
+    "accountHolderName": "Ann Johnson",
+    "type": "sort_code", 
+    "country": "GB", 
+    "currency": "GBP",
+    "details": {
+        "legalType": "PRIVATE",
+        "accountNumber": "28821822",
+        "sortCode": "231470"
+    }
 }
 ```
 
-Get profile info by id.
+Get recipient account info by id.
 ### Request
-**`GET https://api.sandbox.transferwise.tech/v1/profiles/{profileId}`**
+**`GET https://api.sandbox.transferwise.tech/v1/accounts/{recipientAccountId}`**
 
 
 
-## List
+
+## List !!!
 > Example Request:
 
 ```shell
 
-curl -X GET https://api.sandbox.transferwise.tech/v1/profiles \
+curl -X GET https://api.sandbox.transferwise.tech/v1/accounts \
      -H "Authorization: Bearer <your api token>" 
 ```
 
@@ -200,7 +227,7 @@ List of all profiles belonging to user.
 
 
 
-## Create AED recipient
+## Create AED Recipient
 
 > Example Request (AED):
 
@@ -228,7 +255,7 @@ Recipient type = *'emirates'*
 
 Required details: IBAN
 
-## Create ARS recipient
+## Create ARS Recipient
 
 > Example Request (ARS):
 
@@ -256,7 +283,7 @@ Recipient type = *'argentina'*
 
 Required details: taxId, accountNumber
 
-## Create AUD recipient
+## Create AUD Recipient
 
 > Example Request (AUD):
 
@@ -284,7 +311,7 @@ Recipient type = *'australia'*
 
 Required details: bsbCode, accountNumber
 
-## Create BDT recipient
+## Create BDT Recipient
 
 > Example Request (BDT):
 
@@ -319,7 +346,7 @@ Required details: bankCode, branchCode, accountNumber
 You can get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
-## Create BGN recipient
+## Create BGN Recipient
 
 > Example Request (BGN):
 
@@ -346,7 +373,7 @@ Recipient type = *'iban'*
 
 Required details: IBAN
 
-## Create BRL recipient
+## Create BRL Recipient
 
 > Example Request (BRL):
 
@@ -381,7 +408,7 @@ Required details: bankCode, branchCode, accountNumber, accountType (CHECKING or 
 You can get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
-## Create CAD recipient
+## Create CAD Recipient
 
 > Example Request (CAD):
 
@@ -414,7 +441,7 @@ Required details: institutionNumber, transitNumber, accountNumber, accountType (
 
 You can get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
-## Create CHF recipient
+## Create CHF Recipient
 
 > Example Request (CHF):
 
@@ -442,7 +469,7 @@ Recipient type = *'iban'*
 Required details: IBAN
 
 
-## Create CLP recipient
+## Create CLP Recipient
 
 > Example Request (CLP):
 
@@ -474,7 +501,7 @@ Recipient type = *'chile'*
 Required details: bankCode, accountNumber, rut (Rol Único Tributario), accountType (CHECKING, SAVINGS, CUENTA_VISTA), recipient phone number
 
 
-## Create CNY recipient
+## Create CNY Recipient
 
 > Example Request (CNY):
 
@@ -501,7 +528,7 @@ Recipient type = *'chinese_card'*
 
 Required details: cardNumber
 
-## Create CZK recipient
+## Create CZK Recipient
 
 > Example Request (CZK Local):
 
@@ -565,7 +592,7 @@ Recipient type = *'iban'*
 Required details: IBAN
 
 
-## Create DKK recipient
+## Create DKK Recipient
 
 > Example Request (DKK):
 
@@ -595,7 +622,7 @@ Required details: IBAN
 
 
 
-## Create EGP recipient
+## Create EGP Recipient
 
 > Example Request (EGP):
 
@@ -626,7 +653,7 @@ Required details: bankCode, accountNumber (Swift code)
 You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
-## Create EUR recipient
+## Create EUR Recipient
 
 > Example Request (EUR):
 
@@ -654,7 +681,7 @@ Recipient type = *'iban'*
 Required details: IBAN
 
 
-## Create GBP recipient
+## Create GBP Recipient
 
 > Example Request (GBP Sort Code):
 
@@ -717,7 +744,7 @@ Recipient type = *'iban'*
 Required details: IBAN
 
 
-## Create GEL recipient
+## Create GEL Recipient
 
 > Example Request (GEL):
 
@@ -745,7 +772,7 @@ Recipient type = *'iban'*
 Required details: IBAN
 
 
-## Create GHS recipient
+## Create GHS Recipient
 
 > Example Request (GHS):
 
@@ -777,7 +804,7 @@ You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirement
 
 
 
-## Create HKD recipient
+## Create HKD Recipient
 
 > Example Request (HKD):
 
@@ -809,7 +836,7 @@ You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirement
 
 
 
-## Create HRK recipient
+## Create HRK Recipient
 
 > Example Request:
 
@@ -837,7 +864,7 @@ Recipient type = *'iban'*
 Required details: IBAN
 
 
-## Create HUF recipient
+## Create HUF Recipient
 
 > Example Request (HUF Local):
 
@@ -899,7 +926,7 @@ Recipient type = *'iban'*
 Required details: IBAN
 
 
-## Create IDR recipient
+## Create IDR Recipient
 
 > Example Request (IDR):
 
@@ -931,7 +958,7 @@ Required details: bankCode, accountNumber
 You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
-## Create ILS recipient
+## Create ILS Recipient
 
 > Example Request (ILS IBAN):
 
@@ -998,7 +1025,7 @@ You can get list of bank and branch codes by using /v1/quotes/{quoteId}/account-
 
 
 
-## Create INR recipient
+## Create INR Recipient
 
 > Example Request (INR):
 
@@ -1029,7 +1056,7 @@ Recipient type = *'indian'*
 Required details: ifscCode, accountNumber
 
 
-## Create JPY recipient
+## Create JPY Recipient
 
 > Example Request (JPY):
 
@@ -1062,7 +1089,7 @@ Required details: bankCode, branchCode accountNumber, accountType (CURRENT, SAVI
 You can get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
-## Create KES recipient
+## Create KES Recipient
 
 > Example Request (KES Bank Account):
 
@@ -1127,7 +1154,7 @@ Required details: accountNumber - mobile number
 
 
 
-## Create LKR recipient
+## Create LKR Recipient
 
 > Example Request (LKR):
 
@@ -1158,7 +1185,7 @@ Required details: bankCode, branchCode, accountNumber
 
 You can get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
-## Create MAD recipient
+## Create MAD Recipient
 
 > Example Request (MAD):
 
@@ -1190,7 +1217,7 @@ You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirement
 
 
 
-## Create MXN recipient
+## Create MXN Recipient
 
 > Example Request (MXN):
 
@@ -1220,7 +1247,7 @@ Required details: clabe
 
 
 
-## Create MYR recipient
+## Create MYR Recipient
 
 > Example Request (MYR):
 
@@ -1253,7 +1280,7 @@ You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirement
 
 
 
-## Create NGN recipient
+## Create NGN Recipient
 
 > Example Request (NGN):
 
@@ -1285,7 +1312,7 @@ You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirement
 
 
 
-## Create NOK recipient
+## Create NOK Recipient
 
 > Example Request (NOK):
 
@@ -1315,7 +1342,7 @@ Required details: IBAN
 
 
 
-## Create NPR recipient
+## Create NPR Recipient
 
 > Example Request (NPR):
 
@@ -1346,7 +1373,7 @@ Required details: bankCode, accountNumber
 You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
-## Create NZD recipient
+## Create NZD Recipient
 
 > Example Request (NZD):
 
@@ -1376,7 +1403,7 @@ Required details: accountNumber
 
 
 
-## Create PEN recipient
+## Create PEN Recipient
 
 > Example Request (PEN):
 
@@ -1415,7 +1442,7 @@ You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirement
 
 
 
-## Create PHP recipient
+## Create PHP Recipient
 
 > Example Request (PHP):
 
@@ -1456,7 +1483,7 @@ You can get list of bank and country codes by using /v1/quotes/{quoteId}/account
 
 
 
-## Create PKR recipient
+## Create PKR Recipient
 
 > Example Request (PKR):
 
@@ -1487,7 +1514,7 @@ Required details: IBAN
 
 
 
-## Create PLN recipient
+## Create PLN Recipient
 
 > Example Request (PLN IBAN):
 
@@ -1547,7 +1574,7 @@ Required details: accountNumber
  
  
 
-## Create RON recipient
+## Create RON Recipient
 
 > Example Request (RON):
 
@@ -1579,7 +1606,7 @@ Required details: IBAN
 
 
 
-## Create RUB recipient
+## Create RUB Recipient
 
 > Example Request (RUB):
 
@@ -1619,7 +1646,7 @@ You can get list of bank, region and country codes by using /v1/quotes/{quoteId}
 
 
 
-## Create SEK recipient
+## Create SEK Recipient
 
 > Example Request (SEK IBAN):
 
@@ -1711,7 +1738,7 @@ Required details: bankgiroNumber
 
 
 
-## Create SGD recipient
+## Create SGD Recipient
 
 > Example Request (SGD):
 
@@ -1745,7 +1772,7 @@ You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirement
 
 
 
-## Create THB recipient
+## Create THB Recipient
 
 > Example Request (THB):
 
@@ -1784,7 +1811,7 @@ You can get list of bank and country codes by using /v1/quotes/{quoteId}/account
 
 
 
-## Create TRY recipient
+## Create TRY Recipient
 
 > Example Request (TRY):
 
@@ -1812,7 +1839,7 @@ Recipient type = *'turkish_earthport'*
 Required details: IBAN
 
 
-## Create UAH recipient
+## Create UAH Recipient
 
 > Example Request (UAH):
 
@@ -1849,7 +1876,7 @@ Required details:
 
 
 
-## Create USD recipient
+## Create USD Recipient
 
 > Example Request (USD):
 
@@ -1894,7 +1921,7 @@ Required details:
 
 
 
-## Create VND recipient
+## Create VND Recipient
 
 > Example Request (VND):
 
@@ -1930,7 +1957,7 @@ You can get list of bank  and branc codes by using /v1/quotes/{quoteId}/account-
 
 
 
-## Create ZAR recipient
+## Create ZAR Recipient
 
 > Example Request (ZAR):
 

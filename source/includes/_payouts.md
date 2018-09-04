@@ -2,6 +2,7 @@
 Welcome to TransferWise Payouts API documentation. 
 Before you jump into coding please take few moments to go through these 3 topics at first.
 
+## Getting started
 ### 1. Learn about TransferWise borderless account. 
 Borderless account features and pricing are best explained below.
 
@@ -279,7 +280,7 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
     "accountHolderName": "Ann Johnson",
     "type": "sort_code", 
     "country": "GB", 
-    "currency": "GBP"
+    "currency": "GBP",
     "details": {
         "accountNumber": "28821822",
         "sortCode": "231470"
@@ -329,7 +330,7 @@ Recipient id is needed for creating transfers in step 3.
 
 Field                 | Description                                   | Format
 ---------             | -------                                       | -----------
-id                    | Recipient id                                  | Integer
+id                    | recipientAccountId                            | Integer
 profile               | Personal or business profile id               | Integer
 acccountHolderName    | Recipient full name                           | Text
 currency              | 2 character country code                      | Text
