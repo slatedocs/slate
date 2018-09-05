@@ -97,7 +97,7 @@ curl "http://example.com/api/shop/64"
         "currency": "XON"
       }
     ],
-    "genre": [
+    "genres": [
       {
         "id": 2,
         "name": "Action",
