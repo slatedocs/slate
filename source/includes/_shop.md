@@ -157,11 +157,23 @@ curl "http://example.com/api/shop/"
     "file_url": "http://www.drive.google.com/xonio/aoa/aoa.apk",
     "date": "@D:2015-12-10T12:34:56",
     "timestamp": 19267343928,
-    "wallet": {
-      "load": 480,
-      "xon": 520,
-      "xonio": 1
-    }
+    "wallet": [
+      {
+        "currency": "load",
+        "balance": 480,
+        "address": "0x9ivrb24b5obp25pnu12ldvjd897b",
+      },
+      {
+        "currency": "xon",
+        "balance": 80,
+        "address": "0x9ivrb24b5obp25pnu12ldvjd897b",
+      },
+      {
+        "currency": "xonio",
+        "balance": 10,
+        "address": "0x9ivrb24b5obp25pnu12ldvjd897b",
+      }
+    ]
   }
 }
 ```
