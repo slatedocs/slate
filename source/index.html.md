@@ -707,7 +707,7 @@ receiver_province_id | true | string | | Id of receiver's province. Get in api [
 receiver_district_id | true | string | | Id of receiver's district. Get in api [GET /geo/districts](#get-districts)
 receiver_commune_id | false | string | | Id of receiver's commune. Get in api [GET /geo/communes](#get-communes)
 items | true | array | | List of items in tracking package
-service_name | true | string | | Name of service. Get in api [GET /snappy/trackings/get_services](#get-services)
+service_name | false | string | | Name of service. Get in api [GET /snappy/trackings/get_services](#get-services)
 cod | true | integer | | Amount of cod or values of all items in package
 note | false | string | `Khởi tạo vận đơn` | Note of each status in tracking
 customer_tracking_id | false | string |  | The custom id of customer
