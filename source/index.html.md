@@ -199,7 +199,7 @@ district_id | true | string | | District id of communes you want to retrieve. Ge
 ## Get All Businesses
 
 ```http
-GET /snappy/users/me HTTP/1.1
+GET /snappy/users/me?access_token=<access_token> HTTP/1.1
 ```
 
 > Response
@@ -271,7 +271,7 @@ access_token | true | string | | Your personal acess_token
 ## Get a Specific Business
 
 ```http
-GET /snappy/businesses/<ID> HTTP/1.1
+GET /snappy/businesses/<ID>?access_token=<access_token> HTTP/1.1
 ```
 
 > Response
@@ -389,7 +389,7 @@ receiver_commune_id | false | string | | Id of receiver's commune
 ## Get Trackings
 
 ```http
-GET /snappy/trackings HTTP/1.1
+GET /snappy/trackings?access_token=<access_token> HTTP/1.1
 ```
 
 > Response
@@ -541,7 +541,7 @@ keyword | false | string | | keyword for search by address, phone number, tracki
 ## Create tracking
 
 ```http
-POST /snappy/trackings/create HTTP/1.1
+POST /snappy/trackings/create?access_token=<access_token> HTTP/1.1
 Content-Type: application/json
 ```
 
