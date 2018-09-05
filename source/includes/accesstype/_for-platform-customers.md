@@ -34,6 +34,125 @@ An `attempt_token` is the identifier of a subscription attempt. It should be sen
 
 We highly recommend use of this API before accepting payment form a user.
 
+
+## POST Subscribe a plan
+
+```shell--request
+curl -H "X-QT-AUTH: <x-qt-auth>” -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/subscribe -d ‘{
+   "options": {
+        "gateway-name": "manual"
+    },
+    "payment": {
+        "attributes": {
+            "currency": "INR",
+            "amount": 29900,
+            "payment-type": "manual"
+        }
+    },
+    "subscription": {
+        "accesstype-plan-id": 20,
+        "metadata": {
+          "city": "Bangalore",
+          "state": "Karnataka",
+          "house": "Old Airport Road, Murugeshpallya, Bangalore",
+          "street": "Old Airport Road, Murugeshpallya, Bangalore",
+          "landmark": "Karnataka",
+          "pincode": "560017",
+          "mobile": "9879310927"
+         }
+    }}’
+
+
+
+```
+```shell--response
+{
+    "subscription": {
+        "next_payment_due_date": null,
+        "subscription-display": "digital-3",
+        "deleted_at": null,
+        "campaign_name": null,
+        "payment_amount_currency": "INR",
+        "campaign_subscription": false,
+        "campaign_id": null,
+        "start_timestamp": "2019-06-05T10:16:58.901Z",
+        "assets": [
+            {
+                "title": "public",
+                "metadata": {},
+                "type": "site"
+            }
+        ],
+        "end_timestamp": "2019-09-05T10:16:58.901Z",
+        "payment_amount": "299.00",
+        "subscriber-id": 8478,
+        "discount_detail": {},
+        "duration_length": 3,
+        "dynamic_assets": {},
+        "trial_period_length": null,
+        "group_description": "Digital",
+        "renewable": false,
+        "subscription_attempt_id": 3121,
+        "subscription_group_id": 24,
+        "coupon_code": null,
+        "recurring": false,
+        "payment_type": "manual",
+        "cancelled": false,
+        "payment_token": null,
+        "updated_at": "2018-09-05T11:58:19.988Z",
+        "coupon_code_id": null,
+        "subscription-status": "inactive",
+        "subscribed-till": "2019-09-05",
+        "plan_amount_cents": 29900,
+        "status": "pending",
+        "group_name": "digital",
+        "external_id": null,
+        "active": false,
+        "id": 12158,
+        "plan_occurrence": "One Time",
+        "in_grace_period": false,
+        "code": null,
+        "preferred_identity": {
+            "provider": "email",
+            "value": "ace333@quintype.com"
+        },
+        "plan_amount_currency": "INR",
+        "expired": false,
+        "payment_id": 12132,
+        "plan_name": "digital-3",
+        "subscription_plan_id": 20,
+        "duration_unit": "months",
+        "trial_period_unit": null,
+        "subscription_type": "standard",
+        "subscription-plan": null,
+        "plan_description": null,
+        "cancelled_at": null,
+        "payment-id": 12132,
+        "metadata": {
+            "email": "ace333@quintype.com",
+            "city": "Bangalore",
+            "state": "Karnataka",
+            "street": "Old Airport Road, Murugeshpallya, Bangalore",
+            "landmark": "Karnataka",
+            "full-name": "ace333",
+            "pincode": "560017",
+            "house": "Old Airport Road, Murugeshpallya, Bangalore",
+            "mobile": "9879310927"
+        },
+        "renewal_reminder_sent_date": null,
+        "created_at": "2018-09-05T11:58:19.906Z",
+        "subscriber_id": 8478,
+        "payment_amount_cents": 29900
+    }
+}
+```
+
+It creates a Subscription for registered member. 
+
+`gateway-name` can be any valid payment-type supported by Accesstype.
+
+`accesstype-plan-id` is the Id of plan in Accesstype.
+
 ## POST Register And Subscribe a user
 
 ```shell--request
