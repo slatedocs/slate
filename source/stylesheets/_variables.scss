@@ -1,12 +1,9 @@
 /*
 Copyright 2008-2013 Concur Technologies, Inc.
-
 Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain
 a copy of the License at
-
   http://www.apache.org/licenses/LICENSE-2.0
-
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
 WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -23,19 +20,19 @@ under the License.
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #2E3336 !default;
-$examples-bg: #2E3336 !default;
-$code-bg: #1E2224 !default;
-$code-annotation-bg: #191D1F !default;
-$nav-subitem-bg: #1E2224 !default;
-$nav-active-bg: #0F75D4 !default;
-$nav-active-parent-bg: #1E2224 !default; // parent links of the current section
+$nav-bg: #F4F4F2 !default;
+$examples-bg: #354A5D !default;
+$code-bg: #2D3F50 !default;
+$code-annotation-bg: #2D3F50 !default;
+$nav-subitem-bg: #F0F0F0 !default;
+$nav-active-bg: #F25F4A !default;
+$nav-active-parent-bg: #F4F4F2 !default; // parent links of the current section
 $lang-select-border: #000 !default;
-$lang-select-bg: #1E2224 !default;
+$lang-select-bg: #2D3F50 !default;
 $lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
-$main-bg: #F3F7F9 !default;
-$aside-notice-bg: #8fbcd4 !default;
+$main-bg: #F8F8F8 !default;
+$aside-notice-bg: #6b96ac !default;
 $aside-warning-bg: #c97a7e !default;
 $aside-success-bg: #6ac174 !default;
 $search-notice-bg: #c97a7e !default;
@@ -43,11 +40,11 @@ $search-notice-bg: #c97a7e !default;
 
 // TEXT COLORS
 ////////////////////
-$main-text: #333 !default; // main content text color
-$nav-text: #fff !default;
-$nav-active-text: #fff !default;
-$nav-active-parent-text: #fff !default; // parent links of the current section
-$lang-select-text: #fff !default; // color of unselected language tab text
+$main-text: #585858 !default; // main content text color
+$nav-text: #424242 !default;
+$nav-active-text: #ffffff !default;
+$nav-active-parent-text: #424242 !default; // parent links of the current section
+$lang-select-text: #424242 !default; // color of unselected language tab text
 $lang-select-active-text: #fff !default; // color of selected language tab text
 $lang-select-pressed-text: #fff !default; // color of language tab text when mouse is pressed
 

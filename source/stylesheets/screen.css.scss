@@ -2,17 +2,13 @@
 @import 'normalize';
 @import 'variables';
 @import 'icon-font';
-// @import 'rtl'; // uncomment to switch to RTL format
 
 /*
 Copyright 2008-2013 Concur Technologies, Inc.
-
 Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain
 a copy of the License at
-
   http://www.apache.org/licenses/LICENSE-2.0
-
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
 WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -203,7 +199,7 @@ html, body {
   white-space: nowrap;
   text-overflow: ellipsis;
   text-decoration: none;
-  color: $nav-text;
+  color: #424242;
   transition-property: background;
   transition-timing-function: linear;
   transition-duration: 130ms;
@@ -353,7 +349,7 @@ html, body {
     margin-top: 2em;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    background-color: #fdfdfd;
+    background-color: #F0F0F0;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -403,14 +399,11 @@ html, body {
       text-align: left;
       vertical-align: top;
       line-height: 1.6;
-      code {
-        white-space: nowrap;
-      }
     }
 
     th {
       padding: 5px 10px;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #FEFEFE;
       vertical-align: bottom;
     }
 
@@ -419,15 +412,15 @@ html, body {
     }
 
     tr:last-child {
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #FEFEFE;
     }
 
     tr:nth-child(odd)>td {
-      background-color: lighten($main-bg,4.2%);
+      background-color: lighten(#F8F8F8,1%);
     }
 
     tr:nth-child(even)>td {
-      background-color: lighten($main-bg,2.4%);
+      background-color: lighten(#F8F8F8,2.4%);
     }
   }
 
@@ -468,6 +461,7 @@ html, body {
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
     line-height: 1.6;
+    color: #fff;
 
     &.warning {
       background-color: $aside-warning-bg;
@@ -498,7 +492,7 @@ html, body {
 
   .search-highlight {
     padding: 2px;
-    margin: -3px;
+    margin: -2px;
     border-radius: 4px;
     border: 1px solid #F7E633;
     background: linear-gradient(to top left, #F7E633 0%, #F1D32F 100%);
