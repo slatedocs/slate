@@ -159,15 +159,9 @@ Once recipient provides bank account details securely to Transferwise we are abl
 
 ```shell
 
-curl -X GET https://api.sandbox.transferwise.tech/v1/uniqueIdLookUp \
+curl -X GET https://api.sandbox.transferwise.tech/v1/uniqueIdLookUp?currencyCode=EUR&sourceCurrencyCode=GBP&type=email&uniqueId=name@transferwise.com \
      -H "Authorization: Bearer <your api token>" \
-     -H "Content-Type: application/json" \
-     -d '{ 
-          "currencyCode": "EUR", 
-          "sourceCurrencyCode": "GBP",
-          "type": "email", 
-          "uniqueId": "name@transferwise.com"
-         }'
+
 ```
 
 > Example Response (Create email recipient):
@@ -204,6 +198,10 @@ Before you create an **email recipient**, you can do a lookup to see if they hav
 If they do, you can choose to pay directly to their default bank account. That way, they won't have to enter their bank details again.
 
 ### Request
+
+**`GET https://api.sandbox.transferwise.tech/v1/uniqueIdLookUp?currencyCode=EUR&sourceCurrencyCode=GBP&type=email&uniqueId=name@transferwise.com`**
+
+
 
 Field                             | Description                                                   | Format
 ---------                         | -------                                                       | -----------
