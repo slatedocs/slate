@@ -43,10 +43,12 @@ The url is:
 
 ## Suredbits Lightning Payment 
 
-Here is a simple javascript client for our API: <a href="https://github.com/suredbits/lightning-charge">https://github.com/suredbits/lightning-charge</a>
+This is our recommended lightning client library: <a href="https://github.com/SuredBits/sb-api-lnd">https://github.com/SuredBits/sb-api-lnd</a>
+
+This is an alternative javascript client: <a href="https://github.com/suredbits/lightning-charge">https://github.com/suredbits/lightning-charge</a>
 
 ## Suredbits Websocket Endpoint
-Here is the websocket uri for Suredbits: <a href="wss://test.api.suredbits.com/nfl/v0">wss://test.api.suredbits.com/nfl/v0</a>
+Here is the websocket url for Suredbits: <a href="wss://test.api.suredbits.com/nfl/v0">wss://test.api.suredbits.com/nfl/v0</a>
 
 ## UUID
 > Example Data Returned with valid UUID
