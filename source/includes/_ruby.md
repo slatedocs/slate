@@ -2,17 +2,7 @@
 
 <h2 id="ruby-requirements">Requirements</h2>
 
-Our Ruby agent supports Ruby on Rails 2.2+ and Ruby 1.8.7+ and the following app servers/background job frameworks:
-
-* Phusion Passenger
-* Puma
-* Rainbows
-* Thin
-* Unicorn
-* WEBrick
-* Sidekiq
-* DelayedJob
-* Resque
+Our Ruby agent supports Ruby on Rails 2.2+ and Ruby 1.8.7+. See a [list of libraries we auto-instrument](#ruby-instrumented-libs).
 
 [Memory Bloat detection](#memory-bloat-detection) and [ScoutProf](#scoutprof) require Ruby 2.1+.
 
@@ -988,20 +978,29 @@ staging:
 
 The following libraries are currently instrumented:
 
-* ActiveRecord
-* ActionView
-* ActionController
-* ElasticSearch
-* HTTPClient
-* InfluxDB
-* Mongoid
-* Net::HTTP
-* Moped
-* Middleware
-* Redis
-* Sidekiq
-* DelayedJob
-* Resque
+* Datastores
+  * ActiveRecord
+  * ElasticSearch
+  * Mongoid
+  * Moped
+  * Redis
+* Rack frameworks
+  * Rails
+  * Sinatra
+  * Grape
+  * Middleware
+* Rails libraries
+  * ActionView
+  * ActionController
+* External HTTP calls
+  * HTTPClient
+  * Net::HTTP
+* Background Job Processing
+  * Sidekiq
+  * DelayedJob
+  * Resque
+  * Sneakers
+  * Shoryuken
 
 Additionally, [Scout can also instrument request queuing time](#request-queuing).
 

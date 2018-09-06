@@ -424,7 +424,7 @@ We typically respond within a couple of hours during the business day.
         The Git SHA associated with this release.
       </td>
       <td>
-             
+        <a href="#python-deploy-tracking-config">See docs</a>   
       </td>
       <td>
         No

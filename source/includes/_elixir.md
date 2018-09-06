@@ -268,6 +268,20 @@ The following configuration settings are available:
         No
       </td>
     </tr>
+    <tr>
+      <th>
+        revision_sha
+      </th>
+      <td>
+        The Git SHA associated with this release.
+      </td>
+      <td>
+        <a href="#elixir-deploy-tracking-config">See docs</a>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
   </tbody>
 </table>
 
@@ -292,7 +306,13 @@ The following configuration settings are available:
 
 <h2 id="elixir-deploy-tracking-config">Deploy Tracking Config</h2>
 
-The Elixir agent doesn't support deploy tracking yet. Contact [support@scoutapp.com](support@scoutapp.com) to be notified of updates.
+Scout can [track deploys](#deploy-tracking), making it easier to correlate changes in your app to performance. To enable deploy tracking, first ensure you are on the latest version of `scout_apm`. See our [upgrade instructions](#elixir-upgrade).
+
+Scout identifies deploys via the following:
+
+1. A `revision_sha` config setting.
+2. A `SCOUT_REVISION_SHA` environment variable equal to the SHA of your latest release.
+3. If you are using Heroku, enable [Dyno Metadata](https://devcenter.heroku.com/articles/dyno-metadata). This adds a `HEROKU_SLUG_COMMIT` environment variable to your dynos, which Scout then associates with deploys.
 
 
 <h2 id="elixir-instrumented-libaries">Auto-Instrumented Libraries</h2>
