@@ -251,7 +251,7 @@ currencyCode                      | Currency code                               
 
 ```shell
 
-curl -X GET https://api.sandbox.transferwise.tech/v1/account-requirements \
+curl -X GET https://api.sandbox.transferwise.tech/v1/quotes/{quoteId}/account-requirements \
      -H "Authorization: Bearer <your api token>" 
 ```
 
@@ -260,113 +260,282 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/account-requirements \
 ```json
 [
   {
-    "type": "address",
-    "fields": [
-      {
-        "name": "Country",
-        "group": [
+    "type": "aba",
+     "fields": [
           {
-            "key": "country",
-            "type": "select",
-            "refreshRequirementsOnChange": true,
-            "required": true,
-            "displayFormat": null,
-            "example": "Germany",
-            "minLength": null,
-            "maxLength": null,
-            "validationRegexp": null,
-            "validationAsync": null,
-            "valuesAllowed": [
+            "name": "Legal type",
+            "group": [
               {
-                "key": "AX",
-                "name": "Åland Islands"
-              },
-              ...
+                "key": "legalType",
+                "type": "select",
+                "refreshRequirementsOnChange": false,
+                "required": true,
+                "displayFormat": null,
+                "example": "",
+                "minLength": null,
+                "maxLength": null,
+                "validationRegexp": null,
+                "validationAsync": null,
+                "valuesAllowed": [
+                  {
+                    "key": "PRIVATE",
+                    "name": "Private"
+                  },
+                  {
+                    "key": "BUSINESS",
+                    "name": "Business"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Routing Number",
+            "group": [
               {
-                "key": "ZM",
-                "name": "Zambia"
+                "key": "abartn",
+                "type": "text",
+                "refreshRequirementsOnChange": false,
+                "required": true,
+                "displayFormat": null,
+                "example": "111000025",
+                "minLength": 9,
+                "maxLength": 9,
+                "validationRegexp": "\\d{9}",
+                "validationAsync": {
+                  "url": "https://test-restgw.transferwise.com/v1/validators/abartn",
+                  "params": [
+                    {
+                      "key": "abartn",
+                      "parameterName": "abartn",
+                      "required": true
+                    }
+                  ]
+                },
+                "valuesAllowed": null
+              }
+            ]
+          },
+          {
+            "name": "Account number",
+            "group": [
+              {
+                "key": "accountNumber",
+                "type": "text",
+                "refreshRequirementsOnChange": false,
+                "required": true,
+                "displayFormat": null,
+                "example": "12345678",
+                "minLength": 4,
+                "maxLength": null,
+                "validationRegexp": "\\d{4,17}",
+                "validationAsync": {
+                  "url": "https://test-restgw.transferwise.com/v1/validators/aba-account-number",
+                  "params": [
+                    {
+                      "key": "accountNumber",
+                      "parameterName": "accountNumber",
+                      "required": true
+                    }
+                  ]
+                },
+                "valuesAllowed": null
+              }
+            ]
+          },
+          {
+            "name": "Account type",
+            "group": [
+              {
+                "key": "accountType",
+                "type": "radio",
+                "refreshRequirementsOnChange": false,
+                "required": true,
+                "displayFormat": null,
+                "example": "",
+                "minLength": null,
+                "maxLength": null,
+                "validationRegexp": null,
+                "validationAsync": null,
+                "valuesAllowed": [
+                  {
+                    "key": "CHECKING",
+                    "name": "Checking"
+                  },
+                  {
+                    "key": "SAVINGS",
+                    "name": "Savings"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Country",
+            "group": [
+              {
+                "key": "address.country",
+                "type": "select",
+                "refreshRequirementsOnChange": true,
+                "required": true,
+                "displayFormat": null,
+                "example": "Germany",
+                "minLength": null,
+                "maxLength": null,
+                "validationRegexp": null,
+                "validationAsync": null,
+                "valuesAllowed": [
+                  {
+                    "key": "AX",
+                    "name": "Åland Islands"
+                  },
+                  {
+                    "key": "AL",
+                    "name": "Albania"
+                  },
+                  {
+                  ...
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "City",
+            "group": [
+              {
+                "key": "address.city",
+                "type": "text",
+                "refreshRequirementsOnChange": false,
+                "required": true,
+                "displayFormat": null,
+                "example": "London",
+                "minLength": null,
+                "maxLength": null,
+                "validationRegexp": null,
+                "validationAsync": null,
+                "valuesAllowed": null
+              }
+            ]
+          },
+          {
+            "name": "Postal code",
+            "group": [
+              {
+                "key": "address.postCode",
+                "type": "text",
+                "refreshRequirementsOnChange": false,
+                "required": true,
+                "displayFormat": null,
+                "example": "10025",
+                "minLength": null,
+                "maxLength": null,
+                "validationRegexp": null,
+                "validationAsync": null,
+                "valuesAllowed": null
+              }
+            ]
+          },
+          {
+            "name": "Address",
+            "group": [
+              {
+                "key": "address.firstLine",
+                "type": "text",
+                "refreshRequirementsOnChange": false,
+                "required": true,
+                "displayFormat": null,
+                "example": "50 Branson Ave",
+                "minLength": null,
+                "maxLength": null,
+                "validationRegexp": null,
+                "validationAsync": null,
+                "valuesAllowed": null
               }
             ]
           }
         ]
-      },
-      {
-        "name": "City",
-        "group": [
-          {
-            "key": "city",
-            "type": "text",
-            "refreshRequirementsOnChange": false,
-            "required": true,
-            "displayFormat": null,
-            "example": "London",
-            "minLength": null,
-            "maxLength": null,
-            "validationRegexp": null,
-            "validationAsync": null,
-            "valuesAllowed": null
-          }
-        ]
-      },
-      {
-        "name": "Postal code",
-        "group": [
-          {
-            "key": "postCode",
-            "type": "text",
-            "refreshRequirementsOnChange": false,
-            "required": true,
-            "displayFormat": null,
-            "example": "10025",
-            "minLength": null,
-            "maxLength": null,
-            "validationRegexp": null,
-            "validationAsync": null,
-            "valuesAllowed": null
-          }
-        ]
-      }
-      ...
-    ]
-  }
+    }
 ]
 ```
 ### Request
-**` GET https://api.sandbox.transferwise.tech/v1/address-requirements`**<br/>
-**` POST https://api.sandbox.transferwise.tech/v1/address-requirements`**<br/>
+**` GET https://api.sandbox.transferwise.tech/v1/quotes/{quoteId}/account-requirements`**<br/>
+**` POST https://api.sandbox.transferwise.tech/v1/quotes/{quoteId}/account-requirements`**<br/>
 
-GET and POST address-requirements endpoints help you to figure out which fields are required to create a valid address for different countries.
-You could even build a dynamic user interface on top of these endpoints. This is a step-by-step guide on how these endpoints work.
+GET and POST account-requirements endpoints help you to figure out which fields are required to create a valid recipient for different currencies.
+You could even build a dynamic user interface on top of these endpoints. 
+This is a step-by-step guide on how these endpoints work.
 
-1. Call GET /v1/address-requirements to get list of fields you need to fill with values in "details" section for creating a valid address.  Response contains 4 required top level fields: 
- * country   (select field with list of values)
- * city      (text field)
- * postCode  (text field)
- * firstLine (text field)
+1.Create quote first to specify currencies and transfer amounts. See [Create.Quote](#quotes-create).
 
-2. Analyze the list of fields. Because refreshRequirementsOnChange=true for field 'country' then this indicates that there could be additional fields required depending on the selected value.
-3. Call POST /v1/address-requirements with selected country value to figure out if this is the case.  <br/>
-For example posting {"details": {"country" : "US"}} will also add "state" to list of fields.<br/>
-But posting {"details": {"country" : "GB"}} will not.
+2.Call GET /v1/quotes/{quoteId}/account-requirements to get list of fields you need to fill with values in "details" section for creating a valid recipient account. 
 
-4. If you choose "US" as country you will notice that "state" field also has refreshRequirementsOnChange=true.  This means you would need to make another POST call to /v1/address-requirements with a specific state value.<br/>
-For example posting {"details": { "country" : "US", "state": "AZ" }} will also add "occupation" to list of fields.<br/>
-But posting {"details": { "country" : "US", "state": "AL" }} will not.
+In order to create "aba" recipient type you need these top level fields:<br/>
+<ul>
+ <li>legalType (PRIVATE / BUSINESS)</li>
+ <li>abartn (ABA routing number)</li>
+ <li>accountType  (CHECKING / SAVINGS)</li>
+ <li>address.country</li>
+ <li>address.city</li>
+ <li>address.postalCode</li>
+ <li>address.firstLine</li>
+</ul>
 
-5. So once you get to the point where you have provided values for all fields which have refreshRequirementsOnChange=true then you have complete set of fields to compose a valid request to create an address object. 
-For example this is a valid request to create address in US Arizona:
-<br/> POST /v1/addresses:<br/>
+Analyze the list of fields. Because refreshRequirementsOnChange=true for field 'address.country' then this indicates that there are additional fields required depending on the selected value.
+
+3.Construct a recipient object with top level fields and call POST /v1/quotes/{quoteId}/account-requirements with these value to expose sub fields.  <br/>
+For example posting US as country will also add "state" to list of fields.<br/>
+                    {
+                        "type": "aba",
+                        "details": {
+                        	"legalType": "PRIVATE",
+                        	"abartn": "111000025",
+                        	"accountNumber": "12345678",
+                        	"accountType": "CHECKING",
+                        	"address": {
+                        		"country": "US"
+                        	}
+                        }
+                    }
+
+But posting GB as country will not add new fields anything.
+
+                    {
+                        "type": "aba",
+                        "details": {
+                        	"legalType": "PRIVATE",
+                        	"abartn": "111000025",
+                        	"accountNumber": "12345678",
+                        	"accountType": "CHECKING",
+                        	"address": {
+                        		"country": "US"
+                        	}
+                        }
+                    }
+
+
+4.So once you get to the point where you have provided values for all fields which have refreshRequirementsOnChange=true then you have complete set of fields to compose a valid request to create an recipient object. 
+For example this is a valid request to create a recipient with address in US Arizona:
+<br/> POST /v1/accounts:<br/>
 {
-    "profile" : your-profile-id,<br/>
-    "details": {<br/>
-        "country" : "US",<br/>
-        "state": "AZ",<br/>
-        "city": "Phoenix",<br/>
-        "postCode": "10025",<br/>
-        "firstLine": "50 Sunflower Ave.",<br/>
-        "occupation": "software engineer"<br/>
+    "profile": your-profile-id,
+    "accountHolderName": "John Smith",
+    "currency": "USD",
+    "type": "aba",
+    "details": {
+    	"legalType": "PRIVATE",
+    	"abartn": "111000025",
+    	"accountNumber": "12345678",
+    	"accountType": "CHECKING",
+    	"address": {
+    		"country": "US",
+    		"state": "AZ"
+       	"city": "New York",
+    		"postCode": "10025",
+    		"firstLine": "45 Sunflower Ave"
+    	}
     }
-}<br/>
+}
 
 
 ### Response
@@ -376,7 +545,7 @@ type                                        | "address"                         
 fields[n].name                              | Field description                                  | Text
 fields[n].group[n].key                      | Key is name of the field you should include in the JSON                                     | Text
 fields[n].group[n].type                     | Display type of field (e.g. text, select, etc)                                  | Text
-fields[n].group[n].refreshRequirementsOnChange |  Tells you whether you should call POST address-requirements once the field value is set to discover required lower level fields.  | Boolean
+fields[n].group[n].refreshRequirementsOnChange |  Tells you whether you should call POST account-requirements once the field value is set to discover required lower level fields.  | Boolean
 fields[n].group[n].required                 | Indicates if the field is mandatory or not                                 | Boolean
 fields[n].group[n].displayFormat            | Display format pattern.                                | Text
 fields[n].group[n].example                  | Example value.                                | Text

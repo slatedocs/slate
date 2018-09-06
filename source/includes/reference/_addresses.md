@@ -240,8 +240,8 @@ You could even build a dynamic user interface on top of these endpoints. This is
  * postCode  (text field)
  * firstLine (text field)
 
-2. Analyze the list of fields. Because refreshRequirementsOnChange=true for field 'country' then this indicates that there could be additional fields required depending on the selected value.
-3. Call POST /v1/address-requirements with selected country value to figure out if this is the case.  <br/>
+2. Analyze the list of fields. Because refreshRequirementsOnChange=true for field 'country' then this indicates that there are additional fields required depending on the selected value.
+3. Call POST /v1/address-requirements with selected country value to expose sub fields.  <br/>
 For example posting {"details": {"country" : "US"}} will also add "state" to list of fields.<br/>
 But posting {"details": {"country" : "GB"}} will not.
 
