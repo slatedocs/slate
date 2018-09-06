@@ -105,7 +105,7 @@ Reach out to metype team to get organization id and authentication token.
 
 ```shell--request
 curl -X POST \
-  http://localhost:3000/api/v1/organizations/<organization_id>/users \
+  https://www.metype.com/api/v1/organizations/<organization_id>/users \
   -d '{
 	"authentication_token" : <authentication_toke>,
 	"user":{
