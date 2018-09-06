@@ -160,7 +160,7 @@ Once recipient provides bank account details securely to Transferwise we are abl
 ```shell
 
 curl -X GET https://api.sandbox.transferwise.tech/v1/uniqueIdLookUp?currencyCode=EUR&sourceCurrencyCode=GBP&type=email&uniqueId=name@transferwise.com \
-     -H "Authorization: Bearer <your api token>" \
+     -H "Authorization: Bearer <your api token>"
 
 ```
 
