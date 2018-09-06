@@ -72,7 +72,7 @@
 ```
 
 <span class="tryit" id="message-broadcast-tryit"></span>
-Sends a broadcast message. Only site admins can send messages to everyone. Other accounts are limited to sending messages to only the specific teams they are on.
+Sends a broadcast message. Only site admins can send messages to everyone. Managers can send messages to the workgroups they manage.
 
 #### Required Parameters
 
