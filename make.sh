@@ -3,6 +3,7 @@ rm -rf build mjml mjml-doc || true &&
 
 echo 'Cloning the repos'
 git clone https://github.com/mjmlio/mjml mjml &&
+cd mjml && git checkout next && cd .. &&
 rm -rf source/index.html.md &&
 
 
