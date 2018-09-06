@@ -28,6 +28,7 @@ includes:
   - api/managerNote
   - api/managerNoteType
   - api/membership
+  - api/message
   - api/news
   - api/openid
   - api/paycode
